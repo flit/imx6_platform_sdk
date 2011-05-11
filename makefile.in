@@ -1,0 +1,65 @@
+#make commands:
+# make TARGET=<some soc> BOARD=<some board>
+# example:
+# 		make TARGET=mx28 BOARD=evk
+
+PROJ_DIR := $(shell pwd)
+
+UNAME := $(shell uname)
+ifneq ($(UNAME), Linux)
+PROJ_DIR := $(shell ./tools/windows/dirpath $(PROJ_DIR))
+endif
+
+PROJ_OUT := $(PROJ_DIR)/output/$(TARGET)
+TARGET_LIB := $(PROJ_OUT)/lib/libobds.a
+TARGET_LIB_DIR :=$(PROJ_OUT)/lib
+TARGET_BIN_DIR :=$(PROJ_OUT)/bin
+
+export PROJ_DIR
+export PROJ_OUT
+export TARGET_LIB
+export TARGET_LIB_DIR
+export TARGET_BIN_DIR
+
+
+
+include make.def
+
+SUB_DIRS := src
+
+
+.PHONY: default clean bin
+default: build_dir $(SUB_DIRS) all bin
+	@echo "**************************************************"
+	@echo "  Build has completed. ELF file available in:"
+	@echo "  =>" $(TARGET_BIN_DIR)
+
+build_dir:
+	mkdir -p output
+	mkdir -p output/$(TARGET)
+ifneq "$(TARGET_LIB_DIR)" ""
+		mkdir -p $(TARGET_LIB_DIR)
+endif
+ifneq "$(TARGET_BIN_DIR)" ""
+		mkdir -p $(TARGET_BIN_DIR)
+endif
+
+$(SUB_DIRS):build_dir
+	make -S -C $@ dir
+
+bin:$(SUB_DIRS)
+	$(CC) -o $(OUTPUT_ELF) $(INIT_FILE) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
+	arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
+
+clean:
+	rm -rf output/$(TARGET)
+
+test:
+	@echo aaa = $(aaa)
+	@echo bbb = $(bbb)
+	@echo PROJ_DIR = $(PROJ_DIR)
+	@echo PROJ_DIR1 = $(PROJ_DIR1)
+	@echo PROJ_DIR2 = $(PROJ_DIR2)
+
+include make.rules
+

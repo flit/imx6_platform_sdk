@@ -1,0 +1,118 @@
+#!/bin/bash
+#
+# doxygenate_obds
+#
+script=$(basename $0)
+script_full=$(which $0)
+script_path=$(dirname $script_full)
+generate_list_only=n
+
+usage()
+{
+    echo
+    echo "Creates a file list for doxygen config and runs doxygen to create docs."
+    echo
+    echo "Usage: $script [-l] [-obds_dir]"
+    echo "   Must be executed in the diag-obds tree."
+    echo
+    echo "Normal usage: cd to your diag-obds source and run:"
+    echo "   $script"
+    echo
+    echo "To generates a file list without actually create the doxygen docs:"
+    echo "   $script -l"
+    echo
+    echo "Specify the base of the OBDS directory, else assumes PWD:"
+    echo "   $script -obds_dir /home/user/diag-obds"
+    echo
+    exit 1
+}
+
+create_list()
+{
+    #
+    # Make a list of C source files
+    #
+    cd $release_obds_dir
+    find . -type f -name '*.[ch]' -o -name "*.inc" -o -name "*.S"| \
+        sed 's,\.\/,\$(OBDS_PATH)/,g' > $doxygen_output_dir/doxy-file.txt
+
+    cd $doxygen_output_dir
+    sort $doxygen_output_dir/doxy-file.txt -o $doxygen_output_dir/doxy-file.txt
+}
+
+#==============================================================================
+
+release_obds_dir=
+doxygen_output_dir=
+base_obds_dir=
+
+if echo "$@"|egrep -sq '\-(h|H)'; then
+    eval usage
+fi
+
+saved_pwd=$PWD
+release_obds_dir=$PWD
+while [ ! -d tools ]; do
+    if [ "$release_obds_dir" = / ]; then
+        echo "Couldn't find root of linux tree"
+        eval usage
+    fi
+    cd ..
+    release_obds_dir=$PWD
+done
+cd ..
+export OBDS_PATH=$release_obds_dir
+#Assume the Base OBDS folder is the release folder unless passed in as argument
+base_obds_dir=$release_obds_dir
+
+while [ $# -gt 0 ]; do
+    case $1 in
+    --list | -l )   generate_list_only=y
+        ;;
+
+    -obds_dir )     base_obds_dir=$2
+                    shift
+        ;;
+
+    * )     echo "Incorrect parameter: $1"
+            echo
+            echo "$script:"
+            usage
+        ;;
+    esac
+    shift
+done
+
+echo "OBDS path is:  $release_obds_dir"
+
+
+cd $release_obds_dir
+
+doxygen_output_dir=$release_obds_dir/doxygen_config
+if [ ! -d $doxygen_output_dir ]; then
+    mkdir $doxygen_output_dir
+fi
+
+create_list
+#cd $doxygen_output_dir/config
+
+wc -l $doxygen_output_dir/doxy-file.txt
+
+if [ "$generate_list_only" = y ]; then
+    exit
+fi
+
+export DOXYGEN_INPUT=$(cat $doxygen_output_dir/doxy-file.txt |tr '\n' ' ')
+
+rm -rf   $doxygen_output_dir/obds_doc $doxygen_output_dir/logs
+mkdir -p $doxygen_output_dir/logs
+
+# Copy the doxygen configs into the release
+cp $base_obds_dir/tools/doxygen_config/* $doxygen_output_dir
+cd $base_obds_dir/tools/doxygen_config
+doxygen doxygen_obds.cfg 2>&1 | tee $doxygen_output_dir/logs/obds_doxygen_log.txt
+#doxygen doxygen_obds.cfg
+cd $release_obds_dir
+
+#Delete all files used for doxygen documentation generation
+#rm -rf $doxygen_output_dir

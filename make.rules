@@ -1,0 +1,30 @@
+#make.rules
+C_FLAGS 	+= $(MODULE_C_FLAGS)
+C_INCLUDES 	+= $(MODULE_C_INCLUDES)
+C_DEFINES 	+= $(MODULE_C_DEFINES)
+
+A_FLAGS 	+= $(MODULE_A_FLAGS)
+A_INCLUDES 	+= $(MODULE_A_INCLUDES)
+A_DEFINES 	+= $(MODULE_A_DEFINES)
+
+all: $(MODULE_OUT) $(MODULE_OBJS)
+ifneq "$(MODULE)" "init"
+ifeq "$(TARGET)" "mx28"
+		$(AR) -rucs $(TARGET_LIB) $(MODULE_OBJS)
+else
+		$(AR) -rucs $(TARGET_LIB) $(MODULE_OBJS)
+endif
+endif
+	
+	
+$(MODULE_OUT): 
+	@-$(MKDIR) $(MODULE_OUT)
+
+$(MODULE_OUT)/%.o: %.c
+		$(CC)  $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -o $@ -c $<
+
+$(MODULE_OUT)/%.o: %.S
+		$(CC)  $(C_FLAGS)  $(C_INCLUDES) $(C_DEFINES) -o $@ -c $<
+
+$(MODULE_OUT)/%.o: %.s
+		$(AS)  $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -o $@ $<

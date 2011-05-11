@@ -1,0 +1,65 @@
+#make.def. please replace following defines if needed
+# For example, if using ARM tools
+#CC = armcc
+#AS = armasm
+#AR = armar
+#LN = armlink
+
+# The following are defines for the GCC tool chain
+CC= arm-none-eabi-gcc
+AS = arm-none-eabi-as
+AR = arm-none-eabi-ar
+LN = arm-none-eabi-ld
+
+IMAGENAME = $(TARGET)$(BOARD)-$(TEST)-sdk
+
+OUTPUT_BIN = $(PROJ_OUT)/bin/$(IMAGENAME).bin
+OUTPUT_TXT = $(PROJ_OUT)/bin/$(IMAGENAME).txt
+OUTPUT_ELF = $(PROJ_OUT)/bin/$(IMAGENAME).elf
+INIT_FILE = $(PROJ_DIR)/src/init/main.c $(PROJ_DIR)/src/init/vectors.S
+INIT_FILE += $(PROJ_DIR)/src/init/sys.c $(PROJ_DIR)/src/init/version.c
+INIT_FILE += $(PROJ_DIR)/src/init/interrupt.c
+
+CP = cp
+RM = rm -rf
+MKDIR = mkdir -p
+MAKE = make
+#BOARD_UC=`echo $(BOARD) | tr [:lower:] [:upper:]`
+
+ifeq "$(TARGET)" "mx53"
+CPU	=cortex-a8
+ifeq "$(BOARD)" "evk"
+C_DEFINES =-DMX53_EVK
+endif
+ifeq "$(BOARD)" "ard"
+C_DEFINES =-DMX53_ARD
+endif
+ifeq "$(BOARD)" "cpu2"
+C_DEFINES =-DMX53_CPU2
+endif
+ifeq "$(BOARD)" "sbrth_lcb"
+C_DEFINES =-DMX53_SBRTH_LCB
+endif
+ifeq "$(BOARD)" "sbrth_smd"
+C_DEFINES =-DMX53_SBRTH_SMD
+endif
+endif
+
+ifeq "$(BOARD_VERSION)" "2"
+C_DEFINES +=-DBOARD_VERSION2
+endif
+ifeq "$(BOARD_VERSION)" "1"
+C_DEFINES +=-DBOARD_VERSION1
+endif
+
+LD_FLAGS := $(DEBUG_FLAGS) $(THUMB_FLAGS) -nostartfiles
+LD_FLAGS += -T $(PROJ_DIR)/src/$(TARGET)/$(TARGET).ld
+
+C_DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
+
+C_FLAGS 		= -mcpu=$(CPU) -Wall -Wpointer-arith -Wstrict-prototypes -Winline -Wundef  -mapcs -g -O0 -ffunction-sections -fdata-sections -fno-exceptions
+C_INCLUDES 	= -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I.
+
+A_FLAGS 		=
+A_INCLUDES 	+=  -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I.
+A_DEFINES 	=

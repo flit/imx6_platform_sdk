@@ -1,0 +1,107 @@
+#!/bin/bash
+#
+# build_sdk
+#
+
+script=$(basename $0)
+script_full=$(which $0)
+script_path=$(dirname $script_full)
+clean_flag=n
+
+usage()
+{
+    echo "Generates Makefiles for the iMx SDK project."
+    echo "Makefiles are generated only for packages that are part of the platform specified as argument."
+    echo
+    echo "Usage: "
+    echo "   $script [-target <mx28, mx50, mx53...>] [-board <evk .....>][-board_rev <1,2...>] [-test <vpu, sdma, ipu>] [-clean]"
+    echo "   The '-clean' is an optional argument to be used in case you wish to do a clean build"
+    echo
+    echo "For eg: 1. $script -target mx53 -board ard -board_rev 1 -test vpu"
+    echo "        2. $script -target mx28 -board evk -board_rev 2 -test sdma -clean"
+    echo
+    echo "Installation:"
+    echo "   Clone the diag-sdk project and add the diag-sdk/tools directory"
+    echo "   to your path somewhere."
+    echo
+    exit 1
+}
+
+if [ $# -lt 1 ]; then
+    echo "Need to specify -target & -board as arguments"
+    echo
+    echo "$script:"
+    usage
+fi
+
+if echo "$@"|egrep -sq '\-(h|H)'; then
+    eval usage
+fi
+
+sdk_dir=$PWD
+
+while [ ! -f tools/gen_make.pl -o ! -d src/init ]; do
+    if [ "$sdk_dir" = / ]; then
+        echo "Couldn't find root of project tree. Script must be executed from root of project tree"
+        eval usage
+    fi
+    cd ..
+    sdk_dir=$PWD
+done
+
+config_dir=$sdk_dir/configs
+make_perl_script=$sdk_dir/tools/gen_make.pl
+
+os_name=$(uname)
+
+while [ $# -gt 0 ]; do
+    case $1 in
+    -target )   soc_name=$2
+                shift
+            ;;
+
+    -board )    board_name=\_$2
+                shift
+            ;;
+    -board_rev   )    board_version=$2
+                shift
+            ;;
+    -test  )    test_name=$2
+	    	shift
+	    ;;
+    -clean )    clean_flag=y
+            ;;
+
+    * )     echo "Incorrect parameter: $1"
+            echo
+            echo "$script:"
+            usage
+            ;;
+    esac
+    shift
+done
+
+echo "Generating makefiles for $soc_name$board_name"
+
+perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $test_name
+
+if [ $? -eq 1 ]; then
+    echo
+    echo "Failed to run the gen_make perl script."
+    echo "Please double check the -board & -target arguments passed in"
+    echo
+    echo "$script:"
+    usage
+    exit 1
+fi
+
+if [ "$clean_flag" = y ]; then
+    make clean TARGET=$soc_name
+fi
+
+    #Do not include the '_' when calling the make
+    make TARGET=$soc_name BOARD=$(echo $board_name | sed 's/_//') BOARD_VERSION=$board_version TEST=$test_name
+
+echo
+echo "Done ... Build script completed"
+echo

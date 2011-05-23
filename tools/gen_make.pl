@@ -76,10 +76,30 @@ while ($loop_end == 0)
 	else
 	{		
 		if($num_of_subdir gt "0")
-		{	
+		{
+			#ignore the sub directories without c/asm files	
 			$num_of_subdir = $num_of_subdir - 1;
 			$sdk_sub_dirs = $test_case."/".$sdk_subdir[$num_of_subdir];
-			$line = $sdk_sub_dirs;
+			$subdir=$ARGV[1]."/".$sdk_sub_dirs;
+			chop($subdir);
+			opendir(TEMP,$subdir) or die "Cannot open $subdir:$!";
+			my @FILES = grep(/\.s$/i,readdir TEMP);
+			my $src_num=scalar @FILES;
+			
+			rewinddir(TEMP);
+			my @FILES = grep(/\.c$/i,readdir TEMP);
+			
+			closedir(TEMP);
+			
+			$src_num+=scalar @FILES;
+			if($src_num gt "0")
+			{
+				$line = $sdk_sub_dirs;
+			}
+			else
+			{
+				next;
+			}
 		}
     	else{
 			while(<INP_FH>)

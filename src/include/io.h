@@ -91,7 +91,7 @@ struct hw_module {
     u32 freq;
 };
 
-#ifdef OBDS_DEBUG
+#ifdef SDK_DEBUG
 #define printf1    printf
 #else
 #define printf1(fmt,args...)
@@ -117,7 +117,7 @@ struct test_module {
 
 void record_test_result(char *name, int result);
 
-typedef int (*obds_test_t) (void);
+typedef int (*sdk_test_t) (void);
 typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, unsigned int write);
 
 void fuse_blow_row(int bank, int row, unsigned int value);
@@ -133,24 +133,24 @@ int gpio_read_data(int port, int pin);
 int gpio_write_data(int port, int pin, unsigned int attr);
 
 #define RUN_TEST_COMMON(name, func)                         \
-    static int obds_##func (void)                           \
+    static int sdk_##func (void)                           \
     {                                                       \
-        obds_test_t test_func = (obds_test_t) func;         \
+        sdk_test_t test_func = (sdk_test_t) func;         \
         record_test_result(name, test_func());              \
         return 0;                                           \
     }
 
 #define RUN_TEST(name, func)            \
     RUN_TEST_COMMON(name, func)         \
-    static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = obds_##func;
+    static sdk_test_t __sdk_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = sdk_##func;
 
 #define RUN_TEST_EARLY(name, func)      \
     RUN_TEST_COMMON(name, func)         \
-    static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = obds_##func;
+    static sdk_test_t __sdk_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = sdk_##func;
 
 #define RUN_TEST_LATE(name, func)       \
     RUN_TEST_COMMON(name, func)         \
-    static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = obds_##func;
+    static sdk_test_t __sdk_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = sdk_##func;
 
 #define RUN_TEST_INTERACTIVE(name, func)        RUN_TEST_LATE(name, func)
 

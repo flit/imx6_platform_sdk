@@ -20,7 +20,7 @@ void program_board_id_fuses(char *chip)
     if (board_id == 0) {
         if (!auto_run_enable) {
             printf("\nNo Board ID found in the fuses\n");
-            printf("This %s OBDS binary will program Board ID to 0x%x\n", chip, BOARD_TYPE_ID);
+            printf("This %s SDK binary will program Board ID to 0x%x\n", chip, BOARD_TYPE_ID);
             if (!is_input_char('y'))
                 /* Do not program the suggested value to Board ID fuse bank */
                 program_board_id_fuse = 0;
@@ -35,7 +35,7 @@ void program_board_id_fuses(char *chip)
     if (board_rev == 0) {
         if (!auto_run_enable) {
             printf("\nNo Board Rev found in the fuses\n");
-            printf("This %s OBDS binary will program Board Rev to 0x%x\n", chip, BOARD_VERSION_ID);
+            printf("This %s SDK binary will program Board Rev to 0x%x\n", chip, BOARD_VERSION_ID);
             if (!is_input_char('y'))
                 /* Do not program the suggested value to Board ID fuse bank */
                 program_board_rev_fuse = 0;

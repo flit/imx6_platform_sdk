@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# build_obds
+# release_sdk
 #
 
 script=$(basename $0)
@@ -10,19 +10,18 @@ clean_flag=n
 
 usage()
 {
-    echo "Generate a release packgae for the OBDS project."
+    echo "Generate a release packgae for the SDK project."
     echo "Only files releavant for the platform specified as argument are copied to the release folder."
     echo
     echo "Usage: "
     echo "   $script [-target <mx28, mx50, mx53...>] [-board <evk .....>]"
-    echo "   Must be executed in the diag-obds tree. The '-clean' is an optional"
-    echo "   argument to be used in case you wish to do a clean build"
+    echo "   Must be executed in the diag-sdk tree. "
     echo
     echo "For eg: 1. $script -target mx53 -board ard"
     echo "        2. $script -target mx28 -board evk"
     echo
     echo "Installation:"
-    echo "   Clone the diag-obds project and add the diag-obds/tools directory"
+    echo "   Clone the diag-sdk project and add the diag-sdk/tools directory"
     echo "   to your path somewhere."
     echo
     exit 1
@@ -39,28 +38,30 @@ if echo "$@"|egrep -sq '\-(h|H)'; then
     eval usage
 fi
 
-obds_dir=$PWD
+sdk_dir=$PWD
 
 while [ ! -f tools/gen_release.pl -o ! -d src/init ]; do
-    if [ "$obds_dir" = / ]; then
-        echo "Couldn't find root of OBDS tree. Script must be executed from root of OBDS tree"
+    if [ "$sdk_dir" = / ]; then
+        echo "Couldn't find root of SDK tree. Script must be executed from root of SDK tree"
         eval usage
     fi
     cd ..
-    obds_dir=$PWD
+    sdk_dir=$PWD
 done
 
-config_dir=$obds_dir/configs
-make_perl_script=$obds_dir/tools/gen_make.pl
-release_perl_script=$obds_dir/tools/gen_release.pl
+config_dir=$sdk_dir/configs
+make_perl_script=$sdk_dir/tools/gen_make.pl
+release_perl_script=$sdk_dir/tools/gen_release.pl
 
 while [ $# -gt 0 ]; do
     case $1 in
     -target )   soc_name=$2
                 shift
             ;;
-
-    -board )    board_name=\_$2
+	-test	)	test_name=$2
+				shift
+			;;
+    -board 	)   board_name=\_$2
                 shift
             ;;
 
@@ -73,10 +74,10 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-release_dir=$obds_dir/imx_obds_release/$soc_name$board_name\_release
+release_dir=$sdk_dir/imx_sdk_release/$soc_name$board_name\_release
 
 echo "Generating Makefiles for $soc_name$board_name"
-perl $make_perl_script $config_dir $obds_dir $soc_name $board_name
+perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $test_name
 
 if [ $? -eq 1 ]; then
     echo
@@ -89,7 +90,7 @@ if [ $? -eq 1 ]; then
 fi
 
 echo "Copying files to Release folder"
-perl $release_perl_script $config_dir $obds_dir $release_dir $soc_name $board_name
+perl $release_perl_script $config_dir $sdk_dir $release_dir $soc_name $board_name $test_name
 
 echo
 echo "Done...Release folder created"
@@ -100,7 +101,7 @@ saved_curr_working_dir=$PWD
 cd $release_dir
 # Variable used in the doxygen title page, convert to upper case
 export IMX_SOC_NAME=$(echo $soc_name |tr '[a-z]' '[A-Z]')
-$obds_dir/tools/doxygenate_obds -obds_dir $obds_dir
+$sdk_dir/tools/doxygenate_sdk -sdk_dir $sdk_dir
 cd $saved_curr_working_dir
 
 echo "Done...Release ready in $release_dir folder"

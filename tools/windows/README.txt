@@ -1,4 +1,4 @@
-This folder contains various tools needed for OBDS on the Windows host.
+This folder contains various tools needed for SDK on the Windows host.
 
 Source code formatting tools - src-format
 -----------------------------------------
@@ -9,11 +9,11 @@ Source code formatting tools - src-format
            src-format [file-name]
        and then check it into git.
 
-Program obds image to a SD card on Windows using USB card reader
+Program sdk image to a SD card on Windows using USB card reader
 ----------------------------------------------------------------
     1. For the i.MX28 EVK board, use:
-           cfimager.exe -f ./output/mx28/bin/mx28-obds.sb -d xyz
+           cfimager.exe -f ./output/mx28/bin/mx28-sdk.sb -d xyz
        where xyz refer to the drive letter assigned by Windows.
     2. For other i.MX boards such as MX53 EVK, use:
-           cfimager-imx.exe -o 0 -f ./output/mx53/bin/diag-obds-mx53evk.bin -d xyz
+           cfimager-imx.exe -o 0 -f ./output/mx53/bin/diag-sdk-mx53evk.bin -d xyz
        where xyz refer to the drive letter assigned by Windows.

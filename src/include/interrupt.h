@@ -7,7 +7,7 @@
 */
 
 /*!
- * @defgroup diag_init Base OBDS files
+ * @defgroup diag_init Base SDK files
  */
 
 /*!

@@ -15,7 +15,7 @@
 #include "hardware.h"
 #include "version.h"
 
-#define OBDS_FUSE_CONTROL
+#define SDK_FUSE_CONTROL
 
 extern void init_debug_uart(struct hw_module *uart, u32 baud);
 extern struct hw_module uart1;
@@ -102,7 +102,7 @@ void platform_init(void)
 
     mx53_print_ver();
 
-#ifdef OBDS_FUSE_CONTROL
+#ifdef SDK_FUSE_CONTROL
     board_id = readl(IIM_BASE_ADDR + 0x87c);
     board_rev = readl(IIM_BASE_ADDR + 0x878);
 #else

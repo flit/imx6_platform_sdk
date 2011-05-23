@@ -252,7 +252,7 @@ plugin_start:
 
     ldr r1, =0x00000000
     str r1, [r0, #0x1C]
-    b read_obds
+    b read_sdk
 #endif
 
 // ard: 1GB DDR2 CSD0 only, based on TO2 init
@@ -439,7 +439,7 @@ plugin_start:
     add r1, r1, #0x00010000
     str r1, [r0, #0x14]
 
-    b read_obds
+    b read_sdk
 #endif      // #ifdef MX53_ARD
 
 //cpu2: 1GB of DDR2 for CSD0 and CSD1, slightly different timings than EVK
@@ -609,7 +609,7 @@ plugin_start:
 
     ldr r1, =0x00000000
     str r1, [r0, #0x1C]
-    b read_obds
+    b read_sdk
 #endif
 
 #if defined (MX53_SBRTH_LCB) || defined (MX53_SBRTH_SMD) || (defined (MX53_ARD) && defined (BOARD_VERSION2))
@@ -741,7 +741,7 @@ plugin_start:
 
     ldr r1, =0x00000000
     str r1, [r0, #0x1C]
-    b read_obds
+    b read_sdk
 #endif
 
 //qslvr_lcb_smd:
@@ -877,10 +877,10 @@ plugin_start:
 
     ldr r1, =0x00000000
     str r1, [r0, #0x1C]
-    b read_obds
+    b read_sdk
 #endif
 
-read_obds:
+read_sdk:
 /********************
     The following is to fill in those arguments for this ROM function
     pu_irom_hwcnfg_setup(void **start, size_t *bytes, const void *boot_data)

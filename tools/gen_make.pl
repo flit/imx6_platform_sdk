@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 
 #Below is a description of arguments required for this perl script
-#ARGV[0]: Path to the OBDS config folder e.g:/home/user/diag-obds/configs
-#ARGV[1]: Path to the Base OBDS folder e.g:/home/user/diag-obds
+#ARGV[0]: Path to the SDK config folder e.g:/home/user/diag-sdk/configs
+#ARGV[1]: Path to the Base SDK folder e.g:/home/user/diag-sdk
 #ARGV[2]: SOC Name e.g:mx53, mx50, mx28...
 #ARGV[3]: Board Name e.g:evk...
 #ARGV[4]: Test Name e.g:ipu, vpu, sdma...
@@ -65,36 +65,35 @@ if($test_case ne ""){
 	@sdk_subdir = `cd $test_case; ls -d */`;
 	$num_of_subdir = scalar @sdk_subdir;
 }
-print $num_of_subdir,"\n******************************\n";
 $loop_end = 0;
 while ($loop_end == 0) 
 {
 	if($num_of_subdir eq "0")
 	{
-	$line = $test_case;
-	$num_of_subdir = $num_of_subdir - 1;
+		$line = $test_case;
+		$num_of_subdir = $num_of_subdir - 1;
 	}
 	else
 	{		
-	if($num_of_subdir gt "0")
-	{	
-	$num_of_subdir = $num_of_subdir - 1;
-	$sdk_sub_dirs = $test_case."/".$sdk_subdir[$num_of_subdir];
-	$line = $sdk_sub_dirs;
-	}
-    else{
-	while(<INP_FH>)
-	{
-	s/#.*//;                # ignore comments by erasing them
-	next if /^(\s)*$/;  # skip blank lines
-	if(eof)
-	{
-	$loop_end = 1;
-	}
-	$line = $_;
-	last;
-	}
-    }
+		if($num_of_subdir gt "0")
+		{	
+			$num_of_subdir = $num_of_subdir - 1;
+			$sdk_sub_dirs = $test_case."/".$sdk_subdir[$num_of_subdir];
+			$line = $sdk_sub_dirs;
+		}
+    	else{
+			while(<INP_FH>)
+			{
+				s/#.*//;                # ignore comments by erasing them
+				next if /^(\s)*$/;  # skip blank lines
+				if(eof)
+				{	
+					$loop_end = 1;
+				}
+				$line = $_;
+				last;
+			}
+    	}	
 	}
 
     #Delete trailing newline

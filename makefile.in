@@ -11,7 +11,7 @@ PROJ_DIR := $(shell ./tools/windows/dirpath $(PROJ_DIR))
 endif
 
 PROJ_OUT := $(PROJ_DIR)/output/$(TARGET)
-TARGET_LIB := $(PROJ_OUT)/lib/libobds.a
+TARGET_LIB := $(PROJ_OUT)/lib/libsdk.a
 TARGET_LIB_DIR :=$(PROJ_OUT)/lib
 TARGET_BIN_DIR :=$(PROJ_OUT)/bin
 

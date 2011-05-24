@@ -162,8 +162,8 @@ static void sdma_interrupt_handler(void)
  *    2. Setup configurations like AP DMA/SDMA clock ratio, CCB base address etc
  *    3. Use channel 0 script to load the RAM scripts into SDMA RAM
  *
- * @param    envp: un-cacheable and un-bufferable buffer allocated by user
- *           base_addr: base address of SDMA registers in AP
+ * @param    env_buf: un-cacheable and un-bufferable buffer allocated by user
+ * @param    base_addr: base address of SDMA registers in AP
  *
  * @return   0 on success, -1 when fail to download RAM scripts to SDMA RAM,
  *           -2 when environment pointer is NULL
@@ -218,7 +218,6 @@ int sdma_init(unsigned int *env_buf, unsigned int base_addr)
  *    1. Close and free all the channels
  *    2. Clear all the EP and overrides of channels
  *
- * @param    none
  * @return   none
  */
 void sdma_deinit(void)
@@ -253,7 +252,7 @@ void sdma_deinit(void)
  *    2. Channel started by the bit in HSTART(HE). In this case, there's no DMA event binding to
  *       the channel. Thus EO is set first, then set the HE
  *
- * @param    the number of the channel to start
+ * @param channel:   the number of the channel to start
  * @return   0 on success, -1 when channel number is out of range(0-31) or channel is free
  */
 int sdma_channel_start(unsigned int channel)
@@ -276,7 +275,7 @@ int sdma_channel_start(unsigned int channel)
 /*!
  * Stop the channel selected. In this function just clear the HE.
  *
- * @param    the number of the channel to start
+ * @param   channel:  the number of the channel to start
  * @return   0 on success, -1 when channel number out of range(0-31)
  */
 int sdma_channel_stop(unsigned int channel)
@@ -308,6 +307,7 @@ int sdma_channel_stop(unsigned int channel)
  *                     script that may have some different usage of GPRs
  *        priority:    the channel priority
  *
+ * @param
  *    bdp: A pointer to the un-cacheable and un-bufferable buffer descriptor table allocated by user. User could refer to the 
  *    script manual on how to set the fields inside according to different scripts. To know 
  *    the details user may look into the "Application Notes" section of "SDMA controller"
@@ -458,8 +458,8 @@ int sdma_channel_release(unsigned int channel)
 /*! 
  * Get the channel's status had been started. 
  *
- * @param    channel: the channel which status to be check
- *           status: a pointer hold the status of the channel: ERROR, BUSY and DONE
+ * @param   channel: the channel which status to be check
+ * @param   status: a pointer hold the status of the channel: ERROR, BUSY and DONE
  *
  * @return   0 on success, -1 when failed 
  */
@@ -495,7 +495,7 @@ unsigned int sdma_channel_status(unsigned int channel, unsigned int *status)
  * Lookup the script's address mapped in the SDMA's memory. 
  *
  * @param    script: the script to be lookup
- *           addr: a pointer hold the script's address.
+ * @param    addr: a pointer hold the script's address.
  *
  * @return   0 on success, -1 when failed 
  */
@@ -523,8 +523,6 @@ int sdma_lookup_script(script_name_e script, unsigned int *addr)
  * Setup sdma interrupt. This function attach sdma_interrupt_handler to system and 
  * set the isr for every single channel to default one. 
  *
- * @param    none
- *
  * @return   none
  */
 void sdma_setup_interrupt(void)
@@ -545,7 +543,7 @@ void sdma_setup_interrupt(void)
  * This function attach isr for the channel to SDMA lib. The isr will be called  
  * in sdma_interrupt_handler.
  * @param    channel: channel number to be attached.	
- *	     isr: the interrupt service routine for the channel
+ * @param    isr: the interrupt service routine for the channel
  * @return   0 on success,
  *           -1 if invalid channel number
  *           -2 if isr is NULL

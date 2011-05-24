@@ -87,7 +87,7 @@ while ($loop_end == 0)
 			my $src_num=scalar @FILES;
 			
 			rewinddir(TEMP);
-			my @FILES = grep(/\.c$/i,readdir TEMP);
+			@FILES = grep(/\.c$/i,readdir TEMP);
 			
 			closedir(TEMP);
 			

@@ -89,16 +89,11 @@ struct soc_sbmr {
 struct soc_sbmr *soc_sbmr = (struct soc_sbmr *)(SRC_BASE_ADDR + 0x4);
 
 /*!
-Function:
-	gpio_dir_config()
-Description:
-	Sets the GPIO direction for the specified pin.
-Parameters:
-    @port: 	GPIO module instance, 0 to 6.
-	@pin:	GPIO pin 0 to 31.
-    @dir:	direction for the pin. in or out.
-Returns:
-    Return the value, -1 means failed to set the pin
+ *	Sets the GPIO direction for the specified pin.
+ *  @param 	port: 	GPIO module instance, 0 to 6.
+ *	@param	pin:	GPIO pin 0 to 31.
+ *  @param	dir:	direction for the pin. in or out.
+ *  @return -1 means failed to set the pin
 */
 int gpio_dir_config(int port, int pin, int dir)
 {
@@ -126,17 +121,12 @@ int gpio_dir_config(int port, int pin, int dir)
 }
 
 /*!
-Function:
-	gpio_write_data()
-Description:
-	Sets the GPIO attributte(high or low) for the specified pin.
-Parameters:
-    @port: 	GPIO module instance, 0 to 6.
-	@pin:	GPIO pin 0 to 31.
-    @attr:	attributte for the pin. high/low
-Returns:
-    Return the value, -1 means failed to set the pin
-*/
+ *	Sets the GPIO attributte(high or low) for the specified pin.
+ *  @param  port: 	GPIO module instance, 0 to 6.
+ *	@param  pin:	GPIO pin 0 to 31.
+ *  @param  attr:	attributte for the pin. high/low
+ *  @return  -1 means failed to set the pin
+ */
 int gpio_write_data(int port, int pin, unsigned int attr)
 {
     int dir;
@@ -171,15 +161,10 @@ int gpio_write_data(int port, int pin, unsigned int attr)
 }
 
 /*!
-Function:
-	gpio_read_data()
-Description:
-	Gets the GPIO attributte(high or low) for the specified pin.
-Parameters:
-    @port: 	GPIO module instance, 0 to 6.
-	@pin:	GPIO pin 0 to 31.
-Returns:
-    Return the value, -1 means failed to get the value
+ *	Gets the GPIO attributte(high or low) for the specified pin.
+ *  @param	port: 	GPIO module instance, 0 to 6.
+ *	@param	pin:	GPIO pin 0 to 31.
+ *  @return	-1 means failed to get the value
 */
 int gpio_read_data(int port, int pin)
 {

@@ -9,7 +9,7 @@
  */
 
 /*!
- * @file display_comman.h
+ * @file display_common.h
  * @brief lcd display common definitions. for both LCDC and IPU usage.
  * @ingroup diag_display
  */

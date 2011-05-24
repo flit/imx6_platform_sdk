@@ -340,7 +340,7 @@ int i2c_xfer(u32 base, struct imx_i2c_request *rq, int dir)
  * itself and the I2C clock prescaler.
  *
  * @param   base        base address of i2c module (also assigned for I2Cx_CLK)
- * @param   baue        the desired data rate
+ * @param   baud        the desired data rate
  *
  * @return              0 if successful; non-zero otherwise
  */

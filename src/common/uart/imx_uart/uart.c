@@ -233,7 +233,8 @@ void init_uart(struct hw_module *uart, u32 baud)
 /*!
  * Output a character to the debug uart port
  *
- * @param       ch      pointer to the character for output
+ * @param  puart   pointer to the uart hardware
+ * @param  ch     	 pointer to the character for output
  */
 void uart_sendchar(struct mx_uart *puart, unsigned char *ch)
 {

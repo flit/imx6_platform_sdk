@@ -6,12 +6,11 @@
 */
 
 /*!
- * @file plat_startup.inc
+ * @file plat_startup.h
  * @brief This file contains start-up DCD.
  *
  * @ingroup diag_init
  */
- /* *INDENT-OFF* */
 #ifndef _PLAT_STARTUP_H_
 #define _PLAT_STARTUP_H_
 

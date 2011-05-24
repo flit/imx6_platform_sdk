@@ -31,10 +31,11 @@ create_list()
 {
     #
     # Make a list of C source files
-    #
-    cd $release_sdk_dir
+    # Modified to only extract the sdk releated files
+	#
+    cd $release_sdk_dir/src/sdk
     find . -type f -name '*.[ch]' -o -name "*.inc" -o -name "*.S"| \
-        sed 's,\.\/,\$(SDK_PATH)/,g' > $doxygen_output_dir/doxy-file.txt
+        sed 's,\.\/,\$(SDK_PATH)\/src\/sdk/,g' > $doxygen_output_dir/doxy-file.txt
 
     cd $doxygen_output_dir
     sort $doxygen_output_dir/doxy-file.txt -o $doxygen_output_dir/doxy-file.txt

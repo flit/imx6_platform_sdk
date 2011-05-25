@@ -59,6 +59,15 @@ while (<INP_FH>) {
         push (@sub_dir_elements, $src_dir);
     }
 }
+
+#copy all the files related, covering all the sub directories.
+copy_release_files("src/sdk");
+copy_release_files("src/sdk/$ARGV[5]");
+my @elements = list_sub_dirs("src/sdk/$ARGV[5]");
+foreach my $e (@elements)
+{
+    push (@sub_dir_elements, $e);
+}
 #Remove duplicate entries in the sub-directories list
 my %rem_dup;
 @rem_dup{ @sub_dir_elements } = ();
@@ -75,8 +84,9 @@ for ($l=0; $l < $num_of_sub_dirs; $l++) {
 }
 
 #Copy the include folder
+
 copy_release_files("src/include");
-copy_release_files("src/sdk/$ARGV[5]");
+copy_release_files("src/include/mx53");
 copy_release_files("tools/linux");
 copy_release_files("tools/windows");
 
@@ -86,6 +96,22 @@ copy("$ARGV[1]/make.def", "$target_dir_name/make.def");
 
 exit 2;
 
+sub list_sub_dirs {
+	my $input = shift;
+	opendir(DIR, $input) or die "Cannot open directory $input:$!\n";
+	my @dirs = readdir(DIR);
+	closedir(DIR);
+	foreach my $dir (@dirs) {
+		if(-d "$ARGV[1]/$input/$dir") {
+			if(($dir ne ".") && ($dir ne "..")) {
+				push(@dir_list, "$input/$dir");	
+				list_sub_dirs("$input/$dir/");
+			}
+		}
+	}
+	return (@dir_list); 
+}
+
 # Copy files from the folder passed in as an argument into destination release folder
 sub copy_release_files {
     my $src_path = shift;
@@ -94,22 +120,12 @@ sub copy_release_files {
 
     mkpath( $targetdir ) if not -e $targetdir;
     opendir(DIR, $src_path) or die "Cannot open directory$src_path:$!\n";
-    my @src_list = readdir(DIR);
+    my @src_list = grep { -f "$src_path/$_" } readdir(DIR);
     closedir(DIR);
 
     foreach my $src (@src_list) {
-		if(-d "$ARGV[1]/$src_path/$src")
-		{
-			if(($src ne "..") && ($src ne "."))
-			{
-				copy_release_files("$src_path/$src/");
-			}
-		}
-		else
-		{
-        	copy("$ARGV[1]/$src_path/$src", "$targetdir/$src");
-        	chmod $file_perm_mode, "$targetdir/$src";
-		}
+       	copy("$ARGV[1]/$src_path/$src", "$targetdir/$src");
+       	chmod $file_perm_mode, "$targetdir/$src";
     }
 
 }

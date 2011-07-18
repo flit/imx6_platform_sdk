@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -45,6 +45,7 @@
 #define ERR_NO_ACK_ON_START           -7
 
 struct imx_i2c_request {
+    u32 ctl_addr;               // the I2C controller base address
     u32 dev_addr;               // the I2C DEVICE address
     u32 reg_addr;               // the actual REGISTER address
     u32 reg_addr_sz;            // number of bytes for the address of I2C device register

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -12,12 +12,7 @@
 #include "../inc/sdma.h"
 #include "sdma_event.h"
 #include "sdma_test.h"
-
-#define AIPS2_BASE_ADDR                	0x63F00000
-#define CCM_BASE_ADDR			0x53FD4000
-#define ECSPI1_BASE_ADDR		0x50010000
-#define ECSPI2_BASE_ADDR		0x63FAC000
-#define SDMA_IPS_HOST_BASE_ADDR		0x63FB0000
+#include "hardware.h"
 
 #define SPI_LOOPBACK_TEST_BUF_SZ 	1024
 
@@ -31,6 +26,26 @@ static sdma_bd_t bd[2];
 
 static void ecspi_access_config(void)
 {
+/*    *(volatile int *)(AIPS2_BASE_ADDR + 0x40) = 0;
+    *(volatile int *)(AIPS2_BASE_ADDR + 0x44) = 0;
+    *(volatile int *)(AIPS2_BASE_ADDR + 0x48) = 0;
+    *(volatile int *)(AIPS2_BASE_ADDR + 0x4C) = 0;
+    *(volatile int *)(AIPS2_BASE_ADDR + 0x50) = 0;
+*/
+    /* Set all MPROTx to be non-bufferable, trusted for R/W, not forced to user-mode. */
+    *(volatile int *)(AIPS1_BASE_ADDR) = 0x77777777;
+    *(volatile int *)(AIPS1_BASE_ADDR + 0x04) = 0x77777777;
+
+    *(volatile int *)(AIPS2_BASE_ADDR) = 0x77777777;
+    *(volatile int *)(AIPS2_BASE_ADDR + 0x04) = 0x77777777;
+
+    /*Set all OPACRx to be non-buuferable, writable, accessible for non-trusted master */
+    *(volatile int *)(AIPS1_BASE_ADDR + 0x40) = 0;
+    *(volatile int *)(AIPS1_BASE_ADDR + 0x44) = 0;
+    *(volatile int *)(AIPS1_BASE_ADDR + 0x48) = 0;
+    *(volatile int *)(AIPS1_BASE_ADDR + 0x4C) = 0;
+    *(volatile int *)(AIPS1_BASE_ADDR + 0x50) = 0;
+
     *(volatile int *)(AIPS2_BASE_ADDR + 0x40) = 0;
     *(volatile int *)(AIPS2_BASE_ADDR + 0x44) = 0;
     *(volatile int *)(AIPS2_BASE_ADDR + 0x48) = 0;
@@ -48,10 +63,10 @@ int ecspi_app_test(void)
 
     cspi2_reg_base = (ecspi_reg_p) ECSPI2_BASE_ADDR;
 
-    MEM_VIRTUAL_2_PHYSICAL(src_buf,sizeof(src_buf),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(dst_buf,sizeof(dst_buf),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(env_buf,sizeof(env_buffer),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(bd,sizeof(bd),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(src_buf, sizeof(src_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(dst_buf, sizeof(dst_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(env_buf, sizeof(env_buffer), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(bd, sizeof(bd), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
 
     /* Initialize buffer for testing */
     memset(src_buf, 0x5A, sizeof(src_buf));
@@ -62,7 +77,7 @@ int ecspi_app_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int*)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
@@ -176,12 +191,12 @@ int ecspi_shp_test(void)
 
     printf("eCSPI1 loopback test starts...\n");
 
-    cspi1_reg_base = (ecspi_reg_p) ECSPI1_BASE_ADDR;
+    cspi1_reg_base = (ecspi_reg_p) (ECSPI1_BASE_ADDR);
 
-    MEM_VIRTUAL_2_PHYSICAL(src_buf,sizeof(src_buf),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(dst_buf,sizeof(dst_buf),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(env_buf,sizeof(env_buffer),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(bd,sizeof(bd),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(src_buf, sizeof(src_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(dst_buf, sizeof(dst_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(env_buf, sizeof(env_buffer), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(bd, sizeof(bd), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
 
     /* Initialize buffers for testing */
     memset(src_buf, 0x5A, sizeof(src_buf));
@@ -249,8 +264,8 @@ int ecspi_shp_test(void)
     printf("Start channel for transfer...\n");
 
     /* CSPI peripheral configuration */
-    cspi1_reg_base->conreg = 0; //Reset module
     *(volatile unsigned int *)(CCM_BASE_ADDR + 0x78) |= 0x0C000000; //Turn on clock gate
+    cspi1_reg_base->conreg = 0; //Reset module
     cspi1_reg_base->conreg = ECSPI_CONREG_EN;
 
     cspi1_reg_base->testreg = ECSPI_TESTREG_LBC;

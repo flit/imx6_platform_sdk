@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -12,14 +12,6 @@
  */
 
 #include "hardware.h"
-
-// SRTC defines
-#define SRTC_LPSCMR         (SRTC_BASE_ADDR + 0x00)
-#define SRTC_LPSCLR         (SRTC_BASE_ADDR + 0x04)
-#define SRTC_LPCR           (SRTC_BASE_ADDR + 0x10)
-#define SRTC_HPSCMR         (SRTC_BASE_ADDR + 0x20)
-#define SRTC_HPSCLR         (SRTC_BASE_ADDR + 0x24)
-#define SRTC_HPCR           (SRTC_BASE_ADDR + 0x30)
 
 /*!
  * The SRTC test enables the SRTC and check if the SRTC LP counter toggles.
@@ -57,4 +49,3 @@ static int srtc_test(void)
     printf(" SRTC test passed \n");
     return TEST_PASSED;
 }
-

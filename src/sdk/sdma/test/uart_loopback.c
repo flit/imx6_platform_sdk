@@ -12,13 +12,7 @@
 #include "sdma_event.h"
 #include "sdma_test.h"
 #include "uart.h"
-
-#define AIPS1_BASE_ADDR                	0x53F00000
-#define AIPS2_BASE_ADDR                	0x63F00000
-#define CCM_BASE_ADDR			0x53FD4000
-#define UART3_BASE_ADDR			0x5000C000
-#define UART5_BASE_ADDR			0x63F90000
-#define SDMA_IPS_HOST_BASE_ADDR		0x63FB0000
+#include "hardware.h"
 
 #define UART_LOOPBACK_TEST_BUF_SZ 	1024
 #define UART_REF_FREQ 			27000000
@@ -167,12 +161,13 @@ int uart_app_test(void)
 
     /* Setup channel descriptor */
     chan_desc[0].script_addr = script_addr;
-    chan_desc[0].dma_mask[0] = 0x01 << SDMA_EVENT_UART5_TX; /*uart 5 tx fifo event */
-    chan_desc[0].dma_mask[1] = 0;
+    chan_desc[0].dma_mask[0] = chan_desc[0].dma_mask[1] = 0;
+    chan_desc[0].dma_mask[SDMA_EVENT_UART5_TX / 32] = 0x01 << (SDMA_EVENT_UART5_TX % 32);   /*uart5 tx fifo event */
     chan_desc[0].priority = SDMA_CHANNEL_PRIORITY_LOW;
     for (idx = 0; idx < 8; idx++) {
         chan_desc[0].gpr[idx] = 0;
     }
+    chan_desc[0].gpr[0] = chan_desc[0].dma_mask[1];
     chan_desc[0].gpr[1] = chan_desc[0].dma_mask[0];
     chan_desc[0].gpr[6] = UART5_BASE_ADDR + 0x40;   /*tx fifo address */
     chan_desc[0].gpr[7] = 0x4;  /*water mark */
@@ -196,12 +191,13 @@ int uart_app_test(void)
 
     /* Setup channel descriptor */
     chan_desc[1].script_addr = script_addr;
-    chan_desc[1].dma_mask[0] = 0x01 << SDMA_EVENT_UART5_RX; /*uart 5 rx fifo event */
-    chan_desc[1].dma_mask[1] = 0;
+    chan_desc[1].dma_mask[0] = chan_desc[1].dma_mask[1] = 0;
+    chan_desc[1].dma_mask[SDMA_EVENT_UART5_RX / 32] = 0x01 << (SDMA_EVENT_UART5_RX % 32);   /*uart 5 tx fifo event */
     chan_desc[1].priority = SDMA_CHANNEL_PRIORITY_LOW;
     for (idx = 0; idx < 8; idx++) {
         chan_desc[1].gpr[idx] = 0;
     }
+    chan_desc[1].gpr[0] = chan_desc[1].dma_mask[1];
     chan_desc[1].gpr[1] = chan_desc[1].dma_mask[0];
     chan_desc[1].gpr[6] = UART5_BASE_ADDR + 0x0;    /*rx fifo address */
     chan_desc[1].gpr[7] = 0x10; /*water mark */
@@ -265,7 +261,11 @@ int uart_shp_test(void)
     uart_access_config();
     ccm_clock_gates_on();
 
+#ifdef MX53
     printf("UART3 loopback test starts.\n");
+#else
+    printf("UART1 loopback test starts.\n");
+#endif
 
     MEM_VIRTUAL_2_PHYSICAL(tx_buf, sizeof(tx_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
     MEM_VIRTUAL_2_PHYSICAL(rx_buf, sizeof(tx_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
@@ -291,14 +291,23 @@ int uart_shp_test(void)
     }
 
     chan_desc[0].script_addr = script_addr;
-    chan_desc[0].dma_mask[0] = 0;
-    chan_desc[0].dma_mask[1] = 0x01 << (SDMA_EVENT_UART3_TX % 32);  /*uart 3 tx fifo event */
+    chan_desc[0].dma_mask[0] = chan_desc[0].dma_mask[1] = 0;
+#ifdef MX53
+    chan_desc[0].dma_mask[SDMA_EVENT_UART3_TX / 32] = 0x01 << (SDMA_EVENT_UART3_TX % 32);   /*uart 3 tx fifo event */
+#else
+    chan_desc[0].dma_mask[SDMA_EVENT_UART1_TX / 32] = 0x01 << (SDMA_EVENT_UART1_TX % 32);   /*uart 1 tx fifo event */
+#endif
     chan_desc[0].priority = SDMA_CHANNEL_PRIORITY_LOW;
     for (idx = 0; idx < 8; idx++) {
         chan_desc[0].gpr[idx] = 0;
     }
     chan_desc[0].gpr[0] = chan_desc[0].dma_mask[1];
+    chan_desc[0].gpr[1] = chan_desc[0].dma_mask[0];
+#ifdef MX53
     chan_desc[0].gpr[6] = UART3_BASE_ADDR + 0x40;   /*tx fifo address */
+#else
+    chan_desc[0].gpr[6] = UART1_BASE_ADDR + 0x40;   /*tx fifo address */
+#endif
     chan_desc[0].gpr[7] = 0x4;  /*water mark */
 
     /* Setup buffer descriptors */
@@ -320,14 +329,23 @@ int uart_shp_test(void)
 
     /* Setup channel descriptor */
     chan_desc[1].script_addr = script_addr;
-    chan_desc[1].dma_mask[0] = 0;
-    chan_desc[1].dma_mask[1] = 0x01 << (SDMA_EVENT_UART3_RX % 32);  /*uart 3 rx fifo event */
+    chan_desc[1].dma_mask[0] = chan_desc[1].dma_mask[1] = 0;
+#ifdef MX53
+    chan_desc[1].dma_mask[SDMA_EVENT_UART3_RX / 32] = 0x01 << (SDMA_EVENT_UART3_RX % 32);   /*uart 3 tx fifo event */
+#else
+    chan_desc[1].dma_mask[SDMA_EVENT_UART1_RX / 32] = 0x01 << (SDMA_EVENT_UART1_RX % 32);   /*uart 3 tx fifo event */
+#endif
     chan_desc[1].priority = SDMA_CHANNEL_PRIORITY_LOW;
     for (idx = 0; idx < 8; idx++) {
         chan_desc[1].gpr[idx] = 0;
     }
     chan_desc[1].gpr[0] = chan_desc[1].dma_mask[1];
+    chan_desc[1].gpr[1] = chan_desc[1].dma_mask[0];
+#ifdef MX53
     chan_desc[1].gpr[6] = UART3_BASE_ADDR + 0x0;    /*rx fifo address */
+#else
+    chan_desc[1].gpr[6] = UART1_BASE_ADDR + 0x0;    /*rx fifo address */
+#endif
     chan_desc[1].gpr[7] = 0x10; /*water mark */
 
     /* Setup buffer descriptors */
@@ -346,9 +364,11 @@ int uart_shp_test(void)
     printf("Channel %d and Channel %d opened, starting transfer...\n", channel[0], channel[1]);
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
-
+#ifdef MX53
     uart_loopback_init(UART3_BASE_ADDR, 115200);
-
+#else
+    uart_loopback_init(UART1_BASE_ADDR, 115200);
+#endif
     /* Wait channels stop */
     unsigned int status;
     do {
@@ -395,7 +415,7 @@ int uart_app_interrupt_test(void)
 {
     int idx, channel[2];
     sdma_chan_desc_t chan_desc[2];
-    trans_done  = FALSE;
+    trans_done = FALSE;
 
     /*Setup interrupt */
     sdma_setup_interrupt();
@@ -488,8 +508,8 @@ int uart_app_interrupt_test(void)
     sdma_channel_start(channel[1]);
 
     uart_loopback_init(UART5_BASE_ADDR, 115200);
-    /*Wait transfer finished*/
-    while (!trans_done);
+    /*Wait transfer finished */
+    while (!trans_done) ;
 
     /* Stop channels */
     printf("Transfer completed. Stop channels.\n");

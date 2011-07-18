@@ -11,8 +11,14 @@
 static sdma_test_t sdma_tests[] = {
     {"Memory to memory", mem_2_mem_test},
     {"eCSPI1 loopback - shared memory", ecspi_shp_test},
+#ifdef MX53
     {"eCSPI2 loopback - peripheral", ecspi_app_test},
+#endif
+#ifdef MX53
     {"UART3 loopback  - shared memory", uart_shp_test},
+#else
+    {"UART1 loopback  - shared memory", uart_shp_test},
+#endif
     {"UART5 loopback  - perihperal", uart_app_test},
     {"UART5 loopback with interrup supported", uart_app_interrupt_test},
 };

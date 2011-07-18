@@ -27,21 +27,33 @@ MAKE = make
 #BOARD_UC=`echo $(BOARD) | tr [:lower:] [:upper:]`
 
 ifeq "$(TARGET)" "mx53"
+C_DEFINES +=-DMX53
 CPU	=cortex-a8
 ifeq "$(BOARD)" "evk"
-C_DEFINES =-DMX53_EVK
+C_DEFINES +=-DMX53_EVK
 endif
 ifeq "$(BOARD)" "ard"
-C_DEFINES =-DMX53_ARD
+C_DEFINES+ =-DMX53_ARD
 endif
 ifeq "$(BOARD)" "cpu2"
-C_DEFINES =-DMX53_CPU2
+C_DEFINES +=-DMX53_CPU2
 endif
 ifeq "$(BOARD)" "sbrth_lcb"
-C_DEFINES =-DMX53_SBRTH_LCB
+C_DEFINES +=-DMX53_SBRTH_LCB
 endif
 ifeq "$(BOARD)" "sbrth_smd"
-C_DEFINES =-DMX53_SBRTH_SMD
+C_DEFINES +=-DMX53_SBRTH_SMD
+endif
+endif
+
+ifeq "$(TARGET)" "mx61"
+C_DEFINES +=-DMX61
+CPU	=cortex-a9
+ifeq "$(BOARD)" "ard"
+C_DEFINES +=-DMX61_ARD
+endif
+ifeq "$(BOARD)" "smd"
+C_DEFINES +=-DMX61_SMD
 endif
 endif
 

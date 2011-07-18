@@ -10,8 +10,8 @@
 
 #include "../inc/sdma.h"
 #include "sdma_test.h"
+#include "hardware.h"
 
-#define SDMA_IPS_HOST_BASE_ADDR		0x63FB0000
 #define MEM2MEM_TEST_BUF_SZ 		1024
 
 /* Uncacheable & unbufferable area startes */
@@ -29,10 +29,10 @@ int mem_2_mem_test(void)
 
     printf("Memory to memory test starts.\n");
 
-    MEM_VIRTUAL_2_PHYSICAL(src_buf,sizeof(src_buf),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(dst_buf,sizeof(dst_buf),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(env_buf,sizeof(env_buffer),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(bd,sizeof(bd),MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(src_buf, sizeof(src_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(dst_buf, sizeof(dst_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(env_buf, sizeof(env_buffer), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(bd, sizeof(bd), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
 
     /* Initialize buffer for testing */
     memset(src_buf[0], 0x5A, MEM2MEM_TEST_BUF_SZ * 4);
@@ -43,7 +43,7 @@ int mem_2_mem_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int*)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }

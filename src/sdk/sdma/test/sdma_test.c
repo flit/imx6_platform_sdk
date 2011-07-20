@@ -20,7 +20,7 @@ static sdma_test_t sdma_tests[] = {
     {"UART1 loopback  - shared memory", uart_shp_test},
 #endif
     {"UART5 loopback  - perihperal", uart_app_test},
-    {"UART5 loopback with interrup supported", uart_app_interrupt_test},
+    {"UART5 loopback with interrupt supported", uart_app_interrupt_test},
 };
 
 extern char receive_char(void);

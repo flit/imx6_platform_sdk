@@ -449,12 +449,13 @@ int uart_app_interrupt_test(void)
 
     /* Setup channel descriptor */
     chan_desc[0].script_addr = script_addr;
-    chan_desc[0].dma_mask[0] = 0x01 << SDMA_EVENT_UART5_TX; /*uart 5 tx fifo event */
-    chan_desc[0].dma_mask[1] = 0;
+    chan_desc[0].dma_mask[0] = chan_desc[0].dma_mask[1] = 0;
+    chan_desc[0].dma_mask[SDMA_EVENT_UART5_TX / 32] = 0x01 << (SDMA_EVENT_UART5_TX % 32);   /*uart5 tx fifo event */
     chan_desc[0].priority = SDMA_CHANNEL_PRIORITY_LOW;
     for (idx = 0; idx < 8; idx++) {
         chan_desc[0].gpr[idx] = 0;
     }
+    chan_desc[0].gpr[0] = chan_desc[0].dma_mask[1];
     chan_desc[0].gpr[1] = chan_desc[0].dma_mask[0];
     chan_desc[0].gpr[6] = UART5_BASE_ADDR + 0x40;   /*tx fifo address */
     chan_desc[0].gpr[7] = 0x4;  /*water mark */
@@ -478,12 +479,13 @@ int uart_app_interrupt_test(void)
 
     /* Setup channel descriptor */
     chan_desc[1].script_addr = script_addr;
-    chan_desc[1].dma_mask[0] = 0x01 << SDMA_EVENT_UART5_RX; /*uart 5 rx fifo event */
-    chan_desc[1].dma_mask[1] = 0;
+    chan_desc[1].dma_mask[0] = chan_desc[1].dma_mask[1] = 0;
+    chan_desc[1].dma_mask[SDMA_EVENT_UART5_RX / 32] = 0x01 << (SDMA_EVENT_UART5_RX % 32);   /*uart5 tx fifo event */
     chan_desc[1].priority = SDMA_CHANNEL_PRIORITY_LOW;
     for (idx = 0; idx < 8; idx++) {
         chan_desc[1].gpr[idx] = 0;
     }
+    chan_desc[1].gpr[0] = chan_desc[1].dma_mask[1];
     chan_desc[1].gpr[1] = chan_desc[1].dma_mask[0];
     chan_desc[1].gpr[6] = UART5_BASE_ADDR + 0x0;    /*rx fifo address */
     chan_desc[1].gpr[7] = 0x10; /*water mark */

@@ -527,8 +527,7 @@ int sdma_lookup_script(script_name_e script, unsigned int *addr)
  */
 void sdma_setup_interrupt(void)
 {
-#ifdef MX53
-    ATTACH_INTERRUPT(MXC_INT_SDMA, sdma_interrupt_handler);
+    capture_interrupt(MXC_INT_SDMA, sdma_interrupt_handler, 0);
 
     unsigned int i;
     for (i = 0; i < SDMA_NUM_CHANNELS; i++) {
@@ -536,7 +535,6 @@ void sdma_setup_interrupt(void)
     }
 
     enable_interrupt(MXC_INT_SDMA);
-#endif
 
     return SDMA_RETV_SUCCESS;
 }
@@ -552,7 +550,6 @@ void sdma_setup_interrupt(void)
  */
 int sdma_channel_isr_attach(unsigned int channel, sdma_channel_isr isr)
 {
-#ifdef MX53
     if (channel >= SDMA_NUM_CHANNELS) {
         return SDMA_RETV_FAIL;
     }
@@ -562,7 +559,6 @@ int sdma_channel_isr_attach(unsigned int channel, sdma_channel_isr isr)
     }
 
     sdma_channel_isr_list[channel] = isr;
-#endif
 
     return SDMA_RETV_SUCCESS;
 }

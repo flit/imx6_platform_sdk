@@ -23,7 +23,6 @@
 #define NUM_OF_INTERRUPTS 128
 
 typedef void (*int_hdlr_t) (void);
-int_hdlr_t interrupt_handlers[NUM_OF_INTERRUPTS];
 
 extern int_hdlr_t IRQ_HDLR;
 
@@ -125,7 +124,7 @@ void enable_interrupt(unsigned int int_num, int cpu_num)
 
 void capture_interrupt(int int_num, int_hdlr_t isr, int cpu_num)
 {
-    interrupt_handlers[int_num] = isr;
+    interrupt_routine_list[int_num] = isr;
     enable_interrupt(int_num, cpu_num);
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -15,7 +15,7 @@
 #include "time.h"
 #include "functions.h"
 
-extern void enable_interrupt(int);
+extern void enable_interrupt(int, int);
 static volatile int clock_counter;
 
 /* Return the current clock value */
@@ -103,7 +103,6 @@ void epit2_isr(void)
 
 void epit2_periodic_interrupt(unsigned int interval)
 {
-#ifdef MX53
     unsigned int epitCr, val;
     epitCr = readl(EPIT2_BASE_ADDR + EPITCR);
     val = (epitCr & 0x03000000) >> 24;
@@ -115,8 +114,7 @@ void epit2_periodic_interrupt(unsigned int interval)
     }
 
     val = readl(EPIT2_BASE_ADDR + EPITCR);
-    enable_interrupt(MXC_INT_EPIT2);
-    ATTACH_INTERRUPT(MXC_INT_EPIT2, epit2_isr);
+    enable_interrupt(MXC_INT_EPIT2, 0);
+    capture_interrupt(MXC_INT_EPIT2, epit2_isr, 0);
     writel(val | 0x1, EPIT2_BASE_ADDR + EPITCR);
-#endif
 }

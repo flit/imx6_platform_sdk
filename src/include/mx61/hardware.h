@@ -22,9 +22,6 @@
 #include "ccm_pll_reg_define.h"
 #include "iim_fuse.h"
 #include "imx_i2c.h"
-#include "pmic.h"
-#include "regsgpmi.h"
-#include "regsapbh.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR

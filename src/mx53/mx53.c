@@ -111,4 +111,3 @@ void platform_init(void)
 #endif
 
 }
-

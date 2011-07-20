@@ -152,6 +152,6 @@
 #define PLL_DP_TOGC         DPLLIP_DP_MFN_TOGC_OFFSET
 #define PLL_DP_DESTAT       DPLLIP_DP_DESTAT_OFFSET
 
-#define CLK_SRC_32K	32768
+#define CLK_SRC_32K 		32768
 
 #endif

@@ -672,7 +672,7 @@ void io_cfg_spi(struct imx_spi_dev *dev)
     case ECSPI1_BASE_ADDR:
 
         if (BOARD_TYPE_ID == BOARD_ID_MX53_ARD) {
-            ard_spi_nor_control_(0); // by setting to 0, this enables the spi nor
+            ard_spi_nor_control_(0);    // by setting to 0, this enables the spi nor
         }
         // MOSI
         writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_EIM_D18);
@@ -2169,4 +2169,3 @@ void hdmi_power_on(void)
         da9053_i2c_reg(55, 0x40, I2C_WRITE);
     }
 }
-

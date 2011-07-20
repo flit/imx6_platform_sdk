@@ -6,7 +6,7 @@
 */
 
 /*!
- * @file  mx53.c
+ * @file  mx61.c
  * @brief platform_init() function
  *
  * @ingroup diag_init
@@ -21,15 +21,9 @@
 extern void init_debug_uart(struct hw_module *uart, u32 baud);
 extern struct hw_module uart4;
 static struct hw_module *debug_uart = &uart4;   // on iMX61 UART4 is debug UART
-int auto_run_enable = 0;
 
-int set_mac(void);
 int board_id = 0;
 int board_rev = 0;
-extern pmic_mc13892_reg_t pmic_mc13892_reg;
-extern unsigned int mc13892_i2c_reg(unsigned int reg, unsigned int val, unsigned int dir);
-extern int set_mac();
-extern void program_board_id_fuses(char *chip);
 
 static char board_name[20];
 static char board_revision[20];
@@ -72,8 +66,6 @@ static void mx61_print_ver(void)
     print_ver(chip_name, board_name, board_revision);
 }
 
-volatile int ard_cpu_only_test = 0;
-
 void platform_init(void)
 {
     u8 c;
@@ -101,4 +93,7 @@ void platform_init(void)
     board_id = BOARD_TYPE_ID;
     board_rev = BOARD_VERSION_ID;
 #endif
+
+    show_freq();
+    show_ddr_config();
 }

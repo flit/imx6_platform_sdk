@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -268,25 +268,3 @@ char uart_receive_char(struct mx_uart *puart)
 
     return (u8) puart->urxd[0];
 }
-
-/*!
- * Rather meaningless report here because we won't even get here unless user enters 'x' or 'X'.
- * But, still ...
- * @return      TEST_PASSED or  TEST_FAILED    
- */
-int uart_test(void)
-{
-    int retry = 0;
-
-    PROMPT_RUN_TEST("UART");
-    printf("Please input char to test UART input function, 'X' exit this test\n");
-
-    while (!is_input_char('x')) {
-        if (++retry == MAX_TEST_RETRY) {
-            printf("Tried %d times. All failed!\n", retry);
-            return TEST_FAILED;
-        }
-    }
-    return TEST_PASSED;
-}
-

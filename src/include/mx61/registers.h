@@ -3549,20 +3549,6 @@
 #define REGS_BASE 0x00000000
 #endif
 
-//
-// common register types
-//
-
-#ifndef __LANGUAGE_ASM__
-typedef unsigned char reg8_t;
-typedef unsigned short reg16_t;
-typedef unsigned int reg32_t;
-#endif
-
-//
-// macros for single instance registers
-//
-
 #define BF_SET(reg, field)       HW_##reg##_SET(BM_##reg##_##field)
 #define BF_CLR(reg, field)       HW_##reg##_CLR(BM_##reg##_##field)
 #define BF_TOG(reg, field)       HW_##reg##_TOG(BM_##reg##_##field)

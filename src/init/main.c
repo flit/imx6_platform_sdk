@@ -22,8 +22,6 @@
 #include "text_color.h"
 #include "time.h"
 
-extern void setup_interrupts_in_RAM(void);
-extern void tzic_init(void);
 extern void SDK_TEST(void);
 /*!
  * main function that decides which tests to run and prompts the user before

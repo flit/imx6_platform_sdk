@@ -158,11 +158,11 @@ enum lvds_panel_bit_mode {
     LVDS_PANEL_24BITS_MODE = 0x1,
 };
 
-u32 pll_clock(enum plls pll);
-u32 get_main_clock(enum main_clocks clk);
-u32 get_peri_clock(enum peri_clocks clk);
-void clock_setup(u32 core_clk, u32 ahb_div);
-void io_cfg_i2c(u32 module_base);
+uint32_t pll_clock(enum plls pll);
+uint32_t get_main_clock(enum main_clocks clk);
+uint32_t get_peri_clock(enum peri_clocks clk);
+void clock_setup(uint32_t core_clk, uint32_t ahb_div);
+void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
 void show_ddr_config(void);
@@ -192,11 +192,11 @@ extern int max7310_i2c_device_id_test_enable;
 extern int sata_test_enable;
 extern int nand_test_enable;
 extern int usbh_ulpi_phy_read_test_enable;
-extern u32 usbh_ulpi_phy_read_test_base;
+extern uint32_t usbh_ulpi_phy_read_test_base;
 extern int usbh_dev_enum_test_enable;
-extern u32 usbh_dev_enum_test_base;
+extern uint32_t usbh_dev_enum_test_base;
 extern int usbh_hub251x_test_enable;
-extern u32 usbh_hub251x_test_base;
+extern uint32_t usbh_hub251x_test_base;
 extern int i2s_audio_output_test_enable;
 extern int gps_test_enable;
 extern int gpio_keyboard_test_enable;
@@ -206,17 +206,17 @@ extern int touch_screen_test_enable;
 extern int ipu_display_test_enable;
 extern int ipu_display_panel[];
 extern int ddr_test_enable;
-extern u32 ddr_density, ddr_num_of_cs;
+extern uint32_t ddr_density, ddr_num_of_cs;
 extern int mlb_os81050_test_enable;
 extern int i2c_device_id_check_DA9053_test_enable;
 extern int i2c_device_id_check_mag3112_test_enable;
 extern int i2c_device_id_check_isl29023_test_enable;
 extern int i2c_device_id_check_mma8451_test_enable;
 extern int mmcsd_test_enable;
-extern u32 mmcsd_bus_width, mmc_sd_base_address;
+extern uint32_t mmcsd_bus_width, mmc_sd_base_address;
 extern void gpio_backlight_lvds_en(void);
-//extern u32 AT45DB321D;
-//extern u32 M25P32;
+//extern uint32_t AT45DB321D;
+//extern uint32_t M25P32;
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

@@ -18,7 +18,7 @@
 
 // #define OBDS_FUSE_CONTROL   Leaving out for bring-up
 
-extern void init_debug_uart(struct hw_module *uart, u32 baud);
+extern void init_debug_uart(struct hw_module *uart, uint32_t baud);
 extern struct hw_module uart4;
 static struct hw_module *debug_uart = &uart4;   // on iMX61 UART4 is debug UART
 
@@ -68,7 +68,7 @@ static void mx61_print_ver(void)
 
 void platform_init(void)
 {
-    u8 c;
+    uint8_t c;
     int temp, display = 0;
 
     // prog_pll();   NEEDS TO BE UPDATED FOR MX6qd

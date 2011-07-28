@@ -26,10 +26,10 @@
  *
  * @return  reference freq in hz
  */
-u32 mx_uart_reffreq(struct hw_module *uart)
+uint32_t mx_uart_reffreq(struct hw_module *uart)
 {
-    u32 div = UART_UFCR_RFDIV;
-    u32 ret = 0;
+    uint32_t div = UART_UFCR_RFDIV;
+    uint32_t ret = 0;
 
     if (div == UART_UFCR_RFDIV_2)
         ret = uart->freq / 2;
@@ -49,7 +49,7 @@ static volatile struct mx_uart *debug_uart;
  * @param   uart        pointer to the uart module structure
  * @param   baud        desired baud rate for ommunicating to external device
  */
-void init_debug_uart(struct hw_module *uart, u32 baud)
+void init_debug_uart(struct hw_module *uart, uint32_t baud)
 {
     debug_uart = (volatile struct mx_uart *)uart->base;
 
@@ -158,7 +158,7 @@ char receive_char(void)
     if (debug_uart->uts & UART_UTS_RXEMPTY)
         return 0xFF;
 
-    return (u8) debug_uart->urxd[0];
+    return (uint8_t) debug_uart->urxd[0];
 }
 
 /*!
@@ -167,7 +167,7 @@ char receive_char(void)
  * @param   uart        pointer to the uart module structure
  * @param   baud        desired baud rate for ommunicating to external device
  */
-void init_uart(struct hw_module *uart, u32 baud)
+void init_uart(struct hw_module *uart, uint32_t baud)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)uart->base;
 
@@ -266,5 +266,5 @@ char uart_receive_char(struct mx_uart *puart)
     if (puart->uts & UART_UTS_RXEMPTY)
         return 0xFF;
 
-    return (u8) puart->urxd[0];
+    return (uint8_t) puart->urxd[0];
 }

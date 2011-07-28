@@ -19,7 +19,7 @@
 #include "imx_sata.h"
 
 extern void AUDMUXRoute(int intPort, int extPort, int Master);  // defined in ssi.c driver
-extern void init_clock(u32 rate);
+extern void init_clock(uint32_t rate);
 extern unsigned char da9053_i2c_reg(unsigned int reg, unsigned char val, unsigned int dir);
 extern int board_id;
 extern sata_phy_ref_clk_t sata_phy_clk_sel;
@@ -62,8 +62,8 @@ unsigned int mx53_gpio[] = {
 
 #define REF_IN_CLK_NUM  4
 struct fixed_pll_mfd {
-    u32 ref_clk_hz;
-    u32 mfd;
+    uint32_t ref_clk_hz;
+    uint32_t mfd;
 };
 const struct fixed_pll_mfd fixed_mfd[REF_IN_CLK_NUM] = {
     {0, 0},                     // reserved
@@ -72,7 +72,7 @@ const struct fixed_pll_mfd fixed_mfd[REF_IN_CLK_NUM] = {
     {0, 0},                     // reserved
 };
 
-static volatile u32 *pll_base[] = {
+static volatile uint32_t *pll_base[] = {
     REG32_PTR(PLL1_BASE_ADDR),
     REG32_PTR(PLL2_BASE_ADDR),
     REG32_PTR(PLL3_BASE_ADDR),
@@ -193,10 +193,10 @@ int gpio_read_data(int port, int pin)
 /*!
  * This function returns the low power audio clock.
  */
-u32 get_lp_apm(void)
+uint32_t get_lp_apm(void)
 {
-    u32 ret_val = 0;
-    u32 ccsr = readl(CCM_BASE_ADDR + CLKCTL_CCSR);
+    uint32_t ret_val = 0;
+    uint32_t ccsr = readl(CCM_BASE_ADDR + CLKCTL_CCSR);
 
     if (((ccsr >> 10) & 1) == 0) {
         ret_val = FREQ_24MHZ;
@@ -210,11 +210,11 @@ u32 get_lp_apm(void)
 /*!
  * This function returns the periph_clk.
  */
-u32 get_periph_clk(void)
+uint32_t get_periph_clk(void)
 {
-    u32 ret_val = 0, clk_sel;
-    u32 cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    u32 cbcmr = readl(CCM_BASE_ADDR + CLKCTL_CBCMR);
+    uint32_t ret_val = 0, clk_sel;
+    uint32_t cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
+    uint32_t cbcmr = readl(CCM_BASE_ADDR + CLKCTL_CBCMR);
 
     if (((cbcdr >> 25) & 1) == 0) {
         ret_val = pll_clock(PLL2);
@@ -236,11 +236,11 @@ u32 get_periph_clk(void)
 /*!
  * This function returns the PLL output value in Hz based on pll.
  */
-u32 pll_clock(enum plls pll)
+uint32_t pll_clock(enum plls pll)
 {
     u64 mfi, mfn, mfd, pdf, ref_clk, pll_out, sign;
     u64 dp_ctrl, dp_op, dp_mfd, dp_mfn, clk_sel;
-    u8 dbl = 0;
+    uint8_t dbl = 0;
     dp_ctrl = pll_base[pll][PLL_DP_CTL >> 2];
     clk_sel = MXC_GET_FIELD(dp_ctrl, 2, 8);
     ref_clk = fixed_mfd[clk_sel].ref_clk_hz;
@@ -271,17 +271,17 @@ u32 pll_clock(enum plls pll)
         pll_out = (dbl * ref_clk * mfi - ((dbl * ref_clk * mfn) / (mfd + 1))) / (pdf + 1);
     }
 
-    return (u32) pll_out;
+    return (uint32_t) pll_out;
 }
 
 /*!
  * This function returns the emi_core_clk_root clock.
  */
-u32 get_emi_core_clk(void)
+uint32_t get_emi_core_clk(void)
 {
-    u32 cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    u32 clk_sel = 0, max_pdf = 0, peri_clk = 0, ahb_clk = 0;
-    u32 ret_val = 0;
+    uint32_t cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
+    uint32_t clk_sel = 0, max_pdf = 0, peri_clk = 0, ahb_clk = 0;
+    uint32_t ret_val = 0;
     max_pdf = (cbcdr >> 10) & 0x7;
     peri_clk = get_periph_clk();
     ahb_clk = peri_clk / (max_pdf + 1);
@@ -299,15 +299,15 @@ u32 get_emi_core_clk(void)
 /*!
  * This function returns the main clock value in Hz.
  */
-u32 get_main_clock(enum main_clocks clk)
+uint32_t get_main_clock(enum main_clocks clk)
 {
-    u32 pdf, max_pdf, ipg_pdf, nfc_pdf, clk_sel;
-    u32 pll, ret_val = 0;
-    u32 cacrr = readl(CCM_BASE_ADDR + CLKCTL_CACRR);
-    u32 cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    u32 cbcmr = readl(CCM_BASE_ADDR + CLKCTL_CBCMR);
-    u32 cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
-    u32 cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
+    uint32_t pdf, max_pdf, ipg_pdf, nfc_pdf, clk_sel;
+    uint32_t pll, ret_val = 0;
+    uint32_t cacrr = readl(CCM_BASE_ADDR + CLKCTL_CACRR);
+    uint32_t cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
+    uint32_t cbcmr = readl(CCM_BASE_ADDR + CLKCTL_CBCMR);
+    uint32_t cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
+    uint32_t cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
 
     switch (clk) {
     case CPU_CLK:
@@ -423,14 +423,14 @@ u32 get_main_clock(enum main_clocks clk)
 /*!
  * This function returns the peripheral clock value in Hz.
  */
-u32 get_peri_clock(enum peri_clocks clk)
+uint32_t get_peri_clock(enum peri_clocks clk)
 {
-    u32 ret_val = 0, pdf, pre_pdf, clk_sel;
-    u32 cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
-    u32 cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
-    u32 cscdr2 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR2);
-    u32 cs1cdr = readl(CCM_BASE_ADDR + CLKCTL_CS1CDR);
-    u32 cs2cdr = readl(CCM_BASE_ADDR + CLKCTL_CS2CDR);
+    uint32_t ret_val = 0, pdf, pre_pdf, clk_sel;
+    uint32_t cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
+    uint32_t cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
+    uint32_t cscdr2 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR2);
+    uint32_t cs1cdr = readl(CCM_BASE_ADDR + CLKCTL_CS1CDR);
+    uint32_t cs2cdr = readl(CCM_BASE_ADDR + CLKCTL_CS2CDR);
 
     switch (clk) {
     case UART1_BAUD:
@@ -513,7 +513,7 @@ u32 get_peri_clock(enum peri_clocks clk)
  * @param   module_base     the base address of the module
  * @return  frequency in hz (0 means not a valid module)
  */
-u32 get_freq(u32 module_base)
+uint32_t get_freq(uint32_t module_base)
 {
     if (module_base == 0)       // as ARM Core doesn't have a module base per se, it is set to 0
         return get_main_clock(CPU_CLK);
@@ -606,11 +606,11 @@ void show_freq(void)
  */
 void show_ddr_config(void)
 {
-    u32 temp1, dsiz, row, col, cs_info;
-    u32 temp2, num_banks, ddr_type;
-    u32 density;
-    u32 megabyte;
-    u32 num_rows = 1, num_cols = 1, i = 1;
+    uint32_t temp1, dsiz, row, col, cs_info;
+    uint32_t temp2, num_banks, ddr_type;
+    uint32_t density;
+    uint32_t megabyte;
+    uint32_t num_rows = 1, num_cols = 1, i = 1;
     printf("========== DDR configuration \n");
     megabyte = 1024 * 1024;
     /* read ESDCTL and gather information */
@@ -790,7 +790,7 @@ void io_cfg_nand(void)
 /*!
   * Set up the IOMUX for I2C
   */
-void io_cfg_i2c(u32 module_base)
+void io_cfg_i2c(uint32_t module_base)
 {
     switch (module_base) {
     case I2C1_BASE_ADDR:
@@ -1644,7 +1644,7 @@ void reset_usb_hub(void)
     if (board_id != BOARD_ID_MX53_ARD) {
         if ((board_id != BOARD_ID_MX53_SBRTH_SMD)) {
             /* Use GPIO5_20 to reset the USB HUB */
-            u32 temp;
+            uint32_t temp;
             /* set GPIO5_20 to low, this is the reset to the HUBs */
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN);    //force input path as CEI0_DATA_EN,Alt1 as GPIO5_20
             temp = readl(GPIO5_BASE_ADDR + GPIO_DR0_OFFSET);
@@ -1659,7 +1659,7 @@ void reset_usb_hub(void)
             writel(temp, (GPIO5_BASE_ADDR + GPIO_DR0_OFFSET));  // set GPIO5_20 high
         } else {
             /* for SBRTH_SMD, use GPIO3_14 to reset the USB_HUB */
-            u32 temp;
+            uint32_t temp;
             /* set GPIO3_14 to low, this is the reset to the HUBs */
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_EIM_DA14);    //force input path, ALT1 as GPIO3_14
             temp = readl(GPIO3_BASE_ADDR + GPIO_DR0_OFFSET);
@@ -1681,8 +1681,8 @@ void reset_usb_hub(void)
  */
 void usb_clock_enable(void)
 {
-    *(volatile u32 *)(CCM_CCGR2) |= 0x3C000000; //enable USBOH3_IPG_AHB, USBOH3_60M
-    *(volatile u32 *)(CCM_CCGR4) |= 0x00003C00; //enable PHY1 and PHY2 clock
+    *(volatile uint32_t *)(CCM_CCGR2) |= 0x3C000000;    //enable USBOH3_IPG_AHB, USBOH3_60M
+    *(volatile uint32_t *)(CCM_CCGR4) |= 0x00003C00;    //enable PHY1 and PHY2 clock
 }
 
 /*!
@@ -1690,7 +1690,7 @@ void usb_clock_enable(void)
  */
 void usb_vbus_power_on(void)
 {
-    u32 v;
+    uint32_t v;
 
     if ((board_id == BOARD_ID_MX53_SBRTH_SMD) || (board_id == BOARD_ID_MX53_SBRTH_LCB)) {
         /*Pull USB_PWR_EN(PATA_DA_2, also GPIO7_8) to high level */
@@ -1726,7 +1726,7 @@ void usb_vbus_power_on(void)
  */
 void sata_clock_enable(void)
 {
-    u32 v;
+    uint32_t v;
     /*module clocks gated on */
     writel(0xFFFFFFFF, CCM_CCGR6);
     writel(0xFFFFFFFF, CCM_CCGR5);
@@ -1752,7 +1752,7 @@ void sata_clock_enable(void)
  */
 void sata_clock_disable(void)
 {
-    u32 v;
+    uint32_t v;
     /*Pull SATA_CLK_GPEN(GPIO1_4) to high level */
     //Set GPIO1_4 as GPIO
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
@@ -1965,7 +1965,7 @@ int board_id_fuse_program(void)
 {
     int bank = 0;
     int row_id = 31;
-    u32 temp;
+    uint32_t temp;
 
 #if defined (MX53_ARD) && defined (BOARD_VERSION2)
     ltc3589_fuse_vdd_power_on_off(ON);  // turn on fuse vdd voltage
@@ -2047,7 +2047,7 @@ int board_rev_fuse_program(void)
  *
  * @return  0 if successful; non-zero otherwise
  */
-int read_mac(u8 * mac_data)
+int read_mac(uint8_t * mac_data)
 {
     mac_data[0] = readb(IIM_BASE_ADDR + 0xC24);
     mac_data[1] = readb(IIM_BASE_ADDR + 0xC28);
@@ -2065,11 +2065,11 @@ int read_mac(u8 * mac_data)
  *
  * @return  0 if successful; non-zero otherwise
  */
-int program_mac(u8 * fuse_data)
+int program_mac(uint8_t * fuse_data)
 {
     unsigned int temp;
-    u32 bank_mac = 1;
-    u32 row_mac = 9;
+    uint32_t bank_mac = 1;
+    uint32_t row_mac = 9;
     int failcount = 0, i = 0;
 
 #if defined (MX53_ARD) && defined (BOARD_VERSION2)

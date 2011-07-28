@@ -23,7 +23,7 @@ int ipu_test(void)
     printf("\n---- Running IPU test, type 'x' to exit.\n");
 
     do {
-        printf("Please ipu test type:\n");
+        printf("Please select ipu test type:\n");
         for (idx = 0; idx < (sizeof(ipu_tests) / sizeof(ipu_test_t)); idx++) {
             printf("\t%d - %s\n", idx, ipu_test_t[idx].name);
         }

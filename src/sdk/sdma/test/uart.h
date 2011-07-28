@@ -103,22 +103,22 @@
 #define UART_UTS_SOFTRST    (1 << 0)    // Software reset
 
 struct mx_uart {
-    volatile u32 urxd[16];
-    volatile u32 utxd[16];
-    volatile u32 ucr1;
-    volatile u32 ucr2;
-    volatile u32 ucr3;
-    volatile u32 ucr4;
-    volatile u32 ufcr;
-    volatile u32 usr1;
-    volatile u32 usr2;
-    volatile u32 uesc;
-    volatile u32 utim;
-    volatile u32 ubir;
-    volatile u32 ubmr;
-    volatile u32 ubrc;
-    volatile u32 onems;
-    volatile u32 uts;
+    volatile uint32_t urxd[16];
+    volatile uint32_t utxd[16];
+    volatile uint32_t ucr1;
+    volatile uint32_t ucr2;
+    volatile uint32_t ucr3;
+    volatile uint32_t ucr4;
+    volatile uint32_t ufcr;
+    volatile uint32_t usr1;
+    volatile uint32_t usr2;
+    volatile uint32_t uesc;
+    volatile uint32_t utim;
+    volatile uint32_t ubir;
+    volatile uint32_t ubmr;
+    volatile uint32_t ubrc;
+    volatile uint32_t onems;
+    volatile uint32_t uts;
 };
 
 #endif //__UART_H__

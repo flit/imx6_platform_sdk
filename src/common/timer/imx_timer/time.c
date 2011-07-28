@@ -32,7 +32,7 @@ unsigned int ref_clock(void)
  * TODO: need to allow user to specific to use CKIL or IPG or IPG_CLK_HIGHFREQ
  *       for higher resolution
  */
-void init_clock(u32 rate)
+void init_clock(uint32_t rate)
 {
     // enable timer and start it with 32KHz input clock
     writel(0x00010000, EPIT_BASE_ADDR + EPITCR);

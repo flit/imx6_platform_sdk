@@ -95,4 +95,3 @@ extern int sdma_channel_release(unsigned int);
 extern unsigned int sdma_channel_status(unsigned int, unsigned int *);
 extern int sdma_lookup_script(script_name_e, unsigned int *);
 #endif
-

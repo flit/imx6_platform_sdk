@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -37,7 +37,7 @@ static const struct clk_div_table i2c_clk_table[] = {
 
 #define I2C_DELAY(count)        \
 {                               \
-    volatile u32 loop = count;  \
+    volatile uint32_t loop = count;  \
     while (loop -- != 0) {      \
     }                           \
 }
@@ -56,7 +56,7 @@ static inline int is_bus_free(unsigned int base)
     return 0;
 }
 
-static int wait_till_busy(u32 base)
+static int wait_till_busy(uint32_t base)
 {
     int i = 100000;
 
@@ -88,7 +88,7 @@ static inline void imx_send_stop(unsigned int base)
     writew((readw(base + I2C_I2CR) & ~(I2C_I2CR_MSTA)), base + I2C_I2CR);
 }
 
-static int wait_op_done(u32 base, int is_tx)
+static int wait_op_done(uint32_t base, int is_tx)
 {
     volatile unsigned short v;
     int i = WAIT_RXAK_LOOPS;
@@ -119,7 +119,7 @@ static int wait_op_done(u32 base, int is_tx)
     return 0;
 }
 
-int wait_ack_done(u32 base, int timeout)
+int wait_ack_done(uint32_t base, int timeout)
 {
     int time_out = timeout;
 
@@ -143,7 +143,7 @@ int wait_ack_done(u32 base, int timeout)
 }
 
 // For master TX, always expect a RXAK signal to be set!
-static int tx_byte(u8 * data, u32 base)
+static int tx_byte(uint8_t * data, uint32_t base)
 {
     int ret = 0;
     printf1("%s(data=0x%02x, base=0x%x)\n", __FUNCTION__, *data, base);
@@ -160,7 +160,7 @@ static int tx_byte(u8 * data, u32 base)
 }
 
 // For master RX
-static int rx_bytes(u8 * data, u32 base, int sz)
+static int rx_bytes(uint8_t * data, uint32_t base, int sz)
 {
     unsigned short i2cr;
     int i, ret = 0;
@@ -210,7 +210,7 @@ static int rx_bytes(u8 * data, u32 base, int sz)
  *
  * @return          0 on success; non-zero otherwise
  */
-int i2c_xfer(u32 base, struct imx_i2c_request *rq, int dir)
+int i2c_xfer(uint32_t base, struct imx_i2c_request *rq, int dir)
 {
     unsigned int reg;
     unsigned char i, data;
@@ -344,7 +344,7 @@ int i2c_xfer(u32 base, struct imx_i2c_request *rq, int dir)
  *
  * @return              0 if successful; non-zero otherwise
  */
-int i2c_init(u32 base, u32 baud)
+int i2c_init(uint32_t base, uint32_t baud)
 {
     io_cfg_i2c(base);
 

@@ -23,20 +23,15 @@
 #define NULL				0
 #endif
 
-typedef unsigned long long u64;
-typedef unsigned int u32;
-typedef unsigned short u16;
-typedef unsigned char u8;
+typedef unsigned long long uint64_t;
+typedef unsigned int uint32_t;
+typedef unsigned short uint16_t;
+typedef unsigned char uint8_t;
 
-typedef signed long long s64;
-typedef signed int s32;
-typedef signed short s16;
-typedef signed char s8;
-
-typedef unsigned long long U64;
-typedef unsigned int U32;
-typedef unsigned short U16;
-typedef unsigned char U8;
+typedef signed long long int64_t;
+typedef signed int int32_t;
+typedef signed short int16_t;
+typedef signed char int8_t;
 
 typedef int bool;
 #define true                1
@@ -87,8 +82,8 @@ typedef int bool;
 
 struct hw_module {
     char *name;
-    u32 base;
-    u32 freq;
+    uint32_t base;
+    uint32_t freq;
 };
 
 #ifdef SDK_DEBUG
@@ -122,10 +117,10 @@ typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, 
 
 void fuse_blow_row(int bank, int row, unsigned int value);
 unsigned int sense_fuse(int bank, int row);
-void hal_delay_us(u32 usecs);
-u32 get_freq(u32 module_base);
+void hal_delay_us(uint32_t usecs);
+uint32_t get_freq(uint32_t module_base);
 char receive_char(void);
-int is_input_char(u8 c);
+int is_input_char(uint8_t c);
 void _sys_exit(int return_code);
 void platform_init(void);
 int gpio_dir_config(int port, int pin, int dir);
@@ -169,7 +164,7 @@ int gpio_write_data(int port, int pin, unsigned int attr);
 #define TEST_NOTPRESENT 3
 
 extern int auto_run_enable;     // global flag to indicate auto-run feature enabled or not
-extern u32 spi_nor_flash_type;  // Flag decides the SPI-NOR device
+extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
 /* SPI-NOR defines */
 #define AT45DB321D          1
 #define M25P32               2

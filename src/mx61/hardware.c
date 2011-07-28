@@ -19,7 +19,7 @@
 #include "imx_i2c.h"
 #include "imx_sata.h"
 
-extern void init_clock(u32 rate);
+extern void init_clock(uint32_t rate);
 extern int board_id;
 
 #define ON 1
@@ -61,8 +61,8 @@ unsigned int mx61_gpio[] = {
 
 #define REF_IN_CLK_NUM  4
 struct fixed_pll_mfd {
-    u32 ref_clk_hz;
-    u32 mfd;
+    uint32_t ref_clk_hz;
+    uint32_t mfd;
 };
 
 /*!
@@ -185,7 +185,7 @@ int gpio_read_data(int port, int pin)
  * @param   module_base     the base address of the module
  * @return  frequency in hz (0 means not a valid module)
  */
-u32 get_freq(u32 module_base)
+uint32_t get_freq(uint32_t module_base)
 {
     if (module_base == 0)       // as ARM Core doesn't have a module base per se, it is set to 0
         //return get_main_clock(CPU_CLK);
@@ -293,11 +293,11 @@ void show_freq(void)
  */
 void show_ddr_config(void)
 {
-    u32 temp1, dsiz, row, col, cs_info;
-    u32 temp2, num_banks, ddr_type;
-    u32 density;
-    u32 megabyte;
-    u32 num_rows = 1, num_cols = 1, num_dsiz = 1, i = 1;
+    uint32_t temp1, dsiz, row, col, cs_info;
+    uint32_t temp2, num_banks, ddr_type;
+    uint32_t density;
+    uint32_t megabyte;
+    uint32_t num_rows = 1, num_cols = 1, num_dsiz = 1, i = 1;
     printf("========== DDR configuration \n");
     megabyte = 1024 * 1024;
     /* read ESDCTL and gather information */
@@ -363,7 +363,7 @@ void show_ddr_config(void)
 /*!
   * Set up the IOMUX for I2C
   */
-void io_cfg_i2c(u32 module_base)
+void io_cfg_i2c(uint32_t module_base)
 {
     switch (module_base) {
     case I2C1_BASE_ADDR:

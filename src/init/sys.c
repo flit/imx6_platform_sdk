@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -217,9 +217,9 @@ void mybkpt(void)
  * @return  0   if input char doesn't match with c
  *          non-zero otherwise
  */
-int is_input_char(u8 c)
+int is_input_char(uint8_t c)
 {
-    u8 input, lc, uc;
+    uint8_t input, lc, uc;
 
     if (c >= 'A' && c <= 'Z') {
         uc = c;

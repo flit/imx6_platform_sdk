@@ -51,7 +51,7 @@ int rawoffset = 0;
 #define MAX_FRAME_HEIGHT 576
 #endif
 
-void SaveFrameBufStat(u8 * frmStatusBuf, int size, int DecNum)
+void SaveFrameBufStat(uint8_t * frmStatusBuf, int size, int DecNum)
 {
 
     int i;
@@ -70,7 +70,7 @@ void SaveFrameBufStat(u8 * frmStatusBuf, int size, int DecNum)
     fflush(fpFrmStatusLogfile);
 }
 
-void SaveMB_Para(u8 * mbParaBuf, int size, int DecNum)
+void SaveMB_Para(uint8_t * mbParaBuf, int size, int DecNum)
 {
 
     int i;
@@ -101,12 +101,12 @@ void SaveMB_Para(u8 * mbParaBuf, int size, int DecNum)
     fflush(fpErrMapLogfile);
 }
 
-void SaveMvPara(u8 * mvParaBuf, int size, int mvNumPerMb, int mbNumX, int DecNum)
+void SaveMvPara(uint8_t * mvParaBuf, int size, int mvNumPerMb, int mbNumX, int DecNum)
 {
 
     int i, j;
     short mvX, mvY;
-    u8 *mvDatabuf;
+    uint8_t *mvDatabuf;
 
     if (fpMvLogfile == 0) {
         fpMvLogfile = fopen(FN_MV_DATA, "w+");
@@ -154,10 +154,10 @@ void SaveMvPara(u8 * mvParaBuf, int size, int mvNumPerMb, int mbNumX, int DecNum
     fflush(fpMvLogfile);
 }
 
-void SaveUserData(u8 * userDataBuf)
+void SaveUserData(uint8_t * userDataBuf)
 {
     int i, UserDataType, UserDataSize, userDataNum, TotalSize;
-    u8 *tmpBuf;
+    uint8_t *tmpBuf;
 
     if (fpUserDataLogfile == 0) {
         fpUserDataLogfile = fopen(FN_USER_DATA, "w+");
@@ -194,12 +194,12 @@ void SaveUserData(u8 * userDataBuf)
  * Fill the bitstream to vpu ring buffer
  */
 int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
-                      u32 bs_va_startaddr, u32 bs_va_endaddr,
-                      u32 bs_pa_startaddr, int defaultsize, int *eos, int *fill_end_bs)
+                      uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
+                      uint32_t bs_pa_startaddr, int defaultsize, int *eos, int *fill_end_bs)
 {
     RetCode ret;
     PhysicalAddress pa_read_ptr, pa_write_ptr;
-    u32 target_addr, space;
+    uint32_t target_addr, space;
     int size;
     int nread, room;
     *eos = 0;
@@ -298,13 +298,13 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
  *
  * Note: This function does _NOT_ really store this framebuffer into file.
  */
-static void saveNV12ImageHelper(u8 * pYuv, struct decode *dec, u8 * buf)
+static void saveNV12ImageHelper(uint8_t * pYuv, struct decode *dec, uint8_t * buf)
 {
     int Y, Cb;
-    u8 *Y1, *Cb1, *Cr1;
+    uint8_t *Y1, *Cb1, *Cr1;
     int img_size;
     int y, x;
-    u8 *tmp;
+    uint8_t *tmp;
     int height = dec->picheight;
     int stride = dec->stride;
 
@@ -322,10 +322,10 @@ static void saveNV12ImageHelper(u8 * pYuv, struct decode *dec, u8 * buf)
     Cb1 = Y1 + img_size;
     Cr1 = Cb1 + (img_size >> 2);
 
-    memcpy(Y1, (u8 *) Y, img_size);
+    memcpy(Y1, (uint8_t *) Y, img_size);
 
     for (y = 0; y < (dec->picheight / 2); y++) {
-        tmp = (u8 *) (Cb + dec->picwidth * y);
+        tmp = (uint8_t *) (Cb + dec->picwidth * y);
         for (x = 0; x < dec->picwidth; x += 2) {
             *Cb1++ = tmp[x];
             *Cr1++ = tmp[x + 1];
@@ -349,7 +349,7 @@ int decoder_start(struct decode *dec)
     int err, eos = 0, fill_end_bs = 0, decodefinish = 0;
     RetCode ret;
     int sec, loop_id;
-    u32 yuv_addr, img_size;
+    uint32_t yuv_addr, img_size;
     double frame_id = 0, total_time = 0;
     int decIndex = 0;
     int rotid = 0, dblkid = 0, mirror;

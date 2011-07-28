@@ -39,7 +39,7 @@ static FILE *fpEncQpInfo = NULL;
 static FILE *fpEncMvInfo = NULL;
 static FILE *fpEncSliceInfo = NULL;
 
-void SaveEncMbInfo(u8 * mbParaBuf, int size, int MbNumX, int EncNum)
+void SaveEncMbInfo(uint8_t * mbParaBuf, int size, int MbNumX, int EncNum)
 {
     int i;
     if (!fpEncQpInfo)
@@ -67,7 +67,7 @@ void SaveEncMbInfo(u8 * mbParaBuf, int size, int MbNumX, int EncNum)
     fflush(fpEncSliceBndInfo);
 }
 
-void SaveEncMvInfo(u8 * mvParaBuf, int size, int MbNumX, int EncNum)
+void SaveEncMvInfo(uint8_t * mvParaBuf, int size, int MbNumX, int EncNum)
 {
     int i;
     if (!fpEncMvInfo)
@@ -77,8 +77,8 @@ void SaveEncMvInfo(u8 * mvParaBuf, int size, int MbNumX, int EncNum)
 
     fprintf(fpEncMvInfo, "FRAME [%1d]\n", EncNum);
     for (i = 0; i < size / 4; i++) {
-        u16 mvX = (mvParaBuf[0] << 8) | (mvParaBuf[1]);
-        u16 mvY = (mvParaBuf[2] << 8) | (mvParaBuf[3]);
+        uint16_t mvX = (mvParaBuf[0] << 8) | (mvParaBuf[1]);
+        uint16_t mvY = (mvParaBuf[2] << 8) | (mvParaBuf[3]);
         if (mvX & 0x8000) {
             fprintf(fpEncMvInfo, "MbAddr[%4d:For ]: Avail[0] Mv[%5d:%5d]\n", i, 0, 0);
         } else {
@@ -91,7 +91,7 @@ void SaveEncMvInfo(u8 * mvParaBuf, int size, int MbNumX, int EncNum)
     fflush(fpEncMvInfo);
 }
 
-void SaveEncSliceInfo(u8 * SliceParaBuf, int size, int EncNum)
+void SaveEncSliceInfo(uint8_t * SliceParaBuf, int size, int EncNum)
 {
     int i, nMbAddr, nSliceBits;
     if (!fpEncSliceInfo)
@@ -116,12 +116,13 @@ void SaveEncSliceInfo(u8 * SliceParaBuf, int size, int EncNum)
 #if STREAM_ENC_PIC_RESET == 0
 static int
 enc_readbs_ring_buffer(EncHandle handle, struct cmd_line *cmd,
-                       u32 bs_va_startaddr, u32 bs_va_endaddr, u32 bs_pa_startaddr, int defaultsize)
+                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr, uint32_t bs_pa_startaddr,
+                       int defaultsize)
 {
     RetCode ret;
     int space = 0, room;
     PhysicalAddress pa_read_ptr, pa_write_ptr;
-    u32 target_addr, size;
+    uint32_t target_addr, size;
 
     ret = vpu_EncGetBitstreamBuffer(handle, &pa_read_ptr, &pa_write_ptr, &size);
     if (ret != RETCODE_SUCCESS) {
@@ -171,9 +172,9 @@ static int encoder_fill_headers(struct encode *enc)
     int mbPicNum;
 
 #if STREAM_ENC_PIC_RESET == 1
-    u32 vbuf;
-    u32 phy_bsbuf = enc->phy_bsbuf_addr;
-    u32 virt_bsbuf = enc->virt_bsbuf_addr;
+    uint32_t vbuf;
+    uint32_t phy_bsbuf = enc->phy_bsbuf_addr;
+    uint32_t virt_bsbuf = enc->virt_bsbuf_addr;
 #endif
 
     /* Must put encode header before encoding */
@@ -365,7 +366,7 @@ static int encoder_start(struct encode *enc)
     FrameBuffer *fb = enc->fb;
     struct frame_buf **pfbpool = enc->pfbpool;
     struct frame_buf *pfb;
-    u32 yuv_addr;
+    uint32_t yuv_addr;
     int src_fd = enc->cmdl->src_fd;
     int src_scheme = enc->cmdl->src_scheme;
     int count = enc->cmdl->count;
@@ -373,10 +374,10 @@ static int encoder_start(struct encode *enc)
 
 #if STREAM_ENC_PIC_RESET == 0
     PhysicalAddress phy_bsbuf_start = enc->phy_bsbuf_addr;
-    u32 virt_bsbuf_start = enc->virt_bsbuf_addr;
-    u32 virt_bsbuf_end = virt_bsbuf_start + STREAM_BUF_SIZE;
+    uint32_t virt_bsbuf_start = enc->virt_bsbuf_addr;
+    uint32_t virt_bsbuf_end = virt_bsbuf_start + STREAM_BUF_SIZE;
 #else
-    u32 vbuf;
+    uint32_t vbuf;
 #endif
 
     /* Must put encode header before encoding */

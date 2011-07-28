@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -104,57 +104,57 @@
 
 #ifdef UART_WIDTH_32
 struct mx_uart {
-    volatile u32 urxd[16];
-    volatile u32 utxd[16];
-    volatile u32 ucr1;
-    volatile u32 ucr2;
-    volatile u32 ucr3;
-    volatile u32 ucr4;
-    volatile u32 ufcr;
-    volatile u32 usr1;
-    volatile u32 usr2;
-    volatile u32 uesc;
-    volatile u32 utim;
-    volatile u32 ubir;
-    volatile u32 ubmr;
-    volatile u32 ubrc;
-    volatile u32 onems;
-    volatile u32 uts;
+    volatile uint32_t urxd[16];
+    volatile uint32_t utxd[16];
+    volatile uint32_t ucr1;
+    volatile uint32_t ucr2;
+    volatile uint32_t ucr3;
+    volatile uint32_t ucr4;
+    volatile uint32_t ufcr;
+    volatile uint32_t usr1;
+    volatile uint32_t usr2;
+    volatile uint32_t uesc;
+    volatile uint32_t utim;
+    volatile uint32_t ubir;
+    volatile uint32_t ubmr;
+    volatile uint32_t ubrc;
+    volatile uint32_t onems;
+    volatile uint32_t uts;
 };
 #else
 struct mx_uart {
-    volatile u16 urxd[1];
-    volatile u16 resv0[31];
-    volatile u16 utxd[1];
-    volatile u16 resv1[31];
-    volatile u16 ucr1;
-    volatile u16 resv2;
-    volatile u16 ucr2;
-    volatile u16 resv3;
-    volatile u16 ucr3;
-    volatile u16 resv4;
-    volatile u16 ucr4;
-    volatile u16 resv5;
-    volatile u16 ufcr;
-    volatile u16 resv6;
-    volatile u16 usr1;
-    volatile u16 resv7;
-    volatile u16 usr2;
-    volatile u16 resv8;
-    volatile u16 uesc;
-    volatile u16 resv9;
-    volatile u16 utim;
-    volatile u16 resv10;
-    volatile u16 ubir;
-    volatile u16 resv11;
-    volatile u16 ubmr;
-    volatile u16 resv12;
-    volatile u16 ubrc;
-    volatile u16 resv13;
-    volatile u16 onems;
-    volatile u16 resv14;
-    volatile u16 uts;
-    volatile u16 resv15;
+    volatile uint16_t urxd[1];
+    volatile uint16_t resv0[31];
+    volatile uint16_t utxd[1];
+    volatile uint16_t resv1[31];
+    volatile uint16_t ucr1;
+    volatile uint16_t resv2;
+    volatile uint16_t ucr2;
+    volatile uint16_t resv3;
+    volatile uint16_t ucr3;
+    volatile uint16_t resv4;
+    volatile uint16_t ucr4;
+    volatile uint16_t resv5;
+    volatile uint16_t ufcr;
+    volatile uint16_t resv6;
+    volatile uint16_t usr1;
+    volatile uint16_t resv7;
+    volatile uint16_t usr2;
+    volatile uint16_t resv8;
+    volatile uint16_t uesc;
+    volatile uint16_t resv9;
+    volatile uint16_t utim;
+    volatile uint16_t resv10;
+    volatile uint16_t ubir;
+    volatile uint16_t resv11;
+    volatile uint16_t ubmr;
+    volatile uint16_t resv12;
+    volatile uint16_t ubrc;
+    volatile uint16_t resv13;
+    volatile uint16_t onems;
+    volatile uint16_t resv14;
+    volatile uint16_t uts;
+    volatile uint16_t resv15;
 };
 #endif
 

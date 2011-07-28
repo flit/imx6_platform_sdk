@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -35,6 +35,6 @@
 #define IIM_SCS3_P_OFF          0x38
 
 unsigned int sense_fuse(int bank, int row);
-int fuse_blow(int bank,int row,int bit);
+int fuse_blow(int bank, int row, int bit);
 
-#endif  // __IIM_FUSE_H__
+#endif // __IIM_FUSE_H__

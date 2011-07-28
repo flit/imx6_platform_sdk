@@ -64,4 +64,3 @@
 #define DMA_EVENT_SSI3_TX0    	47
 
 #endif
-

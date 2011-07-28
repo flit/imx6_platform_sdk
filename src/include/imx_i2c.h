@@ -45,19 +45,19 @@
 #define ERR_NO_ACK_ON_START           -7
 
 struct imx_i2c_request {
-    u32 ctl_addr;               // the I2C controller base address
-    u32 dev_addr;               // the I2C DEVICE address
-    u32 reg_addr;               // the actual REGISTER address
-    u32 reg_addr_sz;            // number of bytes for the address of I2C device register
-    u8 *buffer;                 // buffer to hold the data
-    u32 buffer_sz;              // the number of bytes for read/write
+    uint32_t ctl_addr;          // the I2C controller base address
+    uint32_t dev_addr;          // the I2C DEVICE address
+    uint32_t reg_addr;          // the actual REGISTER address
+    uint32_t reg_addr_sz;       // number of bytes for the address of I2C device register
+    uint8_t *buffer;            // buffer to hold the data
+    uint32_t buffer_sz;         // the number of bytes for read/write
 };
 
-extern u32 i2c_base_addr[];
-extern u32 i2c_num;
+extern uint32_t i2c_base_addr[];
+extern uint32_t i2c_num;
 
-int i2c_init(u32 base, u32 baud);
-int i2c_xfer(u32 base, struct imx_i2c_request *rq, int dir);
+int i2c_init(uint32_t base, uint32_t baud);
+int i2c_xfer(uint32_t base, struct imx_i2c_request *rq, int dir);
 #define i2c_read(base, rq)      i2c_xfer(base, rq, I2C_READ)
 #define i2c_write(base, rq)      i2c_xfer(base, rq, I2C_WRITE)
 

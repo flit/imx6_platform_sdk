@@ -29,7 +29,7 @@ static void fuse_op_start(void)
  */
 static int poll_fuse_op_done(int action)
 {
-    u32 status, error;
+    uint32_t status, error;
 
     if (action != POLL_FUSE_PRGD && action != POLL_FUSE_SNSD) {
         printf("%s(%d) invalid operation\n", __FUNCTION__, action);

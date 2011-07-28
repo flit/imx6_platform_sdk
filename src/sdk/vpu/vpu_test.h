@@ -145,8 +145,8 @@ struct cmd_line {
     int nlen;                   /* remaining data in network buffer */
     int noffset;                /* offset into network buffer */
     int seq_no;                 /* seq numbering to detect skipped frames */
-    u16 port;                   /* udp port number */
-    u16 complete;               /* wait for the requested buf to be filled completely */
+    uint16_t port;              /* udp port number */
+    uint16_t complete;          /* wait for the requested buf to be filled completely */
     int iframe;
     int mp4Class;
     char vdi_motion;            /* VDI motion algorithm */
@@ -201,8 +201,8 @@ struct encode {
     EncReportInfo sliceInfo;
 
     struct cmd_line *cmdl;      /* command line */
-    u8 *huffTable;
-    u8 *qMatTable;
+    uint8_t *huffTable;
+    uint8_t *qMatTable;
 };
 
 void framebuf_init(void);

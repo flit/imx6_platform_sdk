@@ -17,7 +17,7 @@
 
 #define SDK_FUSE_CONTROL
 
-extern void init_debug_uart(struct hw_module *uart, u32 baud);
+extern void init_debug_uart(struct hw_module *uart, uint32_t baud);
 extern struct hw_module uart1;
 static struct hw_module *debug_uart = &uart1;
 int auto_run_enable = 0;
@@ -85,7 +85,7 @@ volatile int ard_cpu_only_test = 0;
 
 void platform_init(void)
 {
-    u8 c;
+    uint8_t c;
 
     prog_pll();
     freq_populate();

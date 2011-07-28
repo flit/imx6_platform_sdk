@@ -238,8 +238,8 @@ uint32_t get_periph_clk(void)
  */
 uint32_t pll_clock(enum plls pll)
 {
-    u64 mfi, mfn, mfd, pdf, ref_clk, pll_out, sign;
-    u64 dp_ctrl, dp_op, dp_mfd, dp_mfn, clk_sel;
+    uint64_t mfi, mfn, mfd, pdf, ref_clk, pll_out, sign;
+    uint64_t dp_ctrl, dp_op, dp_mfd, dp_mfn, clk_sel;
     uint8_t dbl = 0;
     dp_ctrl = pll_base[pll][PLL_DP_CTL >> 2];
     clk_sel = MXC_GET_FIELD(dp_ctrl, 2, 8);

@@ -107,7 +107,7 @@ struct hw_module {
 
 struct test_module {
     char name[MAX_TEST_NAME_LEN];
-    s32 result;
+    int32_t result;
 };
 
 void record_test_result(char *name, int result);

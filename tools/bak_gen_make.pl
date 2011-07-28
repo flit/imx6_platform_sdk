@@ -60,10 +60,62 @@ find(\&Wanted, $ARGV[1]);
 copy("$ARGV[1]/makefile.in", "$ARGV[1]/makefile") or die "File cannot be copied.";
 
 # Read in the file one line at a time
-while (<INP_FH>) {
-    s/#.*//;                # ignore comments by erasing them
-    next if /^(\s)*$/;  # skip blank lines
-    $line = $_;
+my $test_case = "src/sdk/$ARGV[4]"; #add test case
+if($test_case ne ""){
+	@sdk_subdir = `cd $test_case; ls -d */`;
+	$num_of_subdir = scalar @sdk_subdir;
+}
+$loop_end = 0;
+while ($loop_end == 0) 
+{
+	if($num_of_subdir eq "0")
+	{
+		$line = $test_case;
+		$num_of_subdir = $num_of_subdir - 1;
+	}
+	else
+	{		
+		if($num_of_subdir gt "0")
+		{
+			#ignore the sub directories without c/asm files	
+			$num_of_subdir = $num_of_subdir - 1;
+			$sdk_sub_dirs = $test_case."/".$sdk_subdir[$num_of_subdir];
+			$subdir=$ARGV[1]."/".$sdk_sub_dirs;
+			chop($subdir);
+			opendir(TEMP,$subdir) or die "Cannot open $subdir:$!";
+			my @FILES = grep(/\.s$/i,readdir TEMP);
+			my $src_num=scalar @FILES;
+			
+			rewinddir(TEMP);
+			@FILES = grep(/\.c$/i,readdir TEMP);
+			
+			closedir(TEMP);
+			
+			$src_num+=scalar @FILES;
+			if($src_num gt "0")
+			{
+				$line = $sdk_sub_dirs;
+			}
+			else
+			{
+				next;
+			}
+		}
+    	else{
+			while(<INP_FH>)
+			{
+				s/#.*//;                # ignore comments by erasing them
+				next if /^(\s)*$/;  # skip blank lines
+				if(eof)
+				{	
+					$loop_end = 1;
+				}
+				$line = $_;
+				last;
+			}
+    	}	
+	}
+
     #Delete trailing newline
     chomp($line);
 

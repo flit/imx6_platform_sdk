@@ -97,3 +97,10 @@ void platform_init(void)
     show_freq();
     show_ddr_config();
 }
+
+void ALL_test(void)
+{
+
+    sdma_test();
+
+}

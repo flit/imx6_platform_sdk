@@ -8,9 +8,10 @@
 #include <stdio.h>
 #include "ips_test.h"
 
+extern int ips_display_test(void);
+
 static ipu_test_t ipu_tests[] = {
-    {"IPU OVERLAY TEST", ipu_overlay_test},
-    {"IPU ROTATE_TEST", ipu_rotate_test},
+    {"IPU DISPLAY TEST", ips_display_test},
 };
 
 extern char receive_char(void);
@@ -25,7 +26,7 @@ int ipu_test(void)
     do {
         printf("Please select ipu test type:\n");
         for (idx = 0; idx < (sizeof(ipu_tests) / sizeof(ipu_test_t)); idx++) {
-            printf("\t%d - %s\n", idx, ipu_test_t[idx].name);
+            printf("\t%d - %s\n", idx, ipu_tests[idx].name);
         }
 
         do {

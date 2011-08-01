@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
 */
 
-#ifndef __IPU_TEST__
-#define __IPU_TEST__
+#ifndef __IPS_TEST__
+#define __IPS_TEST__
 
 #include "io.h"
 
@@ -29,6 +29,5 @@ typedef struct {
     int (*test) (void);
 } ipu_test_t;
 
-extern int ipu_overlay_test(void);
-extern int ipu_rotate_test(void);
+extern int ips_display_test(void);
 #endif

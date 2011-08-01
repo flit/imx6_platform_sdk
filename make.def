@@ -69,7 +69,7 @@ LD_FLAGS += -T $(PROJ_DIR)/src/$(TARGET)/$(TARGET).ld
 C_DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 
 C_FLAGS 		= -mcpu=$(CPU) -Wall -Wpointer-arith -Wstrict-prototypes -Winline -Wundef  -mapcs -g -O0 -ffunction-sections -fdata-sections -fno-exceptions
-C_INCLUDES 	= -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I.
+C_INCLUDES 	= -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I. -I../inc
 
 A_FLAGS 		=
 A_INCLUDES 	+=  -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I.

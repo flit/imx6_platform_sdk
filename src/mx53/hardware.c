@@ -2169,3 +2169,8 @@ void hdmi_power_on(void)
         da9053_i2c_reg(55, 0x40, I2C_WRITE);
     }
 }
+
+int GetCPUFreq(void)
+{
+    return 800000000;
+}

@@ -12,7 +12,7 @@
 #include "sdma_test.h"
 #include "hardware.h"
 
-#define MEM2MEM_TEST_BUF_SZ 		1024
+#define MEM2MEM_TEST_BUF_SZ 		1024*8
 
 /* Uncacheable & unbufferable area startes */
 static unsigned int src_buf[2][MEM2MEM_TEST_BUF_SZ];
@@ -81,11 +81,19 @@ int mem_2_mem_test(void)
     printf("Channel %d opened, starting transfer...\n", channel);
     sdma_channel_start(channel);
 
+    unsigned int perf_cnt = 0;
+
+    StartPerfCounter();
     /* Wait channel stop */
     unsigned int status;
     do {
         sdma_channel_status(channel, &status);
     } while (!(status & SDMA_CHANNEL_STATUS_DONE));
+    perf_cnt = StopPerfCounter();
+
+    float interval = ((float)(perf_cnt)) / ((float)GetCPUFreq());
+    float speed = (float)(MEM2MEM_TEST_BUF_SZ * 2 * 4) / 1024.0f / interval;
+    printf("mem-2-mem speed: %d KB/s\n", (int)speed);
 
     /* Stop channel */
     printf("Transfer completed. Stop channel.\n");

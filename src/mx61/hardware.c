@@ -431,3 +431,8 @@ void board_init(void)
     /* set up debug UART iomux */
     debug_uart_iomux();
 }
+
+int GetCPUFreq(void)
+{
+    return 1000000000;
+}

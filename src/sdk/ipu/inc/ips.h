@@ -97,6 +97,21 @@ enum {
     ASPECT_RATIO_OTHER,
 };
 
+enum {
+    NON_INTERLEAVED_YUV444 = 0x0,
+    NON_INTERLEAVED_YUV422 = 0x1,
+    NON_INTERLEAVED_YUV420 = 0x2,
+    PARTIAL_INTERLEAVED_YUV422 = 0x3,
+    PARTIAL_INTERLEAVED_YUV420 = 0x4,
+    INTERLEAVED_LUT = 0x5,
+    INTERLEAVED_GENERIC = 0x6,
+    INTERLEAVED_RGB = 0x7,
+    INTERLEAVED_Y1U1Y2V1 = 0x8,
+    INTERLEAVED_Y2U1Y1V1 = 0x9,
+    INTERLEAVED_U1Y1V1Y2 = 0xA,
+    INTERLEAVED_U1Y2V1Y1 = 0xB,
+};
+
 typedef struct {
     uint32_t channel;
     uint32_t aspect_ratio;
@@ -108,10 +123,10 @@ typedef struct {
     uint32_t gamma_type;
     uint32_t width;
     uint32_t height;
-    uint32_t macro_pixel0;
-    uint32_t macro_pixel1;
-    uint32_t macro_pixel2;
-    uint32_t macro_pixel3;
+    ips_macro_pixel_t macro_pixel0;
+    ips_macro_pixel_t macro_pixel1;
+    ips_macro_pixel_t macro_pixel2;
+    ips_macro_pixel_t macro_pixel3;
     uint32_t pixel_format;
 } ips_image_stream_t;
 
@@ -156,12 +171,20 @@ struct ips_display_if_s {
 
 /*memory device structure*/
 typedef struct {
+    uint32_t base_addr_0;       //base address of component 0
+    uint32_t base_addr_1;
+    uint32_t base_addr_2;
+    uint32_t base_addr_3;
+} ips_mem_buffer_addr_t;
+
+typedef struct {
     uint32_t active_frame_buf;
     uint32_t number_frame_buf;
     uint32_t stride_line_addr_0;
     uint32_t stride_line_addr_1;
     uint32_t stride_line_addr_2;
     uint32_t stride_line_addr_3;
+    ips_mem_buffer_addr_t *buffer;
     ips_image_stream_t *(*create_ims) (int);
 } ips_dev_memory_t;
 

@@ -12,13 +12,25 @@
 #include <stdarg.h>
 #include <ips.h>
 
-ips_image_stream_t *ips_new_ims(channel)
+ips_image_stream_t *ips_new_ims(int channel)
 {
     /*create an image stream */
     ips_image_stream_t *ims = (ips_image_stream_t *) malloc(sizeof(ips_image_stream_t));
+    int ipu_index = 1;
 
     /*initialize the image stream with default settings */
-    //TBD
+    ims->channel = channel;
+    ims->aspect_ratio = ASPECT_RATIO_16_9;
+    ims->background = 1;
+    ims->compress_type = 0;
+    ims->scan_interface = 0;
+    ims->frame_rate = 60;
+    ims->gamma_type = 0;
+    ims->gamma_factor = 0;
+    ims->width = 1024;
+    ims->height = 768;
+    ims->pixel_format = INTERLEAVED_RGB;
+    ipu_idmac_config(ipu_index, ims);
 }
 
 void ips_delete_ims(ips_image_stream_t * ims)

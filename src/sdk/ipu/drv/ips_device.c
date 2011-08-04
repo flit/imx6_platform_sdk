@@ -16,6 +16,8 @@
  */
 #include "ips.h"
 
+extern ips_image_stream_t *ips_new_ims(int);
+
 ips_device_t *ips_new_device(ips_dev_type_e devtype)
 {
     ips_device_t *device = (ips_device_t *) malloc(sizeof(ips_device_t));
@@ -34,7 +36,22 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
             device->devattr = display;
             break;
         }
+    case IPS_DEV_MEM:
+        {
+            ips_dev_memory_t *mem = (ips_dev_memory_t *) malloc(sizeof(ips_dev_memory_t));
+            mem->active_frame_buf = 0;
+            mem->number_frame_buf = 1;
+            ips_mem_buffer_addr_t *buffer =
+                (ips_mem_buffer_addr_t *) malloc(sizeof(ips_mem_buffer_addr_t) *
+                                                 mem->number_frame_buf);
+            memset((void *)buffer, CSD0_BASE_ADDR,
+                   sizeof(ips_mem_buffer_addr_t) * mem->number_frame_buf);
+            mem->buffer = buffer;
+            mem->create_ims = &ips_new_ims;
 
+            device->devname = "memory";
+            device->devattr = mem;
+        }
     default:
         printf("The device type is not defined!!\n");
         return false;

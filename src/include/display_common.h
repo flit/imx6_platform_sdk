@@ -60,28 +60,28 @@ enum disp_dev_flag {
 
 typedef struct display_device_info {
     char name[32];
-    unsigned int name_flag;
-    unsigned int refresh;
-    unsigned int width;
-    unsigned int height;
-    unsigned int pixel_clock;
-    unsigned int hsync_start_width;
-    unsigned int hsync_width;
-    unsigned int hsync_end_width;
-    unsigned int vsync_start_width;
-    unsigned int vsync_width;
-    unsigned int vsync_end_width;
-    unsigned int delay_h2v;
-    unsigned int interlaced;
-    unsigned int data_format;
-    unsigned int clk_sel;
-    unsigned int clk_pol;
-    unsigned int hsync_sel;
-    unsigned int hsync_pol;
-    unsigned int vsync_sel;
-    unsigned int vsync_pol;
-    unsigned int drdy_pol;
-    unsigned int data_pol;
+    uint32_t name_flag;
+    uint32_t refresh;
+    uint32_t width;
+    uint32_t height;
+    uint32_t pixel_clock;
+    uint32_t hsync_start_width;
+    uint32_t hsync_width;
+    uint32_t hsync_end_width;
+    uint32_t vsync_start_width;
+    uint32_t vsync_width;
+    uint32_t vsync_end_width;
+    uint32_t delay_h2v;
+    uint32_t interlaced;
+    uint32_t data_format;
+    uint32_t clk_sel;
+    uint32_t clk_pol;
+    uint32_t hsync_sel;
+    uint32_t hsync_pol;
+    uint32_t vsync_sel;
+    uint32_t vsync_pol;
+    uint32_t drdy_pol;
+    uint32_t data_pol;
 } display_device_info_t;
 
 #endif

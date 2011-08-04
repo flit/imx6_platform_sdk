@@ -13,15 +13,12 @@
 
 int ips_display_test(void)
 {
-    ips_device_t *ipu, *mem;
+    ips_device_t *mem;
     ips_dev_memory_t *memattr;
     ips_image_stream_t *ims;
     ips_pad_t *sinkpad;
     ips_dev_display_t *disp;
     ips_flow_t *flow;
-
-    /*create IPU object */
-    ipu = ips_new_device(IPS_DEV_IPU);
 
     // create memory and define video output data
     mem = ips_new_device(IPS_DEV_MEM);

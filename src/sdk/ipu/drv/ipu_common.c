@@ -23,9 +23,9 @@
  * @param	ID_mask:    fields position
  * @param	data:	    the value of input
  */
-void ipu_write_field(int ipu_index, unsigned int ID_addr, unsigned int ID_mask, unsigned int data)
+void ipu_write_field(int ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data)
 {
-    unsigned int rdata;
+    uint32_t rdata;
 
     if (ipu_index == 1)
         ID_addr += IPU1_CTRL_BASE_ADDR;
@@ -76,7 +76,7 @@ void ipu_disable_display(int ipu_index)
  */
 int ipu_sw_reset(int timeout)
 {
-    unsigned int tmpVal;
+    uint32_t tmpVal;
     int ipuOffset = 0x3;
     tmpVal = readl(SRC_BASE_ADDR);
     writel(tmpVal | (0x1 << ipuOffset), SRC_BASE_ADDR);
@@ -91,4 +91,13 @@ int ipu_sw_reset(int timeout)
 
     printf("Error: ipu software reset time out!!\n");
     return -1;
+}
+
+void ipu_display_config(int ipu_index)
+{
+    dmfc_config(ipu_index);
+    dc_config(ipu_index);
+    dp_config(ipu_index, 1);
+    di_config(ipu_index);
+    ipu_enable_display(ipu_index);
 }

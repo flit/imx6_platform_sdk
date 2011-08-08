@@ -26,11 +26,11 @@ int ips_display_test(void)
     ims = memattr->create_ims(23);
     ips_set_ims(ims, OFFSETOF(ips_image_stream_t, width), 1024, EOP);
     ips_set_ims(ims, OFFSETOF(ips_image_stream_t, height), 768, EOP);
-    sinkpad = ips_device_get_sink_pad(mem);
+    sinkpad = ips_device_get_sink_pad(mem, "output");
     ips_set_pad_ims(sinkpad, ims);
 
     disp = ips_new_device(IPS_DEV_DISPLAY);
     flow = ips_link_device(mem, disp);
-
+    stream_on();
     return true;
 }

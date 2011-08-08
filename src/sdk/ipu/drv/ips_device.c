@@ -15,6 +15,7 @@
  * @param  dev: device type
  */
 #include "ips.h"
+#include "ipu_common.h"
 
 extern ips_image_stream_t *ips_new_ims(int);
 
@@ -34,24 +35,41 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
             /*attach the device and attribute */
             device->devname = "display";
             device->devattr = display;
+            ipu_display_config(1);
             break;
         }
     case IPS_DEV_MEM:
         {
             ips_dev_memory_t *mem = (ips_dev_memory_t *) malloc(sizeof(ips_dev_memory_t));
+            ips_pad_t *pad = NULL;
+
             mem->active_frame_buf = 0;
             mem->number_frame_buf = 1;
             ips_mem_buffer_addr_t *buffer =
                 (ips_mem_buffer_addr_t *) malloc(sizeof(ips_mem_buffer_addr_t) *
                                                  mem->number_frame_buf);
-            memset((void *)buffer, CSD0_BASE_ADDR,
-                   sizeof(ips_mem_buffer_addr_t) * mem->number_frame_buf);
+            memset((void *)buffer, 0, sizeof(ips_mem_buffer_addr_t) * mem->number_frame_buf);
+            buffer->base_addr_0 = 0x70000000;
+            buffer->base_addr_1 = 0x72000000;
             mem->buffer = buffer;
             mem->create_ims = &ips_new_ims;
 
             device->devname = "memory";
             device->devattr = mem;
+
+            device->numsrcpads = 1;
+            pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsrcpads);
+            pad->padname = "input";
+            pad->parent = device;
+            device->srcpads = pad;
+            device->numsinkpads = 1;
+            pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsinkpads);
+            pad->padname = "output";
+            pad->parent = device;
+
+            device->sinkpads = pad;
         }
+        break;
     default:
         printf("The device type is not defined!!\n");
         return false;
@@ -63,12 +81,38 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
 void ips_delete_device(ips_device_t * dev)
 {
     free(dev->devattr);
+    free(dev->srcpads);
+    free(dev->sinkpads);
     free(dev);
 }
 
-inline void ips_update_attr_params(void *dev, uint32_t attr_offset, uint32_t val)
+void ips_update_attr_params(void *dev, uint32_t attr_offset, uint32_t val)
 {
     mem32_write((char *)(dev + attr_offset), val);
+}
+
+int ips_update_ims_attr_params(ips_image_stream_t * ims, uint32_t attr_offset, uint32_t val)
+{
+    int ipu_index = 1;
+    mem32_write((char *)(ims + attr_offset), val);
+    switch (attr_offset) {
+    case OFFSETOF(ips_image_stream_t, base0):
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA0, val / 8);
+        break;
+    case OFFSETOF(ips_image_stream_t, base1):
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA1, val / 8);
+        break;
+    case OFFSETOF(ips_image_stream_t, width):
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FW, val - 1);
+        break;
+    case OFFSETOF(ips_image_stream_t, height):
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FH, val - 1);
+        break;
+    default:
+        printf("unknown image stream field!!\n");
+        return false;
+    }
+    return true;
 }
 
 void ips_set_device(void *dev_attr, uint32_t attr, uint32_t val, ...)
@@ -87,10 +131,34 @@ void ips_set_device(void *dev_attr, uint32_t attr, uint32_t val, ...)
 
 ips_pad_t *ips_device_get_src_pad(ips_device_t * dev, const char *padname)
 {
+    ips_pad_t *pad;
+    int index = 0;
+
+    pad = dev->srcpads;
+    for (index = 0; index < dev->numsrcpads; index++) {
+        if (!strcmp(pad->padname, padname))
+            return pad;
+        pad++;
+    }
+    printf("No source pad named %s can be found!\n", padname);
+
+    return false;
 }
 
 ips_pad_t *ips_device_get_sink_pad(ips_device_t * dev, const char *padname)
 {
+    ips_pad_t *pad;
+    int index = 0;
+
+    pad = dev->sinkpads;
+    for (index = 0; index < dev->numsinkpads; index++) {
+        if (!strcmp(pad->padname, padname))
+            return pad;
+        pad++;
+    }
+    printf("No sink pad named %s can be found!\n", padname);
+
+    return false;
 }
 
 int ips_link_device_pads(ips_device_t * src, const char *srcpadname, ips_device_t * dest,

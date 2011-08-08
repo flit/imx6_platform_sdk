@@ -6,6 +6,47 @@
 */
 #include "ipu_common.h"
 
+inline void ipu_cpmem_set_field(uint32_t base, int w, int bit, int size, uint32_t v)
+{
+    int i = (bit) / 32;
+    int off = (bit) % 32;
+    _param_word(base, w)[i] |= (v) << off;
+    if (((bit) + (size) - 1) / 32 > i) {
+        _param_word(base, w)[i + 1] |= (v) >> (off ? (32 - off) : 0);
+    }
+}
+
+inline void ipu_cpmem_mod_field(uint32_t base, int w, int bit, int size, uint32_t v)
+{
+    int i = (bit) / 32;
+    int off = (bit) % 32;
+    uint32_t mask = (1UL << size) - 1;
+    uint32_t temp = _param_word(base, w)[i];
+    temp &= ~(mask << off);
+    _param_word(base, w)[i] = temp | (v) << off;
+    if (((bit) + (size) - 1) / 32 > i) {
+        temp = _param_word(base, w)[i + 1];
+        temp &= ~(mask >> (32 - off));
+        _param_word(base, w)[i + 1] = temp | ((v) >> (off ? (32 - off) : 0));
+    }
+}
+
+inline uint32_t ipu_cpmem_read_field(uint32_t base, int w, int bit, int size)
+{
+    uint32_t temp2;
+    int i = (bit) / 32;
+    int off = (bit) % 32;
+    uint32_t mask = (1UL << size) - 1;
+    uint32_t temp1 = _param_word(base, w)[i];
+    temp1 = mask & (temp1 >> off);
+    if (((bit) + (size) - 1) / 32 > i) {
+        temp2 = _param_word(base, w)[i + 1];
+        temp2 &= mask >> (off ? (32 - off) : 0);
+        temp1 |= temp2 << (off ? (32 - off) : 0);
+    }
+
+}
+
 /*!
  * set the ipu channel buffer ready signal
  *
@@ -87,7 +128,7 @@ void ipu_idmac_channel_enable(int ipu_index, int channel, int enable)
 int ipu_idmac_channel_busy(int ipu_index, int channel)
 {
     int idx, offset;
-    unsigned int ipu_base_addr = IPU1_CTRL_BASE_ADDR;
+    uint32_t ipu_base_addr = IPU1_CTRL_BASE_ADDR;
 
     if (ipu_index == 1)
         ipu_base_addr = IPU1_CTRL_BASE_ADDR;
@@ -95,7 +136,7 @@ int ipu_idmac_channel_busy(int ipu_index, int channel)
         ipu_base_addr = IPU2_CTRL_BASE_ADDR;
     else {
         printf("wrong ipu index !!\n");
-        return;
+        return false;
     }
     idx = channel / 32;
     offset = channel % 32;
@@ -104,182 +145,151 @@ int ipu_idmac_channel_busy(int ipu_index, int channel)
 
 void ipu_idmac_config(int ipu_index, ips_image_stream_t * ims)
 {
-    uint32_t w0_d0 = 0, w0_d1 = 0, w0_d2 = 0, w0_d3 = 0, w0_d4 = 0, w1_d0 = 0, w1_d1 = 0, w1_d2 =
-        0, w1_d3 = 0, w1_d4 = 0;
-    uint32_t ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    ipu_channel_parameter_t ipu_channel_params = { 0 };
+    memset((void *)ipu_cpmem_addr(ipu_index, ims->channel), 0, sizeof(ipu_cpmem_t));
 
-    memset((void *)&ipu_channel_params, 0, sizeof(ipu_channel_parameter_t));
-
-    ipu_channel_params.fw = ims->width;
-    ipu_channel_params.fh = ims->height;
-    ipu_channel_params.so = ims->scan_interface;
-    ipu_channel_params.eba0 = 0;    //need to update later
-    ipu_channel_params.eba1 = 0;
-    ipu_channel_params.pfs = ims->pixel_format;
-    ipu_channel_params.channel = ims->channel;
     switch (ims->pixel_format) {
     case NON_INTERLEAVED_YUV444:
-        ipu_channel_params.ubo = ims->width * ims->height >> 3;
-        ipu_channel_params.vbo = ims->width * ims->height * 2 >> 3;
-        ipu_channel_params.npb = 15;
-        ipu_channel_params.sly = ims->width;
-        ipu_channel_params.sluv = ims->width;
-        goto non_interleaved_config;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
+                            ims->width * ims->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
+                            ims->width * ims->height * 2 / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
+                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
+                            ims->width - 1);
+        break;
 
     case NON_INTERLEAVED_YUV422:
-        ipu_channel_params.ubo = ims->width * ims->height >> 3;
-        ipu_channel_params.vbo = ims->width * ims->height * 3 >> 4;
-        ipu_channel_params.npb = 15;
-        ipu_channel_params.sly = ims->width;
-        ipu_channel_params.sluv = ims->width >> 1;
-        goto non_interleaved_config;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
+                            ims->width * ims->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
+                            ims->width * ims->height * 3 / 16);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
+                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
+                            ims->width / 2 - 1);
+        break;
 
     case NON_INTERLEAVED_YUV420:
-        ipu_channel_params.ubo = ims->width * ims->height >> 3;
-        ipu_channel_params.vbo = ims->width * ims->height * 5 >> 5;
-        ipu_channel_params.npb = 31;
-        ipu_channel_params.sly = ims->width;
-        ipu_channel_params.sluv = ims->width >> 2;
-        goto non_interleaved_config;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
+                            ims->width * ims->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
+                            ims->width * ims->height * 5 / 32);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
+                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
+                            ims->width / 4 - 1);
+        break;
 
     case PARTIAL_INTERLEAVED_YUV422:
-        ipu_channel_params.ubo = ims->width * ims->height >> 3;
-        ipu_channel_params.vbo = ims->width * ims->height >> 3;
-        ipu_channel_params.npb = 31;
-        ipu_channel_params.sly = ims->width;
-        ipu_channel_params.sluv = ims->width;
-        goto non_interleaved_config;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
+                            ims->width * ims->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
+                            ims->width * ims->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
+                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
+                            ims->width - 1);
+        break;
 
     case PARTIAL_INTERLEAVED_YUV420:
-        ipu_channel_params.ubo = ims->width * ims->height >> 3;
-        ipu_channel_params.vbo = ims->width * ims->height >> 3;
-        ipu_channel_params.npb = 31;
-        ipu_channel_params.sly = ims->width;
-        ipu_channel_params.sluv = ims->width;
-      non_interleaved_config:
-        w0_d0 = ipu_channel_params.xb << 19 | ipu_channel_params.yv << 10 | ipu_channel_params.xv;
-        w0_d1 =
-            ipu_channel_params.ubo << 14 | ipu_channel_params.
-            cf << 13 | ipu_channel_params.nsb_b << 12 | ipu_channel_params.yb;
-        w0_d2 = ipu_channel_params.vbo << 4 | ipu_channel_params.ubo >> 18;
-        w0_d3 =
-            ipu_channel_params.fw << 29 | ipu_channel_params.
-            cae << 28 | ipu_channel_params.cap << 27 | ipu_channel_params.
-            the << 26 | ipu_channel_params.vf << 25 | ipu_channel_params.
-            hf << 24 | ipu_channel_params.rot << 23 | ipu_channel_params.
-            bm << 21 | ipu_channel_params.bndm << 18 | ipu_channel_params.so << 17;
-        w0_d4 = ipu_channel_params.fh << 10 | ipu_channel_params.fw >> 3;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
+                            ims->width * ims->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
+                            ims->width * ims->height * 2 / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
+                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
+                            ims->width - 1);
 
-        w1_d0 = ipu_channel_params.eba1 << 29 | ipu_channel_params.eba0;
-        w1_d1 = ipu_channel_params.ilo << 26 | ipu_channel_params.eba1 >> 3;
-        w1_d2 =
-            ipu_channel_params.th << 31 | ipu_channel_params.
-            id << 29 | ipu_channel_params.albm << 26 | ipu_channel_params.
-            alu << 25 | ipu_channel_params.pfs << 21 | ipu_channel_params.
-            npb << 14 | ipu_channel_params.ilo >> 6;
-        w1_d3 =
-            ipu_channel_params.wid3 << 29 | ipu_channel_params.sly << 6 | ipu_channel_params.
-            th >> 1;
-        w1_d4 = ipu_channel_params.sluv;
         break;
+
     case INTERLEAVED_LUT:
-         /*TBD*/ goto interleaved_config;
+        break;
     case INTERLEAVED_GENERIC:
-         /*TBD*/ goto interleaved_config;
+        break;
+    case INTERLEAVED_RGB:      //test RGB565
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
+                            ims->width * 2 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID0, 5 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF0, 0);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID1, 6 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF1, 5);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID2, 5 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF2, 11);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID3, 0);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF3, 16);
+        break;
     case INTERLEAVED_Y1U1Y2V1:
-        ipu_channel_params.npb = 15;
-        ipu_channel_params.bpp = 0x3;
-        ipu_channel_params.sl = ims->width * 2 - 1;
-        goto interleaved_config;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
+                            ims->width * 2 - 1);
+        break;
 
     case INTERLEAVED_Y2U1Y1V1:
-        ipu_channel_params.npb = 15;
-        ipu_channel_params.bpp = 0x3;
-        ipu_channel_params.sl = ims->width * 2 - 1;
-        goto interleaved_config;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
+                            ims->width * 2 - 1);
+        break;
 
     case INTERLEAVED_U1Y1V1Y2:
-        ipu_channel_params.npb = 15;
-        ipu_channel_params.bpp = 0x3;
-        ipu_channel_params.sl = ims->width * 2 - 1;
-        goto interleaved_config;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
+                            ims->width * 2 - 1);
+        break;
 
     case INTERLEAVED_U1Y2V1Y1:
-        ipu_channel_params.npb = 15;
-        ipu_channel_params.bpp = 0x3;
-        ipu_channel_params.sl = ims->width * 2 - 1;
-      interleaved_config:
-        w0_d0 = ipu_channel_params.xb << 19 | ipu_channel_params.yv << 10 | ipu_channel_params.xv;
-        w0_d1 =
-            ipu_channel_params.sy << 26 | ipu_channel_params.
-            sx << 14 | ipu_channel_params.cf << 13 | ipu_channel_params.
-            nsb_b << 12 | ipu_channel_params.yb;
-        w0_d2 =
-            ipu_channel_params.sm << 22 | ipu_channel_params.
-            sdx << 15 | ipu_channel_params.ns << 5 | ipu_channel_params.sy >> 6;
-        w0_d3 =
-            ipu_channel_params.fw << 29 | ipu_channel_params.
-            cae << 28 | ipu_channel_params.cap << 27 | ipu_channel_params.
-            the << 26 | ipu_channel_params.vf << 25 | ipu_channel_params.
-            hf << 24 | ipu_channel_params.rot << 23 | ipu_channel_params.
-            bm << 21 | ipu_channel_params.bndm << 18 | ipu_channel_params.
-            so << 17 | ipu_channel_params.dim << 16 | ipu_channel_params.
-            dec_sel << 14 | ipu_channel_params.bpp << 11 | ipu_channel_params.
-            sdry << 10 | ipu_channel_params.sdrx << 9 | ipu_channel_params.
-            sdy << 2 | ipu_channel_params.sce << 1 | ipu_channel_params.scc;
-        w0_d4 = ipu_channel_params.fh << 10 | ipu_channel_params.fw >> 3;
-
-        w1_d0 = ipu_channel_params.eba1 << 29 | ipu_channel_params.eba0;
-        w1_d1 = ipu_channel_params.ilo << 26 | ipu_channel_params.eba1 >> 3;
-        w1_d2 =
-            ipu_channel_params.th << 31 | ipu_channel_params.
-            id << 29 | ipu_channel_params.albm << 26 | ipu_channel_params.
-            alu << 25 | ipu_channel_params.pfs << 21 | ipu_channel_params.
-            npb << 14 | ipu_channel_params.ilo >> 6;
-        w1_d3 =
-            ipu_channel_params.wid3 << 29 | ipu_channel_params.
-            wid2 << 26 | ipu_channel_params.wid1 << 23 | ipu_channel_params.
-            wid0 << 20 | ipu_channel_params.sl << 6 | ipu_channel_params.th >> 1;
-        w1_d4 =
-            ipu_channel_params.ofs3 << 15 | ipu_channel_params.
-            ofs2 << 10 | ipu_channel_params.ofs1 << 5 | ipu_channel_params.ofs0;
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
+                            ims->width * 2 - 1);
         break;
     default:
         printf("Wrong data format input for IDMAC!!\n");
         return;
     }
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FW,
+                        ims->width - 1);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FH,
+                        ims->height - 1);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SO,
+                        ims->scan_interface);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA0,
+                        CSD0_BASE_ADDR);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA1,
+                        CSD0_BASE_ADDR);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_PFS,
+                        ims->pixel_format);
 
-    if (ipu_index == 1)
-        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    else if (ipu_index == 2)
-        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
-    else {
-        printf("wrong ipu index !!\n");
-        return;
-    }
+    ipu_idmac_channel_mode_sel(ipu_index, ims->channel, IDMAC_SINGLE_BUFFER);
+    ipu_idmac_channel_enable(ipu_index, ims->channel, 1);
+}
 
-    reg32_write(ipu_base_addr + CPMEM_WORD0_DATA0_INT__ADDR +
-                (ipu_channel_params.channel << 6), w0_d0);
-    reg32_write(ipu_base_addr + CPMEM_WORD0_DATA1_INT__ADDR +
-                (ipu_channel_params.channel << 6), w0_d1);
-    reg32_write(ipu_base_addr + CPMEM_WORD0_DATA2_INT__ADDR +
-                (ipu_channel_params.channel << 6), w0_d2);
-    reg32_write(ipu_base_addr + CPMEM_WORD0_DATA3_INT__ADDR +
-                (ipu_channel_params.channel << 6), w0_d3);
-    reg32_write(ipu_base_addr + CPMEM_WORD0_DATA4_INT__ADDR +
-                (ipu_channel_params.channel << 6), w0_d4);
+/*!
+ * DMFC manages Multi Channels FIFOs. 
+ * DMFC channel #5 are used to link IDMAC channel #23 and DP modules. 
+ * No FG enabled, only BG channel of DMFC is configured.
+ */
+void dmfc_config(int ipu_index)
+{
+    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_FIFO_SIZE_5B, 2); //Table of fifo_size 000-2^9,001-2^8,010-2^7,
+    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_BURST_SIZE_5B, 1);    //Table of dmfc_burst_size codes
+    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_ST_ADDR_5B, 0);   //start address
 
-    reg32_write(ipu_base_addr + CPMEM_WORD1_DATA0_INT__ADDR +
-                (ipu_channel_params.channel << 6), w1_d0);
-    reg32_write(ipu_base_addr + CPMEM_WORD1_DATA1_INT__ADDR +
-                (ipu_channel_params.channel << 6), w1_d1);
-    reg32_write(ipu_base_addr + CPMEM_WORD1_DATA2_INT__ADDR +
-                (ipu_channel_params.channel << 6), w1_d2);
-    reg32_write(ipu_base_addr + CPMEM_WORD1_DATA3_INT__ADDR +
-                (ipu_channel_params.channel << 6), w1_d3);
-    reg32_write(ipu_base_addr + CPMEM_WORD1_DATA4_INT__ADDR +
-                (ipu_channel_params.channel << 6), w1_d4);
-    ipu_idmac_channel_mode_sel(ipu_index, ipu_channel_params.channel, IDMAC_SINGLE_BUFFER);
-    ipu_idmac_channel_enable(ipu_index, ipu_channel_params.channel, 1);
+    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_CLR_5B, 0);    //clr water mark value possible Value: 0-7 (Number of burst)
+    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_SET_5B, 0);    //set water mark value possible Value: 0-7 (Number of burst)
+    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_EN_5B, 0); //Disable water mark logic
+
+    ipu_write_field(ipu_index, IPU_DMFC_GENERAL1__WAIT4EOT_5B, 0);
+
 }

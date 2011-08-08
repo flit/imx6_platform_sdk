@@ -402,6 +402,164 @@ void io_cfg_i2c(uint32_t module_base)
     }
 }
 
+/*!
+ * configure the iomux pins for ipu display interface 0
+ * choose ipu1 as the source.
+ */
+void ipu_iomux_config(void)
+{
+    // config DI0_DISP_CLK pad for ipu1 instance DI0_DISP_CLK port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_DISP_CLK, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_DISP_CLK, 0x000b1);
+
+    // config DI0_PIN15 pad for ipu1 instance DI0_PIN15 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN15, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN15, 0x000b1);
+
+    // config DI0_PIN2 pad for ipu1 instance DI0_PIN2 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN2, 0x000b1);
+
+    // config DI0_PIN3 pad for ipu1 instance DI0_PIN3 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN3, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN3, 0x000b1);
+
+    // config DI0_PIN4 pad for ipu1 instance DI0_PIN4 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN4, 0x000b1);
+
+    // config DISP0_DAT0 pad for ipu1 instance DISP0_DAT[0] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT0, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT0, 0x010b1);
+
+    // config DISP0_DAT1 pad for ipu1 instance DISP0_DAT[1] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT1, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT1, 0x010b1);
+
+    // config DISP0_DAT2 pad for ipu1 instance DISP0_DAT[2] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT2, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT2, 0x010b1);
+
+    // config DISP0_DAT3 pad for ipu1 instance DISP0_DAT[3] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT3, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT3, 0x010b1);
+
+    // config DISP0_DAT4 pad for ipu1 instance DISP0_DAT[4] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT4, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT4, 0x010b1);
+
+    // config DISP0_DAT5 pad for ipu1 instance DISP0_DAT[5] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT5, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT5, 0x010b1);
+
+    // config DISP0_DAT6 pad for ipu1 instance DISP0_DAT[6] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT6, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT6, 0x010b1);
+
+    // config DISP0_DAT7 pad for ipu1 instance DISP0_DAT[7] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT7, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT7, 0x010b1);
+
+    // config DISP0_DAT8 pad for ipu1 instance DISP0_DAT[8] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT8, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT8, 0x010b1);
+
+    // config DISP0_DAT9 pad for ipu1 instance DISP0_DAT[9] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT9, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT9, 0x010b1);
+
+    // config DISP0_DAT10 pad for ipu1 instance DISP0_DAT[10] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT10, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT10, 0x010b1);
+
+    // config DISP0_DAT11 pad for ipu1 instance DISP0_DAT[11] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT11, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT11, 0x010b1);
+
+    // config DISP0_DAT12 pad for ipu1 instance DISP0_DAT[12] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT12, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT12, 0x010b1);
+
+    // config DISP0_DAT13 pad for ipu1 instance DISP0_DAT[13] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT13, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT13, 0x010b1);
+
+    // config DISP0_DAT14 pad for ipu1 instance DISP0_DAT[14] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT14, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT14, 0x010b1);
+
+    // config DISP0_DAT15 pad for ipu1 instance DISP0_DAT[15] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT15, 0x010b1);
+
+    // config DISP0_DAT16 pad for ipu1 instance DISP0_DAT[16] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT16, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT16, 0x010b1);
+
+    // config DISP0_DAT17 pad for ipu1 instance DISP0_DAT[17] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT17, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT17, 0x010b1);
+
+    // config DISP0_DAT18 pad for ipu1 instance DISP0_DAT[18] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT18, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT18, 0x010b1);
+
+    // config DISP0_DAT19 pad for ipu1 instance DISP0_DAT[19] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT19, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT19, 0x010b1);
+
+    // config DISP0_DAT20 pad for ipu1 instance DISP0_DAT[20] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT20, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT20, 0x010b1);
+
+    // config DISP0_DAT21 pad for ipu1 instance DISP0_DAT[21] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT21, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT21, 0x010b1);
+
+    // config DISP0_DAT22 pad for ipu1 instance DISP0_DAT[22] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT22, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT22, 0x010b1);
+
+    // config DISP0_DAT23 pad for ipu1 instance DISP0_DAT[23] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT23, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT23, 0x010b1);
+
+    // config EIM_D16 pad for ipu1 instance DI0_PIN5 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D16, ALT2);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D16, 0x000b1);
+
+    // config EIM_D17 pad for ipu1 instance DI0_PIN6 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D17, ALT2);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D17, 0x000b1);
+
+    // config EIM_D18 pad for ipu1 instance DI0_PIN7 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D18, ALT2);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D18, 0x000b1);
+
+    // config EIM_D19 pad for ipu1 instance DI0_PIN8 port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D19, ALT2);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D19, 0x000b1);
+}
+
+/*!
+ * Provide the LVDS power through GPIO pins
+ */
+void lvds_power_on()
+{
+    /*3.3V power supply through the load switch FDC6331L */
+    max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
+    max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
+
+    /*lvds backlight enable, GPIO_9 */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_9, ALT5);
+    gpio_dir_config(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
+}
+
+void ldb_iomux_config(void)
+{
+ /*NA*/}
+
 void debug_uart_iomux(void)
 {
     // iMX6x uses UART4
@@ -430,6 +588,13 @@ void board_init(void)
     init_clock(32768);
     /* set up debug UART iomux */
     debug_uart_iomux();
+    // Configure some board signals through I/O expanders
+    max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
+    max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
+    max7310_init(0, MAX7310_ID0_DEF_DIR, MAX7310_ID0_DEF_VAL);
+    max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
+    max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
+    max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
 }
 
 int GetCPUFreq(void)

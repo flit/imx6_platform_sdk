@@ -1238,6 +1238,10 @@ void imx_fec_setup(void)
     writel(0x180, IOMUXC_SW_PAD_CTL_PAD_FEC_CRS_DV);
 }
 
+void lvds_power_on(void)
+{
+ /*TBD*/}
+
 void debug_uart_iomux(void)
 {
     if (BOARD_TYPE_ID != BOARD_ID_MX53_ARD) {

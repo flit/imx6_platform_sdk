@@ -127,11 +127,15 @@ typedef struct {
     ips_macro_pixel_t macro_pixel1;
     ips_macro_pixel_t macro_pixel2;
     ips_macro_pixel_t macro_pixel3;
+    uint32_t base0;
+    uint32_t base1;
     uint32_t pixel_format;
 } ips_image_stream_t;
 
 typedef struct {
     void *data_pointer;
+    char *padname;
+    void *parent;               // pad is an interface of device 
     struct ips_pad_s *next;
     struct ips_pad_s *prev;
 } ips_pad_t;

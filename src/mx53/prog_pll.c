@@ -143,3 +143,7 @@ void prog_pll(void)
     reg32setbit(PLL3_BASE_ADDR + PLL_DP_CONFIG, 1);
     reg32setbit(PLL4_BASE_ADDR + PLL_DP_CONFIG, 1);
 }
+
+void ldb_clock_config(int freq)
+{
+ /*TBD*/}

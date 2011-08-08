@@ -273,23 +273,37 @@ void ipu_idmac_config(int ipu_index, ips_image_stream_t * ims)
 
     ipu_idmac_channel_mode_sel(ipu_index, ims->channel, IDMAC_SINGLE_BUFFER);
     ipu_idmac_channel_enable(ipu_index, ims->channel, 1);
-}
 
-/*!
- * DMFC manages Multi Channels FIFOs. 
- * DMFC channel #5 are used to link IDMAC channel #23 and DP modules. 
- * No FG enabled, only BG channel of DMFC is configured.
- */
-void dmfc_config(int ipu_index)
-{
-    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_FIFO_SIZE_5B, 2); //Table of fifo_size 000-2^9,001-2^8,010-2^7,
-    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_BURST_SIZE_5B, 1);    //Table of dmfc_burst_size codes
-    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_ST_ADDR_5B, 0);   //start address
-
-    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_CLR_5B, 0);    //clr water mark value possible Value: 0-7 (Number of burst)
-    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_SET_5B, 0);    //set water mark value possible Value: 0-7 (Number of burst)
-    ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_EN_5B, 0); //Disable water mark logic
-
-    ipu_write_field(ipu_index, IPU_DMFC_GENERAL1__WAIT4EOT_5B, 0);
-
+    switch (ims->channel) {
+    case MEM_TO_DP_BG_CH23:
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_FIFO_SIZE_5B, 2); //Table of fifo_size 000-2^9,001-2^8,010-2^7,
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_BURST_SIZE_5B, 1);    //Table of dmfc_burst_size codes
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_ST_ADDR_5B, 0);   //start address 
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_FIFO_SIZE_5B, 2);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_BURST_SIZE_5B, 1);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_ST_ADDR_5B, 0);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_CLR_5B, 0);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_SET_5B, 0);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_EN_5B, 0);
+        ipu_write_field(ipu_index, IPU_DMFC_GENERAL1__WAIT4EOT_5B, 0);
+        break;
+    case MEM_TO_DP_FG_CH27:
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_FIFO_SIZE_5F, 2);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_BURST_SIZE_5F, 1);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_ST_ADDR_5F, 2);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_CLR_5F, 0);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_SET_5F, 0);
+        ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN_DEF__DMFC_WM_EN_5F, 0);
+        ipu_write_field(ipu_index, IPU_DMFC_GENERAL1__WAIT4EOT_5F, 0);
+        break;
+    case MEM_TO_DC_CH28:
+        ipu_write_field(ipu_index, IPU_DMFC_WR_CHAN__DMFC_FIFO_SIZE_1, 1);
+        ipu_write_field(ipu_index, IPU_DMFC_WR_CHAN__DMFC_BURST_SIZE_1, 1);
+        ipu_write_field(ipu_index, IPU_DMFC_WR_CHAN__DMFC_ST_ADDR_1, 4);
+        ipu_write_field(ipu_index, IPU_DMFC_WR_CHAN_DEF__DMFC_WM_CLR_1, 7);
+        ipu_write_field(ipu_index, IPU_DMFC_WR_CHAN_DEF__DMFC_WM_SET_1, 2);
+        ipu_write_field(ipu_index, IPU_DMFC_WR_CHAN_DEF__DMFC_WM_EN_1, 1);
+        ipu_write_field(ipu_index, IPU_DMFC_GENERAL1__WAIT4EOT_1, 0);
+        break;
+    }
 }

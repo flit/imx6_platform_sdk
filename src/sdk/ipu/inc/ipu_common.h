@@ -153,6 +153,66 @@ typedef struct ipu_cpmem {
 #define INTERLEAVED_CRE 	1, 149,1
 #define INTERLEAVED_DECSEL2	1, 150,1
 
+typedef struct dc_microcode {
+    int addr;
+    int stop;
+    int opcode;
+    int lf;
+    int af;
+    int operand;
+    int mapping;
+    int waveform;
+    int gluelogic;
+    int sync;
+} dc_microcode_t;
+
+enum {
+    CSI_TO_MEM_CH0 = 0,
+    CSI_TO_MEM_CH1 = 1,
+    CSI_TO_MEM_CH2 = 2,
+    CSI_TO_MEM_CH3 = 3,
+    MEM_TO_VDI_CH8 = 8,
+    MEM_TO_VDI_CH9 = 9,
+    MEM_TO_VDI_CH10 = 10,
+    MEM_TO_IC_PP_RES_CH11 = 11,
+    MEM_TO_IC_PRP_RES_CH12 = 12,
+    VDI_TO_MEM_CH13 = 13,
+    MEM_TO_IC_PPR_GPLANE_CH14 = 14,
+    MEM_TO_IC_PP_GPLANE_CH15 = 15,
+    MEM_TO_IC_PRP_ALPHA_CH17 = 17,
+    MEM_TO_IC_PRP_ALPHA_CH18 = 18,
+    IC_PRPENC_RES_TO_MEM_CH20 = 20,
+    IC_PRPVF_RES_TO_MEM_CH21 = 21,
+    IC_PP_RES_TO_MEM_CH21 = 22,
+    MEM_TO_DP_BG_CH23 = 23,
+    MEM_TO_DP_FG_CH27 = 27,
+    MEM_TO_DC_CH28 = 28,
+    MEM_TO_IC_PRPENC_ROT_CH45 = 45,
+    MEM_TO_IC_PRPVF_ROT_CH46 = 46,
+    MEM_TO_IC_PP_ROT_CH47 = 47,
+    IC_PRPENC_ROT_TO_MEM_CH48 = 48,
+    IC_PRPVF_ROT_TO_MEM_CH49 = 49,
+    IC_PP_ROT_TO_MEM_CH48 = 50,
+};
+
+typedef struct dp_fg_param {
+    int fgEnable;
+    int opaque;
+    int offsetVert;
+    int offsetHoriz;
+    int cursorEnable;
+    int colorKeyEnable;
+    int graphicSelect;
+    int alphaMode;
+} dp_fg_param_t;
+
+#define GET_LSB(bit, val)  (((uint32_t)(val)) & ((0x1<<(bit)) - 1))
+
+typedef struct dp_csc_param {
+    int mode;
+    int **coeff;
+} dp_csc_param_t;
+
 void ipu_write_field(int ipu_index, unsigned int ID_addr, unsigned int ID_mask, unsigned int data);
 void di_up_down_config(int ipu_index, int di, int pointer, int set, int up, int down);
 void di_pointer_config(int ipu_index, int di, int pointer, int access, int component, int cst,
@@ -167,7 +227,7 @@ void microcode_config(int ipu_index, int word, int stop, char opcode[10], int lf
 void init_idmac_parameters(void);
 void idmac_config(int ipu_index, int dataFormat);
 void dmfc_config(int ipu_index);
-void dp_config(int ipu_index, int cscEn);
+void dp_config(int ipu_index, int cscen, int cscmode);
 void dc_config(int ipu_index);
 void dc_channel_config(int ipu_index);
 void dc_event_routines(int ipu_index);

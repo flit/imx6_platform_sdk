@@ -95,9 +95,7 @@ int ipu_sw_reset(int timeout)
 
 void ipu_display_config(int ipu_index)
 {
-    dmfc_config(ipu_index);
     dc_config(ipu_index);
-    dp_config(ipu_index, 1);
+    dp_config(ipu_index, 0, YUV2RGB);
     di_config(ipu_index);
-    ipu_enable_display(ipu_index);
 }

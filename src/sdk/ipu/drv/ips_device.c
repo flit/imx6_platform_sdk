@@ -27,6 +27,8 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
     case IPS_DEV_DISPLAY:
         {
             ips_dev_display_t *display = (ips_dev_display_t *) malloc(sizeof(ips_dev_display_t));
+            ips_pad_t *pad = NULL;
+
             /*create an instance of display */
             display->bus_width = 32;
             display->disp_clk_pol = HIGH_POLARITY;
@@ -35,6 +37,28 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
             /*attach the device and attribute */
             device->devname = "display";
             device->devattr = display;
+            device->numsrcpads = 2;
+            pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsrcpads);
+            device->srcpads = pad;
+            pad->padname = "di0";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+            pad = pad + 1;
+            pad->padname = "di1";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+
+            device->numsinkpads = 2;
+            pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsinkpads);
+            device->sinkpads = pad;
+            pad->padname = "dpin";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+            pad = pad + 1;
+            pad->padname = "dcin";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+
             ipu_display_config(1);
             break;
         }
@@ -59,12 +83,12 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
 
             device->numsrcpads = 1;
             pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsrcpads);
-            pad->padname = "input";
+            pad->padname = "output";
             pad->parent = device;
             device->srcpads = pad;
             device->numsinkpads = 1;
             pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsinkpads);
-            pad->padname = "output";
+            pad->padname = "input";
             pad->parent = device;
 
             device->sinkpads = pad;
@@ -192,25 +216,27 @@ int ips_link_device_pads(ips_device_t * src, const char *srcpadname, ips_device_
     return true;
 }
 
-int ips_link_device(ips_device_t * dev1, ips_device_t * dev2)
+int ips_link_device(ips_device_t * dev1, char *outpad, ips_device_t * dev2, char *inpad)
 {
     /*like the pads of the two devices, dev1.src <==> dev2.sink */
-    return ips_link_device_pads(dev1, NULL, dev2, NULL);
+    return ips_link_device_pads(dev1, outpad, dev2, inpad);
 }
-int ips_link_device_many(ips_device_t * dev1, ips_device_t * dev2, ...)
+int ips_link_device_many(ips_device_t * dev1, char *outpad, ips_device_t * dev2, char *inpad, ...)
 {
     va_list dev_list;
     int ret = true;
 
-    va_start(dev_list, dev2);
+    va_start(dev_list, inpad);
     while ((dev2 != NULL) && (dev1 != NULL)) {
-        if (!ips_link_device(dev1, dev2)) {
+        if (!ips_link_device(dev1, inpad, dev2, outpad)) {
             printf("device link error!!\n");
             ret = false;
             break;
         }
         dev1 = dev2;
+        outpad = inpad;
         dev2 = va_arg(dev_list, ips_device_t *);
+        inpad = va_arg(dev_list, char *);
     }
     va_end(dev_list);
     return ret;

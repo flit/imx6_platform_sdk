@@ -628,51 +628,130 @@ void microcode_event(int ipu_index, char channel[1], char event[8], int priority
 }                               //microcode_event
 
 /*!
+* this function is used to config the color space conversion task in the DP
+* @param ipu_index: ipu index, 1 or 2
+* @param dp: dp params index
+* @param dp_csc_params: csc conversion matrix
+*/
+void ipu_dp_csc_config(int ipu_index, int dp, dp_csc_param_t dp_csc_params)
+{
+    int (*coeff)[3];
+    unsigned int ipu_base_addr = 0;
+
+    if (ipu_index == 1)
+        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
+    else
+        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
+
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_YUV_SAT_MODE_SYNC, 0);  //SAT mode is zero
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_GAMUT_SAT_EN_SYNC, 0);  //GAMUT en (RGB...)
+
+    if (dp_csc_params.mode >= 0) {
+        ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_DEF_SYNC, dp_csc_params.mode);  //disable CSC
+    }
+
+    coeff = (void *)dp_csc_params.coeff;
+
+    if (coeff) {
+        writel(GET_LSB(10, coeff[0][0]) | (GET_LSB(10, coeff[0][1]) << 16),
+               ipu_base_addr + SRM_DP_CSCA_SYNC_0__ADDR + dp * 4);
+        writel(GET_LSB(10, coeff[0][2]) | (GET_LSB(10, coeff[1][0]) << 16),
+               ipu_base_addr + SRM_DP_CSCA_SYNC_1__ADDR + dp * 4);
+        writel(GET_LSB(10, coeff[1][1]) | (GET_LSB(10, coeff[1][2]) << 16),
+               ipu_base_addr + SRM_DP_CSCA_SYNC_2__ADDR + dp * 4);
+        writel(GET_LSB(10, coeff[2][0]) | (GET_LSB(10, coeff[2][1]) << 16),
+               ipu_base_addr + SRM_DP_CSCA_SYNC_3__ADDR + dp * 4);
+        writel(GET_LSB(10, coeff[2][2]) | (GET_LSB(14, coeff[3][0]) << 16) |
+               (coeff[4][0] << 30), ipu_base_addr + SRM_DP_CSC_SYNC_0__ADDR + dp * 4);
+        writel(GET_LSB(14, coeff[3][1]) | (coeff[4][1] << 14) |
+               (GET_LSB(14, coeff[3][2]) << 16) | (coeff[4][2] << 30),
+               ipu_base_addr + SRM_DP_CSC_SYNC_1__ADDR + dp * 4);
+    }
+
+    ipu_write_field(ipu_index, IPU_IPU_SRM_PRI2__DP_S_SRM_MODE, 3);
+    ipu_write_field(ipu_index, IPU_IPU_SRM_PRI2__DP_SRM_PRI, 0x0);
+}
+
+/*!
+* this function is used to config the foreground plane for combination in the DP
+* @param ipu_index: ipu index
+* @param foreground_params: params for the foreground, including offset and size
+*/
+void ipu_dp_fg_config(int ipu_index, dp_fg_param_t foreground_params)
+{
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GAMMA_EN_SYNC, 0);
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GAMMA_YUV_EN_SYNC, 0);
+
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_COC_SYNC, foreground_params.cursorEnable);
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GWCKE_SYNC, foreground_params.colorKeyEnable);  //color key
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GWAM_SYNC, foreground_params.alphaMode);    //1=global alpha,0=local alpha
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GWSEL_SYNC, foreground_params.graphicSelect);   //1=graphic is FG,0=graphic is BG
+    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_FG_EN_SYNC, foreground_params.fgEnable);    //1=FG channel enabled,0=FG channel disabled
+    ipu_write_field(ipu_index, SRM_DP_FG_POS_SYNC__DP_FGXP_SYNC, foreground_params.offsetHoriz);
+    ipu_write_field(ipu_index, SRM_DP_FG_POS_SYNC__DP_FGYP_SYNC, foreground_params.offsetVert);
+    ipu_write_field(ipu_index, SRM_DP_GRAPH_WIND_CTRL_SYNC__DP_GWAV_SYNC, foreground_params.opaque);    // set the FG opaque
+    ipu_write_field(ipu_index, SRM_DP_GRAPH_WIND_CTRL_SYNC__DP_GWCKR_SYNC, 0xFF);
+    ipu_write_field(ipu_index, SRM_DP_GRAPH_WIND_CTRL_SYNC__DP_GWCKG_SYNC, 0xFF);
+    ipu_write_field(ipu_index, SRM_DP_GRAPH_WIND_CTRL_SYNC__DP_GWCKB_SYNC, 0xFF);
+}
+
+/*!
  * config the DP module, mainly to perform blending, CSC and gamma correction
  *
  * @param	ipu_index: ipu index
  * @param 	cscEn: 	enable or disable the CSC module
  */
-void dp_config(int ipu_index, int cscEn)
+void dp_config(int ipu_index, int cscen, int cscmode)
 {
-    /*dp common configuration */
-    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GAMMA_EN_SYNC, 0);
-    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_YUV_SAT_MODE_SYNC, 0);  //SAT mode is zero
-    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_GAMUT_SAT_EN_SYNC, 0);  //GAMUT en (RGB...)
-    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_COC_SYNC, 0);   //no cursor
+    dp_fg_param_t dpFGParam = { 0 };
+    dp_csc_param_t dpCSCParam = { 0 };
 
-    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GWCKE_SYNC, 0); //color keying disabled
-    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_GWSEL_SYNC, 1); //1=graphic is FG,0=graphic is BG
+    /*  Y = R *  .299 + G *  .587 + B *  .114;
+       U = R * -.169 + G * -.332 + B *  .500 + 128.;
+       V = R *  .500 + G * -.419 + B * -.0813 + 128.; */
+    int rgb2ycbcr_coeff[5][3] = {
+        {0x04D, 0x096, 0x01D},
+        {0x3D5, 0x3AB, 0x080},
+        {0x080, 0x395, 0x3EB},
+        {0x0000, 0x0200, 0x0200},
+        {0x2, 0x2, 0x2},
+    };
 
-    ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_FG_EN_SYNC, 0); //1=FG channel enabled,0=FG channel disabled
+    /* R = (1.164 * (Y - 16)) + (1.596 * (Cr - 128));
+       G = (1.164 * (Y - 16)) - (0.392 * (Cb - 128)) - (0.813 * (Cr - 128));
+       B = (1.164 * (Y - 16)) + (2.017 * (Cb - 128); */
+    int ycbcr2rgb_coeff[5][3] = {
+        {0x4A, 0x0, 0x66},
+        {0x4A, 0x3E7, 0x3CC},
+        {0x4A, 0x81, 0x0},
+        {0x3F22, 0x85, 0x3EEB}, // A0, A1, A2
+        {0x0, 0x0, 0x0},        /*S0,S1,S2 */
+    };
 
-    /*CSC configuration, from YUV to RGB */
-    if (cscEn)
-        ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_DEF_SYNC, 2);   //CSC Enable before combining on bg channel
-    else
-        ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_DEF_SYNC, 0);   //CSC disabled
+    dpFGParam.fgEnable = 0;
+    dpFGParam.cursorEnable = 0;
+    dpFGParam.colorKeyEnable = 0;
+    dpFGParam.offsetHoriz = 0;
+    dpFGParam.offsetVert = 0;
+    dpFGParam.alphaMode = 1;    // 1-  global alpha
+    dpFGParam.graphicSelect = 0;    // graphic is forground
+    dpFGParam.opaque = 0x30;    //show background
 
-    ipu_write_field(ipu_index, SRM_DP_CSC_SYNC_0__DP_CSC_B0_SYNC, 15565);   //(8192*2 - 1.6*128*4));      //512);
-    ipu_write_field(ipu_index, SRM_DP_CSC_SYNC_0__DP_CSC_A8_SYNC, 0);
-    ipu_write_field(ipu_index, SRM_DP_CSC_SYNC_0__DP_CSC_S0_SYNC, 2);
+    ipu_dp_fg_config(ipu_index, dpFGParam);
 
-    ipu_write_field(ipu_index, SRM_DP_CSC_SYNC_1__DP_CSC_B1_SYNC, 338); //(0.66 * 128 *4));
-    ipu_write_field(ipu_index, SRM_DP_CSC_SYNC_1__DP_CSC_B2_SYNC, 15437);   //(8192*2 - 1.85 * 128 * 4));
-    ipu_write_field(ipu_index, SRM_DP_CSC_SYNC_1__DP_CSC_S1_SYNC, 2);   //...0
-    ipu_write_field(ipu_index, SRM_DP_CSC_SYNC_1__DP_CSC_S2_SYNC, 2);   //...0
+    /********************************************
+    00	CSC disable
+    01	CSC enable after combining
+    10	CSC enable before combining on BG channel
+    11	CSC enable before combining on FG channel
+    *******************************************/
+    dpCSCParam.mode = cscen;
 
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_0__DP_CSC_A_SYNC_0, 256);   //128*2);
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_0__DP_CSC_A_SYNC_1, 0);
+    if (cscmode = RGB2YUV) {
+        dpCSCParam.coeff = rgb2ycbcr_coeff;
+    } else if (cscmode = YUV2RGB) {
+        dpCSCParam.coeff = ycbcr2rgb_coeff;
+    }
 
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_1__DP_CSC_A_SYNC_2, 410);   //(1.6*128*2));
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_1__DP_CSC_A_SYNC_3, 256);   //128*2);
-
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_2__DP_CSC_A_SYNC_4, 978);   //(512*2 - 0.18 * 128*2));
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_2__DP_CSC_A_SYNC_5, 906);   //(512*2 - 0.46 * 128*2));
-
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_3__DP_CSC_A_SYNC_6, 256);   //128*2);
-    ipu_write_field(ipu_index, SRM_DP_CSCA_SYNC_3__DP_CSC_A_SYNC_7, 474);   //(1.85 * 128*2));
-
-    ipu_write_field(ipu_index, IPU_IPU_SRM_PRI2__DP_S_SRM_MODE, 1);
-    ipu_write_field(ipu_index, IPU_IPU_SRM_PRI2__DP_SRM_PRI, 0x7);
+    ipu_dp_csc_config(ipu_index, 0, dpCSCParam);
 }

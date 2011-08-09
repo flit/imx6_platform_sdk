@@ -97,7 +97,7 @@ void platform_init(void)
     init_debug_uart(debug_uart, 115200);
     // flush out UART RX FIFO
     do {
-        c = receive_char();
+        c = uart_receive_char();
     } while (c != NONE_CHAR);
 
     mx53_print_ver();

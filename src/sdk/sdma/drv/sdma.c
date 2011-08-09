@@ -527,14 +527,14 @@ int sdma_lookup_script(script_name_e script, unsigned int *addr)
  */
 void sdma_setup_interrupt(void)
 {
-    capture_interrupt(MXC_INT_SDMA, sdma_interrupt_handler, 0);
+    capture_interrupt(IMX_INT_SDMA, sdma_interrupt_handler, 0);
 
     unsigned int i;
     for (i = 0; i < SDMA_NUM_CHANNELS; i++) {
         sdma_channel_isr_list[i] = sdma_channel_default_isr;
     }
 
-    enable_interrupt(MXC_INT_SDMA);
+    enable_interrupt(IMX_INT_SDMA);
 
     return SDMA_RETV_SUCCESS;
 }

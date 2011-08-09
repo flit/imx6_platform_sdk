@@ -114,7 +114,7 @@ void epit2_periodic_interrupt(unsigned int interval)
     }
 
     val = readl(EPIT2_BASE_ADDR + EPITCR);
-    enable_interrupt(MXC_INT_EPIT2, 0);
-    capture_interrupt(MXC_INT_EPIT2, epit2_isr, 0);
+    enable_interrupt(IMX_INT_EPIT2, 0);
+    capture_interrupt(IMX_INT_EPIT2, epit2_isr, 0);
     writel(val | 0x1, EPIT2_BASE_ADDR + EPITCR);
 }

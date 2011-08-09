@@ -8,6 +8,8 @@
 #ifndef _CCM_PLL_REG_DEFINE_H_
 #define _CCM_PLL_REG_DEFINE_H_
 
+#include "registers.h"
+
 //#########################################
 //# DPLLIP peripheral defines
 //#########################################
@@ -45,42 +47,6 @@
 //#########################################
 //# CCM peripheral defines
 //#########################################
-#define CCM_CCR_OFFSET  0x00
-#define CCM_CCDR_OFFSET 0x04
-#define CCM_CSR_OFFSET  0x08
-#define CCM_CCSR_OFFSET 0x0C
-#define CCM_CACRR_OFFSET        0x10
-#define CCM_CBCDR_OFFSET        0x14
-#define CCM_CBCMR_OFFSET 0X18
-#define CCM_CSCMR1_OFFSET 0x1c
-#define CCM_CSCMR2_OFFSET 0x20
-#define CCM_CSCDR1_OFFSET 0x24
-#define CCM_CS1CDR_OFFSET 0x28
-#define CCM_CS2CDR_OFFSET 0x2c
-#define CCM_CDCDR_OFFSET 0x30
-#define CCM_CHSCCDR_OFFSET 0x34
-#define CCM_CSCDR2_OFFSET 0x38
-#define CCM_CSCDR3_OFFSET 0x3c
-#define CCM_CSCDR4_OFFSET 0x40
-#define CCM_CWDR_OFFSET   0x44
-#define CCM_CDHIPR_OFFSET 0x48
-#define CCM_CDCR_OFFSET   0x4c
-#define CCM_CTOR_OFFSET   0x50
-#define CCM_CLPCR_OFFSET  0x54
-#define CCM_CISR_OFFSET 0x58
-#define CCM_CIMR_OFFSET 0x5c
-#define CCM_CCOSR_OFFSET 0x60
-#define CCM_CGPR_OFFSET 0x64
-#define CCM_CCGR0_OFFSET 0x68
-#define CCM_CCGR1_OFFSET 0x6c
-#define CCM_CCGR2_OFFSET 0x70
-#define CCM_CCGR3_OFFSET 0x74
-#define CCM_CCGR4_OFFSET 0x78
-#define CCM_CCGR5_OFFSET 0x7c
-#define CCM_CCGR6_OFFSET 0x80
-#define CCM_CCGR7_OFFSET 0x84
-#define CCM_CMEOR_OFFSET 0x88
-
 #define CCM_CCR     CCM_BASE_ADDR+CCM_CCR_OFFSET
 #define CCM_CCDR    CCM_BASE_ADDR+CCM_CCDR_OFFSET
 #define CCM_CSR     CCM_BASE_ADDR+CCM_CSR_OFFSET

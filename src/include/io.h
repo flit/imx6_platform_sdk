@@ -17,7 +17,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "imx_spi.h"
 
 #ifndef NULL
 #define NULL				0
@@ -34,6 +33,9 @@ typedef signed short int16_t;
 typedef signed char int8_t;
 
 typedef int bool;
+
+#define TRUE                1
+#define FALSE               0
 #define true                1
 #define false               0
 
@@ -164,9 +166,5 @@ int gpio_write_data(int port, int pin, unsigned int attr);
 #define TEST_NOTPRESENT 3
 
 extern int auto_run_enable;     // global flag to indicate auto-run feature enabled or not
-extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
-/* SPI-NOR defines */
-#define AT45DB321D          1
-#define M25P32               2
 
 #endif // __IO_H__

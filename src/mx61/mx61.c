@@ -18,10 +18,6 @@
 
 // #define OBDS_FUSE_CONTROL   Leaving out for bring-up
 
-extern void init_debug_uart(struct hw_module *uart, uint32_t baud);
-extern struct hw_module uart4;
-static struct hw_module *debug_uart = &uart4;   // on iMX61 UART4 is debug UART
-
 int board_id = 0;
 int board_rev = 0;
 
@@ -78,10 +74,10 @@ void platform_init(void)
      * board can be initialized prior to burning fuses
      */
     board_init();
-    init_debug_uart(debug_uart, 115200);
+    uart_init(&debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
     // flush out UART RX FIFO
     do {
-        c = receive_char();
+        c = uart_receive_char(&debug_uart);
     } while (c != NONE_CHAR);
 
     mx61_print_ver();

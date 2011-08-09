@@ -14,14 +14,7 @@
 
 #include <stdio.h>
 #include <time.h>
-#include "io.h"
 #include "hardware.h"
-
-#define TRUE 1
-#define FALSE 0
-
-/* Following are defined in uart.c */
-void sendchar(unsigned char *ch);
 
 /*!
  * __backspace must return the last char read to the stream
@@ -42,7 +35,7 @@ int fputc(int ch, FILE * f)
 {
     unsigned char tempch = ch;
 
-    sendchar(&tempch);
+    uart_send_char(&debug_uart, &tempch);
 
     return ch;
 }
@@ -63,7 +56,7 @@ int fgetc(FILE * f)
         return last_char_read;
     }
 
-    tempch = receive_char();
+    tempch = uart_receive_char(&debug_uart);
     last_char_read = (int)tempch;   /* backspace must return this value */
     return tempch;
 }
@@ -76,7 +69,7 @@ void _ttywrch(int ch)
 {
     unsigned char tempch = ch;
 
-    sendchar(&tempch);
+    uart_send_char(&debug_uart, &tempch);
 }
 
 /*!
@@ -233,7 +226,7 @@ int is_input_char(uint8_t c)
     }
     printf("Please enter %c or %c to confirm\n", lc, uc);
     do {
-        input = receive_char();
+        input = uart_receive_char(&debug_uart);
     } while (input == NONE_CHAR);
     printf("input char is: %c\n", input);
 

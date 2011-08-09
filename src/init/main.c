@@ -23,6 +23,8 @@
 #include "time.h"
 
 extern void SDK_TEST(void);
+extern void init_interrupts(void);
+
 /*!
  * main function that decides which tests to run and prompts the user before
  * runninng test.

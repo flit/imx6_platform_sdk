@@ -49,11 +49,11 @@
 //#########################################             
 //# EPIT                
 //#########################################             
-#define EPIT_EPITCR_OFFSET	0x00    //  32bit timer 3 control reg
-#define EPIT_EPITSR_OFFSET	0x04    //  32bit timer 3 prescaler reg
-#define EPIT_EPITLR_OFFSET	0x08    //  32bit timer 3 compare reg
-#define EPIT_EPITCMPR_OFFSET	0x0C    //  32bit timer 3 capture reg
-#define EPIT_EPITCNR_OFFSET	0x10    //  32bit timer 3 counter reg
+#define EPITCR_OFFSET	0x00    //  32bit timer 3 control reg
+#define EPITSR_OFFSET	0x04    //  32bit timer 3 prescaler reg
+#define EPITLR_OFFSET	0x08    //  32bit timer 3 compare reg
+#define EPITCMPR_OFFSET	0x0C    //  32bit timer 3 capture reg
+#define EPITCNR_OFFSET	0x10    //  32bit timer 3 counter reg
 //#########################################             
 //# PWM                                                 
 //#########################################             
@@ -81,77 +81,14 @@
 //#########################################             
 //# GPIO                
 //#########################################             
-#define GPIO_DR0_OFFSET	0x00    //  32bit gpio pta data direction reg
-#define GPIO_GDIR0_OFFSET	0x04    //  32bit gpio pta output config 1 reg
-#define GPIO_PSR0_OFFSET	0x08    //  32bit gpio pta output config 2 reg
+#define GPIO_DR_OFFSET  0x00    //  32bit gpio pta data direction reg
+#define GPIO_GDIR_OFFSET    0x04    //  32bit gpio pta output config 1 reg
+#define GPIO_PSR_OFFSET	0x08    //  32bit gpio pta output config 2 reg
 #define GPIO_ICR1_OFFSET	0x0C    //  32bit gpio pta input config A1 reg
 #define GPIO_ICR2_OFFSET	0x10    //  32bit gpio pta input config A2 reg
 #define GPIO_IMR_OFFSET	0x14    //  32bit gpio pta input config B1 reg
 #define GPIO_ISR_OFFSET	0x18    // GPIO Interrupt Status Register
 #define GPIO_EDGE_SEL_OFFSET	0x1C    // GPIO Edge Detect Register
-
-#define GPIO1_DR                   GPIO1_IPS_BASE_ADDR+0x00
-#define GPIO1_GDIR                 GPIO1_IPS_BASE_ADDR+0x04
-#define GPIO1_PSR                  GPIO1_IPS_BASE_ADDR+0x08
-#define GPIO1_ICR1                 GPIO1_IPS_BASE_ADDR+0x0C
-#define GPIO1_ICR2                 GPIO1_IPS_BASE_ADDR+0x10
-#define GPIO1_IMR                  GPIO1_IPS_BASE_ADDR+0x14
-#define GPIO1_ISR                  GPIO1_IPS_BASE_ADDR+0x18
-#define GPIO1_EDGE_SEL             GPIO1_IPS_BASE_ADDR+0x1C
-
-#define GPIO2_DR                   GPIO2_IPS_BASE_ADDR+0x00
-#define GPIO2_GDIR                 GPIO2_IPS_BASE_ADDR+0x04
-#define GPIO2_PSR                  GPIO2_IPS_BASE_ADDR+0x08
-#define GPIO2_ICR1                 GPIO2_IPS_BASE_ADDR+0x0C
-#define GPIO2_ICR2                 GPIO2_IPS_BASE_ADDR+0x10
-#define GPIO2_IMR                  GPIO2_IPS_BASE_ADDR+0x14
-#define GPIO2_ISR                  GPIO2_IPS_BASE_ADDR+0x18
-#define GPIO2_EDGE_SEL             GPIO2_IPS_BASE_ADDR+0x1C
-
-#define GPIO3_DR                   GPIO3_IPS_BASE_ADDR+0x00
-#define GPIO3_GDIR                 GPIO3_IPS_BASE_ADDR+0x04
-#define GPIO3_PSR                  GPIO3_IPS_BASE_ADDR+0x08
-#define GPIO3_ICR1                 GPIO3_IPS_BASE_ADDR+0x0C
-#define GPIO3_ICR2                 GPIO3_IPS_BASE_ADDR+0x10
-#define GPIO3_IMR                  GPIO3_IPS_BASE_ADDR+0x14
-#define GPIO3_ISR                  GPIO3_IPS_BASE_ADDR+0x18
-#define GPIO3_EDGE_SEL             GPIO3_IPS_BASE_ADDR+0x1C
-
-#define GPIO4_DR                   GPIO4_IPS_BASE_ADDR+0x00
-#define GPIO4_GDIR                 GPIO4_IPS_BASE_ADDR+0x04
-#define GPIO4_PSR                  GPIO4_IPS_BASE_ADDR+0x08
-#define GPIO4_ICR1                 GPIO4_IPS_BASE_ADDR+0x0C
-#define GPIO4_ICR2                 GPIO4_IPS_BASE_ADDR+0x10
-#define GPIO4_IMR                  GPIO4_IPS_BASE_ADDR+0x14
-#define GPIO4_ISR                  GPIO4_IPS_BASE_ADDR+0x18
-#define GPIO4_EDGE_SEL             GPIO4_IPS_BASE_ADDR+0x1C
-
-#define GPIO5_DR                   GPIO5_IPS_BASE_ADDR+0x00
-#define GPIO5_GDIR                 GPIO5_IPS_BASE_ADDR+0x04
-#define GPIO5_PSR                  GPIO5_IPS_BASE_ADDR+0x08
-#define GPIO5_ICR1                 GPIO5_IPS_BASE_ADDR+0x0C
-#define GPIO5_ICR2                 GPIO5_IPS_BASE_ADDR+0x10
-#define GPIO5_IMR                  GPIO5_IPS_BASE_ADDR+0x14
-#define GPIO5_ISR                  GPIO5_IPS_BASE_ADDR+0x18
-#define GPIO5_EDGE_SEL             GPIO5_IPS_BASE_ADDR+0x1C
-
-#define GPIO6_DR                   GPIO6_IPS_BASE_ADDR+0x00
-#define GPIO6_GDIR                 GPIO6_IPS_BASE_ADDR+0x04
-#define GPIO6_PSR                  GPIO6_IPS_BASE_ADDR+0x08
-#define GPIO6_ICR1                 GPIO6_IPS_BASE_ADDR+0x0C
-#define GPIO6_ICR2                 GPIO6_IPS_BASE_ADDR+0x10
-#define GPIO6_IMR                  GPIO6_IPS_BASE_ADDR+0x14
-#define GPIO6_ISR                  GPIO6_IPS_BASE_ADDR+0x18
-#define GPIO6_EDGE_SEL             GPIO6_IPS_BASE_ADDR+0x1C
-
-#define GPIO7_DR                   GPIO7_IPS_BASE_ADDR+0x00
-#define GPIO7_GDIR                 GPIO7_IPS_BASE_ADDR+0x04
-#define GPIO7_PSR                  GPIO7_IPS_BASE_ADDR+0x08
-#define GPIO7_ICR1                 GPIO7_IPS_BASE_ADDR+0x0C
-#define GPIO7_ICR2                 GPIO7_IPS_BASE_ADDR+0x10
-#define GPIO7_IMR                  GPIO7_IPS_BASE_ADDR+0x14
-#define GPIO7_ISR                  GPIO7_IPS_BASE_ADDR+0x18
-#define GPIO7_EDGE_SEL             GPIO7_IPS_BASE_ADDR+0x1C
 
 //#########################################             
 //# ESAI                
@@ -3052,42 +2989,6 @@
 #define CCM_CCGR6_OFFSET 0x80
 #define CCM_CCGR7_OFFSET 0x84
 #define CCM_CMEOR_OFFSET 0x88
-
-#define CCM_CCR     CCM_IPS_BASE_ADDR+CCM_CCR_OFFSET
-#define CCM_CCDR    CCM_IPS_BASE_ADDR+CCM_CCDR_OFFSET
-#define CCM_CSR     CCM_IPS_BASE_ADDR+CCM_CSR_OFFSET
-#define CCM_CCSR    CCM_IPS_BASE_ADDR+CCM_CCSR_OFFSET
-#define CCM_CACRR   CCM_IPS_BASE_ADDR+CCM_CACRR_OFFSET
-#define CCM_CBCDR   CCM_IPS_BASE_ADDR+CCM_CBCDR_OFFSET
-#define CCM_CBCMR   CCM_IPS_BASE_ADDR+CCM_CBCMR_OFFSET
-#define CCM_CSCMR1  CCM_IPS_BASE_ADDR+CCM_CSCMR1_OFFSET
-#define CCM_CSCMR2  CCM_IPS_BASE_ADDR+CCM_CSCMR2_OFFSET
-#define CCM_CSCDR1  CCM_IPS_BASE_ADDR+CCM_CSCDR1_OFFSET
-#define CCM_CS1CDR  CCM_IPS_BASE_ADDR+CCM_CS1CDR_OFFSET
-#define CCM_CS2CDR  CCM_IPS_BASE_ADDR+CCM_CS2CDR_OFFSET
-#define CCM_CDCDR   CCM_IPS_BASE_ADDR+CCM_CDCDR_OFFSET
-#define CCM_CHSCCDR CCM_IPS_BASE_ADDR+CCM_CHSCCDR_OFFSET
-#define CCM_CSCDR2  CCM_IPS_BASE_ADDR+CCM_CSCDR2_OFFSET
-#define CCM_CSCDR3  CCM_IPS_BASE_ADDR+CCM_CSCDR3_OFFSET
-#define CCM_CSCDR4  CCM_IPS_BASE_ADDR+CCM_CSCDR4_OFFSET
-#define CCM_CWDR    CCM_IPS_BASE_ADDR+CCM_CWDR_OFFSET
-#define CCM_CDHIPR  CCM_IPS_BASE_ADDR+CCM_CDHIPR_OFFSET
-#define CCM_CDCR    CCM_IPS_BASE_ADDR+CCM_CDCR_OFFSET
-#define CCM_CTOR    CCM_IPS_BASE_ADDR+CCM_CTOR_OFFSET
-#define CCM_CLPCR   CCM_IPS_BASE_ADDR+CCM_CLPCR_OFFSET
-#define CCM_CISR    CCM_IPS_BASE_ADDR+CCM_CISR_OFFSET
-#define CCM_CIMR    CCM_IPS_BASE_ADDR+CCM_CIMR_OFFSET
-#define CCM_CCOSR   CCM_IPS_BASE_ADDR+CCM_CCOSR_OFFSET
-#define CCM_CGPR    CCM_IPS_BASE_ADDR+CCM_CGPR_OFFSET
-#define CCM_CCGR0   CCM_IPS_BASE_ADDR+CCM_CCGR0_OFFSET
-#define CCM_CCGR1   CCM_IPS_BASE_ADDR+CCM_CCGR1_OFFSET
-#define CCM_CCGR2   CCM_IPS_BASE_ADDR+CCM_CCGR2_OFFSET
-#define CCM_CCGR3   CCM_IPS_BASE_ADDR+CCM_CCGR3_OFFSET
-#define CCM_CCGR4   CCM_IPS_BASE_ADDR+CCM_CCGR4_OFFSET
-#define CCM_CCGR5   CCM_IPS_BASE_ADDR+CCM_CCGR5_OFFSET
-#define CCM_CCGR6   CCM_IPS_BASE_ADDR+CCM_CCGR6_OFFSET
-#define CCM_CCGR7   CCM_IPS_BASE_ADDR+CCM_CCGR7_OFFSET
-#define CCM_CMEOR   CCM_IPS_BASE_ADDR+CCM_CMEOR_OFFSET
 
 //######################################### 
 //# GPC 

@@ -11,11 +11,13 @@
 #include "../inc/sdma.h"
 #include "sdma_event.h"
 #include "sdma_test.h"
-#include "uart.h"
 #include "hardware.h"
 
 #define UART_LOOPBACK_TEST_BUF_SZ 	1024
 #define UART_REF_FREQ 			27000000
+
+#define TX_FIFO_WATERMARK_LEVEL 4
+#define RX_FIFO_WATERMARK_LEVEL 16
 
 /* Uncacheable & unbufferable area start */
 static unsigned int tx_buf[UART_LOOPBACK_TEST_BUF_SZ];
@@ -74,7 +76,7 @@ static unsigned int uart_loopback_init(unsigned int base_addr, unsigned int baud
     puart->ucr1 = 0x00000000;
     puart->ucr2 = 0x00000000;
 
-    while (!(puart->ucr2 & UART_UCR2_SRST_)) ;
+    while (!(puart->ucr2 & UART_UCR2_SRST)) ;
 
     puart->ucr3 = 0x00000704;
     puart->ucr4 = 0x00008000;
@@ -87,7 +89,8 @@ static unsigned int uart_loopback_init(unsigned int base_addr, unsigned int baud
     puart->uts |= 0x01 << 12;   /*Set uart to loopback mode */
 
     /* Configure FIFOs */
-    puart->ufcr = (16 << UART_UFCR_RXTL_SHF) | UART_UFCR_RFDIV_2 | (4 << UART_UFCR_TXTL_SHF);
+    puart->ufcr = (RX_FIFO_WATERMARK_LEVEL << UART_UFCR_RXTL_SHF) |
+        UART_UFCR_RFDIV_2 | (TX_FIFO_WATERMARK_LEVEL << UART_UFCR_TXTL_SHF);
 
     /* Setup One MS timer */
     puart->onems = UART_REF_FREQ / 1000;
@@ -104,7 +107,7 @@ static unsigned int uart_loopback_init(unsigned int base_addr, unsigned int baud
     puart->ucr1 |= UART_UCR1_UARTEN;
 
     /* Enable FIFOs */
-    puart->ucr2 |= UART_UCR2_SRST_ | UART_UCR2_RXEN | UART_UCR2_TXEN;
+    puart->ucr2 |= UART_UCR2_SRST | UART_UCR2_RXEN | UART_UCR2_TXEN;
 
     /* Clear status flags */
     puart->usr2 |= UART_USR2_ADET |
@@ -119,10 +122,10 @@ static unsigned int uart_loopback_init(unsigned int base_addr, unsigned int baud
     /* Set the numerator value minus one of the BRM ratio */
     puart->ubir = (baudrate / 100) - 1;
 
-    /* Set the denominator value minus one of the BRM ratio    */
+    /* Set the denominator value minus one of the BRM ratio */
     puart->ubmr = ((UART_REF_FREQ / 1600) - 1);
 
-    puart->ucr1 |= UART_UCR1_RDMAEN | UART_UCR1_TDMAEN; /*RXDMAEN and TXDMAEN */
+    puart->ucr1 |= UART_UCR1_RXDMAEN | UART_UCR1_TXDMAEN;   /*RXDMAEN and TXDMAEN */
 
     return 0;
 }
@@ -170,7 +173,7 @@ int uart_app_test(void)
     chan_desc[0].gpr[0] = chan_desc[0].dma_mask[1];
     chan_desc[0].gpr[1] = chan_desc[0].dma_mask[0];
     chan_desc[0].gpr[6] = UART5_BASE_ADDR + 0x40;   /*tx fifo address */
-    chan_desc[0].gpr[7] = 0x4;  /*water mark */
+    chan_desc[0].gpr[7] = TX_FIFO_WATERMARK_LEVEL;  /*water mark */
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(tx_buf);
@@ -200,7 +203,7 @@ int uart_app_test(void)
     chan_desc[1].gpr[0] = chan_desc[1].dma_mask[1];
     chan_desc[1].gpr[1] = chan_desc[1].dma_mask[0];
     chan_desc[1].gpr[6] = UART5_BASE_ADDR + 0x0;    /*rx fifo address */
-    chan_desc[1].gpr[7] = 0x10; /*water mark */
+    chan_desc[1].gpr[7] = RX_FIFO_WATERMARK_LEVEL;  /*water mark */
 
     /* Setup buffer descriptor */
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(rx_buf);
@@ -308,7 +311,7 @@ int uart_shp_test(void)
 #else
     chan_desc[0].gpr[6] = UART1_BASE_ADDR + 0x40;   /*tx fifo address */
 #endif
-    chan_desc[0].gpr[7] = 0x4;  /*water mark */
+    chan_desc[0].gpr[7] = TX_FIFO_WATERMARK_LEVEL;  /*water mark */
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(tx_buf);
@@ -346,7 +349,7 @@ int uart_shp_test(void)
 #else
     chan_desc[1].gpr[6] = UART1_BASE_ADDR + 0x0;    /*rx fifo address */
 #endif
-    chan_desc[1].gpr[7] = 0x10; /*water mark */
+    chan_desc[1].gpr[7] = RX_FIFO_WATERMARK_LEVEL;  /*water mark */
 
     /* Setup buffer descriptors */
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(rx_buf);
@@ -458,7 +461,7 @@ int uart_app_interrupt_test(void)
     chan_desc[0].gpr[0] = chan_desc[0].dma_mask[1];
     chan_desc[0].gpr[1] = chan_desc[0].dma_mask[0];
     chan_desc[0].gpr[6] = UART5_BASE_ADDR + 0x40;   /*tx fifo address */
-    chan_desc[0].gpr[7] = 0x4;  /*water mark */
+    chan_desc[0].gpr[7] = TX_FIFO_WATERMARK_LEVEL;  /*water mark */
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(tx_buf);
@@ -488,7 +491,7 @@ int uart_app_interrupt_test(void)
     chan_desc[1].gpr[0] = chan_desc[1].dma_mask[1];
     chan_desc[1].gpr[1] = chan_desc[1].dma_mask[0];
     chan_desc[1].gpr[6] = UART5_BASE_ADDR + 0x0;    /*rx fifo address */
-    chan_desc[1].gpr[7] = 0x10; /*water mark */
+    chan_desc[1].gpr[7] = RX_FIFO_WATERMARK_LEVEL;  /*water mark */
 
     /* Setup buffer descriptor */
     bd[1].mode =

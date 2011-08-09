@@ -23,8 +23,6 @@ static sdma_test_t sdma_tests[] = {
     {"UART5 loopback with interrupt supported", uart_app_interrupt_test},
 };
 
-extern char receive_char(void);
-
 int sdma_test(void)
 {
     int retv, idx;
@@ -39,7 +37,7 @@ int sdma_test(void)
         }
 
         do {
-            sel = receive_char();
+            sel = uart_receive_char(&debug_uart);
         } while (sel == (char)0xFF);
 
         if (sel == 'x') {

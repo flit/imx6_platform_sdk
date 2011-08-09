@@ -12,9 +12,11 @@
  * @ingroup diag_init
  */
 
-#ifndef HARDWARE_H_
-#define HARDWARE_H_
+#ifndef __HARDWARE_H__
+#define __HARDWARE_H__
 #include "soc_memory_map.h"
+#include "registers.h"
+#include "functions.h"
 #include "io.h"
 #include "iomux_define.h"
 #include "iomux_register.h"
@@ -22,6 +24,9 @@
 #include "ccm_pll_reg_define.h"
 #include "iim_fuse.h"
 #include "imx_i2c.h"
+#include "imx_uart.h"
+#include "imx_spi.h"
+#include "imx_sata.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -42,9 +47,6 @@
 #define HW_ANADIG_PLL_528_DENOM     (ANATOP_BASE_ADDR+0x60) // Denominator of 528MHz PLL Fractional Loop Divider Register
 #define HW_ANADIG_PFD_528_RW        (ANATOP_BASE_ADDR+0x100)    // 528MHz Clock Phase Fractional Divider Control Register
 #define HW_ANADIG_PLL_SYS_RW        (ANATOP_BASE_ADDR+0x000)    // "System PLL" "CPU PLL" "PLL1"
-
-// Defines needed for existing drivers - TODO: cleanup
-#define EPIT_BASE_ADDR      EPIT1_BASE_ADDR
 
 #define CSD0_BASE_ADDR      MMDC0_ARB_BASE_ADDR
 #define CSD1_BASE_ADDR      MMDC1_ARB_BASE_ADDR
@@ -150,7 +152,9 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define USDHC_ADMA_BUFFER 0x00910000
 #define ESDCTL_REGISTERS_BASE_ADDR 0x021b0000
-// **** 
+
+/* EPIT */
+#define EPIT_BASE_ADDR EPIT1_BASE_ADDR
 
 //0x00907000 D IRAM_FREE_SPACE_START
 //0x00937FFC D IRAM_FREE_SPACE_END
@@ -183,6 +187,11 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define SRTC_HPSCMR          (SNVS_BASE_ADDR + 0x24)
 #define SRTC_HPSCLR          (SNVS_BASE_ADDR + 0x28)
 #define SRTC_HPCR           (SNVS_BASE_ADDR + 0x08)
+
+extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
+/* SPI-NOR defines */
+#define AT45DB321D  1
+#define M25P32      2
 
 //provide macros for test enter and exit outputs
 #define TEST_ENTER(name) printf ("Running test: %s\n", name)
@@ -250,6 +259,8 @@ void imx_enet_setup(void);
 void esai_iomux(void);
 void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
+
+struct hw_module debug_uart;
 
 extern void hal_delay_us(unsigned int);
 extern int max7310_init(unsigned int, unsigned int, unsigned int);
@@ -338,4 +349,4 @@ extern int android_buttons_test_enable;
 #error Need to define a board type
 #endif
 
-#endif /*HARDWARE_H_ */
+#endif /* __HARDWARE_H__ */

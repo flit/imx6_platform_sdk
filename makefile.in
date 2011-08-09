@@ -7,7 +7,7 @@ PROJ_DIR := $(shell pwd)
 
 UNAME := $(shell uname)
 ifneq ($(UNAME), Linux)
-PROJ_DIR := $(shell ./tools/windows/dirpath $(PROJ_DIR))
+#PROJ_DIR := $(shell ./tools/windows/dirpath $(PROJ_DIR))
 endif
 
 PROJ_OUT := $(PROJ_DIR)/output/$(TARGET)

@@ -14,8 +14,6 @@ static ipu_test_t ipu_tests[] = {
     {"IPU DISPLAY TEST", ips_display_test},
 };
 
-extern char receive_char(void);
-
 int ipu_test(void)
 {
     int retv, idx;
@@ -32,7 +30,7 @@ int ipu_test(void)
         }
 
         do {
-            sel = receive_char();
+            sel = uart_receive_char(&debug_uart);
         } while (sel == (char)0xFF);
 
         if (sel == 'x') {

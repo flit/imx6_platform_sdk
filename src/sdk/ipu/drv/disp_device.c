@@ -27,7 +27,7 @@ void ldb_config(int bit_mode)
     printf("\t3 - LVDS port 0 and port 1 in split mode\n");
 
     do {
-        recvCh = receive_char();
+        recvCh = uart_receive_char(&debug_uart);
 
         if (recvCh == '0') {
             /* enable DI0 on LVDS port 0 */

@@ -8,7 +8,7 @@
 #ifndef __IMX_NFC_H__
 #define __IMX_NFC_H__
 
-#include "hardware.h"
+//#include "hardware.h"
 
 #define FLASH_Read_ID                   (0x90)
 

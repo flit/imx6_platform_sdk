@@ -14,10 +14,6 @@
 
 #include <math.h>
 #include "hardware.h"
-#include "functions.h"
-#include "imx_spi.h"
-#include "imx_i2c.h"
-#include "imx_sata.h"
 
 extern void init_clock(uint32_t rate);
 extern int board_id;
@@ -31,9 +27,9 @@ struct hw_module core = {
     0,
 };
 
-// imx61 UART4 is debug_uart port
-struct hw_module uart4 = {
-    "UART4",
+// UART4 is the debug_uart port
+struct hw_module debug_uart = {
+    "UART4 for debug",
     UART4_BASE_ADDR,
 };
 
@@ -45,7 +41,7 @@ struct hw_module ddr = {
 struct hw_module *mx61_module[] = {
     &core,
     &ddr,
-    &uart4,
+    &debug_uart,
     NULL,
 };
 
@@ -57,6 +53,17 @@ unsigned int mx61_gpio[] = {
     GPIO5_BASE_ADDR,
     GPIO6_BASE_ADDR,
     GPIO7_BASE_ADDR
+};
+
+// The i.MX61 has 2 instances of the EPIT.
+uint32_t EPIT_base_address[] = {
+    EPIT1_BASE_ADDR,
+    EPIT2_BASE_ADDR
+};
+
+uint32_t EPIT_irq_src[] = {
+    IMX_INT_EPIT1,
+    IMX_INT_EPIT2
 };
 
 #define REF_IN_CLK_NUM  4
@@ -89,14 +96,14 @@ int gpio_dir_config(int port, int pin, int dir)
         return -1;
     }
 
-    oldVal = readl(mx61_gpio[port] + GPIO_GDIR0_OFFSET);
+    oldVal = readl(mx61_gpio[port] + GPIO_GDIR_OFFSET);
 
     if (dir == GPIO_GDIR_INPUT)
         newVal = oldVal & (~(1 << pin));
     else
         newVal = oldVal | (1 << pin);
 
-    writel(newVal, mx61_gpio[port] + GPIO_GDIR0_OFFSET);
+    writel(newVal, mx61_gpio[port] + GPIO_GDIR_OFFSET);
     return 0;
 }
 
@@ -127,21 +134,21 @@ int gpio_write_data(int port, int pin, unsigned int attr)
         return -1;
     }
 
-    dir = (readl(mx61_gpio[port] + GPIO_GDIR0_OFFSET) & (1 << pin)) >> pin;
+    dir = (readl(mx61_gpio[port] + GPIO_GDIR_OFFSET) & (1 << pin)) >> pin;
 
     if (dir != 1) {
         printf("GPIO%d_%d is not configured to be output!\n", port + 1, pin);
         return -1;
     }
 
-    oldVal = readl(mx61_gpio[port] + GPIO_DR0_OFFSET);
+    oldVal = readl(mx61_gpio[port] + GPIO_DR_OFFSET);
 
     if (attr == 0)
         newVal = oldVal & (~(1 << pin));
     else if (attr == 1)
         newVal = oldVal | (1 << pin);
 
-    writel(newVal, mx61_gpio[port] + GPIO_DR0_OFFSET);
+    writel(newVal, mx61_gpio[port] + GPIO_DR_OFFSET);
     return 0;
 }
 
@@ -170,14 +177,14 @@ int gpio_read_data(int port, int pin)
         return -1;
     }
 
-    dir = (readl(mx61_gpio[port] + GPIO_GDIR0_OFFSET) & (1 << pin)) >> pin;
+    dir = (readl(mx61_gpio[port] + GPIO_GDIR_OFFSET) & (1 << pin)) >> pin;
 
     if (dir != 0) {
         printf("GPIO%d_%d is not configured to be input!\n", port + 1, pin);
         return -1;
     }
 
-    return (readl(mx61_gpio[port] + GPIO_DR0_OFFSET) & (1 << pin)) >> pin;
+    return (readl(mx61_gpio[port] + GPIO_DR_OFFSET) & (1 << pin)) >> pin;
 }
 
 /*!
@@ -218,14 +225,14 @@ void freq_populate(void)
     reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);    /*bypass bit */
     reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x3, 0x3); /*divide bits */
     /* Ungate clocks to all modules */
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR0_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR1_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR2_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR3_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR4_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR6_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR7_OFFSET) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR0) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR1) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR2) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR3) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR4) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR5) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR6) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_CCGR7) = 0xFFFFFFFF;
     // **** NEEDS UPDATE for mx61 *****  //
     /* 
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz

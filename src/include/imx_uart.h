@@ -1,18 +1,20 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
 
 /*!
- * @file uart.h
- * @brief   various defines used by uart.c
+ * @file imx_uart.h
+ * @brief   various defines used by imx_uart.c
  *
  */
 
-#ifndef __UART_H__
-#define __UART_H__
+#ifndef __IMX_UART_H__
+#define __IMX_UART_H__
+
+#include "io.h"
 
 /*
  * UART Control Register Bit Fields.
@@ -22,12 +24,12 @@
 #define UART_UCR1_TRDYEN    (1 << 13)   // Transmitter ready interrupt enable
 #define UART_UCR1_IDEN      (1 << 12)   // Idle condition interrupt
 #define UART_UCR1_RRDYEN    (1 << 9)    // Recv ready interrupt enable
-#define UART_UCR1_RDMAEN    (1 << 8)    // Recv ready DMA enable
+#define UART_UCR1_RXDMAEN   (1 << 8)    // Recv ready DMA enable
 #define UART_UCR1_IREN      (1 << 7)    // Infrared interface enable
 #define UART_UCR1_TXMPTYEN  (1 << 6)    // Transimitter empty interrupt enable
 #define UART_UCR1_RTSDEN    (1 << 5)    // RTS delta interrupt enable
 #define UART_UCR1_SNDBRK    (1 << 4)    // Send break
-#define UART_UCR1_TDMAEN    (1 << 3)    // Transmitter ready DMA enable
+#define UART_UCR1_TXDMAEN   (1 << 3)    // Transmitter ready DMA enable
 #define UART_UCR1_DOZE      (1 << 1)    // Doze
 #define UART_UCR1_UARTEN    (1 << 0)    // UART enabled
 #define UART_UCR2_ESCI      (1 << 15)   // Escape seq interrupt enable
@@ -43,8 +45,8 @@
 #define UART_UCR2_ATEN      (1 << 3)    // Aging timer enable
 #define UART_UCR2_TXEN      (1 << 2)    // Transmitter enabled
 #define UART_UCR2_RXEN      (1 << 1)    // Receiver enabled
-#define UART_UCR2_SRST_     (1 << 0)    // SW reset
-#define UART_UCR3_PARERREN  (1 << 12)   // Parity enable
+#define UART_UCR2_SRST      (1 << 0)    // SW reset
+#define UART_UCR3_PARERREN  (1 << 12)   // Parity interrupt enable
 #define UART_UCR3_FRAERREN  (1 << 11)   // Frame error interrupt enable
 #define UART_UCR3_ADNIMP    (1 << 7)    // Autobaud detection not improved
 #define UART_UCR3_RXDSEN    (1 << 6)    // Receive status interrupt enable
@@ -102,6 +104,7 @@
 #define UART_UTS_RXFULL     (1 << 3)    // RxFIFO full
 #define UART_UTS_SOFTRST    (1 << 0)    // Software reset
 
+#ifdef UART_WIDTH_32
 struct mx_uart {
     volatile uint32_t urxd[16];
     volatile uint32_t utxd[16];
@@ -120,5 +123,63 @@ struct mx_uart {
     volatile uint32_t onems;
     volatile uint32_t uts;
 };
+#else
+struct mx_uart {
+    volatile uint16_t urxd[1];
+    volatile uint16_t resv0[31];
+    volatile uint16_t utxd[1];
+    volatile uint16_t resv1[31];
+    volatile uint16_t ucr1;
+    volatile uint16_t resv2;
+    volatile uint16_t ucr2;
+    volatile uint16_t resv3;
+    volatile uint16_t ucr3;
+    volatile uint16_t resv4;
+    volatile uint16_t ucr4;
+    volatile uint16_t resv5;
+    volatile uint16_t ufcr;
+    volatile uint16_t resv6;
+    volatile uint16_t usr1;
+    volatile uint16_t resv7;
+    volatile uint16_t usr2;
+    volatile uint16_t resv8;
+    volatile uint16_t uesc;
+    volatile uint16_t resv9;
+    volatile uint16_t utim;
+    volatile uint16_t resv10;
+    volatile uint16_t ubir;
+    volatile uint16_t resv11;
+    volatile uint16_t ubmr;
+    volatile uint16_t resv12;
+    volatile uint16_t ubrc;
+    volatile uint16_t resv13;
+    volatile uint16_t onems;
+    volatile uint16_t resv14;
+    volatile uint16_t uts;
+    volatile uint16_t resv15;
+};
+#endif
 
-#endif //__UART_H__
+#define PARITY_NONE 0
+#define PARITY_EVEN 2
+#define PARITY_ODD  3
+#define STOPBITS_ONE 0
+#define STOPBITS_TWO 1
+#define SEVENTBITS 0
+#define EIGHTBITS 1
+#define FLOWCTRL_OFF 0
+#define FLOWCTRL_ON 1
+
+#define TX_FIFO 0
+#define RX_FIFO 1
+#define DMA_MODE 0
+#define IRQ_MODE 1
+
+void init_uart(struct hw_module *port, uint32_t baudrate, uint8_t parity,
+               uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
+void uart_send_char(struct hw_module *port, unsigned char *ch);
+char uart_receive_char(struct hw_module *port);
+void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
+                        uint8_t service_mode);
+
+#endif //__IMX_UART_H__

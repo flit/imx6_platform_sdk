@@ -62,72 +62,41 @@ static void ccm_clock_gates_on(void)
     *(volatile int *)(CCM_BASE_ADDR + 0x68 + 0x1C) = 0xFFFFFFFF;
 }
 
-static unsigned int uart_loopback_init(unsigned int base_addr, unsigned int baudrate)
+// UART1 port
+static struct hw_module uart1_sdma_test = {
+    "UART1 for SDMA test",
+    UART1_BASE_ADDR,
+    UART_REF_FREQ,
+};
+
+// UART3 port
+static struct hw_module uart3_sdma_test = {
+    "UART3 for SDMA test",
+    UART3_BASE_ADDR,
+    UART_REF_FREQ,
+};
+
+// UART5 port
+static struct hw_module uart5_sdma_test = {
+    "UART5 for SDMA test",
+    UART5_BASE_ADDR,
+    UART_REF_FREQ,
+};
+
+static void uart_loopback_init(struct hw_module *port, unsigned int baudrate)
 {
-    volatile struct mx_uart *puart = (volatile struct mx_uart *)base_addr;
+    /* Initialize the UART port */
+    uart_init(port, baudrate, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
 
-    /* Wait for UART to finish transmitting */
-    while (!(puart->uts & UART_UTS_TXEMPTY)) ;
+    /* Set the DMA mode for the Tx FIFO */
+    uart_set_FIFO_mode(port, TX_FIFO, TX_FIFO_WATERMARK_LEVEL, DMA_MODE);
+    /* Set the DMA mode for the Rx FIFO */
+    uart_set_FIFO_mode(port, RX_FIFO, RX_FIFO_WATERMARK_LEVEL, DMA_MODE);
 
-    /* Disable UART */
-    puart->ucr1 &= ~UART_UCR1_UARTEN;
+    /* Enable loopback mode */
+    set_loopback_mode(port, true);
 
-    /* Set to default POR state */
-    puart->ucr1 = 0x00000000;
-    puart->ucr2 = 0x00000000;
-
-    while (!(puart->ucr2 & UART_UCR2_SRST)) ;
-
-    puart->ucr3 = 0x00000704;
-    puart->ucr4 = 0x00008000;
-    puart->ufcr = 0x00000801;
-    puart->uesc = 0x0000002B;
-    puart->utim = 0x00000000;
-    puart->ubir = 0x00000000;
-    puart->ubmr = 0x00000000;
-    puart->onems = 0x00000000;
-    puart->uts |= 0x01 << 12;   /*Set uart to loopback mode */
-
-    /* Configure FIFOs */
-    puart->ufcr = (RX_FIFO_WATERMARK_LEVEL << UART_UFCR_RXTL_SHF) |
-        UART_UFCR_RFDIV_2 | (TX_FIFO_WATERMARK_LEVEL << UART_UFCR_TXTL_SHF);
-
-    /* Setup One MS timer */
-    puart->onems = UART_REF_FREQ / 1000;
-
-    /* Set to 8N1 */
-    puart->ucr2 &= ~UART_UCR2_PREN;
-    puart->ucr2 |= UART_UCR2_WS;
-    puart->ucr2 &= ~UART_UCR2_STPB;
-
-    /* Ignore RTS */
-    puart->ucr2 |= UART_UCR2_IRTS;
-
-    /* Enable UART */
-    puart->ucr1 |= UART_UCR1_UARTEN;
-
-    /* Enable FIFOs */
-    puart->ucr2 |= UART_UCR2_SRST | UART_UCR2_RXEN | UART_UCR2_TXEN;
-
-    /* Clear status flags */
-    puart->usr2 |= UART_USR2_ADET |
-        UART_USR2_IDLE |
-        UART_USR2_IRINT |
-        UART_USR2_WAKE | UART_USR2_RTSF | UART_USR2_BRCD | UART_USR2_ORE | UART_USR2_RDR;
-
-    /* Clear status flags */
-    puart->usr1 |= UART_USR1_PARITYERR |
-        UART_USR1_RTSD | UART_USR1_ESCF | UART_USR1_FRAMERR | UART_USR1_AIRINT | UART_USR1_AWAKE;
-
-    /* Set the numerator value minus one of the BRM ratio */
-    puart->ubir = (baudrate / 100) - 1;
-
-    /* Set the denominator value minus one of the BRM ratio */
-    puart->ubmr = ((UART_REF_FREQ / 1600) - 1);
-
-    puart->ucr1 |= UART_UCR1_RXDMAEN | UART_UCR1_TXDMAEN;   /*RXDMAEN and TXDMAEN */
-
-    return 0;
+    return;
 }
 
 int uart_app_test(void)
@@ -222,7 +191,7 @@ int uart_app_test(void)
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
 
-    uart_loopback_init(UART5_BASE_ADDR, 115200);
+    uart_loopback_init(&uart5_sdma_test, 115200);
 
     /* Wait channels stop */
     unsigned int status;
@@ -368,9 +337,9 @@ int uart_shp_test(void)
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
 #ifdef MX53
-    uart_loopback_init(UART3_BASE_ADDR, 115200);
+    uart_loopback_init(&uart3_sdma_test, 115200);
 #else
-    uart_loopback_init(UART1_BASE_ADDR, 115200);
+    uart_loopback_init(&uart5_sdma_test, 115200);
 #endif
     /* Wait channels stop */
     unsigned int status;
@@ -512,7 +481,7 @@ int uart_app_interrupt_test(void)
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
 
-    uart_loopback_init(UART5_BASE_ADDR, 115200);
+    uart_loopback_init(&uart5_sdma_test, 115200);
     /*Wait transfer finished */
     while (!trans_done) ;
 

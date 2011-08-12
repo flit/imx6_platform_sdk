@@ -17,7 +17,7 @@ static ipu_test_t ipu_tests[] = {
 int ipu_test(void)
 {
     int retv, idx;
-    char sel;
+    uint8_t sel;
 
     printf("\n---- Running IPU test, type 'x' to exit.\n");
     ipu_iomux_config();
@@ -29,8 +29,8 @@ int ipu_test(void)
         }
 
         do {
-            sel = uart_receive_char(&debug_uart);
-        } while (sel == (char)0xFF);
+            sel = getchar();
+        } while (sel == (uint8_t) 0xFF);
 
         if (sel == 'x') {
             printf("\nTest exit.\n");

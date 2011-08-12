@@ -14,11 +14,13 @@ usage()
     echo "Makefiles are generated only for packages that are part of the platform specified as argument."
     echo
     echo "Usage: "
-    echo "   $script [-target <mx28, mx50, mx53...>] [-board <evk .....>][-board_rev <1,2...>] [-test <vpu, sdma, ipu>] [-clean]"
+    echo "   $script [-target <mx53,mx61,...>] [-board <ard,lcb,smd...>][-board_rev <1,2,...>] [-test <vpu,sdma,ipu,ALL,...>] [-clean]"
     echo "   The '-clean' is an optional argument to be used in case you wish to do a clean build"
     echo
-    echo "For eg: 1. $script -target mx53 -board ard -board_rev 1 -test vpu"
-    echo "        2. $script -target mx28 -board evk -board_rev 2 -test sdma -clean"
+    echo "For eg: 1. $script -target mx53 -board ard -board_rev 2 -test vpu"
+    echo "        2. $script -target mx53 -board lcb -board_rev 1 -test ALL -clean"
+    echo "        2. $script -target mx61 -board ard -board_rev 1 -test sdma -clean"
+    echo "        3. $script -target mx61 -board smd -board_rev 1 -test ALL"
     echo
     echo "Installation:"
     echo "   Clone the diag-sdk project and add the diag-sdk/tools directory"

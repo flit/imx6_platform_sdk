@@ -136,10 +136,6 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define CSPI_BASE_ADDR        ECSPI1_BASE_ADDR
 #define IIM_BASE_ADDR         0x0
-#define BOARD_ID_MX53_ARD     0xF1
-#define BOARD_ID_MX53_SBRTH_SMD 0xF2
-#define BOARD_ID_MX53_SBRTH_LCB 0xF3
-#define BOARD_ID_MX53_EVK  0xF4
 #define M4IF_REGISTERS_BASE_ADDR 0x0
 #define WEIM_REGISTERS_BASE_ADDR 0x0
 #define ESDHC1_BASE_ADDR 0x0

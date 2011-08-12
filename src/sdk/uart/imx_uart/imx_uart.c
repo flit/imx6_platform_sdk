@@ -39,54 +39,45 @@ uint32_t uart_get_reffreq(struct hw_module *port)
     return ret;
 }
 
-#ifdef debug_uart_log_buf
-#define DIAG_BUFSIZE 2048
-static char __log_buf[DIAG_BUFSIZE];
-static int diag_bp = 0;
-#endif
-
 /*!
- * Output a character to the debug uart port
+ * Output a character to UART port
  *
  * @param       ch      pointer to the character for output
  */
-void uart_send_char(struct hw_module *port, unsigned char *ch)
+uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
 
-#ifdef debug_uart_log_buf
-    __log_buf[diag_bp++] = c;
-    return;
-#endif
-
     /* Wait for Tx FIFO not full */
-    while (puart->uts & UART_UTS_TXFULL) ;  // tx fifo not full
-
-    /* Replace line feed with '\r' */
-    if (*ch == '\n') {
-        puart->utxd[0] = '\r';
-
-        while (puart->uts & UART_UTS_TXFULL) ;
-    }
+    while (puart->uts & UART_UTS_TXFULL) ;
 
     puart->utxd[0] = *ch;
+
+    return *ch;
 }
 
 /*!
  * Receive a character on the UART port
  *
- * @return      a character received from the UART port; if the fifo
- *              is empty, return 0xFF
+ * @return      a character received from the UART port; if the rx FIFO
+ *              is empty or errors are detected, it returns 0xFF
  */
-char uart_receive_char(struct hw_module *port)
+uint8_t uart_getchar(struct hw_module * port)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+    uint32_t read_data;
 
-    // If receive fifo is empty, return false
-    if (puart->uts & UART_UTS_RXEMPTY)
+    /* If Rx FIFO has no data ready */
+    if (!(puart->usr2 & UART_USR2_RDR))
         return 0xFF;
 
-    return (uint8_t) puart->urxd[0];
+    read_data = puart->urxd[0];
+
+    /* If error are detected */
+    if (read_data & 0x7C00)
+        return 0xFF;
+
+    return (uint8_t) read_data;
 }
 
 /*!
@@ -96,26 +87,53 @@ char uart_receive_char(struct hw_module *port)
  * @param   fifo – FIFO to configure: RX_FIFO or TX_FIFO.
  * @param   trigger_level – set the trigger level of the FIFO to generate
  *                an IRQ or a DMA request: number of characters.
- * @param   service_mode – FIFO served with IRQ/polling or DMA.
+ * @param   service_mode – FIFO served with DMA or IRQ or polling (default).
 */
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
 
-    if (fifo = TX_FIFO) {
+    if (fifo == TX_FIFO) {
         /* Configure the TX_FIFO trigger level */
         puart->ufcr &= ~(0x3F << UART_UFCR_TXTL_SHF);
         puart->ufcr |= (trigger_level << UART_UFCR_TXTL_SHF);
         /* Configure the TX_FIFO service mode */
-        puart->ucr1 |= UART_UCR1_TXDMAEN;
+        /* Default mode is polling: IRQ and DMA requests are disabled */
+        puart->ucr1 &= ~(UART_UCR1_TRDYEN | UART_UCR1_TXDMAEN);
+        if (service_mode == DMA_MODE)
+            puart->ucr1 |= UART_UCR1_TXDMAEN;
+        else if (service_mode == IRQ_MODE)
+            puart->ucr1 |= UART_UCR1_TRDYEN;
     } else {                    /* fifo = RX_FIFO */
         /* Configure the RX_FIFO trigger level */
         puart->ufcr &= ~(0x3F << UART_UFCR_RXTL_SHF);
         puart->ufcr |= (trigger_level << UART_UFCR_RXTL_SHF);
         /* Configure the RX_FIFO service mode */
-        puart->ucr1 |= UART_UCR1_RXDMAEN;
+        /* Default mode is polling: IRQ and DMA requests are disabled */
+        puart->ucr1 &= ~(UART_UCR1_RRDYEN | UART_UCR1_RXDMAEN);
+        if (service_mode == DMA_MODE)
+            puart->ucr1 |= UART_UCR1_RXDMAEN;
+        else if (service_mode == IRQ_MODE)
+            puart->ucr1 |= UART_UCR1_RRDYEN;
     }
+}
+
+/*!
+ * Enables UART loopback test mode
+ *
+ * @param   port - pointer to the UART module structure
+ * @param   state - enable/disable the loopback mode
+ */
+void set_loopback_mode(struct hw_module *port, uint8_t state)
+{
+    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+    uint32_t data;
+
+    if (state == 1)
+        puart->uts |= UART_UTS_LOOP;
+    else
+        puart->uts &= ~UART_UTS_LOOP;
 }
 
 /*!
@@ -133,14 +151,14 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
 
-    /* Wait for UART to finish transmitting */
+    /* Wait for UART to finish transmitting before changing the configuration */
     while (!(puart->uts & UART_UTS_TXEMPTY)) ;
 
     /* Disable UART */
     puart->ucr1 &= ~UART_UCR1_UARTEN;
 
-    /* Configure FIFOs */
-    puart->ufcr = (1 << UART_UFCR_RXTL_SHF) | UART_UFCR_RFDIV | (2 << UART_UFCR_TXTL_SHF);
+    /* Configure FIFOs trigger level to half-full and half-empty */
+    puart->ufcr = (16 << UART_UFCR_RXTL_SHF) | UART_UFCR_RFDIV | (16 << UART_UFCR_TXTL_SHF);
 
     /* Setup One Millisecond timer */
     puart->onems = uart_get_reffreq(port) / 1000;
@@ -161,7 +179,7 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
     else                        /* stopbits == STOPBITS_TWO */
         puart->ucr2 |= UART_UCR2_STPB;
 
-    /* Set stop bit */
+    /* Set data size */
     if (datasize == EIGHTBITS)
         puart->ucr2 |= UART_UCR2_WS;
     else                        /* stopbits == STOPBITS_TWO */
@@ -192,4 +210,8 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
 
     /* Set the denominator value minus one of the BRM ratio */
     puart->ubmr = ((uart_get_reffreq(port) / 1600) - 1);
+
+    /* Optional: prevent the UART to enter debug state. Useful when debugging
+       the code with a JTAG and without active IRQ */
+    puart->uts |= UART_UTS_DBGEN;
 }

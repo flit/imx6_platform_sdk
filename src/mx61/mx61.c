@@ -16,8 +16,6 @@
 #include "hardware.h"
 #include "version.h"
 
-// #define OBDS_FUSE_CONTROL   Leaving out for bring-up
-
 int board_id = 0;
 int board_rev = 0;
 
@@ -74,10 +72,12 @@ void platform_init(void)
      * board can be initialized prior to burning fuses
      */
     board_init();
+
+    /* Initialize the debug/console UART */
     uart_init(&debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
-    // flush out UART RX FIFO
+    /* flush UART RX FIFO */
     do {
-        c = uart_receive_char(&debug_uart);
+        c = uart_getchar(&debug_uart);
     } while (c != NONE_CHAR);
 
     mx61_print_ver();

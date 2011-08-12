@@ -24,22 +24,49 @@
 int last_char_read;
 int backspace_called;
 
+/* to re-define these functions, they need to be undefined first */
+#undef putchar
+#undef getchar
+
 /*!
  * Put a char to a serial port
  *
  * @param	ch	char to send
- * @param	f	no use
+ * @return  sent char if sucessful
+ */
+int putchar(int ch)
+{
+    uint8_t tempch = (uint8_t) ch;
+
+    return (int)uart_putchar(&debug_uart, &tempch);
+}
+
+/*!
+ * Get a char from a serial port
+ *
+ * @return  the char received through serial port or error
+ */
+int getchar(void)
+{
+    return (int)uart_getchar(&debug_uart);
+}
+
+/* Warning : following function should put a char to a file !!!!! */
+/*!
+ * Put a char to a serial port
+ *
+ * @param	ch	char to send
+ * @param	f	not use
  * @return  same as the char just sent
  */
 int fputc(int ch, FILE * f)
 {
-    unsigned char tempch = ch;
+    uint8_t tempch = (uint8_t) ch;
 
-    uart_send_char(&debug_uart, &tempch);
-
-    return ch;
+    return (int)uart_putchar(&debug_uart, &tempch);
 }
 
+/* Warning : following function should get a char from a file !!!!! */
 /*!
  * Get a char from a serial port
  * @param	f	no use
@@ -47,7 +74,7 @@ int fputc(int ch, FILE * f)
  */
 int fgetc(FILE * f)
 {
-    unsigned char tempch;
+    uint8_t ch;
 
     /* if we just backspaced, then return the backspaced character */
     /* otherwise output the next character in the stream */
@@ -56,9 +83,9 @@ int fgetc(FILE * f)
         return last_char_read;
     }
 
-    tempch = uart_receive_char(&debug_uart);
-    last_char_read = (int)tempch;   /* backspace must return this value */
-    return tempch;
+    ch = uart_getchar(&debug_uart);
+    last_char_read = (int)ch;   /* backspace must return this value */
+    return ch;
 }
 
 /*!
@@ -67,9 +94,13 @@ int fgetc(FILE * f)
  */
 void _ttywrch(int ch)
 {
-    unsigned char tempch = ch;
+    /* Replace line feed with '\r' */
+    if (ch == '\n')
+        ch = '\r';
 
-    uart_send_char(&debug_uart, &tempch);
+    uart_putchar(&debug_uart, &ch);
+
+    return ch;
 }
 
 /*!
@@ -226,7 +257,7 @@ int is_input_char(uint8_t c)
     }
     printf("Please enter %c or %c to confirm\n", lc, uc);
     do {
-        input = uart_receive_char(&debug_uart);
+        input = uart_getchar(&debug_uart);
     } while (input == NONE_CHAR);
     printf("input char is: %c\n", input);
 

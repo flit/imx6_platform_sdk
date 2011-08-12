@@ -17,9 +17,6 @@
 
 #define SDK_FUSE_CONTROL
 
-extern void init_debug_uart(struct hw_module *uart, uint32_t baud);
-extern struct hw_module uart1;
-static struct hw_module *debug_uart = &uart1;
 int auto_run_enable = 0;
 
 int set_mac(void);
@@ -56,9 +53,9 @@ static void mx53_print_ver(void)
         sprintf(board_name, "CPU2");
     else if (BOARD_TYPE_ID == BOARD_ID_MX53_ARD)
         sprintf(board_name, "SABRE Auto");
-    else if (BOARD_TYPE_ID == BOARD_ID_MX53_SBRTH_LCB)
+    else if (BOARD_TYPE_ID == BOARD_ID_MX53_LCB)
         sprintf(board_name, "Quick Start");
-    else if (BOARD_TYPE_ID == BOARD_ID_MX53_SBRTH_SMD)
+    else if (BOARD_TYPE_ID == BOARD_ID_MX53_SMD)
         sprintf(board_name, "SABRE Tablet");
     else if (BOARD_TYPE_ID == BOARD_ID_MX53_EVK)
         sprintf(board_name, "EVK");
@@ -94,10 +91,12 @@ void platform_init(void)
      * board can be initialized prior to burning fuses
      */
     board_init();
-    init_debug_uart(debug_uart, 115200);
-    // flush out UART RX FIFO
+
+    /* Initialize the debug/console UART */
+    uart_init(&debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
+    /* flush UART RX FIFO */
     do {
-        c = uart_receive_char();
+        c = uart_getchar(&debug_uart);
     } while (c != NONE_CHAR);
 
     mx53_print_ver();

@@ -98,11 +98,36 @@
 #define UART_USR2_RDR       (1 << 0)    // Recv data ready
 #define UART_UTS_FRCPERR    (1 << 13)   // Force parity error
 #define UART_UTS_LOOP       (1 << 12)   // Loop tx and rx
+#define UART_UTS_DBGEN      (1 << 11)   // Debug en
 #define UART_UTS_TXEMPTY    (1 << 6)    // TxFIFO empty
 #define UART_UTS_RXEMPTY    (1 << 5)    // RxFIFO empty
 #define UART_UTS_TXFULL     (1 << 4)    // TxFIFO full
 #define UART_UTS_RXFULL     (1 << 3)    // RxFIFO full
 #define UART_UTS_SOFTRST    (1 << 0)    // Software reset
+
+#define PARITY_NONE 0
+#define PARITY_EVEN 2
+#define PARITY_ODD  3
+#define STOPBITS_ONE 0
+#define STOPBITS_TWO 1
+#define SEVENTBITS 0
+#define EIGHTBITS 1
+#define FLOWCTRL_OFF 0
+#define FLOWCTRL_ON 1
+
+#define TX_FIFO 0
+#define RX_FIFO 1
+#define DMA_MODE 0
+#define IRQ_MODE 1
+#define POLLING_MODE 2
+
+void init_uart(struct hw_module *port, uint32_t baudrate, uint8_t parity,
+               uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
+uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
+uint8_t uart_getchar(struct hw_module *port);
+void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
+                        uint8_t service_mode);
+void set_loopback_mode(struct hw_module *port, uint8_t state);
 
 #ifdef UART_WIDTH_32
 struct mx_uart {
@@ -159,27 +184,5 @@ struct mx_uart {
     volatile uint16_t resv15;
 };
 #endif
-
-#define PARITY_NONE 0
-#define PARITY_EVEN 2
-#define PARITY_ODD  3
-#define STOPBITS_ONE 0
-#define STOPBITS_TWO 1
-#define SEVENTBITS 0
-#define EIGHTBITS 1
-#define FLOWCTRL_OFF 0
-#define FLOWCTRL_ON 1
-
-#define TX_FIFO 0
-#define RX_FIFO 1
-#define DMA_MODE 0
-#define IRQ_MODE 1
-
-void init_uart(struct hw_module *port, uint32_t baudrate, uint8_t parity,
-               uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
-void uart_send_char(struct hw_module *port, unsigned char *ch);
-char uart_receive_char(struct hw_module *port);
-void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
-                        uint8_t service_mode);
 
 #endif //__IMX_UART_H__

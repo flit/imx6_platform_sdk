@@ -26,7 +26,7 @@ static sdma_test_t sdma_tests[] = {
 int sdma_test(void)
 {
     int retv, idx;
-    char sel;
+    uint8_t sel;
 
     printf("\n---- Running SDMA test, type 'x' to exit.\n");
 
@@ -37,8 +37,8 @@ int sdma_test(void)
         }
 
         do {
-            sel = uart_receive_char(&debug_uart);
-        } while (sel == (char)0xFF);
+            sel = getchar();
+        } while (sel == (uint8_t) 0xFF);
 
         if (sel == 'x') {
             printf("\nTest exit.\n");

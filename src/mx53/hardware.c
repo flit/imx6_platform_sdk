@@ -33,8 +33,9 @@ struct hw_module core = {
     0,
 };
 
-struct hw_module uart1 = {
-    "UART1",
+// UART1 is the debug_uart port
+struct hw_module debug_uart = {
+    "UART1 for debug",
     UART1_BASE_ADDR,
 };
 
@@ -46,7 +47,7 @@ struct hw_module ddr = {
 struct hw_module *mx53_module[] = {
     &core,
     &ddr,
-    &uart1,
+    &debug_uart,
     NULL,
 };
 
@@ -856,7 +857,7 @@ void io_cfg_i2c(uint32_t module_base)
             /* I2C3 SDA is involved in the Daisy Chain */
             writel(0x2, IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT);
             writel(0x16C, IOMUXC_SW_PAD_CTL_PAD_GPIO_16);
-        } else if (BOARD_TYPE_ID == BOARD_ID_MX53_SBRTH_SMD) {
+        } else if (BOARD_TYPE_ID == BOARD_ID_MX53_SMD) {
             /* On the ARD I2C3 is mux'd on the GPIO_3 and GPIO_16 signals */
             /* Select ALT2 mode of GPIO_3 for I2C3 SCL */
             writel(0x10 | ALT2, IOMUXC_SW_MUX_CTL_PAD_GPIO_3);  // ALT2 and SION bit set
@@ -883,7 +884,7 @@ void SGTL5000PowerUp_and_clockinit(void)
 {
     unsigned int val = 0;
 
-    if (board_id == BOARD_ID_MX53_SBRTH_SMD) {
+    if (board_id == BOARD_ID_MX53_SMD) {
         /* Enable NANDF_CS0 to turn on the audio oscillator */
         writel(0x1, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0);   //GPI0[11] of GPIO6
         val = readl(GPIO6_BASE_ADDR + 0x04);
@@ -1000,8 +1001,8 @@ void esai_iomux(void)
 /*USB_OTG_PWR and OC iomux configurations*/
 void usb_io_config(void)
 {
-    if ((board_id != BOARD_ID_MX53_SBRTH_SMD)
-        && (board_id != BOARD_ID_MX53_SBRTH_LCB)) {
+    if ((board_id != BOARD_ID_MX53_SMD)
+        && (board_id != BOARD_ID_MX53_LCB)) {
         /* Select ALT1 mode of EIM_A25 for GPIO5_2 - USB_OTG_PWR */
         /* active high output */
         writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_EIM_A25);
@@ -1024,8 +1025,8 @@ void usb_io_config(void)
         gpio_dir_config(GPIO_PORT3, 12, GPIO_GDIR_INPUT);
     }
 
-    if ((board_id != BOARD_ID_MX53_SBRTH_SMD)
-        && (board_id != BOARD_ID_MX53_SBRTH_LCB)) {
+    if ((board_id != BOARD_ID_MX53_SMD)
+        && (board_id != BOARD_ID_MX53_LCB)) {
         /* USB HOST1 iomux configuration for USB_H1_OC */
         /* Select ALT0 mode of GPIO_11 for GPIO4_1 - USB_H1_OC_B */
         /* active low input */
@@ -1646,7 +1647,7 @@ void mxc_csi_port0_iomux_config(void)
 void reset_usb_hub(void)
 {
     if (board_id != BOARD_ID_MX53_ARD) {
-        if ((board_id != BOARD_ID_MX53_SBRTH_SMD)) {
+        if ((board_id != BOARD_ID_MX53_SMD)) {
             /* Use GPIO5_20 to reset the USB HUB */
             uint32_t temp;
             /* set GPIO5_20 to low, this is the reset to the HUBs */
@@ -1696,7 +1697,7 @@ void usb_vbus_power_on(void)
 {
     uint32_t v;
 
-    if ((board_id == BOARD_ID_MX53_SBRTH_SMD) || (board_id == BOARD_ID_MX53_SBRTH_LCB)) {
+    if ((board_id == BOARD_ID_MX53_SMD) || (board_id == BOARD_ID_MX53_LCB)) {
         /*Pull USB_PWR_EN(PATA_DA_2, also GPIO7_8) to high level */
         //Set GPIO7_8 as GPIO
         writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DA_2);
@@ -1805,7 +1806,7 @@ void board_init(void)
     if (BOARD_ID_MX53_ARD == BOARD_TYPE_ID) {
         max7310_init();
     }
-    if (BOARD_ID_MX53_SBRTH_SMD == BOARD_TYPE_ID) {
+    if (BOARD_ID_MX53_SMD == BOARD_TYPE_ID) {
         /* Assert dcdc1v8_en */
         writel(1, IOMUXC_SW_MUX_CTL_PAD_EIM_DA1);
 
@@ -2137,7 +2138,7 @@ void tve_power_on(void)
     da9053_i2c_reg(56, 0x5F, I2C_WRITE);
 }
 
-#ifdef MX53_SBRTH_SMD
+#ifdef MX53_SMD
 void camera_power_on(unsigned int a_vdd, unsigned int do_vdd, unsigned int d_vdd)
 {
     /* Write to R56 for LDO7 output AVDD */
@@ -2165,7 +2166,7 @@ void camera_power_on(void)
 
 void hdmi_power_on(void)
 {
-    if (board_id == BOARD_ID_MX53_SBRTH_SMD) {
+    if (board_id == BOARD_ID_MX53_SMD) {
         /* Write to R51 for 1V2 LDO2 output */
         da9053_i2c_reg(51, 0x58, I2C_WRITE);
     } else {

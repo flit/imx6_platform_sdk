@@ -37,11 +37,11 @@ endif
 ifeq "$(BOARD)" "cpu2"
 C_DEFINES +=-DMX53_CPU2
 endif
-ifeq "$(BOARD)" "sbrth_lcb"
-C_DEFINES +=-DMX53_SBRTH_LCB
+ifeq "$(BOARD)" "lcb"
+C_DEFINES +=-DMX53_LCB
 endif
-ifeq "$(BOARD)" "sbrth_smd"
-C_DEFINES +=-DMX53_SBRTH_SMD
+ifeq "$(BOARD)" "smd"
+C_DEFINES +=-DMX53_SMD
 endif
 endif
 

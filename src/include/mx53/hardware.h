@@ -19,9 +19,13 @@
 #include "iomux_define.h"
 #include "iomux_register.h"
 #include "gpio_define.h"
+#include "interrupt.h"
 #include "ccm_pll_reg_define.h"
 #include "iim_fuse.h"
-#include "interrupt.h"
+#include "imx_i2c.h"
+#include "imx_uart.h"
+#include "imx_spi.h"
+#include "imx_sata.h"
 
 // Defines needed for existing drivers - TODO: cleanup
 #define EPIT_BASE_ADDR      EPIT1_BASE_ADDR
@@ -174,6 +178,8 @@ void hal_delay_us(unsigned int);
 void imx_fec_setup(void);
 void esai_iomux(void);
 
+struct hw_module debug_uart;
+
 extern int board_id;
 extern int board_rev;
 extern int spi_nor_test_enable;
@@ -225,8 +231,8 @@ extern void gpio_backlight_lvds_en(void);
 #define BOARD_ID_MX53_CPU2      0x2
 #define BOARD_ID_MX53_CPU3      0x3
 #define BOARD_ID_MX53_ARD       0x7
-#define BOARD_ID_MX53_SBRTH_LCB 0xC
-#define BOARD_ID_MX53_SBRTH_SMD 0x9
+#define BOARD_ID_MX53_LCB       0xC
+#define BOARD_ID_MX53_SMD       0x9
 
 /* Board version */
 #define BOARD_VERSION_DEFAULT	0x0
@@ -252,10 +258,10 @@ extern void gpio_backlight_lvds_en(void);
 #define BOARD_TYPE_ID           BOARD_ID_MX53_EVK
 #elif defined(MX53_ARD)
 #define BOARD_TYPE_ID           BOARD_ID_MX53_ARD
-#elif defined(MX53_SBRTH_LCB)
-#define BOARD_TYPE_ID           BOARD_ID_MX53_SBRTH_LCB
-#elif defined(MX53_SBRTH_SMD)
-#define BOARD_TYPE_ID           BOARD_ID_MX53_SBRTH_SMD
+#elif defined(MX53_LCB)
+#define BOARD_TYPE_ID           BOARD_ID_MX53_LCB
+#elif defined(MX53_SMD)
+#define BOARD_TYPE_ID           BOARD_ID_MX53_SMD
 #else
 #error Need to define a board type
 #endif

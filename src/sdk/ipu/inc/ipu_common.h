@@ -16,6 +16,8 @@ enum {
     IDMAC_DOUBLE_BUFFER = 0x1,
 };
 
+#define MAX_PANEL_NUMBER 16
+
 // DI counter definitions
 #define DI_COUNTER_BASECLK 	 	0
 #define DI_COUNTER_IHSYNC   	1

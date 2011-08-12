@@ -62,6 +62,7 @@ typedef enum {
     IPS_DEV_SPLITTER,
     IPS_DEV_MERGE,
     IPS_DEV_COMPRESSOR,
+    IPS_DEV_SUPER_DEVICE,
 } ips_dev_type_e;
 
 typedef enum {
@@ -75,20 +76,6 @@ typedef enum {
     D,
     X,
 } ips_comp_type_e;
-
-typedef struct {
-    ips_comp_type_e type;
-    uint32_t pixel_index;
-    uint32_t start;
-    uint32_t end;
-} ips_comp_slice_t;
-
-typedef struct {
-    uint32_t odd_slice_num;
-    uint32_t even_slice_num;
-    ips_comp_slice_t *odd;
-    ips_comp_slice_t *even;
-} ips_macro_pixel_t;
 
 enum {
     ASPECT_RATIO_16_9,
@@ -111,6 +98,74 @@ enum {
     INTERLEAVED_U1Y1V1Y2 = 0xA,
     INTERLEAVED_U1Y2V1Y1 = 0xB,
 };
+
+typedef enum {
+    DCMAP_RGB565,
+    DCMAP_RGB666,
+    DCMAP_RGB666H,
+    DCMAP_RGB666L,
+    DCMAP_RGB888,
+    DCMAP_GBR888,
+    DCMAP_BRG888,
+    DCMAP_YUV888,
+    DCMAP_UVY888,
+    DCMAP_VYU888,
+    DCMAP_RGBA8888,
+    DCMAP_YUVA8888,
+} ips_colorimetry_t;
+
+enum {
+    IPU1_DP_DISP0,              //ipu1, display interface 0 through dp 
+    IPU1_DC_DISP0,
+    IPU1_DP_DISP1,
+    IPU1_DC_DISP1,
+
+    IPU2_DP_DISP0,              //ipu1, display interface 0 through dp background
+    IPU2_DC_DISP0,
+    IPU2_DP_DISP1,
+    IPU2_DC_DISP1,
+};
+
+enum disp_dev_flag {
+    EPSON_VGA,
+    CLAA_WVGA,
+    SEIKO_WVGA_7INCH,
+    SEIKO_WVGA_4_3INCH,
+    AUO_XGA_LVDS,
+    HannStar_XGA_LVDS,
+    CHIMEI_HD1080_LVDS,
+    VGAOUT_XGA,
+    DVI_SVGA,
+    DVI_XGA,
+    DVI_SXGA,
+    TV_NTSC,
+    TV_PAL,
+    TV_720P60,
+    TV_1080P30,
+    TV_1080P25,
+    TV_1080P24,
+    TV_1080I60,
+    HDMI_480P60,
+    HDMI_720P60,
+    HDMI_1080P24,
+    HDMI_1080P25,
+    HDMI_1080P30,
+    HDMI_1080P60,
+};
+
+typedef struct {
+    ips_comp_type_e type;
+    uint32_t pixel_index;
+    uint32_t start;
+    uint32_t end;
+} ips_comp_slice_t;
+
+typedef struct {
+    uint32_t odd_slice_num;
+    uint32_t even_slice_num;
+    ips_comp_slice_t *odd;
+    ips_comp_slice_t *even;
+} ips_macro_pixel_t;
 
 typedef struct {
     uint32_t channel;
@@ -141,12 +196,16 @@ typedef struct {
 } ips_pad_t;
 
 typedef struct {
-    void *data_pointer;
-} ips_flow_t;
+    uint32_t data_pol;          // Polarity of data bus
+    uint32_t enable_pol;        // Polarity of data enable signal (DRDY)
+    uint32_t h_sync_pol;        // Polarity of HSYNC pulse
+    uint32_t v_to_h_sync;       // Offset of VSYNC to HSYNC(in pixels)
+    uint32_t v_sync_pol;        // Polarity of VSYNC pulse
+} ips_display_if_t;
 
 /*display device structure*/
 typedef struct {
-    uint32_t bus_width;
+    uint32_t colorimetry;
     uint32_t disp_clk_pol;
     uint32_t disp_clock_freq;
     uint32_t ext_hsync_en;
@@ -159,19 +218,11 @@ typedef struct {
     uint32_t h_active_start;
     uint32_t h_sync_width;
     uint32_t if_type;
-    uint32_t *if_param_ptr;     // point to the display interfaces definition
+    ips_display_if_t *if_param_ptr; // point to the display interfaces definition
     uint32_t v_active_end;
     uint32_t v_active_start;
     uint32_t v_sync_width;
 } ips_dev_display_t;
-
-struct ips_display_if_s {
-    uint32_t data_pol;          // Polarity of data bus
-    uint32_t enable_pol;        // Polarity of data enable signal (DRDY)
-    uint32_t h_sync_pol;        // Polarity of HSYNC pulse
-    uint32_t v_to_h_sync;       // Offset of VSYNC to HSYNC(in pixels)
-    uint32_t vsync_pol;         // Polarity of VSYNC pulse
-};
 
 /*memory device structure*/
 typedef struct {
@@ -188,6 +239,7 @@ typedef struct {
     uint32_t stride_line_addr_1;
     uint32_t stride_line_addr_2;
     uint32_t stride_line_addr_3;
+    uint32_t layer_id;
     ips_mem_buffer_addr_t *buffer;
     ips_image_stream_t *(*create_ims) (int);
 } ips_dev_memory_t;
@@ -196,6 +248,35 @@ typedef struct {
 typedef struct {
     uint32_t angle;
 } ips_dev_rotate_t;
+
+typedef struct {
+    char panel_name[32];
+    uint32_t panel_id;
+    uint32_t colorimetry;
+    uint32_t refresh_rate;
+    uint32_t width;
+    uint32_t height;
+    uint32_t pixel_clock;
+    uint32_t hsync_start_width;
+    uint32_t hsync_width;
+    uint32_t hsync_end_width;
+    uint32_t vsync_start_width;
+    uint32_t vsync_width;
+    uint32_t vsync_end_width;
+    uint32_t delay_h2v;
+    uint32_t interlaced;
+    uint32_t clk_sel;
+    uint32_t clk_pol;
+    uint32_t hsync_sel;
+    uint32_t hsync_pol;
+    uint32_t vsync_sel;
+    uint32_t vsync_pol;
+    uint32_t drdy_pol;
+    uint32_t data_pol;
+    uint32_t extern_vsync;
+    int (*panel_init) (int);
+    int (*panel_deinit) (int);
+} ips_dev_panel_t;
 
 typedef enum {
     RGB2YUV,
@@ -226,6 +307,7 @@ typedef struct {
 
 typedef struct {
     char *devname;
+    uint32_t parent_flow_id;
     ips_dev_type_e devtype;
     uint32_t numsrcpads;
     ips_pad_t *srcpads;
@@ -236,4 +318,69 @@ typedef struct {
 
 #define OFFSETOF(type, member) ((size_t)&((type *)0)->member)
 
+typedef struct ips_dev_chain_s {
+    ips_device_t *node;
+    struct ips_dev_chain_s *next;
+} ips_dev_chain_t;
+
+#define MAX_BUFF_NUM 4
+#define MAX_LAYER_NUM 4
+
+struct ips_hw_conf_layer {
+    uint32_t colorimetry;
+    uint32_t width;
+    uint32_t height;
+    uint32_t buffer_num;
+    uint32_t buffer_addr[MAX_BUFF_NUM];
+    uint32_t curr_buf;
+    uint32_t global_alpha;
+    uint32_t alphabufaddr;      //currently only support one local alpha buffer
+    uint32_t interlaced;
+};
+
+/*now only consider the dual layer*/
+struct ips_hw_conf_input {
+    struct ips_hw_conf_layer layer[MAX_LAYER_NUM];
+};
+
+struct ips_hw_conf_output {
+    uint32_t colorimetry;
+    uint32_t refresh_rate;
+    uint32_t width;
+    uint32_t height;
+    uint32_t pixel_clock;
+    uint32_t hsync_start_width;
+    uint32_t hsync_width;
+    uint32_t hsync_end_width;
+    uint32_t vsync_start_width;
+    uint32_t vsync_width;
+    uint32_t vsync_end_width;
+    uint32_t delay_h2v;
+    uint32_t interlaced;
+    uint32_t clk_pol;
+    uint32_t hsync_sel;
+    uint32_t hsync_pol;
+    uint32_t vsync_sel;
+    uint32_t vsync_pol;
+    uint32_t drdy_pol;
+    uint32_t data_pol;
+    uint32_t extern_vsync;
+};
+
+typedef struct {
+    struct ips_hw_conf_input input;
+    struct ips_hw_conf_output output;
+} ips_hw_conf_struct_t;
+
+typedef struct {
+    char *flow_name;
+    uint32_t flow_id;
+    uint32_t flow_status;
+    ips_dev_chain_t *head;
+    ips_dev_chain_t *tail;
+    ips_hw_conf_struct_t *conf_data;
+} ips_flow_t;
+
+extern uint32_t ipu_hw_instance[];
+extern ips_dev_panel_t disp_dev_list[];
 #endif

@@ -21,7 +21,6 @@ int ipu_test(void)
 
     printf("\n---- Running IPU test, type 'x' to exit.\n");
     ipu_iomux_config();
-    display_device_init();
 
     do {
         printf("Please select ipu test type:\n");

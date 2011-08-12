@@ -9,28 +9,32 @@
 #include <stdio.h>
 
 #include "ips.h"
+#include "ipu_common.h"
 #include "ips_test.h"
 
 int ips_display_test(void)
 {
-    ips_device_t *mem;
-    ips_dev_memory_t *memattr;
+    ips_device_t *mem, *ipu, *disp, *superdev;
     ips_image_stream_t *ims;
-    ips_pad_t *sinkpad;
-    ips_dev_display_t *disp;
+    ips_pad_t *srcpad;
     ips_flow_t *flow;
 
     // create memory and define video output data
-    mem = ips_new_device(IPS_DEV_MEM);
-    memattr = (ips_dev_memory_t *) (mem->devattr);
-    ims = memattr->create_ims(23);
+    disp = ips_new_device(IPS_DEV_DISPLAY, "display");
+    mem = ips_new_device(IPS_DEV_MEM, "memory");
+    ipu = ips_new_device(IPS_DEV_IPU, "ipu");
+
+    ims = ((ips_dev_memory_t *) mem->devattr)->create_ims(MEM_TO_DP_BG_CH23);
     ips_set_ims(ims, OFFSETOF(ips_image_stream_t, width), 1024, EOP);
     ips_set_ims(ims, OFFSETOF(ips_image_stream_t, height), 768, EOP);
-    sinkpad = ips_device_get_sink_pad(mem, "input");
-    ips_set_pad_ims(sinkpad, ims);
+    srcpad = ips_device_get_src_pad(mem, "output");
+    ips_set_pad_ims(srcpad, ims);
 
-    disp = ips_new_device(IPS_DEV_DISPLAY);
-    flow = ips_link_device(mem, "output", disp, "dpin");
+    superdev = ips_link_device_many(mem, "output", "dpin", ipu, "di0", "interface", disp, NULL);
+
+    flow = ips_new_flow(IPU1_DP_DISP0, superdev);
+    ips_flow_add_device_many(flow, mem, ipu, disp);
+
     stream_on();
     return true;
 }

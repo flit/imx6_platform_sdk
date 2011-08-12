@@ -72,6 +72,10 @@ struct fixed_pll_mfd {
     uint32_t mfd;
 };
 
+uint32_t ipu_hw_instance[8] = {
+    0, 0, 0, 0, 0, 0, 0, 0
+};
+
 /*!
  * Sets the GPIO direction for the specified pin.
  *

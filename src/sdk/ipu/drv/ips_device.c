@@ -19,7 +19,7 @@
 
 extern ips_image_stream_t *ips_new_ims(int);
 
-ips_device_t *ips_new_device(ips_dev_type_e devtype)
+ips_device_t *ips_new_device(ips_dev_type_e devtype, char *devname)
 {
     ips_device_t *device = (ips_device_t *) malloc(sizeof(ips_device_t));
     device->devtype = devtype;
@@ -28,38 +28,58 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
         {
             ips_dev_display_t *display = (ips_dev_display_t *) malloc(sizeof(ips_dev_display_t));
             ips_pad_t *pad = NULL;
+            ips_dev_panel_t *panel = &disp_dev_list[0];
+            int index;
+            while (index < MAX_PANEL_NUMBER) {
+                if (!strcmp(panel->panel_name, devname)) {
+                    break;
+                } else {
+                    panel++;
+                    index++;
+                }
 
-            /*create an instance of display */
-            display->bus_width = 32;
-            display->disp_clk_pol = HIGH_POLARITY;
-            display->disp_clock_freq = 65000000;    // set 65M as default
+            }
+            if (index == MAX_PANEL_NUMBER) {
+                printf("The display panel %s is not supported!!\n", devname);
+                return false;
+            }
+
+            display->colorimetry = panel->colorimetry;
+            display->active_window_left_offset = 0;
+            display->active_window_top_offset = 0;
+            display->disp_clk_pol = panel->clk_pol;
+            display->disp_clock_freq = panel->pixel_clock;
+            display->ext_hsync_en = 0;
+            display->ext_vsync_en = panel->extern_vsync;
+            display->h_active_start = panel->hsync_start_width;
+            display->h_active_end = panel->hsync_end_width;
+            display->h_sync_width = panel->hsync_width;
+            display->v_active_start = panel->vsync_start_width;
+            display->v_active_end = panel->vsync_end_width;
+            display->v_sync_width = panel->vsync_start_width;
+            display->if_type = panel->panel_id;
+            display->total_frame_width = panel->width;
+            display->total_frame_height = panel->height;
+            display->if_param_ptr = (ips_display_if_t *) malloc(sizeof(ips_display_if_t));
+            display->if_param_ptr->data_pol = panel->data_pol;
+            display->if_param_ptr->enable_pol = panel->drdy_pol;
+            display->if_param_ptr->h_sync_pol = panel->hsync_pol;
+            display->if_param_ptr->v_sync_pol = panel->vsync_pol;
+            display->if_param_ptr->v_to_h_sync = panel->delay_h2v;
 
             /*attach the device and attribute */
-            device->devname = "display";
-            device->devattr = display;
-            device->numsrcpads = 2;
-            pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsrcpads);
-            device->srcpads = pad;
-            pad->padname = "di0";
-            pad->parent = device;
-            pad->prev = pad->next = NULL;
-            pad = pad + 1;
-            pad->padname = "di1";
-            pad->parent = device;
-            pad->prev = pad->next = NULL;
+            device->devname = devname;
+            device->devattr = panel;
+            device->numsrcpads = 0;
 
-            device->numsinkpads = 2;
+            device->numsinkpads = 1;
             pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsinkpads);
             device->sinkpads = pad;
-            pad->padname = "dpin";
+            pad->padname = "interface";
             pad->parent = device;
             pad->prev = pad->next = NULL;
-            pad = pad + 1;
-            pad->padname = "dcin";
-            pad->parent = device;
-            pad->prev = pad->next = NULL;
+            panel->panel_init(0);   //initialize the panel
 
-            ipu_display_config(1);
             break;
         }
     case IPS_DEV_MEM:
@@ -78,7 +98,7 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
             mem->buffer = buffer;
             mem->create_ims = &ips_new_ims;
 
-            device->devname = "memory";
+            device->devname = devname;
             device->devattr = mem;
 
             device->numsrcpads = 1;
@@ -94,6 +114,39 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype)
             device->sinkpads = pad;
         }
         break;
+    case IPS_DEV_IPU:
+        {
+            ips_dev_ipu_t *ipu = (ips_dev_ipu_t *) malloc(sizeof(ips_dev_ipu_t));
+            ips_pad_t *pad = NULL;
+
+            /*attach the device and attribute */
+            device->devname = devname;
+            device->devattr = ipu;
+            device->numsrcpads = 0;
+
+            device->numsinkpads = 2;
+            pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsinkpads);
+            device->sinkpads = pad;
+            pad->padname = "dcin";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+            pad += 1;
+            pad->padname = "dpin";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+
+            device->numsrcpads = 2;
+            pad = (ips_pad_t *) malloc(sizeof(ips_pad_t) * device->numsrcpads);
+            device->srcpads = pad;
+            pad->padname = "di0";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+            pad += 1;
+            pad->padname = "di1";
+            pad->parent = device;
+            pad->prev = pad->next = NULL;
+            break;
+        }
     default:
         printf("The device type is not defined!!\n");
         return false;
@@ -155,7 +208,7 @@ void ips_set_device(void *dev_attr, uint32_t attr, uint32_t val, ...)
 
 ips_pad_t *ips_device_get_src_pad(ips_device_t * dev, const char *padname)
 {
-    ips_pad_t *pad;
+    ips_pad_t *pad, *padnode;
     int index = 0;
 
     pad = dev->srcpads;
@@ -166,7 +219,7 @@ ips_pad_t *ips_device_get_src_pad(ips_device_t * dev, const char *padname)
     }
     printf("No source pad named %s can be found!\n", padname);
 
-    return false;
+    return NULL;
 }
 
 ips_pad_t *ips_device_get_sink_pad(ips_device_t * dev, const char *padname)
@@ -206,8 +259,10 @@ int ips_link_device_pads(ips_device_t * src, const char *srcpadname, ips_device_
         return false;
     }
 
-    /*step2: check if the pad attributes match */
-    /*TBD - add by Ray */
+    /*step2: set the pad related hardware */
+    if (dest->devtype == IPS_DEV_DISPLAY) {
+        if (!strcmp(destpadname, "dpin")) ;
+    }
 
     /*step3: link the two pads */
     srcpad->next = destpad;
@@ -216,28 +271,84 @@ int ips_link_device_pads(ips_device_t * src, const char *srcpadname, ips_device_
     return true;
 }
 
-int ips_link_device(ips_device_t * dev1, char *outpad, ips_device_t * dev2, char *inpad)
+int ips_link_device(ips_device_t * dev1, char *outpad, char *inpad, ips_device_t * dev2)
 {
     /*like the pads of the two devices, dev1.src <==> dev2.sink */
     return ips_link_device_pads(dev1, outpad, dev2, inpad);
 }
-int ips_link_device_many(ips_device_t * dev1, char *outpad, ips_device_t * dev2, char *inpad, ...)
+ips_device_t *ips_link_device_many(ips_device_t * dev1, char *outpad, char *inpad,
+                                   ips_device_t * dev2, ...)
 {
+    ips_device_t *superdev = (ips_flow_t *) malloc(sizeof(ips_device_t));
     va_list dev_list;
     int ret = true;
 
-    va_start(dev_list, inpad);
+    superdev->devtype = IPS_DEV_SUPER_DEVICE;
+    // the sink pad of super device should be the pad of first device in the chain
+    superdev->numsinkpads = dev1->numsinkpads;
+    superdev->sinkpads = dev1->sinkpads;
+
+    va_start(dev_list, dev2);
     while ((dev2 != NULL) && (dev1 != NULL)) {
-        if (!ips_link_device(dev1, inpad, dev2, outpad)) {
+        if (!ips_link_device(dev1, outpad, inpad, dev2)) {
             printf("device link error!!\n");
             ret = false;
             break;
         }
         dev1 = dev2;
-        outpad = inpad;
-        dev2 = va_arg(dev_list, ips_device_t *);
+        outpad = va_arg(dev_list, char *);
+        if (outpad == NULL)
+            break;
         inpad = va_arg(dev_list, char *);
+        dev2 = va_arg(dev_list, ips_device_t *);
     }
+
     va_end(dev_list);
-    return ret;
+
+    // the source pad of super device should be the pad of last device in the chain
+    superdev->numsrcpads = dev2->numsrcpads;
+    superdev->srcpads = dev2->srcpads;
+
+    return superdev;
+}
+
+inline int is_src_pad(ips_device_t * dev, char *padname)
+{
+    if (ips_device_get_src_pad(dev, padname) == NULL)
+        return true;
+    else
+        return false;
+}
+
+void ips_flow_link_dev(ips_flow_t * flow, char *padname, ips_device_t * dev, char *devpadname)
+{
+    ips_dev_chain_t *temp;
+    ips_pad_t *pad;
+
+    if (is_src_pad(dev, devpadname)) {
+        temp = flow->head;
+        while (temp->node != NULL) {
+            pad = ips_device_get_sink_pad(temp->node, padname);
+            if (pad != NULL) {
+                ips_link_device(temp->node, pad->padname, devpadname, dev);
+                ips_flow_add_device(flow, dev);
+                return true;
+            } else
+                temp = temp->next;
+        }
+
+    } else {
+        temp = flow->head;
+        while (temp->node != NULL) {
+            pad = ips_device_get_src_pad(temp->node, padname);
+            if (pad != NULL) {
+                ips_link_device(dev, devpadname, pad->padname, temp->node);
+                ips_flow_add_device(flow, dev);
+                return true;
+            } else
+                temp = temp->next;
+        }
+    }
+
+    return false;
 }

@@ -29,7 +29,7 @@
 // image starts at 0x00907000
 //flash header & DCD @ 0x400
 .macro plat_dcd_startup
-    b startup
+    b startup_imx6x
     .org 0x400
 /* First IVT to copy the plugin that initializes the system into OCRAM */
 ivt_header:             .long 0x402000D1    //Tag=0xD1, Len=0x0020, Ver=0x40

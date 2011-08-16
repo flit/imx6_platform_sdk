@@ -146,4 +146,34 @@ void prog_pll(void)
 
 void ldb_clock_config(int freq)
 {
- /*TBD*/}
+
+    reg32clrbit(PLL4_BASE_ADDR + PLL_DP_CONFIG, 1);
+    // Program PLL4 to 455Mhz - assuming 24MHz OSC as reference
+    reg32_write(PLL4_BASE_ADDR + PLL_DP_CTL, 0x00001222);
+    reg32_write(PLL4_BASE_ADDR + PLL_DP_OP, 0x00000091);    //MFI=6; PDF=0
+    reg32_write(PLL4_BASE_ADDR + PLL_DP_MFD, 96);   //MFD=999
+    reg32_write(PLL4_BASE_ADDR + PLL_DP_MFN, 45);   //MFN=198
+    reg32setbit(PLL4_BASE_ADDR + PLL_DP_CTL, 4);
+
+    // Wait for PLL 4 to lock
+    while (!((reg32_read(PLL4_BASE_ADDR + PLL_DP_CTL) & 1))) ;
+
+    reg32setbit(PLL4_BASE_ADDR + PLL_DP_CONFIG, 1);
+    //derived from PLL4 (default 595M)
+    //ldb_dix_clk_sel
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 8);
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 9);
+
+    //ldb_dix_clk_div
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 10);
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 11);
+
+    //derived from PLL4 (default 595M)
+    //di0_clk_sel
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 26);
+    reg32clrbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 27);
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 28);
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 29);
+    reg32clrbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 30);
+    reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 31);
+}

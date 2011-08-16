@@ -20,7 +20,7 @@
 /*!
  * IPU display interface configuration, generating the timing for display devices.
  */
-void di_config(int ipu_index)
+void ipu_di_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
     /*********************************************************************
     *	DI0 configuration:
@@ -38,28 +38,29 @@ void di_config(int ipu_index)
     int vDisp, vSyncStartWidth, vSyncWidth, vSyncEndWidth;
     int di;
 
-    ipuClk = 264000000;         // default ipu internal ref clock is 264M for i.Mx6x
-
     /**********************************************************************
     *	these reference values are all got from panel spec.Typical
     * values are selected. BE CAREFUL to config the waveform generators!
     ***********************************************************************/
 
-    hSyncStartWidth = 296;
-    hSyncWidth = 136;
-    hSyncEndWidth = 24;
-    delayH2V = 0;
-    vSyncStartWidth = 32;
-    vSyncWidth = 3;
-    vSyncEndWidth = 6;
-    typPixClk = 65000000;
-    di = 0;
+    hSyncStartWidth = conf->output.disp.hsync_start_width;
+    hSyncWidth = conf->output.disp.hsync_width;
+    hSyncEndWidth = conf->output.disp.hsync_end_width;
+    delayH2V = conf->output.disp.delay_h2v;
+    vSyncStartWidth = conf->output.disp.vsync_start_width;
+    vSyncWidth = conf->output.disp.vsync_width;
+    vSyncEndWidth = conf->output.disp.vsync_end_width;
+    di = conf->output.disp.di;
+    typPixClk = conf->output.disp.pixel_clock;
 
-    ipuClk = typPixClk;
+    if (conf->output.disp.clk_src == 1)
+        ipuClk = conf->output.disp.pixel_clock;
+    else
+        ipuClk = 26400000;      // for imx61
 
     div = (int)((float)ipuClk / (float)typPixClk + 0.5);    // get the nearest value of typical pixel clock
-    vDisp = 768;
-    hDisp = 1024;
+    hDisp = conf->output.disp.width;
+    vDisp = conf->output.disp.height;
 
     //DI0_SCR, set the screen height
 
@@ -122,15 +123,30 @@ void di_config(int ipu_index)
                    hSyncStartWidth,
                    DI_COUNTER_BASECLK + 1, 0, hDisp, DI_COUNTER_ALINE + 1, 0, 0, 0, 0, 0);
 
-    ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_SYNC_START, 2); // 2  lines predictions
-    ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_VSYNC_SEL, 2);  //select PIN3 as VSYNC
-    ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_CLK_EXT, 1);    // select external generated clock
-    ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_DISP_CLK, 1);
-    ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_3, 0); //HSYNC polarity, active low
-    ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_2, 0); //VSYNC polarity, active low
-    ipu_write_field(ipu_index, IPU_DI0_POL__DI0_DRDY_POLARITY_15, 1);   //VIDEO_DATA_EN POLARITY, active hign
-    //release ipu DI0 counter
-    ipu_write_field(ipu_index, IPU_IPU_DISP_GEN__DI0_COUNTER_RELEASE, 1);
+    switch (conf->output.disp.di) {
+    case 0:
+        ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_SYNC_START, 2); // 2  lines predictions
+        ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_VSYNC_SEL, conf->output.disp.vsync_sel);    //select PIN3 as VSYNC, 2
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_CLK_EXT, conf->output.disp.clk_src);    // select external generated clock, 1
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_DISP_CLK, conf->output.disp.clk_pol);  // 1
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_3, conf->output.disp.vsync_pol);   //HSYNC polarity, active low 0
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_2, conf->output.disp.hsync_pol);   //VSYNC polarity, active low 0
+        ipu_write_field(ipu_index, IPU_DI0_POL__DI0_DRDY_POLARITY_15, conf->output.disp.drdy_pol);  //VIDEO_DATA_EN POLARITY, active hign 0
+        //release ipu DI0 counter
+        ipu_write_field(ipu_index, IPU_IPU_DISP_GEN__DI0_COUNTER_RELEASE, 1);
+        break;
+    case 1:
+        ipu_write_field(ipu_index, IPU_DI1_SYNC_AS_GEN__DI1_SYNC_START, 2); // 2  lines predictions
+        ipu_write_field(ipu_index, IPU_DI1_SYNC_AS_GEN__DI1_VSYNC_SEL, conf->output.disp.vsync_sel);    //select PIN3 as VSYNC, 2
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_CLK_EXT, conf->output.disp.clk_src);    // select external generated clock, 1
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_POLARITY_DISP_CLK, conf->output.disp.clk_pol);  // 1
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_POLARITY_3, conf->output.disp.vsync_pol);   //HSYNC polarity, active low 0
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_POLARITY_2, conf->output.disp.hsync_pol);   //VSYNC polarity, active low 0
+        ipu_write_field(ipu_index, IPU_DI1_POL__DI1_DRDY_POLARITY_15, conf->output.disp.drdy_pol);  //VIDEO_DATA_EN POLARITY, active hign 0
+        //release ipu DI0 counter
+        ipu_write_field(ipu_index, IPU_IPU_DISP_GEN__DI0_COUNTER_RELEASE, 1);
+        break;
+    }
 }
 
 /*!

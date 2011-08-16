@@ -143,69 +143,83 @@ int ipu_idmac_channel_busy(int ipu_index, int channel)
     return ((readl(ipu_base_addr + IPU_IDMAC_CH_BUSY_1__ADDR + 4 * idx) & (1 << offset)) >> offset);
 }
 
-void ipu_idmac_config(int ipu_index, ips_image_stream_t * ims)
+void ipu_idmac_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
-    memset((void *)ipu_cpmem_addr(ipu_index, ims->channel), 0, sizeof(ipu_cpmem_t));
+    int channel = 0;
+    struct ips_hw_conf_mem_layer *dma;
+    /*currently only support one layer */
+    switch (conf->flow_type) {
+    case MEM_TO_DISPLAY:
+        dma = &(conf->input.layer[0]);
+        channel = MEM_TO_DP_BG_CH23;
+        break;
+    case MEM_TO_MEM:
+        dma = &(conf->output.mem);
+        break;
+    default:
+        printf("The flow type %d is not supported yet!\n", conf->flow_type);
+    }
+    memset((void *)ipu_cpmem_addr(ipu_index, channel), 0, sizeof(ipu_cpmem_t));
 
-    switch (ims->pixel_format) {
+    switch (dma->colorimetry) {
     case NON_INTERLEAVED_YUV444:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
-                            ims->width * ims->height / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
-                            ims->width * ims->height * 2 / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
-                            ims->width - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
-                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_UBO,
+                            dma->width * dma->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_VBO,
+                            dma->width * dma->height * 2 / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY,
+                            dma->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLUY,
+                            dma->width - 1);
         break;
 
     case NON_INTERLEAVED_YUV422:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
-                            ims->width * ims->height / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
-                            ims->width * ims->height * 3 / 16);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
-                            ims->width - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
-                            ims->width / 2 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_UBO,
+                            dma->width * dma->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_VBO,
+                            dma->width * dma->height * 3 / 16);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY,
+                            dma->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLUY,
+                            dma->width / 2 - 1);
         break;
 
     case NON_INTERLEAVED_YUV420:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
-                            ims->width * ims->height / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
-                            ims->width * ims->height * 5 / 32);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
-                            ims->width - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
-                            ims->width / 4 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_UBO,
+                            dma->width * dma->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_VBO,
+                            dma->width * dma->height * 5 / 32);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY,
+                            dma->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLUY,
+                            dma->width / 4 - 1);
         break;
 
     case PARTIAL_INTERLEAVED_YUV422:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
-                            ims->width * ims->height / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
-                            ims->width * ims->height / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
-                            ims->width - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
-                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_UBO,
+                            dma->width * dma->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_VBO,
+                            dma->width * dma->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY,
+                            dma->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLUY,
+                            dma->width - 1);
         break;
 
     case PARTIAL_INTERLEAVED_YUV420:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_UBO,
-                            ims->width * ims->height / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_VBO,
-                            ims->width * ims->height * 2 / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLY,
-                            ims->width - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SLUY,
-                            ims->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_UBO,
+                            dma->width * dma->height / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_VBO,
+                            dma->width * dma->height * 2 / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY,
+                            dma->width - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLUY,
+                            dma->width - 1);
 
         break;
 
@@ -214,67 +228,58 @@ void ipu_idmac_config(int ipu_index, ips_image_stream_t * ims)
     case INTERLEAVED_GENERIC:
         break;
     case INTERLEAVED_RGB:      //test RGB565
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
-                            ims->width * 2 - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID0, 5 - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF0, 0);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID1, 6 - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF1, 5);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID2, 5 - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF2, 11);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_WID3, 0);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_OFF3, 16);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_SL, dma->width * 2 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID0, 5 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF0, 0);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID1, 6 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF1, 5);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID2, 5 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF2, 11);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID3, 0);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF3, 16);
         break;
     case INTERLEAVED_Y1U1Y2V1:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
-                            ims->width * 2 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_SL, dma->width * 2 - 1);
         break;
 
     case INTERLEAVED_Y2U1Y1V1:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
-                            ims->width * 2 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_SL, dma->width * 2 - 1);
         break;
 
     case INTERLEAVED_U1Y1V1Y2:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
-                            ims->width * 2 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_SL, dma->width * 2 - 1);
         break;
 
     case INTERLEAVED_U1Y2V1Y1:
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_NPB, 15);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_BPP, 0x3);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), INTERLEAVED_SL,
-                            ims->width * 2 - 1);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_NPB, 15);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_BPP, 0x3);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_SL, dma->width * 2 - 1);
         break;
     default:
         printf("Wrong data format input for IDMAC!!\n");
         return;
     }
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FW,
-                        ims->width - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FH,
-                        ims->height - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_SO,
-                        ims->scan_interface);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA0,
-                        CSD0_BASE_ADDR);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA1,
-                        CSD0_BASE_ADDR);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_PFS,
-                        ims->pixel_format);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_FW, dma->width - 1);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_FH, dma->height - 1);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SO, dma->interlaced);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_EBA0,
+                        dma->buffer_addr[0] / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_EBA1,
+                        dma->buffer_addr[1] / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_PFS, dma->colorimetry);
 
-    ipu_idmac_channel_mode_sel(ipu_index, ims->channel, IDMAC_SINGLE_BUFFER);
-    ipu_idmac_channel_enable(ipu_index, ims->channel, 1);
+    ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
+    ipu_idmac_channel_enable(ipu_index, channel, 1);
 
-    switch (ims->channel) {
+    switch (channel) {
     case MEM_TO_DP_BG_CH23:
         ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_FIFO_SIZE_5B, 2); //Table of fifo_size 000-2^9,001-2^8,010-2^7,
         ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_BURST_SIZE_5B, 1);    //Table of dmfc_burst_size codes

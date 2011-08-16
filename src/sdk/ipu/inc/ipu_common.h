@@ -16,8 +16,6 @@ enum {
     IDMAC_DOUBLE_BUFFER = 0x1,
 };
 
-#define MAX_PANEL_NUMBER 16
-
 // DI counter definitions
 #define DI_COUNTER_BASECLK 	 	0
 #define DI_COUNTER_IHSYNC   	1
@@ -216,30 +214,3 @@ typedef struct dp_csc_param {
 } dp_csc_param_t;
 
 void ipu_write_field(int ipu_index, unsigned int ID_addr, unsigned int ID_mask, unsigned int data);
-void di_up_down_config(int ipu_index, int di, int pointer, int set, int up, int down);
-void di_pointer_config(int ipu_index, int di, int pointer, int access, int component, int cst,
-                       int pt0, int pt1, int pt2, int pt3, int pt4, int pt5, int pt6);
-void di_sync_config(int ipu_index, int di, int pointer, int run_value_m1, int run_resolution,
-                    int offset_value, int offset_resolution, int cnt_auto_reload, int step_repeat,
-                    int cnt_clr_sel, int cnt_polarity_gen_en, int cnt_polarity_trigger_sel,
-                    int cnt_polarity_clr_sel, int cnt_up, int cnt_down);
-void microcode_event(int ipu_index, char channel[1], char event[8], int priority, int address);
-void microcode_config(int ipu_index, int word, int stop, char opcode[10], int lf, int af,
-                      int operand, int mapping, int waveform, int gluelogic, int sync);
-void init_idmac_parameters(void);
-void idmac_config(int ipu_index, int dataFormat);
-void dmfc_config(int ipu_index);
-void dp_config(int ipu_index, int cscen, int cscmode);
-void dc_config(int ipu_index);
-void dc_channel_config(int ipu_index);
-void dc_event_routines(int ipu_index);
-void di_config(int ipu_index);
-void ipu_enable_display(int ipu_index);
-void ipu_disable_display(int ipu_index);
-void ipu_channel_buf_ready(int ipu_index, int channel, int buf);
-void ipu_channel_buf_not_ready(int ipu_index, int channel, int buf);
-void ipu_csi_config(int ipu_index, int width, int height);
-void capture_display_idmac_config(int ipu_index, int dataFormat);
-int ipu_smfc_fifo_allocate(int ipu_index, int channel, int map, int burst_size);
-int ipu_idmac_channel_busy(int ipu_index, int channel);
-void ipu_capture_channel_link(int ipu_index);

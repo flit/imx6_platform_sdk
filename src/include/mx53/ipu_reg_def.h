@@ -4,8 +4,18 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+
+/*!
+ * @file ipu_reg_def.h
+ * @brief IPU registers definition for MX61(IPUv3m).
+ * @ingroup diag_ipu
+ */
+
 #ifndef _IPU_REGS_DEF_H_
 #define _IPU_REGS_DEF_H_
+
+#define IPU_BUFFER_MEM_START		0x90000000
+#define IPU_BUFFER_MEM_END			0xA0000000
 
 #define IPU_IPU_CONF__ADDR             0x1E000000
 #define IPU_IPU_CONF__EMPTY            0x1E000000,0x00000000

@@ -72,7 +72,7 @@ int hannstar_lvds_panel_deinit(int panel_type)
     return true;
 }
 
-ips_dev_panel_t disp_dev_list[16] = {
+ips_dev_panel_t disp_dev_list[] = {
     {
      "CLAA01 WVGA",             // name
      CLAA_WVGA,                 // panel id flag
@@ -91,45 +91,40 @@ ips_dev_panel_t disp_dev_list[16] = {
      0,                         // interlaced mode
      0,                         // clock selection, internal
      0,                         // clock polarity
-     1,                         // hsync selection
      0,                         // hsync polarity
-     2,                         // vsync selection
      0,                         // vync polarity
      1,                         // drdy polarity
      0,                         // data polarity
-     0,                         // internal vsync
      &claa_wvga_panel_init,     // initialization
      &claa_wvga_panel_deinit,   // deinit
      }
     ,
     {
-     "HannStar XGA LVDS",
-     HannStar_XGA_LVDS,
-     DCMAP_RGB666,
-     60,
-     1024,
-     768,
-     65000000,
-     296,
-     136,
-     24,
-     32,
-     3,
-     6,
-     0,
-     0,
-     1,
-     1,
-     1,
-     1,
-     2,
-     1,
-     1,
+     "HannStar XGA LVDS",       // name
+     HannStar_XGA_LVDS,         // panel id flag
+     DCMAP_RGB666,              // data format for panel
+     60,                        // refresh rate
+     1024,                      // panel width
+     768,                       //panel height
+     65000000,                  // pixel clock frequency
+     296,                       // hsync start width
+     136,                       // hsync width
+     24,                        // hsyn back width
+     32,                        // vysnc start width
+     3,                         // vsync width
+     6,                         // vsync back width
+     0,                         // delay from hsync to vsync
+     0,                         // interlaced mode
+     1,                         // clock selection, internal
+     1,                         // clock polarity
+     1,                         // hsync polarity
+     1,                         // vync polarity
+     1,                         // drdy polarity
      0,                         // data polarity
-     1,                         //external vsync
      &hannstar_lvds_panel_init,
      &hannstar_lvds_panel_deinit,
      }
     ,
-
 };
+
+uint32_t num_of_panels = sizeof(disp_dev_list);

@@ -169,4 +169,15 @@
 #define AUDMUX_PTCR_OFFSET(x)           ((x-1) * 8)
 #define AUDMUX_PDCR_OFFSET(x)           ((x-1) * 8 + 4)
 
+//////////////////////////////////Function declaration////////////////////////////////
+#if defined(__cplusplus)
+extern "C" {
+#endif                          // __cplusplus
+
+    bool audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr);
+    bool audmux_route(uint32_t intPort, uint32_t extPort, bool is_master);
+
+#if defined(__cplusplus)
+}
+#endif                          // __cplusplus
 #endif

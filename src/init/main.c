@@ -35,7 +35,7 @@ int main(void)
 
     platform_init();
 
-    init_interrupts();
+    //init_interrupts();
 
     SDK_TEST();
 

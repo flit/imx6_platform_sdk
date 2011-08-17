@@ -20,7 +20,7 @@ int ips_display_test(void)
     ips_flow_t *flow;
 
     // create memory and define video output data
-    disp = ips_new_device(IPS_DEV_DISPLAY, "display");
+    disp = ips_new_device(IPS_DEV_DISPLAY, "HannStar XGA LVDS");
     mem = ips_new_device(IPS_DEV_MEM, "memory");
     ipu = ips_new_device(IPS_DEV_IPU, "ipu");
 
@@ -32,9 +32,8 @@ int ips_display_test(void)
 
     superdev = ips_link_device_many(mem, "output", "dpin", ipu, "di0", "interface", disp, NULL);
 
-    flow = ips_new_flow(IPU1_DP_DISP0, superdev);
-    ips_flow_add_device_many(flow, mem, ipu, disp);
+    flow = ips_new_flow(IPU1_DP_DISP0, "di0 display", superdev);
 
-    stream_on();
+    stream_on(flow);
     return true;
 }

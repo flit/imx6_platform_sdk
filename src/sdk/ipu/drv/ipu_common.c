@@ -15,6 +15,14 @@
 #include "ipu_common.h"
 #include "hardware.h"
 
+inline int need_csc(int i, int o)
+{
+    if ((i == INTERLEAVED_RGB && o > DCMAP_BRG888) || (i != INTERLEAVED_RGB && o <= DCMAP_BRG888))
+        return 1;
+    else
+        return 0;
+}
+
 /*!
  * write field of ipu registers, without affecting other bits.
  *
@@ -93,9 +101,10 @@ int ipu_sw_reset(int timeout)
     return -1;
 }
 
-void ipu_display_config(int ipu_index)
+void ips_new_flow_hw_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
-    dc_config(ipu_index);
-    dp_config(ipu_index, 0, YUV2RGB);
-    di_config(ipu_index);
+    ipu_idmac_config(ipu_index, conf);
+    ipu_dc_config(ipu_index, conf);
+    ipu_dp_config(ipu_index, conf);
+    ipu_di_config(ipu_index, conf);
 }

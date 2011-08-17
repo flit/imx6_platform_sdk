@@ -61,6 +61,10 @@ unsigned int mx53_gpio[] = {
     GPIO7_BASE_ADDR
 };
 
+uint32_t ipu_hw_instance[4] = {
+    0, 0, 0, 0
+};
+
 #define REF_IN_CLK_NUM  4
 struct fixed_pll_mfd {
     uint32_t ref_clk_hz;
@@ -1241,7 +1245,14 @@ void imx_fec_setup(void)
 
 void lvds_power_on(void)
 {
- /*TBD*/}
+    printf("Backlight Enabled for the Panel\n");
+    /* Enable backlight to the panel, mux'd on GPIO_1 */
+    writel(0x1, IOMUXC_SW_MUX_CTL_PAD_GPIO_1);
+    writel(0x1c4, IOMUXC_SW_PAD_CTL_PAD_GPIO_1);
+    /* Configure GPIO1_1 as an output high */
+    gpio_dir_config(GPIO_PORT1, 1, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT1, 1, 1);
+}
 
 void debug_uart_iomux(void)
 {

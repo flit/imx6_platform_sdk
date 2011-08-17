@@ -153,6 +153,12 @@ enum disp_dev_flag {
     HDMI_1080P60,
 };
 
+typedef struct ips_node {
+    void *pointer;
+    struct ips_node *prev;
+    struct ips_node *next;
+} ips_node_t;
+
 typedef struct {
     ips_comp_type_e type;
     uint32_t pixel_index;
@@ -198,9 +204,14 @@ typedef struct {
 typedef struct {
     uint32_t data_pol;          // Polarity of data bus
     uint32_t enable_pol;        // Polarity of data enable signal (DRDY)
-    uint32_t h_sync_pol;        // Polarity of HSYNC pulse
+    uint32_t hsync_pol;         // Polarity of HSYNC pulse
     uint32_t v_to_h_sync;       // Offset of VSYNC to HSYNC(in pixels)
-    uint32_t v_sync_pol;        // Polarity of VSYNC pulse
+    uint32_t vsync_pol;         // Polarity of VSYNC pulse
+    uint32_t hw_if;             //to which display interface
+    uint32_t hsync_pin;
+    uint32_t vsync_pin;
+    uint32_t drdy_pin;
+    uint32_t ext_pclk;
 } ips_display_if_t;
 
 /*display device structure*/
@@ -210,10 +221,10 @@ typedef struct {
     uint32_t disp_clock_freq;
     uint32_t ext_hsync_en;
     uint32_t ext_vsync_en;
-    uint32_t total_frame_height;
+    uint32_t frame_height;
     uint32_t active_window_left_offset;
     uint32_t active_window_top_offset;
-    uint32_t total_frame_width;
+    uint32_t frame_width;
     uint32_t h_active_end;
     uint32_t h_active_start;
     uint32_t h_sync_width;
@@ -240,6 +251,8 @@ typedef struct {
     uint32_t stride_line_addr_2;
     uint32_t stride_line_addr_3;
     uint32_t layer_id;
+    void *in_ims;
+    void *out_ims;
     ips_mem_buffer_addr_t *buffer;
     ips_image_stream_t *(*create_ims) (int);
 } ips_dev_memory_t;
@@ -267,13 +280,10 @@ typedef struct {
     uint32_t interlaced;
     uint32_t clk_sel;
     uint32_t clk_pol;
-    uint32_t hsync_sel;
     uint32_t hsync_pol;
-    uint32_t vsync_sel;
     uint32_t vsync_pol;
     uint32_t drdy_pol;
     uint32_t data_pol;
-    uint32_t extern_vsync;
     int (*panel_init) (int);
     int (*panel_deinit) (int);
 } ips_dev_panel_t;
@@ -309,41 +319,33 @@ typedef struct {
     char *devname;
     uint32_t parent_flow_id;
     ips_dev_type_e devtype;
-    uint32_t numsrcpads;
-    ips_pad_t *srcpads;
-    uint32_t numsinkpads;
-    ips_pad_t *sinkpads;
+    ips_node_t *srcpadlist;     //a list to maintain the pad members
+    ips_node_t *sinkpadlist;    //a list to maintain the pad members
     void *devattr;              //point to the structure of one specified device
 } ips_device_t;
 
 #define OFFSETOF(type, member) ((size_t)&((type *)0)->member)
 
-typedef struct ips_dev_chain_s {
-    ips_device_t *node;
-    struct ips_dev_chain_s *next;
-} ips_dev_chain_t;
-
 #define MAX_BUFF_NUM 4
 #define MAX_LAYER_NUM 4
 
-struct ips_hw_conf_layer {
+struct ips_hw_conf_mem_layer {
     uint32_t colorimetry;
     uint32_t width;
     uint32_t height;
     uint32_t buffer_num;
     uint32_t buffer_addr[MAX_BUFF_NUM];
     uint32_t curr_buf;
-    uint32_t global_alpha;
-    uint32_t alphabufaddr;      //currently only support one local alpha buffer
     uint32_t interlaced;
 };
 
 /*now only consider the dual layer*/
 struct ips_hw_conf_input {
-    struct ips_hw_conf_layer layer[MAX_LAYER_NUM];
+    uint32_t layer_num;
+    struct ips_hw_conf_mem_layer layer[MAX_LAYER_NUM];
 };
 
-struct ips_hw_conf_output {
+typedef struct {
     uint32_t colorimetry;
     uint32_t refresh_rate;
     uint32_t width;
@@ -358,6 +360,7 @@ struct ips_hw_conf_output {
     uint32_t delay_h2v;
     uint32_t interlaced;
     uint32_t clk_pol;
+    uint32_t clk_src;
     uint32_t hsync_sel;
     uint32_t hsync_pol;
     uint32_t vsync_sel;
@@ -365,22 +368,34 @@ struct ips_hw_conf_output {
     uint32_t drdy_pol;
     uint32_t data_pol;
     uint32_t extern_vsync;
+    uint32_t di;
+} ips_output_disp_t;
+
+typedef union ips_hw_conf_output {
+    ips_output_disp_t disp;
+    struct ips_hw_conf_mem_layer mem;
+};
+
+enum flow_type {
+    MEM_TO_MEM,
+    MEM_TO_DISPLAY,
 };
 
 typedef struct {
+    uint32_t flow_type;
     struct ips_hw_conf_input input;
-    struct ips_hw_conf_output output;
+    union ips_hw_conf_output output;
 } ips_hw_conf_struct_t;
 
 typedef struct {
     char *flow_name;
     uint32_t flow_id;
     uint32_t flow_status;
-    ips_dev_chain_t *head;
-    ips_dev_chain_t *tail;
+    ips_node_t *head;
     ips_hw_conf_struct_t *conf_data;
 } ips_flow_t;
 
 extern uint32_t ipu_hw_instance[];
 extern ips_dev_panel_t disp_dev_list[];
+extern uint32_t num_of_panels;
 #endif

@@ -14,22 +14,25 @@
 #include <string.h>
 #include "ipu_common.h"
 #include "hardware.h"
+
+extern inline int need_csc(int i, int o);
+
 /*!
  * DC submodule configuration.
  * DC submodule is to control the data, and tranfer them to display.
  * So DC channel #5 is selected to link DMFC(from IDMAC channel #23) and DI0 display port #3.
  */
-void dc_config(int ipu_index)
+void ipu_dc_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
-    dc_channel_config(ipu_index);
-    dc_event_routines(ipu_index);
+    dc_channel_config(ipu_index, conf);
+    dc_event_routines(ipu_index, conf);
 }
 
 /*!
  * this function is to config the DC channel to link IDMAC channel #23 
  * and DI display port. Here we choose display #3.
  */
-void dc_event_routines(int ipu_index)
+void dc_event_routines(int ipu_index, ips_hw_conf_struct_t * conf)
 {
     microcode_config(ipu_index, 6,  //word address
                      1,         //stop
@@ -44,24 +47,25 @@ void dc_event_routines(int ipu_index)
     microcode_event(ipu_index, "5", "NEW_DATA", 1, 6);
 
     /*config DC map for data, RGB 666 mode */
+    switch (conf->output.disp.colorimetry) {
+    case DCMAP_RGB666:
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_16__MD_OFFSET_2, 17);
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_16__MD_MASK_2, 0xFC);
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_OFFSET_1, 11);
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_MASK_1, 0xFC);
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_OFFSET_0, 5);
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_MASK_0, 0xFC);
 
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_16__MD_OFFSET_2, 17);
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_16__MD_MASK_2, 0xFC);
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_OFFSET_1, 11);
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_MASK_1, 0xFC);
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_OFFSET_0, 5);
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_15__MD_MASK_0, 0xFC);
-
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_0__MAPPING_PNTR_BYTE2_0, 2);
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_0__MAPPING_PNTR_BYTE1_0, 1);
-    ipu_write_field(ipu_index, IPU_DC_MAP_CONF_0__MAPPING_PNTR_BYTE0_0, 0);
-
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_0__MAPPING_PNTR_BYTE2_0, 2);
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_0__MAPPING_PNTR_BYTE1_0, 1);
+        ipu_write_field(ipu_index, IPU_DC_MAP_CONF_0__MAPPING_PNTR_BYTE0_0, 0);
+    }
 }
 
 /*!
  * config the DC channel properties.
  */
-void dc_channel_config(int ipu_index)
+void dc_channel_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
     /*configure DC channel #5 for channel 23, sync type and link to display port 3 */
     ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__PROG_START_TIME_5, 0);  //ANTITEARING START TIME
@@ -69,10 +73,13 @@ void dc_channel_config(int ipu_index)
     ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__PROG_CHAN_TYP_5, 4);    //Normal mode without anti-tearing
     ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__PROG_DISP_ID_5, 3); //select display 3
 
-    ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__PROG_DI_ID_5, 0);   //channel associated to DI1
+    if (conf->output.disp.di == 0)
+        ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__PROG_DI_ID_5, 0);   //channel associated to DI0
+    else
+        ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__PROG_DI_ID_5, 1);   //channel associated to DI1
 
     ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__W_SIZE_5, 2);   //Component size access to DC set to 24bit
-    ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__FIELD_MODE_5, 0);   //field mode enable
+    ipu_write_field(ipu_index, IPU_DC_WR_CH_CONF_5__FIELD_MODE_5, conf->output.disp.interlaced);    //field mode enable
 
     ipu_write_field(ipu_index, IPU_DC_WR_CH_ADDR_5__ST_ADDR_5, 0);  //START ADDRESS OF CHANNEL
 
@@ -85,7 +92,7 @@ void dc_channel_config(int ipu_index)
     /*Display port Configuration for DI0 */
     ipu_write_field(ipu_index, IPU_DC_DISP_CONF1_3__ADDR_INCREMENT_3, 0);   //automatical address increase by 1
     ipu_write_field(ipu_index, IPU_DC_DISP_CONF1_3__DISP_TYP_3, 2); //paralell display without byte enable
-    ipu_write_field(ipu_index, IPU_DC_DISP_CONF2_3__SL_3, 1024 - 1);    //stride line
+    ipu_write_field(ipu_index, IPU_DC_DISP_CONF2_3__SL_3, conf->output.disp.width - 1); //stride line
 }
 
 void microcode_config(int ipu_index, int word, int stop, char opcode[10],
@@ -701,7 +708,7 @@ void ipu_dp_fg_config(int ipu_index, dp_fg_param_t foreground_params)
  * @param	ipu_index: ipu index
  * @param 	cscEn: 	enable or disable the CSC module
  */
-void dp_config(int ipu_index, int cscen, int cscmode)
+void ipu_dp_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
     dp_fg_param_t dpFGParam = { 0 };
     dp_csc_param_t dpCSCParam = { 0 };
@@ -745,12 +752,14 @@ void dp_config(int ipu_index, int cscen, int cscmode)
     10	CSC enable before combining on BG channel
     11	CSC enable before combining on FG channel
     *******************************************/
-    dpCSCParam.mode = cscen;
-
-    if (cscmode = RGB2YUV) {
-        dpCSCParam.coeff = rgb2ycbcr_coeff;
-    } else if (cscmode = YUV2RGB) {
-        dpCSCParam.coeff = ycbcr2rgb_coeff;
+    if (need_csc(conf->input.layer[0].colorimetry, conf->output.disp.colorimetry)) {
+        dpCSCParam.mode = 2;
+        if (conf->input.layer[0].colorimetry == INTERLEAVED_RGB)
+            dpCSCParam.coeff = rgb2ycbcr_coeff;
+        else
+            dpCSCParam.coeff = ycbcr2rgb_coeff;
+    } else {
+        dpCSCParam.mode = 0;
     }
 
     ipu_dp_csc_config(ipu_index, 0, dpCSCParam);

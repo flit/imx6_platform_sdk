@@ -1674,7 +1674,7 @@ void reset_usb_hub(void)
             temp |= (0x1 << 20);
             writel(temp, (GPIO5_BASE_ADDR + GPIO_DR0_OFFSET));  // set GPIO5_20 high
         } else {
-            /* for SBRTH_SMD, use GPIO3_14 to reset the USB_HUB */
+            /* for the SMD, use GPIO3_14 to reset the USB_HUB */
             uint32_t temp;
             /* set GPIO3_14 to low, this is the reset to the HUBs */
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_EIM_DA14);    //force input path, ALT1 as GPIO3_14

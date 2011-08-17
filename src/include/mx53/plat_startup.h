@@ -11,6 +11,7 @@
  *
  * @ingroup diag_init
  */
+
 #ifndef _PLAT_STARTUP_H_
 #define _PLAT_STARTUP_H_
 
@@ -611,7 +612,7 @@ plugin_start:
     b read_sdk
 #endif
 
-#if defined (MX53_SBRTH_LCB) || defined (MX53_SBRTH_SMD) || (defined (MX53_ARD) && defined (BOARD_VERSION2))
+#if defined (MX53_LCB) || defined (MX53_SMD) || (defined (MX53_ARD) && defined (BOARD_VERSION2))
     // Sabretooth init
     ldr r0, =0x53fa8500
     mov r1, #0x00300000

@@ -38,7 +38,7 @@ static void mx61_print_ver(void)
     }
 
     if (BOARD_TYPE_ID == BOARD_ID_MX61_ARD)
-        sprintf(board_name, "Sabre Auto");
+        sprintf(board_name, "SABRE Auto");
     else if (BOARD_TYPE_ID == BOARD_ID_MX61_SMD)
         sprintf(board_name, "SABRE Tablet");
     else
@@ -63,7 +63,6 @@ static void mx61_print_ver(void)
 void platform_init(void)
 {
     uint8_t c;
-    int temp, display = 0;
 
     // prog_pll();   NEEDS TO BE UPDATED FOR MX6qd
     freq_populate();
@@ -94,9 +93,8 @@ void platform_init(void)
     show_ddr_config();
 }
 
+extern void sdma_test(void);
 void ALL_test(void)
 {
-
     sdma_test();
-
 }

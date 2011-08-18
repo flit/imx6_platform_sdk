@@ -13,9 +13,7 @@
 
 #include "hardware.h"
 #include "time.h"
-#include "functions.h"
 
-extern void enable_interrupt(int, int);
 static volatile int clock_counter;
 
 /* Return the current clock value */
@@ -114,7 +112,7 @@ void epit2_periodic_interrupt(unsigned int interval)
     }
 
     val = readl(EPIT2_BASE_ADDR + EPITCR);
-    enable_interrupt(IMX_INT_EPIT2, 0);
-    capture_interrupt(IMX_INT_EPIT2, epit2_isr, 0);
+    enable_interrupt(IMX_INT_EPIT2, CPU_1, 0);
+    register_interrupt_routine(IMX_INT_EPIT2, epit2_isr);
     writel(val | 0x1, EPIT2_BASE_ADDR + EPITCR);
 }

@@ -7,14 +7,15 @@
 
 /*!
  * @file hardware.h
- * @brief   header file with chip defines to be included by all the tests/utils
+ * @brief header file with chip defines to be included by all the tests/utils
  *
  * @ingroup diag_init
  */
 
-#ifndef HARDWARE_H_
-#define HARDWARE_H_
+#ifndef __HARDWARE_H__
+#define __HARDWARE_H__
 #include "soc_memory_map.h"
+#include "functions.h"
 #include "io.h"
 #include "iomux_define.h"
 #include "iomux_register.h"
@@ -61,8 +62,18 @@
 #define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #define ADV7180_I2C_ID      (0x42 >> 1)
 
-#define MAX7310_I2C_BASE    I2C3_BASE_ADDR
-#define MAX7310_I2C_ID      (0x30 >> 1)
+// MAX7310 I2C settings
+/* For the ARD board which has 1 MAX7310 */
+#define MAX7310_NBR 1
+/* Number 0 controls: BACKLITE_ON, SAT_SHUTDN_B, CPU_PER_RST_B, MAIN_PER_RST_B,
+   IPOD_RST_B, MLB_RST_B, SSI_STEERING, GPS_RST_B.
+*/
+#define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
+#define MAX7310_I2C_ID0     (0x30 >> 1)
+#define MAX7310_ID0_DEF_DIR      0x0    // init direction for the I/O
+#define MAX7310_ID0_DEF_VAL      0xC    // init value for the output
+/* create an array of I2C requests for all used expanders on the board */
+struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define MMA8450_I2C_ID      0x1C
 #define MMA8451_I2C_ID      0x1C
@@ -170,56 +181,29 @@ void clock_setup(uint32_t core_clk, uint32_t ahb_div);
 void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
+uint32_t get_freq(uint32_t module_base);
 void show_ddr_config(void);
 void board_init(void);
 void reset_usb_hub(void);
 void usb_clock_enable(void);
-void hal_delay_us(unsigned int);
+void hal_delay_us(uint32_t);
 void imx_fec_setup(void);
 void esai_iomux(void);
+int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir);
+int32_t gpio_read_data(int32_t port, int32_t pin);
+int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr);
 
 struct hw_module debug_uart;
 
-extern int board_id;
-extern int board_rev;
-extern int spi_nor_test_enable;
-extern int pmic_mc13892_test_enable;
+extern void platform_init(void);
+extern int32_t board_id;
+extern int32_t board_rev;
+extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
 extern imx_spi_init_func_t spi_init_flash;
 extern imx_spi_xfer_func_t spi_xfer_flash;
 extern struct imx_spi_dev imx_spi_nor;
-extern int fec_test_enable;
-extern int lan9220_test_enable;
-extern int ds90ur124_test_enable;
-extern int lt3589_i2c_device_id_test_enable;
-extern int adv7180_test_enable;
-extern int si476x_test_enable;
-extern int esai_test_enable;
-extern int weim_norflash_test_enable;
-extern int max7310_i2c_device_id_test_enable;
-extern int sata_test_enable;
-extern int nand_test_enable;
-extern int usbh_ulpi_phy_read_test_enable;
-extern uint32_t usbh_ulpi_phy_read_test_base;
-extern int usbh_dev_enum_test_enable;
-extern uint32_t usbh_dev_enum_test_base;
-extern int usbh_hub251x_test_enable;
-extern uint32_t usbh_hub251x_test_base;
-extern int i2s_audio_output_test_enable;
-extern int gps_test_enable;
-extern int gpio_keyboard_test_enable;
-extern int smbus_test_enable;
-extern int camera_test_enable;
-extern int touch_screen_test_enable;
-extern int ipu_display_test_enable;
-extern int ipu_display_panel[];
-extern int ddr_test_enable;
+extern int32_t ipu_display_panel[];
 extern uint32_t ddr_density, ddr_num_of_cs;
-extern int mlb_os81050_test_enable;
-extern int i2c_device_id_check_DA9053_test_enable;
-extern int i2c_device_id_check_mag3112_test_enable;
-extern int i2c_device_id_check_isl29023_test_enable;
-extern int i2c_device_id_check_mma8451_test_enable;
-extern int mmcsd_test_enable;
 extern uint32_t mmcsd_bus_width, mmc_sd_base_address;
 extern void gpio_backlight_lvds_en(void);
 //extern uint32_t AT45DB321D;
@@ -241,6 +225,8 @@ extern void gpio_backlight_lvds_en(void);
 #define BOARD_VERSION_3	0x1
 #define BOARD_VERSION_4	0x2
 #define BOARD_VERSION_5	0x1
+
+typedef uint32_t (*pmic_mc13892_reg_t) (uint32_t reg, uint32_t val, uint32_t write);
 
 #define PMIC_MC13892_I2C_BASE       I2C2_BASE_ADDR
 #define PMIC_LT3589_I2C_BASE        I2C2_BASE_ADDR
@@ -266,4 +252,4 @@ extern void gpio_backlight_lvds_en(void);
 #error Need to define a board type
 #endif
 
-#endif /*HARDWARE_H_ */
+#endif /* __HARDWARE_H__ */

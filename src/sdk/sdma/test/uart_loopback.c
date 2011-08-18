@@ -94,7 +94,7 @@ static void uart_loopback_init(struct hw_module *port, unsigned int baudrate)
     uart_set_FIFO_mode(port, RX_FIFO, RX_FIFO_WATERMARK_LEVEL, DMA_MODE);
 
     /* Enable loopback mode */
-    set_loopback_mode(port, true);
+    uart_set_loopback_mode(port, ENABLE);
 
     return;
 }
@@ -375,7 +375,6 @@ int uart_shp_test(void)
 }
 
 unsigned int trans_done = FALSE;
-extern void enable_interrupt(int index);
 
 void uart5_trans_isr(unsigned int channel)
 {

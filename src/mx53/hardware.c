@@ -13,10 +13,6 @@
  */
 #include <math.h>
 #include "hardware.h"
-#include "functions.h"
-#include "imx_spi.h"
-#include "imx_i2c.h"
-#include "imx_sata.h"
 
 extern void AUDMUXRoute(int intPort, int extPort, int Master);  // defined in ssi.c driver
 extern void init_clock(uint32_t rate);
@@ -70,6 +66,7 @@ struct fixed_pll_mfd {
     uint32_t ref_clk_hz;
     uint32_t mfd;
 };
+
 const struct fixed_pll_mfd fixed_mfd[REF_IN_CLK_NUM] = {
     {0, 0},                     // reserved
     {0, 0},                     // reserved
@@ -1815,7 +1812,9 @@ void board_init(void)
     writel(val, 0x53FA8000 + 0x4);
     // Configure peripherals reset through io expander
     if (BOARD_ID_MX53_ARD == BOARD_TYPE_ID) {
-        max7310_init();
+        max7310_i2c_req_array[0].ctl_addr = MAX7310_I2C_BASE_ID0;   // the I2C controller base address
+        max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
+        max7310_init(0, MAX7310_ID0_DEF_DIR, MAX7310_ID0_DEF_VAL);
     }
     if (BOARD_ID_MX53_SMD == BOARD_TYPE_ID) {
         /* Assert dcdc1v8_en */

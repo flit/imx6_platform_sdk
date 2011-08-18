@@ -35,7 +35,8 @@ int main(void)
 
     platform_init();
 
-    //init_interrupts();
+    // please keep this for i.MX53 and need to check what is needed here for i.MX61
+    init_interrupts();
 
     SDK_TEST();
 

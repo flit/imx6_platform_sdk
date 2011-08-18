@@ -69,7 +69,6 @@ plugin_start:
 
 #ifdef MX61_ARD
     /*Use default DDR frequency: 528MHz*/
-    /*The parameters are base on the init scirpt at http://compass.freescale.net/livelink/livelink/223026455/Arik_init_DDR3_528MHz_002.inc.txt?func=doc.Fetch&nodeid=223026455*/
     ldr r0, =0x020c4068
     ldr r1, =0xffffffff
     str r1, [r0]

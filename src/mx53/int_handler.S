@@ -53,7 +53,7 @@ proc_interrupt:
 	mov		r4, r1, lsl r4
 	str		r4, [r3] /*clear the interrupt source*/
 	mov 	r2, r2, lsl #2 /*a function pointer occupy 4 bytes*/
-	ldr  	r0, =interrupt_routine_list
+	ldr  	r0, =g_interrupt_handlers
 	ldr		r0, [r0, r2] /*set the routine address to r0*/
 	ldr		r1, =default_interrupt_routine
 	cmp 	r1, r0

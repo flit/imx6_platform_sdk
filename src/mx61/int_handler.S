@@ -36,7 +36,7 @@ IRQ_HDLR:
     stmfd   sp!, {r3}       // Save original ICCIAR value
 
     lsl     r2,r0,#2
-    ldr     lr,=interrupt_handlers
+    ldr     lr,=g_interrupt_handlers
     ldr     r2,[lr,r2]
     mov     lr,pc
     bx      r2              // Jump to Interrupt Service Routine

@@ -38,6 +38,17 @@ struct hw_module ddr = {
     MMDC_P0_BASE_ADDR,
 };
 
+// The i.MX61 has 2 instances of the EPIT.
+uint32_t EPIT_base_address[] = {
+    EPIT1_BASE_ADDR,
+    EPIT2_BASE_ADDR
+};
+
+uint32_t EPIT_irq_src[] = {
+    IMX_INT_EPIT1,
+    IMX_INT_EPIT2
+};
+
 struct hw_module *mx61_module[] = {
     &core,
     &ddr,
@@ -53,17 +64,6 @@ unsigned int mx61_gpio[] = {
     GPIO5_BASE_ADDR,
     GPIO6_BASE_ADDR,
     GPIO7_BASE_ADDR
-};
-
-// The i.MX61 has 2 instances of the EPIT.
-uint32_t EPIT_base_address[] = {
-    EPIT1_BASE_ADDR,
-    EPIT2_BASE_ADDR
-};
-
-uint32_t EPIT_irq_src[] = {
-    IMX_INT_EPIT1,
-    IMX_INT_EPIT2
 };
 
 #define REF_IN_CLK_NUM  4
@@ -221,7 +221,6 @@ uint32_t get_freq(uint32_t module_base)
 void freq_populate(void)
 {
     int i;
-    volatile unsigned int temp;
     struct hw_module *tmp;
     //ETHNET
     reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);    /*power down bit */
@@ -555,7 +554,7 @@ void ipu_iomux_config(void)
 /*!
  * Provide the LVDS power through GPIO pins
  */
-void lvds_power_on()
+void lvds_power_on(void)
 {
     /*3.3V power supply through the load switch FDC6331L */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
@@ -569,7 +568,8 @@ void lvds_power_on()
 
 void ldb_iomux_config(void)
 {
- /*NA*/}
+ /*NA*/
+}
 
 void debug_uart_iomux(void)
 {
@@ -594,8 +594,6 @@ void debug_uart_iomux(void)
  */
 void board_init(void)
 {
-    unsigned int val = 0;
-
     init_clock(32768);
     /* set up debug UART iomux */
     debug_uart_iomux();

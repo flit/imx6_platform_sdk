@@ -24,33 +24,6 @@
 int last_char_read;
 int backspace_called;
 
-/* to re-define these functions, they need to be undefined first */
-#undef putchar
-#undef getchar
-
-/*!
- * Put a char to a serial port
- *
- * @param	ch	char to send
- * @return  sent char if sucessful
- */
-int putchar(int ch)
-{
-    uint8_t tempch = (uint8_t) ch;
-
-    return (int)uart_putchar(&debug_uart, &tempch);
-}
-
-/*!
- * Get a char from a serial port
- *
- * @return  the char received through serial port or error
- */
-int getchar(void)
-{
-    return (int)uart_getchar(&debug_uart);
-}
-
 /* Warning : following function should put a char to a file !!!!! */
 /*!
  * Put a char to a serial port

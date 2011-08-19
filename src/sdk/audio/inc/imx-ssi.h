@@ -14,6 +14,8 @@
 #ifndef _IMX_SSI_H_
 #define _IMX_SSI_H_
 
+#include "audio.h"
+
 #define SSI_STX0_OFFSET   		0x00
 #define SSI_STX1_OFFSET   		0x04
 #define SSI_SRX0_OFFSET   		0x08
@@ -259,16 +261,8 @@ typedef struct {
 #define SSI_CMD_START_REC	2
 #define SSI_CMD_STOP_REC	3
 
-struct imx_ssi_priv {
-    bool network_mode;
-    bool sync_mode;
-    unsigned long baseaddr;
-    unsigned int int_port;      //internal port number of AUDMUX
-    unsigned int ext_port;      //external port number of AUDMUX
-    unsigned int ac97_tx_slots; //Will be used for AC97 mode only
-    unsigned int ac97_rx_slots;
-    int irq;
-    int sdma_ch;                //Will be used for SDMA
-};
+extern audio_ctrl_t	imx_ssi_1;
+extern audio_ctrl_t	imx_ssi_2;
+extern audio_ctrl_t	imx_ssi_3;
 
 #endif

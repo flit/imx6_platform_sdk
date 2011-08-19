@@ -13,8 +13,10 @@
 
 #include <stdio.h>
 #include "io.h"
+#include "hardware.h"
 #include "soc_memory_map.h"
 #include "../inc/imx-ssi.h"
+#include "../inc/audio.h"
 
 #define SSI_DEBUG_ENABLE	1
 #if SSI_DEBUG_ENABLE
@@ -31,11 +33,11 @@
  * @return  false if failed
  *	    true if succeed
  */
-bool ssi_dump(struct hw_module * module)
+static int ssi_dump(audio_ctrl_p ctrl)
 {
-    volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
-    printf("=================%s dump==================\n", module->name);
+    printf("=================%s dump==================\n", ctrl->name);
     printf("SCR    : 0x%08x\n", ssi->scr);
     printf("SISR   : 0x%08x\n", ssi->sisr);
     printf("SIER   : 0x%08x\n", ssi->sier);
@@ -56,7 +58,7 @@ bool ssi_dump(struct hw_module * module)
     printf("SACCEN : 0x%08x\n", ssi->saccen);
     printf("SACCDIS: 0x%08x\n", ssi->saccdis);
 
-    return true;
+    return 0;
 }
 
 /*!
@@ -66,9 +68,10 @@ bool ssi_dump(struct hw_module * module)
  *
  * @return  reference freq in hz
  */
-static uint32_t ssi_get_freq(struct hw_module *module)
+static uint32_t ssi_get_freq(audio_ctrl_p ctrl)
 {
-    return module->freq;
+	//TODO
+    return 0;
 }
 
 /*!
@@ -81,13 +84,13 @@ static uint32_t ssi_get_freq(struct hw_module *module)
  * @return  false if failed
  *	    true if succeed
  */
-static bool ssi_soft_reset(struct hw_module *module)
+static int ssi_soft_reset(audio_ctrl_p ctrl)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     ssi->scr &= ~SSI_SCR_SSIEN;
 
-    return true;
+    return 0;
 }
 
 /*!
@@ -99,19 +102,19 @@ static bool ssi_soft_reset(struct hw_module *module)
  * @return  false if failed
  *	    true if succeed
 */
-static bool ssi_set_sysclk(struct hw_module *module, bool is_out)
+static int ssi_set_sysclk(audio_ctrl_p ctrl, bool is_out)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (ssi->scr & SSI_SCR_SSIEN)
-        return false;
+        return -1;
 
     if (is_out)
         ssi->scr |= SSI_SCR_SYS_CLK_EN;
     else
         ssi->scr &= ~SSI_SCR_SYS_CLK_EN;
 
-    return true;
+    return 0;
 }
 
 /*!
@@ -121,9 +124,9 @@ static bool ssi_set_sysclk(struct hw_module *module, bool is_out)
  *
  * @return  
  */
-static bool ssi_shutdown_clk(struct hw_module *module, uint32_t clk_id)
+static int ssi_shutdown_clk(audio_ctrl_p ctrl, uint32_t clk_id)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     //TODO 
     switch (clk_id) {
@@ -134,7 +137,7 @@ static bool ssi_shutdown_clk(struct hw_module *module, uint32_t clk_id)
     default:
         break;
     }
-    return true;
+    return 0;
 }
 
 /*!
@@ -147,12 +150,12 @@ static bool ssi_shutdown_clk(struct hw_module *module, uint32_t clk_id)
  * @return  false if failed
  *	    true if succeed
  */
-static bool ssi_set_clkdiv(struct hw_module *module, uint32_t div_id, uint32_t div)
+static int ssi_set_clkdiv(audio_ctrl_p ctrl, uint32_t div_id, uint32_t div)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (ssi->scr & SSI_SCR_SSIEN)
-        return false;
+        return -1;
 
     switch (div_id) {
     case IMX_SSI_TX_DIV_2:
@@ -180,10 +183,10 @@ static bool ssi_set_clkdiv(struct hw_module *module, uint32_t div_id, uint32_t d
         ssi->srccr |= SSI_SRCCR_PM(div);
         break;
     default:
-        return false;
+        return -1;
     }
 
-    return true;
+    return 0;
 }
 
 /*!
@@ -198,13 +201,13 @@ static bool ssi_set_clkdiv(struct hw_module *module, uint32_t div_id, uint32_t d
  * @return  false if failed
  *	    true if succeed
  */
-static bool ssi_set_tdm_slot(struct hw_module *module,
+static int ssi_set_tdm_slot(audio_ctrl_p ctrl,
                              unsigned int tx_mask, unsigned int rx_mask, int slots, int slot_width)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (ssi->scr & SSI_SCR_SSIEN)
-        return false;
+        return -1;
 
     ssi->stmsk = tx_mask;
     ssi->srmsk = rx_mask;
@@ -214,7 +217,7 @@ static bool ssi_set_tdm_slot(struct hw_module *module,
     ssi->srccr &= ~SSI_SRCCR_DC_MASK;
     ssi->stccr |= SSI_SRCCR_DC(slots - 1);
 
-    return true;
+    return 0;
 }
 
 /*!
@@ -226,12 +229,12 @@ static bool ssi_set_tdm_slot(struct hw_module *module,
  * @return  false if failed
  *	    true if succeed
 */
-static bool ssi_set_fmt(struct hw_module *module, uint32_t fmt)
+static int ssi_set_fmt(audio_ctrl_p ctrl, uint32_t fmt)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (ssi->scr & SSI_SCR_SSIEN)
-        return false;
+        return -1;
 
     switch (fmt & SSI_FMT_FORMAT_MASK) {
     case SSI_FMT_FORMAT_NORMAL:
@@ -245,7 +248,7 @@ static bool ssi_set_fmt(struct hw_module *module, uint32_t fmt)
         ssi->srcr |= SSI_SRCR_RFSI | SSI_SRCR_REFS | SSI_SRCR_RXBIT0;
         break;
     default:
-        return false;
+        return -2;
     }
 
     switch (fmt & SSI_FMT_INV_MASK) {
@@ -270,7 +273,7 @@ static bool ssi_set_fmt(struct hw_module *module, uint32_t fmt)
         ssi->srcr |= SSI_SRCR_RFSI | SSI_SRCR_RSCKP;
         break;
     default:
-        return false;
+        return -3;
     }
 
     switch (fmt & SSI_FMT_MASTER_MASK) {
@@ -289,7 +292,7 @@ static bool ssi_set_fmt(struct hw_module *module, uint32_t fmt)
         }
         break;
     default:
-        return false;
+        return -4;
     }
 
     switch (fmt & SSI_FMT_SYNC_MASK) {
@@ -301,18 +304,18 @@ static bool ssi_set_fmt(struct hw_module *module, uint32_t fmt)
         break;
 
     default:
-        return false;
+        return -5;
     }
 
-    return true;
+    return 0;
 }
 
-static bool ssi_hw_tx_params(struct hw_module *module, uint32_t wl, bool two_ch_enable)
+static int ssi_hw_tx_params(audio_ctrl_p ctrl, uint32_t wl, bool two_ch_enable)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (ssi->scr & SSI_SCR_SSIEN)
-        return false;
+        return -1;
 
     ssi->stccr &= ~SSI_STCCR_WL_MASK;
     ssi->stccr |= SSI_STCCR_WL(wl);
@@ -323,15 +326,15 @@ static bool ssi_hw_tx_params(struct hw_module *module, uint32_t wl, bool two_ch_
     if (two_ch_enable)
         ssi->stcr |= SSI_STCR_TFEN1;
 
-    return true;
+    return 0;
 }
 
-static bool ssi_hw_rx_params(struct hw_module *module, uint32_t wl, bool two_ch_enable)
+static int ssi_hw_rx_params(audio_ctrl_p ctrl, uint32_t wl, bool two_ch_enable)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (ssi->scr & SSI_SCR_SSIEN)
-        return false;
+        return -1;
 
     ssi->srccr &= ~SSI_SRCCR_WL_MASK;
     ssi->srccr |= SSI_SRCCR_WL(wl);
@@ -342,7 +345,7 @@ static bool ssi_hw_rx_params(struct hw_module *module, uint32_t wl, bool two_ch_
     if (two_ch_enable)
         ssi->srcr |= SSI_SRCR_RFEN1;
 
-    return true;
+    return 0;
 }
 
 ////////////////////////////////////API functions////////////////////////////////////////
@@ -352,9 +355,9 @@ static bool ssi_hw_rx_params(struct hw_module *module, uint32_t wl, bool two_ch_
  *	2> Do the prepare work, such as IOMUX, AUDMUC, ccm clk, external osc, etc
  * 	3> Init data struct the SSI needed.
  */
-bool ssi_init()
+int ssi_init(audio_ctrl_p ctrl)
 {
-    return true;
+    return 0;
 }
 
 /*!
@@ -362,29 +365,29 @@ bool ssi_init()
  *	1> Disable the ssi, clk-off the tx and tfs clk
  *	2> Gate off ccm clk for ssi.	
  */
-bool ssi_deinit()
+int ssi_deinit(audio_ctrl_p ctrl)
 {
-    return true;
+    return 0;
 }
 
-bool ssi_prepare(struct hw_module * module)
+int ssi_config(audio_ctrl_p ctrl)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (ssi->scr & SSI_SCR_SSIEN)
-        return false;
+        return -1;
 
     ssi->scr |= SSI_SCR_SSIEN;
 
-    return true;
+    return 0;
 }
 
-bool ssi_trigger(struct hw_module * module, uint32_t cmd)
+int ssi_ioctl(audio_ctrl_p ctrl, uint32_t cmd)
 {
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (!(ssi->scr & SSI_SCR_SSIEN))
-        return false;
+        return -1;
 
     switch (cmd) {
     case SSI_CMD_START_PLAY:
@@ -403,7 +406,7 @@ bool ssi_trigger(struct hw_module * module, uint32_t cmd)
         break;
     }
 
-    return true;
+    return 0;
 }
 
 /*!
@@ -414,12 +417,12 @@ bool ssi_trigger(struct hw_module * module, uint32_t cmd)
  *	    size 	size of the buf
  * @return  
  */
-bool ssi_output(struct hw_module * module, uint8_t * buf, uint32_t size)
+int ssi_write_fifo(audio_ctrl_p ctrl, uint8_t * buf, uint32_t byte2write, uint32_t byte_written)
 {
     //TODO 
     uint32_t wl = 0;
     uint32_t i = 0;
-    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (module->base);
+    imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
     if (!(ssi->scr & SSI_SCR_SSIEN) || !(ssi->scr & SSI_SCR_TE))
         return false;
@@ -434,10 +437,34 @@ bool ssi_output(struct hw_module * module, uint8_t * buf, uint32_t size)
 
     }
 #endif
-    for (; i < size; i += 2) {
+    for (; i < byte2write; i += 2) {
         while (((ssi->sfcsr & 0xF00) >> 8) < 0x0E) ;
         ssi->stx0 = *((uint16_t *) (buf + i));
     }
 
     return true;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////
+static audio_dev_ops_t ssi_ops = {
+	.init = ssi_init,
+	.deinit = ssi_deinit,
+	.config = ssi_config,
+	.ioctl = ssi_ioctl,
+};
+
+audio_ctrl_t imx_ssi_1 = {
+	.name = "imx SSI audio controller 1",
+	.base_addr = SSI1_BASE_ADDR,
+	.ops = &ssi_ops,
+};
+audio_ctrl_t imx_ssi_2 = {
+	.name = "imx SSI audio controller 2",
+	.base_addr = SSI2_BASE_ADDR,
+	.ops = &ssi_ops,
+};
+audio_ctrl_t imx_ssi_3 = {
+	.name = "imx SSI audio controller 3",
+	.base_addr = SSI3_BASE_ADDR,
+	.ops = &ssi_ops,
+};

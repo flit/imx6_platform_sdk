@@ -589,6 +589,8 @@ void debug_uart_iomux(void)
     }
 }
 
+void SGTL5000PowerUp_and_clockinit(void) {}
+
 /*!
  * Board initialization and UART IOMUX set up
  */

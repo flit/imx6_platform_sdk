@@ -19,6 +19,8 @@
 #ifndef __INTERRUPT_H__
 #define __INTERRUPT_H__
 
+/* The list of interrupts ID can be found into src/include/mx??/soc_memory_map.h */
+
 #define ATTACH_INTERRUPT(index,routine) ( g_interrupt_handlers[index] = routine )
 
 #define CPU_0   0

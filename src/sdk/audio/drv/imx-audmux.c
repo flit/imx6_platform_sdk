@@ -11,9 +11,26 @@
  *
  */
 
+#include <stdio.h>
 #include "io.h"
 #include "soc_memory_map.h"
 #include "../inc/imx-audmux.h"
+
+bool audmux_dump(void)
+{
+    uint32_t idx;
+    uint32_t pPTCR, pPDCR;
+
+    printf("=======================AUDMUX dump===================\n");
+    for (idx = AUDMUX_PORT_INDEX_MIN; idx < AUDMUX_PORT_INDEX_MAX; idx++) {
+        pPTCR = AUDMUX_BASE_ADDR + AUDMUX_PTCR_OFFSET(idx);
+        pPDCR = AUDMUX_BASE_ADDR + AUDMUX_PDCR_OFFSET(idx);
+        printf("PTCR%d: 0x%x\n", idx, readl(pPTCR));
+        printf("PDCR%d: 0x%x\n", idx, readl(pPDCR));
+    }
+
+    return true;
+}
 
 bool audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
 {
@@ -63,7 +80,7 @@ bool audmux_route(uint32_t intPort, uint32_t extPort, bool is_master)
                CSP_BITFVAL(AUDMUX_PTCR_SYN, AUDMUX_PTCR_SYN_SYNC), pPTCR);
     } else {
         // All clock signals for the internal port are all output signals for
-        // PMIC master mode. The source of the clock signals is the external
+        //  slave mode. The source of the clock signals is the external
         // port that is connected to the PMIC.
         writel(CSP_BITFVAL(AUDMUX_PTCR_TFSDIR, AUDMUX_PTCR_TFSDIR_OUTPUT) |
                CSP_BITFVAL(AUDMUX_PTCR_TFSEL, extPort - 1) |

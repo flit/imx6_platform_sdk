@@ -73,10 +73,10 @@ void platform_init(void)
     board_init();
 
     /* Initialize the debug/console UART */
-    uart_init(&debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
+    uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
     /* flush UART RX FIFO */
     do {
-        c = uart_getchar(&debug_uart);
+        c = uart_getchar(&g_debug_uart);
     } while (c != NONE_CHAR);
 
     mx61_print_ver();

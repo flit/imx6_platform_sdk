@@ -6,7 +6,6 @@
 */
 
 #include "hardware.h"
-#include "iim_fuse.h"
 
 #define IIM_ERR_SHIFT       8
 #define POLL_FUSE_PRGD      (IIM_STAT_PRGD | (IIM_ERR_PRGE << IIM_ERR_SHIFT))
@@ -27,7 +26,7 @@ static void fuse_op_start(void)
  * or:
  *          POLL_FUSE_SNSD
  */
-static int poll_fuse_op_done(int action)
+static uint32_t poll_fuse_op_done(uint32_t action)
 {
     uint32_t status, error;
 
@@ -58,9 +57,9 @@ static int poll_fuse_op_done(int action)
     return TEST_FAILED;
 }
 
-unsigned int sense_fuse(int bank, int row)
+uint32_t sense_fuse(uint32_t bank, uint32_t row)
 {
-    int addr, addr_l, addr_h, reg_addr;
+    uint32_t addr, addr_l, addr_h, reg_addr;
 
     fuse_op_start();
 
@@ -84,9 +83,9 @@ unsigned int sense_fuse(int bank, int row)
     return readl(reg_addr);
 }
 
-static int fuse_blow_bit(int bank, int row, int bit)
+static uint32_t fuse_blow_bit(uint32_t bank, uint32_t row, uint32_t bit)
 {
-    int addr, addr_l, addr_h, ret = -1;
+    uint32_t addr, addr_l, addr_h, ret = -1;
 
     fuse_op_start();
 
@@ -116,9 +115,9 @@ static int fuse_blow_bit(int bank, int row, int bit)
     return ret;
 }
 
-void fuse_blow_row(int bank, int row, unsigned int value)
+void fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value)
 {
-    unsigned int i;
+    uint32_t i;
 
     for (i = 0; i < 8; i++) {
         if (((value >> i) & 0x1) == 0) {

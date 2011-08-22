@@ -36,7 +36,7 @@ int fputc(int ch, FILE * f)
 {
     uint8_t tempch = (uint8_t) ch;
 
-    return (int)uart_putchar(&debug_uart, &tempch);
+    return (int)uart_putchar(&g_debug_uart, &tempch);
 }
 
 /* Warning : following function should get a char from a file !!!!! */
@@ -56,7 +56,7 @@ int fgetc(FILE * f)
         return last_char_read;
     }
 
-    ch = uart_getchar(&debug_uart);
+    ch = uart_getchar(&g_debug_uart);
     last_char_read = (int)ch;   /* backspace must return this value */
     return ch;
 }
@@ -71,7 +71,7 @@ void _ttywrch(int ch)
     if (ch == '\n')
         ch = '\r';
 
-    uart_putchar(&debug_uart, &ch);
+    uart_putchar(&g_debug_uart, &ch);
 
     return ch;
 }
@@ -214,7 +214,7 @@ void mybkpt(void)
  * @return  0   if input char doesn't match with c
  *          non-zero otherwise
  */
-int is_input_char(uint8_t c)
+int32_t is_input_char(uint8_t c)
 {
     uint8_t input, lc, uc;
 
@@ -230,7 +230,7 @@ int is_input_char(uint8_t c)
     }
     printf("Please enter %c or %c to confirm\n", lc, uc);
     do {
-        input = uart_getchar(&debug_uart);
+        input = uart_getchar(&g_debug_uart);
     } while (input == NONE_CHAR);
     printf("input char is: %c\n", input);
 

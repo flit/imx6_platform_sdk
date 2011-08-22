@@ -171,20 +171,20 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define SATA_TRANSFER_BUFFER_BASE 0x0090c000
 // input CKIL clock
 #define __CLK_TCK   32768
-#define FREQ_24MHZ               24000000
-#define CKIH                            22579200
+#define FREQ_24MHZ  24000000
+#define CKIH        22579200
 
 // I2C specific defines
 // For LTC Board ID
 #define BOARD_ID_I2C_BASE I2C2_BASE_ADDR
 
 // register defines for the SRTC function of the SNVS
-#define SRTC_LPSCMR         (SNVS_BASE_ADDR + 0x50)
-#define SRTC_LPSCLR         (SNVS_BASE_ADDR + 0x54)
-#define SRTC_LPCR           (SNVS_BASE_ADDR + 0x38)
-#define SRTC_HPSCMR          (SNVS_BASE_ADDR + 0x24)
-#define SRTC_HPSCLR          (SNVS_BASE_ADDR + 0x28)
-#define SRTC_HPCR           (SNVS_BASE_ADDR + 0x08)
+#define SRTC_LPSCMR     (SNVS_BASE_ADDR + 0x50)
+#define SRTC_LPSCLR     (SNVS_BASE_ADDR + 0x54)
+#define SRTC_LPCR       (SNVS_BASE_ADDR + 0x38)
+#define SRTC_HPSCMR     (SNVS_BASE_ADDR + 0x24)
+#define SRTC_HPSCLR     (SNVS_BASE_ADDR + 0x28)
+#define SRTC_HPCR       (SNVS_BASE_ADDR + 0x08)
 
 extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
 /* SPI-NOR defines */
@@ -250,6 +250,7 @@ void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
 uint32_t get_freq(uint32_t module_base);
+uint32_t GetCPUFreq(void);
 void show_ddr_config(void);
 void board_init(void);
 void reset_usb_hub(void);
@@ -259,7 +260,7 @@ void esai_iomux(void);
 void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
 
-struct hw_module debug_uart;
+struct hw_module g_debug_uart;
 
 extern void hal_delay_us(uint32_t);
 extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
@@ -274,8 +275,10 @@ extern struct imx_spi_dev imx_spi_nor;
 extern int32_t ipu_display_panel[];
 extern uint32_t ddr_density, ddr_num_of_cs;
 extern void gpio_backlight_lvds_en(void);
-//extern uint32_t AT45DB321D;
-//extern uint32_t M25P32;
+extern void StartPerfCounter(void);
+extern uint32_t StopPerfCounter(void);
+extern int32_t is_input_char(uint8_t);
+extern void fuse_blow_row(uint32_t, uint32_t, uint32_t);
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

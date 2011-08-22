@@ -130,15 +130,10 @@ void max7310_set_gpio_output(uint32_t slave_id, uint32_t io_x, uint32_t level)
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-int32_t g_max7310_i2c_device_id_test_enable;
 static int32_t max7310_i2c_device_id_check(void)
 {
     uint32_t i, data;
     int32_t ret = -1, ret_all = 0;
-
-    if (!g_max7310_i2c_device_id_test_enable) {
-        return TEST_NOTPRESENT;
-    }
 
     for (i = 0; i < MAX7310_NBR; i++) {
         max7310_i2c_req = &max7310_i2c_req_array[i];

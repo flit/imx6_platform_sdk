@@ -27,8 +27,8 @@ struct hw_module core = {
     0,
 };
 
-// UART4 is the debug_uart port
-struct hw_module debug_uart = {
+// UART4 is the serial debug/console port
+struct hw_module g_debug_uart = {
     "UART4 for debug",
     UART4_BASE_ADDR,
 };
@@ -52,7 +52,7 @@ uint32_t EPIT_irq_src[] = {
 struct hw_module *mx61_module[] = {
     &core,
     &ddr,
-    &debug_uart,
+    &g_debug_uart,
     NULL,
 };
 
@@ -608,7 +608,7 @@ void board_init(void)
     max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
 }
 
-int GetCPUFreq(void)
+uint32_t GetCPUFreq(void)
 {
     return 1000000000;
 }

@@ -129,8 +129,6 @@ static int validate_buffer_descriptor(sdma_bd_p bdp, unsigned int *num_bd)
     return FALSE;
 }
 
-typedef void (*sdma_channel_isr) (unsigned int);
-
 static void sdma_channel_default_isr(unsigned int channel)
 {
     printf("Channel%d interupt.\n", channel);
@@ -535,8 +533,6 @@ void sdma_setup_interrupt(void)
     }
 
     enable_interrupt(IMX_INT_SDMA, CPU_0, 0);
-
-    return SDMA_RETV_SUCCESS;
 }
 
 /*! 

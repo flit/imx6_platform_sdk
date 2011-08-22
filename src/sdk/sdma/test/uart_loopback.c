@@ -62,19 +62,21 @@ static void ccm_clock_gates_on(void)
     *(volatile int *)(CCM_BASE_ADDR + 0x68 + 0x1C) = 0xFFFFFFFF;
 }
 
-// UART1 port
-static struct hw_module uart1_sdma_test = {
-    "UART1 for SDMA test",
-    UART1_BASE_ADDR,
-    UART_REF_FREQ,
-};
-
+#ifdef MX53
 // UART3 port
 static struct hw_module uart3_sdma_test = {
     "UART3 for SDMA test",
     UART3_BASE_ADDR,
     UART_REF_FREQ,
 };
+#else
+// UART1 port
+static struct hw_module uart1_sdma_test = {
+    "UART1 for SDMA test",
+    UART1_BASE_ADDR,
+    UART_REF_FREQ,
+};
+#endif /* MX53 */
 
 // UART5 port
 static struct hw_module uart5_sdma_test = {
@@ -339,7 +341,7 @@ int uart_shp_test(void)
 #ifdef MX53
     uart_loopback_init(&uart3_sdma_test, 115200);
 #else
-    uart_loopback_init(&uart5_sdma_test, 115200);
+    uart_loopback_init(&uart1_sdma_test, 115200);
 #endif
     /* Wait channels stop */
     unsigned int status;

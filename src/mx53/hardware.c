@@ -29,8 +29,8 @@ struct hw_module core = {
     0,
 };
 
-// UART1 is the debug_uart port
-struct hw_module debug_uart = {
+// UART1 is the serial debug/console port
+struct hw_module g_debug_uart = {
     "UART1 for debug",
     UART1_BASE_ADDR,
 };
@@ -43,7 +43,7 @@ struct hw_module ddr = {
 struct hw_module *mx53_module[] = {
     &core,
     &ddr,
-    &debug_uart,
+    &g_debug_uart,
     NULL,
 };
 
@@ -665,6 +665,23 @@ void show_ddr_config(void)
     printf("==================================\n\n");
 }
 
+/*! Enable or disable the SPI NOR on ARD only
+ *   Note, ARD SPI NOR signals are mux'd with WEIM data bus
+ *   Hence, the SPI NOR needs to be disabled (tri-stated) or enabled
+ *   depending on desired usage.
+ *
+ * @param   en_dis enable or disable spi nor by setting GPIo control to low or high
+ */
+void ard_spi_nor_control(uint32_t en_dis)
+{
+    // set DI0_PIN2 mux control for GPIO4_18 usage
+    writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2);
+    // configure GPIO4_18 as output
+    gpio_dir_config(4, 18, GPIO_GDIR_OUTPUT);   // port=4, pin=18, dir=output
+    // write GPIO4_18 as low (enable spi nor) or high (disable spi nor)
+    gpio_write_data(4, 18, en_dis); // port=4, pin=18, en_dis (low or high)
+}
+
 /*!
   * Set up the IOMUX for SPI
   */
@@ -674,7 +691,7 @@ void io_cfg_spi(struct imx_spi_dev *dev)
     case ECSPI1_BASE_ADDR:
 
         if (BOARD_TYPE_ID == BOARD_ID_MX53_ARD) {
-            ard_spi_nor_control_(0);    // by setting to 0, this enables the spi nor
+            ard_spi_nor_control(0);    // by setting to 0, this enables the spi nor
         }
         // MOSI
         writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_EIM_D18);
@@ -2185,7 +2202,7 @@ void hdmi_power_on(void)
     }
 }
 
-int GetCPUFreq(void)
+uint32_t GetCPUFreq(void)
 {
     return 800000000;
 }

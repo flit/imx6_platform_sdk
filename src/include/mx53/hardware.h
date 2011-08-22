@@ -109,8 +109,8 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define SATA_TRANSFER_BUFFER_BASE 0xF8002000
 // input CKIL clock
 #define __CLK_TCK   32768
-#define FREQ_24MHZ               24000000
-#define CKIH                            22579200
+#define FREQ_24MHZ  24000000
+#define CKIH        22579200
 
 // SRTC defines
 #define SRTC_LPSCMR         (SRTC_BASE_ADDR + 0x00)
@@ -182,6 +182,7 @@ void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
 uint32_t get_freq(uint32_t module_base);
+uint32_t GetCPUFreq(void);
 void show_ddr_config(void);
 void board_init(void);
 void reset_usb_hub(void);
@@ -193,7 +194,7 @@ int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir);
 int32_t gpio_read_data(int32_t port, int32_t pin);
 int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr);
 
-struct hw_module debug_uart;
+struct hw_module g_debug_uart;
 
 extern void platform_init(void);
 extern int32_t board_id;
@@ -206,8 +207,9 @@ extern int32_t ipu_display_panel[];
 extern uint32_t ddr_density, ddr_num_of_cs;
 extern uint32_t mmcsd_bus_width, mmc_sd_base_address;
 extern void gpio_backlight_lvds_en(void);
-//extern uint32_t AT45DB321D;
-//extern uint32_t M25P32;
+extern void StartPerfCounter(void);
+extern uint32_t StopPerfCounter(void);
+extern int32_t is_input_char(uint8_t c);
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

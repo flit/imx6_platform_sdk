@@ -27,7 +27,7 @@ typedef struct {
     unsigned int target_platform;
     sdma_script_map_t script_maps[SDMA_SCRIPT_MAX_NUM];
     unsigned int ram_code_size;
-    unsigned short *ram_code;
+    const short *ram_code;
 } sdma_script_info_t, *sdma_script_info_p;
 
 #endif

@@ -12,6 +12,7 @@
  * @ingroup diag_util
  */
 
+#include <sys/stat.h>
 #include <stdio.h>
 #include <time.h>
 #include "hardware.h"
@@ -24,7 +25,6 @@
 int last_char_read;
 int backspace_called;
 
-/* Warning : following function should put a char to a file !!!!! */
 /*!
  * Put a char to a serial port
  *
@@ -39,7 +39,6 @@ int fputc(int ch, FILE * f)
     return (int)uart_putchar(&g_debug_uart, &tempch);
 }
 
-/* Warning : following function should get a char from a file !!!!! */
 /*!
  * Get a char from a serial port
  * @param	f	no use
@@ -58,7 +57,7 @@ int fgetc(FILE * f)
 
     ch = uart_getchar(&g_debug_uart);
     last_char_read = (int)ch;   /* backspace must return this value */
-    return ch;
+    return last_char_read;
 }
 
 /*!
@@ -67,13 +66,13 @@ int fgetc(FILE * f)
  */
 void _ttywrch(int ch)
 {
+    uint8_t tempch = ch;
+
     /* Replace line feed with '\r' */
-    if (ch == '\n')
-        ch = '\r';
+    if (tempch == '\n')
+        tempch = '\r';
 
-    uart_putchar(&g_debug_uart, &ch);
-
-    return ch;
+    uart_putchar(&g_debug_uart, &tempch);
 }
 
 /*!
@@ -177,10 +176,10 @@ int _write(int fd, char *buf, int nbytes)
 
     for (i = 0; i < nbytes; i++) {
         if (*(buf + i) == '\n') {
-            fputc('\r', NULL);
+            fputc('\r', (FILE *) &fd);
         }
 
-        fputc(*(buf + i), NULL);
+        fputc(*(buf + i), (FILE *) &fd);
     }
 
     return nbytes;

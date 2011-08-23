@@ -32,7 +32,7 @@ ifeq "$(BOARD)" "evk"
 C_DEFINES +=-DMX53_EVK
 endif
 ifeq "$(BOARD)" "ard"
-C_DEFINES+ =-DMX53_ARD
+C_DEFINES +=-DMX53_ARD
 endif
 ifeq "$(BOARD)" "cpu2"
 C_DEFINES +=-DMX53_CPU2

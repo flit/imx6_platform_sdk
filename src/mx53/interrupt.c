@@ -22,9 +22,9 @@
 #define NUM_OF_INTERRUPTS 128
 
 irq_hdlr_t g_interrupt_handlers[NUM_OF_INTERRUPTS];
+extern irq_hdlr_t IRQ_HDLR;
 
 /**************************** Functions ***************************************/
-
 
 void clear_all_interrupts(void)
 {
@@ -67,7 +67,7 @@ void setup_interrupts_in_RAM(void)
     writel(0x0, 0xf801ffe8);
     writel(0x0, 0xf801ffec);
     writel(0x0, 0xf801fff0);
-    writel((uint32_t)(&IRQ_HDLR), 0xf801fff4);
+    writel((uint32_t) (&IRQ_HDLR), 0xf801fff4);
     writel(0x0, 0xf801fff8);
     writel(0x0, 0xf801fffc);
 }

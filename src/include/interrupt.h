@@ -31,7 +31,6 @@
 extern void (*g_interrupt_handlers[]) (void);
 
 typedef void (*irq_hdlr_t) (void);
-extern irq_hdlr_t IRQ_HDLR;
 
 void disable_interrupt(uint32_t irq_id, uint32_t cpu_num);
 void enable_interrupt(uint32_t irq_id, uint32_t cpu_num, uint32_t priority);

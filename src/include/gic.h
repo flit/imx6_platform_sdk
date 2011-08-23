@@ -22,6 +22,7 @@ void disable_irq_id(uint32_t irq_id);
 void set_irq_priority(uint32_t irq_id, uint32_t priority);
 void enable_interrupt_target_cpu(uint32_t irq_id, uint32_t target_cpu);
 void disable_interrupt_target_cpu(uint32_t irq_id, uint32_t target_cpu);
+void send_sgi(uint32_t irq_id, uint32_t target_cpu, uint32_t filter);
 
 // GIC CPU Interface Functions
 void enable_gic_processor_interface(void);

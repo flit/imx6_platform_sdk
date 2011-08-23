@@ -81,7 +81,7 @@ startup_imx6x:
 primary_cpu_init:
     @@  set-up exception vectors, update ISR jump addresses    
     ldr		r0, =IRQ_MEM_ADDR
-    ldr		r1, =C_IRQ_Handler
+    ldr		r1, =IRQ_HDLR
     str		r1, [r0]
    
     @bl enable_scu

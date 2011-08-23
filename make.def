@@ -49,6 +49,7 @@ ifeq "$(TARGET)" "mx61"
 C_DEFINES +=-DMX61
 CPU	=cortex-a9
 INIT_FILE += $(PROJ_DIR)/src/cortex_a9/gic.s $(PROJ_DIR)/src/$(TARGET)/startup.s
+INIT_FILE += $(PROJ_DIR)/src/cortex_a9/cortexA9.s
 ifeq "$(BOARD)" "ard"
 C_DEFINES +=-DMX61_ARD
 endif

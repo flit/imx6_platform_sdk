@@ -31,6 +31,18 @@ struct hw_module core = {
 struct hw_module g_debug_uart = {
     "UART4 for debug",
     UART4_BASE_ADDR,
+    27000000,
+    IMX_INT_UART4,
+    &default_interrupt_routine,
+};
+
+/* EPIT1 used for time functions */
+struct hw_module g_system_timer = {
+    "EPIT1 used as system timer",
+    EPIT1_BASE_ADDR,
+    27000000,
+    IMX_INT_EPIT1,
+    &default_interrupt_routine,
 };
 
 struct hw_module ddr = {
@@ -38,21 +50,11 @@ struct hw_module ddr = {
     MMDC_P0_BASE_ADDR,
 };
 
-// The i.MX61 has 2 instances of the EPIT.
-uint32_t EPIT_base_address[] = {
-    EPIT1_BASE_ADDR,
-    EPIT2_BASE_ADDR
-};
-
-uint32_t EPIT_irq_src[] = {
-    IMX_INT_EPIT1,
-    IMX_INT_EPIT2
-};
-
 struct hw_module *mx61_module[] = {
     &core,
     &ddr,
     &g_debug_uart,
+    &g_system_timer,
     NULL,
 };
 
@@ -194,7 +196,7 @@ int gpio_read_data(int port, int pin)
 /*!
  * Retrieve the freq info based on the passed in module_base.
  * @param   module_base     the base address of the module
- * @return  frequency in hz (0 means not a valid module)
+ * @return  frequency in Hz (0 means not a valid module)
  */
 uint32_t get_freq(uint32_t module_base)
 {
@@ -204,8 +206,11 @@ uint32_t get_freq(uint32_t module_base)
     else if (module_base == MMDC_P0_BASE_ADDR)
         //return get_main_clock(DDR_CLK);
         return 400000000;
-    else if (module_base == UART4_BASE_ADDR)
+    else if (module_base == g_debug_uart.base)
         //return get_peri_clock(UART4_BAUD);
+        return 80000000;
+    else if (module_base == g_system_timer.base)
+        //return get_peri_clock(EPIT1_CLK);
         return 80000000;
     else {
         printf("Not a valid module base \n");
@@ -596,7 +601,6 @@ void SGTL5000PowerUp_and_clockinit(void) {}
  */
 void board_init(void)
 {
-    init_clock(32768);
     /* set up debug UART iomux */
     debug_uart_iomux();
     // Configure some board signals through I/O expanders

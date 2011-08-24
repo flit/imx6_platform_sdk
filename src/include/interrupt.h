@@ -35,6 +35,7 @@ typedef void (*irq_hdlr_t) (void);
 void disable_interrupt(uint32_t irq_id, uint32_t cpu_num);
 void enable_interrupt(uint32_t irq_id, uint32_t cpu_num, uint32_t priority);
 void register_interrupt_routine(uint32_t irq_id, irq_hdlr_t isr);
+void default_interrupt_routine(void);
 
 void enableALL_interrupts_non_secure(void);
 

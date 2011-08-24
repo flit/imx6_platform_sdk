@@ -60,7 +60,7 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
  * Receive a character on the UART port
  *
  * @return  a character received from the UART port; if the rx FIFO
- *          is empty or errors are detected, it returns 0xFF
+ *          is empty or errors are detected, it returns NONE_CHAR
  */
 uint8_t uart_getchar(struct hw_module * port)
 {
@@ -69,13 +69,13 @@ uint8_t uart_getchar(struct hw_module * port)
 
     /* If Rx FIFO has no data ready */
     if (!(puart->usr2 & UART_USR2_RDR))
-        return 0xFF;
+        return NONE_CHAR;
 
     read_data = puart->urxd[0];
 
     /* If error are detected */
     if (read_data & 0x7C00)
-        return 0xFF;
+        return NONE_CHAR;
 
     return (uint8_t) read_data;
 }
@@ -134,10 +134,6 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
     else
         puart->uts &= ~UART_UTS_LOOP;
 }
-
-
-
-
 
 /*! 
  * Setup UART interrupt. It enables or disables the related HW module

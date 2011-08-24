@@ -9,4 +9,4 @@
 #include "hardware.h"
 
 void uart_interrupt_handler(void);
-int uart_test(void);
+int32_t uart_test(void);

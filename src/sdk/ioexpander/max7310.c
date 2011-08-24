@@ -24,8 +24,6 @@
  */
 static struct imx_i2c_request *max7310_i2c_req;
 
-extern void hal_delay_us(uint32_t);
-
 #define input_port_reg  0x00
 #define output_port_reg 0x01
 #define polarity_reg    0x02

@@ -33,6 +33,18 @@ struct hw_module core = {
 struct hw_module g_debug_uart = {
     "UART1 for debug",
     UART1_BASE_ADDR,
+    27000000,
+    IMX_INT_UART1,
+    &default_interrupt_routine,
+};
+
+/* EPIT1 used for system time functions */
+struct hw_module g_system_timer = {
+    "EPIT1 used as system timer",
+    EPIT1_BASE_ADDR,
+    27000000,
+    IMX_INT_EPIT1,
+    &default_interrupt_routine,
 };
 
 struct hw_module ddr = {
@@ -44,6 +56,7 @@ struct hw_module *mx53_module[] = {
     &core,
     &ddr,
     &g_debug_uart,
+    &g_system_timer,
     NULL,
 };
 
@@ -427,7 +440,8 @@ uint32_t get_main_clock(enum main_clocks clk)
  */
 uint32_t get_peri_clock(enum peri_clocks clk)
 {
-    uint32_t ret_val = 0, pdf, pre_pdf, clk_sel;
+    uint32_t ret_val = 0, pdf, pre_pdf, pre_pdf1, clk_sel;
+    uint32_t cbcdr  = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
     uint32_t cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
     uint32_t cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
     uint32_t cscdr2 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR2);
@@ -451,7 +465,6 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = get_lp_apm() / ((pre_pdf + 1) * (pdf + 1));
         }
-
         break;
     case SSI1_BAUD:
         pre_pdf = (cs1cdr >> 6) & 0x7;
@@ -467,7 +480,6 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = CKIH / ((pre_pdf + 1) * (pdf + 1));
         }
-
         break;
     case SSI2_BAUD:
         pre_pdf = (cs2cdr >> 6) & 0x7;
@@ -483,7 +495,6 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = CKIH / ((pre_pdf + 1) * (pdf + 1));
         }
-
         break;
     case SPI1_CLK:
     case SPI2_CLK:
@@ -500,7 +511,14 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = get_lp_apm() / ((pre_pdf + 1) * (pdf + 1));
         }
+        break;
+    case EPIT1_CLK:
+    case EPIT2_CLK:
+        pre_pdf1 = (cbcdr >> 6) & 0x3;
+        pre_pdf = (cbcdr >> 3) & 0x7;
+        pdf = cbcdr & 0x7;
 
+        ret_val = get_lp_apm() / ((pre_pdf1 + 1) * (pre_pdf + 1) * (pdf + 1));
         break;
     default:
         printf("%s(): This clock: %d not supported yet \n", __FUNCTION__, clk);
@@ -521,8 +539,10 @@ uint32_t get_freq(uint32_t module_base)
         return get_main_clock(CPU_CLK);
     else if (module_base == ESDCTL_REGISTERS_BASE_ADDR)
         return get_main_clock(DDR_CLK);
-    else if (module_base == UART1_BASE_ADDR)
+    else if (module_base == g_debug_uart.base)
         return get_peri_clock(UART1_BAUD);
+    else if (module_base == g_system_timer.base)
+        return get_peri_clock(EPIT1_CLK);
     else {
         printf("Not a valid module base \n");
         return 0;
@@ -1815,7 +1835,6 @@ void board_init(void)
 {
     unsigned int val = 0;
 
-    init_clock(32768);
     /* set up debug UART iomux */
     debug_uart_iomux();
     /* Set up on board PMIC and read device ID */

@@ -29,7 +29,7 @@ irq_hdlr_t g_interrupt_handlers[NUM_OF_INTERRUPTS];
 __attribute__ ((interrupt("IRQ")))
 void IRQ_HDLR(void)
 {
-    unsigned int vectNum;
+    uint32_t vectNum;
 
     vectNum = read_irq_ack();   // send ack, get ID source # 
     if (vectNum & 0x0200) {     // Check that INT_ID isn't 1023 or 1022 (spurious interrupt)
@@ -42,7 +42,7 @@ void IRQ_HDLR(void)
 
 void enableALL_interrupts_non_secure(void)
 {
-    int i;
+    uint32_t i;
     /* Configure all interrupts as non-secure */
     writel(0xffffffff, 0x00a01080 + 0x04);
     writel(0xffffffff, 0x00a01080 + 0x08);
@@ -80,6 +80,14 @@ void enable_interrupt(uint32_t irq_id, uint32_t cpu_num, uint32_t priority)
 void register_interrupt_routine(uint32_t irq_id, irq_hdlr_t isr)
 {
     g_interrupt_handlers[irq_id] = isr;
+}
+
+void default_interrupt_routine(void)
+{
+    uint32_t int_num;
+
+    int_num = reg32_read(ICCIAR) & 0x3ff;
+    printf("Interrupt %d has been asserted\n", int_num);
 }
 
 void init_interrupts(void)

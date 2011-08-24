@@ -80,17 +80,32 @@ static void mx53_print_ver(void)
 
 volatile int ard_cpu_only_test = 0;
 
+void delay_us(uint32_t usecs)
+{
+    uint32_t i;
+    for(i=0;i<usecs;i++);
+}
+
 void platform_init(void)
 {
     uint8_t c;
 
     prog_pll();
+    /* populate the freq member of the referenced hw_module in mx53_module */
     freq_populate();
+
     /*
      * Note, board type is determined at compile time such that the UART and
      * board can be initialized prior to burning fuses
      */
     board_init();
+
+    /* Initialize the EPIT timer used for system time functions */
+    /* typical PER_CLK is in MHz, so divide it to get a reference
+       clock of 1MHz => 1us per count */
+    epit_init(&g_system_timer, CLKSRC_PER_CLK, g_system_timer.freq/1000000,
+              SET_AND_FORGET, 1000, WAIT_MODE_EN | STOP_MODE_EN);
+    epit_enable(&g_system_timer);
 
     /* Initialize the debug/console UART */
     uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
@@ -108,5 +123,4 @@ void platform_init(void)
     board_id = BOARD_TYPE_ID;
     board_rev = BOARD_VERSION_ID;
 #endif
-
 }

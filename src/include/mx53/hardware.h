@@ -27,6 +27,8 @@
 #include "imx_uart.h"
 #include "imx_spi.h"
 #include "imx_sata.h"
+#include "epit.h"
+#include "time.h"
 
 // Defines needed for existing drivers - TODO: cleanup
 #define EPIT_BASE_ADDR      EPIT1_BASE_ADDR
@@ -108,7 +110,7 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define SATA_PROTOCOL_BUFFER_SIZE 0x1000
 #define SATA_TRANSFER_BUFFER_BASE 0xF8002000
 // input CKIL clock
-#define __CLK_TCK   32768
+#define CKIL        32768
 #define FREQ_24MHZ  24000000
 #define CKIH        22579200
 
@@ -151,6 +153,8 @@ enum peri_clocks {
     MSTICK2_CLK,
     SPI1_CLK = ECSPI1_BASE_ADDR,
     SPI2_CLK = ECSPI2_BASE_ADDR,
+    EPIT1_CLK,
+    EPIT2_CLK,
 };
 
 enum plls {
@@ -187,7 +191,6 @@ void show_ddr_config(void);
 void board_init(void);
 void reset_usb_hub(void);
 void usb_clock_enable(void);
-void hal_delay_us(uint32_t);
 void imx_fec_setup(void);
 void esai_iomux(void);
 int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir);
@@ -195,6 +198,7 @@ int32_t gpio_read_data(int32_t port, int32_t pin);
 int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr);
 
 struct hw_module g_debug_uart;
+struct hw_module g_system_timer;
 
 extern void platform_init(void);
 extern int32_t board_id;

@@ -43,7 +43,7 @@ void uart_interrupt_handler(void)
  *
  * @return  none
  */
-int uart_test(void)
+int32_t uart_test(void)
 {
     uint8_t sel;
 

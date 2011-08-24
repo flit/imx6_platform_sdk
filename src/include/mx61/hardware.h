@@ -29,6 +29,8 @@
 #include "imx_uart.h"
 #include "imx_spi.h"
 #include "imx_sata.h"
+#include "epit.h"
+#include "time.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -169,8 +171,9 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define SATA_PROTOCOL_BUFFER_BASE 0x0090a000
 #define SATA_PROTOCOL_BUFFER_SIZE 0x1000
 #define SATA_TRANSFER_BUFFER_BASE 0x0090c000
-// input CKIL clock
-#define __CLK_TCK   32768
+
+// input clocks
+#define CKIL        32768
 #define FREQ_24MHZ  24000000
 #define CKIH        22579200
 
@@ -219,6 +222,8 @@ enum peri_clocks {
     MSTICK2_CLK,
     SPI1_CLK = ECSPI1_BASE_ADDR,
     SPI2_CLK = ECSPI2_BASE_ADDR,
+    EPIT1_CLK,
+    EPIT2_CLK,
 };
 
 enum plls {
@@ -261,8 +266,8 @@ void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
 
 struct hw_module g_debug_uart;
+struct hw_module g_system_timer;
 
-extern void hal_delay_us(uint32_t);
 extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
 extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
 

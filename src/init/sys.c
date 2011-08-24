@@ -14,7 +14,6 @@
 
 #include <sys/stat.h>
 #include <stdio.h>
-#include <time.h>
 #include "hardware.h"
 
 /*!
@@ -176,9 +175,10 @@ int _write(int fd, char *buf, int nbytes)
 
     for (i = 0; i < nbytes; i++) {
         if (*(buf + i) == '\n') {
+            /* fd is incorrectly passed as arguments, as FILE is not used, but needed for build */
             fputc('\r', (FILE *) &fd);
         }
-
+        /* fd is incorrectly passed as arguments, as FILE is not used, but needed for build */
         fputc(*(buf + i), (FILE *) &fd);
     }
 

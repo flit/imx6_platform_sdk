@@ -37,14 +37,14 @@ void clear_all_interrupts(void)
 void default_interrupt_routine(void)
 {
     printf("Attention: No specified interrupt routine attached!\n");
-    printf("please use ATTACH_INTERRUPT to link the interrupt source.\n");
+    printf("please use register_interrupt_routine to link one to this interrupt source.\n");
     return;
 }
 
 void setup_interrupts_in_RAM(void)
 {
     /*attach all the interrupt routines to default one */
-    int index = 0;
+    uint32_t index = 0;
     for (index = 0; index < NUM_OF_INTERRUPTS; index++) {
         ATTACH_INTERRUPT(index, default_interrupt_routine);
     }

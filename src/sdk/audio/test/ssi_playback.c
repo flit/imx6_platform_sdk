@@ -1,54 +1,69 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
 
-/*!
- * @file ssi_playback.c
- * @brief SSI test example.
- *
- */
-
+#include <stdio.h>
 #include "io.h"
 #include "../inc/audio.h"
-#include "../inc/snd_card.h"
-#include "wav_data.data"
+#include "../inc/imx-ssi.h"
+#include "../inc/imx-audmux.h"
 
-int ssi_playback(void)
+extern audio_codec_t sgtl5000;
+extern audio_ctrl_t imx_ssi_2;
+audio_codec_p codec = &sgtl5000;
+audio_ctrl_p ctrl = &imx_ssi_2;
+
+void autio_test_init(void)
 {
+    audio_dev_para_t dev_para;
+
+    audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_5, AUDMUX_SSI_SLAVE);
+
+    dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
+    dev_para.bus_protocol = AUDIO_BUS_PROTOCOL_I2S;
+    dev_para.sample_rate = SAMPLERATE_48KHz;
+    dev_para.word_length = WL_16;
+    dev_para.trans_dir = AUDIO_TRANS_DIR_TX;
+
+    ctrl->ops->init(ctrl);
+    ctrl->ops->config(ctrl, &dev_para);
+
+    dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
+    dev_para.trans_dir = AUDIO_TRANS_DIR_RX;
+    codec->ops->init(codec);
+    codec->ops->config(codec, &dev_para);
+}
+
+int ssi_playback(audio_pcm_p pcm_file)
+{
+    char recvCh;
     int result;
     uint32_t bytes_written = 0;
-    uint8_t recvCh = 0;
 
-    while (1) {
-        printf("Please plug in headphones to the HEADPHONE OUT jack.\n");
-        do {
-            recvCh = (uint8_t) getchar();
-        }
-        while (recvCh == 0xFF);
+    printf("Please plug in headphones to the HEADPHONE OUT jack\n");
 
-        if ((recvCh == 'Y') || (recvCh == 'y'))
-            continue;
-        else
-            break;
+    if (!is_input_char('y')) {
+        printf("  skip AUDIO test \n");
+        return TEST_BYPASSED;
     }
 
-    audio_card_p card = &snd_card_ssi;
+    autio_test_init();
 
-    card->ops->init(card);
-
-    card->ops->config(card, NULL);
+    printf("Audio output: please ensure headphones are plugged in to hear \n");
+    printf("If you hear the sound, enter Y to exit. Or press any other key to try it again.\n");
 
     while (1) {
+        ctrl->ops->write(ctrl, pcm_file->buf, pcm_file->size, &bytes_written);
 
-        card->ops->write(card, (uint8_t *) wav_data, sizeof(wav_data), &bytes_written);
+        printf(" Do you need to re-hear it? (y/n)\n");
 
         do {
-            recvCh = (uint8_t) getchar();
+            recvCh = getchar();
         }
-        while (recvCh == 0xFF);
+        while (recvCh == (uint8_t) 0xFF);
 
         if ((recvCh == 'Y') || (recvCh == 'y'))
             continue;           /* hear again */
@@ -56,19 +71,23 @@ int ssi_playback(void)
             break;              /* by pass */
     }
 
-    printf(" Do you hear audio from headphone? (y/n)\n");
+    printf(" Do you hear audio from headphone?? (y/n)\n");
 
     do {
-        recvCh = (uint8_t) getchar();
+        recvCh = getchar();
     }
-    while (recvCh == 0xFF);
+    while (recvCh == (uint8_t) 0xFF);
 
     if ((recvCh == 'y') || (recvCh == 'Y'))
         result = 0;             /* If user types 'Y' or 'y' test passed */
     else
         result = -1;            /* Else test failed */
 
-    card->ops->deinit(card);
+    if (result == 0) {
+        return TEST_PASSED;
+    } else {
+        return TEST_FAILED;
+    }
 
     return result;
 }

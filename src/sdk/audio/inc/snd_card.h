@@ -14,4 +14,3 @@ extern audio_card_t snd_card_esai;
 extern audio_card_t snd_card_spdif;
 
 #endif //_SND_CARD_H_
-

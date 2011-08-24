@@ -16,7 +16,14 @@
 #include "soc_memory_map.h"
 #include "../inc/imx-audmux.h"
 
-bool audmux_dump(void)
+
+/*!
+ * Dump the registers of audmux
+ *
+ * @param   none
+ * @return  always 0 
+ */
+static uint32_t audmux_dump(void)
 {
     uint32_t idx;
     uint32_t pPTCR, pPDCR;
@@ -29,15 +36,24 @@ bool audmux_dump(void)
         printf("PDCR%d: 0x%x\n", idx, readl(pPDCR));
     }
 
-    return true;
+    return 0;
 }
 
-bool audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
+/*!
+ * Set ptcr and pdcr of the audmux port
+ *
+ * @param   port	the port to be set
+ * @param   ptcr	ptcr value to be set
+ * @param   pdcr	pdcr value to be set
+ * @return  0 if succeeded
+ *	    -1 if failed. 
+ */
+uint32_t audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
 {
     uint32_t pPTCR, pPDCR;
 
     if ((port < AUDMUX_PORT_INDEX_MIN) || (port > AUDMUX_PORT_INDEX_MAX)) {
-        return false;
+        return -1;
     }
 
     pPTCR = AUDMUX_BASE_ADDR + AUDMUX_PTCR_OFFSET(port);
@@ -46,16 +62,26 @@ bool audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
     writel(ptcr, pPTCR);
     writel(pdcr, pPDCR);
 
-    return true;
+    return 0;
 }
 
-bool audmux_route(uint32_t intPort, uint32_t extPort, bool is_master)
+/*!
+ * Set audmux port according the ssi mode(master/slave).
+ * we set the audumx ports in sync mode which is the default status for most codec.
+ * 
+ * @param   intPort	the internal port to be set
+ * @param   extPort	the external port to be set
+ * @param   is_master	ssi mode(master/slave)
+ * @return  0 if succeeded
+ *	    -1 if failed. 
+ */
+uint32_t audmux_route(uint32_t intPort, uint32_t extPort, uint32_t is_master)
 {
     uint32_t pPTCR, pPDCR;
 
     if ((intPort < AUDMUX_PORT_INDEX_MIN) || (intPort > AUDMUX_PORT_INDEX_MAX) ||
         (extPort < AUDMUX_PORT_INDEX_MIN) || (extPort > AUDMUX_PORT_INDEX_MAX)) {
-        return false;
+        return -1;
     }
     // Get pointers to the Audio MUX internal port registers.
     pPTCR = AUDMUX_BASE_ADDR + AUDMUX_PTCR_OFFSET(intPort);
@@ -72,7 +98,7 @@ bool audmux_route(uint32_t intPort, uint32_t extPort, bool is_master)
     // Note that we only configure the transmit framesync and bitclock here
     // because we are using synchronous mode and the receiver clock
     // settings will be determined by the transmitter settings.
-    if (is_master) {
+    if (AUDMUX_SSI_MASTER == is_master) {
         // All clock signals for the internal port are input signals for
         // SSI master mode.
         writel(CSP_BITFVAL(AUDMUX_PTCR_TFSDIR, AUDMUX_PTCR_TFSDIR_INPUT) |
@@ -104,7 +130,7 @@ bool audmux_route(uint32_t intPort, uint32_t extPort, bool is_master)
     // port for synchronous 4-wire operation in normal mode (which is what
     // we actually need to support the SSI and PMIC in either network or I2S
     // mode).
-    if (is_master) {
+    if (AUDMUX_SSI_MASTER == is_master) {
         // All clock signals for the external port are output signals for
         // SSI master mode. The source of the clock signals is the internal
         // port that is connected to the SSI.
@@ -125,5 +151,5 @@ bool audmux_route(uint32_t intPort, uint32_t extPort, bool is_master)
            CSP_BITFVAL(AUDMUX_PDCR_TXRXEN, AUDMUX_PDCR_TXRXEN_NO_SWAP) |
            CSP_BITFVAL(AUDMUX_PDCR_MODE, AUDMUX_PDCR_MODE_NORMAL), pPDCR);
 
-    return true;
+    return 0;
 }

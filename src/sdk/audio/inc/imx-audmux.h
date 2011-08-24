@@ -5,6 +5,11 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file imx-audmux.h
+ * @brief Macro and data struct definition for imx-audmux.
+ *
+ */
 #ifndef __AUDMUX_H__
 #define __AUDMUX_H__
 
@@ -169,13 +174,28 @@
 #define AUDMUX_PTCR_OFFSET(x)           ((x-1) * 8)
 #define AUDMUX_PDCR_OFFSET(x)           ((x-1) * 8 + 4)
 
-//////////////////////////////////Function declaration////////////////////////////////
+typedef enum {
+    AUDMUX_PORT_1 = 1,
+    AUDMUX_PORT_2,
+    AUDMUX_PORT_3,
+    AUDMUX_PORT_4,
+    AUDMUX_PORT_5,
+    AUDMUX_PORT_6,
+    AUDMUX_PORT_7,
+} audmux_port_e;
+
+typedef enum {
+    AUDMUX_SSI_SLAVE = 0,
+    AUDMUX_SSI_MASTER,
+} audmux_ssi_dir_e;
+
+//////////////////////////////////API functions declaration////////////////////////////////
 #if defined(__cplusplus)
 extern "C" {
 #endif                          // __cplusplus
 
-    bool audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr);
-    bool audmux_route(uint32_t intPort, uint32_t extPort, bool is_master);
+    uint32_t audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr);
+    uint32_t audmux_route(uint32_t intPort, uint32_t extPort, uint32_t is_master);
 
 #if defined(__cplusplus)
 }

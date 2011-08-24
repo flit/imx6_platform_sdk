@@ -12,8 +12,9 @@
  */
 
 #include "io.h"
+#include "../inc/audio.h"
 
-int esai_playback(void)
+int esai_playback(audio_pcm_p pcm_music)
 {
     printf("TODO\n");
 

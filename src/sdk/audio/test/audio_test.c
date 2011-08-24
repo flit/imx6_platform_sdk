@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
@@ -8,15 +7,30 @@
 
 #include <stdio.h>
 #include "io.h"
+#include "../inc/audio.h"
+#include "wav_data.data"
 
-extern int ssi_playback(void);
-extern int esai_playback(void);
-extern int spdif_playback(void);
+extern int ssi_playback(audio_pcm_p);
+extern int esai_playback(audio_pcm_p);
+extern int spdif_playback(audio_pcm_p);
 
 typedef struct {
     const char *name;
-    int (*test) (void);
+    int (*test) (audio_pcm_p);
 } audio_test_t;
+
+audio_pcm_para_t pcm_para = {
+    .sample_rate = SAMPLERATE_44_1KHz,
+    .channel_number = 2,
+    .word_length = WL_16,
+};
+
+audio_pcm_t pcm_music = {
+    .name = "some noise",
+    .para = &pcm_para,
+    .buf = (uint8_t *) wav_data,
+    .size = sizeof(wav_data),
+};
 
 static audio_test_t audio_tests[] = {
     {"SSI playback", ssi_playback},
@@ -50,7 +64,7 @@ int audio_test(void)
 
         if ((idx >= 0) && (idx < (sizeof(audio_tests) / sizeof(audio_test_t)))) {
             printf("\n");
-            retv = audio_tests[idx].test();
+            retv = audio_tests[idx].test(&pcm_music);
             if (retv == TRUE) {
                 printf("\n%s test PASSED.\n", audio_tests[idx].name);
             } else {

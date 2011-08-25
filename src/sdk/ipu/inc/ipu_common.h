@@ -5,8 +5,17 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file ipu_common.h
+ * @brief common macro and data structre defination of IPU.
+ * @ingroup diag_ipu
+ */
+
+#ifndef __IPU_COMMON_H__
+#define __IPU_COMMON_H__
 #include "ipu_reg_def.h"
 #include "ips.h"
+#include "ipu_def.h"
 
 #define CPMEM_WORD0_OFFSET	0x0
 #define CPMEM_WORD1_OFFSET	0x20
@@ -14,6 +23,11 @@
 enum {
     IDMAC_SINGLE_BUFFER = 0x0,
     IDMAC_DOUBLE_BUFFER = 0x1,
+};
+
+enum {
+    RGB,
+    YUV,
 };
 
 // DI counter definitions
@@ -166,6 +180,42 @@ typedef struct dc_microcode {
     int sync;
 } dc_microcode_t;
 
+enum dc_event {
+    NL,
+    NF,
+    NFIELD,
+    DCEOF,
+    EOFIELD,
+    EOL,
+    NEW_CHAN,
+    NEW_ADDR,
+    NEW_DATA,
+};
+
+enum dc_opcode {
+    HLG,
+    WRG,
+    HLOA,
+    WROA,
+    HLOD,
+    WROD,
+    HLOAR,
+    WROAR,
+    HLODR,
+    WRODR,
+    WRBC,
+    WCLK,
+    WSTSI,
+    WSTSII,
+    WSTSIII,
+    RD,
+    WACK,
+    MSK,
+    HMA,
+    HMA1,
+    BMA,
+};
+
 enum {
     CSI_TO_MEM_CH0 = 0,
     CSI_TO_MEM_CH1 = 1,
@@ -195,6 +245,91 @@ enum {
     IC_PP_ROT_TO_MEM_CH48 = 50,
 };
 
+enum ic_task_type {
+    PrP_ENC_TASK = 0,
+    PrP_VF_TASK,
+    PP_TASK,
+    IC_CMB,
+    IC_CSC1,
+    IC_CSC2,
+    IC_PP,
+    IC_PRPENC,
+    IC_PRPVF,
+};
+
+typedef struct ipu_res_info {
+    int taskType;
+    unsigned int inAddr0;
+    unsigned int inAddr1;
+    unsigned int outAddr0;
+    unsigned int outAddr1;
+    int inWidth;
+    int inHeight;
+    int outWidth;
+    int outHeight;
+    int xSplitParts;
+    int ySplitParts;
+    int stridelineIn;
+    int stridelineOut;
+    int uOffsetIn;
+    int uOffsetOut;
+    int vOffsetIn;
+    int vOffsetOut;
+    int inDataFormat;
+    int outDataFormat;
+} ipu_res_info_t;
+
+typedef struct ipu_rot_info {
+    int taskType;
+    unsigned int inAddr0;
+    unsigned int inAddr1;
+    unsigned int outAddr0;
+    unsigned int outAddr1;
+    int inWidth;
+    int inHeight;
+    int outWidth;
+    int outHeight;
+    int stridelineIn;
+    int stridelineOut;
+    int uOffsetIn;
+    int uOffsetOut;
+    int inDataFormat;
+    int outDataFormat;
+    int HorizFlip;
+    int VertFlip;
+    int rotation;
+} ipu_rot_info_t;
+typedef struct alpha_chan_params {
+    uint32_t alphaChanBaseAddr;
+    int alphaWidth;
+    int alphaHeight;
+    int alphaStrideline;
+} alpha_chan_params_t;
+
+typedef struct ic_comb_params {
+    int taskType;
+    uint32_t baseAddr;
+    int width;
+    int height;
+    int alpha;
+    int inDataformat;
+    alpha_chan_params_t alphaChan;
+} ic_comb_params_t;
+
+typedef struct ic_csc_params {
+    int taskType;
+    int inFormat;
+    int outFormat;
+} ic_csc_params_t;
+
+typedef struct ipu_task_params {
+    int taskType;
+    int resEnable;
+    int rotEnable;
+    ipu_res_info_t resInfo;
+    ipu_rot_info_t rotInfo;
+} ipu_task_params_t;
+
 typedef struct dp_fg_param {
     int fgEnable;
     int opaque;
@@ -206,6 +341,31 @@ typedef struct dp_fg_param {
     int alphaMode;
 } dp_fg_param_t;
 
+typedef struct di_sync_wave_gen {
+    int runValue;
+    int runResolution;
+    int offsetValue;
+    int offsetResolution;
+    int cntAutoReload;
+    int stepRepeat;
+    int cntClrSel;
+    int cntPolarityGenEn;
+    int cntPolarityTrigSel;
+    int cntPolarityClrSel;
+    int cntUp;
+    int cntDown;
+} di_sync_wave_gen_t;
+
+typedef struct di_cntl_signal {
+    int vsync_sel;
+    int vsync_pol;
+    int hsync_sel;
+    int hsync_pol;
+    int clk_sel;
+    int clk_pol;
+    int drdy_pol;
+} di_cntl_signal_t;
+
 #define GET_LSB(bit, val)  (((uint32_t)(val)) & ((0x1<<(bit)) - 1))
 
 typedef struct dp_csc_param {
@@ -213,4 +373,58 @@ typedef struct dp_csc_param {
     int **coeff;
 } dp_csc_param_t;
 
+typedef struct ipu_hw_ic {
+    int pp_task;
+    int prp_enc_task;
+    int prp_vf_task;
+} ipu_hw_ic_t;
+
+typedef struct ipu_hw_di {
+    int dp_path_di0;
+    int dp_path_di1;
+    int dc_path_di0;
+    int dc_path_di1;
+} ipu_hw_di_t;
+
+typedef struct ipu_hw_resource {
+    ipu_hw_ic_t ic;
+    ipu_hw_di_t di;
+} ipu_hw_resource_t;
+
+void ipu_di_waveform_config(int ipu_index, int di, int pointer, int set, int up, int down);
+int ipu_di_screen_set(int ipu_index, int di, int screen_height);
+void ipu_di_pointer_config(int ipu_index, int di, int pointer, int access, int component, int cst,
+                           int *pt);
+int ipu_di_bsclk_gen(int ipu_index, int di, int division, int up, int down);
+void ipu_di_sync_config(int ipu_index, int di, int pointer, di_sync_wave_gen_t sync_waveform_gen);
+void ipu_di_interface_set(int ipu_index, int di, int line_prediction, ips_hw_conf_struct_t * conf);
+
+void dc_channel_config(int ipu_index, ips_hw_conf_struct_t * conf);
+void dc_event_routines(int ipu_index, ips_hw_conf_struct_t * conf);
+void ipu_dc_microcode_config(int ipu_index, dc_microcode_t microcode);
+void ipu_dc_microcode_event(int ipu_index, int channel, int event, int priority, int address);
+int ipu_dc_write_channel_config(int ipu_index, int dma_channel, int disp_port, int link_di_index,
+                                int field_mode_enable);
+int ipu_dc_display_config(int ipu_index, int display_port, int type, int increment, int strideline);
+int ipu_dc_map(int ipu_index, int map, int format);
+void microcode_event(int ipu_index, char channel[1], char event[8], int priority, int address);
 void ipu_write_field(int ipu_index, unsigned int ID_addr, unsigned int ID_mask, unsigned int data);
+void ipu_idmac_config(int ipu_index, ips_hw_conf_struct_t * conf);
+void ipu_dc_config(int ipu_index, ips_hw_conf_struct_t * conf);
+void ipu_dp_config(int ipu_index, ips_hw_conf_struct_t * conf);
+void ipu_di_config(int ipu_index, ips_hw_conf_struct_t * conf);
+void load_centralized_image(ips_flow_t * flow);
+void ipu_ic_enable(int ipu_index, int ic_enable, int irt_enable);
+void ipu_ic_task_config(int ipu_index, ipu_task_params_t task_params);
+int ipu_ic_calc_resize_coeffs(int in_size, int out_size, int *resize_coeff, int *downsize_coeff);
+int ipu_ic_config_resize_rate(int ipu_index, char *task_type, unsigned int res_vert,
+                              unsigned int down_vert, unsigned int res_horiz,
+                              unsigned int down_horiz);
+void ipu_ic_calc_vout_size(int ipu_index, ipu_res_info_t * info, ips_hw_conf_struct_t * conf,
+                           int rotation, int full_screen_enable);
+int ipu_ic_combine_config(int ipu_index, ic_comb_params_t comb_params);
+int ipu_ic_csc_config(int ipu_index, int csc_set_index, ic_csc_params_t csc_params);
+int ipu_ic_task_enable(int ipu_index, int task_type, int task, int enable);
+void ipu_enable_display(int ipu_index);
+
+#endif

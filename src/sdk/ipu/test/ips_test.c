@@ -9,7 +9,7 @@
 #include "ips_test.h"
 
 extern int ips_display_test(void);
-
+extern void ipu_iomux_config(void);
 static ipu_test_t ipu_tests[] = {
     {"IPU DISPLAY TEST", ips_display_test},
 };
@@ -27,7 +27,7 @@ int ipu_test(void)
         for (idx = 0; idx < (sizeof(ipu_tests) / sizeof(ipu_test_t)); idx++) {
             printf("\t%d - %s\n", idx, ipu_tests[idx].name);
         }
-
+#if 0
         do {
             sel = getchar();
         } while (sel == (uint8_t) 0xFF);
@@ -38,6 +38,8 @@ int ipu_test(void)
         }
 
         idx = sel - '0';
+#endif
+        idx = 0;
 
         if ((idx >= 0) && (idx < (sizeof(ipu_tests) / sizeof(ipu_test_t)))) {
             printf("\n");

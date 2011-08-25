@@ -7,67 +7,67 @@
 
 /*!
  * @file ips_disp_panel.c
- * @brief IPU Software library, display panel parameters 
+ * @brief IPU Software library, display panel parameters setting and initialization
+ * @group diag_ipu
  */
 #include "ips.h"
 #include "ipu_common.h"
 
+/*!
+ * lvds bridge configuration
+ *
+ * @param   	bit_mode:      	18 or 24bit mode selection
+ */
 void ldb_config(int bit_mode)
 {
-    char recvCh = NONE_CHAR;
+    char recvCh = '2';
 
-    /*LVDS panel test */
-    printf("Please select LVDS port to use:\n");
-    printf("\t0 - LVDS port 0\n");
-    printf("\t1 - LVDS port 1\n");
-    printf("\t2 - LVDS port 0 and port 1\n");
-    printf("\t3 - LVDS port 0 and port 1 in split mode\n");
-
-    do {
-        recvCh = getchar();
-
-        if (recvCh == '0') {
-            /* enable DI0 on LVDS port 0 */
-            writel(0x0001 | (bit_mode << 5), IOMUXC_GPR2);
-            break;
-        } else if (recvCh == '1') {
-            /* enable DI0 on LVDS port 1 */
-            writel(0x0004 | (bit_mode << 7), IOMUXC_GPR2);
-            break;
-        } else if (recvCh == '2') {
-            /* enable DI0 on both LVDS ports */
-            writel(0x0005 | (bit_mode << 5) | (bit_mode << 7), IOMUXC_GPR2);
-            break;
-        } else if (recvCh == '3') {
-            /* enable DI0 on LVDS port 0 and 1 in split mode */
-            writel(0x0015 | (bit_mode << 5) | (bit_mode << 7), IOMUXC_GPR2);
-            break;
-        }
+    switch (recvCh) {
+    case '0':
+        /* enable DI0 on LVDS port 0 */
+        writel(0x0001 | (bit_mode << 5), IOMUXC_GPR2);
+        break;
+    case '1':
+        /* enable DI0 on LVDS port 1 */
+        writel(0x0004 | (bit_mode << 7), IOMUXC_GPR2);
+        break;
+    case '2':
+    default:
+        /* enable DI0 on both LVDS ports */
+        writel(0x0005 | (bit_mode << 5) | (bit_mode << 7), IOMUXC_GPR2);
+        break;
+    case '3':
+        /* enable DI0 on LVDS port 0 and 1 in split mode */
+        writel(0x0015 | (bit_mode << 5) | (bit_mode << 7), IOMUXC_GPR2);
+        break;
     }
-    while (1);
-
 }
 
-int claa_wvga_panel_init(int panel_type)
+static int claa_wvga_panel_init(void)
 {
     return true;
 }
 
-int claa_wvga_panel_deinit(int panel_type)
+static int claa_wvga_panel_deinit(void)
 {
     return true;
 }
 
-int hannstar_lvds_panel_init(int panel_type)
+extern void ldb_iomux_config(void);
+extern void ldb_clock_config(int freq);
+extern void lvds_power_on(void);
+extern void ldb_config(int bit_mode);
+
+static int hannstar_lvds_panel_init(void)
 {
     ldb_iomux_config();
     ldb_clock_config(65000000);
     lvds_power_on();
-    ldb_config(0);
+    ldb_config(LVDS_PANEL_18BITS_MODE);
     return true;
 }
 
-int hannstar_lvds_panel_deinit(int panel_type)
+static int hannstar_lvds_panel_deinit(void)
 {
     return true;
 }
@@ -127,4 +127,4 @@ ips_dev_panel_t disp_dev_list[] = {
     ,
 };
 
-uint32_t num_of_panels = sizeof(disp_dev_list);
+uint32_t num_of_panels = sizeof(disp_dev_list) / sizeof(ips_dev_panel_t);

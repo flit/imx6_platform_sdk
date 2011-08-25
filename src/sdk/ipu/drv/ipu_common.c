@@ -52,13 +52,13 @@ void ipu_write_field(int ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t
 
 /*!
  * enable submodules of IPU to establish the data path.
- * for different display connection, di0 or di1 should be chosen, we enabled them together here
+ *
+ * @param	ipu_index:	ipu index
  */
 void ipu_enable_display(int ipu_index)
 {
     /*enable all the related submodules. */
     ipu_write_field(ipu_index, IPU_IPU_CONF__DI0_EN, 1);
-    ipu_write_field(ipu_index, IPU_IPU_CONF__DI1_EN, 1);
     ipu_write_field(ipu_index, IPU_IPU_CONF__DP_EN, 1);
     ipu_write_field(ipu_index, IPU_IPU_CONF__DC_EN, 1);
     ipu_write_field(ipu_index, IPU_IPU_CONF__DMFC_EN, 1);
@@ -66,6 +66,8 @@ void ipu_enable_display(int ipu_index)
 
 /*!
  * disable submodules of IPU to establish the data path.
+ *
+ * @param	ipu_index:	ipu index
  */
 void ipu_disable_display(int ipu_index)
 {
@@ -79,8 +81,10 @@ void ipu_disable_display(int ipu_index)
 
 /*!
  * reset ipu by SRC(system reset controller)
+ *
  * @param	timeout:    time out setting for ipu reset
- * @return	:   0 for success, others for time out.
+ *
+ * @return	true for success, others for time out.
  */
 int ipu_sw_reset(int timeout)
 {
@@ -94,13 +98,19 @@ int ipu_sw_reset(int timeout)
         timeout--;
 
         if (tmpVal == 0)
-            return 0;
+            return true;
     }
 
     printf("Error: ipu software reset time out!!\n");
-    return -1;
+    return false;
 }
 
+/*!
+ * HW configuration for a new flow request.
+ *
+ * @param	ipu_index:	ipu index
+ * @param	conf:		ipu configuration data structure
+ */
 void ips_new_flow_hw_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
     ipu_idmac_config(ipu_index, conf);

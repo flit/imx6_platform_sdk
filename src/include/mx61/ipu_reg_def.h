@@ -14,8 +14,7 @@
 #ifndef _IPU_REGS_DEF_H_
 #define _IPU_REGS_DEF_H_
 
-#define IPU_BUFFER_MEM_START		0x60000000
-#define IPU_BUFFER_MEM_END			0x70000000
+#define TPM_BASE_OFFSET	0x00360000
 
 #define IPUV3H
 #define IPU_REGISTERS_OFFSET							0x00200000
@@ -3318,6 +3317,31 @@
 #define IPU_DI0_BS_CLKGEN1__DI0_DISP_CLK_DOWN IPU_REGISTERS_OFFSET+0x00040008,0x01FF0000
 #define IPU_DI0_BS_CLKGEN1__DI0_DISP_CLK_UP   IPU_REGISTERS_OFFSET+0x00040008,0x000001FF
 
+#define DI_SWGEN0_ADDR(di, pointer) 							(IPU_DI0_GENERAL__ADDR + \
+																							di *0x8000 + \
+																							(pointer-1) * 0x4 + 0x000C)
+#define DI_SWGEN0_EMPTY(di, pointer) 						DI_SWGEN0_ADDR(di, pointer), 0x00000000
+#define DI_SWGEN0_FULL(di, pointer) 							DI_SWGEN0_ADDR(di, pointer), 0xFFFFFFFF
+
+#define DI_SWGEN0_RUN_VALUE_M1(di, pointer) 		DI_SWGEN0_ADDR(di, pointer), 0x7FF80000
+#define DI_SWGEN0_RUN_RESOL(di, pointer) 				DI_SWGEN0_ADDR(di, pointer), 0x00070000
+#define DI_SWGEN0_OFFSET_VALUE(di, pointer) 			DI_SWGEN0_ADDR(di, pointer), 0x00007FF8
+#define DI_SWGEN0_OFFSET_RESOL(di, pointer) 			DI_SWGEN0_ADDR(di, pointer), 0x00000007
+
+#define DI_SWGEN1_ADDR(di, pointer) 							(IPU_DI0_GENERAL__ADDR + \
+																							di *0x8000 + \
+																							(pointer-1) * 0x4 + 0x0030)
+#define DI_SWGEN1_EMPTY(di, pointer) 						DI_SWGEN1_ADDR(di, pointer), 0x00000000
+#define DI_SWGEN1_FULL(di, pointer) 							DI_SWGEN1_ADDR(di, pointer), 0xFFFFFFFF
+
+#define DI_SWGEN1_CNT_POL_GEN_EN(di, pointer) 	DI_SWGEN1_ADDR(di, pointer), 0x60000000
+#define DI_SWGEN1_CNT_AUTOLOAD(di, pointer)		DI_SWGEN1_ADDR(di, pointer), 0x10000000
+#define DI_SWGEN1_CNT_CLR_SEL(di, pointer) 			DI_SWGEN1_ADDR(di, pointer), 0x0E000000
+#define DI_SWGEN1_CNT_DOW(di, pointer) 					DI_SWGEN1_ADDR(di, pointer), 0x01FF0000
+#define DI_SWGEN1_CNT_POL_TRIG_SEL(di, pointer) DI_SWGEN1_ADDR(di, pointer), 0x00007000
+#define DI_SWGEN1_CNT_POL_CLR_SEL(di, pointer)	DI_SWGEN1_ADDR(di, pointer), 0x00000E00
+#define DI_SWGEN1_CNT_CNT_UP(di, pointer) 				DI_SWGEN1_ADDR(di, pointer), 0x000001FF
+
 #define IPU_DI0_SW_GEN0_1__ADDR                    IPU_REGISTERS_OFFSET+0x0004000C
 #define IPU_DI0_SW_GEN0_1__EMPTY                   IPU_REGISTERS_OFFSET+0x0004000C,0x00000000
 #define IPU_DI0_SW_GEN0_1__FULL                    IPU_REGISTERS_OFFSET+0x0004000C,0xffffffff
@@ -3662,6 +3686,19 @@
 #define IPU_DI0_DW_GEN_11__DI0_PT_2_11            IPU_REGISTERS_OFFSET+0x00040084,0x00000030
 #define IPU_DI0_DW_GEN_11__DI0_PT_1_11            IPU_REGISTERS_OFFSET+0x00040084,0x0000000C
 #define IPU_DI0_DW_GEN_11__DI0_PT_0_11            IPU_REGISTERS_OFFSET+0x00040084,0x00000003
+
+#define IPU_DI_DW_OFFSET 								0x0088
+#define DI_WAVESET_ADDR(di, pointer, set)  		(IPU_DI0_GENERAL__ADDR + \
+																				di*0x8000 + IPU_DI_DW_OFFSET + \
+																				pointer*0x4 + set * 0x30)
+#define DI_WAVESET_UP(di, pointer, set) 			DI_WAVESET_ADDR(di, pointer, set), 0x000001FF
+#define DI_WAVESET_DOWN(di, pointer, set) 	DI_WAVESET_ADDR(di, pointer, set), 0x01FF0000
+
+#define IPU_DI_STEP_RPT_OFFSET 					0x0148
+#define DI_STEP_RPT_ADDR(di, pointer)  			(IPU_DI0_GENERAL__ADDR + \
+																				di*0x8000 + IPU_DI_STEP_RPT_OFFSET + \
+																				((pointer-1) / 2)*0x4 )
+#define DI_STEP_RPT(di, pointer) 						DI_STEP_RPT_ADDR(di, pointer), 0x0FFF<<((pointer-1)%2)*16
 
 #define IPU_DI0_DW_SET0_0__ADDR                 IPU_REGISTERS_OFFSET+0x00040088
 #define IPU_DI0_DW_SET0_0__EMPTY                IPU_REGISTERS_OFFSET+0x00040088,0x00000000

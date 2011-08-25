@@ -7,18 +7,22 @@
 
 /*!
  * @file ips_device.c
- * @brief IPU Software library, device management 
+ * @brief IPU Software library, device management. it is a high-level framework 
+ * 	for ipu.
+ * @group diag_ipu
  */
 
-/*!
- * create a new ips device.
- * @param  dev: device type
- */
 #include "ips.h"
 #include "ipu_common.h"
 
-extern ips_image_stream_t *ips_new_ims(int);
-
+/*!
+ * create a new ips device object. 
+ *
+ * @param   	devtype:      specify the device type
+ * @param 	devname:	device name
+ *
+ * @return  	return the pointer to the device or NULL if creation failed.
+ */
 ips_device_t *ips_new_device(ips_dev_type_e devtype, char *devname)
 {
     ips_device_t *device = (ips_device_t *) malloc(sizeof(ips_device_t));
@@ -98,7 +102,7 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype, char *devname)
             pad->padname = "interface";
             pad->parent = device;
             pad->prev = pad->next = NULL;
-            panel->panel_init(0);   //initialize the panel
+            panel->panel_init();    //initialize the panel
 
             break;
         }
@@ -117,10 +121,9 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype, char *devname)
                 (ips_mem_buffer_addr_t *) malloc(sizeof(ips_mem_buffer_addr_t) *
                                                  mem->number_frame_buf);
             memset((void *)buffer, 0, sizeof(ips_mem_buffer_addr_t) * mem->number_frame_buf);
-            buffer->base_addr_0 = IPU_BUFFER_MEM_START;
-            buffer->base_addr_1 = IPU_BUFFER_MEM_START + 0x2000000;
+            buffer->base_addr_0 = CH23_EBA0;
+            buffer->base_addr_1 = CH23_EBA1;
             mem->buffer = buffer;
-            mem->create_ims = &ips_new_ims;
 
             device->devname = devname;
             device->devattr = mem;
@@ -204,59 +207,59 @@ ips_device_t *ips_new_device(ips_dev_type_e devtype, char *devname)
     return device;
 }
 
+/*!
+ * delete ips device object. 
+ *
+ * @param   	dev:      pointer to the device
+ */
 void ips_delete_device(ips_device_t * dev)
 {
     free(dev->devattr);
     free(dev);
 }
 
-void ips_update_attr_params(void *dev, uint32_t attr_offset, uint32_t val)
+/*!
+ * update the parameters of an object. 
+ *
+ * @param   	obj:      		pointer to the object, it could be a devie, flow or ims
+ * @param 	attr_offset:	offset of the bit fields inside the object
+ * @param	val:			updated value
+ */
+void ips_set_attr_params(void *obj, uint32_t attr_offset, uint32_t val)
 {
-    mem32_write((char *)(dev + attr_offset), val);
+    mem32_write((char *)obj + attr_offset, val);
 }
 
-int ips_update_ims_attr_params(ips_image_stream_t * ims, uint32_t attr_offset, uint32_t val)
-{
-    int ipu_index = 1;
-    mem32_write((char *)(ims + attr_offset), val);
-    switch (attr_offset) {
-    case OFFSETOF(ips_image_stream_t, base0):
-        ims->base0 = val;
-        //ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA0, val / 8);
-        break;
-    case OFFSETOF(ips_image_stream_t, base1):
-        ims->base1 = val;
-        //ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_EBA1, val / 8);
-        break;
-    case OFFSETOF(ips_image_stream_t, width):
-        ims->width = val;
-        //ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FW, val - 1);
-        break;
-    case OFFSETOF(ips_image_stream_t, height):
-        ims->height = val;
-        //ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, ims->channel), NON_INTERLEAVED_FH, val - 1);
-        break;
-    default:
-        printf("unknown image stream field!!\n");
-        return false;
-    }
-    return true;
-}
-
+/*!
+ * set the parameters of a device object. it could include multiple field, and the last
+ * parameter must be EOP
+ *
+ * @param   	dev_attr:      	pointer to the device attribute
+ * @param 	attr:			offset of the bit fields inside the object
+ * @param	val:			updated value
+ */
 void ips_set_device(void *dev_attr, uint32_t attr, uint32_t val, ...)
 {
     va_list attr_list;
-    int ret = true;
 
     va_start(attr_list, val);
     while (attr != EOP) {
-        ips_update_attr_params(dev_attr, attr, val);
+        ips_set_attr_params(dev_attr, attr, val);
         attr = va_arg(attr_list, uint32_t);
         val = va_arg(attr_list, uint32_t);
     }
     va_end(attr_list);
 }
 
+/*!
+ * get the source pad of a device by name
+ *
+ * @param   	dev:      		pointer to the device
+ * @param 	padname:	name of the pad
+ *
+ * @return	the pointer to the pad, if search succeed
+ *			NULL if search failed.
+ */
 ips_pad_t *ips_device_get_src_pad(ips_device_t * dev, const char *padname)
 {
     ips_node_t *list = dev->srcpadlist;
@@ -272,6 +275,15 @@ ips_pad_t *ips_device_get_src_pad(ips_device_t * dev, const char *padname)
     return NULL;
 }
 
+/*!
+ * get the sink pad of a device by name
+ *
+ * @param   	dev:      		pointer to the device
+ * @param 	padname:	name of the pad
+ *
+ * @return	the pointer to the pad, if search succeed
+ *			NULL if search failed.
+ */
 ips_pad_t *ips_device_get_sink_pad(ips_device_t * dev, const char *padname)
 {
     ips_node_t *list = dev->sinkpadlist;
@@ -287,105 +299,85 @@ ips_pad_t *ips_device_get_sink_pad(ips_device_t * dev, const char *padname)
     return false;
 }
 
-int ips_link_device_pads(ips_device_t * src, const char *srcpadname, ips_device_t * dest,
-                         const char *destpadname)
+/*!
+ * add a source pad of a device
+ *
+ * @param   	dev:      		pointer to the device
+ * @param 	padname:	name of the pad
+ *
+ * @return	true for success and false for failure
+ */
+int ips_device_add_src_pad(ips_device_t * dev, char *padname)
 {
-    /*pseudo code */
-    ips_pad_t *srcpad, *destpad;
+    ips_node_t *tail = dev->srcpadlist, *temp;
+    ips_pad_t *pad;
 
-    /*step1: check the validity of input, and get the pad attribute.
-       first, one device may have several sinks or sources
-       second, check the pad parameters match or not */
-    srcpad = ips_device_get_src_pad(src, srcpadname);
-    if (!srcpad) {
-        printf("No pad named %s found in device %s\n", srcpadname, src->devname);
-        return false;
+    pad = (ips_pad_t *) malloc(sizeof(ips_pad_t));
+    pad->padname = padname;
+    pad->parent = dev;
+    pad->prev = pad->next = NULL;
+    temp = (ips_node_t *) malloc(sizeof(ips_node_t));
+    temp->pointer = (void *)pad;
+    temp->next = NULL;
+    if (tail == NULL) {
+        tail = temp;
+        temp->prev = NULL;
+    } else {
+        while (tail->next != NULL)
+            if (!strcmp(((ips_pad_t *) (tail->pointer))->padname, padname)) {
+                printf("device %s already has a pad named %s!\n", dev->devname, padname);
+                free(temp);
+                free(pad);
+                return false;
+            } else
+                tail = tail->next;
     }
-
-    destpad = ips_device_get_sink_pad(dest, destpadname);
-    if (!destpad) {
-        printf("No pad named %s found in device %s\n", destpadname, dest->devname);
-        return false;
-    }
-
-    /*step2: set the pad related hardware */
-    if (dest->devtype == IPS_DEV_DISPLAY) {
-        if (!strcmp(destpadname, "dpin")) ;
-    }
-
-    /*step3: link the two pads */
-    srcpad->next = destpad;
-    destpad->prev = srcpad;
+    tail->next = temp;
+    temp->prev = tail;
 
     return true;
 }
 
-void ips_dev_merge_padlist(ips_device_t * superdev, ips_device_t * dev)
+/*!
+ * add a sink pad of a device
+ *
+ * @param   	dev:      		pointer to the device
+ * @param 	padname:	name of the pad
+ *
+ * @return	true for success and false for failure
+ */
+int ips_device_add_sink_pad(ips_device_t * dev, char *padname)
 {
-    ips_node_t *list = NULL, *temp = NULL, *tail = NULL;
-    temp = superdev->srcpadlist;
-    if (superdev->srcpadlist == NULL) {
-        tail = NULL;
+    ips_node_t *tail = dev->sinkpadlist, *temp;
+    ips_pad_t *pad;
+
+    pad = (ips_pad_t *) malloc(sizeof(ips_pad_t));
+    pad->padname = padname;
+    pad->parent = dev;
+    pad->prev = pad->next = NULL;
+    temp = (ips_node_t *) malloc(sizeof(ips_node_t));
+    temp->pointer = (void *)pad;
+    temp->next = NULL;
+    if (tail == NULL) {
+        tail = temp;
+        temp->prev = NULL;
     } else {
-        while (temp != NULL) {
-            tail = temp;
-            temp = temp->next;
-        }
+        while (tail->next != NULL)
+            if (!strcmp(((ips_pad_t *) (tail->pointer))->padname, padname)) {
+                printf("device %s already has a pad named %s!\n", dev->devname, padname);
+                free(temp);
+                free(pad);
+                return false;
+            } else
+                tail = tail->next;
     }
+    tail->next = temp;
+    temp->prev = tail;
 
-    temp = dev->srcpadlist;
-
-    while (temp != NULL) {
-        list = (ips_node_t *) malloc(sizeof(ips_node_t));
-        list->pointer = temp->pointer;
-        if (superdev->srcpadlist == NULL) {
-            list->prev = NULL;
-            list->next = NULL;
-            superdev->srcpadlist = list;    //point to the list head
-            tail = superdev->srcpadlist;
-        } else {
-            list->prev = tail;
-            list->next = NULL;
-            tail->next = list;
-            tail = list;
-        }
-        temp = temp->next;
-    }
-
-    temp = superdev->sinkpadlist;
-    if (superdev->sinkpadlist == NULL) {
-        tail = NULL;
-    } else {
-        while (temp != NULL) {
-            tail = temp;
-            temp = temp->next;
-        }
-    }
-
-    temp = dev->sinkpadlist;
-
-    while (temp != NULL) {
-        list = (ips_node_t *) malloc(sizeof(ips_node_t));
-        list->pointer = temp->pointer;
-        if (superdev->sinkpadlist == NULL) {
-            list->prev = NULL;
-            list->next = NULL;
-            superdev->sinkpadlist = list;   //point to the list head
-            tail = superdev->sinkpadlist;
-
-        } else {
-            list->prev = tail;
-            list->next = NULL;
-            tail->next = list;
-            tail = list;
-        }
-        temp = temp->next;
-    }
-
+    return true;
 }
 
-/*dev1 and dev2 will be linked by the specified pad, and they will be a part of the super device*/
-static int ips_link_device(ips_device_t * superdev, ips_device_t * src, char *srcpadname,
+static int ips_link_device(ips_device_t * src, char *srcpadname,
                            char *destpadname, ips_device_t * dest)
 {
     int ret = true;
@@ -413,47 +405,42 @@ static int ips_link_device(ips_device_t * superdev, ips_device_t * src, char *sr
     return ret;
 }
 
-ips_device_t *ips_link_device_many(ips_device_t * dev1, char *outpad, char *inpad,
-                                   ips_device_t * dev2, ...)
+/*!
+ * link several devices per pads.
+ * source pad must be connected with sink pad
+ *
+ * @param   	dev1:      pointer to the source device
+ * @param 	outpad:	name of the source pad
+ * @param 	inpad:	name of the sink pad
+ * @param   	dev2:      pointer to the sink device
+ *
+ * @return	true for success and false for failure
+ */
+int ips_link_device_many(ips_device_t * dev1, char *outpad, char *inpad, ips_device_t * dev2, ...)
 {
-    ips_device_t *superdev = (ips_flow_t *) malloc(sizeof(ips_device_t));
 
     va_list dev_list;
     int ret = true;
 
-    if (superdev == NULL) {
-        printf("Memory malloc error!!\n");
-        return NULL;
-    } else {
-        memset(superdev, 0, sizeof(ips_device_t));
-    }
-    superdev->devtype = IPS_DEV_SUPER_DEVICE;
-    // the sink pad of super device should be the pad of first device in the chain
-    superdev->srcpadlist = NULL;
-    superdev->sinkpadlist = NULL;
-    ips_dev_merge_padlist(superdev, dev1);
-
     va_start(dev_list, dev2);
     while ((dev2 != NULL) && (dev1 != NULL)) {
 
-        if (!ips_link_device(superdev, dev1, outpad, inpad, dev2)) {
+        if (!ips_link_device(dev1, outpad, inpad, dev2)) {
             printf("device link error!!\n");
             ret = false;
             break;
         }
-        ips_dev_merge_padlist(superdev, dev2);
         dev1 = dev2;
         outpad = va_arg(dev_list, char *);
         if (outpad == NULL)
             break;
         inpad = va_arg(dev_list, char *);
         dev2 = va_arg(dev_list, ips_device_t *);
-
     }
 
     va_end(dev_list);
 
-    return superdev;
+    return ret;
 }
 
 inline int is_src_pad(ips_device_t * dev, char *padname)
@@ -462,4 +449,76 @@ inline int is_src_pad(ips_device_t * dev, char *padname)
         return true;
     else
         return false;
+}
+
+/*!
+ * create a new bin object. bin is a collection of devices, it can be
+ * regarded as a super device
+ *
+ * @param 	binname:	   	name of the bin
+ *
+ * @return  	return the pointer to the bin or NULL if creation failed.
+ */
+ips_bin_t *ips_new_bin(char *binname)
+{
+    ips_bin_t *bin = (ips_bin_t *) malloc(sizeof(ips_bin_t));
+    if (bin == NULL) {
+        printf("Memory malloc error!!\n");
+        return NULL;
+    } else {
+        memset(bin, 0, sizeof(ips_device_t));
+    }
+    bin->binname = binname;
+    bin->parent_flow = NULL;
+    bin->ghost_sinkpadlist = bin->ghost_srcpadlist = NULL;
+    bin->devchain = NULL;
+    bin->binattr = NULL;
+    return bin;
+}
+
+/*!
+ * add several devices into a bin.
+ *
+ * @param   	bin:      	pointer to the bin
+ * @param 	dev1:	device list added into the bin
+ *
+ * @return	true for success and false for failure
+ */
+int ips_bin_add_device_many(ips_bin_t * bin, ips_device_t * dev1, ...)
+{
+    va_list dev_list;
+    ips_node_t *temp;
+    int ret = true;
+
+    if (bin->devchain == NULL)
+        temp = NULL;
+    else {
+        temp = bin->devchain;
+        while (temp->next != NULL)
+            temp = temp->next;
+    }
+
+    va_start(dev_list, dev1);
+    while (dev1 != NULL) {
+        if (temp == NULL) {
+            ips_node_t *node = (ips_node_t *) malloc(sizeof(ips_node_t));
+            node->pointer = dev1;
+            node->prev = node->next = NULL;
+            bin->devchain = node;
+            temp = node;
+        } else {
+            ips_node_t *node = (ips_node_t *) malloc(sizeof(ips_node_t));
+            node->pointer = dev1;
+            node->prev = temp;
+            node->next = NULL;
+            temp->next = node;
+            temp = node;
+        }
+        dev1->parent_bin = (void *)bin;
+        dev1 = va_arg(dev_list, ips_device_t *);
+    }
+
+    va_end(dev_list);
+
+    return ret;
 }

@@ -44,7 +44,7 @@ inline uint32_t ipu_cpmem_read_field(uint32_t base, int w, int bit, int size)
         temp2 &= mask >> (off ? (32 - off) : 0);
         temp1 |= temp2 << (off ? (32 - off) : 0);
     }
-
+    return temp1;
 }
 
 /*!
@@ -110,6 +110,14 @@ void ipu_channel_buf_not_ready(int ipu_index, int channel, int buf)
     }
 }
 
+/*!
+ * set the ipu channel buffer mode, single or double
+ *
+ * @param 	ipu_index: 		ipu index
+ * @param 	channel: 			IPU dma channel index
+ * @param 	double_buffer_en:	enable double buffer 
+ *
+ */
 void ipu_idmac_channel_mode_sel(int ipu_index, int channel, int double_buf_en)
 {
     int idx = channel / 32;
@@ -118,6 +126,14 @@ void ipu_idmac_channel_mode_sel(int ipu_index, int channel, int double_buf_en)
                     double_buf_en);
 }
 
+/*!
+ * set the ipu channel buffer mode, single or double
+ *
+ * @param 	ipu_index: 	ipu index
+ * @param 	channel: 		IPU dma channel index
+ * @param 	enable:		enable channel  
+ *
+ */
 void ipu_idmac_channel_enable(int ipu_index, int channel, int enable)
 {
     int idx = channel / 32;
@@ -125,6 +141,14 @@ void ipu_idmac_channel_enable(int ipu_index, int channel, int enable)
     ipu_write_field(ipu_index, IPU_IDMAC_CH_EN_1__ADDR + idx * 4, 1 << offset, enable);
 }
 
+/*!
+ * query the ipu channel buffer busy status
+ *
+ * @param 	ipu_index: 	ipu index
+ * @param 	channel: IPU dma channel index
+ *
+ * @return 	1 for busy, 0 for idle
+ */
 int ipu_idmac_channel_busy(int ipu_index, int channel)
 {
     int idx, offset;
@@ -143,6 +167,12 @@ int ipu_idmac_channel_busy(int ipu_index, int channel)
     return ((readl(ipu_base_addr + IPU_IDMAC_CH_BUSY_1__ADDR + 4 * idx) & (1 << offset)) >> offset);
 }
 
+/*!
+ * IPU DMA channel config.
+ *
+ * @param	ipu_index:	ipu index
+ * @param	conf:		ipu configuration data structure
+ */
 void ipu_idmac_config(int ipu_index, ips_hw_conf_struct_t * conf)
 {
     int channel = 0;
@@ -156,6 +186,7 @@ void ipu_idmac_config(int ipu_index, ips_hw_conf_struct_t * conf)
     case MEM_TO_MEM:
         dma = &(conf->output.mem);
         break;
+        /*other channels TBD */
     default:
         printf("The flow type %d is not supported yet!\n", conf->flow_type);
     }
@@ -279,7 +310,7 @@ void ipu_idmac_config(int ipu_index, ips_hw_conf_struct_t * conf)
     ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
     ipu_idmac_channel_enable(ipu_index, channel, 1);
 
-    switch (channel) {
+    switch (channel) {          // to support multi-flow, the DMFC is shared between them
     case MEM_TO_DP_BG_CH23:
         ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_FIFO_SIZE_5B, 2); //Table of fifo_size 000-2^9,001-2^8,010-2^7,
         ipu_write_field(ipu_index, IPU_DMFC_DP_CHAN__DMFC_BURST_SIZE_5B, 1);    //Table of dmfc_burst_size codes

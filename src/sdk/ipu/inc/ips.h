@@ -20,6 +20,15 @@
 #define EOP (0xFFFFFFFF)
 #define HIGH_POLARITY 1
 #define LOW_POLARITY 0
+#define OFFSETOF(type, member) ((size_t)&((type *)0)->member)
+#define MAX_BUFF_NUM 4
+#define MAX_LAYER_NUM 4
+
+enum {
+    SINK_COMP,
+    SOURCE_COMP,
+    INTERMEDIATE_COMP
+};
 
 /*ips flow status enumeration*/
 typedef enum {
@@ -66,25 +75,25 @@ typedef enum {
 } ips_dev_type_e;
 
 typedef enum {
-    Y,
-    U,
-    V,
-    R,
-    G,
-    B,
-    A,
-    D,
-    X,
+    Y,                          // Luma component
+    U,                          // Chroma component
+    V,                          // Chroma component
+    R,                          // Red component
+    G,                          // Green component
+    B,                          // Blue component
+    A,                          // Alpha component
+    D,                          // Dummy data
+    X,                          // Others
 } ips_comp_type_e;
 
-enum {
+typedef enum {
     ASPECT_RATIO_16_9,
     ASPECT_RATIO_4_3,
     ASPECT_RATIO_16_10,
     ASPECT_RATIO_OTHER,
-};
+} ips_aspect_ratio_e;
 
-enum {
+typedef enum {
     NON_INTERLEAVED_YUV444 = 0x0,
     NON_INTERLEAVED_YUV422 = 0x1,
     NON_INTERLEAVED_YUV420 = 0x2,
@@ -97,7 +106,7 @@ enum {
     INTERLEAVED_Y2U1Y1V1 = 0x9,
     INTERLEAVED_U1Y1V1Y2 = 0xA,
     INTERLEAVED_U1Y2V1Y1 = 0xB,
-};
+} ips_dma_colorimetry_e;
 
 typedef enum {
     DCMAP_RGB565,
@@ -112,7 +121,7 @@ typedef enum {
     DCMAP_VYU888,
     DCMAP_RGBA8888,
     DCMAP_YUVA8888,
-} ips_colorimetry_t;
+} ips_dcmap_colorimetry_e;
 
 enum {
     IPU1_DP_DISP0,              //ipu1, display interface 0 through dp 
@@ -153,6 +162,21 @@ enum disp_dev_flag {
     HDMI_1080P60,
 };
 
+typedef enum {
+    RGB2YUV,
+    YUV2RGB,
+    RGB2YUVHR,
+    YUV2RGBHR,
+    OTHER,
+} ips_csc_type_e;
+
+typedef enum {
+    MEM_TO_MEM,
+    MEM_TO_DISPLAY,
+    CSI_TO_MEM,
+    CSI_TO_DISPLAY,
+} ips_flow_type_e;
+
 typedef struct ips_node {
     void *pointer;
     struct ips_node *prev;
@@ -174,9 +198,9 @@ typedef struct {
 } ips_macro_pixel_t;
 
 typedef struct {
-    uint32_t channel;
+    uint32_t channel;           //obselete
     uint32_t aspect_ratio;
-    uint32_t background;
+    uint32_t background;        //obselete
     uint32_t compress_type;
     uint32_t scan_interface;
     uint32_t frame_rate;
@@ -184,17 +208,19 @@ typedef struct {
     uint32_t gamma_type;
     uint32_t width;
     uint32_t height;
+    uint32_t hoffset;
+    uint32_t voffset;
     ips_macro_pixel_t macro_pixel0;
     ips_macro_pixel_t macro_pixel1;
     ips_macro_pixel_t macro_pixel2;
     ips_macro_pixel_t macro_pixel3;
-    uint32_t base0;
-    uint32_t base1;
+    uint32_t base0;             //obselete
+    uint32_t base1;             //obselete
     uint32_t pixel_format;
-} ips_image_stream_t;
+} ips_ims_t;
 
-typedef struct {
-    void *data_pointer;
+typedef struct ips_pad_s {
+    void *capacity;
     char *padname;
     void *parent;               // pad is an interface of device 
     struct ips_pad_s *next;
@@ -251,10 +277,12 @@ typedef struct {
     uint32_t stride_line_addr_2;
     uint32_t stride_line_addr_3;
     uint32_t layer_id;
-    void *in_ims;
-    void *out_ims;
+    struct {
+        uint32_t source;        //RAW or SUBFLOW
+        void *subflow_conf;
+    } data_source;
+    ips_ims_t *ims;
     ips_mem_buffer_addr_t *buffer;
-    ips_image_stream_t *(*create_ims) (int);
 } ips_dev_memory_t;
 
 /*rotation device structure*/
@@ -284,17 +312,9 @@ typedef struct {
     uint32_t vsync_pol;
     uint32_t drdy_pol;
     uint32_t data_pol;
-    int (*panel_init) (int);
-    int (*panel_deinit) (int);
+    int (*panel_init) (void);
+    int (*panel_deinit) (void);
 } ips_dev_panel_t;
-
-typedef enum {
-    RGB2YUV,
-    YUV2RGB,
-    RGB2YUVHR,
-    YUV2RGBHR,
-    OTHER,
-} ips_csc_type_e;
 
 /*format converter structure*/
 typedef struct {
@@ -316,18 +336,23 @@ typedef struct {
 } ips_dev_ipu_t;
 
 typedef struct {
-    char *devname;
-    uint32_t parent_flow_id;
-    ips_dev_type_e devtype;
+    char *devname;              //device name
+    void *parent_bin;           // the device would be added into a flow
+    ips_dev_type_e devtype;     // device type
     ips_node_t *srcpadlist;     //a list to maintain the pad members
     ips_node_t *sinkpadlist;    //a list to maintain the pad members
     void *devattr;              //point to the structure of one specified device
+    uint32_t devflag;
 } ips_device_t;
 
-#define OFFSETOF(type, member) ((size_t)&((type *)0)->member)
-
-#define MAX_BUFF_NUM 4
-#define MAX_LAYER_NUM 4
+typedef struct {
+    char *binname;
+    void *parent_flow;
+    ips_node_t *ghost_srcpadlist;
+    ips_node_t *ghost_sinkpadlist;
+    ips_node_t *devchain;
+    void *binattr;
+} ips_bin_t;
 
 struct ips_hw_conf_mem_layer {
     uint32_t colorimetry;
@@ -343,6 +368,7 @@ struct ips_hw_conf_mem_layer {
 struct ips_hw_conf_input {
     uint32_t layer_num;
     struct ips_hw_conf_mem_layer layer[MAX_LAYER_NUM];
+//  struct ips_dev_sensor_t csi;
 };
 
 typedef struct {
@@ -371,31 +397,47 @@ typedef struct {
     uint32_t di;
 } ips_output_disp_t;
 
-typedef union ips_hw_conf_output {
+typedef struct ips_hw_conf_output {
     ips_output_disp_t disp;
     struct ips_hw_conf_mem_layer mem;
-};
-
-enum flow_type {
-    MEM_TO_MEM,
-    MEM_TO_DISPLAY,
-};
+} ips_hw_conf_output_t;
 
 typedef struct {
     uint32_t flow_type;
     struct ips_hw_conf_input input;
-    union ips_hw_conf_output output;
+    struct ips_hw_conf_output output;
 } ips_hw_conf_struct_t;
 
 typedef struct {
     char *flow_name;
     uint32_t flow_id;
     uint32_t flow_status;
-    ips_node_t *head;
+    ips_bin_t *bin;
     ips_hw_conf_struct_t *conf_data;
 } ips_flow_t;
 
-extern uint32_t ipu_hw_instance[];
 extern ips_dev_panel_t disp_dev_list[];
 extern uint32_t num_of_panels;
+
+ips_device_t *ips_new_device(ips_dev_type_e devtype, char *devname);
+void ips_delete_device(ips_device_t * dev);
+void ips_set_attr_params(void *obj, uint32_t attr_offset, uint32_t val);
+void ips_set_device(void *dev_attr, uint32_t attr, uint32_t val, ...);
+ips_pad_t *ips_device_get_src_pad(ips_device_t * dev, const char *padname);
+ips_pad_t *ips_device_get_sink_pad(ips_device_t * dev, const char *padname);
+int ips_link_device_many(ips_device_t * dev1, char *outpad, char *inpad, ips_device_t * dev2, ...);
+ips_bin_t *ips_new_bin(char *binname);
+int ips_bin_add_device_many(ips_bin_t * bin, ips_device_t * dev1, ...);
+ips_ims_t *ips_new_ims(void);
+void ips_delete_ims(ips_ims_t * ims);
+void ips_set_ims(ips_ims_t * ims, uint32_t attr, uint32_t val, ...);
+void ips_set_pad_ims(ips_pad_t * pad, ips_ims_t * ims);
+void stream_on(ips_flow_t * flow);
+int ips_flow_set_conf_data(ips_flow_t * flow);
+ips_flow_t *ips_new_flow(int flow_id, char *flow_name, ips_bin_t * bin);
+void ips_delete_flow(ips_flow_t * flow);
+int ips_device_add_src_pad(ips_device_t * dev, char *padname);
+int ips_device_add_sink_pad(ips_device_t * dev, char *padname);
+void ips_new_flow_hw_config(int ipu_index, ips_hw_conf_struct_t * conf);
+
 #endif

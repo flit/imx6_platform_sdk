@@ -7,24 +7,28 @@
 
 /*!
  * @file ips_flow.c
- * @brief IPU Software library, for flow management 
+ * @brief IPU Software library, for flow management .
+ * @group diag_ipu
  */
 #include <stdarg.h>
 #include <ips.h>
 
-ips_image_stream_t *ips_new_ims(int channel)
+/*!
+ * create a new ips image stream object. all the parameters will be set as default
+ *
+ * @return  	return the pointer to the device or NULL if creation failed.
+ */
+ips_ims_t *ips_new_ims(void)
 {
     /*create an image stream */
-    ips_image_stream_t *ims = (ips_image_stream_t *) malloc(sizeof(ips_image_stream_t));
-    int ipu_index = 1;
+    ips_ims_t *ims = (ips_ims_t *) malloc(sizeof(ips_ims_t));
     if (ims == NULL) {
         printf("Memory malloc error!!\n");
         return NULL;
     } else {
-        memset(ims, 0, sizeof(ips_image_stream_t));
+        memset(ims, 0, sizeof(ips_ims_t));
     }
     /*initialize the image stream with default settings */
-    ims->channel = channel;
     ims->aspect_ratio = ASPECT_RATIO_4_3;
     ims->background = 1;
     ims->compress_type = 0;
@@ -38,98 +42,74 @@ ips_image_stream_t *ips_new_ims(int channel)
     return ims;
 }
 
-void ips_delete_ims(ips_image_stream_t * ims)
+/*!
+ * delete the ips image stream object. 
+ *
+ * @param   	ims:      pointer to the object
+ */
+void ips_delete_ims(ips_ims_t * ims)
 {
     free(ims);
 }
 
-void ips_set_ims(ips_image_stream_t * ims, uint32_t attr, uint32_t val, ...)
+/*!
+ * set the parameters of an image stream object. it could include multiple field, and the last
+ * parameter must be EOP
+ *
+ * @param   	ims:      	pointer to the image stream
+ * @param 	attr:			offset of the bit fields inside the object
+ * @param	val:			updated value
+ */
+void ips_set_ims(ips_ims_t * ims, uint32_t attr, uint32_t val, ...)
 {
     va_list attr_list;
-    int ret = true;
 
     va_start(attr_list, val);
     while (attr != EOP) {
-        ips_update_ims_attr_params(ims, attr, val);
+        ips_set_attr_params(ims, attr, val);
         attr = va_arg(attr_list, uint32_t);
         val = va_arg(attr_list, uint32_t);
     }
     va_end(attr_list);
 }
 
-void ips_set_pad_ims(ips_pad_t * pad, ips_image_stream_t * ims)
+/*!
+ * attach the ims with the specified pad.
+ *
+ * @param   	pad:      	pointer to the pad
+ * @param 	ims:		pointer to the image stream
+ */
+void ips_set_pad_ims(ips_pad_t * pad, ips_ims_t * ims)
 {
     ips_device_t *dev = (ips_device_t *) pad->parent;
     ips_dev_memory_t *mem = (ips_dev_memory_t *) dev->devattr;
     ips_mem_buffer_addr_t *buffer = (ips_mem_buffer_addr_t *) mem->buffer;
-    mem->out_ims = ims;
-    ips_update_ims_attr_params(ims, OFFSETOF(ips_image_stream_t, base0), buffer->base_addr_0);
-    ips_update_ims_attr_params(ims, OFFSETOF(ips_image_stream_t, base1), buffer->base_addr_1);
+    mem->ims = ims;
+    ips_set_attr_params(ims, OFFSETOF(ips_ims_t, base0), buffer->base_addr_0);
+    ips_set_attr_params(ims, OFFSETOF(ips_ims_t, base1), buffer->base_addr_1);
 }
 
+extern void ipu_enable_display(int ipu_index);
+/*!
+ * set the stream to function
+ *
+ * @param   	flow:      	pointer to the flow
+ */
 void stream_on(ips_flow_t * flow)
 {
+    flow->flow_status = IPS_FLOW_STATE_PLAYING;
     ipu_enable_display(1);
 }
 
-int ips_flow_add_device(ips_flow_t * flow, ips_device_t * dev)
-{
-    ips_node_t *temp, *tail;
-
-    if (dev == NULL)
-        return false;
-
-    if (flow->head == NULL) {
-        tail = flow->head;
-    } else {
-
-        tail = flow->head;
-        while (tail != NULL) {
-            if (!strcmp(dev->devname, ((ips_device_t *) tail->pointer)->devname)) {
-                printf("the device %s has been added into the flow already!\n", dev->devname);
-                return true;
-            }
-            temp = tail;
-            tail = tail->next;  // find the last element
-        }
-        tail = temp;
-    }
-
-    temp = malloc(sizeof(ips_node_t));
-    temp->pointer = dev;
-    temp->next = NULL;
-
-    if (flow->head == NULL) {
-        flow->head = temp;
-        flow->head->prev = flow->head->next = NULL;
-    } else {
-        tail->next = temp;
-        temp->prev = tail;
-    }
-
-    dev->parent_flow_id = flow->flow_id;
-    printf("the device %s is added into the flow!!\n", dev->devname);
-    return true;
-}
-
-int ips_flow_add_device_many(ips_flow_t * flow, ips_device_t * dev1, ...)
-{
-    va_list dev_list;
-    int ret = true;
-
-    va_start(dev_list, dev1);
-    while (dev1 != NULL) {
-        if (!ips_flow_add_device(flow, dev1)) {
-            printf("Error in adding device %s to flow %s!!\n", dev1->devname, flow->flow_name);
-            ret = false;
-            break;
-        }
-        dev1 = va_arg(dev_list, ips_device_t *);
-    }
-    va_end(dev_list);
-    return ret;
-}
-
+/*!
+ * set the configuration data for HW settings. it is named
+ * IPU configuration struture, based on which all the accelerators
+ * would be set accrodingly.
+ *
+ * @param   	flow:      	pointer to the flow
+ *
+ * @return 	true for success or false for failure
+ */
 int ips_flow_set_conf_data(ips_flow_t * flow)
 {
     int layeridx = 0;
@@ -137,11 +117,9 @@ int ips_flow_set_conf_data(ips_flow_t * flow)
     ips_node_t *temp;
     ips_hw_conf_struct_t *conf = flow->conf_data;
 
-    /*clean the configuration data structure */
-    memset(conf, 0, sizeof(ips_hw_conf_struct_t));
     layeridx = 0;
     /*the flow should contain at least a device or a supper device */
-    temp = flow->head;
+    temp = flow->bin->devchain;
     while (temp != NULL) {
         dev = temp->pointer;
         temp = temp->next;
@@ -149,8 +127,7 @@ int ips_flow_set_conf_data(ips_flow_t * flow)
         case IPS_DEV_MEM:
             if (((ips_pad_t *) dev->srcpadlist->pointer)->next != NULL) //the memory device is a source
             {
-                ips_image_stream_t *ims =
-                    (ips_image_stream_t *) ((ips_dev_memory_t *) dev->devattr)->out_ims;
+                ips_ims_t *ims = (ips_ims_t *) ((ips_dev_memory_t *) dev->devattr)->ims;
                 layeridx = ((ips_dev_memory_t *) dev->devattr)->layer_id;
                 conf->input.layer[layeridx].colorimetry = ims->pixel_format;
                 conf->input.layer[layeridx].width = ims->width;
@@ -163,9 +140,8 @@ int ips_flow_set_conf_data(ips_flow_t * flow)
                 conf->input.layer[layeridx].interlaced = 0;
                 conf->input.layer_num++;
                 layeridx++;
-            } else if (((ips_pad_t *) dev->sinkpadlist->pointer)->prev != NULL) {
-                ips_image_stream_t *ims =
-                    (ips_image_stream_t *) ((ips_dev_memory_t *) dev->devattr)->in_ims;
+            } else if (((ips_pad_t *) dev->sinkpadlist->pointer)->next == NULL) {   //the memory device is a sink
+                ips_ims_t *ims = (ips_ims_t *) ((ips_dev_memory_t *) dev->devattr)->ims;
 
                 conf->output.mem.colorimetry = ims->pixel_format;
                 conf->output.mem.width = ims->width;
@@ -174,7 +150,7 @@ int ips_flow_set_conf_data(ips_flow_t * flow)
                 conf->output.mem.buffer_addr[0] = ims->base0;
                 conf->output.mem.buffer_addr[1] = ims->base1;
                 conf->output.mem.interlaced = 0;
-                conf->flow_type = MEM_TO_DISPLAY;
+                conf->flow_type = MEM_TO_MEM;
 
             } else {
                 printf("The pad of the memory %s is not linked to any other device!!\n",
@@ -218,14 +194,17 @@ int ips_flow_set_conf_data(ips_flow_t * flow)
     return true;
 }
 
-ips_flow_t *ips_new_flow(int flow_id, char *flow_name, ips_device_t * dev)
+/*!
+ * create a new ips flow object over the bin specified. 
+ *
+ * @param	flow_id:		set the flow id 
+ * @param	flow_name:	name of the flow
+ * @param	bin:			the pointer to the bin, inside which the flow will run
+ *
+ * @return  	return the pointer to the flow or NULL if creation failed.
+ */
+ips_flow_t *ips_new_flow(int flow_id, char *flow_name, ips_bin_t * bin)
 {
-    ips_node_t *temp;
-
-    if (ipu_hw_instance[flow_id] != 0) {
-        printf("The flow %s has been occupied!!\n", flow_name);
-        return NULL;
-    }
 
     /*create an image stream */
     ips_flow_t *flow = (ips_flow_t *) malloc(sizeof(ips_flow_t));
@@ -243,36 +222,27 @@ ips_flow_t *ips_new_flow(int flow_id, char *flow_name, ips_device_t * dev)
     flow->flow_name = flow_name;
     flow->flow_status = IPS_FLOW_STATE_NULL;
     flow->conf_data = conf_data;
-    flow->head = NULL;
-
-    /*list all the devices included in the flow */
-    temp = dev->sinkpadlist;
-    while (temp != NULL) {
-        ips_flow_add_device(flow, ((ips_pad_t *) temp->pointer)->parent);
-        temp = temp->next;
-    }
-    temp = dev->sinkpadlist;
-    while (temp != NULL) {
-        ips_flow_add_device(flow, ((ips_pad_t *) temp->pointer)->parent);
-        temp = temp->next;
-    }
+    flow->bin = bin;
 
     ips_flow_set_conf_data(flow);
-    ipu_hw_instance[flow_id] = 1;
 
     ips_new_flow_hw_config(1, flow->conf_data);
 
     return flow;
 }
 
+/*!
+ * delete the ips flow object. 
+ *
+ * @param   	flow:      pointer to the flow object
+ */
 void ips_delete_flow(ips_flow_t * flow)
 {
-    ips_node_t *temp = flow->head, *temp2;
+    ips_node_t *temp = flow->bin->devchain;
     while (temp != NULL) {
-        flow->head = temp->next;
+        flow->bin->devchain = temp->next;
         free(temp);
-        temp = flow->head;
-
+        temp = flow->bin->devchain;
     }
     free(flow);
 

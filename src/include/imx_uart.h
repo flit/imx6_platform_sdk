@@ -16,9 +16,7 @@
 
 #include "io.h"
 
-/*
- * UART Control Register Bit Fields.
- */
+/* UART Registers Bit Fields */
 #define UART_UCR1_ADEN      (1 << 15)   // Auto dectect interrupt
 #define UART_UCR1_ADBR      (1 << 14)   // Auto detect baud rate
 #define UART_UCR1_TRDYEN    (1 << 13)   // Transmitter ready interrupt enable
@@ -105,6 +103,7 @@
 #define UART_UTS_RXFULL     (1 << 3)    // RxFIFO full
 #define UART_UTS_SOFTRST    (1 << 0)    // Software reset
 
+/* UART specific defines */
 #define PARITY_NONE 0
 #define PARITY_EVEN 2
 #define PARITY_ODD  3
@@ -121,14 +120,17 @@
 #define IRQ_MODE 1
 #define POLLING_MODE 2
 
-void init_uart(struct hw_module *port, uint32_t baudrate, uint8_t parity,
+/* UART driver list of functions */
+void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
                uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
 uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
 uint8_t uart_getchar(struct hw_module *port);
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode);
-void set_loopback_mode(struct hw_module *port, uint8_t state);
+void uart_set_loopback_mode(struct hw_module *port, uint8_t state);
+void uart_setup_interrupt(struct hw_module *port, uint8_t state);
 
+/* UART Registers list */
 #ifdef UART_WIDTH_32
 struct mx_uart {
     volatile uint32_t urxd[16];

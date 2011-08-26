@@ -247,11 +247,11 @@
 #define    IMX_INT_USDHC2                       55
 #define    IMX_INT_USDHC3                       56
 #define    IMX_INT_USDHC4                       57
-#define    IMX_INT_UART1_ANDED                  58
-#define    IMX_INT_UART2_ANDED                  59
-#define    IMX_INT_UART3_ANDED					60
-#define    IMX_INT_UART4_ANDED                  61
-#define    IMX_INT_UART5_ANDED                  62
+#define    IMX_INT_UART1                        58
+#define    IMX_INT_UART2                        59
+#define    IMX_INT_UART3                        60
+#define    IMX_INT_UART4                        61
+#define    IMX_INT_UART5                        62
 #define    IMX_INT_ECSPI1                       63
 #define    IMX_INT_ECSPI2                       64
 #define    IMX_INT_ECSPI3                       65

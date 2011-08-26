@@ -20,7 +20,7 @@ A_OBJS :=
 MODULE_OBJS := $(A_OBJS) $(C_OBJS) $(S_OBJS)
 MODULE_OBJS := $(addprefix $(MODULE_OUT)/, $(MODULE_OBJS))
 
-SUB_DIRS := imx_timer
+SUB_DIRS := test drv
 
 .PHONY: dir $(SUB_DIRS) all
 

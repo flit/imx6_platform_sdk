@@ -13,10 +13,6 @@
  */
 #include <math.h>
 #include "hardware.h"
-#include "functions.h"
-#include "imx_spi.h"
-#include "imx_i2c.h"
-#include "imx_sata.h"
 
 extern void AUDMUXRoute(int intPort, int extPort, int Master);  // defined in ssi.c driver
 extern void init_clock(uint32_t rate);
@@ -33,10 +29,22 @@ struct hw_module core = {
     0,
 };
 
-// UART1 is the debug_uart port
-struct hw_module debug_uart = {
+// UART1 is the serial debug/console port
+struct hw_module g_debug_uart = {
     "UART1 for debug",
     UART1_BASE_ADDR,
+    27000000,
+    IMX_INT_UART1,
+    &default_interrupt_routine,
+};
+
+/* EPIT1 used for system time functions */
+struct hw_module g_system_timer = {
+    "EPIT1 used as system timer",
+    EPIT1_BASE_ADDR,
+    27000000,
+    IMX_INT_EPIT1,
+    &default_interrupt_routine,
 };
 
 struct hw_module ddr = {
@@ -47,7 +55,8 @@ struct hw_module ddr = {
 struct hw_module *mx53_module[] = {
     &core,
     &ddr,
-    &debug_uart,
+    &g_debug_uart,
+    &g_system_timer,
     NULL,
 };
 
@@ -70,6 +79,7 @@ struct fixed_pll_mfd {
     uint32_t ref_clk_hz;
     uint32_t mfd;
 };
+
 const struct fixed_pll_mfd fixed_mfd[REF_IN_CLK_NUM] = {
     {0, 0},                     // reserved
     {0, 0},                     // reserved
@@ -430,7 +440,8 @@ uint32_t get_main_clock(enum main_clocks clk)
  */
 uint32_t get_peri_clock(enum peri_clocks clk)
 {
-    uint32_t ret_val = 0, pdf, pre_pdf, clk_sel;
+    uint32_t ret_val = 0, pdf, pre_pdf, pre_pdf1, clk_sel;
+    uint32_t cbcdr  = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
     uint32_t cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
     uint32_t cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
     uint32_t cscdr2 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR2);
@@ -454,7 +465,6 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = get_lp_apm() / ((pre_pdf + 1) * (pdf + 1));
         }
-
         break;
     case SSI1_BAUD:
         pre_pdf = (cs1cdr >> 6) & 0x7;
@@ -470,7 +480,6 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = CKIH / ((pre_pdf + 1) * (pdf + 1));
         }
-
         break;
     case SSI2_BAUD:
         pre_pdf = (cs2cdr >> 6) & 0x7;
@@ -486,7 +495,6 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = CKIH / ((pre_pdf + 1) * (pdf + 1));
         }
-
         break;
     case SPI1_CLK:
     case SPI2_CLK:
@@ -503,7 +511,14 @@ uint32_t get_peri_clock(enum peri_clocks clk)
         } else {
             ret_val = get_lp_apm() / ((pre_pdf + 1) * (pdf + 1));
         }
+        break;
+    case EPIT1_CLK:
+    case EPIT2_CLK:
+        pre_pdf1 = (cbcdr >> 6) & 0x3;
+        pre_pdf = (cbcdr >> 3) & 0x7;
+        pdf = cbcdr & 0x7;
 
+        ret_val = get_lp_apm() / ((pre_pdf1 + 1) * (pre_pdf + 1) * (pdf + 1));
         break;
     default:
         printf("%s(): This clock: %d not supported yet \n", __FUNCTION__, clk);
@@ -524,8 +539,10 @@ uint32_t get_freq(uint32_t module_base)
         return get_main_clock(CPU_CLK);
     else if (module_base == ESDCTL_REGISTERS_BASE_ADDR)
         return get_main_clock(DDR_CLK);
-    else if (module_base == UART1_BASE_ADDR)
+    else if (module_base == g_debug_uart.base)
         return get_peri_clock(UART1_BAUD);
+    else if (module_base == g_system_timer.base)
+        return get_peri_clock(EPIT1_CLK);
     else {
         printf("Not a valid module base \n");
         return 0;
@@ -668,6 +685,23 @@ void show_ddr_config(void)
     printf("==================================\n\n");
 }
 
+/*! Enable or disable the SPI NOR on ARD only
+ *   Note, ARD SPI NOR signals are mux'd with WEIM data bus
+ *   Hence, the SPI NOR needs to be disabled (tri-stated) or enabled
+ *   depending on desired usage.
+ *
+ * @param   en_dis enable or disable spi nor by setting GPIo control to low or high
+ */
+void ard_spi_nor_control(uint32_t en_dis)
+{
+    // set DI0_PIN2 mux control for GPIO4_18 usage
+    writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2);
+    // configure GPIO4_18 as output
+    gpio_dir_config(4, 18, GPIO_GDIR_OUTPUT);   // port=4, pin=18, dir=output
+    // write GPIO4_18 as low (enable spi nor) or high (disable spi nor)
+    gpio_write_data(4, 18, en_dis); // port=4, pin=18, en_dis (low or high)
+}
+
 /*!
   * Set up the IOMUX for SPI
   */
@@ -677,7 +711,7 @@ void io_cfg_spi(struct imx_spi_dev *dev)
     case ECSPI1_BASE_ADDR:
 
         if (BOARD_TYPE_ID == BOARD_ID_MX53_ARD) {
-            ard_spi_nor_control_(0);    // by setting to 0, this enables the spi nor
+            ard_spi_nor_control(0);    // by setting to 0, this enables the spi nor
         }
         // MOSI
         writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_EIM_D18);
@@ -1674,7 +1708,7 @@ void reset_usb_hub(void)
             temp |= (0x1 << 20);
             writel(temp, (GPIO5_BASE_ADDR + GPIO_DR0_OFFSET));  // set GPIO5_20 high
         } else {
-            /* for SBRTH_SMD, use GPIO3_14 to reset the USB_HUB */
+            /* for the SMD, use GPIO3_14 to reset the USB_HUB */
             uint32_t temp;
             /* set GPIO3_14 to low, this is the reset to the HUBs */
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_EIM_DA14);    //force input path, ALT1 as GPIO3_14
@@ -1801,7 +1835,6 @@ void board_init(void)
 {
     unsigned int val = 0;
 
-    init_clock(32768);
     /* set up debug UART iomux */
     debug_uart_iomux();
     /* Set up on board PMIC and read device ID */
@@ -1815,7 +1848,9 @@ void board_init(void)
     writel(val, 0x53FA8000 + 0x4);
     // Configure peripherals reset through io expander
     if (BOARD_ID_MX53_ARD == BOARD_TYPE_ID) {
-        max7310_init();
+        max7310_i2c_req_array[0].ctl_addr = MAX7310_I2C_BASE_ID0;   // the I2C controller base address
+        max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
+        max7310_init(0, MAX7310_ID0_DEF_DIR, MAX7310_ID0_DEF_VAL);
     }
     if (BOARD_ID_MX53_SMD == BOARD_TYPE_ID) {
         /* Assert dcdc1v8_en */
@@ -2186,7 +2221,7 @@ void hdmi_power_on(void)
     }
 }
 
-int GetCPUFreq(void)
+uint32_t GetCPUFreq(void)
 {
     return 800000000;
 }

@@ -12,8 +12,8 @@
  * @ingroup diag_util
  */
 
+#include <sys/stat.h>
 #include <stdio.h>
-#include <time.h>
 #include "hardware.h"
 
 /*!
@@ -24,34 +24,6 @@
 int last_char_read;
 int backspace_called;
 
-/* to re-define these functions, they need to be undefined first */
-#undef putchar
-#undef getchar
-
-/*!
- * Put a char to a serial port
- *
- * @param	ch	char to send
- * @return  sent char if sucessful
- */
-int putchar(int ch)
-{
-    uint8_t tempch = (uint8_t) ch;
-
-    return (int)uart_putchar(&debug_uart, &tempch);
-}
-
-/*!
- * Get a char from a serial port
- *
- * @return  the char received through serial port or error
- */
-int getchar(void)
-{
-    return (int)uart_getchar(&debug_uart);
-}
-
-/* Warning : following function should put a char to a file !!!!! */
 /*!
  * Put a char to a serial port
  *
@@ -63,10 +35,9 @@ int fputc(int ch, FILE * f)
 {
     uint8_t tempch = (uint8_t) ch;
 
-    return (int)uart_putchar(&debug_uart, &tempch);
+    return (int)uart_putchar(&g_debug_uart, &tempch);
 }
 
-/* Warning : following function should get a char from a file !!!!! */
 /*!
  * Get a char from a serial port
  * @param	f	no use
@@ -83,9 +54,9 @@ int fgetc(FILE * f)
         return last_char_read;
     }
 
-    ch = uart_getchar(&debug_uart);
+    ch = uart_getchar(&g_debug_uart);
     last_char_read = (int)ch;   /* backspace must return this value */
-    return ch;
+    return last_char_read;
 }
 
 /*!
@@ -94,13 +65,13 @@ int fgetc(FILE * f)
  */
 void _ttywrch(int ch)
 {
+    uint8_t tempch = ch;
+
     /* Replace line feed with '\r' */
-    if (ch == '\n')
-        ch = '\r';
+    if (tempch == '\n')
+        tempch = '\r';
 
-    uart_putchar(&debug_uart, &ch);
-
-    return ch;
+    uart_putchar(&g_debug_uart, &tempch);
 }
 
 /*!
@@ -204,10 +175,11 @@ int _write(int fd, char *buf, int nbytes)
 
     for (i = 0; i < nbytes; i++) {
         if (*(buf + i) == '\n') {
-            fputc('\r', NULL);
+            /* fd is incorrectly passed as arguments, as FILE is not used, but needed for build */
+            fputc('\r', (FILE *) &fd);
         }
-
-        fputc(*(buf + i), NULL);
+        /* fd is incorrectly passed as arguments, as FILE is not used, but needed for build */
+        fputc(*(buf + i), (FILE *) &fd);
     }
 
     return nbytes;
@@ -241,7 +213,7 @@ void mybkpt(void)
  * @return  0   if input char doesn't match with c
  *          non-zero otherwise
  */
-int is_input_char(uint8_t c)
+int32_t is_input_char(uint8_t c)
 {
     uint8_t input, lc, uc;
 
@@ -257,7 +229,7 @@ int is_input_char(uint8_t c)
     }
     printf("Please enter %c or %c to confirm\n", lc, uc);
     do {
-        input = uart_getchar(&debug_uart);
+        input = uart_getchar(&g_debug_uart);
     } while (input == NONE_CHAR);
     printf("input char is: %c\n", input);
 

@@ -17,18 +17,14 @@
 
 #include <stdio.h>
 #include "hardware.h"
-#include "version.h"
-#include "functions.h"
 
+/************************* Global Variables ***********************************/
 #define NUM_OF_INTERRUPTS 128
 
-typedef void (*int_hdlr_t) (void);
+irq_hdlr_t g_interrupt_handlers[NUM_OF_INTERRUPTS];
+extern irq_hdlr_t IRQ_HDLR;
 
-extern int_hdlr_t IRQ_HDLR;
-
-/*define a list which contains 128 interrupt routins*/
-void (*interrupt_routine_list[MAX_INTERRUPT_NUM]) (void) = {
-};
+/**************************** Functions ***************************************/
 
 void clear_all_interrupts(void)
 {
@@ -41,15 +37,15 @@ void clear_all_interrupts(void)
 void default_interrupt_routine(void)
 {
     printf("Attention: No specified interrupt routine attached!\n");
-    printf("please use ATTACH_INTERRUPT to link the interrupt source.\n");
+    printf("please use register_interrupt_routine to link one to this interrupt source.\n");
     return;
 }
 
 void setup_interrupts_in_RAM(void)
 {
     /*attach all the interrupt routines to default one */
-    int index = 0;
-    for (index = 0; index < MAX_INTERRUPT_NUM; index++) {
+    uint32_t index = 0;
+    for (index = 0; index < NUM_OF_INTERRUPTS; index++) {
         ATTACH_INTERRUPT(index, default_interrupt_routine);
     }
 
@@ -71,7 +67,7 @@ void setup_interrupts_in_RAM(void)
     writel(0x0, 0xf801ffe8);
     writel(0x0, 0xf801ffec);
     writel(0x0, 0xf801fff0);
-    writel((unsigned int)(&IRQ_HDLR), 0xf801fff4);
+    writel((uint32_t) (&IRQ_HDLR), 0xf801fff4);
     writel(0x0, 0xf801fff8);
     writel(0x0, 0xf801fffc);
 }
@@ -117,15 +113,19 @@ void tzic_init(void)
     reg32_write(TZIC_BASE_ADDR + TZIC_PRIORITY24_OFFSET, 0x00000000);
 }
 
-void enable_interrupt(unsigned int int_num, int cpu_num)
+void disable_interrupt(uint32_t irq_id, uint32_t cpu_num)
 {
-    reg32setbit(TZIC_BASE_ADDR + TZIC_ENSET0_OFFSET + (int_num / 32) * 4, int_num % 32);
+    reg32setbit(TZIC_BASE_ADDR + TZIC_ENCLEAR0_OFFSET + (irq_id / 32) * 4, irq_id % 32);
 }
 
-void capture_interrupt(int int_num, int_hdlr_t isr, int cpu_num)
+void enable_interrupt(uint32_t irq_id, uint32_t cpu_num, uint32_t priority)
 {
-    interrupt_routine_list[int_num] = isr;
-    enable_interrupt(int_num, cpu_num);
+    reg32setbit(TZIC_BASE_ADDR + TZIC_ENSET0_OFFSET + (irq_id / 32) * 4, irq_id % 32);
+}
+
+void register_interrupt_routine(uint32_t irq_id, irq_hdlr_t isr)
+{
+    g_interrupt_handlers[irq_id] = isr;
 }
 
 void init_interrupts(void)

@@ -38,7 +38,7 @@ static void mx61_print_ver(void)
     }
 
     if (BOARD_TYPE_ID == BOARD_ID_MX61_ARD)
-        sprintf(board_name, "Sabre Auto");
+        sprintf(board_name, "SABRE Auto");
     else if (BOARD_TYPE_ID == BOARD_ID_MX61_SMD)
         sprintf(board_name, "SABRE Tablet");
     else
@@ -63,9 +63,9 @@ static void mx61_print_ver(void)
 void platform_init(void)
 {
     uint8_t c;
-    int temp, display = 0;
 
     // prog_pll();   NEEDS TO BE UPDATED FOR MX6qd
+    /* populate the freq member of the referenced hw_module in mx61_module */
     freq_populate();
     /*
      * Note, board type is determined at compile time such that the UART and
@@ -73,11 +73,18 @@ void platform_init(void)
      */
     board_init();
 
+    /* Initialize the EPIT timer used for system time functions */
+    /* typical PER_CLK is in MHz, so divide it to get a reference
+       clock of 1MHz => 1us per count */
+    epit_init(&g_system_timer, CLKSRC_PER_CLK, g_system_timer.freq / 1000000,
+              SET_AND_FORGET, 1000, WAIT_MODE_EN | STOP_MODE_EN);
+    epit_enable(&g_system_timer);
+
     /* Initialize the debug/console UART */
-    uart_init(&debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
+    uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
     /* flush UART RX FIFO */
     do {
-        c = uart_getchar(&debug_uart);
+        c = uart_getchar(&g_debug_uart);
     } while (c != NONE_CHAR);
 
     mx61_print_ver();
@@ -94,9 +101,10 @@ void platform_init(void)
     show_ddr_config();
 }
 
+extern void sdma_test(void);
+extern void ipu_test(void);
 void ALL_test(void)
 {
-
     sdma_test();
-
+    ipu_test();
 }

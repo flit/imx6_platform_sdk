@@ -34,7 +34,8 @@
 #define IIM_SCS2_OFF            0x34
 #define IIM_SCS3_P_OFF          0x38
 
-unsigned int sense_fuse(int bank, int row);
-int fuse_blow(int bank, int row, int bit);
+uint32_t sense_fuse(uint32_t bank, uint32_t row);
+uint32_t fuse_blow(uint32_t bank, uint32_t row, uint32_t bit);
+void fuse_blow_row(uint32_t, uint32_t, uint32_t);
 
 #endif // __IIM_FUSE_H__

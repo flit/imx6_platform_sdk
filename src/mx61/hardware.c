@@ -27,10 +27,22 @@ struct hw_module core = {
     0,
 };
 
-// UART4 is the debug_uart port
-struct hw_module debug_uart = {
+// UART4 is the serial debug/console port
+struct hw_module g_debug_uart = {
     "UART4 for debug",
     UART4_BASE_ADDR,
+    27000000,
+    IMX_INT_UART4,
+    &default_interrupt_routine,
+};
+
+/* EPIT1 used for time functions */
+struct hw_module g_system_timer = {
+    "EPIT1 used as system timer",
+    EPIT1_BASE_ADDR,
+    27000000,
+    IMX_INT_EPIT1,
+    &default_interrupt_routine,
 };
 
 struct hw_module ddr = {
@@ -41,7 +53,8 @@ struct hw_module ddr = {
 struct hw_module *mx61_module[] = {
     &core,
     &ddr,
-    &debug_uart,
+    &g_debug_uart,
+    &g_system_timer,
     NULL,
 };
 
@@ -53,17 +66,6 @@ unsigned int mx61_gpio[] = {
     GPIO5_BASE_ADDR,
     GPIO6_BASE_ADDR,
     GPIO7_BASE_ADDR
-};
-
-// The i.MX61 has 2 instances of the EPIT.
-uint32_t EPIT_base_address[] = {
-    EPIT1_BASE_ADDR,
-    EPIT2_BASE_ADDR
-};
-
-uint32_t EPIT_irq_src[] = {
-    IMX_INT_EPIT1,
-    IMX_INT_EPIT2
 };
 
 #define REF_IN_CLK_NUM  4
@@ -190,7 +192,7 @@ int gpio_read_data(int port, int pin)
 /*!
  * Retrieve the freq info based on the passed in module_base.
  * @param   module_base     the base address of the module
- * @return  frequency in hz (0 means not a valid module)
+ * @return  frequency in Hz (0 means not a valid module)
  */
 uint32_t get_freq(uint32_t module_base)
 {
@@ -200,8 +202,11 @@ uint32_t get_freq(uint32_t module_base)
     else if (module_base == MMDC_P0_BASE_ADDR)
         //return get_main_clock(DDR_CLK);
         return 400000000;
-    else if (module_base == UART4_BASE_ADDR)
+    else if (module_base == g_debug_uart.base)
         //return get_peri_clock(UART4_BAUD);
+        return 80000000;
+    else if (module_base == g_system_timer.base)
+        //return get_peri_clock(EPIT1_CLK);
         return 80000000;
     else {
         printf("Not a valid module base \n");
@@ -217,7 +222,6 @@ uint32_t get_freq(uint32_t module_base)
 void freq_populate(void)
 {
     int i;
-    volatile unsigned int temp;
     struct hw_module *tmp;
     //ETHNET
     reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);    /*power down bit */
@@ -551,7 +555,7 @@ void ipu_iomux_config(void)
 /*!
  * Provide the LVDS power through GPIO pins
  */
-void lvds_power_on()
+void lvds_power_on(void)
 {
     /*3.3V power supply through the load switch FDC6331L */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
@@ -566,6 +570,109 @@ void lvds_power_on()
 void ldb_iomux_config(void)
 {
  /*NA*/}
+
+/*!
+ * uSDHC pin mux and pad configure
+ */
+void usdhc_iomux(unsigned int base_address)
+{
+    switch (base_address) {
+    case USDHC1_BASE_ADDR:
+        break;
+
+    case USDHC2_BASE_ADDR:
+        break;
+
+    case USDHC3_BASE_ADDR:
+
+        /* CMD */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_CMD);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_CMD);
+
+        /* CLK */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_CLK);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_CLK);
+
+        /* DATA0 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT0);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT0);
+
+        /* DATA1 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT1);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT1);
+
+        /* DATA2 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT2);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT2);
+
+        /* DATA3 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT3);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT3);
+
+        /* DATA4 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT4);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT4);
+
+        /* DATA5 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT5);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT5);
+
+        /* DATA6 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT6);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT6);
+
+        /* DATA7 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT7);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT7);
+        break;
+
+    case USDHC4_BASE_ADDR:
+
+        /* CMD */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD4_CMD);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_CMD);
+
+        /* CLK */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD4_CLK);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_CLK);
+
+        /* DATA0 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT0);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT0);
+
+        /* DATA1 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT1);
+
+        /* DATA2 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT2);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT2);
+
+        /* DATA3 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT3);
+
+        /* DATA4 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT4);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT4);
+
+        /* DATA5 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT5);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT5);
+
+        /* DATA6 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT6);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT6);
+
+        /* DATA7 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT7);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT7);
+        break;
+
+    default:
+        break;
+    }
+}
 
 void debug_uart_iomux(void)
 {
@@ -585,14 +692,15 @@ void debug_uart_iomux(void)
     }
 }
 
+void SGTL5000PowerUp_and_clockinit(void)
+{
+}
+
 /*!
  * Board initialization and UART IOMUX set up
  */
 void board_init(void)
 {
-    unsigned int val = 0;
-
-    init_clock(32768);
     /* set up debug UART iomux */
     debug_uart_iomux();
     // Configure some board signals through I/O expanders
@@ -604,7 +712,7 @@ void board_init(void)
     max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
 }
 
-int GetCPUFreq(void)
+uint32_t GetCPUFreq(void)
 {
     return 1000000000;
 }

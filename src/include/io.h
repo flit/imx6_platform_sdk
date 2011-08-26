@@ -34,12 +34,17 @@ typedef signed char int8_t;
 
 typedef int bool;
 
-#define TRUE                1
-#define FALSE               0
-#define true                1
-#define false               0
+/* defines a pointer to a function */
+typedef void (*funct_t) (void);
 
-#define NONE_CHAR           0xFF
+#define TRUE        1
+#define FALSE       0
+#define true        1
+#define false       0
+#define ENABLE      1          
+#define DISABLE     0
+
+#define NONE_CHAR   0xFF
 
 #define REG8_VAL(a)          ((unsigned char)(a))
 #define REG16_VAL(a)         ((unsigned short)(a))
@@ -86,6 +91,8 @@ struct hw_module {
     char *name;
     uint32_t base;
     uint32_t freq;
+    uint32_t irq_id;
+    void (*irq_subroutine)(void);
 };
 
 #ifdef SDK_DEBUG
@@ -115,19 +122,8 @@ struct test_module {
 void record_test_result(char *name, int result);
 
 typedef int (*sdk_test_t) (void);
-typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, unsigned int write);
 
-void fuse_blow_row(int bank, int row, unsigned int value);
-unsigned int sense_fuse(int bank, int row);
-void hal_delay_us(uint32_t usecs);
-uint32_t get_freq(uint32_t module_base);
-char receive_char(void);
-int is_input_char(uint8_t c);
 void _sys_exit(int return_code);
-void platform_init(void);
-int gpio_dir_config(int port, int pin, int dir);
-int gpio_read_data(int port, int pin);
-int gpio_write_data(int port, int pin, unsigned int attr);
 
 #define RUN_TEST_COMMON(name, func)                         \
     static int sdk_##func (void)                           \

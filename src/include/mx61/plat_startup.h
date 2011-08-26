@@ -29,7 +29,7 @@
 // image starts at 0x00907000
 //flash header & DCD @ 0x400
 .macro plat_dcd_startup
-    b startup
+    b startup_imx6x
     .org 0x400
 /* First IVT to copy the plugin that initializes the system into OCRAM */
 ivt_header:             .long 0x402000D1    //Tag=0xD1, Len=0x0020, Ver=0x40
@@ -69,7 +69,6 @@ plugin_start:
 
 #ifdef MX61_ARD
     /*Use default DDR frequency: 528MHz*/
-    /*The parameters are base on the init scirpt at http://compass.freescale.net/livelink/livelink/223026455/Arik_init_DDR3_528MHz_002.inc.txt?func=doc.Fetch&nodeid=223026455*/
     ldr r0, =0x020c4068
     ldr r1, =0xffffffff
     str r1, [r0]

@@ -6,16 +6,15 @@
 */
 
 #include "hardware.h"
-#include "imx_i2c.h"
 
 #define PMIC_DA9053_I2C_ADDR        (0x90 >> 1) // PMIC I2C Slave address
 #define PMIC_DA9053_I2C_REG_BYTE    0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_DA9053_I2C_DATA_BYTE   0x1 // Number of Bytes to transfer the PMIC reg data
 
-unsigned char da9053_i2c_reg(unsigned int reg, unsigned char val, unsigned int dir)
+uint8_t da9053_i2c_reg(uint32_t reg, uint8_t val, uint32_t dir)
 {
     struct imx_i2c_request rq;
-    unsigned char buf = 0;
+    uint8_t buf = 0;
 
     if (dir == I2C_WRITE) {
         buf = val;
@@ -41,7 +40,7 @@ unsigned char da9053_i2c_reg(unsigned int reg, unsigned char val, unsigned int d
 
 void da9053_eval(void)
 {
-    unsigned char buf;
+    uint8_t buf;
 
     /* Read BUCKCORE register */
     buf = da9053_i2c_reg(46, 0, I2C_READ);
@@ -190,7 +189,7 @@ void da9053_eval(void)
 int i2c_device_id_check_DA9053_test_enable;
 int i2c_device_id_check_DA9053(void)
 {
-    unsigned char reg_data = 0;
+    uint8_t reg_data = 0;
 
     if (!i2c_device_id_check_DA9053_test_enable) {
         return TEST_NOTPRESENT;

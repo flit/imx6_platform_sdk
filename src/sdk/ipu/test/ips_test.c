@@ -16,42 +16,17 @@ static ipu_test_t ipu_tests[] = {
 
 int ipu_test(void)
 {
-    int retv, idx;
-    uint8_t sel;
+    int retv;
 
-    printf("\n---- Running IPU test, type 'x' to exit.\n");
+    printf("\n---- Running IPU test ----\n");
     ipu_iomux_config();
 
-    do {
-        printf("Please select ipu test type:\n");
-        for (idx = 0; idx < (sizeof(ipu_tests) / sizeof(ipu_test_t)); idx++) {
-            printf("\t%d - %s\n", idx, ipu_tests[idx].name);
-        }
-#if 0
-        do {
-            sel = getchar();
-        } while (sel == (uint8_t) 0xFF);
-
-        if (sel == 'x') {
-            printf("\nTest exit.\n");
-            break;
-        }
-
-        idx = sel - '0';
-#endif
-        idx = 0;
-
-        if ((idx >= 0) && (idx < (sizeof(ipu_tests) / sizeof(ipu_test_t)))) {
-            printf("\n");
-            retv = ipu_tests[idx].test();
-            if (retv == TRUE) {
-                printf("\n%s test PASSED.\n", ipu_tests[idx].name);
-            } else {
-                printf("\n%s test FAILED.\n", ipu_tests[idx].name);
-            }
-
-        }
-    } while (1);
+    retv = ipu_tests[0].test();
+    if (retv == TRUE) {
+        printf("\n%s test PASSED.\n", ipu_tests[0].name);
+    } else {
+        printf("\n%s test FAILED.\n", ipu_tests[0].name);
+    }
 
     return retv;
 }

@@ -14,6 +14,7 @@
 
 int ips_display_test(void)
 {
+    uint8_t revchar;
     ips_device_t *mem, *ipu, *disp;
     ips_ims_t *ims;
     ips_pad_t *srcpad;
@@ -39,5 +40,14 @@ int ips_display_test(void)
     flow = ips_new_flow(IPU1_DP_DISP0, "di0 display", bin);
     load_centralized_image(flow);
     stream_on(flow);
-    return true;
+
+    printf("Do you see the image?\n");
+    do {
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+    if (revchar == 'Y' || revchar == 'y') {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }

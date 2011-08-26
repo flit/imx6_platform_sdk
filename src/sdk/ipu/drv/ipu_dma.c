@@ -4,6 +4,13 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+
+/*!
+ * @file ipu_common.c
+ * @brief IPU common file configuration
+ * @group diag_ipu
+ */
+
 #include "ipu_common.h"
 
 inline void ipu_cpmem_set_field(uint32_t base, int w, int bit, int size, uint32_t v)

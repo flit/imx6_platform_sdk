@@ -21,12 +21,16 @@
 #include "iomux_define.h"
 #include "iomux_register.h"
 #include "gpio_define.h"
+#include "interrupt.h"
+#include "gic.h"
 #include "ccm_pll_reg_define.h"
 #include "iim_fuse.h"
 #include "imx_i2c.h"
 #include "imx_uart.h"
 #include "imx_spi.h"
 #include "imx_sata.h"
+#include "epit.h"
+#include "time.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -167,22 +171,32 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define SATA_PROTOCOL_BUFFER_BASE 0x0090a000
 #define SATA_PROTOCOL_BUFFER_SIZE 0x1000
 #define SATA_TRANSFER_BUFFER_BASE 0x0090c000
-// input CKIL clock
-#define __CLK_TCK   32768
-#define FREQ_24MHZ               24000000
-#define CKIH                            22579200
+
+// input clocks
+#define CKIL        32768
+#define FREQ_24MHZ  24000000
+#define CKIH        22579200
 
 // I2C specific defines
 // For LTC Board ID
 #define BOARD_ID_I2C_BASE I2C2_BASE_ADDR
 
 // register defines for the SRTC function of the SNVS
-#define SRTC_LPSCMR         (SNVS_BASE_ADDR + 0x50)
-#define SRTC_LPSCLR         (SNVS_BASE_ADDR + 0x54)
-#define SRTC_LPCR           (SNVS_BASE_ADDR + 0x38)
-#define SRTC_HPSCMR          (SNVS_BASE_ADDR + 0x24)
-#define SRTC_HPSCLR          (SNVS_BASE_ADDR + 0x28)
-#define SRTC_HPCR           (SNVS_BASE_ADDR + 0x08)
+#define SRTC_LPSCMR     (SNVS_BASE_ADDR + 0x50)
+#define SRTC_LPSCLR     (SNVS_BASE_ADDR + 0x54)
+#define SRTC_LPCR       (SNVS_BASE_ADDR + 0x38)
+#define SRTC_HPSCMR     (SNVS_BASE_ADDR + 0x24)
+#define SRTC_HPSCLR     (SNVS_BASE_ADDR + 0x28)
+#define SRTC_HPCR       (SNVS_BASE_ADDR + 0x08)
+
+/* uSDHC specific defines */
+#define ESDHC_IDENT_FREQ   ((unsigned int)0x00002080)
+#define ESDHC_OPERT_FREQ   ((unsigned int)0x00000130)
+#define ESDHC_HS_FREQ      ((unsigned int)0x00000110)
+#define USDHC_ADMA_BUFFER1 0x00907000
+#define USDHC_ADMA_BUFFER2 0x00908000
+#define USDHC_ADMA_BUFFER3 0x00909000   /* IRAM Region */
+#define USDHC_ADMA_BUFFER4 0x0090A000
 
 extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
 /* SPI-NOR defines */
@@ -217,6 +231,8 @@ enum peri_clocks {
     MSTICK2_CLK,
     SPI1_CLK = ECSPI1_BASE_ADDR,
     SPI2_CLK = ECSPI2_BASE_ADDR,
+    EPIT1_CLK,
+    EPIT2_CLK,
 };
 
 enum plls {
@@ -247,6 +263,8 @@ void clock_setup(uint32_t core_clk, uint32_t ahb_div);
 void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
+uint32_t get_freq(uint32_t module_base);
+uint32_t GetCPUFreq(void);
 void show_ddr_config(void);
 void board_init(void);
 void reset_usb_hub(void);
@@ -256,61 +274,27 @@ void esai_iomux(void);
 void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
 
-struct hw_module debug_uart;
+struct hw_module g_debug_uart;
+struct hw_module g_system_timer;
 
-extern void hal_delay_us(unsigned int);
-extern int max7310_init(unsigned int, unsigned int, unsigned int);
-extern void max7310_set_gpio_output(unsigned int, unsigned int, unsigned int);
+extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
+extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
 
-extern int board_id;
-extern int board_rev;
-extern int spi_nor_test_enable;
-extern int pmic_mc13892_test_enable;
+extern void platform_init(void);
+extern int32_t board_id;
+extern int32_t board_rev;
 extern imx_spi_init_func_t spi_init_flash;
 extern imx_spi_xfer_func_t spi_xfer_flash;
 extern struct imx_spi_dev imx_spi_nor;
-extern int fec_test_enable;
-extern int lan9220_test_enable;
-extern int enet_test_enable;
-extern int ar8031_test_enable;
-extern int ds90ur124_test_enable;
-extern int ltc3589_i2c_device_id_test_enable;
-extern int adv7180_test_enable;
-extern int si476x_test_enable;
-extern int esai_test_enable;
-extern int weim_nor_flash_test_enable;
-extern int max7310_i2c_device_id_test_enable;
-extern int sata_test_enable;
-extern int nand_test_enable;
-extern int usbh_ulpi_phy_read_test_enable;
-extern uint32_t usbh_ulpi_phy_read_test_base;
-extern int usbh_dev_enum_test_enable;
-extern uint32_t usbh_dev_enum_test_base;
-extern int usbh_hub251x_test_enable;
-extern uint32_t usbh_hub251x_test_base;
-extern int i2s_audio_output_test_enable;
-extern int gps_test_enable;
-extern int gpio_keyboard_test_enable;
-extern int smbus_test_enable;
-extern int camera_test_enable;
-extern int touch_screen_test_enable;
-extern int ipu_display_test_enable;
-extern int ipu_display_panel[];
-extern int ddr_test_enable;
+extern int32_t ipu_display_panel[];
 extern uint32_t ddr_density, ddr_num_of_cs;
-extern int mlb_os81050_test_enable;
-extern int i2c_id_check_test_enable;
-extern int i2c_device_id_check_DA9053_test_enable;
-extern int i2c_device_id_check_mag3112_test_enable;
-extern int i2c_device_id_check_isl29023_test_enable;
-extern int i2c_device_id_check_mma8451_test_enable;
-extern int mmcsd_test_enable;
-extern uint32_t mmcsd_bus_width, mmc_sd_base_address;
-extern int eeprom_test_enable;
 extern void gpio_backlight_lvds_en(void);
-extern int android_buttons_test_enable;
-//extern uint32_t AT45DB321D;
-//extern uint32_t M25P32;
+extern void StartPerfCounter(void);
+extern uint32_t StopPerfCounter(void);
+extern int32_t is_input_char(uint8_t);
+extern void fuse_blow_row(uint32_t, uint32_t, uint32_t);
+
+extern void usdhc_iomux(unsigned int);
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

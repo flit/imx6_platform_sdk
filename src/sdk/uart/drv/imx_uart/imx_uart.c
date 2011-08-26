@@ -1,28 +1,27 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
 
 /*!
- * @file uart.c
- * @brief Simple poll-driven on-chip UART driver to send and receive characters
+ * @file imx_uart.c
+ * @brief UART driver.
  *
  */
 
-#include "imx_uart.h"
+#include "hardware.h"
 
-#define UART_UFCR_RFDIV                        UART_UFCR_RFDIV_2
-//#define UART_UFCR_RFDIV                        UART_UFCR_RFDIV_4
-//#define UART_UFCR_RFDIV                        UART_UFCR_RFDIV_7
+#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_2
+//#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_4
+//#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_7
 
 /*!
- * Obtain uart reference frequency
+ * Obtain UART reference frequency
  *
- * @param   uart      pointer to the uart module structure
- *
- * @return  reference freq in hz
+ * @param   port - pointer to the UART module structure
+ * @return  reference frequency in Hz
  */
 uint32_t uart_get_reffreq(struct hw_module *port)
 {
@@ -42,8 +41,9 @@ uint32_t uart_get_reffreq(struct hw_module *port)
 /*!
  * Output a character to UART port
  *
- * @param       ch      pointer to the character for output
- */
+ * @param   ch - pointer to the character for output
+ * @return  the character that has been sent
+*/
 uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
@@ -59,8 +59,8 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 /*!
  * Receive a character on the UART port
  *
- * @return      a character received from the UART port; if the rx FIFO
- *              is empty or errors are detected, it returns 0xFF
+ * @return  a character received from the UART port; if the rx FIFO
+ *          is empty or errors are detected, it returns NONE_CHAR
  */
 uint8_t uart_getchar(struct hw_module * port)
 {
@@ -69,26 +69,26 @@ uint8_t uart_getchar(struct hw_module * port)
 
     /* If Rx FIFO has no data ready */
     if (!(puart->usr2 & UART_USR2_RDR))
-        return 0xFF;
+        return NONE_CHAR;
 
     read_data = puart->urxd[0];
 
     /* If error are detected */
     if (read_data & 0x7C00)
-        return 0xFF;
+        return NONE_CHAR;
 
     return (uint8_t) read_data;
 }
 
 /*!
- * @brief   Configure the RX or TX FIFO mode
+ * Configure the RX or TX FIFO level and trigger mode
  *
  * @param   port - pointer to the UART module structure
  * @param   fifo – FIFO to configure: RX_FIFO or TX_FIFO.
  * @param   trigger_level – set the trigger level of the FIFO to generate
- *                an IRQ or a DMA request: number of characters.
+ *                          an IRQ or a DMA request: number of characters.
  * @param   service_mode – FIFO served with DMA or IRQ or polling (default).
-*/
+ */
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode)
 {
@@ -125,19 +125,37 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
  * @param   port - pointer to the UART module structure
  * @param   state - enable/disable the loopback mode
  */
-void set_loopback_mode(struct hw_module *port, uint8_t state)
+void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
-    uint32_t data;
 
-    if (state == 1)
+    if (state == ENABLE)
         puart->uts |= UART_UTS_LOOP;
     else
         puart->uts &= ~UART_UTS_LOOP;
 }
 
+/*! 
+ * Setup UART interrupt. It enables or disables the related HW module
+ * interrupt, and attached the related sub-routine into the vector table.
+ *
+ * @param   port - pointer to the UART module structure
+ */
+void uart_setup_interrupt(struct hw_module *port, uint8_t state)
+{
+    if (state == ENABLE) {    
+        /* register the IRQ sub-routine */
+        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+        /* enable the IRQ */
+        enable_interrupt(port->irq_id, CPU_0, 0);
+    }
+    else
+        /* disable the IRQ */
+        disable_interrupt(port->irq_id, CPU_0);
+}
+
 /*!
- * @brief   Initialize the UART port
+ * Initialize the UART port
  *
  * @param   port - pointer to the UART module structure
  * @param   baudrate – serial baud rate such 9600, 57600, 115200, etc.

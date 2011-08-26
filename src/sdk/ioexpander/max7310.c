@@ -12,7 +12,6 @@
  * @ingroup diag_ioexpander
  */
 
-#include "imx_i2c.h"
 #include "hardware.h"
 
 /*! 
@@ -24,8 +23,6 @@
  *       e.g.     max7310_i2c_req = &max7310_i2c_req_array[slave_id];
  */
 static struct imx_i2c_request *max7310_i2c_req;
-
-extern void hal_delay_us(unsigned int);
 
 #define input_port_reg  0x00
 #define output_port_reg 0x01
@@ -40,9 +37,9 @@ extern void hal_delay_us(unsigned int);
  *
  * @return the value of the read register
  */
-unsigned char max7310_reg_read(unsigned char reg_addr)
+uint8_t max7310_reg_read(uint8_t reg_addr)
 {
-    unsigned char buf;
+    uint8_t buf;
     max7310_i2c_req->reg_addr_sz = 1;
     max7310_i2c_req->buffer_sz = 1;
     max7310_i2c_req->reg_addr = reg_addr;
@@ -60,7 +57,7 @@ unsigned char max7310_reg_read(unsigned char reg_addr)
  *
  * @return 0 on success; non-zero otherwise
  */
-int max7310_reg_write(unsigned char reg_addr, unsigned char data)
+int32_t max7310_reg_write(uint8_t reg_addr, uint8_t data)
 {
     max7310_i2c_req->reg_addr_sz = 1;
     max7310_i2c_req->buffer_sz = 1;
@@ -81,9 +78,8 @@ int max7310_reg_write(unsigned char reg_addr, unsigned char data)
  * 
  * @return 0 on success; non-zero otherwise
  */
-int max7310_init(unsigned int slave_id, unsigned int io_default_dir, unsigned int out_default_val)
+int32_t max7310_init(uint32_t slave_id, uint32_t io_default_dir, uint32_t out_default_val)
 {
-    unsigned char buf = 0x0;
     max7310_i2c_req = &max7310_i2c_req_array[slave_id];
 
     /* I2C controller init */
@@ -111,9 +107,9 @@ int max7310_init(unsigned int slave_id, unsigned int io_default_dir, unsigned in
  * 
  * @return 0 on success; non-zero otherwise
  */
-void max7310_set_gpio_output(unsigned int slave_id, unsigned int io_x, unsigned int level)
+void max7310_set_gpio_output(uint32_t slave_id, uint32_t io_x, uint32_t level)
 {
-    unsigned char data;
+    uint8_t data;
 
     max7310_i2c_req = &max7310_i2c_req_array[slave_id];
     /* read output state first through the input register */
@@ -132,15 +128,10 @@ void max7310_set_gpio_output(unsigned int slave_id, unsigned int io_x, unsigned 
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-int max7310_i2c_device_id_test_enable;
-static int max7310_i2c_device_id_check(void)
+static int32_t max7310_i2c_device_id_check(void)
 {
-    unsigned int i, data;
-    int ret = -1, ret_all = 0;
-
-    if (!max7310_i2c_device_id_test_enable) {
-        return TEST_NOTPRESENT;
-    }
+    uint32_t i, data;
+    int32_t ret = -1, ret_all = 0;
 
     for (i = 0; i < MAX7310_NBR; i++) {
         max7310_i2c_req = &max7310_i2c_req_array[i];

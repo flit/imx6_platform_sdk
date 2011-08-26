@@ -573,7 +573,109 @@ void lvds_power_on(void)
 
 void ldb_iomux_config(void)
 {
- /*NA*/
+ /*NA*/}
+
+/*!
+ * uSDHC pin mux and pad configure
+ */
+void usdhc_iomux(unsigned int base_address)
+{
+    switch (base_address) {
+    case USDHC1_BASE_ADDR:
+        break;
+
+    case USDHC2_BASE_ADDR:
+        break;
+
+    case USDHC3_BASE_ADDR:
+
+        /* CMD */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_CMD);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_CMD);
+
+        /* CLK */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_CLK);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_CLK);
+
+        /* DATA0 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT0);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT0);
+
+        /* DATA1 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT1);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT1);
+
+        /* DATA2 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT2);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT2);
+
+        /* DATA3 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT3);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT3);
+
+        /* DATA4 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT4);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT4);
+
+        /* DATA5 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT5);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT5);
+
+        /* DATA6 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT6);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT6);
+
+        /* DATA7 */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT7);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT7);
+        break;
+
+    case USDHC4_BASE_ADDR:
+
+        /* CMD */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD4_CMD);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_CMD);
+
+        /* CLK */
+        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD4_CLK);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_CLK);
+
+        /* DATA0 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT0);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT0);
+
+        /* DATA1 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT1);
+
+        /* DATA2 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT2);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT2);
+
+        /* DATA3 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT3);
+
+        /* DATA4 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT4);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT4);
+
+        /* DATA5 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT5);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT5);
+
+        /* DATA6 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT6);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT6);
+
+        /* DATA7 */
+        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT7);
+        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT7);
+        break;
+
+    default:
+        break;
+    }
 }
 
 void debug_uart_iomux(void)
@@ -594,7 +696,9 @@ void debug_uart_iomux(void)
     }
 }
 
-void SGTL5000PowerUp_and_clockinit(void) {}
+void SGTL5000PowerUp_and_clockinit(void)
+{
+}
 
 /*!
  * Board initialization and UART IOMUX set up

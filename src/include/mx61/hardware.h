@@ -189,6 +189,15 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define SRTC_HPSCLR     (SNVS_BASE_ADDR + 0x28)
 #define SRTC_HPCR       (SNVS_BASE_ADDR + 0x08)
 
+/* uSDHC specific defines */
+#define ESDHC_IDENT_FREQ   ((unsigned int)0x00002080)
+#define ESDHC_OPERT_FREQ   ((unsigned int)0x00000130)
+#define ESDHC_HS_FREQ      ((unsigned int)0x00000110)
+#define USDHC_ADMA_BUFFER1 0x00907000
+#define USDHC_ADMA_BUFFER2 0x00908000
+#define USDHC_ADMA_BUFFER3 0x00909000   /* IRAM Region */
+#define USDHC_ADMA_BUFFER4 0x0090A000
+
 extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
 /* SPI-NOR defines */
 #define AT45DB321D  1
@@ -284,6 +293,8 @@ extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t);
 extern void fuse_blow_row(uint32_t, uint32_t, uint32_t);
+
+extern void usdhc_iomux(unsigned int);
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

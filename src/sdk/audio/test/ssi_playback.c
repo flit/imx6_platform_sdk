@@ -11,14 +11,22 @@
 #include "../inc/imx-ssi.h"
 #include "../inc/imx-audmux.h"
 
-extern audio_codec_t sgtl5000;
-extern audio_ctrl_t imx_ssi_2;
-audio_codec_p codec = &sgtl5000;
-audio_ctrl_p ctrl = &imx_ssi_2;
+extern audio_card_t snd_card_ssi;
+audio_card_p snd_card = &snd_card_ssi;
 
-void autio_test_init(void)
+int ssi_playback(audio_pcm_p pcm_file)
 {
+    char recvCh;
+    int result;
+    uint32_t bytes_written = 0;
     audio_dev_para_t dev_para;
+
+    printf("Please ensure headphones are plugged in to hear.\n");
+
+    if (!is_input_char('y')) {
+        printf("  skip AUDIO test \n");
+        return TEST_BYPASSED;
+    }
 
     audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_5, AUDMUX_SSI_SLAVE);
 
@@ -28,35 +36,17 @@ void autio_test_init(void)
     dev_para.word_length = WL_16;
     dev_para.trans_dir = AUDIO_TRANS_DIR_TX;
 
-    ctrl->ops->init(ctrl);
-    ctrl->ops->config(ctrl, &dev_para);
-
-    dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
-    dev_para.trans_dir = AUDIO_TRANS_DIR_RX;
-    codec->ops->init(codec);
-    codec->ops->config(codec, &dev_para);
-}
-
-int ssi_playback(audio_pcm_p pcm_file)
-{
-    char recvCh;
-    int result;
-    uint32_t bytes_written = 0;
-
-    printf("Please plug in headphones to the HEADPHONE OUT jack\n");
-
-    if (!is_input_char('y')) {
-        printf("  skip AUDIO test \n");
-        return TEST_BYPASSED;
+    if (0 != snd_card->ops->init(snd_card)) {
+        printf("Init %s failed.\n", snd_card->name);
+        return -1;
+    }
+    if (0 != snd_card->ops->config(snd_card, &dev_para)) {
+        printf("Configure %s failed.\n", snd_card->name);
+        return -1;
     }
 
-    autio_test_init();
-
-    printf("Audio output: please ensure headphones are plugged in to hear \n");
-    printf("If you hear the sound, enter Y to exit. Or press any other key to try it again.\n");
-
     while (1) {
-        ctrl->ops->write(ctrl, pcm_file->buf, pcm_file->size, &bytes_written);
+        snd_card->ops->write(snd_card, pcm_file->buf, pcm_file->size, &bytes_written);
 
         printf(" Do you need to re-hear it? (y/n)\n");
 
@@ -71,7 +61,7 @@ int ssi_playback(audio_pcm_p pcm_file)
             break;              /* by pass */
     }
 
-    printf(" Do you hear audio from headphone?? (y/n)\n");
+    printf(" Do you hear audio from headphone? (y/n)\n");
 
     do {
         recvCh = getchar();
@@ -82,12 +72,6 @@ int ssi_playback(audio_pcm_p pcm_file)
         result = 0;             /* If user types 'Y' or 'y' test passed */
     else
         result = -1;            /* Else test failed */
-
-    if (result == 0) {
-        return TEST_PASSED;
-    } else {
-        return TEST_FAILED;
-    }
 
     return result;
 }

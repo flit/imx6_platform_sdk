@@ -441,7 +441,7 @@ uint32_t get_main_clock(enum main_clocks clk)
 uint32_t get_peri_clock(enum peri_clocks clk)
 {
     uint32_t ret_val = 0, pdf, pre_pdf, pre_pdf1, clk_sel;
-    uint32_t cbcdr  = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
+    uint32_t cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
     uint32_t cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
     uint32_t cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
     uint32_t cscdr2 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR2);
@@ -711,7 +711,7 @@ void io_cfg_spi(struct imx_spi_dev *dev)
     case ECSPI1_BASE_ADDR:
 
         if (BOARD_TYPE_ID == BOARD_ID_MX53_ARD) {
-            ard_spi_nor_control(0);    // by setting to 0, this enables the spi nor
+            ard_spi_nor_control(0); // by setting to 0, this enables the spi nor
         }
         // MOSI
         writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_EIM_D18);
@@ -961,7 +961,7 @@ void SGTL5000PowerUp_and_clockinit(void)
 }
 
 /* Configure iomux for AUDMUX output */
-int SSI_iomux(void)
+void ssi_io_cfg(void)
 {
     /* Select ALT2 mode of KEY_ROW1 for AUD5_RXD */
     writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_KEY_ROW1);
@@ -979,7 +979,6 @@ int SSI_iomux(void)
     writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_KEY_COL1);
     writel(0x0, IOMUXC_AUDMUX_P5_INPUT_TXFS_AMX_SELECT_INPUT);  //daisy chain
     writel(0x1F4, IOMUXC_SW_PAD_CTL_PAD_KEY_COL1);
-    return 0;
 }
 
 /* Configure iomux for ESAI */

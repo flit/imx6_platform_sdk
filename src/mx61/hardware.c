@@ -692,6 +692,11 @@ void debug_uart_iomux(void)
     }
 }
 
+void ssi_io_cfg(void)
+{
+
+}
+
 void SGTL5000PowerUp_and_clockinit(void)
 {
 }

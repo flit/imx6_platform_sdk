@@ -5,12 +5,17 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file imx_ssi.c
+ * @brief SSI driver.
+ *
+ */
+
 #include <stdio.h>
 #include "io.h"
 #include "hardware.h"
 #include "../inc/audio.h"
 #include "../inc/imx-ssi.h"
-#include "../inc/imx-audmux.h"
 
 #define SSI_DEBUG 0
 
@@ -20,7 +25,7 @@
 #define D(fmt,args...)
 #endif
 
-extern int SSI_iomux(void);
+extern void ssi_io_cfg(void);
 
 ////////////////////////////////////Local variables and functions/////////////////////////// 
 
@@ -59,6 +64,10 @@ static int ssi_dump(audio_ctrl_p ctrl)
 
 /*! 
  * Put the ssi to soft-reset mode, and then can be configured.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the ssi module
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static int ssi_soft_reset(audio_ctrl_p ctrl)
 {
@@ -71,6 +80,10 @@ static int ssi_soft_reset(audio_ctrl_p ctrl)
 
 /*!
  * Set all the registers to reset values, called by ssi_init.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the ssi module
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static int ssi_registers_reset(audio_ctrl_p ctrl)
 {
@@ -97,6 +110,10 @@ static int ssi_registers_reset(audio_ctrl_p ctrl)
 
 /*!
  * Get the ssi's settings.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the ssi module
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static uint32_t ssi_get_hw_setting(audio_ctrl_p ctrl, uint32_t type)
 {
@@ -135,6 +152,10 @@ static uint32_t ssi_get_hw_setting(audio_ctrl_p ctrl, uint32_t type)
 
 /*!
  * Set the ssi's settings.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the ssi module
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static uint32_t ssi_set_hw_setting(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
 {
@@ -246,21 +267,40 @@ static uint32_t ssi_hw_enable(audio_ctrl_p ctrl, uint32_t type, bool enable)
     return 0;
 }
 
+//////////////////////////////////////// APIs //////////////////////////////////////////////////////////////
+
 /*!
  * Initialize the ssi module and set the ssi to default status. 
  * This function will be called by the snd_card driver or application. 
+ *
+ * @param       priv    a pointer passed by audio card driver, SSI driver should change it 
+ *			to a audio_ctrl_p pointer which presents the SSI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 int ssi_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
 
-    SSI_iomux();
+    ssi_io_cfg();
     ssi_soft_reset(ctrl);
     ssi_registers_reset(ctrl);
 
     return 0;
 }
 
+/*!
+ * Configure the SSI module according the parameters which was passed by audio_card driver.
+ *
+ * @param       priv    a pointer passed by audio card driver, SSI driver should change it
+ *                      to a audio_ctrl_p pointer which presents the SSI controller.
+ *		para	a pointer passed by audio card driver, consists of configuration parameters
+ *			for SSI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 int ssi_config(void *priv, audio_dev_para_p para)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
@@ -291,13 +331,21 @@ int ssi_config(void *priv, audio_dev_para_p para)
     ssi_hw_enable(ctrl, SSI_HW_ENABLE_TXFIFO1, true);
     ssi_hw_enable(ctrl, SSI_HW_ENABLE_TX, true);
 
-    ssi_dump(ctrl);
+//    ssi_dump(ctrl);
 
     return 0;
 }
 
 /*!
- * Write datas to the ssi fifo.
+ * Write datas to the ssi fifo in polling mode.
+ * @param       priv    a pointer passed by audio card driver, SSI driver should change it
+ *                      to a audio_ctrl_p pointer which presents the SSI controller.
+ *		buf	points to the buffer which hold the data to be written to the SSI tx fifo
+ *		size    the size of the buffer pointed by buf.
+ *		bytes_written	bytes be written to the SSI tx fifo
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 int ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
 {
@@ -326,7 +374,14 @@ int ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_wr
     return 0;
 }
 
-/* Close SSI  	disable ssien, close */
+/*!
+ * Close the SSI module
+ * @param       priv    a pointer passed by audio card driver, SSI driver should change it
+ *                      to a audio_ctrl_p pointer which presents the SSI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 int ssi_deinit(void *priv)
 {
     volatile uint32_t val;

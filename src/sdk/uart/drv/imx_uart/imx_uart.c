@@ -43,7 +43,7 @@ uint32_t uart_get_reffreq(struct hw_module *port)
  *
  * @param   ch - pointer to the character for output
  * @return  the character that has been sent
-*/
+ */
 uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
@@ -59,14 +59,14 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 /*!
  * Receive a character on the UART port
  *
- * @return  a character received from the UART port; if the rx FIFO
+ * @return  a character received from the UART port; if the RX FIFO
  *          is empty or errors are detected, it returns NONE_CHAR
  */
 uint8_t uart_getchar(struct hw_module * port)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
     uint32_t read_data;
-
+#ifdef _WILL_WAIT_UNTIL_I_HAVE_A_BOARD_FLORENT_
     /* If Rx FIFO has no data ready */
     if (!(puart->usr2 & UART_USR2_RDR))
         return NONE_CHAR;
@@ -76,6 +76,12 @@ uint8_t uart_getchar(struct hw_module * port)
     /* If error are detected */
     if (read_data & 0x7C00)
         return NONE_CHAR;
+#endif
+    /* If Rx FIFO has no data ready */
+    if (puart->uts & UART_UTS_RXEMPTY)
+        return NONE_CHAR;
+
+    read_data = puart->urxd[0];
 
     return (uint8_t) read_data;
 }
@@ -135,15 +141,30 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
         puart->uts &= ~UART_UTS_LOOP;
 }
 
-/*! 
+/*!
+ * Global UART interrupt routine.
+ *
+ * @param   port - pointer to the UART module structure.
+ */
+void uart_interrupt_routine(struct hw_module *port)
+{
+//    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+
+    /* see if some examples could be provided here even if the
+       interrupt routine must be written and handled into
+       the highler level driver */
+}
+
+/*!
  * Setup UART interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *
- * @param   port - pointer to the UART module structure
+ * @param   port - pointer to the UART module structure.
+ * @param   state - enable/disable the interrupt
  */
 void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 {
-    if (state == ENABLE) {    
+    if (state == ENABLE) {
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
         /* enable the IRQ */
@@ -157,13 +178,16 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 /*!
  * Initialize the UART port
  *
- * @param   port - pointer to the UART module structure
+ * @param   port - pointer to the UART module structure.
  * @param   baudrate – serial baud rate such 9600, 57600, 115200, etc.
- * @param   parity – enable parity checking: PARITY_NONE, PARITY_EVEN, PARITY_ODD.
+ * @param   parity – enable parity checking: PARITY_NONE, PARITY_EVEN,
+ *                   PARITY_ODD.
  * @param   stopbits – number of stop bits: STOPBITS_ONE, STOPBITS_TWO.
- * @param   datasize – number of bits in a data: SEVENBITS, EIGHTBITS, NINEBITS (like RS-485 but not supported).
- * @param   flowcontrol – enable (RTS/CTS) hardware flow control: FLOWCTRL_ON, FLOWCTRL_OFF.
-*/
+ * @param   datasize – number of bits in a data: SEVENBITS, EIGHTBITS,
+ *                     NINEBITS (like RS-485 but not supported).
+ * @param   flowcontrol – enable (RTS/CTS) hardware flow control:
+ *                        FLOWCTRL_ON, FLOWCTRL_OFF.
+ */
 void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
                uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol)
 {

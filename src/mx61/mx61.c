@@ -76,9 +76,12 @@ void platform_init(void)
     /* Initialize the EPIT timer used for system time functions */
     /* typical PER_CLK is in MHz, so divide it to get a reference
        clock of 1MHz => 1us per count */
-    epit_init(&g_system_timer, CLKSRC_PER_CLK, g_system_timer.freq / 1000000,
+#ifdef _WILL_WAIT_UNTIL_I_HAVE_A_BOARD_FLORENT_
+    epit_init(&g_system_timer, CLKSRC_PER_CLK, g_system_timer.freq/1000000,
               SET_AND_FORGET, 1000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_enable(&g_system_timer);
+#endif
+    /* configure the EPIT timer used for system delay function */
+    system_time_init(CLKSRC_CKIL);
 
     /* Initialize the debug/console UART */
     uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);

@@ -1816,18 +1816,6 @@ void sata_clock_disable(void)
 }
 
 /*!
- * EVK Power initialization
- */
-void evk_power_init(void)
-{
-    /*    imx_pmic_init(); */
-    /* TO DO:
-       read PMIC AAPL ID
-       Set up AAPL to output specific voltages
-     */
-}
-
-/*!
  * Board initialization and UART IOMUX set up
  */
 void board_init(void)

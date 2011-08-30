@@ -10,5 +10,6 @@
 #include "io.h"
 
 void hal_delay_us(uint32_t usecs);
+void system_time_init(uint32_t clock_src);
 
 #endif /* __TIME_H__ */

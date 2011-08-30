@@ -7,5 +7,7 @@
 
 #include "hardware.h"
 
-void uart_interrupt_handler(void);
-int32_t uart_test(void);
+void tick_timer_interrupt_handler(void);
+int32_t epit_test(void);
+void epit_test_1(void);
+void epit_test_2(void);

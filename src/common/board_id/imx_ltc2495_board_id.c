@@ -5,7 +5,6 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "imx_i2c.h"
 #include "hardware.h"
 
 #define LTC2495_ID                0x14

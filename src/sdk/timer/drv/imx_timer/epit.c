@@ -72,7 +72,7 @@ void epit_counter_disable(struct hw_module *port)
  * other interrupt related settings are ready.
  *
  * @param   port - pointer to the EPIT module structure.
- * @param   load_val - load value from where the counter start in SET_AND_FORGET mode.
+ * @param   load_val - load value from where the counter starts.
  * @param   irq_mode - interrupt mode: IRQ_MODE or POLLING_MODE.
  */
 void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq_mode)
@@ -119,11 +119,13 @@ void epit_setup_interrupt(struct hw_module *port, uint8_t state)
  * Initialize the EPIT timer.
  *
  * @param   port - pointer to the EPIT module structure.
- * @param   clock_src - source clock of the counter: CLKSRC_OFF, CLKSRC_IPG_CLK, CLKSRC_PER_CLK, CLKSRC_CKIL.
+ * @param   clock_src - source clock of the counter: CLKSRC_OFF, CLKSRC_IPG_CLK,
+ *                      CLKSRC_PER_CLK, CLKSRC_CKIL.
  * @param   prescaler - prescaler of source clock from 1 to 4096.
  * @param   reload_mode - counter reload mode: FREE_RUNNING or SET_AND_FORGET.
  * @param   load_val - load value from where the counter start.
- * @param   low_power_mode - low power during which the timer is enabled: WAIT_MODE_EN and/or STOP_MODE_EN.
+ * @param   low_power_mode - low power during which the timer is enabled:
+ *                           WAIT_MODE_EN and/or STOP_MODE_EN.
  */
 void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
                uint32_t reload_mode, uint32_t load_val, uint32_t low_power_mode)
@@ -137,7 +139,7 @@ void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
     while ((pepit->epitcr & EPITCR_SWR) != 0) ;
 
     /* set the reference source clock for the counter */
-    control_reg_tmp |= clock_src;
+    control_reg_tmp |= EPITCR_CLKSRC(clock_src);
 
     /* set the counter clock prescaler value - 0 to 4095 */
     control_reg_tmp |= EPITCR_PRESCALAR(prescaler-1);
@@ -146,7 +148,11 @@ void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
     control_reg_tmp |= reload_mode;
 
     /* set behavior for low power mode */
-    control_reg_tmp |= low_power_mode;
+    /* set behavior for low power mode */
+    if (low_power_mode & WAIT_MODE_EN)
+        control_reg_tmp |= EPITCR_WAITEN;
+    if (low_power_mode & STOP_MODE_EN)
+        control_reg_tmp |= EPITCR_STOPEN;
 
     /* make the counter start from a known value when enabled, this is loaded from
        EPITLR register if RLD=reload_mode=1 or 0xFFFFFFFF if RLD=reload_mode=0 */

@@ -17,14 +17,10 @@
 #include "io.h"
 
 /* EPIT Registers Bit Fields */
-#define EPITCR_CLKSRC_OFF       (0 << 24)   // clock source is OFF
-#define EPITCR_CLKSRC_PER_CLK   (1 << 24)   // clock source is peripheral clock
-#define EPITCR_CLKSRC_HIFREQ_CLK    (2 << 24)   // clock source is high-freq reference clock
-#define EPITCR_CLKSRC_LOFREQ_CLK    (3 << 24)   // clock source is low-freq reference clock
-#define EPITCR_OM_DISC          (0 << 22)   // EPIT output disconneted from pad
-#define EPITCR_OM_TOGGLE        (1 << 22)   // EPIT output toggle mode
-#define EPITCR_OM_CLR           (2 << 22)   // EPIT output set low mode
-#define EPITCR_OM_SET           (3 << 22)   // EPIT output set high mode
+    /* x = clock source */
+#define EPITCR_CLKSRC(x)        ((x) << 24) // clock source
+    /* x = output mode */
+#define EPITCR_OM_MODE(x)       ((x) << 22) // EPIT output mode
 #define EPITCR_STOPEN           (1 << 21)   // EPIT enabled in STOP mode
 #define EPITCR_WAITEN           (1 << 19)   // EPIT enabled in WAIT mode
 #define EPITCR_DBGEN            (1 << 18)   // EPIT enabled in debug mode
@@ -35,20 +31,12 @@
 #define EPITCR_OCIEN            (1 << 2)    // output compare interrupt enabled
 #define EPITCR_ENMOD            (1 << 1)    // counter start mode
 #define EPITCR_EN               (1 << 0)    // EPIT enable
+
 #define EPITSR_OCIF             (1 << 0)    // Compare event occured
 
 /* EPIT specific defines */
-#define WAIT_MODE_EN    EPITCR_WAITEN
-#define STOP_MODE_EN    EPITCR_STOPEN
-#define CLKSRC_OFF      EPITCR_CLKSRC_OFF          // clock source is OFF
-#define CLKSRC_IPG_CLK  EPITCR_CLKSRC_PER_CLK      // clock source is peripheral clock
-#define CLKSRC_PER_CLK  EPITCR_CLKSRC_HIFREQ_CLK   // clock source is high-freq reference clock
-#define CLKSRC_CKIL     EPITCR_CLKSRC_LOFREQ_CLK   // clock source is low-freq reference clock
 #define FREE_RUNNING    0
 #define SET_AND_FORGET  EPITCR_RLD
-
-#define IRQ_MODE 1
-#define POLLING_MODE 2
 
 /* EPIT driver list of functions */
 void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,

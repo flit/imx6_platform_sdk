@@ -52,11 +52,18 @@ int32_t epit_test(void)
 
 void epit_test_1(void)
 {
-    printf("This test endlessly displays a '.' every second\n");
-    do {
+    uint32_t counter = 0;
+    /* stops after xx seconds */
+    uint32_t max_duration = 10;
+
+    printf("This test displays a '.' every second.\n");
+    printf("Test exists after %d seconds.\n",max_duration);
+
+    while (counter != max_duration) {        
         hal_delay_us(1000000);
         printf(".\n");
-    } while(1);
+        counter++;
+    };
 }
 
 /*! 
@@ -80,9 +87,11 @@ void tick_timer_interrupt_handler(void)
 void epit_test_2(void)
 {
     uint32_t counter = 0;
+    /* stops after xx seconds */
+    uint32_t max_duration = 10;
 
     printf("EPIT is programmed to generate an interrupt every 10ms as a tick timer.\n");
-    printf("Test exists after 10 seconds.\n");
+    printf("Test exists after %d seconds.\n",max_duration);
 
     /* set same frequency than the one known for system timer 
        and that was initialized in platform_init() */
@@ -96,18 +105,14 @@ void epit_test_2(void)
     epit_setup_interrupt(&g_tick_timer, ENABLE);
     epit_counter_enable(&g_tick_timer, 10000, IRQ_MODE);
 
-    do {
+    while ((counter/100) != max_duration) {
         g_wait_flag = 1;
         while (g_wait_flag == 1);
         counter++;
 
         if (!(counter%100)) 
             printf("Elapsed time %d seconds <=> %d ticks.\n", counter/100, counter);
-        /* stops after 10 seconds */
-        if ((counter/100) == 10)
-            break;
-
-    } while(1);
+    };
 
     epit_counter_disable(&g_tick_timer);
 }

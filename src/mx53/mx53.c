@@ -88,14 +88,14 @@ void platform_init(void)
     /* populate the freq member of the referenced hw_module in mx53_module */
     freq_populate();
 
+    /* Configure the EPIT timer used for system delay function. */
+    system_time_init(CLKSRC_PER_CLK);
+
     /*
      * Note, board type is determined at compile time such that the UART and
      * board can be initialized prior to burning fuses
      */
     board_init();
-
-    /* configure the EPIT timer used for system delay function */
-    system_time_init(CLKSRC_PER_CLK);
 
     /* Initialize the debug/console UART */
     uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);

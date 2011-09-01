@@ -207,7 +207,7 @@ uint32_t get_freq(uint32_t module_base)
         return 80000000;
     else if (module_base == g_system_timer.base)
         //return get_peri_clock(EPIT1_CLK);
-        return 80000000;
+        return 66000000;
     else {
         printf("Not a valid module base \n");
         return 0;

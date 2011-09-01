@@ -6,13 +6,12 @@
 */
 
 /*!
- * @file time.c
- * @brief Basic clock functions used by the ANSI C time (see time.h)
+ * @file timer.c
+ * @brief Basic timer functions
  *
  */
 
 #include "hardware.h"
-#include "time.h"
 
 void hal_delay_us(uint32_t usecs)
 {

@@ -28,7 +28,8 @@
 #include "imx_spi.h"
 #include "imx_sata.h"
 #include "epit.h"
-#include "time.h"
+#include "gpt.h"
+#include "timer.h"
 
 // Defines needed for existing drivers - TODO: cleanup
 #define EPIT_BASE_ADDR      EPIT1_BASE_ADDR

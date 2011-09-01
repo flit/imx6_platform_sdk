@@ -30,7 +30,8 @@
 #include "imx_spi.h"
 #include "imx_sata.h"
 #include "epit.h"
-#include "time.h"
+#include "gpt.h"
+#include "timer.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR

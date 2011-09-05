@@ -15,8 +15,7 @@
 #include <math.h>
 #include "hardware.h"
 
-extern void init_clock(uint32_t rate);
-extern int board_id;
+extern int32_t board_id;
 
 #define ON 1
 #define OFF 0
@@ -58,7 +57,7 @@ struct hw_module *mx61_module[] = {
     NULL,
 };
 
-unsigned int mx61_gpio[] = {
+uint32_t mx61_gpio[] = {
     GPIO1_BASE_ADDR,
     GPIO2_BASE_ADDR,
     GPIO3_BASE_ADDR,
@@ -66,12 +65,6 @@ unsigned int mx61_gpio[] = {
     GPIO5_BASE_ADDR,
     GPIO6_BASE_ADDR,
     GPIO7_BASE_ADDR
-};
-
-#define REF_IN_CLK_NUM  4
-struct fixed_pll_mfd {
-    uint32_t ref_clk_hz;
-    uint32_t mfd;
 };
 
 /*!
@@ -84,9 +77,9 @@ struct fixed_pll_mfd {
  * @return:  -1 means failed to set the pin
  *
  */
-int gpio_dir_config(int port, int pin, int dir)
+int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir)
 {
-    unsigned int oldVal = 0, newVal = 0;
+    uint32_t oldVal = 0, newVal = 0;
 
     if ((port >= 7) || (port < 0)) {
         printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
@@ -121,10 +114,10 @@ Parameters:
 Returns:
     Return the value, -1 means failed to set the pin
 */
-int gpio_write_data(int port, int pin, unsigned int attr)
+int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr)
 {
-    int dir;
-    unsigned int oldVal = 0, newVal = 0;
+    int32_t dir;
+    uint32_t oldVal = 0, newVal = 0;
 
     if ((port >= 7) || (port < 0)) {
         printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
@@ -165,9 +158,9 @@ Parameters:
 Returns:
     Return the value, -1 means failed to get the value
 */
-int gpio_read_data(int port, int pin)
+int32_t gpio_read_data(int32_t port, int32_t pin)
 {
-    int dir;
+    int32_t dir;
 
     if ((port >= 7) || (port < 0)) {
         printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
@@ -214,29 +207,31 @@ uint32_t get_freq(uint32_t module_base)
     }
 }
 
-#define HW_ANADIG_PLL_ETH_CTRL        (ANATOP_BASE_ADDR+0x0e0)
 /*!
  * Retrieve the clocks based on the hardware configuration and fill in the freq
  * info in each module's structure.
  */
 void freq_populate(void)
 {
-    int i;
+    int32_t i;
     struct hw_module *tmp;
+
     //ETHNET
     reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);    /*power down bit */
     reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);    /*enable bit */
     reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);    /*bypass bit */
     reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x3, 0x3); /*divide bits */
+
     /* Ungate clocks to all modules */
-    *(volatile unsigned int *)(CCM_CCGR0) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_CCGR1) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_CCGR2) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_CCGR3) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_CCGR4) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_CCGR5) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_CCGR6) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_CCGR7) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR0) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR1) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR2) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR3) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR4) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR5) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR6) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR7) = 0xFFFFFFFF;
+
     // **** NEEDS UPDATE for mx61 *****  //
     /* 
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
@@ -271,15 +266,15 @@ void freq_populate(void)
     }
 
     /* config IPU hsp clock, derived from AXI B */
-//    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
+//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
 //    temp &= ~(0x000000C0);
 //    temp |= 0x00000040;
-//    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
+//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
     /* now set perclk_pred1 to div-by-2 */
-//    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
+//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
 //    temp &= ~(0x00380000);
 //    temp |= 0x00080000;
-//    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
+//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
 }
 
 /*!
@@ -287,7 +282,7 @@ void freq_populate(void)
  */
 void show_freq(void)
 {
-    int i;
+    int32_t i;
     struct hw_module *tmp;
     printf("========== clock frequencies(HZ)\n");
 
@@ -574,7 +569,7 @@ void ldb_iomux_config(void)
 /*!
  * uSDHC pin mux and pad configure
  */
-void usdhc_iomux(unsigned int base_address)
+void usdhc_iomux_config(uint32_t base_address)
 {
     switch (base_address) {
     case USDHC1_BASE_ADDR:

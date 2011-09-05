@@ -133,6 +133,9 @@ void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
     volatile struct mx_epit *pepit = (volatile struct mx_epit *)port->base;
     uint32_t control_reg_tmp = 0;
 
+    /* enable the source clocks to the EPIT port */
+    clock_gating_config(port->base, CLOCK_ON);
+
     /* start with a known state by disabling and reseting the module */
     pepit->epitcr = EPITCR_SWR;
     /* wait for the reset to complete */
@@ -147,7 +150,6 @@ void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
     /* set the reload mode */
     control_reg_tmp |= reload_mode;
 
-    /* set behavior for low power mode */
     /* set behavior for low power mode */
     if (low_power_mode & WAIT_MODE_EN)
         control_reg_tmp |= EPITCR_WAITEN;

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
 */
 
-#ifndef _CCM_PLL_REG_DEFINE_H_
-#define _CCM_PLL_REG_DEFINE_H_
+#ifndef _CCM_PLL_H_
+#define _CCM_PLL_H_
 
 #include "registers.h"
 
@@ -118,6 +118,48 @@
 #define PLL_DP_TOGC         DPLLIP_DP_MFN_TOGC_OFFSET
 #define PLL_DP_DESTAT       DPLLIP_DP_DESTAT_OFFSET
 
-#define CLK_SRC_32K 		32768
+#define CLK_SRC_32K         32768
+
+/* x=0..15 - CG0 to CG15 */
+#define CG(x) (3 << (x*2))
+#define CLOCK_ON        0x3
+#define CLOCK_ON_RUN    0x1
+#define CLOCK_OFF       0x0
+
+enum main_clocks {
+    CPU_CLK,
+    AHB_CLK,
+    IPG_CLK,
+    IPG_PER_CLK,
+    DDR_CLK,
+    NFC_CLK,
+    USB_CLK,
+    VPU_CLK,
+};
+
+enum peri_clocks {
+    UART1_BAUD,
+    UART2_BAUD,
+    UART3_BAUD,
+    UART4_BAUD,
+    SSI1_BAUD,
+    SSI2_BAUD,
+    CSI_BAUD,
+    MSTICK1_CLK,
+    MSTICK2_CLK,
+    SPI1_CLK = ECSPI1_BASE_ADDR,
+    SPI2_CLK = ECSPI2_BASE_ADDR,
+    EPIT1_CLK,
+    EPIT2_CLK,
+};
+
+enum plls {
+    PLL1,
+    PLL2,
+    PLL3,
+    PLL4,
+};
+
+void clock_gating_config(uint32_t base_address, uint8_t gating_mode);
 
 #endif

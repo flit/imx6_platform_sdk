@@ -187,14 +187,14 @@ static int usdhc_check_transfer(int base_address)
     return status;
 }
 
-/*---------------------------------------------- Global Fcuntion ------------------------------------------------*/
+/*---------------------------------------------- Global Function ------------------------------------------------*/
 
 void host_init(int base_address)
 {
     /* Enable Clock Gating */
 
     /* IOMUX Configuration */
-    usdhc_iomux((unsigned int)base_address);
+    usdhc_iomux_config((unsigned int)base_address);
 }
 
 void host_init_active(int base_address)

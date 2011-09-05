@@ -193,6 +193,9 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
 
+    /* enable the source clocks to the UART port */
+    clock_gating_config(port->base, CLOCK_ON);
+
     /* Wait for UART to finish transmitting before changing the configuration */
     while (!(puart->uts & UART_UTS_TXEMPTY)) ;
 

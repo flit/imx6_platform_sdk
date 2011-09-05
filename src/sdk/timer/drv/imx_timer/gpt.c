@@ -121,6 +121,9 @@ void gpt_init(struct hw_module *port, uint32_t clock_src,
     volatile struct mx_gpt *pgpt = (volatile struct mx_gpt *)port->base;
     uint32_t control_reg_tmp = 0;
 
+    /* enable the source clocks to the GPT port */
+    clock_gating_config(port->base, CLOCK_ON);
+
     /* start with a known state by disabling and reseting the module */
     pgpt->gpt_cr = GPTCR_SWR;
     /* wait for the reset to complete */

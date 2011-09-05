@@ -93,6 +93,7 @@ struct hw_module {
     uint32_t freq;      /* input clock frequency */
     uint32_t irq_id;    /* ID of its interrupt */
     void (*irq_subroutine)(void);   /* module interrupt sub-routine address */
+    void (*iomux_config) (void);   /* module I/O mux configuration function */
 };
 
 #ifdef SDK_DEBUG

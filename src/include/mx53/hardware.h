@@ -21,7 +21,7 @@
 #include "iomux_register.h"
 #include "gpio_define.h"
 #include "interrupt.h"
-#include "ccm_pll_reg_define.h"
+#include "ccm_pll.h"
 #include "iim_fuse.h"
 #include "imx_i2c.h"
 #include "imx_uart.h"
@@ -132,38 +132,6 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define TEST_EXIT(name)  do {printf (" ..Test: %s\n", name); \
                                                 } while (0)
-enum main_clocks {
-    CPU_CLK,
-    AHB_CLK,
-    IPG_CLK,
-    IPG_PER_CLK,
-    DDR_CLK,
-    NFC_CLK,
-    USB_CLK,
-    VPU_CLK,
-};
-
-enum peri_clocks {
-    UART1_BAUD,
-    UART2_BAUD,
-    UART3_BAUD,
-    SSI1_BAUD,
-    SSI2_BAUD,
-    CSI_BAUD,
-    MSTICK1_CLK,
-    MSTICK2_CLK,
-    SPI1_CLK = ECSPI1_BASE_ADDR,
-    SPI2_CLK = ECSPI2_BASE_ADDR,
-    EPIT1_CLK,
-    EPIT2_CLK,
-};
-
-enum plls {
-    PLL1,
-    PLL2,
-    PLL3,
-    PLL4,
-};
 
 enum display_type {
     DISP_DEV_NULL = 0,
@@ -179,7 +147,6 @@ enum lvds_panel_bit_mode {
     LVDS_PANEL_24BITS_MODE = 0x1,
 };
 
-uint32_t pll_clock(enum plls pll);
 uint32_t get_main_clock(enum main_clocks clk);
 uint32_t get_peri_clock(enum peri_clocks clk);
 void clock_setup(uint32_t core_clk, uint32_t ahb_div);

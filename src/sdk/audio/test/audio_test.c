@@ -65,7 +65,7 @@ int audio_test(void)
         if ((idx >= 0) && (idx < (sizeof(audio_tests) / sizeof(audio_test_t)))) {
             printf("\n");
             retv = audio_tests[idx].test(&pcm_music);
-            if (retv == TRUE) {
+            if (0 == retv) {
                 printf("\n%s test PASSED.\n", audio_tests[idx].name);
             } else {
                 printf("\n%s test FAILED.\n", audio_tests[idx].name);

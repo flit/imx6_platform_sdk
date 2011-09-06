@@ -307,7 +307,8 @@ int sgtl5000_init(void *priv)
     SGTL5000_REG_WRITE(codec, CHIP_CLK_CTRL_REG, CHIP_CLK_CTRL_REG_VALUE);
 
     sgtl5000_init_status = 1;
-    sgtl5000_dump(codec);
+
+    //sgtl5000_dump(codec);
 
     return 0;
 }

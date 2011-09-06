@@ -88,11 +88,12 @@ typedef void (*funct_t) (void);
 #define SET_FIELD(val, len, sh, nval)    ((val & ~(((1 << len) - 1) << sh)) | (nval << sh))
 
 struct hw_module {
-    char *name;
-    uint32_t base;
-    uint32_t freq;
-    uint32_t irq_id;
-    void (*irq_subroutine)(void);
+    char *name;         /* name of the module */
+    uint32_t base;      /* module base address */
+    uint32_t freq;      /* input clock frequency */
+    uint32_t irq_id;    /* ID of its interrupt */
+    void (*irq_subroutine)(void);   /* module interrupt sub-routine address */
+    void (*iomux_config) (void);   /* module I/O mux configuration function */
 };
 
 #ifdef SDK_DEBUG

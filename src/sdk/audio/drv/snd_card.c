@@ -7,8 +7,6 @@
 
 #include "io.h"
 #include "audio.h"
-#include "imx-ssi.h"
-#include "sgtl5000.h"
 
 #define DEBUG_ENABLE	1
 #if DEBUG_ENABLE
@@ -34,7 +32,7 @@ static int snd_card_init(void *priv)
     }
     if (0 != codec->ops->init((void *)codec)) {
         TRACE("Initialize %s failed.\n", codec->name);
-        return -2;
+        return -3;
     }
 
     return 0;
@@ -51,11 +49,11 @@ static int snd_card_deinit(void *priv)
 
     if (0 != ctrl->ops->deinit((void *)ctrl)) {
         TRACE("De-initialize %s failed.\n", ctrl->name);
-        return -1;
+        return -2;
     }
     if (0 != codec->ops->deinit((void *)codec)) {
         TRACE("De-initialize %s failed.\n", codec->name);
-        return -2;
+        return -3;
     }
 
     return 0;
@@ -63,7 +61,9 @@ static int snd_card_deinit(void *priv)
 
 /*!
  *  Default config function for sound card.
-  */
+ * &para	para 	the parameters passed by the app, dedicated to the audio 
+ *			controller, the parameters for codec should be set according it.
+ */
 static int snd_card_config(void *priv, audio_dev_para_p para)
 {
     audio_card_p card = (audio_card_p) priv;
@@ -75,11 +75,23 @@ static int snd_card_config(void *priv, audio_dev_para_p para)
 
     if (0 != ctrl->ops->config((void *)ctrl, para)) {
         TRACE("Configure %s failed.\n", ctrl->name);
-        return -1;
+        return -2;
     }
+    //Set the parameters for codec according para
+    //if audio controller is mater, the codec should be slave.
+    if (AUDIO_BUS_MODE_MASTER == para->bus_mode)
+        para->bus_mode = AUDIO_BUS_MODE_SLAVE;
+    else if (AUDIO_BUS_MODE_SLAVE == para->bus_mode)
+        para->bus_mode = AUDIO_BUS_MODE_MASTER;
+    //if audio controller transmits, the codec should receive.
+    if (AUDIO_TRANS_DIR_TX == para->trans_dir)
+        para->trans_dir = AUDIO_TRANS_DIR_RX;
+    else if (AUDIO_TRANS_DIR_RX == para->trans_dir)
+        para->trans_dir = AUDIO_TRANS_DIR_TX;
+
     if (0 != codec->ops->config((void *)codec, para)) {
         TRACE("Configure %s failed.\n", codec->name);
-        return -1;
+        return -3;
     }
 
     return 0;
@@ -97,7 +109,7 @@ static int snd_card_ioctl(void *priv, uint32_t cmd, void *para)
     return 0;
 }
 
-static int snd_card_write(void *priv, uint8_t * buf, uint32_t bytes2write, uint32_t *bytes_written)
+static int snd_card_write(void *priv, uint8_t * buf, uint32_t bytes2write, uint32_t * bytes_written)
 {
     audio_card_p card = (audio_card_p) priv;
     audio_ctrl_p ctrl = card->ctrl;

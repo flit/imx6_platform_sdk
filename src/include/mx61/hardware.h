@@ -23,14 +23,15 @@
 #include "gpio_define.h"
 #include "interrupt.h"
 #include "gic.h"
-#include "ccm_pll_reg_define.h"
+#include "ccm_pll.h"
 #include "iim_fuse.h"
 #include "imx_i2c.h"
 #include "imx_uart.h"
 #include "imx_spi.h"
 #include "imx_sata.h"
 #include "epit.h"
-#include "time.h"
+#include "gpt.h"
+#include "timer.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -48,16 +49,16 @@
 #define HW_ANADIG_USB1_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x30) // Anadig 480MHz PLL Control0 Register
 #define HW_ANADIG_PLL_528_RW    (ANATOP_BASE_ADDR+0x30) // Anadig 528MHz PLL Control register
 #define HW_ANADIG_PLL_528_NUM   (ANATOP_BASE_ADDR+0x50) // Numerator of 528MHz PLL Fractional Loop Divider Register
-#define HW_ANADIG_PLL_528_DENOM     (ANATOP_BASE_ADDR+0x60) // Denominator of 528MHz PLL Fractional Loop Divider Register
-#define HW_ANADIG_PFD_528_RW        (ANATOP_BASE_ADDR+0x100)    // 528MHz Clock Phase Fractional Divider Control Register
-#define HW_ANADIG_PLL_SYS_RW        (ANATOP_BASE_ADDR+0x000)    // "System PLL" "CPU PLL" "PLL1"
+#define HW_ANADIG_PLL_528_DENOM (ANATOP_BASE_ADDR+0x60) // Denominator of 528MHz PLL Fractional Loop Divider Register
+#define HW_ANADIG_PFD_528_RW    (ANATOP_BASE_ADDR+0x100)    // 528MHz Clock Phase Fractional Divider Control Register
+#define HW_ANADIG_PLL_SYS_RW    (ANATOP_BASE_ADDR+0x000)    // "System PLL" "CPU PLL" "PLL1"
+#define HW_ANADIG_PLL_ETH_CTRL  (ANATOP_BASE_ADDR+0x0e0)
 
-#define CSD0_BASE_ADDR      MMDC0_ARB_BASE_ADDR
-#define CSD1_BASE_ADDR      MMDC1_ARB_BASE_ADDR
-#define WEIM_CS_BASE_ADDR   0x08000000
+#define CSD0_BASE_ADDR      MMDC0_BASE_ADDR
+#define CSD1_BASE_ADDR      MMDC1_BASE_ADDR
 
-#define IPU1_CTRL_BASE_ADDR  IPU1_ARB_BASE_ADDR
-#define IPU2_CTRL_BASE_ADDR  IPU2_ARB_BASE_ADDR
+#define IPU1_CTRL_BASE_ADDR  IPU1_BASE_ADDR
+#define IPU2_CTRL_BASE_ADDR  IPU2_BASE_ADDR
 
 #define ESDCTL_ESDSCR_OFFSET  0x1C
 
@@ -208,39 +209,6 @@ extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
 
 #define TEST_EXIT(name)  do {printf (" ..Test: %s\n", name); \
                                                 } while (0)
-enum main_clocks {
-    CPU_CLK,
-    AHB_CLK,
-    IPG_CLK,
-    IPG_PER_CLK,
-    DDR_CLK,
-    NFC_CLK,
-    USB_CLK,
-    VPU_CLK,
-};
-
-enum peri_clocks {
-    UART1_BAUD,
-    UART2_BAUD,
-    UART3_BAUD,
-    UART4_BAUD,
-    SSI1_BAUD,
-    SSI2_BAUD,
-    CSI_BAUD,
-    MSTICK1_CLK,
-    MSTICK2_CLK,
-    SPI1_CLK = ECSPI1_BASE_ADDR,
-    SPI2_CLK = ECSPI2_BASE_ADDR,
-    EPIT1_CLK,
-    EPIT2_CLK,
-};
-
-enum plls {
-    PLL1,
-    PLL2,
-    PLL3,
-    PLL4,
-};
 
 enum display_type {
     DISP_DEV_NULL = 0,
@@ -256,7 +224,6 @@ enum lvds_panel_bit_mode {
     LVDS_PANEL_24BITS_MODE = 0x1,
 };
 
-uint32_t pll_clock(enum plls pll);
 uint32_t get_main_clock(enum main_clocks clk);
 uint32_t get_peri_clock(enum peri_clocks clk);
 void clock_setup(uint32_t core_clk, uint32_t ahb_div);
@@ -294,7 +261,7 @@ extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t);
 extern void fuse_blow_row(uint32_t, uint32_t, uint32_t);
 
-extern void usdhc_iomux(unsigned int);
+void usdhc_iomux_config(uint32_t);
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

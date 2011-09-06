@@ -18,5 +18,5 @@ int esai_playback(audio_pcm_p pcm_music)
 {
     printf("TODO\n");
 
-    return true;
+    return 0;
 }

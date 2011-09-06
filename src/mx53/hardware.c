@@ -15,7 +15,6 @@
 #include "hardware.h"
 
 extern void AUDMUXRoute(int intPort, int extPort, int Master);  // defined in ssi.c driver
-extern void init_clock(uint32_t rate);
 extern unsigned char da9053_i2c_reg(unsigned int reg, unsigned char val, unsigned int dir);
 extern int board_id;
 extern sata_phy_ref_clk_t sata_phy_clk_sel;
@@ -72,26 +71,6 @@ unsigned int mx53_gpio[] = {
 
 uint32_t ipu_hw_instance[4] = {
     0, 0, 0, 0
-};
-
-#define REF_IN_CLK_NUM  4
-struct fixed_pll_mfd {
-    uint32_t ref_clk_hz;
-    uint32_t mfd;
-};
-
-const struct fixed_pll_mfd fixed_mfd[REF_IN_CLK_NUM] = {
-    {0, 0},                     // reserved
-    {0, 0},                     // reserved
-    {FREQ_24MHZ, 24 * 16},      // 384
-    {0, 0},                     // reserved
-};
-
-static volatile uint32_t *pll_base[] = {
-    REG32_PTR(PLL1_BASE_ADDR),
-    REG32_PTR(PLL2_BASE_ADDR),
-    REG32_PTR(PLL3_BASE_ADDR),
-    REG32_PTR(PLL4_BASE_ADDR),
 };
 
 struct soc_sbmr {
@@ -205,328 +184,6 @@ int gpio_read_data(int port, int pin)
     return (readl(mx53_gpio[port] + GPIO_DR0_OFFSET) & (1 << pin)) >> pin;
 }
 
-/*!
- * This function returns the low power audio clock.
- */
-uint32_t get_lp_apm(void)
-{
-    uint32_t ret_val = 0;
-    uint32_t ccsr = readl(CCM_BASE_ADDR + CLKCTL_CCSR);
-
-    if (((ccsr >> 10) & 1) == 0) {
-        ret_val = FREQ_24MHZ;
-    } else {
-        ret_val = pll_clock(PLL4);
-    }
-
-    return ret_val;
-}
-
-/*!
- * This function returns the periph_clk.
- */
-uint32_t get_periph_clk(void)
-{
-    uint32_t ret_val = 0, clk_sel;
-    uint32_t cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    uint32_t cbcmr = readl(CCM_BASE_ADDR + CLKCTL_CBCMR);
-
-    if (((cbcdr >> 25) & 1) == 0) {
-        ret_val = pll_clock(PLL2);
-    } else {
-        clk_sel = (cbcmr >> 12) & 3;
-
-        if (clk_sel == 0) {
-            ret_val = pll_clock(PLL1);
-        } else if (clk_sel == 1) {
-            ret_val = pll_clock(PLL3);
-        } else if (clk_sel == 2) {
-            ret_val = get_lp_apm();
-        }
-    }
-
-    return ret_val;
-}
-
-/*!
- * This function returns the PLL output value in Hz based on pll.
- */
-uint32_t pll_clock(enum plls pll)
-{
-    uint64_t mfi, mfn, mfd, pdf, ref_clk, pll_out, sign;
-    uint64_t dp_ctrl, dp_op, dp_mfd, dp_mfn, clk_sel;
-    uint8_t dbl = 0;
-    dp_ctrl = pll_base[pll][PLL_DP_CTL >> 2];
-    clk_sel = MXC_GET_FIELD(dp_ctrl, 2, 8);
-    ref_clk = fixed_mfd[clk_sel].ref_clk_hz;
-
-    if ((pll_base[pll][PLL_DP_CTL >> 2] & 0x80) == 0) {
-        dp_op = pll_base[pll][PLL_DP_OP >> 2];
-        dp_mfd = pll_base[pll][PLL_DP_MFD >> 2];
-        dp_mfn = pll_base[pll][PLL_DP_MFN >> 2];
-    } else {
-        dp_op = pll_base[pll][PLL_DP_HFS_OP >> 2];
-        dp_mfd = pll_base[pll][PLL_DP_HFS_MFD >> 2];
-        dp_mfn = pll_base[pll][PLL_DP_HFS_MFN >> 2];
-    }
-
-    pdf = dp_op & 0xF;
-    mfi = (dp_op >> 4) & 0xF;
-    mfi = (mfi <= 5) ? 5 : mfi;
-    mfd = dp_mfd & 0x07FFFFFF;
-    mfn = dp_mfn & 0x07FFFFFF;
-    sign = (mfn < 0x4000000) ? 0 : 1;
-    mfn = (mfn <= 0x4000000) ? mfn : (0x8000000 - mfn);
-    dbl = ((dp_ctrl >> 12) & 0x1) + 1;
-    dbl = dbl * 2;
-
-    if (sign == 0) {
-        pll_out = (dbl * ref_clk * mfi + ((dbl * ref_clk * mfn) / (mfd + 1))) / (pdf + 1);
-    } else {
-        pll_out = (dbl * ref_clk * mfi - ((dbl * ref_clk * mfn) / (mfd + 1))) / (pdf + 1);
-    }
-
-    return (uint32_t) pll_out;
-}
-
-/*!
- * This function returns the emi_core_clk_root clock.
- */
-uint32_t get_emi_core_clk(void)
-{
-    uint32_t cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    uint32_t clk_sel = 0, max_pdf = 0, peri_clk = 0, ahb_clk = 0;
-    uint32_t ret_val = 0;
-    max_pdf = (cbcdr >> 10) & 0x7;
-    peri_clk = get_periph_clk();
-    ahb_clk = peri_clk / (max_pdf + 1);
-    clk_sel = (cbcdr >> 26) & 1;
-
-    if (clk_sel == 0) {
-        ret_val = peri_clk;
-    } else {
-        ret_val = ahb_clk;
-    }
-
-    return ret_val;
-}
-
-/*!
- * This function returns the main clock value in Hz.
- */
-uint32_t get_main_clock(enum main_clocks clk)
-{
-    uint32_t pdf, max_pdf, ipg_pdf, nfc_pdf, clk_sel;
-    uint32_t pll, ret_val = 0;
-    uint32_t cacrr = readl(CCM_BASE_ADDR + CLKCTL_CACRR);
-    uint32_t cbcdr = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    uint32_t cbcmr = readl(CCM_BASE_ADDR + CLKCTL_CBCMR);
-    uint32_t cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
-    uint32_t cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
-
-    switch (clk) {
-    case CPU_CLK:
-        pdf = cacrr & 0x7;
-        pll = pll_clock(PLL1);
-        ret_val = pll / (pdf + 1);
-        break;
-    case AHB_CLK:
-        max_pdf = (cbcdr >> 10) & 0x7;
-        pll = get_periph_clk();
-        ret_val = pll / (max_pdf + 1);
-        break;
-    case IPG_CLK:
-        max_pdf = (cbcdr >> 10) & 0x7;
-        ipg_pdf = (cbcdr >> 8) & 0x3;
-        pll = get_periph_clk();
-        ret_val = pll / ((max_pdf + 1) * (ipg_pdf + 1));
-        break;
-    case IPG_PER_CLK:
-        clk_sel = cbcmr & 1;
-
-        if (clk_sel == 0) {
-            clk_sel = (cbcmr >> 1) & 1;
-            pdf = (((cbcdr >> 6) & 3) + 1) * (((cbcdr >> 3) & 7) + 1) * ((cbcdr & 7) + 1);
-
-            if (clk_sel == 0) {
-                ret_val = get_periph_clk() / pdf;
-            } else {
-                ret_val = get_lp_apm() / pdf;
-            }
-        } else {
-            /* Same as IPG_CLK */
-            max_pdf = (cbcdr >> 10) & 0x7;
-            ipg_pdf = (cbcdr >> 8) & 0x3;
-            pll = get_periph_clk();
-            ret_val = pll / ((max_pdf + 1) * (ipg_pdf + 1));
-        }
-
-        break;
-    case DDR_CLK:
-        clk_sel = (cbcmr >> 10) & 3;
-        pll = get_periph_clk();
-
-        if (clk_sel == 0) {
-            /* AXI A */
-            pdf = (cbcdr >> 16) & 0x7;
-        } else if (clk_sel == 1) {
-            /* AXI B */
-            pdf = (cbcdr >> 19) & 0x7;
-        } else if (clk_sel == 2) {
-            /* EMI SLOW CLOCK ROOT */
-            pll = get_emi_core_clk();
-            pdf = (cbcdr >> 22) & 0x7;
-        } else if (clk_sel == 3) {
-            /* AHB CLOCK */
-            pdf = (cbcdr >> 10) & 0x7;
-        }
-
-        ret_val = pll / (pdf + 1);
-        break;
-    case NFC_CLK:
-        pdf = (cbcdr >> 22) & 0x7;
-        nfc_pdf = (cbcdr >> 13) & 0x7;
-        pll = get_emi_core_clk();
-        ret_val = pll / ((pdf + 1) * (nfc_pdf + 1));
-        break;
-    case USB_CLK:
-        clk_sel = (cscmr1 >> 22) & 3;
-
-        if (clk_sel == 0) {
-            pll = pll_clock(PLL1);
-        } else if (clk_sel == 1) {
-            pll = pll_clock(PLL2);
-        } else if (clk_sel == 2) {
-            pll = pll_clock(PLL3);
-        } else if (clk_sel == 3) {
-            pll = get_lp_apm();
-        }
-
-        pdf = (cscdr1 >> 8) & 0x7;
-        max_pdf = (cscdr1 >> 6) & 0x3;
-        ret_val = pll / ((pdf + 1) * (max_pdf + 1));
-        break;
-    case VPU_CLK:
-        clk_sel = (cbcmr >> 14) & 3;
-        pll = get_periph_clk();
-
-        if (clk_sel == 0) {
-            /* AXI A */
-            pdf = (cbcdr >> 16) & 0x7;
-        } else if (clk_sel == 1) {
-            /* AXI B */
-            pdf = (cbcdr >> 19) & 0x7;
-        } else if (clk_sel == 2) {
-            /* EMI SLOW CLOCK ROOT */
-            pll = get_emi_core_clk();
-            pdf = (cbcdr >> 22) & 0x7;
-        } else if (clk_sel == 3) {
-            /* AHB CLOCK */
-            pdf = (cbcdr >> 10) & 0x7;
-        }
-
-        ret_val = pll / (pdf + 1);
-        break;
-    default:
-        printf("Unknown clock: %d\n", clk);
-        break;
-    }
-
-    return ret_val;
-}
-
-/*!
- * This function returns the peripheral clock value in Hz.
- */
-uint32_t get_peri_clock(enum peri_clocks clk)
-{
-    uint32_t ret_val = 0, pdf, pre_pdf, pre_pdf1, clk_sel;
-    uint32_t cbcdr  = readl(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    uint32_t cscmr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCMR1);
-    uint32_t cscdr1 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR1);
-    uint32_t cscdr2 = readl(CCM_BASE_ADDR + CLKCTL_CSCDR2);
-    uint32_t cs1cdr = readl(CCM_BASE_ADDR + CLKCTL_CS1CDR);
-    uint32_t cs2cdr = readl(CCM_BASE_ADDR + CLKCTL_CS2CDR);
-
-    switch (clk) {
-    case UART1_BAUD:
-    case UART2_BAUD:
-    case UART3_BAUD:
-        pre_pdf = (cscdr1 >> 3) & 0x7;
-        pdf = cscdr1 & 0x7;
-        clk_sel = (cscmr1 >> 24) & 3;
-
-        if (clk_sel == 0) {
-            ret_val = pll_clock(PLL1) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 1) {
-            ret_val = pll_clock(PLL2) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 2) {
-            ret_val = pll_clock(PLL3) / ((pre_pdf + 1) * (pdf + 1));
-        } else {
-            ret_val = get_lp_apm() / ((pre_pdf + 1) * (pdf + 1));
-        }
-        break;
-    case SSI1_BAUD:
-        pre_pdf = (cs1cdr >> 6) & 0x7;
-        pdf = cs1cdr & 0x3F;
-        clk_sel = (cscmr1 >> 14) & 3;
-
-        if (clk_sel == 0) {
-            ret_val = pll_clock(PLL1) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 0x1) {
-            ret_val = pll_clock(PLL2) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 0x2) {
-            ret_val = pll_clock(PLL3) / ((pre_pdf + 1) * (pdf + 1));
-        } else {
-            ret_val = CKIH / ((pre_pdf + 1) * (pdf + 1));
-        }
-        break;
-    case SSI2_BAUD:
-        pre_pdf = (cs2cdr >> 6) & 0x7;
-        pdf = cs2cdr & 0x3F;
-        clk_sel = (cscmr1 >> 12) & 3;
-
-        if (clk_sel == 0) {
-            ret_val = pll_clock(PLL1) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 0x1) {
-            ret_val = pll_clock(PLL2) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 0x2) {
-            ret_val = pll_clock(PLL3) / ((pre_pdf + 1) * (pdf + 1));
-        } else {
-            ret_val = CKIH / ((pre_pdf + 1) * (pdf + 1));
-        }
-        break;
-    case SPI1_CLK:
-    case SPI2_CLK:
-        pre_pdf = (cscdr2 >> 25) & 0x7;
-        pdf = (cscdr2 >> 19) & 0x3F;
-        clk_sel = (cscmr1 >> 4) & 3;
-
-        if (clk_sel == 0) {
-            ret_val = pll_clock(PLL1) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 1) {
-            ret_val = pll_clock(PLL2) / ((pre_pdf + 1) * (pdf + 1));
-        } else if (clk_sel == 2) {
-            ret_val = pll_clock(PLL3) / ((pre_pdf + 1) * (pdf + 1));
-        } else {
-            ret_val = get_lp_apm() / ((pre_pdf + 1) * (pdf + 1));
-        }
-        break;
-    case EPIT1_CLK:
-    case EPIT2_CLK:
-        pre_pdf1 = (cbcdr >> 6) & 0x3;
-        pre_pdf = (cbcdr >> 3) & 0x7;
-        pdf = cbcdr & 0x7;
-
-        ret_val = get_lp_apm() / ((pre_pdf1 + 1) * (pre_pdf + 1) * (pdf + 1));
-        break;
-    default:
-        printf("%s(): This clock: %d not supported yet \n", __FUNCTION__, clk);
-        break;
-    }
-
-    return ret_val;
-}
 
 /*!
  * Retrieve the freq info based on the passed in module_base.
@@ -560,13 +217,13 @@ void freq_populate(void)
     struct hw_module *tmp;
     /* Ungate clocks to all modules */
     *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR0_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR1_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR2_OFFSET) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR1_OFFSET) = 0xFFFC003F;
+    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR2_OFFSET) = 0xFFC3FC00;
     *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR3_OFFSET) = 0xFFFFFFFF;
     *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR4_OFFSET) = 0xFFFFFFFF;
     *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) = 0xFFFFFFFF;
     *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR6_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR7_OFFSET) = 0xFFFFFFFF;
+    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR7_OFFSET) = 0xFFFF00FF;
     /* For MX53, set UART clock source to PLL3 (216MHz) and set dividers to div-by-4 to get 54MHz */
     /* CSCMR1 - to select PLL3 source. uart_clk_sel[1:0] = 10 (bits 25 and 24)
        CSCDR1 - to select divide values */
@@ -711,7 +368,7 @@ void io_cfg_spi(struct imx_spi_dev *dev)
     case ECSPI1_BASE_ADDR:
 
         if (BOARD_TYPE_ID == BOARD_ID_MX53_ARD) {
-            ard_spi_nor_control(0);    // by setting to 0, this enables the spi nor
+            ard_spi_nor_control(0); // by setting to 0, this enables the spi nor
         }
         // MOSI
         writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_EIM_D18);
@@ -961,7 +618,7 @@ void SGTL5000PowerUp_and_clockinit(void)
 }
 
 /* Configure iomux for AUDMUX output */
-int SSI_iomux(void)
+void ssi_io_cfg(void)
 {
     /* Select ALT2 mode of KEY_ROW1 for AUD5_RXD */
     writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_KEY_ROW1);
@@ -979,7 +636,6 @@ int SSI_iomux(void)
     writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_KEY_COL1);
     writel(0x0, IOMUXC_AUDMUX_P5_INPUT_TXFS_AMX_SELECT_INPUT);  //daisy chain
     writel(0x1F4, IOMUXC_SW_PAD_CTL_PAD_KEY_COL1);
-    return 0;
 }
 
 /* Configure iomux for ESAI */
@@ -1462,9 +1118,9 @@ void ecspi1_master_pgm_iomux(void)
 }
 
 /*!
- *  For mx53 rita sd1 io configure
+ *  eSDHC I/O muxing configuration
  */
-void mxc_mmc_init(unsigned int base_address)
+void esdhc_iomux_config(unsigned int base_address)
 {
     switch (base_address) {
     case ESDHC1_BASE_ADDR:
@@ -1817,18 +1473,6 @@ void sata_clock_disable(void)
 }
 
 /*!
- * EVK Power initialization
- */
-void evk_power_init(void)
-{
-    /*    imx_pmic_init(); */
-    /* TO DO:
-       read PMIC AAPL ID
-       Set up AAPL to output specific voltages
-     */
-}
-
-/*!
  * Board initialization and UART IOMUX set up
  */
 void board_init(void)
@@ -2005,93 +1649,6 @@ void show_boot_switch_info(void)
     printf("\n==================================\n\n");
 }
 
-/*!
- * Program the board ID fuse
- * Note, if there is more than one board revision per ID, update the code
- * to prompt the user to enter the board revision number.
- *
- * @return  0 if successful; non-zero otherwise
- */
-int board_id_fuse_program(void)
-{
-    int bank = 0;
-    int row_id = 31;
-    uint32_t temp;
-
-#if defined (MX53_ARD) && defined (BOARD_VERSION2)
-    ltc3589_fuse_vdd_power_on_off(ON);  // turn on fuse vdd voltage
-#endif
-
-    /* First, allow fuse programming in the CCM CGPR register by setting the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp |= 0x00000010;         // set bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-    /* blow the fuse */
-    fuse_blow_row(bank, row_id, BOARD_TYPE_ID);
-    if (sense_fuse(bank, row_id) != BOARD_TYPE_ID) {
-        printf("  ** Fuse read-back-verify failed, read back 0x%x, should be 0x%x\n",
-               sense_fuse(bank, row_id), BOARD_TYPE_ID);
-        return -1;
-    }
-
-    /* Disable fuse programming in the CCM CGPR register by clearing the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp &= ~(0x00000010);      // clear bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-#if defined (MX53_ARD) && defined (BOARD_VERSION2)
-    ltc3589_fuse_vdd_power_on_off(OFF); // turn off fuse vdd voltage
-#endif
-
-    printf("   Fuse programming successful \n");
-
-    return 0;
-}
-
-/*!
- * Program the board revision efuse
- * Note, if there is more than one board revision per ID, update the code
- * to prompt the user to enter the board revision number.
- *
- * @return  0 if successful; non-zero otherwise
- */
-int board_rev_fuse_program(void)
-{
-    int bank = 0;
-    int row_rev = 30;
-    unsigned int temp;
-
-#if defined (MX53_ARD) && defined (BOARD_VERSION2)
-    ltc3589_fuse_vdd_power_on_off(ON);  // turn on fuse vdd voltage
-#endif
-
-    /* First, allow fuse programming in the CCM CGPR register by setting the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp |= 0x00000010;         // set bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-    /* blow the fuse */
-    fuse_blow_row(bank, row_rev, BOARD_VERSION_ID);
-    if (sense_fuse(bank, row_rev) != BOARD_VERSION_ID) {
-        printf("  ** Fuse read-back-verify failed, read back 0x%x, should be: 0x%x\n",
-               sense_fuse(bank, row_rev), BOARD_VERSION_ID);
-        return -1;
-    }
-    /* Disable fuse programming in the CCM CGPR register by clearing the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp &= ~(0x00000010);      // clear bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-#if defined (MX53_ARD) && defined (BOARD_VERSION2)
-    ltc3589_fuse_vdd_power_on_off(OFF); // turn off fuse vdd voltage
-#endif
-
-    printf("   Fuse programming successful \n");
-
-    return 0;
-}
-
 /*! Read the FEC MAC address fuses
  *
  * @param mac_data pointer to an array to store mac address read from the fuses
@@ -2106,59 +1663,6 @@ int read_mac(uint8_t * mac_data)
     mac_data[3] = readb(IIM_BASE_ADDR + 0xC30);
     mac_data[4] = readb(IIM_BASE_ADDR + 0xC34);
     mac_data[5] = readb(IIM_BASE_ADDR + 0xC38);
-
-    return 0;
-}
-
-/*! Program the FEC MAC address value to the hardware fuses
- *
- * @param   fuse_data pointer to an array with mac address to program to fuses
- *
- * @return  0 if successful; non-zero otherwise
- */
-int program_mac(uint8_t * fuse_data)
-{
-    unsigned int temp;
-    uint32_t bank_mac = 1;
-    uint32_t row_mac = 9;
-    int failcount = 0, i = 0;
-
-#if defined (MX53_ARD) && defined (BOARD_VERSION2)
-    ltc3589_fuse_vdd_power_on_off(ON);  // turn on fuse vdd voltage
-#endif
-
-    /* First, allow fuse programming in the CCM CGPR register by setting the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp |= 0x00000010;         // set bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-    /* Proceed to program the MAC addr fuses */
-    for (i = 0; i < 6; i++) {
-        fuse_blow_row(bank_mac, i + row_mac, fuse_data[i]);
-    }
-    /* Now sense the fuses to confirm the fuses were programmed correctly */
-    for (i = 0; i <= 5; i++) {
-        if (sense_fuse(bank_mac, row_mac + i) != fuse_data[i]) {
-            printf("MAC%d doesn't match, it read 0x%02x, but it should be 0x%02x, \n", i,
-                   sense_fuse(bank_mac, row_mac + 1), fuse_data[i]);
-            failcount++;
-            break;
-        } else {
-            printf("MAC%d programmed correctly \n", i);
-        }
-    }
-
-    /* Disable fuse programming in the CCM CGPR register by clearing the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp &= ~(0x00000010);      // clear bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-#if defined (MX53_ARD) && defined (BOARD_VERSION2)
-    ltc3589_fuse_vdd_power_on_off(OFF); // turn off fuse vdd voltage
-#endif
-
-    if (failcount != 0)
-        return 1;               // return failure
 
     return 0;
 }

@@ -696,6 +696,153 @@ void SGTL5000PowerUp_and_clockinit(void)
 {
 }
 
+/* Configure iomux for ESAI */
+void esai_io_cfg(void)
+{
+#ifdef MX61_ARD
+    /* Select ALT2 mode of FEC_REF_CLK for ESAI1_FSR */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_REF_CLK);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT);
+
+    /* Select ALT2 mode of FEC_RXD1 for ESAI1_FST */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_RXD1);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT);
+
+    /* Select ALT2 mode of FEC_RXD0 for ESAI1_HCKT */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_RXD0);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT);
+
+    /* Select ALT2 mode of FEC_MDIO for ESAI1_SCKR */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_MDIO);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKR_SELECT_INPUT);
+
+    /* Select ALT2 mode of FEC_CRS_DV for ESAI1_SCKT */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_CRS_DV);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT);
+
+    /* Select ALT2 mode of NANDF_CS2 for ESAI1_TX0 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
+    writel(0x1, IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT);    //daisy chain
+
+    /* Select ALT2 mode of NANDF_CS2 for ESAI1_TX1 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3);
+    writel(0x1, IOMUXC_ESAI1_IPP_IND_SDO1_SELECT_INPUT);    //daisy chain
+
+    /* Select ALT0 mode of GPIO_5 for ESAI1_TX2_RX3 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_TXD1);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT);
+
+    /* Select ALT2 mode of FEC_TXEN for ESAI1_TX3_RX2 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_TX_EN);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO3_SDI2_SELECT_INPUT);
+
+    /* Select ALT2 mode of FEC_TXD0 for ESAI1_TX4_RX1 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_TXD0);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO4_SDI1_SELECT_INPUT);
+    /* Select ALT0 mode of ENET_TXD0 for ESAI1_TX5_RX0 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_MDC);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO5_SDI0_SELECT_INPUT);
+#else
+    /* Select ALT2 mode of FEC_RXD0 for ESAI1_HCKT */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_RXD0);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT);    //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_RXD0);    // default at reset
+
+    /* Select ALT2 mode of FEC_RXD1 for ESAI1_FST */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_RXD1);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT); //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_RXD1);    // default at reset
+
+    /* Select ALT2 mode of FEC_TXEN for ESAI1_TX3_RX2 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_TX_EN);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO3_SDI2_SELECT_INPUT);   //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_TX_EN);   // default at reset
+
+    /* Select ALT2 mode of FEC_TXD0 for ESAI1_TX4_RX1 */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_TXD0);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO4_SDI1_SELECT_INPUT);   //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_TXD0);    // default at reset
+
+    /* Select ALT2 mode of FEC_MDIO for ESAI1_SCKR */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_MDIO);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKR_SELECT_INPUT);    //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_MDIO);    // default at reset
+
+    /* Select ALT2 mode of FEC_REF_CLK for ESAI1_FSR */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_REF_CLK);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT); //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_REF_CLK); // default at reset
+
+    /* Select ALT0 mode of GPIO_8 for ESAI1_TX5_RX0 */
+    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_GPIO_8);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO5_SDI0_SELECT_INPUT);   //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_GPIO_8);  // default at reset
+
+    /* Select ALT0 mode of GPIO_5 for ESAI1_TX2_RX3 */
+    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_GPIO_5);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT);   //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_GPIO_5);  // default at reset
+    /* Select ALT2 mode of FEC_CRS_DV for ESAI1_SCKT */
+    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_CRS_DV);
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT);    //daisy chain
+
+    /* Select ALT3 mode of NANDF_CS2 for ESAI1_TX0 */
+    if (BOARD_ID_MX61_ARD == board_id) {
+        writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
+    } else {
+        writel(ALT3, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
+    }
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT);    //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2);   // default at reset
+
+    /* Select ALT3 mode of NANDF_CS3 for ESAI1_TX1 */
+    if (BOARD_ID_MX61_ARD == board_id) {
+        writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3);
+    } else {
+        writel(ALT3, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3);
+    }
+    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO1_SELECT_INPUT);    //daisy chain
+//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3);   // default at reset
+
+    if (BOARD_ID_MX61_ARD == board_id) {
+        /* Select ALT2 mode of ENET_RX_ER for GPIO - ESAI_HCKR */
+        writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_RX_ER);
+        writel(0x0, IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT);    //daisy chain
+    } else {
+        /* Select ALT1 mode of PATA_DATA4 for GPIO2_0 -ESAI_INT */
+        /* active high input */
+        writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DATA4);
+    }
+//  writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_PATA_DATA4);
+    gpio_dir_config(GPIO_PORT2, 0, GPIO_GDIR_INPUT);
+
+#endif
+}
+
+void esai_clk_sel_gate_on()
+{
+    unsigned int val = 0;
+#ifdef MX61_ARD
+    val = readl(CCM_CSCMR2);
+    val &= ~(0x03 << 19);
+    val |= 0x01 << 19;          //source from PLL3_508
+    writel(val, CCM_CSCMR2);
+
+    val = readl(CCM_CCGR1);
+    val |= 0x03 << 16;          //Gate on esai_clk
+    writel(val, CCM_CCGR1);
+#endif
+}
+
+/*!
+ * Power no esai codec.
+ */
+int esai_codec_power_on(void)
+{
+    //No need do anything for mx61_ard
+    return 0;
+}
+
 /*!
  * Board initialization and UART IOMUX set up
  */

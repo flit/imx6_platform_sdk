@@ -7,12 +7,11 @@
 
 #include <stdio.h>
 #include "io.h"
+#include "hardware.h"
 #include "../inc/audio.h"
-#include "../inc/imx-ssi.h"
 #include "../inc/imx-audmux.h"
 
 extern audio_card_t snd_card_ssi;
-audio_card_p snd_card = &snd_card_ssi;
 
 int ssi_playback(audio_pcm_p pcm_file)
 {
@@ -20,6 +19,7 @@ int ssi_playback(audio_pcm_p pcm_file)
     int result;
     uint32_t bytes_written = 0;
     audio_dev_para_t dev_para;
+    audio_card_p snd_card = &snd_card_ssi;
 
     printf("Please ensure headphones are plugged in to hear.\n");
 

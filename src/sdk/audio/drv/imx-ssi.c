@@ -31,7 +31,7 @@ extern void ssi_io_cfg(void);
 
 /*!
  * Dump the ssi registers which can be readable. 
- * @param  	ctrl	a pointer of audio controller(audio_ctrl_t) which presents the ssi module
+ * @param  	ctrl	a pointer of audio controller(audio_ctrl_t) which presents the ssi module itself
  *			
  * @return	0 if succeeded
  *		-1 if failed   
@@ -271,7 +271,7 @@ static uint32_t ssi_hw_enable(audio_ctrl_p ctrl, uint32_t type, bool enable)
 
 /*!
  * Initialize the ssi module and set the ssi to default status. 
- * This function will be called by the snd_card driver or application. 
+ * This function will be called by the snd_card driver. 
  *
  * @param       priv    a pointer passed by audio card driver, SSI driver should change it 
  *			to a audio_ctrl_p pointer which presents the SSI controller.
@@ -357,13 +357,13 @@ int ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_wr
     while (i < size) {
         if (0x0E > ssi_get_hw_setting(ctrl, SSI_SETTING_TX_FIFO1_DATAS_CNT)) {
             if (wl <= 8) {
-                ssi->stx0 = *((int8_t *) (buf + i));
+                ssi->stx0 = *((uint8_t *) (buf + i));
                 i++;
             } else if (wl <= 16) {
-                ssi->stx0 = *((int16_t *) (buf + i));
+                ssi->stx0 = *((uint16_t *) (buf + i));
                 i = i + 2;
             } else {
-                ssi->stx0 = *((int32_t *) (buf + i));
+                ssi->stx0 = *((uint32_t *) (buf + i));
                 i = i + 4;
             }
         }

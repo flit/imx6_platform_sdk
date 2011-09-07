@@ -35,12 +35,14 @@ void hal_delay_us(uint32_t usecs)
         return;
     }
 
+    pepit->epitcr |= EPITCR_EN;
     pepit->epitlr = delayCount;
 
     pepit->epitsr |= EPITSR_OCIF;
-   /* do not return until compare bit is set, use IRQ later? */
+    /* do not return until compare bit is set, use IRQ later? */
     while ((pepit->epitsr & EPITSR_OCIF) == 0) ;
     pepit->epitsr |= EPITSR_OCIF;
+    pepit->epitcr &= ~EPITCR_EN;
 #endif
 }
 
@@ -50,6 +52,6 @@ void system_time_init(uint32_t clock_src)
     /* Initialize the EPIT timer used for system time functions */
     /* typical PER_CLK is in MHz, so divide it to get a reference
        clock of 1MHz => 1us per count */
-    epit_init(&g_system_timer, clock_src, g_system_timer.freq/1000000,
+    epit_init(&g_system_timer, clock_src, g_system_timer.freq / 1000000,
               SET_AND_FORGET, 1000, WAIT_MODE_EN | STOP_MODE_EN);
 }

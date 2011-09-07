@@ -169,8 +169,7 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state)
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
         /* enable the IRQ */
         enable_interrupt(port->irq_id, CPU_0, 0);
-    }
-    else
+    } else
         /* disable the IRQ */
         disable_interrupt(port->irq_id, CPU_0);
 }
@@ -242,6 +241,8 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
         /* CTS controlled by the CTS bit */
         puart->ucr2 &= ~UART_UCR2_CTSC;
     }
+
+    puart->ucr3 |= UART_UCR3_RXDMUXSEL;
 
     /* Enable UART */
     puart->ucr1 |= UART_UCR1_UARTEN;

@@ -52,14 +52,12 @@ int audio_test(void)
         }
 
         do {
-            sel = getchar();
+            sel = (uint8_t) getchar();
         } while (sel == (uint8_t) 0xFF);
-
         if (sel == 'x') {
             printf("\nTest exit.\n");
             break;
         }
-
         idx = sel - '0';
 
         if ((idx >= 0) && (idx < (sizeof(audio_tests) / sizeof(audio_test_t)))) {

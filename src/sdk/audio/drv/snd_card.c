@@ -17,6 +17,10 @@
 
 extern audio_ctrl_t imx_ssi_2;
 extern audio_codec_t sgtl5000;
+
+extern audio_ctrl_t imx_esai_1;
+extern audio_codec_t cs42888;
+
 static int snd_card_init(void *priv)
 {
     audio_card_p card = (audio_card_p) priv;
@@ -131,13 +135,13 @@ audio_card_t snd_card_ssi = {
     .name = "i.MX SSI sound card",
     .codec = &sgtl5000,
     .ctrl = &imx_ssi_2,
-    .ops = &snd_card_ops,       //TODO
+    .ops = &snd_card_ops,
 };
 audio_card_t snd_card_esai = {
     .name = "i.MX EASI sound card",
-    .codec = NULL,
-    .ctrl = NULL,
-    .ops = NULL,                //TODO
+    .codec = &cs42888,
+    .ctrl = &imx_esai_1,
+    .ops = &snd_card_ops,
 };
 audio_card_t snd_card_spdif = {
     .name = "i.MX SPDIF sound card",

@@ -564,7 +564,73 @@ void lvds_power_on(void)
 
 void ldb_iomux_config(void)
 {
- /*NA*/}
+}
+
+/*!
+ * config instance hdmi_tx of Module HDMI_TX to Protocol CEC
+ * port including CEC_LINE
+ */
+void hdmi_tx_cec_pgm_iomux(void)
+{
+    // config EIM_A25 pad for hdmi_tx instance CEC_LINE port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_A25, ALT6);
+    // Pad EIM_A25 is involved in Daisy Chain.
+    reg32_write(IOMUXC_HDMI_TX_ICECIN_SELECT_INPUT, 0x0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_A25, 0x1f8b0);
+
+}
+
+/*!
+ * config instance hdmi_tx of Module HDMI_TX to Protocol DDC
+ * ports including DDC_SCL, DDC_SDA.
+ */
+void hdmi_tx_ddc_pgm_iomux(void)
+{
+    // config KEY_COL3 pad for hdmi_tx instance DDC_SCL port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL3, ALT2);
+    // Pad KEY_COL3 is involved in Daisy Chain.
+    reg32_write(IOMUXC_HDMI_TX_II2C_MSTH13TDDC_SCLIN_SELECT_INPUT, 0x1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_KEY_COL3, 0x1f8b0);
+
+    // config KEY_ROW3 pad for hdmi_tx instance DDC_SDA port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_ROW3, ALT2);
+    // Pad KEY_ROW3 is involved in Daisy Chain.
+    reg32_write(IOMUXC_HDMI_TX_II2C_MSTH13TDDC_SDAIN_SELECT_INPUT, 0x1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_KEY_ROW3, 0x1f8b0);
+
+}
+
+/*!
+ * config instance hdmi_tx of Module HDMI_TX to Protocol PHYDTB
+ * ports including {OPHYDTB[1]}, {OPHYDTB[0]}
+ */
+void hdmi_tx_phydtb_pgm_iomux(void)
+{
+    // config SD1_DAT1 pad for hdmi_tx instance OPHYDTB[0] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1, ALT6);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD1_DAT1, 0x000b1);
+
+    // config SD1_DAT0 pad for hdmi_tx instance OPHYDTB[1] port
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0, ALT6);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD1_DAT0, 0x000b1);
+
+}
+
+/*!
+ * HDMI pin mux and internal connection mux
+ * be noted that the HDMI is drivern by the IPU1 di0 here
+ */
+void hdmi_pgm_iomux(void)
+{
+    unsigned int regval = 0;
+    hdmi_tx_cec_pgm_iomux();
+    hdmi_tx_ddc_pgm_iomux();
+    hdmi_tx_phydtb_pgm_iomux();
+
+    /*select ipu1 di0 as hdmi input */
+    regval = reg32_read(IOMUXC_GPR3);
+    reg32_write(IOMUXC_GPR3, regval & 0xFFFFFFF0);
+}
 
 /*!
  * uSDHC pin mux and pad configure

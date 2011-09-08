@@ -72,6 +72,21 @@ static int hannstar_lvds_panel_deinit(void)
     return true;
 }
 
+extern void hdmi_pgm_iomux(void);
+extern void hdmi_clock_set(unsigned int pclk);
+static int hdmi_1080p60_init(void)
+{
+    hdmi_pgm_iomux();
+    hdmi_clock_set(148500000);
+    //hdmi_config();
+    return true;
+}
+
+static int hdmi_1080p60_deinit(void)
+{
+    return true;
+}
+
 ips_dev_panel_t disp_dev_list[] = {
     {
      "CLAA01 WVGA",             // name
@@ -115,7 +130,7 @@ ips_dev_panel_t disp_dev_list[] = {
      6,                         // vsync back width
      0,                         // delay from hsync to vsync
      0,                         // interlaced mode
-     1,                         // clock selection, internal
+     1,                         // clock selection, external
      1,                         // clock polarity
      1,                         // hsync polarity
      1,                         // vync polarity
@@ -125,6 +140,31 @@ ips_dev_panel_t disp_dev_list[] = {
      &hannstar_lvds_panel_deinit,
      }
     ,
+    {
+     "HDMI 1080P 60Hz",         // name
+     HDMI_1080P60,              // panel id flag
+     DCMAP_RGB888,              // data format for panel
+     60,                        // refresh rate
+     1920,                      // panel width
+     1080,                      //panel height
+     148500000,                 // pixel clock frequency
+     192,                       // hsync start width
+     44,                        // hsync width
+     88,                        // hsyn back width
+     41,                        // vysnc start width
+     5,                         // vsync width
+     4,                         // vsync back width
+     0,                         // delay from hsync to vsync
+     0,                         // interlaced mode
+     1,                         // clock selection, external
+     0,                         // clock polarity
+     1,                         // hsync polarity
+     1,                         // vync polarity
+     1,                         // drdy polarity
+     0,                         // data polarity
+     &hdmi_1080p60_init,
+     &hdmi_1080p60_deinit,
+     }
 };
 
 uint32_t num_of_panels = sizeof(disp_dev_list) / sizeof(ips_dev_panel_t);

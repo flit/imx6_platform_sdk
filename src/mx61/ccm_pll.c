@@ -10,8 +10,7 @@
 /*need to update for mx61*/
 void prog_pll(void)
 {
- /*TBD*/
-}
+ /*TBD*/}
 
 /*!
  * Set/unset clock gating for a peripheral.
@@ -41,7 +40,7 @@ void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
     case UART3_BASE_ADDR:
     case UART4_BASE_ADDR:
     case UART5_BASE_ADDR:
-        ccm_ccgr_config(CCM_CCGR5, CG(13)|CG(12), gating_mode);
+        ccm_ccgr_config(CCM_CCGR5, CG(13) | CG(12), gating_mode);
         break;
     case SSI3_BASE_ADDR:
         ccm_ccgr_config(CCM_CCGR5, CG(11), gating_mode);
@@ -71,13 +70,8 @@ void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
         ccm_ccgr_config(CCM_CCGR1, CG(7), gating_mode);
         break;
     case GPT_BASE_ADDR:
-        ccm_ccgr_config(CCM_CCGR1, CG(10)|CG(9), gating_mode);
+        ccm_ccgr_config(CCM_CCGR1, CG(10) | CG(9), gating_mode);
         break;
-
-
-
-
-
 
     default:
         break;
@@ -140,7 +134,15 @@ void hdmi_clock_set(unsigned int pclk)
         regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
         reg32_write(CCM_CHSCCDR, regval | 0x168);
 
-        /*config PLL5 to be 445MHz */
+        /*config PLL5 to be 594MHz */
+        reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
+        reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001300);
+    } else if (pclk == 148500000) {
+        /*clk output from 540M PFD1 of PLL3 */
+        regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
+        reg32_write(CCM_CHSCCDR, regval | 0x158);
+
+        /*config PLL5 to be 594MHz */
         reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
         reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001300);
     } else {

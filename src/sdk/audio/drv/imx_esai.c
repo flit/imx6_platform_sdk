@@ -22,6 +22,8 @@
 #define TRACE(fmt,args...)
 #endif
 
+#define ESAI_TX_FIFO_SIZE	120
+
 extern void esai_clk_sel_gate_on(void);
 extern void esai_io_cfg(void);
 
@@ -72,59 +74,154 @@ static int32_t esai_reset(audio_ctrl_p ctrl)
 }
 
 /*!
- * Set parameters of transmitter
+ * Set parameters of esai
  */
-static int32_t esai_set_tx_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
+static int32_t esai_set_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
 {
+    volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
+
+    switch (type) {
+    case ESAI_HW_PARA_ECR:
+        esai->ecr = val;
+        break;
+    case ESAI_HW_PARA_TCR:
+        esai->tcr = val;
+        break;
+    case ESAI_HW_PARA_RCR:
+        esai->rcr = val;
+        break;
+    case ESAI_HW_PARA_TCCR:
+        esai->tccr = val;
+        break;
+    case ESAI_HW_PARA_RCCR:
+        esai->rccr = val;
+        break;
+    case ESAI_HW_PARA_TFCR:
+        esai->tfcr = val;
+        break;
+    case ESAI_HW_PARA_RFCR:
+        esai->rfcr = val;
+        break;
+    case ESAI_HW_PARA_TSR:
+        esai->tsr = val;
+        break;
+    case ESAI_HW_PARA_SAICR:
+        esai->saicr = val;
+        break;
+    case ESAI_HW_PARA_TSM:
+        esai->tsma = val & 0xFFFF;
+        esai->tsmb = (val >> 16) & 0xFFFF;
+        break;
+    case ESAI_HW_PARA_RSM:
+        esai->rsma = val & 0xFFFF;
+        esai->rsmb = (val >> 16) & 0xFFFF;
+        break;
+    }
+
     return 0;
 }
 
 /*!
- * Set parameters of receiver
+ * Get parameters of esai
  */
-static int32_t esai_set_rx_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
+static int32_t esai_get_hw_para(audio_ctrl_p ctrl, uint32_t type)
 {
-    return 0;
+    uint32_t val = 0;
+    volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
+
+    switch (type) {
+    case ESAI_HW_PARA_ECR:
+        val = esai->ecr;
+        break;
+    case ESAI_HW_PARA_TCR:
+        val = esai->tcr;
+        break;
+    case ESAI_HW_PARA_RCR:
+        val = esai->rcr;
+        break;
+    case ESAI_HW_PARA_TCCR:
+        val = esai->tccr;
+        break;
+    case ESAI_HW_PARA_RCCR:
+        val = esai->rccr;
+        break;
+    case ESAI_HW_PARA_TFCR:
+        val = esai->tfcr;
+        break;
+    case ESAI_HW_PARA_RFCR:
+        val = esai->rfcr;
+        break;
+    case ESAI_HW_PARA_SAICR:
+        val = esai->saicr;
+        break;
+    case ESAI_HW_PARA_TSM:
+        val = ((esai->tsmb << 16) & 0xFFFF0000) | (esai->tsma & 0xFFFF);
+        break;
+    case ESAI_HW_PARA_RSM:
+        val = ((esai->rsmb << 16) & 0xFFFF0000) | (esai->rsma & 0xFFFF);
+        break;
+    case ESAI_HW_PARA_TX_WL:
+        val = (esai->tfcr & ESAI_WORD_LEN_MSK) >> ESAI_WORD_LEN_SHT;
+        val = 32 - val * 4;
+        break;
+    case ESAI_HW_PARA_RX_WL:
+        val = (esai->rfcr & ESAI_WORD_LEN_MSK) >> ESAI_WORD_LEN_SHT;
+        val = 32 - val * 4;
+        break;
+    }
+
+    return val;
 }
 
 /*!
- * Get parameters of transmitter
+ * Get status of  esai
  */
-static int32_t esai_get_tx_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
+static uint32_t esai_get_status(audio_ctrl_p ctrl, uint32_t type)
 {
-    return 0;
-}
+    uint32_t val = 0;
+    volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
 
-/*!
- * Get parameters of receiver
- */
-static int32_t esai_get_rx_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
-{
-    return 0;
-}
+    switch (type) {
+    case ESAI_STATUS_ESR:
+        val = esai->esr;
+        break;
+    case ESAI_STATUS_TFSR:
+        val = esai->tfsr;
+        break;
+    case ESAI_STATUS_RFSR:
+        val = esai->rfsr;
+        break;
+    case ESAI_STATUS_SAISR:
+        val = esai->saisr;
+        break;
+    }
 
-/*!
- * Get status of  transmitter
- */
-static uint32_t esai_get_tx_status(audio_ctrl_p ctrl, uint32_t type)
-{
-
-    return 0;
-}
-
-/*!
- * Get status of receiver
- */
-static uint32_t esai_get_rx_status(audio_ctrl_p ctrl, uint32_t type)
-{
-    return 0;
+    return val;
 }
 
 /*!
  * Enable or disable sub-modules of ESAI.
  */
-static int32_t esai_enable(audio_ctrl_p ctrl, uint32_t type, uint32_t enable)
+static int32_t esai_sub_enable(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
 {
+    uint32_t v = 0;
+    volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
+
+    switch (type) {
+    case ESAI_SUB_ENABLE_TYPE_TX:
+        v = esai->tcr;
+        v &= ~ESAI_TCR_TE_MSK;
+        v |= ESAI_TCR_TE(val);
+        esai->tcr = v;
+        break;
+    case ESAI_SUB_ENABLE_TYPE_RX:
+        v = esai->rcr;
+        v &= ~ESAI_RCR_RE_MSK;
+        v |= ESAI_RCR_RE(val);
+        esai->rcr = v;
+        break;
+    }
+
     return 0;
 }
 
@@ -141,46 +238,66 @@ static int32_t esai_connect_pins(audio_ctrl_p ctrl)
     return 0;
 }
 
+static int32_t esai_stuff_tx_fifo(audio_ctrl_p ctrl)
+{
+    uint32_t i;
+    volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
+
+    //stuff fifo
+    for (i = 0; i < ESAI_TX_FIFO_SIZE; i++) {
+        esai->etdr = 0;
+    }
+
+    return 0;
+}
+
 ////////////////////////////// APIs /////////////////////////////////////
 int esai_config(void *priv, audio_dev_para_p para)
 {
-    unsigned int val;
-    unsigned int i;
+    uint32_t val;
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
     volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
 
-    esai->tcr = ESAI_TCR_PADC | //TX ZERO PADDING ,BIT17  1: pad 0, 0:repeat
+    val = ESAI_TCR_PADC |       //TX ZERO PADDING ,BIT17  1: pad 0, 0:repeat
         ESAI_TCR_TSWS_STL32_WDL24 | //32bit slot len, 24bit word len
         ESAI_TCR_TMOD_NETWORK;  //network mode
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TCR, val);
 
     if (AUDIO_BUS_MODE_MASTER == para->bus_mode) {
         val = ESAI_TCCR_THCKD | ESAI_TCCR_TFSD | ESAI_TCCR_TCKD |   //HCKT is output (bit23=1), FST is output (bit22=1), SCKT is output (bit21=1)
             ESAI_TCCR_TCKP |    //tX clock polarity bit 18, clock out on falling edge
-            ESAI_TCCR_TFP(3) |  // clk div 4
-            ESAI_TCCR_TDC(1) |  //frame rate devider,  2word per frame
-            ESAI_TCCR_TPSR_BYPASS | ESAI_TCCR_TPM(4);
+            ESAI_TCCR_TDC(para->channel_number - 1);    //frame rate devider,  2word per frame
+        if (SAMPLERATE_44_1KHz == para->sample_rate) {
+            val |= ESAI_TCCR_TFP(3) |   // clk div 4
+                ESAI_TCCR_TPSR_BYPASS | ESAI_TCCR_TPM(4);
+        } else {
+            //TODO
+        }
     } else {
-        val = ESAI_TCCR_TCKP |
-            ESAI_TCCR_TFP(3) | ESAI_TCCR_TDC(1) | ESAI_TCCR_TPSR_BYPASS | ESAI_TCCR_TPM(4);
+        val = ESAI_TCCR_TCKP | ESAI_TCCR_TDC(para->channel_number - 1); //frame rate devider,  2word per frame
     }
-    esai->tccr = val;
-#define ESAI_TSM_NUM(x)  (0xffff >> (16-x))
-    esai->tsma = ESAI_TSM_NUM(2);
-    esai->tsmb = 0;
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TCCR, val);
+
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TSM, ESAI_TSM_NUM(para->channel_number));
 
     esai->tfcr |= ESAI_TFCR_TFR;
 
-    esai->tfcr = ESAI_TFCR_TIEN |
-        ESAI_WORD_LEN_16 |
-        ESAI_TFCR_TFWM(ESAI_WATERMARK) | ESAI_TFCR_TE(para->channel_number) | ESAI_TFCR_TFEN;
-    //stuff fifo
-    for (i = 0; i < 120; i++) {
-        esai->etdr = 0;
-    }
+    val =
+        ESAI_TFCR_TIEN | ESAI_TFCR_TFWM(ESAI_WATERMARK) | ESAI_TFCR_TE(para->
+                                                                       channel_number) |
+        ESAI_TFCR_TFEN;
+    if (WL_16 == para->word_length)
+        val |= ESAI_WORD_LEN_16;
+    else if (WL_24 == para->word_length)
+        val |= ESAI_WORD_LEN_24;
+    else if (WL_20 == para->word_length)
+        val |= ESAI_WORD_LEN_20;
 
-    val = esai->tcr;
-    val &= ~0x3F;
-    esai->tcr |= ESAI_TCR_TE(para->channel_number);
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TFCR, val);
+
+    esai_stuff_tx_fifo(ctrl);
+
+    esai_sub_enable(ctrl, ESAI_SUB_ENABLE_TYPE_TX, para->channel_number);
 
     esai_connect_pins(ctrl);
 
@@ -212,13 +329,16 @@ int esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_w
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
     volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
     uint32_t i = 0;
-    uint32_t wl = 16;
+    uint32_t wl = 0;
     uint32_t val = 0;
 
+    wl = esai_get_hw_para(ctrl, ESAI_HW_PARA_TX_WL);
+
     while (i < size) {
+        //wait for the tx fifo empty
         do {
-            val = readl(ESAI1_BASE_ADDR + ESAI_ESR_OFFSET);
-        } while (!(val & (0x01 << 8))); //wait for the tx fifo empty
+            val = esai_get_status(ctrl, ESAI_STATUS_ESR);
+        } while (!(val & ESAI_ESR_TFE));
 
         if (wl <= 8) {
             val = *((uint8_t *) (buf + i));

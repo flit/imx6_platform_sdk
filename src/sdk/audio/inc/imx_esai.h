@@ -130,8 +130,10 @@ typedef struct {
 #define ESAI_WORD_LEN_20	(0x03 << 16)
 #define ESAI_WORD_LEN_16	(0x04 << 16)
 #define ESAI_WORD_LEN_12	(0x05 << 16)
-#define ESAI_WORD_LEN_8	(0x06 << 16)
-#define ESAI_WORD_LEN_4	(0x07 << 16)
+#define ESAI_WORD_LEN_8		(0x06 << 16)
+#define ESAI_WORD_LEN_4		(0x07 << 16)
+#define ESAI_WORD_LEN_MSK	(0x7 << 16)
+#define ESAI_WORD_LEN_SHT	16
 
 #define ESAI_SAISR_TODFE	(1 << 17)
 #define ESAI_SAISR_TEDE	(1 << 16)
@@ -165,6 +167,7 @@ typedef struct {
 #define ESAI_TCR_TWA	(1 << 7)
 #define ESAI_TCR_TSHFD_MSB	(0 << 6)
 #define ESAI_TCR_TSHFD_LSB	(1 << 6)
+#define ESAI_TCR_TE_MSK	(0x3F << 0)
 #define ESAI_TCR_TE5	(1 << 5)
 #define ESAI_TCR_TE4	(1 << 4)
 #define ESAI_TCR_TE3	(1 << 3)
@@ -234,6 +237,7 @@ typedef struct {
 #define ESAI_RCR_RWA	(1 << 7)
 #define ESAI_RCR_RSHFD_MSB (0 << 6)
 #define ESAI_RCR_RSHFD_LSB (1 << 6)
+#define ESAI_RCR_RE_MSK	(0xF << 0)
 #define ESAI_RCR_RE3	(1 << 3)
 #define ESAI_RCR_RE2	(1 << 2)
 #define ESAI_RCR_RE1	(1 << 1)
@@ -289,8 +293,41 @@ typedef struct {
 #define ESAI_RCCR_RPM_MASK	0xffff00
 #define ESAI_RCCR_RPM(x)	(x & 0xff)
 
+#define ESAI_TSM_NUM(x)  (0xffffffff >> (32-x))
+
 #define ESAI_GPIO_ESAI		0xfff
 
 #define ESAI_WATERMARK 		64
 /////////////////////////////////
+typedef enum {
+    ESAI_HW_PARA_ECR,
+    ESAI_HW_PARA_TCR,
+    ESAI_HW_PARA_RCR,
+    ESAI_HW_PARA_TCCR,
+    ESAI_HW_PARA_RCCR,
+    ESAI_HW_PARA_TFCR,
+    ESAI_HW_PARA_RFCR,
+    ESAI_HW_PARA_TSR,
+    ESAI_HW_PARA_SAICR,
+    ESAI_HW_PARA_TSM,           //time slot mask
+    ESAI_HW_PARA_RSM,           //time slot mask
+    ESAI_HW_PARA_TX_WL,         //word len in bits
+    ESAI_HW_PARA_RX_WL,         //word len in bits
+} esai_hw_para_type_e;
+
+typedef enum {
+    ESAI_STATUS_ESR,
+    ESAI_STATUS_TFSR,
+    ESAI_STATUS_RFSR,
+    ESAI_STATUS_SAISR,
+} esai_status_e;
+
+typedef enum {
+    ESAI_SUB_ENABLE_TYPE_ESAI,
+    ESAI_SUB_ENABLE_TYPE_TX,
+    ESAI_SUB_ENABLE_TYPE_RX,
+    ESAI_SUB_ENABLE_TYPE_TXFIFO,
+    ESAI_SUB_ENABLE_TYPE_RXFIFO,
+} esai_sub_enable_type_e;
+
 #endif

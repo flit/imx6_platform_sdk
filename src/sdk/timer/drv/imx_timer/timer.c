@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -15,7 +15,6 @@
 
 void hal_delay_us(uint32_t usecs)
 {
-#ifdef MX53
     if (usecs == 0) {
         return;
     }
@@ -27,7 +26,7 @@ void hal_delay_us(uint32_t usecs)
     /* disable the counter to save power */
     epit_counter_disable(&g_system_timer);
 
-#else /* iMX61 */
+#ifdef OLD_MX61 /* iMX61 */
     volatile struct mx_epit *pepit = (volatile struct mx_epit *)g_system_timer.base;
     uint32_t delayCount = (usecs * 512) / 15625;
 

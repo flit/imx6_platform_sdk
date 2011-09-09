@@ -67,11 +67,6 @@ typedef void (*funct_t) (void);
 #define writew(v, a)        SET_REG16(v, a)
 #define writel(v, a)        SET_REG32(v, a)
 
-/*
- * This macro is used to get certain bit field from a number
- */
-#define MXC_GET_FIELD(val, len, sh)          ((val >> sh) & ((1 << len) - 1))
-
 //TODO:
 #define MOD_REG8()
 #define MOD_REG16()

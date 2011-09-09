@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -13,7 +13,7 @@
 
 #include "hardware.h"
 
-/*! 
+/*!
  * Reload the counter with a known value.
  *
  * @param   port - pointer to the EPIT module structure.
@@ -26,9 +26,9 @@ void epit_reload_counter(struct hw_module *port, uint32_t load_val)
     pepit->epitlr = load_val;
 }
 
-/*! 
- * Get the output compare status flag an clear if sets.
- * This function is typically used for polling method.
+/*!
+ * Get the output compare status flag and clear it if set.
+ * This function can typically be used for polling method.
  *
  * @param   port - pointer to the EPIT module structure.
  * @return  the value of the compare event flag.
@@ -48,7 +48,7 @@ uint32_t epit_get_compare_event(struct hw_module *port)
     return status_register;
 }
 
-/*! 
+/*!
  * Disable the counter. It saves energy when not used.
  *
  * @param   port - pointer to the EPIT module structure.
@@ -67,8 +67,8 @@ void epit_counter_disable(struct hw_module *port)
     pepit->epitsr |= EPITSR_OCIF;
 }
 
-/*! 
- * Enable the EPIT module. Used for instance when the epit_init is done, and
+/*!
+ * Enable the EPIT module. Used typically when the epit_init is done, and
  * other interrupt related settings are ready.
  *
  * @param   port - pointer to the EPIT module structure.
@@ -96,7 +96,7 @@ void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq
     pepit->epitcr |= EPITCR_EN;
 }
 
-/*! 
+/*!
  * Setup EPIT interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *
@@ -115,7 +115,7 @@ void epit_setup_interrupt(struct hw_module *port, uint8_t state)
         disable_interrupt(port->irq_id, CPU_1);
 }
 
-/*! 
+/*!
  * Initialize the EPIT timer.
  *
  * @param   port - pointer to the EPIT module structure.

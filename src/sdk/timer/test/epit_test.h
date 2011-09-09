@@ -9,5 +9,5 @@
 
 void tick_timer_interrupt_handler(void);
 int32_t epit_test(void);
-void epit_test_1(void);
-void epit_test_2(void);
+void epit_delay_test(void);
+void epit_tick_test(void);

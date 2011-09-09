@@ -28,6 +28,8 @@
 #define CPU_2   2
 #define CPU_3   3
 
+#define POLLING_MODE 0
+
 extern void (*g_interrupt_handlers[]) (void);
 
 typedef void (*irq_hdlr_t) (void);

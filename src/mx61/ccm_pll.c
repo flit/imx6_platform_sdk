@@ -7,10 +7,35 @@
 
 #include "hardware.h"
 
-/*need to update for mx61*/
+/* In i.MX61, PLLs don't need to be configured. Default values cover most use cases. */
 void prog_pll(void)
 {
- /*TBD*/}
+/* TBD */
+}
+
+/*!
+ * This function returns the frequency of a clock.
+ */
+uint32_t get_clock(uint8_t clock)
+{
+    uint32_t ret_val = 0;
+
+    switch (clock) {
+    case AHB_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / ahb_podf_;
+        break;
+    case IPG_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / ahb_podf_ / ipg_podf_;
+        break;
+    case IPG_PER_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / ahb_podf_ / ipg_podf_ / perclk_podf_;
+        break;
+    default:
+        break;
+    }
+
+    return ret_val;
+}
 
 /*!
  * Set/unset clock gating for a peripheral.

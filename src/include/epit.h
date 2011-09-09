@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -37,6 +37,8 @@
 /* EPIT specific defines */
 #define FREE_RUNNING    0
 #define SET_AND_FORGET  EPITCR_RLD
+
+#define IRQ_MODE 1
 
 /* EPIT driver list of functions */
 void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,

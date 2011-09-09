@@ -242,6 +242,7 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
         puart->ucr2 &= ~UART_UCR2_CTSC;
     }
 
+    /* the reference manual says that this bit must always be set */
     puart->ucr3 |= UART_UCR3_RXDMUXSEL;
 
     /* Enable UART */

@@ -116,9 +116,8 @@
 
 #define TX_FIFO 0
 #define RX_FIFO 1
-#define DMA_MODE 0
+#define DMA_MODE 2
 #define IRQ_MODE 1
-#define POLLING_MODE 2
 
 /* UART driver list of functions */
 void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,

@@ -39,7 +39,7 @@ struct hw_module g_debug_uart = {
 struct hw_module g_system_timer = {
     "EPIT1 used as system timer",
     EPIT1_BASE_ADDR,
-    27000000,
+    66000000,
     IMX_INT_EPIT1,
     &default_interrupt_routine,
 };
@@ -234,36 +234,34 @@ void freq_populate(void)
 
     // **** NEEDS UPDATE for mx61 *****  //
     /* 
+     * PLL2 output is expected to be 396MHz with
+     * pre_periph_clk_sel at 1 (PDF2).
+     */
+    /* change ahb_podf to divide by 2 => AHB_CLK@132MHz and IPG_CLK@66MHz */
+    *(volatile uint32_t *)(CCM_CBCDR) = 0x00018900; // reset value is 0x00018D00;
+
+
+
+
+    /* 
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
      * 80MHz uart_clk_podf (div-by-1) = 80MHz (UART module clock input)
      */
+    reg32_write_mask(CCM_CSCDR1, 0x00000000, 0x0000003F);
+
+    /* Ensure UART clock is not gated, bits[27:26] and bits[25:24] of CCGR5 */
+//    reg32_write_mask(CCM_CCGR5, 0x0F000000, 0x0F000000);
+
+    /* Populate module frequency settings (important for UART driver) */
+    for (i = 0; (tmp = mx61_module[i]) != NULL; i++) {
+        tmp->freq = get_freq(tmp->base);
+    }
 
     /* Power up 480MHz PLL */
 //    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00001000, 0x00001000);
 
     /* Enable 480MHz PLL */
 //    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00002000, 0x00002000);
-
-    /* UART clock is sourced from PLL3_80M 
-     *   PLL3_80M is div-by-6 from PLL3 480MHz
-     *   However, even though this is the default
-     *   make sure div-by-6 is set 
-     *   It appears that these dividers are not programmable
-     */
-
-    /*  UART clock is divided down from PLL3_80M
-     * Defalut is div-by-1, but set to make sure
-     *   CSCDR1: uart_clk_podf
-     */
-    reg32_write_mask(CCM_CSCDR1, 0x00000000, 0x0000003F);
-
-    /* Ensure UART clock is not gated, bits[27:26] and bits[25:24] of CCGR5 */
-    reg32_write_mask(CCM_CCGR5, 0x0F000000, 0x0F000000);
-
-    /* Populate module frequency settings (important for UART driver) */
-    for (i = 0; (tmp = mx61_module[i]) != NULL; i++) {
-        tmp->freq = get_freq(tmp->base);
-    }
 
     /* config IPU hsp clock, derived from AXI B */
 //    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR);

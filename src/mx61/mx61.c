@@ -69,8 +69,7 @@ void platform_init(void)
     freq_populate();
 
     /* Configure the EPIT timer used for system delay function. */
-//    system_time_init(CLKSRC_PER_CLK); // Florent - verify this when I'll have a board
-    system_time_init(CLKSRC_CKIL);
+    system_time_init(CLKSRC_PER_CLK);
 
     /*
      * Note, board type is determined at compile time such that the UART and

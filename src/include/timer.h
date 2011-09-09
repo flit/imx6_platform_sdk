@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -22,9 +22,6 @@
 #define OUTPUT_CMP_CLEAR    0x2 // output set low mode
 #define OUTPUT_CMP_SET      0x3 // output set high mode
 #define OUTPUT_CMP_LOWPULSE 0x4 // output set high mode
-
-#define IRQ_MODE 1
-#define POLLING_MODE 2
 
 void hal_delay_us(uint32_t usecs);
 void system_time_init(uint32_t clock_src);

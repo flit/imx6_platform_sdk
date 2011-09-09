@@ -270,7 +270,7 @@ uint32_t pll_clock(enum plls pll)
     uint64_t dp_ctrl, dp_op, dp_mfd, dp_mfn, clk_sel;
     uint8_t dbl = 0;
     dp_ctrl = pll_base[pll][PLL_DP_CTL >> 2];
-    clk_sel = MXC_GET_FIELD(dp_ctrl, 2, 8);
+    clk_sel = GET_FIELD(dp_ctrl, 2, 8);
     ref_clk = fixed_mfd[clk_sel].ref_clk_hz;
 
     if ((pll_base[pll][PLL_DP_CTL >> 2] & 0x80) == 0) {

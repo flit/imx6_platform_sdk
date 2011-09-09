@@ -126,6 +126,19 @@
 #define CLOCK_ON_RUN    0x1
 #define CLOCK_OFF       0x0
 
+/* defines to extract divider or sel value */ 
+#define periph_clk2_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 27)
+#define mmdc_ch0_axi_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 19)
+#define axi_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 16)
+#define ahb_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 10)
+#define ipg_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 2, 8)
+#define mmdc_ch1_axi_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 3)
+#define periph2_clk2_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 0)
+
+#define perclk_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CSCMR1),6,0)
+
+#define pre_periph_clk_sel_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCMR),2,18)
+
 enum main_clocks {
     CPU_CLK,
     AHB_CLK,
@@ -159,6 +172,8 @@ enum plls {
     PLL3,
     PLL4,
 };
+
+static const uint32_t PLL2_OUTPUT[] = {528000000,400000000,352000000,200000000};
 
 void clock_gating_config(uint32_t base_address, uint8_t gating_mode);
 

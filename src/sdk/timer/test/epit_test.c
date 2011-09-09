@@ -8,17 +8,6 @@
 #include <stdio.h>
 #include "epit_test.h"
 
-/* EPIT2 port is free for i.MX61 and i.MX53 platforms */
-static struct hw_module g_tick_timer = {
-    "EPIT2 for system tick",
-    EPIT2_BASE_ADDR,
-    27000000,
-    IMX_INT_EPIT2,
-    &tick_timer_interrupt_handler,
-};
-
-static uint8_t g_wait_flag;
-
 int32_t epit_test(void)
 {
     uint8_t sel;
@@ -41,16 +30,16 @@ int32_t epit_test(void)
         }
 
         if (sel == '1')
-            epit_test_1();
+            epit_delay_test();
         if (sel == '2')
-            epit_test_2();
+            epit_tick_test();
 
     } while(1);
 
     return 0;
 }
 
-void epit_test_1(void)
+void epit_delay_test(void)
 {
     uint32_t counter = 0;
     /* stops after xx seconds */
@@ -65,6 +54,18 @@ void epit_test_1(void)
         counter++;
     };
 }
+
+/* EPIT2 port is free for i.MX61 and i.MX53 SDK as EPIT1 is used
+   for a global delay function */
+static struct hw_module g_tick_timer = {
+    "EPIT2 for system tick",
+    EPIT2_BASE_ADDR,
+    27000000,
+    IMX_INT_EPIT2,
+    &tick_timer_interrupt_handler,
+};
+
+static uint8_t g_wait_flag;
 
 /*! 
  * Tick timer interrupt handler.
@@ -84,7 +85,7 @@ void tick_timer_interrupt_handler(void)
  * Whenever a second has passed, it displays the counter value.\n");
  * 
 */
-void epit_test_2(void)
+void epit_tick_test(void)
 {
     uint32_t counter = 0;
     /* stops after xx seconds */
@@ -97,7 +98,8 @@ void epit_test_2(void)
        and that was initialized in platform_init() */
     g_tick_timer.freq = g_system_timer.freq;
 
-    /* Initialize the EPIT timer used for tick timer */
+    /* Initialize the EPIT timer used for tick timer. An interrupt
+       is generated every 10ms */
     /* typical PER_CLK is in MHz, so divide it to get a reference
        clock of 1MHz => 1us per count */
     epit_init(&g_tick_timer, CLKSRC_PER_CLK, g_tick_timer.freq/1000000,

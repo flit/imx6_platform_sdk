@@ -32,6 +32,7 @@
 #include "epit.h"
 #include "gpt.h"
 #include "timer.h"
+#include "hdmi_regs.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR

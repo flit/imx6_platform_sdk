@@ -127,27 +127,34 @@
 #define CLOCK_OFF       0x0
 
 /* defines to extract divider or sel value */ 
-#define periph_clk2_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 27)
-#define mmdc_ch0_axi_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 19)
-#define axi_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 16)
-#define ahb_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 10)
-#define ipg_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 2, 8)
-#define mmdc_ch1_axi_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 3)
-#define periph2_clk2_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 0)
+#define periph_clk2_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 27) + 1)
+#define mmdc_ch0_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 19) + 1)
+#define axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 16) + 1)
+#define ahb_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 10) + 1)
+#define ipg_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 2, 8) + 1)
+#define mmdc_ch1_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 3) + 1)
+#define periph2_clk2_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 0) + 1)
 
-#define perclk_podf_ GET_FIELD(*(volatile uint32_t *)(CCM_CSCMR1),6,0)
+#define perclk_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCMR1),6,0) + 1)
 
 #define pre_periph_clk_sel_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCMR),2,18)
 
+
+#define vpu_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,25) + 1)
+#define usdhc4_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,22) + 1)
+#define usdhc3_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,19) + 1)
+#define usdhc2_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,16) + 1)
+#define usdhc1_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,11) + 1)
+#define uart_clk_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),6,0) + 1)
+
 enum main_clocks {
     CPU_CLK,
+    AXI_CLK,
+    MMDC_CH0_AXI_CLK,
     AHB_CLK,
     IPG_CLK,
     IPG_PER_CLK,
-    DDR_CLK,
-    NFC_CLK,
-    USB_CLK,
-    VPU_CLK,
+    MMDC_CH1_AXI_CLK,
 };
 
 enum peri_clocks {
@@ -160,10 +167,11 @@ enum peri_clocks {
     CSI_BAUD,
     MSTICK1_CLK,
     MSTICK2_CLK,
+    NFC_CLK,
+    USB_CLK,
+    VPU_CLK,
     SPI1_CLK = ECSPI1_BASE_ADDR,
     SPI2_CLK = ECSPI2_BASE_ADDR,
-    EPIT1_CLK,
-    EPIT2_CLK,
 };
 
 enum plls {
@@ -171,10 +179,17 @@ enum plls {
     PLL2,
     PLL3,
     PLL4,
+    PLL5,
 };
 
-static const uint32_t PLL2_OUTPUT[] = {528000000,400000000,352000000,200000000};
+static const uint32_t PLL1_OUTPUT = 792000000;
+static const uint32_t PLL2_OUTPUT[] = {528000000,396000000,352000000,198000000,594000000};
+static const uint32_t PLL3_OUTPUT[] = {480000000,720000000,540000000,508235294,454736842};
+static const uint32_t PLL4_OUTPUT = 650000000;
+static const uint32_t PLL5_OUTPUT = 650000000;
 
 void clock_gating_config(uint32_t base_address, uint8_t gating_mode);
+uint32_t get_clock(uint8_t clock);
+void ccm_init(void);
 
 #endif

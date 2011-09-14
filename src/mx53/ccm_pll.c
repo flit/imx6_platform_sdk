@@ -27,6 +27,57 @@ static volatile uint32_t *pll_base[] = {
     REG32_PTR(PLL4_BASE_ADDR),
 };
 
+void ccm_init(void)
+{
+    volatile uint32_t temp;
+
+    /* configure the PLLs */
+    prog_pll();
+
+    /* Ungate clocks to all modules */
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR0_OFFSET) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR1_OFFSET) = 0xFFFC003F;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR2_OFFSET) = 0xFFC3FC00;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR3_OFFSET) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR4_OFFSET) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR6_OFFSET) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CCM_CCGR7_OFFSET) = 0xFFFF00FF;
+    /* For MX53, set UART clock source to PLL3 (216MHz) and set dividers to div-by-4 to get 54MHz */
+    /* CSCMR1 - to select PLL3 source. uart_clk_sel[1:0] = 10 (bits 25 and 24)
+       CSCDR1 - to select divide values */
+    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CSCMR1);
+    temp &= ~(0x03000000);      // clear bits 25 and 24
+    temp |= 0x02000000;         // set bits 25 and 24 to 10
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CSCMR1) = temp;
+    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CSCDR1);
+    temp &= ~(0x0000003F);      // clear bits 5 to 0
+    temp |= 0x00000018;         // set bits 5 to 3 to 011 (div-by-4); bits 3 to 0 set to 000 (div-by-1)
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CSCDR1) = temp;
+    /* To align with operating systems such as WinCE and Linux, configure PERCLK to be sourced
+     * from lp_apm with a divider set to DIV-BY-3 to achieve 8MHz on PERCLK*/
+    /* first choose lp_apm as the clock source to PERCLK */
+    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
+    temp |= 0x00000002;         // set bit 1, perclk_lp_apm_sel
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
+    /* now set perclk_pred1 to div-by-3 */
+    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
+    temp &= ~(0x000000FF);
+    temp |= 0x00000080;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
+
+    /* config IPU hsp clock, derived from AXI B */
+    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
+    temp &= ~(0x000000C0);
+    temp |= 0x00000040;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
+    /* now set perclk_pred1 to div-by-2 */
+    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
+    temp &= ~(0x00380000);
+    temp |= 0x00080000;
+    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
+}
+
 /* The function prog_pll sets up all four PLLs as follows:
     PLL1 800MHz
     PLL2 400MHz
@@ -215,7 +266,6 @@ void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
     default:
         break;
     }
-
 }
 
 /*!
@@ -541,7 +591,7 @@ uint32_t get_peri_clock(enum peri_clocks clk)
     return ret_val;
 }
 
-void ldb_clock_config(int freq)
+void ldb_clock_config(int32_t freq)
 {
 
     reg32clrbit(PLL4_BASE_ADDR + PLL_DP_CONFIG, 1);
@@ -573,4 +623,9 @@ void ldb_clock_config(int freq)
     reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 29);
     reg32clrbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 30);
     reg32setbit(CCM_BASE_ADDR + CLKCTL_CSCMR2, 31);
+}
+
+void hdmi_clock_set(unsigned int pclk)
+{
+/* for compatibility with i.MX61 */
 }

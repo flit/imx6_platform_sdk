@@ -195,5 +195,7 @@ enum plls {
 
 uint32_t pll_clock(enum plls pll);
 void clock_gating_config(uint32_t base_address, uint8_t gating_mode);
+void ccm_init(void);
+void prog_pll(void);
 
 #endif

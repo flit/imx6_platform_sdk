@@ -12,11 +12,11 @@ int32_t epit_test(void)
 {
     uint8_t sel;
 
-    printf("Start EPIT unit tests:\n");
+    printf("Start EPIT unit tests:");
 
     do {
 
-        printf("  1 - for delay test.\n");
+        printf("\n  1 - for delay test.\n");
         printf("  2 - for tick test.\n");
         printf("  x - to exit.\n\n");
 
@@ -45,13 +45,13 @@ void epit_delay_test(void)
     /* stops after xx seconds */
     uint32_t max_duration = 10;
 
-    printf("This test displays a '.' every second.\n");
+    printf("This test displays the elapsed number of second.\n");
     printf("Test exists after %d seconds.\n",max_duration);
 
     while (counter != max_duration) {        
         hal_delay_us(1000000);
-        printf(".\n");
         counter++;
+        printf("%ds\n",counter);
     };
 }
 
@@ -94,15 +94,12 @@ void epit_tick_test(void)
     printf("EPIT is programmed to generate an interrupt every 10ms as a tick timer.\n");
     printf("Test exists after %d seconds.\n",max_duration);
 
-    /* set same frequency than the one known for system timer 
-       and that was initialized in platform_init() */
-    g_tick_timer.freq = g_system_timer.freq;
-
     /* Initialize the EPIT timer used for tick timer. An interrupt
        is generated every 10ms */
-    /* typical PER_CLK is in MHz, so divide it to get a reference
+    /* typical IPG_CLK is in MHz, so divide it to get a reference
        clock of 1MHz => 1us per count */
-    epit_init(&g_tick_timer, CLKSRC_PER_CLK, g_tick_timer.freq/1000000,
+    g_tick_timer.freq = get_main_clock(IPG_CLK);
+    epit_init(&g_tick_timer, CLKSRC_IPG_CLK, g_tick_timer.freq/1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
     epit_setup_interrupt(&g_tick_timer, ENABLE);
     epit_counter_enable(&g_tick_timer, 10000, IRQ_MODE);

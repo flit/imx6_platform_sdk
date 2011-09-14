@@ -66,7 +66,7 @@ uint8_t uart_getchar(struct hw_module * port)
 {
     volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
     uint32_t read_data;
-#ifdef _WILL_WAIT_UNTIL_I_HAVE_A_BOARD_FLORENT_
+
     /* If Rx FIFO has no data ready */
     if (!(puart->usr2 & UART_USR2_RDR))
         return NONE_CHAR;
@@ -76,12 +76,6 @@ uint8_t uart_getchar(struct hw_module * port)
     /* If error are detected */
     if (read_data & 0x7C00)
         return NONE_CHAR;
-#endif
-    /* If Rx FIFO has no data ready */
-    if (puart->uts & UART_UTS_RXEMPTY)
-        return NONE_CHAR;
-
-    read_data = puart->urxd[0];
 
     return (uint8_t) read_data;
 }

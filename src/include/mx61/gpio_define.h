@@ -9,6 +9,7 @@
 #define __GPIO_DEFINE_H__
 
 #include "registers.h"
+#include "gpio_define.h"
 
 typedef enum {
     GPIO_PORT1 = 0,

@@ -5,9 +5,8 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include <stdio.h>
 #include "hardware.h"
-#include "hdmi_tx.h"
+#include "../drv/hdmi_tx.h"
 
 extern int ips_hdmi_stream(void);
 

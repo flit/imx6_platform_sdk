@@ -92,5 +92,5 @@ void default_interrupt_routine(void)
 
 void init_interrupts(void)
 {
-    // nothing to be done for imx6, placeholder for imx53 function to avoid imx6 compile error
+    /* nothing to be done for iMX6, this is placeholder for iMX53 compatibility */
 }

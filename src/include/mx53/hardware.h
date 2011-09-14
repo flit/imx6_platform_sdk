@@ -19,7 +19,7 @@
 #include "io.h"
 #include "iomux_define.h"
 #include "iomux_register.h"
-#include "gpio_define.h"
+#include "gpio.h"
 #include "interrupt.h"
 #include "ccm_pll.h"
 #include "iim_fuse.h"
@@ -32,8 +32,6 @@
 #include "timer.h"
 
 // Defines needed for existing drivers - TODO: cleanup
-#define EPIT_BASE_ADDR      EPIT1_BASE_ADDR
-
 #define CSD0_BASE_ADDR      CSD0_DDR_BASE_ADDR
 #define CSD1_BASE_ADDR      CSD1_DDR_BASE_ADDR
 #define WEIM_CS_BASE_ADDR   0xF0000000
@@ -161,12 +159,12 @@ void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_fec_setup(void);
 void esai_iomux(void);
-int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir);
-int32_t gpio_read_data(int32_t port, int32_t pin);
-int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr);
 
 struct hw_module g_debug_uart;
 struct hw_module g_system_timer;
+
+#define MAX_GPIO_PORT   7
+const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
 
 extern void platform_init(void);
 extern int32_t board_id;

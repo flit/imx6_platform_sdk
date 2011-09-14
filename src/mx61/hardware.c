@@ -20,17 +20,19 @@ extern int32_t board_id;
 #define ON 1
 #define OFF 0
 
-// ARM core is a special case. Assign 0 to it.
-struct hw_module core = {
-    "ARM",
-    0,
+// ARM core.
+#define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
+struct hw_module arm_core = {
+    "Cortex A9 core",
+    DUMMY_ARM_CORE_BASE_ADDR,
+    792000000,
 };
 
 // UART4 is the serial debug/console port
 struct hw_module g_debug_uart = {
     "UART4 for debug",
     UART4_BASE_ADDR,
-    27000000,
+    80000000,
     IMX_INT_UART4,
     &default_interrupt_routine,
 };
@@ -50,14 +52,14 @@ struct hw_module ddr = {
 };
 
 struct hw_module *mx61_module[] = {
-    &core,
+    &arm_core,
     &ddr,
     &g_debug_uart,
     &g_system_timer,
     NULL,
 };
 
-uint32_t mx61_gpio[] = {
+const uint32_t g_mx_gpio_port[MAX_GPIO_PORT] = {
     GPIO1_BASE_ADDR,
     GPIO2_BASE_ADDR,
     GPIO3_BASE_ADDR,
@@ -68,141 +70,22 @@ uint32_t mx61_gpio[] = {
 };
 
 /*!
- * Sets the GPIO direction for the specified pin.
- *
- * @param	port: 	GPIO module instance, 0 to 6.
- * @param 	pin:	GPIO pin 0 to 31.
- * @param 	dir:	direction for the pin. in or out.
- *
- * @return:  -1 means failed to set the pin
- *
- */
-int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir)
-{
-    uint32_t oldVal = 0, newVal = 0;
-
-    if ((port >= 7) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    oldVal = readl(mx61_gpio[port] + GPIO_GDIR_OFFSET);
-
-    if (dir == GPIO_GDIR_INPUT)
-        newVal = oldVal & (~(1 << pin));
-    else
-        newVal = oldVal | (1 << pin);
-
-    writel(newVal, mx61_gpio[port] + GPIO_GDIR_OFFSET);
-    return 0;
-}
-
-/*!
-Function:
-	gpio_write_data()
-Description:
-	Sets the GPIO attributte(high or low) for the specified pin.
-Parameters:
-    @port: 	GPIO module instance, 0 to 6.
-	@pin:	GPIO pin 0 to 31.
-    @attr:	attributte for the pin. high/low
-Returns:
-    Return the value, -1 means failed to set the pin
-*/
-int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr)
-{
-    int32_t dir;
-    uint32_t oldVal = 0, newVal = 0;
-
-    if ((port >= 7) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    dir = (readl(mx61_gpio[port] + GPIO_GDIR_OFFSET) & (1 << pin)) >> pin;
-
-    if (dir != 1) {
-        printf("GPIO%d_%d is not configured to be output!\n", port + 1, pin);
-        return -1;
-    }
-
-    oldVal = readl(mx61_gpio[port] + GPIO_DR_OFFSET);
-
-    if (attr == 0)
-        newVal = oldVal & (~(1 << pin));
-    else if (attr == 1)
-        newVal = oldVal | (1 << pin);
-
-    writel(newVal, mx61_gpio[port] + GPIO_DR_OFFSET);
-    return 0;
-}
-
-/*!
-Function:
-	gpio_read_data()
-Description:
-	Gets the GPIO attributte(high or low) for the specified pin.
-Parameters:
-    @port: 	GPIO module instance, 0 to 6.
-	@pin:	GPIO pin 0 to 31.
-Returns:
-    Return the value, -1 means failed to get the value
-*/
-int32_t gpio_read_data(int32_t port, int32_t pin)
-{
-    int32_t dir;
-
-    if ((port >= 7) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    dir = (readl(mx61_gpio[port] + GPIO_GDIR_OFFSET) & (1 << pin)) >> pin;
-
-    if (dir != 0) {
-        printf("GPIO%d_%d is not configured to be input!\n", port + 1, pin);
-        return -1;
-    }
-
-    return (readl(mx61_gpio[port] + GPIO_DR_OFFSET) & (1 << pin)) >> pin;
-}
-
-/*!
  * Retrieve the freq info based on the passed in module_base.
  * @param   module_base     the base address of the module
  * @return  frequency in Hz (0 means not a valid module)
  */
 uint32_t get_freq(uint32_t module_base)
 {
-    if (module_base == 0)       // as ARM Core doesn't have a module base per se, it is set to 0
-        //return get_main_clock(CPU_CLK);
-        return 1000000000;
+    if (module_base == DUMMY_ARM_CORE_BASE_ADDR)
+        return get_main_clock(CPU_CLK);
     else if (module_base == MMDC_P0_BASE_ADDR)
-        //return get_main_clock(DDR_CLK);
-        return 400000000;
+        return get_main_clock(MMDC_CH0_AXI_CLK);
     else if (module_base == g_debug_uart.base)
-        //return get_peri_clock(UART4_BAUD);
-        return 80000000;
+        return get_peri_clock(UART4_BAUD);
     else if (module_base == g_system_timer.base)
-        //return get_peri_clock(EPIT1_CLK);
-        return 66000000;
+        return g_system_timer.freq;
     else {
-        printf("Not a valid module base \n");
+        printf("Not a valid module base address \n");
         return 0;
     }
 }
@@ -216,63 +99,10 @@ void freq_populate(void)
     int32_t i;
     struct hw_module *tmp;
 
-    //ETHNET
-    reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);    /*power down bit */
-    reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);    /*enable bit */
-    reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);    /*bypass bit */
-    reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x3, 0x3); /*divide bits */
-
-    /* Ungate clocks to all modules */
-    *(volatile uint32_t *)(CCM_CCGR0) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR1) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR2) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR3) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR4) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR5) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR6) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR7) = 0xFFFFFFFF;
-
-    // **** NEEDS UPDATE for mx61 *****  //
-    /* 
-     * PLL2 output is expected to be 396MHz with
-     * pre_periph_clk_sel at 1 (PDF2).
-     */
-    /* change ahb_podf to divide by 2 => AHB_CLK@132MHz and IPG_CLK@66MHz */
-    *(volatile uint32_t *)(CCM_CBCDR) = 0x00018900; // reset value is 0x00018D00;
-
-
-
-
-    /* 
-     * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
-     * 80MHz uart_clk_podf (div-by-1) = 80MHz (UART module clock input)
-     */
-    reg32_write_mask(CCM_CSCDR1, 0x00000000, 0x0000003F);
-
-    /* Ensure UART clock is not gated, bits[27:26] and bits[25:24] of CCGR5 */
-//    reg32_write_mask(CCM_CCGR5, 0x0F000000, 0x0F000000);
-
     /* Populate module frequency settings (important for UART driver) */
     for (i = 0; (tmp = mx61_module[i]) != NULL; i++) {
         tmp->freq = get_freq(tmp->base);
     }
-
-    /* Power up 480MHz PLL */
-//    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00001000, 0x00001000);
-
-    /* Enable 480MHz PLL */
-//    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00002000, 0x00002000);
-
-    /* config IPU hsp clock, derived from AXI B */
-//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
-//    temp &= ~(0x000000C0);
-//    temp |= 0x00000040;
-//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
-    /* now set perclk_pred1 to div-by-2 */
-//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
-//    temp &= ~(0x00380000);
-//    temp |= 0x00080000;
-//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
 }
 
 /*!
@@ -753,7 +583,6 @@ void debug_uart_iomux(void)
 
 void ssi_io_cfg(void)
 {
-
 }
 
 void SGTL5000PowerUp_and_clockinit(void)

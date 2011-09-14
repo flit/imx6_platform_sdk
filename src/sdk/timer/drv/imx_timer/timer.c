@@ -25,32 +25,15 @@ void hal_delay_us(uint32_t usecs)
     while (!epit_get_compare_event(&g_system_timer)) ;
     /* disable the counter to save power */
     epit_counter_disable(&g_system_timer);
-
-#ifdef OLD_MX61 /* iMX61 */
-    volatile struct mx_epit *pepit = (volatile struct mx_epit *)g_system_timer.base;
-    uint32_t delayCount = (usecs * 512) / 15625;
-
-    if (delayCount == 0) {
-        return;
-    }
-
-    pepit->epitcr |= EPITCR_EN;
-    pepit->epitlr = delayCount;
-
-    pepit->epitsr |= EPITSR_OCIF;
-    /* do not return until compare bit is set, use IRQ later? */
-    while ((pepit->epitsr & EPITSR_OCIF) == 0) ;
-    pepit->epitsr |= EPITSR_OCIF;
-    pepit->epitcr &= ~EPITCR_EN;
-#endif
 }
 
-void system_time_init(uint32_t clock_src)
+void system_time_init(void)
 {
-    /* Typically, EPIT1 is used for the delay function */
+    /* EPIT1 is used for the delay function */
     /* Initialize the EPIT timer used for system time functions */
-    /* typical PER_CLK is in MHz, so divide it to get a reference
+    /* typical IPG_CLK is in MHz, so divide it to get a reference
        clock of 1MHz => 1us per count */
-    epit_init(&g_system_timer, clock_src, g_system_timer.freq / 1000000,
+    g_system_timer.freq = get_main_clock(IPG_CLK);
+    epit_init(&g_system_timer, CLKSRC_IPG_CLK, g_system_timer.freq / 1000000,
               SET_AND_FORGET, 1000, WAIT_MODE_EN | STOP_MODE_EN);
 }

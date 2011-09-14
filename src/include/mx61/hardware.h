@@ -20,7 +20,7 @@
 #include "io.h"
 #include "iomux_define.h"
 #include "iomux_register.h"
-#include "gpio_define.h"
+#include "gpio.h"
 #include "interrupt.h"
 #include "gic.h"
 #include "ccm_pll.h"
@@ -155,9 +155,6 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define USDHC_ADMA_BUFFER 0x00910000
 #define ESDCTL_REGISTERS_BASE_ADDR 0x021b0000
 
-/* EPIT */
-#define EPIT_BASE_ADDR EPIT1_BASE_ADDR
-
 //0x00907000 D IRAM_FREE_SPACE_START
 //0x00937FFC D IRAM_FREE_SPACE_END
 
@@ -241,6 +238,9 @@ void imx_enet_setup(void);
 void esai_iomux(void);
 void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
+
+#define MAX_GPIO_PORT   7
+const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
 
 struct hw_module g_debug_uart;
 struct hw_module g_system_timer;

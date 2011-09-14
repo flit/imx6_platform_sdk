@@ -176,11 +176,11 @@ void gpt_setup_interrupt(struct hw_module *port, uint8_t state)
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
         /* enable the IRQ */
-        enable_interrupt(port->irq_id, CPU_1, 0);
+        enable_interrupt(port->irq_id, CPU_0, 0);
     }
     else
         /* disable the IRQ */
-        disable_interrupt(port->irq_id, CPU_1);
+        disable_interrupt(port->irq_id, CPU_0);
 }
 
 /*!

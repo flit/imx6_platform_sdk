@@ -24,6 +24,6 @@
 #define OUTPUT_CMP_LOWPULSE 0x4 // output set high mode
 
 void hal_delay_us(uint32_t usecs);
-void system_time_init(uint32_t clock_src);
+void system_time_init(void);
 
 #endif /* __TIME_H__ */

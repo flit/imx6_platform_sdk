@@ -14,18 +14,20 @@
 #include <math.h>
 #include "hardware.h"
 
-extern void AUDMUXRoute(int intPort, int extPort, int Master);  // defined in ssi.c driver
-extern unsigned char da9053_i2c_reg(unsigned int reg, unsigned char val, unsigned int dir);
-extern int board_id;
+extern void AUDMUXRoute(int32_t intPort, int32_t extPort, int32_t Master);  // defined in ssi.c driver
+extern uint8_t da9053_i2c_reg(uint32_t reg, uint8_t val, uint32_t dir);
+extern int32_t board_id;
 extern sata_phy_ref_clk_t sata_phy_clk_sel;
 
 #define ON 1
 #define OFF 0
 
-// ARM core is a special case. Assign 0 to it.
-struct hw_module core = {
-    "ARM",
-    0,
+// ARM core.
+#define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
+struct hw_module arm_core = {
+    "Cortex A9 core",
+    DUMMY_ARM_CORE_BASE_ADDR,
+    800000000,
 };
 
 // UART1 is the serial debug/console port
@@ -52,14 +54,18 @@ struct hw_module ddr = {
 };
 
 struct hw_module *mx53_module[] = {
-    &core,
+    &arm_core,
     &ddr,
     &g_debug_uart,
     &g_system_timer,
     NULL,
 };
 
-unsigned int mx53_gpio[] = {
+uint32_t ipu_hw_instance[4] = {
+    0, 0, 0, 0
+};
+
+const uint32_t g_mx_gpio_port[MAX_GPIO_PORT] = {
     GPIO1_BASE_ADDR,
     GPIO2_BASE_ADDR,
     GPIO3_BASE_ADDR,
@@ -69,12 +75,8 @@ unsigned int mx53_gpio[] = {
     GPIO7_BASE_ADDR
 };
 
-uint32_t ipu_hw_instance[4] = {
-    0, 0, 0, 0
-};
-
 struct soc_sbmr {
-    unsigned int bt_mmu_enable:1,
+    uint32_t bt_mmu_enable:1,
         bt_freq:1,
         boot_cfg1:6,
         hab_type:2,
@@ -83,123 +85,21 @@ struct soc_sbmr {
 struct soc_sbmr *soc_sbmr = (struct soc_sbmr *)(SRC_BASE_ADDR + 0x4);
 
 /*!
- *	Sets the GPIO direction for the specified pin.
- *  @param 	port: 	GPIO module instance, 0 to 6.
- *	@param	pin:	GPIO pin 0 to 31.
- *  @param	dir:	direction for the pin. in or out.
- *  @return -1 means failed to set the pin
-*/
-int gpio_dir_config(int port, int pin, int dir)
-{
-    unsigned int oldVal = 0, newVal = 0;
-
-    if ((port >= 7) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    oldVal = readl(mx53_gpio[port] + GPIO_GDIR0_OFFSET);
-
-    if (dir == GPIO_GDIR_INPUT)
-        newVal = oldVal & (~(1 << pin));
-    else
-        newVal = oldVal | (1 << pin);
-
-    writel(newVal, mx53_gpio[port] + GPIO_GDIR0_OFFSET);
-    return 0;
-}
-
-/*!
- *	Sets the GPIO attributte(high or low) for the specified pin.
- *  @param  port: 	GPIO module instance, 0 to 6.
- *	@param  pin:	GPIO pin 0 to 31.
- *  @param  attr:	attributte for the pin. high/low
- *  @return  -1 means failed to set the pin
- */
-int gpio_write_data(int port, int pin, unsigned int attr)
-{
-    int dir;
-    unsigned int oldVal = 0, newVal = 0;
-
-    if ((port >= 7) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    dir = (readl(mx53_gpio[port] + GPIO_GDIR0_OFFSET) & (1 << pin)) >> pin;
-
-    if (dir != 1) {
-        printf("GPIO%d_%d is not configured to be output!\n", port + 1, pin);
-        return -1;
-    }
-
-    oldVal = readl(mx53_gpio[port] + GPIO_DR0_OFFSET);
-
-    if (attr == 0)
-        newVal = oldVal & (~(1 << pin));
-    else if (attr == 1)
-        newVal = oldVal | (1 << pin);
-
-    writel(newVal, mx53_gpio[port] + GPIO_DR0_OFFSET);
-    return 0;
-}
-
-/*!
- *	Gets the GPIO attributte(high or low) for the specified pin.
- *  @param	port: 	GPIO module instance, 0 to 6.
- *	@param	pin:	GPIO pin 0 to 31.
- *  @return	-1 means failed to get the value
-*/
-int gpio_read_data(int port, int pin)
-{
-    int dir;
-
-    if ((port >= 7) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~7] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    dir = (readl(mx53_gpio[port] + GPIO_GDIR0_OFFSET) & (1 << pin)) >> pin;
-
-    if (dir != 0) {
-        printf("GPIO%d_%d is not configured to be input!\n", port + 1, pin);
-        return -1;
-    }
-
-    return (readl(mx53_gpio[port] + GPIO_DR0_OFFSET) & (1 << pin)) >> pin;
-}
-
-
-/*!
  * Retrieve the freq info based on the passed in module_base.
  * @param   module_base     the base address of the module
  * @return  frequency in hz (0 means not a valid module)
  */
 uint32_t get_freq(uint32_t module_base)
 {
-    if (module_base == 0)       // as ARM Core doesn't have a module base per se, it is set to 0
+    if (module_base == DUMMY_ARM_CORE_BASE_ADDR)
         return get_main_clock(CPU_CLK);
     else if (module_base == ESDCTL_REGISTERS_BASE_ADDR)
         return get_main_clock(DDR_CLK);
     else if (module_base == g_debug_uart.base)
         return get_peri_clock(UART1_BAUD);
     else if (module_base == g_system_timer.base)
-        return get_peri_clock(EPIT1_CLK);
+//        return get_peri_clock(EPIT1_CLK); // this clock is not necessary the source used by the counter
+        return g_system_timer.freq;
     else {
         printf("Not a valid module base \n");
         return 0;
@@ -212,55 +112,12 @@ uint32_t get_freq(uint32_t module_base)
  */
 void freq_populate(void)
 {
-    int i;
-    volatile unsigned int temp;
     struct hw_module *tmp;
-    /* Ungate clocks to all modules */
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR0_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR1_OFFSET) = 0xFFFC003F;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR2_OFFSET) = 0xFFC3FC00;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR3_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR4_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR6_OFFSET) = 0xFFFFFFFF;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CCM_CCGR7_OFFSET) = 0xFFFF00FF;
-    /* For MX53, set UART clock source to PLL3 (216MHz) and set dividers to div-by-4 to get 54MHz */
-    /* CSCMR1 - to select PLL3 source. uart_clk_sel[1:0] = 10 (bits 25 and 24)
-       CSCDR1 - to select divide values */
-    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CSCMR1);
-    temp &= ~(0x03000000);      // clear bits 25 and 24
-    temp |= 0x02000000;         // set bits 25 and 24 to 10
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CSCMR1) = temp;
-    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CSCDR1);
-    temp &= ~(0x0000003F);      // clear bits 5 to 0
-    temp |= 0x00000018;         // set bits 5 to 3 to 011 (div-by-4); bits 3 to 0 set to 000 (div-by-1)
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CSCDR1) = temp;
-    /* To align with operating systems such as WinCE and Linux, configure PERCLK to be sourced
-     * from lp_apm with a divider set to DIV-BY-3 to achieve 8MHz on PERCLK*/
-    /* first choose lp_apm as the clock source to PERCLK */
-    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
-    temp |= 0x00000002;         // set bit 1, perclk_lp_apm_sel
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
-    /* now set perclk_pred1 to div-by-3 */
-    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    temp &= ~(0x000000FF);
-    temp |= 0x00000080;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
+    int32_t i;
 
     for (i = 0; (tmp = mx53_module[i]) != NULL; i++) {
         tmp->freq = get_freq(tmp->base);
     }
-
-    /* config IPU hsp clock, derived from AXI B */
-    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
-    temp &= ~(0x000000C0);
-    temp |= 0x00000040;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
-    /* now set perclk_pred1 to div-by-2 */
-    temp = *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
-    temp &= ~(0x00380000);
-    temp |= 0x00080000;
-    *(volatile unsigned int *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
 }
 
 /*!
@@ -268,7 +125,7 @@ void freq_populate(void)
  */
 void show_freq(void)
 {
-    int i;
+    int32_t i;
     struct hw_module *tmp;
     printf("========== clock frequencies(HZ)\n");
 
@@ -414,7 +271,7 @@ void io_cfg_spi(struct imx_spi_dev *dev)
   */
 void io_cfg_nand(void)
 {
-    volatile unsigned int reg;
+    volatile uint32_t reg;
     // Set NAND data pins to be MUXed over the WEIM bus
     writel(0x0, M4IF_REGISTERS_BASE_ADDR + 0xC);
     reg = readl(WEIM_REGISTERS_BASE_ADDR + 0x4);
@@ -577,7 +434,7 @@ void io_cfg_i2c(uint32_t module_base)
 /* Power up the SGTL and initialize it's clock if necessary */
 void SGTL5000PowerUp_and_clockinit(void)
 {
-    unsigned int val = 0;
+    uint32_t val = 0;
 
     if (board_id == BOARD_ID_MX53_SMD) {
         /* Enable NANDF_CS0 to turn on the audio oscillator */
@@ -1120,7 +977,7 @@ void ecspi1_master_pgm_iomux(void)
 /*!
  *  eSDHC I/O muxing configuration
  */
-void esdhc_iomux_config(unsigned int base_address)
+void esdhc_iomux_config(uint32_t base_address)
 {
     switch (base_address) {
     case ESDHC1_BASE_ADDR:
@@ -1353,31 +1210,31 @@ void reset_usb_hub(void)
             uint32_t temp;
             /* set GPIO5_20 to low, this is the reset to the HUBs */
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN);    //force input path as CEI0_DATA_EN,Alt1 as GPIO5_20
-            temp = readl(GPIO5_BASE_ADDR + GPIO_DR0_OFFSET);
+            temp = readl(GPIO5_BASE_ADDR + GPIO_DR_OFFSET);
             temp &= ~(0x1 << 20);
-            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR0_OFFSET));  // set GPIO5_20 low
-            temp = readl(GPIO5_BASE_ADDR + GPIO_GDIR0_OFFSET);
+            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR_OFFSET));  // set GPIO5_20 low
+            temp = readl(GPIO5_BASE_ADDR + GPIO_GDIR_OFFSET);
             temp |= (0x1 << 20);
-            writel(temp, (GPIO5_BASE_ADDR + GPIO_GDIR0_OFFSET));    // set GPIO5_20 to output
+            writel(temp, (GPIO5_BASE_ADDR + GPIO_GDIR_OFFSET));    // set GPIO5_20 to output
             hal_delay_us(1000);
-            temp = readl(GPIO5_BASE_ADDR + GPIO_DR0_OFFSET);
+            temp = readl(GPIO5_BASE_ADDR + GPIO_DR_OFFSET);
             temp |= (0x1 << 20);
-            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR0_OFFSET));  // set GPIO5_20 high
+            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR_OFFSET));  // set GPIO5_20 high
         } else {
             /* for the SMD, use GPIO3_14 to reset the USB_HUB */
             uint32_t temp;
             /* set GPIO3_14 to low, this is the reset to the HUBs */
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_EIM_DA14);    //force input path, ALT1 as GPIO3_14
-            temp = readl(GPIO3_BASE_ADDR + GPIO_DR0_OFFSET);
+            temp = readl(GPIO3_BASE_ADDR + GPIO_DR_OFFSET);
             temp &= ~(0x1 << 14);
-            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR0_OFFSET));  //set GPIO3_14 low
-            temp = readl(GPIO3_BASE_ADDR + GPIO_GDIR0_OFFSET);
+            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR_OFFSET));  //set GPIO3_14 low
+            temp = readl(GPIO3_BASE_ADDR + GPIO_GDIR_OFFSET);
             temp |= (0x1 << 14);
-            writel(temp, (GPIO3_BASE_ADDR + GPIO_GDIR0_OFFSET));    // set GPIO3_14 to output
+            writel(temp, (GPIO3_BASE_ADDR + GPIO_GDIR_OFFSET));    // set GPIO3_14 to output
             hal_delay_us(1000);
-            temp = readl(GPIO3_BASE_ADDR + GPIO_DR0_OFFSET);
+            temp = readl(GPIO3_BASE_ADDR + GPIO_DR_OFFSET);
             temp |= (0x1 << 14);
-            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR0_OFFSET));  //set GPIO3_14 high
+            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR_OFFSET));  //set GPIO3_14 high
         }
     }
 }
@@ -1477,7 +1334,7 @@ void sata_clock_disable(void)
  */
 void board_init(void)
 {
-    unsigned int val = 0;
+    uint32_t val = 0;
 
     /* set up debug UART iomux */
     debug_uart_iomux();
@@ -1655,7 +1512,7 @@ void show_boot_switch_info(void)
  *
  * @return  0 if successful; non-zero otherwise
  */
-int read_mac(uint8_t * mac_data)
+int32_t read_mac(uint8_t * mac_data)
 {
     mac_data[0] = readb(IIM_BASE_ADDR + 0xC24);
     mac_data[1] = readb(IIM_BASE_ADDR + 0xC28);
@@ -1689,7 +1546,7 @@ void tve_power_on(void)
 }
 
 #ifdef MX53_SMD
-void camera_power_on(unsigned int a_vdd, unsigned int do_vdd, unsigned int d_vdd)
+void camera_power_on(uint32_t a_vdd, uint32_t do_vdd, uint32_t d_vdd)
 {
     /* Write to R56 for LDO7 output AVDD */
     da9053_i2c_reg(56, a_vdd, I2C_WRITE);
@@ -1723,6 +1580,11 @@ void hdmi_power_on(void)
         /* Write to R55 for 1V2 LDO6 output */
         da9053_i2c_reg(55, 0x40, I2C_WRITE);
     }
+}
+
+void hdmi_pgm_iomux(void)
+{
+/* for compatibility with i.MX61 */
 }
 
 uint32_t GetCPUFreq(void)

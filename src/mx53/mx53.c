@@ -84,12 +84,12 @@ void platform_init(void)
 {
     uint8_t c;
 
-    prog_pll();
+    /* Initialize clock sources, dividers, ... */
+    ccm_init();
     /* populate the freq member of the referenced hw_module in mx53_module */
     freq_populate();
-
     /* Configure the EPIT timer used for system delay function. */
-    system_time_init(CLKSRC_PER_CLK);
+    system_time_init();
 
     /*
      * Note, board type is determined at compile time such that the UART and

@@ -13,14 +13,76 @@ void prog_pll(void)
 /* TBD */
 }
 
+void ccm_init(void)
+{
+    //ETHNET
+    reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);    /*power down bit */
+    reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);    /*enable bit */
+    reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);    /*bypass bit */
+    reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x3, 0x3); /*divide bits */
+
+    /* Ungate clocks that are not enabled in a driver - need to be updated */
+    *(volatile uint32_t *)(CCM_CCGR0) = 0xFFFFFFFF;
+    /* EPIT and GPT enabled by driver */
+    *(volatile uint32_t *)(CCM_CCGR1) = 0xFFCF0FFF;
+    *(volatile uint32_t *)(CCM_CCGR2) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR3) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR4) = 0xFFFFFFFF;
+    /* UART enabled by driver */
+    *(volatile uint32_t *)(CCM_CCGR5) = 0xF0FFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR6) = 0xFFFFFFFF;
+    *(volatile uint32_t *)(CCM_CCGR7) = 0xFFFFFFFF;
+
+    // **** NEEDS UPDATE for mx61 *****  //
+    /*
+     * PLL2 output is expected to be 396MHz with
+     * pre_periph_clk_sel at 1 (PDF2).
+     */
+    /* set ahb_podf to divide by 3 => AHB_CLK@132MHz and
+     * ipg_podf to divide by 2 => IPG_CLK@66MHz */
+    *(volatile uint32_t *)(CCM_CBCDR) = 0x00018900;
+
+    /*
+     * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
+     * 80MHz uart_clk_podf (div-by-1) = 80MHz (UART module clock input)
+     */
+    reg32_write_mask(CCM_CSCDR1, 0x00000000, 0x0000003F);
+
+    /* Power up 480MHz PLL */
+//    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00001000, 0x00001000);
+
+    /* Enable 480MHz PLL */
+//    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00002000, 0x00002000);
+
+    /* config IPU hsp clock, derived from AXI B */
+//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
+//    temp &= ~(0x000000C0);
+//    temp |= 0x00000040;
+//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
+    /* now set perclk_pred1 to div-by-2 */
+//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
+//    temp &= ~(0x00380000);
+//    temp |= 0x00080000;
+//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
+}
+
 /*!
  * This function returns the frequency of a clock.
  */
-uint32_t get_clock(uint8_t clock)
+uint32_t get_main_clock(enum main_clocks clock)
 {
     uint32_t ret_val = 0;
 
     switch (clock) {
+    case CPU_CLK:
+        ret_val = PLL1_OUTPUT;
+        break;
+    case AXI_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / axi_podf_;
+        break;
+    case MMDC_CH0_AXI_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / mmdc_ch0_axi_podf_;
+        break;
     case AHB_CLK:
         ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / ahb_podf_;
         break;
@@ -29,6 +91,31 @@ uint32_t get_clock(uint8_t clock)
         break;
     case IPG_PER_CLK:
         ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / ahb_podf_ / ipg_podf_ / perclk_podf_;
+        break;
+    case MMDC_CH1_AXI_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel_] / mmdc_ch1_axi_podf_;
+        break;
+    default:
+        break;
+    }
+
+    return ret_val;
+}
+
+/*!
+ * This function returns the frequency of a clock.
+ */
+uint32_t get_peri_clock(enum peri_clocks clock)
+{
+    uint32_t ret_val = 0;
+
+    switch (clock) {
+    case UART1_BAUD:
+    case UART2_BAUD:
+    case UART3_BAUD:
+    case UART4_BAUD:
+        /* UART source clock is a fixed PLL3 / 6 */
+        ret_val = PLL3_OUTPUT[0] / 6 / uart_clk_podf_;
         break;
     default:
         break;
@@ -95,7 +182,7 @@ void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
         ccm_ccgr_config(CCM_CCGR1, CG(7), gating_mode);
         break;
     case GPT_BASE_ADDR:
-        ccm_ccgr_config(CCM_CCGR1, CG(10) | CG(9), gating_mode);
+        ccm_ccgr_config(CCM_CCGR1, CG(10), gating_mode);
         break;
 
     default:

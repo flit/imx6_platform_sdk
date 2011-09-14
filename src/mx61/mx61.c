@@ -64,12 +64,12 @@ void platform_init(void)
 {
     uint8_t c;
 
-    // prog_pll();   NEEDS TO BE UPDATED FOR MX6qd
+    /* Initialize clock sources, dividers, ... */
+    ccm_init();
+    /* Configure the EPIT timer used for system delay function. */
+    system_time_init();
     /* populate the freq member of the referenced hw_module in mx61_module */
     freq_populate();
-
-    /* Configure the EPIT timer used for system delay function. */
-    system_time_init(CLKSRC_PER_CLK);
 
     /*
      * Note, board type is determined at compile time such that the UART and

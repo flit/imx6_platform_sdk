@@ -136,20 +136,6 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
 }
 
 /*!
- * Global UART interrupt routine.
- *
- * @param   port - pointer to the UART module structure.
- */
-void uart_interrupt_routine(struct hw_module *port)
-{
-//    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
-
-    /* see if some examples could be provided here even if the
-       interrupt routine must be written and handled into
-       the highler level driver */
-}
-
-/*!
  * Setup UART interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *

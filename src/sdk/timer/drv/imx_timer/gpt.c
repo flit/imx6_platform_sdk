@@ -7,8 +7,9 @@
 
 /*!
  * @file gpt.c
- * @brief GPT driver.
+ * @brief  GPT driver source file.
  *
+ * @ingroup diag_timer
  */
 
 #include "hardware.h"
@@ -26,7 +27,7 @@ uint32_t gpt_get_rollover_event(struct hw_module *port)
     uint32_t status_register;
 
     /* get the rollover status bit */
-    status_register = (pgpt->gpt_sr & GPTSR_ROV);
+    status_register = pgpt->gpt_sr & GPTSR_ROV;
     /* clear it if found set */
     if (status_register == GPTSR_ROV)
         pgpt->gpt_sr |= GPTSR_ROV;
@@ -51,8 +52,8 @@ uint32_t gpt_get_capture_event(struct hw_module *port, uint8_t flag,
     uint32_t status_register;
 
     /* get the capture status bit */
-    status_register = (pgpt->gpt_sr & flag);
-    /* clear it if found set */
+    status_register = pgpt->gpt_sr & flag;
+    /* clear it if set */
     if (status_register == GPTSR_IF1) {
         *(uint32_t *) capture_val = pgpt->gpt_icr1;
         pgpt->gpt_sr |= status_register;
@@ -67,8 +68,31 @@ uint32_t gpt_get_capture_event(struct hw_module *port, uint8_t flag,
 }
 
 /*!
+ * Set the input capture mode.
+ *
+ * @param   port - pointer to the GPT module structure.
+ * @param   cap_input - capture input: CAP_INPUT1, CAP_INPUT2.
+ * @param   cap_input_mode - capture input mode: INPUT_CAP_DISABLE, INPUT_CAP_BOTH_EDGE,
+ *                            INPUT_CAP_FALLING_EDGE, INPUT_CAP_RISING_EDGE.
+ */
+void gpt_set_capture_event(struct hw_module *port, uint8_t cap_input,
+                           uint8_t cap_input_mode)
+{
+    volatile struct mx_gpt *pgpt = (volatile struct mx_gpt *)port->base;
+    uint32_t control_reg_tmp;
+
+    control_reg_tmp = pgpt->gpt_cr;
+    /* clear the input mode first */
+    control_reg_tmp &= ~GPTCR_IM_MODE(cap_input,0x3);
+    /* set the new input mode */
+    control_reg_tmp |= GPTCR_IM_MODE(cap_input,cap_input_mode);
+    pgpt->gpt_cr = control_reg_tmp;
+}
+
+/*!
  * Get a compare event flag and clear it if set.
- * This function can typically be used for polling method.
+ * This function can typically be used for polling method, but
+ * is also used to clear the status compare flag in IRQ mode.
  *
  * @param   port - pointer to the GPT module structure.
  * @param   flag - checked compare event flag such GPTSR_OF1, GPTSR_OF2, GPTSR_OF3.
@@ -79,13 +103,13 @@ uint32_t gpt_get_compare_event(struct hw_module *port, uint8_t flag)
     volatile struct mx_gpt *pgpt = (volatile struct mx_gpt *)port->base;
     uint32_t status_register;
 
-    /* get the compare status bit */
-    status_register = (pgpt->gpt_sr & flag);
-    /* clear it if found set */
+    /* get the active compare flags */
+    status_register = pgpt->gpt_sr & (flag);
+    /* clear flags which are active */
     if (status_register != 0x0)
         pgpt->gpt_sr |= status_register;
 
-    /* return the read value before the bit was cleared */
+    /* return the read value before the flags were cleared */
     return status_register;
 }
 
@@ -94,12 +118,12 @@ uint32_t gpt_get_compare_event(struct hw_module *port, uint8_t flag)
  * compare output mode.
  *
  * @param   port - pointer to the GPT module structure.
- * @param   cmp_event - compare event: CMP_EVENT1, CMP_EVENT2, CMP_EVENT3.
+ * @param   cmp_output - compare output: CMP_OUTPUT1, CMP_OUTPUT2, CMP_OUTPUT3.
  * @param   cmp_output_mode - compare output mode: OUTPUT_CMP_DISABLE, OUTPUT_CMP_TOGGLE,
  *                            OUTPUT_CMP_CLEAR, OUTPUT_CMP_SET, OUTPUT_CMP_LOWPULSE.
  * @param   cmp_value - compare value for the compare register.
  */
-void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_event,
+void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_output,
                            uint8_t cmp_output_mode, uint32_t cmp_value)
 {
     volatile struct mx_gpt *pgpt = (volatile struct mx_gpt *)port->base;
@@ -107,17 +131,17 @@ void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_event,
 
     control_reg_tmp = pgpt->gpt_cr;
     /* clear the output mode first */
-    control_reg_tmp &= ~GPTCR_OM_MODE(cmp_event,0x7);
+    control_reg_tmp &= ~GPTCR_OM_MODE(cmp_output,0x7);
     /* set the new output mode */
-    control_reg_tmp |= GPTCR_OM_MODE(cmp_event,cmp_output_mode);
+    control_reg_tmp |= GPTCR_OM_MODE(cmp_output,cmp_output_mode);
     pgpt->gpt_cr = control_reg_tmp;
 
     /* set the value to compare with */
-    if (cmp_event == CMP_EVENT1)
+    if (cmp_output == CMP_OUTPUT1)
         pgpt->gpt_ocr1 = cmp_value;
-    else if (cmp_event == CMP_EVENT2)
+    else if (cmp_output == CMP_OUTPUT2)
         pgpt->gpt_ocr2 = cmp_value;
-    else if (cmp_event == CMP_EVENT3)
+    else if (cmp_output == CMP_OUTPUT3)
         pgpt->gpt_ocr3 = cmp_value;
 }
 
@@ -215,7 +239,7 @@ void gpt_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
 
     /* the prescaler can be changed at any time, and 
        this affects the output clock immediately */
-    pgpt->gpt_pr |= prescaler;
+    pgpt->gpt_pr |= prescaler-1;
 
     /* set the counter mode */
     control_reg_tmp |= counter_mode;

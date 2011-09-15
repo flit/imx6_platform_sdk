@@ -39,7 +39,7 @@ struct hw_module g_debug_uart = {
 
 /* EPIT1 used for time functions */
 struct hw_module g_system_timer = {
-    "EPIT1 used as system timer",
+    "EPIT1 for system timer",
     EPIT1_BASE_ADDR,
     66000000,
     IMX_INT_EPIT1,
@@ -47,7 +47,7 @@ struct hw_module g_system_timer = {
 };
 
 struct hw_module ddr = {
-    "DDR",
+    "DDR memory",
     MMDC_P0_BASE_ADDR,
 };
 
@@ -112,14 +112,14 @@ void show_freq(void)
 {
     int32_t i;
     struct hw_module *tmp;
-    printf("========== clock frequencies(HZ)\n");
+    printf("======== Clock frequencies(HZ) =========\n");
 
     for (i = 0; (tmp = mx61_module[i]) != NULL; i++) {
         printf("%s\t: %d,%03d,%03d\n", tmp->name, tmp->freq / 1000000,
                (tmp->freq % 1000000) / 1000, tmp->freq % 1000);
     }
 
-    printf("==================================\n\n");
+    printf("========================================\n\n");
 }
 
 /*!
@@ -129,10 +129,11 @@ void show_ddr_config(void)
 {
     uint32_t temp1, dsiz, row, col, cs_info;
     uint32_t temp2, num_banks, ddr_type;
-    uint32_t density;
-    uint32_t megabyte;
+    uint32_t density, megabyte;
     uint32_t num_rows = 1, num_cols = 1, num_dsiz = 1, i = 1;
-    printf("========== DDR configuration \n");
+    
+    printf("========== DDR configuration ===========\n");
+
     megabyte = 1024 * 1024;
     /* read ESDCTL and gather information */
     temp1 = readl(ESDCTL_REGISTERS_BASE_ADDR + 0x00);
@@ -191,7 +192,7 @@ void show_ddr_config(void)
     density = num_rows * num_cols / megabyte;
     density = density * dsiz * num_banks / 8;
     printf("Density per chip select: %dMB \n", density);
-    printf("==================================\n\n");
+    printf("========================================\n\n");
 }
 
 /*!

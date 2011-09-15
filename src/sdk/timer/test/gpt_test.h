@@ -6,15 +6,15 @@
 */
 
 /*!
- * @file epit_test.h
- * @brief EPIT unit tests header file.
+ * @file gpt_test.h
+ * @brief GPT unit tests header file.
  *
  * @ingroup diag_timer
  */
 
 #include "hardware.h"
 
-void tick_timer_interrupt_routine(void);
-int32_t epit_test(void);
-void epit_delay_test(void);
-void epit_tick_test(void);
+void gpt_interrupt_routine(void);
+int32_t gpt_test(void);
+void gpt_out_compare_test(void);
+void gpt_in_capture_test(void);

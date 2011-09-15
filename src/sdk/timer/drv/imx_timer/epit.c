@@ -7,8 +7,9 @@
 
 /*!
  * @file epit.c
- * @brief EPIT driver.
+ * @brief EPIT driver source file.
  *
+ * @ingroup diag_timer
  */
 
 #include "hardware.h"
@@ -28,7 +29,8 @@ void epit_reload_counter(struct hw_module *port, uint32_t load_val)
 
 /*!
  * Get the output compare status flag and clear it if set.
- * This function can typically be used for polling method.
+ * This function can typically be used for polling method, but
+ * is also used to clear the status compare flag in IRQ mode.
  *
  * @param   port - pointer to the EPIT module structure.
  * @return  the value of the compare event flag.

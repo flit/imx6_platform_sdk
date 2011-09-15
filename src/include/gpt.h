@@ -7,8 +7,9 @@
 
 /*!
  * @file gpt.h
- * @brief  Defines related to the GPT controller and used by gpt.c
+ * @brief  GPT driver header file.
  *
+ * @ingroup diag_timer
  */
 
 #ifndef __GPT_H__
@@ -20,13 +21,10 @@
 #define GPTCR_FO3           (0 << 31)   // GPT force output compare
 #define GPTCR_FO2           (0 << 30)   // GPT force output compare
 #define GPTCR_FO1           (0 << 29)   // GPT force output compare
-    /* x=1,2,3 - y=output mode */
+    /* x=1,2,3 - y=output mode listed into timer.h */
 #define GPTCR_OM_MODE(x,y)  ((y) << (17+x*3)) // GPT output compare mode
-    /* x=1,2 */
-#define GPTCR_IM_DIS(x)     (0 << (14+x*2)) // GPT output disconneted from pad
-#define GPTCR_IM_RISING(x)  (1 << (14+x*2)) // GPT output toggle mode
-#define GPTCR_IM_FALLING(x) (2 << (14+x*2)) // GPT output set low mode
-#define GPTCR_IM_BOTH(x)    (3 << (14+x*2)) // GPT output set high mode
+    /* x=1,2 - y=input mode listed below */
+#define GPTCR_IM_MODE(x,y)  ((y) << (14+x*2)) // GPT input capture mode
 #define GPTCR_SWR           (1 << 15)   // starts a software reset
 #define GPTCR_FRR           (1 << 9)    // Free-run or restart mode
     /* x = clock source */
@@ -55,15 +53,17 @@
 /* GPT specific defines */
 #define RESTART_MODE    0
 #define FREE_RUN_MODE   GPTCR_FRR
-
+/* list of input capture modes supported */
 #define INPUT_CAP_DISABLE       0x0 // input capture event disabled
 #define INPUT_CAP_RISING_EDGE   0x1 // input capture event on a rising edge
 #define INPUT_CAP_FALLING_EDGE  0x2 // input capture event on a falling edge
 #define INPUT_CAP_BOTH_EDGE     0x3 // input capture event on a both edge
 
-#define CMP_EVENT1  1
-#define CMP_EVENT2  2
-#define CMP_EVENT3  3
+#define CAP_INPUT1  1
+#define CAP_INPUT2  2
+#define CMP_OUTPUT1  1
+#define CMP_OUTPUT2  2
+#define CMP_OUTPUT3  3
 
 /* GPT driver list of functions */
 void gpt_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
@@ -74,8 +74,10 @@ void gpt_counter_disable(struct hw_module *port);
 uint32_t gpt_get_rollover_event(struct hw_module *port);
 uint32_t gpt_get_capture_event(struct hw_module *port, uint8_t flag,
                                uint32_t * capture_val);
+void gpt_set_capture_event(struct hw_module *port, uint8_t cap_input,
+                           uint8_t cap_input_mode);
 uint32_t gpt_get_compare_event(struct hw_module *port, uint8_t flag);
-void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_event,
+void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_output,
                            uint8_t cmp_output_mode, uint32_t cmp_value);
 
 /* GPT Registers list */

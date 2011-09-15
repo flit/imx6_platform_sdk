@@ -5,9 +5,20 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file epit_test.c
+ * @brief EPIT unit tests source file.
+ *
+ * @ingroup diag_timer
+ */
+
 #include <stdio.h>
 #include "epit_test.h"
 
+/*!
+ * Main unit test for the EPIT.
+ * @return  0
+ */
 int32_t epit_test(void)
 {
     uint8_t sel;
@@ -39,6 +50,11 @@ int32_t epit_test(void)
     return 0;
 }
 
+/*!
+ * This test uses the system delay function that uses the EPIT counter.
+ * The EPIT is configure into timer.c.
+ * Whenever a second has passed, it displays the elapsed number of seconds.
+ */
 void epit_delay_test(void)
 {
     uint32_t counter = 0;
@@ -62,17 +78,15 @@ static struct hw_module g_tick_timer = {
     EPIT2_BASE_ADDR,
     27000000,
     IMX_INT_EPIT2,
-    &tick_timer_interrupt_handler,
+    &tick_timer_interrupt_routine,
 };
 
 static uint8_t g_wait_flag;
 
 /*! 
  * Tick timer interrupt handler.
- *
- * @return  none
  */
-void tick_timer_interrupt_handler(void)
+void tick_timer_interrupt_routine(void)
 {
     g_wait_flag = 0;
     /* clear the compare event flag */
@@ -82,9 +96,8 @@ void tick_timer_interrupt_handler(void)
 /*!
  * The EPIT is programmed to generate an interrupt every 10ms.
  * It emulates an system tick timer. A counter is increased at every tick.
- * Whenever a second has passed, it displays the counter value.\n");
- * 
-*/
+ * Whenever a second has passed, it displays the counter value.
+ */
 void epit_tick_test(void)
 {
     uint32_t counter = 0;

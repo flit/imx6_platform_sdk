@@ -7,8 +7,9 @@
 
 /*!
  * @file epit.h
- * @brief  Defines related to the EPIT controller and used by epit.c
+ * @brief  EPIT driver header file.
  *
+ * @ingroup diag_timer
  */
 
 #ifndef __EPIT_H__

@@ -29,7 +29,11 @@ extern void esai_io_cfg(void);
 
 ////////////////////////////////////Local variables and functions/////////////////////////// 
 /*!
- * Dump ESAI registers
+ * Dump the esai registers which can be readable. 
+ * @param  	ctrl	a pointer of audio controller(audio_ctrl_t) which presents the esai module itself
+ *			
+ * @return	0 if succeeded
+ *		-1 if failed   
  */
 static int32_t esai_dump(audio_ctrl_p ctrl)
 {
@@ -49,8 +53,12 @@ static int32_t esai_dump(audio_ctrl_p ctrl)
     return 0;
 }
 
-/*!
- * Reset sub-modules of ESAI
+/*! 
+ * Put the esai to soft-reset mode, and then can be configured.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the esai module
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static int32_t esai_reset(audio_ctrl_p ctrl)
 {
@@ -75,6 +83,12 @@ static int32_t esai_reset(audio_ctrl_p ctrl)
 
 /*!
  * Set parameters of esai
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the esai module
+ *		type    the parameter type want to set, refer esai_hw_para_type_e for details.
+ *		val	the parameter value to be set.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static int32_t esai_set_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
 {
@@ -123,6 +137,10 @@ static int32_t esai_set_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
 
 /*!
  * Get parameters of esai
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the esai module
+ *		type    the parameter type want to get, refer esai_hw_para_type_e for details.
+ *
+ * @return      parameter valuw
  */
 static int32_t esai_get_hw_para(audio_ctrl_p ctrl, uint32_t type)
 {
@@ -174,7 +192,11 @@ static int32_t esai_get_hw_para(audio_ctrl_p ctrl, uint32_t type)
 }
 
 /*!
- * Get status of  esai
+ * Get status of esai
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the esai module
+ *		type    the status type want to get, refer esai_status_e for details.
+ *
+ * @return      status value
  */
 static uint32_t esai_get_status(audio_ctrl_p ctrl, uint32_t type)
 {
@@ -201,6 +223,11 @@ static uint32_t esai_get_status(audio_ctrl_p ctrl, uint32_t type)
 
 /*!
  * Enable or disable sub-modules of ESAI.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the esai module
+ *		type    the sub-module to be set, please refer esai_sub_enable_type_e for details.
+ * 
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static int32_t esai_sub_enable(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
 {
@@ -227,6 +254,11 @@ static int32_t esai_sub_enable(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
 
 /*!
  * Connect all ESAI pins, and this will make the ESAI out of personal reset state. 
+ *
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the esai module
+ * 
+ * @return      0 if succeeded
+ *              -1 if failed
  */
 static int32_t esai_connect_pins(audio_ctrl_p ctrl)
 {
@@ -238,6 +270,14 @@ static int32_t esai_connect_pins(audio_ctrl_p ctrl)
     return 0;
 }
 
+/*!
+ * Fill zeros to esai tx fifo to avoid noise data transfered.
+ *
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the esai module
+ * 
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 static int32_t esai_stuff_tx_fifo(audio_ctrl_p ctrl)
 {
     uint32_t i;
@@ -252,6 +292,18 @@ static int32_t esai_stuff_tx_fifo(audio_ctrl_p ctrl)
 }
 
 ////////////////////////////// APIs /////////////////////////////////////
+
+/*!
+ * Configure the ESAI module according the parameters which was passed by audio_card driver.
+ *
+ * @param       priv    a pointer passed by audio card driver, ESAI driver should change it
+ *                      to a audio_ctrl_p pointer which presents the ESAI controller.
+ *		para	a pointer passed by audio card driver, consists of configuration parameters
+ *			for ESAI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 int esai_config(void *priv, audio_dev_para_p para)
 {
     uint32_t val;
@@ -264,17 +316,21 @@ int esai_config(void *priv, audio_dev_para_p para)
     esai_set_hw_para(ctrl, ESAI_HW_PARA_TCR, val);
 
     if (AUDIO_BUS_MODE_MASTER == para->bus_mode) {
-        val = ESAI_TCCR_THCKD | ESAI_TCCR_TFSD | ESAI_TCCR_TCKD |   //HCKT is output (bit23=1), FST is output (bit22=1), SCKT is output (bit21=1)
+        val = ESAI_TCCR_THCKD | //HCKT is output (bit23=1)
+            ESAI_TCCR_TFSD |    //FST is output (bit22=1) 
+            ESAI_TCCR_TCKD |    //SCKT is output (bit21=1)
             ESAI_TCCR_TCKP |    //tX clock polarity bit 18, clock out on falling edge
-            ESAI_TCCR_TDC(para->channel_number - 1);    //frame rate devider,  2word per frame
+            ESAI_TCCR_TDC(para->channel_number - 1);    //frame rate devider
         if (SAMPLERATE_44_1KHz == para->sample_rate) {
+            //This parameters should be set according the frequency of Fsys or the HCKT
             val |= ESAI_TCCR_TFP(3) |   // clk div 4
-                ESAI_TCCR_TPSR_BYPASS | ESAI_TCCR_TPM(4);
+                ESAI_TCCR_TPSR_BYPASS | //bypass
+                ESAI_TCCR_TPM(4);
         } else {
             //TODO
         }
     } else {
-        val = ESAI_TCCR_TCKP | ESAI_TCCR_TDC(para->channel_number - 1); //frame rate devider,  2word per frame
+        val = ESAI_TCCR_TCKP | ESAI_TCCR_TDC(para->channel_number - 1); //frame rate devider
     }
     esai_set_hw_para(ctrl, ESAI_HW_PARA_TCCR, val);
 
@@ -282,17 +338,14 @@ int esai_config(void *priv, audio_dev_para_p para)
 
     esai->tfcr |= ESAI_TFCR_TFR;
 
-    val =
-        ESAI_TFCR_TIEN | ESAI_TFCR_TFWM(ESAI_WATERMARK) | ESAI_TFCR_TE(para->
-                                                                       channel_number) |
-        ESAI_TFCR_TFEN;
+    val = ESAI_TFCR_TIEN |
+        ESAI_TFCR_TFWM(ESAI_WATERMARK) | ESAI_TFCR_TE(para->channel_number) | ESAI_TFCR_TFEN;
     if (WL_16 == para->word_length)
         val |= ESAI_WORD_LEN_16;
     else if (WL_24 == para->word_length)
         val |= ESAI_WORD_LEN_24;
     else if (WL_20 == para->word_length)
         val |= ESAI_WORD_LEN_20;
-
     esai_set_hw_para(ctrl, ESAI_HW_PARA_TFCR, val);
 
     esai_stuff_tx_fifo(ctrl);
@@ -304,6 +357,16 @@ int esai_config(void *priv, audio_dev_para_p para)
     return 0;
 }
 
+/*!
+ * Initialize the esai module and set the esai to default status. 
+ * This function will be called by the snd_card driver. 
+ *
+ * @param       priv    a pointer passed by audio card driver, ESAI driver should change it 
+ *			to a audio_ctrl_p pointer which presents the ESAI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 int esai_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
@@ -317,6 +380,14 @@ int esai_init(void *priv)
     return 0;
 }
 
+/*!
+ * Close the ESAI module
+ * @param       priv    a pointer passed by audio card driver, ESAI driver should change it
+ *                      to a audio_ctrl_p pointer which presents the ESAI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 int esai_deinit(void *priv)
 {
     //ESAI clk can be gate off here
@@ -324,6 +395,17 @@ int esai_deinit(void *priv)
     return 0;
 }
 
+/*!
+ * Write datas to the esai fifo in polling mode.
+ * @param       priv    a pointer passed by audio card driver, esai driver should change it
+ *                      to a audio_ctrl_p pointer which presents the ESAI controller.
+ *		buf	points to the buffer which hold the data to be written to the ESAI tx fifo
+ *		size    the size of the buffer pointed by buf.
+ *		bytes_written	bytes be written to the ESAI tx fifo
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 int esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;

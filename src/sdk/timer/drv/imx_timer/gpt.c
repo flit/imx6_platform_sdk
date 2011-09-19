@@ -16,7 +16,8 @@
 
 /*!
  * Get rollover event flag and clear it if set.
- * This function can typically be used for polling method.
+ * This function can typically be used for polling method, but
+ * is also used to clear the status compare flag in IRQ mode.
  *
  * @param   port - pointer to the GPT module structure.
  * @return  the value of the rollover event flag.

@@ -62,7 +62,7 @@ void epit_delay_test(void)
     uint32_t max_duration = 10;
 
     printf("This test displays the elapsed number of second.\n");
-    printf("Test exists after %d seconds.\n",max_duration);
+    printf("The test exists after %d seconds.\n",max_duration);
 
     while (counter != max_duration) {        
         hal_delay_us(1000000);
@@ -105,7 +105,7 @@ void epit_tick_test(void)
     uint32_t max_duration = 10;
 
     printf("EPIT is programmed to generate an interrupt every 10ms as a tick timer.\n");
-    printf("Test exists after %d seconds.\n",max_duration);
+    printf("The test exists after %d seconds.\n",max_duration);
 
     /* Initialize the EPIT timer used for tick timer. An interrupt
        is generated every 10ms */

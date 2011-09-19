@@ -209,7 +209,7 @@ void ipu_hsp_clk_config(void)
  */
 void ldb_clock_config(int freq)
 {
-    unsigned int regval = 0;
+    uint32_t regval = 0;
     if (freq == 65000000)       //for XGA resolution
     {
         /*config pll3 PFD1 to 455M. pll3 is 480M */
@@ -237,9 +237,9 @@ void ldb_clock_config(int freq)
     }
 }
 
-void hdmi_clock_set(unsigned int pclk)
+void hdmi_clock_set(uint32_t pclk)
 {
-    unsigned int regval = 0;
+    uint32_t regval = 0;
 
     if (pclk == 74250000) {
         /*clk output from 540M PFD1 of PLL3 */

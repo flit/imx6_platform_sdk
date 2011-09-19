@@ -29,7 +29,7 @@ output
 # Top-level generic files
 #
 makefile
-imx_obds_release
+release
 tags
 TAGS
 vmlinux
@@ -61,3 +61,7 @@ ncscope.*
 workspace
 .BUILD*
 ~*
+
+diag-sdk_coding_violations.*
+
+

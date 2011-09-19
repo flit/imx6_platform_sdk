@@ -87,6 +87,9 @@ static struct hw_module uart5_sdma_test = {
 
 static void uart_loopback_init(struct hw_module *port, unsigned int baudrate)
 {
+    /* Initialize the clock frequency - in i.MX61, all UART port uses the same source clock */
+    port->freq = get_peri_clock(UART1_BAUD);
+
     /* Initialize the UART port */
     uart_init(port, baudrate, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
 

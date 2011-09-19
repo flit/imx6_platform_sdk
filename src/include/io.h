@@ -27,10 +27,10 @@ typedef unsigned int uint32_t;
 typedef unsigned short uint16_t;
 typedef unsigned char uint8_t;
 
-typedef signed long long int64_t;
-typedef signed int int32_t;
-typedef signed short int16_t;
-typedef signed char int8_t;
+typedef long long int64_t;
+typedef int int32_t;
+typedef short int16_t;
+typedef char int8_t;
 
 typedef int bool;
 
@@ -83,7 +83,7 @@ typedef void (*funct_t) (void);
 #define SET_FIELD(val, len, sh, nval)    ((val & ~(((1 << len) - 1) << sh)) | (nval << sh))
 
 struct hw_module {
-    char *name;         /* name of the module */
+    int8_t *name;       /* name of the module */
     uint32_t base;      /* module base address */
     uint32_t freq;      /* input clock frequency */
     uint32_t irq_id;    /* ID of its interrupt */
@@ -111,15 +111,15 @@ struct hw_module {
 #define MAX_TEST_RETRY          10
 
 struct test_module {
-    char name[MAX_TEST_NAME_LEN];
+    int8_t name[MAX_TEST_NAME_LEN];
     int32_t result;
 };
 
-void record_test_result(char *name, int result);
+void record_test_result(int8_t *name, int32_t result);
 
-typedef int (*sdk_test_t) (void);
+typedef int32_t (*sdk_test_t) (void);
 
-void _sys_exit(int return_code);
+void _sys_exit(int32_t return_code);
 
 #define RUN_TEST_COMMON(name, func)                         \
     static int sdk_##func (void)                           \
@@ -157,6 +157,6 @@ void _sys_exit(int return_code);
 #define TEST_BYPASSED   2
 #define TEST_NOTPRESENT 3
 
-extern int auto_run_enable;     // global flag to indicate auto-run feature enabled or not
+extern int32_t auto_run_enable;     // global flag to indicate auto-run feature enabled or not
 
 #endif // __IO_H__

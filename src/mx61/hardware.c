@@ -451,7 +451,7 @@ void hdmi_tx_phydtb_pgm_iomux(void)
  */
 void hdmi_pgm_iomux(void)
 {
-    unsigned int regval = 0;
+    uint32_t regval = 0;
     hdmi_tx_cec_pgm_iomux();
     hdmi_tx_ddc_pgm_iomux();
     hdmi_tx_phydtb_pgm_iomux();
@@ -715,7 +715,7 @@ void esai_io_cfg(void)
 
 void esai_clk_sel_gate_on()
 {
-    unsigned int val = 0;
+    uint32_t val = 0;
 #ifdef MX61_ARD
     val = readl(CCM_CSCMR2);
     val &= ~(0x03 << 19);

@@ -222,9 +222,6 @@ enum lvds_panel_bit_mode {
     LVDS_PANEL_24BITS_MODE = 0x1,
 };
 
-uint32_t get_main_clock(enum main_clocks clk);
-uint32_t get_peri_clock(enum peri_clocks clk);
-void clock_setup(uint32_t core_clk, uint32_t ahb_div);
 void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
@@ -260,7 +257,6 @@ extern void gpio_backlight_lvds_en(void);
 extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t);
-extern void fuse_blow_row(uint32_t, uint32_t, uint32_t);
 
 void usdhc_iomux_config(uint32_t);
 
@@ -276,10 +272,6 @@ void usdhc_iomux_config(uint32_t);
 #define BOARD_VERSION_3	0x1
 #define BOARD_VERSION_4	0x2
 #define BOARD_VERSION_5	0x1
-
-#define PMIC_MC13892_I2C_BASE       I2C2_BASE_ADDR
-#define PMIC_LTC3589_I2C_BASE       I2C2_BASE_ADDR
-#define PMIC_DA9053_I2C_BASE        I2C1_BASE_ADDR
 
 #if defined(BOARD_VERSION2)
 #define BOARD_VERSION_ID        BOARD_VERSION_2

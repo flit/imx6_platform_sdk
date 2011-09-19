@@ -189,7 +189,8 @@ static const uint32_t PLL4_OUTPUT = 650000000;
 static const uint32_t PLL5_OUTPUT = 650000000;
 
 void clock_gating_config(uint32_t base_address, uint8_t gating_mode);
-uint32_t get_clock(uint8_t clock);
+uint32_t get_main_clock(enum main_clocks clk);
+uint32_t get_peri_clock(enum peri_clocks clk);
 void ccm_init(void);
 
 #endif

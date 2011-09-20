@@ -14,7 +14,7 @@
 #include "io.h"
 #include "../inc/audio.h"
 
-int spdif_playback(audio_pcm_p pcm_music)
+int32_t spdif_playback(audio_pcm_p pcm_music)
 {
     printf("TODO\n");
 

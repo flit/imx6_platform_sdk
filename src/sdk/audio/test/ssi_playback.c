@@ -13,10 +13,10 @@
 
 extern audio_card_t snd_card_ssi;
 
-int ssi_playback(audio_pcm_p pcm_file)
+int32_t ssi_playback(audio_pcm_p pcm_file)
 {
-    char recvCh;
-    int result;
+    uint8_t recvCh;
+    int32_t result;
     uint32_t bytes_written = 0;
     audio_dev_para_t dev_para;
     audio_card_p snd_card = &snd_card_ssi;

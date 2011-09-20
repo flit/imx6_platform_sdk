@@ -7,6 +7,7 @@
 #ifndef __SGTL5000_H
 #define __SGTL5000_H
 
+#include "io.h"
 #include "../inc/audio.h"
 
 #define DAC_VOL_UP 1
@@ -16,11 +17,5 @@
 
 #define PLL_OUTPUT_FREQ_180633600HZ    180633600
 #define PLL_OUTPUT_FREQ_196608000HZ    196608000
-
-typedef struct DAPPara {
-    unsigned char bass_enhance;
-    unsigned char eq;
-    unsigned char peq;          /* parametic eq */
-} DAPPara_t;
 
 #endif //__SGTL5000_H

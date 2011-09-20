@@ -142,7 +142,7 @@ static int32_t esai_set_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
  *
  * @return      parameter valuw
  */
-static int32_t esai_get_hw_para(audio_ctrl_p ctrl, uint32_t type)
+static uint32_t esai_get_hw_para(audio_ctrl_p ctrl, uint32_t type)
 {
     uint32_t val = 0;
     volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);
@@ -304,7 +304,7 @@ static int32_t esai_stuff_tx_fifo(audio_ctrl_p ctrl)
  * @return      0 if succeeded
  *              -1 if failed
  */
-int esai_config(void *priv, audio_dev_para_p para)
+int32_t esai_config(void *priv, audio_dev_para_p para)
 {
     uint32_t val;
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
@@ -367,7 +367,7 @@ int esai_config(void *priv, audio_dev_para_p para)
  * @return      0 if succeeded
  *              -1 if failed
  */
-int esai_init(void *priv)
+int32_t esai_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
 
@@ -388,7 +388,7 @@ int esai_init(void *priv)
  * @return      0 if succeeded
  *              -1 if failed
  */
-int esai_deinit(void *priv)
+int32_t esai_deinit(void *priv)
 {
     //ESAI clk can be gate off here
 
@@ -406,7 +406,7 @@ int esai_deinit(void *priv)
  * @return      0 if succeeded
  *              -1 if failed
  */
-int esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
+int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
     volatile imx_esai_regs_p esai = (imx_esai_regs_p) (ctrl->base_addr);

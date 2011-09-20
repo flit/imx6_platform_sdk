@@ -48,19 +48,19 @@ extern void SGTL5000PowerUp_and_clockinit(void);
 	}while(0)
 
 ////////////////////////////Local variables and functions /////////////////////////////////////////
-static int sgtl5000_init_status = 0;
+static int32_t sgtl5000_init_status = 0;
 
 static void sgtl5000_i2c_init(audio_codec_p codec)
 {
     i2c_init(codec->i2c_base, codec->i2c_freq);
 }
 
-static int sgtl5000_read_reg(audio_codec_p codec, unsigned short reg_addr, unsigned short *reg_val)
+static int32_t sgtl5000_read_reg(audio_codec_p codec, uint16_t reg_addr, uint16_t *reg_val)
 {
     int res = 0;
-    unsigned char data[2];
+    uint8_t data[2];
     struct imx_i2c_request rq;
-    unsigned char buf[2];
+    uint8_t buf[2];
 
     /*device need high byte firstly, so swap them */
     buf[0] = reg_addr & 0xff;
@@ -79,12 +79,12 @@ static int sgtl5000_read_reg(audio_codec_p codec, unsigned short reg_addr, unsig
     return res;
 }
 
-static unsigned int sgtl5000_write_reg(audio_codec_p codec, unsigned short reg_addr,
-                                       unsigned int reg_data)
+static int32_t sgtl5000_write_reg(audio_codec_p codec, uint16_t reg_addr,
+                                       uint16_t reg_data)
 {
-    unsigned char data[2];
+    uint8_t data[2];
     struct imx_i2c_request rq;
-    unsigned char buf[2];
+    uint8_t buf[2];
 
     buf[0] = reg_addr & 0xff;
     buf[1] = (reg_addr & 0xff00) >> 8;
@@ -101,7 +101,7 @@ static unsigned int sgtl5000_write_reg(audio_codec_p codec, unsigned short reg_a
     return i2c_xfer(codec->i2c_base, &rq, 0);
 }
 
-static int sgtl5000_dump(void *priv)
+static int32_t sgtl5000_dump(void *priv)
 {
     audio_codec_p codec = (audio_codec_p) priv;
 
@@ -120,10 +120,10 @@ static int sgtl5000_dump(void *priv)
 }
 
 /* Turn up the volume */
-static int sgtl5000_dac_volume_up(audio_codec_p codec)
+static int32_t sgtl5000_dac_volume_up(audio_codec_p codec)
 {
-    unsigned short val;
-    unsigned short volume;
+    uint16_t val;
+    uint16_t volume;
 
     SGTL5000_REG_READ(codec, CHIP_ANA_HP_CTRL_REG, val);
     volume = (val) & 0x7f;
@@ -144,10 +144,10 @@ static int sgtl5000_dac_volume_up(audio_codec_p codec)
 }
 
 /* Turn down the volume */
-static int sgtl5000_dac_volume_down(audio_codec_p codec)
+static int32_t sgtl5000_dac_volume_down(audio_codec_p codec)
 {
-    unsigned short val;
-    unsigned short volume;
+    uint16_t val;
+    uint16_t volume;
 
     SGTL5000_REG_READ(codec, CHIP_ANA_HP_CTRL_REG, val);
     volume = ((val) & 0x7f);
@@ -168,9 +168,9 @@ static int sgtl5000_dac_volume_down(audio_codec_p codec)
 }
 
 /* Mute volume */
-static int sgtl5000_hp_mute(audio_codec_p codec)
+static int32_t sgtl5000_hp_mute(audio_codec_p codec)
 {
-    unsigned short val;
+    uint16_t val;
 
     SGTL5000_REG_READ(codec, CHIP_ANA_CTRL_REG, val);
     val |= 1 << 4;
@@ -180,9 +180,9 @@ static int sgtl5000_hp_mute(audio_codec_p codec)
 }
 
 /* Mute volume */
-static int sgtl5000_hp_unmute(audio_codec_p codec)
+static int32_t sgtl5000_hp_unmute(audio_codec_p codec)
 {
-    unsigned short val;
+    uint16_t val;
 
     SGTL5000_REG_READ(codec, CHIP_ANA_CTRL_REG, val);
     val &= ~(1 << 4);
@@ -191,9 +191,9 @@ static int sgtl5000_hp_unmute(audio_codec_p codec)
     return 0;
 }
 
-static int sgtl5000_dap_init(audio_codec_p codec)
+static int32_t sgtl5000_dap_init(audio_codec_p codec)
 {
-    unsigned short v;
+    uint16_t v;
 
     /*Set I2S-IN->DAP->DAC->HP route */
     v = (0x1 << 8)              // I2S_IN -> DAP mixer
@@ -217,9 +217,9 @@ static int sgtl5000_dap_init(audio_codec_p codec)
 }
 
 //////////////////////////////////// APIs //////////////////////////////////
-int sgtl5000_init(void *priv)
+int32_t sgtl5000_init(void *priv)
 {
-    unsigned short v;
+    uint16_t v;
     audio_codec_p codec = (audio_codec_p) priv;
 
     if (sgtl5000_init_status) { /* sgtl5000 is inited */
@@ -313,9 +313,9 @@ int sgtl5000_init(void *priv)
     return 0;
 }
 
-int sgtl5000_i2s_config(void *priv, audio_dev_para_p para)
+int32_t sgtl5000_i2s_config(void *priv, audio_dev_para_p para)
 {
-    unsigned short v;
+    uint16_t v;
     audio_codec_p codec = (audio_codec_p) priv;
 
     SGTL5000_REG_READ(codec, CHIP_I2S0_CTRL_REG, v);
@@ -340,7 +340,7 @@ int sgtl5000_i2s_config(void *priv, audio_dev_para_p para)
     return 0;
 }
 
-int sgtl5000_deinit(void *priv)
+int32_t sgtl5000_deinit(void *priv)
 {
     sgtl5000_init_status = 0;
 

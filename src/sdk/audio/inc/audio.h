@@ -50,7 +50,7 @@ typedef enum {
 
 typedef struct {
     audio_samplerate_e sample_rate;
-    unsigned int channel_number;
+    uint32_t channel_number;
     audio_word_length_e word_length;
 } audio_pcm_para_t, *audio_pcm_para_p;
 
@@ -67,16 +67,16 @@ typedef struct {
     audio_trans_dir_e trans_dir;
     audio_samplerate_e sample_rate;
     audio_word_length_e word_length;
-    unsigned int channel_number;
+    uint32_t channel_number;
 } audio_dev_para_t, *audio_dev_para_p;
 
 typedef struct {
-    int (*init) (void *priv);
-    int (*deinit) (void *priv);
-    int (*config) (void *priv, audio_dev_para_p para);
-    int (*ioctl) (void *priv, uint32_t cmd, void *para);
-    int (*write) (void *priv, uint8_t * buf, uint32_t byte2write, uint32_t * bytewrittern);
-    int (*read) (void *priv, uint8_t * buf, uint32_t byte2read, uint32_t byteread);
+    int32_t (*init) (void *priv);
+    int32_t (*deinit) (void *priv);
+    int32_t (*config) (void *priv, audio_dev_para_p para);
+    int32_t (*ioctl) (void *priv, uint32_t cmd, void *para);
+    int32_t (*write) (void *priv, uint8_t * buf, uint32_t byte2write, uint32_t * bytewrittern);
+    int32_t (*read) (void *priv, uint8_t * buf, uint32_t byte2read, uint32_t byteread);
 } audio_dev_ops_t, *audio_dev_ops_p;
 
 typedef struct {
@@ -94,8 +94,8 @@ typedef struct {
     uint32_t base_addr;         // the io base address of the controller
     audio_bus_type_e bus_type;  //The bus type(ssi, esai or spdif) the controller supports
     audio_bus_mode_e bus_mode;  //the bus mode(master, slave or both)the controller supports
-    int irq;                    //the irq number
-    int sdma_ch;                //Will be used for SDMA
+    uint32_t irq;                    //the irq number
+    uint32_t sdma_ch;                //Will be used for SDMA
     audio_dev_ops_p ops;
 } audio_ctrl_t, *audio_ctrl_p;
 

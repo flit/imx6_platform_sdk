@@ -36,7 +36,7 @@ extern void ssi_io_cfg(void);
  * @return	0 if succeeded
  *		-1 if failed   
  */
-static int ssi_dump(audio_ctrl_p ctrl)
+static int32_t ssi_dump(audio_ctrl_p ctrl)
 {
     volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
@@ -69,7 +69,7 @@ static int ssi_dump(audio_ctrl_p ctrl)
  * @return      0 if succeeded
  *              -1 if failed
  */
-static int ssi_soft_reset(audio_ctrl_p ctrl)
+static int32_t ssi_soft_reset(audio_ctrl_p ctrl)
 {
     volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
@@ -85,7 +85,7 @@ static int ssi_soft_reset(audio_ctrl_p ctrl)
  * @return      0 if succeeded
  *              -1 if failed
  */
-static int ssi_registers_reset(audio_ctrl_p ctrl)
+static int32_t ssi_registers_reset(audio_ctrl_p ctrl)
 {
     volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
 
@@ -279,7 +279,7 @@ static uint32_t ssi_hw_enable(audio_ctrl_p ctrl, uint32_t type, bool enable)
  * @return      0 if succeeded
  *              -1 if failed
  */
-int ssi_init(void *priv)
+int32_t ssi_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
 
@@ -301,7 +301,7 @@ int ssi_init(void *priv)
  * @return      0 if succeeded
  *              -1 if failed
  */
-int ssi_config(void *priv, audio_dev_para_p para)
+int32_t ssi_config(void *priv, audio_dev_para_p para)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
     volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
@@ -347,7 +347,7 @@ int ssi_config(void *priv, audio_dev_para_p para)
  * @return      0 if succeeded
  *              -1 if failed
  */
-int ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
+int32_t ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
     volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
@@ -382,7 +382,7 @@ int ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_wr
  * @return      0 if succeeded
  *              -1 if failed
  */
-int ssi_deinit(void *priv)
+int32_t ssi_deinit(void *priv)
 {
     volatile uint32_t val;
 

@@ -18,7 +18,7 @@
 #include "../inc/cs42888.h"
 #include "imx_i2c.h"
 
-extern int esai_codec_power_on(void);
+extern int32_t esai_codec_power_on(void);
 
 ////////////////////////////// Macros  ///////////////////////////////////////////
 
@@ -49,7 +49,7 @@ static void cs42888_i2c_init(audio_codec_p codec)
     i2c_init(codec->i2c_base, codec->i2c_freq);
 }
 
-static int cs42888_reg_read(audio_codec_p codec, unsigned char reg_addr, unsigned char *ret_val)
+static int32_t cs42888_reg_read(audio_codec_p codec, uint8_t reg_addr, uint8_t *ret_val)
 {
     struct imx_i2c_request rq;
 
@@ -66,7 +66,7 @@ static int cs42888_reg_read(audio_codec_p codec, unsigned char reg_addr, unsigne
     return 0;
 }
 
-static int cs42888_reg_write(audio_codec_p codec, unsigned char reg_addr, unsigned char reg_data)
+static int32_t cs42888_reg_write(audio_codec_p codec, uint8_t reg_addr, uint8_t reg_data)
 {
     struct imx_i2c_request rq;
 
@@ -80,7 +80,7 @@ static int cs42888_reg_write(audio_codec_p codec, unsigned char reg_addr, unsign
 }
 
 ////////////////////////////////////// APIs /////////////////////////////////////
-int cs42888_init(void *priv)
+int32_t cs42888_init(void *priv)
 {
     audio_codec_p codec = (audio_codec_p) priv;
 
@@ -91,7 +91,7 @@ int cs42888_init(void *priv)
     return 0;
 }
 
-int cs42888_config(void *priv, audio_dev_para_p para)
+int32_t cs42888_config(void *priv, audio_dev_para_p para)
 {
     audio_codec_p codec = (audio_codec_p) priv;
 
@@ -119,7 +119,7 @@ int cs42888_config(void *priv, audio_dev_para_p para)
     return 0;
 }
 
-int cs42888_deinit(void *priv)
+int32_t cs42888_deinit(void *priv)
 {
     audio_codec_p codec = (audio_codec_p) priv;
 

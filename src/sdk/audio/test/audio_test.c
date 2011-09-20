@@ -10,13 +10,13 @@
 #include "../inc/audio.h"
 #include "wav_data.data"
 
-extern int ssi_playback(audio_pcm_p);
-extern int esai_playback(audio_pcm_p);
-extern int spdif_playback(audio_pcm_p);
+extern int32_t ssi_playback(audio_pcm_p);
+extern int32_t esai_playback(audio_pcm_p);
+extern int32_t spdif_playback(audio_pcm_p);
 
 typedef struct {
     const char *name;
-    int (*test) (audio_pcm_p);
+    int32_t (*test) (audio_pcm_p);
 } audio_test_t;
 
 audio_pcm_para_t pcm_para = {
@@ -38,9 +38,9 @@ static audio_test_t audio_tests[] = {
     {"SPDIF playback", spdif_playback},
 };
 
-int audio_test(void)
+int32_t audio_test(void)
 {
-    int retv, idx;
+    int32_t retv, idx;
     uint8_t sel;
 
     printf("\n--- Running audio test, type 'x' to exit.\n");

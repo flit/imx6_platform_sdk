@@ -21,7 +21,7 @@ extern audio_codec_t sgtl5000;
 extern audio_ctrl_t imx_esai_1;
 extern audio_codec_t cs42888;
 
-static int snd_card_init(void *priv)
+static int32_t snd_card_init(void *priv)
 {
     audio_card_p card = (audio_card_p) priv;
     audio_ctrl_p ctrl = card->ctrl;
@@ -42,7 +42,7 @@ static int snd_card_init(void *priv)
     return 0;
 }
 
-static int snd_card_deinit(void *priv)
+static int32_t snd_card_deinit(void *priv)
 {
     audio_card_p card = (audio_card_p) priv;
     audio_ctrl_p ctrl = card->ctrl;
@@ -68,7 +68,7 @@ static int snd_card_deinit(void *priv)
  * &para	para 	the parameters passed by the app, dedicated to the audio 
  *			controller, the parameters for codec should be set according it.
  */
-static int snd_card_config(void *priv, audio_dev_para_p para)
+static int32_t snd_card_config(void *priv, audio_dev_para_p para)
 {
     audio_card_p card = (audio_card_p) priv;
     audio_ctrl_p ctrl = card->ctrl;
@@ -101,7 +101,7 @@ static int snd_card_config(void *priv, audio_dev_para_p para)
     return 0;
 }
 
-static int snd_card_ioctl(void *priv, uint32_t cmd, void *para)
+static int32_t snd_card_ioctl(void *priv, uint32_t cmd, void *para)
 {
     //audio_card_p card = (audio_card_p) priv;
     //audio_ctrl_p ctrl = card->ctrl;
@@ -113,7 +113,7 @@ static int snd_card_ioctl(void *priv, uint32_t cmd, void *para)
     return 0;
 }
 
-static int snd_card_write(void *priv, uint8_t * buf, uint32_t bytes2write, uint32_t * bytes_written)
+static int32_t snd_card_write(void *priv, uint8_t * buf, uint32_t bytes2write, uint32_t * bytes_written)
 {
     audio_card_p card = (audio_card_p) priv;
     audio_ctrl_p ctrl = card->ctrl;

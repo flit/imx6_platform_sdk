@@ -36,13 +36,13 @@
 #define I2C_READ    1
 
 //Error Codes
-#define ERR_TX                                      -1
-#define ERR_RX                                      -2
-#define ERR_ARB_LOST                          -3
-#define ERR_NO_ACK                             -4
-#define ERR_XFER                                  -5
-#define ERR_RX_ACK                              -6
-#define ERR_NO_ACK_ON_START           -7
+#define ERR_TX                      -1
+#define ERR_RX                      -2
+#define ERR_ARB_LOST                -3
+#define ERR_NO_ACK                  -4
+#define ERR_XFER                    -5
+#define ERR_RX_ACK                  -6
+#define ERR_NO_ACK_ON_START         -7
 
 struct imx_i2c_request {
     uint32_t ctl_addr;          // the I2C controller base address

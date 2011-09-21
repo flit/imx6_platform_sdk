@@ -45,6 +45,16 @@ startup_imx6x:
     sub     r0, r0, r3
   
     mov     r1, r1, lsl #2
+        
+	/* init .bss */
+    /* clear the .bss section (zero init) */
+    ldr     r1,=__bss_start__
+    ldr     r2,=__bss_end__
+    mov     r3,#0
+1:
+    cmp     r1,r2
+    stmltia r1!,{r3}
+    blt     1b
    
     @ set stack for SVC mode
     mov     sp, r0 

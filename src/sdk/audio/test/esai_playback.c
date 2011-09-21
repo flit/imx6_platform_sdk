@@ -32,7 +32,12 @@ int32_t esai_playback(audio_pcm_p pcm_file)
     dev_para.word_length = pcm_file->para->word_length;
     dev_para.channel_number = pcm_file->para->channel_number;
 
-    printf("Please ensure Automotive Card is mounted and headphones are plugged in to hear.\n");
+    printf("Please ensure:\n");
+    printf
+        (" 1. i.MX61_ARD board and the Automotive Card are both mounted to the ARMADILLO 2 board.\n");
+    printf
+        (" 2. The converting cable's two plugs were plugged into the Automotive Card's AOUT1 and AOUT2 sockets.\n");
+    printf(" 3. The headphone is plugged into the converting cable's socket.\n");
     if (!is_input_char('y')) {
         printf("  skip AUDIO test \n");
         return TEST_BYPASSED;

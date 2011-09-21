@@ -496,7 +496,7 @@ void ssi_io_cfg(void)
 }
 
 /* Configure iomux for ESAI */
-void esai_iomux(void)
+void esai_io_cfg(void)
 {
     /* Select ALT2 mode of FEC_RXD0 for ESAI1_HCKT */
     writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_RXD0);
@@ -799,6 +799,16 @@ void lvds_power_on(void)
     /* Configure GPIO1_1 as an output high */
     gpio_dir_config(GPIO_PORT1, 1, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT1, 1, 1);
+}
+
+void esai_codec_power_on(void)
+{
+    /*TO avoid build error for mx53 */
+}
+
+void esai_clk_sel_gate_on(void)
+{
+    /*TO avoid build error for mx53 */
 }
 
 void debug_uart_iomux(void)
@@ -1212,14 +1222,14 @@ void reset_usb_hub(void)
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN);    //force input path as CEI0_DATA_EN,Alt1 as GPIO5_20
             temp = readl(GPIO5_BASE_ADDR + GPIO_DR_OFFSET);
             temp &= ~(0x1 << 20);
-            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR_OFFSET));  // set GPIO5_20 low
+            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR_OFFSET));   // set GPIO5_20 low
             temp = readl(GPIO5_BASE_ADDR + GPIO_GDIR_OFFSET);
             temp |= (0x1 << 20);
-            writel(temp, (GPIO5_BASE_ADDR + GPIO_GDIR_OFFSET));    // set GPIO5_20 to output
+            writel(temp, (GPIO5_BASE_ADDR + GPIO_GDIR_OFFSET)); // set GPIO5_20 to output
             hal_delay_us(1000);
             temp = readl(GPIO5_BASE_ADDR + GPIO_DR_OFFSET);
             temp |= (0x1 << 20);
-            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR_OFFSET));  // set GPIO5_20 high
+            writel(temp, (GPIO5_BASE_ADDR + GPIO_DR_OFFSET));   // set GPIO5_20 high
         } else {
             /* for the SMD, use GPIO3_14 to reset the USB_HUB */
             uint32_t temp;
@@ -1227,14 +1237,14 @@ void reset_usb_hub(void)
             writel((ALT1 | (0x1 << 4)), IOMUXC_SW_MUX_CTL_PAD_EIM_DA14);    //force input path, ALT1 as GPIO3_14
             temp = readl(GPIO3_BASE_ADDR + GPIO_DR_OFFSET);
             temp &= ~(0x1 << 14);
-            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR_OFFSET));  //set GPIO3_14 low
+            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR_OFFSET));   //set GPIO3_14 low
             temp = readl(GPIO3_BASE_ADDR + GPIO_GDIR_OFFSET);
             temp |= (0x1 << 14);
-            writel(temp, (GPIO3_BASE_ADDR + GPIO_GDIR_OFFSET));    // set GPIO3_14 to output
+            writel(temp, (GPIO3_BASE_ADDR + GPIO_GDIR_OFFSET)); // set GPIO3_14 to output
             hal_delay_us(1000);
             temp = readl(GPIO3_BASE_ADDR + GPIO_DR_OFFSET);
             temp |= (0x1 << 14);
-            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR_OFFSET));  //set GPIO3_14 high
+            writel(temp, (GPIO3_BASE_ADDR + GPIO_DR_OFFSET));   //set GPIO3_14 high
         }
     }
 }

@@ -82,7 +82,8 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define ISL29023_I2C_ID	    0x44
 
 #define MAX11801_I2C_ID     (0x92 >> 1)
-#define CS2888_I2C_ID       (0x90 >> 1)
+#define CS42888_I2C_BASE	I2C1_BASE_ADDR
+#define CS42888_I2C_ID      (0x90 >> 1)
 
 // USB test defines
 #define MX53_USBH1_BASE_ADDR    0x53F80200

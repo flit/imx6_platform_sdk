@@ -16,7 +16,7 @@ extern int32_t spdif_playback(audio_pcm_p);
 
 typedef struct {
     const char *name;
-    int32_t (*test) (audio_pcm_p);
+     int32_t(*test) (audio_pcm_p);
 } audio_test_t;
 
 audio_pcm_para_t pcm_para = {
@@ -33,8 +33,12 @@ audio_pcm_t pcm_music = {
 };
 
 static audio_test_t audio_tests[] = {
+#if defined(MX53_SMD)
     {"SSI playback", ssi_playback},
+#endif
+#if defined(MX61_ARD)
     {"ESAI playback", esai_playback},
+#endif
     {"SPDIF playback", spdif_playback},
 };
 

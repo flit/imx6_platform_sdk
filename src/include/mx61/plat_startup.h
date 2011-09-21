@@ -66,7 +66,6 @@ plugin_start:
  * Note: The DDR settings provided below are specific to Freescale development boards and are the latest settings at the time of release.
  * However, it is recommended to contact your Freescale representative in case there are any improvements to these settings.
  */
-
 #ifdef MX61_ARD
     /*Use default DDR frequency: 528MHz*/
     ldr r0, =0x020c4068
@@ -118,43 +117,43 @@ plugin_start:
     ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e05ac
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e05b4
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0528
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0520
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0514
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0510
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e05bc
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e05c4
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e056c
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0578
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0588
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0594
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e057c
-    ldr r1, =0x00020030
+    ldr r1, =0x00000030
     str r1, [r0]
     ldr r0, =0x020e0590
     ldr r1, =0x00003000
@@ -259,16 +258,19 @@ plugin_start:
     ldr r1, =0x005b0e21
     str r1, [r0]
     ldr r0, =0x021b0008
-    ldr r1, =0x094444040
+    ldr r1, =0x09444040
     str r1, [r0]
     ldr r0, =0x021b0004
-    ldr r1, =0x00020036
+    ldr r1, =0x00025576
     str r1, [r0]
     ldr r0, =0x021b0040
     ldr r1, =0x00000027
     str r1, [r0]
     ldr r0, =0x021b0000
     ldr r1, =0xc31a0000
+    str r1, [r0]
+    ldr r0, =0x021b0404
+    ldr r1, =0x00011006
     str r1, [r0]
     ldr r0, =0x021b001c
     ldr r1, =0x04088032
@@ -301,10 +303,10 @@ plugin_start:
     ldr r1, =0x04008048
     str r1, [r0]
     ldr r0, =0x021b0800
-    ldr r1, =0xa5380003
+    ldr r1, =0xa1380003
     str r1, [r0]
     ldr r0, =0x021b4800
-    ldr r1, =0xa5380003
+    ldr r1, =0xa1380003
     str r1, [r0]
     ldr r0, =0x021b0020
     ldr r1, =0x00005800
@@ -316,28 +318,28 @@ plugin_start:
     ldr r1, =0x00022227
     str r1, [r0]
     ldr r0, =0x021b083c
-    ldr r1, =0x433f033f
+    ldr r1, =0x434b0350
     str r1, [r0]
     ldr r0, =0x021b0840
-    ldr r1, =0x033f033f
+    ldr r1, =0x034c0359
     str r1, [r0]
     ldr r0, =0x021b483c
-    ldr r1, =0x433f033f
+    ldr r1, =0x434b0350
     str r1, [r0]
     ldr r0, =0x021b4840
-    ldr r1, =0x0344033b
+    ldr r1, =0x03650348
     str r1, [r0]
     ldr r0, =0x021b0848
-    ldr r1, =0x4337373e
+    ldr r1, =0x4436383b
     str r1, [r0]
     ldr r0, =0x021b4848
-    ldr r1, =0x3634303d
+    ldr r1, =0x39393341
     str r1, [r0]
     ldr r0, =0x021b0850
-    ldr r1, =0x35374640
+    ldr r1, =0x35373933
     str r1, [r0]
     ldr r0, =0x021b4850
-    ldr r1, =0x4a294b35
+    ldr r1, =0x48254a36
     str r1, [r0]
     ldr r0, =0x021b080c
     ldr r1, =0x001F001F

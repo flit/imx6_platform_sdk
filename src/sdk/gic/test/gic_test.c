@@ -9,7 +9,7 @@
 
 //globals used for gic_test
 unsigned int gicTestDone;
-unsigned int uartFREE;
+//unsigned int uartFREE;
 extern void startup_imx6x(void);    // entry function, startup routine, defined in startup.s
 extern uint32_t getCPUnum(void);
 
@@ -17,6 +17,7 @@ void SGI3_ISR(void)
 {
     uint32_t cpu_id;
     cpu_id = getCPUnum();
+    //while(1); // debug
     printf("Hello from CPU %d\n", cpu_id);
 
     if (cpu_id < 4) {
@@ -51,7 +52,7 @@ void gic_test(void)
 
     if (cpu_id == 0) {
         gicTestDone = 1;
-        uartFREE = 1;
+        //uartFREE = 1;
         register_interrupt_routine(SW_INTERRUPT_3, SGI3_ISR);   // register sgi isr
 
         printf("Running the GIC Test \n");

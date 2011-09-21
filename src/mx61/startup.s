@@ -4,7 +4,7 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-
+  
 /*!
  * @file startup.s
  * @brief this file contains startup code with support for multi-core startup
@@ -45,17 +45,7 @@ startup_imx6x:
     sub     r0, r0, r3
   
     mov     r1, r1, lsl #2
-        
-	/* init .bss */
-    /* clear the .bss section (zero init) */
-    ldr     r1,=__bss_start__
-    ldr     r2,=__bss_end__
-    mov     r3,#0
-1:
-    cmp     r1,r2
-    stmltia r1!,{r3}
-    blt     1b
-   
+           
     @ set stack for SVC mode
     mov     sp, r0 
 
@@ -93,6 +83,16 @@ primary_cpu_init:
     ldr		r0, =IRQ_MEM_ADDR
     ldr		r1, =IRQ_HDLR
     str		r1, [r0]
+   
+   	/* init .bss */
+    /* clear the .bss section (zero init) */
+    ldr     r1,=__bss_start__
+    ldr     r2,=__bss_end__
+    mov     r3,#0
+1:
+    cmp     r1,r2
+    stmltia r1!,{r3}
+    blt     1b
    
     @bl enable_scu
     @bl enableALL_interrupts_non_secure

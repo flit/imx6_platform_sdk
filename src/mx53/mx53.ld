@@ -23,31 +23,6 @@ SECTIONS
         __vectors_end = .;
     }>DDR
 
-    /* SDK tests to be run early */
-    .test_launch_early :
-    {
-        . = ALIGN (4);
-        __test_launch_early_start = .;
-        KEEP(*(.test_launch_early))
-	__test_launch_early_end = .;
-    }
-    /* most SDK tests should be put in here */
-    .test_launch :
-    {
-        . = ALIGN (4);
-        __test_launch_start = .;
-        KEEP(*(.test_launch))
-	__test_launch_end = .;
-    }
-    /* SDK tests to be run after most tests done */
-    .test_launch_late :
-    {
-        . = ALIGN (4);
-        __test_launch_late_start = .;
-        KEEP(*(.test_launch_late))
-	__test_launch_late_end = .;
-    }
-
     .text :
     {
         . = ALIGN (4);

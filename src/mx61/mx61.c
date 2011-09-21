@@ -86,13 +86,8 @@ void platform_init(void)
 
     mx61_print_ver();
 
-#ifdef OBDS_FUSE_CONTROL
-    board_id = readl(IIM_BASE_ADDR + 0x87c);
-    board_rev = readl(IIM_BASE_ADDR + 0x878);
-#else
     board_id = BOARD_TYPE_ID;
     board_rev = BOARD_VERSION_ID;
-#endif
 
     show_freq();
     show_ddr_config();
@@ -100,8 +95,21 @@ void platform_init(void)
 
 extern void sdma_test(void);
 extern void ipu_test(void);
+extern void uart_test(void);
+extern void gpt_test(void);
+extern void epit_test(void);
+extern void usdhc_test(void);
+extern void hdmi_test(void);
+extern void audio_test(void);
+
 void ALL_test(void)
 {
     sdma_test();
     ipu_test();
+    uart_test();
+    gpt_test();
+    epit_test();
+    usdhc_test();
+    hdmi_test();
+    audio_test();
 }

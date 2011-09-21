@@ -195,7 +195,7 @@ int i2c_device_id_check_DA9053(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("PMIC DA9053 Device ID test");
+//    PROMPT_RUN_TEST("PMIC DA9053 Device ID test");
 
     reg_data = da9053_i2c_reg(0x78, 0, I2C_READ);
 
@@ -232,4 +232,3 @@ int i2c_device_id_check_DA9053(void)
     I2CDBG("\tDA9053 Device ID error, 0x%04x\n", reg_data);
     return TEST_FAILED;
 }
-

@@ -97,66 +97,13 @@ struct hw_module {
 #define printf1(fmt,args...)
 #endif
 
-/*!
- * maximum number of tests currently supported
- */
-#define MAX_TEST_NR             200
-/*!
- * maximum test name length in byte
- */
-#define MAX_TEST_NAME_LEN       30
-/*!
- * maximum number of retries for a certain test
- */
-#define MAX_TEST_RETRY          10
-
-struct test_module {
-    int8_t name[MAX_TEST_NAME_LEN];
-    int32_t result;
-};
-
-void record_test_result(int8_t *name, int32_t result);
-
 typedef int32_t (*sdk_test_t) (void);
 
 void _sys_exit(int32_t return_code);
-
-#define RUN_TEST_COMMON(name, func)                         \
-    static int sdk_##func (void)                           \
-    {                                                       \
-        sdk_test_t test_func = (sdk_test_t) func;         \
-        record_test_result(name, test_func());              \
-        return 0;                                           \
-    }
-
-#define RUN_TEST(name, func)            \
-    RUN_TEST_COMMON(name, func)         \
-    static sdk_test_t __sdk_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = sdk_##func;
-
-#define RUN_TEST_EARLY(name, func)      \
-    RUN_TEST_COMMON(name, func)         \
-    static sdk_test_t __sdk_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = sdk_##func;
-
-#define RUN_TEST_LATE(name, func)       \
-    RUN_TEST_COMMON(name, func)         \
-    static sdk_test_t __sdk_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = sdk_##func;
-
-#define RUN_TEST_INTERACTIVE(name, func)        RUN_TEST_LATE(name, func)
-
-#define PROMPT_RUN_TEST(name)           \
-    do {                                \
-        printf("\n---- Running < %s > test\n", name);       \
-        if (!auto_run_enable) {                             \
-            if (!is_input_char('y'))                        \
-                return TEST_BYPASSED;                       \
-        }                                                   \
-    } while (0)
 
 #define TEST_PASSED     0
 #define TEST_FAILED     -1
 #define TEST_BYPASSED   2
 #define TEST_NOTPRESENT 3
-
-extern int32_t auto_run_enable;     // global flag to indicate auto-run feature enabled or not
 
 #endif // __IO_H__

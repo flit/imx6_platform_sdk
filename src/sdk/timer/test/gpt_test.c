@@ -156,7 +156,7 @@ void gpt_in_capture_test(void)
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1, ALT3);
     /* PULL-UP of 100k enabled - use default reset value */
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD1_DAT1, 0x1B0B0);
- 
+
     /* Initialize the GPT timer */
     /* The source clock for the timer will be configured to be IPG_CLK, so
        the GPT frequency is filled first with the IPG_CLK frequency. */

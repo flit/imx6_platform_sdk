@@ -20,10 +20,6 @@ usage()
     echo "For eg: 1. $script -target mx53 -board ard -test vpu"
     echo "        2. $script -target mx28 -board evk -test sdma"
     echo
-    echo "Installation:"
-    echo "   Clone the diag-sdk project and add the diag-sdk/tools directory"
-    echo "   to your path somewhere."
-    echo
     exit 1
 }
 

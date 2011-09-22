@@ -60,7 +60,7 @@ int32_t uart_test(void)
 
     do {
         g_wait_flag = 1;
-        printf("Please type a character:\n");
+        printf("Please type a character - x to exit:\n");
         do {
             sel = getchar();
         } while (sel == (uint8_t) 0xFF);

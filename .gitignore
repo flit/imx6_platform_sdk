@@ -30,6 +30,7 @@ output
 #
 makefile
 release
+*_release
 tags
 TAGS
 vmlinux
@@ -63,5 +64,3 @@ workspace
 ~*
 
 diag-sdk_coding_violations.*
-
-

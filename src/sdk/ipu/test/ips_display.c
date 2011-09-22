@@ -44,7 +44,7 @@ int ips_display_test(void)
     load_centralized_image(flow);
     stream_on(flow);
 
-    printf("Do you see the image?\n");
+    printf("Do you see the image (y or n)?\n");
     do {
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
@@ -87,7 +87,7 @@ int ips_hdmi_stream(void)
     load_centralized_image(flow);
     stream_on(flow);
 
-    printf("Do you see the image?\n");
+    printf("Do you see the image (y or n)?\n");
     do {
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);

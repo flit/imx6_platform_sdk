@@ -195,6 +195,25 @@ void show_ddr_config(void)
     printf("========================================\n\n");
 }
 
+extern void uart2_iomux_config();
+extern void uart4_iomux_config();
+
+/* That function calls the board dependent IOMUX configuration functions */
+void iomux_config(uint32_t module_base_add)
+{
+    switch (module_base_add) {
+    case UART2_BASE_ADDR:
+        uart2_iomux_config();
+        break;
+    case UART4_BASE_ADDR:
+        uart4_iomux_config();
+        break;
+
+    default:
+        break;
+    }
+}
+
 /*!
   * Set up the IOMUX for I2C
   */
@@ -564,24 +583,6 @@ void usdhc_iomux_config(uint32_t base_address)
     }
 }
 
-void debug_uart_iomux(void)
-{
-    // iMX6x uses UART4
-    if (BOARD_TYPE_ID == BOARD_ID_MX61_ARD) {
-        // UART4 mux'd on txd->KEY_COL0 and rxd<-KEY_ROW0 ALT4
-        writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_KEY_COL0);
-        writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_KEY_ROW0);
-        // daisy chain setup
-        writel(0x1, IOMUXC_UART4_IPP_UART_RXD_MUX_SELECT_INPUT);
-    } else {                    //SMD_BOARD
-        // UART1 mux'd on CSI0_DAT10<=>TXD and CSI0_DAT11<=>RXD
-        writel(ALT3, IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT10);
-        writel(ALT3, IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT11);
-        // daisy chain setup
-        writel(0x1, IOMUXC_UART1_IPP_UART_RXD_MUX_SELECT_INPUT);
-    }
-}
-
 void ssi_io_cfg(void)
 {
 }
@@ -742,8 +743,6 @@ int esai_codec_power_on(void)
  */
 void board_init(void)
 {
-    /* set up debug UART iomux */
-    debug_uart_iomux();
     // Configure some board signals through I/O expanders
     max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address

@@ -4,33 +4,36 @@
 #ARGV[0]: Path to the SDK config folder e.g:/home/user/diag-sdk/configs
 #ARGV[1]: Path to the Base SDK folder e.g:/home/user/diag-sdk
 #ARGV[2]: Path to the SDK release folder e.g:/home/user/diag-sdk/imx_sdk_release
-#ARGV[3]: SOC Name e.g:mx53, mx50, mx28...
-#ARGV[4]: Board Name e.g:evk...
-#ARGV[5]: test module name, for example SDMA, IPU, VPU ...
+#ARGV[3]: SOC Name e.g:mx53, mx61,...
+#ARGV[4]: Board Name e.g:ard, smd...
 
 use File::Copy;
 use File::Find;
 use File::Path;
 
+#Create friendly names
+my $sdk_conf_path = "$ARGV[0]";
+my $sdk_base_path = "$ARGV[1]";
+my $release_path = "$ARGV[2]";
+my $imx_name = "$ARGV[3]";
+my $board_name = "$ARGV[4]";
+
 #Open the configuration input file
-my $in_file = "$ARGV[0]/$ARGV[3]$ARGV[4].conf";
+my $in_file = "$sdk_conf_path/$imx_name$board_name.conf";
 
 if (!(open (INP_FH, $in_file))) {
     # Try if configuration file is common for all boards for this target
-    $in_file = "$ARGV[0]/$ARGV[3].conf";
+    $in_file = "$sdk_conf_path/$imx_name.conf";
     open INP_FH, $in_file or die "Can't read source file $in_file: $!\n";
 }
 
 #Make sure we are at the SDK Base directory
-chdir($ARGV[1]) or die "Can't change directory: $!\n";
-
-#Release dir name is derived from the input config filename
-my $target_dir_name = "$ARGV[2]";
+chdir($sdk_base_path) or die "Can't change directory: $!\n";
 
 #Delete the release directory if it exists
-rmtree($target_dir_name);
+rmtree($release_path);
 #Create the release directory
-mkpath($target_dir_name);
+mkpath($release_path);
 
 # Read in the file one line at a time
 while (<INP_FH>) {
@@ -61,13 +64,13 @@ while (<INP_FH>) {
 }
 
 #copy all the files related, covering all the sub directories.
-copy_release_files("src/sdk");
-copy_release_files("src/sdk/$ARGV[5]");
-my @elements = list_sub_dirs("src/sdk/$ARGV[5]");
-foreach my $e (@elements)
-{
-    push (@sub_dir_elements, $e);
-}
+#copy_release_files("src/sdk");
+#copy_release_files("src/sdk/$tested_module");
+#my @elements = list_sub_dirs("src/sdk/$tested_module");
+#foreach my $e (@elements)
+#{
+#    push (@sub_dir_elements, $e);
+#}
 #Remove duplicate entries in the sub-directories list
 my %rem_dup;
 @rem_dup{ @sub_dir_elements } = ();
@@ -84,15 +87,28 @@ for ($l=0; $l < $num_of_sub_dirs; $l++) {
 }
 
 #Copy the include folder
-
 copy_release_files("src/include");
-copy_release_files("src/include/mx53");
-copy_release_files("tools/linux");
-copy_release_files("tools/windows");
+copy_release_files("src/include/$imx_name");
+copy_release_files("src/cortex_a9");
+#copy_release_files("tools/linux");
+#copy_release_files("tools/windows");
 
-copy("$ARGV[1]/makefile", "$target_dir_name/makefile");
-copy("$ARGV[1]/make.rules", "$target_dir_name/make.rules");
-copy("$ARGV[1]/make.def", "$target_dir_name/make.def");
+#Create the tools and rvd directory
+mkpath("$release_path/tools/rvd");
+copy("$sdk_base_path/tools/rvd/$imx_name$board_name\_init.inc","$release_path/tools/rvd/$imx_name$board_name\_init.inc");
+
+copy("$sdk_base_path/tools/build_sdk","$release_path/tools/build_sdk");
+chmod 0755, "$release_path/tools/build_sdk";
+copy("$sdk_base_path/tools/gen_make.pl","$release_path/tools/gen_make.pl");
+chmod 0755, "$release_path/tools/gen_make.pl";
+
+copy("$sdk_base_path/makefile.in", "$release_path/makefile.in");
+copy("$sdk_base_path/make.rules", "$release_path/make.rules");
+copy("$sdk_base_path/make.def", "$release_path/make.def");
+
+#Create the configs directory
+mkpath("$release_path/configs");
+copy("$sdk_base_path/configs/$imx_name$board_name.conf", "$release_path/configs/$imx_name$board_name.conf");
 
 exit 2;
 
@@ -102,7 +118,7 @@ sub list_sub_dirs {
 	my @dirs = readdir(DIR);
 	closedir(DIR);
 	foreach my $dir (@dirs) {
-		if(-d "$ARGV[1]/$input/$dir") {
+		if(-d "$sdk_base_path/$input/$dir") {
 			if(($dir ne ".") && ($dir ne "..")) {
 				push(@dir_list, "$input/$dir");	
 				list_sub_dirs("$input/$dir/");
@@ -115,8 +131,8 @@ sub list_sub_dirs {
 # Copy files from the folder passed in as an argument into destination release folder
 sub copy_release_files {
     my $src_path = shift;
-    my $targetdir = "$target_dir_name/$src_path";
-    my $file_perm_mode = 0755;
+    my $targetdir = "$release_path/$src_path";
+    my $file_perm_mode = 0644;
 
     mkpath( $targetdir ) if not -e $targetdir;
     opendir(DIR, $src_path) or die "Cannot open directory$src_path:$!\n";
@@ -124,9 +140,8 @@ sub copy_release_files {
     closedir(DIR);
 
     foreach my $src (@src_list) {
-       	copy("$ARGV[1]/$src_path/$src", "$targetdir/$src");
+       	copy("$sdk_base_path/$src_path/$src", "$targetdir/$src");
        	chmod $file_perm_mode, "$targetdir/$src";
     }
 
 }
-

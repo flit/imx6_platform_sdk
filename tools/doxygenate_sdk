@@ -116,4 +116,4 @@ doxygen doxygen_sdk.cfg 2>&1 | tee $doxygen_output_dir/logs/sdk_doxygen_log.txt
 cd $release_sdk_dir
 
 #Delete all files used for doxygen documentation generation
-#rm -rf $doxygen_output_dir
+rm -rf $doxygen_output_dir

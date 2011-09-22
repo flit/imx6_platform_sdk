@@ -3,9 +3,9 @@
 #Below is a description of arguments required for this perl script
 #ARGV[0]: Path to the SDK config folder e.g:/home/user/diag-sdk/configs
 #ARGV[1]: Path to the Base SDK folder e.g:/home/user/diag-sdk
-#ARGV[2]: SOC Name e.g:mx53, mx50, mx28...
-#ARGV[3]: Board Name e.g:evk...
-#ARGV[4]: Test Name e.g:ipu, vpu, sdma...
+#ARGV[2]: SOC Name e.g:mx53, mx61, ...
+#ARGV[3]: Board Name e.g:ard, smd, ...
+#ARGV[4]: Test Name e.g:ipu, vpu, sdma, ...
 
 use File::Find;
 use File::Copy;
@@ -46,18 +46,24 @@ dir:\$(SUB_DIRS) all
 include \$(PROJ_DIR)/make.rules
 EOF
 
+#Create friendly names
+my $sdk_conf_path = "$ARGV[0]";
+my $sdk_base_path = "$ARGV[1]";
+my $imx_name = "$ARGV[2]";
+my $board_name = "$ARGV[3]";
+
 #Open the configuration input file
-my $in_file = "$ARGV[0]/$ARGV[2]$ARGV[3].conf";
+my $in_file = "$sdk_conf_path/$imx_name$board_name.conf";
 if (!(open (INP_FH, $in_file))) {
     # Try if the configuration file is common for all boards for this target
-    $in_file = "$ARGV[0]/$ARGV[2].conf";
+    $in_file = "$sdk_conf_path/$imx_name.conf";
     open INP_FH, $in_file or exit 1;
 }
 
 #Delete the Makefiles
-find(\&Wanted, $ARGV[1]);
+find(\&Wanted, $sdk_base_path);
 
-copy("$ARGV[1]/makefile.in", "$ARGV[1]/makefile") or die "File cannot be copied.";
+copy("$sdk_base_path/makefile.in", "$sdk_base_path/makefile") or die "File cannot be copied.";
 
 # Read in the file one line at a time
 while (<INP_FH>) {

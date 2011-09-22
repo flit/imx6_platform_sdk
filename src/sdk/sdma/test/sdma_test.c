@@ -35,6 +35,7 @@ int sdma_test(void)
         for (idx = 0; idx < (sizeof(sdma_tests) / sizeof(sdma_test_t)); idx++) {
             printf("\t%d - %s\n", idx, sdma_tests[idx].name);
         }
+        printf("\tx - to exit.\n");
 
         do {
             sel = getchar();

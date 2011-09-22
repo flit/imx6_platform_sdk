@@ -222,6 +222,7 @@ enum lvds_panel_bit_mode {
     LVDS_PANEL_24BITS_MODE = 0x1,
 };
 
+void iomux_config(uint32_t module_base_add);
 void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);

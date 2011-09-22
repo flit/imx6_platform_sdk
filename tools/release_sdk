@@ -14,17 +14,17 @@ usage()
     echo "Only files releavant for the platform specified as argument are copied to the release folder."
     echo
     echo "Usage: "
-    echo "   $script [-target <mx28, mx50, mx53...>] [-board <evk .....>]"
+    echo "   $script [-target <mx61, mx53, ...>] [-board <ard, smd, ...>]"
     echo "   Must be executed in the diag-sdk tree. "
     echo
-    echo "For eg: 1. $script -target mx53 -board ard -test vpu"
-    echo "        2. $script -target mx28 -board evk -test sdma"
+    echo "For eg: 1. $script -target mx61 -board ard"
+    echo "        2. $script -target mx53 -board lcb"
     echo
     exit 1
 }
 
 if [ $# -lt 2 ]; then
-    echo "Need to specify -target & -board & -test as arguments"
+    echo "Need to specify -target & -board as arguments"
     echo
     echo "$script:"
     usage
@@ -54,9 +54,6 @@ while [ $# -gt 0 ]; do
     -target )   soc_name=$2
                 shift
             ;;
-	-test	)	test_name=$2
-				shift
-			;;
     -board 	)   board_name=\_$2
                 shift
             ;;
@@ -73,7 +70,7 @@ done
 release_dir=$sdk_dir/imx_sdk_release/$soc_name$board_name\_sdk_release
 
 echo "Generating Makefiles for $soc_name$board_name"
-perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $test_name
+perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name
 
 if [ $? -eq 1 ]; then
     echo
@@ -86,7 +83,7 @@ if [ $? -eq 1 ]; then
 fi
 
 echo "Copying files to Release folder"
-perl $release_perl_script $config_dir $sdk_dir $release_dir $soc_name $board_name $test_name
+perl $release_perl_script $config_dir $sdk_dir $release_dir $soc_name $board_name
 
 echo
 echo "Done...Release folder created"

@@ -54,6 +54,7 @@ int32_t audio_test(void)
         for (idx = 0; idx < (sizeof(audio_tests) / sizeof(audio_test_t)); idx++) {
             printf("\t%d - %s\n", idx, audio_tests[idx].name);
         }
+        printf("\tx - to exit.\n");
 
         do {
             sel = (uint8_t) getchar();

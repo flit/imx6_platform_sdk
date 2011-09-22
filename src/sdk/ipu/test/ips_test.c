@@ -19,6 +19,7 @@ int ipu_test(void)
     int retv;
 
     printf("\n---- Running IPU test ----\n");
+    printf("Note that the Display test is using the Hannstar LVDS panel pluged into LVDS0/1\n");
     ipu_iomux_config();
 
     retv = ipu_tests[0].test();

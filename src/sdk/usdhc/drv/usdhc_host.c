@@ -159,7 +159,7 @@ static int usdhc_check_response(int base_address)
         !(esdhc_base->interrupt_status & ESDHC_STATUS_RESP_CMD_END_BIT_ERR_MSK)) {
         status = SUCCESS;
     } else {
-        printf("Error status: 0x%x\n", esdhc_base->interrupt_status);
+        usdhc_printf("Error status: 0x%x\n", esdhc_base->interrupt_status);
 
         /* Clear CIHB and CDIHB status */
         if ((esdhc_base->present_state & ESDHC_PRESENT_STATE_CIHB) ||

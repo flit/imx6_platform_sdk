@@ -221,14 +221,14 @@ int sd_voltage_validation(int base_address)
         card_cmd_config(&cmd, CMD55, ZERO, READ, RESPONSE_48, DATA_PRESENT_NONE, ENABLE, ENABLE);
 
         if (host_send_cmd(base_address, &cmd) == FAIL) {
-            printf("Send CMD55 failed.\n");
+            usdhc_printf("Send CMD55 failed.\n");
             break;
         } else {
             card_cmd_config(&cmd, ACMD41, ocr_value, READ, RESPONSE_48, DATA_PRESENT_NONE, DISABLE,
                             DISABLE);
 
             if (host_send_cmd(base_address, &cmd) == FAIL) {
-                printf("Send ACMD41 failed.\n");
+                usdhc_printf("Send ACMD41 failed.\n");
                 break;
             } else {
                 /* Check Response */

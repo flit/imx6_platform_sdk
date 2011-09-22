@@ -34,13 +34,14 @@
 #define ESDHC_PRESENT_STATE_CDIHB     ((unsigned int)0x00000002)
 
 #define ESDHC_ONE_BIT_SUPPORT         0x0000000
-#define ESDHC_CIHB_CHK_COUNT          10    /*  3ms */
-#define ESDHC_CDIHB_CHK_COUNT         330   /*  .1s */
-#define ESDHC_STATUS_CHK_TIMEOUT      300   /* .3ms */
-
-#define ESDHC_OPER_TIMEOUT_COUNT      10    /*  3ms */
-#define ESDHC_DMA_TIMEOUT_COUNT       33000 /*  10s */
 #define ESDHC_ADMA_BD_BLOCK_NUM       2000
+
+#define ESDHC_STATUS_CHK_TIMEOUT      1000  /*  1ms */
+
+#define ESDHC_CIHB_CHK_COUNT          10    /* 10ms */
+#define ESDHC_CDIHB_CHK_COUNT         100   /* 0.1s */
+#define ESDHC_OPER_TIMEOUT_COUNT      10    /* 10ms */
+#define ESDHC_DMA_TIMEOUT_COUNT       10000 /* 10s  */
 
 #define ESDHC_STATUS_END_CMD_RESP_MSK         ((unsigned int)0x00000001)
 #define ESDHC_STATUS_TRANSFER_COMPLETE_MSK    ((unsigned int)0x00000002)

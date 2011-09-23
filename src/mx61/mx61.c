@@ -101,17 +101,29 @@ extern void epit_test(void);
 extern void usdhc_test(void);
 extern void hdmi_test(void);
 extern void audio_test(void);
+extern void gic_test(void);
 
 void ALL_test(void)
 {
-    printf("Starting the tests suite...\n");
-    sdma_test();
-    ipu_test();
-    uart_test();
-    gpt_test();
-    epit_test();
-    usdhc_test();
-    hdmi_test();
-    audio_test();
-    printf("\n...end of the tests suite.\n");
+    uint8_t gic_test_done = 0;
+
+    while(1)
+    {
+        printf("Starting the tests suite...\n");
+        sdma_test();
+        ipu_test();
+        uart_test();
+        gpt_test();
+        epit_test();
+        usdhc_test();
+        hdmi_test();
+        audio_test();
+        /* GIC test can only be executed once, and requires a board reset */
+        if(gic_test_done == 0)
+        {
+            gic_test_done = 0xFF;
+            gic_test();
+        }
+        printf("\n...end of the tests suite.\n");
+    }
 }

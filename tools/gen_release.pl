@@ -82,8 +82,7 @@ for ($l=0; $l < $num_of_sub_dirs; $l++) {
 copy_release_files("src/include");
 copy_release_files("src/include/$imx_name");
 copy_release_files("src/cortex_a9");
-#copy_release_files("tools/linux");
-#copy_release_files("tools/windows");
+copy_release_files("tools/windows");
 
 #Create the tools and rvd directory
 mkpath("$release_path/tools/rvd");

@@ -11,9 +11,6 @@ Source code formatting tools - src-format
 
 Program sdk image to a SD card on Windows using USB card reader
 ----------------------------------------------------------------
-    1. For the i.MX28 EVK board, use:
-           cfimager.exe -f ./output/mx28/bin/mx28-sdk.sb -d xyz
-       where xyz refer to the drive letter assigned by Windows.
-    2. For other i.MX boards such as MX53 EVK, use:
-           cfimager-imx.exe -o 0 -f ./output/mx53/bin/diag-sdk-mx53evk.bin -d xyz
+    1. For the i.MX boards such as MX61 ARD, use:
+           cfimager-imx.exe -o 0 -f ./output/mx61/bin/mx61ard-ALL-sdk.bin -d xyz
        where xyz refer to the drive letter assigned by Windows.

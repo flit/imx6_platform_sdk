@@ -63,14 +63,6 @@ while (<INP_FH>) {
     }
 }
 
-#copy all the files related, covering all the sub directories.
-#copy_release_files("src/sdk");
-#copy_release_files("src/sdk/$tested_module");
-#my @elements = list_sub_dirs("src/sdk/$tested_module");
-#foreach my $e (@elements)
-#{
-#    push (@sub_dir_elements, $e);
-#}
 #Remove duplicate entries in the sub-directories list
 my %rem_dup;
 @rem_dup{ @sub_dir_elements } = ();

@@ -104,6 +104,7 @@ extern void audio_test(void);
 
 void ALL_test(void)
 {
+    printf("Starting the tests suite...\n");
     sdma_test();
     ipu_test();
     uart_test();
@@ -112,4 +113,5 @@ void ALL_test(void)
     usdhc_test();
     hdmi_test();
     audio_test();
+    printf("\n...end of the tests suite.\n");
 }

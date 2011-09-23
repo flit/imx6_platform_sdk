@@ -198,7 +198,9 @@ void show_ddr_config(void)
 extern void uart2_iomux_config();
 extern void uart4_iomux_config();
 
-/* That function calls the board dependent IOMUX configuration functions */
+/*!
+ * That function calls the board dependent IOMUX configuration functions
+ */
 void iomux_config(uint32_t module_base_add)
 {
     switch (module_base_add) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,8 +8,8 @@
 // File: i2c3_iomux_config.c
 
 #include <io.h>
-#include "imx6dq_iomux_define.h"
-#include "imx6dq_iomux_register.h"
+#include <iomux_define.h>
+#include <iomux_register.h>
 
 // Function to config iomux for instance i2c3.
 void i2c3_iomux_config(void)
@@ -34,7 +34,7 @@ void i2c3_iomux_config(void)
     //     ALT6 (6) - Select mux mode: ALT6 mux port: SCL of instance: i2c3.
     //                NOTE: - Config Register IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT for mode ALT6.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: EVENTI of instance: cheetah.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT6 & 0x7), IOMUXC_SW_MUX_CTL_PAD_GPIO_5);
+    writel((SION_ENABLED & 0x1) << 4 | (ALT6 & 0x7), IOMUXC_SW_MUX_CTL_PAD_GPIO_5);
     // Pad GPIO_5 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT(0x020E08A8)
@@ -44,7 +44,7 @@ void i2c3_iomux_config(void)
     //     SEL_EIM_D17_ALT6 (0) - Selecting Pad: EIM_D17 for Mode: ALT6.
     //     SEL_GPIO_3_ALT2 (1) - Selecting Pad: GPIO_3 for Mode: ALT2.
     //     SEL_GPIO_5_ALT6 (2) - Selecting Pad: GPIO_5 for Mode: ALT6.
-    writel((SEL_EIM_D17_ALT6 & 0x3), IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT);
+    writel((SEL_GPIO_5_ALT6 & 0x3), IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_GPIO_5(0x020E060C)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -114,7 +114,7 @@ void i2c3_iomux_config(void)
     //     ALT6 (6) - Select mux mode: ALT6 mux port: SDA of instance: i2c3.
     //                NOTE: - Config Register IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT for mode ALT6.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: DE_B of instance: sjc.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT6 & 0x7), IOMUXC_SW_MUX_CTL_PAD_GPIO_16);
+    writel((SION_ENABLED & 0x1) << 4 | (ALT6 & 0x7), IOMUXC_SW_MUX_CTL_PAD_GPIO_16);
     // Pad GPIO_16 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT(0x020E08AC)
@@ -124,7 +124,7 @@ void i2c3_iomux_config(void)
     //     SEL_EIM_D18_ALT6 (0) - Selecting Pad: EIM_D18 for Mode: ALT6.
     //     SEL_GPIO_6_ALT2 (1) - Selecting Pad: GPIO_6 for Mode: ALT2.
     //     SEL_GPIO_16_ALT6 (2) - Selecting Pad: GPIO_16 for Mode: ALT6.
-    writel((SEL_EIM_D18_ALT6 & 0x3), IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT);
+    writel((SEL_GPIO_16_ALT6 & 0x3), IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_GPIO_16(0x020E0618)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

@@ -27,7 +27,9 @@ startup:
 #ifdef PLATFORM_ASM_STARTUP
         PLATFORM_ASM_STARTUP            // start up code in assembly
 #endif
-
+#ifdef MX61
+        b startup_imx6x
+#endif
         ldr     r0, =top_of_stacks
         msr     cpsr_c, #MODE_FIQ | F_BIT  /*| I_BIT no interrupts*/
         sub     sp, r0, #OFFSET_FIQ_STACK

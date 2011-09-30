@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,8 +8,8 @@
 // File: i2c1_iomux_config.c
 
 #include <io.h>
-#include "imx6dq_iomux_define.h"
-#include "imx6dq_iomux_register.h"
+#include <iomux_define.h>
+#include <iomux_register.h>
 
 // Function to config iomux for instance i2c1.
 void i2c1_iomux_config(void)
@@ -34,7 +34,7 @@ void i2c1_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[27] of instance: gpio5.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: MMDC_DEBUG[48] of instance: mmdc.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: TRACE[6] of instance: cheetah.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT9);
+    writel((SION_ENABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT9);
     // Pad CSI0_DAT9 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT(0x020E0898)
@@ -43,7 +43,7 @@ void i2c1_iomux_config(void)
     //               NOTE: Instance: i2c1, In Pin: ipp_scl_in
     //     SEL_EIM_D21_ALT6 (0) - Selecting Pad: EIM_D21 for Mode: ALT6.
     //     SEL_CSI0_DAT9_ALT4 (1) - Selecting Pad: CSI0_DAT9 for Mode: ALT4.
-    writel((SEL_EIM_D21_ALT6 & 0x1), IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT);
+    writel((SEL_CSI0_DAT9_ALT4 & 0x1), IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT9(0x020E064C)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -112,7 +112,7 @@ void i2c1_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[26] of instance: gpio5.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: MMDC_DEBUG[47] of instance: mmdc.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: TRACE[5] of instance: cheetah.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT8);
+    writel((SION_ENABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT8);
     // Pad CSI0_DAT8 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT(0x020E089C)
@@ -121,7 +121,7 @@ void i2c1_iomux_config(void)
     //               NOTE: Instance: i2c1, In Pin: ipp_sda_in
     //     SEL_EIM_D28_ALT1 (0) - Selecting Pad: EIM_D28 for Mode: ALT1.
     //     SEL_CSI0_DAT8_ALT4 (1) - Selecting Pad: CSI0_DAT8 for Mode: ALT4.
-    writel((SEL_EIM_D28_ALT1 & 0x1), IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT);
+    writel((SEL_CSI0_DAT8_ALT4 & 0x1), IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT8(0x020E0648)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

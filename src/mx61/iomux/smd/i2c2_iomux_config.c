@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,8 +8,8 @@
 // File: i2c2_iomux_config.c
 
 #include <io.h>
-#include "imx6dq_iomux_define.h"
-#include "imx6dq_iomux_register.h"
+#include <iomux_define.h>
+#include <iomux_register.h>
 
 // Function to config iomux for instance i2c2.
 void i2c2_iomux_config(void)
@@ -35,7 +35,7 @@ void i2c2_iomux_config(void)
     //     ALT6 (6) - Select mux mode: ALT6 mux port: IN1 of instance: spdif.
     //                NOTE: - Config Register IOMUXC_SPDIF_SPDIF_IN1_SELECT_INPUT for mode ALT6.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HADDR[5] of instance: pl301_mx63per1.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_KEY_COL3);
+    writel((SION_ENABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_KEY_COL3);
     // Pad KEY_COL3 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_I2C2_IPP_SCL_IN_SELECT_INPUT(0x020E08A0)
@@ -44,7 +44,7 @@ void i2c2_iomux_config(void)
     //               NOTE: Instance: i2c2, In Pin: ipp_scl_in
     //     SEL_EIM_EB2_ALT6 (0) - Selecting Pad: EIM_EB2 for Mode: ALT6.
     //     SEL_KEY_COL3_ALT4 (1) - Selecting Pad: KEY_COL3 for Mode: ALT4.
-    writel((SEL_EIM_EB2_ALT6 & 0x1), IOMUXC_I2C2_IPP_SCL_IN_SELECT_INPUT);
+    writel((SEL_KEY_COL3_ALT4 & 0x1), IOMUXC_I2C2_IPP_SCL_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_KEY_COL3(0x020E05E0)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -113,7 +113,7 @@ void i2c2_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[13] of instance: gpio4.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: VSELECT of instance: usdhc1.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HADDR[6] of instance: pl301_mx63per1.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_KEY_ROW3);
+    writel((SION_ENABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_KEY_ROW3);
     // Pad KEY_ROW3 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_I2C2_IPP_SDA_IN_SELECT_INPUT(0x020E08A4)
@@ -122,7 +122,7 @@ void i2c2_iomux_config(void)
     //               NOTE: Instance: i2c2, In Pin: ipp_sda_in
     //     SEL_EIM_D16_ALT6 (0) - Selecting Pad: EIM_D16 for Mode: ALT6.
     //     SEL_KEY_ROW3_ALT4 (1) - Selecting Pad: KEY_ROW3 for Mode: ALT4.
-    writel((SEL_EIM_D16_ALT6 & 0x1), IOMUXC_I2C2_IPP_SDA_IN_SELECT_INPUT);
+    writel((SEL_KEY_ROW3_ALT4 & 0x1), IOMUXC_I2C2_IPP_SDA_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_KEY_ROW3(0x020E05E4)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

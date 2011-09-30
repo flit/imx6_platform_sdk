@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,8 +8,8 @@
 // File: uart4_iomux_config.c
 
 #include <io.h>
-#include "imx6dq_iomux_define.h"
-#include "imx6dq_iomux_register.h"
+#include <iomux_define.h>
+#include <iomux_register.h>
 
 // Function to config iomux for instance uart4.
 void uart4_iomux_config(void)
@@ -45,7 +45,7 @@ void uart4_iomux_config(void)
     //     SEL_KEY_ROW0_ALT4 (1) - Selecting Pad: KEY_ROW0 for Mode: ALT4.
     //     SEL_CSI0_DAT12_ALT3 (2) - Selecting Pad: CSI0_DAT12 for Mode: ALT3.
     //     SEL_CSI0_DAT13_ALT3 (3) - Selecting Pad: CSI0_DAT13 for Mode: ALT3.
-    writel((SEL_KEY_COL0_ALT4 & 0x3), IOMUXC_UART4_IPP_UART_RXD_MUX_SELECT_INPUT);
+    writel((SEL_KEY_ROW0_ALT4 & 0x3), IOMUXC_UART4_IPP_UART_RXD_MUX_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_KEY_ROW0(0x020E05CC)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -126,7 +126,7 @@ void uart4_iomux_config(void)
     //     SEL_KEY_ROW0_ALT4 (1) - Selecting Pad: KEY_ROW0 for Mode: ALT4.
     //     SEL_CSI0_DAT12_ALT3 (2) - Selecting Pad: CSI0_DAT12 for Mode: ALT3.
     //     SEL_CSI0_DAT13_ALT3 (3) - Selecting Pad: CSI0_DAT13 for Mode: ALT3.
-    writel((SEL_KEY_COL0_ALT4 & 0x3), IOMUXC_UART4_IPP_UART_RXD_MUX_SELECT_INPUT);
+    writel((SEL_KEY_ROW0_ALT4 & 0x3), IOMUXC_UART4_IPP_UART_RXD_MUX_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_KEY_COL0(0x020E05C8)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

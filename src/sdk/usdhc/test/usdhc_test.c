@@ -38,7 +38,7 @@ int usdhc_test(void)
     printf("\n---- Running uSDHC test, type 'x' to exit.\n");
 
     do {
-#if ((defined MX61_ARD) || (defined MX61_SMD))
+#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
         printf("Make sure to insert an MMC/SD card into SD slot #3\n");
 #endif
 
@@ -79,7 +79,7 @@ static int usdhc_test_pio(void)
 {
     int retv = TRUE;
 
-#if ((defined MX61_ARD) || (defined MX61_SMD))
+#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
     /* MMC - 8 bit, SD - 4 bit  */
     retv = mmc_test(8, USDHC3_BASE_ADDR);
 #endif
@@ -93,7 +93,7 @@ static int usdhc_test_adma(void)
 
     SDHC_ADMA_mode = TRUE;
 
-#if ((defined MX61_ARD) || (defined MX61_SMD))
+#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
     /* MMC - 8 bit, SD - 4 bit  */
     retv = mmc_test(8, USDHC3_BASE_ADDR);
 #endif
@@ -109,7 +109,7 @@ static int usdhc_test_adma_intr(void)
 
     SDHC_INTR_mode = SDHC_ADMA_mode = TRUE;
 
-#if ((defined MX61_ARD) || (defined MX61_SMD))
+#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
     /* MMC - 8 bit, SD - 4 bit  */
     retv = mmc_test(8, USDHC3_BASE_ADDR);
 #endif

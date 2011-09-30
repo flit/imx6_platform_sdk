@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,8 +8,8 @@
 // File: gpio5_iomux_config.c
 
 #include <io.h>
-#include "imx6dq_iomux_define.h"
-#include "imx6dq_iomux_register.h"
+#include <iomux_define.h>
+#include <iomux_register.h>
 
 // Function to config iomux for instance gpio5.
 void gpio5_iomux_config(void)

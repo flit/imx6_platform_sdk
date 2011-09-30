@@ -66,7 +66,7 @@ plugin_start:
  * Note: The DDR settings provided below are specific to Freescale development boards and are the latest settings at the time of release.
  * However, it is recommended to contact your Freescale representative in case there are any improvements to these settings.
  */
-#ifdef MX61_ARD
+#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
     /*Use default DDR frequency: 528MHz*/
     ldr r0, =0x020c4068
     ldr r1, =0xffffffff

@@ -14,6 +14,7 @@
 
 #ifndef __HARDWARE_H__
 #define __HARDWARE_H__
+
 #include "soc_memory_map.h"
 #include "registers.h"
 #include "functions.h"
@@ -222,7 +223,7 @@ enum lvds_panel_bit_mode {
     LVDS_PANEL_24BITS_MODE = 0x1,
 };
 
-void iomux_config(uint32_t module_base_add);
+void uart_iomux_config(uint32_t module_base_add);
 void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
@@ -265,6 +266,8 @@ void usdhc_iomux_config(uint32_t);
 #define BOARD_ID_DEFAULT        0x0
 #define BOARD_ID_MX61_ARD       0x1
 #define BOARD_ID_MX61_SMD       0x2
+#define BOARD_ID_MX61_EVB       0x3
+#define BOARD_ID_MX61_QSB       0x4
 
 /* Board version */
 #define BOARD_VERSION_DEFAULT	0x0
@@ -286,6 +289,10 @@ void usdhc_iomux_config(uint32_t);
 #define BOARD_TYPE_ID           BOARD_ID_MX61_ARD
 #elif defined(MX61_SMD)
 #define BOARD_TYPE_ID           BOARD_ID_MX61_SMD
+#elif defined(MX61_EVB)
+#define BOARD_TYPE_ID           BOARD_ID_MX61_EVB
+#elif defined(MX61_QSB)
+#define BOARD_TYPE_ID           BOARD_ID_MX61_QSB
 #else
 #error Need to define a board type
 #endif

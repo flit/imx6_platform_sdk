@@ -41,6 +41,10 @@ static void mx61_print_ver(void)
         sprintf(board_name, "SABRE Auto");
     else if (BOARD_TYPE_ID == BOARD_ID_MX61_SMD)
         sprintf(board_name, "SABRE Tablet");
+    else if (BOARD_TYPE_ID == BOARD_ID_MX61_QSB)
+        sprintf(board_name, "Quick Start Board");
+    else if (BOARD_TYPE_ID == BOARD_ID_MX61_EVB)
+        sprintf(board_name, "Armadillo EVB");
     else
         sprintf(board_name, "UNKNOWN    Board ID!");
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,8 +8,8 @@
 // File: uart2_iomux_config.c
 
 #include <io.h>
-#include "imx6dq_iomux_define.h"
-#include "imx6dq_iomux_register.h"
+#include <iomux_define.h>
+#include <iomux_register.h>
 
 // Function to config iomux for instance uart2.
 void uart2_iomux_config(void)
@@ -211,7 +211,7 @@ void uart2_iomux_config(void)
     //     SEL_SD3_DAT4_ALT1 (5) - Selecting Pad: SD3_DAT4 for Mode: ALT1.
     //     SEL_SD4_DAT4_ALT2 (6) - Selecting Pad: SD4_DAT4 for Mode: ALT2.
     //     SEL_SD4_DAT7_ALT2 (7) - Selecting Pad: SD4_DAT7 for Mode: ALT2.
-    writel((SEL_EIM_D26_ALT4 & 0x7), IOMUXC_UART2_IPP_UART_RXD_MUX_SELECT_INPUT);
+    writel((SEL_EIM_D27_ALT4 & 0x7), IOMUXC_UART2_IPP_UART_RXD_MUX_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D27(0x020E03D4)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -294,7 +294,7 @@ void uart2_iomux_config(void)
     //     SEL_SD3_DAT4_ALT1 (5) - Selecting Pad: SD3_DAT4 for Mode: ALT1.
     //     SEL_SD4_DAT4_ALT2 (6) - Selecting Pad: SD4_DAT4 for Mode: ALT2.
     //     SEL_SD4_DAT7_ALT2 (7) - Selecting Pad: SD4_DAT7 for Mode: ALT2.
-    writel((SEL_EIM_D26_ALT4 & 0x7), IOMUXC_UART2_IPP_UART_RXD_MUX_SELECT_INPUT);
+    writel((SEL_EIM_D27_ALT4 & 0x7), IOMUXC_UART2_IPP_UART_RXD_MUX_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D26(0x020E03D0)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

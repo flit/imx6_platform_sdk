@@ -56,6 +56,12 @@ endif
 ifeq "$(BOARD)" "smd"
 C_DEFINES +=-DMX61_SMD
 endif
+ifeq "$(BOARD)" "evb"
+C_DEFINES +=-DMX61_EVB
+endif
+ifeq "$(BOARD)" "qsb"
+C_DEFINES +=-DMX61_QSB
+endif
 endif
 
 ifeq "$(BOARD_VERSION)" "2"

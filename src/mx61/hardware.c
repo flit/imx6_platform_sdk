@@ -14,6 +14,7 @@
 
 #include <math.h>
 #include "hardware.h"
+#include <iomux_config.h>
 
 extern int32_t board_id;
 
@@ -201,7 +202,7 @@ extern void uart4_iomux_config();
 /*!
  * That function calls the board dependent IOMUX configuration functions
  */
-void iomux_config(uint32_t module_base_add)
+void uart_iomux_config(uint32_t module_base_add)
 {
     switch (module_base_add) {
     case UART2_BASE_ADDR:
@@ -223,35 +224,17 @@ void io_cfg_i2c(uint32_t module_base)
 {
     switch (module_base) {
     case I2C1_BASE_ADDR:
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT9, ALT4 | 0x10);
-        reg32_write(IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT, 0x1);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT9, 0x1b8b0);
-
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT8, ALT4 | 0x10);
-        reg32_write(IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT, 0x1);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT8, 0x1b8b0);
+        i2c1_iomux_config();
 
         break;
 
     case I2C2_BASE_ADDR:
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL3, ALT4 | 0x10);
-        reg32_write(IOMUXC_I2C2_IPP_SCL_IN_SELECT_INPUT, 0x1);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_KEY_COL3, 0x1b8b0);
-
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_ROW3, ALT4 | 0x10);
-        reg32_write(IOMUXC_I2C2_IPP_SDA_IN_SELECT_INPUT, 0x1);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_KEY_ROW3, 0x1b8b0);
+        i2c2_iomux_config();
 
         break;
 
     case I2C3_BASE_ADDR:
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_5, ALT6 | 0x10);
-        reg32_write(IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT, 0x2);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_GPIO_5, 0x1b8b0);
-
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_16, ALT6 | 0x10);
-        reg32_write(IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT, 0x2);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_GPIO_16, 0x1b8b0);
+        i2c3_iomux_config();
         break;
     default:
         break;
@@ -264,137 +247,7 @@ void io_cfg_i2c(uint32_t module_base)
  */
 void ipu_iomux_config(void)
 {
-    // config DI0_DISP_CLK pad for ipu1 instance DI0_DISP_CLK port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_DISP_CLK, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_DISP_CLK, 0x000b1);
-
-    // config DI0_PIN15 pad for ipu1 instance DI0_PIN15 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN15, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN15, 0x000b1);
-
-    // config DI0_PIN2 pad for ipu1 instance DI0_PIN2 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN2, 0x000b1);
-
-    // config DI0_PIN3 pad for ipu1 instance DI0_PIN3 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN3, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN3, 0x000b1);
-
-    // config DI0_PIN4 pad for ipu1 instance DI0_PIN4 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DI0_PIN4, 0x000b1);
-
-    // config DISP0_DAT0 pad for ipu1 instance DISP0_DAT[0] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT0, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT0, 0x010b1);
-
-    // config DISP0_DAT1 pad for ipu1 instance DISP0_DAT[1] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT1, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT1, 0x010b1);
-
-    // config DISP0_DAT2 pad for ipu1 instance DISP0_DAT[2] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT2, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT2, 0x010b1);
-
-    // config DISP0_DAT3 pad for ipu1 instance DISP0_DAT[3] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT3, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT3, 0x010b1);
-
-    // config DISP0_DAT4 pad for ipu1 instance DISP0_DAT[4] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT4, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT4, 0x010b1);
-
-    // config DISP0_DAT5 pad for ipu1 instance DISP0_DAT[5] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT5, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT5, 0x010b1);
-
-    // config DISP0_DAT6 pad for ipu1 instance DISP0_DAT[6] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT6, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT6, 0x010b1);
-
-    // config DISP0_DAT7 pad for ipu1 instance DISP0_DAT[7] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT7, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT7, 0x010b1);
-
-    // config DISP0_DAT8 pad for ipu1 instance DISP0_DAT[8] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT8, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT8, 0x010b1);
-
-    // config DISP0_DAT9 pad for ipu1 instance DISP0_DAT[9] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT9, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT9, 0x010b1);
-
-    // config DISP0_DAT10 pad for ipu1 instance DISP0_DAT[10] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT10, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT10, 0x010b1);
-
-    // config DISP0_DAT11 pad for ipu1 instance DISP0_DAT[11] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT11, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT11, 0x010b1);
-
-    // config DISP0_DAT12 pad for ipu1 instance DISP0_DAT[12] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT12, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT12, 0x010b1);
-
-    // config DISP0_DAT13 pad for ipu1 instance DISP0_DAT[13] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT13, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT13, 0x010b1);
-
-    // config DISP0_DAT14 pad for ipu1 instance DISP0_DAT[14] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT14, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT14, 0x010b1);
-
-    // config DISP0_DAT15 pad for ipu1 instance DISP0_DAT[15] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT15, 0x010b1);
-
-    // config DISP0_DAT16 pad for ipu1 instance DISP0_DAT[16] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT16, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT16, 0x010b1);
-
-    // config DISP0_DAT17 pad for ipu1 instance DISP0_DAT[17] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT17, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT17, 0x010b1);
-
-    // config DISP0_DAT18 pad for ipu1 instance DISP0_DAT[18] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT18, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT18, 0x010b1);
-
-    // config DISP0_DAT19 pad for ipu1 instance DISP0_DAT[19] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT19, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT19, 0x010b1);
-
-    // config DISP0_DAT20 pad for ipu1 instance DISP0_DAT[20] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT20, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT20, 0x010b1);
-
-    // config DISP0_DAT21 pad for ipu1 instance DISP0_DAT[21] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT21, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT21, 0x010b1);
-
-    // config DISP0_DAT22 pad for ipu1 instance DISP0_DAT[22] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT22, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT22, 0x010b1);
-
-    // config DISP0_DAT23 pad for ipu1 instance DISP0_DAT[23] port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT23, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT23, 0x010b1);
-
-    // config EIM_D16 pad for ipu1 instance DI0_PIN5 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D16, ALT2);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D16, 0x000b1);
-
-    // config EIM_D17 pad for ipu1 instance DI0_PIN6 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D17, ALT2);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D17, 0x000b1);
-
-    // config EIM_D18 pad for ipu1 instance DI0_PIN7 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D18, ALT2);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D18, 0x000b1);
-
-    // config EIM_D19 pad for ipu1 instance DI0_PIN8 port
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D19, ALT2);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_D19, 0x000b1);
+    ipu1_iomux_config();
 }
 
 /*!
@@ -495,89 +348,12 @@ void usdhc_iomux_config(uint32_t base_address)
         break;
 
     case USDHC3_BASE_ADDR:
-
-        /* CMD */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_CMD);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_CMD);
-
-        /* CLK */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_CLK);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_CLK);
-
-        /* DATA0 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT0);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT0);
-
-        /* DATA1 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT1);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT1);
-
-        /* DATA2 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT2);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT2);
-
-        /* DATA3 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT3);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT3);
-
-        /* DATA4 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT4);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT4);
-
-        /* DATA5 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT5);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT5);
-
-        /* DATA6 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT6);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT6);
-
-        /* DATA7 */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD3_DAT7);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD3_DAT7);
+        usdhc3_iomux_config();
         break;
 
     case USDHC4_BASE_ADDR:
 
-        /* CMD */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD4_CMD);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_CMD);
-
-        /* CLK */
-        writel(0x10 | ALT0, IOMUXC_SW_MUX_CTL_PAD_SD4_CLK);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_CLK);
-
-        /* DATA0 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT0);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT0);
-
-        /* DATA1 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT1);
-
-        /* DATA2 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT2);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT2);
-
-        /* DATA3 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT3);
-
-        /* DATA4 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT4);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT4);
-
-        /* DATA5 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT5);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT5);
-
-        /* DATA6 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT6);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT6);
-
-        /* DATA7 */
-        writel(0x10 | ALT1, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT7);
-        writel(0x70F0, IOMUXC_SW_PAD_CTL_PAD_SD4_DAT7);
+        usdhc4_iomux_config();
         break;
 
     default:
@@ -596,130 +372,13 @@ void SGTL5000PowerUp_and_clockinit(void)
 /* Configure iomux for ESAI */
 void esai_io_cfg(void)
 {
-#ifdef MX61_ARD
-    /* Select ALT2 mode of FEC_REF_CLK for ESAI1_FSR */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_REF_CLK);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT);
-
-    /* Select ALT2 mode of FEC_RXD1 for ESAI1_FST */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_RXD1);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT);
-
-    /* Select ALT2 mode of FEC_RXD0 for ESAI1_HCKT */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_RXD0);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT);
-
-    /* Select ALT2 mode of FEC_MDIO for ESAI1_SCKR */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_MDIO);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKR_SELECT_INPUT);
-
-    /* Select ALT2 mode of FEC_CRS_DV for ESAI1_SCKT */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_CRS_DV);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT);
-
-    /* Select ALT2 mode of NANDF_CS2 for ESAI1_TX0 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
-    writel(0x1, IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT);    //daisy chain
-
-    /* Select ALT2 mode of NANDF_CS2 for ESAI1_TX1 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3);
-    writel(0x1, IOMUXC_ESAI1_IPP_IND_SDO1_SELECT_INPUT);    //daisy chain
-
-    /* Select ALT0 mode of GPIO_5 for ESAI1_TX2_RX3 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_TXD1);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT);
-
-    /* Select ALT2 mode of FEC_TXEN for ESAI1_TX3_RX2 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_TX_EN);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO3_SDI2_SELECT_INPUT);
-
-    /* Select ALT2 mode of FEC_TXD0 for ESAI1_TX4_RX1 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_TXD0);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO4_SDI1_SELECT_INPUT);
-    /* Select ALT0 mode of ENET_TXD0 for ESAI1_TX5_RX0 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_MDC);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO5_SDI0_SELECT_INPUT);
-#else
-    /* Select ALT2 mode of FEC_RXD0 for ESAI1_HCKT */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_RXD0);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT);    //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_RXD0);    // default at reset
-
-    /* Select ALT2 mode of FEC_RXD1 for ESAI1_FST */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_RXD1);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT); //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_RXD1);    // default at reset
-
-    /* Select ALT2 mode of FEC_TXEN for ESAI1_TX3_RX2 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_TX_EN);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO3_SDI2_SELECT_INPUT);   //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_TX_EN);   // default at reset
-
-    /* Select ALT2 mode of FEC_TXD0 for ESAI1_TX4_RX1 */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_TXD0);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO4_SDI1_SELECT_INPUT);   //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_TXD0);    // default at reset
-
-    /* Select ALT2 mode of FEC_MDIO for ESAI1_SCKR */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_MDIO);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKR_SELECT_INPUT);    //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_MDIO);    // default at reset
-
-    /* Select ALT2 mode of FEC_REF_CLK for ESAI1_FSR */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_REF_CLK);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT); //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_FEC_REF_CLK); // default at reset
-
-    /* Select ALT0 mode of GPIO_8 for ESAI1_TX5_RX0 */
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_GPIO_8);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO5_SDI0_SELECT_INPUT);   //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_GPIO_8);  // default at reset
-
-    /* Select ALT0 mode of GPIO_5 for ESAI1_TX2_RX3 */
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_GPIO_5);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT);   //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_GPIO_5);  // default at reset
-    /* Select ALT2 mode of FEC_CRS_DV for ESAI1_SCKT */
-    writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_CRS_DV);
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT);    //daisy chain
-
-    /* Select ALT3 mode of NANDF_CS2 for ESAI1_TX0 */
-    if (BOARD_ID_MX61_ARD == board_id) {
-        writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
-    } else {
-        writel(ALT3, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
-    }
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT);    //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2);   // default at reset
-
-    /* Select ALT3 mode of NANDF_CS3 for ESAI1_TX1 */
-    if (BOARD_ID_MX61_ARD == board_id) {
-        writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3);
-    } else {
-        writel(ALT3, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3);
-    }
-    writel(0x0, IOMUXC_ESAI1_IPP_IND_SDO1_SELECT_INPUT);    //daisy chain
-//    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3);   // default at reset
-
-    if (BOARD_ID_MX61_ARD == board_id) {
-        /* Select ALT2 mode of ENET_RX_ER for GPIO - ESAI_HCKR */
-        writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_ENET_RX_ER);
-        writel(0x0, IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT);    //daisy chain
-    } else {
-        /* Select ALT1 mode of PATA_DATA4 for GPIO2_0 -ESAI_INT */
-        /* active high input */
-        writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DATA4);
-    }
-//  writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_PATA_DATA4);
-    gpio_dir_config(GPIO_PORT2, 0, GPIO_GDIR_INPUT);
-
-#endif
+    esai1_iomux_config();
 }
 
 void esai_clk_sel_gate_on()
 {
     uint32_t val = 0;
-#ifdef MX61_ARD
+#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
     val = readl(CCM_CSCMR2);
     val &= ~(0x03 << 19);
     val |= 0x01 << 19;          //source from PLL3_508

@@ -14,7 +14,6 @@
 
 #include <math.h>
 #include "hardware.h"
-#include <iomux_config.h>
 
 extern int32_t board_id;
 
@@ -280,7 +279,6 @@ void hdmi_tx_cec_pgm_iomux(void)
     // Pad EIM_A25 is involved in Daisy Chain.
     reg32_write(IOMUXC_HDMI_TX_ICECIN_SELECT_INPUT, 0x0);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_A25, 0x1f8b0);
-
 }
 
 /*!
@@ -300,7 +298,6 @@ void hdmi_tx_ddc_pgm_iomux(void)
     // Pad KEY_ROW3 is involved in Daisy Chain.
     reg32_write(IOMUXC_HDMI_TX_II2C_MSTH13TDDC_SDAIN_SELECT_INPUT, 0x1);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_KEY_ROW3, 0x1f8b0);
-
 }
 
 /*!
@@ -316,7 +313,6 @@ void hdmi_tx_phydtb_pgm_iomux(void)
     // config SD1_DAT0 pad for hdmi_tx instance OPHYDTB[1] port
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0, ALT6);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD1_DAT0, 0x000b1);
-
 }
 
 /*!
@@ -395,7 +391,7 @@ void esai_clk_sel_gate_on()
  */
 int esai_codec_power_on(void)
 {
-    //No need do anything for mx61_ard
+    //No need to do anything for mx61_ard
     return 0;
 }
 

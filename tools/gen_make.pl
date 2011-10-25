@@ -44,6 +44,7 @@ dir:\$(SUB_DIRS) all
 	make -S -C \$@ dir
 
 include \$(PROJ_DIR)/make.rules
+
 EOF
 
 #Create friendly names

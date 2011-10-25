@@ -26,7 +26,6 @@ int32_t epit_test(void)
     printf("Start EPIT unit tests:");
 
     do {
-
         printf("\n  1 - for delay test.\n");
         printf("  2 - for tick test.\n");
         printf("  x - to exit.\n\n");

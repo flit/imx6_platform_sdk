@@ -6,8 +6,8 @@
 */
 
 /*!
- * @file  sys.c
- * @brief The system utility functions for the diagnostics environment.
+ * @file  system_util.c
+ * @brief The system utility functions for the environment.
  *
  * @ingroup diag_util
  */
@@ -175,11 +175,9 @@ int _write(int fd, char *buf, int nbytes)
 
     for (i = 0; i < nbytes; i++) {
         if (*(buf + i) == '\n') {
-            /* fd is incorrectly passed as arguments, as FILE is not used, but needed for build */
-            fputc('\r', (FILE *) &fd);
+            fputc('\r', NULL);
         }
-        /* fd is incorrectly passed as arguments, as FILE is not used, but needed for build */
-        fputc(*(buf + i), (FILE *) &fd);
+        fputc(*(buf + i), NULL);
     }
 
     return nbytes;
@@ -208,7 +206,6 @@ void mybkpt(void)
 /*!
  * This function waits for an input char to be received from the UART. Once a char is received,
  * it tests against the passed in char and return 0 if they don't match. 
- * It is mostly used before conducting each test.
  * @param   c   the input character to be expected (NOT case sensitive)
  * @return  0   if input char doesn't match with c
  *          non-zero otherwise
@@ -238,3 +235,45 @@ int32_t is_input_char(uint8_t c)
     else
         return 0;
 }
+
+uint32_t get_input_hex(void)
+{
+    uint8_t tmp[8];
+    uint8_t recvCh, q;
+
+    printf("Enter up to a 8-digit HEX value, e.g. 1A2B3C4D, then hit enter.\n");
+
+    for(q=0;q<8;q++)
+        tmp[q] = 0;
+
+    q = 0;
+    do {
+        recvCh = fgetc(NULL);
+        if (recvCh != NONE_CHAR) {
+            if (recvCh >= '0' && recvCh <= '9') {
+                tmp[q] = recvCh - '0';
+            }
+            else if (recvCh >= 'a' && recvCh <= 'f') {
+                tmp[q] = recvCh - 'a' + 10;
+            }
+            else if (recvCh >= 'A' && recvCh <= 'F') {
+                tmp[q] = recvCh - 'A' + 10;
+            }
+            else {
+                if ((recvCh == '\n') || (recvCh == '\r'))
+                    break;
+                else {
+                    printf("\nNot a valid input, valid inputs are [0-9,a-f,A-F]\n");
+                    continue;
+                }
+            }
+        fputc(recvCh, NULL);
+        q++;
+        }
+    } while (1);
+
+    return (uint32_t) tmp[0] * 0x10000000 + tmp[1] * 0x1000000 + tmp[2] * 0x100000
+                      + tmp[3] * 0x10000 + tmp[4] * 0x1000 + tmp[5] * 0x100
+                      + tmp[6] * 0x10 + tmp[7];
+}
+

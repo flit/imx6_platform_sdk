@@ -19,13 +19,14 @@
 #include "registers.h"
 #include "functions.h"
 #include "io.h"
+#include "system_util.h"
+#include "iomux_config.h"
 #include "iomux_define.h"
 #include "iomux_register.h"
 #include "gpio.h"
 #include "interrupt.h"
 #include "gic.h"
 #include "ccm_pll.h"
-#include "iim_fuse.h"
 #include "imx_i2c.h"
 #include "imx_uart.h"
 #include "imx_spi.h"
@@ -237,6 +238,7 @@ void imx_enet_setup(void);
 void esai_iomux(void);
 void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
+void usdhc_iomux_config(uint32_t);
 
 #define MAX_GPIO_PORT   7
 const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
@@ -260,7 +262,7 @@ extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t);
 
-void usdhc_iomux_config(uint32_t);
+
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

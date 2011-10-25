@@ -99,8 +99,6 @@ struct hw_module {
 
 typedef int32_t (*sdk_test_t) (void);
 
-void _sys_exit(int32_t return_code);
-
 #define TEST_PASSED     0
 #define TEST_FAILED     -1
 #define TEST_BYPASSED   2

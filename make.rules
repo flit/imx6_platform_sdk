@@ -9,11 +9,7 @@ A_DEFINES 	+= $(MODULE_A_DEFINES)
 
 all: $(MODULE_OUT) $(MODULE_OBJS)
 ifneq "$(MODULE)" "init"
-ifeq "$(TARGET)" "mx28"
 		$(AR) -rucs $(TARGET_LIB) $(MODULE_OBJS)
-else
-		$(AR) -rucs $(TARGET_LIB) $(MODULE_OBJS)
-endif
 endif
 	
 	

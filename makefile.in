@@ -21,12 +21,9 @@ export TARGET_LIB
 export TARGET_LIB_DIR
 export TARGET_BIN_DIR
 
-
-
 include make.def
 
 SUB_DIRS := src
-
 
 .PHONY: default clean bin
 default: build_dir $(SUB_DIRS) all bin

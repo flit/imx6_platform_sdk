@@ -30,3 +30,4 @@ $(SUB_DIRS):
 	make -S -C $@ dir
 
 include $(PROJ_DIR)/make.rules
+

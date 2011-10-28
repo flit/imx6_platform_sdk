@@ -166,7 +166,6 @@ int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t
          */
 
         Delay4Busy();
-//        HW_OCOTP_CTRL_WR(HW_OCOTP_CTRL_RD() | BM_OCOTP_CTRL_RELOAD_SHADOWS);
     }
 
   done:

@@ -15,6 +15,7 @@ uint32_t get_int(void);
 
 /*! 
  * OCOTP test.
+ * This test allows to read or write a fuse location.
  *
  * @return  none
  */
@@ -39,7 +40,12 @@ int32_t ocotp_test(void)
             break;
         }
 
-        printf("  Please set the bank: \n");
+        if (sel == '1')
+            printf("Go to sense function...\n");
+        if (sel == '2')
+            printf("Go to blow function...\n");
+
+        printf("Please set the bank (1,2,...): \n");
         do {
             bank = getchar();
         } while (bank == NONE_CHAR);
@@ -47,7 +53,7 @@ int32_t ocotp_test(void)
         bank -= 0x30;
         printf("  %d\n",bank);
 
-        printf("  Please set the row: \n");
+        printf("Please set the row (1,2,...): \n");
         do {
             row = getchar();
         } while (row == NONE_CHAR);
@@ -55,20 +61,21 @@ int32_t ocotp_test(void)
         row -= 0x30;
         printf("  %d\n",row);
 
-        if (sel == '1')
-            printf("  Value read in bank %d / row %d is 0x%08X\n",
-                   bank, row, sense_fuse(bank, row));
-        if (sel == '2')
-        {
+        if (sel == '1') {
+            printf("Value read in bank %d / row %d is:\n", bank, row);
+            printf("0x%08X\n", sense_fuse(bank, row));
+        }
+        if (sel == '2') {
             value = get_input_hex();
 
-            printf("\n  Do you really want to blow 0x%08X in bank %d / row %d ? (Y/N)\n",
+            printf("\n !! Do you really want to blow 0x%08X in bank %d / row %d ? (Y/N)!!\n",
                    value, bank, row);
+            printf("Note that writting 0x0 is harmless.\n");
             do {
                 sel = getchar();
             } while (sel == NONE_CHAR);
-            //if((sel == 'Y') || (sel == 'y'))
-                //fuse_blow_row(bank, row, value);
+            if((sel == 'Y') || (sel == 'y'))
+                fuse_blow_row(bank, row, value);
         }
 
     } while(1);

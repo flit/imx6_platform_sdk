@@ -16,7 +16,7 @@
 #define _PLAT_STARTUP_H_
 
 #include "soc_memory_map.h"
-#define IMAGE_ENTRY_ADDR        0x80000000
+#define IMAGE_ENTRY_ADDR        0x10000000
 #define IMAGE_SIZE              4*1024*1024
 
 #define L2CC_REG1_CTRL			0x00A02100
@@ -46,7 +46,7 @@ plugin:                 .long 0x1  // Enable plugin flag
 
 /* Second IVT to give entry point into the bootloader copied to DDR */
 ivt2_header:            .long 0x402000D1    //Tag=0xD1, Len=0x0020, Ver=0x40
-app2_code_jump_v:       .long startup       // Entry point for the bootloader
+app2_code_jump_v:       .long startup_imx6x       // Entry point for the bootloader
 reserv3:                .long 0x0
 dcd2_ptr:               .long 0x0
 boot_data2_ptr:         .long boot_data2

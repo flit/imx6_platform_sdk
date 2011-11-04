@@ -11,7 +11,7 @@ ENTRY(startup_imx6x)
 
 MEMORY
 {
-    DDR (rwx) : ORIGIN = 0x80000000, LENGTH = 1024M
+    DDR (rwx) : ORIGIN = 0x10000000, LENGTH = 1024M
 }
 
 SECTIONS

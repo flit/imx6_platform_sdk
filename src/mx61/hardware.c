@@ -28,6 +28,16 @@ struct hw_module arm_core = {
     792000000,
 };
 
+#ifdef MX61_QSB
+// UART4 is the serial debug/console port
+struct hw_module g_debug_uart = {
+    "UART2 for debug",
+    UART2_BASE_ADDR,
+    80000000,
+    IMX_INT_UART2,
+    &default_interrupt_routine,
+};
+#else
 // UART4 is the serial debug/console port
 struct hw_module g_debug_uart = {
     "UART4 for debug",
@@ -36,6 +46,7 @@ struct hw_module g_debug_uart = {
     IMX_INT_UART4,
     &default_interrupt_routine,
 };
+#endif
 
 /* EPIT1 used for time functions */
 struct hw_module g_system_timer = {

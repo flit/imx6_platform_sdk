@@ -141,11 +141,6 @@ enum display_type {
     DISP_DEV_TV,
 };
 
-enum lvds_panel_bit_mode {
-    LVDS_PANEL_18BITS_MODE = 0x0,
-    LVDS_PANEL_24BITS_MODE = 0x1,
-};
-
 uint32_t get_main_clock(enum main_clocks clk);
 uint32_t get_peri_clock(enum peri_clocks clk);
 void clock_setup(uint32_t core_clk, uint32_t ahb_div);
@@ -199,7 +194,7 @@ extern int32_t is_input_char(uint8_t c);
 #define BOARD_VERSION_4	0x2
 #define BOARD_VERSION_5	0x1
 
-typedef uint32_t (*pmic_mc13892_reg_t) (uint32_t reg, uint32_t val, uint32_t write);
+typedef uint32_t(*pmic_mc13892_reg_t) (uint32_t reg, uint32_t val, uint32_t write);
 
 #define PMIC_MC13892_I2C_BASE       I2C2_BASE_ADDR
 #define PMIC_LT3589_I2C_BASE        I2C2_BASE_ADDR

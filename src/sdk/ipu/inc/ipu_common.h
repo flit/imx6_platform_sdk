@@ -30,6 +30,13 @@ enum {
     YUV,
 };
 
+enum ipu_disp_port {
+    IPU1_DI0,
+    IPU1_DI1,
+    IPU2_DI0,
+    IPU2_DI1,
+};
+
 // DI counter definitions
 #define DI_COUNTER_BASECLK 	 	0
 #define DI_COUNTER_IHSYNC   	1

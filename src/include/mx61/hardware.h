@@ -219,11 +219,6 @@ enum display_type {
     DISP_DEV_TV,
 };
 
-enum lvds_panel_bit_mode {
-    LVDS_PANEL_18BITS_MODE = 0x0,
-    LVDS_PANEL_24BITS_MODE = 0x1,
-};
-
 void uart_iomux_config(uint32_t module_base_add);
 void io_cfg_i2c(uint32_t module_base);
 void freq_populate(void);
@@ -261,8 +256,6 @@ extern void gpio_backlight_lvds_en(void);
 extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t);
-
-
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

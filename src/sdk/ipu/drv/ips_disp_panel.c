@@ -12,36 +12,7 @@
  */
 #include "ips.h"
 #include "ipu_common.h"
-
-/*!
- * lvds bridge configuration
- *
- * @param   	bit_mode:      	18 or 24bit mode selection
- */
-void ldb_config(int bit_mode)
-{
-    char recvCh = '2';
-
-    switch (recvCh) {
-    case '0':
-        /* enable DI0 on LVDS port 0 */
-        writel(0x0001 | (bit_mode << 5), IOMUXC_GPR2);
-        break;
-    case '1':
-        /* enable DI0 on LVDS port 1 */
-        writel(0x0004 | (bit_mode << 7), IOMUXC_GPR2);
-        break;
-    case '2':
-    default:
-        /* enable DI0 on both LVDS ports */
-        writel(0x0005 | (bit_mode << 5) | (bit_mode << 7), IOMUXC_GPR2);
-        break;
-    case '3':
-        /* enable DI0 on LVDS port 0 and 1 in split mode */
-        writel(0x0015 | (bit_mode << 5) | (bit_mode << 7), IOMUXC_GPR2);
-        break;
-    }
-}
+#include "../../ldb/inc/ldb_def.h"
 
 static int claa_wvga_panel_init(void)
 {
@@ -56,14 +27,13 @@ static int claa_wvga_panel_deinit(void)
 extern void ldb_iomux_config(void);
 extern void ldb_clock_config(int freq);
 extern void lvds_power_on(void);
-extern void ldb_config(int bit_mode);
 
 static int hannstar_lvds_panel_init(void)
 {
     ldb_iomux_config();
     ldb_clock_config(65000000);
     lvds_power_on();
-    ldb_config(LVDS_PANEL_18BITS_MODE);
+    ldb_config(IPU1_DI0, LVDS_DUAL_PORT, SPWG, LVDS_PANEL_18BITS_MODE);
     return true;
 }
 

@@ -8,7 +8,12 @@
 #define _IMX_SATA_H_
 
 #include "io.h"
-//#include "hardware.h"
+#include "hardware.h"
+
+typedef unsigned int u32;
+typedef unsigned short u16;
+typedef unsigned char u8;
+typedef signed int s32;
 ///////////////////////////////////////////////////////////////////
 //                      Macro Definitions                        //
 ///////////////////////////////////////////////////////////////////
@@ -37,7 +42,7 @@
 
 #define SATA_PDMA_ENABLED             1
 
-#define SATA_PORT_N_BASE_ADDRESS(n,achi_base)   ((uint32_t)achi_base+(0x100+n*0x80))
+#define SATA_PORT_N_BASE_ADDRESS(n,achi_base)   ((u32)achi_base+(0x100+n*0x80))
 
 /*SATA FIS Types Definitions*/
 #define SATA_FIS_TYPE_RFIS_H2D             0x27 //Register FIS - Host to Device
@@ -405,146 +410,147 @@ typedef enum sata_phy_ref_clk {
     OSC_25MHZ,
     OSC_50MHZ,
     FUSE_USB_PHY_CLK,
+    ANATOP_ENET_PLL,
     OSC_UNKNOWN = -1,
 } sata_phy_ref_clk_t;
 
 typedef struct hdd_identify_data {
-    uint16_t general_conf;      // 00    : general configuration
-    uint16_t num_cylinders;     // 01    : number of cylinders (default CHS trans)
-    uint16_t reserved0;         // 02    : reserved
-    uint16_t num_heads;         // 03    : number of heads (default CHS trans)
-    uint16_t num_ub_per_track;  // 04    : number of unformatted bytes per track
-    uint16_t num_ub_per_sector; // 05    : number of unformatted bytes per sector
-    uint16_t num_sectors;       // 06    : number of sectors per track (default CHS trans)
-    uint16_t num_card_sectors[2];   // 07-08 : number of sectors per card
-    uint16_t reserved1;         // 09    : reserved
-    uint16_t serial[10];        // 10-19 : serial number (string)
-    uint16_t buffer_type;       // 20    : buffer type (dual ported)
-    uint16_t buffer_size;       // 21    : buffer size in 512 increments
-    uint16_t num_ECC_bytes;     // 22    : number of ECC bytes passed on R/W Long cmds
-    uint16_t firmware_rev[4];   // 23-26 : firmware revision (string)
-    uint16_t model_num[20];     // 27-46 : model number (string)
-    uint16_t rw_mult_support;   // 47    : max number of sectors on R/W multiple cmds
-    uint16_t reserved2;         // 48    : reserved
-    uint16_t capabilities;      // 49    : LBA, DMA, IORDY support indicator
-    uint16_t reserved3;         // 50    : reserved
-    uint16_t pio_xferc_timing;  // 51    : PIO data transfer cycle timing mode
-    uint16_t dma_xferc_timing;  // 52    : single word DMA data transfer cycle timing mode
-    uint16_t cur_field_validity;    // 53    : words 54-58 validity (0 == not valid)
-    uint16_t cur_cylinders;     // 54    : number of current cylinders
-    uint16_t cur_heads;         // 55    : number of current heads
-    uint16_t cur_spt;           // 56    : number of current sectors per track
-    uint16_t cur_capacity[2];   // 57-58 : current capacity in sectors
-    uint16_t mult_sectors;      // 59    : multiple sector setting
-    uint16_t lba_total_sectors[2];  // 60-61 : total sectors in LBA mode
-    uint16_t sw_dma;            // 62    : single word DMA support
-    uint16_t mw_dma;            // 63    : multi word DMA support
-    uint16_t apio_modes;        // 64    : advanced PIO transfer mode supported
-    uint16_t min_dma_timing;    // 65    : minimum multiword DMA transfer cycle
-    uint16_t rec_dma_timing;    // 66    : recommended multiword DMA cycle
-    uint16_t min_pio_timing;    // 67    : min PIO transfer time without flow control
-    uint16_t min_pio_iordy_timing;  // 68    : min PIO transfer time with IORDY flow control
-    uint16_t reserved4[187];    // 69-255: reserved
+    u16 general_conf;           // 00    : general configuration
+    u16 num_cylinders;          // 01    : number of cylinders (default CHS trans)
+    u16 reserved0;              // 02    : reserved
+    u16 num_heads;              // 03    : number of heads (default CHS trans)
+    u16 num_ub_per_track;       // 04    : number of unformatted bytes per track
+    u16 num_ub_per_sector;      // 05    : number of unformatted bytes per sector
+    u16 num_sectors;            // 06    : number of sectors per track (default CHS trans)
+    u16 num_card_sectors[2];    // 07-08 : number of sectors per card
+    u16 reserved1;              // 09    : reserved
+    u16 serial[10];             // 10-19 : serial number (string)
+    u16 buffer_type;            // 20    : buffer type (dual ported)
+    u16 buffer_size;            // 21    : buffer size in 512 increments
+    u16 num_ECC_bytes;          // 22    : number of ECC bytes passed on R/W Long cmds
+    u16 firmware_rev[4];        // 23-26 : firmware revision (string)
+    u16 model_num[20];          // 27-46 : model number (string)
+    u16 rw_mult_support;        // 47    : max number of sectors on R/W multiple cmds
+    u16 reserved2;              // 48    : reserved
+    u16 capabilities;           // 49    : LBA, DMA, IORDY support indicator
+    u16 reserved3;              // 50    : reserved
+    u16 pio_xferc_timing;       // 51    : PIO data transfer cycle timing mode
+    u16 dma_xferc_timing;       // 52    : single word DMA data transfer cycle timing mode
+    u16 cur_field_validity;     // 53    : words 54-58 validity (0 == not valid)
+    u16 cur_cylinders;          // 54    : number of current cylinders
+    u16 cur_heads;              // 55    : number of current heads
+    u16 cur_spt;                // 56    : number of current sectors per track
+    u16 cur_capacity[2];        // 57-58 : current capacity in sectors
+    u16 mult_sectors;           // 59    : multiple sector setting
+    u16 lba_total_sectors[2];   // 60-61 : total sectors in LBA mode
+    u16 sw_dma;                 // 62    : single word DMA support
+    u16 mw_dma;                 // 63    : multi word DMA support
+    u16 apio_modes;             // 64    : advanced PIO transfer mode supported
+    u16 min_dma_timing;         // 65    : minimum multiword DMA transfer cycle
+    u16 rec_dma_timing;         // 66    : recommended multiword DMA cycle
+    u16 min_pio_timing;         // 67    : min PIO transfer time without flow control
+    u16 min_pio_iordy_timing;   // 68    : min PIO transfer time with IORDY flow control
+    u16 reserved4[187];         // 69-255: reserved
 } hdd_identify_data_t;
 
 typedef struct _disk_identify_t {
     char serial[20 + 1];        // serial number
     char firmware_rev[8 + 1];   // firmware revision
     char model_num[40 + 1];     // model number
-    uint32_t cylinders_num;     // number of cylinders         (CHS)
-    uint32_t heads_num;         // number of heads             (CHS)
-    uint32_t sectors_num;       // number of sectors per track (CHS)
-    uint32_t lba_sectors_num;   // total number of sectors in LBA mode
-    uint32_t phys_block_size;   // physical block size in sectors
-    uint32_t max_transfer;      // Maximum transfer size in bytes
+    u32 cylinders_num;          // number of cylinders         (CHS)
+    u32 heads_num;              // number of heads             (CHS)
+    u32 sectors_num;            // number of sectors per track (CHS)
+    u32 lba_sectors_num;        // total number of sectors in LBA mode
+    u32 phys_block_size;        // physical block size in sectors
+    u32 max_transfer;           // Maximum transfer size in bytes
 } disk_identify_t;
 
 typedef struct sata_disk_info {
-    uint8_t port;
-    uint8_t chan;
+    u8 port;
+    u8 chan;
 } sata_disk_info_t;
 
 typedef struct ata_dev_signature {
-    uint8_t nsect;
-    uint8_t lbal;
-    uint8_t lbam;
-    uint8_t lbah;
+    u8 nsect;
+    u8 lbal;
+    u8 lbam;
+    u8 lbah;
 } ata_dev_sig_t __attribute__ ((aligned(4)));
 
 typedef struct sata_ahci_regs {
     /*Generic Host Control */
-    volatile uint32_t cap;      //0x00, HBA Capabilities Register
-    volatile uint32_t ghc;      //0x04, Global HBA Control Register
-    volatile uint32_t is;       //0x08, Interrupt Status Register
-    volatile uint32_t pi;       //0x0c, Ports Implemented Register
-    volatile uint32_t vs;       //0x10, AHCI Version Register
-    volatile uint32_t ccc_ctl;  //0x14, Command Completion Coalescing Control
-    volatile uint32_t ccc_ports;    //0x18, Command Completion Coalescing Ports
-    volatile uint32_t rsv0[2];  //0x1c~0x23, reserved
-    volatile uint32_t cap2;     //0x24, HBA Capabilities Extended Register
-    volatile uint32_t rsv1[30]; //0x28~0x9f, reserved
+    volatile u32 cap;           //0x00, HBA Capabilities Register
+    volatile u32 ghc;           //0x04, Global HBA Control Register
+    volatile u32 is;            //0x08, Interrupt Status Register
+    volatile u32 pi;            //0x0c, Ports Implemented Register
+    volatile u32 vs;            //0x10, AHCI Version Register
+    volatile u32 ccc_ctl;       //0x14, Command Completion Coalescing Control
+    volatile u32 ccc_ports;     //0x18, Command Completion Coalescing Ports
+    volatile u32 rsv0[2];       //0x1c~0x23, reserved
+    volatile u32 cap2;          //0x24, HBA Capabilities Extended Register
+    volatile u32 rsv1[30];      //0x28~0x9f, reserved
 
     /* Vendor Specific Registers */
-    volatile uint32_t bistafis; //0xa0, BIST Activate FIS Register
-    volatile uint32_t bistctrl; //0xa4, BIST Control Register
-    volatile uint32_t bistfcnt; //0xa8, BIST FIS Count Register
-    volatile uint32_t biststs;  //0xac, BIST Status Register
-    volatile uint32_t bistdec;  //0xb0, BIST DWORD Error Count Register
-    volatile uint32_t rsv2[2];  //0xb4~0xbb, reserved
-    volatile uint32_t oobr;     //0xbc, OOB Register
-    volatile uint32_t rsv3[8];  //0xc0~0xdf, reserved
-    volatile uint32_t timer1ms; //0xe0, Timer 1-ms Register
-    volatile uint32_t rsv4;     //0xe4~0xe7, reserved
-    volatile uint32_t gparam1;  //0xe8, Global Parameter 1 Register
-    volatile uint32_t gparam2;  //0xec, Global Parameter 2 Register
-    volatile uint32_t pparam;   //0xf0, Port Parameter Register
-    volatile uint32_t test;     //0xf4, Test Register
-    volatile uint32_t version;  //0xf8, Version Register
-    volatile uint32_t id;       //0xfc, ID Register
+    volatile u32 bistafis;      //0xa0, BIST Activate FIS Register
+    volatile u32 bistctrl;      //0xa4, BIST Control Register
+    volatile u32 bistfcnt;      //0xa8, BIST FIS Count Register
+    volatile u32 biststs;       //0xac, BIST Status Register
+    volatile u32 bistdec;       //0xb0, BIST DWORD Error Count Register
+    volatile u32 rsv2[2];       //0xb4~0xbb, reserved
+    volatile u32 oobr;          //0xbc, OOB Register
+    volatile u32 rsv3[8];       //0xc0~0xdf, reserved
+    volatile u32 timer1ms;      //0xe0, Timer 1-ms Register
+    volatile u32 rsv4;          //0xe4~0xe7, reserved
+    volatile u32 gparam1;       //0xe8, Global Parameter 1 Register
+    volatile u32 gparam2;       //0xec, Global Parameter 2 Register
+    volatile u32 pparam;        //0xf0, Port Parameter Register
+    volatile u32 test;          //0xf4, Test Register
+    volatile u32 version;       //0xf8, Version Register
+    volatile u32 id;            //0xfc, ID Register
 } sata_ahci_regs_t;
 
 typedef struct sata_port_regs {
-    volatile uint32_t clb;      //0x00, Command List Base Address Register
-    volatile uint32_t clbu;     //0x04, Command List Base Address Upper 32-bit Register
-    volatile uint32_t fb;       //0x08, FIS Base Address Register
-    volatile uint32_t fbu;      //0x0c, FIS Base Address Upper 32-bit Register
-    volatile uint32_t is;       //0x10, Interrupt Status Register
-    volatile uint32_t ie;       //0x14, Interrupt Enable Register
-    volatile uint32_t cmd;      //0x18, Command Register
-    volatile uint32_t rsv0;     //0x1c, reserved
-    volatile uint32_t tfd;      //0x20, Task File Data Register
-    volatile uint32_t sig;      //0x24, Signature Register
-    volatile uint32_t ssts;     //0x28, Serial ATA Status Register
-    volatile uint32_t sctl;     //0x2c, Serial ATA Control Register
-    volatile uint32_t serr;     //0x30, Serial ATA Error Register
-    volatile uint32_t sact;     //0x34, Serial ATA Active Register
-    volatile uint32_t ci;       //0x38, Command Issue Register
-    volatile uint32_t sntf;     //0x3c, Serial ATA Notification Register
-    volatile uint32_t rsv1[12]; //0x40, reserved
-    volatile uint32_t dmacr;    //0x70, DMA Control Register
-    volatile uint32_t rsv2;     //0x74, reserved
-    volatile uint32_t phycr;    //0x78, PHY Control Register
-    volatile uint32_t physr;    //0x7c, PHY Status Register
+    volatile u32 clb;           //0x00, Command List Base Address Register
+    volatile u32 clbu;          //0x04, Command List Base Address Upper 32-bit Register
+    volatile u32 fb;            //0x08, FIS Base Address Register
+    volatile u32 fbu;           //0x0c, FIS Base Address Upper 32-bit Register
+    volatile u32 is;            //0x10, Interrupt Status Register
+    volatile u32 ie;            //0x14, Interrupt Enable Register
+    volatile u32 cmd;           //0x18, Command Register
+    volatile u32 rsv0;          //0x1c, reserved
+    volatile u32 tfd;           //0x20, Task File Data Register
+    volatile u32 sig;           //0x24, Signature Register
+    volatile u32 ssts;          //0x28, Serial ATA Status Register
+    volatile u32 sctl;          //0x2c, Serial ATA Control Register
+    volatile u32 serr;          //0x30, Serial ATA Error Register
+    volatile u32 sact;          //0x34, Serial ATA Active Register
+    volatile u32 ci;            //0x38, Command Issue Register
+    volatile u32 sntf;          //0x3c, Serial ATA Notification Register
+    volatile u32 rsv1[12];      //0x40, reserved
+    volatile u32 dmacr;         //0x70, DMA Control Register
+    volatile u32 rsv2;          //0x74, reserved
+    volatile u32 phycr;         //0x78, PHY Control Register
+    volatile u32 physr;         //0x7c, PHY Status Register
 } sata_port_regs_t;
 
 /*SATA AHCI FIS Organization, 256 Bytes*/
 typedef struct SATA_RX_FIS_STRUCT {
-    uint32_t dsfis[7];          //@00h~1Bh, DMA Setup FIS
-    uint32_t rsv0;              //@1Ch~1Fh, Reserved
-    uint32_t psfis[5];          //@20h~33h, PID Setup FIS
-    uint32_t rsv1[2];           //@34h~3Fh, Reserved
-    uint32_t rfis[5];           //@40h~53h, D2H Register FIS
-    uint32_t rsv2;              //@54h~57h, Reserved
-    uint32_t sdbfis[2];         //@58h~5Fh, Set Device Bits FIS
-    uint32_t ufis[16];          //@60h~9Fh, Unknown FIS
-    uint32_t rsv3[25];          //@A0h~FFh, Reserved
+    u32 dsfis[7];               //@00h~1Bh, DMA Setup FIS
+    u32 rsv0;                   //@1Ch~1Fh, Reserved
+    u32 psfis[5];               //@20h~33h, PID Setup FIS
+    u32 rsv1[2];                //@34h~3Fh, Reserved
+    u32 rfis[5];                //@40h~53h, D2H Register FIS
+    u32 rsv2;                   //@54h~57h, Reserved
+    u32 sdbfis[2];              //@58h~5Fh, Set Device Bits FIS
+    u32 ufis[16];               //@60h~9Fh, Unknown FIS
+    u32 rsv3[25];               //@A0h~FFh, Reserved
 } sata_rx_fis_t;
 
 /*SATA Command List Entry - Command Header, 32 Bytes*/
 typedef struct SATA_COMMAND_HEADER_STRUCT {
     /*DW0 */
     union {
-        uint32_t u;             //Description Information
+        u32 u;                  //Description Information
         struct {
             unsigned cfl:5;     //Bit4:0, Command FIS Length
             unsigned atapi:1;   //Bit5, ATAPI
@@ -560,30 +566,30 @@ typedef struct SATA_COMMAND_HEADER_STRUCT {
     } info;
 
     /*DW1 */
-    uint32_t prdbc;             //Physical Region Descriptor Byte Count
+    u32 prdbc;                  //Physical Region Descriptor Byte Count
 
     /*DW2 */
-    uint32_t ctba;              //Command Table Descriptor Base Address, bit6~0 must be zero
+    u32 ctba;                   //Command Table Descriptor Base Address, bit6~0 must be zero
 
     /*DW3 */
-    uint32_t ctba_u;            //Command Table Descriptor Base Address Upper 32bit
+    u32 ctba_u;                 //Command Table Descriptor Base Address Upper 32bit
 
     /*DW4~DW7 */
-    uint32_t rsv1[4];           //Reserved
+    u32 rsv1[4];                //Reserved
 } sata_command_header_t;
 
 /*SATA Physical Region Descriptor, 16 Bytes*/
 typedef struct SATA_PHYSICAL_REGION_DESCRIPTOR {
     /*DW0 */
-    uint32_t dba;               //Data Base Address, bit0 must be zero
+    u32 dba;                    //Data Base Address, bit0 must be zero
     /*DW1 */
-    uint32_t dbau;              //Data Base Address Upper 32-bits
+    u32 dbau;                   //Data Base Address Upper 32-bits
     /*DW2 */
-    uint32_t rsv;               //Reserved
+    u32 rsv;                    //Reserved
     /*DW3
        union
        {
-       uint32_t u;               //Description Information
+       u32 u;               //Description Information
        struct
        {
        unsigned dbc :22;               //Data Byte Count, Bit 0 must be one
@@ -592,35 +598,35 @@ typedef struct SATA_PHYSICAL_REGION_DESCRIPTOR {
        } field;
        } info
      */
-    uint32_t dbc_ioc;
+    u32 dbc_ioc;
 } sata_prd_t;
 
 /* SATA Command FIS, this structure will cover all the FIS types*/
 typedef struct SATA_COMMAND_FIS {
-    uint8_t fisType;
-    uint8_t pmPort_Cbit;
-    uint8_t command;
-    uint8_t features;
-    uint8_t lbaLow;
-    uint8_t lbaMid;
-    uint8_t lbaHigh;
-    uint8_t device;
-    uint8_t lbaLowExp;
-    uint8_t lbaMidExp;
-    uint8_t lbaHighExp;
-    uint8_t featuresExp;
-    uint8_t sectorNum;
-    uint8_t sectorNumExp;
-    uint8_t rsv1;
-    uint8_t control;
-    uint8_t rsv2[48];
+    u8 fisType;
+    u8 pmPort_Cbit;
+    u8 command;
+    u8 features;
+    u8 lbaLow;
+    u8 lbaMid;
+    u8 lbaHigh;
+    u8 device;
+    u8 lbaLowExp;
+    u8 lbaMidExp;
+    u8 lbaHighExp;
+    u8 featuresExp;
+    u8 sectorNum;
+    u8 sectorNumExp;
+    u8 rsv1;
+    u8 control;
+    u8 rsv2[48];
 } sata_cfis_t;
 
 /*SATA Command Table*/
 typedef struct SATA_COMMAND_TABLE {
     sata_cfis_t cfis;           //defintion of
-    uint32_t acmd[4];           //ATAPI Command, up to 16 Bytes
-    uint32_t rsv[12];           //64 byte reserved.
+    u32 acmd[4];                //ATAPI Command, up to 16 Bytes
+    u32 rsv[12];                //64 byte reserved.
     sata_prd_t prdt;            //Base Address Physical Region Descriptor Table, max 65535 entries
     //there is only one prdt
 } sata_command_table_t;
@@ -629,9 +635,9 @@ typedef struct SATA_COMMAND_TABLE {
 ///////////////////////////////////////////////////////////////////
 extern sata_return_t sata_init(sata_ahci_regs_t * ahci);
 extern sata_return_t sata_deinit(sata_ahci_regs_t * ahci);
-extern sata_return_t sata_identify(sata_ahci_regs_t * ahci, uint32_t port_number);
-extern sata_return_t sata_disk_write_sector(uint32_t start_block, uint8_t * buf, uint32_t len);
-extern sata_return_t sata_disk_read_sector(uint32_t start_block, uint8_t * buf, uint32_t len);
-extern void printf_buffer(uint32_t buff, uint32_t size, uint32_t enable);
+extern sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number);
+extern sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len);
+extern sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len);
+extern void printf_buffer(u32 buff, u32 size, u32 enable);
 
 #endif // _IMX_SATA_H_

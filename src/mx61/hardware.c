@@ -142,7 +142,7 @@ void show_ddr_config(void)
     uint32_t temp2, num_banks, ddr_type;
     uint32_t density, megabyte;
     uint32_t num_rows = 1, num_cols = 1, num_dsiz = 1, i = 1;
-    
+
     printf("========== DDR configuration ===========\n");
 
     megabyte = 1024 * 1024;
@@ -265,6 +265,7 @@ void ipu_iomux_config(void)
  */
 void lvds_power_on(void)
 {
+#ifdef MX61_EVB
     /*3.3V power supply through the load switch FDC6331L */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
     max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
@@ -273,6 +274,18 @@ void lvds_power_on(void)
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_9, ALT5);
     gpio_dir_config(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
+#endif
+
+#ifdef MX61_ARD
+    /*3.3V power supply through IOexpander */
+    max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
+
+    /*lvds backlight enable, GPIO_9 */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
+    gpio_dir_config(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT2, 9, GPIO_HIGH_LEVEL);
+
+#endif
 }
 
 void ldb_iomux_config(void)

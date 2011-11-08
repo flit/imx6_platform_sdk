@@ -9,9 +9,12 @@
  * @brief soc specified ipu macro and data structre defination of IPU.
  * @ingroup diag_ipu
  */
+
+#include "hardware.h"
+ 
 #define IPU_DEFAULT_WORK_CLOCK 264000000
-#define IPU_DMA_MEMORY_START	0x40000000
-#define IPU_DMA_MEMORY_END		0x4FFFFFFF
+//#define IPU_DMA_MEMORY_START	0x40000000   //moved to buffers.h
+//#define IPU_DMA_MEMORY_END		0x4FFFFFFF   //moved to buffers.h
 
 #define CH23_EBA0 	(IPU_DMA_MEMORY_START + 0x00000000)
 #define CH23_EBA1 	(IPU_DMA_MEMORY_START + 0x00400000)

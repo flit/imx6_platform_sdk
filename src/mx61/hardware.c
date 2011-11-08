@@ -419,6 +419,60 @@ int esai_codec_power_on(void)
     return 0;
 }
 
+extern sata_phy_ref_clk_t sata_phy_clk_sel;
+
+/*!
+ * SATA related clocks enable function
+ */
+void sata_clock_enable(void)
+{
+    // Set SATA timings     0x05932046
+    reg32_write(0x020E0034, 0x05932044);
+    hal_delay_us(1000);
+
+    // Enable SATA PLL
+    reg32_write(0x020E0034, 0x05932046);
+    hal_delay_us(1000);
+
+    //enable SATA_CLK in CCGR5
+    *(volatile u32 *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) |= 0x00000030;
+    //enable ENET_PLL (PLL8) in ANADIG. done in freq_populate()
+    //enale SATA_CLK in the ENET_PLL register
+    reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 20);    /* set ENABLE_SATA */
+    //config ENET PLL div_select for SATA - 100MHz 
+    reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x2, 0x3); /* 0b10-100MHz */
+}
+
+/*!
+ * SATA related clocks dis function
+ */
+void sata_clock_disable(void)
+{
+    //disable SATA_CLK in CCGR5. 
+    *(volatile u32 *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) &= ~(0x00000030);
+    //disable ENET_PLL (PLL8) in ANADIG
+    reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 20);    /* clear ENABLE_SATA */
+}
+
+/*!
+ * SATA power on
+ */
+void sata_power_on(void)
+{
+    //enable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
+    max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
+    sata_phy_clk_sel = ANATOP_ENET_PLL; //dummy. In fact, it is PLL8 for ENET
+}
+
+/*!
+ * SATA power off
+ */
+void sata_power_off(void)
+{
+    //disable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
+    max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
+}
+
 /*!
  * Board initialization and UART IOMUX set up
  */

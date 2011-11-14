@@ -292,6 +292,322 @@ void ldb_iomux_config(void)
 {
 }
 
+void gpmi_nand_clk_setup(void)
+{
+    *(volatile uint32_t *)(HW_ANADIG_PFD_528_RW) &= ~(0x00800000);
+    *(volatile uint32_t *)(CCM_CCGR4) &= ~(0xff000000);
+    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x00030000);
+    *(volatile uint32_t *)(CCM_CS2CDR) |= 0x00020000;
+    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x07fc0000);
+    *(volatile uint32_t *)(CCM_CS2CDR) |= ((uint32_t) (4 << 18) | (3 << 21));
+    *(volatile uint32_t *)(CCM_CCGR4) |= 0xff000000;
+    *(volatile uint32_t *)(CCM_CCGR6) |= 0x000003c0;
+    *(volatile uint32_t *)(CCM_CCGR0) |= 0x00000030;
+}
+
+void gpmi_nand_pinmux_config(void)
+{
+    // config NANDF_RB0 pad for rawnand instance READY0 port
+    // config_pad_mode(NANDF_RB0, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT0);
+    // CONSTANT SETTINGS:
+    // Open Drain Enable to NA (CFG in SoC Level however NA in Module Level)
+    // Speed to NA (CFG in SoC Level however NA in Module Level)
+    // Drive Strength to NA (CFG in SoC Level however NA in Module Level)
+    // Slew Rate to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to CFG(Disabled) (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to CFG(Pull) (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // config_pad_settings(NANDF_RB0, 0x0b000);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0, 0xf0e0);
+
+    // config NANDF_CS0 pad for rawnand instance CE0N port
+    // config_pad_mode(NANDF_CS0, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0, ALT0);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_CS0, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0, 0x100b1);
+
+
+	reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS1, ALT0);
+		// CONSTANT SETTINGS:
+		// Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+		// CONFIGURED SETTINGS:
+		// Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+		// Pull / Keep Select to Pull (Binary: 1)
+		// Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+		// Open Drain Enable to Disabled (Binary: 0)
+		// Speed to CFG(100MHz) (Binary: 10)
+		// Drive Strength to CFG(R0DIV6) (Binary: 110)
+		// Slew Rate to CFG(FAST) (Binary: 1)
+		// config_pad_settings(NANDF_CS0, 0x0b0b1);
+	reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS1, 0x100b1);
+
+
+
+
+	reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2, ALT0);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_CS0, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2, 0x100b1);
+	reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3, ALT0);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_CS0, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3, 0x100b1);
+
+
+
+
+
+
+
+    // config NANDF_CLE pad for rawnand instance CLE port
+    // config_pad_mode(NANDF_CLE, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CLE, ALT0);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_CLE, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CLE, 0x100b1);
+
+    // config NANDF_ALE pad for rawnand instance ALE port
+    // config_pad_mode(NANDF_ALE, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_ALE, ALT0);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_ALE, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE, 0x100b1);
+
+    // config NANDF_WP_B pad for rawnand instance RESETN port
+    // config_pad_mode(NANDF_WP_B, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT0);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_WP_B, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x100b1);
+
+    // config NANDF_D0 pad for rawnand instance D0 port
+    // config_pad_mode(NANDF_D0, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D0, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D0, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D0, 0x100b1);
+
+    // config NANDF_D1 pad for rawnand instance D1 port
+    // config_pad_mode(NANDF_D1, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D1, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D1, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D1,0x100b1);
+
+    // config NANDF_D2 pad for rawnand instance D2 port
+    // config_pad_mode(NANDF_D2, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D2, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D2, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D2, 0x100b1);
+
+    // config NANDF_D3 pad for rawnand instance D3 port
+    // config_pad_mode(NANDF_D3, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D3, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D3, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D3, 0x100b1);
+
+    // config NANDF_D4 pad for rawnand instance D4 port
+    // config_pad_mode(NANDF_D4, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D4, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D4, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D4, 0x100b1);
+
+    // config NANDF_D5 pad for rawnand instance D5 port
+    // config_pad_mode(NANDF_D5, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D5, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D5, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D5, 0x100b1);
+
+    // config NANDF_D6 pad for rawnand instance D6 port
+    // config_pad_mode(NANDF_D6, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D6, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D6, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D6, 0x100b1);
+
+    // config NANDF_D7 pad for rawnand instance D7 port
+    // config_pad_mode(NANDF_D7, ALT0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D7, ALT0);
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to Disabled (Binary: 0)
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_D7, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D7, 0x100b1);
+
+    // config SD4_CMD pad for rawnand instance RDN port
+    // config_pad_mode(SD4_CMD, ALT1);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_CMD, ALT1);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(SD4_CMD, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_CMD, 0x100b1);
+
+    // config SD4_CLK pad for rawnand instance WRN port
+    // config_pad_mode(SD4_CLK, ALT1);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_CLK, ALT1);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to CFG(Pull) (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(SD4_CLK, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_CLK, 0x100b1);
+
+    // config SD4_DAT0 pad for rawnand instance DQS port
+    // config_pad_mode(SD4_DAT0, ALT2);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT0, ALT2);
+    // CONSTANT SETTINGS:
+    // Pull Up / Down Config. to NA (CFG in SoC Level however NA in Module Level)
+    // Pull / Keep Select to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Hyst. Enable to CFG(Disabled) (Binary: 0)
+    // Pull / Keep Enable to Disabled (Binary: 0)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(SD4_DAT0, 0x000b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_DAT0, 0x000b1);
+
+}
+
 /*!
  * config instance hdmi_tx of Module HDMI_TX to Protocol CEC
  * port including CEC_LINE

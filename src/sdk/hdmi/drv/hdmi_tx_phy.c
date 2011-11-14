@@ -165,8 +165,8 @@ int hdmi_phy_i2c_write(uint16_t data, uint8_t addr)
 {
     writeb(0xFF, HDMI_IH_I2CMPHY_STAT0);
     writeb(addr, HDMI_PHY_I2CM_ADDRESS_ADDR);
-    writeb((uint8_t)(data >> 8), HDMI_PHY_I2CM_DATAO_1_ADDR);
-    writeb((uint8_t)(data >> 0), HDMI_PHY_I2CM_DATAO_0_ADDR);
+    writeb((uint8_t) (data >> 8), HDMI_PHY_I2CM_DATAO_1_ADDR);
+    writeb((uint8_t) (data >> 0), HDMI_PHY_I2CM_DATAO_0_ADDR);
     writebf(1, HDMI_PHY_I2CM_OPERATION_ADDR, 4, 1);
     return hdmi_phy_wait_i2c_done(1000);
 }
@@ -180,7 +180,7 @@ int hdmi_phy_i2c_write(uint16_t data, uint8_t addr)
  */
 uint16_t hdmi_phy_i2c_read(uint8_t addr)
 {
-	uint16_t data;
+    uint16_t data;
     uint8_t msb = 0, lsb = 0;
     writeb(0xFF, HDMI_IH_I2CMPHY_STAT0);
     writeb(addr, HDMI_PHY_I2CM_ADDRESS_ADDR);
@@ -232,7 +232,7 @@ int hdmi_phy_i2c_write_verify(uint16_t data, uint8_t addr)
 int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
                        int audioOn, int cecOn, int hdcpOn)
 {
-	uint16_t clk = 0, rep = 0;
+    uint16_t clk = 0, rep = 0;
     // colour resolution 0 is 8 bit colour depth
     if (cRes == 0) {
         cRes = 8;
@@ -659,8 +659,8 @@ int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
     hdmi_phy_tmds(0);           // toggle TMDS
     hdmi_phy_tmds(1);
 #endif
-    if ( (readb(HDMI_PHY_STAT0) & 0x01) == 0) {
-        printf("PHY PLL not locked");
+    if ((readb(HDMI_PHY_STAT0) & 0x01) == 0) {
+        //printf("PHY PLL not locked");
         return FALSE;
     }
     return TRUE;

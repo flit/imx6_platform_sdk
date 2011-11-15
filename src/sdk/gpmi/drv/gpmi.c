@@ -12,6 +12,7 @@
 #include "gpmi.h"
 #include "regsapbh.h"
 #include "regsgpmi.h"
+//extern static const flash_dev_info_t *flash_dev_info;
 
 DMA_BUFF gdma0, gdma1, gdma2, gdma3, gdma4, gdma5, gdma6, gdma7, gdma8, gdma9;
 DMA_BUFF dma_buff0, dma_buff1, dma_buff2, dma_buff3, dma_buff4, dma_buff5, dma_buff6, dma_buff7,
@@ -144,14 +145,14 @@ void GpmiNandSetSafeTiming(void)
 
 /*Page Address: in block0, page addr is from 0~127, in block 1, page addres is from 128~255*/
 
-int GpmiNandReadPage(unsigned int pageaddr, unsigned int * buf)
+int GpmiNandReadPage(unsigned int pageaddr, unsigned int * buf, unsigned int NF_PG_SZ, unsigned int NF_SP_SZ)
 {
 	int rtCode = SUCCESS;
 	u8 data[8];
 	//int i;
 	printf("NAND Read Page %d\n",pageaddr);
 	
-	memset((u8 *)buf,0x0,(NF_PG_SZ+NF_SP_SZ));
+	memset((u8 *)buf,0x0,(NF_PG_SZ+NF_SP_SZ)/4);
 	
 	data[0] = NAND_CMD_READ_SETUP;
 	data[1] = 0x00;
@@ -271,7 +272,7 @@ int GpmiNandReadPage(unsigned int pageaddr, unsigned int * buf)
 	return rtCode;
 }
 
-int GpmiNandWritePage(unsigned int pageaddr, unsigned int * buf)
+int GpmiNandWritePage(unsigned int pageaddr, unsigned int * buf, unsigned int NF_PG_SZ, unsigned int NF_SP_SZ)
 {
 	int rtCode = SUCCESS;
 	u8 data[8];
@@ -426,7 +427,7 @@ int GpmiNandEraseBlock(unsigned int blockaddr)
 	unsigned int rowAddr;	
 	u16 nandStatus = 0;
 	printf("NAND Erase Block %d\n",blockaddr);
-	rowAddr = blockaddr * NF_PG_PER_BLK; 
+	rowAddr = blockaddr; 
 	
 	data[0] = NAND_CMD_ERASE_SETUP;
 	data[1] = rowAddr & 0xFF;

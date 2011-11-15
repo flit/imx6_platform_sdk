@@ -14,27 +14,10 @@
 
 #ifndef __GPMI_H__
 #define __GPMI_H__
-static const flash_dev_info_t *flash_dev_info;
-#define NUM_DEVICES (sizeof(supported_devices) / sizeof(flash_dev_info_t))
-#define COL_CYCLE             flash_dev_info->col_cycle
-#define ROW_CYCLE             flash_dev_info->row_cycle
-#define NF_PG_SZ              (flash_dev_info->page_size) 
-#define NF_SP_SZ              (flash_dev_info->spare_size) 
-#define NF_PG_PER_BLK         flash_dev_info->pages_per_block
-#define NF_DEV_SZ             (flash_dev_info->device_size) 
-#define NF_BLK_SZ             (flash_dev_info->block_size) 
-#define NF_BLK_CNT            (flash_dev_info->block_count)
-#define NF_VEND_INFO          flash_dev_info->vendor_info
-#define NF_OPTIONS            flash_dev_info->options
-#define NF_BBT_MAX_NR         flash_dev_info->bbt_blk_max_nr
-#define NF_OPTIONS            flash_dev_info->options
-#define NF_BI_OFF             flash_dev_info->bi_off
+//extern static flash_dev_info_t *flash_dev_info;
 
-#define BLOCK_TO_OFFSET(blk)  (blk * NF_PG_PER_BLK * NF_PG_SZ)
-#define BLOCK_TO_PAGE(blk)    (blk * NF_PG_PER_BLK)
-#define BLOCK_PAGE_TO_OFFSET(blk, pge)  ((blk * NF_PG_PER_BLK + pge) * NF_PG_SZ)
-#define OFFSET_TO_BLOCK(offset)         ((offset / NF_PG_SZ) / NF_PG_PER_BLK)
-#define OFFSET_TO_PAGE(offset)          ((offset / NF_PG_SZ) % NF_PG_PER_BLK)
+
+
 
 
 #define GPMI_NAND0_APBHDMA_CHANNEL_RESET() (*(unsigned int *)HW_APBH_CHANNEL_CTRL |= (0x10<<16))

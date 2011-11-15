@@ -11,13 +11,22 @@
 #include "nand_devices.h"
 #include "../drv/gpmi.h"
 
-//static const flash_dev_info_t *flash_dev_info;
+static const flash_dev_info_t *flash_dev_info;
 static const flash_dev_info_t supported_devices[] = {
 #include "supported_nand_parts.inl"
 };
 
+static unsigned int rd_buf[8300];
+static unsigned int wr_buf[8300];
+#define NUM_DEVICES (sizeof(supported_devices) / sizeof(flash_dev_info_t))
+#define COL_CYCLE             flash_dev_info->col_cycle
+#define ROW_CYCLE             flash_dev_info->row_cycle
+#define NF_PG_SZ              (flash_dev_info->page_size) 
+#define NF_SP_SZ              (flash_dev_info->spare_size) 
 
+extern int GpmiNandReadPage(unsigned int, unsigned int *,unsigned int,unsigned int);
 
+extern int GpmiNandWritePage(unsigned int, unsigned int *,unsigned int,unsigned int);
 extern void read_nflash_id(void *id);
 extern int GpmiNandEraseBlock(unsigned int);
 int gpmi_test(void)
@@ -58,6 +67,38 @@ int gpmi_test(void)
 		}
 	else{
 		printf("NAND block 0 erase sueccess\n");
-        return TEST_PASSED;
+        //return TEST_PASSED;
 	}
+	    wr_buf[0] = 0x80010810;
+		wr_buf[1] = 0x01801008;
+		for(i=2;i<NF_PG_SZ/4;i++)
+		{
+			wr_buf[i] = wr_buf[i-1] + wr_buf[i-2];
+		}
+	    
+
+        rtCode = GpmiNandWritePage(0,wr_buf, NF_PG_SZ, NF_SP_SZ);
+	
+	if(rtCode == SUCCESS)
+		rtCode = GpmiNandReadPage(0,rd_buf, NF_PG_SZ, NF_SP_SZ);
+
+    
+	for(i=0;i<(NF_PG_SZ+NF_SP_SZ)/4;i++)
+			  {
+          	
+				if(rd_buf[i]!=wr_buf[i])
+				{
+					printf("data verify error\n");
+					printf("wr: %x |",wr_buf[i]);
+					printf("rd: %x\n",rd_buf[i]);
+						
+					rtCode=FAILURE;
+					break;
+				}
+                
+				
+		}
+	     printf("data verify success\n");
+	   
+    return rtCode;	
 }

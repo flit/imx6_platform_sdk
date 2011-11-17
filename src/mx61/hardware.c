@@ -228,21 +228,17 @@ void uart_iomux_config(uint32_t module_base_add)
 }
 
 /*!
-  * Set up the IOMUX for I2C
-  */
-void io_cfg_i2c(uint32_t module_base)
+ * That function calls the board dependent I2C IOMUX configuration functions.
+ */
+void i2c_iomux_config(uint32_t module_base)
 {
     switch (module_base) {
     case I2C1_BASE_ADDR:
         i2c1_iomux_config();
-
         break;
-
     case I2C2_BASE_ADDR:
         i2c2_iomux_config();
-
         break;
-
     case I2C3_BASE_ADDR:
         i2c3_iomux_config();
         break;
@@ -687,6 +683,33 @@ void usdhc_iomux_config(uint32_t base_address)
     }
 }
 
+/*!
+ * eCSPI pin mux and pad configure
+ */
+void ecspi_iomux_cfg(uint32_t base_address)
+{
+    switch (base_address) {
+    case ECSPI1_BASE_ADDR:
+        ecspi1_iomux_config();
+        break;
+
+    case ECSPI2_BASE_ADDR:
+        break;
+
+    case ECSPI3_BASE_ADDR:
+        break;
+
+    case ECSPI4_BASE_ADDR:
+        break;
+
+    case ECSPI5_BASE_ADDR:
+        break;
+
+    default:
+        break;
+    }
+}
+
 void ssi_io_cfg(void)
 {
 }
@@ -777,6 +800,38 @@ void sata_power_off(void)
 {
     //disable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
     max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
+}
+
+/*!
+ * SPDIF clock configuration
+ * Use the default setting as follow:
+ * CDCDR[spdif0_clk_sel](PLL3)->CDCDR[spdif0_clk_pred](div2)->CDCDR[spdif0_clk_podf](div8)-> spdif0_clk_root, so 
+ * the freqency of spdif0_clk should be 480/2/8 = 30MHz.
+ */
+void spdif_clk_cfg(void)
+{
+    unsigned int val;
+
+    val = readl(CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+    //CDCDR[spdif0_clk_sel](PLL3)
+    val &= ~(0x03 << 20);
+    val |= 0x03 << 20;
+    //CDCDR[spdif0_clk_pred](div2)
+    val &= ~(0x07 << 25);
+    val |= 0x01 << 25;
+    //CDCDR[spdif0_clk_podf](div8)
+    val &= ~(0x07 << 22);
+    val |= 0x07 << 22;
+    writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+
+    val = readl(CCM_BASE_ADDR + CCM_CCGR5);
+    val |= 0x03 << 14;          //spdif_clk_enable
+    writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+}
+
+unsigned int spdif_get_tx_clk_freq(void)
+{
+    return 30000000;
 }
 
 /*!

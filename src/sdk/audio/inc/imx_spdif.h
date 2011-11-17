@@ -251,4 +251,8 @@ typedef enum {
     SPDIF_HW_SETTING_TX_CHANNEL_INFO_L,
     SPDIF_HW_SETTING_TX_CLK_CFG,
 } spdif_set_hw_setting_e;
+
+static uint32_t spdif_cal_txclk_div(audio_ctrl_p ctrl, uint32_t sample_rate);
+static uint32_t spdif_cal_txclk_div(audio_ctrl_p ctrl, uint32_t sample_rate);
+
 #endif //__IMX_SPDIF_H__

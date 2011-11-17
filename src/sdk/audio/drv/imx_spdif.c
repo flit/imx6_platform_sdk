@@ -13,7 +13,7 @@
  */
 
 #include "hardware.h"
-#include "functions.h"
+//#include "functions.h"
 #include "../inc/audio.h"
 #include "imx_spdif.h"
 

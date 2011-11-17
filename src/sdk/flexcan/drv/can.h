@@ -307,141 +307,12 @@ struct mx_can_control {
 // CAN Message Buffers   0x80 - 0x170
 struct can_message_buffers {
     volatile struct can_mb MB[64];
-/*    volatile struct can_mb MB0;
-    volatile struct can_mb MB1;
-    volatile struct can_mb MB2;
-    volatile struct can_mb MB3;
-    volatile struct can_mb MB4;
-    volatile struct can_mb MB5;
-    volatile struct can_mb MB6;
-    volatile struct can_mb MB7;
-    volatile struct can_mb MB8;
-    volatile struct can_mb MB9;
-    volatile struct can_mb MB10;
-    volatile struct can_mb MB11;
-    volatile struct can_mb MB12;
-    volatile struct can_mb MB13;
-    volatile struct can_mb MB14;
-    volatile struct can_mb MB15;
-    volatile struct can_mb MB16;
-    volatile struct can_mb MB17;
-    volatile struct can_mb MB18;
-    volatile struct can_mb MB19;
-    volatile struct can_mb MB20;
-    volatile struct can_mb MB21;
-    volatile struct can_mb MB22;
-    volatile struct can_mb MB23;
-    volatile struct can_mb MB24;
-    volatile struct can_mb MB25;
-    volatile struct can_mb MB26;
-    volatile struct can_mb MB27;
-    volatile struct can_mb MB28;
-    volatile struct can_mb MB29;
-    volatile struct can_mb MB30;
-    volatile struct can_mb MB31;
-    volatile struct can_mb MB32;
-    volatile struct can_mb MB33;
-    volatile struct can_mb MB34;
-    volatile struct can_mb MB35;
-    volatile struct can_mb MB36;
-    volatile struct can_mb MB37;
-    volatile struct can_mb MB38;
-    volatile struct can_mb MB39;
-    volatile struct can_mb MB40;
-    volatile struct can_mb MB41;
-    volatile struct can_mb MB42;
-    volatile struct can_mb MB43;
-    volatile struct can_mb MB44;
-    volatile struct can_mb MB45;
-    volatile struct can_mb MB46;
-    volatile struct can_mb MB47;
-    volatile struct can_mb MB48;
-    volatile struct can_mb MB49;
-    volatile struct can_mb MB50;
-    volatile struct can_mb MB51;
-    volatile struct can_mb MB52;
-    volatile struct can_mb MB53;
-    volatile struct can_mb MB54;
-    volatile struct can_mb MB55;
-    volatile struct can_mb MB56;
-    volatile struct can_mb MB57;
-    volatile struct can_mb MB58;
-    volatile struct can_mb MB59;
-    volatile struct can_mb MB60;
-    volatile struct can_mb MB61;
-    volatile struct can_mb MB62;
-    volatile struct can_mb MB63;  */
 };
 
 #define CAN_RXIMR_OFFSET 0x880
 // CAN RX Individual Mask Registers   0x880 - 0x97c
 struct can_rx_masks {
     volatile uint32_t rximr[64];    // 0x880-0x97c
-/*    volatile uint32_t rximr0;          // 0x880
-    volatile uint32_t rximr1;          // 0x884
-    volatile uint32_t rximr2;          // 0x888
-    volatile uint32_t rximr3;          // 0x88c
-    volatile uint32_t rximr4;          // 0x890
-    volatile uint32_t rximr5;          // 0x894
-    volatile uint32_t rximr6;          // 0x898
-    volatile uint32_t rximr7;          // 0x89c
-    volatile uint32_t rximr8;          // 0x8a0
-    volatile uint32_t rximr9;          // 0x8a4
-    volatile uint32_t rximr10;         // 0x8a8
-    volatile uint32_t rximr11;         // 0x8ac
-    volatile uint32_t rximr12;         // 0x8b0
-    volatile uint32_t rximr13;         // 0x8b4
-    volatile uint32_t rximr14;         // 0x8b8
-    volatile uint32_t rximr15;         // 0x8bc
-    volatile uint32_t rximr16;         // 0x8c0
-    volatile uint32_t rximr17;         // 0x8c4
-    volatile uint32_t rximr18;         // 0x8c8
-    volatile uint32_t rximr19;         // 0x8cc
-    volatile uint32_t rximr20;         // 0x8d0
-    volatile uint32_t rximr21;         // 0x8d4
-    volatile uint32_t rximr22;         // 0x8d8
-    volatile uint32_t rximr23;         // 0x8dc
-    volatile uint32_t rximr24;         // 0x8e0
-    volatile uint32_t rximr25;         // 0x8e4
-    volatile uint32_t rximr26;         // 0x8e8
-    volatile uint32_t rximr27;         // 0x8ec
-    volatile uint32_t rximr28;         // 0x8f0
-    volatile uint32_t rximr29;         // 0x8f4
-    volatile uint32_t rximr30;         // 0x8f8
-    volatile uint32_t rximr31;         // 0x8fc
-    volatile uint32_t rximr32;         // 0x900
-    volatile uint32_t rximr33;         // 0x904
-    volatile uint32_t rximr34;         // 0x908
-    volatile uint32_t rximr35;         // 0x90c
-    volatile uint32_t rximr36;         // 0x910
-    volatile uint32_t rximr37;         // 0x914
-    volatile uint32_t rximr38;         // 0x918
-    volatile uint32_t rximr39;         // 0x91c
-    volatile uint32_t rximr40;         // 0x920
-    volatile uint32_t rximr41;         // 0x924
-    volatile uint32_t rximr42;         // 0x928
-    volatile uint32_t rximr43;         // 0x92c
-    volatile uint32_t rximr44;         // 0x930
-    volatile uint32_t rximr45;         // 0x934
-    volatile uint32_t rximr46;         // 0x938
-    volatile uint32_t rximr47;         // 0x93c
-    volatile uint32_t rximr48;         // 0x940
-    volatile uint32_t rximr49;         // 0x944
-    volatile uint32_t rximr50;         // 0x948
-    volatile uint32_t rximr51;         // 0x94c
-    volatile uint32_t rximr52;         // 0x950
-    volatile uint32_t rximr53;         // 0x954
-    volatile uint32_t rximr54;         // 0x958
-    volatile uint32_t rximr55;         // 0x95c
-    volatile uint32_t rximr56;         // 0x960
-    volatile uint32_t rximr57;         // 0x964
-    volatile uint32_t rximr58;         // 0x968
-    volatile uint32_t rximr59;         // 0x96c
-    volatile uint32_t rximr60;         // 0x970
-    volatile uint32_t rximr61;         // 0x974
-    volatile uint32_t rximr62;         // 0x978
-    volatile uint32_t rximr63;         // 0x97c
-*/
 };
 
 #define CAN_GFWR_OFFSET 0x9e0
@@ -451,6 +322,7 @@ struct can_gfw {
 };
 
 /* CAN driver list of functions */
+void can_sw_reset(struct hw_module *port);
 void can_init(struct hw_module *port, uint32_t max_mb);
 void set_can_mb(struct hw_module *port, uint32_t mbID, uint32_t cs, uint32_t id, uint32_t data0,
                 uint32_t data1);

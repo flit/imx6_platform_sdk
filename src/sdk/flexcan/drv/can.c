@@ -17,6 +17,8 @@ void can_init(struct hw_module *port, uint32_t max_mb)
     /* configure the I/O for the port */
     can_iomux_config(port->base);
 
+    can_sw_reset(port);         //software reset
+
     ctl = can_ctl->mcr;
     ctl &= 0xFFFFFF00;          //clear MAXMB field
     ctl |= (max_mb & 0x3F);     // set MAXMB field (0-63)
@@ -34,6 +36,14 @@ void can_init(struct hw_module *port, uint32_t max_mb)
     // disable all MB interrupts
     can_ctl->imask1 = 0;
     can_ctl->imask2 = 0;
+}
+
+void can_sw_reset(struct hw_module *port)
+{
+    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)port->base;
+
+    can_ctl->mcr |= (1 << 25);  //assert SOFT_RST
+    while (can_ctl->mcr & (1 << 25)) ;  // poll until complete
 }
 
 void set_can_mb(struct hw_module *port, uint32_t mbID, uint32_t cs, uint32_t id, uint32_t data0,
@@ -55,7 +65,7 @@ void print_can_mb(struct hw_module *port, uint32_t mbID)
     printf("\tMB[%d].cs    = 0x%x\n", mbID, can_mb->MB[mbID].cs);
     printf("\tMB[%d].id    = 0x%x\n", mbID, can_mb->MB[mbID].id);
     printf("\tMB[%d].data0 = 0x%x\n", mbID, can_mb->MB[mbID].data0);
-    printf("\tMB[%d].data1 = 0x%x\n", mbID, can_mb->MB[mbID].data1);
+    printf("\tMB[%d].data1 = 0x%x\n\n", mbID, can_mb->MB[mbID].data1);
 }
 
 void can_enable_mb_interrupt(struct hw_module *port, uint32_t mbID)

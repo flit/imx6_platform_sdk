@@ -70,9 +70,7 @@ void flexcan_test(void)
 }
 
 /*!
- * Can2 receive function
- * @return     TEST_PASSED receive data right.
- *             TEST_FAILED receive data wrong or no data received.
+ * Can2 receive ISR function
  */
 void can2_rx_handler(void)
 {

@@ -788,6 +788,37 @@ void sata_power_off(void)
     //disable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
     max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
 }
+/*!
+ * SPDIF clock configuration
+ * Use the default setting as follow:
+ * CDCDR[spdif0_clk_sel](PLL3)->CDCDR[spdif0_clk_pred](div2)->CDCDR[spdif0_clk_podf](div8)-> spdif0_clk_root, so 
+ * the freqency of spdif0_clk should be 480/2/8 = 30MHz.
+ */
+void spdif_clk_cfg(void)
+{
+	unsigned int val;
+
+	val = readl(CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+	//CDCDR[spdif0_clk_sel](PLL3)
+	val &= ~(0x03<<20);
+	val |= 0x03<<20;
+	//CDCDR[spdif0_clk_pred](div2)
+	val &= ~(0x07<<25);
+	val |= 0x01 << 25;
+	//CDCDR[spdif0_clk_podf](div8)
+	val &= ~(0x07<<22);
+	val |= 0x07 << 22;
+	writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+
+	val = readl(CCM_BASE_ADDR + CCM_CCGR5);
+	val |= 0x03 << 14;	//spdif_clk_enable
+	writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+}
+
+unsigned int spdif_get_tx_clk_freq(void)
+{
+	return 30000000;
+}
 
 /*!
  * Board initialization and UART IOMUX set up

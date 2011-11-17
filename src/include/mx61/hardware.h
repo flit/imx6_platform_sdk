@@ -57,6 +57,24 @@
 #define HW_ANADIG_PLL_SYS_RW    (ANATOP_BASE_ADDR+0x000)    // "System PLL" "CPU PLL" "PLL1"
 #define HW_ANADIG_PLL_ETH_CTRL  (ANATOP_BASE_ADDR+0x0e0)
 
+#define WEIM_REGISTERS_BASE_ADDR WEIM_BASE_ADDR
+#define WEIM_CS_BASE_ADDR   0x08000000
+
+#if defined(MX61_EVB) || defined(MX61_SMD) || defined(MX61_QSB)
+#define MMDC0_BASE_ADDR			0x10000000
+#define MMDC0_END_ADDR			0x4FFFFFFF
+/*For smd and qsb, there is no DDR_cs1, just define them to avoid build error. And the memory region can not be accessed*/
+#define MMDC1_BASE_ADDR			0x50000000
+#define MMDC1_END_ADDR			0x8FFFFFFF
+#endif
+#if defined(MX61_ARD)
+#define MMDC0_BASE_ADDR			0x10000000
+#define MMDC0_END_ADDR			0x8FFFFFFF  //Maybe should be modified according the ddr init file.
+/*Acturally, ard has no DDR_cs1, just define them to avoid build error. And the memory region can not be accessed*/
+#define MMDC1_BASE_ADDR			0x90000000
+#define MMDC1_END_ADDR			0xFFFFFFFF
+#endif
+
 #define CSD0_BASE_ADDR      MMDC0_BASE_ADDR
 #define CSD1_BASE_ADDR      MMDC1_BASE_ADDR
 
@@ -91,7 +109,29 @@
 #define ADV7180_I2C_ID      (0x42 >> 1)
 
 // MAX7310 I2C settings
-/* For the ARD board which has 2 MAX7310 */
+/* For the ARD board which has 3 MAX7310 */
+#ifdef MX61_ARD
+#define MAX7310_NBR 3
+#define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
+#define MAX7310_I2C_ID0          0x30
+#define MAX7310_ID0_DEF_DIR      0x00   // init direction for the I/O
+#define MAX7310_ID0_DEF_VAL      0xFF   // init value for the output
+/* Number 1 controls: CTRL_0, CTRL_1, CTRL_2, CTRL_3, CTRL_4, PORT3_P116,
+   PORT2_P81, PORT3_P101
+*/
+#define MAX7310_I2C_BASE_ID1  I2C3_BASE_ADDR
+#define MAX7310_I2C_ID1          0x32
+#define MAX7310_ID1_DEF_DIR      0x00   // init direction for the I/O
+/*Set the max7310_id1 's default value for ctrl_x */
+#define MAX7310_ID1_DEF_VAL      0xE7   // init value for the output
+
+#define MAX7310_I2C_BASE_ID2  I2C3_BASE_ADDR
+#define MAX7310_I2C_ID2          0x34
+#define MAX7310_ID2_DEF_DIR      0x00   // init direction for the I/O
+/*Set the max7310_id1 's default value for ctrl_x */
+#define MAX7310_ID2_DEF_VAL      0x57   // init value for the output
+/* For the EVB board which has 2 MAX7310 */
+#else //MX61_EVB
 #define MAX7310_NBR 2
 /* Number 1 controls: BACKLIGHT_ON, PORT3_P114, CPU_PER_RST_B, PORT3_P110,
    PORT3_P105, PORT3_P112, PORT3_P107, PORT3_P109.
@@ -108,7 +148,8 @@
 #define MAX7310_ID1_DEF_DIR      0x00   // init direction for the I/O
 /*Set the max7310_id1 's default value for ctrl_x */
 #define MAX7310_ID1_DEF_VAL      0x09   // init value for the output
-/* create an array of I2C requests for all used expanders on the board */
+#endif
+
 struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define MMA8450_I2C_ID      0x1C
@@ -137,10 +178,10 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define USB_CTRL_1      (USBOH3_BASE_ADDR + 0x810)
 #define UH2_PORTSC1 (USBH2_BASE_ADDR + 0x184)
 
+#define FEC_BASE_ADDR         ENET_BASE_ADDR
 // **** MUST DEFINE for mx61 for their corresponding tests to run
 // or remove tests for mx61
-#define USBOH3_BASE_ADDR			USBOH3_USB_BASE_ADDR
-#define FEC_BASE_ADDR         ENET_BASE_ADDR
+/*#define USBOH3_BASE_ADDR			USBOH3_USB_BASE_ADDR
 
 #define CSPI_BASE_ADDR        ECSPI1_BASE_ADDR
 #define IIM_BASE_ADDR         0x0
@@ -153,6 +194,7 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define DPLLIP2_BASE_ADDR 0x1
 #define DPLLIP3_BASE_ADDR 0x2
 #define DPLLIP4_BASE_ADDR 0x3
+*/
 
 #define USDHC_ADMA_BUFFER 0x00910000
 #define ESDCTL_REGISTERS_BASE_ADDR 0x021b0000

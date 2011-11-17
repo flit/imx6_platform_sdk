@@ -75,18 +75,15 @@ void platform_init(void)
     /* populate the freq member of the referenced hw_module in mx61_module */
     freq_populate();
 
-    /*
-     * Note, board type is determined at compile time such that the UART and
-     * board can be initialized prior to burning fuses
-     */
-    board_init();
-
     /* Initialize the debug/console UART */
     uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
     /* flush UART RX FIFO */
     do {
         c = uart_getchar(&g_debug_uart);
     } while (c != NONE_CHAR);
+
+    /* Some init for the board */
+    board_init();
 
     mx61_print_ver();
 

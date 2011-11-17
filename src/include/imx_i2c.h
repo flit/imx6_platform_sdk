@@ -57,7 +57,7 @@ extern uint32_t i2c_base_addr[];
 extern uint32_t i2c_num;
 
 int i2c_init(uint32_t base, uint32_t baud);
-int i2c_xfer(uint32_t base, struct imx_i2c_request *rq, int dir);
+int i2c_xfer(struct imx_i2c_request *rq, int dir);
 #define i2c_read(base, rq)      i2c_xfer(base, rq, I2C_READ)
 #define i2c_write(base, rq)      i2c_xfer(base, rq, I2C_WRITE)
 

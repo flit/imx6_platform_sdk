@@ -12,7 +12,6 @@
  */
 
 #include <stdio.h>
-#include "io.h"
 #include "hardware.h"
 #include "../inc/audio.h"
 #include "../inc/imx-ssi.h"

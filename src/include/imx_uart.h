@@ -131,7 +131,7 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state);
 
 /* UART Registers list */
 #ifdef UART_WIDTH_32
-struct mx_uart {
+struct imx_uart {
     volatile uint32_t urxd[16];
     volatile uint32_t utxd[16];
     volatile uint32_t ucr1;
@@ -150,7 +150,7 @@ struct mx_uart {
     volatile uint32_t uts;
 };
 #else
-struct mx_uart {
+struct imx_uart {
     volatile uint16_t urxd[1];
     volatile uint16_t resv0[31];
     volatile uint16_t utxd[1];

@@ -17,7 +17,6 @@
 
 #include "soc_memory_map.h"
 #include "registers.h"
-#include "functions.h"
 #include "io.h"
 #include "system_util.h"
 #include "iomux_config.h"
@@ -205,12 +204,6 @@ extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
 #define AT45DB321D  1
 #define M25P32      2
 
-//provide macros for test enter and exit outputs
-#define TEST_ENTER(name) printf ("Running test: %s\n", name)
-
-#define TEST_EXIT(name)  do {printf (" ..Test: %s\n", name); \
-                                                } while (0)
-
 enum display_type {
     DISP_DEV_NULL = 0,
     DISP_DEV_TFTLCD,
@@ -221,7 +214,7 @@ enum display_type {
 };
 
 void uart_iomux_config(uint32_t module_base_add);
-void io_cfg_i2c(uint32_t module_base);
+void i2c_iomux_config(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
 uint32_t get_freq(uint32_t module_base);

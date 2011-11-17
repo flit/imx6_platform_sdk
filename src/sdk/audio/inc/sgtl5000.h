@@ -7,7 +7,6 @@
 #ifndef __SGTL5000_H
 #define __SGTL5000_H
 
-#include "io.h"
 #include "../inc/audio.h"
 
 #define DAC_VOL_UP 1

@@ -15,7 +15,6 @@
 
 #include <stdarg.h>
 #include "hardware.h"
-#include "functions.h"
 
 #define EOP (0xFFFFFFFF)
 #define HIGH_POLARITY 1

@@ -46,7 +46,7 @@ uint32_t uart_get_reffreq(struct hw_module *port)
  */
 uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 {
-    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
 
     /* Wait for Tx FIFO not full */
     while (puart->uts & UART_UTS_TXFULL) ;
@@ -64,7 +64,7 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
  */
 uint8_t uart_getchar(struct hw_module * port)
 {
-    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
     uint32_t read_data;
 
     /* If Rx FIFO has no data ready */
@@ -92,7 +92,7 @@ uint8_t uart_getchar(struct hw_module * port)
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode)
 {
-    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
 
     if (fifo == TX_FIFO) {
         /* Configure the TX_FIFO trigger level */
@@ -127,7 +127,7 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
  */
 void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
 {
-    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
 
     if (state == ENABLE)
         puart->uts |= UART_UTS_LOOP;
@@ -170,7 +170,7 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
                uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol)
 {
-    volatile struct mx_uart *puart = (volatile struct mx_uart *)port->base;
+    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
 
    /* configure the I/O for the port */
     uart_iomux_config(port->base);

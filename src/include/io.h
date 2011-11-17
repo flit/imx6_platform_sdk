@@ -39,38 +39,66 @@ typedef void (*funct_t) (void);
 
 #define TRUE        1
 #define FALSE       0
+
 #define true        1
 #define false       0
+
 #define ENABLE      1          
 #define DISABLE     0
 
 #define NONE_CHAR   0xFF
 
-#define REG8_VAL(a)          ((unsigned char)(a))
-#define REG16_VAL(a)         ((unsigned short)(a))
-#define REG32_VAL(a)         ((unsigned int)(a))
+#define reg8_read(addr)       *((volatile uint8_t *)(addr))
+#define reg16_read(addr)      *((volatile uint16_t *)(addr))
+#define reg32_read(addr)      *((volatile uint32_t *)(addr))
 
-#define REG8_PTR(a)          ((volatile unsigned char *)(a))
-#define REG16_PTR(a)         ((volatile unsigned short *)(a))
-#define REG32_PTR(a)         ((volatile unsigned int *)(a))
+#define reg8_write(addr,val)  *((volatile uint8_t *)(addr)) = (val)
+#define reg16_write(addr,val) *((volatile uint16_t *)(addr)) = (val)
+#define reg32_write(addr,val) *((volatile uint32_t *)(addr)) = (val)
 
-#define REG8(a)             (*(volatile unsigned char *)(a))
-#define REG16(a)            (*(volatile unsigned short *)(a))
-#define REG32(a)            (*(volatile unsigned int *)(a))
-#define SET_REG8(v, a)      (*(volatile unsigned char *)(a) = (v))
-#define SET_REG16(v, a)     (*(volatile unsigned short *)(a) = (v))
-#define SET_REG32(v, a)     (*(volatile unsigned int *)(a) = (v))
-#define readb(a)            REG8(a)
-#define readw(a)            REG16(a)
-#define readl(a)            REG32(a)
-#define writeb(v, a)        SET_REG8(v, a)
-#define writew(v, a)        SET_REG16(v, a)
-#define writel(v, a)        SET_REG32(v, a)
+#define mem8_read(addr)       *((volatile uint8_t *)(addr))
+#define mem16_read(addr)      *((volatile uint16_t *)(addr))
+#define mem32_read(addr)      *((volatile uint32_t *)(addr))
 
-//TODO:
-#define MOD_REG8()
-#define MOD_REG16()
-#define MOD_REG32()
+#define mem8_write(addr,val)  *((volatile uint8_t *)(addr)) = (val)
+#define mem16_write(addr,val) *((volatile uint16_t *)(addr)) = (val)
+#define mem32_write(addr,val) *((volatile uint32_t *)(addr)) = (val)
+
+#define readb(a)        reg8_read(a)
+#define readw(a)        reg16_read(a)
+#define readl(a)        reg32_read(a)
+
+/* prefered method to access registers */
+#define writeb(v, a)    reg8_write(a, v)
+#define writew(v, a)    reg16_write(a, v)
+#define writel(v, a)    reg32_write(a, v)
+
+#define  reg8setbit(addr,bitpos) \
+         reg8_write((addr),(reg8_read((addr)) | (1<<(bitpos))))
+
+#define  reg16setbit(addr,bitpos) \
+         reg16_write((addr),(reg16_read((addr)) | (1<<(bitpos))))
+
+#define  reg32setbit(addr,bitpos) \
+         reg32_write((addr),(reg32_read((addr)) | (1<<(bitpos))))
+
+#define  reg8clrbit(addr,bitpos) \
+         reg8_write((addr),(reg8_read((addr)) & (0xFF ^ (1<<(bitpos)))))
+
+#define  reg16clrbit(addr,bitpos) \
+         reg16_write((addr),(reg16_read((addr)) & (0xFFFF ^ (1<<(bitpos)))))
+
+#define  reg32clrbit(addr,bitpos) \
+         reg32_write((addr),(reg32_read((addr)) & (0xFFFFFFFF ^ (1<<(bitpos)))))
+
+#define reg8_write_mask(addr, data, mask) \
+        reg8_write((addr),((reg8_read(addr) & (~mask)) | (mask & data)))
+
+#define reg16_write_mask(addr, data, mask) \
+        reg16_write((addr),((reg16_read(addr) & (~mask)) | (mask & data)))
+
+#define reg32_write_mask(addr, data, mask) \
+        reg32_write((addr),((reg32_read(addr) & (~mask)) | (mask & data)))
 
 /*
  * This macro is used to get certain bit field from a number

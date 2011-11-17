@@ -343,7 +343,7 @@ void io_cfg_nand(void)
 /*!
   * Set up the IOMUX for I2C
   */
-void io_cfg_i2c(uint32_t module_base)
+void i2c_iomux_config(uint32_t module_base)
 {
     switch (module_base) {
     case I2C1_BASE_ADDR:
@@ -827,6 +827,21 @@ void debug_uart_iomux(void)
         writel(0x3, IOMUXC_UART1_IPP_UART_RXD_MUX_SELECT_INPUT);
     }
 }
+
+/*!
+ * That function calls the board dependent IOMUX configuration functions
+ */
+void uart_iomux_config(uint32_t module_base_add)
+{
+    switch (module_base_add) {
+    case UART1_BASE_ADDR:
+        debug_uart_iomux();
+        break;
+    default:
+        break;
+    }
+}
+
 
 /* eCSPI1 iomux - connecting SPI NOR through SS1*/
 // Function to config instance ecspi1 of Module ECSPI to Protocol MASTER
@@ -1345,11 +1360,6 @@ void sata_clock_disable(void)
 void board_init(void)
 {
     uint32_t val = 0;
-
-    /* set up debug UART iomux */
-    debug_uart_iomux();
-    /* Set up on board PMIC and read device ID */
-//    evk_power_init();
 
     /* Configure the memory map of the WEIM */
     /* Activates CS0 and CS1 with 64MB each in IOMUXC_GPR1 */

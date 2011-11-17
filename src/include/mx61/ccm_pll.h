@@ -139,7 +139,6 @@
 
 #define pre_periph_clk_sel_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCMR),2,18)
 
-
 #define vpu_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,25) + 1)
 #define usdhc4_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,22) + 1)
 #define usdhc3_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,19) + 1)

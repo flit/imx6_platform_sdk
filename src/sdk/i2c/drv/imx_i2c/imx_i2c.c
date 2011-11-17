@@ -6,7 +6,6 @@
 */
 
 #include "hardware.h"
-#include "imx_i2c.h"
 
 /* Max number of operations to wait to receuve ack */
 #define WAIT_RXAK_LOOPS     1000000
@@ -17,7 +16,7 @@
  *
  * @param   base        base address of i2c module 
  *
- * @return              0 if successful; -1 otherwise
+ * @return  0 if successful; -1 otherwise
  */
 static inline int is_bus_free(unsigned int base)
 {
@@ -39,7 +38,7 @@ static inline int is_bus_free(unsigned int base)
  *
  * @param   base        base address of i2c module 
  *
- * @return              0 if successful; -1 otherwise
+ * @return  0 if successful; -1 otherwise
  */
 static int wait_till_busy(uint32_t base)
 {
@@ -65,7 +64,7 @@ static int wait_till_busy(uint32_t base)
  *
  * @param   base        base address of i2c module 
  *
- * @return              none
+ * @return  none
  */
 static inline void imx_send_stop(unsigned int base)
 {
@@ -82,7 +81,7 @@ static inline void imx_send_stop(unsigned int base)
  * @param   base        base address of i2c module 
  * @param   is_tx       Pass 1 for transfering, 0 for receiving 
  *
- * @return              0 if successful; negative integer otherwise
+ * @return  0 if successful; negative integer otherwise
  */
 static int wait_op_done(uint32_t base, int is_tx)
 {
@@ -129,7 +128,7 @@ static int wait_op_done(uint32_t base, int is_tx)
  * @param   base        base address of i2c module 
  * @param   data        return buffer for data
  *
- * @return              0 if successful; -1 otherwise
+ * @return  0 if successful; -1 otherwise
  */
 static int tx_byte(uint8_t * data, uint32_t base)
 {
@@ -157,7 +156,7 @@ static int tx_byte(uint8_t * data, uint32_t base)
  * @param   data        return buffer for data
  * @param   sz          number of bytes to receive
  *
- * @return              0 if successful; -1 otherwise
+ * @return  0 if successful; -1 otherwise
  */
 static int rx_bytes(uint8_t * data, uint32_t base, int sz)
 {
@@ -203,19 +202,18 @@ static int rx_bytes(uint8_t * data, uint32_t base, int sz)
  *      Step 4: do data write
  *      Step 5: generate STOP by clearing MSTA bit
  *
- * @param base      i.MX i2c module base
- * @param rq        pointer to struct imx_i2c_request
- * @param dir       I2C_READ/I2C_WRITE
+ * @param   base      i.MX i2c module base
+ * @param   rq        pointer to struct imx_i2c_request
+ * @param   dir       I2C_READ/I2C_WRITE
  *
- * @return          0 on success; non-zero otherwise
+ * @return  0 on success; non-zero otherwise
  */
-int i2c_xfer(uint32_t base, struct imx_i2c_request *rq, int dir)
+int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
 {
-    unsigned int reg;
-    unsigned char i, data;
-    unsigned short i2cr;
-
-    int ret = 0;
+    uint32_t reg, ret = 0;
+    uint16_t i2cr;
+    uint8_t i, data;
+    uint32_t base = rq->ctl_addr;
 
     if (rq->buffer_sz == 0 || rq->buffer == NULL) {
         printf("Invalid register address size=%x, buffer size=%x, buffer=%x\n",
@@ -339,22 +337,25 @@ int i2c_xfer(uint32_t base, struct imx_i2c_request *rq, int dir)
  * itself and the I2C clock prescaler.
  *
  * @param   base        base address of i2c module (also assigned for I2Cx_CLK)
- * @param   baud        the desired data rate
+ * @param   baud        the desired data rate in bps
  *
- * @return              0 if successful; non-zero otherwise
+ * @return  0 if successful; non-zero otherwise
  */
 int i2c_init(uint32_t base, uint32_t baud)
 {
+    /* enable the source clocks to the I2C port */
+    clock_gating_config(base, CLOCK_ON);
+
     /* Set iomux configuration */
-    io_cfg_i2c(base);
+    i2c_iomux_config(base);
 
     /* reset I2C */
     writew(0, base + I2C_I2CR);
 
     /* 
-     * since we find a valid divider, it is time to configure the frequency 
-     *  divider register 
+     * TO DO - get source frequency and calculate required divider
      */
+    //printf("IPG_PER_CLK = %d\n",get_main_clock(IPG_PER_CLK));
     writew(0x14, base + I2C_IFDR);
     writew(I2C_I2CR_IEN, base + I2C_I2CR);
 

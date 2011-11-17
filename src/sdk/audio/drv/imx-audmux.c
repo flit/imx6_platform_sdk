@@ -12,10 +12,8 @@
  */
 
 #include <stdio.h>
-#include "io.h"
-#include "soc_memory_map.h"
+#include "hardware.h"
 #include "../inc/imx-audmux.h"
-
 
 /*!
  * Dump the registers of audmux

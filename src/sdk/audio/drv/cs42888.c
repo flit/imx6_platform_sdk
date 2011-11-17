@@ -13,12 +13,12 @@
  */
 
 #include "hardware.h"
-#include "functions.h"
 #include "../inc/audio.h"
 #include "../inc/cs42888.h"
-#include "imx_i2c.h"
 
 extern int32_t esai_codec_power_on(void);
+
+struct imx_i2c_request cs42888_i2c_req;
 
 ////////////////////////////// Macros  ///////////////////////////////////////////
 
@@ -46,20 +46,21 @@ extern int32_t esai_codec_power_on(void);
 ////////////////////////////Local variables and functions /////////////////////////////////////////
 static void cs42888_i2c_init(audio_codec_p codec)
 {
+    /* this init is needed only once */
+    cs42888_i2c_req.ctl_addr = codec->i2c_base;      // the I2C controller base address
+    cs42888_i2c_req.dev_addr = codec->i2c_dev_addr;  // the I2C DEVICE address
+    cs42888_i2c_req.reg_addr_sz = 1;         // number of bytes of I2C device register's address
+    cs42888_i2c_req.buffer_sz = 1;           // number of data bytes
+
     i2c_init(codec->i2c_base, codec->i2c_freq);
 }
 
 static int32_t cs42888_reg_read(audio_codec_p codec, uint8_t reg_addr, uint8_t *ret_val)
 {
-    struct imx_i2c_request rq;
+    cs42888_i2c_req.reg_addr = reg_addr;
+    cs42888_i2c_req.buffer = ret_val;
 
-    rq.dev_addr = codec->i2c_dev_addr;  // the I2C DEVICE address
-    rq.reg_addr_sz = 1;         // number of bytes of I2C device register's address
-    rq.buffer_sz = 1;           // number of data bytes
-    rq.reg_addr = reg_addr;
-    rq.buffer = ret_val;
-
-    if (i2c_xfer(codec->i2c_base, &rq, I2C_READ) != 0) {
+    if (i2c_xfer(&cs42888_i2c_req, I2C_READ) != 0) {
         return -1;
     }
 
@@ -68,15 +69,10 @@ static int32_t cs42888_reg_read(audio_codec_p codec, uint8_t reg_addr, uint8_t *
 
 static int32_t cs42888_reg_write(audio_codec_p codec, uint8_t reg_addr, uint8_t reg_data)
 {
-    struct imx_i2c_request rq;
+    cs42888_i2c_req.reg_addr = reg_addr;
+    cs42888_i2c_req.buffer = &reg_data;
 
-    rq.dev_addr = codec->i2c_dev_addr;  // the I2C DEVICE address
-    rq.reg_addr_sz = 1;         // number of bytes of I2C device register's address
-    rq.buffer_sz = 1;           // number of data bytes
-    rq.reg_addr = reg_addr;
-    rq.buffer = &reg_data;
-
-    return i2c_xfer(codec->i2c_base, &rq, I2C_WRITE);
+    return i2c_xfer(&cs42888_i2c_req, I2C_WRITE);
 }
 
 ////////////////////////////////////// APIs /////////////////////////////////////

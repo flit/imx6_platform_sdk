@@ -23,16 +23,17 @@ uint8_t da9053_i2c_reg(uint32_t reg, uint8_t val, uint32_t dir)
     i2c_init(PMIC_DA9053_I2C_BASE, 170000);
 
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
+    rq.ctl_addr = PMIC_DA9053_I2C_BASE;
     rq.dev_addr = PMIC_DA9053_I2C_ADDR;
     rq.reg_addr_sz = PMIC_DA9053_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_DA9053_I2C_DATA_BYTE;
     rq.reg_addr = reg;
     rq.buffer = &buf;
 
-    i2c_xfer(PMIC_DA9053_I2C_BASE, &rq, dir);
+    i2c_xfer(&rq, dir);
 
     if (dir == I2C_WRITE) {
-        i2c_xfer(PMIC_DA9053_I2C_BASE, &rq, I2C_READ);
+        i2c_xfer(&rq, I2C_READ);
     }
 
     return buf;

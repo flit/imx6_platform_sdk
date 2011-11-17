@@ -1,0 +1,47 @@
+/*
+ * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
+ * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
+ * Freescale Semiconductor, Inc.
+*/
+
+#include <stdio.h>
+#include "hardware.h"
+
+extern int32_t i2c_eeprom_at24cxx_test(void);
+
+/*! 
+ * I2c test.
+ * This test uses the EEPROM write/read test !
+ *
+ * @return  none
+ */
+int32_t i2c_test(void)
+{
+    uint8_t sel;
+
+    printf("Start I2C unit tests:");
+
+    do {
+        printf("\n  1 - to perform a test with an EEPROM.\n");
+        printf("  2 - nothing defined yet!\n");
+        printf("  x - to exit.\n\n");
+
+        do {
+            sel = getchar();
+        } while (sel == NONE_CHAR);
+
+        if (sel == 'x') {
+            printf("\nTest exit.\n");
+            break;
+        }
+
+        if (sel == '1')
+            i2c_eeprom_at24cxx_test();
+        if (sel == '2')
+            printf("tada...\n");
+
+    } while(1);
+
+    return 0;
+}

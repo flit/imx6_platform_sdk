@@ -10,7 +10,7 @@
 /* In i.MX61, PLLs don't need to be configured. Default values cover most use cases. */
 void prog_pll(void)
 {
-/* TBD */
+/* Nothing to do here but keep compatibility with i.MX53 */
 }
 
 void ccm_init(void)
@@ -22,31 +22,33 @@ void ccm_init(void)
     reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x3, 0x3); /*divide bits */
 
     /* Ungate clocks that are not enabled in a driver - need to be updated */
-    *(volatile uint32_t *)(CCM_CCGR0) = 0xFFFFFFFF;
+    writel(0xFFFFFFFF, CCM_CCGR0);
     /* EPIT and GPT enabled by driver */
-    *(volatile uint32_t *)(CCM_CCGR1) = 0xFFCF0FFF;
-    *(volatile uint32_t *)(CCM_CCGR2) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR3) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR4) = 0xFFFFFFFF;
+    writel(0xFFCF0FFF, CCM_CCGR1);
+    /* I2C enabled by driver */
+    writel(0xFFFFF03F, CCM_CCGR2);
+    writel(0xFFFFFFFF, CCM_CCGR3);
+    writel(0xFFFFFFFF, CCM_CCGR4);
     /* UART enabled by driver */
-    *(volatile uint32_t *)(CCM_CCGR5) = 0xF0FFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR6) = 0xFFFFFFFF;
-    *(volatile uint32_t *)(CCM_CCGR7) = 0xFFFFFFFF;
+    writel(0xF0FFFFFF, CCM_CCGR5);
+    writel(0xFFFFFFFF, CCM_CCGR6);
+    writel(0xFFFFFFFF, CCM_CCGR7);
 
-    // **** NEEDS UPDATE for mx61 *****  //
     /*
-     * PLL2 output is expected to be 396MHz with
-     * pre_periph_clk_sel at 1 (PDF2).
+     * Keep default settings at reset.
+     * pre_periph_clk_sel is by default at 0, so the selected output
+     * of PLL2 is the main output at 528MHz.
+     * => by default, ahb_podf divides by 4 => AHB_CLK@132MHz.
+     * => by default, ipg_podf divides by 2 => IPG_CLK@66MHz.
      */
-    /* set ahb_podf to divide by 3 => AHB_CLK@132MHz and
-     * ipg_podf to divide by 2 => IPG_CLK@66MHz */
-    *(volatile uint32_t *)(CCM_CBCDR) = 0x00018900;
+    writel(0x00018D00, CCM_CBCDR);
+    writel(0x00020324, CCM_CBCMR);
 
     /*
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
      * 80MHz uart_clk_podf (div-by-1) = 80MHz (UART module clock input)
      */
-    reg32_write_mask(CCM_CSCDR1, 0x00000000, 0x0000003F);
+    writel(readl(CCM_CSCDR1) & 0x0000003F, CCM_CSCDR1);
 
     /* Power up 480MHz PLL */
 //    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00001000, 0x00001000);
@@ -184,6 +186,15 @@ void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
     case GPT_BASE_ADDR:
         ccm_ccgr_config(CCM_CCGR1, CG(10), gating_mode);
         break;
+    case I2C1_BASE_ADDR:
+        ccm_ccgr_config(CCM_CCGR2, CG(3), gating_mode);
+        break;
+    case I2C2_BASE_ADDR:
+        ccm_ccgr_config(CCM_CCGR2, CG(4), gating_mode);
+        break;
+    case I2C3_BASE_ADDR:
+        ccm_ccgr_config(CCM_CCGR2, CG(5), gating_mode);
+        break;
 
     default:
         break;
@@ -199,7 +210,7 @@ void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
 void ipu_hsp_clk_config(void)
 {
     /*clk_sel from mmdc_ch0, podf=1 */
-    reg32_write(CCM_CSCDR3, 0x00010800);
+    writel(0x00010800, CCM_CSCDR3);
 }
 
 /*!
@@ -213,25 +224,25 @@ void ldb_clock_config(int freq)
     if (freq == 65000000)       //for XGA resolution
     {
         /*config pll3 PFD1 to 455M. pll3 is 480M */
-        reg32_write(ANATOP_BASE_ADDR + 0xF0, 0x1311130C);
+        writel(0x1311130C, ANATOP_BASE_ADDR + 0xF0);
 
         /*set ldb_di0_clk_sel to PLL3 PFD1 */
-        regval = reg32_read(CCM_CS2CDR) & (~0x7E00);
+        regval = readl(CCM_CS2CDR) & (~0x7E00);
         regval |= 0x3600;
-        reg32_write(CCM_CS2CDR, regval);
+        writel(regval, CCM_CS2CDR);
 
         /*set clk_div to 7 */
-        regval = reg32_read(CCM_CSCMR2) & (~0xC00);
+        regval = readl(CCM_CSCMR2) & (~0xC00);
         regval |= 0xC00;
-        reg32_write(CCM_CSCMR2, regval);
+        writel(regval, CCM_CSCMR2);
 
         /*set ipu1_di0_clk_sel from ldb_di0_clk */
-        regval = reg32_read(CCM_CHSCCDR) & (~0x0E07);
+        regval = readl(CCM_CHSCCDR) & (~0x0E07);
         regval |= 0x0603;
-        reg32_write(CCM_CHSCCDR, regval);
-        regval = reg32_read(CCM_CSCDR2) & (~0x0E07);
+        writel(regval, CCM_CHSCCDR);
+        regval = readl(CCM_CSCDR2) & (~0x0E07);
         regval |= 0x0603;
-        reg32_write(CCM_CSCDR2, regval);
+        writel(regval, CCM_CSCDR2);
     } else {
         printf("The frequency %d for LDB is not supported yet.", freq);
     }
@@ -243,20 +254,20 @@ void hdmi_clock_set(uint32_t pclk)
 
     if (pclk == 74250000) {
         /*clk output from 540M PFD1 of PLL3 */
-        regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
-        reg32_write(CCM_CHSCCDR, regval | 0x168);
+        regval = readl(CCM_CHSCCDR) & (~0x1FF);
+        writel(regval | 0x168, CCM_CHSCCDR);
 
         /*config PLL5 to be 594MHz */
-        reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
-        reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001300);
+        writel(0x00003F00, ANATOP_BASE_ADDR + 0xF8);
+        writel(0x00001300, ANATOP_BASE_ADDR + 0xF4);
     } else if (pclk == 148500000) {
         /*clk output from 540M PFD1 of PLL3 */
-        regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
-        reg32_write(CCM_CHSCCDR, regval | 0x158);
+        regval = readl(CCM_CHSCCDR) & (~0x1FF);
+        writel(regval | 0x158, CCM_CHSCCDR);
 
         /*config PLL5 to be 594MHz */
-        reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
-        reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001300);
+        writel(0x00003F00, ANATOP_BASE_ADDR + 0xF8);
+        writel(0x00001300, ANATOP_BASE_ADDR + 0xF4);
     } else {
         printf("the hdmi pixel clock is not supported!\n");
     }

@@ -9,9 +9,10 @@
 #include "../inc/audio.h"
 #include "../inc/sgtl5000.h"
 #include "sgtl5000_priv.h"
-#include "imx_i2c.h"
 
 extern void SGTL5000PowerUp_and_clockinit(void);
+
+struct imx_i2c_request sgtl5000_i2c_req;
 
 ////////////////////////////// Macros  ///////////////////////////////////////////
 #define DEBUG_ENABLE	1
@@ -52,6 +53,12 @@ static int32_t sgtl5000_init_status = 0;
 
 static void sgtl5000_i2c_init(audio_codec_p codec)
 {
+    /* this init is needed only once */
+    sgtl5000_i2c_req.ctl_addr = codec->i2c_base;
+    sgtl5000_i2c_req.dev_addr = codec->i2c_dev_addr;
+    sgtl5000_i2c_req.reg_addr_sz = 2;
+    sgtl5000_i2c_req.buffer_sz = 2;
+
     i2c_init(codec->i2c_base, codec->i2c_freq);
 }
 
@@ -59,20 +66,16 @@ static int32_t sgtl5000_read_reg(audio_codec_p codec, uint16_t reg_addr, uint16_
 {
     int res = 0;
     uint8_t data[2];
-    struct imx_i2c_request rq;
     uint8_t buf[2];
 
     /*device need high byte firstly, so swap them */
     buf[0] = reg_addr & 0xff;
     buf[1] = (reg_addr & 0xff00) >> 8;
 
-    rq.dev_addr = codec->i2c_dev_addr;
-    rq.reg_addr = (buf[0] << 8) | buf[1];
-    rq.reg_addr_sz = 2;
-    rq.buffer_sz = 2;
-    rq.buffer = data;
+    sgtl5000_i2c_req.reg_addr = (buf[0] << 8) | buf[1];
+    sgtl5000_i2c_req.buffer = data;
 
-    res = i2c_xfer(codec->i2c_base, &rq, 1);
+    res = i2c_xfer(&sgtl5000_i2c_req, 1);
 
     *reg_val = (data[0] << 8) | data[1];
 
@@ -83,7 +86,6 @@ static int32_t sgtl5000_write_reg(audio_codec_p codec, uint16_t reg_addr,
                                        uint16_t reg_data)
 {
     uint8_t data[2];
-    struct imx_i2c_request rq;
     uint8_t buf[2];
 
     buf[0] = reg_addr & 0xff;
@@ -92,13 +94,10 @@ static int32_t sgtl5000_write_reg(audio_codec_p codec, uint16_t reg_addr,
     data[1] = reg_data & 0x00ff;
     data[0] = (reg_data & 0xff00) >> 8;
 
-    rq.dev_addr = codec->i2c_dev_addr;
-    rq.reg_addr = (buf[0] << 8) | buf[1];
-    rq.reg_addr_sz = 2;
-    rq.buffer_sz = 2;
-    rq.buffer = data;
+    sgtl5000_i2c_req.reg_addr = (buf[0] << 8) | buf[1];
+    sgtl5000_i2c_req.buffer = data;
 
-    return i2c_xfer(codec->i2c_base, &rq, 0);
+    return i2c_xfer(&sgtl5000_i2c_req, 0);
 }
 
 static int32_t sgtl5000_dump(void *priv)

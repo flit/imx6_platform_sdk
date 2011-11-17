@@ -21,10 +21,10 @@ const struct fixed_pll_mfd fixed_mfd[REF_IN_CLK_NUM] = {
 };
 
 static volatile uint32_t *pll_base[] = {
-    REG32_PTR(PLL1_BASE_ADDR),
-    REG32_PTR(PLL2_BASE_ADDR),
-    REG32_PTR(PLL3_BASE_ADDR),
-    REG32_PTR(PLL4_BASE_ADDR),
+    ((volatile unsigned int *)PLL1_BASE_ADDR),
+    ((volatile unsigned int *)PLL2_BASE_ADDR),
+    ((volatile unsigned int *)PLL3_BASE_ADDR),
+    ((volatile unsigned int *)PLL4_BASE_ADDR),
 };
 
 void ccm_init(void)

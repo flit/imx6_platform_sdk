@@ -15,8 +15,8 @@
 #ifndef __HARDWARE_H__
 #define __HARDWARE_H__
 #include "soc_memory_map.h"
-#include "functions.h"
 #include "io.h"
+#include "system_util.h"
 #include "iomux_define.h"
 #include "iomux_register.h"
 #include "gpio.h"
@@ -144,7 +144,8 @@ enum display_type {
 uint32_t get_main_clock(enum main_clocks clk);
 uint32_t get_peri_clock(enum peri_clocks clk);
 void clock_setup(uint32_t core_clk, uint32_t ahb_div);
-void io_cfg_i2c(uint32_t module_base);
+void uart_iomux_config(uint32_t module_base_add);
+void i2c_iomux_config(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
 uint32_t get_freq(uint32_t module_base);

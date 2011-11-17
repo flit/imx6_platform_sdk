@@ -40,11 +40,10 @@ static struct imx_i2c_request *max7310_i2c_req;
 uint8_t max7310_reg_read(uint8_t reg_addr)
 {
     uint8_t buf;
-    max7310_i2c_req->reg_addr_sz = 1;
-    max7310_i2c_req->buffer_sz = 1;
+
     max7310_i2c_req->reg_addr = reg_addr;
     max7310_i2c_req->buffer = &buf;
-    i2c_xfer(max7310_i2c_req->ctl_addr, max7310_i2c_req, I2C_READ);
+    i2c_xfer(max7310_i2c_req, I2C_READ);
 
     return buf;
 }
@@ -59,12 +58,10 @@ uint8_t max7310_reg_read(uint8_t reg_addr)
  */
 int32_t max7310_reg_write(uint8_t reg_addr, uint8_t data)
 {
-    max7310_i2c_req->reg_addr_sz = 1;
-    max7310_i2c_req->buffer_sz = 1;
     max7310_i2c_req->reg_addr = reg_addr;
     max7310_i2c_req->buffer = &data;
 
-    return i2c_xfer(max7310_i2c_req->ctl_addr, max7310_i2c_req, I2C_WRITE);
+    return i2c_xfer(max7310_i2c_req, I2C_WRITE);
 }
 
 /*!

@@ -697,6 +697,33 @@ void usdhc_iomux_config(uint32_t base_address)
     }
 }
 
+/*!
+ * eCSPI pin mux and pad configure
+ */
+void ecspi_iomux_cfg(uint32_t base_address)
+{
+    switch (base_address) {
+    case ECSPI1_BASE_ADDR:
+        ecspi1_iomux_config();
+        break;
+
+    case ECSPI2_BASE_ADDR:
+        break;
+
+    case ECSPI3_BASE_ADDR:
+        break;
+
+    case ECSPI4_BASE_ADDR:
+        break;
+
+    case ECSPI5_BASE_ADDR:
+        break;
+
+    default:
+        break;
+    }
+}
+
 void ssi_io_cfg(void)
 {
 }

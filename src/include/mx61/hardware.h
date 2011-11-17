@@ -235,6 +235,7 @@ void esai_iomux(void);
 void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
 void usdhc_iomux_config(uint32_t);
+void ecspi_iomux_cfg(uint32_t);
 
 #define MAX_GPIO_PORT   7
 const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];

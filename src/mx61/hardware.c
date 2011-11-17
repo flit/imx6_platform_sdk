@@ -94,8 +94,6 @@ uint32_t get_freq(uint32_t module_base)
     else if (module_base == g_debug_uart.base)
         return get_peri_clock(UART4_BAUD);
     else if (module_base == g_system_timer.base)
-        /* value depends on how the timer is configured, 
-            and this is actually initialized in system_time_init() */
         return g_system_timer.freq;
     else {
         printf("Not a valid module base address \n");
@@ -212,7 +210,7 @@ extern void uart2_iomux_config();
 extern void uart4_iomux_config();
 
 /*!
- * That function calls the board dependent UART IOMUX configuration functions.
+ * That function calls the board dependent IOMUX configuration functions
  */
 void uart_iomux_config(uint32_t module_base_add)
 {
@@ -230,17 +228,21 @@ void uart_iomux_config(uint32_t module_base_add)
 }
 
 /*!
- * That function calls the board dependent I2C IOMUX configuration functions.
- */
-void i2c_iomux_config(uint32_t module_base)
+  * Set up the IOMUX for I2C
+  */
+void io_cfg_i2c(uint32_t module_base)
 {
     switch (module_base) {
     case I2C1_BASE_ADDR:
         i2c1_iomux_config();
+
         break;
+
     case I2C2_BASE_ADDR:
         i2c2_iomux_config();
+
         break;
+
     case I2C3_BASE_ADDR:
         i2c3_iomux_config();
         break;
@@ -269,7 +271,7 @@ void lvds_power_on(void)
     max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
 
     /*lvds backlight enable, GPIO_9 */
-    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_9);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_9, ALT5);
     gpio_dir_config(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
@@ -279,7 +281,7 @@ void lvds_power_on(void)
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
 
     /*lvds backlight enable, GPIO_9 */
-    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
     gpio_dir_config(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT2, 9, GPIO_HIGH_LEVEL);
 
@@ -307,7 +309,7 @@ void gpmi_nand_pinmux_config(void)
 {
     // config NANDF_RB0 pad for rawnand instance READY0 port
     // config_pad_mode(NANDF_RB0, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT0);
     // CONSTANT SETTINGS:
     // Open Drain Enable to NA (CFG in SoC Level however NA in Module Level)
     // Speed to NA (CFG in SoC Level however NA in Module Level)
@@ -319,11 +321,11 @@ void gpmi_nand_pinmux_config(void)
     // Pull / Keep Select to CFG(Pull) (Binary: 1)
     // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
     // config_pad_settings(NANDF_RB0, 0x0b000);
-    writel(0xf0e0, IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0, 0xf0e0);
 
     // config NANDF_CS0 pad for rawnand instance CE0N port
     // config_pad_mode(NANDF_CS0, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0, ALT0);
     // CONSTANT SETTINGS:
     // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
     // CONFIGURED SETTINGS:
@@ -335,25 +337,9 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_CS0, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0, 0x100b1);
 
-
-	writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS1);
-		// CONSTANT SETTINGS:
-		// Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
-		// CONFIGURED SETTINGS:
-		// Pull Up / Down Config. to 100KOhm PU (Binary: 10)
-		// Pull / Keep Select to Pull (Binary: 1)
-		// Pull / Keep Enable to CFG(Enabled) (Binary: 1)
-		// Open Drain Enable to Disabled (Binary: 0)
-		// Speed to CFG(100MHz) (Binary: 10)
-		// Drive Strength to CFG(R0DIV6) (Binary: 110)
-		// Slew Rate to CFG(FAST) (Binary: 1)
-		// config_pad_settings(NANDF_CS0, 0x0b0b1);
-	writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS1);
-
-
-	writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS1, ALT0);
     // CONSTANT SETTINGS:
     // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
     // CONFIGURED SETTINGS:
@@ -365,8 +351,9 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_CS0, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2);
-	writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS1, 0x100b1);
+
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2, ALT0);
     // CONSTANT SETTINGS:
     // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
     // CONFIGURED SETTINGS:
@@ -378,11 +365,24 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_CS0, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2, 0x100b1);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3, ALT0);
+    // CONSTANT SETTINGS:
+    // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
+    // CONFIGURED SETTINGS:
+    // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
+    // Pull / Keep Select to Pull (Binary: 1)
+    // Pull / Keep Enable to CFG(Enabled) (Binary: 1)
+    // Open Drain Enable to Disabled (Binary: 0)
+    // Speed to CFG(100MHz) (Binary: 10)
+    // Drive Strength to CFG(R0DIV6) (Binary: 110)
+    // Slew Rate to CFG(FAST) (Binary: 1)
+    // config_pad_settings(NANDF_CS0, 0x0b0b1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3, 0x100b1);
 
     // config NANDF_CLE pad for rawnand instance CLE port
     // config_pad_mode(NANDF_CLE, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_CLE);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CLE, ALT0);
     // CONSTANT SETTINGS:
     // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
     // CONFIGURED SETTINGS:
@@ -394,11 +394,11 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_CLE, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_CLE);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CLE, 0x100b1);
 
     // config NANDF_ALE pad for rawnand instance ALE port
     // config_pad_mode(NANDF_ALE, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_ALE);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_ALE, ALT0);
     // CONSTANT SETTINGS:
     // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
     // CONFIGURED SETTINGS:
@@ -410,11 +410,11 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_ALE, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE, 0x100b1);
 
     // config NANDF_WP_B pad for rawnand instance RESETN port
     // config_pad_mode(NANDF_WP_B, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT0);
     // CONSTANT SETTINGS:
     // Hyst. Enable to NA (CFG in SoC Level however NA in Module Level)
     // CONFIGURED SETTINGS:
@@ -426,11 +426,11 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_WP_B, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x100b1);
 
     // config NANDF_D0 pad for rawnand instance D0 port
     // config_pad_mode(NANDF_D0, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_D0);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D0, ALT0);
     // CONFIGURED SETTINGS:
     // Hyst. Enable to Disabled (Binary: 0)
     // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
@@ -441,11 +441,11 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_D0, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_D0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D0, 0x100b1);
 
     // config NANDF_D1 pad for rawnand instance D1 port
     // config_pad_mode(NANDF_D1, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_D1);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D1, ALT0);
     // CONFIGURED SETTINGS:
     // Hyst. Enable to Disabled (Binary: 0)
     // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
@@ -456,11 +456,11 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_D1, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_D1);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D1, 0x100b1);
 
     // config NANDF_D2 pad for rawnand instance D2 port
     // config_pad_mode(NANDF_D2, ALT0);
-    writel(ALT0, IOMUXC_SW_MUX_CTL_PAD_NANDF_D2);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D2, ALT0);
     // CONFIGURED SETTINGS:
     // Hyst. Enable to Disabled (Binary: 0)
     // Pull Up / Down Config. to 100KOhm PU (Binary: 10)
@@ -471,7 +471,7 @@ void gpmi_nand_pinmux_config(void)
     // Drive Strength to CFG(R0DIV6) (Binary: 110)
     // Slew Rate to CFG(FAST) (Binary: 1)
     // config_pad_settings(NANDF_D2, 0x0b0b1);
-    writel(0x100b1, IOMUXC_SW_PAD_CTL_PAD_NANDF_D2);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D2, 0x100b1);
 
     // config NANDF_D3 pad for rawnand instance D3 port
     // config_pad_mode(NANDF_D3, ALT0);
@@ -687,33 +687,6 @@ void usdhc_iomux_config(uint32_t base_address)
     }
 }
 
-/*!
- * eCSPI pin mux and pad configure
- */
-void ecspi_iomux_cfg(uint32_t base_address)
-{
-    switch (base_address) {
-    case ECSPI1_BASE_ADDR:
-        ecspi1_iomux_config();
-        break;
-
-    case ECSPI2_BASE_ADDR:
-        break;
-
-    case ECSPI3_BASE_ADDR:
-        break;
-
-    case ECSPI4_BASE_ADDR:
-        break;
-
-    case ECSPI5_BASE_ADDR:
-        break;
-
-    default:
-        break;
-    }
-}
-
 void ssi_io_cfg(void)
 {
 }
@@ -805,37 +778,6 @@ void sata_power_off(void)
     //disable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
     max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
 }
-/*!
- * SPDIF clock configuration
- * Use the default setting as follow:
- * CDCDR[spdif0_clk_sel](PLL3)->CDCDR[spdif0_clk_pred](div2)->CDCDR[spdif0_clk_podf](div8)-> spdif0_clk_root, so 
- * the freqency of spdif0_clk should be 480/2/8 = 30MHz.
- */
-void spdif_clk_cfg(void)
-{
-	unsigned int val;
-
-	val = readl(CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
-	//CDCDR[spdif0_clk_sel](PLL3)
-	val &= ~(0x03<<20);
-	val |= 0x03<<20;
-	//CDCDR[spdif0_clk_pred](div2)
-	val &= ~(0x07<<25);
-	val |= 0x01 << 25;
-	//CDCDR[spdif0_clk_podf](div8)
-	val &= ~(0x07<<22);
-	val |= 0x07 << 22;
-	writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
-
-	val = readl(CCM_BASE_ADDR + CCM_CCGR5);
-	val |= 0x03 << 14;	//spdif_clk_enable
-	writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
-}
-
-unsigned int spdif_get_tx_clk_freq(void)
-{
-	return 30000000;
-}
 
 /*!
  * Board initialization and UART IOMUX set up
@@ -854,4 +796,45 @@ void board_init(void)
 uint32_t GetCPUFreq(void)
 {
     return 1000000000;
+}
+
+/*!
+ * board dependent IOMUX configuration functions
+ */
+void can_iomux_config(uint32_t module_base_add)
+{
+
+#ifdef MX61_ARD
+    /* CAN_EN active high output */
+    max7310_set_gpio_output(1, 7, GPIO_HIGH_LEVEL); //expander b, io7
+
+    /* CAN_STBY active high output */
+    max7310_set_gpio_output(1, 6, GPIO_HIGH_LEVEL); //expander b, io6 
+#endif
+
+    switch (module_base_add) {
+    case CAN1_BASE_ADDR:
+        can1_iomux_config();
+#ifdef MX61_ARD
+        /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
+        max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3 
+        /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
+        /* active low input */
+        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
+        gpio_dir_config(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
+#endif
+        break;
+    case CAN2_BASE_ADDR:
+        can2_iomux_config();
+#ifdef MX61_ARD
+        /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
+        /* active low input */
+        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
+        gpio_dir_config(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
+#endif
+        break;
+    default:
+        printf("ERR: invalid CAN base address for iomux config\n");
+        break;
+    }
 }

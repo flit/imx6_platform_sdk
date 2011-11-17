@@ -14,6 +14,84 @@
 // Function to config iomux for instance esai1.
 void esai1_iomux_config(void)
 {
+    // Config esai1_FSR to pad GPIO_9(T2)
+    // Mux Register:
+    // IOMUXC_SW_MUX_CTL_PAD_GPIO_9(0x020E0228)
+    //   SION (4) - Software Input On Field Reset: SION_DISABLED
+    //              Force the selected mux mode Input path no matter of MUX_MODE functionality.
+    //     SION_DISABLED (0) - Input Path is determined by functionality of the selected mux mode (regular).
+    //     SION_ENABLED (1) - Force input path of pad GPIO_9.
+    //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
+    //                    Select 1 of 8 iomux modes to be used for pad: GPIO_9.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: FSR of instance: esai1.
+    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT for mode ALT0.
+    //     ALT1 (1) - Select mux mode: ALT1 mux port: WDOG_B of instance: wdog1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: COL[6] of instance: kpp.
+    //                NOTE: - Config Register IOMUXC_KPP_IPP_IND_COL_6_SELECT_INPUT for mode ALT2.
+    //     ALT3 (3) - Select mux mode: ALT3 mux port: REF_EN_B of instance: ccm.
+    //     ALT4 (4) - Select mux mode: ALT4 mux port: PWMO of instance: pwm1.
+    //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[9] of instance: gpio1.
+    //     ALT6 (6) - Select mux mode: ALT6 mux port: WP of instance: usdhc1.
+    //                NOTE: - Config Register IOMUXC_USDHC1_IPP_WP_ON_SELECT_INPUT for mode ALT6.
+    //     ALT7 (7) - Select mux mode: ALT7 mux port: EARLY_RST of instance: src.
+    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_GPIO_9);
+    // Pad GPIO_9 is involved in Daisy Chain.
+    // Input Select Register:
+    // IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT(0x020E085C)
+    //   DAISY (0) Reset: SEL_ENET_REF_CLK_ALT2
+    //               Selecting Pads Involved in Daisy Chain.
+    //               NOTE: Instance: esai1, In Pin: ipp_ind_fsr
+    //     SEL_ENET_REF_CLK_ALT2 (0) - Selecting Pad: ENET_REF_CLK for Mode: ALT2.
+    //     SEL_GPIO_9_ALT0 (1) - Selecting Pad: GPIO_9 for Mode: ALT0.
+    writel((SEL_GPIO_9_ALT0 & 0x1), IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT);
+    // Pad Control Register:
+    // IOMUXC_SW_PAD_CTL_PAD_GPIO_9(0x020E05F8)
+    //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
+    //              Select one out of next values for pad: GPIO_9.
+    //     HYS_DISABLED (0) - Hysteresis Disabled
+    //     HYS_ENABLED (1) - Hysteresis Enabled
+    //   PUS (15-14) - Pull Up / Down Config. Field Reset: PUS_100KOHM_PU
+    //                 Select one out of next values for pad: GPIO_9.
+    //     PUS_100KOHM_PD (0) - 100K Ohm Pull Down
+    //     PUS_47KOHM_PU (1) - 47K Ohm Pull Up
+    //     PUS_100KOHM_PU (2) - 100K Ohm Pull Up
+    //     PUS_22KOHM_PU (3) - 22K Ohm Pull Up
+    //   PUE (13) - Pull / Keep Select Field Reset: PUE_PULL
+    //              Select one out of next values for pad: GPIO_9.
+    //     PUE_KEEP (0) - Keeper
+    //     PUE_PULL (1) - Pull
+    //   PKE (12) - Pull / Keep Enable Field Reset: PKE_ENABLED
+    //              Select one out of next values for pad: GPIO_9.
+    //     PKE_DISABLED (0) - Pull/Keeper Disabled
+    //     PKE_ENABLED (1) - Pull/Keeper Enabled
+    //   ODE (11) - Open Drain Enable Field Reset: ODE_DISABLED
+    //              Select one out of next values for pad: GPIO_9.
+    //     ODE_DISABLED (0) - Open Drain Disabled
+    //     ODE_ENABLED (1) - Open Drain Enabled
+    //   SPEED (7-6) - Speed Field Reset: SPD_100MHZ
+    //                 Select one out of next values for pad: GPIO_9.
+    //     SPD_TBD (0) - TBD
+    //     SPD_50MHZ (1) - Low(50 MHz)
+    //     SPD_100MHZ (2) - Medium(100 MHz)
+    //     SPD_200MHZ (3) - Maximum(200 MHz)
+    //   DSE (5-3) - Drive Strength Field Reset: DSE_40OHM
+    //               Select one out of next values for pad: GPIO_9.
+    //     DSE_DISABLED (0) - Output driver disabled.
+    //     DSE_240OHM (1) - 240 Ohm
+    //     DSE_120OHM (2) - 120 Ohm
+    //     DSE_80OHM (3) - 80 Ohm
+    //     DSE_60OHM (4) - 60 Ohm
+    //     DSE_48OHM (5) - 48 Ohm
+    //     DSE_40OHM (6) - 40 Ohm
+    //     DSE_34OHM (7) - 34 Ohm
+    //   SRE (0) - Slew Rate Field Reset: SRE_SLOW
+    //             Select one out of next values for pad: GPIO_9.
+    //     SRE_SLOW (0) - Slow Slew Rate
+    //     SRE_FAST (1) - Fast Slew Rate
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
+           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_9);
+
     // Config esai1_FST to pad ENET_RXD1(W22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_RXD1(0x020E01E0)
@@ -90,156 +168,6 @@ void esai1_iomux_config(void)
     writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RXD1);
-
-    // Config esai1_HCKR to pad ENET_RX_ER(W23)
-    // Mux Register:
-    // IOMUXC_SW_MUX_CTL_PAD_ENET_RX_ER(0x020E01D8)
-    //   SION (4) - Software Input On Field Reset: SION_DISABLED
-    //              Force the selected mux mode Input path no matter of MUX_MODE functionality.
-    //     SION_DISABLED (0) - Input Path is determined by functionality of the selected mux mode (regular).
-    //     SION_ENABLED (1) - Force input path of pad ENET_RX_ER.
-    //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
-    //                    Select 1 of 8 iomux modes to be used for pad: ENET_RX_ER.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: USBOTG_ID of instance: anatop.
-    //     ALT1 (1) - Select mux mode: ALT1 mux port: RX_ER of instance: enet.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKR of instance: esai1.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT for mode ALT2.
-    //     ALT3 (3) - Select mux mode: ALT3 mux port: IN1 of instance: spdif.
-    //                NOTE: - Config Register IOMUXC_SPDIF_SPDIF_IN1_SELECT_INPUT for mode ALT3.
-    //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT2_OUT of instance: enet.
-    //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[24] of instance: gpio1.
-    //     ALT6 (6) - Select mux mode: ALT6 mux port: TDI of instance: phy.
-    //     ALT7 (7) - Select mux mode: ALT7 mux port: USBPHY1_TSTO_RX_HS_RXD of instance: anatop.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_ENET_RX_ER);
-    // Pad ENET_RX_ER is involved in Daisy Chain.
-    // Input Select Register:
-    // IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT(0x020E0864)
-    //   DAISY (0) Reset: SEL_ENET_RX_ER_ALT2
-    //               Selecting Pads Involved in Daisy Chain.
-    //               NOTE: Instance: esai1, In Pin: ipp_ind_hckr
-    //     SEL_ENET_RX_ER_ALT2 (0) - Selecting Pad: ENET_RX_ER for Mode: ALT2.
-    //     SEL_GPIO_3_ALT0 (1) - Selecting Pad: GPIO_3 for Mode: ALT0.
-    writel((SEL_ENET_RX_ER_ALT2 & 0x1), IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT);
-    // Pad Control Register:
-    // IOMUXC_SW_PAD_CTL_PAD_ENET_RX_ER(0x020E04EC)
-    //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
-    //              Select one out of next values for pad: ENET_RX_ER.
-    //     HYS_DISABLED (0) - Hysteresis Disabled
-    //     HYS_ENABLED (1) - Hysteresis Enabled
-    //   PUS (15-14) - Pull Up / Down Config. Field Reset: PUS_100KOHM_PU
-    //                 Select one out of next values for pad: ENET_RX_ER.
-    //     PUS_100KOHM_PD (0) - 100K Ohm Pull Down
-    //     PUS_47KOHM_PU (1) - 47K Ohm Pull Up
-    //     PUS_100KOHM_PU (2) - 100K Ohm Pull Up
-    //     PUS_22KOHM_PU (3) - 22K Ohm Pull Up
-    //   PUE (13) - Pull / Keep Select Field Reset: PUE_PULL
-    //              Select one out of next values for pad: ENET_RX_ER.
-    //     PUE_KEEP (0) - Keeper
-    //     PUE_PULL (1) - Pull
-    //   PKE (12) - Pull / Keep Enable Field Reset: PKE_ENABLED
-    //              Select one out of next values for pad: ENET_RX_ER.
-    //     PKE_DISABLED (0) - Pull/Keeper Disabled
-    //     PKE_ENABLED (1) - Pull/Keeper Enabled
-    //   ODE (11) - Open Drain Enable Field Reset: ODE_DISABLED
-    //              Select one out of next values for pad: ENET_RX_ER.
-    //     ODE_DISABLED (0) - Open Drain Disabled
-    //     ODE_ENABLED (1) - Open Drain Enabled
-    //   SPEED (7-6) - Speed Field Reset: SPD_100MHZ
-    //                 Select one out of next values for pad: ENET_RX_ER.
-    //     SPD_TBD (0) - TBD
-    //     SPD_50MHZ (1) - Low(50 MHz)
-    //     SPD_100MHZ (2) - Medium(100 MHz)
-    //     SPD_200MHZ (3) - Maximum(200 MHz)
-    //   DSE (5-3) - Drive Strength Field Reset: DSE_40OHM
-    //               Select one out of next values for pad: ENET_RX_ER.
-    //     DSE_DISABLED (0) - Output driver disabled.
-    //     DSE_240OHM (1) - 240 Ohm
-    //     DSE_120OHM (2) - 120 Ohm
-    //     DSE_80OHM (3) - 80 Ohm
-    //     DSE_60OHM (4) - 60 Ohm
-    //     DSE_48OHM (5) - 48 Ohm
-    //     DSE_40OHM (6) - 40 Ohm
-    //     DSE_34OHM (7) - 34 Ohm
-    //   SRE (0) - Slew Rate Field Reset: SRE_SLOW
-    //             Select one out of next values for pad: ENET_RX_ER.
-    //     SRE_SLOW (0) - Slow Slew Rate
-    //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
-           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
-           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RX_ER);
-
-    // Config esai1_HCKT to pad ENET_RXD0(W21)
-    // Mux Register:
-    // IOMUXC_SW_MUX_CTL_PAD_ENET_RXD0(0x020E01E4)
-    //   SION (4) - Software Input On Field Reset: SION_DISABLED
-    //              Force the selected mux mode Input path no matter of MUX_MODE functionality.
-    //     SION_DISABLED (0) - Input Path is determined by functionality of the selected mux mode (regular).
-    //     SION_ENABLED (1) - Force input path of pad ENET_RXD0.
-    //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
-    //                    Select 1 of 7 iomux modes to be used for pad: ENET_RXD0.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: 32K_OUT of instance: osc32k.
-    //     ALT1 (1) - Select mux mode: ALT1 mux port: RDATA[0] of instance: enet.
-    //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXDATA_0_SELECT_INPUT for mode ALT1.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKT of instance: esai1.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT for mode ALT2.
-    //     ALT3 (3) - Select mux mode: ALT3 mux port: OUT1 of instance: spdif.
-    //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[27] of instance: gpio1.
-    //     ALT6 (6) - Select mux mode: ALT6 mux port: TMS of instance: phy.
-    //     ALT7 (7) - Select mux mode: ALT7 mux port: USBPHY1_TSTO_PLL_CLK20DIV of instance: anatop.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_ENET_RXD0);
-    // Pad ENET_RXD0 is involved in Daisy Chain.
-    // Input Select Register:
-    // IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT(0x020E0868)
-    //   DAISY (0) Reset: SEL_ENET_RXD0_ALT2
-    //               Selecting Pads Involved in Daisy Chain.
-    //               NOTE: Instance: esai1, In Pin: ipp_ind_hckt
-    //     SEL_ENET_RXD0_ALT2 (0) - Selecting Pad: ENET_RXD0 for Mode: ALT2.
-    //     SEL_GPIO_4_ALT0 (1) - Selecting Pad: GPIO_4 for Mode: ALT0.
-    writel((SEL_ENET_RXD0_ALT2 & 0x1), IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT);
-    // Pad Control Register:
-    // IOMUXC_SW_PAD_CTL_PAD_ENET_RXD0(0x020E04F8)
-    //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
-    //              Select one out of next values for pad: ENET_RXD0.
-    //     HYS_DISABLED (0) - Hysteresis Disabled
-    //     HYS_ENABLED (1) - Hysteresis Enabled
-    //   PUS (15-14) - Pull Up / Down Config. Field Reset: PUS_100KOHM_PU
-    //                 Select one out of next values for pad: ENET_RXD0.
-    //     PUS_100KOHM_PD (0) - 100K Ohm Pull Down
-    //     PUS_47KOHM_PU (1) - 47K Ohm Pull Up
-    //     PUS_100KOHM_PU (2) - 100K Ohm Pull Up
-    //     PUS_22KOHM_PU (3) - 22K Ohm Pull Up
-    //   PUE (13) - Pull / Keep Select Field Reset: PUE_PULL
-    //              Select one out of next values for pad: ENET_RXD0.
-    //     PUE_KEEP (0) - Keeper
-    //     PUE_PULL (1) - Pull
-    //   PKE (12) - Pull / Keep Enable Field Reset: PKE_ENABLED
-    //              Select one out of next values for pad: ENET_RXD0.
-    //     PKE_DISABLED (0) - Pull/Keeper Disabled
-    //     PKE_ENABLED (1) - Pull/Keeper Enabled
-    //   ODE (11) - Open Drain Enable Field Reset: ODE_DISABLED
-    //              Select one out of next values for pad: ENET_RXD0.
-    //     ODE_DISABLED (0) - Open Drain Disabled
-    //     ODE_ENABLED (1) - Open Drain Enabled
-    //   SPEED (7-6) - Speed Field Reset: SPD_100MHZ
-    //                 Read Only Field
-    //     SPD_100MHZ (2) - Medium(100 MHz)
-    //   DSE (5-3) - Drive Strength Field Reset: DSE_40OHM
-    //               Select one out of next values for pad: ENET_RXD0.
-    //     DSE_DISABLED (0) - Output driver disabled.
-    //     DSE_240OHM (1) - 240 Ohm
-    //     DSE_120OHM (2) - 120 Ohm
-    //     DSE_80OHM (3) - 80 Ohm
-    //     DSE_60OHM (4) - 60 Ohm
-    //     DSE_48OHM (5) - 48 Ohm
-    //     DSE_40OHM (6) - 40 Ohm
-    //     DSE_34OHM (7) - 34 Ohm
-    //   SRE (0) - Slew Rate Field Reset: SRE_SLOW
-    //             Select one out of next values for pad: ENET_RXD0.
-    //     SRE_SLOW (0) - Slow Slew Rate
-    //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
-           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
-           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RXD0);
 
     // Config esai1_SCKR to pad ENET_MDIO(V23)
     // Mux Register:
@@ -391,25 +319,27 @@ void esai1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_CRS_DV);
 
-    // Config esai1_TX0 to pad NANDF_CS2(A17)
+    // Config esai1_TX0 to pad GPIO_17(R1)
     // Mux Register:
-    // IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2(0x020E02EC)
+    // IOMUXC_SW_MUX_CTL_PAD_GPIO_17(0x020E024C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
     //              Force the selected mux mode Input path no matter of MUX_MODE functionality.
     //     SION_DISABLED (0) - Input Path is determined by functionality of the selected mux mode (regular).
-    //     SION_ENABLED (1) - Force input path of pad NANDF_CS2.
+    //     SION_ENABLED (1) - Force input path of pad GPIO_17.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
-    //                    Select 1 of 7 iomux modes to be used for pad: NANDF_CS2.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: CE2N of instance: rawnand.
-    //     ALT1 (1) - Select mux mode: ALT1 mux port: SISG[0] of instance: ipu1.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: TX0 of instance: esai1.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT for mode ALT2.
-    //     ALT3 (3) - Select mux mode: ALT3 mux port: WEIM_CRE of instance: weim.
-    //     ALT4 (4) - Select mux mode: ALT4 mux port: CLKO2 of instance: ccm.
-    //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[15] of instance: gpio6.
-    //     ALT6 (6) - Select mux mode: ALT6 mux port: SISG[0] of instance: ipu2.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
-    // Pad NANDF_CS2 is involved in Daisy Chain.
+    //                    Select 1 of 7 iomux modes to be used for pad: GPIO_17.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX0 of instance: esai1.
+    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT for mode ALT0.
+    //     ALT1 (1) - Select mux mode: ALT1 mux port: 1588_EVENT3_IN of instance: enet.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: PMIC_RDY of instance: ccm.
+    //                NOTE: - Config Register IOMUXC_CCM_PMIC_VFUNCIONAL_READY_SELECT_INPUT for mode ALT2.
+    //     ALT3 (3) - Select mux mode: ALT3 mux port: SDMA_EXT_EVENT[0] of instance: sdma.
+    //                NOTE: - Config Register IOMUXC_SDMA_EVENTS_14_SELECT_INPUT for mode ALT3.
+    //     ALT4 (4) - Select mux mode: ALT4 mux port: OUT1 of instance: spdif.
+    //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[12] of instance: gpio7.
+    //     ALT7 (7) - Select mux mode: ALT7 mux port: JTAG_ACT of instance: sjc.
+    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_GPIO_17);
+    // Pad GPIO_17 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT(0x020E0874)
     //   DAISY (0) Reset: SEL_GPIO_17_ALT0
@@ -419,37 +349,34 @@ void esai1_iomux_config(void)
     //     SEL_NANDF_CS2_ALT2 (1) - Selecting Pad: NANDF_CS2 for Mode: ALT2.
     writel((SEL_GPIO_17_ALT0 & 0x1), IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT);
     // Pad Control Register:
-    // IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2(0x020E06D4)
+    // IOMUXC_SW_PAD_CTL_PAD_GPIO_17(0x020E061C)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
-    //              Select one out of next values for pad: NANDF_CS2.
+    //              Select one out of next values for pad: GPIO_17.
     //     HYS_DISABLED (0) - Hysteresis Disabled
     //     HYS_ENABLED (1) - Hysteresis Enabled
     //   PUS (15-14) - Pull Up / Down Config. Field Reset: PUS_100KOHM_PU
-    //                 Select one out of next values for pad: NANDF_CS2.
+    //                 Select one out of next values for pad: GPIO_17.
     //     PUS_100KOHM_PD (0) - 100K Ohm Pull Down
     //     PUS_47KOHM_PU (1) - 47K Ohm Pull Up
     //     PUS_100KOHM_PU (2) - 100K Ohm Pull Up
     //     PUS_22KOHM_PU (3) - 22K Ohm Pull Up
     //   PUE (13) - Pull / Keep Select Field Reset: PUE_PULL
-    //              Select one out of next values for pad: NANDF_CS2.
+    //              Select one out of next values for pad: GPIO_17.
     //     PUE_KEEP (0) - Keeper
     //     PUE_PULL (1) - Pull
     //   PKE (12) - Pull / Keep Enable Field Reset: PKE_ENABLED
-    //              Select one out of next values for pad: NANDF_CS2.
+    //              Select one out of next values for pad: GPIO_17.
     //     PKE_DISABLED (0) - Pull/Keeper Disabled
     //     PKE_ENABLED (1) - Pull/Keeper Enabled
     //   ODE (11) - Open Drain Enable Field Reset: ODE_DISABLED
-    //              Select one out of next values for pad: NANDF_CS2.
+    //              Select one out of next values for pad: GPIO_17.
     //     ODE_DISABLED (0) - Open Drain Disabled
     //     ODE_ENABLED (1) - Open Drain Enabled
     //   SPEED (7-6) - Speed Field Reset: SPD_100MHZ
-    //                 Select one out of next values for pad: NANDF_CS2.
-    //     SPD_TBD (0) - TBD
-    //     SPD_50MHZ (1) - Low(50 MHz)
+    //                 Read Only Field
     //     SPD_100MHZ (2) - Medium(100 MHz)
-    //     SPD_200MHZ (3) - Maximum(200 MHz)
     //   DSE (5-3) - Drive Strength Field Reset: DSE_40OHM
-    //               Select one out of next values for pad: NANDF_CS2.
+    //               Select one out of next values for pad: GPIO_17.
     //     DSE_DISABLED (0) - Output driver disabled.
     //     DSE_240OHM (1) - 240 Ohm
     //     DSE_120OHM (2) - 120 Ohm
@@ -459,12 +386,12 @@ void esai1_iomux_config(void)
     //     DSE_40OHM (6) - 40 Ohm
     //     DSE_34OHM (7) - 34 Ohm
     //   SRE (0) - Slew Rate Field Reset: SRE_SLOW
-    //             Select one out of next values for pad: NANDF_CS2.
+    //             Select one out of next values for pad: GPIO_17.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
     writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
-           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2);
+           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_17);
 
     // Config esai1_TX1 to pad NANDF_CS3(D16)
     // Mux Register:
@@ -493,7 +420,7 @@ void esai1_iomux_config(void)
     //               NOTE: Instance: esai1, In Pin: ipp_ind_sdo1
     //     SEL_GPIO_18_ALT0 (0) - Selecting Pad: GPIO_18 for Mode: ALT0.
     //     SEL_NANDF_CS3_ALT2 (1) - Selecting Pad: NANDF_CS3 for Mode: ALT2.
-    writel((SEL_GPIO_18_ALT0 & 0x1), IOMUXC_ESAI1_IPP_IND_SDO1_SELECT_INPUT);
+    writel((SEL_NANDF_CS3_ALT2 & 0x1), IOMUXC_ESAI1_IPP_IND_SDO1_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3(0x020E06D8)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -542,26 +469,28 @@ void esai1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3);
 
-    // Config esai1_TX2_RX3 to pad ENET_TXD1(W20)
+    // Config esai1_TX2_RX3 to pad GPIO_5(R4)
     // Mux Register:
-    // IOMUXC_SW_MUX_CTL_PAD_ENET_TXD1(0x020E01EC)
+    // IOMUXC_SW_MUX_CTL_PAD_GPIO_5(0x020E023C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
     //              Force the selected mux mode Input path no matter of MUX_MODE functionality.
     //     SION_DISABLED (0) - Input Path is determined by functionality of the selected mux mode (regular).
-    //     SION_ENABLED (1) - Force input path of pad ENET_TXD1.
+    //     SION_ENABLED (1) - Force input path of pad GPIO_5.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
-    //                    Select 1 of 7 iomux modes to be used for pad: ENET_TXD1.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: MLBCLK of instance: mlb.
-    //                NOTE: - Config Register IOMUXC_MLB_MLB_CLK_IN_SELECT_INPUT for mode ALT0.
-    //     ALT1 (1) - Select mux mode: ALT1 mux port: TDATA[1] of instance: enet.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: TX2_RX3 of instance: esai1.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT for mode ALT2.
-    //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT0_IN of instance: enet.
-    //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[29] of instance: gpio1.
-    //     ALT6 (6) - Select mux mode: ALT6 mux port: TDO of instance: sata_phy.
-    //     ALT7 (7) - Select mux mode: ALT7 mux port: USBPHY2_TSTO_RX_HS_RXD of instance: anatop.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_ENET_TXD1);
-    // Pad ENET_TXD1 is involved in Daisy Chain.
+    //                    Select 1 of 8 iomux modes to be used for pad: GPIO_5.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX2_RX3 of instance: esai1.
+    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT for mode ALT0.
+    //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT4 of instance: observe_mux.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: ROW[7] of instance: kpp.
+    //                NOTE: - Config Register IOMUXC_KPP_IPP_IND_ROW_7_SELECT_INPUT for mode ALT2.
+    //     ALT3 (3) - Select mux mode: ALT3 mux port: CLKO of instance: ccm.
+    //     ALT4 (4) - Select mux mode: ALT4 mux port: CSU_ALARM_AUT[2] of instance: csu.
+    //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[5] of instance: gpio1.
+    //     ALT6 (6) - Select mux mode: ALT6 mux port: SCL of instance: i2c3.
+    //                NOTE: - Config Register IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT for mode ALT6.
+    //     ALT7 (7) - Select mux mode: ALT7 mux port: EVENTI of instance: cheetah.
+    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_GPIO_5);
+    // Pad GPIO_5 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT(0x020E087C)
     //   DAISY (0) Reset: SEL_ENET_TXD1_ALT2
@@ -569,39 +498,39 @@ void esai1_iomux_config(void)
     //               NOTE: Instance: esai1, In Pin: ipp_ind_sdo2_sdi3
     //     SEL_ENET_TXD1_ALT2 (0) - Selecting Pad: ENET_TXD1 for Mode: ALT2.
     //     SEL_GPIO_5_ALT0 (1) - Selecting Pad: GPIO_5 for Mode: ALT0.
-    writel((SEL_ENET_TXD1_ALT2 & 0x1), IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT);
+    writel((SEL_GPIO_5_ALT0 & 0x1), IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT);
     // Pad Control Register:
-    // IOMUXC_SW_PAD_CTL_PAD_ENET_TXD1(0x020E0500)
+    // IOMUXC_SW_PAD_CTL_PAD_GPIO_5(0x020E060C)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
-    //              Select one out of next values for pad: ENET_TXD1.
+    //              Select one out of next values for pad: GPIO_5.
     //     HYS_DISABLED (0) - Hysteresis Disabled
     //     HYS_ENABLED (1) - Hysteresis Enabled
     //   PUS (15-14) - Pull Up / Down Config. Field Reset: PUS_100KOHM_PU
-    //                 Select one out of next values for pad: ENET_TXD1.
+    //                 Select one out of next values for pad: GPIO_5.
     //     PUS_100KOHM_PD (0) - 100K Ohm Pull Down
     //     PUS_47KOHM_PU (1) - 47K Ohm Pull Up
     //     PUS_100KOHM_PU (2) - 100K Ohm Pull Up
     //     PUS_22KOHM_PU (3) - 22K Ohm Pull Up
     //   PUE (13) - Pull / Keep Select Field Reset: PUE_PULL
-    //              Select one out of next values for pad: ENET_TXD1.
+    //              Select one out of next values for pad: GPIO_5.
     //     PUE_KEEP (0) - Keeper
     //     PUE_PULL (1) - Pull
     //   PKE (12) - Pull / Keep Enable Field Reset: PKE_ENABLED
-    //              Select one out of next values for pad: ENET_TXD1.
+    //              Select one out of next values for pad: GPIO_5.
     //     PKE_DISABLED (0) - Pull/Keeper Disabled
     //     PKE_ENABLED (1) - Pull/Keeper Enabled
     //   ODE (11) - Open Drain Enable Field Reset: ODE_DISABLED
-    //              Select one out of next values for pad: ENET_TXD1.
+    //              Select one out of next values for pad: GPIO_5.
     //     ODE_DISABLED (0) - Open Drain Disabled
     //     ODE_ENABLED (1) - Open Drain Enabled
     //   SPEED (7-6) - Speed Field Reset: SPD_100MHZ
-    //                 Select one out of next values for pad: ENET_TXD1.
+    //                 Select one out of next values for pad: GPIO_5.
     //     SPD_TBD (0) - TBD
     //     SPD_50MHZ (1) - Low(50 MHz)
     //     SPD_100MHZ (2) - Medium(100 MHz)
     //     SPD_200MHZ (3) - Maximum(200 MHz)
     //   DSE (5-3) - Drive Strength Field Reset: DSE_40OHM
-    //               Select one out of next values for pad: ENET_TXD1.
+    //               Select one out of next values for pad: GPIO_5.
     //     DSE_DISABLED (0) - Output driver disabled.
     //     DSE_240OHM (1) - 240 Ohm
     //     DSE_120OHM (2) - 120 Ohm
@@ -611,12 +540,12 @@ void esai1_iomux_config(void)
     //     DSE_40OHM (6) - 40 Ohm
     //     DSE_34OHM (7) - 34 Ohm
     //   SRE (0) - Slew Rate Field Reset: SRE_SLOW
-    //             Select one out of next values for pad: ENET_TXD1.
+    //             Select one out of next values for pad: GPIO_5.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
     writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
-           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_TXD1);
+           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_5);
 
     // Config esai1_TX3_RX2 to pad ENET_TX_EN(V21)
     // Mux Register:

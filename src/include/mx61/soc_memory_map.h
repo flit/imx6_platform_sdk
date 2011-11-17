@@ -12,10 +12,10 @@
 #define GOOD_STATUS		0x900d900d
 
 // CPU Memory Map
-#define MMDC1_BASE_ADDR			0x10000000
-#define MMDC1_END_ADDR			0x7FFFFFFF
-#define MMDC0_BASE_ADDR			0x80000000
-#define MMDC0_END_ADDR			0xFFFFFFFF
+//#define MMDC1_BASE_ADDR           0x10000000
+//#define MMDC1_END_ADDR            0x7FFFFFFF
+//#define MMDC0_BASE_ADDR           0x80000000
+//#define MMDC0_END_ADDR            0xFFFFFFFF
 #define OCRAM_BASE_ADDR			0x00900000
 #define OCRAM_END_ADDR			0x009FFFFF
 #define IRAM_BASE_ADDR          OCRAM_BASE_ADDR

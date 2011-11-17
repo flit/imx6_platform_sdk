@@ -112,7 +112,7 @@ void enet_iomux_config(void)
     //               NOTE: Instance: enet, In Pin: ipp_ind_mac0_mdio
     //     SEL_ENET_MDIO_ALT1 (0) - Selecting Pad: ENET_MDIO for Mode: ALT1.
     //     SEL_KEY_COL1_ALT1 (1) - Selecting Pad: KEY_COL1 for Mode: ALT1.
-    writel((SEL_ENET_MDIO_ALT1 & 0x1), IOMUXC_ENET_IPP_IND_MAC0_MDIO_SELECT_INPUT);
+    writel((SEL_KEY_COL1_ALT1 & 0x1), IOMUXC_ENET_IPP_IND_MAC0_MDIO_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_KEY_COL1(0x020E05D0)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

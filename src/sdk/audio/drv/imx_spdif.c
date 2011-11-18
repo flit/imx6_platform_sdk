@@ -17,7 +17,7 @@
 #include "../inc/audio.h"
 #include "imx_spdif.h"
 
-#define SPDIF_DEBUG 0
+#define SPDIF_DEBUG 1
 
 #if SPDIF_DEBUG
 #define D(fmt,args...) printf(fmt, ## args)
@@ -32,23 +32,23 @@ extern unsigned int spdif_get_tx_clk_freq(void);
 #if SPDIF_DEBUG
 static int32_t spdif_dump(audio_ctrl_p ctrl)
 {
-    volatile imx_spdif_regs_p spdif = (imx_ssi_regs_p) (ctrl->base_addr);
+    volatile imx_spdif_regs_p spdif = (imx_spdif_regs_p) (ctrl->base_addr);
 
     printf("=================%s dump==================\n", ctrl->name);
 
-    printf("SCR       :0x%x", spdif->scr);
-    printf("SRCD      :0x%x", spdif->srcd);
-    printf("SRPC      :0x%x", spdif->srpc);
-    printf("SIE       :0x%x", spdif->sie);
-    printf("SIS       :0x%x", spdif->sis);
-    printf("SRCSLH    :0x%x", spdif->srcsh);
-    printf("SRCSLL    :0x%x", spdif->srcsl);
-    printf("SQU       :0x%x", spdif->sru);
-    printf("SRQ       :0x%x", spdif->srq);
-    printf("STCSCH    :0x%x", spdif->stcsch);
-    printf("STCSCL    :0x%x", spdif->stcscl);
-    printf("SRFM      :0x%x", spdif->srfm);
-    printf("STC       :0x%x", spdif->stc);
+    printf("SCR: 0x%x\n", spdif->scr);
+    printf("SRCD: 0x%x\n", spdif->srcd);
+    printf("SRPC: 0x%x\n", spdif->srpc);
+    printf("SIE: 0x%x\n", spdif->sie);
+    printf("SIS: 0x%x\n", spdif->sis);
+    printf("SRCSLH: 0x%x\n", spdif->srcsh);
+    printf("SRCSLL: 0x%x\n", spdif->srcsl);
+    printf("SQU: 0x%x\n", spdif->sru);
+    printf("SRQ: 0x%x\n", spdif->srq);
+    printf("STCSCH: 0x%x\n", spdif->stcsch);
+    printf("STCSCL: 0x%x\n", spdif->stcscl);
+    printf("SRFM: 0x%x\n", spdif->srfm);
+    printf("STC: 0x%x\n", spdif->stc);
 
     return 0;
 }
@@ -121,9 +121,9 @@ static uint32_t spdif_cal_txclk_div(audio_ctrl_p ctrl, uint32_t sample_rate)
 {
     float val;
 
-    val = (float)spdif_get_tx_clk_freq() / (float)sample_rate + 0.5f;
+    val = (float)spdif_get_tx_clk_freq() / ((float)sample_rate * 32.0f * 2.0f) + 0.5f;
 
-    return (uint32_t) val;
+    return ((uint32_t) val - 1);
 }
 
 //////////////////////////////////////// APIs //////////////////////////////////////////////////////////////
@@ -203,10 +203,16 @@ int32_t spdif_config(void *priv, audio_dev_para_p para)
     spdif->scr = val;
 
     val = spdif->stc;
+    /* Select SPDIF0_CLK as tx clk */
+    val &= ~(STC_TXCLK_SRC_MASK);
     val |= TX_CLK_SEL_SPDIF0_CLK << STC_TXCLK_SRC_OFFSET;
+    /* Set tx clk divider */
+    val &= ~(STC_TXCLK_DIV_OFFSET);
     val |= spdif_cal_txclk_div(ctrl, para->sample_rate) << STC_TXCLK_DIV_OFFSET;
     val |= STC_TX_ALL_CLK_ON;
     spdif->stc = val;
+
+    spdif_dump(ctrl);
 
     return 0;
 }
@@ -226,12 +232,18 @@ int32_t spdif_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * by
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
     volatile imx_spdif_regs_p spdif = (imx_spdif_regs_p) (ctrl->base_addr);
-    int i;
+    uint32_t i = 0;
+    uint32_t val;
 
     while (i < size) {
         if (spdif->sis & INT_TX_EMPTY) {
-            spdif->stl = *((uint16_t *) (buf + i));
-            spdif->str = *((uint16_t *) (buf + i));
+            val = *((uint16_t *) (buf + i));
+            /* TODO: the msb bit of the audio data should be always at 23bit of stl or str  */
+            val = (val << 8) & 0x00ffffff;
+
+            spdif->stl = val;
+            spdif->str = val;
+
             i += 2;
         }
     }

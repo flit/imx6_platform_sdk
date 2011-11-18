@@ -39,7 +39,9 @@ static audio_test_t audio_tests[] = {
 #if defined(MX61_ARD) || defined(MX61_EVB) || defined(MX61_QSB)
     {"ESAI playback", esai_playback},
 #endif
+#if defined(MX61_EVB)
     {"SPDIF playback", spdif_playback},
+#endif
 };
 
 int32_t audio_test(void)

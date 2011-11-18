@@ -18,25 +18,25 @@
 
 /* SPDIF Configuration register */
 typedef struct {
-    unsigned int scr;           // spdif configuration register 24 [23:0] 24' h000400
-    unsigned int srcd;          // cdtext configuration register 24 [1] 24'h000000
-    unsigned int srpc;          // freqmeas configuration register 24 [5:0] 24'h000000
-    unsigned int sie;           // interrupt enable register 24 [23:0] 24'h000000
-    unsigned int sis;           // interrupt status/clear register 24 [23:0] 24'h000002
-    unsigned int srl;           // spdif receive data - left channel 24 [23:0] 24'h000000
-    unsigned int srr;           // spdif receive data - right channel 24 [23:0] 24'h000000
-    unsigned int srcsh;         // spdif receive c channel, bits[47:24] 24 [23:0] 24'h000000
-    unsigned int srcsl;         // spdif receive c channel, bits[23:0] 24 [23:0] 24'h000000
-    unsigned int sru;           // spdif receive u channel 24 [23:0] 24'h000000
-    unsigned int srq;           // spdif receive q channel 24 [23:0] 24'h000000
-    unsigned int stl;           // spdif transmit left channel 24 [23:0] 24'h000000
-    unsigned int str;           // spdif transmit rightchannel 24 [23:0] 24'h000000
-    unsigned int stcsch;        //spdif transmit cons. c channel, bits [47:24] 24'h000000
-    unsigned int stcscl;        // spdif transmit cons. c channel, bits [23:0] 24'h000000
-    unsigned int reserved1[2];
-    unsigned int srfm;          // freqmeasurement 24 [23:0] 24'h000000
-    unsigned int reserved2[2];
-    unsigned int stc;           // transmit clock control register 24 [23:0] 24'h020f00
+    volatile uint32_t scr;      // spdif configuration register 24 [23:0] 24' h000400
+    volatile uint32_t srcd;     // cdtext configuration register 24 [1] 24'h000000
+    volatile uint32_t srpc;     // freqmeas configuration register 24 [5:0] 24'h000000
+    volatile uint32_t sie;      // interrupt enable register 24 [23:0] 24'h000000
+    volatile uint32_t sis;      // interrupt status/clear register 24 [23:0] 24'h000002
+    volatile uint32_t srl;      // spdif receive data - left channel 24 [23:0] 24'h000000
+    volatile uint32_t srr;      // spdif receive data - right channel 24 [23:0] 24'h000000
+    volatile uint32_t srcsh;    // spdif receive c channel, bits[47:24] 24 [23:0] 24'h000000
+    volatile uint32_t srcsl;    // spdif receive c channel, bits[23:0] 24 [23:0] 24'h000000
+    volatile uint32_t sru;      // spdif receive u channel 24 [23:0] 24'h000000
+    volatile uint32_t srq;      // spdif receive q channel 24 [23:0] 24'h000000
+    volatile uint32_t stl;      // spdif transmit left channel 24 [23:0] 24'h000000
+    volatile uint32_t str;      // spdif transmit rightchannel 24 [23:0] 24'h000000
+    volatile uint32_t stcsch;   //spdif transmit cons. c channel, bits [47:24] 24'h000000
+    volatile uint32_t stcscl;   // spdif transmit cons. c channel, bits [23:0] 24'h000000
+    volatile uint32_t reserved1[2];
+    volatile uint32_t srfm;     // freqmeasurement 24 [23:0] 24'h000000
+    volatile uint32_t reserved2[2];
+    volatile uint32_t stc;      // transmit clock control register 24 [23:0] 24'h020f00
 } imx_spdif_regs_t, *imx_spdif_regs_p;
 
 /* Register fields */
@@ -134,7 +134,9 @@ enum spdif_gainsel {
 /* SPDIF Clock register */
 #define STC_SYSCLK_DIV_OFFSET	11
 #define STC_TXCLK_SRC_OFFSET	8
+#define STC_TXCLK_SRC_MASK		(0x07 << 8)
 #define STC_TXCLK_DIV_OFFSET	0
+#define STC_TXCLK_DIV_MASK		0x7F
 #define STC_TX_ALL_CLK_ON		(0x01 << 7)
 
 typedef enum {
@@ -157,32 +159,32 @@ typedef enum {
 //------------------------------------------------------------------------------
 typedef struct {
     union {
-        unsigned int data;
+        uint32_t data;
         struct {
-            unsigned int channel_number:4;  //cs-channel.23-20
-            unsigned int source_number:4;
-            unsigned int category_code:8;
-            unsigned int channel_mode:2;
-            unsigned int add_info:3;
-            unsigned int copyright:1;
-            unsigned int audio_format:1;
-            unsigned int channel_status:1;  //cs-channel.0
-            unsigned int dummy:8;
+            uint32_t channel_number:4;  //cs-channel.23-20
+            uint32_t source_number:4;
+            uint32_t category_code:8;
+            uint32_t channel_mode:2;
+            uint32_t add_info:3;
+            uint32_t copyright:1;
+            uint32_t audio_format:1;
+            uint32_t channel_status:1;  //cs-channel.0
+            uint32_t dummy:8;
         } ctrl;
     } h;                        //bits [0:23] of c channel
     //todo : need check if place of h,l right?
     union {
-        unsigned int data;
+        uint32_t data;
         struct {
-            unsigned int dummy1:6;
-            unsigned int cgms_a:2;
-            unsigned int orig_sample_freq:4;
-            unsigned int sample_len:3;
-            unsigned int max_len:1;
-            unsigned int dummy4:2;
-            unsigned int clock_accuracy:2;
-            unsigned int sample_freq:4;
-            unsigned int dummy5:8;
+            uint32_t dummy1:6;
+            uint32_t cgms_a:2;
+            uint32_t orig_sample_freq:4;
+            uint32_t sample_len:3;
+            uint32_t max_len:1;
+            uint32_t dummy4:2;
+            uint32_t clock_accuracy:2;
+            uint32_t sample_freq:4;
+            uint32_t dummy5:8;
         } ctrl;
     } l;                        //bits [24:47] of c channel
 

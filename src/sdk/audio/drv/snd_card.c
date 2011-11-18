@@ -21,6 +21,8 @@ extern audio_codec_t sgtl5000;
 extern audio_ctrl_t imx_esai_1;
 extern audio_codec_t cs42888;
 
+extern audio_ctrl_t imx_spdif;
+
 static int32_t snd_card_init(void *priv)
 {
     audio_card_p card = (audio_card_p) priv;
@@ -34,9 +36,12 @@ static int32_t snd_card_init(void *priv)
         TRACE("Initialize %s failed.\n", ctrl->name);
         return -2;
     }
-    if (0 != codec->ops->init((void *)codec)) {
-        TRACE("Initialize %s failed.\n", codec->name);
-        return -3;
+    // Some snd card has no codec, such as spdif
+    if (NULL != codec) {
+        if (0 != codec->ops->init((void *)codec)) {
+            TRACE("Initialize %s failed.\n", codec->name);
+            return -3;
+        }
     }
 
     return 0;
@@ -55,9 +60,12 @@ static int32_t snd_card_deinit(void *priv)
         TRACE("De-initialize %s failed.\n", ctrl->name);
         return -2;
     }
-    if (0 != codec->ops->deinit((void *)codec)) {
-        TRACE("De-initialize %s failed.\n", codec->name);
-        return -3;
+    // Some snd card has no codec, such as spdif
+    if (NULL != codec) {
+        if (0 != codec->ops->deinit((void *)codec)) {
+            TRACE("De-initialize %s failed.\n", codec->name);
+            return -3;
+        }
     }
 
     return 0;
@@ -93,9 +101,12 @@ static int32_t snd_card_config(void *priv, audio_dev_para_p para)
     else if (AUDIO_TRANS_DIR_RX == para->trans_dir)
         para->trans_dir = AUDIO_TRANS_DIR_TX;
 
-    if (0 != codec->ops->config((void *)codec, para)) {
-        TRACE("Configure %s failed.\n", codec->name);
-        return -3;
+    // Some snd card has no codec, such as spdif
+    if (NULL != codec) {
+        if (0 != codec->ops->config((void *)codec, para)) {
+            TRACE("Configure %s failed.\n", codec->name);
+            return -3;
+        }
     }
 
     return 0;
@@ -113,7 +124,8 @@ static int32_t snd_card_ioctl(void *priv, uint32_t cmd, void *para)
     return 0;
 }
 
-static int32_t snd_card_write(void *priv, uint8_t * buf, uint32_t bytes2write, uint32_t * bytes_written)
+static int32_t snd_card_write(void *priv, uint8_t * buf, uint32_t bytes2write,
+                              uint32_t * bytes_written)
 {
     audio_card_p card = (audio_card_p) priv;
     audio_ctrl_p ctrl = card->ctrl;
@@ -146,6 +158,6 @@ audio_card_t snd_card_esai = {
 audio_card_t snd_card_spdif = {
     .name = "i.MX SPDIF sound card",
     .codec = NULL,
-    .ctrl = NULL,
-    .ops = NULL,                //TODO
+    .ctrl = &imx_spdif,
+    .ops = &snd_card_ops,
 };

@@ -824,9 +824,9 @@ void spdif_clk_cfg(void)
     val |= 0x07 << 22;
     writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
 
-    val = readl(CCM_BASE_ADDR + CCM_CCGR5);
+    val = readl(CCM_BASE_ADDR + CCM_CCGR5_OFFSET);
     val |= 0x03 << 14;          //spdif_clk_enable
-    writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+    writel(val, CCM_BASE_ADDR + CCM_CCGR5_OFFSET);
 }
 
 unsigned int spdif_get_tx_clk_freq(void)

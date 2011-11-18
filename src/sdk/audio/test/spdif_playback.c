@@ -26,7 +26,13 @@ int32_t spdif_playback(audio_pcm_p pcm_file)
     audio_dev_para_t dev_para;
     audio_card_p snd_card = &snd_card_spdif;
 
-    printf("Prompt todo.\n");
+    printf("Please make sure : \n");
+    printf(" 1. The EVB board was mounted on the MX6QVPC board. \n");
+    printf
+        (" 2. A rework should be done to connect \"TP6[SPDIF_OUT]\" with \"PORT2_P98\" on the MX6QVPC board\n");
+    printf
+        (" 3. The \"SPDIF_OUT\" socket and your PC are connected using a SPDIF recording device, such as \"M-AUDIO\".\n");
+    printf(" 4. The recording program is running on your PC and ready to record.\n");
     if (!is_input_char('y')) {
         printf("  skip AUDIO test \n");
         return TEST_BYPASSED;
@@ -34,8 +40,8 @@ int32_t spdif_playback(audio_pcm_p pcm_file)
 
     dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
     dev_para.bus_protocol = AUDIO_BUS_PROTOCOL_I2S;
-    dev_para.sample_rate = SAMPLERATE_48KHz;
-    dev_para.word_length = WL_16;
+    dev_para.sample_rate = pcm_file->para->sample_rate;
+    dev_para.word_length = pcm_file->para->word_length;
     dev_para.trans_dir = AUDIO_TRANS_DIR_TX;
 
     if (0 != snd_card->ops->init(snd_card)) {
@@ -47,10 +53,14 @@ int32_t spdif_playback(audio_pcm_p pcm_file)
         return -1;
     }
 
+    uint32_t cnt;
     while (1) {
-        snd_card->ops->write(snd_card, pcm_file->buf, pcm_file->size, &bytes_written);
+        cnt = 2;
+        while (cnt--) {
+            snd_card->ops->write(snd_card, pcm_file->buf, pcm_file->size, &bytes_written);
+        }
 
-        printf(" Do you need to re-hear it? (y/n)\n");
+        printf(" Do you need to re-play it? (y/n)\n");
 
         do {
             recvCh = getchar();
@@ -63,7 +73,7 @@ int32_t spdif_playback(audio_pcm_p pcm_file)
             break;              /* by pass */
     }
 
-    printf(" Do you hear audio from headphone? (y/n)\n");
+    printf(" Please replay the audio file just recorded on your PC. Do you hear audio? (y/n)\n");
 
     do {
         recvCh = getchar();

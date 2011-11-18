@@ -9,6 +9,7 @@
 #define __IPS_TEST__
 
 #include "hardware.h"
+#include "ipu_common.h"
 
 #define MEM_PRO_UNCACHEABLE
 #define MEM_PRO_UNBUFFERABEL
@@ -18,8 +19,13 @@
 
 typedef struct {
     const char *name;
-    int (*test) (void);
+    int (*test) (ips_dev_panel_t *);
 } ipu_test_t;
 
-extern int ips_display_test(void);
+int ips_display_test(ips_dev_panel_t * panel);
+int ips_csc_test(ips_dev_panel_t * panel);
+int ips_combiner_test(ips_dev_panel_t * panel);
+int ips_rotate_test(ips_dev_panel_t * panel);
+int ips_resize_test(ips_dev_panel_t * panel);
+
 #endif

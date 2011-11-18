@@ -23,17 +23,20 @@
  * @param	ipu_index:	ipu index
  * @param	conf:		ipu configuration data structure
  */
-void ipu_di_config(int ipu_index, ips_hw_conf_struct_t * conf)
+void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
 {
     /*********************************************************************
     *	DI0 configuration:
-    *	hsync   	------	 DI0 pin 3
-    *	vsync   	------	 DI0 pin 2
+    *	hsync   	------	 DI0 pin 2
+    *	vsync   	------	 DI0 pin 3
     *	data_en 	------	 DI0 pin 15
     *	clk     	------	 DI0 disp clk
     *	COUNTER 2  	------	 VSYNC
     *	COUNTER 3  	------	 HSYNC
     **********************************************************************/
+    uint32_t hsync_sel = 1;
+    uint32_t vsync_sel = 2;
+    uint32_t clk_src = 1;
     int clkUp, clkDown;
     int ipuClk, typPixClk, div;
     int hDisp, hSyncStartWidth, hSyncWidth, hSyncEndWidth;
@@ -42,7 +45,6 @@ void ipu_di_config(int ipu_index, ips_hw_conf_struct_t * conf)
     int hTotal, vTotal;
     int dw_set;                 // data waveform set
     int de_pointer = 1;
-    int di;
     int pt[7];
     di_sync_wave_gen_t syncWaveformGen = {
         0
@@ -53,24 +55,24 @@ void ipu_di_config(int ipu_index, ips_hw_conf_struct_t * conf)
     * values are selected. BE CAREFUL to config the waveform generators!
     ***********************************************************************/
 
-    hSyncStartWidth = conf->output.disp.hsync_start_width;
-    hSyncWidth = conf->output.disp.hsync_width;
-    hSyncEndWidth = conf->output.disp.hsync_end_width;
-    delayH2V = conf->output.disp.delay_h2v;
-    vSyncStartWidth = conf->output.disp.vsync_start_width;
-    vSyncWidth = conf->output.disp.vsync_width;
-    vSyncEndWidth = conf->output.disp.vsync_end_width;
-    di = conf->output.disp.di;
-    typPixClk = conf->output.disp.pixel_clock;
-    hDisp = conf->output.disp.width;
-    vDisp = conf->output.disp.height;
+    hSyncStartWidth = panel->hsync_start_width;
+    hSyncWidth = panel->hsync_width;
+    hSyncEndWidth = panel->hsync_end_width;
+    delayH2V = panel->delay_h2v;
+    vSyncStartWidth = panel->vsync_start_width;
+    vSyncWidth = panel->vsync_width;
+    vSyncEndWidth = panel->vsync_end_width;
+    typPixClk = panel->pixel_clock;
+    hDisp = panel->width;
+    vDisp = panel->height;
     hTotal = hSyncStartWidth + hSyncEndWidth + hDisp;
     vTotal = vSyncStartWidth + vSyncEndWidth + vDisp;
 
-    if (conf->output.disp.clk_src == 1)
-        ipuClk = conf->output.disp.pixel_clock;
+    /*use display panel clock */
+    if (clk_src == 1)
+        ipuClk = panel->pixel_clock;
     else
-        ipuClk = IPU_DEFAULT_WORK_CLOCK;    // for imx61
+        ipuClk = IPU_DEFAULT_WORK_CLOCK;    // for imx61el->pixel_clock;
 
     div = (int)((float)ipuClk / (float)typPixClk + 0.5);    // get the nearest value of typical pixel clock
     ipu_di_screen_set(ipu_index, di, vTotal - 1);
@@ -170,7 +172,7 @@ void ipu_di_config(int ipu_index, ips_hw_conf_struct_t * conf)
     syncWaveformGen.cntDown = 0;
     ipu_di_sync_config(ipu_index, di, DI_COUNTER_ACLOCK, syncWaveformGen);
 
-    ipu_di_interface_set(ipu_index, di, 2, conf);
+    ipu_di_interface_set(ipu_index, di, panel, 2, vsync_sel, hsync_sel);
 }
 
 /*!
@@ -327,38 +329,37 @@ void ipu_di_sync_config(int ipu_index, int di, int pointer, di_sync_wave_gen_t s
  * @param	line_prediction:	prediction of lines
  * @param	conf:			configuration struction for hw settings
  */
-void ipu_di_interface_set(int ipu_index, int di, int line_prediction, ips_hw_conf_struct_t * conf)
+void ipu_di_interface_set(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel,
+                          uint32_t line_prediction, uint32_t vsync_sel, uint32_t hsync_sel)
 {
     switch (di) {
     case 0:
         ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_SYNC_START, line_prediction);
-        ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_VSYNC_SEL, conf->output.disp.vsync_sel);
-        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_DISP_Y_SEL, conf->output.disp.hsync_sel);
-        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_CLK_EXT, conf->output.disp.clk_src);
+        ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_VSYNC_SEL, vsync_sel);
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_DISP_Y_SEL, hsync_sel);
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_CLK_EXT, 1);
 
-        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_DISP_CLK,
-                        conf->output.disp.clk_pol);
-        ipu_write_field(ipu_index, IPU_DI0_GENERAL__ADDR, 1 << conf->output.disp.vsync_sel, conf->output.disp.vsync_pol);   //VSYNC POLARITY
-        ipu_write_field(ipu_index, IPU_DI0_GENERAL__ADDR, 1 << conf->output.disp.hsync_sel, conf->output.disp.hsync_pol);   //HSYNC POLARITY
-        ipu_write_field(ipu_index, IPU_DI0_POL__DI0_DRDY_POLARITY_15, conf->output.disp.drdy_pol);
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_DISP_CLK, 0);
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__ADDR, 1 << vsync_sel, panel->vsync_pol);    //VSYNC POLARITY
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__ADDR, 1 << hsync_sel, panel->hsync_pol);    //HSYNC POLARITY
+        ipu_write_field(ipu_index, IPU_DI0_POL__DI0_DRDY_POLARITY_15, panel->drdy_pol);
 
-        ipu_write_field(ipu_index, IPU_DI0_POL__DI0_DRDY_DATA_POLARITY, conf->output.disp.data_pol);
+        ipu_write_field(ipu_index, IPU_DI0_POL__DI0_DRDY_DATA_POLARITY, panel->data_pol);
         /*release ipu DI0 counter */
         ipu_write_field(ipu_index, IPU_IPU_DISP_GEN__DI0_COUNTER_RELEASE, 1);
         break;
 
     case 1:
         ipu_write_field(ipu_index, IPU_DI1_SYNC_AS_GEN__DI1_SYNC_START, line_prediction);
-        ipu_write_field(ipu_index, IPU_DI1_SYNC_AS_GEN__DI1_VSYNC_SEL, conf->output.disp.vsync_sel);
-        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_DISP_Y_SEL, conf->output.disp.hsync_sel);
-        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_CLK_EXT, conf->output.disp.clk_src);
+        ipu_write_field(ipu_index, IPU_DI1_SYNC_AS_GEN__DI1_VSYNC_SEL, vsync_sel);
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_DISP_Y_SEL, hsync_sel);
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_CLK_EXT, 1);
 
-        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_POLARITY_DISP_CLK,
-                        conf->output.disp.clk_pol);
-        ipu_write_field(ipu_index, IPU_DI1_GENERAL__ADDR, 1 << conf->output.disp.vsync_sel, conf->output.disp.vsync_pol);   //VSYNC POLARITY
-        ipu_write_field(ipu_index, IPU_DI1_GENERAL__ADDR, 1 << conf->output.disp.hsync_sel, conf->output.disp.hsync_pol);   //HSYNC POLARITY
-        ipu_write_field(ipu_index, IPU_DI1_POL__DI1_DRDY_POLARITY_15, conf->output.disp.drdy_pol);
-        ipu_write_field(ipu_index, IPU_DI1_POL__DI1_DRDY_DATA_POLARITY, conf->output.disp.data_pol);
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_POLARITY_DISP_CLK, panel->clk_pol);
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__ADDR, 1 << vsync_sel, panel->vsync_pol);    //VSYNC POLARITY
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__ADDR, 1 << hsync_sel, panel->hsync_pol);    //HSYNC POLARITY
+        ipu_write_field(ipu_index, IPU_DI1_POL__DI1_DRDY_POLARITY_15, panel->drdy_pol);
+        ipu_write_field(ipu_index, IPU_DI1_POL__DI1_DRDY_DATA_POLARITY, panel->data_pol);
 
         /*release ipu DI1 counter */
         ipu_write_field(ipu_index, IPU_IPU_DISP_GEN__DI1_COUNTER_RELEASE, 1);

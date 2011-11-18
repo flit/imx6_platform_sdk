@@ -10,9 +10,7 @@
  * @brief IPU Software library, display panel parameters setting and initialization
  * @group diag_ipu
  */
-#include "ips.h"
 #include "ipu_common.h"
-#include "../../ldb/inc/ldb_def.h"
 
 static int claa_wvga_panel_init(void)
 {

@@ -13,7 +13,6 @@
 
 #include <string.h>
 #include "ipu_common.h"
-#include "hardware.h"
 
 inline int need_csc(int i, int o)
 {
@@ -86,10 +85,15 @@ void ipu_disable_display(int ipu_index)
  *
  * @return	true for success, others for time out.
  */
-int ipu_sw_reset(int timeout)
+int ipu_sw_reset(int ipu_index, int timeout)
 {
     uint32_t tmpVal;
     int ipuOffset = 0x3;
+
+    if (ipu_index == 1)
+        ipuOffset = 0x3;
+    else
+        ipuOffset = 0xC;
     tmpVal = readl(SRC_BASE_ADDR);
     writel(tmpVal | (0x1 << ipuOffset), SRC_BASE_ADDR);
 
@@ -106,15 +110,74 @@ int ipu_sw_reset(int timeout)
 }
 
 /*!
- * HW configuration for a new flow request.
+ * display function HW configuration for IPU.
  *
  * @param	ipu_index:	ipu index
  * @param	conf:		ipu configuration data structure
  */
-void ips_new_flow_hw_config(int ipu_index, ips_hw_conf_struct_t * conf)
+void ipu_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
+                       uint32_t csc_type)
 {
-    ipu_idmac_config(ipu_index, conf);
-    ipu_dc_config(ipu_index, conf);
-    ipu_dp_config(ipu_index, conf);
-    ipu_di_config(ipu_index, conf);
+    uint32_t channel = MEM_TO_DP_BG_CH23;
+    uint32_t di = 0;
+    //single image display
+    //only config background idma
+    ipu_disp_bg_idmac_config(ipu_index, panel->width, panel->height, mem_colorimetry);
+    ipu_dmfc_config(ipu_index, channel);
+    ipu_dc_config(ipu_index, channel, di, panel->width, panel->colorimetry);
+    ipu_dp_config(ipu_index, csc_type, 0, 0, 0, 0);
+    ipu_di_config(ipu_index, di, panel);
+}
+
+/*!
+ * display function HW configuration for IPU.
+ *
+ * @param	ipu_index:	ipu index
+ * @param	conf:		ipu configuration data structure
+ */
+void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
+                            uint32_t fg_width, uint32_t fg_height)
+{
+    uint32_t bg_channel = MEM_TO_DP_BG_CH23;
+    uint32_t fg_channel = MEM_TO_DP_FG_CH27;
+    uint32_t di = 0;
+
+    //dual display: partial plane display
+    //config both foreground and backgournd idma
+    ipu_disp_fg_idmac_config(ipu_index, fg_width, fg_height, mem_colorimetry);
+    ipu_disp_bg_idmac_config(ipu_index, panel->width, panel->height, mem_colorimetry);
+
+    ipu_dmfc_config(ipu_index, fg_channel);
+    ipu_dmfc_config(ipu_index, bg_channel);
+
+    ipu_dc_config(ipu_index, bg_channel, di, panel->width, panel->colorimetry);
+    //set the foreground position: in the middle of the screen and at the bottom of the screen.
+    ipu_dp_config(ipu_index, NO_CSC, 1, (panel->width - fg_width) / 2, panel->height - 300, 125);
+    ipu_di_config(ipu_index, di, panel);
+}
+
+/*! Set display parameters in IPU configuration structure according to your display panel name. There are only some displays are supported by this function. And you can set the display manually all by your self if the hardware is supported by IPU.
+ *  @params	conf:			IPU configuration structure
+ *  @params panel_name:		panel name of your display
+ */
+ips_dev_panel_t *search_panel(char *panel_name)
+{
+    ips_dev_panel_t *panel = &disp_dev_list[0];
+    int index = 0;
+
+    while (index < num_of_panels) {
+        if (!strcmp(panel->panel_name, panel_name))
+            break;
+        else {
+            panel++;
+            index++;
+        }
+    }
+
+    if (index == num_of_panels) {
+        printf("The display panel %s is not supported!\n", panel_name);
+        return NULL;
+    }
+
+    return panel;
 }

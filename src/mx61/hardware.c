@@ -94,6 +94,8 @@ uint32_t get_freq(uint32_t module_base)
     else if (module_base == g_debug_uart.base)
         return get_peri_clock(UART4_BAUD);
     else if (module_base == g_system_timer.base)
+        /* value depends on how the timer is configured, 
+            and this is actually initialized in system_time_init() */
         return g_system_timer.freq;
     else {
         printf("Not a valid module base address \n");
@@ -210,7 +212,7 @@ extern void uart2_iomux_config();
 extern void uart4_iomux_config();
 
 /*!
- * That function calls the board dependent IOMUX configuration functions
+ * That function calls the board dependent UART IOMUX configuration functions.
  */
 void uart_iomux_config(uint32_t module_base_add)
 {

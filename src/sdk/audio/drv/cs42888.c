@@ -60,7 +60,7 @@ static int32_t cs42888_reg_read(audio_codec_p codec, uint8_t reg_addr, uint8_t *
     cs42888_i2c_req.reg_addr = reg_addr;
     cs42888_i2c_req.buffer = ret_val;
 
-    if (i2c_xfer(&cs42888_i2c_req, I2C_READ) != 0) {
+    if (i2c_read(&cs42888_i2c_req) != 0) {
         return -1;
     }
 
@@ -72,7 +72,7 @@ static int32_t cs42888_reg_write(audio_codec_p codec, uint8_t reg_addr, uint8_t 
     cs42888_i2c_req.reg_addr = reg_addr;
     cs42888_i2c_req.buffer = &reg_data;
 
-    return i2c_xfer(&cs42888_i2c_req, I2C_WRITE);
+    return i2c_write(&cs42888_i2c_req);
 }
 
 ////////////////////////////////////// APIs /////////////////////////////////////

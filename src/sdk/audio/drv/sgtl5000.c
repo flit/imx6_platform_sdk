@@ -75,7 +75,7 @@ static int32_t sgtl5000_read_reg(audio_codec_p codec, uint16_t reg_addr, uint16_
     sgtl5000_i2c_req.reg_addr = (buf[0] << 8) | buf[1];
     sgtl5000_i2c_req.buffer = data;
 
-    res = i2c_xfer(&sgtl5000_i2c_req, 1);
+    res = i2c_read(&sgtl5000_i2c_req);
 
     *reg_val = (data[0] << 8) | data[1];
 
@@ -97,7 +97,7 @@ static int32_t sgtl5000_write_reg(audio_codec_p codec, uint16_t reg_addr,
     sgtl5000_i2c_req.reg_addr = (buf[0] << 8) | buf[1];
     sgtl5000_i2c_req.buffer = data;
 
-    return i2c_xfer(&sgtl5000_i2c_req, 0);
+    return i2c_write(&sgtl5000_i2c_req);
 }
 
 static int32_t sgtl5000_dump(void *priv)

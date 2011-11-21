@@ -43,8 +43,7 @@ uint8_t max7310_reg_read(uint8_t reg_addr)
 
     max7310_i2c_req->reg_addr = reg_addr;
     max7310_i2c_req->buffer = &buf;
-    i2c_xfer(max7310_i2c_req, I2C_READ);
-
+    i2c_read(max7310_i2c_req);
     return buf;
 }
 
@@ -60,8 +59,7 @@ int32_t max7310_reg_write(uint8_t reg_addr, uint8_t data)
 {
     max7310_i2c_req->reg_addr = reg_addr;
     max7310_i2c_req->buffer = &data;
-
-    return i2c_xfer(max7310_i2c_req, I2C_WRITE);
+    return i2c_write(max7310_i2c_req);
 }
 
 /*!

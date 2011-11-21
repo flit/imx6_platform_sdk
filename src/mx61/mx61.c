@@ -102,6 +102,7 @@ extern void epit_test(void);
 extern void usdhc_test(void);
 extern void hdmi_test(void);
 extern void audio_test(void);
+extern void i2c_test(void);
 extern void gic_test(void);
 
 void ALL_test(void)
@@ -118,6 +119,7 @@ void ALL_test(void)
         //usdhc_test();
         hdmi_test();
         audio_test();
+        i2c_test();
         /* GIC test can only be executed once, and requires a board reset */
         if (gic_test_done == 0) {
             gic_test_done = 0xFF;

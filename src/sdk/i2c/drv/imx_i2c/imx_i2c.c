@@ -14,7 +14,7 @@
  * Loop status register for IBB to go 0
  * The loop breaks on max number of iterations
  *
- * @param   base        base address of i2c module 
+ * @param   base        base address of I2C module 
  *
  * @return  0 if successful; -1 otherwise
  */
@@ -36,7 +36,7 @@ static inline int is_bus_free(unsigned int base)
  * Loop status register for IBB to go 1.
  * It breaks the loop if there's an arbitration lost occurred or max iterations
  *
- * @param   base        base address of i2c module 
+ * @param   base        base address of I2C module 
  *
  * @return  0 if successful; -1 otherwise
  */
@@ -62,13 +62,13 @@ static int wait_till_busy(uint32_t base)
 /*!
  * Generates a STOP signal, called by rx and tx routines
  *
- * @param   base        base address of i2c module 
+ * @param   base        base address of I2C module 
  *
  * @return  none
  */
 static inline void imx_send_stop(unsigned int base)
 {
-    writew((readw(base + I2C_I2CR) & ~(I2C_I2CR_MSTA)), base + I2C_I2CR);
+    writew((readw(base + I2C_I2CR) & ~I2C_I2CR_MSTA), base + I2C_I2CR);
 }
 
 /*!
@@ -78,7 +78,7 @@ static inline void imx_send_stop(unsigned int base)
  * Clears the interrupt
  * If operation is transfer byte function will make sure we received an ack
  *
- * @param   base        base address of i2c module 
+ * @param   base        base address of I2C module 
  * @param   is_tx       Pass 1 for transfering, 0 for receiving 
  *
  * @return  0 if successful; negative integer otherwise
@@ -97,7 +97,7 @@ static int wait_op_done(uint32_t base, int is_tx)
         return -1;
     }
 
-    /* Clear the interrupt */
+    /* Clear the interrupts */
     writew(0x0, base + I2C_I2SR);
 
     /* Check for arbitration lost */
@@ -122,46 +122,45 @@ static int wait_op_done(uint32_t base, int is_tx)
 
 /*!
  * For master TX
- * Implements a loop to send a byte to i2c slave.
+ * Implements a loop to send a byte to I2C slave.
  * Always expect a RXAK signal to be set!
  *
- * @param   base        base address of i2c module 
+ * @param   base        base address of I2C module 
  * @param   data        return buffer for data
  *
  * @return  0 if successful; -1 otherwise
  */
-static int tx_byte(uint8_t * data, uint32_t base)
+static int master_tx_byte(uint8_t * data, uint32_t base)
 {
-    int ret = 0;
+    int ret;
     printf1("%s(data=0x%02x, base=0x%x)\n", __FUNCTION__, *data, base);
 
     /* clear both IAL and IIF bits */
     writew(0, base + I2C_I2SR);
 
-    /* clear data register */
+    /* write to data register */
     writew(*data, base + I2C_I2DR);
 
     /* wait for transfer of byte to complete */
-    if ((ret = wait_op_done(base, 1)) != 0)
-        return ret;
+    ret = wait_op_done(base, 1);
 
     return ret;
 }
 
 /*!
  * For master RX
- * Implements a loop to receive bytes from i2c slave.
+ * Implements a loop to receive bytes from I2C slave.
  *
- * @param   base        base address of i2c module 
+ * @param   base        base address of I2C module 
  * @param   data        return buffer for data
  * @param   sz          number of bytes to receive
  *
  * @return  0 if successful; -1 otherwise
  */
-static int rx_bytes(uint8_t * data, uint32_t base, int sz)
+static int master_rx_bytes(uint8_t * data, uint32_t base, int sz)
 {
     unsigned short i2cr;
-    int i, ret = 0;
+    int i;
 
     for (i = 0; sz > 0; sz--, i++) {
         if (wait_op_done(base, 0) != 0)
@@ -170,6 +169,7 @@ static int rx_bytes(uint8_t * data, uint32_t base, int sz)
         /* the next two if-statements setup for the next read control register value */
         if (sz == 1) {
             /* last byte --> generate STOP */
+            /* generate STOP by clearing MSTA bit */
             imx_send_stop(base);
         }
 
@@ -183,15 +183,15 @@ static int rx_bytes(uint8_t * data, uint32_t base, int sz)
         printf1("OK 0x%02x\n", data[i]);
     }
 
-    return ret;
+    return 0;
 }
 
 /*!
- * This is a rather simple function that can be used for most i2c devices.
+ * This is a rather simple function that can be used for most I2C devices.
  * Common steps for both READ and WRITE:
  *      step 1: issue start signal
- *      step 2: put i2c device addr on the bus (always 1 byte write. the dir always I2C_WRITE)
- *      step 3: offset of the i2c device write (offset within the device. can be 1-4 bytes)
+ *      step 2: put I2C device addr on the bus (always 1 byte write. the dir always I2C_WRITE)
+ *      step 3: offset of the I2C device write (offset within the device. can be 1-4 bytes)
  * For READ:
  *      step 4: do repeat-start
  *      step 5: send slave address again, but indicate a READ operation by setting LSB bit
@@ -202,7 +202,6 @@ static int rx_bytes(uint8_t * data, uint32_t base, int sz)
  *      Step 4: do data write
  *      Step 5: generate STOP by clearing MSTA bit
  *
- * @param   base      i.MX i2c module base
  * @param   rq        pointer to struct imx_i2c_request
  * @param   dir       I2C_READ/I2C_WRITE
  *
@@ -221,28 +220,23 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
         return -1;
     }
 
+    /* clear the status register */
+    writew(0, base + I2C_I2SR);
+
+    /* enable the I2C controller */
+    i2cr = I2C_I2CR_IEN;
+    writew(i2cr, base + I2C_I2CR);
+
     /* Check if bus is free, if not return error */
     if (is_bus_free(base) != 0) {
         return -1;
     }
-    /* reset and enable I2C */
-    writew(0, base + I2C_I2CR);
-    writew(I2C_I2CR_IEN, base + I2C_I2CR);
-    /* Need wait at least 2 cycles of per_clk */
-    hal_delay_us(5000);
 
-    /* 1.2 clear both IAL and IIF bits */
-    writew(0, base + I2C_I2SR);
-
-    /* 1.3 assert START signal and also indicate TX mode */
-    i2cr = I2C_I2CR_IEN;
-    writew(i2cr, base + I2C_I2CR);
-    i2cr = I2C_I2CR_IEN | I2C_I2CR_MTX;
-    writew(i2cr, base + I2C_I2CR);
-    i2cr = I2C_I2CR_IEN | I2C_I2CR_MSTA | I2C_I2CR_MTX;
+    /* Step 1: Select master mode, assert START signal and also indicate TX mode */
+    i2cr |= I2C_I2CR_MSTA | I2C_I2CR_MTX;
     writew(i2cr, base + I2C_I2CR);
 
-    /* 1.4 make sure bus is busy after the START signal */
+    /* make sure bus is busy after the START signal */
     if (wait_till_busy(base) != 0) {
         printf1("1\n");
         return -1;
@@ -250,7 +244,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
     /* Step 2: send slave address + read/write at the LSB */
     data = (rq->dev_addr << 1) | I2C_WRITE;
 
-    if ((ret = tx_byte(&data, base)) != 0) {
+    if ((ret = master_tx_byte(&data, base)) != 0) {
         printf1("START TX ERR %d\n", ret);
 
         if (ret == ERR_NO_ACK) {
@@ -271,7 +265,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
         data = reg & 0xFF;
         printf1("sending I2C=0x%x device register: data=0x%x, byte %d\n", base, data, i);
 
-        if (tx_byte(&data, base) != 0) {
+        if (master_tx_byte(&data, base) != 0) {
             return -1;
         }
     }
@@ -279,8 +273,8 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
     /* Step 4: read/write data */
     if (dir == I2C_READ) {
         /* do repeat-start */
-        i2cr = readw(base + I2C_I2CR);
-        writew(i2cr | I2C_I2CR_RSTA, base + I2C_I2CR);
+        i2cr = readw(base + I2C_I2CR) | I2C_I2CR_RSTA;
+        writew(i2cr, base + I2C_I2CR);
 
         /* make sure bus is busy after the REPEATED START signal */
         if (wait_till_busy(base) != 0) {
@@ -289,23 +283,23 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
         /* send slave address again, but indicate read operation */
         data = (rq->dev_addr << 1) | I2C_READ;
 
-        if (tx_byte(&data, base) != 0) {
+        if (master_tx_byte(&data, base) != 0) {
             return -1;
         }
-        /* change to receive mode */
-        i2cr = readw(base + I2C_I2CR);
 
+        /* change to receive mode */
+        i2cr = readw(base + I2C_I2CR) & ~I2C_I2CR_MTX;
+        /* if only one byte to read, make sure don't send ack */
         if (rq->buffer_sz == 1) {
-            /* if only one byte to read, make sure don't send ack */
             i2cr |= I2C_I2CR_TXAK;
         }
+        writew(i2cr, base + I2C_I2CR);
 
-        writew(i2cr & ~I2C_I2CR_MTX, base + I2C_I2CR);
         /* dummy read */
         readw(base + I2C_I2DR);
 
         /* now reading ... */
-        if (rx_bytes(rq->buffer, base, rq->buffer_sz) != 0) {
+        if (master_rx_bytes(rq->buffer, base, rq->buffer_sz) != 0) {
             return -1;
         }
     } else {
@@ -314,29 +308,137 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
             /* send device register value */
             data = rq->buffer[i];
 
-            if ((ret = tx_byte(&data, base)) != 0) {
+            if ((ret = master_tx_byte(&data, base)) != 0) {
                 break;
             }
         }
-
-        /* generate STOP by clearing MSTA bit */
-        imx_send_stop(base);
     }
+
+    /* generate STOP by clearing MSTA bit */
+    imx_send_stop(base);
 
     /* Check if bus is free, if not return error */
     if (is_bus_free(base) != 0) {
         printf("WARNING: bus is not free\n");
     }
+    
+    /* disable the controller */
     writew(0, base + I2C_I2CR);
 
     return ret;
 }
 
 /*!
- * Initialize and enable a i2c module -- mainly enable the I2C clock, module
+ * Setup I2C interrupt. It enables or disables the related HW module
+ * interrupt, and attached the related sub-routine into the vector table.
+ *
+ * @param   port - pointer to the I2C module structure.
+ * @param   state - enable/disable the interrupt
+ */
+void i2c_setup_interrupt(struct hw_module *port, uint8_t state)
+{
+    if (state == ENABLE) {
+        /* register the IRQ sub-routine */
+        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+        /* enable the IRQ */
+        enable_interrupt(port->irq_id, CPU_0, 0);
+    } else
+        /* disable the IRQ */
+        disable_interrupt(port->irq_id, CPU_0);
+}
+
+/*!
+ * I2C interrupt routine.
+ *
+ * @param   base - base address of I2C module 
+ * @param   status - returned status captured in this interrupt routine
+ */
+void i2c_interrupt_routine(uint32_t base, uint16_t * status)
+{
+    *status = readw(base + I2C_I2SR);
+    /* clear the status register */
+    writew(0, base + I2C_I2SR);
+}
+
+/*!
+ * I2C interrupt handler for slave mode.
+ *
+ * @param   rq - pointer to struct imx_i2c_request
+ * @param   status - captured status from the interrupt routine
+ */
+void i2c_slave_handler(struct imx_i2c_request *rq, uint16_t * status)
+{
+    uint16_t i2cr;
+    uint8_t data = 0;
+    uint32_t base = rq->ctl_addr;
+
+    i2cr = readw(base + I2C_I2CR);
+
+    /* was the i.MX61 slave address matched? */
+    if(*status & I2C_I2SR_IAAS)
+    {
+        printf("i.MX61 addressed by an external master\n");
+        /* is it a master read access? */
+        if(*status & I2C_I2SR_SRW)
+        {
+              /* set transmit mode */
+            i2cr |= I2C_I2CR_MTX;          
+            writew(i2cr, base + I2C_I2CR);
+
+            /* get the data from the application */
+    /* TO DO - a function that provides the data */
+
+            /* write the data */
+            writew(data, base + I2C_I2DR);
+        }
+        else    /* no, a master write access */
+        {
+            /* set receive mode */
+            i2cr &= ~I2C_I2CR_MTX;
+            writew(i2cr, base + I2C_I2CR);
+
+            /* dummy read */
+            readw(base + I2C_I2DR);
+        }
+    }
+    else    /* continue the started protocol with the master */
+    {
+        /* is it in transmit mode? */
+        if(i2cr & I2C_I2CR_MTX)
+        {
+            /* dummy read */
+            readw(base + I2C_I2DR);
+
+        }
+        else    /* this is in receive mode */
+        {
+            
+
+
+        }
+    }
+}
+
+/*!
+ * Handle the I2C transfers in slave mode.
+ *
+ * @param   port - pointer to the I2C module structure.
+ * @param   state - enable/disable the interrupt
+ */
+void i2c_slave_xfer(struct imx_i2c_request *rq)
+{
+
+
+
+
+}
+
+
+/*!
+ * Initialize the I2C module -- mainly enable the I2C clock, module
  * itself and the I2C clock prescaler.
  *
- * @param   base        base address of i2c module (also assigned for I2Cx_CLK)
+ * @param   base        base address of I2C module (also assigned for I2Cx_CLK)
  * @param   baud        the desired data rate in bps
  *
  * @return  0 if successful; non-zero otherwise
@@ -354,10 +456,30 @@ int i2c_init(uint32_t base, uint32_t baud)
 
     /* 
      * TO DO - get source frequency and calculate required divider
+        i2c_clk_rate = clk_get_rate(i2c_imx->clk);
+        div = (i2c_clk_rate + rate - 1) / rate;
+        if (div < i2c_clk_div[0][0])
+                i = 0;
+        else if (div > i2c_clk_div[ARRAY_SIZE(i2c_clk_div) - 1][0])
+                i = ARRAY_SIZE(i2c_clk_div) - 1;
+        else
+                for (i = 0; i2c_clk_div[i][0] < div; i++);
+
      */
     //printf("IPG_PER_CLK = %d\n",get_main_clock(IPG_PER_CLK));
     writew(0x14, base + I2C_IFDR);
+
+    /* set an I2C slave address */
+    writew(IMX61_SLAVE_ID, base + I2C_IADR);
+
+    /* clear the status register */
+    writew(0, base + I2C_I2SR);
+
+    /* enable the I2C controller */
     writew(I2C_I2CR_IEN, base + I2C_I2CR);
+    /* and enable the interrupts */
+    writew(I2C_I2CR_IEN | I2C_I2CR_IIEN, base + I2C_I2CR);
+
 
     return 0;
 }

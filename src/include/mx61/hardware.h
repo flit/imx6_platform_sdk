@@ -164,7 +164,11 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define CS42888_I2C_ID      (0x90 >> 1)
 
 #define AT24Cx_I2C_BASE		I2C3_BASE_ADDR
-#define AT24Cx_I2C_ID		0x50
+#define AT24Cx_I2C_ID		(0xA0 >> 1)
+
+// For LTC2495 Board ID
+#define LTC2495_I2C_BASE    I2C2_BASE_ADDR
+#define LTC2495_I2C_ID      (0x28 >> 1)
 
 // USB test defines
 #define MX53_USBH1_BASE_ADDR    0x53F80200
@@ -218,10 +222,6 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define CKIL        32768
 #define FREQ_24MHZ  24000000
 #define CKIH        22579200
-
-// I2C specific defines
-// For LTC Board ID
-#define BOARD_ID_I2C_BASE I2C2_BASE_ADDR
 
 // register defines for the SRTC function of the SNVS
 #define SRTC_LPSCMR     (SNVS_BASE_ADDR + 0x50)

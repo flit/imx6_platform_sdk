@@ -10,7 +10,7 @@
 
 #include "io.h"
 
-#define I2C_AR                      0x0
+#define I2C_IADR                    0x0
 #define I2C_IFDR                    0x4
 #define I2C_I2CR                    0x8
 #define I2C_I2SR                    0xC
@@ -44,6 +44,8 @@
 #define ERR_RX_ACK                  -6
 #define ERR_NO_ACK_ON_START         -7
 
+#define IMX61_SLAVE_ID              0x60
+
 struct imx_i2c_request {
     uint32_t ctl_addr;          // the I2C controller base address
     uint32_t dev_addr;          // the I2C DEVICE address
@@ -58,8 +60,27 @@ extern uint32_t i2c_num;
 
 int i2c_init(uint32_t base, uint32_t baud);
 int i2c_xfer(struct imx_i2c_request *rq, int dir);
-#define i2c_read(base, rq)      i2c_xfer(base, rq, I2C_READ)
-#define i2c_write(base, rq)      i2c_xfer(base, rq, I2C_WRITE)
+#define i2c_read(rq)      i2c_xfer(rq, I2C_READ)
+#define i2c_write(rq)      i2c_xfer(rq, I2C_WRITE)
+void i2c_setup_interrupt(struct hw_module *port, uint8_t state);
+void i2c_interrupt_routine(uint32_t base, uint16_t * status);
+void i2c_slave_handler(struct imx_i2c_request *rq, uint16_t * status);
+
+static const uint16_t i2c_freq_div[50][2] = {
+        { 22,   0x20 }, { 24,   0x21 }, { 26,   0x22 }, { 28,   0x23 },
+        { 30,   0x00 }, { 32,   0x24 }, { 36,   0x25 }, { 40,   0x26 },
+        { 42,   0x03 }, { 44,   0x27 }, { 48,   0x28 }, { 52,   0x05 },
+        { 56,   0x29 }, { 60,   0x06 }, { 64,   0x2A }, { 72,   0x2B },
+        { 80,   0x2C }, { 88,   0x09 }, { 96,   0x2D }, { 104,  0x0A },
+        { 112,  0x2E }, { 128,  0x2F }, { 144,  0x0C }, { 160,  0x30 },
+        { 192,  0x31 }, { 224,  0x32 }, { 240,  0x0F }, { 256,  0x33 },
+        { 288,  0x10 }, { 320,  0x34 }, { 384,  0x35 }, { 448,  0x36 },
+        { 480,  0x13 }, { 512,  0x37 }, { 576,  0x14 }, { 640,  0x38 },
+        { 768,  0x39 }, { 896,  0x3A }, { 960,  0x17 }, { 1024, 0x3B },
+        { 1152, 0x18 }, { 1280, 0x3C }, { 1536, 0x3D }, { 1792, 0x3E },
+        { 1920, 0x1B }, { 2048, 0x3F }, { 2304, 0x1C }, { 2560, 0x1D },
+        { 3072, 0x1E }, { 3840, 0x1F }
+};
 
 #define I2C_DEBUG
 #ifdef I2C_DEBUG

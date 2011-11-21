@@ -9,6 +9,7 @@
 #include "hardware.h"
 
 extern int32_t i2c_eeprom_at24cxx_test(void);
+extern int32_t i2c_imx61_slave_test(void);
 
 /*! 
  * I2c test.
@@ -24,7 +25,7 @@ int32_t i2c_test(void)
 
     do {
         printf("\n  1 - to perform a test with an EEPROM.\n");
-        printf("  2 - nothing defined yet!\n");
+        printf("  2 - to perform a test with the i.MX61 as a slave device.\n");
         printf("  x - to exit.\n\n");
 
         do {
@@ -39,7 +40,7 @@ int32_t i2c_test(void)
         if (sel == '1')
             i2c_eeprom_at24cxx_test();
         if (sel == '2')
-            printf("tada...\n");
+            i2c_imx61_slave_test();
 
     } while(1);
 

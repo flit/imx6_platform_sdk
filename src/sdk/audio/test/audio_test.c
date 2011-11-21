@@ -46,7 +46,7 @@ static audio_test_t audio_tests[] = {
 
 int32_t audio_test(void)
 {
-    int32_t retv, idx;
+    int32_t retv=-1, idx;
     uint8_t sel;
 
     printf("\n--- Running audio test, type 'x' to exit.\n");

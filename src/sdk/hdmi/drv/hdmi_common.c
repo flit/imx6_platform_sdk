@@ -27,8 +27,8 @@
  */
 void writebf(uint8_t data, uint32_t addr, uint8_t shift, uint8_t width)
 {
-	uint8_t temp = 0;
-	uint8_t mask = (1 << width) - 1;
+    uint8_t temp = 0;
+    uint8_t mask = (1 << width) - 1;
     if (data > mask) {
         printf("Invalid parameter for %s\n", __FUNCTION__);
         return;
@@ -61,7 +61,6 @@ int isPixelRepetition(hdmi_data_info_s hdmi_instance)
 {
     return (hdmi_instance.pix_repet_factor > 0) ? TRUE : FALSE;
 }
-
 
 /*!
  * this submodule is responsible for the video/audio data composition.

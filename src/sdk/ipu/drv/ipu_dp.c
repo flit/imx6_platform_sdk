@@ -51,9 +51,9 @@ void ipu_dp_csc_config(uint32_t ipu_index, uint32_t dp, uint32_t csc_type)
        B = (1.164 * (Y - 16)) + (2.017 * (Cb - 128); */
     int yuv2rgb_coef[5][3] = {
         {0x4A, 0x0, 0x66},
-        {0x4A, 0x3E7, 0x39C},   //4A 3E7 3CC
-        {0x4A, 0x7F, 0x0},      //4A 81 0
-        {0x3F21, 0x85, 0x3EEA}, //3F22 85 3EEB // A0, A1, A2
+        {0x4A, 0x3E7, 0x3CC},   //4A 3E7 3CC
+        {0x4A, 0x81, 0x0},      //4A 81 0
+        {0x3F22, 0x85, 0x3EEB}, //3F22 85 3EEB // A0, A1, A2
         {0x0, 0x0, 0x0},        /*S0,S1,S2 */
     };
 

@@ -647,14 +647,18 @@ void hdmi_tx_phydtb_pgm_iomux(void)
  */
 void hdmi_pgm_iomux(void)
 {
-    uint32_t regval = 0;
     hdmi_tx_cec_pgm_iomux();
     hdmi_tx_ddc_pgm_iomux();
     hdmi_tx_phydtb_pgm_iomux();
+}
 
-    /*select ipu1 di0 as hdmi input */
-    regval = reg32_read(IOMUXC_GPR3);
-    reg32_write(IOMUXC_GPR3, regval & 0xFFFFFFF0);
+/*!
+ * HDMI power up
+ */
+void sii9022_power_on(void)
+{
+    /*3.3V for core, default is on */
+    /*5V for IO, default is on */
 }
 
 /*!

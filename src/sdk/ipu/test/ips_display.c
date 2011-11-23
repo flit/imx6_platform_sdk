@@ -79,3 +79,57 @@ int ips_hdmi_stream(void)
         return FALSE;
     }
 }
+
+/*!
+ * HDMI 1080P60 display stream
+ */
+int ips_hdmi_1080P60_stream(int ipu_index)
+{
+    ips_dev_panel_t *panel;
+
+    /*enable panel */
+    panel = search_panel("HDMI 1080P 60Hz");
+    panel->panel_init();
+
+    /*reset IPU */
+    ipu_sw_reset(ipu_index, 1000);
+
+    /*setup IPU display channel */
+    ipu_display_setup(ipu_index, panel, PARTIAL_INTERLEAVED_YUV420, YUV_RGB);
+
+    /*realloc the DMFC fifo */
+    ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_NPB, 63);
+
+    /*enable ipu display channel */
+    ipu_enable_display(ipu_index);
+
+    return 1;
+}
+
+/*!
+ * SII9022 1080P60 display stream
+ */
+int ips_sii9022_1080P60_stream(int ipu_index)
+{
+    ips_dev_panel_t *panel;
+
+    /*enable panel */
+    panel = search_panel("SII9022 1080P 60Hz");
+    panel->panel_init();
+
+    /*reset IPU */
+    ipu_sw_reset(ipu_index, 1000);
+
+    /*setup IPU display channel */
+    ipu_display_setup(ipu_index, panel, PARTIAL_INTERLEAVED_YUV420, YUV_RGB);
+
+    /*realloc the DMFC fifo */
+    ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_NPB, 63);
+
+    /*enable ipu display channel */
+    ipu_enable_display(ipu_index);
+
+    return 1;
+}

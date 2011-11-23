@@ -209,7 +209,38 @@ void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t heigh
 
     ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
     ipu_channel_buf_ready(ipu_index, channel, 0);
+    ipu_channel_buf_ready(ipu_index, channel, 1);
     ipu_idmac_channel_enable(ipu_index, channel, 1);
+}
+
+void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
+                           uint32_t buffer_addr)
+{
+    if (buffer_index == 0)
+        ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, buffer_addr / 8);
+    else if (buffer_index == 1)
+        ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, buffer_addr / 8);
+    else {
+        printf("Wrong buffer index input!!!\n");
+    }
+
+}
+
+int ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
+{
+    int idx, offset, cur_buf = 0;
+    idx = channel / 32;
+    offset = channel % 32;
+    if (ipu_index == 0) {
+        cur_buf =
+            (readl(IPU1_CTRL_BASE_ADDR + IPU_IPU_CUR_BUF_0__ADDR + 4 * idx) & (1 << offset)) >>
+            offset;
+    } else if (ipu_index == 1) {
+        cur_buf =
+            (readl(IPU2_CTRL_BASE_ADDR + IPU_IPU_CUR_BUF_0__ADDR + 4 * idx) & (1 << offset)) >>
+            offset;
+    }
+    return cur_buf;
 }
 
 /* IPU background display DMA channel config (CH23)

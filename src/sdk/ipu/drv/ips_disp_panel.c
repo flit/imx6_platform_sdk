@@ -55,6 +55,22 @@ static int hdmi_1080p60_deinit(void)
     return true;
 }
 
+extern void ipu_iomux_config(void);
+extern void sii9022_power_on(void);
+static int sii9022_1080p60_init(void)
+{
+    /*sii9022 is connected to the parallel interface */
+    ipu_iomux_config();
+    sii9022_power_on();
+    hdmi_clock_set(148500000);
+    return true;
+}
+
+static int sii9022_1080p60_deinit(void)
+{
+    return true;
+}
+
 ips_dev_panel_t disp_dev_list[] = {
     {
      "CLAA01 WVGA",             // name
@@ -132,6 +148,32 @@ ips_dev_panel_t disp_dev_list[] = {
      0,                         // data polarity
      &hdmi_1080p60_init,
      &hdmi_1080p60_deinit,
+     }
+    ,
+    {
+     "SII9022 1080P 60Hz",      // name
+     SII9022_1080P60,           // panel id flag
+     DCMAP_RGB888,              // data format for panel
+     60,                        // refresh rate
+     1920,                      // panel width
+     1080,                      //panel height
+     148500000,                 // pixel clock frequency
+     192,                       // hsync start width
+     44,                        // hsync width
+     88,                        // hsyn back width
+     41,                        // vysnc start width
+     5,                         // vsync width
+     4,                         // vsync back width
+     0,                         // delay from hsync to vsync
+     0,                         // interlaced mode
+     1,                         // clock selection, external
+     0,                         // clock polarity
+     1,                         // hsync polarity
+     1,                         // vync polarity
+     1,                         // drdy polarity
+     0,                         // data polarity
+     &sii9022_1080p60_init,
+     &sii9022_1080p60_deinit,
      }
 };
 

@@ -12,7 +12,6 @@
 #include "hardware.h"
 #include "hdmi_tx.h"
 
-
 /*! ------------------------------------------------------------
  * HDMI TX Functions
  *  ------------------------------------------------------------
@@ -27,11 +26,11 @@
 void hdmi_config_input_source(uint32_t mux_value)
 {
     uint32_t regval = 0;
-    
+
     regval = readl(IOMUXC_GPR3);
-    regval &= 0xFFFFFFF0; // mask off hdmi mux bits 
-    regval |= mux_value << 2; // shift value over to correct bit position
-    writel(regval, IOMUXC_GPR3); // set hdmi input mux value
+    regval &= 0xFFFFFFF0;       // mask off hdmi mux bits 
+    regval |= mux_value << 2;   // shift value over to correct bit position
+    writel(regval, IOMUXC_GPR3);    // set hdmi input mux value
 }
 
 /*! ------------------------------------------------------------
@@ -109,9 +108,9 @@ void hdmi_video_sample(hdmi_data_info_s hdmi_instance)
  */
 void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
 {
-	uint16_t csc_coeff[3][4];
-	uint32_t csc_scale = 1;
-    if (isColorSpaceConversion(hdmi_instance) == TRUE) // csc needed
+    uint16_t csc_coeff[3][4];
+    uint32_t csc_scale = 1;
+    if (isColorSpaceConversion(hdmi_instance) == TRUE)  // csc needed
     {
         if (hdmi_instance.enc_out_format == eRGB) {
             if (hdmi_instance.colorimetry == eITU601) {
@@ -206,32 +205,32 @@ void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
     }
 
     /*update csc parameters in hdmi csc registers */
-    writeb((uint8_t)(csc_coeff[0][0] & 0xFF), HDMI_CSC_COEF_A1_LSB);
-    writeb((uint8_t)(csc_coeff[0][0] >> 8), HDMI_CSC_COEF_A1_MSB);
-    writeb((uint8_t)(csc_coeff[0][1] & 0xFF), HDMI_CSC_COEF_A2_LSB);
-    writeb((uint8_t)(csc_coeff[0][1] >> 8), HDMI_CSC_COEF_A2_MSB);
-    writeb((uint8_t)(csc_coeff[0][2] & 0xFF), HDMI_CSC_COEF_A3_LSB);
-    writeb((uint8_t)(csc_coeff[0][2] >> 8), HDMI_CSC_COEF_A3_MSB);
-    writeb((uint8_t)(csc_coeff[0][3] & 0xFF), HDMI_CSC_COEF_A4_LSB);
-    writeb((uint8_t)(csc_coeff[0][3] >> 8), HDMI_CSC_COEF_A4_MSB);
+    writeb((uint8_t) (csc_coeff[0][0] & 0xFF), HDMI_CSC_COEF_A1_LSB);
+    writeb((uint8_t) (csc_coeff[0][0] >> 8), HDMI_CSC_COEF_A1_MSB);
+    writeb((uint8_t) (csc_coeff[0][1] & 0xFF), HDMI_CSC_COEF_A2_LSB);
+    writeb((uint8_t) (csc_coeff[0][1] >> 8), HDMI_CSC_COEF_A2_MSB);
+    writeb((uint8_t) (csc_coeff[0][2] & 0xFF), HDMI_CSC_COEF_A3_LSB);
+    writeb((uint8_t) (csc_coeff[0][2] >> 8), HDMI_CSC_COEF_A3_MSB);
+    writeb((uint8_t) (csc_coeff[0][3] & 0xFF), HDMI_CSC_COEF_A4_LSB);
+    writeb((uint8_t) (csc_coeff[0][3] >> 8), HDMI_CSC_COEF_A4_MSB);
 
-    writeb((uint8_t)(csc_coeff[1][0] & 0xFF), HDMI_CSC_COEF_B1_LSB);
-    writeb((uint8_t)(csc_coeff[1][0] >> 8), HDMI_CSC_COEF_B1_MSB);
-    writeb((uint8_t)(csc_coeff[1][1] & 0xFF), HDMI_CSC_COEF_B2_LSB);
-    writeb((uint8_t)(csc_coeff[1][1] >> 8), HDMI_CSC_COEF_B2_MSB);
-    writeb((uint8_t)(csc_coeff[1][2] & 0xFF), HDMI_CSC_COEF_B3_LSB);
-    writeb((uint8_t)(csc_coeff[1][2] >> 8), HDMI_CSC_COEF_B3_MSB);
-    writeb((uint8_t)(csc_coeff[1][3] & 0xFF), HDMI_CSC_COEF_B4_LSB);
-    writeb((uint8_t)(csc_coeff[1][3] >> 8), HDMI_CSC_COEF_B4_MSB);
+    writeb((uint8_t) (csc_coeff[1][0] & 0xFF), HDMI_CSC_COEF_B1_LSB);
+    writeb((uint8_t) (csc_coeff[1][0] >> 8), HDMI_CSC_COEF_B1_MSB);
+    writeb((uint8_t) (csc_coeff[1][1] & 0xFF), HDMI_CSC_COEF_B2_LSB);
+    writeb((uint8_t) (csc_coeff[1][1] >> 8), HDMI_CSC_COEF_B2_MSB);
+    writeb((uint8_t) (csc_coeff[1][2] & 0xFF), HDMI_CSC_COEF_B3_LSB);
+    writeb((uint8_t) (csc_coeff[1][2] >> 8), HDMI_CSC_COEF_B3_MSB);
+    writeb((uint8_t) (csc_coeff[1][3] & 0xFF), HDMI_CSC_COEF_B4_LSB);
+    writeb((uint8_t) (csc_coeff[1][3] >> 8), HDMI_CSC_COEF_B4_MSB);
 
-    writeb((uint8_t)(csc_coeff[2][0] & 0xFF), HDMI_CSC_COEF_C1_LSB);
-    writeb((uint8_t)(csc_coeff[2][0] >> 8), HDMI_CSC_COEF_C1_MSB);
-    writeb((uint8_t)(csc_coeff[2][1] & 0xFF), HDMI_CSC_COEF_C2_LSB);
-    writeb((uint8_t)(csc_coeff[2][1] >> 8), HDMI_CSC_COEF_C2_MSB);
-    writeb((uint8_t)(csc_coeff[2][2] & 0xFF), HDMI_CSC_COEF_C3_LSB);
-    writeb((uint8_t)(csc_coeff[2][2] >> 8), HDMI_CSC_COEF_C3_MSB);
-    writeb((uint8_t)(csc_coeff[2][3] & 0xFF), HDMI_CSC_COEF_C4_LSB);
-    writeb((uint8_t)(csc_coeff[2][3] >> 8), HDMI_CSC_COEF_C4_MSB);
+    writeb((uint8_t) (csc_coeff[2][0] & 0xFF), HDMI_CSC_COEF_C1_LSB);
+    writeb((uint8_t) (csc_coeff[2][0] >> 8), HDMI_CSC_COEF_C1_MSB);
+    writeb((uint8_t) (csc_coeff[2][1] & 0xFF), HDMI_CSC_COEF_C2_LSB);
+    writeb((uint8_t) (csc_coeff[2][1] >> 8), HDMI_CSC_COEF_C2_MSB);
+    writeb((uint8_t) (csc_coeff[2][2] & 0xFF), HDMI_CSC_COEF_C3_LSB);
+    writeb((uint8_t) (csc_coeff[2][2] >> 8), HDMI_CSC_COEF_C3_MSB);
+    writeb((uint8_t) (csc_coeff[2][3] & 0xFF), HDMI_CSC_COEF_C4_LSB);
+    writeb((uint8_t) (csc_coeff[2][3] >> 8), HDMI_CSC_COEF_C4_MSB);
 
     writeb((readb(HDMI_CSC_SCALE) & 0xF0) | csc_scale, HDMI_CSC_SCALE);
 }
@@ -270,7 +269,6 @@ void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
     writeb((readb(HDMI_CSC_SCALE) & 0x0F) | (color_depth << 4), HDMI_CSC_SCALE);
     update_csc_coeffs(hdmi_instance);
 }
-
 
 /*! ------------------------------------------------------------
  * HDMI TX Video Packetizer
@@ -357,8 +355,6 @@ void hdmi_video_packetize(hdmi_data_info_s hdmi_instance)
     writebf(output_select, HDMI_VP_CONF, 0, 2);
 }
 
-
-
 /*! ------------------------------------------------------------
  * HDMI TX Frame Composer
  *  ------------------------------------------------------------
@@ -391,17 +387,17 @@ void preamble_filter_set(uint8_t value, uint8_t channel)
  */
 void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
 {
-	uint8_t i = 0;
+    uint8_t i = 0;
 
     hdmi_set_video_mode(hdmi_instance->video_mode);
-    
+
     // configure HDMI_FC_INVIDCONF register
     writebf((hdmi_instance->hdcp_enable == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 7, 1);
     writebf((hdmi_instance->video_mode->mVSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 6, 1);
     writebf((hdmi_instance->video_mode->mHSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 5, 1);
     writebf((hdmi_instance->video_mode->mDataEnablePolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 4,
             1);
-    writebf((hdmi_instance->video_mode->mHdmiDviSel == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 3, 1);   // select hdmi or dvi mode    
+    writebf((hdmi_instance->video_mode->mHdmiDviSel == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 3, 1); // select hdmi or dvi mode    
     if (hdmi_instance->video_mode->mCode == 39) {
         writebf(0, HDMI_FC_INVIDCONF, 1, 1);
     } else {
@@ -409,7 +405,6 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
     }
     writebf((hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 0, 1);
 
-    
     writebf((unsigned char)hdmi_instance->video_mode->mHActive, HDMI_FC_INHACTV0, 0, 8);
     writebf((unsigned char)(hdmi_instance->video_mode->mHActive >> 8), HDMI_FC_INHACTV1, 0, 4);
     writebf((unsigned char)hdmi_instance->video_mode->mHBlanking, HDMI_FC_INHBLANK0, 0, 8);
@@ -420,9 +415,10 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
     writebf((unsigned char)hdmi_instance->video_mode->mHSyncOffset, HDMI_FC_HSYNCINDELAY0, 0, 8);
     writebf((unsigned char)(hdmi_instance->video_mode->mHSyncOffset >> 8), HDMI_FC_HSYNCINDELAY1, 0,
             3);
-    writebf((unsigned char)hdmi_instance->video_mode->mHSyncPulseWidth, HDMI_FC_HSYNCINWIDTH0, 0, 8);
-    writebf((unsigned char)(hdmi_instance->video_mode->mHSyncPulseWidth >> 8), HDMI_FC_HSYNCINWIDTH1,
-            0, 1);
+    writebf((unsigned char)hdmi_instance->video_mode->mHSyncPulseWidth, HDMI_FC_HSYNCINWIDTH0, 0,
+            8);
+    writebf((unsigned char)(hdmi_instance->video_mode->mHSyncPulseWidth >> 8),
+            HDMI_FC_HSYNCINWIDTH1, 0, 1);
     writebf((unsigned char)hdmi_instance->video_mode->mVSyncOffset, HDMI_FC_VSYNCINDELAY, 0, 8);
     writebf((unsigned char)hdmi_instance->video_mode->mVSyncPulseWidth, HDMI_FC_VSYNCINWIDTH, 0, 6);
 
@@ -467,15 +463,14 @@ void hdmi_tx_hdcp_config(uint32_t de)
  */
 void hdmi_config_force_video(uint8_t force)
 {
-	uint8_t regval = 0;
-	if(force){
-		regval = readb(HDMI_FC_DBGFORCE);
-		writeb((regval | 1), HDMI_FC_DBGFORCE);  // set bit 0 to force video from FC_DBGTMDSx registers
-	}
-	else{
-		regval = readb(HDMI_FC_DBGFORCE);
-		writeb((regval & 0xFE), HDMI_FC_DBGFORCE);  // clear bit 0 to disable forced video
-	}
+    uint8_t regval = 0;
+    if (force) {
+        regval = readb(HDMI_FC_DBGFORCE);
+        writeb((regval | 1), HDMI_FC_DBGFORCE); // set bit 0 to force video from FC_DBGTMDSx registers
+    } else {
+        regval = readb(HDMI_FC_DBGFORCE);
+        writeb((regval & 0xFE), HDMI_FC_DBGFORCE);  // clear bit 0 to disable forced video
+    }
 }
 
 /*! 
@@ -485,7 +480,7 @@ void hdmi_config_force_video(uint8_t force)
  */
 void hdmi_config_forced_pixels(uint8_t red, uint8_t green, uint8_t blue)
 {
-	writeb(red, HDMI_FC_DBGTMDS2);    //R
-	writeb(green, HDMI_FC_DBGTMDS1);  //G
-	writeb(blue, HDMI_FC_DBGTMDS0);   //B
+    writeb(red, HDMI_FC_DBGTMDS2);  //R
+    writeb(green, HDMI_FC_DBGTMDS1);    //G
+    writeb(blue, HDMI_FC_DBGTMDS0); //B
 }

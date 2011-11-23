@@ -82,89 +82,89 @@ typedef struct hdmi_data_info {
     unsigned int colorimetry;
     unsigned int pix_repet_factor;
     unsigned int hdcp_enable;
-    hdmi_vmode_s * video_mode;
+    hdmi_vmode_s *video_mode;
 } hdmi_data_info_s;
 
 typedef struct hdmi_AudioParam {
-	unsigned char IecCgmsA;
-	int IecCopyright;
-	unsigned char IecCategoryCode;
-	unsigned char IecPcmMode;
-	unsigned char IecSourceNumber;
-	unsigned char IecClockAccuracy;
-	unsigned int OriginalSamplingFrequency;
-	unsigned char ChannelAllocation;
-	unsigned int SamplingFrequency;
-	unsigned char SampleSize;
+    unsigned char IecCgmsA;
+    int IecCopyright;
+    unsigned char IecCategoryCode;
+    unsigned char IecPcmMode;
+    unsigned char IecSourceNumber;
+    unsigned char IecClockAccuracy;
+    unsigned int OriginalSamplingFrequency;
+    unsigned char ChannelAllocation;
+    unsigned int SamplingFrequency;
+    unsigned char SampleSize;
 } hdmi_audioparam_s;
 
-typedef enum
-{
-	PCM = 1,
-	AC3,
-	MPEG1,
-	MP3,
-	MPEG2,
-	AAC,
-	DTS,
-	ATRAC,
-	ONE_BIT_AUDIO,
-	DOLBY_DIGITAL_PLUS,
-	DTS_HD,
-	MAT,
-	DST,
-	WMAPRO
+typedef enum {
+    PCM = 1,
+    AC3,
+    MPEG1,
+    MP3,
+    MPEG2,
+    AAC,
+    DTS,
+    ATRAC,
+    ONE_BIT_AUDIO,
+    DOLBY_DIGITAL_PLUS,
+    DTS_HD,
+    MAT,
+    DST,
+    WMAPRO
 } codingType_t;
 
-typedef enum
-{
-	AUDIO_SAMPLE = 1, 
-  HBR_STREAM
+typedef enum {
+    AUDIO_SAMPLE = 1,
+    HBR_STREAM
 } packet_t;
 
-typedef enum
-{
-	DMA_4_BEAT_INCREMENT = 0,
-	DMA_8_BEAT_INCREMENT,
-	DMA_16_BEAT_INCREMENT,
-	DMA_UNUSED_BEAT_INCREMENT,
-	DMA_UNSPECIFIED_INCREMENT
+typedef enum {
+    DMA_4_BEAT_INCREMENT = 0,
+    DMA_8_BEAT_INCREMENT,
+    DMA_16_BEAT_INCREMENT,
+    DMA_UNUSED_BEAT_INCREMENT,
+    DMA_UNSPECIFIED_INCREMENT
 } dmaIncrement_t;
 
+typedef struct {
+    codingType_t mCodingType; /** (audioParams_t *params, see InfoFrame) */
 
-typedef struct
-{
-	codingType_t mCodingType; /** (audioParams_t *params, see InfoFrame) */
-	
-  unsigned char mChannelAllocation; /** channel allocation (audioParams_t *params, 
+    unsigned char mChannelAllocation;
+                                    /** channel allocation (audioParams_t *params, 
 						   see InfoFrame) */
-  unsigned char mSampleSize; /**  sample size (audioParams_t *params, 16 to 24) */
-	
-  unsigned int mSamplingFrequency; /** sampling frequency (audioParams_t *params, Hz) */
-	
-  unsigned char mLevelShiftValue; /** level shift value (audioParams_t *params, 
-						 see InfoFrame) */	
-  unsigned char mDownMixInhibitFlag; /** down-mix inhibit flag (audioParams_t *params, 
+    unsigned char mSampleSize;
+                             /**  sample size (audioParams_t *params, 16 to 24) */
+
+    unsigned int mSamplingFrequency;
+                                   /** sampling frequency (audioParams_t *params, Hz) */
+
+    unsigned char mLevelShiftValue;
+                                  /** level shift value (audioParams_t *params, 
+						 see InfoFrame) */
+    unsigned char mDownMixInhibitFlag;
+                                     /** down-mix inhibit flag (audioParams_t *params, 
 							see InfoFrame) */
-	unsigned int mOriginalSamplingFrequency; /** Original sampling frequency */
-	unsigned char mIecCopyright; /** IEC copyright */
-	unsigned char mIecCgmsA; /** IEC CGMS-A */
-	unsigned char mIecPcmMode; /** IEC PCM mode */
-	unsigned char mIecCategoryCode; /** IEC category code */
-	unsigned char mIecSourceNumber; /** IEC source number */
-	unsigned char mIecClockAccuracy; /** IEC clock accuracy */ 
-	packet_t mPacketType; /** packet type. currently only Audio Sample (AUDS) 
+    unsigned int mOriginalSamplingFrequency; /** Original sampling frequency */
+    unsigned char mIecCopyright; /** IEC copyright */
+    unsigned char mIecCgmsA; /** IEC CGMS-A */
+    unsigned char mIecPcmMode; /** IEC PCM mode */
+    unsigned char mIecCategoryCode; /** IEC category code */
+    unsigned char mIecSourceNumber; /** IEC source number */
+    unsigned char mIecClockAccuracy; /** IEC clock accuracy */
+    packet_t mPacketType; /** packet type. currently only Audio Sample (AUDS) 
 						  and High Bit Rate (HBR) are supported */
-	unsigned short mClockFsFactor; /** Input audio clock Fs factor used at the audop 
+    unsigned short mClockFsFactor; /** Input audio clock Fs factor used at the audop 
 						packetizer to calculate the CTS value and ACR packet
 						insertion rate */
-	dmaIncrement_t mDmaBeatIncrement; /** Incremental burst modes: unspecified
+    dmaIncrement_t mDmaBeatIncrement; /** Incremental burst modes: unspecified
 									lengths (upper limit is 1kB boundary) and
 									INCR4, INCR8, and INCR16 fixed-beat burst */
-	unsigned char mDmaThreshold; /** When the number of samples in the Audio FIFO is lower
+    unsigned char mDmaThreshold; /** When the number of samples in the Audio FIFO is lower
 						than the threshold, the DMA engine requests a new burst
 						request to the AHB master interface */
-	unsigned char mDmaHlock; /** Master burst lock mechanism */
+    unsigned char mDmaHlock; /** Master burst lock mechanism */
 } audioParams_t;
 
 /*! ------------------------------------------------------------
@@ -216,12 +216,14 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance);
  */
 uint32_t hdmi_audio_mute(uint32_t en);
 uint8_t Audio_ChannelCount(uint8_t mChannelAllocation);
-uint8_t Audio_IecOriginalSamplingFrequency(uint32_t mOriginalSamplingFrequency );
+uint8_t Audio_IecOriginalSamplingFrequency(uint32_t mOriginalSamplingFrequency);
 uint8_t Audio_IecSamplingFrequency(uint32_t mSamplingFrequency);
 uint8_t Audio_IecWordLength(uint8_t mSampleSize);
 void audio_info_config();
-int audio_Configure(hdmi_audioparam_s hdmi_audioparam_instance, uint16_t pixelClk, unsigned ratioClk);
-void audio_Configure_DMA(uint32_t startAddr, uint32_t stopAddr, uint8_t hlockEn, uint8_t incrType,uint8_t threshold, uint32_t audioChnl, uint8_t intMask);
+int audio_Configure(hdmi_audioparam_s hdmi_audioparam_instance, uint16_t pixelClk,
+                    unsigned ratioClk);
+void audio_Configure_DMA(uint32_t startAddr, uint32_t stopAddr, uint8_t hlockEn, uint8_t incrType,
+                         uint8_t threshold, uint32_t audioChnl, uint8_t intMask);
 
 /*! ------------------------------------------------------------
  * HDMI TX HDCP
@@ -234,7 +236,6 @@ void hdmi_tx_hdcp_config(uint32_t de);
  *  ------------------------------------------------------------
  */
 void hdmi_phy_init(uint8_t de, uint16_t pclk);
-
 
 /*! ------------------------------------------------------------
  * Functions for Debugging

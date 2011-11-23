@@ -24,6 +24,8 @@
 
 extern void SDK_TEST(void);
 extern void init_interrupts(void);
+extern void disable_strict_align_check(void);
+extern void system_memory_arrange(void);
 
 /*!
  * main function that decides which tests to run and prompts the user before
@@ -32,6 +34,10 @@ extern void init_interrupts(void);
  */
 int main(void)
 {
+#if defined(MX61_EVB)
+    system_memory_arrange();
+    disable_strict_align_check();
+#endif
 
     platform_init();
 

@@ -42,7 +42,7 @@ void ccm_init(void)
      * => by default, ipg_podf divides by 2 => IPG_CLK@66MHz.
      */
     writel(0x00018D00, CCM_CBCDR);
-    writel(0x00020324, CCM_CBCMR);
+//    writel(0x00020324, CCM_CBCMR);
 
     /*
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
@@ -253,21 +253,43 @@ void hdmi_clock_set(uint32_t pclk)
     uint32_t regval = 0;
 
     if (pclk == 74250000) {
-        /*clk output from 540M PFD1 of PLL3 */
-        regval = readl(CCM_CHSCCDR) & (~0x1FF);
-        writel(regval | 0x168, CCM_CHSCCDR);
+        writel(7500000, ANATOP_BASE_ADDR + 0xB0);   //set the nominator
+        writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
+        writel(0x00012018, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
 
-        /*config PLL5 to be 594MHz */
-        writel(0x00003F00, ANATOP_BASE_ADDR + 0xF8);
-        writel(0x00001300, ANATOP_BASE_ADDR + 0xF4);
-    } else if (pclk == 148500000) {
+        while (!(readl(ANATOP_BASE_ADDR + 0xA0) & 0x80000000)) ;    //waiting for the pll lock
+
+        writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
+
         /*clk output from 540M PFD1 of PLL3 */
         regval = readl(CCM_CHSCCDR) & (~0x1FF);
+        writel(regval | 0xB8, CCM_CHSCCDR);
+        regval = readl(CCM_CSCDR2) & (~0x1FF);
+        writel(regval | 0xB8, CCM_CSCDR2);
+    } else if (pclk == 148500000) {
+#if 1
+        writel(500000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
+        writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
+        writel(0x00012031, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
+
+        while (!(readl(ANATOP_BASE_ADDR + 0xA0) & 0x80000000)) ;    //waiting for the pll lock
+
+        writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
+
+        /*clk output from 540M PFD1 of PLL3 */
+        regval = readl(CCM_CHSCCDR) & (~0x1FF);
+        writel(regval | 0xB8, CCM_CHSCCDR);
+        regval = readl(CCM_CSCDR2) & (~0x1FF);
+        writel(regval | 0xB8, CCM_CSCDR2);
+#else
+        /*clk output from 540M PFD1 of PLL3 */
+        regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
         writel(regval | 0x158, CCM_CHSCCDR);
 
-        /*config PLL5 to be 594MHz */
+        /*config PFD1 of PLL3 to be 445MHz */
         writel(0x00003F00, ANATOP_BASE_ADDR + 0xF8);
         writel(0x00001300, ANATOP_BASE_ADDR + 0xF4);
+#endif
     } else {
         printf("the hdmi pixel clock is not supported!\n");
     }

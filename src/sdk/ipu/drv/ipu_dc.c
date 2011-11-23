@@ -24,7 +24,7 @@ void ipu_dc_config(uint32_t ipu_index, uint32_t channel, uint32_t di, uint32_t w
                    uint32_t colorimetry)
 {
     dc_microcode_t microcode = { 0 };
-    uint32_t de_pointer = 1;
+    uint32_t de_pointer = 0;
     uint32_t disp_port = 2;     //up to 4 display is supported by one IPU.
 
     microcode.addr = 1;

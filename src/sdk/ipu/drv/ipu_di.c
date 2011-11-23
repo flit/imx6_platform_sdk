@@ -44,7 +44,7 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
     int vDisp, vSyncStartWidth, vSyncWidth, vSyncEndWidth;
     int hTotal, vTotal;
     int dw_set;                 // data waveform set
-    int de_pointer = 1;
+    int de_pointer = 0;
     int pt[7];
     di_sync_wave_gen_t syncWaveformGen = {
         0
@@ -135,8 +135,8 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
     syncWaveformGen.cntAutoReload = 1;
     syncWaveformGen.stepRepeat = 0;
     syncWaveformGen.cntClrSel = 0;
-    syncWaveformGen.cntPolarityGenEn = 0;
-    syncWaveformGen.cntPolarityTrigSel = 0;
+    syncWaveformGen.cntPolarityGenEn = 1;
+    syncWaveformGen.cntPolarityTrigSel = 2;
     syncWaveformGen.cntPolarityClrSel = 0;
     syncWaveformGen.cntUp = 0;
     syncWaveformGen.cntDown = vSyncWidth << 1;
@@ -337,7 +337,7 @@ void ipu_di_interface_set(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * pan
         ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_SYNC_START, line_prediction);
         ipu_write_field(ipu_index, IPU_DI0_SYNC_AS_GEN__DI0_VSYNC_SEL, vsync_sel);
         ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_DISP_Y_SEL, hsync_sel);
-        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_CLK_EXT, 1);
+        ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_CLK_EXT, panel->clk_sel);
 
         ipu_write_field(ipu_index, IPU_DI0_GENERAL__DI0_POLARITY_DISP_CLK, 0);
         ipu_write_field(ipu_index, IPU_DI0_GENERAL__ADDR, 1 << vsync_sel, panel->vsync_pol);    //VSYNC POLARITY
@@ -353,7 +353,7 @@ void ipu_di_interface_set(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * pan
         ipu_write_field(ipu_index, IPU_DI1_SYNC_AS_GEN__DI1_SYNC_START, line_prediction);
         ipu_write_field(ipu_index, IPU_DI1_SYNC_AS_GEN__DI1_VSYNC_SEL, vsync_sel);
         ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_DISP_Y_SEL, hsync_sel);
-        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_CLK_EXT, 1);
+        ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_CLK_EXT, panel->clk_sel);
 
         ipu_write_field(ipu_index, IPU_DI1_GENERAL__DI1_POLARITY_DISP_CLK, panel->clk_pol);
         ipu_write_field(ipu_index, IPU_DI1_GENERAL__ADDR, 1 << vsync_sel, panel->vsync_pol);    //VSYNC POLARITY

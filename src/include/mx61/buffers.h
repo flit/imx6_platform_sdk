@@ -31,3 +31,19 @@
 #define CH21_EBA1 	(IPU_DMA_MEMORY_START + 0x02400000)
 #define CH20_EBA0 	(IPU_DMA_MEMORY_START + 0x02800000)
 #define CH20_EBA1 	(IPU_DMA_MEMORY_START + 0x02C00000)
+
+/* put the TWO video instance on different CS to
+   improve the performance.
+ */
+#if defined(MX61_EVB)
+#define FAT_DRIVER_BUFFER       (0x60000000)
+#define VPU_WORK_BUFFERS        (0x60100000)
+#define VIDEO_0_BUFFERS         (0x30000000)
+#define VIDEO_1_BUFFERS         (0x50000000)
+#endif
+
+/*OCRAM partition table*/
+#define VPU_SEC_AXI_START	0x00910000
+#define VPU_SEC_AXI_END		0x0092FFFF
+#define TLB_ENTRY_START		0x00930000
+#define TLB_ENTRY_END		0x00932800

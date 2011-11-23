@@ -108,20 +108,18 @@ void ALL_test(void)
 {
     uint8_t gic_test_done = 0;
 
-    while(1)
-    {
+    while (1) {
         printf("Starting the tests suite...\n");
         sdma_test();
         ipu_test();
         uart_test();
         gpt_test();
         epit_test();
-        usdhc_test();
+        //usdhc_test();
         hdmi_test();
         audio_test();
         /* GIC test can only be executed once, and requires a board reset */
-        if(gic_test_done == 0)
-        {
+        if (gic_test_done == 0) {
             gic_test_done = 0xFF;
             gic_test();
         }

@@ -356,6 +356,25 @@ enum disp_dev_flag {
     HDMI_1080P25,
     HDMI_1080P30,
     HDMI_1080P60,
+    SII9022_1080P60,
+};
+
+enum {
+    DMFC_FIFO_512X128,
+    DMFC_FIFO_256X128,
+    DMFC_FIFO_128X128,
+    DMFC_FIFO_64X128,
+    DMFC_FIFO_32X128,
+    DMFC_FIFO_16X128,
+    DMFC_FIFO_8X128,
+    DMFC_FIFO_4X128,
+};
+
+enum {
+    DMFC_BURST_32X128,
+    DMFC_BURST_16X128,
+    DMFC_BURST_8X128,
+    DMFC_BURST_4X128,
 };
 
 typedef struct {
@@ -539,8 +558,11 @@ void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t
 int ipu_idmac_channel_busy(int ipu_index, int channel);
 void ipu_idmac_channel_enable(int ipu_index, int channel, int enable);
 void ipu_channel_buf_ready(int ipu_index, int channel, int buf);
+inline void ipu_cpmem_mod_field(uint32_t base, int w, int bit, int size, uint32_t v);
 
 void ipu_dmfc_config(uint32_t ipu_index, uint32_t channel);
+void ipu_dmfc_alloc(uint32_t ipu_index, uint32_t channel, uint32_t size, uint32_t start_addr,
+                    uint32_t burst);
 
 void ipu_dc_config(uint32_t ipu_index, uint32_t channel, uint32_t di, uint32_t width,
                    uint32_t colorimetry);

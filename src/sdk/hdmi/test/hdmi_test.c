@@ -9,11 +9,13 @@
 #include "../drv/hdmi_tx.h"
 
 extern int ips_hdmi_stream(void);
+extern int ips_hdmi_1080P60_stream(int ipu_index);
 //extern void init_data(unsigned int enc_in_format,int height, int width);
 extern int init_dma_data(int sample_rate, int ch);
 extern const unsigned char gAudio_sample[];
 void init_hdmi_interrupt(void);
 void hdmi_tx_ISR(void);
+void hdmi_source_select(int ipu_index, int disp_port);
 
 /*! ------------------------------------------------------------
  * HDMI TX Video Test (force output of FSL logo)
@@ -120,4 +122,42 @@ void hdmi_tx_ISR(void)
         audio_Configure_DMA(HDMI_AUDIO_BUF_START, (HDMI_AUDIO_BUF_START + 0x17ff), 1, 4, 64, 4,
                             0x7f);
     }
+}
+
+void hdmi_1080P60_video_output(int ipu_index, int ipu_di)
+{
+    printf("\n---- Running HDMI_TX test ----\n");
+    int hdmi_src = ((ipu_index - 1) << 1) | ipu_di;
+
+    hdmi_data_info_s myHDMI_info = { 0 };   // declare new hdmi module object instance
+    hdmi_vmode_s myHDMI_vmode_info = { 0 }; // declare new hdmi module object instance
+    myHDMI_info.video_mode = &myHDMI_vmode_info;
+
+    myHDMI_info.enc_in_format = eRGB;
+    myHDMI_info.enc_out_format = eRGB;
+    myHDMI_info.enc_color_depth = 8;
+    myHDMI_info.colorimetry = eITU601;
+    myHDMI_info.pix_repet_factor = 0;
+    myHDMI_info.hdcp_enable = 0;
+//    myHDMI_info.video_mode->mCode = 4;  //1280x720p @ 59.94/60Hz 16:9
+    myHDMI_info.video_mode->mCode = 16; //1920x1080p @ 59.94/60Hz 16:9
+    myHDMI_info.video_mode->mHdmiDviSel = TRUE;
+    myHDMI_info.video_mode->mRVBlankInOSC = FALSE;
+    myHDMI_info.video_mode->mRefreshRate = 60000;
+    myHDMI_info.video_mode->mDataEnablePolarity = TRUE;
+
+    hdmi_av_frame_composer(&myHDMI_info);
+    hdmi_video_packetize(myHDMI_info);
+    hdmi_video_csc(myHDMI_info);
+    hdmi_video_sample(myHDMI_info);
+
+    hdmi_audio_mute(TRUE);
+    hdmi_tx_hdcp_config(myHDMI_info.video_mode->mDataEnablePolarity);
+
+    hdmi_phy_init(TRUE, myHDMI_info.video_mode->mPixelClock);
+
+    hdmi_config_input_source(hdmi_src); // configure input source to HDMI block
+
+    // configure IPU to output stream for hdmi input
+    ips_hdmi_1080P60_stream(ipu_index);
 }

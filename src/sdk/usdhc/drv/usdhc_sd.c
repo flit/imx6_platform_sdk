@@ -14,9 +14,6 @@
 #include "hardware.h"
 #include "usdhc_host.h"
 
-extern int card_rca[];
-extern int card_address_mode[];
-
 const unsigned int sd_ocr_value[SD_OCR_VALUE_COUNT] = {
     SD_OCR_VALUE_HV_HC,
     SD_OCR_VALUE_LV_HC,
@@ -53,7 +50,7 @@ static int sd_get_rca(int base_address)
         host_read_response(base_address, &response);
 
         /* Set RCA to Value Read */
-        card_rca[port] = response.cmd_rsp0 >> RCA_SHIFT;
+        usdhc_device[port].rca = response.cmd_rsp0 >> RCA_SHIFT;
 
         /* Check the IDENT card state */
         card_state = CURR_CARD_STATE(response.cmd_rsp0);
@@ -79,7 +76,7 @@ static int sd_set_bus_width(int base_address, int bus_width)
         return status;
     }
 
-    address = card_rca[port] << RCA_SHIFT;
+    address = usdhc_device[port].rca << RCA_SHIFT;
 
     /* Check Bus Width */
     if ((bus_width != FOUR) && (bus_width != ONE)) {
@@ -239,9 +236,9 @@ int sd_voltage_validation(int base_address)
                 if (response.cmd_rsp0 & CARD_BUSY_BIT) {
                     /* Check card is HC or LC from card response */
                     if ((response.cmd_rsp0 & SD_OCR_HC_RES) == SD_OCR_HC_RES) {
-                        card_address_mode[port] = SECT_MODE;
+                        usdhc_device[port].addr_mode = SECT_MODE;
                     } else {
-                        card_address_mode[port] = BYTE_MODE;
+                        usdhc_device[port].addr_mode = BYTE_MODE;
                     }
 
                     status = SUCCESS;

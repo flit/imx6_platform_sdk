@@ -162,6 +162,12 @@ typedef enum {
     MULTIPLE = 1
 } multi_single_block_select;
 
+enum intr_status {
+    INTR_BUSY = 0,
+    INTR_TC = 1,
+    INTR_ERROR = 2
+};
+
 typedef struct {
     unsigned int command;
     unsigned int arg;
@@ -184,6 +190,20 @@ typedef struct {
     unsigned int cmd_rsp2;
     unsigned int cmd_rsp3;
 } command_response_t;
+
+typedef struct {
+    unsigned int reg_base;      //register base address
+    unsigned int adma_ptr;      //ADMA buffer address
+    void (*isr) (void);         //interrupt service routine
+
+    unsigned short rca;         //relative card address
+    unsigned char addr_mode;    //addressing mode
+    unsigned char intr_id;      //interrupt ID
+    unsigned char status;       //interrupt status
+} usdhc_inst_t;
+
+/* uSDHC device table */
+extern usdhc_inst_t usdhc_device[];
 
 /*------------------------------------------- Function Defines --------------------------------------------*/
 

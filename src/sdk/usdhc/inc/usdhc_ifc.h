@@ -56,7 +56,14 @@ extern int card_data_read(int, int *, int, int);
  * size: Size in bytes of data to be written
  * offset: Which sector in card should data be started to written
  */
-
 extern int card_data_write(int, int *, int, int);
+
+/*
+ * Read the data transfer status(only in interrupt mode)
+ * Parameters:
+ * base_address: Base address of uSDHC controller registers
+ * status: Store the readback status. 0: busy, 1: success, 2: error
+ */
+extern int card_xfer_result(int, int *);
 
 #endif

@@ -14,9 +14,6 @@
 #include "hardware.h"
 #include "usdhc_host.h"
 
-extern int card_rca[];
-extern int card_address_mode[];
-
 /********************************************* Static Function ******************************************/
 static int mmc_set_rca(int base_address)
 {
@@ -32,11 +29,11 @@ static int mmc_set_rca(int base_address)
     }
 
     /* Set RCA to ONE */
-    card_rca[port] = ONE;
+    usdhc_device[port].rca = ONE;
 
     /* Configure CMD3 */
-    card_cmd_config(&cmd, CMD3, (card_rca[port] << RCA_SHIFT), READ, RESPONSE_48, DATA_PRESENT_NONE,
-                    ENABLE, ENABLE);
+    card_cmd_config(&cmd, CMD3, (usdhc_device[port].rca << RCA_SHIFT), READ, RESPONSE_48,
+                    DATA_PRESENT_NONE, ENABLE, ENABLE);
 
     usdhc_printf("Send CMD3.\n");
 
@@ -155,9 +152,9 @@ int mmc_voltage_validation(int base_address)
             if (response.cmd_rsp0 & CARD_BUSY_BIT) {
                 /* Check Address Mode */
                 if ((response.cmd_rsp0 & MMC_OCR_HC_BIT_MASK) == MMC_OCR_HC_RESP_VAL) {
-                    card_address_mode[port] = SECT_MODE;
+                    usdhc_device[port].addr_mode = SECT_MODE;
                 } else {
-                    card_address_mode[port] = BYTE_MODE;
+                    usdhc_device[port].addr_mode = BYTE_MODE;
                 }
 
                 status = SUCCESS;

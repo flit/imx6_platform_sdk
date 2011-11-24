@@ -121,7 +121,7 @@ static int usdhc_test_adma_intr(void)
 
 static int mmc_test(unsigned int bus_width, unsigned int base_address)
 {
-    int status, idx;
+    int status, idx, result;
 
     printf("1. Init card.\n");
 
@@ -148,6 +148,18 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
         return FALSE;
     }
 
+    /* Wait for transfer complete */
+    if (SDHC_INTR_mode == TRUE) {
+        do {
+            card_xfer_result(base_address, &result);
+        } while (result == 0);
+
+        if (result == 2) {
+            printf("%d: Error status caught.\n", __LINE__);
+            return FAIL;
+        }
+    }
+
     printf("3. SRC -> Card.\n");
 
     /* Copy from source to Card */
@@ -157,6 +169,18 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
     if (status == FAIL) {
         printf("%d: SD/MMC data write failed.\n", __LINE__);
         return FALSE;
+    }
+
+    /* Wait for transfer complete */
+    if (SDHC_INTR_mode == TRUE) {
+        do {
+            card_xfer_result(base_address, &result);
+        } while (result == 0);
+
+        if (result == 2) {
+            printf("%d: Error status caught.\n", __LINE__);
+            return FAIL;
+        }
     }
 
     printf("4. Card -> DST.\n");
@@ -170,6 +194,18 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
         return FALSE;
     }
 
+    /* Wait for transfer complete */
+    if (SDHC_INTR_mode == TRUE) {
+        do {
+            card_xfer_result(base_address, &result);
+        } while (result == 0);
+
+        if (result == 2) {
+            printf("%d: Error status caught.\n", __LINE__);
+            return FAIL;
+        }
+    }
+
     printf("5. TMP -> Card.\n");
 
     /* Restore from temporary buffer to card */
@@ -179,6 +215,18 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
     if (status == FAIL) {
         printf("%d: SD/MMC data write failed.\n", __LINE__);
         return FALSE;
+    }
+
+    /* Wait for transfer complete */
+    if (SDHC_INTR_mode == TRUE) {
+        do {
+            card_xfer_result(base_address, &result);
+        } while (result == 0);
+
+        if (result == 2) {
+            printf("%d: Error status caught.\n", __LINE__);
+            return FAIL;
+        }
     }
 
     printf("6. Compare SRC & DST.\n");

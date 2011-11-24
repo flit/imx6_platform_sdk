@@ -157,4 +157,9 @@ extern void host_setup_adma(int, int *, int);
 extern int host_data_read(int, int *, int, int);
 extern int host_data_write(int, int *, int, int);
 
+extern void usdhc1_isr(void);
+extern void usdhc2_isr(void);
+extern void usdhc3_isr(void);
+extern void usdhc4_isr(void);
+
 #endif

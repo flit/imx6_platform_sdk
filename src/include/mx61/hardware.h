@@ -196,7 +196,6 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define DPLLIP4_BASE_ADDR 0x3
 */
 
-#define USDHC_ADMA_BUFFER 0x00910000
 #define ESDCTL_REGISTERS_BASE_ADDR 0x021b0000
 
 //0x00907000 D IRAM_FREE_SPACE_START
@@ -236,10 +235,6 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define ESDHC_IDENT_FREQ   ((unsigned int)0x00002080)
 #define ESDHC_OPERT_FREQ   ((unsigned int)0x00000130)
 #define ESDHC_HS_FREQ      ((unsigned int)0x00000110)
-#define USDHC_ADMA_BUFFER1 0x00907000
-#define USDHC_ADMA_BUFFER2 0x00908000
-#define USDHC_ADMA_BUFFER3 0x00909000   /* IRAM Region */
-#define USDHC_ADMA_BUFFER4 0x0090A000
 
 extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
 /* SPI-NOR defines */

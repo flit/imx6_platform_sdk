@@ -12,21 +12,56 @@
 
 #include "usdhc.h"
 #include "hardware.h"
+#include "interrupt.h"
 #include "usdhc_host.h"
 
 /* Global Variables */
-const int usdhc_addr_table[USDHC_NUMBER_PORTS] = {
-    USDHC1_BASE_ADDR,
-    USDHC2_BASE_ADDR,
-    USDHC3_BASE_ADDR,
-    USDHC4_BASE_ADDR,
+
+usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
+    {
+     USDHC1_BASE_ADDR,          //register base
+     USDHC_ADMA_BUFFER1,        //ADMA base
+     usdhc1_isr,                //ISR
+     0,                         //RCA
+     0,                         //addressing mode
+     IMX_INT_USDHC1,            //interrupt ID
+     0,                         //status
+     }
+    ,
+
+    {
+     USDHC2_BASE_ADDR,          //register base
+     USDHC_ADMA_BUFFER2,        //ADMA base
+     usdhc2_isr,                //ISR
+     0,                         //RCA
+     0,                         //addressing mode
+     IMX_INT_USDHC2,            //interrupt ID
+     0,                         //status
+     }
+    ,
+
+    {
+     USDHC3_BASE_ADDR,          //register base
+     USDHC_ADMA_BUFFER3,        //ADMA base
+     usdhc3_isr,                //ISR
+     0,                         //RCA
+     0,                         //addressing mode
+     IMX_INT_USDHC3,            //interrupt ID
+     0,                         //status
+     }
+    ,
+
+    {
+     USDHC4_BASE_ADDR,          //register base
+     USDHC_ADMA_BUFFER4,        //ADMA base
+     usdhc4_isr,                //ISR
+     0,                         //RCA
+     0,                         //addressing mode
+     IMX_INT_USDHC4,            //interrupt ID
+     0,                         //status
+     }
+    ,
 };
-
-/* Relative Card Address for each uSDHC port */
-int card_rca[USDHC_NUMBER_PORTS];
-
-/* Addressing mode(sector, byte) */
-int card_address_mode[USDHC_NUMBER_PORTS];
 
 /* Whether to enable ADMA */
 int SDHC_ADMA_mode = DISABLE;
@@ -53,6 +88,29 @@ static int card_software_reset(int base_address)
     return response;
 }
 
+static int card_init_interrupt(int base_address)
+{
+    int idx = card_get_port(base_address);
+
+    if (idx == USDHC_NUMBER_PORTS) {
+        printf("Base address: 0x%x not in address table.\n", base_address);
+        return FAIL;
+    }
+
+    /* Disable interrupt */
+    disable_interrupt(usdhc_device[idx].intr_id, CPU_0);
+
+    if (SDHC_INTR_mode == ENABLE) {
+        /* Register interrupt */
+        register_interrupt_routine(usdhc_device[idx].intr_id, usdhc_device[idx].isr);
+
+        /* Enable interrupt */
+        enable_interrupt(usdhc_device[idx].intr_id, CPU_0, 0);
+    }
+
+    return SUCCESS;
+}
+
 /********************************************* Global Function ******************************************/
 int card_init(int base_address, int bus_width)
 {
@@ -64,6 +122,12 @@ int card_init(int base_address, int bus_width)
     /* Software Reset to Interface Controller */
     host_reset(base_address, ESDHC_ONE_BIT_SUPPORT, ESDHC_LITTLE_ENDIAN_MODE);
 
+    /* Initialize interrupt */
+    if (card_init_interrupt(base_address) == FAIL) {
+        printf("Interrupt initialize failed.\n");
+        return FAIL;
+    }
+
     /* Enable Identification Frequency */
     host_cfg_clock(base_address, IDENTIFICATION_FREQ);
 
@@ -73,7 +137,7 @@ int card_init(int base_address, int bus_width)
     usdhc_printf("Reset card.\n");
 
     /* Issue Software Reset to card */
-    if (card_software_reset(base_address)) {
+    if (card_software_reset(base_address) == FAIL) {
         return FAIL;
     }
 
@@ -187,7 +251,7 @@ int card_enter_trans(int base_address)
     port = card_get_port(base_address);
 
     /* Get RCA */
-    card_address = card_rca[port] << RCA_SHIFT;
+    card_address = usdhc_device[port].rca << RCA_SHIFT;
 
     /* Configure CMD7 */
     card_cmd_config(&cmd, CMD7, card_address, READ, RESPONSE_48_CHECK_BUSY,
@@ -216,7 +280,7 @@ int card_trans_status(int base_address)
     port = card_get_port(base_address);
 
     /* Get RCA */
-    card_address = card_rca[port] << RCA_SHIFT;
+    card_address = usdhc_device[port].rca << RCA_SHIFT;
 
     /* Configure CMD13 */
     card_cmd_config(&cmd, CMD13, card_address, READ, RESPONSE_48,
@@ -245,7 +309,7 @@ int card_get_port(int base_address)
     int idx;
 
     for (idx = 0; idx < USDHC_NUMBER_PORTS; idx++) {
-        if (usdhc_addr_table[idx] == base_address) {
+        if (usdhc_device[idx].reg_base == base_address) {
             break;
         }
     }
@@ -304,7 +368,7 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
     }
 
     /* Offset should be sectors */
-    if (card_address_mode[port] == SECT_MODE) {
+    if (usdhc_device[port].addr_mode == SECT_MODE) {
         offset = offset / BLK_LEN;
     }
 
@@ -384,7 +448,7 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
     }
 
     /* Offset should be sectors */
-    if (card_address_mode[port] == SECT_MODE) {
+    if (usdhc_device[port].addr_mode == SECT_MODE) {
         offset = offset / BLK_LEN;
     }
 
@@ -423,6 +487,20 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
 
         usdhc_printf("card_data_write: Data written successful.\n");
     }
+
+    return SUCCESS;
+}
+
+int card_xfer_result(int base_address, int *result)
+{
+    int idx = card_get_port(base_address);
+
+    if (idx == USDHC_NUMBER_PORTS) {
+        printf("Base address: 0x%x not in address table.\n", base_address);
+        return FAIL;
+    }
+
+    *result = usdhc_device[idx].status;
 
     return SUCCESS;
 }

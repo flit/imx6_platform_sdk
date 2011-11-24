@@ -16,17 +16,6 @@
 extern int SDHC_ADMA_mode;
 extern int SDHC_INTR_mode;
 
-static adma_bd_t *esdhc_adma_bd[USDHC_NUMBER_PORTS] = {
-    /*
-     * These buffer address defined in hardware.h, 
-     * should be non-cacheable & non-bufferable area
-     */
-    (adma_bd_t *) USDHC_ADMA_BUFFER1,
-    (adma_bd_t *) USDHC_ADMA_BUFFER2,
-    (adma_bd_t *) USDHC_ADMA_BUFFER3,
-    (adma_bd_t *) USDHC_ADMA_BUFFER4,
-};
-
 /*---------------------------------------------- Static Fcuntion ------------------------------------------------*/
 
 static void usdhc_set_data_transfer_width(int base_address, int data_width)
@@ -187,7 +176,51 @@ static int usdhc_check_transfer(int base_address)
     return status;
 }
 
+static void usdhc_handle_isr(int idx)
+{
+    host_register_ptr esdhc_base = (host_register_ptr) usdhc_device[idx].reg_base;
+
+    /* Set interrupt flag */
+    if (esdhc_base->interrupt_status & ESDHC_STATUS_END_DATA_RSP_TC_MASK) {
+        usdhc_device[idx].status = INTR_TC;
+    } else {
+        usdhc_device[idx].status = INTR_ERROR;
+
+        /* Clear CIHB or CDIHB */
+        if ((esdhc_base->present_state & ESDHC_PRESENT_STATE_CIHB) ||
+            (esdhc_base->present_state & ESDHC_PRESENT_STATE_CDIHB)) {
+            esdhc_base->system_control |= ESDHC_SOFTWARE_RESET;
+        }
+    }
+
+    /* Clear interrupt */
+    esdhc_base->interrupt_status = ESDHC_CLEAR_INTERRUPT;
+
+    /* Clear interrupt enable */
+    esdhc_base->interrupt_signal_enable = 0;
+}
+
 /*---------------------------------------------- Global Function ------------------------------------------------*/
+
+void usdhc1_isr(void)
+{
+    usdhc_handle_isr(USDHC_PORT1);
+}
+
+void usdhc2_isr(void)
+{
+    usdhc_handle_isr(USDHC_PORT2);
+}
+
+void usdhc3_isr(void)
+{
+    usdhc_handle_isr(USDHC_PORT3);
+}
+
+void usdhc4_isr(void)
+{
+    usdhc_handle_isr(USDHC_PORT4);
+}
 
 void host_init(int base_address)
 {
@@ -226,13 +259,30 @@ int host_send_cmd(int base_address, command_t * cmd)
         return FAIL;
     }
 
+    /* Clear interrupt status */
     esdhc_base->interrupt_status |= ESDHC_STATUS_END_CMD_RESP_TIME_MSK;
+
+    /* Enable interrupt when sending DMA commands */
+    if ((SDHC_INTR_mode == ENABLE) && (cmd->dma_enable == TRUE)) {
+        int idx = card_get_port(base_address);
+
+        /* Set interrupt flag to busy */
+        usdhc_device[idx].status = INTR_BUSY;
+
+        /* Enable uSDHC interrupt */
+        esdhc_base->interrupt_signal_enable = ESDHC_STATUS_END_DATA_RSP_TC_MASK;
+    }
 
     /* Configure Command */
     usdhc_cmd_cfg(base_address, cmd);
 
     /* If DMA Enabled */
     if (cmd->dma_enable == TRUE) {
+        /* Return in interrupt mode */
+        if (SDHC_INTR_mode == ENABLE) {
+            return SUCCESS;
+        }
+
         usdhc_wait_end_cmd_resp_dma_intr(base_address);
     }
 
@@ -374,7 +424,7 @@ void host_setup_adma(int base_address, int *ptr, int length)
     port = card_get_port(base_address);
 
     /* Get BD pointer */
-    bd_addr = esdhc_adma_bd[port];
+    bd_addr = (adma_bd_t *) usdhc_device[port].adma_ptr;
 
     /* Setup BD chain */
     while (length > 0) {

@@ -1,6 +1,3 @@
-/**************************************************************************
- * FreeDOS 32 FAT Driver                                                  *
- * by Salvo Isaja                                                         *
 /*
  * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT

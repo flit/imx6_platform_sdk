@@ -29,6 +29,13 @@ extern void iomux_config_spdif(void);
 extern void spdif_clk_cfg(void);
 extern unsigned int spdif_get_tx_clk_freq(void);
 
+/*! 
+ * Dump spdif readable registers.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the ssi module
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
 #if SPDIF_DEBUG
 static int32_t spdif_dump(audio_ctrl_p ctrl)
 {
@@ -95,7 +102,7 @@ static uint32_t spdif_get_hw_setting(audio_ctrl_p ctrl, uint32_t type)
     case SPDIF_GET_FREQMEAS:
         val = spdif->srfm;
         break;
-    case SPDIF_GET_GAIL_SEL:
+    case SPDIF_GET_GAIN_SEL:
         val = (spdif->srpc & (0x7 << 3)) >> 3;
         break;
     case SPDIF_GET_RX_CCHANNEL_INFO_H:
@@ -117,6 +124,13 @@ static uint32_t spdif_get_hw_setting(audio_ctrl_p ctrl, uint32_t type)
     return val;
 }
 
+/*!
+ * Calucate the spdif's tx clock divider according the sample rate.
+ * @param       ctrl    a pointer of audio controller(audio_ctrl_t) which presents the ssi module
+ *				sample_rate		sample rate to be set
+ *
+ * @return      the divider value
+ */
 static uint32_t spdif_cal_txclk_div(audio_ctrl_p ctrl, uint32_t sample_rate)
 {
     float val;

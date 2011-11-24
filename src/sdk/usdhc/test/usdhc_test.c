@@ -156,7 +156,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
         if (result == 2) {
             printf("%d: Error status caught.\n", __LINE__);
-            return FAIL;
+            return FALSE;
         }
     }
 
@@ -179,7 +179,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
         if (result == 2) {
             printf("%d: Error status caught.\n", __LINE__);
-            return FAIL;
+            return FALSE;
         }
     }
 
@@ -202,7 +202,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
         if (result == 2) {
             printf("%d: Error status caught.\n", __LINE__);
-            return FAIL;
+            return FALSE;
         }
     }
 
@@ -225,7 +225,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
         if (result == 2) {
             printf("%d: Error status caught.\n", __LINE__);
-            return FAIL;
+            return FALSE;
         }
     }
 

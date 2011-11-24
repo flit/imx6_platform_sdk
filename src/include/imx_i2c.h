@@ -44,7 +44,7 @@
 #define ERR_RX_ACK                  -6
 #define ERR_NO_ACK_ON_START         -7
 
-#define IMX61_SLAVE_ID              0x60
+#define IMX6_SLAVE_ID              0x60
 
 struct imx_i2c_request {
     uint32_t ctl_addr;          // the I2C controller base address
@@ -53,6 +53,8 @@ struct imx_i2c_request {
     uint32_t reg_addr_sz;       // number of bytes for the address of I2C device register
     uint8_t *buffer;            // buffer to hold the data
     uint32_t buffer_sz;         // the number of bytes for read/write
+    int32_t (*slave_receive) (struct imx_i2c_request *rq);  // slave receive data from master
+    int32_t (*slave_transmit) (struct imx_i2c_request *rq); // slave transmit data to master
 };
 
 extern uint32_t i2c_base_addr[];
@@ -63,8 +65,9 @@ int i2c_xfer(struct imx_i2c_request *rq, int dir);
 #define i2c_read(rq)      i2c_xfer(rq, I2C_READ)
 #define i2c_write(rq)      i2c_xfer(rq, I2C_WRITE)
 void i2c_setup_interrupt(struct hw_module *port, uint8_t state);
-void i2c_interrupt_routine(uint32_t base, uint16_t * status);
-void i2c_slave_handler(struct imx_i2c_request *rq, uint16_t * status);
+void i2c_interrupt_routine(void);
+void i2c_slave_handler(struct imx_i2c_request *rq);
+void i2c_slave_xfer(struct hw_module *port, struct imx_i2c_request *rq);
 
 static const uint16_t i2c_freq_div[50][2] = {
         { 22,   0x20 }, { 24,   0x21 }, { 26,   0x22 }, { 28,   0x23 },

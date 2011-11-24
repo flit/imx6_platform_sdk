@@ -10,6 +10,8 @@
 /* Max number of operations to wait to receuve ack */
 #define WAIT_RXAK_LOOPS     1000000
 
+#define get_status(x) readw(x + I2C_I2SR)
+
 /*!
  * Loop status register for IBB to go 0
  * The loop breaks on max number of iterations
@@ -340,99 +342,17 @@ void i2c_setup_interrupt(struct hw_module *port, uint8_t state)
     if (state == ENABLE) {
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
-        /* enable the IRQ */
+        /* enable the IRQ at the ARM core level */
         enable_interrupt(port->irq_id, CPU_0, 0);
-    } else
-        /* disable the IRQ */
+        /* and enable the interrupts in the I2C controller */
+        writew(readw(port->base + I2C_I2CR) | I2C_I2CR_IIEN, port->base + I2C_I2CR);
+    } else {
+        /* disable the IRQ at the ARM core level */
         disable_interrupt(port->irq_id, CPU_0);
-}
-
-/*!
- * I2C interrupt routine.
- *
- * @param   base - base address of I2C module 
- * @param   status - returned status captured in this interrupt routine
- */
-void i2c_interrupt_routine(uint32_t base, uint16_t * status)
-{
-    *status = readw(base + I2C_I2SR);
-    /* clear the status register */
-    writew(0, base + I2C_I2SR);
-}
-
-/*!
- * I2C interrupt handler for slave mode.
- *
- * @param   rq - pointer to struct imx_i2c_request
- * @param   status - captured status from the interrupt routine
- */
-void i2c_slave_handler(struct imx_i2c_request *rq, uint16_t * status)
-{
-    uint16_t i2cr;
-    uint8_t data = 0;
-    uint32_t base = rq->ctl_addr;
-
-    i2cr = readw(base + I2C_I2CR);
-
-    /* was the i.MX61 slave address matched? */
-    if(*status & I2C_I2SR_IAAS)
-    {
-        printf("i.MX61 addressed by an external master\n");
-        /* is it a master read access? */
-        if(*status & I2C_I2SR_SRW)
-        {
-              /* set transmit mode */
-            i2cr |= I2C_I2CR_MTX;          
-            writew(i2cr, base + I2C_I2CR);
-
-            /* get the data from the application */
-    /* TO DO - a function that provides the data */
-
-            /* write the data */
-            writew(data, base + I2C_I2DR);
-        }
-        else    /* no, a master write access */
-        {
-            /* set receive mode */
-            i2cr &= ~I2C_I2CR_MTX;
-            writew(i2cr, base + I2C_I2CR);
-
-            /* dummy read */
-            readw(base + I2C_I2DR);
-        }
-    }
-    else    /* continue the started protocol with the master */
-    {
-        /* is it in transmit mode? */
-        if(i2cr & I2C_I2CR_MTX)
-        {
-            /* dummy read */
-            readw(base + I2C_I2DR);
-
-        }
-        else    /* this is in receive mode */
-        {
-            
-
-
-        }
+        /* and disable the interrupts in the I2C controller */
+        writew(readw(port->base + I2C_I2CR) & ~I2C_I2CR_IIEN, port->base + I2C_I2CR);
     }
 }
-
-/*!
- * Handle the I2C transfers in slave mode.
- *
- * @param   port - pointer to the I2C module structure.
- * @param   state - enable/disable the interrupt
- */
-void i2c_slave_xfer(struct imx_i2c_request *rq)
-{
-
-
-
-
-}
-
 
 /*!
  * Initialize the I2C module -- mainly enable the I2C clock, module
@@ -470,16 +390,13 @@ int i2c_init(uint32_t base, uint32_t baud)
     writew(0x14, base + I2C_IFDR);
 
     /* set an I2C slave address */
-    writew(IMX61_SLAVE_ID, base + I2C_IADR);
+    writew(IMX6_SLAVE_ID, base + I2C_IADR);
 
     /* clear the status register */
     writew(0, base + I2C_I2SR);
 
     /* enable the I2C controller */
     writew(I2C_I2CR_IEN, base + I2C_I2CR);
-    /* and enable the interrupts */
-    writew(I2C_I2CR_IEN | I2C_I2CR_IIEN, base + I2C_I2CR);
-
 
     return 0;
 }

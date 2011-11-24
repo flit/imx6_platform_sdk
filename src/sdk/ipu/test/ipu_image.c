@@ -12128,11 +12128,23 @@ void load_foreground_image(uint32_t addr, uint32_t width, uint32_t height)
 
 void load_horiz_image(uint32_t addr, uint32_t width, uint32_t height)
 {
-    uint32_t segment = width * height / 2;
+	uint32_t i;
+	uint16_t *RGB_pointer = (void *)addr;
+	uint16_t red = 0xF800, green = 0x07E0, blue = 0x001F;
+	
+	for (i = 0; i < width * height / 3; i++)
+    	memcpy(RGB_pointer++, &red, 2);
+	for (i = 0; i < width * height / 3; i++)
+    	memcpy(RGB_pointer++, &green, 2);
+	for (i = 0; i < width * height / 3; i++)
+    	memcpy(RGB_pointer++, &blue, 2);
+			
+/*    uint32_t segment = width * height / 2;
     memset((void *)addr, 0xFA, segment);
     memset((void *)addr + segment, 0x1F, segment);
     memset((void *)addr + 2 * segment, 0xAF, segment);
     memset((void *)addr + 3 * segment, 0xCC, segment);
+*/
 }
 
 void set_background_margin(ips_dev_panel_t * panel, uint32_t width, uint32_t height)

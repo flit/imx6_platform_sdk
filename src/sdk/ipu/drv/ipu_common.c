@@ -135,8 +135,7 @@ void ipu_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem
  * @param	ipu_index:	ipu index
  * @param	conf:		ipu configuration data structure
  */
-void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
-                            uint32_t fg_width, uint32_t fg_height)
+void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry, uint32_t fg_width, uint32_t fg_height, uint32_t fg_xp, uint32_t fg_yp, uint32_t alpha)
 {
     uint32_t bg_channel = MEM_TO_DP_BG_CH23;
     uint32_t fg_channel = MEM_TO_DP_FG_CH27;
@@ -152,7 +151,7 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
 
     ipu_dc_config(ipu_index, bg_channel, di, panel->width, panel->colorimetry);
     //set the foreground position: in the middle of the screen and at the bottom of the screen.
-    ipu_dp_config(ipu_index, NO_CSC, 1, (panel->width - fg_width) / 2, panel->height - 300, 125);
+    ipu_dp_config(ipu_index, NO_CSC, 1, fg_xp, fg_yp, alpha);
     ipu_di_config(ipu_index, di, panel);
 }
 

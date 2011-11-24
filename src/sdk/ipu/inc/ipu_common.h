@@ -536,8 +536,7 @@ int ipu_sw_reset(int ipu_index, int timeout);
 void ipu_disable_display(int ipu_index);
 void ipu_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
                        uint32_t csc_typ);
-void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
-                            uint32_t fg_width, uint32_t fg_height);
+void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry, uint32_t fg_width, uint32_t fg_height, uint32_t fp_xp, uint32_t fp_yp, uint32_t alpha);
 void ipu_enable_display(int ipu_index);
 
 void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,

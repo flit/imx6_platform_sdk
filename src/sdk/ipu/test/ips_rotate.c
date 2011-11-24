@@ -21,16 +21,13 @@ int ips_rotate_test(ips_dev_panel_t * panel)
 
     /*Rotation Test. Press y to rotate 90 degree. */
     printf("\n-- Rotate central image block --\n");
-    printf("Press Y/y for 90 degree clockwise rotation. Other key to exit.)\n");
+    printf("Press 'Y' / 'y' for 90 degree clockwise rotation.\nOther key to exit.)\n");
 
     /*setup IPU display channel */
     ipu_display_setup(ipu_index, panel, INTERLEAVED_RGB, NO_CSC);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
-
-    /*load image: display the image first */
-    load_centralized_image(CH23_EBA0, panel);
 
     /*setup ic task and dma channel for rotate. */
     switch (taskType) {
@@ -95,13 +92,6 @@ int ips_rotate_test(ips_dev_panel_t * panel)
         } else
             break;
     };
-
-    printf("Do you see the center image block (640*480) rotated (y or n)?\n");
-    do {
-        revchar = getchar();
-    } while (revchar == (uint8_t) 0xFF);
-    if (!(revchar == 'Y' || revchar == 'y'))
-        return FALSE;
 
     return TRUE;
 }

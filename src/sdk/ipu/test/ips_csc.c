@@ -34,7 +34,7 @@ int ips_csc_test(ips_dev_panel_t * panel)
     /*load foreground image */
     load_horiz_image(CH23_EBA0, panel->width, panel->height);
 
-    printf("Here is the origin RGB image, Do you want to change it to YUV format (y or n)?\n");
+    printf("RGB image -- Do you want to change it to YUV format (y or n)?\n");
     do {
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
@@ -90,29 +90,27 @@ int ips_csc_test(ips_dev_panel_t * panel)
     while (ipu_idmac_channel_busy(1, channel_in)) ;
     while (ipu_idmac_channel_busy(1, channel_out)) ;
 
+    ipu_idmac_channel_enable(ipu_index, channel_in, 0);
+    ipu_idmac_channel_enable(ipu_index, channel_out, 0);
+
+    //ipu_display_setup(ipu_index, panel, NON_INTERLEAVED_YUV420, NON_CSC);
+    memset((void *)CH23_EBA0, 0x00, panel->width * panel->height * 2);
+    memcpy((void *)CH23_EBA0, (void *)CH27_EBA0, panel->width * panel->height * 3 / 2);
+
     /*setup display channel for YUV420. */
-    ipu_display_setup(ipu_index, panel, NON_INTERLEAVED_YUV420, NO_CSC);
-    memcpy((void *)CH23_EBA0, (void *)CH27_EBA0, panel->width * panel->height * 2);
-
-    printf("The YUV format displays on RGB screen....\n\n");
-    printf("Do you want to change it back to RGB?....\n\n");
+    printf("----- The YUV format displays on RGB screen -----\n");
+    printf("Do you want to change it back to RGB?....\n");
     do {
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
     if (!(revchar == 'Y' || revchar == 'y'))
         return FALSE;
 
-    /*step 3: */
-    //setting CSC on DP module.
-    ipu_dp_config(ipu_index, YUV_RGB, 0, 0, 0, 0);
-
-    printf
-        ("Do you see the logo(background) and text (foreground) in the bottom of your screen (y or n)?\n");
-    do {
-        revchar = getchar();
-    } while (revchar == (uint8_t) 0xFF);
-    if (!(revchar == 'Y' || revchar == 'y'))
-        return FALSE;
+    /*step 3: change YUV to RGB through DP module directly to screen.*/
+    //setting display idmac channel and CSC on DP module.
+    ipu_sw_reset(ipu_index, 1000);
+    ipu_display_setup(ipu_index, panel, NON_INTERLEAVED_YUV420, YUV_RGB);
+    ipu_enable_display(ipu_index);
 
     return TRUE;
 }

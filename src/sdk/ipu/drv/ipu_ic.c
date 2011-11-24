@@ -57,6 +57,7 @@ void ipu_ic_rotation_config(int ipu_index, int taskType, int rot, int hf, int vf
         ipu_write_field(ipu_index, IPU_IC_IDMAC_1__T2_ROT, rot);
         break;
     default:
+		printf ("Wrong ic task type!\n");
         break;
     }
 }
@@ -66,12 +67,60 @@ void ipu_ic_resize_config(int ipu_index, int taskType, ipu_res_info_t res_info)
     int resCoff = 0, downsCoff = 0;
 
     switch (taskType) {
+    case PrP_ENC_TASK:
+        ipu_write_field(ipu_index, IPU_IC_CONF__PRPENC_EN, 0);
+        ipu_write_field(ipu_index, IPU_IC_CONF__RWS_EN, 1);
+        ipu_write_field(ipu_index, IPU_IC_CONF__CSI_MEM_WR_EN, 0);
+        ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW1__ENC_IN_VALID, 1);
+
+        if (res_info.width_in % 16 == 0) {
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB0_BURST_16, 1);   // set to 16bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 1);
+        } else {
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB0_BURST_16, 0);   // set to 8bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 0);
+        }
+
+		ipu_write_field(ipu_index, IPU_IC_IDMAC_2__T1_FR_HEIGHT, res_info.height_out - 1);
+		ipu_write_field(ipu_index, IPU_IC_IDMAC_3__T1_FR_WIDTH, res_info.width_out - 1);
+
+		ipu_ic_calc_resize_coeffs(res_info.width_in, res_info.width_out, &resCoff, &downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_DS_R_H, downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_RS_R_H, resCoff);
+
+		ipu_ic_calc_resize_coeffs(res_info.height_in, res_info.height_out, &resCoff, &downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_DS_R_V, downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_RS_R_V, resCoff);
+		break;
+    case PrP_VF_TASK:
+        ipu_write_field(ipu_index, IPU_IC_CONF__PRPVF_EN, 0);
+        ipu_write_field(ipu_index, IPU_IC_CONF__RWS_EN, 1);
+        ipu_write_field(ipu_index, IPU_IC_CONF__CSI_MEM_WR_EN, 0);
+        ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW1__VF_IN_VALID, 1);
+
+        if (res_info.width_in % 16 == 0) {
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 1);   // set to 16bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 1);
+        } else {
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 0);   // set to 8bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 0);
+        }
+		ipu_write_field(ipu_index, IPU_IC_IDMAC_2__T2_FR_HEIGHT, res_info.height_out - 1);
+		ipu_write_field(ipu_index, IPU_IC_IDMAC_3__T2_FR_WIDTH, res_info.width_out - 1);
+
+		ipu_ic_calc_resize_coeffs(res_info.width_in, res_info.width_out, &resCoff, &downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_H, downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_H, resCoff);
+
+		ipu_ic_calc_resize_coeffs(res_info.height_in, res_info.height_out, &resCoff, &downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_V, downsCoff);
+		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_V, resCoff);
+		break;
     case PP_TASK:
         ipu_write_field(ipu_index, IPU_IC_CONF__PP_EN, 0);
         ipu_write_field(ipu_index, IPU_IC_CONF__PP_CSC1, 0);
         ipu_write_field(ipu_index, IPU_IC_CONF__PP_CSC2, 0);
         ipu_write_field(ipu_index, IPU_IC_CONF__PP_CMB, 0);
-        ipu_write_field(ipu_index, IPU_IC_CONF__PP_ROT_EN, 0);
 
         if (res_info.width_in % 16 == 0) {
             ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB2_BURST_16, 1);    // set to 16bps
@@ -93,6 +142,7 @@ void ipu_ic_resize_config(int ipu_index, int taskType, ipu_res_info_t res_info)
         ipu_write_field(ipu_index, IPU_IC_PP_RSC__PP_RS_R_V, resCoff);  // FROM (1536/2 -1)->479 *8192 = 13117
         break;
     default:
+		printf ("Wrong ic task type!\n");
         break;
     }
 }

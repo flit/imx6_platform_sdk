@@ -23,7 +23,7 @@ int ips_resize_test(ips_dev_panel_t * panel)
 
     /*Rotation Test. Press y to rotate 90 degree. */
     printf("\n-- Resize rotated image to fit the screen --\n");
-    printf("Press Y/y for 90 degree clockwise rotation. Other key to exit.)\n");
+    printf("Press 'Y'/'y' for 90 degree clockwise rotation. \nOther key to exit.)\n");
 
     /*reset IPU */
     ipu_sw_reset(ipu_index, 1000);
@@ -161,13 +161,6 @@ int ips_resize_test(ips_dev_panel_t * panel)
         } else
             break;
     };
-
-    printf("Do you see the image resized to fit the screen (y or n)?\n");
-    do {
-        revchar = getchar();
-    } while (revchar == (uint8_t) 0xFF);
-    if (!(revchar == 'Y' || revchar == 'y'))
-        return FALSE;
 
     return TRUE;
 }

@@ -14,6 +14,7 @@
 /******************************** Includes ************************************/
 #include "vpu_api.h"
 #include "vpu_fw.h"
+#include "video.h"
 
 /****************************** Local Defines *********************************/
 
@@ -236,6 +237,11 @@ void GDI_setMapping(int map_type)
     vpu_write(GDI_XY2_RAS_F, 0x4040);
 }
 
+inline void VPU_CleanFrameBuffer(PhysicalAddress * buf, uint8_t val, uint32_t size)
+{
+    memset((void *)buf, val, size);
+}
+
 /*******************************************************************************
 * getFrameBuffersAddr()
 *
@@ -254,15 +260,15 @@ void getFrameBuffersAddr(FrameBuffer * pBuffer, uint32_t picHeight, uint32_t str
     uint32_t lum_top_base, lum_bot_base, chr_top_base, chr_bot_base;
     int i;
 
-    sizeLuma = ((picHeight + 31) & 0xffe0) * stride;
-    //sizeLuma = 1920 * 1080;
+//    sizeLuma = ((picHeight + 31) & 0xffe0) * stride;
+    sizeLuma = FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT;
     sizeChroma = sizeLuma >> 2;
 
     if (mapType) {
-        sizeLuma = (sizeLuma + 16383) & 0xffffc000;
-        sizeChroma = (sizeChroma + 16383) & 0xffffc000;
+        sizeLuma = (sizeLuma + 0x3fff) & 0xffffc000;
+        sizeChroma = (sizeChroma + 0x3fff) & 0xffffc000;
         sizeAll = sizeLuma + 2 * sizeChroma;
-        sizeMvCol = (sizeMvCol + 16383) & 0xffffc000;
+        sizeMvCol = (sizeMvCol + 0x3fff) & 0xffffc000;
 
         for (i = 0; i < framesNum; ++i) {
             lum_top_base = addr;
@@ -271,10 +277,13 @@ void getFrameBuffersAddr(FrameBuffer * pBuffer, uint32_t picHeight, uint32_t str
             chr_bot_base = chr_top_base + sizeChroma;
 
             pBuffer[i].bufY = (lum_top_base & 0xfffff000) + (chr_top_base >> 20);
+            VPU_CleanFrameBuffer((PhysicalAddress *) pBuffer[i].bufY, 0x10, sizeLuma);
             pBuffer[i].bufCb =
                 ((chr_top_base & 0x000ff000) << 12) + ((lum_bot_base & 0xfffff000) >> 8) +
                 (chr_bot_base >> 28);
+            VPU_CleanFrameBuffer((PhysicalAddress *) pBuffer[i].bufCb, 0x80, sizeChroma);
             pBuffer[i].bufCr = (chr_bot_base & 0x0ffff000) << 4;
+            VPU_CleanFrameBuffer((PhysicalAddress *) pBuffer[i].bufCr, 0x80, sizeChroma);
 
             addr += sizeAll;
         }
@@ -287,6 +296,9 @@ void getFrameBuffersAddr(FrameBuffer * pBuffer, uint32_t picHeight, uint32_t str
             pBuffer[i].bufY = addr;
             pBuffer[i].bufCb = addr + sizeLuma;
             pBuffer[i].bufCr = addr + sizeLuma + sizeChroma;
+            VPU_CleanFrameBuffer((PhysicalAddress *) pBuffer[i].bufY, 0x10, sizeLuma);
+            VPU_CleanFrameBuffer((PhysicalAddress *) pBuffer[i].bufCb, 0x80, sizeChroma);
+            VPU_CleanFrameBuffer((PhysicalAddress *) pBuffer[i].bufCr, 0x80, sizeChroma);
             addr += sizeAll;
         }
     }
@@ -360,10 +372,10 @@ RetCode VPU_Init(PhysicalAddress workBuf)
     vpu.useCache = 0;
     vpu.CbCrInterleaved = 1;
 
-    DecInstances[1].instStatus = IDLE;
-    DecInstances[2].instStatus = IDLE;
-    DecInstances[3].instStatus = IDLE;
-    DecInstances[4].instStatus = IDLE;
+    DecInstances[1].instStatus = VPU_INSTANCE_IDLE;
+    DecInstances[2].instStatus = VPU_INSTANCE_IDLE;
+    DecInstances[3].instStatus = VPU_INSTANCE_IDLE;
+    DecInstances[4].instStatus = VPU_INSTANCE_IDLE;
 
     for (i = 0; i < 0x100; i += 4)
         vpu_write(0x100 + i, 0x0);
@@ -411,9 +423,9 @@ RetCode VPU_DecOpen(DecHandle * pHandle, DecOpenParam * pOpenParam)
 
     /* search for a free decoder instance */
     for (i = 0; i < INSTANCES_NUM; ++i) {
-        if (DecInstances[i].instStatus == IDLE) {
+        if (DecInstances[i].instStatus == VPU_INSTANCE_IDLE) {
             (*pHandle) = &(DecInstances[i]);
-            (*pHandle)->instStatus = PARAMS_SET;
+            (*pHandle)->instStatus = VPU_INSTANCE_PARAMS_SET;
             (*pHandle)->instId = i;
             break;
         }
@@ -494,7 +506,7 @@ RetCode VPU_DecGetInitialInfo(DecHandle pHandle, DecInitialInfo * pInfo)
 
     pHandle->info = (*pInfo);
 
-    pHandle->instStatus = READY_TO_DECODE;
+    pHandle->instStatus = VPU_INSTANCE_READY_TO_DECODE;
 
     return RETCODE_SUCCESS;
 }
@@ -503,10 +515,10 @@ RetCode VPU_DecStartOneFrame(DecHandle pHandle, DecParam * pParam)
 {
     uint32_t data;
 
-    if (pHandle->instStatus == DECODING)
+    if (pHandle->instStatus == VPU_INSTANCE_DECODING)
         return RETCODE_FRAME_NOT_COMPLETE;
 
-    if (pHandle->instStatus != READY_TO_DECODE)
+    if (pHandle->instStatus != VPU_INSTANCE_READY_TO_DECODE)
         return RETCODE_WRONG_CALL_SEQUENCE;
 
     vpu_write(BIT_FRM_DIS_FLG_0 + pHandle->instId * 4, 0x0);
@@ -644,8 +656,9 @@ RetCode VPU_DecRegisterFrameBuffer(DecHandle pHandle, FrameBuffer * pBuffer, int
 
     pHandle->pBuffer = pBuffer;
 
-    getFrameBuffersAddr(pBuffer, pHandle->info.picHeight, stride, pBuffer[0].bufY, pHandle->mapType,
-                        num);
+//    getFrameBuffersAddr(pBuffer, pHandle->info.picHeight, stride, pBuffer[0].bufY, pHandle->mapType,                      num);
+    /*Add by Ray: to support video other than 1080P for display with no resizing */
+    getFrameBuffersAddr(pBuffer, FRAME_MAX_HEIGHT, stride, pBuffer[0].bufY, pHandle->mapType, num);
 
     for (i = 0; i < num; i += 2) {
         *((PhysicalAddress *) (vpu.paraBuffer + i * 12)) = pBuffer[i].bufCb;

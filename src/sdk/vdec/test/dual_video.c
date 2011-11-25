@@ -5,12 +5,11 @@
  * Freescale Semiconductor, Inc.
  */
 
-#include "tmp_usdhc.h"
 #include "fat_driver.h"
 #include "hardware.h"
 #include "video.h"
 #include "buffers.h"
-#include "../../ipu/inc/ipu_common.h"
+#include "../../usdhc/inc/usdhc_ifc.h"
 #ifdef MMDC_PROFILING
 #include "mmdc.h"
 #endif
@@ -25,16 +24,12 @@ extern mmdc_p mmdc_p0;
 extern mmdc_p mmdc_p1;
 #endif
 
-uint32_t usdhc_busy;
-uSDHC_Card card;
 tFile files[10];
 tVolume *V;
-void usdhc_isr(void);
 
 int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag)
 {
-    usdhc_busy = 1;
-    uSDHC_Read(&card, sd_addr, sd_size, (unsigned int *)buffer);
+    card_data_read(SD_PORT_BASE_ADDR, buffer, sd_size, sd_addr);
     return 1;
 }
 
@@ -66,9 +61,10 @@ int vpu_buffer_fill(uint32_t inst, uint32_t addr, uint32_t size)
 
     /* if SD is currently busy, it means that the other video instance has requested a buffer fill, */
     /* return without doing anything, the video driver will request a buffer fill again next frame */
-    if (usdhc_busy)
+    int usdhc_status = 0;
+    card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+    if (usdhc_status != 1)
         return 0;
-
     res = fat_read_file(V, &files[inst], (uint8_t *) addr, size);
 
     if (res < size) {
@@ -79,12 +75,6 @@ int vpu_buffer_fill(uint32_t inst, uint32_t addr, uint32_t size)
     return 1;
 }
 
-void usdhc_isr(void)
-{
-    usdhc_busy = 0;
-    uSDHC_ClearInterrupts(&card);
-}
-
 extern int ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
                                   uint32_t buffer_addr);
@@ -92,31 +82,10 @@ extern void ipu_channel_buf_ready(int ipu_index, int channel, int buf);
 extern inline void ipu_cpmem_mod_field(uint32_t base, int w, int bit, int size, uint32_t v);
 int ipu_refresh(uint32_t * buffer)
 {
-#if 0
-    if (ipu_idmac_chan_cur_buff(1, 23) == 0) {
-        printf("ipu1 : 0\t");
-        ipu_dma_update_buffer(1, 23, 1, buffer[0]);
-        ipu_channel_buf_ready(1, 23, 1);
-    } else {
-        printf("ipu1 : 1\t");
-        ipu_dma_update_buffer(1, 23, 0, buffer[0]);
-        ipu_channel_buf_ready(1, 23, 0);
-    }
-    if (ipu_idmac_chan_cur_buff(2, 23) == 0) {
-        printf("ipu2 : 0\n");
-        ipu_dma_update_buffer(2, 23, 1, buffer[1]);
-        ipu_channel_buf_ready(2, 23, 1);
-    } else {
-        printf("ipu2 : 1\n");
-        ipu_dma_update_buffer(2, 23, 0, buffer[1]);
-        ipu_channel_buf_ready(2, 23, 0);
-    }
-#else
     ipu_dma_update_buffer(1, 23, 0, buffer[0]);
     ipu_channel_buf_ready(1, 23, 0);
     ipu_dma_update_buffer(2, 23, 0, buffer[1]);
     ipu_channel_buf_ready(2, 23, 0);
-#endif
     return 0;
 }
 
@@ -135,14 +104,6 @@ extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
 extern int ips_hdmi_1080P60_stream(int ipu_index);
 extern void ipu_iomux_config(void);
 
-struct hw_module usdhc4 = {
-    "SD Card Controller",
-    USDHC4_BASE_ADDR,
-    50000000,
-    IMX_INT_USDHC4,
-    &usdhc_isr,
-};
-
 int vdec_test(void)
 {
     video_params params[2];
@@ -154,21 +115,14 @@ int vdec_test(void)
     /* initialize SD card and FAT driver */
     enable_L1_cache();
 
-    card.uSDHC = (uSDHCRegs) (USDHC4_BASE_ADDR);
-    card.type = SD_CARD;
-    card.busWidth = BUS_4BIT;
-    card.polling = 0;
-    usdhc_busy = 0;
-    usdhc4_iomux_config();
-    uSDHC_InitSD(&card);
+    card_init(SD_PORT_BASE_ADDR, 4);    //SD card must work in 4-bit mode
 
+    /*uSDHC working in POLLING mode */
     init_fat32_device((void *)fat_read_from_usdhc);
 
-    card.polling = 1;
-    usdhc_busy = 0;
-    uSDHC_EnableInt(&card);
-    register_interrupt_routine(usdhc4.irq_id, usdhc4.irq_subroutine);
-    enable_interrupt(usdhc4.irq_id, CPU_0, 0);
+    /*now enable the INTERRUPT mode of usdhc */
+    SDHC_INTR_mode = 1;
+    SDHC_ADMA_mode = 1;
 
     /* initialize VPU */
     VPU_Init(VPU_WORK_BUFFERS);
@@ -176,10 +130,6 @@ int vdec_test(void)
     /* initialize video streams and configure IPUs */
     video_setup(0, VDOA_DIS, VIDEO_0_BUFFERS, &params[0]);
     config_hdmi_si9022(video_disp[0], 0);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[0], 23), NON_INTERLEAVED_FW,
-                        params[0].frame_width - 1);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[0], 23), NON_INTERLEAVED_FH,
-                        params[0].frame_height - 1);
     ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[0], 23), NON_INTERLEAVED_UBO,
                         params[0].u_offset / 8);
     ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[0], 23), NON_INTERLEAVED_VBO,
@@ -193,10 +143,6 @@ int vdec_test(void)
     /* initialize video streams and configure IPUs for second instance */
     video_setup(1, VDOA_DIS, VIDEO_1_BUFFERS, &params[1]);
     hdmi_1080P60_video_output(video_disp[1], 0);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_FW,
-                        params[1].frame_width - 1);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_FH,
-                        params[1].frame_height - 1);
     ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_UBO,
                         params[1].u_offset / 8);
     ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_VBO,

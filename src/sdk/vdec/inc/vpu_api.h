@@ -420,9 +420,6 @@
 #define OFFSET_AXI_OVL            (VPU_SEC_AXI_START + 0x18000)
 #define OFFSET_AXI_BTP            (VPU_SEC_AXI_START + 0x1D000)
 
-#ifndef VPU_BASE_ADDR
-#define VPU_BASE_ADDR 			(0x02040000)
-#endif
 /***************************** Type Definitions *******************************/
 
 typedef uint32_t PhysicalAddress;
@@ -540,11 +537,11 @@ typedef enum {
 } ChromaFormat;
 
 typedef enum {
-    IDLE = 0,
-    PARAMS_SET,
-    DECODER_INITIALIZED,
-    READY_TO_DECODE,
-    DECODING
+    VPU_INSTANCE_IDLE = 0,
+    VPU_INSTANCE_PARAMS_SET,
+    VPU_INSTANCE_DECODER_INITIALIZED,
+    VPU_INSTANCE_READY_TO_DECODE,
+    VPU_INSTANCE_DECODING
 } DecInstStatus;
 
 typedef enum {

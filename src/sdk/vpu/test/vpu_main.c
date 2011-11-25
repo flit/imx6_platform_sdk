@@ -27,9 +27,6 @@
 #include "vpu_util.h"
 
 int quitflag;
-
-static int instance;
-
 semaphore_t vpu_resource = { 0 };
 
 extern int decode_test(void *arg);
@@ -74,14 +71,14 @@ int vpu_test(int argc, char *argv[])
         testmode = 0xFF;
 
         while (testmode == 0xFF)
-            testmode = receive_char();
+            testmode = getchar();
 
         switch (testmode) {
         case '0':
             decode_test((void *)0);
             break;
         case '1':
-            encode_test((void *)0);
+            //encode_test((void *)0);
             break;
         case '2':
             //encdec_test();

@@ -71,6 +71,7 @@ void config_hdmi_si9022(int ipu_index, int di_port)
         return;
     }
 
+    /*Ray's note: decrease the delay time */
     siHdmiTx_TPI_Init();
     siHdmiTx_VideoSel(hdmi_mode);
     siHdmiTx_AudioSel(AFS_48K);

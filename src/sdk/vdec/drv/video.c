@@ -8,9 +8,11 @@
 #include "video.h"
 #include "interrupt.h"
 #include "io.h"
+#include "../../usdhc/inc/usdhc_ifc.h"
 
 #define BITSTREAM_BUF_SIZE      (0x800000)
 #define VPU_BUFFERS_NUM         (32)
+#define BUFFER_QUEUE_MIN_SIZE   (4)
 
 /*********** Global Variables ************/
 
@@ -145,7 +147,7 @@ void epit_vpu_isr(void)
     for (i = 0; i < MAX_INSTANCES; ++i) {
         if (activeInstances[i]) {
             if (fifoPop(&fifo[i], &buffer[i], &ts, &id) == -1)
-                printf("VPU fifo underrun...\n");
+                printf("VPU instance %d fifo underrun...\n", i);
         }
     }
 
@@ -180,7 +182,7 @@ void video_setup(int inst, int use_vdoa, uint32_t buffers_base, video_params * v
     DecInitialInfo decInfo;
     DecOpenParam openParams;
     SecAxiUse secAxi;
-    int i;
+    int i, fifo_size;
 
     if (inst == 0)
         for (i = 0; i < MAX_INSTANCES; activeInstances[i++] = 0) ;
@@ -213,7 +215,15 @@ void video_setup(int inst, int use_vdoa, uint32_t buffers_base, video_params * v
     openParams.tiled2LinearEnable = 0;
 
     vpu_buffer_fill(inst, bitstream_buffer[inst], BITSTREAM_BUF_SIZE);
-    while (usdhc_busy) ;
+
+    /*wait untill the buffer is filled */
+    int usdhc_status = 0;
+    while (1) {
+        card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+        if (usdhc_status == 1)  //transfer complete
+            break;
+    }
+
     VPU_DecOpen(&pDec[inst], &openParams);
     VPU_DecGetInitialInfo(pDec[inst], &decInfo);
 
@@ -241,9 +251,14 @@ void video_setup(int inst, int use_vdoa, uint32_t buffers_base, video_params * v
     /* setup buffers, here we are using maximum buffers.
        the actual buffer number can be got from the initial information */
     buffers[inst][0].bufY = buffers_base + BITSTREAM_BUF_SIZE;
-    VPU_DecRegisterFrameBuffer(pDec[inst], buffers[inst], VPU_BUFFERS_NUM, decInfo.picWidth, NULL);
-    fifoInit(&fifo[inst],
-             VPU_BUFFERS_NUM - (decInfo.minFrameBufferCount + decInfo.frameBufDelay + 4));
+    VPU_DecRegisterFrameBuffer(pDec[inst], buffers[inst], VPU_BUFFERS_NUM, FRAME_MAX_WIDTH, NULL);
+
+    fifo_size = VPU_BUFFERS_NUM - (decInfo.minFrameBufferCount /*+ decInfo.frameBufDelay */  + 4);
+    if (fifo_size < BUFFER_QUEUE_MIN_SIZE) {
+        printf("Buffer for output is not enough, total %d buffers!!", fifo_size);
+        return;
+    }
+    fifoInit(&fifo[inst], fifo_size);
 
     VPU_EnableInterrupt(PIC_RUN_COMPLETE);
 
@@ -269,8 +284,11 @@ void video_setup(int inst, int use_vdoa, uint32_t buffers_base, video_params * v
         enable_interrupt(epit2.irq_id, CPU_0, 0);
     }
 
-    vpu_params->y_strideline = decInfo.picWidth;    /* assume partially interleaved format */
-    vpu_params->uv_strideline = decInfo.picWidth;
+    /* Add by Ray: assume partially interleaved format,
+       set the strideline to MAX to support non 1080p video playback without
+       resizing the image */
+    vpu_params->y_strideline = FRAME_MAX_WIDTH; //decInfo.picWidth;    
+    vpu_params->uv_strideline = FRAME_MAX_WIDTH;    //decInfo.picWidth;
     vpu_params->frame_width = decInfo.picWidth;
     vpu_params->frame_height = decInfo.picHeight;
 

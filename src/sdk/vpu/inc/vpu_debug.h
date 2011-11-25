@@ -25,7 +25,7 @@
 #ifndef __VPU_DEBUG_H
 #define __VPU_DEBUG_H
 
-#define	DEBUG_LEVEL	5
+#define	DEBUG_LEVEL	1
 
 #define dprintf(level, fmt, arg...)     if (DEBUG_LEVEL >= level) \
         printf("[DEBUG]\t%s:%d " fmt, __FILE__, __LINE__, ## arg)

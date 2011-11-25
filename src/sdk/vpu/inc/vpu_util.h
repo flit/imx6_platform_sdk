@@ -26,8 +26,11 @@
 #include "vpu_lib.h"
 #include "vpu_io.h"
 
-#define MAX_FW_BINARY_LEN		100 * 1024
-#define MAX_NUM_INSTANCE		4
+#define MAX_FW_BINARY_LEN		200 * 1024
+#define MAX_NUM_INSTANCE		8
+
+#define BIT_WORK_SIZE			0x20000
+#define SIZE_CONTEXT_BUF		BIT_WORK_SIZE
 
 #define SIZE_PIC_PARA_BASE_BUF          0x100
 #define SIZE_MV_DATA                    0x20000
@@ -44,21 +47,15 @@
 #define ENC_ADDR_END_OF_RPT_BUF         ADDR_FRAME_BUF_STAT_BASE_OFFSET + SIZE_SLICE_INFO
 #define DEC_ADDR_END_OF_RPT_BUF         ADDR_FRAME_BUF_STAT_BASE_OFFSET + SIZE_FRAME_BUF_STAT
 
-#if defined(IMX37_3STACK)
-enum {
-    AVC_DEC = 0,
-    VC1_DEC = 1,
-    MP2_DEC = 2,
-    MP4_DEC = 3,
-    DV3_DEC = 4,
-    /* dummy */
-    AVC_ENC = 0x7F,
-    MP4_ENC = 0x80,
-    RV_DEC = 0x81,
-    MJPG_DEC = 0x82,
-    MJPG_ENC = 0x83
-};
-#elif defined(IMX51) || defined(IMX53)
+#define DC_TABLE_INDEX0		    0
+#define AC_TABLE_INDEX0		    1
+#define DC_TABLE_INDEX1		    2
+#define AC_TABLE_INDEX1		    3
+#define Q_COMPONENT0		    0
+#define Q_COMPONENT1		    0x40
+#define Q_COMPONENT2		    0x80
+
+#if defined(MX53)
 enum {
     AVC_DEC = 0,
     VC1_DEC = 1,
@@ -67,6 +64,21 @@ enum {
     DV3_DEC = 3,
     RV_DEC = 4,
     MJPG_DEC = 5,
+    AVC_ENC = 8,
+    MP4_ENC = 11,
+    MJPG_ENC = 13
+};
+#elif defined(MX61)
+enum {
+    AVC_DEC = 0,
+    VC1_DEC = 1,
+    MP2_DEC = 2,
+    MP4_DEC = 3,
+    DV3_DEC = 3,
+    RV_DEC = 4,
+    AVS_DEC = 5,
+    MJPG_DEC = 6,
+    VPX_DEC = 7,
     AVC_ENC = 8,
     MP4_ENC = 11,
     MJPG_ENC = 13
@@ -88,6 +100,17 @@ enum {
 #endif
 
 enum {
+    MP4_AUX_MPEG4 = 0,
+    MP4_AUX_DIVX3 = 1
+};
+
+enum {
+    VPX_AUX_THO = 0,
+    VPX_AUX_VP6 = 1,
+    VPX_AUX_VP8 = 2
+};
+
+enum {
     SEQ_INIT = 1,
     SEQ_END = 2,
     PIC_RUN = 3,
@@ -106,16 +129,42 @@ enum {
     REG_MUTEX = 1
 };
 
+enum {
+    CTX_BIT_STREAM_PARAM = 0,
+    CTX_BIT_FRM_DIS_FLG,
+    CTX_BIT_WR_PTR,
+    CTX_BIT_RD_PTR,
+    CTX_BIT_FRAME_MEM_CTRL,
+    CTX_MAX_REGS
+};
+
+enum {
+    Marker = 0xFF,
+    FF_Marker = 0x00,
+    SOI_Marker = 0xFFD8,        // Start of image
+    EOI_Marker = 0xFFD9,        // End of image
+    JFIF_CODE = 0xFFE0,         // Application
+    EXIF_CODE = 0xFFE1,
+    DRI_Marker = 0xFFDD,        // Define restart interval
+    RST_Marker = 0xD,           // 0xD0 ~0xD7
+    DQT_Marker = 0xFFDB,        // Define quantization table(s)
+    DHT_Marker = 0xFFC4,        // Define Huffman table(s)
+    SOF_Marker = 0xFFC0,        // Start of frame : Baseline DCT
+    SOS_Marker = 0xFFDA,        // Start of scan
+};
+
 typedef struct {
     int useBitEnable;
     int useIpEnable;
     int useDbkEnable;
     int useOvlEnable;
+    int useBtpEnable;
     int useMeEnable;
 
     int useHostBitEnable;
     int useHostIpEnable;
     int useHostDbkEnable;
+    int useHostBtpEnable;
     int useHostOvlEnable;
     int useHostMeEnable;
 
@@ -124,11 +173,53 @@ typedef struct {
     PhysicalAddress bufDbkYUse;
     PhysicalAddress bufDbkCUse;
     PhysicalAddress bufOvlUse;
+    PhysicalAddress bufBtpUse;
 
     PhysicalAddress searchRamAddr;
     int searchRamSize;
 
 } SecAxiUse;
+
+typedef struct CacheSizeCfg {
+    unsigned PageSizeX:4;
+    unsigned PageSizeY:4;
+    unsigned CacheSizeX:4;
+    unsigned CacheSizeY:4;
+    unsigned Reserved:16;
+} CacheSizeCfg;
+
+typedef struct {
+    union {
+        uint32_t word;
+        CacheSizeCfg cfg;
+    } luma;
+    union {
+        uint32_t word;
+        CacheSizeCfg cfg;
+    } chroma;
+    unsigned Bypass:1;
+    unsigned DualConf:1;
+    unsigned PageMerge:2;
+    unsigned LumaBufferSize:8;
+    unsigned CbBufferSize:8;
+    unsigned CrBufferSize:8;
+} MaverickCacheConfig;
+
+typedef struct {
+    uint32_t *paraSet;
+    int size;
+} DecParamSet;
+
+typedef struct {
+    int enable;
+    int is_secondary;
+    PhysicalAddress start_address;
+    PhysicalAddress end_address;
+} WriteMemProtectRegion;
+
+typedef struct {
+    WriteMemProtectRegion region[6];
+} WriteMemProtectCfg;
 
 typedef struct {
     int width;
@@ -137,12 +228,40 @@ typedef struct {
 } SetIramParam;
 
 typedef struct {
+    unsigned subFrameSyncOn:1;
+    unsigned sourceBufNumber:7;
+    unsigned sourceBufIndexBase:8;
+} EncSubFrameSyncConfig;
+
+typedef struct {
+    int picWidth;
+    int picHeight;
+    int alignedWidth;
+    int alignedHeight;
+    int seqInited;
+    int frameIdx;
+    int format;
+
+    int rstIntval;
+    int busReqNum;
+    int mcuBlockNum;
+    int compNum;
+    int compInfo[3];
+
+    uint32_t huffCode[4][256];
+    uint32_t huffSize[4][256];
+    uint8_t *pHuffVal[4];
+    uint8_t *pHuffBits[4];
+    uint8_t *pCInfoTab[4];
+    uint8_t *pQMatTab[4];
+
+} JpgEncInfo;
+
+typedef struct {
     EncOpenParam openParam;
     EncInitialInfo initialInfo;
 
     PhysicalAddress streamRdPtr;
-    PhysicalAddress streamRdPtrRegAddr;
-    PhysicalAddress streamWrPtrRegAddr;
     PhysicalAddress streamBufStartAddr;
     PhysicalAddress streamBufEndAddr;
     int streamBufSize;
@@ -150,6 +269,8 @@ typedef struct {
     FrameBuffer *frameBufPool;
     int numFrameBuffers;
     int stride;
+    int srcFrameWidth;
+    int srcFrameHeight;
 
     int rotationEnable;
     int mirrorEnable;
@@ -161,6 +282,9 @@ typedef struct {
     int ringBufferEnable;
 
     SecAxiUse secAxiUse;
+    MaverickCacheConfig cacheConfig;
+    EncSubFrameSyncConfig subFrameSyncConfig;
+    JpgEncInfo jpgInfo;
 
     EncReportInfo encReportMBInfo;
     EncReportInfo encReportMVInfo;
@@ -172,15 +296,51 @@ typedef struct {
 } EncInfo;
 
 typedef struct {
+    /* for Nieuport */
+    int picWidth;
+    int picHeight;
+    int alignedWidth;
+    int alignedHeight;
+
+    int ecsPtr;
+    int format;
+    int rstIntval;
+
+    int userHuffTab;
+
+    int huffDcIdx;
+    int huffAcIdx;
+    int Qidx;
+
+    uint8_t huffVal[4][162];
+    uint8_t huffBits[4][256];
+    uint8_t cInfoTab[4][6];
+    uint8_t qMatTab[4][64];
+
+    uint32_t huffMin[4][16];
+    uint32_t huffMax[4][16];
+    uint8_t huffPtr[4][16];
+
+    int busReqNum;
+    int compNum;
+    int mcuBlockNum;
+    int compInfo[3];
+
+    int frameIdx;
+    int seqInited;
+
+    uint8_t *pHeader;
+    int headerSize;
+//    GetBitContext gbc;
+} JpgDecInfo;
+
+typedef struct {
     DecOpenParam openParam;
     DecInitialInfo initialInfo;
 
     PhysicalAddress streamWrPtr;
-    PhysicalAddress streamRdPtrRegAddr;
-    PhysicalAddress streamWrPtrRegAddr;
     PhysicalAddress streamBufStartAddr;
     PhysicalAddress streamBufEndAddr;
-    PhysicalAddress frameDisplayFlagRegAddr;
     int streamBufSize;
 
     FrameBuffer *frameBufPool;
@@ -205,10 +365,14 @@ typedef struct {
     int picSrcSize;
     int dynamicAllocEnable;
     int vc1BframeDisplayValid;
+    int mapType;
+    int tiledLinearEnable;
 
     DbkOffset dbkOffset;
 
     SecAxiUse secAxiUse;
+    MaverickCacheConfig cacheConfig;
+    JpgDecInfo jpgInfo;
 
     vpu_mem_desc picParaBaseMem;
     vpu_mem_desc userDataBufMem;
@@ -223,6 +387,9 @@ typedef struct CodecInst {
     int instIndex;
     int inUse;
     int codecMode;
+    int codecModeAux;
+    vpu_mem_desc contextBufMem; /* For context buffer */
+    unsigned long ctxRegs[CTX_MAX_REGS];
     union {
         EncInfo encInfo;
         DecInfo decInfo;
@@ -241,10 +408,10 @@ typedef struct {
     CodecInst *pendingInst;
 } semaphore_t;
 
-void BitIssueCommand(int instIdx, int cdcMode, int cmd);
+void BitIssueCommand(int instIdx, int cdcMode, int cdcModeAux, int cmd);
+void BitIssueCommandEx(CodecInst * pCodecInst, int cmd);
 
-RetCode LoadBitCodeTable(Uint16 * pBitCode, int *size);
-RetCode DownloadBitCodeTable(unsigned long *virtCodeBuf);
+RetCode DownloadBitCodeTable(uint32_t * virtCodeBuf);
 
 RetCode GetCodecInstance(CodecInst ** ppInst);
 void FreeCodecInstance(CodecInst * pCodecInst);
@@ -258,20 +425,21 @@ void GetParaSet(EncHandle handle, int paraSetType, EncParamSet * para);
 
 RetCode CheckDecInstanceValidity(DecHandle handle);
 RetCode CheckDecOpenParam(DecOpenParam * pop);
-int DecBitstreamBufEmpty(DecInfo * pDecInfo);
+int DecBitstreamBufEmpty(DecHandle handle);
 void SetParaSet(DecHandle handle, int paraSetType, DecParamSet * para);
-RetCode CopyBufferData(Uint8 * dst, Uint8 * src, int size);
+RetCode CopyBufferData(uint8_t * dst, uint8_t * src, int size);
 
-RetCode SetGopNumber(EncHandle handle, Uint32 * gopNumber);
-RetCode SetIntraQp(EncHandle handle, Uint32 * intraQp);
-RetCode SetBitrate(EncHandle handle, Uint32 * bitrate);
-RetCode SetFramerate(EncHandle handle, Uint32 * framerate);
-RetCode SetIntraRefreshNum(EncHandle handle, Uint32 * pIntraRefreshNum);
+RetCode SetGopNumber(EncHandle handle, uint32_t * gopNumber);
+RetCode SetIntraQp(EncHandle handle, uint32_t * intraQp);
+RetCode SetBitrate(EncHandle handle, uint32_t * bitrate);
+RetCode SetFramerate(EncHandle handle, uint32_t * framerate);
+RetCode SetIntraRefreshNum(EncHandle handle, uint32_t * pIntraRefreshNum);
 RetCode SetSliceMode(EncHandle handle, EncSliceMode * pSliceMode);
 RetCode SetHecMode(EncHandle handle, int mode);
 
 void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm);
 void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm);
+void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromInterleave);
 
 semaphore_t *vpu_semaphore_open(void);
 void semaphore_post(semaphore_t * semap, int mutex);
@@ -301,11 +469,11 @@ static inline void UnlockVpuReg(semaphore_t * semap)
 }
 
 #define swab32(x) \
-	((Uint32)( \
-		(((Uint32)(x) & (Uint32)0x000000ffUL) << 24) | \
-		(((Uint32)(x) & (Uint32)0x0000ff00UL) <<  8) | \
-		(((Uint32)(x) & (Uint32)0x00ff0000UL) >>  8) | \
-		(((Uint32)(x) & (Uint32)0xff000000UL) >> 24) ))
+	((uint32_t)( \
+		(((uint32_t)(x) & (uint32_t)0x000000ffUL) << 24) | \
+		(((uint32_t)(x) & (uint32_t)0x0000ff00UL) <<  8) | \
+		(((uint32_t)(x) & (uint32_t)0x00ff0000UL) >>  8) | \
+		(((uint32_t)(x) & (uint32_t)0xff000000UL) >> 24) ))
 
 #define ARRAY_SIZE(x)	(sizeof(x) / sizeof((x)[0]))
 

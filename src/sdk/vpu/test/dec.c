@@ -22,6 +22,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "vpu_test.h"
+#include "vpu_debug.h"
+#include "vpu_lib.h"
 
 extern int quitflag;
 extern int golden_data[];
@@ -46,6 +48,7 @@ int rawoffset = 0;
 #define FN_MV_DATA "dec_mv.log"
 #define FN_USER_DATA "dec_user_data.log"
 
+#define JPG_HEADER_SIZE	     0x200
 #ifdef COMBINED_VIDEO_SUPPORT
 #define MAX_FRAME_WIDTH 720
 #define MAX_FRAME_HEIGHT 576
@@ -348,16 +351,16 @@ int decoder_start(struct decode *dec)
     struct frame_buf *pfb = NULL;
     int err, eos = 0, fill_end_bs = 0, decodefinish = 0;
     RetCode ret;
-    int sec, loop_id;
+    int loop_id;
     uint32_t yuv_addr, img_size;
-    double frame_id = 0, total_time = 0;
+    double frame_id = 0;
     int decIndex = 0;
     int rotid = 0, dblkid = 0, mirror;
     int count = dec->cmdl->count;
     int totalNumofErrMbs = 0;
     int disp_clr_index = -1, actual_display_index = -1, field = 0;
     int is_waited_int = 0;
-    char *delay_ms, *endptr;
+    int tiled2LinearEnable = dec->tiled2LinearEnable;
 
     /* deblock_en is zero on mx37 and mx51 since it is cleared in decode_open() function. */
     if (rot_en || dering_en) {
@@ -387,14 +390,17 @@ int decoder_start(struct decode *dec)
     fwidth = ((dec->picwidth + 15) & ~15);
     fheight = ((dec->picheight + 15) & ~15);
 
-    if (rot_en || dering_en || (dec->cmdl->format == STD_MJPG)) {
+    if (rot_en || dering_en || tiled2LinearEnable || (dec->cmdl->format == STD_MJPG)) {
         /*
          * VPU is setting the rotation angle by counter-clockwise.
          * We convert it to clockwise, which is consistent with V4L2
          * rotation angle strategy.
          */
-        if (rot_angle == 90 || rot_angle == 270)
-            rot_angle = 360 - rot_angle;
+        if (rot_en) {
+            if (rot_angle == 90 || rot_angle == 270)
+                rot_angle = 360 - rot_angle;
+        } else
+            rot_angle = 0;
         vpu_DecGiveCommand(handle, SET_ROTATION_ANGLE, &rot_angle);
 
         mirror = dec->cmdl->mirror;
@@ -425,7 +431,7 @@ int decoder_start(struct decode *dec)
 
     while (1) {
 
-        if (rot_en || dering_en || (dec->cmdl->format == STD_MJPG)) {
+        if (rot_en || dering_en || tiled2LinearEnable || (dec->cmdl->format == STD_MJPG)) {
             vpu_DecGiveCommand(handle, SET_ROTATOR_OUTPUT, (void *)&fb[rotid]);
             if (frame_id == 0) {
                 if (rot_en) {
@@ -473,14 +479,6 @@ int decoder_start(struct decode *dec)
                 err_msg("Failed to set user data report, ret %d\n", ret);
                 return -1;
             }
-        }
-
-        if (cpu_is_mx37()) {
-            DbkOffset dbkOffset;
-            dbkOffset.DbkOffsetEnable = 0;
-            dbkOffset.DbkOffsetA = 7;
-            dbkOffset.DbkOffsetB = 7;
-            vpu_DecGiveCommand(handle, SET_DBK_OFFSET, &dbkOffset);
         }
 
         ret = vpu_DecStartOneFrame(handle, &decparam);
@@ -538,7 +536,19 @@ int decoder_start(struct decode *dec)
 
         if (outinfo.decodingSuccess == 0) {
             warn_msg("Incomplete finish of decoding process.\n" "\tframe_id = %d\n", (int)frame_id);
-            continue;
+            if (quitflag)
+                break;
+            else
+                continue;
+        }
+
+        if (cpu_is_mx6q() && (outinfo.decodingSuccess & 0x10)) {
+            warn_msg("vpu needs more bitstream in rollback mode\n"
+                     "\tframe_id = %d\n", (int)frame_id);
+            if (quitflag)
+                break;
+            else
+                continue;
         }
 
         if (outinfo.notSufficientPsBuffer) {
@@ -624,7 +634,8 @@ int decoder_start(struct decode *dec)
 
         if (outinfo.indexFrameDisplay == -1)
             decodefinish = 1;
-        else if ((outinfo.indexFrameDisplay > dec->fbcount) && (outinfo.prescanresult != 0))
+        else if ((outinfo.indexFrameDisplay > dec->fbcount) &&
+                 (outinfo.prescanresult != 0) && !cpu_is_mx6q())
             decodefinish = 1;
 
         if (decodefinish)
@@ -686,7 +697,7 @@ int decoder_start(struct decode *dec)
             actual_display_index = outinfo.indexFrameDisplay;
 
         /*compare the output with golden data */
-        if (golden_data) {
+        if (golden_data != NULL) {
             int size = 0;
             pfb = pfbpool[actual_display_index];
 
@@ -740,8 +751,8 @@ int decoder_start(struct decode *dec)
 void decoder_free_framebuffer(struct decode *dec)
 {
     int i, totalfb;
-    vpu_mem_desc *mvcol_md = dec->mvcol_memdesc;
-    int deblock_en = dec->cmdl->deblock_en;
+//    vpu_mem_desc *mvcol_md = dec->mvcol_memdesc;
+//    int deblock_en = dec->cmdl->deblock_en;
 
     totalfb = dec->fbcount + dec->extrafb;
 
@@ -808,18 +819,15 @@ void decoder_free_framebuffer(struct decode *dec)
 int decoder_allocate_framebuffer(struct decode *dec)
 {
     DecBufInfo bufinfo;
-    int i, fbcount = dec->fbcount, totalfb, img_size;
+    int i, fbcount = dec->fbcount, totalfb;
     int dst_scheme = dec->cmdl->dst_scheme, rot_en = dec->cmdl->rot_en;
     int deblock_en = dec->cmdl->deblock_en;
     int dering_en = dec->cmdl->dering_en;
-    struct rot rotation = { 0 };
     RetCode ret;
     DecHandle handle = dec->handle;
     FrameBuffer *fb;
     struct frame_buf **pfbpool;
-    int stride, divX, divY;
-    vpu_mem_desc *mvcol_md = NULL;
-    Rect rotCrop;
+    int stride;
 
     if (rot_en || dering_en) {
         /*
@@ -859,8 +867,16 @@ int decoder_allocate_framebuffer(struct decode *dec)
     if ((dst_scheme != PATH_IPU) || ((dst_scheme == PATH_IPU) && deblock_en)) {
 
         for (i = 0; i < totalfb; i++) {
-            pfbpool[i] = framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
-                                        dec->stride, dec->picheight);
+            /*
+             * Tiled framebuffer allocation is needed for decoding
+             * buffers for none linear frame map type on mx6q platform.
+             */
+            if (cpu_is_mx6q() && (i < fbcount) && (dec->cmdl->mapType != LINEAR_FRAME_MAP))
+                pfbpool[i] = tiled_framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                                                  dec->stride, dec->picheight);
+            else
+                pfbpool[i] = framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                                            dec->stride, dec->picheight);
             if (pfbpool[i] == NULL) {
                 totalfb = i;
                 goto err;
@@ -869,15 +885,18 @@ int decoder_allocate_framebuffer(struct decode *dec)
             fb[i].bufY = pfbpool[i]->addrY;
             fb[i].bufCb = pfbpool[i]->addrCb;
             fb[i].bufCr = pfbpool[i]->addrCr;
-            if (cpu_is_mx37() || cpu_is_mx5x()) {
-                fb[i].bufMvCol = pfbpool[i]->mvColBuf;
-            }
+            fb[i].bufMvCol = pfbpool[i]->mvColBuf;
         }
     }
 
     stride = ((dec->stride + 15) & ~15);
-    bufinfo.avcSliceBufInfo.sliceSaveBuffer = dec->phy_slice_buf;
-    bufinfo.avcSliceBufInfo.sliceSaveBufferSize = dec->phy_slicebuf_size;
+    if (dec->cmdl->format == STD_AVC) {
+        bufinfo.avcSliceBufInfo.bufferBase = dec->phy_slice_buf;
+        bufinfo.avcSliceBufInfo.bufferSize = dec->phy_slicebuf_size;
+    } else if (dec->cmdl->format == STD_VP8) {
+        bufinfo.vp8MbDataBufInfo.bufferBase = dec->phy_vp8_mbparam_buf;
+        bufinfo.vp8MbDataBufInfo.bufferSize = dec->phy_vp8_mbparam_size;
+    }
 
     /* User needs to fill max suported macro block value of frame as following */
     bufinfo.maxDecFrmInfo.maxMbX = dec->stride / 16;
@@ -885,7 +904,7 @@ int decoder_allocate_framebuffer(struct decode *dec)
     bufinfo.maxDecFrmInfo.maxMbNum = dec->stride * dec->picheight / 256;
     ret = vpu_DecRegisterFrameBuffer(handle, fb, fbcount, stride, &bufinfo);
     if (ret != RETCODE_SUCCESS) {
-        err_msg("Register frame buffer failed\n");
+        err_msg("Register frame buffer failed, ret=%d\n", ret);
         goto err;
     }
 
@@ -1033,7 +1052,7 @@ int decoder_parse(struct decode *dec)
                         profile = 1;    /* advanced coding efficiency object */
                         break;
                     case 0xF:
-                        if (initinfo.level & 8 == 0)
+                        if ((initinfo.level & 8) == 0)
                             profile = 2;    /* advanced simple object */
                         else
                             profile = 5;    /* reserved */
@@ -1102,7 +1121,7 @@ int decoder_parse(struct decode *dec)
         }
     }
 
-    info_msg("Decoder: width = %d, height = %d, fps = %lu, count = %u\n",
+    info_msg("Decoder: width = %d, height = %d, fps = %u, count = %u\n",
              initinfo.picWidth, initinfo.picHeight,
              initinfo.frameRateInfo, initinfo.minFrameBufferCount);
 
@@ -1184,7 +1203,7 @@ int decoder_parse(struct decode *dec)
         initinfo.picCropRect.bottom = initinfo.picHeight;
     }
 
-    info_msg("CROP left/top/right/bottom %lu %lu %lu %lu\n",
+    info_msg("CROP left/top/right/bottom %u %u %u %u\n",
              initinfo.picCropRect.left,
              initinfo.picCropRect.top, initinfo.picCropRect.right, initinfo.picCropRect.bottom);
 
@@ -1221,6 +1240,11 @@ int decoder_open(struct decode *dec)
     RetCode ret;
     DecHandle handle = { 0 };
     DecOpenParam oparam = { 0 };
+    if (dec->cmdl->mapType == LINEAR_FRAME_MAP)
+        dec->tiled2LinearEnable = 0;
+    else
+        /* CbCr interleave must be enabled for tiled map */
+        dec->cmdl->chromaInterleave = 1;
 
     oparam.bitstreamFormat = dec->cmdl->format;
     oparam.bitstreamBuffer = dec->phy_bsbuf_addr;
@@ -1228,8 +1252,10 @@ int decoder_open(struct decode *dec)
     oparam.reorderEnable = dec->reorderEnable;
     oparam.mp4DeblkEnable = dec->cmdl->deblock_en;
     oparam.chromaInterleave = dec->cmdl->chromaInterleave;
-    oparam.mp4Class = dec->cmdl->mp4Class;
     oparam.mjpg_thumbNailDecEnable = 0;
+    oparam.mapType = dec->cmdl->mapType;
+    oparam.tiled2LinearEnable = dec->tiled2LinearEnable;
+
     /*
      * mp4 deblocking filtering is optional out-loop filtering for image
      * quality. In other words, mpeg4 deblocking is post processing.
@@ -1241,12 +1267,7 @@ int decoder_open(struct decode *dec)
      *   the command DEC_SET_DEBLOCK_OUTPUT.
      */
     if (oparam.mp4DeblkEnable == 1) {
-        if (cpu_is_mx27()) {
-            warn_msg("MP4 deblocking NOT supported on MX27 VPU.\n");
-            oparam.mp4DeblkEnable = dec->cmdl->deblock_en = 0;
-        } else if (!cpu_is_mx32()) {    /* do not need extra framebuf */
-            dec->cmdl->deblock_en = 0;
-        }
+        dec->cmdl->deblock_en = 0;
     }
 
     oparam.psSaveBuffer = dec->phy_ps_buf;
@@ -1325,7 +1346,6 @@ int decode_test(void *arg)
     cmdl->dering_en = 0;
     cmdl->deblock_en = 0;
     cmdl->chromaInterleave = 0;
-    cmdl->mp4Class = 0;
     cmdl->fps = 30;
 
     dec->cmdl = cmdl;

@@ -22,6 +22,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "vpu_test.h"
+#include "vpu_debug.h"
 #include "vpu_bsfile.h"
 #include "vpu_golden_data.h"
 
@@ -51,6 +52,7 @@ int vpu_read(struct cmd_line *cmd, char *buf, int n)
     if (cmd->src_scheme == PATH_MEM) {
         /*bitstream is stored in array BS_file */
         int bsleft = 0;
+        printf("size of BS file is %d\n", sizeof(BS_file));
         bsleft = sizeof(BS_file) / sizeof(BS_file[0]) - bsoffset;
         if (bsleft == 0) {
             info_msg("bitstream file copied to end!\n");
@@ -68,30 +70,36 @@ int vpu_read(struct cmd_line *cmd, char *buf, int n)
         }
 
     } else if (cmd->src_scheme == PATH_FILE) {
-     /*TBD*/} else if (cmd->src_scheme == PATH_NET) {
-        /*TBD, download the bs from enet or other interface */
+        //TBD
+    } else if (cmd->src_scheme == PATH_NET) {
+        //TBD, download the bs from enet or other interface
     }
+
+    return 0;
 
 }
 
 int vpu_write(struct cmd_line *cmd, char *buf, int n)
 {
     if (cmd->dst_scheme == PATH_MEM) {
-        /*stored the output to specified memory base */
+        //stored the output to specified memory base
     } else if (cmd->dst_scheme == PATH_FILE) {
-     /*TBD*/} else if (cmd->dst_scheme == PATH_NET) {
-        /*TBD, download the bs from enet or other interface */
+        //TBD
+    } else if (cmd->dst_scheme == PATH_NET) {
+        //TBD, download the bs from enet or other interface
     }
+    return 0;
 }
 
-void SaveQpReport(Uint32 * qpReportAddr, int picWidth, int picHeight, int frameIdx, char *fileName)
+void SaveQpReport(uint32_t * qpReportAddr, int picWidth, int picHeight, int frameIdx,
+                  char *fileName)
 {
     FILE *fp;
     int i, j;
     int MBx, MBy, MBxof4, MBxof1, MBxx;
-    Uint32 *qpAddr;
-    Uint32 qp;
-    Uint8 lastQp[4];
+    uint32_t *qpAddr;
+    uint32_t qp;
+    uint8_t lastQp[4];
 
     if (frameIdx == 0)
         fp = fopen(fileName, "wb");
@@ -110,22 +118,22 @@ void SaveQpReport(Uint32 * qpReportAddr, int picWidth, int picHeight, int frameI
     MBxx = (MBx + 3) / 4 * 4;
     for (i = 0; i < MBy; i++) {
         for (j = 0; j < MBxof4; j = j + 4) {
-            dprintf(3, "qpReportAddr = %lx\n", (Uint32) qpReportAddr);
-            qpAddr = (Uint32 *) ((Uint32) qpReportAddr + j + MBxx * i);
+            dprintf(3, "qpReportAddr = %x\n", (uint32_t) qpReportAddr);
+            qpAddr = (uint32_t *) ((uint32_t) qpReportAddr + j + MBxx * i);
             qp = *qpAddr;
-            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 0, (Uint8) (qp >> 24));
-            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 1, (Uint8) (qp >> 16));
-            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 2, (Uint8) (qp >> 8));
-            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 3, (Uint8) qp);
+            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 0, (uint8_t) (qp >> 24));
+            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 1, (uint8_t) (qp >> 16));
+            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 2, (uint8_t) (qp >> 8));
+            fprintf(fp, " %4d %4d %3d \n", frameIdx, MBx * i + j + 3, (uint8_t) qp);
         }
 
         if (MBxof1 > 0) {
-            qpAddr = (Uint32 *) ((Uint32) qpReportAddr + MBxx * i + MBxof4);
+            qpAddr = (uint32_t *) ((uint32_t) qpReportAddr + MBxx * i + MBxof4);
             qp = *qpAddr;
-            lastQp[0] = (Uint8) (qp >> 24);
-            lastQp[1] = (Uint8) (qp >> 16);
-            lastQp[2] = (Uint8) (qp >> 8);
-            lastQp[3] = (Uint8) (qp);
+            lastQp[0] = (uint8_t) (qp >> 24);
+            lastQp[1] = (uint8_t) (qp >> 16);
+            lastQp[2] = (uint8_t) (qp >> 8);
+            lastQp[3] = (uint8_t) (qp);
         }
 
         for (j = 0; j < MBxof1; j++) {

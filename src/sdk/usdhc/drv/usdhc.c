@@ -25,7 +25,7 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
      0,                         //RCA
      0,                         //addressing mode
      IMX_INT_USDHC1,            //interrupt ID
-     0,                         //status
+     1,                         //status
      }
     ,
 
@@ -36,7 +36,7 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
      0,                         //RCA
      0,                         //addressing mode
      IMX_INT_USDHC2,            //interrupt ID
-     0,                         //status
+     1,                         //status
      }
     ,
 
@@ -47,7 +47,7 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
      0,                         //RCA
      0,                         //addressing mode
      IMX_INT_USDHC3,            //interrupt ID
-     0,                         //status
+     1,                         //status
      }
     ,
 
@@ -58,7 +58,7 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
      0,                         //RCA
      0,                         //addressing mode
      IMX_INT_USDHC4,            //interrupt ID
-     0,                         //status
+     1,                         //status
      }
     ,
 };
@@ -100,13 +100,11 @@ static int card_init_interrupt(int base_address)
     /* Disable interrupt */
     disable_interrupt(usdhc_device[idx].intr_id, CPU_0);
 
-    if (SDHC_INTR_mode == ENABLE) {
-        /* Register interrupt */
-        register_interrupt_routine(usdhc_device[idx].intr_id, usdhc_device[idx].isr);
+    /* Register interrupt */
+    register_interrupt_routine(usdhc_device[idx].intr_id, usdhc_device[idx].isr);
 
-        /* Enable interrupt */
-        enable_interrupt(usdhc_device[idx].intr_id, CPU_0, 0);
-    }
+    /* Enable interrupt */
+    enable_interrupt(usdhc_device[idx].intr_id, CPU_0, 0);
 
     return SUCCESS;
 }

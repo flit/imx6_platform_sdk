@@ -24,29 +24,13 @@
 #include "vpu_lib.h"
 #include "vpu_io.h"
 
-#define	DEBUG_LEVEL	0
-
-#define dprintf(level, fmt, arg...)     if (DEBUG_LEVEL >= level) \
-        printf("[DEBUG]\t%s:%d " fmt, __FILE__, __LINE__, ## arg)
-
-#define err_msg(fmt, arg...) do { if (DEBUG_LEVEL >= 1)		\
-	printf("[ERR]\t%s:%d " fmt,  __FILE__, __LINE__, ## arg); else \
-	printf("[ERR]\t" fmt, ## arg);	\
-	} while (0)
-#define info_msg(fmt, arg...) do { if (DEBUG_LEVEL >= 1)		\
-	printf("[INFO]\t%s:%d " fmt,  __FILE__, __LINE__, ## arg); else \
-	printf("[INFO]\t" fmt, ## arg);	\
-	} while (0)
-#define warn_msg(fmt, arg...) do { if (DEBUG_LEVEL >= 1)		\
-	printf("[WARN]\t%s:%d " fmt,  __FILE__, __LINE__, ## arg); else \
-	printf("[WARN]\t" fmt, ## arg);	\
-	} while (0)
-
 #define STREAM_BUF_SIZE		0x200000
 #define STREAM_FILL_SIZE	0x40000
 #define STREAM_READ_SIZE	(512 * 8)
 #define STREAM_END_SIZE		0
 #define PS_SAVE_SIZE		0x080000
+#define VP8_MB_SAVE_SIZE	0x080000
+#define MPEG4_SCRATCH_SIZE	0x080000
 
 #define STREAM_ENC_PIC_RESET 	1
 
@@ -126,6 +110,8 @@ struct cmd_line {
     int dst_fd;
     int width;
     int height;
+    int enc_width;
+    int enc_height;
     int loff;
     int toff;
     int format;
@@ -141,6 +127,7 @@ struct cmd_line {
     int save_enc_hdr;
     int count;
     int prescan;
+    int bs_mode;
     char *nbuf;                 /* network buffer */
     int nlen;                   /* remaining data in network buffer */
     int noffset;                /* offset into network buffer */
@@ -148,9 +135,10 @@ struct cmd_line {
     uint16_t port;              /* udp port number */
     uint16_t complete;          /* wait for the requested buf to be filled completely */
     int iframe;
-    int mp4Class;
+    int mp4_h264Class;
     char vdi_motion;            /* VDI motion algorithm */
     int fps;
+    int mapType;
 };
 
 struct decode {
@@ -158,8 +146,10 @@ struct decode {
     PhysicalAddress phy_bsbuf_addr;
     PhysicalAddress phy_ps_buf;
     PhysicalAddress phy_slice_buf;
+    PhysicalAddress phy_vp8_mbparam_buf;
     int phy_slicebuf_size;
-    Uint32 virt_bsbuf_addr;
+    int phy_vp8_mbparam_size;
+    uint32_t virt_bsbuf_addr;
     int picwidth;
     int picheight;
     int stride;
@@ -174,6 +164,7 @@ struct decode {
     vpu_mem_desc *mvcol_memdesc;
     Rect picCropRect;
     int reorderEnable;
+    int tiled2LinearEnable;
 
     DecReportInfo mbInfo;
     DecReportInfo mvInfo;
@@ -186,7 +177,7 @@ struct decode {
 struct encode {
     EncHandle handle;           /* Encoder handle */
     PhysicalAddress phy_bsbuf_addr; /* Physical bitstream buffer */
-    Uint32 virt_bsbuf_addr;     /* Virtual bitstream buffer */
+    uint32_t virt_bsbuf_addr;   /* Virtual bitstream buffer */
     int enc_picwidth;           /* Encoded Picture width */
     int enc_picheight;          /* Encoded Picture height */
     int src_picwidth;           /* Source Picture width */
@@ -219,21 +210,14 @@ int parse_options(char *buf, struct cmd_line *cmd, int *mode);
 
 struct vpu_display *v4l_display_open(struct decode *dec, int nframes,
                                      struct rot rotation, Rect rotCrop);
-int v4l_put_data(struct vpu_display *disp, int index, int field, int fps);
-void v4l_display_close(struct vpu_display *disp);
 struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height);
+struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height);
 void framebuf_free(struct frame_buf *fb);
 
 struct vpu_display *ipu_display_open(struct decode *dec, int nframes, struct rot rotation,
                                      Rect cropRect);
 void ipu_display_close(struct vpu_display *disp);
 int ipu_put_data(struct vpu_display *disp, int index, int field, int fps);
-
-int v4l_start_capturing(void);
-void v4l_stop_capturing(void);
-int v4l_capture_setup(struct encode *enc, int width, int height, int fps);
-int v4l_get_capture_data(struct v4l2_buffer *buf);
-void v4l_put_capture_data(struct v4l2_buffer *buf);
 
 int encoder_open(struct encode *enc);
 void encoder_close(struct encode *enc);
@@ -247,5 +231,7 @@ int decoder_parse(struct decode *dec);
 int decoder_allocate_framebuffer(struct decode *dec);
 void decoder_free_framebuffer(struct decode *dec);
 
-void SaveQpReport(Uint32 * qpReportAddr, int picWidth, int picHeight, int frameIdx, char *fileName);
+void SaveQpReport(uint32_t * qpReportAddr, int picWidth, int picHeight, int frameIdx,
+                  char *fileName);
+int video_data_cmp(unsigned char *src, unsigned char *dst, int size);
 #endif

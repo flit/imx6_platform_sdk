@@ -361,7 +361,7 @@ byte GetDDC_Access(byte * SysCtrlRegVal)
         }
 
         WriteByteTPI(TPI_SYSTEM_CONTROL_DATA_REG, sysCtrl); // 0x1A[2] = "1" - Requst the DDC bus
-        DelayMS(200);
+        DelayMS(20);
     }
 
     WriteByteTPI(TPI_SYSTEM_CONTROL_DATA_REG, sysCtrl); // Failure... restore original value.
@@ -3075,7 +3075,7 @@ byte StartTPI(void)
     TPI_TRACE_PRINT((">>StartTPI()\n"));
 
     WriteByteTPI(TPI_ENABLE, 0x00); // Write "0" to 72:C7 to start HW TPI mode
-    DelayMS(100);
+    DelayMS(10);
 
     devID = ReadIndexedRegister(INDEXED_PAGE_0, 0x03);
     wID = devID;

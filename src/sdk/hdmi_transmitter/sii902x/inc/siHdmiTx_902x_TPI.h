@@ -13,7 +13,7 @@
 //--------------------------------------------------------------------
 // System Macro definition
 //--------------------------------------------------------------------
-#define DEV_SUPPORT_EDID        //if EDID is used, must disable ACK in i2c driver
+//#define DEV_SUPPORT_EDID        //if EDID is used, must disable ACK in i2c driver
 //#define DEV_SUPPORT_HDCP
 //#define DEV_SUPPORT_CEC
 //#define DEV_SUPPORT_3D
@@ -218,10 +218,10 @@ enum EDID_ErrorCodes {
 // Debug Definitions
 //--------------------------------------------------------------------
 // Compile debug prints inline or not
-#define CONF__TPI_TRACE_PRINT		(DEBUG_ENABLE)
-#define CONF__TPI_DEBUG_PRINT   	(DEBUG_ENABLE)
+#define CONF__TPI_TRACE_PRINT		(DEBUG_DISABLE)
+#define CONF__TPI_DEBUG_PRINT   	(DEBUG_DISABLE)
 #define CONF__TPI_EDID_PRINT    	(DEBUG_ENABLE)
-#define CONF__CPI_DEBUG_PRINT   	(DEBUG_ENABLE)
+#define CONF__CPI_DEBUG_PRINT   	(DEBUG_DISABLE)
 
 // Trace Print Macro
 // Note: TPI_TRACE_PRINT Requires double parenthesis
@@ -587,7 +587,7 @@ enum AV_ConfigErrorCodes {
 #define TX_HW_RESET_PERIOD      20
 #define SII902XA_DEVICE_ID         0xB0
 
-#define T_HPD_DELAY    			1000
+#define T_HPD_DELAY    			10
 
 //--------------------------------------------------------------------
 // HDCP Macro Definitions

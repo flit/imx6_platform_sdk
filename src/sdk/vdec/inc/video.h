@@ -9,9 +9,12 @@
 
 #include "hardware.h"
 #include "vpu_api.h"
+#include "../../ipu/inc/ipu_common.h"
 
 #define MAX_FIFO_SIZE 		(32)
 #define MAX_INSTANCES		(4)
+
+#define SD_PORT_BASE_ADDR	USDHC4_BASE_ADDR
 
 typedef struct {
     uint32_t u_offset;

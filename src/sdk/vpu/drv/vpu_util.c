@@ -25,7 +25,22 @@
 #include "vpu_util.h"
 #include "vpu_io.h"
 #include "vpu_debug.h"
+#ifdef MX61
+#include "BitAsmTable_CODA_960.h"
+#else
 #include "BitAsmTable_CODA7541.h"
+#endif
+
+#define MAX_VSIZE       8192
+#define MAX_HSIZE       8192
+
+enum {
+    SAMPLE_420 = 0xA,
+    SAMPLE_H422 = 0x9,
+    SAMPLE_V422 = 0x6,
+    SAMPLE_444 = 0x5,
+    SAMPLE_400 = 0x1
+};
 
 /*
  * VPU binary file header format:
@@ -33,19 +48,18 @@
  * 4-byte:  element numbers, each element is 16bit(unsigned short)
  */
 typedef struct {
-    Uint8 platform[12];
-    Uint32 size;
+    uint8_t platform[12];
+    uint32_t size;
 } headerInfo;
 
-extern unsigned long *virt_paraBuf;
+extern uint32_t *virt_paraBuf;
 semaphore_t *vpu_semap;
-static int mutex_timeout;
 static vpu_mem_desc share_mem;
-RetCode DownloadBitCodeTable(unsigned long *virtCodeBuf)
+RetCode DownloadBitCodeTable(uint32_t * virtCodeBuf)
 {
     int i, size;
-    volatile Uint32 data;
-    unsigned long *virt_codeBuf = NULL;
+    volatile uint32_t data;
+    uint32_t *virt_codeBuf = NULL;
 
     if (virtCodeBuf == NULL || bit_code == NULL) {
         err_msg("Failed to allocate bit_code\n");
@@ -53,24 +67,13 @@ RetCode DownloadBitCodeTable(unsigned long *virtCodeBuf)
     }
 
     virt_codeBuf = virtCodeBuf;
-
     size = sizeof(bit_code) / sizeof(bit_code[0]);
-    info_msg("VPU firmware size is 0x%x half-words\n", size);
     /* Copy full Microcode to Code Buffer allocated on SDRAM */
-    if (cpu_is_mx5x()) {
-        for (i = 0; i < size; i += 4) {
-            data = (bit_code[i + 0] << 16) | bit_code[i + 1];
-            ((unsigned int *)virt_codeBuf)[i / 2 + 1] = data;
-            data = (bit_code[i + 2] << 16) | bit_code[i + 3];
-            ((unsigned int *)virt_codeBuf)[i / 2] = data;
-        }
-    } else {
-        for (i = 0; i < size; i += 2) {
-            data = (unsigned int)((bit_code[i] << 16) | bit_code[i + 1]);
-            if (cpu_is_mx37())
-                data = swab32(data);
-            ((unsigned int *)virt_codeBuf)[i / 2] = data;
-        }
+    for (i = 0; i < size; i += 4) {
+        data = (bit_code[i + 0] << 16) | bit_code[i + 1];
+        ((unsigned int *)virt_codeBuf)[i / 2 + 1] = data;
+        data = (bit_code[i + 2] << 16) | bit_code[i + 3];
+        ((unsigned int *)virt_codeBuf)[i / 2] = data;
     }
 
     return RETCODE_SUCCESS;
@@ -124,10 +127,6 @@ RetCode CheckEncInstanceValidity(EncHandle handle)
     CodecInst *pCodecInst;
     RetCode ret;
 
-    if (cpu_is_mx32() || cpu_is_mx37()) {
-        return RETCODE_NOT_SUPPORTED;
-    }
-
     pCodecInst = handle;
     ret = CheckInstanceValidity(pCodecInst);
     if (ret != RETCODE_SUCCESS) {
@@ -140,7 +139,7 @@ RetCode CheckEncInstanceValidity(EncHandle handle)
     if (cpu_is_mx27()) {
         if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC)
             return RETCODE_INVALID_HANDLE;
-    } else if (cpu_is_mx5x()) {
+    } else {
         if (pCodecInst->codecMode != MP4_ENC &&
             pCodecInst->codecMode != AVC_ENC && pCodecInst->codecMode != MJPG_ENC)
             return RETCODE_INVALID_HANDLE;
@@ -162,20 +161,17 @@ RetCode CheckDecInstanceValidity(DecHandle handle)
         return RETCODE_INVALID_HANDLE;
     }
 
-    if (cpu_is_mx27()) {
-        if (pCodecInst->codecMode != MP4_DEC && pCodecInst->codecMode != AVC_DEC)
-            return RETCODE_INVALID_HANDLE;
-    } else if (cpu_is_mx32()) {
-        if (pCodecInst->codecMode != MP4_DEC &&
-            pCodecInst->codecMode != AVC_DEC && pCodecInst->codecMode != VC1_DEC)
-            return RETCODE_INVALID_HANDLE;
-    } else if (cpu_is_mx37()) {
+    if (cpu_is_mx6q()) {
         if (pCodecInst->codecMode != MP4_DEC &&
             pCodecInst->codecMode != AVC_DEC &&
             pCodecInst->codecMode != VC1_DEC &&
-            pCodecInst->codecMode != MP2_DEC && pCodecInst->codecMode != DV3_DEC)
-            return RETCODE_INVALID_HANDLE;
-    } else if (cpu_is_mx5x()) {
+            pCodecInst->codecMode != MP2_DEC &&
+            pCodecInst->codecMode != DV3_DEC &&
+            pCodecInst->codecMode != AVS_DEC &&
+            pCodecInst->codecMode != RV_DEC &&
+            pCodecInst->codecMode != VPX_DEC && pCodecInst->codecMode != MJPG_DEC)
+            return RETCODE_INVALID_PARAM;
+    } else {
         if (pCodecInst->codecMode != MP4_DEC &&
             pCodecInst->codecMode != AVC_DEC &&
             pCodecInst->codecMode != VC1_DEC &&
@@ -193,22 +189,44 @@ void FreeCodecInstance(CodecInst * pCodecInst)
     pCodecInst->inUse = 0;
 }
 
-void BitIssueCommand(int instIdx, int cdcMode, int cmd)
+void BitIssueCommand(int instIdx, int cdcMode, int cdcModeAux, int cmd)
 {
+    LockVpuReg(vpu_semap);
+
     VpuWriteReg(BIT_BUSY_FLAG, 0x1);
     VpuWriteReg(BIT_RUN_INDEX, instIdx);
     VpuWriteReg(BIT_RUN_COD_STD, cdcMode);
+    VpuWriteReg(BIT_RUN_AUX_STD, cdcModeAux);
     VpuWriteReg(BIT_RUN_COMMAND, cmd);
+
+    UnlockVpuReg(vpu_semap);
+}
+void BitIssueCommandEx(CodecInst * pCodecInst, int cmd)
+{
+    LockVpuReg(vpu_semap);
+
+    /* Save context related registers to vpu */
+    VpuWriteReg(BIT_BIT_STREAM_PARAM, pCodecInst->ctxRegs[CTX_BIT_STREAM_PARAM]);
+    VpuWriteReg(BIT_FRM_DIS_FLG, pCodecInst->ctxRegs[CTX_BIT_FRM_DIS_FLG]);
+    VpuWriteReg(BIT_WR_PTR, pCodecInst->ctxRegs[CTX_BIT_WR_PTR]);
+    VpuWriteReg(BIT_RD_PTR, pCodecInst->ctxRegs[CTX_BIT_RD_PTR]);
+    VpuWriteReg(BIT_FRAME_MEM_CTRL, pCodecInst->ctxRegs[CTX_BIT_FRAME_MEM_CTRL]);
+
+    if (!cpu_is_mx6q())
+        VpuWriteReg(BIT_WORK_BUF_ADDR, pCodecInst->contextBufMem.phy_addr);
+
+    VpuWriteReg(BIT_BUSY_FLAG, 0x1);
+    VpuWriteReg(BIT_RUN_INDEX, pCodecInst->instIndex);
+    VpuWriteReg(BIT_RUN_COD_STD, pCodecInst->codecMode);
+    VpuWriteReg(BIT_RUN_AUX_STD, pCodecInst->codecModeAux);
+    VpuWriteReg(BIT_RUN_COMMAND, cmd);
+    UnlockVpuReg(vpu_semap);
 }
 
 RetCode CheckEncOpenParam(EncOpenParam * pop)
 {
     int picWidth;
     int picHeight;
-
-    if (cpu_is_mx32() || cpu_is_mx37()) {
-        return RETCODE_NOT_SUPPORTED;
-    }
 
     if (pop == 0) {
         return RETCODE_INVALID_PARAM;
@@ -312,6 +330,15 @@ RetCode CheckEncOpenParam(EncOpenParam * pop)
         if (param->avc_chromaQpOffset < -12 || param->avc_chromaQpOffset > 12) {
             return RETCODE_INVALID_PARAM;
         }
+        if (param->avc_frameCroppingFlag != 0 && param->avc_frameCroppingFlag != 1) {
+            return RETCODE_INVALID_PARAM;
+        }
+
+        if (param->avc_frameCropLeft & 0x01 ||
+            param->avc_frameCropRight & 0x01 ||
+            param->avc_frameCropTop & 0x01 || param->avc_frameCropBottom & 0x01) {
+            return RETCODE_INVALID_PARAM;
+        }
         if (param->avc_audEnable != 0 && param->avc_audEnable != 1) {
             return RETCODE_INVALID_PARAM;
         }
@@ -373,7 +400,7 @@ void EncodeHeader(EncHandle handle, EncHeaderParam * encHeaderParam)
     EncInfo *pEncInfo;
     PhysicalAddress rdPtr;
     PhysicalAddress wrPtr;
-    int data = 0;
+    int data = 0, frameCroppingFlag = 0;
 
     pCodecInst = handle;
     pEncInfo = &pCodecInst->CodecInfo.encInfo;
@@ -383,26 +410,50 @@ void EncodeHeader(EncHandle handle, EncHeaderParam * encHeaderParam)
         VpuWriteReg(CMD_ENC_HEADER_BB_SIZE, encHeaderParam->size);
     }
 
-    if (encHeaderParam->headerType == VOS_HEADER || encHeaderParam->headerType == SPS_RBSP) {
-        data = (((encHeaderParam->userProfileLevelIndication & 0xFF) << 8) |
-                ((encHeaderParam->userProfileLevelEnable & 0x01) << 4) |
-                (encHeaderParam->headerType & 0x0F));
-        VpuWriteReg(CMD_ENC_HEADER_CODE, data);
-    } else {
-        VpuWriteReg(CMD_ENC_HEADER_CODE, encHeaderParam->headerType);   /* 0: SPS, 1: PPS */
+    if (cpu_is_mx6q() && (encHeaderParam->headerType == 0) &&
+        (pEncInfo->openParam.bitstreamFormat == STD_AVC)) {
+        EncOpenParam *encOP;
+        uint32_t CropV, CropH;
+
+        encOP = &(pEncInfo->openParam);
+        if (encOP->EncStdParam.avcParam.avc_frameCroppingFlag == 1) {
+            frameCroppingFlag = 1;
+            CropH = encOP->EncStdParam.avcParam.avc_frameCropLeft << 16;
+            CropH |= encOP->EncStdParam.avcParam.avc_frameCropRight;
+            CropV = encOP->EncStdParam.avcParam.avc_frameCropTop << 16;
+            CropV |= encOP->EncStdParam.avcParam.avc_frameCropBottom;
+            VpuWriteReg(CMD_ENC_HEADER_FRAME_CROP_H, CropH);
+            VpuWriteReg(CMD_ENC_HEADER_FRAME_CROP_V, CropV);
+        }
     }
 
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, ENCODE_HEADER);
+    if (cpu_is_mx6q()) {
+        VpuWriteReg(CMD_ENC_HEADER_CODE, encHeaderParam->headerType | frameCroppingFlag << 2);
+    } else {
+        if (encHeaderParam->headerType == VOS_HEADER || encHeaderParam->headerType == SPS_RBSP) {
+            data = (((encHeaderParam->userProfileLevelIndication & 0xFF) << 8) |
+                    ((encHeaderParam->userProfileLevelEnable & 0x01) << 4) |
+                    (encHeaderParam->headerType & 0x0F));
+            VpuWriteReg(CMD_ENC_HEADER_CODE, data);
+        } else {
+            VpuWriteReg(CMD_ENC_HEADER_CODE, encHeaderParam->headerType);   /* 0: SPS, 1: PPS */
+        }
+    }
 
+    BitIssueCommandEx(pCodecInst, ENCODE_HEADER);
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
 
+    LockVpuReg(vpu_semap);
     if (pEncInfo->dynamicAllocEnable == 1) {
         rdPtr = VpuReadReg(CMD_ENC_HEADER_BB_START);
-        wrPtr = VpuReadReg(pEncInfo->streamWrPtrRegAddr);
+        wrPtr = VpuReadReg(BIT_WR_PTR);
+        pCodecInst->ctxRegs[CTX_BIT_WR_PTR] = wrPtr;
     } else {
-        rdPtr = VpuReadReg(pEncInfo->streamRdPtrRegAddr);
-        wrPtr = VpuReadReg(pEncInfo->streamWrPtrRegAddr);
+        rdPtr = VpuReadReg(BIT_RD_PTR);
+        wrPtr = VpuReadReg(BIT_WR_PTR);
+        pCodecInst->ctxRegs[CTX_BIT_WR_PTR] = wrPtr;
     }
+    UnlockVpuReg(vpu_semap);
 
     encHeaderParam->buf = rdPtr;
     encHeaderParam->size = wrPtr - rdPtr;
@@ -433,13 +484,17 @@ RetCode CheckDecOpenParam(DecOpenParam * pop)
         if (pop->bitstreamFormat != STD_MPEG4 &&
             pop->bitstreamFormat != STD_AVC && pop->bitstreamFormat != STD_VC1)
             return RETCODE_INVALID_PARAM;
-    } else if (cpu_is_mx37()) {
+    } else if (cpu_is_mx6q()) {
         if (pop->bitstreamFormat != STD_MPEG4 &&
             pop->bitstreamFormat != STD_AVC &&
             pop->bitstreamFormat != STD_VC1 &&
-            pop->bitstreamFormat != STD_MPEG2 && pop->bitstreamFormat != STD_DIV3)
+            pop->bitstreamFormat != STD_MPEG2 &&
+            pop->bitstreamFormat != STD_DIV3 &&
+            pop->bitstreamFormat != STD_RV &&
+            pop->bitstreamFormat != STD_AVS &&
+            pop->bitstreamFormat != STD_VP8 && pop->bitstreamFormat != STD_MJPG)
             return RETCODE_INVALID_PARAM;
-    } else if (cpu_is_mx5x()) {
+    } else {
         if (pop->bitstreamFormat != STD_MPEG4 &&
             pop->bitstreamFormat != STD_AVC &&
             pop->bitstreamFormat != STD_VC1 &&
@@ -465,35 +520,42 @@ RetCode CheckDecOpenParam(DecOpenParam * pop)
     return RETCODE_SUCCESS;
 }
 
-int DecBitstreamBufEmpty(DecInfo * pDecInfo)
+int DecBitstreamBufEmpty(DecHandle handle)
 {
+    CodecInst *pCodecInst;
     PhysicalAddress rdPtr;
     PhysicalAddress wrPtr;
+    int instIndex;
 
-    rdPtr = VpuReadReg(pDecInfo->streamRdPtrRegAddr);
-    wrPtr = VpuReadReg(pDecInfo->streamWrPtrRegAddr);
+    pCodecInst = handle;
+
+    LockVpuReg(vpu_semap);
+    instIndex = VpuReadReg(BIT_RUN_INDEX);
+
+    rdPtr = (pCodecInst->instIndex == instIndex) ?
+        VpuReadReg(BIT_RD_PTR) : pCodecInst->ctxRegs[CTX_BIT_RD_PTR];
+    wrPtr = (pCodecInst->instIndex == instIndex) ?
+        VpuReadReg(BIT_WR_PTR) : pCodecInst->ctxRegs[CTX_BIT_WR_PTR];
+
+    UnlockVpuReg(vpu_semap);
 
     return rdPtr == wrPtr;
 }
 
-RetCode CopyBufferData(Uint8 * dst, Uint8 * src, int size)
+RetCode CopyBufferData(uint8_t * dst, uint8_t * src, int size)
 {
-    Uint32 temp;
+    uint32_t temp;
 
     if (!dst || !src || !size)
         return RETCODE_FAILURE;
 
-    if (cpu_is_mx37())
-        memcpy(dst, src, size);
-    else if (cpu_is_mx5x()) {
-        int i;
-        for (i = 0; i < size / 8; i++) {
-            /* swab odd and even words and swab32 for mx5x */
-            temp = *((Uint32 *) src + i * 2 + 1);
-            *((Uint32 *) dst + i * 2) = swab32(temp);
-            temp = *((Uint32 *) src + i * 2);
-            *((Uint32 *) dst + i * 2 + 1) = swab32(temp);
-        }
+    int i;
+    for (i = 0; i < size / 8; i++) {
+        /* swab odd and even words and swab32 */
+        temp = *((uint32_t *) src + i * 2 + 1);
+        *((uint32_t *) dst + i * 2) = swab32(temp);
+        temp = *((uint32_t *) src + i * 2);
+        *((uint32_t *) dst + i * 2 + 1) = swab32(temp);
     }
     return RETCODE_SUCCESS;
 }
@@ -502,13 +564,29 @@ void GetParaSet(EncHandle handle, int paraSetType, EncParamSet * para)
 {
     CodecInst *pCodecInst;
     EncInfo *pEncInfo;
+    int frameCroppingFlag;
 
     pCodecInst = handle;
     pEncInfo = &pCodecInst->CodecInfo.encInfo;
 
+    if (cpu_is_mx6q() && (paraSetType == 0) && (pEncInfo->openParam.bitstreamFormat == STD_AVC)) {
+        EncOpenParam *encOP;
+        uint32_t CropV, CropH;
+
+        encOP = &(pEncInfo->openParam);
+        if (encOP->EncStdParam.avcParam.avc_frameCroppingFlag == 1) {
+            frameCroppingFlag = 1;
+            CropH = encOP->EncStdParam.avcParam.avc_frameCropLeft << 16;
+            CropH |= encOP->EncStdParam.avcParam.avc_frameCropRight;
+            CropV = encOP->EncStdParam.avcParam.avc_frameCropTop << 16;
+            CropV |= encOP->EncStdParam.avcParam.avc_frameCropBottom;
+            VpuWriteReg(CMD_ENC_HEADER_FRAME_CROP_H, CropH);
+            VpuWriteReg(CMD_ENC_HEADER_FRAME_CROP_V, CropV);
+        }
+    }
     /* SPS: 0, PPS: 1, VOS: 1, VO: 2, VOL: 0 */
-    VpuWriteReg(CMD_ENC_PARA_SET_TYPE, paraSetType);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, ENC_PARA_SET);
+    VpuWriteReg(CMD_ENC_PARA_SET_TYPE, paraSetType | (frameCroppingFlag << 2));
+    BitIssueCommandEx(pCodecInst, ENC_PARA_SET);
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
 
     para->paraSet = virt_paraBuf;
@@ -521,7 +599,7 @@ void SetParaSet(DecHandle handle, int paraSetType, DecParamSet * para)
     CodecInst *pCodecInst;
     DecInfo *pDecInfo;
     int i;
-    Uint32 *src;
+    uint32_t *src;
     int byteSize;
 
     pCodecInst = handle;
@@ -537,97 +615,89 @@ void SetParaSet(DecHandle handle, int paraSetType, DecParamSet * para)
     VpuWriteReg(CMD_DEC_PARA_SET_TYPE, paraSetType);
     VpuWriteReg(CMD_DEC_PARA_SET_SIZE, para->size);
 
-    if (cpu_is_mx5x()) {
-        if (pDecInfo->openParam.bitstreamFormat == STD_DIV3)
-            VpuWriteReg(BIT_RUN_AUX_STD, 1);
-        else
-            VpuWriteReg(BIT_RUN_AUX_STD, 0);
-    }
-
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, DEC_PARA_SET);
-
+    BitIssueCommandEx(pCodecInst, DEC_PARA_SET);
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
 }
 
 // Following are not for MX32 and MX27 TO1
-RetCode SetGopNumber(EncHandle handle, Uint32 * pGopNumber)
+RetCode SetGopNumber(EncHandle handle, uint32_t * pGopNumber)
 {
     CodecInst *pCodecInst;
     int data = 0;
-    Uint32 gopNumber = *pGopNumber;
+    uint32_t gopNumber = *pGopNumber;
 
     pCodecInst = handle;
     data = 1;
     VpuWriteReg(CMD_ENC_SEQ_PARA_CHANGE_ENABLE, data);
     VpuWriteReg(CMD_ENC_SEQ_PARA_RC_GOP, gopNumber);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, RC_CHANGE_PARAMETER);
+    BitIssueCommandEx(pCodecInst, RC_CHANGE_PARAMETER);
 
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
 
     return RETCODE_SUCCESS;
 }
 
-RetCode SetIntraQp(EncHandle handle, Uint32 * pIntraQp)
+RetCode SetIntraQp(EncHandle handle, uint32_t * pIntraQp)
 {
     CodecInst *pCodecInst;
     int data = 0;
-    Uint32 intraQp = *pIntraQp;
+    uint32_t intraQp = *pIntraQp;
 
     pCodecInst = handle;
     data = 1 << 1;
     VpuWriteReg(CMD_ENC_SEQ_PARA_CHANGE_ENABLE, data);
     VpuWriteReg(CMD_ENC_SEQ_PARA_RC_INTRA_QP, intraQp);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, RC_CHANGE_PARAMETER);
+    BitIssueCommandEx(pCodecInst, RC_CHANGE_PARAMETER);
 
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
 
     return RETCODE_SUCCESS;
 }
 
-RetCode SetBitrate(EncHandle handle, Uint32 * pBitrate)
+RetCode SetBitrate(EncHandle handle, uint32_t * pBitrate)
 {
     CodecInst *pCodecInst;
     int data = 0;
-    Uint32 bitrate = *pBitrate;
+    uint32_t bitrate = *pBitrate;
 
     pCodecInst = handle;
     data = 1 << 2;
     VpuWriteReg(CMD_ENC_SEQ_PARA_CHANGE_ENABLE, data);
     VpuWriteReg(CMD_ENC_SEQ_PARA_RC_BITRATE, bitrate);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, RC_CHANGE_PARAMETER);
+    BitIssueCommandEx(pCodecInst, RC_CHANGE_PARAMETER);
 
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
 
     return RETCODE_SUCCESS;
 }
 
-RetCode SetFramerate(EncHandle handle, Uint32 * pFramerate)
+RetCode SetFramerate(EncHandle handle, uint32_t * pFramerate)
 {
     CodecInst *pCodecInst;
     int data = 0;
-    Uint32 framerate = *pFramerate;
+    uint32_t framerate = *pFramerate;
 
     pCodecInst = handle;
     data = 1 << 3;
     VpuWriteReg(CMD_ENC_SEQ_PARA_CHANGE_ENABLE, data);
     VpuWriteReg(CMD_ENC_SEQ_PARA_RC_FRAME_RATE, framerate);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, RC_CHANGE_PARAMETER);
+    BitIssueCommandEx(pCodecInst, RC_CHANGE_PARAMETER);
 
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
     return RETCODE_SUCCESS;
 }
 
-RetCode SetIntraRefreshNum(EncHandle handle, Uint32 * pIntraRefreshNum)
+RetCode SetIntraRefreshNum(EncHandle handle, uint32_t * pIntraRefreshNum)
 {
     CodecInst *pCodecInst;
-    Uint32 intraRefreshNum = *pIntraRefreshNum;
+    uint32_t intraRefreshNum = *pIntraRefreshNum;
     int data = 0;
 
     pCodecInst = handle;
     data = 1 << 4;
     VpuWriteReg(CMD_ENC_SEQ_PARA_CHANGE_ENABLE, data);
     VpuWriteReg(CMD_ENC_SEQ_PARA_INTRA_MB_NUM, intraRefreshNum);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, RC_CHANGE_PARAMETER);
+    BitIssueCommandEx(pCodecInst, RC_CHANGE_PARAMETER);
 
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
     return RETCODE_SUCCESS;
@@ -636,7 +706,7 @@ RetCode SetIntraRefreshNum(EncHandle handle, Uint32 * pIntraRefreshNum)
 RetCode SetSliceMode(EncHandle handle, EncSliceMode * pSliceMode)
 {
     CodecInst *pCodecInst;
-    Uint32 data = 0;
+    uint32_t data = 0;
     int data2 = 0;
 
     data = pSliceMode->sliceSize << 2 | pSliceMode->sliceSizeMode << 1 | pSliceMode->sliceMode;
@@ -645,7 +715,7 @@ RetCode SetSliceMode(EncHandle handle, EncSliceMode * pSliceMode)
     data2 = 1 << 5;
     VpuWriteReg(CMD_ENC_SEQ_PARA_CHANGE_ENABLE, data2);
     VpuWriteReg(CMD_ENC_SEQ_PARA_SLICE_MODE, data);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, RC_CHANGE_PARAMETER);
+    BitIssueCommandEx(pCodecInst, RC_CHANGE_PARAMETER);
 
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
     return RETCODE_SUCCESS;
@@ -654,14 +724,14 @@ RetCode SetSliceMode(EncHandle handle, EncSliceMode * pSliceMode)
 RetCode SetHecMode(EncHandle handle, int mode)
 {
     CodecInst *pCodecInst;
-    Uint32 HecMode = mode;
+    uint32_t HecMode = mode;
     int data = 0;
     pCodecInst = handle;
 
     data = 1 << 6;
     VpuWriteReg(CMD_ENC_SEQ_PARA_CHANGE_ENABLE, data);
     VpuWriteReg(CMD_ENC_SEQ_PARA_HEC_MODE, HecMode);
-    BitIssueCommand(pCodecInst->instIndex, pCodecInst->codecMode, RC_CHANGE_PARAMETER);
+    BitIssueCommandEx(pCodecInst, RC_CHANGE_PARAMETER);
 
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
     return RETCODE_SUCCESS;
@@ -670,7 +740,7 @@ RetCode SetHecMode(EncHandle handle, int mode)
 void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
 {
     iram_t iram;
-    int size, dbk_size, bitram_size, ipacdc_size, ovl_size;
+    int size, dbk_size, bitram_size, ipacdc_size, ovl_size, btp_size;
 
     if (!parm->width) {
         err_msg("Width is zero when calling SetDecSecondAXIIRAM function\n");
@@ -712,11 +782,21 @@ void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
     } else
         goto out;
 
-    ovl_size = (80 * parm->width / 16 + 1023) & ~1023;
-    if ((parm->codecMode == VC1_DEC) && (size >= ovl_size)) {
-        psecAxiIramInfo->useHostOvlEnable = 1;
-        psecAxiIramInfo->bufOvlUse = psecAxiIramInfo->bufIpAcDcUse + ipacdc_size;
-        size -= ovl_size;
+    ovl_size = (160 * parm->width / 16 + 1023) & ~1023;
+    if (parm->codecMode == VC1_DEC) {
+        if (size >= ovl_size) {
+            psecAxiIramInfo->useHostOvlEnable = 1;
+            psecAxiIramInfo->bufOvlUse = psecAxiIramInfo->bufIpAcDcUse + ipacdc_size;
+            size -= ovl_size;
+        }
+        if (cpu_is_mx6q()) {
+            btp_size = (160 * parm->width / 16 + 1023) & ~1023;
+            if (size >= btp_size) {
+                psecAxiIramInfo->useHostBtpEnable = 1;
+                psecAxiIramInfo->bufBtpUse = psecAxiIramInfo->bufOvlUse + ovl_size;
+                size -= btp_size;
+            }
+        }
     }
   out:
     /* i.MX51 has no secondary AXI memory, but use on chip RAM
@@ -724,12 +804,13 @@ void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
        Set the useXXXX as 0 at the same time to use IRAM,
        i.MX53 uses secondary AXI for IRAM access, also needs to
        set the useXXXX. */
-    if (cpu_is_mx53()) {
-        /* i.MX53 uses secondary AXI for IRAM access */
-        psecAxiIramInfo->useBitEnable = psecAxiIramInfo->useHostDbkEnable;
-        psecAxiIramInfo->useIpEnable = psecAxiIramInfo->useHostBitEnable;
-        psecAxiIramInfo->useDbkEnable = psecAxiIramInfo->useHostIpEnable;
+    if (cpu_is_mx53() || cpu_is_mx6q()) {
+        /* i.MX53/i.MX6Q uses secondary AXI for IRAM access */
+        psecAxiIramInfo->useBitEnable = psecAxiIramInfo->useHostBitEnable;
+        psecAxiIramInfo->useIpEnable = psecAxiIramInfo->useHostIpEnable;
+        psecAxiIramInfo->useDbkEnable = psecAxiIramInfo->useHostDbkEnable;
         psecAxiIramInfo->useOvlEnable = psecAxiIramInfo->useHostOvlEnable;
+        psecAxiIramInfo->useBtpEnable = psecAxiIramInfo->useHostBtpEnable;
     }
 
     if (((parm->codecMode == VC1_DEC) && !psecAxiIramInfo->useHostOvlEnable) ||
@@ -752,6 +833,11 @@ void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
     //IOGetIramBase(&iram);//removed by Ray
     size = iram.end - iram.start + 1;
 
+    if (cpu_is_mx6q()) {
+        psecAxiIramInfo->searchRamSize = 0;
+        psecAxiIramInfo->searchRamAddr = 0;
+        goto set_dbk;
+    }
     /* Setting internal iram usage per priority when iram isn't enough */
     psecAxiIramInfo->searchRamSize = (parm->width * 36 + 2048 + 1023) & ~1023;
     if (size >= psecAxiIramInfo->searchRamSize) {
@@ -763,6 +849,7 @@ void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
         goto out;
     }
 
+  set_dbk:
     /* Only H.264BP and H.263P3 are considered */
     dbk_size = (128 * parm->width / 16 + 1023) & ~1023;
     if (size >= dbk_size) {
@@ -808,6 +895,45 @@ void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
         warn_msg("VPU iram is less than needed, some parts don't use iram\n");
 }
 
+void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromInterleave)
+{
+    if (mapType == LINEAR_FRAME_MAP) {
+        /* Set luma */
+        pCacheConf->luma.cfg.PageSizeX = 2;
+        pCacheConf->luma.cfg.PageSizeY = 0;
+        pCacheConf->luma.cfg.CacheSizeX = 2;
+        pCacheConf->luma.cfg.CacheSizeY = 6;
+        /* Set chroma */
+        pCacheConf->chroma.cfg.PageSizeX = 2;
+        pCacheConf->chroma.cfg.PageSizeY = 0;
+        pCacheConf->chroma.cfg.CacheSizeX = 2;
+        pCacheConf->chroma.cfg.CacheSizeY = 4;
+        pCacheConf->PageMerge = 2;
+    } else {
+        /* Set luma */
+        pCacheConf->luma.cfg.PageSizeX = 0;
+        pCacheConf->luma.cfg.PageSizeY = 2;
+        pCacheConf->luma.cfg.CacheSizeX = 4;
+        pCacheConf->luma.cfg.CacheSizeY = 4;
+        /* Set chroma */
+        pCacheConf->chroma.cfg.PageSizeX = 0;
+        pCacheConf->chroma.cfg.PageSizeY = 2;
+        pCacheConf->chroma.cfg.CacheSizeX = 4;
+        pCacheConf->chroma.cfg.CacheSizeY = 3;
+        pCacheConf->PageMerge = 1;
+    }
+
+    pCacheConf->Bypass = 0;     /* cache enable */
+    pCacheConf->DualConf = 0;
+    pCacheConf->LumaBufferSize = 32;
+    if (chromInterleave) {
+        pCacheConf->CbBufferSize = 0;
+        pCacheConf->CrBufferSize = 0x10;
+    } else {
+        pCacheConf->CbBufferSize = 8;
+        pCacheConf->CrBufferSize = 8;
+    }
+}
 semaphore_t *vpu_semaphore_open(void)
 {
     semaphore_t *semap;
@@ -815,7 +941,7 @@ semaphore_t *vpu_semaphore_open(void)
     int i;
 
     share_mem.size = sizeof(semaphore_t);
-    if (IOGetShareMem(&share_mem)) {
+    if (IOGetMem(&share_mem)) {
         err_msg("Unable to obtain physical of share memory\n");
         return NULL;
     }
@@ -842,8 +968,6 @@ void semaphore_post(semaphore_t * semap, int mutex)
 
 unsigned char semaphore_wait(semaphore_t * semap, int mutex)
 {
-    int ret = 0;
-
     return true;
 }
 

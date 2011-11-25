@@ -42,7 +42,7 @@ SECTIONS
         __bss_end__ = .;
     }
 
-    . += 10K;
+    . += 40K;
 
     top_of_stacks = .;
     . = ALIGN (4);

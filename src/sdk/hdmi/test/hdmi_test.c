@@ -126,7 +126,6 @@ void hdmi_tx_ISR(void)
 
 void hdmi_1080P60_video_output(int ipu_index, int ipu_di)
 {
-    printf("\n---- Running HDMI_TX test ----\n");
     int hdmi_src = ((ipu_index - 1) << 1) | ipu_di;
 
     hdmi_data_info_s myHDMI_info = { 0 };   // declare new hdmi module object instance

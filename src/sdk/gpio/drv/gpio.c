@@ -26,7 +26,7 @@ int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir)
     uint32_t oldVal = 0, newVal = 0;
 
     if ((port >= MAX_GPIO_PORT) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~%d] Is Allowed!\n", port,MAX_GPIO_PORT);
+        printf("Wrong GPIO Port[%d] Input! [1~%d] Is Allowed!\n", port, MAX_GPIO_PORT);
         return -1;
     }
 
@@ -60,7 +60,7 @@ int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr)
     uint32_t oldVal = 0, newVal = 0;
 
     if ((port >= MAX_GPIO_PORT) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~%d] Is Allowed!\n", port,MAX_GPIO_PORT);
+        printf("Wrong GPIO Port[%d] Input! [1~%d] Is Allowed!\n", port, MAX_GPIO_PORT);
         return -1;
     }
 
@@ -99,7 +99,7 @@ int32_t gpio_read_data(int32_t port, int32_t pin)
     int32_t dir;
 
     if ((port >= MAX_GPIO_PORT) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [1~%d] Is Allowed!\n", port,MAX_GPIO_PORT);
+        printf("Wrong GPIO Port[%d] Input! [1~%d] Is Allowed!\n", port, MAX_GPIO_PORT);
         return -1;
     }
 

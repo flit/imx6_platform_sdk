@@ -37,8 +37,8 @@
 #include "vpu_util.h"
 #include "hardware.h"
 
-#define VPU_MEM_START_ADDR	(CSD0_DDR_BASE_ADDR + 0x10000000)
-#define VPU_MEM_END_ADDR	(CSD0_DDR_BASE_ADDR + 0x1FFFFFFF)
+#define VPU_MEM_START_ADDR	(VIDEO_0_BUFFERS)
+#define VPU_MEM_END_ADDR	(VIDEO_0_BUFFERS_END)
 
 static unsigned int vpu_mem_alloc_ptr = VPU_MEM_START_ADDR;
 
@@ -94,8 +94,6 @@ inline unsigned long *reg_map(unsigned long offset)
  */
 int IOSystemInit(void *callback)
 {
-    int ret;
-
     /*vpu base is equal to the physical address. MMU disabled */
     vpu_reg_base = (unsigned long)VPU_BASE_ADDR;
 

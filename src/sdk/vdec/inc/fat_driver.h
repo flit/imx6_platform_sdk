@@ -5,6 +5,10 @@
  * Freescale Semiconductor, Inc.
  */
 
+/*
+ * FreeDOS 32 FAT Driver                                                  
+ * by Salvo Isaja                                                         
+ */
 #ifndef _FAT_DRIVER_H
 #define _FAT_DRIVER_H
 

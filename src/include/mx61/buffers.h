@@ -39,7 +39,9 @@
 #define FAT_DRIVER_BUFFER       (0x60000000)
 #define VPU_WORK_BUFFERS        (0x60100000)
 #define VIDEO_0_BUFFERS         (0x30000000)
+#define VIDEO_0_BUFFERS_END     (0x38000000)
 #define VIDEO_1_BUFFERS         (0x50000000)
+#define VIDEO_1_BUFFERS_END     (0x58000000)
 #endif
 
 /*OCRAM partition table*/

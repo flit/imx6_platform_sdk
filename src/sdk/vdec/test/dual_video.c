@@ -40,7 +40,7 @@ void init_fat32_device(void *blkreq_func)
     V = (tVolume *) FAT_DRIVER_BUFFER;
 
     V->blkreq = blkreq_func;
-    V->buffer = (uint8_t *) (FAT_DRIVER_BUFFER + 0x00100000);
+    V->buffer = (char *)(FAT_DRIVER_BUFFER + 0x00100000);
 
     fat_mount(V);
 
@@ -65,7 +65,7 @@ int vpu_buffer_fill(uint32_t inst, uint32_t addr, uint32_t size)
     card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
     if (usdhc_status != 1)
         return 0;
-    res = fat_read_file(V, &files[inst], (uint8_t *) addr, size);
+    res = fat_read_file(V, &files[inst], (char *)addr, size);
 
     if (res < size) {
         for (i = 0; i < (size - res); i++)

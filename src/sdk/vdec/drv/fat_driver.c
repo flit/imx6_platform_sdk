@@ -64,7 +64,7 @@ static tFatType determine_fat_type(tBpb * Bpb)
         return FAT32;
 }
 
-static int check_bpb(uint8_t * SecBuf)
+static int check_bpb(char *SecBuf)
 {
     uint32_t TotSec;
     tBpb *Bpb = (tBpb *) SecBuf;
@@ -121,7 +121,7 @@ static int check_bpb(uint8_t * SecBuf)
     return 0;
 }
 
-static uint32_t get_relative_sector(uint8_t * buffer)
+static uint32_t get_relative_sector(char *buffer)
 {
     return (uint32_t) ((uint32_t *) (buffer + 0x1c6));
 }
@@ -136,7 +136,7 @@ static int read_bpb(tVolume * V, tBpb * Bpb, tFatType * FatType)
         return -1;
     }
 
-    memcpy((uint8_t *) & mbr, V->buffer, sizeof(tMBR));
+    memcpy((char *)&mbr, V->buffer, sizeof(tMBR));
     if (mbr.endcode != 0xAA55) {
         printf("MBR reading failed!!\n");
         return -1;
@@ -188,7 +188,7 @@ int fat_mount(tVolume * V)
 
     V->DataClusters = data_clusters(&V->Bpb);
     V->FirstDataSector = first_data_sector(&V->Bpb) + V->FirstPartionOffset;
-
+    V->FirstFatTable = V->Bpb.BPB_ResvdSecCnt + V->FirstPartionOffset;
     if ((Res =
          V->blkreq((V->Bpb.BPB_FSInfo + V->FirstPartionOffset) * V->Bpb.BPB_BytsPerSec,
                    V->Bpb.BPB_BytsPerSec, V->buffer, 0)) < 0) {
@@ -206,6 +206,92 @@ int fat_mount(tVolume * V)
     /* Assign FSInfo parameters to FAT volume fields */
     V->FSI_Free_Count = FSInfo->Free_Count;
     V->FSI_Nxt_Free = FSInfo->Nxt_Free;
+
+    return 0;
+}
+
+inline void split_filename(char *filename, char *name, char *ext)
+{
+    int name_len = 0, string_len = 0;
+    int i = 0;
+
+    string_len = strlen((const char *)filename);
+
+    while ((i < string_len) && (filename[i++] != '.')) {
+        name_len++;
+    }
+
+    memcpy(name, filename, name_len);
+    memcpy(ext, &filename[name_len + 1], string_len - name_len - 1);
+}
+
+inline int compare_filename(char *filename, char *name, char *ext)
+{
+    char fname[8], fext[3];
+    int i = 0;
+
+    memset(fname, 0x20, 8);
+    memset(fext, 0x20, 3);
+    split_filename(filename, fname, fext);
+
+    while (i < 8) {
+        if (fname[i] != name[i])
+            return 0;           //file name does not match
+        i++;
+    }
+
+    i = 0;
+    while (i < 3) {
+        if (ext[i] != ext[i])
+            return 0;           //file extension does not match
+        i++;
+    }
+
+    return 1;
+}
+
+/* if file found return 1 else return 0 */
+int fat_get_file(tVolume * V, tFile * file, char *filename)
+{
+    tDirEntry *dirEntry;
+    int secCnt, curCluster, FATSecNum;
+
+    secCnt = 1;
+    curCluster = V->Bpb.BPB_RootClus;
+
+    V->blkreq(V->FirstDataSector * V->Bpb.BPB_BytsPerSec, V->Bpb.BPB_BytsPerSec, V->buffer, 0);
+    dirEntry = (tDirEntry *) V->buffer;
+
+    while (dirEntry->Name[0] != 0) {
+        if ((dirEntry->Name[0] != 0xE5) && (dirEntry->Attr != ATTR_LONG_NAME)
+            && (!(dirEntry->Attr & ATTR_DIRECTORY))) {
+            if (compare_filename(filename, &(dirEntry->Name[0]), &(dirEntry->Name[8]))) {
+                file->file_size = dirEntry->FileSize;
+                file->first_cluster =
+                    ((uint32_t) dirEntry->FstClusHI << 16) | (uint32_t) dirEntry->FstClusLO;
+                file->sector = fat_first_sector_of_cluster(file->first_cluster, V);
+                file->bytes_read = 0;
+                split_filename(filename, file->fname, file->fext);
+                file->fext[3] = '\0';
+                return 1;
+            }
+        }
+
+        ++dirEntry;
+        if (((uint16_t *) dirEntry - (uint16_t *) (V->buffer)) >= FAT_BUFFER_SIZE) {
+            if (secCnt == V->Bpb.BPB_SecPerClus) {
+                FATSecNum = V->Bpb.BPB_ResvdSecCnt + (curCluster * 4 / V->Bpb.BPB_BytsPerSec);
+                V->blkreq(FATSecNum * V->Bpb.BPB_BytsPerSec, V->Bpb.BPB_BytsPerSec, V->buffer, 0);
+                curCluster =
+                    *(unsigned int *)(V->buffer + ((curCluster * 4) % V->Bpb.BPB_BytsPerSec));
+                secCnt = 0x0;
+            }
+
+            V->blkreq((fat_first_sector_of_cluster(curCluster, V) +
+                       secCnt++) * V->Bpb.BPB_BytsPerSec, V->Bpb.BPB_BytsPerSec, V->buffer, 0);
+            dirEntry = (tDirEntry *) V->buffer;
+        }
+    }
 
     return 0;
 }
@@ -388,8 +474,57 @@ int fat_open_file(tVolume * V, tFile * F)
     return 0;
 }
 
-int fat_read_file(tVolume * V, tFile * F, uint8_t * buffer, uint32_t size)
-/* Read data from a fat32 file. size is given in bytes. Function returns number of bytes read */
+inline uint32_t get_cluster_index(tVolume * V, uint32_t curSector)
+{
+    uint32_t curCluster;
+
+    curCluster = (curSector - V->FirstFatTable) / V->Bpb.BPB_SecPerClus + 2;
+
+    return curCluster;
+}
+
+inline uint32_t get_sector_offset_in_cluster(tVolume * V, uint32_t curSector)
+{
+    uint32_t index = 0;
+
+    index =
+        curSector - ((get_cluster_index(V, curSector) - 2) * V->Bpb.BPB_SecPerClus +
+                     V->FirstDataSector);
+
+    return index;
+}
+
+inline uint32_t get_next_cluster(tVolume * V, uint32_t curCluster)
+{
+    uint32_t nextCluster;
+    if ((curCluster < 2) || (curCluster > V->DataClusters + 1))
+        return 0;
+
+    nextCluster = readl(curCluster * 4 + V->FirstFatTable);
+
+    return nextCluster;
+}
+
+inline uint32_t get_next_sector(tVolume * V, uint32_t curSector)
+{
+    uint32_t nextSector, curCluster;
+
+    if (get_sector_offset_in_cluster(V, curSector) != V->Bpb.BPB_SecPerClus - 1)
+        return (curSector + 1);
+    else                        //reach to end of a cluster
+    {
+        curCluster = get_cluster_index(V, curSector);
+        nextSector =
+            (get_next_cluster(V, curCluster) - 2) * V->Bpb.BPB_SecPerClus + V->FirstDataSector;
+        return nextSector;
+    }
+
+    return 0;
+}
+
+/* Read data from a fat32 file. size is given in bytes. Function returns number of bytes readget the offset inside the buffer*/
+/* Read file based on the fat partition descrption table, the sector could be not sequential in physical, we need to set the ADMA script to indicate the offset of each cluster */
+int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size)
 {
     uint32_t left_bytes, read_size, pos;
 
@@ -401,6 +536,7 @@ int fat_read_file(tVolume * V, tFile * F, uint8_t * buffer, uint32_t size)
     pos = 0;
     read_size = size;
     if (V->buffer_pos != 0) {
+        /*get the offset inside the buffer */
         pos = V->Bpb.BPB_BytsPerSec - V->buffer_pos;
 
         if (size < pos) {
@@ -421,11 +557,13 @@ int fat_read_file(tVolume * V, tFile * F, uint8_t * buffer, uint32_t size)
     }
 
     if (read_size > 0) {
+        /*Note by Ray:suppose all the clusters are consequential in physical address. or else we have to read the SD card in cluster unit, and add mutex in sd_read to avoid data corruption */
         V->blkreq(F->sector * V->Bpb.BPB_BytsPerSec, read_size, buffer + pos, 0);
         F->sector += (read_size / V->Bpb.BPB_BytsPerSec);
     }
 
     if (left_bytes) {
+        /*Note by Ray:A potential bug here. if there is unaligned data read, we have to wait untill the last read finished. */
         V->blkreq(F->sector * V->Bpb.BPB_BytsPerSec, V->Bpb.BPB_BytsPerSec, V->buffer, 0);
         ++(F->sector);
         memcpy(buffer + read_size + pos, V->buffer, left_bytes);
@@ -441,12 +579,11 @@ int fat_read_file(tVolume * V, tFile * F, uint8_t * buffer, uint32_t size)
     }
 
     return size;
-
 }
 
-int fat_read_file_fast(tVolume * V, tFile * F, uint8_t * buffer, uint32_t size)
 /* Read data from a fat32 file. size is given in bytes. Function returns number of bytes read */
 /* Doesn't wait for callback read function to return. Size must be a multiple of BPB_BytesPerSec (usualy 512 bytes) */
+int fat_read_file_fast(tVolume * V, tFile * F, char *buffer, uint32_t size)
 {
     uint32_t left_bytes, read_size;
 

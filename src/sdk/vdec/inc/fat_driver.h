@@ -165,7 +165,7 @@ typedef struct {
 
 /* FAT 32-byte Directory Entry structure */
 typedef struct {
-    uint8_t Name[11];
+    char Name[11];
     uint8_t Attr;
     uint8_t NTRes;
     uint8_t CrtTimeTenth;
@@ -202,8 +202,8 @@ typedef struct {
 #endif
 
 typedef struct {
-    uint8_t fname[8];
-    uint8_t fext[4];            //last for '\0'
+    char fname[8];
+    char fext[4];               //last for '\0'
     uint32_t file_size;
     uint32_t first_cluster;
     uint32_t sector;
@@ -222,11 +222,12 @@ typedef struct {
     uint32_t DataClusters;      /* The total number of valid data clusters */
     uint32_t FirstDataSector;   /* The first sector of the data region     */
     uint32_t FirstRootSector;   /* The first sector of FAT12/FAT16 root    */
+    uint32_t FirstFatTable;     /* The first file allocation table offset  */
     uint32_t FSI_Free_Count;    /* The count of free clusters              */
     uint32_t FSI_Nxt_Free;      /* The cluster number from which to start  */
     uint32_t FirstPartionOffset;    /* The offset of the first partition(in sector) */
     /* to search for free clusters, if known   */
-    uint8_t *buffer;
+    char *buffer;
     uint32_t buffer_pos;
 
     /* The BIOS Parameter Block of the volume (the long entry) */
@@ -270,7 +271,7 @@ typedef struct {
 
 int fat_mount(tVolume * V);
 int fat_scan_root(tVolume * V, tFile * files, int maxFiles, int filter, const char *ext);
-int fat_read_file(tVolume * V, tFile * F, uint8_t * buffer, uint32_t size);
+int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size);
 int fat_open_file(tVolume * V, tFile * F);
-
+int fat_get_file(tVolume * V, tFile * file, char *filename);
 #endif /* #ifndef __FD32_FAT_H */

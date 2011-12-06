@@ -84,10 +84,10 @@ uint8_t uart_getchar(struct hw_module * port)
  * Configure the RX or TX FIFO level and trigger mode
  *
  * @param   port - pointer to the UART module structure
- * @param   fifo – FIFO to configure: RX_FIFO or TX_FIFO.
- * @param   trigger_level – set the trigger level of the FIFO to generate
+ * @param   fifo - FIFO to configure: RX_FIFO or TX_FIFO.
+ * @param   trigger_level - set the trigger level of the FIFO to generate
  *                          an IRQ or a DMA request: number of characters.
- * @param   service_mode – FIFO served with DMA or IRQ or polling (default).
+ * @param   service_mode - FIFO served with DMA or IRQ or polling (default).
  */
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode)
@@ -158,13 +158,13 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state)
  * Initialize the UART port
  *
  * @param   port - pointer to the UART module structure.
- * @param   baudrate – serial baud rate such 9600, 57600, 115200, etc.
- * @param   parity – enable parity checking: PARITY_NONE, PARITY_EVEN,
+ * @param   baudrate - serial baud rate such 9600, 57600, 115200, etc.
+ * @param   parity - enable parity checking: PARITY_NONE, PARITY_EVEN,
  *                   PARITY_ODD.
- * @param   stopbits – number of stop bits: STOPBITS_ONE, STOPBITS_TWO.
- * @param   datasize – number of bits in a data: SEVENBITS, EIGHTBITS,
+ * @param   stopbits - number of stop bits: STOPBITS_ONE, STOPBITS_TWO.
+ * @param   datasize - number of bits in a data: SEVENBITS, EIGHTBITS,
  *                     NINEBITS (like RS-485 but not supported).
- * @param   flowcontrol – enable (RTS/CTS) hardware flow control:
+ * @param   flowcontrol - enable (RTS/CTS) hardware flow control:
  *                        FLOWCTRL_ON, FLOWCTRL_OFF.
  */
 void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,

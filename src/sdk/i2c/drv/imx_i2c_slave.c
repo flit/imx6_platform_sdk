@@ -16,6 +16,7 @@ static uint8_t g_wait_for_irq;
 static uint16_t g_i2c_status_reg;
 static uint32_t g_port_base_addr;
 static uint8_t g_addr_cycle, g_data_cycle;
+static uint8_t g_read_access;
 
 /*!
  * I2C interrupt routine.
@@ -28,7 +29,7 @@ void i2c_interrupt_routine(void)
 
     g_wait_for_irq = 0;
 }
-static uint8_t g_debug_flag[10];
+
 /*!
  * I2C handler for the slave mode. The function is based on the
  * flow chart for typical I2C polling routine described in the
@@ -45,6 +46,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
     /* use a local version of the status updated during the last interrupt */
     i2sr = g_i2c_status_reg;
     g_i2c_status_reg = 0;
+
     /* if I2SR is cleared, there's nothing to do */
     if(!i2sr)
         return;
@@ -64,16 +66,17 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
             i2cr |= I2C_I2CR_MTX;
             writew(i2cr, base + I2C_I2CR);
 
+            /* set a flag to notify that this is a read from master */
+            g_read_access = I2C_I2SR_SRW;
+
             /* get the data from the application */
             (int32_t)(*rq->slave_transmit)(rq);
             /* first sent byte */
-            data = rq->buffer[g_data_cycle];
+            data = rq->buffer[g_addr_cycle];
             g_data_cycle++;
-            data = 'T';
             /* transmit the data */
             writew(data, base + I2C_I2DR);
-            g_debug_flag[5] = 0x55;
-        }
+       }
         else
         {
             /* SRW=0, this is a master write access */
@@ -82,7 +85,6 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
             writew(i2cr, base + I2C_I2CR);
             /* dummy read of the received slave address */
             readw(base + I2C_I2DR);
-            g_debug_flag[4] = 0x44;
         }
     }
     else
@@ -93,16 +95,17 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
         {
             /* MTX=1, so this is in transmit mode */
             /* is ACK received <=> RXAK=0? */
-            if(!(i2cr & I2C_I2SR_RXAK))
+            if(!(i2sr & I2C_I2SR_RXAK))
             {
                 /* RXAK=0, an acknowledge was received */
-                /* get the data from the application */
-/* TO DO - a function that provides the data */
-                data = 'A';
+                /* get data from the application if not done 
+                    already during the first data access above */
+                /* following sent bytes */
+                data = rq->buffer[g_data_cycle + g_addr_cycle];
+                g_data_cycle++;
                 /* transmit the data */
                 writew(data, base + I2C_I2DR);
-                g_debug_flag[1] = 0x11;
-           }
+            }
             else
             {
                 /* RXAK=1, no acknowledge was received */
@@ -111,7 +114,6 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
                 writew(i2cr, base + I2C_I2CR);
                 /* dummy read of the received data */
                 readw(base + I2C_I2DR);
-                g_debug_flag[2] = 0x22;
             }
         }
         else
@@ -128,7 +130,6 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
                 /*this is a data that is read */
                 offset = g_addr_cycle + g_data_cycle;               
                 g_data_cycle++;
-                g_debug_flag[3] = 0x33;
             }
             /* read the received data */
             rq->buffer[offset] = readw(base + I2C_I2DR);
@@ -137,7 +138,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
 }
 
 /*!
- * The slave mode behaves like a EEPROM: 16-bit address / 8-bit data
+ * The slave mode behaves like any device with g_addr_cycle of address + g_data_cycle of data.
  * Master read =
  * START - SLAVE_ID/W - ACK - MEM_ADDR - ACK - START - SLAVE_ID/R - ACK - DATAx - NACK - STOP
  * 
@@ -145,7 +146,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
  * 2nd IRQ - receive the lower byte of the requested 16-bit address.
  * 3rd IRQ - receive the higher byte of the requested 16-bit address.
  * 4th IRQ - receive the slave address and Read flag from master.
- * 5th IRQ - transmit the data.
+ * 5th and next IRQ - transmit the data as long as NACK and STOP is not asserted.
  *
  * Master write =
  * START - SLAVE_ID/W - ACK - MEM_ADDR - ACK - DATAx - NACK - STOP
@@ -153,7 +154,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
  * 1st IRQ - receive the slave address and Write flag from master.
  * 2nd IRQ - receive the lower byte of the requested 16-bit address.
  * 3rd IRQ - receive the higher byte of the requested 16-bit address.
- * 4th IRQ - receive the data.
+ * 4th and next IRQ - receive the data as long the STOP is not asserted.
  */
 /*!
  * Handle the I2C transfers in slave mode.
@@ -163,15 +164,15 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
  */
 void i2c_slave_xfer(struct hw_module *port, struct imx_i2c_request *rq)
 {
-    uint32_t i;
     uint32_t base = rq->ctl_addr;
-    
-    /* initialize the buffer with known data */
-    memset(rq->buffer, 0, sizeof(rq->buffer));
 
+    /* enable the I2C controller */
+    writew(I2C_I2CR_IEN, base + I2C_I2CR);
+    
     /* initialize the number of addr and data cycles for the transfer */
     g_addr_cycle = 0;
     g_data_cycle = 0;
+    g_read_access = 0;
 
     /* set the choosen I2C slave address */
     writew(rq->dev_addr, base + I2C_IADR);
@@ -183,13 +184,14 @@ void i2c_slave_xfer(struct hw_module *port, struct imx_i2c_request *rq)
     /* Enable the interrupts for the I2C controller */
     i2c_setup_interrupt(port, ENABLE);
 
-    /* The slave behaves like a EEPROM: 16-bit address / 8-bit data */
+    /* The slave behaves like a EEPROM of rq.reg_addr_sz bytes for 
+     * and g_data_cycle bytes for data
+     */
 
     /* wait for the first 1 interrupt that should make the bus busy */
     g_wait_for_irq = 1;
     while(g_wait_for_irq == 1);
 
-    i = 0;
     do
     {
         i2c_slave_handler(rq);
@@ -202,15 +204,46 @@ void i2c_slave_xfer(struct hw_module *port, struct imx_i2c_request *rq)
     }
     while(get_status(base) & I2C_I2SR_IBB);
 
-    /* if transmit mode is set, then the master asked to read data, and
-     * there's no data to provide to the application.
-     */
-    if(readw(base + I2C_I2CR) & I2C_I2CR_MTX)
-        /* send to the apps how many data were transmitted */
-        printf("Master did a read access at address 0x%01X%01X of size %d.", rq->buffer[0], rq->buffer[1], g_data_cycle);
+    /* Provide to the application the data written by the master */
+    if(g_read_access & I2C_I2SR_SRW)
+    {
+        /* set the number of transmitted data */
+        rq->buffer_sz = g_data_cycle;
+
+#ifdef DEBUG
+        uint8_t i;
+        printf("Master did a read access at address 0x");
+        for(i=0;i<g_addr_cycle;i++)
+            printf("%02X", rq->buffer[i]);
+        printf(" of %dbytes.\n", g_data_cycle);
+        printf("The transmitted data is: 0x");
+        for(i=g_data_cycle;i>0;i--)
+            printf("%02X", rq->buffer[i-1+g_addr_cycle]);
+        printf("\n");
+#endif
+    }
     else
-        printf("Master wrote 0x%01X at address : 0x%01X%01X\n", rq->buffer[2], rq->buffer[0], rq->buffer[1]);
+    {
+        /* set the number of received data */
+        rq->buffer_sz = g_data_cycle;
+        /* send the received data to the application */
+        (int32_t)(*rq->slave_receive)(rq);
+
+#ifdef DEBUG
+        printf("Master did a write access at address 0x");
+        for(i=0;i<g_addr_cycle;i++)
+            printf("%02X", rq->buffer[i]);
+        printf(" of %dbytes.\n", g_data_cycle);
+        printf("The received data is: 0x");
+        for(i=g_data_cycle;i>0;i--)
+            printf("%02X", rq->buffer[i-1+g_addr_cycle]);
+        printf("\n");
+#endif
+    }
 
     /* Disable the interrupts for the I2C controller */
     i2c_setup_interrupt(port, DISABLE);
+
+    /* disable the controller */
+    writew(0, base + I2C_I2CR);
 }

@@ -32,7 +32,7 @@ static int32_t at24cx_write(uint32_t addr, uint8_t *buf)
     return ret;
 }
 
-static uint8_t test_buffer[] = {'F', 'S', 'L', ' ', 'I', '2', 'C', ' ', 'T', 'E', 'S', 'T'};
+static uint8_t test_buffer[] = {'F', 'R', 'E', 'E', 'S', 'C', 'A', 'L', 'E', 'I', '2', 'C', 'T', 'E', 'S', 'T'};
 
 int32_t i2c_eeprom_at24cxx_test(void)
 {

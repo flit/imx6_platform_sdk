@@ -342,8 +342,10 @@ void i2c_setup_interrupt(struct hw_module *port, uint8_t state)
     if (state == ENABLE) {
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
-        /* enable the IRQ at the ARM core level */
+       /* enable the IRQ at the ARM core level */
         enable_interrupt(port->irq_id, CPU_0, 0);
+        /* clear the status register */
+        writew(0, port->base + I2C_I2SR);
         /* and enable the interrupts in the I2C controller */
         writew(readw(port->base + I2C_I2CR) | I2C_I2CR_IIEN, port->base + I2C_I2CR);
     } else {
@@ -351,6 +353,8 @@ void i2c_setup_interrupt(struct hw_module *port, uint8_t state)
         disable_interrupt(port->irq_id, CPU_0);
         /* and disable the interrupts in the I2C controller */
         writew(readw(port->base + I2C_I2CR) & ~I2C_I2CR_IIEN, port->base + I2C_I2CR);
+        /* clear the status register */
+        writew(0, port->base + I2C_I2SR);
     }
 }
 
@@ -365,6 +369,9 @@ void i2c_setup_interrupt(struct hw_module *port, uint8_t state)
  */
 int i2c_init(uint32_t base, uint32_t baud)
 {
+    uint32_t src_clk, divider;
+    uint8_t index;
+
     /* enable the source clocks to the I2C port */
     clock_gating_config(base, CLOCK_ON);
 
@@ -374,20 +381,29 @@ int i2c_init(uint32_t base, uint32_t baud)
     /* reset I2C */
     writew(0, base + I2C_I2CR);
 
-    /* 
-     * TO DO - get source frequency and calculate required divider
-        i2c_clk_rate = clk_get_rate(i2c_imx->clk);
-        div = (i2c_clk_rate + rate - 1) / rate;
-        if (div < i2c_clk_div[0][0])
-                i = 0;
-        else if (div > i2c_clk_div[ARRAY_SIZE(i2c_clk_div) - 1][0])
-                i = ARRAY_SIZE(i2c_clk_div) - 1;
-        else
-                for (i = 0; i2c_clk_div[i][0] < div; i++);
-
-     */
-    //printf("IPG_PER_CLK = %d\n",get_main_clock(IPG_PER_CLK));
-    writew(0x14, base + I2C_IFDR);
+    /* Adjust the divider to get the closest SCL frequency to baud rate */
+    src_clk = get_main_clock(IPG_PER_CLK);
+    divider = src_clk / baud;
+    if(divider < i2c_freq_div[0][0])
+    {
+        divider = i2c_freq_div[0][0];
+        index = 0;
+        printf("Warning :can't find a smaller divider than %d.\n", divider);
+        printf("SCL frequency is set at %d - expected was %d.\n", src_clk/divider, baud);
+    }
+    else if(divider > i2c_freq_div[49][0])
+    {
+        divider = i2c_freq_div[49][0];
+        index = 49;
+        printf("Warning: can't find a bigger divider than %d.\n", divider);
+        printf("SCL frequency is set at %d - expected was %d.\n", src_clk/divider, baud);
+    }
+    else
+    {
+        for(index=0;i2c_freq_div[index][0]<divider;index++);
+        divider = i2c_freq_div[index][0];
+    }
+    writew(i2c_freq_div[index][1], base + I2C_IFDR);
 
     /* set an I2C slave address */
     writew(IMX6_SLAVE_ID, base + I2C_IADR);

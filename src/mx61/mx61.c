@@ -104,8 +104,12 @@ extern void hdmi_test(void);
 extern void audio_test(void);
 extern void i2c_test(void);
 extern void gic_test(void);
-extern void snvs_rtc_test(void);
-extern void snvs_srtc_test(void);
+extern int sata_test(void);
+/* these do not exist yet */
+//extern void snvs_rtc_test(void);
+//extern void snvs_srtc_test(void);
+extern void flexcan_test(void);
+extern int spi_test(void);
 
 void ALL_test(void)
 {
@@ -118,12 +122,19 @@ void ALL_test(void)
         uart_test();
         gpt_test();
         epit_test();
-        //usdhc_test();
+        usdhc_test();
         hdmi_test();
         audio_test();
         i2c_test();
-        snvs_rtc_test();
-        snvs_srtc_test();
+        sata_test();
+//        snvs_rtc_test();
+//        snvs_srtc_test();
+#ifdef MX61_ARD
+        flexcan_test();
+#endif
+#ifdef MX61_EVB
+        spi_test();
+#endif
         /* GIC test can only be executed once, and requires a board reset */
         if (gic_test_done == 0) {
             gic_test_done = 0xFF;

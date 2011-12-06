@@ -24,7 +24,7 @@ int32_t i2c_test(void)
     printf("Start I2C unit tests:");
 
     do {
-        printf("\n  1 - to perform a test with an EEPROM.\n");
+        printf("\n  1 - to perform a test with the i.MX6 as a master accessing an EEPROM.\n");
         printf("  2 - to perform a test with the i.MX6 as a slave device.\n");
         printf("  x - to exit.\n\n");
 

@@ -10,10 +10,7 @@
  * @brief USB host driver.
  */
 
-#include "usb.h"
-#include "usb_regs.h"
-#include "usb_registers.h"
-#include "soc_memory_map.h"
+#include "hardware.h"
 
 int emuerateDevice (usb_module_t *, usbhQueueHead_t *, usbDeviceDescriptor_t *,uint8_t *,uint8_t *,uint8_t *,uint8_t *,uint8_t *);
 void usbh_set_device_address(usb_module_t *, usbhQueueHead_t *, uint32_t);

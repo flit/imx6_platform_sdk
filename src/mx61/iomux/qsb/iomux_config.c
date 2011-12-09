@@ -96,7 +96,7 @@ void epit2_iomux_config()
 {
 };
 
-void esai1_iomux_config()
+void esai_iomux_config()
 {
 };
 

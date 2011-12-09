@@ -25,7 +25,6 @@
 #define ESAI_TX_FIFO_SIZE	120
 
 extern void esai_clk_sel_gate_on(void);
-extern void esai_io_cfg(void);
 
 ////////////////////////////////////Local variables and functions/////////////////////////// 
 /*!
@@ -373,7 +372,7 @@ int32_t esai_init(void *priv)
 
     esai_clk_sel_gate_on();
 
-    esai_io_cfg();
+    esai_iomux_config();
 
     esai_reset(ctrl);
 

@@ -23,7 +23,7 @@ void wdog1_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_9.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_9.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: FSR of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: FSR of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: WDOG_B of instance: wdog1.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: COL[6] of instance: kpp.

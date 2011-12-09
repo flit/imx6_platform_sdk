@@ -106,7 +106,6 @@ void config_system_parameters(void)
 extern int config_hdmi_si9022(int ipu_index, int ipu_di);
 extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
 extern int ips_hdmi_1080P60_stream(int ipu_index);
-extern void ipu_iomux_config(void);
 
 int vdec_test(void)
 {

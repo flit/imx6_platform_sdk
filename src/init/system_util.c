@@ -189,7 +189,7 @@ int _write(int fd, char *buf, int nbytes)
  */
 void _sys_exit(int return_code)
 {
-    // just put system into WFI mdoe
+    // just put system into WFI mode
     __asm volatile ("mov r1, #0x0\n\t" "mcr p15, 0, r1, c7, c0, 4\n\t");
 
     while (1) ;

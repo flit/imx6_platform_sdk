@@ -208,8 +208,25 @@ void show_ddr_config(void)
     printf("========================================\n\n");
 }
 
-extern void uart2_iomux_config();
-extern void uart4_iomux_config();
+/*!
+ * Board initialization and UART IOMUX set up
+ */
+void board_init(void)
+{
+    // Configure some board signals through I/O expanders
+    max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
+    max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
+    max7310_init(0, MAX7310_ID0_DEF_DIR, MAX7310_ID0_DEF_VAL);
+    max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
+    max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
+    max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
+}
+
+/*!
+ *
+ * Complementary code related to IOMUX configuration
+ *
+ */
 
 /*!
  * That function calls the board dependent UART IOMUX configuration functions.
@@ -217,13 +234,21 @@ extern void uart4_iomux_config();
 void uart_iomux_config(uint32_t module_base_add)
 {
     switch (module_base_add) {
+    case UART1_BASE_ADDR:
+        uart1_iomux_config();
+        break;
     case UART2_BASE_ADDR:
         uart2_iomux_config();
+        break;
+    case UART3_BASE_ADDR:
+        uart3_iomux_config();
         break;
     case UART4_BASE_ADDR:
         uart4_iomux_config();
         break;
-
+    case UART5_BASE_ADDR:
+        uart5_iomux_config();
+        break;
     default:
         break;
     }
@@ -288,19 +313,6 @@ void lvds_power_on(void)
 
 void ldb_iomux_config(void)
 {
-}
-
-void gpmi_nand_clk_setup(void)
-{
-    *(volatile uint32_t *)(HW_ANADIG_PFD_528_RW) &= ~(0x00800000);
-    *(volatile uint32_t *)(CCM_CCGR4) &= ~(0xff000000);
-    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x00030000);
-    *(volatile uint32_t *)(CCM_CS2CDR) |= 0x00020000;
-    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x07fc0000);
-    *(volatile uint32_t *)(CCM_CS2CDR) |= ((uint32_t) (4 << 18) | (3 << 21));
-    *(volatile uint32_t *)(CCM_CCGR4) |= 0xff000000;
-    *(volatile uint32_t *)(CCM_CCGR6) |= 0x000003c0;
-    *(volatile uint32_t *)(CCM_CCGR0) |= 0x00000030;
 }
 
 void gpmi_nand_pinmux_config(void)
@@ -670,20 +682,17 @@ void usdhc_iomux_config(uint32_t base_address)
 {
     switch (base_address) {
     case USDHC1_BASE_ADDR:
+        usdhc1_iomux_config();
         break;
-
     case USDHC2_BASE_ADDR:
+        usdhc2_iomux_config();
         break;
-
     case USDHC3_BASE_ADDR:
         usdhc3_iomux_config();
         break;
-
     case USDHC4_BASE_ADDR:
-
         usdhc4_iomux_config();
         break;
-
     default:
         break;
     }
@@ -698,165 +707,21 @@ void ecspi_iomux_cfg(uint32_t base_address)
     case ECSPI1_BASE_ADDR:
         ecspi1_iomux_config();
         break;
-
     case ECSPI2_BASE_ADDR:
+        ecspi2_iomux_config();
         break;
-
     case ECSPI3_BASE_ADDR:
+        ecspi3_iomux_config();
         break;
-
     case ECSPI4_BASE_ADDR:
+        ecspi4_iomux_config();
         break;
-
     case ECSPI5_BASE_ADDR:
+        ecspi5_iomux_config();
         break;
-
     default:
         break;
     }
-}
-
-void ssi_io_cfg(void)
-{
-}
-
-void SGTL5000PowerUp_and_clockinit(void)
-{
-}
-
-/* Configure iomux for ESAI */
-void esai_io_cfg(void)
-{
-    esai1_iomux_config();
-}
-
-void esai_clk_sel_gate_on()
-{
-    uint32_t val = 0;
-#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
-    val = readl(CCM_CSCMR2);
-    val &= ~(0x03 << 19);
-    val |= 0x01 << 19;          //source from PLL3_508
-    writel(val, CCM_CSCMR2);
-
-    val = readl(CCM_CCGR1);
-    val |= 0x03 << 16;          //Gate on esai_clk
-    writel(val, CCM_CCGR1);
-#endif
-}
-
-/*!
- * Power no esai codec.
- */
-int esai_codec_power_on(void)
-{
-    //No need to do anything for mx61_ard
-    return 0;
-}
-
-extern sata_phy_ref_clk_t sata_phy_clk_sel;
-
-/*!
- * SATA related clocks enable function
- */
-void sata_clock_enable(void)
-{
-    // Set SATA timings     0x05932046
-    reg32_write(0x020E0034, 0x05932044);
-    hal_delay_us(1000);
-
-    // Enable SATA PLL
-    reg32_write(0x020E0034, 0x05932046);
-    hal_delay_us(1000);
-
-    //enable SATA_CLK in CCGR5
-    *(volatile u32 *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) |= 0x00000030;
-    //enable ENET_PLL (PLL8) in ANADIG. done in freq_populate()
-    //enale SATA_CLK in the ENET_PLL register
-    reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 20);    /* set ENABLE_SATA */
-    //config ENET PLL div_select for SATA - 100MHz 
-    reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x2, 0x3); /* 0b10-100MHz */
-}
-
-/*!
- * SATA related clocks dis function
- */
-void sata_clock_disable(void)
-{
-    //disable SATA_CLK in CCGR5. 
-    *(volatile u32 *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) &= ~(0x00000030);
-    //disable ENET_PLL (PLL8) in ANADIG
-    reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 20);    /* clear ENABLE_SATA */
-}
-
-/*!
- * SATA power on
- */
-void sata_power_on(void)
-{
-    //enable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
-    max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
-    sata_phy_clk_sel = ANATOP_ENET_PLL; //dummy. In fact, it is PLL8 for ENET
-}
-
-/*!
- * SATA power off
- */
-void sata_power_off(void)
-{
-    //disable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
-    max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
-}
-
-/*!
- * SPDIF clock configuration
- * Use the default setting as follow:
- * CDCDR[spdif0_clk_sel](PLL3)->CDCDR[spdif0_clk_pred](div2)->CDCDR[spdif0_clk_podf](div8)-> spdif0_clk_root, so 
- * the freqency of spdif0_clk should be 480/2/8 = 30MHz.
- */
-void spdif_clk_cfg(void)
-{
-    unsigned int val;
-
-    val = readl(CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
-    //CDCDR[spdif0_clk_sel](PLL3)
-    val &= ~(0x03 << 20);
-    val |= 0x03 << 20;
-    //CDCDR[spdif0_clk_pred](div2)
-    val &= ~(0x07 << 25);
-    val |= 0x01 << 25;
-    //CDCDR[spdif0_clk_podf](div8)
-    val &= ~(0x07 << 22);
-    val |= 0x07 << 22;
-    writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
-
-    val = readl(CCM_BASE_ADDR + CCM_CCGR5_OFFSET);
-    val |= 0x03 << 14;          //spdif_clk_enable
-    writel(val, CCM_BASE_ADDR + CCM_CCGR5_OFFSET);
-}
-
-unsigned int spdif_get_tx_clk_freq(void)
-{
-    return 30000000;
-}
-
-/*!
- * Board initialization and UART IOMUX set up
- */
-void board_init(void)
-{
-    // Configure some board signals through I/O expanders
-    max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
-    max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
-    max7310_init(0, MAX7310_ID0_DEF_DIR, MAX7310_ID0_DEF_VAL);
-    max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
-    max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
-    max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
-}
-
-uint32_t GetCPUFreq(void)
-{
-    return 1000000000;
 }
 
 /*!
@@ -898,4 +763,141 @@ void can_iomux_config(uint32_t module_base_add)
         printf("ERR: invalid CAN base address for iomux config\n");
         break;
     }
+}
+
+extern sata_phy_ref_clk_t sata_phy_clk_sel;
+/*!
+ * SATA power on
+ */
+void sata_power_on(void)
+{
+    //enable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
+    max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
+    sata_phy_clk_sel = ANATOP_ENET_PLL; //dummy. In fact, it is PLL8 for ENET
+}
+
+/*!
+ * SATA power off
+ */
+void sata_power_off(void)
+{
+    //disable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0 
+    max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
+}
+
+void SGTL5000PowerUp_and_clockinit(void)
+{
+}
+
+/*!
+ * Power no esai codec.
+ */
+int esai_codec_power_on(void)
+{
+    //No need to do anything for mx61_ard
+    return 0;
+}
+
+/*!
+ *
+ * Additional code related to clock configuration
+ *
+ */
+
+void gpmi_nand_clk_setup(void)
+{
+    *(volatile uint32_t *)(HW_ANADIG_PFD_528_RW) &= ~(0x00800000);
+    *(volatile uint32_t *)(CCM_CCGR4) &= ~(0xff000000);
+    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x00030000);
+    *(volatile uint32_t *)(CCM_CS2CDR) |= 0x00020000;
+    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x07fc0000);
+    *(volatile uint32_t *)(CCM_CS2CDR) |= ((uint32_t) (4 << 18) | (3 << 21));
+    *(volatile uint32_t *)(CCM_CCGR4) |= 0xff000000;
+    *(volatile uint32_t *)(CCM_CCGR6) |= 0x000003c0;
+    *(volatile uint32_t *)(CCM_CCGR0) |= 0x00000030;
+}
+
+void esai_clk_sel_gate_on()
+{
+    uint32_t val = 0;
+#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
+    val = readl(CCM_CSCMR2);
+    val &= ~(0x03 << 19);
+    val |= 0x01 << 19;          //source from PLL3_508
+    writel(val, CCM_CSCMR2);
+
+    val = readl(CCM_CCGR1);
+    val |= 0x03 << 16;          //Gate on esai_clk
+    writel(val, CCM_CCGR1);
+#endif
+}
+
+/*!
+ * SATA related clocks enable function
+ */
+void sata_clock_enable(void)
+{
+    // Set SATA timings     0x05932046
+    reg32_write(0x020E0034, 0x05932044);
+    hal_delay_us(1000);
+
+    // Enable SATA PLL
+    reg32_write(0x020E0034, 0x05932046);
+    hal_delay_us(1000);
+
+    //enable SATA_CLK in CCGR5
+    *(volatile u32 *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) |= 0x00000030;
+    //enable ENET_PLL (PLL8) in ANADIG. done in freq_populate()
+    //enale SATA_CLK in the ENET_PLL register
+    reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 20);    /* set ENABLE_SATA */
+    //config ENET PLL div_select for SATA - 100MHz 
+    reg32_write_mask(HW_ANADIG_PLL_ETH_CTRL, 0x2, 0x3); /* 0b10-100MHz */
+}
+
+/*!
+ * SATA related clocks dis function
+ */
+void sata_clock_disable(void)
+{
+    //disable SATA_CLK in CCGR5. 
+    *(volatile u32 *)(CCM_BASE_ADDR + CCM_CCGR5_OFFSET) &= ~(0x00000030);
+    //disable ENET_PLL (PLL8) in ANADIG
+    reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 20);    /* clear ENABLE_SATA */
+}
+
+/*!
+ * SPDIF clock configuration
+ * Use the default setting as follow:
+ * CDCDR[spdif0_clk_sel](PLL3)->CDCDR[spdif0_clk_pred](div2)->CDCDR[spdif0_clk_podf](div8)-> spdif0_clk_root, so 
+ * the freqency of spdif0_clk should be 480/2/8 = 30MHz.
+ */
+void spdif_clk_cfg(void)
+{
+    unsigned int val;
+
+    val = readl(CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+    //CDCDR[spdif0_clk_sel](PLL3)
+    val &= ~(0x03 << 20);
+    val |= 0x03 << 20;
+    //CDCDR[spdif0_clk_pred](div2)
+    val &= ~(0x07 << 25);
+    val |= 0x01 << 25;
+    //CDCDR[spdif0_clk_podf](div8)
+    val &= ~(0x07 << 22);
+    val |= 0x07 << 22;
+    writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+
+    val = readl(CCM_BASE_ADDR + CCM_CCGR5_OFFSET);
+    val |= 0x03 << 14;          //spdif_clk_enable
+    writel(val, CCM_BASE_ADDR + CCM_CCGR5_OFFSET);
+}
+
+unsigned int spdif_get_tx_clk_freq(void)
+{
+    return 30000000;
+}
+
+uint32_t GetCPUFreq(void)
+{
+    return 1000000000;
 }

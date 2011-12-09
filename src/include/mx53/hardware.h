@@ -156,6 +156,7 @@ void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_fec_setup(void);
 void esai_iomux(void);
+void audmux_iomux_config(void);
 
 struct hw_module g_debug_uart;
 struct hw_module g_system_timer;

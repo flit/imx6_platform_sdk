@@ -142,6 +142,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
  * Master read =
  * START - SLAVE_ID/W - ACK - MEM_ADDR - ACK - START - SLAVE_ID/R - ACK - DATAx - NACK - STOP
  * 
+ * Example for a 16-bit address access:
  * 1st IRQ - receive the slave address and Write flag from master.
  * 2nd IRQ - receive the lower byte of the requested 16-bit address.
  * 3rd IRQ - receive the higher byte of the requested 16-bit address.
@@ -154,7 +155,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
  * 1st IRQ - receive the slave address and Write flag from master.
  * 2nd IRQ - receive the lower byte of the requested 16-bit address.
  * 3rd IRQ - receive the higher byte of the requested 16-bit address.
- * 4th and next IRQ - receive the data as long the STOP is not asserted.
+ * 4th and next IRQ - receive the data as long STOP is not asserted.
  */
 /*!
  * Handle the I2C transfers in slave mode.

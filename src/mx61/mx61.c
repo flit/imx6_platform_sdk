@@ -105,11 +105,12 @@ extern void audio_test(void);
 extern void i2c_test(void);
 extern void gic_test(void);
 extern int sata_test(void);
-/* these do not exist yet */
-//extern void snvs_rtc_test(void);
-//extern void snvs_srtc_test(void);
+extern void snvs_rtc_test(void);
+extern void snvs_srtc_test(void);
 extern void flexcan_test(void);
 extern int spi_test(void);
+extern int vdec_test(void);
+extern int gpmi_test(void);
 
 void ALL_test(void)
 {
@@ -117,24 +118,28 @@ void ALL_test(void)
 
     while (1) {
         printf("Starting the tests suite...\n");
-        sdma_test();
-        ipu_test();
-        uart_test();
-        gpt_test();
-        epit_test();
-        usdhc_test();
-        hdmi_test();
         audio_test();
-        i2c_test();
-        sata_test();
-//        snvs_rtc_test();
-//        snvs_srtc_test();
 #ifdef MX61_ARD
         flexcan_test();
 #endif
+        epit_test();
+
+        gpt_test();
+        hdmi_test();
+        i2c_test();
+        ipu_test();
+        sata_test();
+        sdma_test();
+        snvs_rtc_test();
+        snvs_srtc_test();
 #ifdef MX61_EVB
+        gpmi_test();
         spi_test();
+        vdec_test();
 #endif
+        uart_test();
+        usdhc_test();
+
         /* GIC test can only be executed once, and requires a board reset */
         if (gic_test_done == 0) {
             gic_test_done = 0xFF;

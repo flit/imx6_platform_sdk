@@ -598,14 +598,14 @@ void ipu_ic_rotation_config(int ipu_index, int taskType, int rot, int hf, int vf
 void ipu_ic_resize_config(int ipu_index, int taskType, ipu_res_info_t res_info);
 void ipu_ic_enable(int ipu_index, int ic_enable, int irt_enable);
 int ipu_ic_calc_resize_coeffs(int in_size, int out_size, int *resize_coeff, int *downsize_coeff);
-int ipu_ic_config_resize_rate(int ipu_index, char *task_type, unsigned int res_vert,
-                              unsigned int down_vert, unsigned int res_horiz,
-                              unsigned int down_horiz);
+int ipu_ic_config_resize_rate(int ipu_index, char *task_type, uint32_t res_vert,
+                              uint32_t down_vert, uint32_t res_horiz,
+                              uint32_t down_horiz);
 int ipu_ic_combine_config(int ipu_index, ic_comb_params_t comb_params);
 int ipu_ic_csc_config(int ipu_index, int csc_set_index, ic_csc_params_t csc_params);
 int ipu_ic_task_enable(int ipu_index, int task_type, int task, int enable);
 
-void ipu_write_field(int ipu_index, unsigned int ID_addr, unsigned int ID_mask, unsigned int data);
+void ipu_write_field(int ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data);
 
 ips_dev_panel_t *search_panel(char *panel_name);
 void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel);

@@ -157,7 +157,7 @@ void gpio7_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_17.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 7 iomux modes to be used for pad: GPIO_17.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX0 of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX0 of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: 1588_EVENT3_IN of instance: enet.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: PMIC_RDY of instance: ccm.
@@ -222,7 +222,7 @@ void gpio7_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_18.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_18.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX1 of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX1 of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO1_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RX_CLK of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXCLK_SELECT_INPUT for mode ALT1.

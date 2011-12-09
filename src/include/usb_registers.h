@@ -381,4 +381,4 @@ typedef struct usbRegisters
 #define USB_ENDPTCTRL_TXR                (0x400000)
 #define USB_ENDPTCTRL_TXE                (0x800000)
 
-#endif /* __USB_REGISTER_STRUCT__*/
+#endif /* __USB_REGISTERS__ */

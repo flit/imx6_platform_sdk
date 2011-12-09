@@ -23,7 +23,7 @@ void mlb_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_3.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_3.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: HCKR of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: HCKR of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT0 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: SCL of instance: i2c3.
@@ -102,7 +102,7 @@ void mlb_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_2.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_2.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: FST of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: FST of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT2 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: ROW[6] of instance: kpp.
@@ -180,7 +180,7 @@ void mlb_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_6.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_6.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: SCKT of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: SCKT of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT1 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: SDA of instance: i2c3.

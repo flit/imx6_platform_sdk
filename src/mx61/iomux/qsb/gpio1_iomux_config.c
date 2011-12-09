@@ -92,7 +92,7 @@ void gpio1_iomux_config(void)
     //                    Select 1 of 7 iomux modes to be used for pad: ENET_REF_CLK.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: Reserved of instance: Reserved.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: TX_CLK of instance: enet.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: FSR of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: FSR of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: DEBUG_BUS_DEVICE[4] of instance: sdma.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[23] of instance: gpio1.
@@ -158,7 +158,7 @@ void gpio1_iomux_config(void)
     //                    Select 1 of 8 iomux modes to be used for pad: ENET_RX_ER.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: USBOTG_ID of instance: anatop.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RX_ER of instance: enet.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKR of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKR of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: IN1 of instance: spdif.
     //                NOTE: - Config Register IOMUXC_SPDIF_SPDIF_IN1_SELECT_INPUT for mode ALT3.
@@ -227,7 +227,7 @@ void gpio1_iomux_config(void)
     //     ALT0 (0) - Select mux mode: ALT0 mux port: Reserved of instance: Reserved.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RX_EN of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXEN_SELECT_INPUT for mode ALT1.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: SCKT of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: SCKT of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: SPDIF_EXTCLK of instance: spdif.
     //                NOTE: - Config Register IOMUXC_SPDIF_TX_CLK2_SELECT_INPUT for mode ALT3.
@@ -293,7 +293,7 @@ void gpio1_iomux_config(void)
     //                NOTE: - Config Register IOMUXC_MLB_MLB_SIG_IN_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RDATA[1] of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXDATA_1_SELECT_INPUT for mode ALT1.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: FST of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: FST of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT for mode ALT2.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT3_OUT of instance: enet.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[26] of instance: gpio1.
@@ -360,7 +360,7 @@ void gpio1_iomux_config(void)
     //     ALT0 (0) - Select mux mode: ALT0 mux port: 32K_OUT of instance: osc32k.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RDATA[0] of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXDATA_0_SELECT_INPUT for mode ALT1.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKT of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKT of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: OUT1 of instance: spdif.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[27] of instance: gpio1.
@@ -421,7 +421,7 @@ void gpio1_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_6.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_6.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: SCKT of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: SCKT of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT1 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: SDA of instance: i2c3.
@@ -490,7 +490,7 @@ void gpio1_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_7.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_7.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX4_RX1 of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX4_RX1 of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO4_SDI1_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RDY of instance: ecspi5.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: EPITO of instance: epit1.
@@ -558,7 +558,7 @@ void gpio1_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_8.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_8.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX5_RX0 of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: TX5_RX0 of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO5_SDI0_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: ANATOP_32K_OUT of instance: anatop.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: EPITO of instance: epit2.
@@ -627,7 +627,7 @@ void gpio1_iomux_config(void)
     //     SION_ENABLED (1) - Force input path of pad GPIO_9.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_9.
-    //     ALT0 (0) - Select mux mode: ALT0 mux port: FSR of instance: esai1.
+    //     ALT0 (0) - Select mux mode: ALT0 mux port: FSR of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: WDOG_B of instance: wdog1.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: COL[6] of instance: kpp.

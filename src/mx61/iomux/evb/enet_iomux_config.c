@@ -1156,7 +1156,7 @@ void enet_iomux_config(void)
     //                    Select 1 of 7 iomux modes to be used for pad: ENET_REF_CLK.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: Reserved of instance: Reserved.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: TX_CLK of instance: enet.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: FSR of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: FSR of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: DEBUG_BUS_DEVICE[4] of instance: sdma.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[23] of instance: gpio1.

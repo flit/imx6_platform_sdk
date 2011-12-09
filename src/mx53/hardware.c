@@ -475,7 +475,7 @@ void SGTL5000PowerUp_and_clockinit(void)
 }
 
 /* Configure iomux for AUDMUX output */
-void ssi_io_cfg(void)
+void audmux_iomux_config(void)
 {
     /* Select ALT2 mode of KEY_ROW1 for AUD5_RXD */
     writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_KEY_ROW1);
@@ -496,7 +496,7 @@ void ssi_io_cfg(void)
 }
 
 /* Configure iomux for ESAI */
-void esai_io_cfg(void)
+void esai_iomux_config(void)
 {
     /* Select ALT2 mode of FEC_RXD0 for ESAI1_HCKT */
     writel(ALT2, IOMUXC_SW_MUX_CTL_PAD_FEC_RXD0);

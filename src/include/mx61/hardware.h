@@ -35,6 +35,8 @@
 #include "timer.h"
 #include "hdmi_regs.h"
 #include "buffers.h"
+#include "usb_regs.h"
+#include "usb.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -64,14 +66,14 @@
 #if defined(MX61_EVB) || defined(MX61_SMD) || defined(MX61_QSB)
 #define MMDC0_BASE_ADDR			0x10000000
 #define MMDC0_END_ADDR			0x4FFFFFFF
-/*For smd and qsb, there is no DDR_cs1, just define them to avoid build error. And the memory region can not be accessed*/
+/*For SMD and QSB, there is no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
 #define MMDC1_BASE_ADDR			0x50000000
 #define MMDC1_END_ADDR			0x8FFFFFFF
 #endif
 #if defined(MX61_ARD)
 #define MMDC0_BASE_ADDR			0x10000000
 #define MMDC0_END_ADDR			0x8FFFFFFF  //Maybe should be modified according the ddr init file.
-/*Acturally, ard has no DDR_cs1, just define them to avoid build error. And the memory region can not be accessed*/
+/*Actually, ARD has no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
 #define MMDC1_BASE_ADDR			0x90000000
 #define MMDC1_END_ADDR			0xFFFFFFFF
 #endif
@@ -264,7 +266,6 @@ void board_init(void);
 void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_enet_setup(void);
-void esai_iomux(void);
 void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
 void usdhc_iomux_config(uint32_t);

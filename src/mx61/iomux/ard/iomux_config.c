@@ -18,7 +18,7 @@ void iomux_config(void)
     ccm_iomux_config();
     ecspi1_iomux_config();
     enet_iomux_config();
-    esai1_iomux_config();
+    esai_iomux_config();
     gpio1_iomux_config();
     gpio2_iomux_config();
     gpio4_iomux_config();

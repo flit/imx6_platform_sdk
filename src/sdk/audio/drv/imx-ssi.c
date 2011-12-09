@@ -24,8 +24,6 @@
 #define D(fmt,args...)
 #endif
 
-extern void ssi_io_cfg(void);
-
 ////////////////////////////////////Local variables and functions/////////////////////////// 
 
 /*!
@@ -282,7 +280,7 @@ int32_t ssi_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
 
-    ssi_io_cfg();
+    audmux_iomux_config();
     ssi_soft_reset(ctrl);
     ssi_registers_reset(ctrl);
 

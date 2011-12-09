@@ -123,4 +123,4 @@
 
 #define USB_DTD_BUF1_FRAME_NUM(x)		(((x)&0x7FF)<<0)
 
-#endif /* USB_DEFINES_H */
+#endif /* _USB_DEFINES_H */

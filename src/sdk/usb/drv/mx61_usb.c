@@ -14,11 +14,7 @@
  * The routines are referenced in the usb_module structure.
  */
 
-#include "usb_regs.h"
-#include "usb.h"
 #include "hardware.h"
-#include "imx_i2c.h"
-#include "soc_memory_map.h"
 
 int usbEnableClocks(usb_module_t *port)
 {

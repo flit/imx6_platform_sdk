@@ -11,7 +11,11 @@
  *
  * 
  */
-#include <io.h>
+#include "io.h"
+
+#ifndef __USB_REGS__
+#define __USB_REGS__
+
 /*!
  * Non-core USB registers
  * These registers are implementation specific and may vary between i.MX parts
@@ -46,7 +50,7 @@ typedef struct usbNonCore
 #define UTMI_ON_CLOCK       (1 << 13)                    // Force PHY clock (OTG and UH1) on when in low-power suspend
 #define _480MHZ_CLOCK_ON    (1 << 13)                    // Force HSIC clock (UH2 and UH3) on when in low-power suspend
 #define SUSPENDM            (1 << 12)                    // Force PHY in low-power suspend
-#define RESET               (1 << 11)                    // RESET PHY
+#define RESET_PHY           (1 << 11)                    // RESET PHY
 #define WIE                 (1 << 10)                    // Wakeup interrupt enable
 #define PM                  (1 << 9)                     // Power/Overcurrent mask
 #define OVER_CUR_POL        (1 << 8)                     // Overcurrent polarity
@@ -165,3 +169,4 @@ typedef struct usbPhy {
 #define USBPHY_STATUS_DEVPLUGIN_STATUS           (1 << 6)
 #define USBPHY_STATUS_HOSTDISCONDETECT_STATUS    (1 << 3)
 
+#endif /* __USB_REGS__*/

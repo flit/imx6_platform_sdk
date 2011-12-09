@@ -132,7 +132,7 @@ static int wait_op_done(uint32_t base, int is_tx)
  *
  * @return  0 if successful; -1 otherwise
  */
-static int master_tx_byte(uint8_t * data, uint32_t base)
+static int tx_byte(uint8_t * data, uint32_t base)
 {
     int ret;
     printf1("%s(data=0x%02x, base=0x%x)\n", __FUNCTION__, *data, base);
@@ -159,7 +159,7 @@ static int master_tx_byte(uint8_t * data, uint32_t base)
  *
  * @return  0 if successful; -1 otherwise
  */
-static int master_rx_bytes(uint8_t * data, uint32_t base, int sz)
+static int rx_bytes(uint8_t * data, uint32_t base, int sz)
 {
     unsigned short i2cr;
     int i;
@@ -246,7 +246,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
     /* Step 2: send slave address + read/write at the LSB */
     data = (rq->dev_addr << 1) | I2C_WRITE;
 
-    if ((ret = master_tx_byte(&data, base)) != 0) {
+    if ((ret = tx_byte(&data, base)) != 0) {
         printf1("START TX ERR %d\n", ret);
 
         if (ret == ERR_NO_ACK) {
@@ -267,7 +267,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
         data = reg & 0xFF;
         printf1("sending I2C=0x%x device register: data=0x%x, byte %d\n", base, data, i);
 
-        if (master_tx_byte(&data, base) != 0) {
+        if (tx_byte(&data, base) != 0) {
             return -1;
         }
     }
@@ -285,7 +285,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
         /* send slave address again, but indicate read operation */
         data = (rq->dev_addr << 1) | I2C_READ;
 
-        if (master_tx_byte(&data, base) != 0) {
+        if (tx_byte(&data, base) != 0) {
             return -1;
         }
 
@@ -301,7 +301,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
         readw(base + I2C_I2DR);
 
         /* now reading ... */
-        if (master_rx_bytes(rq->buffer, base, rq->buffer_sz) != 0) {
+        if (rx_bytes(rq->buffer, base, rq->buffer_sz) != 0) {
             return -1;
         }
     } else {
@@ -310,7 +310,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
             /* send device register value */
             data = rq->buffer[i];
 
-            if ((ret = master_tx_byte(&data, base)) != 0) {
+            if ((ret = tx_byte(&data, base)) != 0) {
                 break;
             }
         }

@@ -26,7 +26,7 @@ void enet_iomux_config(void)
     //     ALT0 (0) - Select mux mode: ALT0 mux port: MLBDAT of instance: mlb.
     //                NOTE: - Config Register IOMUXC_MLB_MLB_DATA_IN_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: MDC of instance: enet.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: TX5_RX0 of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: TX5_RX0 of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO5_SDI0_SELECT_INPUT for mode ALT2.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT1_IN of instance: enet.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[31] of instance: gpio1.
@@ -93,7 +93,7 @@ void enet_iomux_config(void)
     //     ALT0 (0) - Select mux mode: ALT0 mux port: Reserved of instance: Reserved.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: MDIO of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_MDIO_SELECT_INPUT for mode ALT1.
-    //     ALT2 (2) - Select mux mode: ALT2 mux port: SCKR of instance: esai1.
+    //     ALT2 (2) - Select mux mode: ALT2 mux port: SCKR of instance: esai.
     //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKR_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: DEBUG_BUS_DEVICE[3] of instance: sdma.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT1_OUT of instance: enet.

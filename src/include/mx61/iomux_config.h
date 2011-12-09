@@ -30,7 +30,7 @@ void ecspi5_iomux_config(void);
 void enet_iomux_config(void);
 void epit1_iomux_config(void);
 void epit2_iomux_config(void);
-void esai1_iomux_config(void);
+void esai_iomux_config(void);
 void gpio1_iomux_config(void);
 void gpio2_iomux_config(void);
 void gpio3_iomux_config(void);

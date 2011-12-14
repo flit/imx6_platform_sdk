@@ -96,6 +96,12 @@ int ips_hdmi_1080P60_stream(int ipu_index)
 
     /*setup IPU display channel */
     ipu_display_setup(ipu_index, panel, PARTIAL_INTERLEAVED_YUV420, YUV_RGB);
+    memset((void *)CH23_EBA0, 0x10, panel->width * panel->height);
+    memset((void *)CH23_EBA0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
+           panel->width * panel->height / 2);
+    memset((void *)CH23_EBA1, 0x10, panel->width * panel->height);
+    memset((void *)CH23_EBA1 + panel->width * FRAME_MAX_HEIGHT, 0x80,
+           panel->width * panel->height / 2);
 
     /*realloc the DMFC fifo */
     ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);

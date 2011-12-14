@@ -56,10 +56,11 @@ int sil9024_reg_check(unsigned int reg, unsigned char data_input, unsigned char 
 }
 
 extern int ips_sii9022_1080P60_stream(int ipu_index);
-void config_hdmi_si9022(int ipu_index, int di_port)
+int config_hdmi_si9022(int ipu_index, int di_port)
 {
     int retVal = 0;
     int hdmi_mode = SHDMI_1080P60;
+    int hpd_time_ms = 300;
 
     ips_sii9022_1080P60_stream(ipu_index);
 
@@ -68,12 +69,15 @@ void config_hdmi_si9022(int ipu_index, int di_port)
     retVal = i2c_init(hdmi_i2c_base, 97000);
     if (retVal != 0) {
         printf("I2C initialization failed!\n");
-        return;
+        return -1;
     }
 
     /*Ray's note: decrease the delay time */
     siHdmiTx_TPI_Init();
     siHdmiTx_VideoSel(hdmi_mode);
     siHdmiTx_AudioSel(AFS_48K);
-    siHdmiTx_TPI_Poll();
+    if (!siHdmiTx_TPI_Poll(hpd_time_ms))
+        return 0;
+    else
+        return -1;
 }

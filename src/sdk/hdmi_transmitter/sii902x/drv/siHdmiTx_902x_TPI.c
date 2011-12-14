@@ -3312,7 +3312,7 @@ void HotPlugService(void)
 // Returns: none
 // Globals: none
 //------------------------------------------------------------------------------
-void siHdmiTx_TPI_Poll(void)
+int siHdmiTx_TPI_Poll(int timeout_ms)
 {
     byte InterruptStatus;
 
@@ -3334,8 +3334,15 @@ void siHdmiTx_TPI_Poll(void)
                 WriteByteTPI(TPI_INTERRUPT_STATUS_REG, HOT_PLUG_EVENT);
                 DelayMS(T_HPD_DELAY);   // Delay for metastability protection and to help filter out connection bouncing
                 InterruptStatus = ReadByteTPI(TPI_INTERRUPT_STATUS_REG);    // Read Interrupt status register
+                hal_delay_us(1000);
+                timeout_ms--;
             }
-            while (InterruptStatus & HOT_PLUG_EVENT);   // loop as long as HP interrupts recur
+            while (InterruptStatus & HOT_PLUG_EVENT & (timeout_ms > 0));    // loop as long as HP interrupts recur
+
+            if (timeout_ms <= 0) {
+                printf("Hot Plug detection failed! please check the HDMI cable\n");
+                return -1;
+            }
 
             TPI_DEBUG_PRINT(("Interrupt Status Register : 0x%x\n", InterruptStatus));
             if (((InterruptStatus & HOT_PLUG_STATE) >> 2) != g_sys.hdmiCableConnected) {
@@ -3347,7 +3354,7 @@ void siHdmiTx_TPI_Poll(void)
                 }
 
                 if (g_sys.hdmiCableConnected == FALSE) {
-                    return;
+                    return -1;
                 }
             }
         }
@@ -3382,6 +3389,7 @@ void siHdmiTx_TPI_Poll(void)
         //SI_CecHandler(0 , 0);
 #endif
     }
+    return 0;
 
 }
 

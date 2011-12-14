@@ -26,6 +26,8 @@ extern mmdc_p mmdc_p1;
 
 tFile files[10];
 tVolume *V;
+int video_disp[2] = { 2, 1 };   //video 1 is show on IPU2, video 2 is shown in IPU1
+int second_video_en = 0;
 
 int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag)
 {
@@ -82,10 +84,12 @@ extern void ipu_channel_buf_ready(int ipu_index, int channel, int buf);
 extern inline void ipu_cpmem_mod_field(uint32_t base, int w, int bit, int size, uint32_t v);
 int ipu_refresh(uint32_t * buffer)
 {
-    ipu_dma_update_buffer(1, 23, 0, buffer[0]);
-    ipu_channel_buf_ready(1, 23, 0);
-    ipu_dma_update_buffer(2, 23, 0, buffer[1]);
-    ipu_channel_buf_ready(2, 23, 0);
+    ipu_dma_update_buffer(video_disp[0], 23, 0, buffer[0]);
+    ipu_channel_buf_ready(video_disp[0], 23, 0);
+    if (second_video_en) {
+        ipu_dma_update_buffer(video_disp[1], 23, 0, buffer[1]);
+        ipu_channel_buf_ready(video_disp[1], 23, 0);
+    }
     return 0;
 }
 
@@ -99,7 +103,7 @@ void config_system_parameters(void)
     reg32_write(IOMUXC_GPR7, 0x22272227);
 }
 
-extern void config_hdmi_si9022(int ipu_index, int ipu_di);
+extern int config_hdmi_si9022(int ipu_index, int ipu_di);
 extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
 extern int ips_hdmi_1080P60_stream(int ipu_index);
 extern void ipu_iomux_config(void);
@@ -109,7 +113,6 @@ int vdec_test(void)
     video_params params[2];
 
     /*instance attached to display interface */
-    int video_disp[2] = { 1, 2 };
     config_system_parameters();
 
     /* initialize SD card and FAT driver */
@@ -129,7 +132,7 @@ int vdec_test(void)
 
     /* initialize video streams and configure IPUs */
     video_setup(0, VDOA_DIS, VIDEO_0_BUFFERS, &params[0]);
-    config_hdmi_si9022(video_disp[0], 0);
+    hdmi_1080P60_video_output(video_disp[0], 0);
     ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[0], 23), NON_INTERLEAVED_UBO,
                         params[0].u_offset / 8);
     ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[0], 23), NON_INTERLEAVED_VBO,
@@ -141,17 +144,23 @@ int vdec_test(void)
     printf("The first HDMI display is configured!!\n");
 
     /* initialize video streams and configure IPUs for second instance */
-    video_setup(1, VDOA_DIS, VIDEO_1_BUFFERS, &params[1]);
-    hdmi_1080P60_video_output(video_disp[1], 0);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_UBO,
-                        params[1].u_offset / 8);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_VBO,
-                        params[1].v_offset / 8);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_SLY,
-                        params[1].y_strideline - 1);
-    ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_SLUV,
-                        params[1].uv_strideline - 1);
-    printf("The second HDMI display is configured!!\n");
+    if (!config_hdmi_si9022(video_disp[1], 0)) {
+        video_setup(1, VDOA_DIS, VIDEO_1_BUFFERS, &params[1]);
+        config_hdmi_si9022(video_disp[1], 0);
+        ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_UBO,
+                            params[1].u_offset / 8);
+        ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_VBO,
+                            params[1].v_offset / 8);
+        ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_SLY,
+                            params[1].y_strideline - 1);
+        ipu_cpmem_mod_field(ipu_cpmem_addr(video_disp[1], 23), NON_INTERLEAVED_SLUV,
+                            params[1].uv_strideline - 1);
+        second_video_en = 1;
+        printf("The second HDMI display is configured!!\n");
+    } else {
+        printf("The second HDMI display is not detected!!\n");
+        second_video_en = 0;
+    }
 
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET, 0x10000);
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITLR_OFFSET, 0x444);   //30fps

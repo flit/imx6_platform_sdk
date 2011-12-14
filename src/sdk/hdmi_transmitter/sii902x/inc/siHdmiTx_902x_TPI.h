@@ -1045,7 +1045,7 @@ void siHdmiTx_PowerStateD0fromD2(void);
 byte siHdmiTx_VideoSet(void);
 byte siHdmiTx_AudioSet(void);
 byte siHdmiTx_TPI_Init(void);
-void siHdmiTx_TPI_Poll(void);
+int siHdmiTx_TPI_Poll(int timeout);
 void siHdmiTx_VideoSel(byte vmode);
 void siHdmiTx_AudioSel(byte Afs);
 #endif

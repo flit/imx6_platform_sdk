@@ -49,7 +49,8 @@
 #define VOLNEG_BUTTON_GPIO_NUM		8
 
 // PLL definitions
-#define HW_ANADIG_USB1_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x30) // Anadig 480MHz PLL Control0 Register
+#define HW_ANADIG_USB1_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x10) // Anadig 480MHz PLL Control0 Register
+#define HW_ANADIG_USB2_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x20) // Anadig 480MHz PLL Control0 Register
 #define HW_ANADIG_PLL_528_RW    (ANATOP_BASE_ADDR+0x30) // Anadig 528MHz PLL Control register
 #define HW_ANADIG_PLL_528_NUM   (ANATOP_BASE_ADDR+0x50) // Numerator of 528MHz PLL Fractional Loop Divider Register
 #define HW_ANADIG_PLL_528_DENOM (ANATOP_BASE_ADDR+0x60) // Denominator of 528MHz PLL Fractional Loop Divider Register

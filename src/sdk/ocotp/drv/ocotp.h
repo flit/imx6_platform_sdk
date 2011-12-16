@@ -8,7 +8,7 @@
 /*!
  * @file  ocotp.h
  * @brief header file with defines for the OCOTP module
- *
+ * @ingroup diag-ocotp
  */
 
 #ifndef _OCOTP_H_

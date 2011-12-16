@@ -10,6 +10,7 @@
  * @brief display controller configuration of IPU.
  * @ingroup diag_ipu
  */
+
 #include "ipu_common.h"
 
 extern inline int need_csc(int i, int o);
@@ -18,7 +19,10 @@ extern inline int need_csc(int i, int o);
  * DC submodule configuration.
  * DC submodule is to control the data, and tranfer them to display.
  * @param	ipu_index:	ipu index
- * @param	conf:		ipu configuration data structure
+ * @param	channel:    ipu channel
+ * @param   di: display interface 0 or 1
+ * @param   width: display width
+ * @param   colorimetry: colorimetry configuration
  */
 void ipu_dc_config(uint32_t ipu_index, uint32_t channel, uint32_t di, uint32_t width,
                    uint32_t colorimetry)

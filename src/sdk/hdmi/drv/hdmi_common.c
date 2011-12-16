@@ -7,7 +7,11 @@
 
 /*!
  * @file hdmi_common.c
+ * @brief Common functions for the HDMI controller.
+ *
+ * @ingroup diag_hdmi
  */
+
 #include <stdio.h>
 #include "hardware.h"
 #include "hdmi_tx.h"

@@ -8,6 +8,8 @@
 /*!
  * @file usb_test.c
  * @brief USB test.
+ *
+ * @ingroup diag_usb
  */
 
 #include "hardware.h"

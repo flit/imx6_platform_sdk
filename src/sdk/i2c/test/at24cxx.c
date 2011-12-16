@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file at24cxx.c
+ * @brief Driver foe the I2C EEPROM Atmel AT24Cxx.
+ *
+ * @ingroup diag_i2c
+ */
+
 #include "hardware.h"
 
 static struct imx_i2c_request at24cxx_i2c_req;

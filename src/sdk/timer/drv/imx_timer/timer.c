@@ -9,10 +9,16 @@
  * @file timer.c
  * @brief Basic timer functions
  *
+ * @ingroup diag_timer
  */
 
 #include "hardware.h"
 
+/*!
+ * Delay function used in the system.
+ *
+ * @param  usecs - delay in micro seconds.
+ */
 void hal_delay_us(uint32_t usecs)
 {
     if (usecs == 0) {
@@ -27,6 +33,9 @@ void hal_delay_us(uint32_t usecs)
     epit_counter_disable(&g_system_timer);
 }
 
+/*!
+ * Init function used of the EPIT timer used for delay.
+ */
 void system_time_init(void)
 {
     /* EPIT1 is used for the delay function */

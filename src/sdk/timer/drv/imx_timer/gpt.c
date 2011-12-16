@@ -194,6 +194,7 @@ void gpt_counter_enable(struct hw_module *port, uint32_t irq_mode)
  * interrupt, and attached the related sub-routine into the vector table.
  *
  * @param   port - pointer to the GPT module structure.
+ * @param   state - ENABLE or DISABLE the interrupt.
  */
 void gpt_setup_interrupt(struct hw_module *port, uint8_t state)
 {

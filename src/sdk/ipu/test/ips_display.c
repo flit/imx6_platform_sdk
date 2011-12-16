@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file ips_display.c
+ * @brief IPU display test.
+ * @ingroup diag_ipu
+ */
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +20,8 @@
 
 /*!
  * LVDS display test case. note that the memory for the flow is not released
+ *
+ * @param	panel:		ipu panel configuration data structure
  */
 int ips_display_test(ips_dev_panel_t * panel)
 {
@@ -82,6 +90,8 @@ int ips_hdmi_stream(void)
 
 /*!
  * HDMI 1080P60 display stream
+ *
+ * @param	ipu_index:	ipu index
  */
 int ips_hdmi_1080P60_stream(int ipu_index)
 {
@@ -115,6 +125,7 @@ int ips_hdmi_1080P60_stream(int ipu_index)
 
 /*!
  * SII9022 1080P60 display stream
+ * @param	ipu_index:	ipu index
  */
 int ips_sii9022_1080P60_stream(int ipu_index)
 {

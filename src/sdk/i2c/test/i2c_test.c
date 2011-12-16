@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file i2c_test.c
+ * @brief Unit test for the I2C controller.
+ *
+ * @ingroup diag_i2c
+ */
+
 #include <stdio.h>
 #include "hardware.h"
 

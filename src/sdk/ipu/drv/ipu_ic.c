@@ -17,7 +17,7 @@
  *
  * @param	ipu_index:	ipu index
  * @param	ic_enable:	enable IC
- * @param	ic_enable:	enable IRT
+ * @param	irt_enable:	enable IRT
  */
 void ipu_ic_enable(int ipu_index, int ic_enable, int irt_enable)
 {

@@ -6,10 +6,11 @@
 */
 
 /*!
- * @file ipu_iamge.c
+ * @file ipu_image.c
  * @brief the test picture of ipu displays.
  * @ingroup diag_ipu
  */
+
 /*binary data for a small image with Freescale logo on.*/
 #include "ipu_common.h"
 #include "buffers.h"
@@ -12102,7 +12103,8 @@ const unsigned char gImage_foretext[120000] = { /* 0X00,0X10,0X58,0X02,0X78,0X00
 /*!
  * load the image to the center of the screen.
  *
- * @param	flow:	pointer to the flow, in order to get the display device information
+ * @param   addr:   memory address where to load the image   
+ * @param   panel:  ipu panel configuration data structure
  */
 void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel)
 {

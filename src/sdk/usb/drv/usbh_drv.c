@@ -9,7 +9,12 @@
  * @file usbh_drv.c
  * @brief USB host driver.
  *
+ * @ingroup diag_usb
  */
+
+#include "usb.h"
+#include "usb_registers.h"
+#include "usb_defines.h"
 
 /*!
  * Initialize the USB for host operation. This initialization sets
@@ -18,11 +23,6 @@
  * Parameters:
  * @param port      USB module to initialize
  */
-
-#include "usb.h"
-#include "usb_registers.h"
-#include "usb_defines.h"
-
 int usbh_init(usb_module_t *port)
 {
 	/*!
@@ -97,8 +97,6 @@ int usbh_init(usb_module_t *port)
 	
 	return 0;
 }
-
-
 
 /*!
  * Initialize the periodic schedule. This function creates an empty
@@ -237,6 +235,8 @@ usbPortSpeed_t usbh_get_port_speed(usb_module_t *port)
 
 /*!
  * Enable the asynchronous schedule
+ *
+ * @param port  USB module to send reset
  */
 void usbh_enable_asynchronous_schedule(usb_module_t *port)
 {

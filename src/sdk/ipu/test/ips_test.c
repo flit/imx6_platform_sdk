@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file ips_test.c
+ * @brief Main IPU test.
+ * @ingroup diag_ipu
+ */
+
 #include <stdio.h>
 #include "ips_test.h"
 

@@ -7,7 +7,11 @@
 
 /*!
  * @file hdmi_tx.c
+ * @brief Transmit functions for the HDMI controller.
+ *
+ * @ingroup diag_hdmi
  */
+
 #include <stdio.h>
 #include "hardware.h"
 #include "hdmi_tx.h"
@@ -43,6 +47,8 @@ void hdmi_config_input_source(uint32_t mux_value)
  * 			pin{47~40} <==> R[7:0]
  * 			pin{31~24} <==> G[7:0]
  * 			pin{15~8}  <==> B[7:0]
+ *
+ * @param hdmi_instance - instance of the HDMI
  */
 void hdmi_video_sample(hdmi_data_info_s hdmi_instance)
 {
@@ -105,6 +111,8 @@ void hdmi_video_sample(hdmi_data_info_s hdmi_instance)
  */
 /*!
  * update the color space conversion coefficients.
+ *
+ * @param hdmi_instance - instance of the HDMI
  */
 void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
 {
@@ -237,6 +245,8 @@ void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
 
 /*!
  * set HDMI color space conversion module.
+ *
+ * @param hdmi_instance - instance of the HDMI
  */
 void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
 {
@@ -279,6 +289,8 @@ void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
  * HDMI video packetizer is used to packetize the data.
  * for example, if input is YCC422 mode or repeater is used, data should be repacked
  * this module can be bypassed.
+ *
+ * @param hdmi_instance - instance of the HDMI
  */
 void hdmi_video_packetize(hdmi_data_info_s hdmi_instance)
 {
@@ -384,6 +396,8 @@ void preamble_filter_set(uint8_t value, uint8_t channel)
 /*!
  * this submodule is responsible for the video/audio data composition.
  * video mode is set here, but the actual flow is determined by the input.
+ *
+ * @param hdmi_instance - instance of the HDMI
  */
 void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
 {
@@ -476,7 +490,9 @@ void hdmi_config_force_video(uint8_t force)
 /*! 
  * configure the RGB pixel settings to be used when fixed video mode is enabled
  * 
- * @param  	mux_value: type hdmi_input_source slecting between the mux options
+ * @param  	red: pixel settings for red component.
+ * @param  	green: pixel settings for green component.
+ * @param  	blue: pixel settings for blue component.
  */
 void hdmi_config_forced_pixels(uint8_t red, uint8_t green, uint8_t blue)
 {

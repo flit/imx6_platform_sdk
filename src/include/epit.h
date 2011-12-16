@@ -7,8 +7,7 @@
 
 /*!
  * @file epit.h
- * @brief  EPIT driver header file.
- *
+ * @brief EPIT driver header file.
  * @ingroup diag_timer
  */
 

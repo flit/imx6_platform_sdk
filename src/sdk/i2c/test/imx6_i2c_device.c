@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file imx6_i2c_device.c
+ * @brief Unit test for the I2C controller configured as device.
+ *
+ * @ingroup diag_i2c
+ */
+
 #include "hardware.h"
 
 // I2C3 is used to be a slave port
@@ -117,7 +124,6 @@ int32_t imx6_slave_transmit(struct imx_i2c_request *rq)
  * The transfer function initialize the I2C controller in slave mode
  * waiting for a single external transfer to read or write a data.
  *
- * @param   rq - pointer to struct imx_i2c_request
  */
 int32_t i2c_imx6_slave_test(void)
 {

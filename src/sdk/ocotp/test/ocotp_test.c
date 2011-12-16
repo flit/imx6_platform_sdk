@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file  ocotp_test.c
+ * @brief OCOTP driver unit test.
+ * @ingroup diag-ocotp
+ */
+
 #include <stdio.h>
 #include "hardware.h"
 

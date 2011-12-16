@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file uart_test.c
+ * @brief UART driver unit test.
+ * @ingroup diag_uart
+ */
+
 #include <stdio.h>
 #include "uart_test.h"
 

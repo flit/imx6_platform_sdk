@@ -8,8 +8,9 @@
 /*!
  * @file ips_disp_panel.c
  * @brief IPU Software library, display panel parameters setting and initialization
- * @group diag_ipu
+ * @ingroup diag_ipu
  */
+
 #include "ipu_common.h"
 
 static int claa_wvga_panel_init(void)

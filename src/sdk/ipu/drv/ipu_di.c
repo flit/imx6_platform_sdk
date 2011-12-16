@@ -6,7 +6,7 @@
 */
 
 /*!
- * @file ipu_disp.c
+ * @file ipu_di.c
  * @brief display interface configuration of IPU.
  * @ingroup diag_ipu
  */
@@ -20,8 +20,9 @@
 /*!
  * IPU display interface configuration, generating the timing for display devices.
  *
- * @param	ipu_index:	ipu index
- * @param	conf:		ipu configuration data structure
+ * @param   ipu_index:  ipu index
+ * @param   di:         used display interface
+ * @param	panel:      ipu panel configuration data structure
  */
 void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
 {
@@ -178,12 +179,12 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
 /*!
  * set di waveform up/down attributes.
  *
- * @param	ipu_index:	ipu index
- * @param	di:			display interface selection
- * @param	pointer:		waveform pointer
- * @param	set:			waveform set
- * @param	up:			raising edge
- * @param	down:		falling edge
+ * @param   ipu_index:	ipu index
+ * @param   di:			display interface selection
+ * @param   pointer:    waveform pointer
+ * @param   set:        waveform set
+ * @param   up:         raising edge
+ * @param   down:       falling edge
  */
 void ipu_di_waveform_config(int ipu_index, int di, int pointer, int set, int up, int down)
 {
@@ -195,9 +196,9 @@ void ipu_di_waveform_config(int ipu_index, int di, int pointer, int set, int up,
 /*!
  * set di waveform up/down attributes.
  *
- * @param	ipu_index:	ipu index
- * @param	di:			display interface selection
- * @param	screen_height: height of the screen
+ * @param   ipu_index:	ipu index
+ * @param   di:         display interface selection
+ * @param   screen_height: height of the screen
  */
 int ipu_di_screen_set(int ipu_index, int di, int screen_height)
 {
@@ -221,16 +222,16 @@ int ipu_di_screen_set(int ipu_index, int di, int screen_height)
 /*!
  * set di pointer configuration
  *
- * @param	ipu_index:	ipu index
- * @param	di:			display interface selection
- * @param	pointer:		waveform pointer
- * @param	access:		access period, it define a clock period for display
- * @param	component:	component period
- * @param	cst:			chip select pointer
- * @param	pt:			pointer to the waveform
+ * @param   ipu_index:  ipu index
+ * @param   di:         display interface selection
+ * @param   pointer:    waveform pointer
+ * @param   access:     access period, it define a clock period for display
+ * @param   component:  component period
+ * @param   cst:        chip select pointer
+ * @param   pt:         pointer to the waveform
  */
-void ipu_di_pointer_config(int ipu_index, int di, int pointer, int access, int component, int cst,
-                           int *pt)
+void ipu_di_pointer_config(int ipu_index, int di, int pointer, int access, int component,
+                           int cst, int *pt)
 {
     unsigned int regVal = 0;
     unsigned int ipu_base_addr = 0;
@@ -257,13 +258,13 @@ void ipu_di_pointer_config(int ipu_index, int di, int pointer, int access, int c
 /*!
  * set di waveform up/down attributes.
  *
- * @param	ipu_index:	ipu index
- * @param	di:			display interface selection
- * @param	deivsion:		clock divider
- * @param	up:			raising edge
- * @param	down:		falling edge
+ * @param   ipu_index:  ipu index
+ * @param   di:         display interface selection
+ * @param   division:   clock divider
+ * @param   up:         raising edge
+ * @param   down:       falling edge
  *
- *@return 	true for success and false for failure
+ * @return 	true for success and false for failure
  */
 int ipu_di_bsclk_gen(int ipu_index, int di, int division, int up, int down)
 {
@@ -290,8 +291,8 @@ int ipu_di_bsclk_gen(int ipu_index, int di, int division, int up, int down)
     return true;
 }
 
-/*
- * this function is used to config the waveform generator in the DI
+/*!
+ * This function is used to config the waveform generator in the DI
  *
  * @param	ipu_index:	ipu index
  * @param	di:			display interface selection
@@ -324,10 +325,12 @@ void ipu_di_sync_config(int ipu_index, int di, int pointer, di_sync_wave_gen_t s
 /*!
  * set the display interface attributes.
  *
- * @param	ipu_index:		ipu index
- * @param	di:				display interface selection
- * @param	line_prediction:	prediction of lines
- * @param	conf:			configuration struction for hw settings
+ * @param   ipu_index:  ipu index
+ * @param   di:         display interface selection
+ * @param   panel:      ipu panel configuration data structure
+ * @param   line_prediction:    prediction of lines
+ * @param   vsync_sel:  vsynch selection
+ * @param   hsync_sel:  hsynch selection
  */
 void ipu_di_interface_set(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel,
                           uint32_t line_prediction, uint32_t vsync_sel, uint32_t hsync_sel)

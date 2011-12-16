@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file hdmi_test.c
+ * @brief Unit test for the HDMI controller driver.
+ *
+ * @ingroup diag_hdmi
+ */
+
 #include "hardware.h"
 #include "../drv/hdmi_tx.h"
 

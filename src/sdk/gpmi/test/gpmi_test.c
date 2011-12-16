@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file gpmi_test.c
+ * @brief Unit test for the GPMI controller.
+ *
+ * @ingroup diag_nand
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "hardware.h"

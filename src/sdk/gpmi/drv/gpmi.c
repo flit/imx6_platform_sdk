@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file gpmi.c
+ * @brief The driver source for the GPMI controller.
+ *
+ * @ingroup diag_nand
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "hardware.h"
@@ -12,7 +19,6 @@
 #include "gpmi.h"
 #include "regsapbh.h"
 #include "regsgpmi.h"
-//extern static const flash_dev_info_t *flash_dev_info;
 
 DMA_BUFF gdma0, gdma1, gdma2, gdma3, gdma4, gdma5, gdma6, gdma7, gdma8, gdma9;
 DMA_BUFF dma_buff0, dma_buff1, dma_buff2, dma_buff3, dma_buff4, dma_buff5, dma_buff6, dma_buff7,

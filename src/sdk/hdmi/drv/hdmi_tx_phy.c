@@ -8,7 +8,10 @@
 /*!
  * @file hdmi_tx_phy.c
  * @brief common functions defination of hdmi phy.
+ *
+ * @ingroup diag_hdmi
  */
+
 #include <stdio.h>
 #include "hardware.h"
 #include "hdmi_tx.h"

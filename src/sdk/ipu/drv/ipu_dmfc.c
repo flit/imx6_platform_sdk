@@ -8,8 +8,9 @@
 /*!
  * @file ipu_dmfc.c
  * @brief IPU common file configuration
- * @group diag_ipu
+ * @ingroup diag_ipu
  */
+
 #include "ipu_common.h"
 
 void ipu_dmfc_config(uint32_t ipu_index, uint32_t channel)

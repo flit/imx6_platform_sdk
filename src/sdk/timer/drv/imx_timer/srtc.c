@@ -9,6 +9,7 @@
  * @file srtc.c
  * @brief  SRTC driver source file.
  *
+ * @ingroup diag_timer
  */
 
 #include <snvs.h>
@@ -49,6 +50,7 @@ static struct snvs_srtc_module_ snvs_srtc_module = {
  * interrupt, and attached the related sub-routine into the vector table.
  *
  * @param   port - pointer to the SNVS module structure.
+ * @param   state - ENABLE or DISABLE the interrupt.
  */
 void snvs_srtc_setup_interrupt(struct hw_module *port, uint8_t state)
 {
@@ -65,6 +67,9 @@ void snvs_srtc_setup_interrupt(struct hw_module *port, uint8_t state)
     }
 }
 
+/*!
+ * SNVS SRTC interrupt handler.
+ */
 void snvs_srtc_interrupt_handler(void)
 {
     volatile struct mx_snvs *psnvs = 
@@ -122,8 +127,7 @@ void srtc_deinit(void)
 /*!
  * Calls in appropriate low level API to setup SRTC one-time timer
  *
- * @param   port - pointer to the SNVS module structure.
- *
+ * @param   timeout - set SRTC alarm timeout.
  * @param   callback - callback function to be called from isr.
  */
 void srtc_setup_onetime_timer(uint32_t timeout, funct_t callback)

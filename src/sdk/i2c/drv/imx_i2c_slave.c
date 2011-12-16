@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file imx_i2c_slave.c
+ * @brief Slave mode driver for the I2C controller.
+ *
+ * @ingroup diag_i2c
+ */
+
 #include "hardware.h"
 
 /* Max number of operations to wait to receuve ack */

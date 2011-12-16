@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file ips_test.h
+ * @brief some definitions for the IPU test.
+ * @ingroup diag_ipu
+ */
+
 #ifndef __IPS_TEST__
 #define __IPS_TEST__
 

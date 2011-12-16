@@ -4,11 +4,13 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+
 /*!
  * @file  ocotp.c
- * @brief e-fuse driver
- *
+ * @brief OCOTP driver for e-fuse.
+ * @ingroup diag-ocotp
  */
+
 #include <stdio.h>
 #include "hardware.h"
 #include "ocotp.h"
@@ -43,9 +45,9 @@ uint32_t Delay4Busy(void)
 /*!
  * Read OTP register values from device.
  *
- * @param  pau32Registers, pointer to an array of register values
- * @param  u32RegIndex, register index
- * @param  u32Count, length of array in first parameter
+ * @param  pau32Registers - pointer to an array of register values
+ * @param  u32RegIndex - register index
+ * @param  u32Count - length of array in first parameter
  * @return SUCCESS or Error
  */
 static int ReadOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t u32Count)
@@ -76,9 +78,9 @@ static int ReadOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32
 /*!
  * Program OTP registers with values passed in register array parameter.
  *
- * @param  pau32Registers pointer to array of register values
- * @param  u32RegIndex, register index
- * @param  u32Count, length of array in first parameter
+ * @param  pau32Registers - pointer to array of register values
+ * @param  u32RegIndex - register index
+ * @param  u32Count - length of array in first parameter
  * @return ERROR_OTP_CTRL_BUSY, if busy
  *         ERROR_OTP_CTRL_ERROR, if error
  *         ERROR_OTP_RD_BANK_OPEN, if reading
@@ -176,8 +178,8 @@ int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t
 /*!
  * Read the value of fuses located at bank/row.
  *
- * @param  bank of the fuse
- * @param  row of the fuse
+ * @param  bank - bank of the fuse
+ * @param  row - row of the fuse
  * @return fuse value
  */
 int32_t sense_fuse(uint32_t bank, uint32_t row)
@@ -196,9 +198,9 @@ int32_t sense_fuse(uint32_t bank, uint32_t row)
 /*!
  * Program fuses located at bank/row to value.
  *
- * @param  bank of the fuses.
- * @param  row of the fuses.
- * @param  value to program in fuses.
+ * @param  bank- bank of the fuses.
+ * @param  row - row of the fuses.
+ * @param  value - value to program in fuses.
  */
 void fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value)
 {

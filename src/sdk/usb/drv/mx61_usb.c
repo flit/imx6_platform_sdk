@@ -12,6 +12,8 @@
  * The functions in this file address implementation specific handling like USB transceiver, PLL, clocks etc.
  * Each supported i.MX device has a dedicated set of routines.
  * The routines are referenced in the usb_module structure.
+ * 
+ * @ingroup diag_usb
  */
 
 #include "hardware.h"
@@ -59,6 +61,8 @@ int usbEnableClocks(usb_module_t *port)
 /*!
  * Enable USB transceiver
  * This function enables the USB transceiver for the selected USB port.
+ *
+ * @param port      USB module to initialize
  */
 int usbEnableTransceiver(usb_module_t *port)
 {
@@ -93,6 +97,8 @@ int usbEnableTransceiver(usb_module_t *port)
  * This function enables Vbus for the given USB port
  * The procedure to enable Vbus depends on both the Chip and board hardware
  * This implementation is for the MX6q Sabre-AI board.
+ *
+ * @param port      USB module to initialize
  */
 void usbEnableVbus(usb_module_t *port)
 {
@@ -123,8 +129,9 @@ void usbEnableVbus(usb_module_t *port)
  * This function disables Vbus for the given USB port
  * The procedure to enable Vbus depends on both the Chip and board hardware
  * This implementation is for the MX6q Sabre-AI board
+ *
+ * @param port      USB module to initialize
  */
-
 void usbDisableVbus(usb_module_t *port)
 {
 	switch(port->controllerID)
@@ -144,4 +151,3 @@ void usbDisableVbus(usb_module_t *port)
 		break;
 	}
 }
-

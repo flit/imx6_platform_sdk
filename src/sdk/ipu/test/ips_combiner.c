@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file ips_combiner.c
+ * @brief IPU combiner test.
+ * @ingroup diag_ipu
+ */
+
 #include <string.h>
 #include <stdio.h>
 

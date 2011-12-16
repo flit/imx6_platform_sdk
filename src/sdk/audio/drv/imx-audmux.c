@@ -6,9 +6,10 @@
 */
 
 /*!
- * @file audio_mux.c
+ * @file imx-audmux.c
  * @brief Driver for AUDMUX.
  *
+ * @ingroup diag_audio
  */
 
 #include <stdio.h>
@@ -18,7 +19,6 @@
 /*!
  * Dump the registers of audmux
  *
- * @param   none
  * @return  always 0 
  */
 static uint32_t audmux_dump(void)

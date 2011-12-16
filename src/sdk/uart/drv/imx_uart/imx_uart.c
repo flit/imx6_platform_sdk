@@ -8,7 +8,7 @@
 /*!
  * @file imx_uart.c
  * @brief UART driver.
- *
+ * @ingroup diag_uart
  */
 
 #include "hardware.h"
@@ -41,6 +41,7 @@ uint32_t uart_get_reffreq(struct hw_module *port)
 /*!
  * Output a character to UART port
  *
+ * @param   port - pointer to the UART module structure
  * @param   ch - pointer to the character for output
  * @return  the character that has been sent
  */
@@ -59,6 +60,7 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 /*!
  * Receive a character on the UART port
  *
+ * @param   port - pointer to the UART module structure
  * @return  a character received from the UART port; if the RX FIFO
  *          is empty or errors are detected, it returns NONE_CHAR
  */
@@ -140,7 +142,7 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
  * interrupt, and attached the related sub-routine into the vector table.
  *
  * @param   port - pointer to the UART module structure.
- * @param   state - enable/disable the interrupt
+ * @param   state - ENABLE or DISABLE the interrupt.
  */
 void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 {

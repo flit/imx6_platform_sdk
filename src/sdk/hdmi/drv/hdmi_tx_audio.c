@@ -9,6 +9,7 @@
 /*!
  * @file hdmi_tx_audio.c
  * @brief hdmi tx audio configuration.
+ *
  * @ingroup diag_hdmi
  */
 

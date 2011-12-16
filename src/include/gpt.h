@@ -7,8 +7,7 @@
 
 /*!
  * @file gpt.h
- * @brief  GPT driver header file.
- *
+ * @brief GPT driver header file.
  * @ingroup diag_timer
  */
 

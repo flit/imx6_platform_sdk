@@ -6,7 +6,7 @@
 */
 
 /*!
- * @file stmp_nand.h
+ * @file gpmi.h
  * @brief The header file that contains the general definitions for NAND
  *
  * @ingroup diag_nand
@@ -14,11 +14,6 @@
 
 #ifndef __GPMI_H__
 #define __GPMI_H__
-//extern static flash_dev_info_t *flash_dev_info;
-
-
-
-
 
 #define GPMI_NAND0_APBHDMA_CHANNEL_RESET() (*(unsigned int *)HW_APBH_CHANNEL_CTRL |= (0x10<<16))
 

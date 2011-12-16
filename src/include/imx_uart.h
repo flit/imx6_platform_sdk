@@ -7,8 +7,8 @@
 
 /*!
  * @file imx_uart.h
- * @brief   various defines used by imx_uart.c
- *
+ * @brief various defines used by imx_uart.c
+ * @ingroup diag_uart
  */
 
 #ifndef __IMX_UART_H__

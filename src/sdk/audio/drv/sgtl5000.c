@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file sgtl5000.c
+ * @brief Driver for the SGTL5000.
+ *
+ * @ingroup diag_audio
+ */
+
 #include "hardware.h"
 #include "../inc/audio.h"
 #include "../inc/sgtl5000.h"

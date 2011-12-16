@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file ips_rotate.c
+ * @brief IPU rotate IPU.
+ * @ingroup diag_ipu
+ */
+
 #include <string.h>
 #include <stdio.h>
 

@@ -6,8 +6,9 @@
  */
 
 /*!
- * @file hdmi_common.h
- * @brief common definitions for hdmi driver.
+ * @file hdmi_tx.h
+ * @brief Common definitions for hdmi driver.
+ *
  * @ingroup diag_hdmi
  */
 

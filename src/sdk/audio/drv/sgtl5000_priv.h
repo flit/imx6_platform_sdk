@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file sgtl5000_priv.h
+ * @brief Header file for the SGTL5000.
+ *
+ * @ingroup diag_audio
+ */
+
 #ifndef ___SGTL5000_REGMAP_H___
 #define ___SGTL5000_REGMAP_H___
 

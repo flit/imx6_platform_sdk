@@ -17,7 +17,8 @@
 /*!
  * Reload the counter with a known value.
  *
- * @param   port - pointer to the EPIT module structure.
+ * @param port - pointer to the EPIT module structure.
+ * @param load_val - value loaded into the timer counter.
  */
 void epit_reload_counter(struct hw_module *port, uint32_t load_val)
 {
@@ -103,6 +104,7 @@ void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq
  * interrupt, and attached the related sub-routine into the vector table.
  *
  * @param   port - pointer to the EPIT module structure.
+ * @param   state - ENABLE or DISABLE the interrupt.
  */
 void epit_setup_interrupt(struct hw_module *port, uint8_t state)
 {

@@ -81,6 +81,7 @@ void ipu_disable_display(int ipu_index)
 /*!
  * reset ipu by SRC(system reset controller)
  *
+ * @param	ipu_index:	ipu index
  * @param	timeout:    time out setting for ipu reset
  *
  * @return	true for success, others for time out.
@@ -112,8 +113,10 @@ int ipu_sw_reset(int ipu_index, int timeout)
 /*!
  * display function HW configuration for IPU.
  *
- * @param	ipu_index:	ipu index
- * @param	conf:		ipu configuration data structure
+ * @param   ipu_index:  ipu index
+ * @param   panel:      ipu panel configuration data structure
+ * @param   mem_colorimetry: colorimetry configuration
+ * @param   csc_type: color space conversion type
  */
 void ipu_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
                        uint32_t csc_type)
@@ -133,9 +136,17 @@ void ipu_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem
  * display function HW configuration for IPU.
  *
  * @param	ipu_index:	ipu index
- * @param	conf:		ipu configuration data structure
+ * @param	panel:		ipu panel configuration data structure
+ * @param   mem_colorimetry: colorimetry configuration
+ * @param   fg_width: foreground width
+ * @param   fg_height: foreground height
+ * @param   fg_xp: foreground x position
+ * @param   fg_yp: foreground y position
+ * @param   alpha: alpha value
  */
-void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry, uint32_t fg_width, uint32_t fg_height, uint32_t fg_xp, uint32_t fg_yp, uint32_t alpha)
+void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
+                            uint32_t fg_width, uint32_t fg_height, uint32_t fg_xp, uint32_t fg_yp,
+                            uint32_t alpha)
 {
     uint32_t bg_channel = MEM_TO_DP_BG_CH23;
     uint32_t fg_channel = MEM_TO_DP_FG_CH27;
@@ -156,8 +167,8 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
 }
 
 /*! Set display parameters in IPU configuration structure according to your display panel name. There are only some displays are supported by this function. And you can set the display manually all by your self if the hardware is supported by IPU.
- *  @params	conf:			IPU configuration structure
- *  @params panel_name:		panel name of your display
+ *
+ * @param panel_name:		panel name of your display
  */
 ips_dev_panel_t *search_panel(char *panel_name)
 {

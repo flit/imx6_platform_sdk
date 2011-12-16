@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file init_dma_data.c
+ * @brief Init DMA data.
+ *
+ * @ingroup diag_hdmi
+ */
+
 //#include <stdio.h>
 //#include <string.h>
 //#include <stdlib.h>

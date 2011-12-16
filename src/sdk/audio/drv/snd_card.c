@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
  */
 
+/*!
+ * @file snd_card.c
+ * @brief Sound card driver.
+ *
+ * @ingroup diag_audio
+ */
+
 #include "io.h"
 #include "audio.h"
 

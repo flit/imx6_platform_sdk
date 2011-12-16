@@ -7,8 +7,8 @@
 
 /*!
  * @file ipu_idmac.c
- * @brief IPU common file configuration
- * @group diag_ipu
+ * @brief IPU IDMAC configuration
+ * @ingroup diag_ipu
  */
 #include "ipu_common.h"
 
@@ -59,7 +59,6 @@ inline uint32_t ipu_cpmem_read_field(uint32_t base, int w, int bit, int size)
  * @param 	ipu_index: 	ipu index
  * @param 	channel: IPU dma channel index
  * @param 	buf: choose the buffer number, 0 or 1
- *
  */
 void ipu_channel_buf_ready(int ipu_index, int channel, int buf)
 {
@@ -119,9 +118,9 @@ void ipu_channel_buf_not_ready(int ipu_index, int channel, int buf)
 /*!
  * set the ipu channel buffer mode, single or double
  *
- * @param 	ipu_index: 		ipu index
- * @param 	channel: 			IPU dma channel index
- * @param 	double_buffer_en:	enable double buffer 
+ * @param 	ipu_index:      ipu index
+ * @param 	channel:        IPU dma channel index
+ * @param 	double_buf_en:  enable double buffer 
  *
  */
 void ipu_idmac_channel_mode_sel(int ipu_index, int channel, int double_buf_en)
@@ -135,9 +134,9 @@ void ipu_idmac_channel_mode_sel(int ipu_index, int channel, int double_buf_en)
 /*!
  * set the ipu channel buffer mode, single or double
  *
- * @param 	ipu_index: 	ipu index
- * @param 	channel: 		IPU dma channel index
- * @param 	enable:		enable channel  
+ * @param 	ipu_index:  ipu index
+ * @param 	channel:    IPU dma channel index
+ * @param 	enable:     enable channel  
  *
  */
 void ipu_idmac_channel_enable(int ipu_index, int channel, int enable)
@@ -150,8 +149,8 @@ void ipu_idmac_channel_enable(int ipu_index, int channel, int enable)
 /*!
  * query the ipu channel buffer busy status
  *
- * @param 	ipu_index: 	ipu index
- * @param 	channel: IPU dma channel index
+ * @param 	ipu_index:  ipu index
+ * @param 	channel:    IPU dma channel index
  *
  * @return 	1 for busy, 0 for idle
  */
@@ -176,8 +175,10 @@ int ipu_idmac_channel_busy(int ipu_index, int channel)
 /*!
  * IPU background display DMA channel config (CH23)
  *
- * @param	ipu_index:	ipu index
- * @param	conf:		ipu configuration data structure
+ * @param	ipu_index:  ipu index
+ * @param	width:		background width
+ * @param	height:		background height
+ * @param	pixel_format:   background pixel format
  */
 void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
                               uint32_t pixel_format)
@@ -243,10 +244,13 @@ int ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
     return cur_buf;
 }
 
-/* IPU background display DMA channel config (CH23)
+/*!
+ * IPU background display DMA channel config (CH23)
  *
- * @param	ipu_index:	ipu index
- * @param	conf:		ipu configuration data structure
+ * @param	ipu_index:  ipu index
+ * @param	width:		background width
+ * @param	height:		background height
+ * @param	pixel_format:   background pixel format
  */
 void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
                               uint32_t pixel_format)

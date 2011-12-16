@@ -6,8 +6,10 @@
 */
 
 /*!
- * @file usbh_drv.c
+ * @file usb0_host_test.c
  * @brief USB host driver.
+ *
+ * @ingroup diag_usb
  */
 
 #include "hardware.h"
@@ -226,7 +228,8 @@ void usb0_host_test (void)
 }
 
 /********************************************************************/
-/* This enumeration routine is specific for a HID class mouse device. The code
+/*!
+ * This enumeration routine is specific for a HID class mouse device. The code
  * code be used as a starting for enumerating other devices. If drivers need
  * to be able to detect different types of devices (for example a keyboard or
  * a mouse could be attached), then some level of descriptor parsing would need
@@ -296,7 +299,9 @@ emuerateDevice(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDeviceDescrip
 	
 	return 1;
 }
+
 /********************************************************************/
+
 void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, uint32_t device_address)
 {
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2;
@@ -349,13 +354,14 @@ void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, ui
     free((void *)usb_qtd1->mallocPointer);
     free((void *)usb_qtd2->mallocPointer);
 }
+
 /********************************************************************/
 
 /*!
  * Read device descriptor from a connected device
  * This routine creates transfers descriptors read the device descriptor and adds them to the queue.
  * @param port
- * @param usbh_qh_ep0       Queue Head (identifies device and endpoint)
+ * @param usb_qh_ep0       Queue Head (identifies device and endpoint)
  * @param device_descriptor Device descriptor structure to hold device data
  */
 void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDeviceDescriptor_t *device_descriptor)
@@ -419,7 +425,9 @@ void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDevic
     free((void *)usb_qtd2->mallocPointer);
     free((void *)usb_qtd3->mallocPointer);
 }
+
 /********************************************************************/
+
 void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint8_t * config_descriptor)
 {
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2, *usb_qtd3;
@@ -488,7 +496,9 @@ void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
     free((void *)usb_qtd2->mallocPointer);
     free((void *)usb_qtd3->mallocPointer);
 }
+
 /********************************************************************/
+
 void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint8_t * interface_descriptor, uint8_t * hid_descriptor,
 						uint8_t * ep_descriptor)
 {
@@ -569,7 +579,9 @@ void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, u
     free((void *)usb_qtd2->mallocPointer);
     free((void *)usb_qtd3->mallocPointer);
 }
+
 /********************************************************************/
+
 void usbh_set_configuration(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint32_t config_value)
 {
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2;
@@ -631,7 +643,9 @@ void usbh_set_configuration(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, ui
     free((void *)usb_qtd1->mallocPointer);
     free((void *)usb_qtd2->mallocPointer);
 }
+
 /********************************************************************/
+
 void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint8_t *report_descriptor)
 {
 	usbhTransferDescriptor_t *usb_qtd1, *usb_qtd2, *usb_qtd3;

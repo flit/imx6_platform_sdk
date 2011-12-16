@@ -4,6 +4,13 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+
+/*!
+ * @file timer.h
+ * @brief various defines used by the timer driver.
+ * @ingroup diag_timer
+ */
+
 #ifndef __TIME_H__
 #define __TIME_H__
 

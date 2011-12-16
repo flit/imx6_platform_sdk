@@ -5,6 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file ips_csc.c
+ * @brief IPU color space conversion test.
+ * @ingroup diag_ipu
+ */
+
 #include <string.h>
 #include <stdio.h>
 

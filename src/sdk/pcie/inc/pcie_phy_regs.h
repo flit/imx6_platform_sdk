@@ -916,4 +916,7 @@
 #define SSP_JTAG_DR_IDCODE_VAL_HI  0x7211
 #define SSP_JTAG_DR_IDCODE_VAL_LO  0x64CD
 
+int pcie_phy_cr_read(uint32_t addr, uint32_t * data);
+int pcie_phy_cr_write(uint32_t addr, uint32_t data);
+
 #endif //_PCIE_PHY_REGS_H_

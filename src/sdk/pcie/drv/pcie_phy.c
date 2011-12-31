@@ -29,7 +29,7 @@ static int pcie_phy_cr_ack_polling(int32_t max_iterations, int32_t exp_val)
     return 0;
 }
 
-static int pcie_phy_cr_cap_addr(int32_t addr)
+static int pcie_phy_cr_cap_addr(uint32_t addr)
 {
     int val;
 
@@ -54,7 +54,7 @@ static int pcie_phy_cr_cap_addr(int32_t addr)
     return 0;
 }
 
-int pcie_phy_cr_read(int32_t addr, int32_t * data)
+int pcie_phy_cr_read(uint32_t addr, uint32_t * data)
 {
     int32_t val;
 
@@ -83,7 +83,7 @@ int pcie_phy_cr_read(int32_t addr, int32_t * data)
     return 0;
 }
 
-int pcie_phy_cr_write(int32_t addr, int32_t data)
+int pcie_phy_cr_write(uint32_t addr, uint32_t data)
 {
     int32_t val;
 

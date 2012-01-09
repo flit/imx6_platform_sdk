@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -572,6 +572,7 @@ int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size)
 
     F->bytes_read += size;
 
+    /*for endless test, back to the first cluster */
     if (F->bytes_read == F->file_size) {
         F->sector = fat_first_sector_of_cluster(F->first_cluster, V);
         F->bytes_read = 0;

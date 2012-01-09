@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -18,14 +18,24 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-#ifndef _DEC_H
-#define _DEC_H
-
+#ifndef _VPU_TEST_H_
+#define _VPU_TEST_H_
+#include "hardware.h"
 #include "vpu_lib.h"
 #include "vpu_io.h"
+#include "fat_driver.h"
+#include "vpu_util.h"
+#include "../../ipu/inc/ipu_common.h"
+#include "../../usdhc/inc/usdhc_ifc.h"
+
+#define MAX_FIFO_SIZE 		32
+#define NUM_FRAME_BUFS	32
+#define FB_INDEX_MASK		(NUM_FRAME_BUFS - 1)
+
+#define SD_PORT_BASE_ADDR	USDHC4_BASE_ADDR
 
 #define STREAM_BUF_SIZE		0x200000
-#define STREAM_FILL_SIZE	0x40000
+#define STREAM_FILL_SIZE	0x80000
 #define STREAM_READ_SIZE	(512 * 8)
 #define STREAM_END_SIZE		0
 #define PS_SAVE_SIZE		0x080000
@@ -50,6 +60,15 @@
 
 #define SIZE_USER_BUF            0x1000
 #define USER_DATA_INFO_OFFSET    8*17
+
+#define VDOA_DIS            (0)
+#define VDOA_EN             (1)
+
+#define EPIT_EPITCR_OFFSET	0x00    //  32bit timer 3 control reg
+#define EPIT_EPITSR_OFFSET	0x04    //  32bit timer 3 prescaler reg
+#define EPIT_EPITLR_OFFSET	0x08    //  32bit timer 3 compare reg
+#define EPIT_EPITCMPR_OFFSET	0x0C    //  32bit timer 3 capture reg
+#define EPIT_EPITCNR_OFFSET	0x10    //  32bit timer 3 counter reg
 
 enum {
     MODE420 = 0,
@@ -196,29 +215,43 @@ struct encode {
     uint8_t *qMatTable;
 };
 
+typedef struct {
+    uint32_t frames[MAX_FIFO_SIZE];
+    uint32_t id[MAX_FIFO_SIZE];
+    int wrptr;
+    int rdptr;
+    int size;
+    int full;
+    uint32_t popCnt;
+} vdec_frame_buffer_t;
+
+extern uint32_t usdhc_busy;
+extern tFile files[10];
+extern tVolume *V;
+extern struct decode *gDecInstance[];
+extern struct encode *gEncInstance[];
+extern vdec_frame_buffer_t gDecFifo[];
+extern uint32_t gBsBuffer[];
+extern int gCurrentActiveInstance;
+extern int gTotalActiveInstance;
+extern semaphore_t *vpu_semap;
+extern struct hw_module hw_vpu;
+extern struct hw_module hw_epit2;
+
 void framebuf_init(void);
 int fwriten(int fd, void *vptr, size_t n);
-int freadn(int fd, void *vptr, size_t n);
-int vpu_read(struct cmd_line *cmd, char *buf, int n);
-int vpu_write(struct cmd_line *cmd, char *buf, int n);
+int vpu_stream_read(struct cmd_line *cmd, char *buf, int n);
+int vpu_stream_write(struct cmd_line *cmd, char *buf, int n);
 void get_arg(char *buf, int *argc, char *argv[]);
 int open_files(struct cmd_line *cmd);
 void close_files(struct cmd_line *cmd);
 int check_params(struct cmd_line *cmd, int op);
 char *skip_unwanted(char *ptr);
 int parse_options(char *buf, struct cmd_line *cmd, int *mode);
-
-struct vpu_display *v4l_display_open(struct decode *dec, int nframes,
-                                     struct rot rotation, Rect rotCrop);
+int card_xfer_result(int base_address, int *result);
 struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height);
 struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height);
 void framebuf_free(struct frame_buf *fb);
-
-struct vpu_display *ipu_display_open(struct decode *dec, int nframes, struct rot rotation,
-                                     Rect cropRect);
-void ipu_display_close(struct vpu_display *disp);
-int ipu_put_data(struct vpu_display *disp, int index, int field, int fps);
-
 int encoder_open(struct encode *enc);
 void encoder_close(struct encode *enc);
 int encoder_configure(struct encode *enc);
@@ -230,8 +263,25 @@ void decoder_close(struct decode *dec);
 int decoder_parse(struct decode *dec);
 int decoder_allocate_framebuffer(struct decode *dec);
 void decoder_free_framebuffer(struct decode *dec);
-
-void SaveQpReport(uint32_t * qpReportAddr, int picWidth, int picHeight, int frameIdx,
-                  char *fileName);
 int video_data_cmp(unsigned char *src, unsigned char *dst, int size);
+int vpu_decoder_setup(void *arg);
+int ipu_refresh(int ipu_index, uint32_t buffer);
+void config_system_parameters(void);
+int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag);
+void init_fat32_device(void *blkreq_func);
+void dec_fifo_init(vdec_frame_buffer_t * fifo, int size);
+int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame);
+int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id);
+int dec_fifo_is_empty(vdec_frame_buffer_t * fifo);
+int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
+void epit2_config(int periodic);
+extern int config_hdmi_si9022(int ipu_index, int ipu_di);
+extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
+extern int ips_hdmi_1080P60_stream(int ipu_index);
+extern void enable_L1_cache(void);
+extern int ips_hannstar_xga_yuv_stream(int ipu_index);
+extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
+                                  uint32_t buffer_addr);
+extern void ipu_channel_buf_ready(int ipu_index, int channel, int buf);
+
 #endif

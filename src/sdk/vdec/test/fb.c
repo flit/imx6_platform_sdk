@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -24,12 +24,11 @@
 #include <stdio.h>
 #include "vpu_test.h"
 
-#define NUM_FRAME_BUFS	32
-#define FB_INDEX_MASK	(NUM_FRAME_BUFS - 1)
-
 static int fb_index;
 static struct frame_buf *fbarray[NUM_FRAME_BUFS];
 static struct frame_buf fbpool[NUM_FRAME_BUFS];
+vdec_frame_buffer_t gDecFifo[NUM_FRAME_BUFS];
+uint32_t gBsBuffer[NUM_FRAME_BUFS];
 
 void framebuf_init(void)
 {
@@ -61,11 +60,69 @@ void put_framebuf(struct frame_buf *fb)
     fbarray[fb_index] = fb;
 }
 
+void dec_fifo_init(vdec_frame_buffer_t * fifo, int size)
+{
+    fifo->size = size;
+    fifo->wrptr = 0;
+    fifo->rdptr = 0;
+    fifo->full = 0;
+    fifo->popCnt = 0;
+}
+
+int dec_fifo_is_full(vdec_frame_buffer_t * fifo)
+{
+    return (fifo->full);
+}
+
+int dec_fifo_is_empty(vdec_frame_buffer_t * fifo)
+{
+    return ((fifo->rdptr == fifo->wrptr) && !(fifo->full));
+}
+
+/*one frame is in-queued*/
+int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame)
+{
+    if (fifo->full)
+        return -1;
+
+    fifo->frames[fifo->wrptr] = frame;
+
+    if (++fifo->wrptr == fifo->size)
+        fifo->wrptr = 0;
+
+    if (fifo->wrptr == fifo->rdptr)
+        fifo->full = 1;
+
+    return 0;
+}
+
+/*one frame is dequeued*/
+int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id)
+{
+    if ((fifo->rdptr == fifo->wrptr) && !(fifo->full))
+        return -1;
+
+    *frame = fifo->frames[fifo->rdptr];
+    *id = fifo->popCnt++;
+
+    if (++fifo->rdptr == fifo->size)
+        fifo->rdptr = 0;
+
+    if (fifo->full)
+        fifo->full = 0;
+
+    return 0;
+}
+
 struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height)
 {
     struct frame_buf *fb;
     int err;
     int divX, divY;
+
+    /*Add by Ray, for direct display on display panel */
+    strideY = FRAME_MAX_WIDTH;
+    height = FRAME_MAX_HEIGHT;
 
     fb = get_framebuf();
     if (fb == NULL)
@@ -91,10 +148,12 @@ struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int heigh
     fb->strideY = strideY;
     fb->strideC = strideY / divX;
 
-    if (stdMode == STD_MJPG)
-        fb->mvColBuf = fb->addrCr;
-    else
-        fb->mvColBuf = fb->addrCr + strideY / divX * height / divY;
+    /*set the background to black */
+    memset((void *)fb->addrY, 0x10, strideY * height);
+    memset((void *)fb->addrCr, 0x80, strideY * height >> 2);
+    memset((void *)fb->addrCb, 0x80, strideY * height >> 2);
+
+    fb->mvColBuf = fb->addrCr + strideY / divX * height / divY;
 
     return fb;
 }

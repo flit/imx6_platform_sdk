@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -27,9 +27,25 @@
 #include "vpu_io.h"
 
 #define MAX_FW_BINARY_LEN		200 * 1024
-#define MAX_NUM_INSTANCE		8
+typedef enum {
+    INT_BIT_PIC_RUN = 3,
+    INT_BIT_BIT_BUF_EMPTY = 14,
+    INT_BIT_BIT_BUF_FULL = 15
+} InterruptBit;
 
-#define BIT_WORK_SIZE			0x20000
+typedef enum {
+    INT_JPU_DONE = 0,
+    INT_JPU_ERROR = 1,
+    INT_JPU_BIT_BUF_EMPTY = 2,
+    INT_JPU_BIT_BUF_FULL = 2,
+    INT_JPU_PARIAL_OVERFLOW = 3
+} InterruptJpu;
+
+#ifdef MX61
+#define BIT_WORK_SIZE			(128*1024)
+#else
+#define BIT_WORK_SIZE			(47*1024)
+#endif
 #define SIZE_CONTEXT_BUF		BIT_WORK_SIZE
 
 #define SIZE_PIC_PARA_BASE_BUF          0x100
@@ -38,6 +54,7 @@
 #define SIZE_FRAME_BUF_STAT             0x100
 #define SIZE_SLICE_INFO                 0x4000
 #define USER_DATA_INFO_OFFSET           8*17
+#define JPU_GBU_SIZE			512
 
 #define ADDR_PIC_PARA_BASE_OFFSET       0
 #define ADDR_MV_BASE_OFFSET             ADDR_PIC_PARA_BASE_OFFSET + SIZE_PIC_PARA_BASE_BUF
@@ -55,6 +72,12 @@
 #define Q_COMPONENT1		    0x40
 #define Q_COMPONENT2		    0x80
 
+#define VPU_SW_RESET_BPU_CORE   0x008
+#define VPU_SW_RESET_BPU_BUS    0x010
+#define VPU_SW_RESET_VCE_CORE   0x020
+#define VPU_SW_RESET_VCE_BUS    0x040
+#define VPU_SW_RESET_GDI_CORE   0x080
+#define VPU_SW_RESET_GDI_BUS    0x100
 #if defined(MX53)
 enum {
     AVC_DEC = 0,
@@ -66,7 +89,10 @@ enum {
     MJPG_DEC = 5,
     AVC_ENC = 8,
     MP4_ENC = 11,
-    MJPG_ENC = 13
+    MJPG_ENC = 13,
+    /* dummy */
+    AVS_DEC = 0x81,
+    VPX_DEC = 0x82
 };
 #elif defined(MX61)
 enum {
@@ -108,6 +134,11 @@ enum {
     VPX_AUX_THO = 0,
     VPX_AUX_VP6 = 1,
     VPX_AUX_VP8 = 2
+};
+
+enum {
+    AVC_AUX_AVC = 0,
+    AVC_AUX_MVC = 1
 };
 
 enum {
@@ -223,6 +254,7 @@ typedef struct {
 
 typedef struct {
     int width;
+    int height;
     int codecMode;
     int profile;
 } SetIramParam;
@@ -252,7 +284,7 @@ typedef struct {
     uint32_t huffSize[4][256];
     uint8_t *pHuffVal[4];
     uint8_t *pHuffBits[4];
-    uint8_t *pCInfoTab[4];
+    uint8_t *pCInfoTab[5];
     uint8_t *pQMatTab[4];
 
 } JpgEncInfo;
@@ -280,6 +312,7 @@ typedef struct {
     int initialInfoObtained;
     int dynamicAllocEnable;
     int ringBufferEnable;
+    int mp4_dataPartitionEnable;
 
     SecAxiUse secAxiUse;
     MaverickCacheConfig cacheConfig;
@@ -301,8 +334,12 @@ typedef struct {
     int picHeight;
     int alignedWidth;
     int alignedHeight;
-
+    int frameOffset;
+    int consumeByte;
     int ecsPtr;
+    int pagePtr;
+    int wordPtr;
+    int bitPtr;
     int format;
     int rstIntval;
 
@@ -329,9 +366,16 @@ typedef struct {
     int frameIdx;
     int seqInited;
 
-    uint8_t *pHeader;
-    int headerSize;
-//    GetBitContext gbc;
+    uint8_t *pVirtBitStream;
+    //GetBitContext gbc;
+    int lineBufferMode;
+    uint8_t *pVirtJpgChunkBase;
+    int chunkSize;
+
+    uint32_t bbcEndAddr;
+    uint32_t bbcStreamCtl;
+    int quitCodec;
+    int rollBack;
 } JpgDecInfo;
 
 typedef struct {
@@ -341,6 +385,7 @@ typedef struct {
     PhysicalAddress streamWrPtr;
     PhysicalAddress streamBufStartAddr;
     PhysicalAddress streamBufEndAddr;
+    int streamEndflag;
     int streamBufSize;
 
     FrameBuffer *frameBufPool;
@@ -376,6 +421,7 @@ typedef struct {
 
     vpu_mem_desc picParaBaseMem;
     vpu_mem_desc userDataBufMem;
+    WriteMemProtectCfg writeMemProtectCfg;
 
     DecReportInfo decReportFrameBufStat;    /* Frame Buffer Status */
     DecReportInfo decReportMBInfo;  /* Mb Param for Error Concealment */
@@ -408,9 +454,10 @@ typedef struct {
     CodecInst *pendingInst;
 } semaphore_t;
 
-void BitIssueCommand(int instIdx, int cdcMode, int cdcModeAux, int cmd);
+void BitIssueCommand(CodecInst * pCodecInst, int cmd);
 void BitIssueCommandEx(CodecInst * pCodecInst, int cmd);
 
+RetCode LoadBitCodeTable(uint16_t * pBitCode, int *size);
 RetCode DownloadBitCodeTable(uint32_t * virtCodeBuf);
 
 RetCode GetCodecInstance(CodecInst ** ppInst);
@@ -467,6 +514,8 @@ static inline void UnlockVpuReg(semaphore_t * semap)
 {
     /*post the lock */
 }
+
+int vpu_mx6q_swreset(int forcedReset);
 
 #define swab32(x) \
 	((uint32_t)( \

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -42,6 +42,8 @@
 #define	BIT_INT_STS			0x010   // Not prsent
 #define	BIT_CODE_RESET			0x014
 #define BIT_CUR_PC			0x018
+#define BIT_SW_RESET                   0x024
+#define BIT_SW_RESET_STATUS            0x034
 
 /*---------------------------------------------------------------------------
  *  GLOBAL REGISTER
@@ -70,6 +72,8 @@
 #define CMD_SET_FRAME_AXI_DBKY_ADDR     0x198
 #define CMD_SET_FRAME_AXI_DBKC_ADDR     0x19C
 #define CMD_SET_FRAME_AXI_OVL_ADDR      0x1A0
+#define BIT_BYTE_POS_FRAME_START	0x144
+#define BIT_BYTE_POS_FRAME_END		0x148
 
 #define BIT_BUSY_FLAG			0x160
 #define BIT_RUN_COMMAND			0x164
@@ -92,12 +96,13 @@
 #define CMD_DEC_SEQ_OPTION		0x188
 #define CMD_DEC_SEQ_SRC_SIZE		0x18C
 #define CMD_DEC_SEQ_START_BYTE		0x190
-#define CMD_DEC_SEQ_PS_BB_START     	0x194
-#define CMD_DEC_SEQ_PS_BB_SIZE      	0x198
+#define CMD_DEC_SEQ_PS_BB_START     	0x194   /* dummy for mx6q */
+#define CMD_DEC_SEQ_PS_BB_SIZE      	0x198   /* dummy for mx6q */
 #define CMD_DEC_SEQ_JPG_THUMB_EN        0x19C
 #define CMD_DEC_SEQ_MP4_ASP_CLASS	0x19C
 #define CMD_DEC_SEQ_VC1_STREAM_FMT	0x19C
 #define CMD_DEC_SEQ_X264_MV_EN		0x19C
+#define CMD_DEC_SEQ_SPP_CHUNK_SIZE	0x1A0
 
 #define CMD_DEC_SEQ_INIT_ESCAPE		0x114
 
@@ -123,7 +128,6 @@
 #define RET_DEC_SEQ_ERR_REASON		0x1E0
 #define RET_DEC_SEQ_FRATE_NR		0x1E4
 #define RET_DEC_SEQ_FRATE_DR		0x1E8
-#define RET_DEC_SEQ_FRAME_FORMAT	0x1E4
 
 #define	RET_DEC_SEQ_JPG_PARA		0x1E4
 #define RET_DEC_SEQ_JPG_THUMB_IND	0x1E8
@@ -167,7 +171,7 @@
 #define CMD_ENC_SEQ_JPG_THUMB_SIZE	0x1A4
 #define CMD_ENC_SEQ_JPG_THUMB_OFFSET	0x1A8
 
-#define RET_ENC_SEQ_SUCCESS		0x1C0
+#define RET_ENC_SEQ_ENC_SUCCESS		0x1C0
 
 /*--------------------------------------------------------------------------
  * [ENC PARA CHANGE] COMMAND :
@@ -218,6 +222,14 @@
 #define CMD_DEC_PIC_USER_DATA_BUF_SIZE  0x1B0
 #define CMD_DEC_PIC_DBK_OFFSET		0x1B4
 
+#define CMD_DEC_PIC_THO_PIC_PARA	0x198
+#define CMD_DEC_PIC_THO_QMAT_ADDR	0x1A0
+#define CMD_DEC_PIC_THO_MB_PARA_ADDR	0x1A4
+
+#define RET_DEC_PIC_AVC_FPA_SEI0	0x19C
+#define RET_DEC_PIC_AVC_FPA_SEI1	0x1A0
+#define RET_DEC_PIC_AVC_FPA_SEI2	0x1A4
+
 #define RET_DEC_PIC_SIZE		0x1BC
 #define RET_DEC_PIC_FRAME_NUM		0x1C0
 #define RET_DEC_PIC_FRAME_IDX		0x1C4
@@ -225,6 +237,7 @@
 #define RET_DEC_PIC_TYPE		0x1CC
 
 #define RET_DEC_PIC_POST		0x1D0
+#define RET_DEC_PIC_MVC_REPORT		0x1D0
 
 #define RET_DEC_PIC_OPTION		0x1D4
 #define RET_DEC_PIC_SUCCESS		0x1D8
@@ -304,6 +317,8 @@
 // Magellan ENCODER ONLY
 #define CMD_SET_FRAME_SUBSAMP_A		0x188
 #define CMD_SET_FRAME_SUBSAMP_B		0x18C
+#define CMD_SET_FRAME_DP_BUF_BASE	0x1B0
+#define CMD_SET_FRAME_DP_BUF_SIZE	0x1B4
 
 /*---------------------------------------------------------------------------
  * [ENC HEADER] COMMAND
@@ -353,8 +368,8 @@
 #elif defined(MX61)
 #define CODE_BUF_SIZE                   (240 * 1024)    /* define max is 240k byte currently */
 #define FMO_SLICE_SAVE_BUF_SIZE         (32)
-#define TEMP_BUF_SIZE                   (512 * 1024) + (FMO_SLICE_SAVE_BUF_SIZE * 1024 * 8)
-#define WORK_BUF_SIZE                   (512 * 1024) + (FMO_SLICE_SAVE_BUF_SIZE * 1024 * 8)
+#define TEMP_BUF_SIZE                   (200 * 1024)
+#define WORK_BUF_SIZE                   (200 * 1024)
 #define PARA_BUF2_SIZE                  (2 * 1024)
 #define PARA_BUF_SIZE                   (10 * 1024)
 #else
@@ -424,32 +439,31 @@
 #define GDI_WPROT_RGN5_STA	    (GDMA_BASE + 0x0D8)
 #define GDI_WPROT_RGN5_END	    (GDMA_BASE + 0x0DC)
 
-#define GDI_BUS_CTRL                (GDMA_BASE + 0x0f0)
-#define GDI_BUS_STATUS              (GDMA_BASE + 0x0f4)
+#define GDI_BUS_CTRL                (GDMA_BASE + 0x0F0)
+#define GDI_BUS_STATUS              (GDMA_BASE + 0x0F4)
 
-#define GDI_DCU_PIC_SIZE            (GDMA_BASE + 0x0a8)
-
-#define GDI_SIZE_ERR_FLAG           (GDMA_BASE + 0x0e0)
+#define GDI_SIZE_ERR_FLAG           (GDMA_BASE + 0x0E0)
 #define GDI_INFO_CONTROL            (GDMA_BASE + 0x400)
 #define GDI_INFO_PIC_SIZE           (GDMA_BASE + 0x404)
 #define GDI_INFO_BASE_Y             (GDMA_BASE + 0x408)
-#define GDI_INFO_BASE_CB            (GDMA_BASE + 0x40c)
+#define GDI_INFO_BASE_CB            (GDMA_BASE + 0x40C)
 #define GDI_INFO_BASE_CR            (GDMA_BASE + 0x410)
 
 #define GDI_XY2_CAS_0               (GDMA_BASE + 0x800)
-#define GDI_XY2_CAS_F               (GDMA_BASE + 0x83c)
+#define GDI_XY2_CAS_F               (GDMA_BASE + 0x83C)
 
 #define GDI_XY2_BA_0                (GDMA_BASE + 0x840)
 #define GDI_XY2_BA_1                (GDMA_BASE + 0x844)
 #define GDI_XY2_BA_2                (GDMA_BASE + 0x848)
-#define GDI_XY2_BA_3                (GDMA_BASE + 0x84c)
+#define GDI_XY2_BA_3                (GDMA_BASE + 0x84C)
 
 #define GDI_XY2_RAS_0               (GDMA_BASE + 0x850)
-#define GDI_XY2_RAS_F               (GDMA_BASE + 0x88c)
+#define GDI_XY2_RAS_F               (GDMA_BASE + 0x88C)
 
 #define GDI_XY2_RBC_CONFIG          (GDMA_BASE + 0x890)
-#define GDI_RBC2_AXI_0              (GDMA_BASE + 0x8a0)
-#define GDI_RBC2_AXI_1F             (GDMA_BASE + 0x91c)
+#define GDI_RBC2_AXI_0              (GDMA_BASE + 0x8A0)
+#define GDI_RBC2_AXI_1F             (GDMA_BASE + 0x91C)
+#define GDI_TILEDBUF_BASE           (GDMA_BASE + 0x920)
 
 /*--------------------------------------------------------------------
 NIEUPORT REGISTERS
@@ -470,23 +484,12 @@ NIEUPORT REGISTERS
 #define MJPEG_OP_INFO_REG	 (NPT_BASE + 0x02C) // [31:16] - # of line in 1 partial buffer, [5:3] - # of partial buffers [2:0] - # of request
 
 #define MJPEG_DPB_CONFIG_REG     (NPT_BASE + 0x030)
-#define MJPEG_DPB_BASE00_REG	 (NPT_BASE + 0x034)
-#define MJPEG_DPB_BASE01_REG	 (NPT_BASE + 0x038)
-#define MJPEG_DPB_BASE02_REG	 (NPT_BASE + 0x03C)
+#define MJPEG_WRESP_CHECK_REG    (NPT_BASE + 0x034)
 
-#define MJPEG_DPB_BASE10_REG	 (NPT_BASE + 0x040)
-#define MJPEG_DPB_BASE11_REG	 (NPT_BASE + 0x044)
-#define MJPEG_DPB_BASE12_REG	 (NPT_BASE + 0x048)
-#define MJPEG_DPB_BASE20_REG	 (NPT_BASE + 0x04C)
-
-#define MJPEG_DPB_BASE21_REG	 (NPT_BASE + 0x050)
-#define MJPEG_DPB_BASE22_REG	 (NPT_BASE + 0x054)
-#define MJPEG_DPB_BASE30_REG	 (NPT_BASE + 0x058)
-#define MJPEG_DPB_BASE31_REG	 (NPT_BASE + 0x05C)
-
-#define MJPEG_DPB_BASE32_REG	 (NPT_BASE + 0x060)
-#define MJPEG_DPB_YSTRIDE_REG	 (NPT_BASE + 0x064)
-#define MJPEG_DPB_CSTRIDE_REG	 (NPT_BASE + 0x068)
+#define MJPEG_DPB_BASE00_REG	 (NPT_BASE + 0x040)
+#define MJPEG_DPB_BASE10_REG	 (NPT_BASE + 0x044)
+#define MJPEG_DPB_BASE20_REG	 (NPT_BASE + 0x048)
+#define MJPEG_DPB_BASE30_REG	 (NPT_BASE + 0x04C)
 
 #define MJPEG_HUFF_CTRL_REG	 (NPT_BASE + 0x080)
 #define MJPEG_HUFF_ADDR_REG	 (NPT_BASE + 0x084)

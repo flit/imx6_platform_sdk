@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -95,7 +95,7 @@ uint32_t get_freq(uint32_t module_base)
         return get_peri_clock(UART4_BAUD);
     else if (module_base == g_system_timer.base)
         /* value depends on how the timer is configured, 
-            and this is actually initialized in system_time_init() */
+           and this is actually initialized in system_time_init() */
         return g_system_timer.freq;
     else {
         printf("Not a valid module base address \n");
@@ -900,4 +900,40 @@ unsigned int spdif_get_tx_clk_freq(void)
 uint32_t GetCPUFreq(void)
 {
     return 1000000000;
+}
+
+int perfmon_clk_cfg(uint32_t base, uint32_t enable)
+{
+    uint32_t val, shift, reg;
+
+    //Enable AXI clock for perfmon
+    reg32setbit(IOMUXC_GPR11, 16);
+
+    switch (base) {
+    case IP2APB_PERFMON1_BASE_ADDR:
+        reg = CCM_CCGR4;
+        shift = MXC_CCM_CCGRx_CG1_OFFSET;
+        break;
+    case IP2APB_PERFMON2_BASE_ADDR:
+        reg = CCM_CCGR4;
+        shift = MXC_CCM_CCGRx_CG2_OFFSET;
+        break;
+    case IP2APB_PERFMON3_BASE_ADDR:
+        reg = CCM_CCGR4;
+        shift = MXC_CCM_CCGRx_CG3_OFFSET;
+        break;
+    default:
+        break;
+    }
+
+    val = reg32_read(reg);
+    if (enable) {
+        val |= 0x03 << shift;
+    } else {
+        val &= ~(0x03 << shift);
+    }
+
+    reg32_write(reg, val);
+
+    return 0;
 }

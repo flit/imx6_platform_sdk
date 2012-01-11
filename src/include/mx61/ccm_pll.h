@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -81,6 +81,39 @@
 #define CCM_CCGR5   CCM_BASE_ADDR+CCM_CCGR5_OFFSET
 #define CCM_CCGR6   CCM_BASE_ADDR+CCM_CCGR6_OFFSET
 #define CCM_CCGR7   CCM_BASE_ADDR+CCM_CCGR7_OFFSET
+
+#define MXC_CCM_CCGRx_CG15_MASK         (0x3 << 30)
+#define MXC_CCM_CCGRx_CG14_MASK         (0x3 << 28)
+#define MXC_CCM_CCGRx_CG13_MASK         (0x3 << 26)
+#define MXC_CCM_CCGRx_CG12_MASK         (0x3 << 24)
+#define MXC_CCM_CCGRx_CG11_MASK         (0x3 << 22)
+#define MXC_CCM_CCGRx_CG10_MASK         (0x3 << 20)
+#define MXC_CCM_CCGRx_CG9_MASK          (0x3 << 18)
+#define MXC_CCM_CCGRx_CG8_MASK          (0x3 << 16)
+#define MXC_CCM_CCGRx_CG5_MASK          (0x3 << 10)
+#define MXC_CCM_CCGRx_CG4_MASK          (0x3 << 8)
+#define MXC_CCM_CCGRx_CG3_MASK          (0x3 << 6)
+#define MXC_CCM_CCGRx_CG2_MASK          (0x3 << 4)
+#define MXC_CCM_CCGRx_CG1_MASK          (0x3 << 2)
+#define MXC_CCM_CCGRx_CG0_MASK          (0x3 << 0)
+
+#define MXC_CCM_CCGRx_CG15_OFFSET       30
+#define MXC_CCM_CCGRx_CG14_OFFSET       28
+#define MXC_CCM_CCGRx_CG13_OFFSET       26
+#define MXC_CCM_CCGRx_CG12_OFFSET       24
+#define MXC_CCM_CCGRx_CG11_OFFSET       22
+#define MXC_CCM_CCGRx_CG10_OFFSET       20
+#define MXC_CCM_CCGRx_CG9_OFFSET        18
+#define MXC_CCM_CCGRx_CG8_OFFSET        16
+#define MXC_CCM_CCGRx_CG7_OFFSET        14
+#define MXC_CCM_CCGRx_CG6_OFFSET        12
+#define MXC_CCM_CCGRx_CG5_OFFSET        10
+#define MXC_CCM_CCGRx_CG4_OFFSET        8
+#define MXC_CCM_CCGRx_CG3_OFFSET        6
+#define MXC_CCM_CCGRx_CG2_OFFSET        4
+#define MXC_CCM_CCGRx_CG1_OFFSET        2
+#define MXC_CCM_CCGRx_CG0_OFFSET        0
+
 #define CCM_CMEOR   CCM_BASE_ADDR+CCM_CMEOR_OFFSET
 
 //#########################################

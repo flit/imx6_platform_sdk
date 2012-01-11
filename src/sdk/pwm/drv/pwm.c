@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -17,6 +17,11 @@ int pwm_init(struct hw_module *port, uint16_t prescale, uint16_t period,
     int idx;
 
     pwm_reg_p reg_base = (pwm_reg_p) port->base;
+
+    /* IOMUX */
+    if (port->iomux_config != NULL) {
+        port->iomux_config();
+    }
 
     /* Disable PWM first */
     reg_base->pwmcr &= ~PWMCR_MASK_ENABLE;

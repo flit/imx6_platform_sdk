@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -91,7 +91,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
             i2cr &= ~I2C_I2CR_MTX;
             writew(i2cr, base + I2C_I2CR);
             /* dummy read of the received slave address */
-            readw(base + I2C_I2DR);
+            data = readw(base + I2C_I2DR);
         }
     }
     else
@@ -120,7 +120,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
                 i2cr &= ~I2C_I2CR_MTX;
                 writew(i2cr, base + I2C_I2CR);
                 /* dummy read of the received data */
-                readw(base + I2C_I2DR);
+                data = readw(base + I2C_I2DR);
             }
         }
         else

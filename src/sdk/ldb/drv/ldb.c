@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -81,6 +81,7 @@ void ldb_config(int ipu_port, int lvds_port, int data_width, int bit_map)
         break;
     case LVDS_SPLIT_PORT:
         ldb_write_field(LDB_CTRL_REG, 4, 1, 1);
+        break;
     case LVDS_DUAL_PORT:
         ldb_write_field(LDB_CTRL_REG, 8, 1, bit_map);
         ldb_write_field(LDB_CTRL_REG, 7, 1, data_width);
@@ -119,5 +120,6 @@ void ldb_set_vs_polarity(int ipu_port, int vs_pol)
         break;
     default:
         printf("unkown display port %d!! please check.\n", ipu_port);
+        break;
     }
 }

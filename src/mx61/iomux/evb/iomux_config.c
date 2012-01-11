@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved.
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -116,11 +116,10 @@ void ipu2_iomux_config()
 {
 };
 
-void kpp_iomux_config()
-{
-};
+//void kpp_iomux_config(){};
 
 //void ldb_iomux_config(){};
+
 void mipi_core_iomux_config()
 {
 };

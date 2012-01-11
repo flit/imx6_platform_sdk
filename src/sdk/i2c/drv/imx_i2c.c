@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -306,7 +306,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
         writew(i2cr, base + I2C_I2CR);
 
         /* dummy read */
-        readw(base + I2C_I2DR);
+        data = readw(base + I2C_I2DR);
 
         /* now reading ... */
         if (rx_bytes(rq->buffer, base, rq->buffer_sz) != 0) {

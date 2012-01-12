@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include "hardware.h"
+#include "keypad_test.h"
 
 void press_key_test(void);
 
@@ -62,18 +63,22 @@ void press_key_test(void)
     /* this is a 3x3 matrix - col[7:5] x row[7:5] */
     kppcol = kpprow = 0xE0;
 
-    kpp_init();
+    kpp_init(kppcol, kpprow);
 
     do
     {
         printf("Please press any key:\n");
 
-        kpp_get_key(read_keys, kppcol, kpprow);
+        /* get the pressed key(s) */
+        kpp_get_keypad_state(read_keys, WF_INTERRUPT);
+
+        /* wait for no key pressed */
+        kpp_wait_for_release_state();
 
         for(i=0;i<8;i++)
         {
-            if((read_keys[i] & 0xFF) != 0xFF)
-                printf("Key %X was pressed.\n",~read_keys[i] & 0xFFFF);
+            if((read_keys[i] & 0xFF) != 0x00)
+                printf("Key %04X was pressed.\n",read_keys[i]);
         }
 
     } while(1);

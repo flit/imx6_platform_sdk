@@ -34,9 +34,15 @@
 #define COL_IN_TTPOLE   0x0000
 #define COL_IN_ODRAIN   0xFF00
 
+/* wait for key press interrupt to read the keypad state */
+#define WF_INTERRUPT    0x1
+/* read immediately the keypad state */
+#define IMMEDIATE       0x0
+
 /* functions of the driver */
-void kpp_init(void);
+void kpp_init(uint8_t kpp_col, uint8_t kpp_row);
 void kpp_setup_interrupt(uint8_t state);
-uint8_t kpp_get_key(uint16_t *rd_keys, uint8_t kpp_col, uint8_t kpp_row);
+void kpp_get_keypad_state(uint16_t *rd_keys, uint8_t condition);
+void kpp_wait_for_release_state(void);
 
 #endif /* __KEYPAD_PORT_H__ */

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -216,7 +216,7 @@ void ipu_hsp_clk_config(void)
 /*!
  * config ldb clock as per the display resolution
  *
- * ldb clock is derived from PLL5
+ * ldb clock is derived from PLL5, ldb on ipu1
  */
 void ldb_clock_config(int freq)
 {
@@ -240,15 +240,15 @@ void ldb_clock_config(int freq)
         regval = readl(CCM_CHSCCDR) & (~0x0E07);
         regval |= 0x0603;
         writel(regval, CCM_CHSCCDR);
-        regval = readl(CCM_CSCDR2) & (~0x0E07);
-        regval |= 0x0603;
+        regval = readl(CCM_CSCDR2) & (~0x0E00);
+        regval |= 0x0600;
         writel(regval, CCM_CSCDR2);
     } else {
         printf("The frequency %d for LDB is not supported yet.", freq);
     }
 }
 
-void hdmi_clock_set(uint32_t pclk)
+void hdmi_clock_set(int ipu_index, uint32_t pclk)
 {
     uint32_t regval = 0;
 
@@ -267,7 +267,6 @@ void hdmi_clock_set(uint32_t pclk)
         regval = readl(CCM_CSCDR2) & (~0x1FF);
         writel(regval | 0xB8, CCM_CSCDR2);
     } else if (pclk == 148500000) {
-#if 1
         writel(500000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
         writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
         writel(0x00012031, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
@@ -277,19 +276,13 @@ void hdmi_clock_set(uint32_t pclk)
         writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
 
         /*clk output from 540M PFD1 of PLL3 */
-        regval = readl(CCM_CHSCCDR) & (~0x1FF);
-        writel(regval | 0xB8, CCM_CHSCCDR);
-        regval = readl(CCM_CSCDR2) & (~0x1FF);
-        writel(regval | 0xB8, CCM_CSCDR2);
-#else
-        /*clk output from 540M PFD1 of PLL3 */
-        regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
-        writel(regval | 0x158, CCM_CHSCCDR);
-
-        /*config PFD1 of PLL3 to be 445MHz */
-        writel(0x00003F00, ANATOP_BASE_ADDR + 0xF8);
-        writel(0x00001300, ANATOP_BASE_ADDR + 0xF4);
-#endif
+        if (ipu_index == 1) {
+            regval = readl(CCM_CHSCCDR) & (~0x1FF);
+            writel(regval | 0xB8, CCM_CHSCCDR);
+        } else {
+            regval = readl(CCM_CSCDR2) & (~0x1FF);
+            writel(regval | 0xB8, CCM_CSCDR2);
+        }
     } else {
         printf("the hdmi pixel clock is not supported!\n");
     }

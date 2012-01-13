@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -109,7 +109,7 @@ extern void snvs_rtc_test(void);
 extern void snvs_srtc_test(void);
 extern void flexcan_test(void);
 extern int spi_test(void);
-extern int vdec_test(void);
+extern int vpu_test(void);
 extern int gpmi_test(void);
 
 void ALL_test(void)
@@ -135,7 +135,7 @@ void ALL_test(void)
 #ifdef MX61_EVB
         gpmi_test();
         spi_test();
-        vdec_test();
+        vpu_test();
 #endif
         uart_test();
         usdhc_test();

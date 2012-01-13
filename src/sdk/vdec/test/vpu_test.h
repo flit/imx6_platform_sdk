@@ -247,7 +247,7 @@ extern semaphore_t *vpu_semap;
 extern struct hw_module hw_vpu;
 extern struct hw_module hw_epit2;
 extern int disp_clr_index[];
-extern int trigger_display;
+extern int multi_instance;
 
 void framebuf_init(void);
 int fwriten(int fd, void *vptr, size_t n);
@@ -289,6 +289,8 @@ int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
 void epit2_config(int periodic);
 void epit_isr(void);
 void decoder_frame_display(void);
+int decode_test(void);
+
 int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
                       uint32_t bs_pa_startaddr, int defaultsize, int *eos, int *fill_end_bs);

@@ -39,7 +39,7 @@ int32_t ipu_test(void)
     printf("Note that the Display test is using the Hannstar LVDS panel pluged into LVDS0/1\n");
     /*enable panel */
     panel = search_panel("HannStar XGA LVDS");
-    panel->panel_init();
+    panel->panel_init(NULL);
 
     do {
         for (i = 0; i < test_num; i++)

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -13,7 +13,7 @@
 
 #include "ipu_common.h"
 
-static int claa_wvga_panel_init(void)
+static int claa_wvga_panel_init(int *arg)
 {
     return true;
 }
@@ -27,7 +27,7 @@ extern void ldb_iomux_config(void);
 extern void ldb_clock_config(int freq);
 extern void lvds_power_on(void);
 
-static int hannstar_lvds_panel_init(void)
+static int hannstar_lvds_panel_init(int *ipu_index)
 {
     ldb_iomux_config();
     ldb_clock_config(65000000);
@@ -42,11 +42,11 @@ static int hannstar_lvds_panel_deinit(void)
 }
 
 extern void hdmi_pgm_iomux(void);
-extern void hdmi_clock_set(unsigned int pclk);
-static int hdmi_1080p60_init(void)
+extern void hdmi_clock_set(int ipu_index, unsigned int pclk);
+static int hdmi_1080p60_init(int *ipu_index)
 {
     hdmi_pgm_iomux();
-    hdmi_clock_set(148500000);
+    hdmi_clock_set(*ipu_index, 148500000);
     //hdmi_config();
     return true;
 }
@@ -58,12 +58,12 @@ static int hdmi_1080p60_deinit(void)
 
 extern void ipu_iomux_config(void);
 extern void sii9022_power_on(void);
-static int sii9022_1080p60_init(void)
+static int sii9022_1080p60_init(int *ipu_index)
 {
     /*sii9022 is connected to the parallel interface */
     ipu_iomux_config();
     sii9022_power_on();
-    hdmi_clock_set(148500000);
+    hdmi_clock_set(*ipu_index, 148500000);
     return true;
 }
 

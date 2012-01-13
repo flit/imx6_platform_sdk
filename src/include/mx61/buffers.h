@@ -38,10 +38,8 @@
 #if defined(MX61_EVB)
 #define FAT_DRIVER_BUFFER       (0x60000000)
 #define VPU_WORK_BUFFERS        (0x60100000)
-#define VIDEO_0_BUFFERS         (0x70000000)
-#define VIDEO_0_BUFFERS_END     (0x80000000)
-#define VIDEO_1_BUFFERS         (0x80000000)
-#define VIDEO_1_BUFFERS_END     (0x90000000)
+#define VIDEO_BUFFERS_START         (0x70000000)
+#define VIDEO_BUFFERS_END     (0x90000000)
 #endif
 
 /*OCRAM partition table*/

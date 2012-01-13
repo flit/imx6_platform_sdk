@@ -95,7 +95,8 @@ typedef enum {
     RETCODE_FAILURE_TIMEOUT = -17,
     RETCODE_MEMORY_ACCESS_VIOLATION = -18,
     RETCODE_JPEG_EOS = -19,
-    RETCODE_JPEG_BIT_EMPTY = -20
+    RETCODE_JPEG_BIT_EMPTY = -20,
+    RETCODE_CODEC_NOT_ISSUED = -21,
 } RetCode;
 
 typedef enum {
@@ -288,6 +289,11 @@ typedef struct {
     int sliceSizeMode;
     int sliceSize;
 } EncSliceMode;
+typedef struct {
+    PhysicalAddress subSampBaseAMvc;
+    PhysicalAddress subSampBaseBMvc;
+    ExtBufCfg scratchBuf;
+} EncExtBufInfo;
 
 typedef struct {
     PhysicalAddress sliceSaveBuffer;
@@ -467,6 +473,10 @@ typedef struct {
     int avc_frameCropRight;
     int avc_frameCropTop;
     int avc_frameCropBottom;
+    int mvc_extension;
+    int interview_en;
+    int paraset_refresh_en;
+    int prefix_nal_en;
 } EncAvcParam;
 
 typedef struct {
@@ -498,6 +508,8 @@ typedef struct {
     int vbvBufferSize;
     int enableAutoSkip;
     int gopSize;
+    int linear2TiledEnable;
+    int mapType;
 
     EncSliceMode slicemode;
     int intraRefresh;
@@ -608,7 +620,11 @@ typedef enum {
 
 typedef enum {
     SPS_RBSP,
-    PPS_RBSP
+    PPS_RBSP,
+    END_SEQ_RBSP,
+    END_STREAM_RBSP,
+    SPS_RBSP_MVC,
+    PPS_RBSP_MVC
 } AvcHeaderType;
 
 typedef struct {
@@ -630,6 +646,7 @@ typedef struct vpu_versioninfo {
     int fw_major;               /* firmware major version */
     int fw_minor;               /* firmware minor version */
     int fw_release;             /* firmware release version */
+    int fw_code;                /* firmware checkin code number */
     int lib_major;              /* library major version */
     int lib_minor;              /* library minor version */
     int lib_release;            /* library release version */
@@ -653,7 +670,7 @@ typedef struct vpu_versioninfo {
  * v4.2.2 [2008.09.03] support encoder on MX51
  * v4.0.2 [2008.08.21] add the IOClkGateSet() for power saving.
  */
-#define VPU_LIB_VERSION_CODE	VPU_LIB_VERSION(5, 3, 6)
+#define VPU_LIB_VERSION_CODE	VPU_LIB_VERSION(5, 3, 7)
 
 extern unsigned int system_rev;
 
@@ -676,7 +693,7 @@ static inline int type## _rev (int rev)         \
 #define cpu_is_mx51()		mxc_is_cpu(0x51)
 #define cpu_is_mx53()		mxc_is_cpu(0x53)
 #define cpu_is_mx5x()		(mxc_is_cpu(0x51) || mxc_is_cpu(0x53))
-#define cpu_is_mx6q()		mxc_is_cpu(0x61)
+#define cpu_is_mx6q()		(mxc_is_cpu(0x61) || mxc_is_cpu(0x63))
 
 MXC_REV(cpu_is_mx27);
 
@@ -690,7 +707,7 @@ RetCode vpu_EncGetInitialInfo(EncHandle, EncInitialInfo *);
 RetCode vpu_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
                                    int num, int frameBufStride, int sourceBufStride,
                                    PhysicalAddress subSampBaseA, PhysicalAddress subSampBaseB,
-                                   ExtBufCfg * scratchBuf);
+                                   EncExtBufInfo * pBufInfo);
 RetCode vpu_EncGetBitstreamBuffer(EncHandle handle, PhysicalAddress * prdPrt,
                                   PhysicalAddress * pwrPtr, uint32_t * size);
 RetCode vpu_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size);
@@ -719,7 +736,7 @@ int vpu_IsBusy(void);
 int jpu_IsBusy(void);
 int vpu_WaitForInt(int timeout_in_ms);
 RetCode vpu_SWReset(DecHandle handle, int index);
-int vpu_GetXY2AXIAddr(int ycbcr, int posY, int posX, int stride,
+int vpu_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
                       unsigned int addrY, unsigned int addrCb, unsigned int addrCr);
 
 void SaveGetEncodeHeader(EncHandle handle, int encHeaderType, char *filename);

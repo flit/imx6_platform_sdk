@@ -37,8 +37,8 @@
 #include "vpu_util.h"
 #include "hardware.h"
 
-#define VPU_MEM_START_ADDR	(VIDEO_0_BUFFERS)
-#define VPU_MEM_END_ADDR	(VIDEO_0_BUFFERS_END)
+#define VPU_MEM_START_ADDR	(VIDEO_BUFFERS_START)
+#define VPU_MEM_END_ADDR	(VIDEO_BUFFERS_END)
 
 static unsigned int vpu_mem_alloc_ptr = VPU_MEM_START_ADDR;
 
@@ -49,19 +49,6 @@ vpu_mem_desc pic_para_addr;
 vpu_mem_desc user_data_addr;
 
 int IOGetMem(vpu_mem_desc * buff);
-
-/*
- * Note: the order does not correspond to the bit order in BIT_AXI_SRAM_USE
- * register, but correspond to the items in use_iram_table array.
- * So if there's any IRAM size change in use_iram_table array, may consider
- * change this enumeration accordingly.
- */
-enum {
-    USE_DBK_INTERNAL_BUF,       /* MPEG-4 and MPEG-2 output deblocking */
-    USE_OVL_INTERNAL_BUF,       /* overlap filter */
-    USE_IP_INTERNAL_BUF,        /* intra/ACDC prediction */
-    USE_BIT_INTERNAL_BUF,       /* MB prediction */
-};
 
 int isVpuInitialized(void)
 {
@@ -97,12 +84,14 @@ int IOSystemInit(void *callback)
     /*vpu base is equal to the physical address. MMU disabled */
     vpu_reg_base = (unsigned long)VPU_BASE_ADDR;
 
-    bit_work_addr.size = WORK_BUF_SIZE + PARA_BUF_SIZE + CODE_BUF_SIZE + PARA_BUF2_SIZE;
+    bit_work_addr.size = TEMP_BUF_SIZE + PARA_BUF_SIZE + CODE_BUF_SIZE + PARA_BUF2_SIZE;
 
     if (IOGetMem(&bit_work_addr) < 0) {
         err_msg("Get bitwork address failed!\n");
         goto err;
     }
+
+    vpu_semap = vpu_semaphore_open();
 
     return 0;
 
@@ -167,6 +156,7 @@ unsigned long VpuReadReg(unsigned long addr)
 static unsigned int sz_alloc;
 int IOGetMem(vpu_mem_desc * buff)
 {
+    buff->size = (buff->size + 0xFF) & 0xFFFFFF00;  //align 
     if (vpu_mem_alloc_ptr + buff->size > VPU_MEM_END_ADDR) {
         err_msg("Memory reserved for VPU is not enough!!\n");
         err_msg("Memory required 0x%x, actual pointer 0x%x, actual room 0x%x!!\n",

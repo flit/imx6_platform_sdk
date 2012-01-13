@@ -24,7 +24,6 @@
 #include "vpu_test.h"
 #include "vpu_debug.h"
 #include "vpu_bsfile.h"
-#include "vpu_golden_data.h"
 
 extern int bsoffset;
 
@@ -98,7 +97,7 @@ int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)
         card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
-        res = fat_read_file(V, &files[0], (char *)buf, n);
+        res = fat_read_file(V, cmd->input, (char *)buf, n);
 
         if (res < n) {
             for (i = 0; i < (n - res); i++)
@@ -155,6 +154,8 @@ void config_system_parameters(void)
 void epit2_config(int periodic)
 {
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET, 0x10000);
+    while (reg32_read(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET) & 0x10000) ;
+
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITLR_OFFSET, 32768 / periodic);    //30fps
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET, 0x0302000e);
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET, 0x0302000f);

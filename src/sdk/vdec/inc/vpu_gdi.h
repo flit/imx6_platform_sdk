@@ -55,6 +55,7 @@ typedef struct {
     int value;
 } GdiTiledMap;
 
-int SetTiledMapType(GDI_TILED_MAP_TYPE TiledMapType);
+int SetTiledMapTypeInfo(GDI_TILED_MAP_TYPE TiledMapType, GdiTiledMap * pTiledInfo);
+void SetGDIRegs(GdiTiledMap * pTiledInfo);
 
 #endif // end of GDI_H_INCLUDED

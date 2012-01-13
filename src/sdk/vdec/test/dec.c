@@ -70,13 +70,11 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
         return 0;
 
     /* Fill the bitstream buffer */
-	if(bs_va_endaddr == pa_write_ptr)
-		{
-		target_addr = bs_va_startaddr;
-		}
-	else{
-		target_addr = pa_write_ptr;
-		}
+    if (bs_va_endaddr == pa_write_ptr) {
+        target_addr = bs_va_startaddr;
+    } else {
+        target_addr = pa_write_ptr;
+    }
 
     if ((target_addr + size) > bs_va_endaddr) {
         room = bs_va_endaddr - target_addr;
@@ -87,7 +85,7 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                 return -1;
             }
 
-        } 
+        }
     } else {
         nread = vpu_stream_read(cmd, (void *)target_addr, size);
         if (nread <= 0) {
@@ -156,20 +154,23 @@ int decoder_start(struct decode *dec)
     int rot_angle = dec->cmdl->rot_angle;
     int deblock_en = dec->cmdl->deblock_en;
     int dering_en = dec->cmdl->dering_en;
-    RetCode ret;
     int rotid = 0, dblkid = 0, mirror;
     int tiled2LinearEnable = dec->tiled2LinearEnable;
+    //DecOutputInfo outinfo = {0};
 
     /* deblock_en is zero on mx37 and mx51 since it is cleared in decode_open() function. */
     if (rot_en || dering_en || tiled2LinearEnable) {
-        rotid = dec->fbcount;
+        rotid = dec->regfbcount;
         if (deblock_en) {
-            dblkid = dec->fbcount + dec->rot_buf_count;
+            dblkid = dec->regfbcount + dec->rot_buf_count;
         }
     } else if (deblock_en) {
-        dblkid = dec->fbcount;
+        dblkid = dec->regfbcount;
     }
-
+    decparam.dispReorderBuf = 0;
+    decparam.skipframeMode = 0;
+    decparam.skipframeNum = 0;
+    decparam.iframeSearchEnable = 0;
     fwidth = ((dec->picwidth + 15) & ~15);
     fheight = ((dec->picheight + 15) & ~15);
 
@@ -195,26 +196,10 @@ int decoder_start(struct decode *dec)
         vpu_DecGiveCommand(handle, SET_ROTATOR_STRIDE, &rot_stride);
     }
 
-    decparam.dispReorderBuf = 0;
-
     decparam.prescanEnable = dec->cmdl->prescan;
     decparam.prescanMode = 0;
 
-    decparam.skipframeMode = 0;
-    decparam.skipframeNum = 0;
-    /*
-     * once iframeSearchEnable is enabled, prescanEnable, prescanMode
-     * and skipframeMode options are ignored.
-     */
-    decparam.iframeSearchEnable = 0;
-
-	while(vpu_IsBusy());//in case another instance is active
-    ret = vpu_DecStartOneFrame(handle, &decparam);
-    if (ret != RETCODE_SUCCESS) {
-        err_msg("DecStartOneFrame failed\n");
-        return -1;
-    }
-
+    dec->handle->initDone = 1;
     return 0;
 }
 
@@ -224,7 +209,7 @@ void decoder_free_framebuffer(struct decode *dec)
 //    vpu_mem_desc *mvcol_md = dec->mvcol_memdesc;
 //    int deblock_en = dec->cmdl->deblock_en;
 
-    totalfb = dec->fbcount + dec->extrafb;
+    totalfb = dec->regfbcount + dec->extrafb;
 
     /* deblock_en is zero on mx37 and mx51 since it is cleared in decode_open() function. */
     if (dec->cmdl->dst_scheme != PATH_IPU) {
@@ -242,39 +227,24 @@ void decoder_free_framebuffer(struct decode *dec)
         dec->pfbpool = NULL;
     }
 
-    if (dec->frameBufStat.addr) {
-        free(dec->frameBufStat.addr);
-    }
-
-    if (dec->mbInfo.addr) {
-        free(dec->mbInfo.addr);
-    }
-
-    if (dec->mvInfo.addr) {
-        free(dec->mvInfo.addr);
-    }
-
-    if (dec->userData.addr) {
-        free(dec->userData.addr);
-    }
-
     return;
 }
 
 int decoder_allocate_framebuffer(struct decode *dec)
 {
     DecBufInfo bufinfo;
-    int i, fbcount = dec->fbcount, totalfb;
+    int i, regfbcount = dec->regfbcount, totalfb;
     int dst_scheme = dec->cmdl->dst_scheme, rot_en = dec->cmdl->rot_en;
     int deblock_en = dec->cmdl->deblock_en;
     int dering_en = dec->cmdl->dering_en;
+    int tiled2LinearEnable = dec->tiled2LinearEnable;
     RetCode ret;
     DecHandle handle = dec->handle;
     FrameBuffer *fb;
     struct frame_buf **pfbpool;
     int stride;
 
-    if (rot_en || dering_en) {
+    if (rot_en || dering_en || tiled2LinearEnable) {
         /*
          * At least 1 extra fb for rotation(or dering) is needed, two extrafb
          * are allocated for rotation if path is V4L,then we can delay 1 frame
@@ -293,7 +263,7 @@ int decoder_allocate_framebuffer(struct decode *dec)
         dec->extrafb++;
     }
 
-    totalfb = fbcount + dec->extrafb;
+    totalfb = regfbcount + dec->extrafb;
 
     fb = dec->fb = calloc(totalfb, sizeof(FrameBuffer));
     if (fb == NULL) {
@@ -310,23 +280,41 @@ int decoder_allocate_framebuffer(struct decode *dec)
     }
 
     if ((dst_scheme != PATH_IPU) || ((dst_scheme == PATH_IPU) && deblock_en)) {
-
-        for (i = 0; i < totalfb; i++) {
-            /*
-             * Tiled framebuffer allocation is needed for decoding
-             * buffers for none linear frame map type on mx6q platform.
-             */
-            if (cpu_is_mx6q() && (i < fbcount) && (dec->cmdl->mapType != LINEAR_FRAME_MAP))
-                pfbpool[i] = tiled_framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
-                                                  dec->stride, dec->picheight);
-            else
+        if (dec->cmdl->mapType == LINEAR_FRAME_MAP) {
+            /* All buffers are linear */
+            for (i = 0; i < totalfb; i++) {
                 pfbpool[i] = framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
-                                            dec->stride, dec->picheight);
-            if (pfbpool[i] == NULL) {
-                totalfb = i;
-                goto err;
+                                            dec->stride, dec->picheight, 1);
+                if (pfbpool[i] == NULL)
+                    goto err;
+            }
+        } else {
+            /* decoded buffers are tiled */
+            for (i = 0; i < regfbcount; i++) {
+                pfbpool[i] = tiled_framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                                                  dec->stride, dec->picheight, 1,
+                                                  dec->cmdl->mapType);
+                if (pfbpool[i] == NULL)
+                    goto err;
             }
 
+            for (i = regfbcount; i < totalfb; i++) {
+                /* if tiled2LinearEnable == 1, post processing buffer is linear,
+                 * otherwise, the buffer is tiled */
+                if (dec->tiled2LinearEnable)
+                    pfbpool[i] = framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                                                dec->stride, dec->picheight, 1);
+                else
+                    pfbpool[i] = tiled_framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                                                      dec->stride, dec->picheight, 1,
+                                                      dec->cmdl->mapType);
+                if (pfbpool[i] == NULL)
+                    goto err;
+            }
+        }
+
+        for (i = 0; i < totalfb; i++) {
+            fb[i].myIndex = i;
             fb[i].bufY = pfbpool[i]->addrY;
             fb[i].bufCb = pfbpool[i]->addrCb;
             fb[i].bufCr = pfbpool[i]->addrCr;
@@ -351,7 +339,7 @@ int decoder_allocate_framebuffer(struct decode *dec)
     bufinfo.maxDecFrmInfo.maxMbY = dec->picheight / 16;
     bufinfo.maxDecFrmInfo.maxMbNum = dec->stride * dec->picheight / 256;
 
-    ret = vpu_DecRegisterFrameBuffer(handle, fb, fbcount, stride, &bufinfo);
+    ret = vpu_DecRegisterFrameBuffer(handle, fb, dec->regfbcount, stride, &bufinfo);
     if (ret != RETCODE_SUCCESS) {
         err_msg("Register frame buffer failed, ret=%d\n", ret);
         goto err;
@@ -380,14 +368,6 @@ int decoder_parse(struct decode *dec)
     int align, profile, level, extended_fbcount;
     RetCode ret;
 
-    if (dec->cmdl->format == STD_MJPG) {
-        ret = vpu_DecGiveCommand(handle, DEC_SET_REPORT_USERDATA, &dec->userData);
-        if (ret != RETCODE_SUCCESS) {
-            err_msg("Failed to set user data report, ret %d\n", ret);
-            return -1;
-        }
-    }
-
     /* Parse bitstream and get width/height/framerate etc */
     vpu_DecSetEscSeqInit(handle, 1);
     ret = vpu_DecGetInitialInfo(handle, &initinfo);
@@ -411,9 +391,9 @@ int decoder_parse(struct decode *dec)
                     aspect_ratio_idc = (initinfo.aspectRateInfo & 0xFF);
                     info_msg("aspect_ratio_idc: %d\n", aspect_ratio_idc);
                 } else {
-                    sar_width = (initinfo.aspectRateInfo >> 16);
+                    sar_width = (initinfo.aspectRateInfo >> 16) & 0xFFFF;
                     sar_height = (initinfo.aspectRateInfo & 0xFFFF);
-                    info_msg("sar_width: %d\nsar_height: %d", sar_width, sar_height);
+                    info_msg("sar_width: %d, sar_height: %d\n", sar_width, sar_height);
                 }
             } else {
                 info_msg("Aspect Ratio is not present.\n");
@@ -528,14 +508,23 @@ int decoder_parse(struct decode *dec)
             info_msg("MJPG SourceFormat: %d\n", initinfo.mjpg_sourceFormat);
             break;
 
+        case STD_AVS:
+            info_msg("AVS Profile: %d Level: %d\n", initinfo.profile, initinfo.level);
+            break;
+
+        case STD_VP8:
+            info_msg("VP8 Profile: %d Level: %d\n", initinfo.profile, initinfo.level);
+            info_msg("hScaleFactor: %d vScaleFactor:%d\n",
+                     initinfo.vp8ScaleInfo.hScaleFactor, initinfo.vp8ScaleInfo.vScaleFactor);
+            break;
         default:
             break;
         }
     }
 
-    info_msg("Decoder: width = %d, height = %d, fps = %u, count = %u\n",
+    info_msg("Decoder: width = %d, height = %d, frameRateRes = %d, frameRateDiv = %d, count = %u\n",
              initinfo.picWidth, initinfo.picHeight,
-             initinfo.frameRateInfo, initinfo.minFrameBufferCount);
+             initinfo.frameRateRes, initinfo.frameRateDiv, initinfo.minFrameBufferCount);
 
     /*
      * We suggest to add two more buffers than minFrameBufferCount:
@@ -550,32 +539,23 @@ int decoder_parse(struct decode *dec)
      *
      * Two more buffers may be needed for interlace stream from IPU DVI view
      */
-    dec->minFrameBufferCount = initinfo.minFrameBufferCount;
+    dec->minfbcount = initinfo.minFrameBufferCount;
     extended_fbcount = 2;
 
     if (initinfo.interlace)
-        dec->fbcount = initinfo.minFrameBufferCount + extended_fbcount + 2;
+        dec->regfbcount = dec->minfbcount + extended_fbcount + 2;
     else
-        dec->fbcount = initinfo.minFrameBufferCount + extended_fbcount;
+        dec->regfbcount = dec->minfbcount + extended_fbcount;
 
     dec->picwidth = ((initinfo.picWidth + 15) & ~15);
 
     align = 16;
     if ((dec->cmdl->format == STD_MPEG2 ||
-         dec->cmdl->format == STD_VC1 || dec->cmdl->format == STD_AVC) && initinfo.interlace == 1)
+         dec->cmdl->format == STD_VC1 ||
+         dec->cmdl->format == STD_AVC || dec->cmdl->format == STD_VP8) && initinfo.interlace == 1)
         align = 32;
 
     dec->picheight = ((initinfo.picHeight + align - 1) & ~(align - 1));
-
-#ifdef COMBINED_VIDEO_SUPPORT
-    /* Following lines are sample code to support resolution change
-       from small to large in combined video stream. MAX_FRAME_WIDTH
-       and MAX_FRAME_HEIGHT must be defined per user requirement. */
-    if (dec->picwidth < MAX_FRAME_WIDTH)
-        dec->picwidth = MAX_FRAME_WIDTH;
-    if (dec->picheight < MAX_FRAME_HEIGHT)
-        dec->picheight = MAX_FRAME_HEIGHT;
-#endif
 
     if ((dec->picwidth == 0) || (dec->picheight == 0))
         return -1;
@@ -605,7 +585,7 @@ int decoder_parse(struct decode *dec)
         initinfo.picCropRect.bottom = initinfo.picHeight;
     }
 
-    info_msg("CROP left/top/right/bottom %u %u %u %u\n",
+    info_msg("CROP left/top/right/bottom %d %d %d %d\n",
              initinfo.picCropRect.left,
              initinfo.picCropRect.top, initinfo.picCropRect.right, initinfo.picCropRect.bottom);
 
@@ -639,27 +619,17 @@ int decoder_open(struct decode *dec)
     oparam.bitstreamFormat = dec->cmdl->format;
     oparam.bitstreamBuffer = dec->phy_bsbuf_addr;
     oparam.bitstreamBufferSize = STREAM_BUF_SIZE;
+    oparam.pBitStream = (uint8_t *) dec->virt_bsbuf_addr;
     oparam.reorderEnable = dec->reorderEnable;
     oparam.mp4DeblkEnable = dec->cmdl->deblock_en;
     oparam.chromaInterleave = dec->cmdl->chromaInterleave;
     oparam.mp4Class = dec->cmdl->mp4_h264Class;
-    if (cpu_is_mx6q())
-        oparam.avcExtension = dec->cmdl->mp4_h264Class;
+    oparam.avcExtension = dec->cmdl->mp4_h264Class;
     oparam.mjpg_thumbNailDecEnable = 0;
     oparam.mapType = dec->cmdl->mapType;
     oparam.tiled2LinearEnable = dec->tiled2LinearEnable;
     oparam.bitstreamMode = dec->cmdl->bs_mode;
 
-    /*
-     * mp4 deblocking filtering is optional out-loop filtering for image
-     * quality. In other words, mpeg4 deblocking is post processing.
-     * So, host application need to allocate new frame buffer.
-     * - On MX27, VPU doesn't support mpeg4 out loop deblocking filtering.
-     * - On MX37 and MX51, VPU control the buffer internally and return one
-     *   more buffer after vpu_DecGetInitialInfo().
-     * - On MX32, host application need to set frame buffer externally via
-     *   the command DEC_SET_DEBLOCK_OUTPUT.
-     */
     if (oparam.mp4DeblkEnable == 1) {
         dec->cmdl->deblock_en = 0;
     }
@@ -691,96 +661,29 @@ void decoder_close(struct decode *dec)
     }
 }
 
-/*PIC_RUN interrupt occured*/
-void decoder_isr(void)
+void decoder_frame_display(void)
 {
-    int err = 0, i = 0;
-    DecOutputInfo outinfo;
-    struct decode *dec = gDecInstance[gCurrentActiveInstance];
-    struct frame_buf **pfbpool = dec->pfbpool;
-    DecParam decparam = { 0 };
-
-    decparam.dispReorderBuf = 0;
-
-    decparam.prescanEnable = dec->cmdl->prescan;
-    decparam.prescanMode = 0;
-
-    decparam.skipframeMode = 0;
-    decparam.skipframeNum = 0;
-    /*
-     * once iframeSearchEnable is enabled, prescanEnable, prescanMode
-     * and skipframeMode options are ignored.
-     */
-    decparam.iframeSearchEnable = 0;
-
-    vpu_ClearInterrupt();
-    vpu_DecGetOutputInfo(dec->handle, &outinfo);
-
-    if (outinfo.indexFrameDisplay >= 0) {
-        /*push the decoded frame into fifo */
-        dec_fifo_push(&gDecFifo[gCurrentActiveInstance],
-                      (uint32_t) (pfbpool[outinfo.indexFrameDisplay]->addrY));
-    }
-
-    /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
-    err =
-        dec_fill_bsbuffer(dec->handle, dec->cmdl, gBsBuffer[gCurrentActiveInstance],
-                          gBsBuffer[gCurrentActiveInstance] + STREAM_BUF_SIZE,
-                          gBsBuffer[gCurrentActiveInstance], STREAM_BUF_SIZE >> 2, NULL,
-                          NULL);
-
-    /* Find the next instance to decode. If there's only one - will loop back to it.
-       All the instance will be actived in RR mode. */
-    while (i++ <= MAX_NUM_INSTANCE) {
-        gCurrentActiveInstance = (gCurrentActiveInstance + 1) % MAX_NUM_INSTANCE;
-        if (vpu_semap->codecInstPool[gCurrentActiveInstance].inUse)
-            break;
-    }
-
-    if (!dec_fifo_is_full(&gDecFifo[gCurrentActiveInstance])) {
-        vpu_DecStartOneFrame(dec->handle, &decparam);
+    int i = 0;
+    uint32_t display_buffer, id;
+    for (i = 0; i < MAX_NUM_INSTANCE; i++) {
+        if (vpu_semap->codecInstPool[i].inUse && vpu_semap->codecInstPool[i].initDone) {
+            if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
+                vpu_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
+                disp_clr_index[i] = id;
+                ipu_refresh(1, display_buffer);
+                trigger_display = 0;
+            }
+        }
     }
 }
 
 void epit_isr(void)
 {
-    uint32_t id;
-    uint32_t display_buffer;
-    int i;
-    struct decode *dec = gDecInstance[gCurrentActiveInstance];
-    DecParam decparam = { 0 };
 
-    /*
-     * once iframeSearchEnable is enabled, prescanEnable, prescanMode
-     * and skipframeMode options are ignored.
-     */
-    decparam.iframeSearchEnable = 0;
+    reg32_write(EPIT2_BASE_ADDR + EPIT_EPITSR_OFFSET, 0x1); // clear interrupt
+    decoder_frame_display();
 
-    reg32_write(EPIT2_BASE_ADDR + EPIT_EPITSR_OFFSET, 0x1);
-
-    for (i = 0; i < MAX_NUM_INSTANCE; i++) {
-        if (vpu_semap->codecInstPool[i].inUse) {
-            if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) == -1)
-                warn_msg("VPU fifo underrun...\n");
-            else
-                ipu_refresh(1, display_buffer);
-
-        }
-    }
-
-    /*Now FIFO is non-full, active the VPU for decoding */
-    if (!vpu_IsBusy()) {
-        vpu_DecStartOneFrame(dec->handle, &decparam);
-    }
 }
-
-struct hw_module hw_vpu = {
-    "VPU for enc/dec",
-    VPU_BASE_ADDR,
-    200000000,
-    IMX_INT_VPU_IPI,
-    &decoder_isr,
-};
 
 struct hw_module hw_epit2 = {
     "EPIT for video control",
@@ -827,14 +730,13 @@ int vpu_decoder_setup(void *arg)
     dec->virt_bsbuf_addr = mem_desc.virt_uaddr;
     dec->reorderEnable = 1;
     dec->tiled2LinearEnable = 0;
-    dec->userData.enable = 0;
     dec->mbInfo.enable = 0;
     dec->mvInfo.enable = 0;
     dec->frameBufStat.enable = 0;
+    dec->userData.enable = 0;
 
     /*set the decoder command args */
-    strcpy(cmdl->input, ((tFile *)arg)->fname);    /* Input file name */
-    strcpy(cmdl->output, "output.yuv"); /* Output file name */
+    cmdl->input = (tFile *) arg;    /* Input file name */
     cmdl->format = STD_AVC;
     cmdl->src_scheme = PATH_FILE;
     cmdl->dst_scheme = PATH_MEM;
@@ -846,9 +748,6 @@ int vpu_decoder_setup(void *arg)
     cmdl->fps = 30;
 
     dec->cmdl = cmdl;
-
-    if (cmdl->format == STD_RV)
-        dec->userData.enable = 0;   /* RV has no user data */
 
     /*get PS save memory for AVC decoder */
     if (cmdl->format == STD_AVC) {
@@ -866,9 +765,9 @@ int vpu_decoder_setup(void *arg)
     if (ret)
         goto err;
 
-	/*attach to the global decoder instance*/
-	gDecInstance[dec->handle->instIndex] = dec;
-	gBsBuffer[dec->handle->instIndex] = dec->phy_bsbuf_addr;
+    /*attach to the global decoder instance */
+    gDecInstance[dec->handle->instIndex] = dec;
+    gBsBuffer[dec->handle->instIndex] = dec->phy_bsbuf_addr;
 
     ret = dec_fill_bsbuffer(dec->handle, cmdl,
                             dec->virt_bsbuf_addr,
@@ -913,10 +812,9 @@ int vpu_decoder_setup(void *arg)
 
     /* start decoding */
     ret = decoder_start(dec);
-	if(!ret)
-		return ret;
-	
-	
+    if (!ret)
+        return ret;
+
   err1:
     decoder_close(dec);
 

@@ -25,6 +25,7 @@
 #include "vpu_reg.h"
 #include "vpu_lib.h"
 #include "vpu_io.h"
+#include "vpu_gdi.h"
 
 #define MAX_FW_BINARY_LEN		200 * 1024
 typedef enum {
@@ -42,9 +43,10 @@ typedef enum {
 } InterruptJpu;
 
 #ifdef MX61
+//#define BIT_WORK_SIZE         (47*1024)
 #define BIT_WORK_SIZE			(128*1024)
 #else
-#define BIT_WORK_SIZE			(47*1024)
+#define BIT_WORK_SIZE			(128*1024)
 #endif
 #define SIZE_CONTEXT_BUF		BIT_WORK_SIZE
 
@@ -71,6 +73,7 @@ typedef enum {
 #define Q_COMPONENT0		    0
 #define Q_COMPONENT1		    0x40
 #define Q_COMPONENT2		    0x80
+#define HUFF_VAL_SIZE		    162
 
 #define VPU_SW_RESET_BPU_CORE   0x008
 #define VPU_SW_RESET_BPU_BUS    0x010
@@ -313,11 +316,14 @@ typedef struct {
     int dynamicAllocEnable;
     int ringBufferEnable;
     int mp4_dataPartitionEnable;
+    int linear2TiledEnable;
+    int mapType;
 
     SecAxiUse secAxiUse;
     MaverickCacheConfig cacheConfig;
     EncSubFrameSyncConfig subFrameSyncConfig;
     JpgEncInfo jpgInfo;
+    GdiTiledMap sTiledInfo;
 
     EncReportInfo encReportMBInfo;
     EncReportInfo encReportMVInfo;
@@ -327,6 +333,14 @@ typedef struct {
     vpu_mem_desc searchRamMem;  /* Used if IRAM is disabled */
 
 } EncInfo;
+
+/* bit input */
+/* buffer, buffer_end and size_in_bits must be present and used by every reader */
+typedef struct {
+    const uint8_t *buffer, *buffer_end;
+    int index;
+    int size_in_bits;
+} GetBitContext;
 
 typedef struct {
     /* for Nieuport */
@@ -367,7 +381,7 @@ typedef struct {
     int seqInited;
 
     uint8_t *pVirtBitStream;
-    //GetBitContext gbc;
+    GetBitContext gbc;
     int lineBufferMode;
     uint8_t *pVirtJpgChunkBase;
     int chunkSize;
@@ -376,6 +390,7 @@ typedef struct {
     uint32_t bbcStreamCtl;
     int quitCodec;
     int rollBack;
+    int wrappedHeader;
 } JpgDecInfo;
 
 typedef struct {
@@ -422,6 +437,7 @@ typedef struct {
     vpu_mem_desc picParaBaseMem;
     vpu_mem_desc userDataBufMem;
     WriteMemProtectCfg writeMemProtectCfg;
+    GdiTiledMap sTiledInfo;
 
     DecReportInfo decReportFrameBufStat;    /* Frame Buffer Status */
     DecReportInfo decReportMBInfo;  /* Mb Param for Error Concealment */
@@ -432,6 +448,7 @@ typedef struct {
 typedef struct CodecInst {
     int instIndex;
     int inUse;
+    int initDone;
     int codecMode;
     int codecModeAux;
     vpu_mem_desc contextBufMem; /* For context buffer */
@@ -489,9 +506,6 @@ void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm);
 void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromInterleave);
 
 semaphore_t *vpu_semaphore_open(void);
-void semaphore_post(semaphore_t * semap, int mutex);
-unsigned char semaphore_wait(semaphore_t * semap, int mutex);
-void vpu_semaphore_close(semaphore_t * semap);
 extern semaphore_t *vpu_semap;
 static inline unsigned char LockVpu(semaphore_t * semap)
 {
@@ -516,6 +530,7 @@ static inline void UnlockVpuReg(semaphore_t * semap)
 }
 
 int vpu_mx6q_swreset(int forcedReset);
+int vpu_mx6q_hwreset();
 
 #define swab32(x) \
 	((uint32_t)( \

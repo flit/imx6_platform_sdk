@@ -29,13 +29,14 @@
 #include "../../usdhc/inc/usdhc_ifc.h"
 
 #define MAX_FIFO_SIZE 		32
-#define NUM_FRAME_BUFS	32
+#define NUM_FRAME_BUFS	64
 #define FB_INDEX_MASK		(NUM_FRAME_BUFS - 1)
 
 #define SD_PORT_BASE_ADDR	USDHC4_BASE_ADDR
+#define SZ_4K			4 * 1024
 
 #define STREAM_BUF_SIZE		0x200000
-#define STREAM_FILL_SIZE	0x80000
+#define STREAM_FILL_SIZE	0x40000
 #define STREAM_READ_SIZE	(512 * 8)
 #define STREAM_END_SIZE		0
 #define PS_SAVE_SIZE		0x080000
@@ -121,8 +122,8 @@ struct rot {
 
 #define MAX_PATH	256
 struct cmd_line {
-    char input[MAX_PATH];       /* Input file name */
-    char output[MAX_PATH];      /* Output file name */
+    tFile *input;               /* Input file name */
+    tFile *output;              /* Output file name */
     int src_scheme;
     int dst_scheme;
     int src_fd;
@@ -173,8 +174,8 @@ struct decode {
     int picheight;
     int stride;
     int mjpg_fmt;
-    int fbcount;
-    int minFrameBufferCount;
+    int regfbcount;
+    int minfbcount;
     int rot_buf_count;
     int extrafb;
     FrameBuffer *fb;
@@ -201,10 +202,18 @@ struct encode {
     int enc_picheight;          /* Encoded Picture height */
     int src_picwidth;           /* Source Picture width */
     int src_picheight;          /* Source Picture height */
-    int fbcount;                /* Total number of framebuffers allocated */
+    int totalfb;                /* Total number of framebuffers allocated */
     int src_fbid;               /* Index of frame buffer that contains YUV image */
     FrameBuffer *fb;            /* frame buffer base given to encoder */
     struct frame_buf **pfbpool; /* allocated fb pointers are stored here */
+    ExtBufCfg scratchBuf;
+    int mp4_dataPartitionEnable;
+    int ringBufferEnable;
+    int mjpg_fmt;
+    int mvc_paraset_refresh_en;
+    int mvc_extension;
+    int linear2TiledEnable;
+    int minFrameBufferCount;
 
     EncReportInfo mbInfo;
     EncReportInfo mvInfo;
@@ -237,6 +246,8 @@ extern int gTotalActiveInstance;
 extern semaphore_t *vpu_semap;
 extern struct hw_module hw_vpu;
 extern struct hw_module hw_epit2;
+extern int disp_clr_index[];
+extern int trigger_display;
 
 void framebuf_init(void);
 int fwriten(int fd, void *vptr, size_t n);
@@ -249,8 +260,9 @@ int check_params(struct cmd_line *cmd, int op);
 char *skip_unwanted(char *ptr);
 int parse_options(char *buf, struct cmd_line *cmd, int *mode);
 int card_xfer_result(int base_address, int *result);
-struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height);
-struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height);
+struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol);
+struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol,
+                                       int mapType);
 void framebuf_free(struct frame_buf *fb);
 int encoder_open(struct encode *enc);
 void encoder_close(struct encode *enc);
@@ -270,11 +282,16 @@ void config_system_parameters(void);
 int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag);
 void init_fat32_device(void *blkreq_func);
 void dec_fifo_init(vdec_frame_buffer_t * fifo, int size);
-int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame);
+int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame, uint32_t id);
 int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id);
 int dec_fifo_is_empty(vdec_frame_buffer_t * fifo);
 int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
 void epit2_config(int periodic);
+void epit_isr(void);
+void decoder_frame_display(void);
+int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
+                      uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
+                      uint32_t bs_pa_startaddr, int defaultsize, int *eos, int *fill_end_bs);
 extern int config_hdmi_si9022(int ipu_index, int ipu_di);
 extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
 extern int ips_hdmi_1080P60_stream(int ipu_index);
@@ -283,5 +300,13 @@ extern int ips_hannstar_xga_yuv_stream(int ipu_index);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
                                   uint32_t buffer_addr);
 extern void ipu_channel_buf_ready(int ipu_index, int channel, int buf);
+
+static inline int is_mx6q_mjpg(int fmt)
+{
+    if (cpu_is_mx6q() && (fmt == STD_MJPG))
+        return true;
+    else
+        return false;
+}
 
 #endif

@@ -37,6 +37,9 @@ void framebuf_init(void)
     for (i = 0; i < NUM_FRAME_BUFS; i++) {
         fbarray[i] = &fbpool[i];
     }
+
+    for (i = 0; i < MAX_NUM_INSTANCE; i++)
+        disp_clr_index[i] = -1;
 }
 
 struct frame_buf *get_framebuf(void)
@@ -80,12 +83,13 @@ int dec_fifo_is_empty(vdec_frame_buffer_t * fifo)
 }
 
 /*one frame is in-queued*/
-int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame)
+int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame, uint32_t id)
 {
     if (fifo->full)
         return -1;
 
     fifo->frames[fifo->wrptr] = frame;
+    fifo->id[fifo->wrptr] = id;
 
     if (++fifo->wrptr == fifo->size)
         fifo->wrptr = 0;
@@ -103,7 +107,7 @@ int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id)
         return -1;
 
     *frame = fifo->frames[fifo->rdptr];
-    *id = fifo->popCnt++;
+    *id = fifo->id[fifo->rdptr];
 
     if (++fifo->rdptr == fifo->size)
         fifo->rdptr = 0;
@@ -114,7 +118,7 @@ int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id)
     return 0;
 }
 
-struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height)
+struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol)
 {
     struct frame_buf *fb;
     int err;
@@ -133,7 +137,8 @@ struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int heigh
 
     memset(&(fb->desc), 0, sizeof(vpu_mem_desc));
     fb->desc.size = (strideY * height + strideY / divX * height / divY * 2);
-    fb->desc.size += strideY / divX * height / divY;
+    if (mvCol)
+        fb->desc.size += strideY / divX * height / divY;
 
     err = IOGetMem(&fb->desc);
     if (err) {
@@ -147,25 +152,29 @@ struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int heigh
     fb->addrCr = fb->addrCb + strideY / divX * height / divY;
     fb->strideY = strideY;
     fb->strideC = strideY / divX;
+    if (mvCol)
+        fb->mvColBuf = fb->addrCr + strideY / divX * height / divY;
 
     /*set the background to black */
     memset((void *)fb->addrY, 0x10, strideY * height);
     memset((void *)fb->addrCr, 0x80, strideY * height >> 2);
     memset((void *)fb->addrCb, 0x80, strideY * height >> 2);
-
-    fb->mvColBuf = fb->addrCr + strideY / divX * height / divY;
-
+    if (mvCol) {
+        fb->desc.virt_uaddr = fb->desc.phy_addr;
+        fb->mvColBuf = fb->addrCr + strideY / divX * height / divY;
+    }
     return fb;
 }
 
-struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height)
+struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol,
+                                       int mapType)
 {
     struct frame_buf *fb;
-    int err;
+    int err, align;
     int divX, divY;
     uint32_t lum_top_base, lum_bot_base, chr_top_base, chr_bot_base;
     uint32_t lum_top_20bits, lum_bot_20bits, chr_top_20bits, chr_bot_20bits;
-    int luma_aligned_size, chroma_aligned_size;
+    int luma_top_size, luma_bot_size, chroma_top_size, chroma_bot_size;
 
     fb = get_framebuf();
     if (fb == NULL)
@@ -176,15 +185,32 @@ struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int
 
     memset(&(fb->desc), 0, sizeof(vpu_mem_desc));
 
-    /*
-     * The buffers is luma top, chroma top, luma bottom and chroma bottom for
-     * tiled map type, and only 20bits for the address description, so we need
-     * to do 4K page align for each buffer.
-     */
-    luma_aligned_size = (((strideY * height / 2 + 4095) >> 12) << 12) * 2;
-    chroma_aligned_size = ((strideY / divX * height / divY + 4095) >> 12) << 12;
-    fb->desc.size = luma_aligned_size + chroma_aligned_size * 2;
-    fb->desc.size += strideY / divX * height / divY;
+/*
+	 * The buffers is luma top, chroma top, luma bottom and chroma bottom for
+	 * tiled map type, and only 20bits for the address description, so we need
+	 * to do 4K page align for each buffer.
+	 */
+    align = 4 * 1024;
+    if (mapType == TILED_FRAME_MB_RASTER_MAP) {
+        /* luma_top_size means the Y size of one frame, chroma_top_size
+         * means the interleaved UV size of one frame in frame tiled map type*/
+        luma_top_size = (strideY * height + align - 1) & ~(align - 1);
+        chroma_top_size = (strideY / divX * height / divY * 2 + align - 1) & ~(align - 1);
+        luma_bot_size = chroma_bot_size = 0;
+    } else {
+        /* This is FIELD_FRAME_MB_RASTER_MAP case, there are two fields */
+        luma_top_size = (strideY * height / 2 + align - 1) & ~(align - 1);
+        luma_bot_size = luma_top_size;
+        chroma_top_size = (strideY / divX * height / divY + align - 1) & ~(align - 1);
+        chroma_bot_size = chroma_top_size;
+    }
+    fb->desc.size = luma_top_size + chroma_top_size + luma_bot_size + chroma_bot_size;
+    /* There is possible fb->desc.phy_addr in IOGetPhyMem not 4K page align,
+     * so add more SZ_4K byte here for alignment */
+    fb->desc.size += align - 1;
+
+    if (mvCol)
+        fb->desc.size += strideY / divX * height / divY;
 
     err = IOGetMem(&fb->desc);
     if (err) {
@@ -193,23 +219,35 @@ struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int
         return NULL;
     }
 
-    lum_top_base = fb->desc.phy_addr;
-    lum_bot_base = lum_top_base + luma_aligned_size / 2;
-    chr_top_base = lum_top_base + luma_aligned_size;
-    chr_bot_base = chr_top_base + chroma_aligned_size;
+    lum_top_base = (fb->desc.phy_addr + align - 1) & ~(align - 1);
+    chr_top_base = lum_top_base + luma_top_size;
+    if (mapType == TILED_FRAME_MB_RASTER_MAP) {
+        lum_bot_base = 0;
+        chr_bot_base = 0;
+    } else {
+        lum_bot_base = chr_top_base + chroma_top_size;
+        chr_bot_base = lum_bot_base + luma_bot_size;
+    }
 
     lum_top_20bits = lum_top_base >> 12;
     lum_bot_20bits = lum_bot_base >> 12;
     chr_top_20bits = chr_top_base >> 12;
     chr_bot_20bits = chr_bot_base >> 12;
 
+    /*
+     * In tiled map format the construction of the buffer pointers is as follows:
+     * 20bit = addrY [31:12]: lum_top_20bits
+     * 20bit = addrY [11: 0], addrCb[31:24]: chr_top_20bits
+     * 20bit = addrCb[23: 4]: lum_bot_20bits
+     * 20bit = addrCb[ 3: 0], addrCr[31:16]: chr_bot_20bits
+     */
     fb->addrY = (lum_top_20bits << 12) + (chr_top_20bits >> 8);
     fb->addrCb = (chr_top_20bits << 24) + (lum_bot_20bits << 4) + (chr_bot_20bits >> 16);
     fb->addrCr = chr_bot_20bits << 16;
     fb->strideY = strideY;
     fb->strideC = strideY / divX;
-    fb->mvColBuf = chr_bot_base + chroma_aligned_size;
-
+    if (mvCol)
+        fb->mvColBuf = chr_bot_base + chroma_bot_size;
     return fb;
 }
 

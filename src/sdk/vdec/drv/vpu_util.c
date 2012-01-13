@@ -54,7 +54,6 @@ typedef struct {
 
 extern uint32_t *virt_paraBuf;
 semaphore_t *vpu_semap;
-static vpu_mem_desc share_mem;
 RetCode DownloadBitCodeTable(uint32_t * virtCodeBuf)
 {
     int i, size;
@@ -494,10 +493,6 @@ RetCode CheckDecOpenParam(DecOpenParam * pop)
             pop->bitstreamFormat != STD_AVS &&
             pop->bitstreamFormat != STD_VP8 && pop->bitstreamFormat != STD_MJPG)
             return RETCODE_INVALID_PARAM;
-        if (pop->filePlayEnable) {
-            err_msg("Not support file play mode and prescan of mx6 vpu\n");
-            return RETCODE_INVALID_PARAM;
-        }
     } else {
         if (pop->bitstreamFormat != STD_MPEG4 &&
             pop->bitstreamFormat != STD_AVC &&
@@ -955,20 +950,21 @@ void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromIn
 
 semaphore_t *vpu_semaphore_open(void)
 {
+    int ret = 0;
     semaphore_t *semap;
     CodecInst *pCodecInst;
     int i;
+    vpu_mem_desc share_mem;
 
     share_mem.size = sizeof(semaphore_t);
-    if (IOGetMem(&share_mem)) {
-        err_msg("Unable to obtain physical of share memory\n");
-        return NULL;
-    }
-    semap = (semaphore_t *) IOGetMem(&share_mem);
-    if (semap == NULL) {
+    ret = IOGetMem(&share_mem);
+    if (ret != 0) {
         err_msg("Unable to map physical of share memory\n");
         return NULL;
     }
+    semap = (semaphore_t *) share_mem.phy_addr;
+
+    memset(semap, 0, sizeof(semaphore_t));
     if (!semap->is_initialized) {
         for (i = 0; i < MAX_NUM_INSTANCE; ++i) {
             pCodecInst = (CodecInst *) (&semap->codecInstPool[i]);
@@ -1019,5 +1015,18 @@ int vpu_mx6q_swreset(int forcedReset)
     while (VpuReadReg(BIT_SW_RESET_STATUS) != 0) ;
 
     VpuWriteReg(BIT_SW_RESET, 0);
+    return RETCODE_SUCCESS;
+}
+
+int vpu_mx6q_hwreset()
+{
+    VpuWriteReg(GDI_BUS_CTRL, 0x11);
+    while (VpuReadReg(GDI_BUS_STATUS) != 0x77) ;
+    VpuWriteReg(GDI_BUS_CTRL, 0x00);
+
+    VpuWriteReg(BIT_BUSY_FLAG, 1);
+    VpuWriteReg(BIT_CODE_RUN, 1);
+    while (VpuReadReg(BIT_BUSY_FLAG)) ;
+
     return RETCODE_SUCCESS;
 }

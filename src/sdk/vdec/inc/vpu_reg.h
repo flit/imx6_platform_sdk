@@ -64,6 +64,7 @@
 #define BIT_AXI_SRAM_USE                0x140
 #define BIT_SEARCH_RAM_BASE_ADDR        0x144
 #define BIT_SEARCH_RAM_SIZE             0x148
+#define BIT_FRAME_CYCLE             0x14C
 
 #define BIT_FRM_DIS_FLG                 0x150
 
@@ -214,9 +215,8 @@
 #define CMD_DEC_PIC_SKIP_NUM		0x198
 #define CMD_DEC_PIC_CHUNK_SIZE		0x19C
 #define CMD_DEC_PIC_BB_START		0x1A0
-#define CMD_DEC_PIC_START_BYTE		0x1A4
-
-#define CMD_DEC_PIC_PARA_BASE_ADDR      0x1A8
+#define CMD_DEC_PIC_START_BYTE		0x1A4   /* dummy for mx6q */
+#define CMD_DEC_PIC_PARA_BASE_ADDR      0x1A8   /* dummy for mx6q */
 #define CMD_DEC_SEQ_USER_DATA_OPTION	0x194
 #define CMD_DEC_PIC_USER_DATA_BASE_ADDR 0x1AC
 #define CMD_DEC_PIC_USER_DATA_BUF_SIZE  0x1B0
@@ -319,6 +319,8 @@
 #define CMD_SET_FRAME_SUBSAMP_B		0x18C
 #define CMD_SET_FRAME_DP_BUF_BASE	0x1B0
 #define CMD_SET_FRAME_DP_BUF_SIZE	0x1B4
+#define CMD_SET_FRAME_SUBSAMP_A_MVC	0x1B0
+#define CMD_SET_FRAME_SUBSAMP_B_MVC	0x1B4
 
 /*---------------------------------------------------------------------------
  * [ENC HEADER] COMMAND
@@ -358,18 +360,10 @@
 #define RET_VER_NUM			0x1C0
 #define RET_FW_CODE_REV			0x1C4
 
-#if defined(MX53)
-#define CODE_BUF_SIZE			(200 * 1024)    /* define max is 200k byte currently */
-#define FMO_SLICE_SAVE_BUF_SIZE		(32)
-#define TEMP_BUF_SIZE			(304 * 1024)
-#define WORK_BUF_SIZE			(304 * 1024)
-#define PARA_BUF2_SIZE			(2 * 1024)
-#define PARA_BUF_SIZE			(10 * 1024)
-#elif defined(MX61)
+#ifdef MX61
 #define CODE_BUF_SIZE                   (240 * 1024)    /* define max is 240k byte currently */
 #define FMO_SLICE_SAVE_BUF_SIZE         (32)
 #define TEMP_BUF_SIZE                   (200 * 1024)
-#define WORK_BUF_SIZE                   (200 * 1024)
 #define PARA_BUF2_SIZE                  (2 * 1024)
 #define PARA_BUF_SIZE                   (10 * 1024)
 #else

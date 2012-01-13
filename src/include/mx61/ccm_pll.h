@@ -82,37 +82,37 @@
 #define CCM_CCGR6   CCM_BASE_ADDR+CCM_CCGR6_OFFSET
 #define CCM_CCGR7   CCM_BASE_ADDR+CCM_CCGR7_OFFSET
 
-#define MXC_CCM_CCGRx_CG15_MASK         (0x3 << 30)
-#define MXC_CCM_CCGRx_CG14_MASK         (0x3 << 28)
-#define MXC_CCM_CCGRx_CG13_MASK         (0x3 << 26)
-#define MXC_CCM_CCGRx_CG12_MASK         (0x3 << 24)
-#define MXC_CCM_CCGRx_CG11_MASK         (0x3 << 22)
-#define MXC_CCM_CCGRx_CG10_MASK         (0x3 << 20)
-#define MXC_CCM_CCGRx_CG9_MASK          (0x3 << 18)
-#define MXC_CCM_CCGRx_CG8_MASK          (0x3 << 16)
-#define MXC_CCM_CCGRx_CG5_MASK          (0x3 << 10)
-#define MXC_CCM_CCGRx_CG4_MASK          (0x3 << 8)
-#define MXC_CCM_CCGRx_CG3_MASK          (0x3 << 6)
-#define MXC_CCM_CCGRx_CG2_MASK          (0x3 << 4)
-#define MXC_CCM_CCGRx_CG1_MASK          (0x3 << 2)
-#define MXC_CCM_CCGRx_CG0_MASK          (0x3 << 0)
+#define CCM_CCGRx_CG15_MASK         (0x3 << 30)
+#define CCM_CCGRx_CG14_MASK         (0x3 << 28)
+#define CCM_CCGRx_CG13_MASK         (0x3 << 26)
+#define CCM_CCGRx_CG12_MASK         (0x3 << 24)
+#define CCM_CCGRx_CG11_MASK         (0x3 << 22)
+#define CCM_CCGRx_CG10_MASK         (0x3 << 20)
+#define CCM_CCGRx_CG9_MASK          (0x3 << 18)
+#define CCM_CCGRx_CG8_MASK          (0x3 << 16)
+#define CCM_CCGRx_CG5_MASK          (0x3 << 10)
+#define CCM_CCGRx_CG4_MASK          (0x3 << 8)
+#define CCM_CCGRx_CG3_MASK          (0x3 << 6)
+#define CCM_CCGRx_CG2_MASK          (0x3 << 4)
+#define CCM_CCGRx_CG1_MASK          (0x3 << 2)
+#define CCM_CCGRx_CG0_MASK          (0x3 << 0)
 
-#define MXC_CCM_CCGRx_CG15_OFFSET       30
-#define MXC_CCM_CCGRx_CG14_OFFSET       28
-#define MXC_CCM_CCGRx_CG13_OFFSET       26
-#define MXC_CCM_CCGRx_CG12_OFFSET       24
-#define MXC_CCM_CCGRx_CG11_OFFSET       22
-#define MXC_CCM_CCGRx_CG10_OFFSET       20
-#define MXC_CCM_CCGRx_CG9_OFFSET        18
-#define MXC_CCM_CCGRx_CG8_OFFSET        16
-#define MXC_CCM_CCGRx_CG7_OFFSET        14
-#define MXC_CCM_CCGRx_CG6_OFFSET        12
-#define MXC_CCM_CCGRx_CG5_OFFSET        10
-#define MXC_CCM_CCGRx_CG4_OFFSET        8
-#define MXC_CCM_CCGRx_CG3_OFFSET        6
-#define MXC_CCM_CCGRx_CG2_OFFSET        4
-#define MXC_CCM_CCGRx_CG1_OFFSET        2
-#define MXC_CCM_CCGRx_CG0_OFFSET        0
+#define CCM_CCGRx_CG15_OFFSET       30
+#define CCM_CCGRx_CG14_OFFSET       28
+#define CCM_CCGRx_CG13_OFFSET       26
+#define CCM_CCGRx_CG12_OFFSET       24
+#define CCM_CCGRx_CG11_OFFSET       22
+#define CCM_CCGRx_CG10_OFFSET       20
+#define CCM_CCGRx_CG9_OFFSET        18
+#define CCM_CCGRx_CG8_OFFSET        16
+#define CCM_CCGRx_CG7_OFFSET        14
+#define CCM_CCGRx_CG6_OFFSET        12
+#define CCM_CCGRx_CG5_OFFSET        10
+#define CCM_CCGRx_CG4_OFFSET        8
+#define CCM_CCGRx_CG3_OFFSET        6
+#define CCM_CCGRx_CG2_OFFSET        4
+#define CCM_CCGRx_CG1_OFFSET        2
+#define CCM_CCGRx_CG0_OFFSET        0
 
 #define CCM_CMEOR   CCM_BASE_ADDR+CCM_CMEOR_OFFSET
 
@@ -159,7 +159,7 @@
 #define CLOCK_ON_RUN    0x1
 #define CLOCK_OFF       0x0
 
-/* defines to extract divider or sel value */ 
+/* defines to extract divider or sel value */
 #define periph_clk2_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 27) + 1)
 #define mmdc_ch0_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 19) + 1)
 #define axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 16) + 1)
@@ -215,8 +215,8 @@ enum plls {
 };
 
 static const uint32_t PLL1_OUTPUT = 792000000;
-static const uint32_t PLL2_OUTPUT[] = {528000000,396000000,352000000,198000000,594000000};
-static const uint32_t PLL3_OUTPUT[] = {480000000,720000000,540000000,508235294,454736842};
+static const uint32_t PLL2_OUTPUT[] = { 528000000, 396000000, 352000000, 198000000, 594000000 };
+static const uint32_t PLL3_OUTPUT[] = { 480000000, 720000000, 540000000, 508235294, 454736842 };
 static const uint32_t PLL4_OUTPUT = 650000000;
 static const uint32_t PLL5_OUTPUT = 650000000;
 

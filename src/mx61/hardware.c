@@ -912,15 +912,15 @@ int perfmon_clk_cfg(uint32_t base, uint32_t enable)
     switch (base) {
     case IP2APB_PERFMON1_BASE_ADDR:
         reg = CCM_CCGR4;
-        shift = MXC_CCM_CCGRx_CG1_OFFSET;
+        shift = CCM_CCGRx_CG1_OFFSET;
         break;
     case IP2APB_PERFMON2_BASE_ADDR:
         reg = CCM_CCGR4;
-        shift = MXC_CCM_CCGRx_CG2_OFFSET;
+        shift = CCM_CCGRx_CG2_OFFSET;
         break;
     case IP2APB_PERFMON3_BASE_ADDR:
         reg = CCM_CCGR4;
-        shift = MXC_CCM_CCGRx_CG3_OFFSET;
+        shift = CCM_CCGRx_CG3_OFFSET;
         break;
     default:
         break;

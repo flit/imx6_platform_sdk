@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -17,10 +17,11 @@
 #include "ipu_common.h"
 #include "ips_test.h"
 
-int ips_resize_test(ips_dev_panel_t * panel)
+int32_t ips_resize_test(ips_dev_panel_t * panel)
 {
     uint32_t ipu_index = 1;     // use ipu 1
     uint32_t taskType = PP_TASK;
+    uint32_t rot_in_mem = CH28_EBA0, rot_out_mem = CH27_EBA0, res_out_mem = CH23_EBA0;
     ipu_rot_info_t rot_info;
     ipu_res_info_t res_info;
     uint32_t rot_chnl_in, rot_chnl_out, res_chnl_in, res_chnl_out;
@@ -35,7 +36,7 @@ int ips_resize_test(ips_dev_panel_t * panel)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, panel, INTERLEAVED_RGB, NO_CSC);
+    ipu_display_setup(ipu_index, res_out_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
@@ -70,7 +71,7 @@ int ips_resize_test(ips_dev_panel_t * panel)
                 //odd frame: 1024 * 768 -- 768 * 1024 --  576 * 768
                 //1 read data from CH28_EBA0 and rotate it, store result to CH27_EBA0
                 //2 read rotated data from CH27_EBA0 and resize it, store result to CH23_EBA0 which is for display channel.
-                memcpy((void *)CH28_EBA0, (void *)CH23_EBA0, panel->width * panel->height * 2);
+                memcpy((void *)rot_in_mem, (void *)res_out_mem, panel->width * panel->height * 2);
                 //set rotate idma
                 memset(&rot_info, 0x00, sizeof(ipu_rot_info_t));
                 rot_info.width_in = panel->width;
@@ -84,8 +85,8 @@ int ips_resize_test(ips_dev_panel_t * panel)
                 rot_info.rot = 1;
                 rot_info.hf = 0;
                 rot_info.vf = 0;
-                rot_info.addr0_in = CH28_EBA0;
-                rot_info.addr0_out = CH27_EBA0;
+                rot_info.addr0_in = rot_in_mem;
+                rot_info.addr0_out = rot_out_mem;
                 ipu_rotate_idmac_config(ipu_index, rot_chnl_in, rot_chnl_out, rot_info);
 
                 //set resize idma
@@ -98,9 +99,9 @@ int ips_resize_test(ips_dev_panel_t * panel)
                 res_info.strideline_out = panel->width * 2 - 1;
                 res_info.pixel_format_in = INTERLEAVED_RGB;
                 res_info.pixel_format_out = INTERLEAVED_RGB;
-                res_info.addr0_in = CH27_EBA0;
+                res_info.addr0_in = rot_out_mem;
                 res_info.addr0_out =
-                    CH23_EBA0 + (panel->height - res_info.height_out) * panel->width +
+                    res_out_mem + (panel->height - res_info.height_out) * panel->width +
                     panel->width - res_info.width_out;
 
                 ipu_resize_idmac_config(ipu_index, res_chnl_in, res_chnl_out, res_info);
@@ -143,8 +144,8 @@ int ips_resize_test(ips_dev_panel_t * panel)
                 rot_info.rot = 1;
                 rot_info.hf = 0;
                 rot_info.vf = 0;
-                rot_info.addr0_in = CH27_EBA0;
-                rot_info.addr0_out = CH23_EBA0;
+                rot_info.addr0_in = rot_out_mem;
+                rot_info.addr0_out = res_out_mem;
                 ipu_rotate_idmac_config(ipu_index, rot_chnl_in, rot_chnl_out, rot_info);
 
                 //set ic task

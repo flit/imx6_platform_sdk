@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -12,20 +12,20 @@
  */
 #include "ipu_common.h"
 
-inline void ipu_cpmem_set_field(uint32_t base, int w, int bit, int size, uint32_t v)
+inline void ipu_cpmem_set_field(uint32_t base, int32_t w, int32_t bit, int32_t size, uint32_t v)
 {
-    int i = (bit) / 32;
-    int off = (bit) % 32;
+    int32_t i = (bit) / 32;
+    int32_t off = (bit) % 32;
     _param_word(base, w)[i] |= (v) << off;
     if (((bit) + (size) - 1) / 32 > i) {
         _param_word(base, w)[i + 1] |= (v) >> (off ? (32 - off) : 0);
     }
 }
 
-inline void ipu_cpmem_mod_field(uint32_t base, int w, int bit, int size, uint32_t v)
+inline void ipu_cpmem_mod_field(uint32_t base, int32_t w, int32_t bit, int32_t size, uint32_t v)
 {
-    int i = (bit) / 32;
-    int off = (bit) % 32;
+    int32_t i = (bit) / 32;
+    int32_t off = (bit) % 32;
     uint32_t mask = (1UL << size) - 1;
     uint32_t temp = _param_word(base, w)[i];
     temp &= ~(mask << off);
@@ -37,11 +37,11 @@ inline void ipu_cpmem_mod_field(uint32_t base, int w, int bit, int size, uint32_
     }
 }
 
-inline uint32_t ipu_cpmem_read_field(uint32_t base, int w, int bit, int size)
+inline uint32_t ipu_cpmem_read_field(uint32_t base, int32_t w, int32_t bit, int32_t size)
 {
     uint32_t temp2;
-    int i = (bit) / 32;
-    int off = (bit) % 32;
+    int32_t i = (bit) / 32;
+    int32_t off = (bit) % 32;
     uint32_t mask = (1UL << size) - 1;
     uint32_t temp1 = _param_word(base, w)[i];
     temp1 = mask & (temp1 >> off);
@@ -60,10 +60,10 @@ inline uint32_t ipu_cpmem_read_field(uint32_t base, int w, int bit, int size)
  * @param 	channel: IPU dma channel index
  * @param 	buf: choose the buffer number, 0 or 1
  */
-void ipu_channel_buf_ready(int ipu_index, int channel, int buf)
+void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf)
 {
-    int idx = channel / 32;
-    int offset = channel % 32;
+    int32_t idx = channel / 32;
+    int32_t offset = channel % 32;
 
     if (idx) {
         if (buf) {
@@ -91,10 +91,10 @@ void ipu_channel_buf_ready(int ipu_index, int channel, int buf)
  * @param 	channel: IPU dma channel index
  * @param 	buf: choose the buffer number, 0 or 1
  */
-void ipu_channel_buf_not_ready(int ipu_index, int channel, int buf)
+void ipu_channel_buf_not_ready(int32_t ipu_index, int32_t channel, int32_t buf)
 {
-    int idx = channel / 32;
-    int offset = channel % 32;
+    int32_t idx = channel / 32;
+    int32_t offset = channel % 32;
 
     if (idx) {
         if (buf) {
@@ -123,10 +123,10 @@ void ipu_channel_buf_not_ready(int ipu_index, int channel, int buf)
  * @param 	double_buf_en:  enable double buffer 
  *
  */
-void ipu_idmac_channel_mode_sel(int ipu_index, int channel, int double_buf_en)
+void ipu_idmac_channel_mode_sel(int32_t ipu_index, int32_t channel, int32_t double_buf_en)
 {
-    int idx = channel / 32;
-    int offset = channel % 32;
+    int32_t idx = channel / 32;
+    int32_t offset = channel % 32;
     ipu_write_field(ipu_index, IPU_IPU_CH_DB_MODE_SEL_0__ADDR + idx * 4, 1 << offset,
                     double_buf_en);
 }
@@ -139,10 +139,10 @@ void ipu_idmac_channel_mode_sel(int ipu_index, int channel, int double_buf_en)
  * @param 	enable:     enable channel  
  *
  */
-void ipu_idmac_channel_enable(int ipu_index, int channel, int enable)
+void ipu_idmac_channel_enable(int32_t ipu_index, int32_t channel, int32_t enable)
 {
-    int idx = channel / 32;
-    int offset = channel % 32;
+    int32_t idx = channel / 32;
+    int32_t offset = channel % 32;
     ipu_write_field(ipu_index, IPU_IDMAC_CH_EN_1__ADDR + idx * 4, 1 << offset, enable);
 }
 
@@ -154,9 +154,9 @@ void ipu_idmac_channel_enable(int ipu_index, int channel, int enable)
  *
  * @return 	1 for busy, 0 for idle
  */
-int ipu_idmac_channel_busy(int ipu_index, int channel)
+int32_t ipu_idmac_channel_busy(int32_t ipu_index, int32_t channel)
 {
-    int idx, offset;
+    int32_t idx, offset;
     uint32_t ipu_base_addr = IPU1_CTRL_BASE_ADDR;
 
     if (ipu_index == 1)
@@ -173,17 +173,14 @@ int ipu_idmac_channel_busy(int ipu_index, int channel)
 }
 
 /*!
- * IPU background display DMA channel config (CH23)
+ * Generic IPU DMA channel config
  *
- * @param	ipu_index:  ipu index
- * @param	width:		background width
- * @param	height:		background height
- * @param	pixel_format:   background pixel format
+ * @param	ipu_index:	ipu index
+ * @param	conf:		ipu configuration data structure
  */
-void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
-                              uint32_t pixel_format)
+void ipu_general_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
+                              uint32_t width, uint32_t height, uint32_t pixel_format)
 {
-    uint32_t channel = MEM_TO_DP_BG_CH23;
     uint32_t sl, ubo;
 
     if (pixel_format == INTERLEAVED_RGB) {
@@ -197,8 +194,8 @@ void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t heigh
     ipu_idmac_channel_enable(ipu_index, channel, 0);
     memset((void *)ipu_cpmem_addr(ipu_index, channel), 0, sizeof(ipu_cpmem_t));
 
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, CH23_EBA0 / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, CH23_EBA1 / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, addr0 / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, addr1 / 8);
     ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FW, width - 1);
     ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FH, height - 1);
 
@@ -208,10 +205,50 @@ void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t heigh
     ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_NPB, 15);
     ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_SO, 0);
 
-    ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
-    ipu_channel_buf_ready(ipu_index, channel, 0);
-    ipu_channel_buf_ready(ipu_index, channel, 1);
+    if ((void *)addr1 == NULL)
+        ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
+    else
+        ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_DOUBLE_BUFFER);
+
     ipu_idmac_channel_enable(ipu_index, channel, 1);
+}
+
+/*!
+ * IPU background display DMA channel config (CH23)
+ *
+ * @param	ipu_index:  ipu index
+ * @param	width:		background width
+ * @param	height:		background height
+ * @param	pixel_format:   background pixel format
+ */
+void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
+                              uint32_t pixel_format)
+{
+    /*setup idma background channel from MEM to display
+       channel: 23
+       buffer: single -- addr: CH23_EBA0
+     */
+    ipu_general_idmac_config(ipu_index, MEM_TO_DP_BG_CH23, CH23_EBA0, (uint32_t) NULL, width,
+                             height, pixel_format);
+}
+
+/*!
+ * IPU foreground display DMA channel config (CH23)
+ *
+ * @param	ipu_index:  ipu index
+ * @param	width:		background width
+ * @param	height:		background height
+ * @param	pixel_format:   background pixel format
+ */
+void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
+                              uint32_t pixel_format)
+{
+    /*setup idma background channel from MEM to display
+       channel: 27
+       buffer: single -- addr: CH23_EBA0
+     */
+    ipu_general_idmac_config(ipu_index, MEM_TO_DP_FG_CH27, CH27_EBA0, (uint32_t) NULL, width,
+                             height, pixel_format);
 }
 
 void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
@@ -227,9 +264,9 @@ void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer
 
 }
 
-int ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
+int32_t ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
 {
-    int idx, offset, cur_buf = 0;
+    int32_t idx, offset, cur_buf = 0;
     idx = channel / 32;
     offset = channel % 32;
     if (ipu_index == 0) {
@@ -242,50 +279,6 @@ int ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
             offset;
     }
     return cur_buf;
-}
-
-/*!
- * IPU background display DMA channel config (CH23)
- *
- * @param	ipu_index:  ipu index
- * @param	width:		background width
- * @param	height:		background height
- * @param	pixel_format:   background pixel format
- */
-void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
-                              uint32_t pixel_format)
-{
-    uint32_t channel = MEM_TO_DP_FG_CH27;
-    uint32_t sl, ubo;
-
-    if (pixel_format < INTERLEAVED_RGB) {
-        sl = width - 1;
-        ubo = width * height;
-    } else {
-        sl = 2 * width - 1;
-        ubo = 0;
-    }
-
-    ipu_idmac_channel_enable(ipu_index, channel, 0);
-    memset((void *)ipu_cpmem_addr(ipu_index, channel), 0, sizeof(ipu_cpmem_t));
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, CH27_EBA0 / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, CH27_EBA1 / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FW, width - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FH, height - 1);
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_PFS, pixel_format);
-    ipu_idma_pixel_format_config(ipu_index, channel, pixel_format, sl, ubo);
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_NPB, 15);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_SO, 0);
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_ALU, 0);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_ALBM, 0);
-
-    ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
-    ipu_channel_buf_ready(ipu_index, channel, 0);
-    ipu_idmac_channel_enable(ipu_index, channel, 1);
 }
 
 void ipu_rotate_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t channel_out,

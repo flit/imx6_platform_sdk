@@ -112,6 +112,29 @@
 #define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #define ADV7180_I2C_ID      (0x42 >> 1)
 
+/* MX61_SMD for compile error
+ * There is no these macros SMD, just add for compile error.
+ */
+#ifdef MX61_SMD
+#define MAX7310_NBR 0
+/* I/O expander A */
+#define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
+#define MAX7310_I2C_ID0          (0x30 >> 1)
+#define MAX7310_ID0_DEF_DIR      0x00   // init direction for the I/O
+#define MAX7310_ID0_DEF_VAL      0xFF   // init value for the output
+
+/* I/O expander B */
+#define MAX7310_I2C_BASE_ID1  I2C3_BASE_ADDR
+#define MAX7310_I2C_ID1          (0x32 >> 1)
+#define MAX7310_ID1_DEF_DIR      0x00   // init direction for the I/O
+#define MAX7310_ID1_DEF_VAL      0xE7   // init value for the output
+
+/* I/O expander C */
+#define MAX7310_I2C_BASE_ID2  I2C3_BASE_ADDR
+#define MAX7310_I2C_ID2          (0x34 >> 1)
+#define MAX7310_ID2_DEF_DIR      0x00   // init direction for the I/O
+#define MAX7310_ID2_DEF_VAL      0x57   // init value for the output
+#endif
 /*******************************************************
  *      I/O expander MAX7310 I2C settings
  *******************************************************/
@@ -295,6 +318,8 @@ extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t);
 
+extern void camera_power_on(void);
+extern void mxc_csi_port0_iomux_config(void);
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0
 #define BOARD_ID_MX61_ARD       0x1

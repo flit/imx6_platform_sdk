@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -14,7 +14,7 @@
 #include <string.h>
 #include "ipu_common.h"
 
-inline int need_csc(int i, int o)
+inline int32_t need_csc(int32_t i, int32_t o)
 {
     if ((i == INTERLEAVED_RGB && o > DCMAP_BRG888) || (i != INTERLEAVED_RGB && o <= DCMAP_BRG888))
         return 1;
@@ -30,7 +30,7 @@ inline int need_csc(int i, int o)
  * @param	ID_mask:    fields position
  * @param	data:	    the value of input
  */
-void ipu_write_field(int ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data)
+void ipu_write_field(int32_t ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data)
 {
     uint32_t rdata;
 
@@ -54,7 +54,7 @@ void ipu_write_field(int ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t
  *
  * @param	ipu_index:	ipu index
  */
-void ipu_enable_display(int ipu_index)
+void ipu_enable_display(int32_t ipu_index)
 {
     /*enable all the related submodules. */
     ipu_write_field(ipu_index, IPU_IPU_CONF__DI0_EN, 1);
@@ -68,7 +68,7 @@ void ipu_enable_display(int ipu_index)
  *
  * @param	ipu_index:	ipu index
  */
-void ipu_disable_display(int ipu_index)
+void ipu_disable_display(int32_t ipu_index)
 {
     /*enable all the related submodules. */
     ipu_write_field(ipu_index, IPU_IPU_CONF__DI0_EN, 0);
@@ -86,10 +86,10 @@ void ipu_disable_display(int ipu_index)
  *
  * @return	true for success, others for time out.
  */
-int ipu_sw_reset(int ipu_index, int timeout)
+int32_t ipu_sw_reset(int32_t ipu_index, int32_t timeout)
 {
     uint32_t tmpVal;
-    int ipuOffset = 0x3;
+    int32_t ipuOffset = 0x3;
 
     if (ipu_index == 1)
         ipuOffset = 0x3;
@@ -118,14 +118,37 @@ int ipu_sw_reset(int ipu_index, int timeout)
  * @param   mem_colorimetry: colorimetry configuration
  * @param   csc_type: color space conversion type
  */
-void ipu_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
-                       uint32_t csc_type)
+void ipu_display_setup(uint32_t ipu_index, uint32_t mem_addr0, uint32_t mem_addr1,
+                       uint32_t mem_colorimetry, ips_dev_panel_t * panel)
 {
     uint32_t channel = MEM_TO_DP_BG_CH23;
     uint32_t di = 0;
-    //single image display
-    //only config background idma
-    ipu_disp_bg_idmac_config(ipu_index, panel->width, panel->height, mem_colorimetry);
+    uint32_t in_type, out_type, csc_type = NO_CSC;
+
+    /*step1: determine CSC type according input colorimetry and output colorimetry */
+    in_type = (mem_colorimetry == INTERLEAVED_RGB) ? RGB : YUV;
+    switch (panel->colorimetry) {
+    case DCMAP_YUV888:
+    case DCMAP_UVY888:
+    case DCMAP_VYU888:
+    case DCMAP_YUVA8888:
+        out_type = YUV;
+        break;
+    default:
+        out_type = RGB;
+        break;
+    }
+
+    if (in_type == RGB && out_type == YUV)
+        csc_type = RGB_YUV;
+    else if (in_type == YUV && out_type == RGB)
+        csc_type = YUV_RGB;
+    else
+        csc_type = NO_CSC;
+
+    /*step2: setup idma channel for background only */
+    ipu_general_idmac_config(ipu_index, MEM_TO_DP_BG_CH23, mem_addr0, mem_addr1, panel->width,
+                             panel->height, mem_colorimetry);
     ipu_dmfc_config(ipu_index, channel);
     ipu_dc_config(ipu_index, channel, di, panel->width, panel->colorimetry);
     ipu_dp_config(ipu_index, csc_type, 0, 0, 0, 0);
@@ -153,8 +176,9 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
     uint32_t di = 0;
 
     //dual display: partial plane display
-    //config both foreground and backgournd idma
+    //config foreground idma
     ipu_disp_fg_idmac_config(ipu_index, fg_width, fg_height, mem_colorimetry);
+    //config background idma
     ipu_disp_bg_idmac_config(ipu_index, panel->width, panel->height, mem_colorimetry);
 
     ipu_dmfc_config(ipu_index, fg_channel);
@@ -166,6 +190,35 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
     ipu_di_config(ipu_index, di, panel);
 }
 
+void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
+                       ips_dev_panel_t * panel)
+{
+    uint32_t csi_in_channel = CSI_TO_MEM_CH0, disp_channel = MEM_TO_DP_BG_CH23;
+    uint32_t csi_mem0 = CH23_EBA0, csi_mem1 = CH23_EBA1;
+    uint32_t csi_pixel_format = NON_INTERLEAVED_YUV420;
+    uint32_t smfc_channel = 0;
+
+    /*step1: config the csi: idma channel (csi -- mem), smfc, csi */
+    ipu_general_idmac_config(ipu_index, csi_in_channel, csi_mem0, csi_mem1, csi_width, csi_height,
+                             csi_pixel_format);
+    /*allocate smfc fifo for CSI input channel */
+    ipu_smfc_fifo_allocate(ipu_index, smfc_channel, 0, 3);
+    /*config csi for IPU */
+    ipu_csi_config(ipu_index, csi_width, csi_height);
+
+    /*step2: config display channel: idma, dmfc, dc, dp, di */
+    ipu_display_setup(ipu_index, csi_mem0, csi_mem1, csi_pixel_format, panel);
+
+    ipu_capture_disp_link(ipu_index, smfc_channel);
+
+    ipu_channel_buf_ready(ipu_index, csi_in_channel, 0);
+    ipu_channel_buf_ready(ipu_index, csi_in_channel, 1);
+    //hal_delay_us(1000);
+    //ipu_enable_display();
+    ipu_channel_buf_ready(ipu_index, disp_channel, 0);
+    ipu_channel_buf_ready(ipu_index, disp_channel, 1);
+}
+
 /*! Set display parameters in IPU configuration structure according to your display panel name. There are only some displays are supported by this function. And you can set the display manually all by your self if the hardware is supported by IPU.
  *
  * @param panel_name:		panel name of your display
@@ -173,7 +226,7 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
 ips_dev_panel_t *search_panel(char *panel_name)
 {
     ips_dev_panel_t *panel = &disp_dev_list[0];
-    int index = 0;
+    int32_t index = 0;
 
     while (index < num_of_panels) {
         if (!strcmp(panel->panel_name, panel_name))

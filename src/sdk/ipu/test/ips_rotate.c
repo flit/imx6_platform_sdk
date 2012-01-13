@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -17,10 +17,11 @@
 #include "ipu_common.h"
 #include "ips_test.h"
 
-int ips_rotate_test(ips_dev_panel_t * panel)
+int32_t ips_rotate_test(ips_dev_panel_t * panel)
 {
     uint32_t ipu_index = 1;     // use ipu 1
     uint32_t channel_in, channel_out;
+    uint32_t rot_in_mem = CH28_EBA0, rot_out_mem = CH23_EBA0;
     ipu_rot_info_t rot_info;
     uint32_t taskType = PP_TASK;
     uint8_t revchar;
@@ -30,7 +31,7 @@ int ips_rotate_test(ips_dev_panel_t * panel)
     printf("Press 'Y' / 'y' for 90 degree clockwise rotation.\nOther key to exit.)\n");
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, panel, INTERLEAVED_RGB, NO_CSC);
+    ipu_display_setup(ipu_index, rot_out_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
@@ -68,10 +69,10 @@ int ips_rotate_test(ips_dev_panel_t * panel)
     rot_info.hf = 0;
     rot_info.vf = 0;
     rot_info.addr0_in =
-        CH28_EBA0 + (panel->height - rot_info.height_in) * panel->width + panel->width -
+        rot_in_mem + (panel->height - rot_info.height_in) * panel->width + panel->width -
         rot_info.width_in;
     rot_info.addr0_out =
-        CH23_EBA0 + (panel->height - rot_info.height_out) * panel->width + panel->width -
+        rot_out_mem + (panel->height - rot_info.height_out) * panel->width + panel->width -
         rot_info.width_out;
 
     /*rotate idmac config */
@@ -90,7 +91,7 @@ int ips_rotate_test(ips_dev_panel_t * panel)
             revchar = getchar();
         } while (revchar == (uint8_t) 0xFF);
         if (revchar == 'Y' || revchar == 'y') {
-            memcpy((void *)CH28_EBA0, (void *)CH23_EBA0, panel->width * panel->height * 2);
+            memcpy((void *)rot_in_mem, (void *)rot_out_mem, panel->width * panel->height * 2);
             while (ipu_idmac_channel_busy(1, channel_out)) ;
             while (ipu_idmac_channel_busy(1, channel_in)) ;
             ipu_channel_buf_ready(1, channel_out, 0);

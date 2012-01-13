@@ -23,8 +23,9 @@
  *
  * @param	panel:		ipu panel configuration data structure
  */
-int ips_display_test(ips_dev_panel_t * panel)
+int32_t ips_display_test(ips_dev_panel_t * panel)
 {
+    uint32_t disp_mem = CH23_EBA0;
     uint32_t ipu_index = 1;     // use ipu 1
     uint8_t revchar;
 
@@ -33,13 +34,13 @@ int ips_display_test(ips_dev_panel_t * panel)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, panel, INTERLEAVED_RGB, NO_CSC);
+    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
 
     /*load image */
-    load_centralized_image(CH23_EBA0, panel);
+    load_centralized_image(disp_mem, panel);
 
     printf("Do you see the image (y or n)?\n");
     do {
@@ -54,10 +55,11 @@ int ips_display_test(ips_dev_panel_t * panel)
 /*!
  * HDMI 1080P60 display stream
  */
-int ips_hdmi_stream(void)
+int32_t ips_hdmi_stream(void)
 {
-    ips_dev_panel_t *panel;
     uint32_t ipu_index = 1;     // use ipu 1
+    uint32_t disp_mem = CH23_EBA0;
+    ips_dev_panel_t *panel;
     uint8_t revchar;
 
     /*enable panel */
@@ -69,13 +71,13 @@ int ips_hdmi_stream(void)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, panel, INTERLEAVED_RGB, NO_CSC);
+    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
 
     /*load image */
-    load_centralized_image(CH23_EBA0, panel);
+    load_centralized_image(disp_mem, panel);
 
     printf("Do you see the image (y or n)?\n");
     do {
@@ -93,8 +95,9 @@ int ips_hdmi_stream(void)
  *
  * @param	ipu_index:	ipu index
  */
-int ips_hdmi_1080P60_stream(int ipu_index)
+int32_t ips_hdmi_1080P60_stream(int32_t ipu_index)
 {
+    uint32_t disp_mem0 = CH23_EBA0, disp_mem1 = (uint32_t) NULL;
     ips_dev_panel_t *panel;
 
     /*enable panel */
@@ -105,12 +108,9 @@ int ips_hdmi_1080P60_stream(int ipu_index)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, panel, PARTIAL_INTERLEAVED_YUV420, YUV_RGB);
-    memset((void *)CH23_EBA0, 0x10, panel->width * panel->height);
-    memset((void *)CH23_EBA0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
-           panel->width * panel->height / 2);
-    memset((void *)CH23_EBA1, 0x10, panel->width * panel->height);
-    memset((void *)CH23_EBA1 + panel->width * FRAME_MAX_HEIGHT, 0x80,
+    ipu_display_setup(ipu_index, disp_mem0, disp_mem1, PARTIAL_INTERLEAVED_YUV420, panel);
+    memset((void *)disp_mem0, 0x10, panel->width * panel->height);
+    memset((void *)disp_mem0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
            panel->width * panel->height / 2);
 
     /*realloc the DMFC fifo */
@@ -127,8 +127,9 @@ int ips_hdmi_1080P60_stream(int ipu_index)
  * SII9022 1080P60 display stream
  * @param	ipu_index:	ipu index
  */
-int ips_sii9022_1080P60_stream(int ipu_index)
+int32_t ips_sii9022_1080P60_stream(int32_t ipu_index)
 {
+    uint32_t disp_mem = CH23_EBA0;
     ips_dev_panel_t *panel;
 
     /*enable panel */
@@ -139,7 +140,7 @@ int ips_sii9022_1080P60_stream(int ipu_index)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, panel, PARTIAL_INTERLEAVED_YUV420, YUV_RGB);
+    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, PARTIAL_INTERLEAVED_YUV420, panel);
 
     /*realloc the DMFC fifo */
     ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);
@@ -156,8 +157,9 @@ int ips_sii9022_1080P60_stream(int ipu_index)
  *
  * @param	ipu_index:	ipu index
  */
-int ips_hannstar_xga_yuv_stream(int ipu_index)
+int32_t ips_hannstar_xga_yuv_stream(int32_t ipu_index)
 {
+    uint32_t disp_mem0 = CH23_EBA0, disp_mem1 = (uint32_t) NULL;
     ips_dev_panel_t *panel;
 
     /*enable panel */
@@ -168,19 +170,14 @@ int ips_hannstar_xga_yuv_stream(int ipu_index)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, panel, PARTIAL_INTERLEAVED_YUV420, YUV_RGB);
+    ipu_display_setup(ipu_index, disp_mem0, disp_mem1, PARTIAL_INTERLEAVED_YUV420, panel);
     ipu_cpmem_mod_field(ipu_cpmem_addr(1, 23), NON_INTERLEAVED_UBO,
-			                        FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 8);
-	    ipu_cpmem_mod_field(ipu_cpmem_addr(1, 23), NON_INTERLEAVED_SLY,
-				                        FRAME_MAX_WIDTH - 1);
-		    ipu_cpmem_mod_field(ipu_cpmem_addr(1, 23), NON_INTERLEAVED_SLUV,
-					                        FRAME_MAX_WIDTH - 1);
+                        FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 8);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(1, 23), NON_INTERLEAVED_SLY, FRAME_MAX_WIDTH - 1);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(1, 23), NON_INTERLEAVED_SLUV, FRAME_MAX_WIDTH - 1);
 
-	memset((void *)CH23_EBA0, 0x10, panel->width * panel->height);
-    memset((void *)CH23_EBA0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
-           panel->width * panel->height / 2);
-    memset((void *)CH23_EBA1, 0x10, panel->width * panel->height);
-    memset((void *)CH23_EBA1 + panel->width * FRAME_MAX_HEIGHT, 0x80,
+    memset((void *)disp_mem0, 0x10, panel->width * panel->height);
+    memset((void *)disp_mem0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
            panel->width * panel->height / 2);
 
     /*realloc the DMFC fifo */

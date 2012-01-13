@@ -311,6 +311,12 @@ void lvds_power_on(void)
 #endif
 }
 
+/* dummy empty function for camera_test
+ * camera power is always on for MX61 SMD board*/
+void camera_power_on(void)
+{
+
+}
 void ldb_iomux_config(void)
 {
 }
@@ -936,4 +942,45 @@ int perfmon_clk_cfg(uint32_t base, uint32_t enable)
     reg32_write(reg, val);
 
     return 0;
+}
+
+/*IOMUX configuration for CSI port0*/
+void mxc_csi_port0_iomux_config(void)
+{
+    /* config CSI0_PIXCLK pad for ipu instance CSI0_PIXCLK port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_PIXCLK, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_PIXCLK, 0x01000);
+    /* config CSI0_MCLK pad for ipu instance CSI0_HSYNC port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, 0x01000);
+    /* config CSI0_DATA_EN pad for ipu instance CSI0_DATA_EN port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DATA_EN, 0x01000);
+    /* config CSI0_VSYNC pad for ipu instance CSI0_VSYNC port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_VSYNC, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_VSYNC, 0x01000);
+    /* config CSI0_DAT12 pad for ipu instance CSI0_D[12] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT12, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT12, 0x01000);
+    /* config CSI0_DAT13 pad for ipu instance CSI0_D[13] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT13, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT13, 0x01000);
+    /* config CSI0_DAT14 pad for ipu instance CSI0_D[14] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT14, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT14, 0x01000);
+    /* config CSI0_DAT15 pad for ipu instance CSI0_D[15] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT15, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT15, 0x01000);
+    /* config CSI0_DAT16 pad for ipu instance CSI0_D[16] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT16, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT16, 0x01000);
+    /* config CSI0_DAT17 pad for ipu instance CSI0_D[17] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT17, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT17, 0x01000);
+    /* config CSI0_DAT18 pad for ipu instance CSI0_D[18] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT18, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT18, 0x01000);
+    /* config CSI0_DAT19 pad for ipu instance CSI0_D[19] port */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT19, ALT0);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT19, 0x01000);
 }

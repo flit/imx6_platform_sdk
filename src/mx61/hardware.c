@@ -984,3 +984,14 @@ void mxc_csi_port0_iomux_config(void)
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT19, ALT0);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT19, 0x01000);
 }
+
+/* ENET iomux config */
+void imx_ar8031_iomux()
+{
+    enet_iomux_config();        // iomux tool output
+}
+
+/*CPU_PER_RST_B low to high*/
+void imx_ar8031_reset(void)
+{
+}

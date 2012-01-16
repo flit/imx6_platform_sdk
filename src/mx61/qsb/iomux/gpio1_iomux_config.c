@@ -15,6 +15,7 @@
 void gpio1_iomux_config(void)
 {
     // Config gpio1_GPIO[16] to pad SD1_DAT0(A21)
+    // J5 - Camera GP
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0(0x020E0340)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -82,6 +83,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD1_DAT0);
 
     // Config gpio1_GPIO[23] to pad ENET_REF_CLK(V22)
+    // GRMII interrupt
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_REF_CLK(0x020E01D4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -93,7 +95,7 @@ void gpio1_iomux_config(void)
     //     ALT0 (0) - Select mux mode: ALT0 mux port: Reserved of instance: Reserved.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: TX_CLK of instance: enet.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: FSR of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT for mode ALT2.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_FSR_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: DEBUG_BUS_DEVICE[4] of instance: sdma.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[23] of instance: gpio1.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: SRCLK of instance: spdif.
@@ -148,6 +150,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_REF_CLK);
 
     // Config gpio1_GPIO[24] to pad ENET_RX_ER(W23)
+    // J9 - Microphone Detect
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_RX_ER(0x020E01D8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -159,7 +162,7 @@ void gpio1_iomux_config(void)
     //     ALT0 (0) - Select mux mode: ALT0 mux port: USBOTG_ID of instance: anatop.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RX_ER of instance: enet.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKR of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT for mode ALT2.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_HCKR_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: IN1 of instance: spdif.
     //                NOTE: - Config Register IOMUXC_SPDIF_SPDIF_IN1_SELECT_INPUT for mode ALT3.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT2_OUT of instance: enet.
@@ -216,6 +219,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RX_ER);
 
     // Config gpio1_GPIO[25] to pad ENET_CRS_DV(U21)
+    // CAN1 STNDBY
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_CRS_DV(0x020E01DC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -228,7 +232,7 @@ void gpio1_iomux_config(void)
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RX_EN of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXEN_SELECT_INPUT for mode ALT1.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: SCKT of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT for mode ALT2.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SCKT_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: SPDIF_EXTCLK of instance: spdif.
     //                NOTE: - Config Register IOMUXC_SPDIF_TX_CLK2_SELECT_INPUT for mode ALT3.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[25] of instance: gpio1.
@@ -281,6 +285,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_CRS_DV);
 
     // Config gpio1_GPIO[26] to pad ENET_RXD1(W22)
+    // CAN1 NERR
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_RXD1(0x020E01E0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -294,7 +299,7 @@ void gpio1_iomux_config(void)
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RDATA[1] of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXDATA_1_SELECT_INPUT for mode ALT1.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: FST of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT for mode ALT2.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_FST_SELECT_INPUT for mode ALT2.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT3_OUT of instance: enet.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[26] of instance: gpio1.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: TCK of instance: phy.
@@ -349,6 +354,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RXD1);
 
     // Config gpio1_GPIO[27] to pad ENET_RXD0(W21)
+    // CAN1 Enable
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_RXD0(0x020E01E4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -361,7 +367,7 @@ void gpio1_iomux_config(void)
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RDATA[0] of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPP_IND_MAC0_RXDATA_0_SELECT_INPUT for mode ALT1.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: HCKT of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKT_SELECT_INPUT for mode ALT2.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_HCKT_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: OUT1 of instance: spdif.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[27] of instance: gpio1.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: TMS of instance: phy.
@@ -413,6 +419,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RXD0);
 
     // Config gpio1_GPIO[6] to pad GPIO_6(T3)
+    // J5 - Camera GP
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_6(0x020E0230)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -422,7 +429,7 @@ void gpio1_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_6.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: SCKT of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SCKT_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT1 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: SDA of instance: i2c3.
     //                NOTE: - Config Register IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT for mode ALT2.
@@ -482,6 +489,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_6);
 
     // Config gpio1_GPIO[7] to pad GPIO_7(R3)
+    // J7 - Display Connector GP
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_7(0x020E0240)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -491,7 +499,7 @@ void gpio1_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_7.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: TX4_RX1 of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO4_SDI1_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SDO4_SDI1_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RDY of instance: ecspi5.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: EPITO of instance: epit1.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: TXCAN of instance: can1.
@@ -550,6 +558,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_7);
 
     // Config gpio1_GPIO[8] to pad GPIO_8(R5)
+    // J5 - Camera Reset
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_8(0x020E0244)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -559,7 +568,7 @@ void gpio1_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_8.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: TX5_RX0 of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO5_SDI0_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SDO5_SDI0_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: ANATOP_32K_OUT of instance: anatop.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: EPITO of instance: epit2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: RXCAN of instance: can1.
@@ -619,6 +628,7 @@ void gpio1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_8);
 
     // Config gpio1_GPIO[9] to pad GPIO_9(T2)
+    // J7 - Display connector GP
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_9(0x020E0228)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -628,7 +638,7 @@ void gpio1_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_9.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: FSR of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FSR_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_FSR_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: WDOG_B of instance: wdog1.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: COL[6] of instance: kpp.
     //                NOTE: - Config Register IOMUXC_KPP_IPP_IND_COL_6_SELECT_INPUT for mode ALT2.

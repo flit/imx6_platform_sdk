@@ -944,7 +944,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_DISP_CLK);
 
-    // Config ipu1_DI0_PIN15 to pad DI0_PIN15(P25)
+    // Config ipu1_DI0_PIN15 to pad DI0_PIN15(N21)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN15(0x020E0160)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -952,7 +952,7 @@ void ipu1_iomux_config(void)
     //     SION_DISABLED (0) - Input Path is determined by functionality of the selected mux mode (regular).
     //     SION_ENABLED (1) - Force input path of pad DI0_PIN15.
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
-    //                    Select 1 of 8 iomux modes to be used for pad: DI0_PIN15.
+    //                    Select 1 of 7 iomux modes to be used for pad: DI0_PIN15.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: DI0_PIN15 of instance: ipu1.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: DI0_PIN15 of instance: ipu2.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: AUD6_TXC of instance: audmux.

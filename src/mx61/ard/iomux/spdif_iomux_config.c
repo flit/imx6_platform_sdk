@@ -46,7 +46,7 @@ void spdif_iomux_config(void)
     //     SEL_ENET_RX_ER_ALT3 (1) - Selecting Pad: ENET_RX_ER for Mode: ALT3.
     //     SEL_KEY_COL3_ALT6 (2) - Selecting Pad: KEY_COL3 for Mode: ALT6.
     //     SEL_GPIO_16_ALT4 (3) - Selecting Pad: GPIO_16 for Mode: ALT4.
-    writel((SEL_EIM_D21_ALT7 & 0x3), IOMUXC_SPDIF_SPDIF_IN1_SELECT_INPUT);
+    writel((SEL_KEY_COL3_ALT6 & 0x3), IOMUXC_SPDIF_SPDIF_IN1_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_KEY_COL3(0x020E05E0)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -91,7 +91,7 @@ void spdif_iomux_config(void)
     //             Select one out of next values for pad: KEY_COL3.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
-           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
-           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_COL3);
+    writel((HYS_DISABLED & 0x1) << 16 | (PUS_100KOHM_PD & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_TBD & 0x3) << 6 |
+           (DSE_DISABLED & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_COL3);
 }

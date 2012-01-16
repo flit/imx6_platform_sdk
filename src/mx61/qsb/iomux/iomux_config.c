@@ -32,6 +32,7 @@ void iomux_config(void)
     pwm2_iomux_config();
     pwm3_iomux_config();
     pwm4_iomux_config();
+    spdif_iomux_config();
     uart1_iomux_config();
     uart2_iomux_config();
     usboh3_iomux_config();
@@ -120,7 +121,10 @@ void kpp_iomux_config()
 {
 };
 
-//void ldb_iomux_config(){};
+void ldb_iomux_config()
+{
+};
+
 void mipi_core_iomux_config()
 {
 };
@@ -189,10 +193,6 @@ void snvs_lp_wrapper_iomux_config()
 {
 };
 
-void spdif_iomux_config()
-{
-};
-
 void src_iomux_config()
 {
 };
@@ -233,4 +233,6 @@ void wdog2_iomux_config()
 {
 };
 
-//void weim_iomux_config(){};
+void weim_iomux_config()
+{
+};

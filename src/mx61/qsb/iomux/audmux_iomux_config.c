@@ -119,7 +119,7 @@ void audmux_iomux_config(void)
     //               NOTE: Instance: audmux, In Pin: p4_input_txclk_amx
     //     SEL_DISP0_DAT20_ALT3 (0) - Selecting Pad: DISP0_DAT20 for Mode: ALT3.
     //     SEL_SD2_DAT3_ALT3 (1) - Selecting Pad: SD2_DAT3 for Mode: ALT3.
-    writel((SEL_DISP0_DAT20_ALT3 & 0x1), IOMUXC_AUDMUX_P4_INPUT_TXCLK_AMX_SELECT_INPUT);
+    writel((SEL_SD2_DAT3_ALT3 & 0x1), IOMUXC_AUDMUX_P4_INPUT_TXCLK_AMX_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_SD2_DAT3(0x020E0744)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

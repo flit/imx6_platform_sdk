@@ -26,7 +26,7 @@ void gpio6_iomux_config(void)
     //     ALT0 (0) - Select mux mode: ALT0 mux port: CE2N of instance: rawnand.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: SISG[0] of instance: ipu1.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: TX0 of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO0_SELECT_INPUT for mode ALT2.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SDO0_SELECT_INPUT for mode ALT2.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: WEIM_CRE of instance: weim.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: CLKO2 of instance: ccm.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[15] of instance: gpio6.

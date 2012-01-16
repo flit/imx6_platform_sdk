@@ -103,7 +103,7 @@ void can1_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_7.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: TX4_RX1 of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO4_SDI1_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SDO4_SDI1_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: RDY of instance: ecspi5.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: EPITO of instance: epit1.
     //     ALT3 (3) - Select mux mode: ALT3 mux port: TXCAN of instance: can1.

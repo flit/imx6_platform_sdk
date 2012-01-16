@@ -9,46 +9,48 @@
 
 #include <iomux_config.h>
 
-// Function to configure iomux for i.MX6DQ board EVB X3.
+// Function to configure iomux for i.MX6DQ board MCIMX6QSMD B.
 void iomux_config(void)
 {
-    anatop_iomux_config();
+    audmux_iomux_config();
     can1_iomux_config();
-    can2_iomux_config();
     ccm_iomux_config();
     ecspi1_iomux_config();
     enet_iomux_config();
-    esai_iomux_config();
+    gpio1_iomux_config();
+    gpio2_iomux_config();
     gpio3_iomux_config();
     gpio4_iomux_config();
     gpio5_iomux_config();
     gpio6_iomux_config();
-    hdmi_tx_iomux_config();
+    gpio7_iomux_config();
     i2c1_iomux_config();
     i2c2_iomux_config();
     i2c3_iomux_config();
     ipu1_iomux_config();
-    mlb_iomux_config();
+    kpp_iomux_config();
     pwm1_iomux_config();
-    uart2_iomux_config();
-    uart4_iomux_config();
-    usboh3_iomux_config();
-    usdhc1_iomux_config();
+    uart1_iomux_config();
+    uart3_iomux_config();
     usdhc2_iomux_config();
     usdhc3_iomux_config();
     usdhc4_iomux_config();
 }
 
 // Definitions for unused modules.
+void anatop_iomux_config()
+{
+};
+
 void asrc_iomux_config()
 {
 };
 
-void audmux_iomux_config()
+void caam_wrapper_iomux_config()
 {
 };
 
-void caam_wrapper_iomux_config()
+void can2_iomux_config()
 {
 };
 
@@ -92,15 +94,7 @@ void epit2_iomux_config()
 {
 };
 
-void gpio1_iomux_config()
-{
-};
-
-void gpio2_iomux_config()
-{
-};
-
-void gpio7_iomux_config()
+void esai_iomux_config()
 {
 };
 
@@ -112,20 +106,27 @@ void gpu3d_iomux_config()
 {
 };
 
+void hdmi_tx_iomux_config()
+{
+};
+
 void ipu2_iomux_config()
 {
 };
 
-void kpp_iomux_config()
+void ldb_iomux_config()
 {
 };
 
-//void ldb_iomux_config(){};
 void mipi_core_iomux_config()
 {
 };
 
 void mipi_hsi_ctrl_iomux_config()
+{
+};
+
+void mlb_iomux_config()
 {
 };
 
@@ -213,15 +214,23 @@ void tpsmp_iomux_config()
 {
 };
 
-void uart1_iomux_config()
+void uart2_iomux_config()
 {
 };
 
-void uart3_iomux_config()
+void uart4_iomux_config()
 {
 };
 
 void uart5_iomux_config()
+{
+};
+
+void usboh3_iomux_config()
+{
+};
+
+void usdhc1_iomux_config()
 {
 };
 
@@ -233,4 +242,6 @@ void wdog2_iomux_config()
 {
 };
 
-//void weim_iomux_config(){};
+void weim_iomux_config()
+{
+};

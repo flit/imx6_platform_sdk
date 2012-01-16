@@ -33,7 +33,7 @@ void uart3_iomux_config(void)
     //     ALT6 (6) - Select mux mode: ALT6 mux port: USBH1_OC of instance: usboh3.
     //                NOTE: - Config Register IOMUXC_USBOH3_IPP_IND_UH1_OC_SELECT_INPUT for mode ALT6.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HPROT[0] of instance: pl301_mx63per1.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_EIM_D30);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT4 & 0x7), IOMUXC_SW_MUX_CTL_PAD_EIM_D30);
     // Pad EIM_D30 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_UART3_IPP_UART_RTS_B_SELECT_INPUT(0x020E092C)

@@ -27,7 +27,7 @@ void mlb_iomux_config(void)
     //                NOTE: - Config Register IOMUXC_MLB_MLB_CLK_IN_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: TDATA[1] of instance: enet.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: TX2_RX3 of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT for mode ALT2.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SDO2_SDI3_SELECT_INPUT for mode ALT2.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: 1588_EVENT0_IN of instance: enet.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[29] of instance: gpio1.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: TDO of instance: sata_phy.
@@ -100,7 +100,7 @@ void mlb_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_2.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: FST of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_FST_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_FST_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT2 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: ROW[6] of instance: kpp.
     //                NOTE: - Config Register IOMUXC_KPP_IPP_IND_ROW_6_SELECT_INPUT for mode ALT2.
@@ -178,7 +178,7 @@ void mlb_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_6.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: SCKT of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKT_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SCKT_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT1 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: SDA of instance: i2c3.
     //                NOTE: - Config Register IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT for mode ALT2.

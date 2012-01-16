@@ -1148,6 +1148,7 @@ void ipu1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_DISP_CLK);
 
     // Config ipu1_DI0_PIN15 to pad DI0_PIN15(N21)
+    // DE
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN15(0x020E0160)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1213,6 +1214,7 @@ void ipu1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_PIN15);
 
     // Config ipu1_DI0_PIN2 to pad DI0_PIN2(N25)
+    // HSync
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2(0x020E0164)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1279,6 +1281,7 @@ void ipu1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_PIN2);
 
     // Config ipu1_DI0_PIN3 to pad DI0_PIN3(N20)
+    // VSync
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN3(0x020E0168)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1345,6 +1348,7 @@ void ipu1_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_PIN3);
 
     // Config ipu1_DI0_PIN4 to pad DI0_PIN4(P25)
+    // Contrast
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4(0x020E016C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

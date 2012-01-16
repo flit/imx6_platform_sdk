@@ -24,7 +24,7 @@ void usdhc1_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_1.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: SCKR of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SCKR_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SCKR_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: WDOG_B of instance: wdog2.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: ROW[5] of instance: kpp.
     //                NOTE: - Config Register IOMUXC_KPP_IPP_IND_ROW_5_SELECT_INPUT for mode ALT2.

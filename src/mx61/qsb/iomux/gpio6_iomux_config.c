@@ -15,6 +15,7 @@
 void gpio6_iomux_config(void)
 {
     // Config gpio6_GPIO[6] to pad EIM_A23(J21)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_A23(0x020E00D8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -82,6 +83,7 @@ void gpio6_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_A23);
 
     // Config gpio6_GPIO[9] to pad NANDF_WP_B(E15)
+    // J16 - MIPI GP
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B(0x020E02DC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

@@ -126,7 +126,10 @@ void kpp_iomux_config()
 {
 };
 
-//void ldb_iomux_config(){};
+void ldb_iomux_config()
+{
+};
+
 void mipi_core_iomux_config()
 {
 };

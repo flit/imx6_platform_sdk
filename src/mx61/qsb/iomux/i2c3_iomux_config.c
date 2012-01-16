@@ -25,7 +25,7 @@ void i2c3_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_5.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: TX2_RX3 of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO2_SDI3_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SDO2_SDI3_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT4 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: ROW[7] of instance: kpp.
     //                NOTE: - Config Register IOMUXC_KPP_IPP_IND_ROW_7_SELECT_INPUT for mode ALT2.
@@ -105,7 +105,7 @@ void i2c3_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_16.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: TX3_RX2 of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_SDO3_SDI2_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_SDO3_SDI2_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: 1588_EVENT2_IN of instance: enet.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: ANATOP_ETHERNET_REF_OUT of instance: enet.
     //                NOTE: - Config Register IOMUXC_ENET_IPG_CLK_RMII_SELECT_INPUT for mode ALT2.

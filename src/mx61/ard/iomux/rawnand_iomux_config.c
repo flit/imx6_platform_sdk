@@ -290,7 +290,7 @@ void rawnand_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[0] of instance: gpio2.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: IPU_DIAG_BUS[0] of instance: ipu1.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: IPU_DIAG_BUS[0] of instance: ipu2.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT1 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D0);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D0);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_NANDF_D0(0x020E06E4)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -356,7 +356,7 @@ void rawnand_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[1] of instance: gpio2.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: IPU_DIAG_BUS[1] of instance: ipu1.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: IPU_DIAG_BUS[1] of instance: ipu2.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT1 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D1);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D1);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_NANDF_D1(0x020E06E8)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -422,7 +422,7 @@ void rawnand_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[2] of instance: gpio2.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: IPU_DIAG_BUS[2] of instance: ipu1.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: IPU_DIAG_BUS[2] of instance: ipu2.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT1 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D2);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D2);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_NANDF_D2(0x020E06EC)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -488,7 +488,7 @@ void rawnand_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[3] of instance: gpio2.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: IPU_DIAG_BUS[3] of instance: ipu1.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: IPU_DIAG_BUS[3] of instance: ipu2.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT1 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D3);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_NANDF_D3);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_NANDF_D3(0x020E06F0)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -883,7 +883,7 @@ void rawnand_iomux_config(void)
     //     ALT4 (4) - Select mux mode: ALT4 mux port: DIAG_STATUS_BUS_MUX[5] of instance: pcie_ctrl.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[9] of instance: gpio7.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HDATA_DIR of instance: tpsmp.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_SD4_CMD);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT1 & 0x7), IOMUXC_SW_MUX_CTL_PAD_SD4_CMD);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_SD4_CMD(0x020E06DC)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -1079,7 +1079,7 @@ void rawnand_iomux_config(void)
     //                NOTE: - Config Register IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT for mode ALT2.
     //     ALT4 (4) - Select mux mode: ALT4 mux port: DIAG_STATUS_BUS_MUX[6] of instance: pcie_ctrl.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[10] of instance: gpio7.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_SD4_CLK);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT1 & 0x7), IOMUXC_SW_MUX_CTL_PAD_SD4_CLK);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_SD4_CLK(0x020E06E0)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

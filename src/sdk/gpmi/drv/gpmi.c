@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2009-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -674,7 +674,7 @@ void read_nflash_id(unsigned short *id)
     GpmiNandSetSafeTiming();
 
     /* Set up pin muxing for NAND flash */
-    gpmi_nand_pinmux_config();
+    rawnand_iomux_config();
 
     // Put GPMI in NAND mode, keep DEVICE reset enabled, and make certain
     // polarity is active high

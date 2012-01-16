@@ -15,6 +15,7 @@
 void gpio5_iomux_config(void)
 {
     // Config gpio5_GPIO[0] to pad EIM_WAIT(M25)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT(0x020E0154)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -78,6 +79,7 @@ void gpio5_iomux_config(void)
            (DSE_60OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT);
 
     // Config gpio5_GPIO[4] to pad EIM_A24(F25)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_A24(0x020E00D4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

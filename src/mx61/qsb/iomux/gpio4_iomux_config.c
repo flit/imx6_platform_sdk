@@ -15,6 +15,7 @@
 void gpio4_iomux_config(void)
 {
     // Config gpio4_GPIO[5] to pad GPIO_19(P5)
+    // J14 - Volume Down
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_19(0x020E0254)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

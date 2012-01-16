@@ -15,6 +15,7 @@
 void gpio3_iomux_config(void)
 {
     // Config gpio3_GPIO[0] to pad EIM_DA0(L20)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA0(0x020E0114)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -80,6 +81,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA0);
 
     // Config gpio3_GPIO[1] to pad EIM_DA1(J25)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA1(0x020E0118)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -146,6 +148,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA1);
 
     // Config gpio3_GPIO[10] to pad EIM_DA10(M22)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA10(0x020E013C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -212,6 +215,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA10);
 
     // Config gpio3_GPIO[11] to pad EIM_DA11(M20)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA11(0x020E0140)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -279,6 +283,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA11);
 
     // Config gpio3_GPIO[12] to pad EIM_DA12(M24)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA12(0x020E0144)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -346,6 +351,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA12);
 
     // Config gpio3_GPIO[13] to pad EIM_DA13(M23)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA13(0x020E0148)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -413,6 +419,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA13);
 
     // Config gpio3_GPIO[14] to pad EIM_DA14(N23)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA14(0x020E014C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -479,6 +486,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA14);
 
     // Config gpio3_GPIO[15] to pad EIM_DA15(N24)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA15(0x020E0150)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -544,6 +552,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA15);
 
     // Config gpio3_GPIO[2] to pad EIM_DA2(L21)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA2(0x020E011C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -610,6 +619,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA2);
 
     // Config gpio3_GPIO[23] to pad EIM_D23(D25)
+    // RGMII reset
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_D23(0x020E00AC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -678,6 +688,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_D23);
 
     // Config gpio3_GPIO[3] to pad EIM_DA3(K24)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA3(0x020E0120)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -744,6 +755,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA3);
 
     // Config gpio3_GPIO[4] to pad EIM_DA4(L22)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA4(0x020E0124)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -810,6 +822,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA4);
 
     // Config gpio3_GPIO[5] to pad EIM_DA5(L23)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA5(0x020E0128)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -876,6 +889,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA5);
 
     // Config gpio3_GPIO[6] to pad EIM_DA6(K25)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA6(0x020E012C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -942,6 +956,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA6);
 
     // Config gpio3_GPIO[7] to pad EIM_DA7(L25)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA7(0x020E0130)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1007,6 +1022,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA7);
 
     // Config gpio3_GPIO[8] to pad EIM_DA8(L24)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA8(0x020E0134)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1072,6 +1088,7 @@ void gpio3_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_DA8);
 
     // Config gpio3_GPIO[9] to pad EIM_DA9(M21)
+    // J12 - Boot Mode select
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_DA9(0x020E0138)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

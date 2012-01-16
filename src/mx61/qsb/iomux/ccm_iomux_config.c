@@ -90,7 +90,7 @@ void ccm_iomux_config(void)
     //   MUX_MODE (2-0) - MUX Mode Select Field Reset: ALT5
     //                    Select 1 of 8 iomux modes to be used for pad: GPIO_3.
     //     ALT0 (0) - Select mux mode: ALT0 mux port: HCKR of instance: esai.
-    //                NOTE: - Config Register IOMUXC_ESAI1_IPP_IND_HCKR_SELECT_INPUT for mode ALT0.
+    //                NOTE: - Config Register IOMUXC_ESAI_IPP_IND_HCKR_SELECT_INPUT for mode ALT0.
     //     ALT1 (1) - Select mux mode: ALT1 mux port: OBSRV_INT_OUT0 of instance: observe_mux.
     //     ALT2 (2) - Select mux mode: ALT2 mux port: SCL of instance: i2c3.
     //                NOTE: - Config Register IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT for mode ALT2.

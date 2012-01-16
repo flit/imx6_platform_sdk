@@ -290,7 +290,6 @@ void board_init(void);
 void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_enet_setup(void);
-void gpmi_nand_pinmux_config(void);
 void gpmi_nand_clk_setup(void);
 void usdhc_iomux_config(uint32_t);
 void ecspi_iomux_cfg(uint32_t);

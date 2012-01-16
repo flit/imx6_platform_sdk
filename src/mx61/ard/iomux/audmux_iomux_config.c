@@ -112,7 +112,7 @@ void audmux_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[10] of instance: gpio5.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: MMDC_DEBUG[21] of instance: mmdc.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HADDR[26] of instance: pl301_mx63per1.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT16);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT3 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT16);
     // Pad DISP0_DAT16 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_AUDMUX_P5_INPUT_TXCLK_AMX_SELECT_INPUT(0x020E07DC)
@@ -266,7 +266,7 @@ void audmux_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[20] of instance: gpio4.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: MMDC_DEBUG[4] of instance: mmdc.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HADDR[11] of instance: pl301_mx63per1.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_DI0_PIN4(0x020E0480)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -331,7 +331,7 @@ void audmux_iomux_config(void)
     //     ALT4 (4) - Select mux mode: ALT4 mux port: DEBUG_CORE_STATE[1] of instance: sdma.
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[17] of instance: gpio4.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: MMDC_DEBUG[1] of instance: mmdc.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN15);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN15);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_DI0_PIN15(0x020E0474)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -397,7 +397,7 @@ void audmux_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[18] of instance: gpio4.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: MMDC_DEBUG[2] of instance: mmdc.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HADDR[9] of instance: pl301_mx63per1.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_DI0_PIN2(0x020E0478)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -463,7 +463,7 @@ void audmux_iomux_config(void)
     //     ALT5 (5) - Select mux mode: ALT5 mux port: GPIO[19] of instance: gpio4.
     //     ALT6 (6) - Select mux mode: ALT6 mux port: MMDC_DEBUG[3] of instance: mmdc.
     //     ALT7 (7) - Select mux mode: ALT7 mux port: HADDR[10] of instance: pl301_mx63per1.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT0 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN3);
+    writel((SION_DISABLED & 0x1) << 4 | (ALT2 & 0x7), IOMUXC_SW_MUX_CTL_PAD_DI0_PIN3);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_DI0_PIN3(0x020E047C)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

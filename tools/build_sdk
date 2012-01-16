@@ -59,7 +59,7 @@ while [ $# -gt 0 ]; do
                 shift
             ;;
 
-    -board )    board_name=\_$2
+    -board )    board_name=$2
                 shift
             ;;
     -board_rev   )    board_version=$2
@@ -80,7 +80,7 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-echo "Generating makefiles for $soc_name$board_name"
+echo "Generating makefiles for ${soc_name}_${board_name}"
 
 perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $test_name
 
@@ -99,7 +99,7 @@ if [ "$clean_flag" = y ]; then
 fi
 
     #Do not include the '_' when calling the make
-    make TARGET=$soc_name BOARD=$(echo $board_name | sed 's/_//') BOARD_VERSION=$board_version TEST=$test_name
+    make TARGET=$soc_name BOARD=$board_name BOARD_VERSION=$board_version TEST=$test_name
 
 echo
 echo "Done ... Build script completed"

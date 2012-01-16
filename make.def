@@ -78,7 +78,7 @@ C_DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 # enables all warnings and treat them as errors except those preceded with -Wno-
 C_FLAGS_WARNINGS = -Wall -Werror -Wno-unused-function -fdiagnostics-show-option  -Wno-nonnull
 C_FLAGS 		= -mcpu=$(CPU) $(C_FLAGS_WARNINGS) -mapcs -g -O0 -ffunction-sections -fdata-sections -fno-exceptions
-C_INCLUDES 	= -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I. -I../inc
+C_INCLUDES 	= -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I$(PROJ_DIR)/src/$(TARGET)/$(BOARD)/ -I. -I../inc
 
 A_FLAGS 		=
 A_INCLUDES 	+=  -I$(PROJ_DIR) -I$(PROJ_DIR)/include -I$(PROJ_DIR)/src/include -I$(PROJ_DIR)/src/include/$(TARGET)/ -I.

@@ -54,7 +54,7 @@ my $imx_name = "$ARGV[2]";
 my $board_name = "$ARGV[3]";
 
 #Open the configuration input file
-my $in_file = "$sdk_conf_path/$imx_name$board_name.conf";
+my $in_file = "$sdk_conf_path/${imx_name}_${board_name}.conf";
 if (!(open (INP_FH, $in_file))) {
     # Try if the configuration file is common for all boards for this target
     $in_file = "$sdk_conf_path/$imx_name.conf";
@@ -68,7 +68,7 @@ copy("$sdk_base_path/makefile.in", "$sdk_base_path/makefile") or die "File canno
 
 # Read in the file one line at a time
 while (<INP_FH>) {
-    s/#.*//;                # ignore comments by erasing them
+    s/#.*//;            # ignore comments by erasing them
     next if /^(\s)*$/;  # skip blank lines
     $line = $_;
     #Delete trailing newline

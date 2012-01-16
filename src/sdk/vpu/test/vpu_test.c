@@ -15,17 +15,25 @@
 #include "../../usdhc/inc/usdhc_ifc.h"
 
 tFile files[10];
+
 tVolume *V;
-semaphore_t vpu_resource = { 0 };
+vpu_resource_t vpu_resource = { 0 };
 struct decode *gDecInstance[MAX_NUM_INSTANCE];
 struct encode *gEncInstance[MAX_NUM_INSTANCE];
 int disp_clr_index[MAX_NUM_INSTANCE];
 int multi_instance = 1;
 
+static vpu_test_t vpu_tests[] = {
+    {"VPU DECODER TEST", decode_test},
+    {"VPU ENCODER TEST", encode_test},
+};
+
 int vpu_test(void)
 {
-    int err = 0;
+    int err = 0, i = 0;
     vpu_versioninfo ver;
+    uint8_t revchar;
+    int test_num = sizeof(vpu_tests) / sizeof(vpu_test_t);
 
     /*instance attached to display interface */
     config_system_parameters();
@@ -38,9 +46,6 @@ int vpu_test(void)
     /*uSDHC working in POLLING mode */
     init_fat32_device((void *)fat_read_from_usdhc);
 
-    /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 1;
-    SDHC_ADMA_mode = 1;
     gCurrentActiveInstance = 0;
 
     /* initialize VPU */
@@ -62,7 +67,26 @@ int vpu_test(void)
     info_msg("VPU firmware version: %d.%d.%d\n", ver.fw_major, ver.fw_minor, ver.fw_release);
     info_msg("VPU library version: %d.%d.%d\n", ver.lib_major, ver.lib_minor, ver.lib_release);
 
-    decode_test();
+    do {
+        for (i = 0; i < test_num; i++)
+            printf("\t%d - %s\n", i, vpu_tests[i].name);
+        printf("\tx - to exit.\n");
+        revchar = 0xFF;
+
+        do {
+            revchar = getchar();
+        } while (revchar == (uint8_t) 0xFF);
+        if (revchar == 'x') {
+            printf("\nTest exit.\n");
+            break;
+        }
+
+        i = revchar - '0';
+        if ((i >= 0) && (i < test_num)) {
+            printf("\n");
+            err = vpu_tests[i].test(NULL);
+        }
+    } while (1);
 
     return 0;
 }

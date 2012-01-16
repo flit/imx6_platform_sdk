@@ -124,10 +124,6 @@ struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int heigh
     int err;
     int divX, divY;
 
-    /*Add by Ray, for direct display on display panel */
-    strideY = FRAME_MAX_WIDTH;
-    height = FRAME_MAX_HEIGHT;
-
     fb = get_framebuf();
     if (fb == NULL)
         return NULL;
@@ -253,14 +249,6 @@ struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int
 
 void framebuf_free(struct frame_buf *fb)
 {
-    if (fb->desc.virt_uaddr) {
-        IOFreeMem(&fb->desc);
-    }
-
-    if (fb->desc.phy_addr) {
-        IOFreeMem(&fb->desc);
-    }
-
     memset(&(fb->desc), 0, sizeof(vpu_mem_desc));
     put_framebuf(fb);
 }

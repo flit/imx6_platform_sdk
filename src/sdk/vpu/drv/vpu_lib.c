@@ -51,7 +51,7 @@ uint32_t *virt_paraBuf;
 uint32_t *virt_paraBuf2;
 
 extern vpu_mem_desc bit_work_addr;
-extern semaphore_t *vpu_semap;
+extern vpu_resource_t *vpu_hw_map;
 
 static int decoded_pictype[32];
 
@@ -119,7 +119,7 @@ RetCode vpu_Init(void *cb)
     virt_paraBuf = (uint32_t *) (virt_codeBuf + CODE_BUF_SIZE + TEMP_BUF_SIZE + PARA_BUF2_SIZE);
     virt_paraBuf2 = (uint32_t *) (virt_codeBuf + CODE_BUF_SIZE + TEMP_BUF_SIZE);
 
-    ppendingInst = (CodecInst **) (&(vpu_semap->pendingInst));
+    ppendingInst = (CodecInst **) (&(vpu_hw_map->pendingInst));
 
     if (!isVpuInitialized()) {
         if (DownloadBitCodeTable((uint32_t *) virt_codeBuf) != RETCODE_SUCCESS) {
@@ -191,7 +191,7 @@ RetCode vpu_SWReset(DecHandle handle, int index)
             return RETCODE_FAILURE;
 
         /* Free instance info per index */
-        pCodecInst = (CodecInst *) (&vpu_semap->codecInstPool[index]);
+        pCodecInst = (CodecInst *) (&vpu_hw_map->codecInstPool[index]);
         if (pCodecInst == NULL)
             warn_msg("The instance is freed\n");
         else {
@@ -475,16 +475,6 @@ RetCode vpu_EncClose(EncHandle handle)
         BitIssueCommand(pCodecInst, SEQ_END);
         while (VpuReadReg(BIT_BUSY_FLAG)) ;
     }
-
-    /* Free memory allocated for data report functions */
-    IOFreeMem(&pEncInfo->picParaBaseMem);
-
-    /* Free searchRam if searchRam doesn't use IRAM */
-    if ((pEncInfo->secAxiUse.useHostMeEnable == 0) && (pEncInfo->secAxiUse.searchRamAddr))
-        IOFreeMem(&pEncInfo->searchRamMem);
-
-    /* Free context buf Mem */
-    IOFreeMem(&pCodecInst->contextBufMem);
 
     FreeCodecInstance(pCodecInst);
 
@@ -876,7 +866,6 @@ RetCode vpu_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
 
         if (pCodecInst->codecMode == AVC_ENC && pCodecInst->codecModeAux == AVC_AUX_MVC) {
             if (pBufInfo == NULL || !pBufInfo->subSampBaseAMvc || !pBufInfo->subSampBaseBMvc) {
-                UnlockVpu(vpu_semap);
                 return RETCODE_INVALID_PARAM;
             }
             VpuWriteReg(CMD_SET_FRAME_SUBSAMP_A_MVC, pBufInfo->subSampBaseAMvc);
@@ -936,13 +925,11 @@ RetCode vpu_EncGetBitstreamBuffer(EncHandle handle,
 
     rdPtr = pEncInfo->streamRdPtr;
 
-    LockVpuReg(vpu_semap);
     /* Check current instance is in running or not, if not
        Get the pointer from back context regs */
     instIndex = VpuReadReg(BIT_RUN_INDEX);
     wrPtr = (pCodecInst->instIndex == instIndex) ?
         VpuReadReg(BIT_WR_PTR) : pCodecInst->ctxRegs[CTX_BIT_WR_PTR];
-    UnlockVpuReg(vpu_semap);
 
     if (pEncInfo->ringBufferEnable == 1) {
         if (wrPtr >= rdPtr) {
@@ -982,13 +969,11 @@ RetCode vpu_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size)
     pCodecInst = handle;
     pEncInfo = &pCodecInst->CodecInfo.encInfo;
 
-    LockVpuReg(vpu_semap);
     rdPtr = pEncInfo->streamRdPtr;
 
     instIndex = VpuReadReg(BIT_RUN_INDEX);
     wrPtr = (pCodecInst->instIndex == instIndex) ?
         VpuReadReg(BIT_WR_PTR) : pCodecInst->ctxRegs[CTX_BIT_WR_PTR];
-    UnlockVpuReg(vpu_semap);
 
     if (rdPtr < wrPtr) {
         if (rdPtr + size > wrPtr)
@@ -1011,12 +996,10 @@ RetCode vpu_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size)
 
     pEncInfo->streamRdPtr = rdPtr;
 
-    LockVpuReg(vpu_semap);
     instIndex = VpuReadReg(BIT_RUN_INDEX);
     if (pCodecInst->instIndex == instIndex)
         VpuWriteReg(BIT_RD_PTR, wrPtr);
     pCodecInst->ctxRegs[CTX_BIT_RD_PTR] = rdPtr;
-    UnlockVpuReg(vpu_semap);
 
     return RETCODE_SUCCESS;
 }
@@ -1173,7 +1156,6 @@ RetCode vpu_EncStartOneFrame(EncHandle handle, EncParam * param)
                 return RETCODE_FAILURE;
             }
             if (IOGetMem(&pEncInfo->picParaBaseMem) <= 0) {
-                IOFreeMem(&pEncInfo->picParaBaseMem);
                 pEncInfo->picParaBaseMem.phy_addr = 0;
                 err_msg("Unable to obtain virtual mem\n");
                 return RETCODE_FAILURE;
@@ -1957,16 +1939,7 @@ RetCode vpu_DecClose(DecHandle handle)
         while (VpuReadReg(BIT_BUSY_FLAG)) ;
     }
 
-    /* Free memory allocated for data report functions */
-    IOFreeMem(&pDecInfo->picParaBaseMem);
-    IOFreeMem(&pDecInfo->userDataBufMem);
-    /* Free context buf Mem */
-    IOFreeMem(&pCodecInst->contextBufMem);
-
     FreeCodecInstance(pCodecInst);
-
-    /* Gate-off the clock that is enabled in vpuDecOpen for workaround the issue
-     * of mult-instances decoding on mx6q */
 
     return RETCODE_SUCCESS;
 }
@@ -2035,7 +2008,6 @@ RetCode vpu_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info)
     }
 
     if (DecBitstreamBufEmpty(handle)) {
-        UnlockVpu(vpu_semap);
         return RETCODE_WRONG_CALL_SEQUENCE;
     }
 

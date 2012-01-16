@@ -25,11 +25,7 @@
 #include "vpu_util.h"
 #include "vpu_io.h"
 #include "vpu_debug.h"
-#ifdef MX61
 #include "BitAsmTable_CODA_960.h"
-#else
-#include "BitAsmTable_CODA7541.h"
-#endif
 
 #define MAX_VSIZE       8192
 #define MAX_HSIZE       8192
@@ -53,7 +49,7 @@ typedef struct {
 } headerInfo;
 
 extern uint32_t *virt_paraBuf;
-semaphore_t *vpu_semap;
+vpu_resource_t *vpu_hw_map;
 RetCode DownloadBitCodeTable(uint32_t * virtCodeBuf)
 {
     int i, size;
@@ -90,7 +86,7 @@ RetCode GetCodecInstance(CodecInst ** ppInst)
     CodecInst *pCodecInst;
 
     for (i = 0; i < MAX_NUM_INSTANCE; ++i) {
-        pCodecInst = (CodecInst *) (&vpu_semap->codecInstPool[i]);
+        pCodecInst = (CodecInst *) (&vpu_hw_map->codecInstPool[i]);
         if (!pCodecInst->inUse)
             break;
     }
@@ -114,7 +110,7 @@ RetCode CheckInstanceValidity(CodecInst * pci)
     int i;
 
     for (i = 0; i < MAX_NUM_INSTANCE; ++i) {
-        pCodecInst = (CodecInst *) (&vpu_semap->codecInstPool[i]);
+        pCodecInst = (CodecInst *) (&vpu_hw_map->codecInstPool[i]);
         if (pCodecInst == pci)
             return RETCODE_SUCCESS;
     }
@@ -439,7 +435,6 @@ void EncodeHeader(EncHandle handle, EncHeaderParam * encHeaderParam)
     BitIssueCommand(pCodecInst, ENCODE_HEADER);
     while (VpuReadReg(BIT_BUSY_FLAG)) ;
 
-    LockVpuReg(vpu_semap);
     if ((cpu_is_mx6q() && (pEncInfo->ringBufferEnable == 0)) ||
         (!cpu_is_mx6q() && (pEncInfo->dynamicAllocEnable == 1))) {
         rdPtr = VpuReadReg(CMD_ENC_HEADER_BB_START);
@@ -450,7 +445,6 @@ void EncodeHeader(EncHandle handle, EncHeaderParam * encHeaderParam)
         wrPtr = VpuReadReg(BIT_WR_PTR);
         pCodecInst->ctxRegs[CTX_BIT_WR_PTR] = wrPtr;
     }
-    UnlockVpuReg(vpu_semap);
 
     encHeaderParam->buf = rdPtr;
     encHeaderParam->size = wrPtr - rdPtr;
@@ -529,15 +523,12 @@ int DecBitstreamBufEmpty(DecHandle handle)
 
     pCodecInst = handle;
 
-    LockVpuReg(vpu_semap);
     instIndex = VpuReadReg(BIT_RUN_INDEX);
 
     rdPtr = (pCodecInst->instIndex == instIndex) ?
         VpuReadReg(BIT_RD_PTR) : pCodecInst->ctxRegs[CTX_BIT_RD_PTR];
     wrPtr = (pCodecInst->instIndex == instIndex) ?
         VpuReadReg(BIT_WR_PTR) : pCodecInst->ctxRegs[CTX_BIT_WR_PTR];
-
-    UnlockVpuReg(vpu_semap);
 
     return rdPtr == wrPtr;
 }
@@ -948,23 +939,23 @@ void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromIn
     }
 }
 
-semaphore_t *vpu_semaphore_open(void)
+vpu_resource_t *vpu_semaphore_open(void)
 {
     int ret = 0;
-    semaphore_t *semap;
+    vpu_resource_t *semap;
     CodecInst *pCodecInst;
     int i;
     vpu_mem_desc share_mem;
 
-    share_mem.size = sizeof(semaphore_t);
+    share_mem.size = sizeof(vpu_resource_t);
     ret = IOGetMem(&share_mem);
     if (ret != 0) {
         err_msg("Unable to map physical of share memory\n");
         return NULL;
     }
-    semap = (semaphore_t *) share_mem.phy_addr;
+    semap = (vpu_resource_t *) share_mem.phy_addr;
 
-    memset(semap, 0, sizeof(semaphore_t));
+    memset(semap, 0, sizeof(vpu_resource_t));
     if (!semap->is_initialized) {
         for (i = 0; i < MAX_NUM_INSTANCE; ++i) {
             pCodecInst = (CodecInst *) (&semap->codecInstPool[i]);
@@ -973,22 +964,8 @@ semaphore_t *vpu_semaphore_open(void)
         }
         semap->is_initialized = 1;
     }
-
+    vpu_system_mem_size += share_mem.size;
     return semap;
-}
-
-void semaphore_post(semaphore_t * semap, int mutex)
-{
-}
-
-unsigned char semaphore_wait(semaphore_t * semap, int mutex)
-{
-    return true;
-}
-
-void vpu_semaphore_close(semaphore_t * semap)
-{
-    return;
 }
 
 /* Following is MX6Q Jpg related */

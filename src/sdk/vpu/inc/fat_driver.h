@@ -273,5 +273,4 @@ int fat_mount(tVolume * V);
 int fat_scan_root(tVolume * V, tFile * files, int maxFiles, int filter, const char *ext);
 int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size);
 int fat_open_file(tVolume * V, tFile * F);
-int fat_get_file(tVolume * V, tFile * file, char *filename);
 #endif /* #ifndef __FD32_FAT_H */

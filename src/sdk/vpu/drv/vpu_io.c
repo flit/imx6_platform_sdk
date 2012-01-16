@@ -45,8 +45,10 @@ static unsigned int vpu_mem_alloc_ptr = VPU_MEM_START_ADDR;
 static unsigned long vpu_reg_base;
 
 vpu_mem_desc bit_work_addr;
-vpu_mem_desc pic_para_addr;
-vpu_mem_desc user_data_addr;
+
+extern vpu_resource_t *vpu_hw_map;
+
+int vpu_system_mem_size = 0;
 
 int IOGetMem(vpu_mem_desc * buff);
 
@@ -83,15 +85,15 @@ int IOSystemInit(void *callback)
 {
     /*vpu base is equal to the physical address. MMU disabled */
     vpu_reg_base = (unsigned long)VPU_BASE_ADDR;
-
+    vpu_system_mem_size = 0;
     bit_work_addr.size = TEMP_BUF_SIZE + PARA_BUF_SIZE + CODE_BUF_SIZE + PARA_BUF2_SIZE;
 
     if (IOGetMem(&bit_work_addr) < 0) {
         err_msg("Get bitwork address failed!\n");
         goto err;
     }
-
-    vpu_semap = vpu_semaphore_open();
+    vpu_system_mem_size += bit_work_addr.size;
+    vpu_hw_map = vpu_semaphore_open();
 
     return 0;
 
@@ -118,10 +120,8 @@ int IOSystemInit(void *callback)
  */
 int IOSystemShutdown(void)
 {
-    IOFreeMem(&bit_work_addr);
-    IOFreeMem(&pic_para_addr);
-    IOFreeMem(&user_data_addr);
-
+    vpu_mem_alloc_ptr = bit_work_addr.phy_addr;
+    vpu_system_mem_size = 0;
     return 0;
 }
 
@@ -153,7 +153,6 @@ unsigned long VpuReadReg(unsigned long addr)
  * @li 0		Allocation memory success.
  * @li -1		Allocation memory failure.
  */
-static unsigned int sz_alloc;
 int IOGetMem(vpu_mem_desc * buff)
 {
     buff->size = (buff->size + 0xFF) & 0xFFFFFF00;  //align 
@@ -166,29 +165,11 @@ int IOGetMem(vpu_mem_desc * buff)
         buff->phy_addr = vpu_mem_alloc_ptr;
         buff->cpu_addr = vpu_mem_alloc_ptr;
         buff->virt_uaddr = vpu_mem_alloc_ptr;
-        sz_alloc += buff->size;
         vpu_mem_alloc_ptr += buff->size;
     }
     dprintf(3, "%s: phy addr = %08lx\n", __func__, buff->phy_addr);
-    dprintf(3, "%s: alloc=%d, total=%d\n", __func__, buff->size, sz_alloc);
 
     return 0;
-}
-
-/* User cannot free physical share memory, this is done in driver */
-int IOGetShareMem(vpu_mem_desc * buff)
-{
-    return IOGetMem(buff);
-}
-
-int IOGetPicParaMem(vpu_mem_desc * buff)
-{
-    return IOGetMem(buff);
-}
-
-int IOGetUserDataMem(vpu_mem_desc * buff)
-{
-    return IOGetMem(buff);
 }
 
 /*!
@@ -203,36 +184,11 @@ int IOGetUserDataMem(vpu_mem_desc * buff)
  * @li 0            Freeing memory success.
  * @li -1		Freeing memory failure.
  */
-int _IOFreeMem(vpu_mem_desc * buff)
+int IOCodecMemFree(void)
 {
-    if (buff->phy_addr != 0) {
-        dprintf(3, "%s: phy addr = %08lx\n", __func__, buff->phy_addr);
-        buff->phy_addr = 0;
-        buff->cpu_addr = 0;
-        buff->virt_uaddr = 0;
-        vpu_mem_alloc_ptr -= buff->size;
-    }
-
-    sz_alloc -= buff->size;
-    dprintf(3, "%s: total=%d\n", __func__, sz_alloc);
-    memset(buff, 0, sizeof(*buff));
+    vpu_mem_alloc_ptr = bit_work_addr.phy_addr + vpu_system_mem_size;
 
     return 0;
-}
-
-int IOFreeMem(vpu_mem_desc * buff)
-{
-    return _IOFreeMem(buff);
-}
-
-int IOFreePicParaMem(vpu_mem_desc * buff)
-{
-    return _IOFreeMem(buff);
-}
-
-int IOFreeUserDataMem(vpu_mem_desc * buff)
-{
-    return _IOFreeMem(buff);
 }
 
 /*!

@@ -469,7 +469,9 @@ typedef struct {
     /* VPU data for sharing */
     CodecInst codecInstPool[MAX_NUM_INSTANCE];
     CodecInst *pendingInst;
-} semaphore_t;
+} vpu_resource_t;
+
+extern int vpu_system_mem_size;
 
 void BitIssueCommand(CodecInst * pCodecInst, int cmd);
 void BitIssueCommandEx(CodecInst * pCodecInst, int cmd);
@@ -505,29 +507,7 @@ void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm);
 void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm);
 void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromInterleave);
 
-semaphore_t *vpu_semaphore_open(void);
-extern semaphore_t *vpu_semap;
-static inline unsigned char LockVpu(semaphore_t * semap)
-{
-    /*check lock here in OS level */
-    return true;
-}
-
-static inline void UnlockVpu(semaphore_t * semap)
-{
-    /*post the lock */
-}
-
-static inline unsigned char LockVpuReg(semaphore_t * semap)
-{
-    /*lock vpu register in OS level */
-    return true;
-}
-
-static inline void UnlockVpuReg(semaphore_t * semap)
-{
-    /*post the lock */
-}
+vpu_resource_t *vpu_semaphore_open(void);
 
 int vpu_mx6q_swreset(int forcedReset);
 int vpu_mx6q_hwreset();

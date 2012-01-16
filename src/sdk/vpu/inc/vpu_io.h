@@ -58,7 +58,7 @@ typedef void (*vpu_callback) (int status);
 int IOSystemInit(void *callback);
 int IOSystemShutdown(void);
 int IOGetMem(vpu_mem_desc * buff);
-int IOFreeMem(vpu_mem_desc * buff);
+int IOCodecMemFree(void);
 int IOWaitForInt(int timeout_in_ms);
 int IOGetIramBase(iram_t * iram);
 int IOGetPhyShareMem(vpu_mem_desc * buff);

@@ -29,10 +29,11 @@ int bsoffset = 0;
 int rawoffset = 0;
 int gCurrentActiveInstance = 0;
 int gTotalActiveInstance = 0;
+int ipu_initialized[2] = { 0 };
 
 static int isInterlacedMPEG4 = 0;
 
-#define JPG_HEADER_SIZE	     0x200
+#define FRAME_TO_DECODE 10000
 
 /*
  * Fill the bitstream to vpu ring buffer
@@ -206,16 +207,11 @@ int decoder_start(struct decode *dec)
 void decoder_free_framebuffer(struct decode *dec)
 {
     int i, totalfb;
-//    vpu_mem_desc *mvcol_md = dec->mvcol_memdesc;
-//    int deblock_en = dec->cmdl->deblock_en;
 
     totalfb = dec->regfbcount + dec->extrafb;
 
-    /* deblock_en is zero on mx37 and mx51 since it is cleared in decode_open() function. */
-    if (dec->cmdl->dst_scheme != PATH_IPU) {
-        for (i = 0; i < totalfb; i++) {
-            framebuf_free(dec->pfbpool[i]);
-        }
+    for (i = 0; i < totalfb; i++) {
+        framebuf_free(dec->pfbpool[i]);
     }
 
     if (dec->fb) {
@@ -283,8 +279,9 @@ int decoder_allocate_framebuffer(struct decode *dec)
         if (dec->cmdl->mapType == LINEAR_FRAME_MAP) {
             /* All buffers are linear */
             for (i = 0; i < totalfb; i++) {
+                /*Note by Ray: set the strideline and height to max, to support direct rendering one any display panel */
                 pfbpool[i] = framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
-                                            dec->stride, dec->picheight, 1);
+                                            FRAME_MAX_WIDTH, FRAME_MAX_HEIGHT, 1);
                 if (pfbpool[i] == NULL)
                     goto err;
             }
@@ -593,7 +590,7 @@ int decoder_parse(struct decode *dec)
 
     /* worstSliceSize is in kilo-byte unit */
     dec->phy_slicebuf_size = initinfo.worstSliceSize * 1024;
-    /*modified by Ray */
+    /*Note by Ray: to support direct rendering */
 #if 0
     dec->stride = dec->picwidth;
 #else
@@ -666,7 +663,7 @@ void decoder_frame_display(void)
     int i = 0;
     uint32_t display_buffer, id;
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
-        if (vpu_semap->codecInstPool[i].inUse && vpu_semap->codecInstPool[i].initDone) {
+        if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
             if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
                 vpu_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
                 disp_clr_index[i] = id;
@@ -692,7 +689,7 @@ struct hw_module hw_epit2 = {
     &epit_isr,
 };
 
-int vpu_decoder_setup(void *arg)
+int decoder_setup(void *arg)
 {
     struct cmd_line *cmdl;
     vpu_mem_desc mem_desc = { 0 };
@@ -820,45 +817,90 @@ int vpu_decoder_setup(void *arg)
     /* free the frame buffers */
     decoder_free_framebuffer(dec);
   err:
-    if (cmdl->format == STD_AVC) {
-        IOFreeMem(&slice_mem_desc);
-        IOFreeMem(&ps_mem_desc);
-    }
-
-    IOFreeMem(&mem_desc);
     free(dec);
     return ret;
 }
 
-int decode_test(void)
+int decode_test(void *arg)
 {
     int err, i, temp = 0;
+    uint8_t revchar = (uint8_t) 0xFF;
+    int frame_num = 0, frame_index = 0;
     DecOutputInfo outinfo;
     DecParam decparam = { 0 };
-    /* initialize video streams and configure IPUs */
-    ips_hannstar_xga_yuv_stream(1);
-    vpu_decoder_setup((void *)(&files[0]));
 
-    if (multi_instance) {
-        hdmi_1080P60_video_output(2, 0);
-        vpu_decoder_setup((void *)(&files[1]));
+    printf("please select decoder instance:(1 or 2)\n");
+    printf("\t1 - Single decoder with display on Hannstar LVDS panel(resolution@1024x768).\n");
+    printf
+        ("\t2 - Dual decoder with display 1 on Hannstar LVDS panel, display 2 on 1080P60 HDMI Monotor/TV.\n");
+    revchar = 0xFF;
+    do {
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+
+    switch (revchar) {
+    case '1':
+        multi_instance = 0;
+        fat_search_files("264", 1);
+        break;
+    case '2':
+        multi_instance = 1;
+        fat_search_files("264", 2);
+        break;
+    default:
+        printf("Wrong Input! select 1 as default!\n");
+        multi_instance = 0;
+        fat_search_files("264", 1);
     }
 
-    while (1) {
+    printf("please select decoder instance:(1 or 2)\n");
+    printf("\t1 - endless test.\n");
+    printf("\t2 - decode 10000 frames.\n");
+    revchar = 0xFF;
+    do {
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+
+    switch (revchar) {
+    case '1':
+        frame_num = 0;
+        break;
+    case '2':
+    default:
+        frame_num = 10000;
+        break;
+    }
+    /*now enable the INTERRUPT mode of usdhc */
+    SDHC_INTR_mode = 1;
+    SDHC_ADMA_mode = 1;
+
+    /* initialize video streams and configure IPUs */
+    if (ipu_initialized[0] == 0) {
+        ips_hannstar_xga_yuv_stream(1);
+        ipu_initialized[0] = 1;
+    }
+    decoder_setup((void *)(&files[0]));
+
+    if (multi_instance) {
+        if (ipu_initialized[1] == 0) {
+            hdmi_1080P60_video_output(2, 0);
+            ipu_initialized[1] = 1;
+        }
+        decoder_setup((void *)(&files[1]));
+    }
+
+    printf("Now start decoding test ... \n");
+
+    while ((frame_num == 0) || (frame_index++ < frame_num)) {
         static int inst = 0;
 
         /*get the next active instance */
         for (i = 1; i <= MAX_NUM_INSTANCE; i++) {
             temp = (inst + i) % MAX_NUM_INSTANCE;
-            if (vpu_semap->codecInstPool[temp].inUse && vpu_semap->codecInstPool[temp].initDone) {
+            if (vpu_hw_map->codecInstPool[temp].inUse && vpu_hw_map->codecInstPool[temp].initDone) {
                 inst = temp;
                 break;
             }
-        }
-
-        if (i == MAX_NUM_INSTANCE) {
-            warn_msg("No any Active instance running in the system!! now quiting ...\n");
-            break;
         }
         decparam.dispReorderBuf = 0;
 
@@ -888,8 +930,30 @@ int decode_test(void)
                                           addrY), outinfo.indexFrameDisplay);
             }
         }
-        decoder_frame_display();
 
+        decoder_frame_display();
     }
+
+/*release all the buffers*/
+    for (i = 0; i < MAX_NUM_INSTANCE; i++) {
+        if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
+            decoder_close(gDecInstance[i]);
+
+            /* free the frame buffers */
+            decoder_free_framebuffer(gDecInstance[i]);
+
+            free(gDecInstance[i]->cmdl);
+            free(gDecInstance[i]->fb);
+            free(gDecInstance[i]->pfbpool);
+            gDecInstance[i]->fb = NULL;
+            gDecInstance[i]->pfbpool = NULL;
+            free(gDecInstance[i]);
+
+            disp_clr_index[i] = -1;
+            vpu_hw_map->codecInstPool[i].inUse = 0;
+            vpu_hw_map->codecInstPool[i].initDone = 0;
+        }
+    }
+    IOCodecMemFree();
     return 0;
 }

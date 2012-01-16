@@ -46,7 +46,9 @@ int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fa
 
 void init_fat32_device(void *blkreq_func)
 {
-    int fnum;
+    /*in initilization stage, set the usdhc to polling mode */
+    SDHC_INTR_mode = 0;
+    SDHC_ADMA_mode = 1;
 
     V = (tVolume *) FAT_DRIVER_BUFFER;
 
@@ -54,16 +56,18 @@ void init_fat32_device(void *blkreq_func)
     V->buffer = (char *)(FAT_DRIVER_BUFFER + 0x00100000);
 
     fat_mount(V);
+}
 
-    fnum = fat_scan_root(V, files, 10, 1, "264");
+void fat_search_files(char *ext, int num)
+{
+    int fnum, i;
+    fnum = fat_scan_root(V, files, num, 1, ext);
 
-    printf("File 0 is %s\n", files[0].fname);
-    fat_open_file(V, &(files[0]));
-    files[0].file_size &= 0xfff80000;
-
-    printf("File 1 is %s\n", files[1].fname);
-    fat_open_file(V, &(files[1]));
-    files[1].file_size &= 0xfff80000;
+    for (i = 0; i < num; i++) {
+        printf("File %d is %s\n", i, files[i].fname);
+        fat_open_file(V, &(files[i]));
+        files[i].file_size &= 0xfff80000;
+    }
 }
 
 int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)

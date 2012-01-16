@@ -161,6 +161,11 @@ struct cmd_line {
     int mapType;
 };
 
+typedef struct {
+    const char *name;
+    int (*test) (void *arg);
+} vpu_test_t;
+
 struct decode {
     DecHandle handle;
     PhysicalAddress phy_bsbuf_addr;
@@ -243,7 +248,7 @@ extern vdec_frame_buffer_t gDecFifo[];
 extern uint32_t gBsBuffer[];
 extern int gCurrentActiveInstance;
 extern int gTotalActiveInstance;
-extern semaphore_t *vpu_semap;
+extern vpu_resource_t *vpu_hw_map;
 extern struct hw_module hw_vpu;
 extern struct hw_module hw_epit2;
 extern int disp_clr_index[];
@@ -276,11 +281,13 @@ int decoder_parse(struct decode *dec);
 int decoder_allocate_framebuffer(struct decode *dec);
 void decoder_free_framebuffer(struct decode *dec);
 int video_data_cmp(unsigned char *src, unsigned char *dst, int size);
-int vpu_decoder_setup(void *arg);
+int decoder_setup(void *arg);
+int encoder_setup(void *arg);
 int ipu_refresh(int ipu_index, uint32_t buffer);
 void config_system_parameters(void);
 int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag);
 void init_fat32_device(void *blkreq_func);
+void fat_search_files(char *ext, int num);
 void dec_fifo_init(vdec_frame_buffer_t * fifo, int size);
 int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame, uint32_t id);
 int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id);
@@ -289,7 +296,8 @@ int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
 void epit2_config(int periodic);
 void epit_isr(void);
 void decoder_frame_display(void);
-int decode_test(void);
+int decode_test(void *arg);
+int encode_test(void *arg);
 
 int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,

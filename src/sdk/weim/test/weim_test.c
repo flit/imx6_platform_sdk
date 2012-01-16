@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -11,6 +11,7 @@
 #include "../inc/weim_ifc.h"
 
 #define WEIM_BUFFER_SZ 0x1000
+extern flash_info_t flash_info[];
 static uint32_t weim_test_buffer[WEIM_BUFFER_SZ];
 
 static void weim_hw_prepare(void)
@@ -67,7 +68,7 @@ static int weim_nor_test(void)
 {
     uint32_t idx, retv, size, start, end, *data;
     int32_t count, first[CFG_MAX_FLASH_BANKS], last[CFG_MAX_FLASH_BANKS];
-    flash_info_t *info;
+    flash_info_t *info = flash_info;
 
     /* Prepare buffer */
     for (idx = 0; idx < WEIM_BUFFER_SZ; idx++) {

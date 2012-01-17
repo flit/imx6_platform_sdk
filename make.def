@@ -50,17 +50,17 @@ C_DEFINES +=-DMX61
 CPU	=cortex-a9
 INIT_FILE += $(PROJ_DIR)/src/cortex_a9/gic.s $(PROJ_DIR)/src/$(TARGET)/startup.s
 INIT_FILE += $(PROJ_DIR)/src/cortex_a9/cortexA9.s
-ifeq "$(BOARD)" "ard"
-C_DEFINES +=-DMX61_ARD
-endif
-ifeq "$(BOARD)" "smd"
-C_DEFINES +=-DMX61_SMD
-endif
 ifeq "$(BOARD)" "evb"
 C_DEFINES +=-DMX61_EVB
 endif
-ifeq "$(BOARD)" "qsb"
-C_DEFINES +=-DMX61_QSB
+ifeq "$(BOARD)" "ard"
+C_DEFINES +=-DMX61_ARD
+endif
+ifeq "$(BOARD)" "sabre_lite"
+C_DEFINES +=-DMX61_SABRE_LITE
+endif
+ifeq "$(BOARD)" "sabre_tablet"
+C_DEFINES +=-DMX61_SABRE_TABLET
 endif
 endif
 

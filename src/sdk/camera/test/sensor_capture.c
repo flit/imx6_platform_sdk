@@ -31,7 +31,7 @@ int32_t sensor_capture(void)
 
     /*step 1: enable panel */
     panel = search_panel("HannStar XGA LVDS");
-    panel->panel_init();
+    panel->panel_init(NULL);
 
     /*step 2: setup IPU: from csi to display */
     ipu_iomux_config();

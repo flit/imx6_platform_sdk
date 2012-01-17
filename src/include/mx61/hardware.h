@@ -64,7 +64,7 @@
 #define WEIM_REGISTERS_BASE_ADDR WEIM_BASE_ADDR
 #define WEIM_CS_BASE_ADDR   0x08000000
 
-#if defined(MX61_EVB) || defined(MX61_SMD) || defined(MX61_QSB)
+#if defined(MX61_EVB) || defined(MX61_SABRE_TABLET) || defined(MX61_SABRE_LITE)
 #define MMDC0_BASE_ADDR			0x10000000
 #define MMDC0_END_ADDR			0x4FFFFFFF
 /*For SMD and QSB, there is no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
@@ -112,10 +112,10 @@
 #define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #define ADV7180_I2C_ID      (0x42 >> 1)
 
-/* MX61_SMD for compile error
- * There is no these macros SMD, just add for compile error.
+/* MX61_SABRE_TABLEt for compile error
+ * There is no these macros SABRE_TABLET, just add for compile error.
  */
-#ifdef MX61_SMD
+#ifdef MX61_SABRE_TABLET
 #define MAX7310_NBR 0
 /* I/O expander A */
 #define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
@@ -320,11 +320,11 @@ extern int32_t is_input_char(uint8_t);
 extern void camera_power_on(void);
 extern void mxc_csi_port0_iomux_config(void);
 /* Board ID */
-#define BOARD_ID_DEFAULT        0x0
-#define BOARD_ID_MX61_ARD       0x1
-#define BOARD_ID_MX61_SMD       0x2
-#define BOARD_ID_MX61_EVB       0x3
-#define BOARD_ID_MX61_QSB       0x4
+#define BOARD_ID_DEFAULT               0x0
+#define BOARD_ID_MX61_ARD              0x1
+#define BOARD_ID_MX61_SABRE_TABLET     0x2
+#define BOARD_ID_MX61_EVB              0x3
+#define BOARD_ID_MX61_SABRE_LITE       0x4
 
 /* Board version */
 #define BOARD_VERSION_DEFAULT	0x0
@@ -344,12 +344,12 @@ extern void mxc_csi_port0_iomux_config(void);
 
 #if defined(MX61_ARD)
 #define BOARD_TYPE_ID           BOARD_ID_MX61_ARD
-#elif defined(MX61_SMD)
-#define BOARD_TYPE_ID           BOARD_ID_MX61_SMD
+#elif defined(MX61_SABRE_TABLET)
+#define BOARD_TYPE_ID           BOARD_ID_MX61_SABRE_TABLET
 #elif defined(MX61_EVB)
 #define BOARD_TYPE_ID           BOARD_ID_MX61_EVB
-#elif defined(MX61_QSB)
-#define BOARD_TYPE_ID           BOARD_ID_MX61_QSB
+#elif defined(MX61_SABRE_LITE)
+#define BOARD_TYPE_ID           BOARD_ID_MX61_SABRE_LITE
 #else
 #error Need to define a board type
 #endif

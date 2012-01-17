@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -221,7 +221,7 @@ void TxHW_Reset(void)
 {
     TPI_TRACE_PRINT((">>TxHW_Reset()\n"));
 
-#if defined(MX61_SMD)||defined(MX61_EVB)
+#if defined(MX61_SABRE_TABLET)||defined(MX61_EVB)
     /*sil9024 hardware reset */
     writel(0x5, IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT);
     writel(0xB060, IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -11,12 +11,11 @@
  */
 
 #include "sdma_script_info.h"
-#ifdef MX53
+
+#if defined(MX53)
 #include "sdma_script_code_mx53.h"
-#else
-#ifdef MX61
+#elif defined (MX61)
 #include "sdma_script_code_mx61.h"
-#endif
 #endif
 
 #ifdef MX53

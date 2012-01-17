@@ -28,8 +28,8 @@ struct hw_module arm_core = {
     792000000,
 };
 
-#ifdef MX61_QSB
-// UART4 is the serial debug/console port
+#if  defined(MX61_SABRE_LITE)
+// UART2 is the serial debug/console port for sabre_lite board
 struct hw_module g_debug_uart = {
     "UART2 for debug",
     UART2_BASE_ADDR,
@@ -37,8 +37,17 @@ struct hw_module g_debug_uart = {
     IMX_INT_UART2,
     &default_interrupt_routine,
 };
+#elif defined(MX61_SABRE_TABLET)
+// UART1 is the serial debug/console port for sabre_tablet board
+struct hw_module g_debug_uart = {
+    "UART1 for debug",
+    UART1_BASE_ADDR,
+    80000000,
+    IMX_INT_UART1,
+    &default_interrupt_routine,
+};
 #else
-// UART4 is the serial debug/console port
+// UART4 is the serial debug/console port for EVB and ARD
 struct hw_module g_debug_uart = {
     "UART4 for debug",
     UART4_BASE_ADDR,
@@ -213,6 +222,7 @@ void show_ddr_config(void)
  */
 void board_init(void)
 {
+#if defined(MX61_EVB)
     // Configure some board signals through I/O expanders
     max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
@@ -220,6 +230,7 @@ void board_init(void)
     max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
     max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
+#endif
 }
 
 /*!
@@ -530,7 +541,7 @@ void gpmi_nand_clk_setup(void)
 void esai_clk_sel_gate_on()
 {
     uint32_t val = 0;
-#if ((defined MX61_ARD) || (defined MX61_SMD) || (defined MX61_QSB) || (defined MX61_EVB))
+#if ((defined MX61_ARD) || (defined MX61_SABRE_TABLET) || (defined MX61_SABRE_LITE) || (defined MX61_EVB))
     val = readl(CCM_CSCMR2);
     val &= ~(0x03 << 19);
     val |= 0x01 << 19;          //source from PLL3_508

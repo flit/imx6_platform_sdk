@@ -5,38 +5,13 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*
- * Copyright (c) 2006, Chips & Media.  All rights reserved.
- */
-
-/*
- * The code contained herein is licensed under the GNU General Public
- * License. You may obtain a copy of the GNU General Public License
- * Version 2 or later at the following locations:
- *
- * http://www.opensource.org/licenses/gpl-license.html
- * http://www.gnu.org/copyleft/gpl.html
- */
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "vpu_test.h"
 #include "vpu_debug.h"
-#include "vpu_bsfile.h"
 
-extern int bsoffset;
-
-FILE *fopen(const char *filename, const char *mode)
-{
-    return (FILE *) 0;
-}
-
-int freadn(int fd, void *vptr, size_t n)
-{
-
-    return (n);
-}
+static vpu_frame_timer_t vtimer = { 0 };
 
 int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag)
 {
@@ -73,25 +48,12 @@ void fat_search_files(char *ext, int num)
 int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)
 {
     if (cmd->src_scheme == PATH_MEM) {
-        /*bitstream is stored in array BS_file */
-        int bsleft = 0;
-        printf("size of BS file is %d\n", sizeof(BS_file));
-        bsleft = sizeof(BS_file) / sizeof(BS_file[0]) - bsoffset;
-        if (bsleft == 0) {
-            info_msg("bitstream file copied to end!\n");
-            return 0;
-        }
-
-        if (bsleft > n) {
-            memcpy(buf, &BS_file[bsoffset], n);
-            bsoffset += n;
-            return n;
-        } else {
-            memcpy(buf, &BS_file[bsoffset], bsleft);
-            bsoffset += bsleft;
-            return bsleft;
-        }
-
+        int bs_left = (bsmem.bs_end - bsmem.bs_start) - bsmem.bs_offset;
+        int copy_size = (bs_left > n) ? n : bs_left;
+        /*bitstream is stored in memory */
+        memcpy(buf, (void *)(bsmem.bs_start + bsmem.bs_offset), copy_size);
+        bsmem.bs_offset += copy_size;
+        return copy_size;
     } else if (cmd->src_scheme == PATH_FILE) {
         int res, i;
 
@@ -101,7 +63,7 @@ int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)
         card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
-        res = fat_read_file(V, cmd->input, (char *)buf, n);
+        res = fat_read_file(V, cmd->input, (char *)buf, n, cmd->read_mode);
 
         if (res < n) {
             for (i = 0; i < (n - res); i++)
@@ -117,13 +79,12 @@ int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)
 int vpu_stream_write(struct cmd_line *cmd, char *buf, int n)
 {
     if (cmd->dst_scheme == PATH_MEM) {
-        //stored the output to specified memory base
+        memcpy((void *)bsmem.bs_end, buf, n);
+        bsmem.bs_end += n;
     } else if (cmd->dst_scheme == PATH_FILE) {
-        //TBD
-    } else if (cmd->dst_scheme == PATH_NET) {
-        //TBD, download the bs from enet or other interface
+        /*TBD, currently the file storage is not supported in the file system */
     }
-    return 0;
+    return n;
 }
 
 int video_data_cmp(unsigned char *src, unsigned char *dst, int size)
@@ -155,12 +116,30 @@ void config_system_parameters(void)
     reg32_write(IOMUXC_GPR7, 0x22272227);
 }
 
-void epit2_config(int periodic)
+void epit2_config(void)
 {
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET, 0x10000);
     while (reg32_read(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET) & 0x10000) ;
 
-    reg32_write(EPIT2_BASE_ADDR + EPIT_EPITLR_OFFSET, 32768 / periodic);    //30fps
+    reg32_write(EPIT2_BASE_ADDR + EPIT_EPITLR_OFFSET, 0xFFFFFFFF);  //30fps
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET, 0x0302000e);
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITCR_OFFSET, 0x0302000f);
+    vtimer.timer_start = reg32_read(EPIT2_BASE_ADDR + EPIT_EPITCNR_OFFSET);
+}
+
+int get_timer_stamp(int periodic)
+{
+    uint32_t val = reg32_read(EPIT2_BASE_ADDR + EPIT_EPITCNR_OFFSET);
+    if (val < vtimer.timer_start) {
+        vtimer.timer_elapsed_ms = (vtimer.timer_start - val) / 32;
+    } else {
+        vtimer.timer_elapsed_ms = ((0xFFFFFFFF - val + vtimer.timer_start)) / 32;
+    }
+
+    if (vtimer.timer_elapsed_ms >= 1000 / periodic) {
+        vtimer.timer_start = val;
+        return 1;
+    } else {
+        return 0;
+    }
 }

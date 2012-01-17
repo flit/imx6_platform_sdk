@@ -5,15 +5,6 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*
- * The code contained herein is licensed under the GNU Lesser General
- * Public License.  You may obtain a copy of the GNU Lesser General
- * Public License Version 2.1 or later at the following locations:
- *
- * http://www.opensource.org/licenses/lgpl-license.html
- * http://www.gnu.org/copyleft/lgpl.html
- */
-
 /*!
  * @file vpu_debug.h
  *
@@ -25,7 +16,7 @@
 #ifndef __VPU_DEBUG_H
 #define __VPU_DEBUG_H
 
-#define	DEBUG_LEVEL	1
+#define	DEBUG_LEVEL	0
 
 #define dprintf(level, fmt, arg...)     if (DEBUG_LEVEL >= level) \
         printf("[DEBUG]\t%s:%d " fmt, __FILE__, __LINE__, ## arg)

@@ -12,7 +12,7 @@
 
 static int frameRateInfo = 0;
 
-static int enc_readbs_reset_buffer(struct encode *enc, PhysicalAddress paBsBufAddr, int bsBufsize)
+static int enc_read_line_buffer(struct encode *enc, PhysicalAddress paBsBufAddr, int bsBufsize)
 {
     uint32_t vbuf;
 
@@ -69,49 +69,18 @@ enc_readbs_ring_buffer(EncHandle handle, struct cmd_line *cmd,
     return space;
 }
 
-static int encoder_fill_headers(struct encode *enc)
+static int encoder_set_header(struct encode *enc)
 {
     EncHeaderParam enchdr_param = { 0 };
     EncHandle handle = enc->handle;
     RetCode ret;
-    int mbPicNum;
 
     /* Must put encode header before encoding */
     if (enc->cmdl->format == STD_MPEG4) {
         enchdr_param.headerType = VOS_HEADER;
-
-        if (cpu_is_mx6q())
-            goto put_mp4header;
-        /*
-         * Please set userProfileLevelEnable to 0 if you need to generate
-         * user profile and level automaticaly by resolution, here is one
-         * sample of how to work when userProfileLevelEnable is 1.
-         */
-        enchdr_param.userProfileLevelEnable = 1;
-        mbPicNum = ((enc->enc_picwidth + 15) / 16) * ((enc->enc_picheight + 15) / 16);
-        if (enc->enc_picwidth <= 176 && enc->enc_picheight <= 144 &&
-            mbPicNum * frameRateInfo <= 1485)
-            enchdr_param.userProfileLevelIndication = 8;    /* L1 */
-        /* Please set userProfileLevelIndication to 8 if L0 is needed */
-        else if (enc->enc_picwidth <= 352 && enc->enc_picheight <= 288 &&
-                 mbPicNum * frameRateInfo <= 5940)
-            enchdr_param.userProfileLevelIndication = 2;    /* L2 */
-        else if (enc->enc_picwidth <= 352 && enc->enc_picheight <= 288 &&
-                 mbPicNum * frameRateInfo <= 11880)
-            enchdr_param.userProfileLevelIndication = 3;    /* L3 */
-        else if (enc->enc_picwidth <= 640 && enc->enc_picheight <= 480 &&
-                 mbPicNum * frameRateInfo <= 36000)
-            enchdr_param.userProfileLevelIndication = 4;    /* L4a */
-        else if (enc->enc_picwidth <= 720 && enc->enc_picheight <= 576 &&
-                 mbPicNum * frameRateInfo <= 40500)
-            enchdr_param.userProfileLevelIndication = 5;    /* L5 */
-        else
-            enchdr_param.userProfileLevelIndication = 6;    /* L6 */
-
-      put_mp4header:
         vpu_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
-            ret = enc_readbs_reset_buffer(enc, enchdr_param.buf, enchdr_param.size);
+            ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
                 return -1;
         }
@@ -119,7 +88,7 @@ static int encoder_fill_headers(struct encode *enc)
         enchdr_param.headerType = VIS_HEADER;
         vpu_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
-            ret = enc_readbs_reset_buffer(enc, enchdr_param.buf, enchdr_param.size);
+            ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
                 return -1;
         }
@@ -127,7 +96,7 @@ static int encoder_fill_headers(struct encode *enc)
         enchdr_param.headerType = VOL_HEADER;
         vpu_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
-            ret = enc_readbs_reset_buffer(enc, enchdr_param.buf, enchdr_param.size);
+            ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
                 return -1;
         }
@@ -136,7 +105,7 @@ static int encoder_fill_headers(struct encode *enc)
             enchdr_param.headerType = SPS_RBSP;
             vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
             if (enc->ringBufferEnable == 0) {
-                ret = enc_readbs_reset_buffer(enc, enchdr_param.buf, enchdr_param.size);
+                ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
                 if (ret < 0)
                     return -1;
             }
@@ -146,7 +115,7 @@ static int encoder_fill_headers(struct encode *enc)
             enchdr_param.headerType = SPS_RBSP_MVC;
             vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
             if (enc->ringBufferEnable == 0) {
-                ret = enc_readbs_reset_buffer(enc, enchdr_param.buf, enchdr_param.size);
+                ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
                 if (ret < 0)
                     return -1;
             }
@@ -155,7 +124,7 @@ static int encoder_fill_headers(struct encode *enc)
         enchdr_param.headerType = PPS_RBSP;
         vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
-            ret = enc_readbs_reset_buffer(enc, enchdr_param.buf, enchdr_param.size);
+            ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
                 return -1;
         }
@@ -164,27 +133,9 @@ static int encoder_fill_headers(struct encode *enc)
             enchdr_param.headerType = PPS_RBSP_MVC;
             vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
             if (enc->ringBufferEnable == 0) {
-                ret = enc_readbs_reset_buffer(enc, enchdr_param.buf, enchdr_param.size);
+                ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
                 if (ret < 0)
                     return -1;
-            }
-        }
-    } else if (enc->cmdl->format == STD_MJPG) {
-        if (enc->huffTable)
-            free(enc->huffTable);
-        if (enc->qMatTable)
-            free(enc->qMatTable);
-        if (cpu_is_mx6q()) {
-            EncParamSet enchdr_param = { 0 };
-            enchdr_param.size = STREAM_BUF_SIZE;
-            enchdr_param.pParaSet = malloc(STREAM_BUF_SIZE);
-            if (enchdr_param.pParaSet) {
-                vpu_EncGiveCommand(handle, ENC_GET_JPEG_HEADER, &enchdr_param);
-                vpu_stream_write(enc->cmdl, (void *)enchdr_param.pParaSet, enchdr_param.size);
-                free(enchdr_param.pParaSet);
-            } else {
-                err_msg("memory allocate failure\n");
-                return -1;
             }
         }
     }
@@ -203,7 +154,6 @@ void encoder_free_framebuffer(struct encode *enc)
     free(enc->fb);
     free(enc->pfbpool);
 }
-extern int freadn(int fd, void *vptr, size_t n);
 
 int encoder_allocate_framebuffer(struct encode *enc)
 {
@@ -346,24 +296,21 @@ static int encoder_start(struct encode *enc)
     EncHandle handle = enc->handle;
     EncParam enc_param = { 0 };
     EncOutputInfo outinfo = { 0 };
-    RetCode ret = 0;
+    int ret = 0;
     int src_fbid = enc->src_fbid, img_size, frame_id = 0;
     struct frame_buf **pfbpool = enc->pfbpool;
     struct frame_buf *pfb;
     uint32_t yuv_addr;
-    int src_fd = enc->cmdl->src_fd;
-    int count = enc->cmdl->count;
     PhysicalAddress phy_bsbuf_start = enc->phy_bsbuf_addr;
     uint32_t virt_bsbuf_start = enc->virt_bsbuf_addr;
     uint32_t virt_bsbuf_end = virt_bsbuf_start + STREAM_BUF_SIZE;
+    int encode_end = 0;
 
-    /* Must put encode header here before encoding for all codec, except MX6 MJPG */
-    if (!(cpu_is_mx6q() && (enc->cmdl->format == STD_MJPG))) {
-        ret = encoder_fill_headers(enc);
-        if (ret) {
-            err_msg("Encode fill headers failed\n");
-            return -1;
-        }
+/*put encode header*/
+    ret = encoder_set_header(enc);
+    if (ret) {
+        err_msg("Encode fill headers failed\n");
+        return -1;
     }
 
     enc_param.sourceFrame = &enc->fb[src_fbid];
@@ -374,6 +321,7 @@ static int encoder_start(struct encode *enc)
 
     enc_param.encLeftOffset = 0;
     enc_param.encTopOffset = 0;
+
     if ((enc_param.encLeftOffset + enc->enc_picwidth) > enc->src_picwidth) {
         err_msg("Configure is failure for width and left offset\n");
         return -1;
@@ -383,49 +331,24 @@ static int encoder_start(struct encode *enc)
         return -1;
     }
 
-    /* Set report info flag */
-    if (enc->mbInfo.enable) {
-        ret = vpu_EncGiveCommand(handle, ENC_SET_REPORT_MBINFO, &enc->mbInfo);
-        if (ret != RETCODE_SUCCESS) {
-            err_msg("Failed to set MbInfo report, ret %d\n", ret);
-            return -1;
-        }
-    }
-    if (enc->mvInfo.enable) {
-        ret = vpu_EncGiveCommand(handle, ENC_SET_REPORT_MVINFO, &enc->mvInfo);
-        if (ret != RETCODE_SUCCESS) {
-            err_msg("Failed to set MvInfo report, ret %d\n", ret);
-            return -1;
-        }
-    }
-    if (enc->sliceInfo.enable) {
-        ret = vpu_EncGiveCommand(handle, ENC_SET_REPORT_SLICEINFO, &enc->sliceInfo);
-        if (ret != RETCODE_SUCCESS) {
-            err_msg("Failed to set slice info report, ret %d\n", ret);
-            return -1;
-        }
-    }
-    {
-        img_size = enc->src_picwidth * enc->src_picheight * 3 / 2;
-        if (enc->cmdl->format == STD_MJPG) {
-            if (enc->mjpg_fmt == MODE422 || enc->mjpg_fmt == MODE224)
-                img_size = enc->src_picwidth * enc->src_picheight * 2;
-            else if (enc->mjpg_fmt == MODE400)
-                img_size = enc->src_picwidth * enc->src_picheight;
-        }
-    }
+    img_size = enc->src_picwidth * enc->src_picheight * 3 / 2;
 
     /* The main encoding loop */
     while (1) {
-        {
-            pfb = pfbpool[src_fbid];
-            yuv_addr = pfb->addrY + pfb->desc.virt_uaddr - pfb->desc.phy_addr;
-            ret = freadn(src_fd, (void *)yuv_addr, img_size);
-            if (ret <= 0)
-                break;
+        pfb = pfbpool[src_fbid];
+        yuv_addr = pfb->addrY;
+        ret = vpu_stream_read(enc->cmdl, (char *)yuv_addr, img_size);
+        //wait untill the SD read finished
+        while (1) {
+            int usdhc_status = 0;
+            card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+            if (usdhc_status == 1)
+                break;          //wait untill the SD read finished!
+            else
+                hal_delay_us(1000);
         }
-
-        /* Must put encode header before each frame encoding for mx6 MJPG */
+        if (ret <= 0)
+            break;
 
         ret = vpu_EncStartOneFrame(handle, &enc_param);
         if (ret != RETCODE_SUCCESS) {
@@ -441,6 +364,8 @@ static int encoder_start(struct encode *enc)
                                              phy_bsbuf_start, STREAM_READ_SIZE);
                 if (ret < 0) {
                     goto err2;
+                } else if (ret == 0) {
+                    encode_end = 1;
                 }
             }
         }
@@ -455,7 +380,7 @@ static int encoder_start(struct encode *enc)
             info_msg("Skip encoding one Frame!\n");
 
         if (enc->ringBufferEnable == 0) {
-            ret = enc_readbs_reset_buffer(enc, outinfo.bitstreamBuffer, outinfo.bitstreamSize);
+            ret = enc_read_line_buffer(enc, outinfo.bitstreamBuffer, outinfo.bitstreamSize);
             if (ret < 0) {
                 err_msg("writing bitstream buffer failed\n");
                 goto err2;
@@ -465,8 +390,10 @@ static int encoder_start(struct encode *enc)
                                    virt_bsbuf_end, phy_bsbuf_start, 0);
 
         frame_id++;
-        if ((count != 0) && (frame_id >= count))
+        if (encode_end == 1) {
+            info_msg("Total encoded %d frames\n", frame_id);
             break;
+        }
     }
 
   err2:
@@ -499,16 +426,6 @@ int encoder_configure(struct encode *enc)
     }
 
     enc->minFrameBufferCount = initinfo.minFrameBufferCount;
-    if (enc->cmdl->save_enc_hdr) {
-        if (enc->cmdl->format == STD_MPEG4) {
-            SaveGetEncodeHeader(handle, ENC_GET_VOS_HEADER, "mp4_vos_header.dat");
-            SaveGetEncodeHeader(handle, ENC_GET_VO_HEADER, "mp4_vo_header.dat");
-            SaveGetEncodeHeader(handle, ENC_GET_VOL_HEADER, "mp4_vol_header.dat");
-        } else if (enc->cmdl->format == STD_AVC) {
-            SaveGetEncodeHeader(handle, ENC_GET_SPS_RBSP, "avc_sps_header.dat");
-            SaveGetEncodeHeader(handle, ENC_GET_PPS_RBSP, "avc_pps_header.dat");
-        }
-    }
 
     enc->mbInfo.enable = 0;
     enc->mvInfo.enable = 0;
@@ -541,6 +458,7 @@ int encoder_open(struct encode *enc)
     encop.bitstreamFormat = enc->cmdl->format;
     encop.mapType = enc->cmdl->mapType;
     encop.linear2TiledEnable = enc->linear2TiledEnable;
+
     /* width and height in command line means source image size */
     if (enc->cmdl->width && enc->cmdl->height) {
         enc->src_picwidth = enc->cmdl->width;
@@ -668,15 +586,7 @@ int encoder_setup(void *arg)
     int ret = 0;
 
     /*set the parameters of encoder input here!! */
-    cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
-    if (cmdl == NULL) {
-        err_msg("Failed to allocate command structure\n");
-        return -1;
-    }
-    cmdl->input = &files[0];
-    cmdl->width = 320;
-    cmdl->height = 240;
-    cmdl->mapType = LINEAR_FRAME_MAP;
+    cmdl = (struct cmd_line *)arg;
 
     /* allocate memory for must remember stuff */
     enc = (struct encode *)calloc(1, sizeof(struct encode));
@@ -698,6 +608,18 @@ int encoder_setup(void *arg)
     enc->virt_bsbuf_addr = mem_desc.virt_uaddr;
     enc->phy_bsbuf_addr = mem_desc.phy_addr;
     enc->cmdl = cmdl;
+
+    /* get the contigous bit stream buffer */
+    mem_desc.size = ENCODER_OUTPUT_SIZE;
+    ret = IOGetMem(&mem_desc);
+    if (ret) {
+        err_msg("Unable to obtain physical memory\n");
+        free(enc);
+        return -1;
+    }
+    enc->cmdl->output_mem_addr = mem_desc.phy_addr;
+    bsmem.bs_start = enc->cmdl->output_mem_addr;
+    bsmem.bs_end = enc->cmdl->output_mem_addr;
 
     if (enc->cmdl->mapType) {
         enc->linear2TiledEnable = 1;
@@ -733,6 +655,8 @@ int encoder_setup(void *arg)
     /* start encoding */
     ret = encoder_start(enc);
 
+    info_msg("Encoded output is stored from 0x%08x to 0x%08x\n", bsmem.bs_start, bsmem.bs_end);
+
     /* free the allocated framebuffers */
     encoder_free_framebuffer(enc);
   err1:
@@ -745,11 +669,115 @@ int encoder_setup(void *arg)
 
 int encode_test(void *arg)
 {
+    uint8_t revchar = 0xFF;
+    int count = 0;
+    struct cmd_line *cmdl;
+
+    cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
+    if (cmdl == NULL) {
+        err_msg("Failed to allocate command structure\n");
+        return -1;
+    }
+
     fat_search_files("YUV", 1);
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 1;
     SDHC_ADMA_mode = 1;
+    memset((void *)&bsmem, 0, sizeof(bs_mem_t));
+    cmdl->input = &files[0];    /* Input file name */
+    cmdl->format = STD_AVC;
+    cmdl->src_scheme = PATH_FILE;
+    cmdl->dst_scheme = PATH_MEM;
+    cmdl->dering_en = 0;
+    cmdl->deblock_en = 0;
+    cmdl->chromaInterleave = 0; //partial interleaved mode
+    cmdl->mapType = LINEAR_FRAME_MAP;
+    cmdl->bs_mode = 0;          /*disable pre-scan */
+    cmdl->fps = 24;
+    cmdl->enc_width = 320;
+    cmdl->enc_height = 240;
+    cmdl->width = 320;
+    cmdl->height = 240;
+    cmdl->gop = 0;
+    cmdl->read_mode = FILE_READ_NORMAL;
+    encoder_setup(cmdl);
 
-    encoder_setup(NULL);
+    info_msg("Do you want to play the encoded bitstream??\n");
+    info_msg("Y/y - play the video from memory.\n");
+    info_msg("N/n - exit the encoder test, will check the data on host PC.\n");
+
+    do {
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+    if ((revchar == 'Y') || (revchar == 'y')) {
+        multi_instance = 0;
+
+        /* initialize video streams and configure IPUs */
+        if (ipu_initialized[0] == 0) {
+            ips_hannstar_xga_yuv_stream(1);
+            ipu_initialized[0] = 1;
+        }
+        if (cmdl != NULL) {
+            free(cmdl);
+            cmdl = NULL;
+        }
+        cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
+        if (cmdl == NULL) {
+            err_msg("Failed to allocate command structure\n");
+            return -1;
+        }
+        /*set the decoder command args */
+        cmdl->input = NULL;     /* Input file name */
+        cmdl->format = STD_AVC;
+        cmdl->src_scheme = PATH_MEM;
+        cmdl->dst_scheme = PATH_MEM;
+        cmdl->dering_en = 0;
+        cmdl->deblock_en = 0;
+        cmdl->chromaInterleave = 1; //partial interleaved mode
+        cmdl->mapType = LINEAR_FRAME_MAP;
+        cmdl->bs_mode = 0;      /*disable pre-scan */
+        cmdl->fps = 30;
+        decoder_setup((void *)cmdl);
+
+        printf("Now start decoding test ... \n");
+
+        while (1) {
+            DecOutputInfo outinfo = { 0 };
+            DecParam decparam = { 0 };
+            decparam.dispReorderBuf = 0;
+
+            decparam.prescanEnable = 0;
+            decparam.prescanMode = 0;
+
+            decparam.skipframeMode = 0;
+            decparam.skipframeNum = 0;
+            decparam.iframeSearchEnable = 0;
+
+            if (!vpu_IsBusy() && !dec_fifo_is_full(&gDecFifo[0])) {
+                vpu_DecStartOneFrame(gDecInstance[0]->handle, &decparam);
+                while (vpu_IsBusy()) {
+                    /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
+                    dec_fill_bsbuffer(gDecInstance[0]->handle, gDecInstance[0]->cmdl,
+                                      gBsBuffer[0], gBsBuffer[0] + STREAM_BUF_SIZE,
+                                      gBsBuffer[0], STREAM_BUF_SIZE >> 2, NULL, NULL);
+                };
+
+                vpu_DecGetOutputInfo(gDecInstance[0]->handle, &outinfo);
+                if (outinfo.indexFrameDisplay >= 0) {
+                    count++;
+                    /*push the decoded frame into fifo */
+                    dec_fifo_push(&gDecFifo[0],
+                                  (uint32_t) (gDecInstance[0]->pfbpool[outinfo.indexFrameDisplay]->
+                                              addrY), outinfo.indexFrameDisplay);
+                } else if (outinfo.indexFrameDisplay == -1) {
+                    printf("Video play to the end, total %d frames!\n", count);
+                    break;
+                }
+            }
+
+            decoder_frame_display();
+        }
+
+    }
     return 0;
 }

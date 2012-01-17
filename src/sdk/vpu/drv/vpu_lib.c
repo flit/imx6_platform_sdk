@@ -8,14 +8,6 @@
 /*
  * Copyright (c) 2006, Chips & Media.  All rights reserved.
  */
-/*
- * The code contained herein is licensed under the GNU Lesser General
- * Public License.  You may obtain a copy of the GNU Lesser General
- * Public License Version 2.1 or later at the following locations:
- *
- * http://www.opensource.org/licenses/lgpl-license.html
- * http://www.gnu.org/copyleft/lgpl.html
- */
 
 /*!
  * @file vpu_lib.c
@@ -315,9 +307,6 @@ RetCode vpu_GetVersionInfo(vpu_versioninfo * verinfo)
         verinfo->fw_minor = (version >> 8) & 0x0f;
         verinfo->fw_release = version & 0xff;
         verinfo->fw_code = fw_code;
-        verinfo->lib_major = (VPU_LIB_VERSION_CODE >> (12)) & 0x0f;
-        verinfo->lib_minor = (VPU_LIB_VERSION_CODE >> (8)) & 0x0f;
-        verinfo->lib_release = (VPU_LIB_VERSION_CODE) & 0xff;
         info_msg("Product Info: %s\n", productstr);
     }
 
@@ -3168,50 +3157,6 @@ RetCode vpu_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *param)
     }
 
     return RETCODE_SUCCESS;
-}
-
-void SaveGetEncodeHeader(EncHandle handle, int encHeaderType, char *filename)
-{
-    FILE *fp = NULL;
-    uint8_t *pHeader = NULL;
-    EncParamSet encHeaderParam = { 0 };
-    int i, n;
-    uint32_t dword1, dword2;
-    uint32_t *pBuf;
-    uint32_t byteSize;
-
-    ENTER_FUNC();
-
-    if (filename == NULL)
-        return;
-
-    vpu_EncGiveCommand(handle, encHeaderType, &encHeaderParam);
-    byteSize = ((encHeaderParam.size + 3) & ~3);
-    pHeader = (uint8_t *) malloc(sizeof(uint8_t) * byteSize);
-    if (pHeader) {
-        memcpy(pHeader, encHeaderParam.paraSet, byteSize);
-
-        /* ParaBuffer is big endian */
-        pBuf = (uint32_t *) pHeader;
-        for (i = 0; i < byteSize / 4; i++) {
-            dword1 = pBuf[i];
-            dword2 = (dword1 >> 24) & 0xFF;
-            dword2 |= ((dword1 >> 16) & 0xFF) << 8;
-            dword2 |= ((dword1 >> 8) & 0xFF) << 16;
-            dword2 |= ((dword1 >> 0) & 0xFF) << 24;
-            pBuf[i] = dword2;
-        }
-
-        if (encHeaderParam.size > 0) {
-            fp = fopen(filename, "wb");
-            if (fp) {
-                n = fwrite(pHeader, sizeof(uint8_t), encHeaderParam.size, fp);
-                fclose(fp);
-            }
-        }
-
-        free(pHeader);
-    }
 }
 
 RetCode vpu_EnableInterrupt(int sel)

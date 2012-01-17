@@ -5,19 +5,6 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*
- * Copyright (c) 2006, Chips & Media.  All rights reserved.
- */
-
-/*
- * The code contained herein is licensed under the GNU Lesser General
- * Public License.  You may obtain a copy of the GNU Lesser General
- * Public License Version 2.1 or later at the following locations:
- *
- * http://www.opensource.org/licenses/lgpl-license.html
- * http://www.gnu.org/copyleft/lgpl.html
- */
-
 /*!
  * @file vpu_io.c
  *
@@ -184,10 +171,14 @@ int IOGetMem(vpu_mem_desc * buff)
  * @li 0            Freeing memory success.
  * @li -1		Freeing memory failure.
  */
-int IOCodecMemFree(void)
+int IOCodecCleanup(void)
 {
+    int i = 0;
     vpu_mem_alloc_ptr = bit_work_addr.phy_addr + vpu_system_mem_size;
-
+    for (i = 0; i < MAX_NUM_INSTANCE; i++) {
+        vpu_hw_map->codecInstPool[i].inUse = 0;
+        vpu_hw_map->codecInstPool[i].initDone = 0;
+    }
     return 0;
 }
 

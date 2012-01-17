@@ -65,7 +65,6 @@ int vpu_test(void)
     }
 
     info_msg("VPU firmware version: %d.%d.%d\n", ver.fw_major, ver.fw_minor, ver.fw_release);
-    info_msg("VPU library version: %d.%d.%d\n", ver.lib_major, ver.lib_minor, ver.lib_release);
 
     do {
         for (i = 0; i < test_num; i++)
@@ -73,6 +72,7 @@ int vpu_test(void)
         printf("\tx - to exit.\n");
         revchar = 0xFF;
 
+        revchar = 0xFF;
         do {
             revchar = getchar();
         } while (revchar == (uint8_t) 0xFF);
@@ -85,6 +85,7 @@ int vpu_test(void)
         if ((i >= 0) && (i < test_num)) {
             printf("\n");
             err = vpu_tests[i].test(NULL);
+            IOCodecCleanup();
         }
     } while (1);
 

@@ -9,15 +9,6 @@
  * Copyright (c) 2006, Chips & Media.  All rights reserved.
  */
 
-/*
- * The code contained herein is licensed under the GNU Lesser General
- * Public License.  You may obtain a copy of the GNU Lesser General
- * Public License Version 2.1 or later at the following locations:
- *
- * http://www.opensource.org/licenses/lgpl-license.html
- * http://www.gnu.org/copyleft/lgpl.html
- */
-
 /*!
  * @file vpu_lib.h
  *
@@ -638,18 +629,12 @@ typedef struct {
  * The firmware version is retrieved from bitcode table.
  *
  * The library version convention:
- * lib_major increases when a new platform support is added
- * lib_minor increases when one firmware is upgraded
- * lib_release increases when bug fixes, excluding the above cases
  */
 typedef struct vpu_versioninfo {
     int fw_major;               /* firmware major version */
     int fw_minor;               /* firmware minor version */
     int fw_release;             /* firmware release version */
     int fw_code;                /* firmware checkin code number */
-    int lib_major;              /* library major version */
-    int lib_minor;              /* library minor version */
-    int lib_release;            /* library release version */
 } vpu_versioninfo;
 
 #define VPU_FW_VERSION(major, minor, release)	 \
@@ -738,7 +723,5 @@ int vpu_WaitForInt(int timeout_in_ms);
 RetCode vpu_SWReset(DecHandle handle, int index);
 int vpu_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
                       unsigned int addrY, unsigned int addrCb, unsigned int addrCr);
-
-void SaveGetEncodeHeader(EncHandle handle, int encHeaderType, char *filename);
 
 #endif

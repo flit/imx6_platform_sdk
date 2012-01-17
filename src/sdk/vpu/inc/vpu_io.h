@@ -5,19 +5,6 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*
- * Copyright (c) 2006, Chips & Media.  All rights reserved.
- */
-
-/*
- * The code contained herein is licensed under the GNU Lesser General
- * Public License.  You may obtain a copy of the GNU Lesser General
- * Public License Version 2.1 or later at the following locations:
- *
- * http://www.opensource.org/licenses/lgpl-license.html
- * http://www.gnu.org/copyleft/lgpl.html
- */
-
 /*!
  * @file vpu_io.h
  *
@@ -58,7 +45,7 @@ typedef void (*vpu_callback) (int status);
 int IOSystemInit(void *callback);
 int IOSystemShutdown(void);
 int IOGetMem(vpu_mem_desc * buff);
-int IOCodecMemFree(void);
+int IOCodecCleanup(void);
 int IOWaitForInt(int timeout_in_ms);
 int IOGetIramBase(iram_t * iram);
 int IOGetPhyShareMem(vpu_mem_desc * buff);

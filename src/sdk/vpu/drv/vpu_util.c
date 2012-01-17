@@ -9,15 +9,6 @@
  * Copyright (c) 2006, Chips & Media.  All rights reserved.
  */
 
-/*
- * The code contained herein is licensed under the GNU Lesser General
- * Public License.  You may obtain a copy of the GNU Lesser General
- * Public License Version 2.1 or later at the following locations:
- *
- * http://www.opensource.org/licenses/lgpl-license.html
- * http://www.gnu.org/copyleft/lgpl.html
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -968,11 +959,6 @@ vpu_resource_t *vpu_semaphore_open(void)
     return semap;
 }
 
-/* Following is MX6Q Jpg related */
-#define PUT_BYTE(_p, _b) \
-	    if (tot++ > len) return 0; \
-		    *_p++ = (unsigned char)(_b);
-
 int vpu_mx6q_swreset(int forcedReset)
 {
     volatile int i;
@@ -995,7 +981,7 @@ int vpu_mx6q_swreset(int forcedReset)
     return RETCODE_SUCCESS;
 }
 
-int vpu_mx6q_hwreset()
+int vpu_mx6q_hwreset(void)
 {
     VpuWriteReg(GDI_BUS_CTRL, 0x11);
     while (VpuReadReg(GDI_BUS_STATUS) != 0x77) ;

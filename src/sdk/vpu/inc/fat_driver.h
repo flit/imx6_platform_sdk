@@ -92,6 +92,11 @@ typedef enum { FAT12, FAT16, FAT32 } tFatType;
 
 #define FAT_BUFFER_SIZE     0x200
 
+enum {
+    FILE_READ_LOOP,             //in this mode, when reached to the end of file, curr ptr will back to the start
+    FILE_READ_NORMAL,
+};
+
 typedef int fat_data_req_t(uint32_t sector, uint32_t sec_num, void *buffer, int flags);
 
 /*DPT - Disk Partition Table*/
@@ -271,6 +276,6 @@ typedef struct {
 
 int fat_mount(tVolume * V);
 int fat_scan_root(tVolume * V, tFile * files, int maxFiles, int filter, const char *ext);
-int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size);
+int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size, int mode);
 int fat_open_file(tVolume * V, tFile * F);
 #endif /* #ifndef __FD32_FAT_H */

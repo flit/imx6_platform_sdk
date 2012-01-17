@@ -9,15 +9,6 @@
  * Copyright (c) 2006, Chips & Media.  All rights reserved.
  */
 
-/*
- * The code contained herein is licensed under the GNU Lesser General
- * Public License.  You may obtain a copy of the GNU Lesser General
- * Public License Version 2.1 or later at the following locations:
- *
- * http://www.opensource.org/licenses/lgpl-license.html
- * http://www.gnu.org/copyleft/lgpl.html
- */
-
 /*!
  * @file vpu_reg.h
  *

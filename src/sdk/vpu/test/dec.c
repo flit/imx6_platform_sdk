@@ -5,19 +5,6 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*
- * Copyright (c) 2006, Chips & Media.  All rights reserved.
- */
-
-/*
- * The code contained herein is licensed under the GNU General Public
- * License. You may obtain a copy of the GNU General Public License
- * Version 2 or later at the following locations:
- *
- * http://www.opensource.org/licenses/gpl-license.html
- * http://www.gnu.org/copyleft/gpl.html
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,8 +12,7 @@
 #include "vpu_debug.h"
 #include "vpu_lib.h"
 
-int bsoffset = 0;
-int rawoffset = 0;
+bs_mem_t bsmem;
 int gCurrentActiveInstance = 0;
 int gTotalActiveInstance = 0;
 int ipu_initialized[2] = { 0 };
@@ -675,10 +661,8 @@ void decoder_frame_display(void)
 
 void epit_isr(void)
 {
-
     reg32_write(EPIT2_BASE_ADDR + EPIT_EPITSR_OFFSET, 0x1); // clear interrupt
     decoder_frame_display();
-
 }
 
 struct hw_module hw_epit2 = {
@@ -698,18 +682,11 @@ int decoder_setup(void *arg)
     struct decode *dec;
     int ret, fillsize = 0;
 
-    bsoffset = 0;
-    rawoffset = 0;
+    cmdl = (struct cmd_line *)arg;
 
     dec = (struct decode *)calloc(1, sizeof(struct decode));
     if (dec == NULL) {
         err_msg("Failed to allocate decode structure\n");
-        return -1;
-    }
-
-    cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
-    if (cmdl == NULL) {
-        err_msg("Failed to allocate command structure\n");
         return -1;
     }
 
@@ -730,19 +707,7 @@ int decoder_setup(void *arg)
     dec->mvInfo.enable = 0;
     dec->frameBufStat.enable = 0;
     dec->userData.enable = 0;
-
-    /*set the decoder command args */
-    cmdl->input = (tFile *) arg;    /* Input file name */
-    cmdl->format = STD_AVC;
-    cmdl->src_scheme = PATH_FILE;
-    cmdl->dst_scheme = PATH_MEM;
-    cmdl->dering_en = 0;
-    cmdl->deblock_en = 0;
-    cmdl->chromaInterleave = 1; //partial interleaved mode
-    cmdl->mapType = LINEAR_FRAME_MAP;
-    cmdl->bs_mode = 0;          /*disable pre-scan */
-    cmdl->fps = 30;
-
+    dec->totalFrameDecoded = 0;
     dec->cmdl = cmdl;
 
     /*get PS save memory for AVC decoder */
@@ -825,9 +790,11 @@ int decode_test(void *arg)
 {
     int err, i, temp = 0;
     uint8_t revchar = (uint8_t) 0xFF;
-    int frame_num = 0, frame_index = 0;
     DecOutputInfo outinfo;
     DecParam decparam = { 0 };
+    int bs_read_mode = 0;
+    int active_inst_num = 0;
+    struct cmd_line *cmdl;
 
     printf("please select decoder instance:(1 or 2)\n");
     printf("\t1 - Single decoder with display on Hannstar LVDS panel(resolution@1024x768).\n");
@@ -854,8 +821,8 @@ int decode_test(void *arg)
     }
 
     printf("please select decoder instance:(1 or 2)\n");
-    printf("\t1 - endless test.\n");
-    printf("\t2 - decode 10000 frames.\n");
+    printf("\t1 - endless decode test.\n");
+    printf("\t2 - decode to the file end.\n");
     revchar = 0xFF;
     do {
         revchar = getchar();
@@ -863,11 +830,11 @@ int decode_test(void *arg)
 
     switch (revchar) {
     case '1':
-        frame_num = 0;
+        bs_read_mode = FILE_READ_LOOP;
         break;
     case '2':
     default:
-        frame_num = 10000;
+        bs_read_mode = FILE_READ_NORMAL;
         break;
     }
     /*now enable the INTERRUPT mode of usdhc */
@@ -879,21 +846,62 @@ int decode_test(void *arg)
         ips_hannstar_xga_yuv_stream(1);
         ipu_initialized[0] = 1;
     }
-    decoder_setup((void *)(&files[0]));
+    cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
+    if (cmdl == NULL) {
+        err_msg("Failed to allocate command structure\n");
+        return -1;
+    }
+    /*set the decoder command args */
+    cmdl->input = &files[0];    /* Input file name */
+    cmdl->format = STD_AVC;
+    cmdl->src_scheme = PATH_FILE;
+    cmdl->dst_scheme = PATH_MEM;
+    cmdl->dering_en = 0;
+    cmdl->deblock_en = 0;
+    cmdl->chromaInterleave = 1; //partial interleaved mode
+    cmdl->mapType = LINEAR_FRAME_MAP;
+    cmdl->bs_mode = 0;          /*disable pre-scan */
+    cmdl->read_mode = bs_read_mode;
+    cmdl->fps = 30;
+    active_inst_num++;
+    decoder_setup((void *)cmdl);
 
     if (multi_instance) {
         if (ipu_initialized[1] == 0) {
             hdmi_1080P60_video_output(2, 0);
             ipu_initialized[1] = 1;
         }
-        decoder_setup((void *)(&files[1]));
+        cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
+        if (cmdl == NULL) {
+            err_msg("Failed to allocate command structure\n");
+            return -1;
+        }
+        /*set the decoder command args */
+        cmdl->input = &files[1];    /* Input file name */
+        cmdl->format = STD_AVC;
+        cmdl->src_scheme = PATH_FILE;
+        cmdl->dst_scheme = PATH_MEM;
+        cmdl->dering_en = 0;
+        cmdl->deblock_en = 0;
+        cmdl->chromaInterleave = 1; //partial interleaved mode
+        cmdl->mapType = LINEAR_FRAME_MAP;
+        cmdl->bs_mode = 0;      /*disable pre-scan */
+        cmdl->read_mode = bs_read_mode;
+        cmdl->fps = 30;
+        active_inst_num++;
+        decoder_setup((void *)cmdl);
+
     }
 
     printf("Now start decoding test ... \n");
 
-    while ((frame_num == 0) || (frame_index++ < frame_num)) {
-        static int inst = 0;
+    //register_interrupt_routine(hw_epit2.irq_id, hw_epit2.irq_subroutine);
+    //enable_interrupt(hw_epit2.irq_id, CPU_0, 0);
 
+    while (1) {
+        static int inst = 0;
+        if (active_inst_num == 0)
+            break;
         /*get the next active instance */
         for (i = 1; i <= MAX_NUM_INSTANCE; i++) {
             temp = (inst + i) % MAX_NUM_INSTANCE;
@@ -923,20 +931,26 @@ int decode_test(void *arg)
 
             vpu_DecGetOutputInfo(gDecInstance[inst]->handle, &outinfo);
 
+            gDecInstance[inst]->totalFrameDecoded++;
             if (outinfo.indexFrameDisplay >= 0) {
                 /*push the decoded frame into fifo */
                 dec_fifo_push(&gDecFifo[inst],
                               (uint32_t) (gDecInstance[inst]->pfbpool[outinfo.indexFrameDisplay]->
                                           addrY), outinfo.indexFrameDisplay);
+            } else if (outinfo.indexFrameDisplay == -1) {
+                vpu_hw_map->codecInstPool[inst].inUse = 0;
+                info_msg("Decode instance %d finished!\n", inst);
+                active_inst_num--;
             }
         }
-
         decoder_frame_display();
     }
 
 /*release all the buffers*/
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
-        if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
+        if (vpu_hw_map->codecInstPool[i].initDone) {
+            printf("Total frames decoded in instance %d is %d\n", i,
+                   gDecInstance[i]->totalFrameDecoded);
             decoder_close(gDecInstance[i]);
 
             /* free the frame buffers */
@@ -950,10 +964,8 @@ int decode_test(void *arg)
             free(gDecInstance[i]);
 
             disp_clr_index[i] = -1;
-            vpu_hw_map->codecInstPool[i].inUse = 0;
             vpu_hw_map->codecInstPool[i].initDone = 0;
         }
     }
-    IOCodecMemFree();
     return 0;
 }

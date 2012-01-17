@@ -524,7 +524,7 @@ inline uint32_t get_next_sector(tVolume * V, uint32_t curSector)
 
 /* Read data from a fat32 file. size is given in bytes. Function returns number of bytes readget the offset inside the buffer*/
 /* Read file based on the fat partition descrption table, the sector could be not sequential in physical, we need to set the ADMA script to indicate the offset of each cluster */
-int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size)
+int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size, int mode)
 {
     uint32_t left_bytes, read_size, pos;
 
@@ -574,9 +574,12 @@ int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size)
 
     /*for endless test, back to the first cluster */
     if (F->bytes_read == F->file_size) {
-        F->sector = fat_first_sector_of_cluster(F->first_cluster, V);
-        F->bytes_read = 0;
-        V->buffer_pos = 0;
+        if (mode == FILE_READ_LOOP) {
+            F->sector = fat_first_sector_of_cluster(F->first_cluster, V);
+            F->bytes_read = 0;
+            V->buffer_pos = 0;
+        } else
+            return 0;
     }
 
     return size;

@@ -5,19 +5,6 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*
- * Copyright (c) 2006, Chips & Media.  All rights reserved.
- */
-
-/*
- * The code contained herein is licensed under the GNU General Public
- * License. You may obtain a copy of the GNU General Public License
- * Version 2 or later at the following locations:
- *
- * http://www.opensource.org/licenses/gpl-license.html
- * http://www.gnu.org/copyleft/gpl.html
- */
-
 #ifndef _VPU_TEST_H_
 #define _VPU_TEST_H_
 #include "hardware.h"
@@ -42,6 +29,8 @@
 #define PS_SAVE_SIZE		0x080000
 #define VP8_MB_SAVE_SIZE	0x080000
 #define MPEG4_SCRATCH_SIZE	0x080000
+
+#define ENCODER_OUTPUT_SIZE	0x2000000
 
 #define STREAM_ENC_PIC_RESET 	1
 
@@ -123,7 +112,9 @@ struct rot {
 #define MAX_PATH	256
 struct cmd_line {
     tFile *input;               /* Input file name */
+    uint32_t input_mem_addr;    /*active if the input is stored in memory */
     tFile *output;              /* Output file name */
+    uint32_t output_mem_addr;
     int src_scheme;
     int dst_scheme;
     int src_fd;
@@ -159,6 +150,7 @@ struct cmd_line {
     char vdi_motion;            /* VDI motion algorithm */
     int fps;
     int mapType;
+    int read_mode;
 };
 
 typedef struct {
@@ -190,7 +182,7 @@ struct decode {
     Rect picCropRect;
     int reorderEnable;
     int tiled2LinearEnable;
-
+    int totalFrameDecoded;
     DecReportInfo mbInfo;
     DecReportInfo mvInfo;
     DecReportInfo frameBufStat;
@@ -239,6 +231,17 @@ typedef struct {
     uint32_t popCnt;
 } vdec_frame_buffer_t;
 
+typedef struct {
+    uint32_t bs_start;
+    uint32_t bs_offset;
+    uint32_t bs_end;
+} bs_mem_t;
+
+typedef struct {
+    uint32_t timer_start;
+    uint32_t timer_elapsed_ms;
+} vpu_frame_timer_t;
+
 extern uint32_t usdhc_busy;
 extern tFile files[10];
 extern tVolume *V;
@@ -253,9 +256,10 @@ extern struct hw_module hw_vpu;
 extern struct hw_module hw_epit2;
 extern int disp_clr_index[];
 extern int multi_instance;
+extern bs_mem_t bsmem;
+extern int ipu_initialized[];
 
 void framebuf_init(void);
-int fwriten(int fd, void *vptr, size_t n);
 int vpu_stream_read(struct cmd_line *cmd, char *buf, int n);
 int vpu_stream_write(struct cmd_line *cmd, char *buf, int n);
 void get_arg(char *buf, int *argc, char *argv[]);
@@ -293,12 +297,12 @@ int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame, uint32_t id);
 int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id);
 int dec_fifo_is_empty(vdec_frame_buffer_t * fifo);
 int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
-void epit2_config(int periodic);
+void epit2_config(void);
 void epit_isr(void);
+int get_timer_stamp(int periodic);
 void decoder_frame_display(void);
 int decode_test(void *arg);
 int encode_test(void *arg);
-
 int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
                       uint32_t bs_pa_startaddr, int defaultsize, int *eos, int *fill_end_bs);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -25,7 +25,6 @@
 #define D(fmt,args...)
 #endif
 
-extern void iomux_config_spdif(void);
 extern void spdif_clk_cfg(void);
 extern unsigned int spdif_get_tx_clk_freq(void);
 
@@ -159,7 +158,7 @@ int32_t spdif_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
 
-    iomux_config_spdif();
+    spdif_iomux_config();
     spdif_soft_reset(ctrl);
     spdif_clk_cfg();
 

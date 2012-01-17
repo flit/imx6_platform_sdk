@@ -2333,12 +2333,12 @@
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D26" Value="2" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D26" Value="110768" />
   </SignalDesign>
-  <SignalDesign Name="CSI0_D[10]" NativeInstance="ipu1" Instance="ipu1" InstanceAlias="ipu1" IsChecked="true" IsExcluded="false">
+  <SignalDesign Name="CSI0_D[10]" NativeInstance="ipu1" Instance="ipu1" InstanceAlias="ipu1" IsChecked="false" IsExcluded="false">
     <AltMode Name="ALT0" BallNumber="M1" BallName="CSI0_DAT10" PowerGroup="IPU_CSI" Instance="ipu1" Port="CSI0_D[10]" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT10" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT10" Value="110768" />
   </SignalDesign>
-  <SignalDesign Name="CSI0_D[11]" NativeInstance="ipu1" Instance="ipu1" InstanceAlias="ipu1" IsChecked="true" IsExcluded="false">
+  <SignalDesign Name="CSI0_D[11]" NativeInstance="ipu1" Instance="ipu1" InstanceAlias="ipu1" IsChecked="false" IsExcluded="false">
     <AltMode Name="ALT0" BallNumber="M3" BallName="CSI0_DAT11" PowerGroup="IPU_CSI" Instance="ipu1" Port="CSI0_D[11]" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT11" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT11" Value="110768" />

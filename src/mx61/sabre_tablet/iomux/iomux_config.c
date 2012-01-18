@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved.
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved.
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -9,7 +9,7 @@
 
 #include <iomux_config.h>
 
-// Function to configure iomux for i.MX6DQ board [board] [boardRevision].
+// Function to configure iomux for i.MX6DQ board Sabre_Tablet Rev. A.
 void iomux_config(void)
 {
     audmux_iomux_config();
@@ -116,7 +116,6 @@ void ipu2_iomux_config()
 
 void ldb_iomux_config()
 {
-    //no iomux for LDB on i.Mx6q
 };
 
 void mipi_core_iomux_config()

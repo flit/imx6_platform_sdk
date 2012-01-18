@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <PinMuxDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Chip>i.MX6DQ</Chip>
-  <Board>MCIMX6QSMD</Board>
-  <BoardRevision>B</BoardRevision>
-  <Version />
+  <Board>Sabre_Tablet</Board>
+  <BoardRevision>Rev. A</BoardRevision>
+  <Version>1</Version>
   <Company>Freescale</Company>
-  <Contact />
+  <Contact>B18548</Contact>
   <ContactEmail />
-  <Description />
+  <Description></Description>
   <SignalDesign Name="ANATOP_24M_OUT" NativeInstance="anatop" Instance="anatop" InstanceAlias="anatop" IsChecked="false" IsExcluded="false">
     <AltMode Name="ALT7" BallNumber="D21" BallName="RGMII_TXC" PowerGroup="RGMII" Instance="anatop" Port="ANATOP_24M_OUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_RGMII_TXC" Value="7" />

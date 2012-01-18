@@ -9,7 +9,7 @@
 
 #include <iomux_config.h>
 
-// Function to configure iomux for i.MX6DQ board QSB Rev. A.
+// Function to configure iomux for i.MX6DQ board Sabre_Lite Rev. A.
 void iomux_config(void)
 {
     audmux_iomux_config();

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <PinMuxDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Chip>i.MX6DQ</Chip>
-  <Board>QSB</Board>
+  <Board>Sabre_Lite</Board>
   <BoardRevision>Rev. A</BoardRevision>
   <Version>2</Version>
   <Company>Freescale Semiconductor</Company>

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -142,7 +142,7 @@ int spi_nor_query_numonyx(uint8_t * data)
  */
 int spi_nor_erase_numonyx(uint32_t addr, uint32_t length)
 {
-    int retv;
+    int retv=SUCCESS;
 
     /* Erase chip if length >= chip size */
     if (length > (SZ_CHIP - SZ_SECTOR)) {
@@ -208,10 +208,13 @@ int spi_nor_read_numonyx(uint32_t address, uint8_t * dst, int length)
             switch (left) {
             default:
                 *dst++ = spi_nor_rx_buf[idx + 3];
+                /* no break */
             case 3:
                 *dst++ = spi_nor_rx_buf[idx + 2];
+                /* no break */
             case 2:
                 *dst++ = spi_nor_rx_buf[idx + 1];
+                /* no break */
             case 1:
                 *dst++ = spi_nor_rx_buf[idx];
                 break;

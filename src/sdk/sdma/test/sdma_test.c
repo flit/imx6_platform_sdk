@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -25,7 +25,7 @@ static sdma_test_t sdma_tests[] = {
 
 int sdma_test(void)
 {
-    int retv, idx;
+    int retv = FALSE, idx;
     uint8_t sel;
 
     printf("\n---- Running SDMA test, type 'x' to exit.\n");

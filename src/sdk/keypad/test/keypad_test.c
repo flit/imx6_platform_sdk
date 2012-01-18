@@ -16,7 +16,7 @@
 #include "hardware.h"
 #include "keypad_test.h"
 
-void press_key_test(void);
+void multiple_key_press_test(void);
 
 /*!
  * Main unit test for the Keypad.
@@ -29,8 +29,7 @@ void keypad_test(void)
     printf("Start Keypad unit tests:");
 
     do {
-        printf("\n  1 - press a key test.\n");
-        printf("  2 - for test 2.\n");
+        printf("\n  1 - Multiple keys pressed test.\n");
         printf("  x - to exit.\n\n");
 
         do {
@@ -43,9 +42,7 @@ void keypad_test(void)
         }
 
         if (sel == '1')
-        	press_key_test();
-        if (sel == '2')
-        	press_key_test();
+            multiple_key_press_test();
 
     } while(1);
 
@@ -53,33 +50,59 @@ void keypad_test(void)
 }
 
 /*!
- *
+ * A test that detects that multiple keys are pressed and waits for them
+ * to release to print what are the keys.
  */
-void press_key_test(void)
+void multiple_key_press_test(void)
 {
-    uint8_t i, kppcol, kpprow;
+    uint8_t row, col, exit_test, kppcol, kpprow;
     uint16_t read_keys[8];
 
     /* this is a 3x3 matrix - col[7:5] x row[7:5] */
     kppcol = kpprow = 0xE0;
 
-    kpp_init(kppcol, kpprow);
+    kpp_open(kppcol, kpprow);
 
+    exit_test = 1;
     do
     {
-        printf("Please press any key:\n");
+        printf("Please press any key (SW14 to exit):\n");
 
-        /* get the pressed key(s) */
+        /* get the first pressed key(s) */
+        kpp_get_keypad_state(read_keys, WF_INTERRUPT);
+
+        /* a delay is required between 2 captures to detect that
+         * multiple keys are pressed
+         * It is too difficult for a user to push multiple keys within a single
+         * capture of few micro seconds.
+         * That delay and the number of captures should be adjusted per applications.
+         */
+        hal_delay_us(50000);
+
+        /* get the next pressed key(s) after half a second */
         kpp_get_keypad_state(read_keys, WF_INTERRUPT);
 
         /* wait for no key pressed */
         kpp_wait_for_release_state();
 
-        for(i=0;i<8;i++)
+        for(col=0;col<8;col++)
         {
-            if((read_keys[i] & 0xFF) != 0x00)
-                printf("Key %04X was pressed.\n",read_keys[i]);
+            if((read_keys[col] & 0xFF) != 0x00)
+            {
+                for(row=0;row<8;row++)
+                {
+                    if((read_keys[col] & (1 << row)) != 0)
+                    {
+                        printf("Key %s was pressed.\n",KEYPAD_MAP[row][col]);
+                        /* exit test if key on row=col=7 is pressed */
+                        if((row & col) == 7)
+                            exit_test = 0;
+                    }
+                }
+            }
         }
 
-    } while(1);
+    } while(exit_test);
+
+    kpp_close();
 }

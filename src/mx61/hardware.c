@@ -625,7 +625,7 @@ uint32_t GetCPUFreq(void)
 
 int perfmon_clk_cfg(uint32_t base, uint32_t enable)
 {
-    uint32_t val, shift, reg;
+    uint32_t val, shift = 0, reg;
 
     //Enable AXI clock for perfmon
     reg32setbit(IOMUXC_GPR11, 16);
@@ -647,14 +647,18 @@ int perfmon_clk_cfg(uint32_t base, uint32_t enable)
         break;
     }
 
-    val = reg32_read(reg);
-    if (enable) {
-        val |= 0x03 << shift;
-    } else {
-        val &= ~(0x03 << shift);
-    }
+    /* do nothing if shit = 0 <=> no base address match */
+    if(shift != 0)
+    {
+        val = reg32_read(reg);
+        if (enable) {
+            val |= 0x03 << shift;
+        } else {
+            val &= ~(0x03 << shift);
+        }
 
-    reg32_write(reg, val);
+        reg32_write(reg, val);
+    }
 
     return 0;
 }

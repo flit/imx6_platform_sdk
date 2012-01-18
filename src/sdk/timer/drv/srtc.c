@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -77,7 +77,7 @@ void snvs_srtc_interrupt_handler(void)
 
     snvs_srtc_setup_interrupt(snvs_srtc_module.port, DISABLE);
 
-    if(psnvs->lpsr & LPSR_LPTA && snvs_srtc_module.onetime_timer_callback != NULL)
+    if(((psnvs->lpsr & LPSR_LPTA) && snvs_srtc_module.onetime_timer_callback) != NULL)
     {
         psnvs->lpsr &= ~LPSR_LPTA;
         snvs_srtc_module.onetime_timer_callback();

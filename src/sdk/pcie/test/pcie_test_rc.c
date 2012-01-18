@@ -1,13 +1,11 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
 
 #include "hardware.h"
-#include "imx_i2c.h"
-#include "soc_memory_map.h"
 #include "../inc/pcie_common.h"
 #include "../inc/pcie_prot.h"
 
@@ -190,9 +188,9 @@ int pcie_test(void)
 
     uint32_t viewport = PCIE_IATU_VIEWPORT_1;
     uint32_t ep_io_base = 0, ep_mem_base = 0, base_cpu_side = PCIE_ARB_BASE_ADDR + SZ_64K;
-    uint32_t tlp_type, size, bar, *ep_base;
+    uint32_t tlp_type = 0, size, bar, *ep_base = 0;
     char *str_space[] = { "IO", "Memory" };
-    char *str;
+    char *str = 0;
 
     for (i = 0; i < res_num; i++, viewport++) {
         bar = ep1_resources[i].bar;

@@ -90,7 +90,7 @@ void kpp_iomux_config(void)
     //             Select one out of next values for pad: SD2_CLK.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_47KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD2_CLK);
 
@@ -168,7 +168,7 @@ void kpp_iomux_config(void)
     //             Select one out of next values for pad: SD2_DAT3.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_47KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD2_DAT3);
 
@@ -247,7 +247,7 @@ void kpp_iomux_config(void)
     //             Select one out of next values for pad: SD2_DAT1.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_47KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD2_DAT1);
 
@@ -324,7 +324,7 @@ void kpp_iomux_config(void)
     //             Select one out of next values for pad: SD2_CMD.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_22KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD2_CMD);
 
@@ -403,7 +403,7 @@ void kpp_iomux_config(void)
     //             Select one out of next values for pad: SD2_DAT2.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_22KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD2_DAT2);
 
@@ -481,7 +481,7 @@ void kpp_iomux_config(void)
     //             Select one out of next values for pad: SD2_DAT0.
     //     SRE_SLOW (0) - Slow Slew Rate
     //     SRE_FAST (1) - Fast Slew Rate
-    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_22KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD2_DAT0);
 }

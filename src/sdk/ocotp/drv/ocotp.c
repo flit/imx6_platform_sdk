@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2009-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -185,7 +185,7 @@ int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t
 int32_t sense_fuse(uint32_t bank, uint32_t row)
 {
     int32_t error;
-    uint32_t calc_row, value;
+    uint32_t calc_row, value=0;
 
     calc_row = bank * 8 + row;
     if ((error = ReadOTPValues(&value, calc_row, 1)) != SUCCESS) {

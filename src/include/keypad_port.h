@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file keypad_port.h
+ * @brief Keypad port driver header file.
+ *
+ * @ingroup diag_keypad
+ */
+
 #ifndef __KEYPAD_PORT_H__
 #define __KEYPAD_PORT_H__
 
@@ -40,9 +47,10 @@
 #define IMMEDIATE       0x0
 
 /* functions of the driver */
-void kpp_init(uint8_t kpp_col, uint8_t kpp_row);
-void kpp_setup_interrupt(uint8_t state);
+void kpp_open(uint8_t kpp_col, uint8_t kpp_row);
+void kpp_close(void);
 void kpp_get_keypad_state(uint16_t *rd_keys, uint8_t condition);
 void kpp_wait_for_release_state(void);
+
 
 #endif /* __KEYPAD_PORT_H__ */

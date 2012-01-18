@@ -14,9 +14,9 @@
 
 #include "hardware.h"
 
-static uint8_t g_col_inuse;
-static uint8_t g_row_inuse;
-static uint8_t g_wait_for_irq;
+static volatile uint8_t g_col_inuse;
+static volatile uint8_t g_row_inuse;
+static volatile uint8_t g_wait_for_irq;
 
 /*!
  * Keypad port function to scan the keypad matrix and return the read key(s).
@@ -36,8 +36,8 @@ void kpp_scan_matrix(uint16_t *keypad_state)
     uint16_t port_state_2[8];
     uint16_t port_state_3[8];
     uint16_t *port_state;
-    uint8_t tested_col, i, loop;
-    uint16_t col_mask;
+    uint8_t tested_col, loop;
+    uint16_t col_mask, i;
 
     memset(port_state_1, 0x0000, sizeof(port_state_1));
     memset(port_state_2, 0x0000, sizeof(port_state_2));
@@ -113,7 +113,7 @@ void kpp_get_keypad_state(uint16_t *rd_keys, uint8_t condition)
     writew(0xF, KPP_KPSR);
 
     /* Either the application waits for a pressed key event
-     * or it needs immediately the state of the keypad.
+     * or it runs immediately the scanning sequence.
      */
     if(condition == WF_INTERRUPT)
     {
@@ -143,7 +143,10 @@ void kpp_get_keypad_state(uint16_t *rd_keys, uint8_t condition)
 }
 
 /*!
- * Keypad port function to wait for all keys to release.
+ * Keypad port function that waits for all keys to release.
+ * The hardware can only detect this condition, and couldn't
+ * detect the release of a single key but by doing it
+ * by software.
  */
 void kpp_wait_for_release_state(void)
 {
@@ -201,7 +204,7 @@ void kpp_setup_interrupt(uint8_t state)
  * @param   kpp_col - active columns in the keypad.
  * @param   kpp_row - active rows in the keypad.
  */
-void kpp_init(uint8_t kpp_col, uint8_t kpp_row)
+void kpp_open(uint8_t kpp_col, uint8_t kpp_row)
 {
     /* Initialize global variables to store the board's keypad usage */
     g_col_inuse = kpp_col;
@@ -223,4 +226,15 @@ void kpp_init(uint8_t kpp_col, uint8_t kpp_row)
 
     /* set up the interrupt */
     kpp_setup_interrupt(ENABLE);
+}
+
+/*!
+ * Leave the keypad controller in a known state.
+ *
+ */
+void kpp_close(void)
+{
+    /* disable the interrupts */
+    disable_irq(KDIE | KRIE);
+    kpp_setup_interrupt(DISABLE);
 }

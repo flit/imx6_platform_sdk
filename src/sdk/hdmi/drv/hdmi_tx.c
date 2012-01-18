@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -118,6 +118,26 @@ void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
 {
     uint16_t csc_coeff[3][4];
     uint32_t csc_scale = 1;
+
+    /* default initialization (mainly to workaround
+     * uninitialized warning during build) */
+    csc_coeff[0][0] = 0x2000;
+    csc_coeff[0][1] = 0x0000;
+    csc_coeff[0][2] = 0x0000;
+    csc_coeff[0][3] = 0x0000;
+
+    csc_coeff[1][0] = 0x0000;
+    csc_coeff[1][1] = 0x2000;
+    csc_coeff[1][2] = 0x0000;
+    csc_coeff[1][3] = 0x0000;
+
+    csc_coeff[2][0] = 0x0000;
+    csc_coeff[2][1] = 0x0000;
+    csc_coeff[2][2] = 0x2000;
+    csc_coeff[2][3] = 0x0000;
+
+    csc_scale = 1;
+
     if (isColorSpaceConversion(hdmi_instance) == TRUE)  // csc needed
     {
         if (hdmi_instance.enc_out_format == eRGB) {
@@ -193,23 +213,6 @@ void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
                 csc_scale = 1;
             }
         }
-    } else {
-        csc_coeff[0][0] = 0x2000;
-        csc_coeff[0][1] = 0x0000;
-        csc_coeff[0][2] = 0x0000;
-        csc_coeff[0][3] = 0x0000;
-
-        csc_coeff[1][0] = 0x0000;
-        csc_coeff[1][1] = 0x2000;
-        csc_coeff[1][2] = 0x0000;
-        csc_coeff[1][3] = 0x0000;
-
-        csc_coeff[2][0] = 0x0000;
-        csc_coeff[2][1] = 0x0000;
-        csc_coeff[2][2] = 0x2000;
-        csc_coeff[2][3] = 0x0000;
-
-        csc_scale = 1;
     }
 
     /*update csc parameters in hdmi csc registers */

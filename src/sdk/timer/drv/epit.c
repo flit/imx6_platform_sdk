@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -22,7 +22,7 @@
  */
 void epit_reload_counter(struct hw_module *port, uint32_t load_val)
 {
-    volatile struct mx_epit *pepit = (volatile struct mx_epit *)port->base;
+    struct mx_epit *pepit = (struct mx_epit *)port->base;
 
     /* set the load register especially if RLD=reload_mode=SET_AND_FORGET=1 */
     pepit->epitlr = load_val;
@@ -38,7 +38,7 @@ void epit_reload_counter(struct hw_module *port, uint32_t load_val)
  */
 uint32_t epit_get_compare_event(struct hw_module *port)
 {
-    volatile struct mx_epit *pepit = (volatile struct mx_epit *)port->base;
+    struct mx_epit *pepit = (struct mx_epit *)port->base;
     uint32_t status_register;
 
     /* get the status */
@@ -58,7 +58,14 @@ uint32_t epit_get_compare_event(struct hw_module *port)
  */
 void epit_counter_disable(struct hw_module *port)
 {
-    volatile struct mx_epit *pepit = (volatile struct mx_epit *)port->base;
+    struct mx_epit *pepit = (struct mx_epit *)port->base;
+
+    /* temporary workaround for the discovered issue when disabling the
+     * counter during end of count/reload/set compare flag ??.
+     * Set to the max value so that it ensures that the counter couldn't
+     * reach 0 when it is disabled.
+     */
+    pepit->epitlr = 0xFFFFFFFF;
 
     /* disable the counter */
     pepit->epitcr &= ~EPITCR_EN;
@@ -80,7 +87,7 @@ void epit_counter_disable(struct hw_module *port)
  */
 void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq_mode)
 {
-    volatile struct mx_epit *pepit = (volatile struct mx_epit *)port->base;
+    struct mx_epit *pepit = (struct mx_epit *)port->base;
 
     /* set the load register especially if RLD=reload_mode=SET_AND_FORGET=1 */
     pepit->epitlr = load_val;
@@ -134,7 +141,7 @@ void epit_setup_interrupt(struct hw_module *port, uint8_t state)
 void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
                uint32_t reload_mode, uint32_t load_val, uint32_t low_power_mode)
 {
-    volatile struct mx_epit *pepit = (volatile struct mx_epit *)port->base;
+    struct mx_epit *pepit = (struct mx_epit *)port->base;
     uint32_t control_reg_tmp = 0;
 
     /* enable the source clocks to the EPIT port */

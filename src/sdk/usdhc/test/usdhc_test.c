@@ -32,7 +32,7 @@ static int mmc_test_tmp[MMC_TEST_BUF_SIZE + MMC_CARD_SECTOR_BUFFER];
 
 int usdhc_test(void)
 {
-    int retv, idx;
+    int retv = SUCCESS, idx;
     char sel;
 
     printf("\n---- Running uSDHC test, type 'x' to exit.\n");

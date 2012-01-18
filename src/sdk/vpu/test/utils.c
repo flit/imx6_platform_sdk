@@ -33,16 +33,18 @@ void init_fat32_device(void *blkreq_func)
     fat_mount(V);
 }
 
-void fat_search_files(char *ext, int num)
+int fat_search_files(char *ext, int num)
 {
     int fnum, i;
     fnum = fat_scan_root(V, files, num, 1, ext);
-
+    if (fnum == 0)
+        return 0;
     for (i = 0; i < num; i++) {
         printf("File %d is %s\n", i, files[i].fname);
         fat_open_file(V, &(files[i]));
         files[i].file_size &= 0xfff80000;
     }
+    return num;
 }
 
 int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)

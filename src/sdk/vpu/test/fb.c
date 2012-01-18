@@ -70,12 +70,12 @@ int dec_fifo_is_empty(vdec_frame_buffer_t * fifo)
 }
 
 /*one frame is in-queued*/
-int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame, uint32_t id)
+int dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id)
 {
     if (fifo->full)
         return -1;
 
-    fifo->frames[fifo->wrptr] = frame;
+    fifo->frames[fifo->wrptr] = *frame;
     fifo->id[fifo->wrptr] = id;
 
     if (++fifo->wrptr == fifo->size)
@@ -88,7 +88,7 @@ int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame, uint32_t id)
 }
 
 /*one frame is dequeued*/
-int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id)
+int dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id)
 {
     if ((fifo->rdptr == fifo->wrptr) && !(fifo->full))
         return -1;
@@ -204,6 +204,10 @@ struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int
 
     lum_top_base = (fb->desc.phy_addr + align - 1) & ~(align - 1);
     chr_top_base = lum_top_base + luma_top_size;
+
+    memset((char *)lum_top_base, 0x10, luma_top_size);
+    memset((char *)chr_top_base, 0x80, chroma_top_size);
+
     if (mapType == TILED_FRAME_MB_RASTER_MAP) {
         lum_bot_base = 0;
         chr_bot_base = 0;

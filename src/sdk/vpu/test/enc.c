@@ -672,6 +672,7 @@ int encode_test(void *arg)
     uint8_t revchar = 0xFF;
     int count = 0;
     struct cmd_line *cmdl;
+    int err = 0;
 
     cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
     if (cmdl == NULL) {
@@ -679,7 +680,11 @@ int encode_test(void *arg)
         return -1;
     }
 
-    fat_search_files("YUV", 1);
+    err = fat_search_files("YUV", 1);
+    if (err == 0) {
+        printf("No YUV file found on the fat32 system!!\n");
+        return 0;
+    }
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 1;
     SDHC_ADMA_mode = 1;
@@ -767,8 +772,8 @@ int encode_test(void *arg)
                     count++;
                     /*push the decoded frame into fifo */
                     dec_fifo_push(&gDecFifo[0],
-                                  (uint32_t) (gDecInstance[0]->pfbpool[outinfo.indexFrameDisplay]->
-                                              addrY), outinfo.indexFrameDisplay);
+                                  &(gDecInstance[0]->pfbpool[outinfo.indexFrameDisplay]),
+                                  outinfo.indexFrameDisplay);
                 } else if (outinfo.indexFrameDisplay == -1) {
                     printf("Video play to the end, total %d frames!\n", count);
                     break;

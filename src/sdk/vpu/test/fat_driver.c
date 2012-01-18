@@ -333,7 +333,7 @@ int fat_scan_root(tVolume * V, tFile * files, int maxFiles, int filter, const ch
                     files[fileCnt].fext[i] = dirEntry->Name[i + 8];
                 files[fileCnt].fext[3] = '\0';
                 if (++fileCnt == maxFiles)
-                    fileCnt = 0;
+                    break;
             }
         }
 
@@ -390,7 +390,7 @@ int fat_scan_root_for_directories(tVolume * V, tFile * files, int maxFiles, int 
                 files[fileCnt].fext[i] = dirEntry->Name[i + 8];
             files[fileCnt].fext[3] = '\0';
             if (++fileCnt == maxFiles)
-                fileCnt = 0;
+                break;
         }
 
         ++dirEntry;
@@ -443,7 +443,7 @@ int fat_scan_dir(tVolume * V, uint32_t dirFirstCluster, tFile * files, int maxFi
                 for (i = 0; i < 3; i++)
                     files[fileCnt].fext[i] = dirEntry->Name[i + 8];
                 if (++fileCnt == maxFiles)
-                    fileCnt = 0;
+                    break;
             }
         }
 

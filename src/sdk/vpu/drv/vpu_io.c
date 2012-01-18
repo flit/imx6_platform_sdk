@@ -142,7 +142,7 @@ unsigned long VpuReadReg(unsigned long addr)
  */
 int IOGetMem(vpu_mem_desc * buff)
 {
-    buff->size = (buff->size + 0xFF) & 0xFFFFFF00;  //align 
+    buff->size = (buff->size + 0xFFF) & 0xFFFFF000; //align 
     if (vpu_mem_alloc_ptr + buff->size > VPU_MEM_END_ADDR) {
         err_msg("Memory reserved for VPU is not enough!!\n");
         err_msg("Memory required 0x%x, actual pointer 0x%x, actual room 0x%x!!\n",

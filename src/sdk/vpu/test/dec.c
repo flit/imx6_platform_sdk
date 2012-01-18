@@ -490,7 +490,6 @@ int decoder_parse(struct decode *dec)
          dec->cmdl->format == STD_VC1 ||
          dec->cmdl->format == STD_AVC || dec->cmdl->format == STD_VP8) && initinfo.interlace == 1)
         align = 32;
-
     dec->picheight = ((initinfo.picHeight + align - 1) & ~(align - 1));
 
     if ((dec->picwidth == 0) || (dec->picheight == 0))
@@ -530,10 +529,10 @@ int decoder_parse(struct decode *dec)
     /* worstSliceSize is in kilo-byte unit */
     dec->phy_slicebuf_size = initinfo.worstSliceSize * 1024;
     /*Note by Ray: to support direct rendering */
-	if(dec->cmdl->mapType != LINEAR_FRAME_MAP)
-    dec->stride = dec->picwidth;
-else
-    dec->stride = FRAME_MAX_WIDTH;
+    if (dec->cmdl->mapType != LINEAR_FRAME_MAP)
+        dec->stride = dec->picwidth;
+    else
+        dec->stride = FRAME_MAX_WIDTH;
 
     info_msg("Display fps will be %d\n", dec->cmdl->fps);
 
@@ -599,13 +598,29 @@ void decoder_close(struct decode *dec)
 void decoder_frame_display(void)
 {
     int i = 0;
-    uint32_t display_buffer, id;
+    struct frame_buf *display_buffer = NULL;
+    uint32_t id;
+
+    static int vdoa_tx = 0;
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
         if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
             if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
                 vpu_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
                 disp_clr_index[i] = id;
-                ipu_refresh(i + 1, display_buffer); // totally support two instance, inst0 on ipu1, inst2 on ipu2
+                if (gDecInstance[i]->cmdl->mapType != LINEAR_FRAME_MAP) {
+                    while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
+                    vdoa_clear_interrupt();
+                    vdoa_setup(gDecInstance[i]->picwidth, gDecInstance[i]->picheight,
+                               gDecInstance[i]->stride, FRAME_MAX_WIDTH, 0, 0, 8, 0);
+                    vdoa_start(display_buffer->addrY & 0xFFFFF000,
+                               gDecInstance[i]->picwidth * gDecInstance[i]->picheight,
+                               (i % 2) ? CH23_EBA1 : CH23_EBA0, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+                    vdoa_tx = 1;
+                    ipu_refresh(i % 2 + 1, (i % 2) ? CH23_EBA1 : CH23_EBA0);    // totally support two instance, inst0 on ipu1, inst2 on ipu2
+
+                } else {
+                    ipu_refresh(i % 2 + 1, display_buffer->addrY);  // totally support two instance, inst0 on ipu1, inst2 on ipu2
+                }
             }
         }
     }
@@ -746,6 +761,7 @@ int decode_test(void *arg)
     DecParam decparam = { 0 };
     int bs_read_mode = 0;
     int active_inst_num = 0;
+    int map_type = LINEAR_FRAME_MAP;
     struct cmd_line *cmdl;
 
     printf("please select decoder instance:(1 or 2)\n");
@@ -760,18 +776,21 @@ int decode_test(void *arg)
     switch (revchar) {
     case '1':
         multi_instance = 0;
-        fat_search_files("264", 1);
+        err = fat_search_files("264", 1);
         break;
     case '2':
         multi_instance = 1;
-        fat_search_files("264", 2);
+        err = fat_search_files("264", 2);
         break;
     default:
         printf("Wrong Input! select 1 as default!\n");
         multi_instance = 0;
-        fat_search_files("264", 1);
+        err = fat_search_files("264", 1);
     }
-
+    if (err == 0) {
+        printf("No specified media files found on the fat32 system!!\n");
+        return 0;
+    }
     printf("please select decoder instance:(1 or 2)\n");
     printf("\t1 - endless decode test.\n");
     printf("\t2 - decode to the file end.\n");
@@ -789,6 +808,16 @@ int decode_test(void *arg)
         bs_read_mode = FILE_READ_NORMAL;
         break;
     }
+    printf("Enable VDOA?(y or n)\n");
+    revchar = 0xFF;
+    do {
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+
+    if ((revchar == 'Y') || (revchar == 'y'))
+        map_type = TILED_FRAME_MB_RASTER_MAP;
+    else
+        map_type = LINEAR_FRAME_MAP;
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 1;
     SDHC_ADMA_mode = 1;
@@ -811,7 +840,7 @@ int decode_test(void *arg)
     cmdl->dering_en = 0;
     cmdl->deblock_en = 0;
     cmdl->chromaInterleave = 1; //partial interleaved mode
-    cmdl->mapType = LINEAR_FRAME_MAP;//TILED_FRAME_MB_RASTER_MAP;
+    cmdl->mapType = map_type;
     cmdl->bs_mode = 0;          /*disable pre-scan */
     cmdl->read_mode = bs_read_mode;
     cmdl->fps = 30;
@@ -836,7 +865,7 @@ int decode_test(void *arg)
         cmdl->dering_en = 0;
         cmdl->deblock_en = 0;
         cmdl->chromaInterleave = 1; //partial interleaved mode
-        cmdl->mapType = LINEAR_FRAME_MAP; //TILED_FRAME_MB_RASTER_MAP;
+        cmdl->mapType = map_type;
         cmdl->bs_mode = 0;      /*disable pre-scan */
         cmdl->read_mode = bs_read_mode;
         cmdl->fps = 30;
@@ -887,8 +916,8 @@ int decode_test(void *arg)
             if (outinfo.indexFrameDisplay >= 0) {
                 /*push the decoded frame into fifo */
                 dec_fifo_push(&gDecFifo[inst],
-                              (uint32_t) (gDecInstance[inst]->pfbpool[outinfo.indexFrameDisplay]->
-                                          addrY), outinfo.indexFrameDisplay);
+                              &(gDecInstance[inst]->pfbpool[outinfo.indexFrameDisplay]),
+                              outinfo.indexFrameDisplay);
             } else if (outinfo.indexFrameDisplay == -1) {
                 vpu_hw_map->codecInstPool[inst].inUse = 0;
                 info_msg("Decode instance %d finished!\n", inst);

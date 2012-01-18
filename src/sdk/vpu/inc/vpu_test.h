@@ -14,6 +14,7 @@
 #include "vpu_util.h"
 #include "../../ipu/inc/ipu_common.h"
 #include "../../usdhc/inc/usdhc_ifc.h"
+#include "../../vdoa/inc/vdoa.h"
 
 #define MAX_FIFO_SIZE 		32
 #define NUM_FRAME_BUFS	64
@@ -25,7 +26,6 @@
 #define SD_PORT_BASE_ADDR	USDHC4_BASE_ADDR
 #endif
 #define SZ_4K			4 * 1024
-
 
 #define STREAM_BUF_SIZE		0x200000
 #define STREAM_FILL_SIZE	0x40000
@@ -227,7 +227,7 @@ struct encode {
 };
 
 typedef struct {
-    uint32_t frames[MAX_FIFO_SIZE];
+    struct frame_buf *frames[MAX_FIFO_SIZE];
     uint32_t id[MAX_FIFO_SIZE];
     int wrptr;
     int rdptr;
@@ -296,10 +296,10 @@ int ipu_refresh(int ipu_index, uint32_t buffer);
 void config_system_parameters(void);
 int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag);
 void init_fat32_device(void *blkreq_func);
-void fat_search_files(char *ext, int num);
+int fat_search_files(char *ext, int num);
 void dec_fifo_init(vdec_frame_buffer_t * fifo, int size);
-int dec_fifo_push(vdec_frame_buffer_t * fifo, uint32_t frame, uint32_t id);
-int dec_fifo_pop(vdec_frame_buffer_t * fifo, uint32_t * frame, uint32_t * id);
+int dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id);
+int dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id);
 int dec_fifo_is_empty(vdec_frame_buffer_t * fifo);
 int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
 void epit2_config(void);

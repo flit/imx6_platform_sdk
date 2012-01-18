@@ -2160,8 +2160,8 @@ RetCode vpu_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info)
     iramParam.codecMode = pCodecInst->codecMode;
     SetDecSecondAXIIRAM(&pDecInfo->secAxiUse, &iramParam);
 
-#if 0 //do not use the maverick cache
     SetTiledMapTypeInfo(pDecInfo->mapType, &pDecInfo->sTiledInfo);
+#if 0
     /* Enable 2-D cache */
     SetMaverickCache(&pDecInfo->cacheConfig, pDecInfo->mapType,
                      pDecInfo->openParam.chromaInterleave);

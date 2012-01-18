@@ -77,7 +77,7 @@ void snvs_srtc_interrupt_handler(void)
 
     snvs_srtc_setup_interrupt(snvs_srtc_module.port, DISABLE);
 
-    if(((psnvs->lpsr & LPSR_LPTA) && snvs_srtc_module.onetime_timer_callback) != NULL)
+    if((psnvs->lpsr & LPSR_LPTA) && (snvs_srtc_module.onetime_timer_callback != NULL))
     {
         psnvs->lpsr &= ~LPSR_LPTA;
         snvs_srtc_module.onetime_timer_callback();

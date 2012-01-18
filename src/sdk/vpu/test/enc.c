@@ -764,7 +764,7 @@ int encode_test(void *arg)
                     /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
                     dec_fill_bsbuffer(gDecInstance[0]->handle, gDecInstance[0]->cmdl,
                                       gBsBuffer[0], gBsBuffer[0] + STREAM_BUF_SIZE,
-                                      gBsBuffer[0], STREAM_BUF_SIZE >> 2, NULL, NULL);
+                                      gBsBuffer[0], STREAM_BUF_SIZE >> 2);
                 };
 
                 vpu_DecGetOutputInfo(gDecInstance[0]->handle, &outinfo);

@@ -310,7 +310,7 @@ int decode_test(void *arg);
 int encode_test(void *arg);
 int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
-                      uint32_t bs_pa_startaddr, int defaultsize, int *eos, int *fill_end_bs);
+                      uint32_t bs_pa_startaddr, int defaultsize);
 extern int config_hdmi_si9022(int ipu_index, int ipu_di);
 extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
 extern int ips_hdmi_1080P60_stream(int ipu_index);

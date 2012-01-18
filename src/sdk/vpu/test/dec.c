@@ -26,7 +26,7 @@ static int isInterlacedMPEG4 = 0;
  */
 int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
-                      uint32_t bs_pa_startaddr, int defaultsize, int *eos, int *fill_end_bs)
+                      uint32_t bs_pa_startaddr, int defaultsize)
 {
     RetCode ret;
     PhysicalAddress pa_read_ptr, pa_write_ptr;
@@ -700,7 +700,7 @@ int decoder_setup(void *arg)
     ret = dec_fill_bsbuffer(dec->handle, cmdl,
                             dec->virt_bsbuf_addr,
                             (dec->virt_bsbuf_addr + STREAM_BUF_SIZE),
-                            dec->phy_bsbuf_addr, fillsize, NULL, NULL);
+                            dec->phy_bsbuf_addr, fillsize);
     while (1) {
         int usdhc_status = 0;
         card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
@@ -907,7 +907,7 @@ int decode_test(void *arg)
                 err =
                     dec_fill_bsbuffer(gDecInstance[inst]->handle, gDecInstance[inst]->cmdl,
                                       gBsBuffer[inst], gBsBuffer[inst] + STREAM_BUF_SIZE,
-                                      gBsBuffer[inst], STREAM_BUF_SIZE >> 2, NULL, NULL);
+                                      gBsBuffer[inst], STREAM_BUF_SIZE >> 2);
             };
 
             vpu_DecGetOutputInfo(gDecInstance[inst]->handle, &outinfo);

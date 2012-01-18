@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2008-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -38,5 +38,9 @@ void system_memory_arrange(void)
     MMU_CONFIG(ttb_base, 0x000, 0x000, 0x100, STRONGLY_ORDERED, ARM_ACCESS_PERM_RW_RW); /* peripherals */
     MMU_CONFIG(ttb_base, 0x100, 0x100, 0x200, OUTER_INNER_WB_WA, ARM_ACCESS_PERM_RW_RW);    /* SDRAM */
     MMU_CONFIG(ttb_base, 0x300, 0x300, 0x700, NON_CACHABLE, ARM_ACCESS_PERM_RW_RW); /* SDRAM reserved for DMA Access */
+#elif defined(MX61_SABRE_TABLET)
+    MMU_CONFIG(ttb_base, 0x000, 0x000, 0x100, STRONGLY_ORDERED, ARM_ACCESS_PERM_RW_RW); /* peripherals */
+    MMU_CONFIG(ttb_base, 0x100, 0x100, 0x100, OUTER_INNER_WB_WA, ARM_ACCESS_PERM_RW_RW);    /* SDRAM */
+    MMU_CONFIG(ttb_base, 0x200, 0x200, 0x300, NON_CACHABLE, ARM_ACCESS_PERM_RW_RW); /* SDRAM reserved for DMA Access */
 #endif
 }

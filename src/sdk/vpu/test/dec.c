@@ -92,47 +92,6 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
     return nread;
 }
 
-/*
- * This function is to convert framebuffer from interleaved Cb/Cr mode
- * to non-interleaved Cb/Cr mode.
- *
- * Note: This function does _NOT_ really store this framebuffer into file.
- */
-static void saveNV12ImageHelper(uint8_t * pYuv, struct decode *dec, uint8_t * buf)
-{
-    int Y, Cb;
-    uint8_t *Y1, *Cb1, *Cr1;
-    int img_size;
-    int y, x;
-    uint8_t *tmp;
-    int height = dec->picheight;
-    int stride = dec->stride;
-
-    if (!pYuv || !buf) {
-        err_msg("pYuv or buf should not be NULL.\n");
-        return;
-    }
-
-    img_size = stride * height;
-
-    Y = (int)buf;
-    Cb = Y + img_size;
-
-    Y1 = pYuv;
-    Cb1 = Y1 + img_size;
-    Cr1 = Cb1 + (img_size >> 2);
-
-    memcpy(Y1, (uint8_t *) Y, img_size);
-
-    for (y = 0; y < (dec->picheight / 2); y++) {
-        tmp = (uint8_t *) (Cb + dec->picwidth * y);
-        for (x = 0; x < dec->picwidth; x += 2) {
-            *Cb1++ = tmp[x];
-            *Cr1++ = tmp[x + 1];
-        }
-    }
-}
-
 int decoder_start(struct decode *dec)
 {
     DecHandle handle = dec->handle;
@@ -229,18 +188,12 @@ int decoder_allocate_framebuffer(struct decode *dec)
     if (rot_en || dering_en || tiled2LinearEnable) {
         /*
          * At least 1 extra fb for rotation(or dering) is needed, two extrafb
-         * are allocated for rotation if path is V4L,then we can delay 1 frame
-         * de-queue from v4l queue to improve performance.
+         * are allocated for rotation 
          */
         dec->rot_buf_count = (dec->cmdl->dst_scheme == PATH_IPU) ? 2 : 1;
         dec->extrafb += dec->rot_buf_count;
     }
 
-    /*
-     * 1 extra fb for deblocking on MX32, no need extrafb for blocking on MX37 and MX51
-     * dec->cmdl->deblock_en has been cleared to zero after set it to oparam.mp4DeblkEnable
-     * in decoder_open() function on MX37 and MX51.
-     */
     if (deblock_en) {
         dec->extrafb++;
     }
@@ -577,11 +530,10 @@ int decoder_parse(struct decode *dec)
     /* worstSliceSize is in kilo-byte unit */
     dec->phy_slicebuf_size = initinfo.worstSliceSize * 1024;
     /*Note by Ray: to support direct rendering */
-#if 0
+	if(dec->cmdl->mapType != LINEAR_FRAME_MAP)
     dec->stride = dec->picwidth;
-#else
+else
     dec->stride = FRAME_MAX_WIDTH;
-#endif
 
     info_msg("Display fps will be %d\n", dec->cmdl->fps);
 
@@ -859,7 +811,7 @@ int decode_test(void *arg)
     cmdl->dering_en = 0;
     cmdl->deblock_en = 0;
     cmdl->chromaInterleave = 1; //partial interleaved mode
-    cmdl->mapType = LINEAR_FRAME_MAP;
+    cmdl->mapType = LINEAR_FRAME_MAP;//TILED_FRAME_MB_RASTER_MAP;
     cmdl->bs_mode = 0;          /*disable pre-scan */
     cmdl->read_mode = bs_read_mode;
     cmdl->fps = 30;
@@ -884,7 +836,7 @@ int decode_test(void *arg)
         cmdl->dering_en = 0;
         cmdl->deblock_en = 0;
         cmdl->chromaInterleave = 1; //partial interleaved mode
-        cmdl->mapType = LINEAR_FRAME_MAP;
+        cmdl->mapType = LINEAR_FRAME_MAP; //TILED_FRAME_MB_RASTER_MAP;
         cmdl->bs_mode = 0;      /*disable pre-scan */
         cmdl->read_mode = bs_read_mode;
         cmdl->fps = 30;

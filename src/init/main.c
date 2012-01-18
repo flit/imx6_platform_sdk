@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2009-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -34,7 +34,7 @@ extern void system_memory_arrange(void);
  */
 int main(void)
 {
-#if defined(MX61_EVB)
+#if defined(MX61_EVB)||defined(MX61_SABRE_TABLET)
     system_memory_arrange();
     disable_strict_align_check();
 #endif

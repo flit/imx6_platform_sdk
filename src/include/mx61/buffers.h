@@ -43,7 +43,7 @@
 #elif defined(MX61_SABRE_TABLET)
 #define FAT_DRIVER_BUFFER       (0x30000000)
 #define VPU_WORK_BUFFERS        (0x30100000)
-#define VIDEO_BUFFERS_START         (0x10000000)
+#define VIDEO_BUFFERS_START         (0x20000000)
 #define VIDEO_BUFFERS_END     (0x30000000)
 #endif
 

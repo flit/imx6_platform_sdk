@@ -1887,7 +1887,6 @@ RetCode vpu_DecOpen(DecHandle * pHandle, DecOpenParam * pop)
     if (pDecInfo->mapType)
         val |= (pDecInfo->tiledLinearEnable << 11 | 0x03 << 9);
     val |= 1 << 12;
-    /*Add by Ray */
     pCodecInst->ctxRegs[CTX_BIT_FRAME_MEM_CTRL] =
         val | (pDecInfo->openParam.chromaInterleave * 0xF << 2);
 
@@ -2161,11 +2160,12 @@ RetCode vpu_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info)
     iramParam.codecMode = pCodecInst->codecMode;
     SetDecSecondAXIIRAM(&pDecInfo->secAxiUse, &iramParam);
 
+#if 0 //do not use the maverick cache
     SetTiledMapTypeInfo(pDecInfo->mapType, &pDecInfo->sTiledInfo);
     /* Enable 2-D cache */
     SetMaverickCache(&pDecInfo->cacheConfig, pDecInfo->mapType,
                      pDecInfo->openParam.chromaInterleave);
-
+#endif
     return RETCODE_SUCCESS;
 }
 

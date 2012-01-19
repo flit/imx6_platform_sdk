@@ -12,10 +12,7 @@
  * @ingroup diag_timer
  */
 
-#include <snvs.h>
-#include <rtc.h>
-#include <soc_memory_map.h>
-#include <interrupt.h>
+#include "hardware.h"
 
 void snvs_rtc_setup_interrupt(struct hw_module *port, uint8_t state);
 void snvs_rtc_interrupt_handler(void);

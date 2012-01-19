@@ -12,10 +12,7 @@
  * @ingroup diag_timer
  */
 
-#include <snvs.h>
-#include <srtc.h>
-#include <soc_memory_map.h>
-#include <interrupt.h>
+#include "hardware.h"
 
 /*!
  * SRTC strucures used by the driver.

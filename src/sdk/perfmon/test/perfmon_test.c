@@ -5,9 +5,8 @@
  * Freescale Semiconductor, Inc.
 */
 #include <stdio.h>
-#include "io.h"
-#include "soc_memory_map.h"
-#include "../inc/perfmon.h"
+#include "hardware.h"
+#include "perfmon.h"
 
 #define ARRAY_SIZE(x)	(sizeof(x)/sizeof((x)[0]))
 

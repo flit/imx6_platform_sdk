@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -33,6 +33,9 @@
 #include "epit.h"
 #include "gpt.h"
 #include "timer.h"
+#include "rtc.h"
+#include "srtc.h"
+#include "snvs.h"
 #include "hdmi_regs.h"
 #include "buffers.h"
 #include "usb_regs.h"

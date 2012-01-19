@@ -5,8 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "io.h"
-#include "soc_memory_map.h"
+#include "hardware.h"
 #include "perfmon.h"
 
 int perfmon_start(uint32_t base, uint32_t mid, perfmon_trans_e trans)

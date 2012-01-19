@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -1602,10 +1602,26 @@ void hdmi_power_on(void)
     }
 }
 
-void hdmi_pgm_iomux(void)
-{
-/* for compatibility with i.MX61 */
+/****************************************************************/
+/* list of functions for build compatibility with i.MX6 platlib */
+/****************************************************************/
+void hdmi_pgm_iomux(void){}
+
+void sii9022_power_on(void){}
+
+unsigned int spdif_get_tx_clk_freq(void){
+    return 0;
 }
+
+void spdif_iomux_config(void){}
+
+void spdif_clk_cfg(void){}
+
+void mipi_backlight_en(void){}
+
+void mipi_display_reset(void){}
+
+void mipi_clock_set(void){}
 
 uint32_t GetCPUFreq(void)
 {

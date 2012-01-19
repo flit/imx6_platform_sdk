@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -62,6 +62,9 @@
 
 #define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #define ADV7180_I2C_ID      (0x42 >> 1)
+
+#define AT24Cx_I2C_BASE     I2C3_BASE_ADDR
+#define AT24Cx_I2C_ID       (0xA0 >> 1)
 
 // MAX7310 I2C settings
 /* For the ARD board which has 1 MAX7310 */
@@ -155,7 +158,7 @@ void board_init(void);
 void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_fec_setup(void);
-void esai_iomux(void);
+void esai_iomux_config(void);
 void audmux_iomux_config(void);
 
 struct hw_module g_debug_uart;
@@ -178,6 +181,9 @@ extern void gpio_backlight_lvds_en(void);
 extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t c);
+
+/* just to allow build compatibility with i.MX6 platlib */
+extern void spdif_iomux_config(void);
 
 /* Board ID */
 #define BOARD_ID_DEFAULT        0x0

@@ -59,6 +59,61 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height)
     ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_EN, 1);
 }
 
+/*
+ * set the CSI module to handle data from camera
+ * @param width: frame width of camera input
+ * @param height: frame height of camera input
+ */
+void ipu_mipi_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height)
+{
+    ipu_write_field(1, IPU_IPU_CONF__CSI1_DATA_SOURCE, 1);
+    ipu_write_field(1, IPU_IPU_CONF__CSI0_DATA_SOURCE, 1);
+    ipu_write_field(1, IPU_CSI0_DI__CSI0_MIPI_DI0, 0x22);
+    ipu_write_field(1, IPU_CSI0_DI__CSI0_MIPI_DI1, 0);
+    ipu_write_field(1, IPU_CSI0_DI__CSI0_MIPI_DI2, 0);
+    ipu_write_field(1, IPU_CSI0_DI__CSI0_MIPI_DI3, 0);
+
+    ipu_write_field(1, IPU_IPU_INT_CTRL_1__IDMAC_EOF_EN_0, 1);
+
+    //CLOCK GATING ENABLE
+    ipu_write_field(1, IPU_IPU_CONF__CSI_SEL, 0);
+//    ipu_write_field(1, IPU_IPU_CONF__SMFC_EN, 1);
+    ipu_write_field(1, IPU_IPU_CONF__CSI0_EN, 1);
+    ipu_write_field(1, IPU_IPU_CONF__CSI1_DATA_SOURCE, 1);
+    ipu_write_field(1, IPU_IPU_CONF__CSI0_DATA_SOURCE, 1);
+
+    //CSI_SENS_CONF
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);  //SENSB_MCLK rate = HSP_CLK rate/(DIV_RATIO+1)
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_EXT_VSYNC, 1);
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1);
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, 4);   //rgb565
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_PACK_TIGHT, 0);
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, 1);
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_SENS_PIX_CLK_POL, 0);
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_DATA_POL, 0);
+
+    // ipu_write_field(1,IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL,1 );
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL, 0);
+    ipu_write_field(1, IPU_CSI0_SENS_CONF__CSI0_VSYNC_POL, 0);
+    //CSI_SENS_FRM_SIZE
+    ipu_write_field(1, IPU_CSI0_SENS_FRM_SIZE__CSI0_SENS_FRM_HEIGHT, height - 1);
+    ipu_write_field(1, IPU_CSI0_SENS_FRM_SIZE__CSI0_SENS_FRM_WIDTH, width - 1);
+
+    //CSI_ACT_FRM_SIZE
+    ipu_write_field(1, IPU_CSI0_ACT_FRM_SIZE__CSI0_ACT_FRM_HEIGHT, height - 1);
+    ipu_write_field(1, IPU_CSI0_ACT_FRM_SIZE__CSI0_ACT_FRM_WIDTH, width - 1);
+
+    //CSI_OUT_FRM_CTRL
+    ipu_write_field(1, IPU_CSI0_OUT_FRM_CTRL__CSI0_HORZ_DWNS, 0);
+    ipu_write_field(1, IPU_CSI0_OUT_FRM_CTRL__CSI0_VERT_DWNS, 0);
+    ipu_write_field(1, IPU_CSI0_OUT_FRM_CTRL__CSI0_HSC, 0);
+    ipu_write_field(1, IPU_CSI0_OUT_FRM_CTRL__CSI0_VSC, 0);
+
+    //IPU_CSI0_CPD_CTRL__ADDR
+    ipu_write_field(1, IPU_CSI0_CPD_CTRL__CSI0_CPD, 0);
+}
+
 /*!
  * set the SMFC(fifo for camera input) property
  *

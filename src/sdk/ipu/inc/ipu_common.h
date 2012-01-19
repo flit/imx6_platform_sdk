@@ -545,6 +545,9 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
                             uint32_t alpha);
 void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
                        ips_dev_panel_t * panel);
+void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
+                         uint32_t panel_fw, uint32_t panel_fh, uint32_t data_format);
+
 void ipu_general_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
                               uint32_t width, uint32_t height, uint32_t pixel_format);
 void ipu_csi_capture_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
@@ -568,6 +571,9 @@ int32_t ipu_idmac_channel_busy(int32_t ipu_index, int32_t channel);
 void ipu_idmac_channel_enable(int32_t ipu_index, int32_t channel, int32_t enable);
 void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
 inline void ipu_cpmem_mod_field(uint32_t base, int32_t w, int32_t bit, int32_t size, uint32_t v);
+void ipu_capture_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
+                              uint32_t width, uint32_t height, uint32_t panel_fw, uint32_t panel_fh,
+                              uint32_t pixel_format);
 
 void ipu_dmfc_config(uint32_t ipu_index, uint32_t channel);
 void ipu_dmfc_alloc(uint32_t ipu_index, uint32_t channel, uint32_t size, uint32_t start_addr,

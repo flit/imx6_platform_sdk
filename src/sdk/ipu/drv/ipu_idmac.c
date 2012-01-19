@@ -429,7 +429,7 @@ void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t
         break;
     case PARTIAL_INTERLEAVED_YUV420:
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_UBO, ubo / 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_VBO, ubo * 2 / 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_VBO, ubo / 8);
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY, sl);
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLUV, sl);
         break;
@@ -461,4 +461,46 @@ void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t
         printf("Invalid pixel format!\n");
         break;
     }
+}
+
+/*!
+ * Capture IPU DMA channel config
+ *
+ * @param	ipu_index:	ipu index
+ * @param	conf:		ipu configuration data structure
+ */
+void ipu_capture_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
+                              uint32_t width, uint32_t height, uint32_t panel_fw, uint32_t panel_fh,
+                              uint32_t pixel_format)
+{
+    uint32_t sl, ubo;
+
+    if (pixel_format == INTERLEAVED_RGB) {
+        sl = 2 * panel_fw - 1;
+        ubo = 0;
+    } else {
+        sl = panel_fw - 1;
+        ubo = panel_fw * panel_fh;
+    }
+
+    ipu_idmac_channel_enable(ipu_index, channel, 0);
+    memset((void *)ipu_cpmem_addr(ipu_index, channel), 0, sizeof(ipu_cpmem_t));
+
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, addr0 / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, addr1 / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FW, width - 1);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FH, height - 1);
+
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_PFS, pixel_format);
+    ipu_idma_pixel_format_config(ipu_index, channel, pixel_format, sl, ubo);
+
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_NPB, 3);
+//    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_SO, 0);
+
+    if ((void *)addr1 == NULL)
+        ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
+    else
+        ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_DOUBLE_BUFFER);
+
+    ipu_idmac_channel_enable(ipu_index, channel, 1);
 }

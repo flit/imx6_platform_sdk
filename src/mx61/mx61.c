@@ -111,6 +111,7 @@ extern void flexcan_test(void);
 extern int spi_test(void);
 extern int vpu_test(void);
 extern int gpmi_test(void);
+extern int mipi_test();
 
 void ALL_test(void)
 {
@@ -128,6 +129,7 @@ void ALL_test(void)
         hdmi_test();
         i2c_test();
         ipu_test();
+        mipi_test();
         sata_test();
         sdma_test();
         snvs_rtc_test();

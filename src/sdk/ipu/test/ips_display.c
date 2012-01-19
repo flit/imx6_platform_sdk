@@ -196,3 +196,33 @@ int32_t ips_hannstar_xga_yuv_stream(int32_t ipu_index)
 
     return 1;
 }
+
+/*!
+ * LVDS display stream
+ *
+ * @param	ipu_index:	ipu index
+ */
+int32_t ips_mipi_wvga_rgb_stream(int32_t ipu_index)
+{
+    uint32_t disp_mem0 = CH23_EBA0, disp_mem1 = (uint32_t) NULL;
+    ips_dev_panel_t *panel;
+
+    panel = search_panel("TRULY MIPI TFT480800");
+    
+	/*reset IPU */
+    ipu_sw_reset(ipu_index, 1000);
+
+    /*setup IPU display channel */
+    ipu_display_setup(ipu_index, disp_mem0, disp_mem1, INTERLEAVED_RGB, panel);
+    
+	/*load image */
+    load_centralized_image(disp_mem0, panel);
+
+    /*enable ipu display channel */
+    ipu_enable_display(ipu_index);
+    
+	/*enable panel */
+    panel->panel_init(&ipu_index);
+
+    return 1;
+}

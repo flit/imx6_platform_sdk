@@ -15,6 +15,7 @@
 #include "hardware.h"
 
 extern int32_t mipi_csi2_test(void);
+extern int32_t mipi_dsi_test(void);
 
 typedef struct {
     const char *name;
@@ -23,6 +24,7 @@ typedef struct {
 
 static mipi_test_t mipi_tests[] = {
     {"mipi csi-2", mipi_csi2_test},
+    {"mipi dsi test", mipi_dsi_test},
 };
 
 int32_t mipi_test(void)

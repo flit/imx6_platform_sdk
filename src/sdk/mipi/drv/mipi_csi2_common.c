@@ -131,7 +131,7 @@ void mipi_sensor_load_firmware(unsigned int i2c_base, mipi_cam_mode_t * mipi_cam
         mipi_sensor_write_reg(i2c_base,
                               (mipi_cam_fm->setting + i)->addr, (mipi_cam_fm->setting + i)->value);
         if ((mipi_cam_fm->setting + i)->delay_us)
-            hal_delay_us((mipi_cam_fm->setting + i)->delay_us);
+            hal_delay_us((mipi_cam_fm->setting + i)->delay_us * 1000);
         if ((mipi_cam_fm->setting + i)->verify) {
             mipi_sensor_read_reg(i2c_base, (mipi_cam_fm->setting + i)->addr, &val);
             if ((mipi_cam_fm->setting + i)->value != val) {

@@ -17,6 +17,7 @@
 /* Standard testbench defines files */
 #include "imx_i2c.h"
 #include "hardware.h"
+#include <math.h>
 
 #define ARRAY_SIZE(x)	(sizeof(x) / sizeof((x)[0]))
 
@@ -300,4 +301,5 @@ extern cam_firmware_t ov5640_mipi_VGA_640x480_30fps_YUV422_fm[];
 
 extern mipi_cam_mode_t mipi_cam_modes[];
 
+void mipi_dsi_init(void);
 #endif

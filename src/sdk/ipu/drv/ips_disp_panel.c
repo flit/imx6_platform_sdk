@@ -72,6 +72,23 @@ static int sii9022_1080p60_deinit(void)
     return true;
 }
 
+extern void mipi_backlight_en(void);
+extern void mipi_display_reset(void);
+extern void mipi_clock_set(void);
+
+static int mipi_display_init(int *ipu_index)
+{
+	mipi_backlight_en();
+	mipi_display_reset();
+	mipi_clock_set();
+	return true;
+}
+
+static int mipi_display_deinit(void)
+{
+	return true;
+}
+
 ips_dev_panel_t disp_dev_list[] = {
     {
      "CLAA01 WVGA",             // name
@@ -175,6 +192,32 @@ ips_dev_panel_t disp_dev_list[] = {
      0,                         // data polarity
      &sii9022_1080p60_init,
      &sii9022_1080p60_deinit,
+     }
+	,
+    {
+     "TRULY MIPI TFT480800",    // name
+	 TRULY_MIPI_TFT480800,		// panel_id_flag
+     DCMAP_RGB888,              // data format for panel
+     60,                        // refresh rate
+     480,                       // panel width
+     800,                       //panel height
+     27000000,                  // pixel clock frequency
+     8,                        // hsync start width
+     4,                        // hsync width
+     4,                        // hsyn back width
+     16,                        // vysnc start width
+     5,                        // vsync width
+     8,                         // vsync back width
+     0,                         // delay from hsync to vsync
+     0,                         // interlaced mode
+     0,                         // clock selection, internal
+     0,                         // clock polarity
+     0,                         // hsync polarity
+     0,                         // vync polarity
+     0,                         // drdy polarity
+     0,                         // data polarity
+     &mipi_display_init,     // initialization
+     &mipi_display_deinit,   // deinit
      }
 };
 

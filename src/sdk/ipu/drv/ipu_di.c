@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -37,7 +37,7 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
     **********************************************************************/
     uint32_t hsync_sel = 1;
     uint32_t vsync_sel = 2;
-    uint32_t clk_src = 1;
+    uint32_t clk_src = panel->clk_sel;
     int clkUp, clkDown;
     int ipuClk, typPixClk, div;
     int hDisp, hSyncStartWidth, hSyncWidth, hSyncEndWidth;

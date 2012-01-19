@@ -322,6 +322,69 @@ void lvds_power_on(void)
 #endif
 }
 
+/*!
+ * enable mipi backlight
+  */
+void mipi_backlight_en(void)
+{
+    //configure pin19 of the mipi dsi/csi connector
+#ifdef MX61_EVB
+    //set GPIO1_9 to 0 so clear vbus on board
+    gpio_dir_config(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
+#endif
+
+#ifdef MX61_ARD
+    //default be populated by P3V3_DELAYED
+#endif
+
+#ifdef MX61_SABRE_TABLET
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D0, ALT5);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D0, 0x1B0B0);
+    gpio_dir_config(GPIO_PORT2, 0, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT2, 0, GPIO_HIGH_LEVEL);
+#endif
+}
+
+/*!
+ * reset MIPI display
+ */
+void mipi_display_reset(void)
+{
+#ifdef MX61_EVB
+/*pin29 of mipi connector for the LCD reset*/
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT, ALT5);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT, 0x1b0b0);
+    gpio_dir_config(GPIO_PORT5, 0, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT5, 0, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_write_data(GPIO_PORT5, 0, GPIO_HIGH_LEVEL);
+    hal_delay_us(1000);
+#endif
+
+#ifdef MX61_ARD
+/*binded with the board reset button*/
+#endif
+
+#ifdef MX61_SABRE_TABLET
+/*pin29 of mipi connector for the LCD reset*/
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0, ALT5);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0, 0x1b0b0);
+    gpio_dir_config(GPIO_PORT6, 11, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT6, 11, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_write_data(GPIO_PORT6, 11, GPIO_HIGH_LEVEL);
+    hal_delay_us(1000);
+#endif
+}
+
+void mipi_clock_set(void)
+{
+    /*change back to default value, why?? */
+    reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
+    reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001000);
+}
+
 /* dummy empty function for camera_test
  * camera power is always on for MX61 SMD board*/
 void camera_power_on(void)

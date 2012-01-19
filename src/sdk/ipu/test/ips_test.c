@@ -31,8 +31,6 @@ int32_t ipu_test(void)
     int32_t test_num = sizeof(ipu_tests) / sizeof(ipu_test_t);
     int32_t i;
 
-    ipu_sw_reset(0, 1000);
-    ipu_sw_reset(1, 1000);
     ipu_iomux_config();
 
     printf("\nStart IPU test\n");

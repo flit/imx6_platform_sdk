@@ -337,7 +337,8 @@ typedef enum {
 enum disp_dev_flag {
     EPSON_VGA,
     CLAA_WVGA,
-    SEIKO_WVGA_7INCH,
+	TRULY_MIPI_TFT480800,
+	SEIKO_WVGA_7INCH,
     SEIKO_WVGA_4_3INCH,
     AUO_XGA_LVDS,
     HannStar_XGA_LVDS,

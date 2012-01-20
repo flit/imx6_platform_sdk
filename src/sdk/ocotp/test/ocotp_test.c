@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -16,8 +16,6 @@
 
 extern int32_t sense_fuse(uint32_t bank, uint32_t row);
 extern void fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value);
-
-uint32_t get_int(void);
 
 /*! 
  * OCOTP test.
@@ -76,7 +74,7 @@ int32_t ocotp_test(void)
 
             printf("\n !! Do you really want to blow 0x%08X in bank %d / row %d ? (Y/N)!!\n",
                    value, bank, row);
-            printf("Note that writting 0x0 is harmless.\n");
+            printf("Note that writing 0x0 is harmless.\n");
             do {
                 sel = getchar();
             } while (sel == NONE_CHAR);

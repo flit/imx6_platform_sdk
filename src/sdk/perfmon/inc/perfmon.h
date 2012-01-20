@@ -214,6 +214,7 @@ typedef enum {
     PERFMON_TRANS_READ,
 } perfmon_trans_e;
 
+void perfmon_init(uint32_t base);
 int perfmon_start(uint32_t base, uint32_t mid, perfmon_trans_e trans);
 int perfmon_stop(uint32_t base, perfmon_res_p res);
 

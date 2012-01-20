@@ -321,7 +321,7 @@ extern uint32_t StopPerfCounter(void);
 extern int32_t is_input_char(uint8_t);
 
 extern void camera_power_on(void);
-extern void mxc_csi_port0_iomux_config(void);
+extern void csi_port0_iomux_config(void);
 /* Board ID */
 #define BOARD_ID_DEFAULT               0x0
 #define BOARD_ID_MX61_ARD              0x1

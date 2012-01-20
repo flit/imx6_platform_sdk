@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -61,7 +61,7 @@ static struct hw_module gpt_timer = {
     &gpt_interrupt_routine,
 };
 
-static uint8_t g_capture_event, g_compare_event, g_rollover_event;
+static volatile uint8_t g_capture_event, g_compare_event, g_rollover_event;
 static uint32_t g_counter_val;
 static uint32_t g_test;
 

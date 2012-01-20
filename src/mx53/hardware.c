@@ -1184,7 +1184,7 @@ void esdhc_iomux_config(uint32_t base_address)
 }
 
 /*IOMUX configuration for CSI port0*/
-void mxc_csi_port0_iomux_config(void)
+void csi_port0_iomux_config(void)
 {
     /* config CSI0_PIXCLK pad for ipu instance CSI0_PIXCLK port */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_PIXCLK, ALT0);

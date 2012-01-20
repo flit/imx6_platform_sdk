@@ -19,8 +19,8 @@
 
 #define get_status(x) readw(x + I2C_I2SR)
 
-static uint8_t g_wait_for_irq;
-static uint16_t g_i2c_status_reg;
+static volatile uint8_t g_wait_for_irq;
+static volatile uint16_t g_i2c_status_reg;
 static uint32_t g_port_base_addr;
 static uint8_t g_addr_cycle, g_data_cycle;
 static uint8_t g_read_access;

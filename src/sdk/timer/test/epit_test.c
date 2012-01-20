@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -14,6 +14,8 @@
 
 #include <stdio.h>
 #include "epit_test.h"
+
+static volatile uint8_t g_wait_for_irq;
 
 /*!
  * Main unit test for the EPIT.
@@ -80,14 +82,12 @@ static struct hw_module g_tick_timer = {
     &tick_timer_interrupt_routine,
 };
 
-static uint8_t g_wait_flag;
-
 /*! 
  * Tick timer interrupt handler.
  */
 void tick_timer_interrupt_routine(void)
 {
-    g_wait_flag = 0;
+    g_wait_for_irq = 0;
     /* clear the compare event flag */
     epit_get_compare_event(&g_tick_timer);
 }
@@ -117,8 +117,8 @@ void epit_tick_test(void)
     epit_counter_enable(&g_tick_timer, 10000, IRQ_MODE);
 
     while ((counter/100) != max_duration) {
-        g_wait_flag = 1;
-        while (g_wait_flag == 1);
+        g_wait_for_irq = 1;
+        while (g_wait_for_irq == 1);
         counter++;
 
         if (!(counter%100)) 

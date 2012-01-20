@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -190,7 +190,10 @@ int _write(int fd, char *buf, int nbytes)
 void _sys_exit(int return_code)
 {
     // just put system into WFI mode
-    __asm volatile ("mov r1, #0x0\n\t" "mcr p15, 0, r1, c7, c0, 4\n\t");
+    __asm volatile (
+            "mov r1, #0x0;"
+            "mcr p15, 0, r1, c7, c0, 4;"
+            );
 
     while (1) ;
 }

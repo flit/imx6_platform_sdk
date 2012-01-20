@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -23,7 +23,7 @@ static struct hw_module uart_port = {
     &uart_interrupt_handler,
 };
 
-static uint8_t g_wait_flag;
+static volatile uint8_t g_wait_for_irq;
 
 /*! 
  * UART interrupt handler.
@@ -36,7 +36,7 @@ void uart_interrupt_handler(void)
 
     read_char = uart_getchar(&uart_port);
     printf("IRQ subroutine of tested UART - Read char is %c\n", read_char);
-    g_wait_flag = 0;
+    g_wait_for_irq = 0;
 }
 
 /*! 
@@ -65,7 +65,7 @@ int32_t uart_test(void)
     uart_setup_interrupt(&uart_port, ENABLE);
 
     do {
-        g_wait_flag = 1;
+        g_wait_for_irq = 1;
         printf("Please type a character - x to exit:\n");
         do {
             sel = getchar();
@@ -82,7 +82,7 @@ int32_t uart_test(void)
         /* it will be displayed once read in the tested UART ISR */
         uart_putchar(&uart_port, &sel);
         /* wait for ISR to clear the flag before continuing */
-        while (g_wait_flag == 1) ;
+        while (g_wait_for_irq == 1) ;
 
     } while (1);
 

@@ -12,15 +12,16 @@ int perfmon_start(uint32_t base, uint32_t mid, perfmon_trans_e trans)
 {
     reg32_write(base + HW_PERFMON_CTRL_CLR, BM_PERFMON_CTRL_SFTRST | BM_PERFMON_CTRL_CLKGATE);
 
-    // clear all counters
+    /* clear all counters */
     reg32_write(base + HW_PERFMON_CTRL_SET, BM_PERFMON_CTRL_CLR);
     while (reg32_read(base + HW_PERFMON_CTRL) & BM_PERFMON_CTRL_CLR) ;
 
-    if (PERFMON_TRANS_READ == trans) {
+    /* set the monitored direction */
+    if (trans == PERFMON_TRANS_READ)
         reg32_write(base + HW_PERFMON_CTRL_SET, BM_PERFMON_CTRL_READ_EN);
-    } else {
+    else
         reg32_write(base + HW_PERFMON_CTRL_CLR, BM_PERFMON_CTRL_READ_EN);
-    }
+
     // set MID to profile
     reg32_write(base + HW_PERFMON_MASTER_EN, mid & 0xFFFF);
 
@@ -45,4 +46,14 @@ int perfmon_stop(uint32_t base, perfmon_res_p res)
     reg32_write(base + HW_PERFMON_CTRL_SET, BM_PERFMON_CTRL_CLKGATE);
 
     return 0;
+}
+
+void perfmon_init(uint32_t base)
+{
+    /* mysterious undefined bit */
+    writel(0x10000, IOMUXC_GPR11);
+
+    clock_gating_config(PERFMON3_BASE_ADDR, CLOCK_ON);
+
+    return;
 }

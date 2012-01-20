@@ -118,7 +118,7 @@ int32_t sensor_config(t_camera_profile * sensor)
 {
     int32_t ret = 0;
 
-    mxc_csi_port0_iomux_config();   //config csi port
+    csi_port0_iomux_config();   //config csi port
     ret = sensor_init(sensor);
 
     return ret;

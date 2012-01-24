@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////
 sata_command_header_t *cmdhdr = NULL;
 sata_command_table_t *cmdtbl = NULL;
-sata_ahci_regs_t *imx_sata_host = (sata_ahci_regs_t *) SATA_CONTRLLER_BASE_ADDR;
+sata_ahci_regs_t *imx_sata_host = (sata_ahci_regs_t *) SATA_BASE_ADDR;
 sata_port_regs_t *imx_sata_port0 =
-    (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(0, SATA_CONTRLLER_BASE_ADDR);
+    (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(0, SATA_BASE_ADDR);
 sata_identify_data_t hdd_ident;
 disk_identify_t ident;
 sata_phy_ref_clk_t sata_phy_clk_sel = OSC_UNKNOWN;

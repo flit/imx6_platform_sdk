@@ -1,6 +1,6 @@
 
 /*
- * Copyright (C) 2009-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2009-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -23,19 +23,22 @@
 
 #define ATTACH_INTERRUPT(index,routine) ( g_interrupt_handlers[index] = routine )
 
-#define CPU_0   0
-#define CPU_1   1
-#define CPU_2   2
-#define CPU_3   3
+typedef enum {
+    CPU_0,
+    CPU_1,
+    CPU_2,
+    CPU_3,
+} cpuid_e;
 
 #define POLLING_MODE 0
 
 extern void (*g_interrupt_handlers[]) (void);
+extern volatile uint32_t g_vectNum[4];
 
 typedef void (*irq_hdlr_t) (void);
 
-void disable_interrupt(uint32_t irq_id, uint32_t cpu_num);
-void enable_interrupt(uint32_t irq_id, uint32_t cpu_num, uint32_t priority);
+void disable_interrupt(uint32_t irq_id, uint32_t cpu_id);
+void enable_interrupt(uint32_t irq_id, uint32_t cpu_id, uint32_t priority);
 void register_interrupt_routine(uint32_t irq_id, irq_hdlr_t isr);
 void default_interrupt_routine(void);
 

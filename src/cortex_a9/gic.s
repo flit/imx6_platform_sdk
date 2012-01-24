@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -213,7 +213,6 @@ set_irq_priority:
   ADD     r3, r3, #0x1400         @ Now add the offset of the Priority Level registers from the base of the private peripheral space
   ADD     r0, r0, r3              @ Now add in the base address of the private peripheral space, giving us the absolute address
 
-
   @ Now work out which ID in the register it is
   AND     r2, r2, #0x03           @ Clear all but the bottom four bits, leaves which ID in the reg it is (which byte)
   MOV     r2, r2, LSL #3          @ Multiply by 8, this gives a bit offset
@@ -257,7 +256,6 @@ enable_interrupt_target_cpu:
   ADD     r3, r3, #0x1800         @ Now add the offset of the Target CPU registers from the base of the private peripheral space
   ADD     r0, r0, r3              @ Now add in the base address of the private peripheral space, giving us the absolute address
 
-
   @ Now work out which ID in the register it is
   AND     r2, r2, #0x03           @ Clear all but the bottom four bits, leaves which ID in the reg it is (which byte)
   MOV     r2, r2, LSL #3          @ Multiply by 8, this gives a bit offset
@@ -299,7 +297,6 @@ disable_interrupt_target_cpu:
                                   @ There are four IDs per reg, by clearing the bottom two bits we get an address offset
   ADD     r3, r3, #0x1800         @ Now add the offset of the Target CPU registers from the base of the private peripheral space
   ADD     r0, r0, r3              @ Now add in the base address of the private peripheral space, giving us the absolute address
-
 
   @ Now work out which ID in the register it is
   AND     r2, r2, #0x03           @ Clear all but the bottom four bits, leaves which ID in the reg it is (which byte)
@@ -389,11 +386,8 @@ disable_gic_processor_interface:
   @ r0 contains the passed in priority value; the reset value masks ALL interrupts!
   .func set_cpu_priority_mask
 set_cpu_priority_mask:
-
   MRC     p15, 4, r1, c15, c0, 0  @ Read periph base address to r1
-  
   STR     r0, [r1, #0x0104]       @ Write the Priority Mask register (ICCPMR/ICCIPMR)
-
   BX      lr
   .endfunc @ set_cpu_priority_mask
   
@@ -416,10 +410,8 @@ read_irq_ack:
   @ Writes ID to the End Of Interrupt register
   .func write_end_of_irq
 write_end_of_irq:
-
   MRC     p15, 4, r1, c15, c0, 0  @ Read periph base address
   STR     r0, [r1, #0x0110]       @ Write ID to the End of Interrupt register (ICCEOIR)
-
   BX      lr
   .endfunc @ write_end_of_irq
 

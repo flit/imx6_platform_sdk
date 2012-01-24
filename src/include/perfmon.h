@@ -5,8 +5,10 @@
  * Freescale Semiconductor, Inc.
 */
 
-#ifndef __IMX_PERFMON_H__
-#define	__IMX_PERFMON_H__
+#ifndef __PERFMON_H__
+#define	__PERFMON_H__
+
+#include "perfmon_imx.h"
 
 #define HW_PERFMON_CTRL	(0x00000000)
 #define HW_PERFMON_CTRL_SET	(0x00000004)
@@ -33,7 +35,9 @@
 		(((v) << 13) & BM_PERFMON_CTRL_RSVD1)
 #define BM_PERFMON_CTRL_BUS_ERR_IRQ	0x00001000
 #define BM_PERFMON_CTRL_LATENCY_IRQ	0x00000800
+#define LATENCY_EVENT   BM_PERFMON_CTRL_LATENCY_IRQ
 #define BM_PERFMON_CTRL_TRAP_IRQ	0x00000400
+#define TRAP_EVENT  BM_PERFMON_CTRL_LATENCY_IRQ
 #define BM_PERFMON_CTRL_BUS_ERR_IRQ_EN	0x00000200
 #define BM_PERFMON_CTRL_LATENCY_IRQ_EN	0x00000100
 #define BM_PERFMON_CTRL_TRAP_IRQ_EN	0x00000080
@@ -144,7 +148,7 @@
 #define BF_PERFMON_MAX_LATENCY_COUNT(v)  \
 		(((v) << 0) & BM_PERFMON_MAX_LATENCY_COUNT)
 
-#define HW_PERFMON_DEBUG	(0x000000a0)
+#define HW_PERFMON_DEBUG	(0x000000A0)
 
 #define BP_PERFMON_DEBUG_RSVD	2
 #define BM_PERFMON_DEBUG_RSVD	0xFFFFFFFC
@@ -153,20 +157,7 @@
 #define BM_PERFMON_DEBUG_TOTAL_CYCLE_CLR_EN	0x00000002
 #define BM_PERFMON_DEBUG_ERR_MID	0x00000001
 
-#define HW_PERFMON_VERSION	(0x000000b0)
-
-#define BP_PERFMON_VERSION_MAJOR	24
-#define BM_PERFMON_VERSION_MAJOR	0xFF000000
-#define BF_PERFMON_VERSION_MAJOR(v) \
-		(((v) << 24) & BM_PERFMON_VERSION_MAJOR)
-#define BP_PERFMON_VERSION_MINOR	16
-#define BM_PERFMON_VERSION_MINOR	0x00FF0000
-#define BF_PERFMON_VERSION_MINOR(v)  \
-		(((v) << 16) & BM_PERFMON_VERSION_MINOR)
-#define BP_PERFMON_VERSION_STEP	0
-#define BM_PERFMON_VERSION_STEP	0x0000FFFF
-#define BF_PERFMON_VERSION_STEP(v)  \
-		(((v) << 0) & BM_PERFMON_VERSION_STEP)
+#define HW_PERFMON_VERSION	(0x000000B0)
 
 typedef enum {
     PERFMON_MID0 = 0x01 << 0,
@@ -191,12 +182,12 @@ typedef enum {
 
 typedef union {
     struct {
-        uint32_t aburst:2;
-        uint32_t a_len:4;
-        uint32_t asize:3;
-        uint32_t tag_id:8;
-        uint32_t reserved0:3;
-        uint32_t cnt:12;
+        uint16_t count:12;
+        uint16_t reserved0:3;
+        uint16_t tag_id:8;
+        uint16_t asize:3;
+        uint16_t alen:4;
+        uint16_t aburst:2;
     } fields;
     uint32_t u;
 } perf_latency_t, *perf_latency_p;
@@ -204,18 +195,28 @@ typedef union {
 typedef struct {
     uint32_t total_active_cycle;
     uint32_t total_trans;
-    uint32_t total_datas;
+    uint32_t total_data;
     uint32_t total_lat_cnt;
     perf_latency_t max_latency;
+    uint32_t status;
 } perfmon_res_t, *perfmon_res_p;
 
 typedef enum {
-    PERFMON_TRANS_WRITE,
-    PERFMON_TRANS_READ,
+    WRITE_TRANS,
+    READ_TRANS,
 } perfmon_trans_e;
 
-void perfmon_init(uint32_t base);
-int perfmon_start(uint32_t base, uint32_t mid, perfmon_trans_e trans);
-int perfmon_stop(uint32_t base, perfmon_res_p res);
+#define IN_RANGE    0x00000020
+#define OUT_RANGE   0x00000000
 
-#endif /*__IMX_PERFMON_H__ */
+void perfmon_open(perfmon_id_e id);
+void perfmon_close(perfmon_id_e id);
+void perfmon_start(perfmon_id_e id, perfmon_mid_e mid, perfmon_trans_e trans);
+void perfmon_stop(perfmon_id_e id, perfmon_res_p res);
+void perfmon_get_performance(perfmon_id_e id, perfmon_res_p res,
+                             uint8_t snapshot, uint8_t clear_stat);
+void perfmon_do_snapshot(perfmon_id_e id);
+void perfmon_set_trap_mode(perfmon_id_e id, uint32_t addr_low, uint32_t addr_high, uint8_t range_mode);
+void perfmon_set_latency_mode(perfmon_id_e id, uint32_t lat_threshold);
+
+#endif /* __PERFMON_H__ */

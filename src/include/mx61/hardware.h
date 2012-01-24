@@ -41,6 +41,7 @@
 #include "usb_regs.h"
 #include "usb.h"
 #include "keypad_port.h"
+#include "perfmon.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -53,16 +54,6 @@
 #define VOLPLUS_BUTTON_GPIO_NUM		15
 #define VOLNEG_BUTTON_GOPIO_BASE	GPIO7_BASE_ADDR
 #define VOLNEG_BUTTON_GPIO_NUM		8
-
-// PLL definitions
-#define HW_ANADIG_USB1_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x10) // Anadig 480MHz PLL Control0 Register
-#define HW_ANADIG_USB2_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x20) // Anadig 480MHz PLL Control0 Register
-#define HW_ANADIG_PLL_528_RW    (ANATOP_BASE_ADDR+0x30) // Anadig 528MHz PLL Control register
-#define HW_ANADIG_PLL_528_NUM   (ANATOP_BASE_ADDR+0x50) // Numerator of 528MHz PLL Fractional Loop Divider Register
-#define HW_ANADIG_PLL_528_DENOM (ANATOP_BASE_ADDR+0x60) // Denominator of 528MHz PLL Fractional Loop Divider Register
-#define HW_ANADIG_PFD_528_RW    (ANATOP_BASE_ADDR+0x100)    // 528MHz Clock Phase Fractional Divider Control Register
-#define HW_ANADIG_PLL_SYS_RW    (ANATOP_BASE_ADDR+0x000)    // "System PLL" "CPU PLL" "PLL1"
-#define HW_ANADIG_PLL_ETH_CTRL  (ANATOP_BASE_ADDR+0x0e0)
 
 #define WEIM_REGISTERS_BASE_ADDR WEIM_BASE_ADDR
 #define WEIM_CS_BASE_ADDR   0x08000000
@@ -215,36 +206,15 @@ struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 #define UH2_PORTSC1 (USBH2_BASE_ADDR + 0x184)
 
 #define FEC_BASE_ADDR         ENET_BASE_ADDR
-// **** MUST DEFINE for mx61 for their corresponding tests to run
-// or remove tests for mx61
-/*#define USBOH3_BASE_ADDR			USBOH3_USB_BASE_ADDR
-
-#define CSPI_BASE_ADDR        ECSPI1_BASE_ADDR
-#define IIM_BASE_ADDR         0x0
-#define M4IF_REGISTERS_BASE_ADDR 0x0
-#define WEIM_REGISTERS_BASE_ADDR 0x0
-#define ESDHC1_BASE_ADDR 0x0
-#define ESDHC2_BASE_ADDR 0x1
-#define ESDHC3_BASE_ADDR 0x2
-#define DPLLIP1_BASE_ADDR 0x0
-#define DPLLIP2_BASE_ADDR 0x1
-#define DPLLIP3_BASE_ADDR 0x2
-#define DPLLIP4_BASE_ADDR 0x3
-*/
 
 #define ESDCTL_REGISTERS_BASE_ADDR 0x021b0000
 
 //0x00907000 D IRAM_FREE_SPACE_START
 //0x00937FFC D IRAM_FREE_SPACE_END
 
-/*qh and td pointers defintion*/
+/*qh and td pointers definition*/
 #define QH_BUFFER               0x00908000  // internal RAM
 #define TD_BUFFER               0x00908100  // internal RAM
-
-// SATA test defines
-#define SATA_RW_TEST 1
-#define SATA_CONTRLLER_BASE_PHYSICAL_ADDR  0x02200000   //SATA Phyical Address
-#define SATA_CONTRLLER_BASE_ADDR  SATA_CONTRLLER_BASE_PHYSICAL_ADDR
 
 #define SATA_PROTOCOL_BUFFER_BASE 0x0090a000
 #define SATA_PROTOCOL_BUFFER_SIZE 0x1000

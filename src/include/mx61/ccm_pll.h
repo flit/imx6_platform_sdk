@@ -153,6 +153,16 @@
 
 #define CLK_SRC_32K         32768
 
+// PLL definitions
+#define HW_ANADIG_USB1_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x10) // Anadig 480MHz PLL Control0 Register
+#define HW_ANADIG_USB2_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x20) // Anadig 480MHz PLL Control0 Register
+#define HW_ANADIG_PLL_528_RW    (ANATOP_BASE_ADDR+0x30) // Anadig 528MHz PLL Control register
+#define HW_ANADIG_PLL_528_NUM   (ANATOP_BASE_ADDR+0x50) // Numerator of 528MHz PLL Fractional Loop Divider Register
+#define HW_ANADIG_PLL_528_DENOM (ANATOP_BASE_ADDR+0x60) // Denominator of 528MHz PLL Fractional Loop Divider Register
+#define HW_ANADIG_PFD_528_RW    (ANATOP_BASE_ADDR+0x100)    // 528MHz Clock Phase Fractional Divider Control Register
+#define HW_ANADIG_PLL_SYS_RW    (ANATOP_BASE_ADDR+0x000)    // "System PLL" "CPU PLL" "PLL1"
+#define HW_ANADIG_PLL_ETH_CTRL  (ANATOP_BASE_ADDR+0x0e0)
+
 /* x=0..15 - CG0 to CG15 */
 #define CG(x) (3 << (x*2))
 #define CLOCK_ON        0x3

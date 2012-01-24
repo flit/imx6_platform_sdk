@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2009-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -22,6 +22,13 @@
 
 irq_hdlr_t g_interrupt_handlers[NUM_OF_INTERRUPTS];
 
+/* That variable can be used to determine the interrupt source
+ * while being in an interrupt context.
+ * Being updated during an interrupt, therefore at any time,
+ * that variable shouldn't be used out of this particular context.
+ */
+volatile uint32_t g_vectNum[4];
+
 /**************************** Functions ***************************************/
 
 // IRQ_Handler, this functions handles IRQ exceptions
@@ -29,14 +36,18 @@ irq_hdlr_t g_interrupt_handlers[NUM_OF_INTERRUPTS];
 __attribute__ ((interrupt("IRQ")))
 void IRQ_HDLR(void)
 {
+    /* Keep a local copy for better code */
     uint32_t vectNum;
 
-    vectNum = read_irq_ack();   // send ack, get ID source # 
-    if (vectNum & 0x0200) {     // Check that INT_ID isn't 1023 or 1022 (spurious interrupt)
-        write_end_of_irq(vectNum);  // send end of irq
+    /* vectNum = RESERVED[31:13] | CPUID[12:10] | INTERRUPT_ID[9:0] */
+    vectNum = read_irq_ack();   /* send ack and get ID source */
+    if (vectNum & 0x0200) {     /* Check that INT_ID isn't 1023 or 1022 (spurious interrupt) */
+        write_end_of_irq(vectNum);  /* send end of irq */
     } else {
-        g_interrupt_handlers[vectNum & 0x1FF] ();   // jump to ISR in the look up table
-        write_end_of_irq(vectNum);  // send end of irq
+        /* copy the local value to the global image of CPUID */
+        g_vectNum[(vectNum >> 10) & 0x7] = vectNum & 0x1FF;
+        g_interrupt_handlers[vectNum & 0x1FF] ();   /* jump to ISR in the look up table */
+        write_end_of_irq(vectNum);  /* send end of irq */
     }
 }
 
@@ -61,19 +72,19 @@ void enableALL_interrupts_non_secure(void)
     }
 }
 
-void disable_interrupt(uint32_t irq_id, uint32_t cpu_num)
+void disable_interrupt(uint32_t irq_id, uint32_t cpu_id)
 {
     disable_irq_id(irq_id);
-    disable_interrupt_target_cpu(irq_id, cpu_num);
+    disable_interrupt_target_cpu(irq_id, cpu_id);
 }
 
-void enable_interrupt(uint32_t irq_id, uint32_t cpu_num, uint32_t priority)
+void enable_interrupt(uint32_t irq_id, uint32_t cpu_id, uint32_t priority)
 {
     enable_irq_id(irq_id);
     set_irq_priority(irq_id, priority);
     /* set IRQ as non-secure */
     set_interrupt_as_nonsecure(irq_id);
-    enable_interrupt_target_cpu(irq_id, cpu_num);
+    enable_interrupt_target_cpu(irq_id, cpu_id);
 }
 
 // set funcISR as the ISR function for the source ID #
@@ -84,10 +95,10 @@ void register_interrupt_routine(uint32_t irq_id, irq_hdlr_t isr)
 
 void default_interrupt_routine(void)
 {
-    uint32_t int_num;
-
-    int_num = reg32_read(ICCIAR) & 0x3ff;
-    printf("Interrupt %d has been asserted\n", int_num);
+    /* find a way to address an IRQ handled by another CPU. Assumes
+     * here that CPU_0 is used.
+     */
+    printf("Interrupt %d has been asserted\n", g_vectNum[0]);
 }
 
 void init_interrupts(void)

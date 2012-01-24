@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -22,7 +22,7 @@ extern int32_t i2c_imx6_slave_test(void);
  * I2c test.
  * This test uses the EEPROM write/read test !
  *
- * @return  none
+ * @return  0
  */
 int32_t i2c_test(void)
 {

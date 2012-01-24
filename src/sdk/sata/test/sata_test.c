@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -33,6 +33,7 @@ void fill_buffer(u32 buff, u32 size_in_byte)
 int sata_test(void)
 {
     sata_return_t ret;
+    uint8_t sel;
 
     ret = sata_init(imx_sata_host);
 
@@ -45,8 +46,17 @@ int sata_test(void)
     if (ret == SATA_FAIL) {
         goto error_handler;
     }
-    printf("SATA identify passed\n");
-#ifdef SATA_RW_TEST
+    printf("SATA identify test passed\n");
+
+    printf("Do you want to perform a write/read access to a disk?");
+    printf("  y or Y - yes\n");
+    printf("  any other key to exit.\n\n");
+
+    do {
+        sel = getchar();
+    } while (sel == NONE_CHAR);
+
+    if((sel == 'Y') || (sel == 'y'))
     {
         u32 i = 0;
         static u8 wr_buf[SATA_HDD_SECTOR_SIZE];
@@ -74,7 +84,6 @@ int sata_test(void)
             i++;
         }
     }
-#endif
 
     sata_clock_disable();
     sata_power_off();

@@ -14,8 +14,8 @@
 // Function to config iomux for instance gpio5.
 void gpio5_iomux_config(void)
 {
-    // Config gpio5_GPIO[0] to pad EIM_WAIT(M25)
-    // ZigBee_RESET_B
+    // Config gpio5.GPIO[0] to pad EIM_WAIT(M25)
+    // DI0_D0_CS
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT(0x020E0154)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -78,8 +78,8 @@ void gpio5_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_50MHZ & 0x3) << 6 |
            (DSE_60OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT);
 
-    // Config gpio5_GPIO[2] to pad EIM_A25(H19)
-    // GPS_PWREN
+    // Config gpio5.GPIO[2] to pad EIM_A25(H19)
+    // CHG_FLT1_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_A25(0x020E0088)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

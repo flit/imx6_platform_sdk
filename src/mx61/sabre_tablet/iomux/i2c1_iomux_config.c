@@ -14,7 +14,7 @@
 // Function to config iomux for instance i2c1.
 void i2c1_iomux_config(void)
 {
-    // Config i2c1_SCL to pad CSI0_DAT9(N5)
+    // Config i2c1.SCL to pad CSI0_DAT9(N5)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT9(0x020E027C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -92,7 +92,7 @@ void i2c1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT9);
 
-    // Config i2c1_SDA to pad CSI0_DAT8(N6)
+    // Config i2c1.SDA to pad CSI0_DAT8(N6)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT8(0x020E0278)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

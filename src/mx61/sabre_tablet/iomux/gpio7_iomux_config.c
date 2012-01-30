@@ -14,8 +14,8 @@
 // Function to config iomux for instance gpio7.
 void gpio7_iomux_config(void)
 {
-    // Config gpio7_GPIO[12] to pad GPIO_17(R1)
-    // LID_OPN_CLS_SW
+    // Config gpio7.GPIO[12] to pad GPIO_17(R1)
+    // PCIE_RST_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_17(0x020E024C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -80,8 +80,8 @@ void gpio7_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_17);
 
-    // Config gpio7_GPIO[13] to pad GPIO_18(P6)
-    // KEY_VOL_UP
+    // Config gpio7.GPIO[13] to pad GPIO_18(P6)
+    // PMIC_INT_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_18(0x020E0250)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -151,7 +151,7 @@ void gpio7_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_18);
 
-    // Config gpio7_GPIO[8] to pad SD3_RST(D15)
+    // Config gpio7.GPIO[8] to pad SD3_RST(D15)
     // HEADPHONE_DET
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_RST(0x020E02D0)

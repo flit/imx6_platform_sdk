@@ -14,7 +14,7 @@
 // Function to config iomux for instance audmux.
 void audmux_iomux_config(void)
 {
-    // Config audmux_AUD3_RXD to pad CSI0_DAT7(N3)
+    // Config audmux.AUD3_RXD to pad CSI0_DAT7(N3)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT7(0x020E0274)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -82,7 +82,7 @@ void audmux_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT7);
 
-    // Config audmux_AUD3_TXC to pad CSI0_DAT4(N1)
+    // Config audmux.AUD3_TXC to pad CSI0_DAT4(N1)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT4(0x020E0268)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -150,7 +150,7 @@ void audmux_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT4);
 
-    // Config audmux_AUD3_TXD to pad CSI0_DAT5(P2)
+    // Config audmux.AUD3_TXD to pad CSI0_DAT5(P2)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT5(0x020E026C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -218,7 +218,7 @@ void audmux_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT5);
 
-    // Config audmux_AUD3_TXFS to pad CSI0_DAT6(N4)
+    // Config audmux.AUD3_TXFS to pad CSI0_DAT6(N4)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT6(0x020E0270)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

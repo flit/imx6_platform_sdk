@@ -14,7 +14,7 @@
 // Function to config iomux for instance pwm1.
 void pwm1_iomux_config(void)
 {
-    // Config pwm1_PWMO to pad SD1_DAT3(F18)
+    // Config pwm1.PWMO to pad SD1_DAT3(F18)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3(0x020E0344)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

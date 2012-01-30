@@ -14,7 +14,7 @@
 // Function to config iomux for instance can1.
 void can1_iomux_config(void)
 {
-    // Config can1_RXCAN to pad GPIO_8(R5)
+    // Config can1.RXCAN to pad GPIO_8(R5)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_8(0x020E0244)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -93,7 +93,7 @@ void can1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_8);
 
-    // Config can1_TXCAN to pad GPIO_7(R3)
+    // Config can1.TXCAN to pad GPIO_7(R3)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_7(0x020E0240)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

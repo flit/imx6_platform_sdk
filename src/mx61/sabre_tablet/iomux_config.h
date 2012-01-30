@@ -86,5 +86,6 @@ void usdhc4_iomux_config(void);
 void wdog1_iomux_config(void);
 void wdog2_iomux_config(void);
 void weim_iomux_config(void);
+void gps_iomux_config(void);
 
 #endif // _IOMUX_CONFIG_H_

@@ -14,8 +14,8 @@
 // Function to config iomux for instance gpio1.
 void gpio1_iomux_config(void)
 {
-    // Config gpio1_GPIO[1] to pad GPIO_1(T4)
-    // USB_OTG_ID
+    // Config gpio1.GPIO[1] to pad GPIO_1(T4)
+    // USR_DEF_GRN_LED
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_1(0x020E0224)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -83,7 +83,7 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_1);
 
-    // Config gpio1_GPIO[16] to pad SD1_DAT0(A21)
+    // Config gpio1.GPIO[16] to pad SD1_DAT0(A21)
     // CSI0_PWN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0(0x020E0340)
@@ -151,8 +151,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD1_DAT0);
 
-    // Config gpio1_GPIO[17] to pad SD1_DAT1(C20)
-    // CSI0_RST
+    // Config gpio1.GPIO[17] to pad SD1_DAT1(C20)
+    // CSI0_RST_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1(0x020E033C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -219,8 +219,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD1_DAT1);
 
-    // Config gpio1_GPIO[18] to pad SD1_CMD(B21)
-    // ACCL_INT1_IN
+    // Config gpio1.GPIO[18] to pad SD1_CMD(B21)
+    // ACCL_INT_IN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_CMD(0x020E0348)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -285,8 +285,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD1_CMD);
 
-    // Config gpio1_GPIO[19] to pad SD1_DAT2(E19)
-    // MODEM_ON
+    // Config gpio1.GPIO[19] to pad SD1_DAT2(E19)
+    // CSI_PWN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_DAT2(0x020E034C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -353,8 +353,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD1_DAT2);
 
-    // Config gpio1_GPIO[2] to pad GPIO_2(T1)
-    // TS_INT_N
+    // Config gpio1.GPIO[2] to pad GPIO_2(T1)
+    // USR_DEF_RED_LED
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_2(0x020E0234)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -423,8 +423,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_2);
 
-    // Config gpio1_GPIO[20] to pad SD1_CLK(D20)
-    // ACCL_INT2_IN
+    // Config gpio1.GPIO[20] to pad SD1_CLK(D20)
+    // CSI_RST_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_CLK(0x020E0350)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -490,7 +490,7 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD1_CLK);
 
-    // Config gpio1_GPIO[24] to pad ENET_RX_ER(W23)
+    // Config gpio1.GPIO[24] to pad ENET_RX_ER(W23)
     // RGMII_INT
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_RX_ER(0x020E01D8)
@@ -559,8 +559,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RX_ER);
 
-    // Config gpio1_GPIO[25] to pad ENET_CRS_DV(U21)
-    // ZigBee_INT
+    // Config gpio1.GPIO[25] to pad ENET_CRS_DV(U21)
+    // RGMII_NRST
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_CRS_DV(0x020E01DC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -625,8 +625,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_CRS_DV);
 
-    // Config gpio1_GPIO[26] to pad ENET_RXD1(W22)
-    // USER_DEBUG_OR_CHARGER_DONE
+    // Config gpio1.GPIO[26] to pad ENET_RXD1(W22)
+    // USB_OTG_ID
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_RXD1(0x020E01E0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -694,8 +694,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RXD1);
 
-    // Config gpio1_GPIO[27] to pad ENET_RXD0(W21)
-    // CHARGER_NOW_OR_CMOS_RUN
+    // Config gpio1.GPIO[27] to pad ENET_RXD0(W21)
+    // UOK_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_RXD0(0x020E01E4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -759,8 +759,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_RXD0);
 
-    // Config gpio1_GPIO[28] to pad ENET_TX_EN(V21)
-    // WAKEUP_ZigBee
+    // Config gpio1.GPIO[28] to pad ENET_TX_EN(V21)
+    // ETH_WOL_INT
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_TX_EN(0x020E01E8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -825,8 +825,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_TX_EN);
 
-    // Config gpio1_GPIO[29] to pad ENET_TXD1(W20)
-    // CHG_FLT
+    // Config gpio1.GPIO[29] to pad ENET_TXD1(W20)
+    // USB_H1_OC
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_TXD1(0x020E01EC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -893,8 +893,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_TXD1);
 
-    // Config gpio1_GPIO[30] to pad ENET_TXD0(U20)
-    // CHG_STATUS
+    // Config gpio1.GPIO[30] to pad ENET_TXD0(U20)
+    // USB_OTG_OC
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_TXD0(0x020E01F0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -959,8 +959,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_TXD0);
 
-    // Config gpio1_GPIO[4] to pad GPIO_4(R6)
-    // WLAN_HOST_WAKE
+    // Config gpio1.GPIO[4] to pad GPIO_4(R6)
+    // KEY_VOL_UP
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_4(0x020E0238)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1028,7 +1028,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_4);
 
-    // Config gpio1_GPIO[5] to pad GPIO_5(R4)
+    // Config gpio1.GPIO[5] to pad GPIO_5(R4)
+    // KEY_VOL_DN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_5(0x020E023C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1097,8 +1098,8 @@ void gpio1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_5);
 
-    // Config gpio1_GPIO[6] to pad GPIO_6(T3)
-    // ALS_INT
+    // Config gpio1.GPIO[6] to pad GPIO_6(T3)
+    // PCIE_PWR_EN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_6(0x020E0230)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

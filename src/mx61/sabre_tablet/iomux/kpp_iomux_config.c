@@ -14,7 +14,7 @@
 // Function to config iomux for instance kpp.
 void kpp_iomux_config(void)
 {
-    // Config kpp_COL[6] to pad GPIO_9(T2)
+    // Config kpp.COL[6] to pad GPIO_9(T2)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_9(0x020E0228)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -93,7 +93,7 @@ void kpp_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_GPIO_9);
 
-    // Config kpp_ROW[4] to pad KEY_ROW4(V5)
+    // Config kpp.ROW[4] to pad KEY_ROW4(V5)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_ROW4(0x020E021C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

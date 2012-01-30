@@ -14,7 +14,7 @@
 // Function to config iomux for instance ecspi1.
 void ecspi1_iomux_config(void)
 {
-    // Config ecspi1_MISO to pad KEY_COL1(U7)
+    // Config ecspi1.MISO to pad KEY_COL1(U7)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_COL1(0x020E0200)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -95,7 +95,7 @@ void ecspi1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_COL1);
 
-    // Config ecspi1_MOSI to pad KEY_ROW0(V6)
+    // Config ecspi1.MOSI to pad KEY_ROW0(V6)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_ROW0(0x020E01FC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -175,7 +175,7 @@ void ecspi1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_ROW0);
 
-    // Config ecspi1_SCLK to pad KEY_COL0(W5)
+    // Config ecspi1.SCLK to pad KEY_COL0(W5)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_COL0(0x020E01F8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -256,7 +256,7 @@ void ecspi1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_COL0);
 
-    // Config ecspi1_SS0 to pad KEY_ROW1(U6)
+    // Config ecspi1.SS0 to pad KEY_ROW1(U6)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_ROW1(0x020E0204)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

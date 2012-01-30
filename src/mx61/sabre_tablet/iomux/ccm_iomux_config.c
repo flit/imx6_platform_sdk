@@ -14,7 +14,7 @@
 // Function to config iomux for instance ccm.
 void ccm_iomux_config(void)
 {
-    // Config ccm_CLKO to pad GPIO_0(T5)
+    // Config ccm.CLKO to pad GPIO_0(T5)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_0(0x020E0220)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

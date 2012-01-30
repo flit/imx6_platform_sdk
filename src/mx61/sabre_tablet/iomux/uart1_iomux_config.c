@@ -14,7 +14,7 @@
 // Function to config iomux for instance uart1.
 void uart1_iomux_config(void)
 {
-    // Config uart1_RXD_MUX to pad CSI0_DAT11(M3)
+    // Config uart1.RXD_MUX to pad CSI0_DAT11(M3)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT11(0x020E0284)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -93,7 +93,7 @@ void uart1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT11);
 
-    // Config uart1_TXD_MUX to pad CSI0_DAT10(M1)
+    // Config uart1.TXD_MUX to pad CSI0_DAT10(M1)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT10(0x020E0280)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

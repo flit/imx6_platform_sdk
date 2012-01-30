@@ -14,8 +14,8 @@
 // Function to config iomux for instance gpio6.
 void gpio6_iomux_config(void)
 {
-    // Config gpio6_GPIO[10] to pad NANDF_RB0(B16)
-    // MIPI_RST_B
+    // Config gpio6.GPIO[10] to pad NANDF_RB0(B16)
+    // AUX_5V_EN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0(0x020E02E0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -81,7 +81,7 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0);
 
-    // Config gpio6_GPIO[11] to pad NANDF_CS0(F15)
+    // Config gpio6.GPIO[11] to pad NANDF_CS0(F15)
     // DISP0_RST_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0(0x020E02E4)
@@ -145,7 +145,7 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0);
 
-    // Config gpio6_GPIO[14] to pad NANDF_CS1(C16)
+    // Config gpio6.GPIO[14] to pad NANDF_CS1(C16)
     // DISP0_PWR_EN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_CS1(0x020E02E8)
@@ -210,8 +210,8 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CS1);
 
-    // Config gpio6_GPIO[15] to pad NANDF_CS2(A17)
-    // eCOMPASS_INT
+    // Config gpio6.GPIO[15] to pad NANDF_CS2(A17)
+    // CABC_EN0
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2(0x020E02EC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -277,8 +277,8 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2);
 
-    // Config gpio6_GPIO[16] to pad NANDF_CS3(D16)
-    // CABC_EN0
+    // Config gpio6.GPIO[16] to pad NANDF_CS3(D16)
+    // CABC_EN1
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3(0x020E02F0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -345,8 +345,8 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3);
 
-    // Config gpio6_GPIO[31] to pad EIM_BCLK(N22)
-    // SATA_PWR_EN
+    // Config gpio6.GPIO[31] to pad EIM_BCLK(N22)
+    // DI0_D1_CS
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_EIM_BCLK(0x020E0158)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -408,8 +408,8 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_FAST & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_BCLK);
 
-    // Config gpio6_GPIO[7] to pad NANDF_CLE(C15)
-    // CAP_TCH_FUN0
+    // Config gpio6.GPIO[7] to pad NANDF_CLE(C15)
+    // CAP_TCH_INT1
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_CLE(0x020E02D4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -475,7 +475,7 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CLE);
 
-    // Config gpio6_GPIO[8] to pad NANDF_ALE(A16)
+    // Config gpio6.GPIO[8] to pad NANDF_ALE(A16)
     // CAP_TCH_INT0
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_ALE(0x020E02D8)
@@ -542,8 +542,8 @@ void gpio6_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE);
 
-    // Config gpio6_GPIO[9] to pad NANDF_WP_B(E15)
-    // MIPI_BAKLGT_ON
+    // Config gpio6.GPIO[9] to pad NANDF_WP_B(E15)
+    // AUX_3V15_EN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B(0x020E02DC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

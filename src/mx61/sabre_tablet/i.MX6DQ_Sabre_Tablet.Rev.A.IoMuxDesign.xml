@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PinMuxDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Chip>i.MX6DQ</Chip>
   <Board>Sabre_Tablet</Board>
@@ -7,7 +7,7 @@
   <Company>Freescale</Company>
   <Contact>B18548</Contact>
   <ContactEmail />
-  <Description></Description>
+  <Description />
   <SignalDesign Name="ANATOP_24M_OUT" NativeInstance="anatop" Instance="anatop" InstanceAlias="anatop" IsChecked="false" IsExcluded="false">
     <AltMode Name="ALT7" BallNumber="D21" BallName="RGMII_TXC" PowerGroup="RGMII" Instance="anatop" Port="ANATOP_24M_OUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_RGMII_TXC" Value="7" />
@@ -1153,7 +1153,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_0" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[1]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="T4" BallName="GPIO_1" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[1]" Comment="USB_OTG_ID" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="T4" BallName="GPIO_1" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[1]" Comment="USR_DEF_GRN_LED" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_1" Value="110768" />
   </SignalDesign>
@@ -1193,27 +1193,27 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_SD1_DAT0" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[17]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="C20" BallName="SD1_DAT1" PowerGroup="SD1" Instance="gpio1" Port="GPIO[17]" Comment="CSI0_RST" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="C20" BallName="SD1_DAT1" PowerGroup="SD1" Instance="gpio1" Port="GPIO[17]" Comment="CSI0_RST_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_SD1_DAT1" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[18]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="B21" BallName="SD1_CMD" PowerGroup="SD1" Instance="gpio1" Port="GPIO[18]" Comment="ACCL_INT1_IN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="B21" BallName="SD1_CMD" PowerGroup="SD1" Instance="gpio1" Port="GPIO[18]" Comment="ACCL_INT_IN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_SD1_CMD" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_SD1_CMD" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[19]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="E19" BallName="SD1_DAT2" PowerGroup="SD1" Instance="gpio1" Port="GPIO[19]" Comment="MODEM_ON" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="E19" BallName="SD1_DAT2" PowerGroup="SD1" Instance="gpio1" Port="GPIO[19]" Comment="CSI_PWN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_SD1_DAT2" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_SD1_DAT2" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[2]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="T1" BallName="GPIO_2" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[2]" Comment="TS_INT_N" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="T1" BallName="GPIO_2" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[2]" Comment="USR_DEF_RED_LED" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_2" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_2" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[20]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="D20" BallName="SD1_CLK" PowerGroup="SD1" Instance="gpio1" Port="GPIO[20]" Comment="ACCL_INT2_IN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="D20" BallName="SD1_CLK" PowerGroup="SD1" Instance="gpio1" Port="GPIO[20]" Comment="CSI_RST_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_SD1_CLK" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_SD1_CLK" Value="110768" />
   </SignalDesign>
@@ -1238,27 +1238,27 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_RX_ER" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[25]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="U21" BallName="ENET_CRS_DV" PowerGroup="ENET" Instance="gpio1" Port="GPIO[25]" Comment="ZigBee_INT" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="U21" BallName="ENET_CRS_DV" PowerGroup="ENET" Instance="gpio1" Port="GPIO[25]" Comment="RGMII_NRST" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_ENET_CRS_DV" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_CRS_DV" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[26]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="W22" BallName="ENET_RXD1" PowerGroup="ENET" Instance="gpio1" Port="GPIO[26]" Comment="USER_DEBUG_OR_CHARGER_DONE" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="W22" BallName="ENET_RXD1" PowerGroup="ENET" Instance="gpio1" Port="GPIO[26]" Comment="USB_OTG_ID" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_ENET_RXD1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_RXD1" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[27]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="W21" BallName="ENET_RXD0" PowerGroup="ENET" Instance="gpio1" Port="GPIO[27]" Comment="CHARGER_NOW_OR_CMOS_RUN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="W21" BallName="ENET_RXD0" PowerGroup="ENET" Instance="gpio1" Port="GPIO[27]" Comment="UOK_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_ENET_RXD0" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_RXD0" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[28]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="V21" BallName="ENET_TX_EN" PowerGroup="ENET" Instance="gpio1" Port="GPIO[28]" Comment="WAKEUP_ZigBee" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="V21" BallName="ENET_TX_EN" PowerGroup="ENET" Instance="gpio1" Port="GPIO[28]" Comment="ETH_WOL_INT" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_ENET_TX_EN" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_TX_EN" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[29]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="W20" BallName="ENET_TXD1" PowerGroup="ENET" Instance="gpio1" Port="GPIO[29]" Comment="CHG_FLT" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="W20" BallName="ENET_TXD1" PowerGroup="ENET" Instance="gpio1" Port="GPIO[29]" Comment="USB_H1_OC" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_ENET_TXD1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_TXD1" Value="110768" />
   </SignalDesign>
@@ -1268,7 +1268,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_3" Value="78000" />
   </SignalDesign>
   <SignalDesign Name="GPIO[30]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="U20" BallName="ENET_TXD0" PowerGroup="ENET" Instance="gpio1" Port="GPIO[30]" Comment="CHG_STATUS" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="U20" BallName="ENET_TXD0" PowerGroup="ENET" Instance="gpio1" Port="GPIO[30]" Comment="USB_OTG_OC" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_ENET_TXD0" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_TXD0" Value="110768" />
   </SignalDesign>
@@ -1278,17 +1278,17 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_ENET_MDC" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[4]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="R6" BallName="GPIO_4" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[4]" Comment="WLAN_HOST_WAKE" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="R6" BallName="GPIO_4" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[4]" Comment="KEY_VOL_UP" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_4" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_4" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[5]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="R4" BallName="GPIO_5" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[5]" Comment="" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="R4" BallName="GPIO_5" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[5]" Comment="KEY_VOL_DN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_5" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_5" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[6]" NativeInstance="gpio1" Instance="gpio1" InstanceAlias="gpio1" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="T3" BallName="GPIO_6" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[6]" Comment="ALS_INT" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="T3" BallName="GPIO_6" PowerGroup="GPIO" Instance="gpio1" Port="GPIO[6]" Comment="PCIE_PWR_EN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_6" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_6" Value="110768" />
   </SignalDesign>
@@ -1308,12 +1308,12 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_9" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[0]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="A18" BallName="NANDF_D0" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[0]" Comment="DISP0_CONTRAST" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="A18" BallName="NANDF_D0" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[0]" Comment="SD3_CD_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_D0" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_D0" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[1]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="C17" BallName="NANDF_D1" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[1]" Comment="KEY_INT" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="C17" BallName="NANDF_D1" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[1]" Comment="SD3_WP" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_D1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_D1" Value="110768" />
   </SignalDesign>
@@ -1358,17 +1358,17 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_A21" Value="12465" />
   </SignalDesign>
   <SignalDesign Name="GPIO[18]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="H22" BallName="EIM_A20" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[18]" Comment="BOOTSW_PWREN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="H22" BallName="EIM_A20" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[18]" Comment="EPDC_PWRCTRL2" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_A20" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_A20" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[19]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="G25" BallName="EIM_A19" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[19]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="G25" BallName="EIM_A19" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[19]" Comment="EPDC_PWRCTRL1" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_A19" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_A19" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[2]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="F16" BallName="NANDF_D2" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[2]" Comment="KEY_RESET" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="F16" BallName="NANDF_D2" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[2]" Comment="SD2_CD_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_D2" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_D2" Value="110768" />
   </SignalDesign>
@@ -1378,7 +1378,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_A18" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[21]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="G24" BallName="EIM_A17" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[21]" Comment="WKUP_BY_MODEM" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="G24" BallName="EIM_A17" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[21]" Comment="E_PMIC_GOOD_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_A17" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_A17" Value="45233" />
   </SignalDesign>
@@ -1393,12 +1393,12 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_CS0" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[24]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="J23" BallName="EIM_CS1" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[24]" Comment="CAP_TCH_FUN1" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="J23" BallName="EIM_CS1" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[24]" Comment="DOK_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_CS1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_CS1" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[25]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="J24" BallName="EIM_OE" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[25]" Comment="CABC_EN1" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="J24" BallName="EIM_OE" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[25]" Comment="EPDC_PWRIRQ" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_OE" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_OE" Value="45233" />
   </SignalDesign>
@@ -1412,18 +1412,13 @@
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_LBA" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_LBA" Value="45233" />
   </SignalDesign>
-  <SignalDesign Name="GPIO[28]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="K21" BallName="EIM_EB0" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[28]" Comment="USB_HUB_RESET_B" IsLocked="false" />
-    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_EB0" Value="5" />
-    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_EB0" Value="45233" />
-  </SignalDesign>
   <SignalDesign Name="GPIO[29]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="false" IsExcluded="false">
     <AltMode Name="ALT5" BallNumber="K23" BallName="EIM_EB1" PowerGroup="WEIM_MAIN" Instance="gpio2" Port="GPIO[29]" Comment="BT_RESET" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_EB1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_EB1" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[3]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="D17" BallName="NANDF_D3" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[3]" Comment="SYS_ON_OFF_REQ" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="D17" BallName="NANDF_D3" PowerGroup="NANDF" Instance="gpio2" Port="GPIO[3]" Comment="SD2_WP" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_D3" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_D3" Value="110768" />
   </SignalDesign>
@@ -1433,7 +1428,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_EB2" Value="78000" />
   </SignalDesign>
   <SignalDesign Name="GPIO[31]" NativeInstance="gpio2" Instance="gpio2" InstanceAlias="gpio2" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="F23" BallName="EIM_EB3" PowerGroup="WEIM_SEC" Instance="gpio2" Port="GPIO[31]" Comment="" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="F23" BallName="EIM_EB3" PowerGroup="WEIM_SEC" Instance="gpio2" Port="GPIO[31]" Comment="SENSOR_PWR_EN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_EB3" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_EB3" Value="110768" />
   </SignalDesign>
@@ -1467,11 +1462,6 @@
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_SD4_DAT1" Value="110768" />
   </SignalDesign>
-  <SignalDesign Name="GPIO[0]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="L20" BallName="EIM_DA0" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[0]" Comment="Reserved" IsLocked="false" />
-    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA0" Value="5" />
-    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA0" Value="45233" />
-  </SignalDesign>
   <SignalDesign Name="GPIO[1]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="false" IsExcluded="false">
     <AltMode Name="ALT5" BallNumber="J25" BallName="EIM_DA1" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[1]" Comment="Reserved" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA1" Value="5" />
@@ -1493,22 +1483,22 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA12" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[13]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="M23" BallName="EIM_DA13" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[13]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="M23" BallName="EIM_DA13" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[13]" Comment="CHG_STATUS2_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA13" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA13" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[14]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="N23" BallName="EIM_DA14" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[14]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="N23" BallName="EIM_DA14" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[14]" Comment="CHG_FLT2_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA14" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA14" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[15]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="N24" BallName="EIM_DA15" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[15]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="N24" BallName="EIM_DA15" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[15]" Comment="BARO_INT" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA15" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA15" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[16]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="C25" BallName="EIM_D16" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[16]" Comment="GPS_CLK_EN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="C25" BallName="EIM_D16" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[16]" Comment="COMP_INT" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D16" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D16" Value="110768" />
   </SignalDesign>
@@ -1517,13 +1507,8 @@
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D17" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D17" Value="110768" />
   </SignalDesign>
-  <SignalDesign Name="GPIO[18]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="D24" BallName="EIM_D18" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[18]" Comment="GPS_PPS" IsLocked="false" />
-    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D18" Value="5" />
-    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D18" Value="110768" />
-  </SignalDesign>
   <SignalDesign Name="GPIO[19]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="G21" BallName="EIM_D19" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[19]" Comment="LVDS_PWR_EN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="G21" BallName="EIM_D19" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[19]" Comment="PCIE_WAKE_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D19" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D19" Value="110768" />
   </SignalDesign>
@@ -1533,12 +1518,12 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA2" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[20]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="G20" BallName="EIM_D20" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[20]" Comment="LED_FLASH_EN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="G20" BallName="EIM_D20" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[20]" Comment="EPDC_PMIC_WAKEUP" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D20" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D20" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[21]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="H20" BallName="EIM_D21" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[21]" Comment="USB_OTG_OC" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="H20" BallName="EIM_D21" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[21]" Comment="USB_H1_PWR_EN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D21" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D21" Value="110768" />
   </SignalDesign>
@@ -1548,7 +1533,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D22" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[23]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="D25" BallName="EIM_D23" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[23]" Comment="" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="D25" BallName="EIM_D23" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[23]" Comment="CHG_STATUS1_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D23" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D23" Value="110768" />
   </SignalDesign>
@@ -1563,7 +1548,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D25" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[26]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="E24" BallName="EIM_D26" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[26]" Comment="" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="E24" BallName="EIM_D26" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[26]" Comment="TS_INT" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D26" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D26" Value="110768" />
   </SignalDesign>
@@ -1573,12 +1558,12 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D27" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[28]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="G23" BallName="EIM_D28" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[28]" Comment="" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="G23" BallName="EIM_D28" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[28]" Comment="DISP0_RD" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D28" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D28" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[29]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="J19" BallName="EIM_D29" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[29]" Comment="" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="J19" BallName="EIM_D29" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[29]" Comment="PWR_OFF_REQ" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D29" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D29" Value="110768" />
   </SignalDesign>
@@ -1588,7 +1573,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA3" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[30]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="J20" BallName="EIM_D30" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[30]" Comment="USB_H1_OC" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="J20" BallName="EIM_D30" PowerGroup="WEIM_SEC" Instance="gpio3" Port="GPIO[30]" Comment="DISP0_WR" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D30" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D30" Value="110768" />
   </SignalDesign>
@@ -1608,32 +1593,32 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA5" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[6]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="K25" BallName="EIM_DA6" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[6]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="K25" BallName="EIM_DA6" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[6]" Comment="KP_LOCK" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA6" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA6" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[7]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="L25" BallName="EIM_DA7" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[7]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="L25" BallName="EIM_DA7" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[7]" Comment="TOUCH_RST_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA7" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA7" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[8]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="L24" BallName="EIM_DA8" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[8]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="L24" BallName="EIM_DA8" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[8]" Comment="DISP0_RST_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA8" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA8" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[9]" NativeInstance="gpio3" Instance="gpio3" InstanceAlias="gpio3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="M21" BallName="EIM_DA9" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[9]" Comment="Reserved" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="M21" BallName="EIM_DA9" PowerGroup="WEIM_MAIN" Instance="gpio3" Port="GPIO[9]" Comment="ALS_INT" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA9" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA9" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[10]" NativeInstance="gpio4" Instance="gpio4" InstanceAlias="gpio4" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="W6" BallName="KEY_COL2" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[10]" Comment="" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="W6" BallName="KEY_COL2" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[10]" Comment="CODEC_PWR_EN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_KEY_COL2" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_KEY_COL2" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[11]" NativeInstance="gpio4" Instance="gpio4" InstanceAlias="gpio4" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="W4" BallName="KEY_ROW2" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[11]" Comment="KEY_ROW2" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="W4" BallName="KEY_ROW2" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[11]" Comment="HDMI_CEC_IN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_KEY_ROW2" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_KEY_ROW2" Value="110768" />
   </SignalDesign>
@@ -1648,7 +1633,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_KEY_ROW3" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[14]" NativeInstance="gpio4" Instance="gpio4" InstanceAlias="gpio4" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="T6" BallName="KEY_COL4" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[14]" Comment="Baro_INT1" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="T6" BallName="KEY_COL4" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[14]" Comment="PCIE_DIS_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_KEY_COL4" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_KEY_COL4" Value="110768" />
   </SignalDesign>
@@ -1738,7 +1723,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT10" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[5]" NativeInstance="gpio4" Instance="gpio4" InstanceAlias="gpio4" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="P5" BallName="GPIO_19" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[5]" Comment="KEY_VOL_DN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="P5" BallName="GPIO_19" PowerGroup="GPIO" Instance="gpio4" Port="GPIO[5]" Comment="CAN1_STBY" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_19" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_19" Value="110768" />
   </SignalDesign>
@@ -1763,7 +1748,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_KEY_ROW1" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[0]" NativeInstance="gpio5" Instance="gpio5" InstanceAlias="gpio5" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="M25" BallName="EIM_WAIT" PowerGroup="WEIM_MAIN" Instance="gpio5" Port="GPIO[0]" Comment="ZigBee_RESET_B" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="M25" BallName="EIM_WAIT" PowerGroup="WEIM_MAIN" Instance="gpio5" Port="GPIO[0]" Comment="DI0_D0_CS" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT" Value="45152" />
   </SignalDesign>
@@ -1818,7 +1803,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[2]" NativeInstance="gpio5" Instance="gpio5" InstanceAlias="gpio5" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="H19" BallName="EIM_A25" PowerGroup="WEIM_SEC" Instance="gpio5" Port="GPIO[2]" Comment="GPS_PWREN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="H19" BallName="EIM_A25" PowerGroup="WEIM_SEC" Instance="gpio5" Port="GPIO[2]" Comment="CHG_FLT1_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_A25" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_A25" Value="45233" />
   </SignalDesign>
@@ -1923,7 +1908,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT15" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[10]" NativeInstance="gpio6" Instance="gpio6" InstanceAlias="gpio6" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="B16" BallName="NANDF_RB0" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[10]" Comment="MIPI_RST_B" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="B16" BallName="NANDF_RB0" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[10]" Comment="AUX_5V_EN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0" Value="110768" />
   </SignalDesign>
@@ -1938,12 +1923,12 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_CS1" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[15]" NativeInstance="gpio6" Instance="gpio6" InstanceAlias="gpio6" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="A17" BallName="NANDF_CS2" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[15]" Comment="eCOMPASS_INT" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="A17" BallName="NANDF_CS2" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[15]" Comment="CABC_EN0" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_CS2" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[16]" NativeInstance="gpio6" Instance="gpio6" InstanceAlias="gpio6" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="D16" BallName="NANDF_CS3" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[16]" Comment="CABC_EN0" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="D16" BallName="NANDF_CS3" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[16]" Comment="CABC_EN1" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_CS3" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_CS3" Value="110768" />
   </SignalDesign>
@@ -2046,7 +2031,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_GRP_RGMII_TERM" Value="0" />
   </SignalDesign>
   <SignalDesign Name="GPIO[31]" NativeInstance="gpio6" Instance="gpio6" InstanceAlias="gpio6" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="N22" BallName="EIM_BCLK" PowerGroup="WEIM_MAIN" Instance="gpio6" Port="GPIO[31]" Comment="SATA_PWR_EN" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="N22" BallName="EIM_BCLK" PowerGroup="WEIM_MAIN" Instance="gpio6" Port="GPIO[31]" Comment="DI0_D1_CS" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_BCLK" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_BCLK" Value="45233" />
   </SignalDesign>
@@ -2066,7 +2051,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_A23" Value="45233" />
   </SignalDesign>
   <SignalDesign Name="GPIO[7]" NativeInstance="gpio6" Instance="gpio6" InstanceAlias="gpio6" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="C15" BallName="NANDF_CLE" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[7]" Comment="CAP_TCH_FUN0" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="C15" BallName="NANDF_CLE" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[7]" Comment="CAP_TCH_INT1" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_CLE" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_CLE" Value="110768" />
   </SignalDesign>
@@ -2076,7 +2061,7 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[9]" NativeInstance="gpio6" Instance="gpio6" InstanceAlias="gpio6" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="E15" BallName="NANDF_WP_B" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[9]" Comment="MIPI_BAKLGT_ON" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="E15" BallName="NANDF_WP_B" PowerGroup="NANDF" Instance="gpio6" Port="GPIO[9]" Comment="AUX_3V15_EN" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B" Value="110768" />
   </SignalDesign>
@@ -2101,12 +2086,12 @@
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_16" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[12]" NativeInstance="gpio7" Instance="gpio7" InstanceAlias="gpio7" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="R1" BallName="GPIO_17" PowerGroup="GPIO" Instance="gpio7" Port="GPIO[12]" Comment="LID_OPN_CLS_SW" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="R1" BallName="GPIO_17" PowerGroup="GPIO" Instance="gpio7" Port="GPIO[12]" Comment="PCIE_RST_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_17" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_17" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="GPIO[13]" NativeInstance="gpio7" Instance="gpio7" InstanceAlias="gpio7" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT5" BallNumber="P6" BallName="GPIO_18" PowerGroup="GPIO" Instance="gpio7" Port="GPIO[13]" Comment="KEY_VOL_UP" IsLocked="false" />
+    <AltMode Name="ALT5" BallNumber="P6" BallName="GPIO_18" PowerGroup="GPIO" Instance="gpio7" Port="GPIO[13]" Comment="PMIC_INT_B" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_18" Value="5" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_18" Value="110768" />
   </SignalDesign>
@@ -6264,18 +6249,6 @@
     <Register Name="IOMUXC_UART3_IPP_UART_RTS_B_SELECT_INPUT" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_EB3" Value="110768" />
   </SignalDesign>
-  <SignalDesign Name="RXD_MUX" NativeInstance="uart3" Instance="uart3" InstanceAlias="uart3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT2" BallNumber="G22" BallName="EIM_D25" PowerGroup="WEIM_SEC" Instance="uart3" Port="RXD_MUX" InputSelectRegister="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Comment="" IsLocked="false" />
-    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D25" Value="2" />
-    <Register Name="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Value="1" />
-    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D25" Value="110768" />
-  </SignalDesign>
-  <SignalDesign Name="TXD_MUX" NativeInstance="uart3" Instance="uart3" InstanceAlias="uart3" IsChecked="true" IsExcluded="false">
-    <AltMode Name="ALT2" BallNumber="F22" BallName="EIM_D24" PowerGroup="WEIM_SEC" Instance="uart3" Port="TXD_MUX" InputSelectRegister="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Comment="" IsLocked="false" />
-    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D24" Value="2" />
-    <Register Name="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Value="1" />
-    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D24" Value="110768" />
-  </SignalDesign>
   <SignalDesign Name="CTS" NativeInstance="uart4" Instance="uart4" InstanceAlias="uart4" IsChecked="false" IsExcluded="false">
     <AltMode Name="ALT3" BallNumber="L3" BallName="CSI0_DAT17" PowerGroup="IPU_CSI" Instance="uart4" Port="CTS" InputSelectRegister="IOMUXC_UART4_IPP_UART_RTS_B_SELECT_INPUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT17" Value="3" />
@@ -7397,6 +7370,33 @@
     <AltMode Name="ALT0" BallNumber="M25" BallName="EIM_WAIT" PowerGroup="WEIM_MAIN" Instance="weim" Port="WEIM_WAIT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT" Value="45152" />
+  </SignalDesign>
+  <SignalDesign Name="GPIO[0]" Alias="GPS_PWREN" NativeInstance="gpio3" Instance="NewModule" InstanceAlias="gps" IsChecked="true" IsExcluded="false">
+    <AltMode Name="ALT5" BallNumber="L20" BallName="EIM_DA0" PowerGroup="WEIM_MAIN" Instance="gps" Port="GPIO[0]" PortAlias="GPS_PWREN" Comment="WAS Instance:gpio3 Signal:GPIO[0]" IsLocked="false" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_DA0" Value="5" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_DA0" Value="45233" />
+  </SignalDesign>
+  <SignalDesign Name="GPIO[18]" Alias="GPS_PPS" NativeInstance="gpio3" Instance="NewModule" InstanceAlias="gps" IsChecked="true" IsExcluded="false">
+    <AltMode Name="ALT5" BallNumber="D24" BallName="EIM_D18" PowerGroup="WEIM_SEC" Instance="gps" Port="GPIO[18]" PortAlias="GPS_PPS" Comment="WAS Instance:gpio3 Signal:GPIO[18]" IsLocked="false" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D18" Value="5" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D18" Value="110768" />
+  </SignalDesign>
+  <SignalDesign Name="GPIO[28]" Alias="GPS_RESET_B" NativeInstance="gpio2" Instance="NewModule" InstanceAlias="gps" IsChecked="true" IsExcluded="false">
+    <AltMode Name="ALT5" BallNumber="K21" BallName="EIM_EB0" PowerGroup="WEIM_MAIN" Instance="gps" Port="GPIO[28]" PortAlias="GPS_RESET_B" Comment="WAS Instance:gpio2 Signal:GPIO[28]" IsLocked="false" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_EB0" Value="5" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_EB0" Value="45233" />
+  </SignalDesign>
+  <SignalDesign Name="TXD_MUX" Alias="GPS_TXD" NativeInstance="uart3" Instance="NewModule" InstanceAlias="gps" IsChecked="true" IsExcluded="false">
+    <AltMode Name="ALT2" BallNumber="F22" BallName="EIM_D24" PowerGroup="WEIM_SEC" Instance="gps" Port="TXD_MUX" PortAlias="GPS_TXD" InputSelectRegister="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Comment="WAS Instance:uart3 Signal:TXD_MUX" IsLocked="false" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D24" Value="2" />
+    <Register Name="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Value="1" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D24" Value="110768" />
+  </SignalDesign>
+  <SignalDesign Name="RXD_MUX" Alias="GPS_RXD" NativeInstance="uart3" Instance="NewModule" InstanceAlias="gps" IsChecked="true" IsExcluded="false">
+    <AltMode Name="ALT2" BallNumber="G22" BallName="EIM_D25" PowerGroup="WEIM_SEC" Instance="gps" Port="RXD_MUX" PortAlias="GPS_RXD" InputSelectRegister="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Comment="WAS Instance:uart3 Signal:RXD_MUX" IsLocked="false" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_EIM_D25" Value="2" />
+    <Register Name="IOMUXC_UART3_IPP_UART_RXD_MUX_SELECT_INPUT" Value="1" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_EIM_D25" Value="110768" />
   </SignalDesign>
   <VoltageSetting Name="ANATOP" Voltage="0" />
   <VoltageSetting Name="DRAM" Voltage="1.5" />

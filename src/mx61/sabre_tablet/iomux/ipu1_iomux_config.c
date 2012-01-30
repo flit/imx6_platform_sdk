@@ -14,7 +14,7 @@
 // Function to config iomux for instance ipu1.
 void ipu1_iomux_config(void)
 {
-    // Config ipu1_CSI0_D[12] to pad CSI0_DAT12(M2)
+    // Config ipu1.CSI0_D[12] to pad CSI0_DAT12(M2)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT12(0x020E0288)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -81,7 +81,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT12);
 
-    // Config ipu1_CSI0_D[13] to pad CSI0_DAT13(L1)
+    // Config ipu1.CSI0_D[13] to pad CSI0_DAT13(L1)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT13(0x020E028C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -148,7 +148,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT13);
 
-    // Config ipu1_CSI0_D[14] to pad CSI0_DAT14(M4)
+    // Config ipu1.CSI0_D[14] to pad CSI0_DAT14(M4)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT14(0x020E0290)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -215,7 +215,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT14);
 
-    // Config ipu1_CSI0_D[15] to pad CSI0_DAT15(M5)
+    // Config ipu1.CSI0_D[15] to pad CSI0_DAT15(M5)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT15(0x020E0294)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -282,7 +282,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT15);
 
-    // Config ipu1_CSI0_D[16] to pad CSI0_DAT16(L4)
+    // Config ipu1.CSI0_D[16] to pad CSI0_DAT16(L4)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT16(0x020E0298)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -349,7 +349,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT16);
 
-    // Config ipu1_CSI0_D[17] to pad CSI0_DAT17(L3)
+    // Config ipu1.CSI0_D[17] to pad CSI0_DAT17(L3)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT17(0x020E029C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -416,7 +416,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT17);
 
-    // Config ipu1_CSI0_D[18] to pad CSI0_DAT18(M6)
+    // Config ipu1.CSI0_D[18] to pad CSI0_DAT18(M6)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT18(0x020E02A0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -483,7 +483,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT18);
 
-    // Config ipu1_CSI0_D[19] to pad CSI0_DAT19(L6)
+    // Config ipu1.CSI0_D[19] to pad CSI0_DAT19(L6)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT19(0x020E02A4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -550,7 +550,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT19);
 
-    // Config ipu1_CSI0_HSYNC to pad CSI0_MCLK(P4)
+    // Config ipu1.CSI0_HSYNC to pad CSI0_MCLK(P4)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK(0x020E025C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -615,7 +615,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK);
 
-    // Config ipu1_CSI0_PIXCLK to pad CSI0_PIXCLK(P1)
+    // Config ipu1.CSI0_PIXCLK to pad CSI0_PIXCLK(P1)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_PIXCLK(0x020E0258)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -679,7 +679,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_PIXCLK);
 
-    // Config ipu1_CSI0_VSYNC to pad CSI0_VSYNC(N2)
+    // Config ipu1.CSI0_VSYNC to pad CSI0_VSYNC(N2)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_CSI0_VSYNC(0x020E0264)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -744,7 +744,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_CSI0_VSYNC);
 
-    // Config ipu1_DI0_DISP_CLK to pad DI0_DISP_CLK(N19)
+    // Config ipu1.DI0_DISP_CLK to pad DI0_DISP_CLK(N19)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_DISP_CLK(0x020E015C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -808,7 +808,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_DISP_CLK);
 
-    // Config ipu1_DI0_PIN15 to pad DI0_PIN15(N21)
+    // Config ipu1.DI0_PIN15 to pad DI0_PIN15(N21)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN15(0x020E0160)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -873,7 +873,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_PIN15);
 
-    // Config ipu1_DI0_PIN2 to pad DI0_PIN2(N25)
+    // Config ipu1.DI0_PIN2 to pad DI0_PIN2(N25)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2(0x020E0164)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -939,7 +939,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_PIN2);
 
-    // Config ipu1_DI0_PIN3 to pad DI0_PIN3(N20)
+    // Config ipu1.DI0_PIN3 to pad DI0_PIN3(N20)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN3(0x020E0168)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1005,7 +1005,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_PIN3);
 
-    // Config ipu1_DI0_PIN4 to pad DI0_PIN4(P25)
+    // Config ipu1.DI0_PIN4 to pad DI0_PIN4(P25)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4(0x020E016C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1072,7 +1072,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DI0_PIN4);
 
-    // Config ipu1_DISP0_DAT[0] to pad DISP0_DAT0(P24)
+    // Config ipu1.DISP0_DAT[0] to pad DISP0_DAT0(P24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT0(0x020E0170)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1137,7 +1137,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT0);
 
-    // Config ipu1_DISP0_DAT[1] to pad DISP0_DAT1(P22)
+    // Config ipu1.DISP0_DAT[1] to pad DISP0_DAT1(P22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT1(0x020E0174)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1203,7 +1203,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT1);
 
-    // Config ipu1_DISP0_DAT[10] to pad DISP0_DAT10(R21)
+    // Config ipu1.DISP0_DAT[10] to pad DISP0_DAT10(R21)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT10(0x020E0198)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1268,7 +1268,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT10);
 
-    // Config ipu1_DISP0_DAT[11] to pad DISP0_DAT11(T23)
+    // Config ipu1.DISP0_DAT[11] to pad DISP0_DAT11(T23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT11(0x020E019C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1333,7 +1333,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT11);
 
-    // Config ipu1_DISP0_DAT[12] to pad DISP0_DAT12(T24)
+    // Config ipu1.DISP0_DAT[12] to pad DISP0_DAT12(T24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT12(0x020E01A0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1398,7 +1398,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT12);
 
-    // Config ipu1_DISP0_DAT[13] to pad DISP0_DAT13(R20)
+    // Config ipu1.DISP0_DAT[13] to pad DISP0_DAT13(R20)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT13(0x020E01A4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1464,7 +1464,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT13);
 
-    // Config ipu1_DISP0_DAT[14] to pad DISP0_DAT14(U25)
+    // Config ipu1.DISP0_DAT[14] to pad DISP0_DAT14(U25)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT14(0x020E01A8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1529,7 +1529,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT14);
 
-    // Config ipu1_DISP0_DAT[15] to pad DISP0_DAT15(T22)
+    // Config ipu1.DISP0_DAT[15] to pad DISP0_DAT15(T22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15(0x020E01AC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1597,7 +1597,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT15);
 
-    // Config ipu1_DISP0_DAT[16] to pad DISP0_DAT16(T21)
+    // Config ipu1.DISP0_DAT[16] to pad DISP0_DAT16(T21)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT16(0x020E01B0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1666,7 +1666,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT16);
 
-    // Config ipu1_DISP0_DAT[17] to pad DISP0_DAT17(U24)
+    // Config ipu1.DISP0_DAT[17] to pad DISP0_DAT17(U24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT17(0x020E01B4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1735,7 +1735,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT17);
 
-    // Config ipu1_DISP0_DAT[18] to pad DISP0_DAT18(V25)
+    // Config ipu1.DISP0_DAT[18] to pad DISP0_DAT18(V25)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT18(0x020E01B8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1804,7 +1804,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT18);
 
-    // Config ipu1_DISP0_DAT[19] to pad DISP0_DAT19(U23)
+    // Config ipu1.DISP0_DAT[19] to pad DISP0_DAT19(U23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT19(0x020E01BC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1873,7 +1873,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT19);
 
-    // Config ipu1_DISP0_DAT[2] to pad DISP0_DAT2(P23)
+    // Config ipu1.DISP0_DAT[2] to pad DISP0_DAT2(P23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT2(0x020E0178)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1939,7 +1939,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT2);
 
-    // Config ipu1_DISP0_DAT[20] to pad DISP0_DAT20(U22)
+    // Config ipu1.DISP0_DAT[20] to pad DISP0_DAT20(U22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT20(0x020E01C0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2007,7 +2007,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT20);
 
-    // Config ipu1_DISP0_DAT[21] to pad DISP0_DAT21(T20)
+    // Config ipu1.DISP0_DAT[21] to pad DISP0_DAT21(T20)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT21(0x020E01C4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2075,7 +2075,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT21);
 
-    // Config ipu1_DISP0_DAT[22] to pad DISP0_DAT22(V24)
+    // Config ipu1.DISP0_DAT[22] to pad DISP0_DAT22(V24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT22(0x020E01C8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2143,7 +2143,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT22);
 
-    // Config ipu1_DISP0_DAT[23] to pad DISP0_DAT23(W24)
+    // Config ipu1.DISP0_DAT[23] to pad DISP0_DAT23(W24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT23(0x020E01CC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2211,7 +2211,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT23);
 
-    // Config ipu1_DISP0_DAT[3] to pad DISP0_DAT3(P21)
+    // Config ipu1.DISP0_DAT[3] to pad DISP0_DAT3(P21)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT3(0x020E017C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2277,7 +2277,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT3);
 
-    // Config ipu1_DISP0_DAT[4] to pad DISP0_DAT4(P20)
+    // Config ipu1.DISP0_DAT[4] to pad DISP0_DAT4(P20)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT4(0x020E0180)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2343,7 +2343,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT4);
 
-    // Config ipu1_DISP0_DAT[5] to pad DISP0_DAT5(R25)
+    // Config ipu1.DISP0_DAT[5] to pad DISP0_DAT5(R25)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT5(0x020E0184)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2409,7 +2409,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT5);
 
-    // Config ipu1_DISP0_DAT[6] to pad DISP0_DAT6(R23)
+    // Config ipu1.DISP0_DAT[6] to pad DISP0_DAT6(R23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT6(0x020E0188)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2475,7 +2475,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT6);
 
-    // Config ipu1_DISP0_DAT[7] to pad DISP0_DAT7(R24)
+    // Config ipu1.DISP0_DAT[7] to pad DISP0_DAT7(R24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT7(0x020E018C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2541,7 +2541,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT7);
 
-    // Config ipu1_DISP0_DAT[8] to pad DISP0_DAT8(R22)
+    // Config ipu1.DISP0_DAT[8] to pad DISP0_DAT8(R22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT8(0x020E0190)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -2607,7 +2607,7 @@ void ipu1_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT8);
 
-    // Config ipu1_DISP0_DAT[9] to pad DISP0_DAT9(T25)
+    // Config ipu1.DISP0_DAT[9] to pad DISP0_DAT9(T25)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT9(0x020E0194)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

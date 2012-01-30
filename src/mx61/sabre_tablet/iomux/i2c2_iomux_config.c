@@ -14,7 +14,7 @@
 // Function to config iomux for instance i2c2.
 void i2c2_iomux_config(void)
 {
-    // Config i2c2_SCL to pad KEY_COL3(U5)
+    // Config i2c2.SCL to pad KEY_COL3(U5)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_COL3(0x020E0210)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -93,7 +93,7 @@ void i2c2_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_COL3);
 
-    // Config i2c2_SDA to pad KEY_ROW3(T7)
+    // Config i2c2.SDA to pad KEY_ROW3(T7)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_ROW3(0x020E0214)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

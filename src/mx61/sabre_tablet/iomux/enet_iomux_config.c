@@ -14,7 +14,7 @@
 // Function to config iomux for instance enet.
 void enet_iomux_config(void)
 {
-    // Config enet_MDC to pad ENET_MDC(V20)
+    // Config enet.MDC to pad ENET_MDC(V20)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_MDC(0x020E01F4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -81,7 +81,7 @@ void enet_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_MDC);
 
-    // Config enet_MDIO to pad ENET_MDIO(V23)
+    // Config enet.MDIO to pad ENET_MDIO(V23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_MDIO(0x020E01D0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -157,7 +157,7 @@ void enet_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_ENET_MDIO);
 
-    // Config enet_RGMII_RD0 to pad RGMII_RD0(C24)
+    // Config enet.RGMII_RD0 to pad RGMII_RD0(C24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_RD0(0x020E0070)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -251,7 +251,7 @@ void enet_iomux_config(void)
     //     ODT_RES7 (7) - Reserved
     writel((ODT_OFF & 0x7) << 8, IOMUXC_SW_PAD_CTL_GRP_RGMII_TERM);
 
-    // Config enet_RGMII_RD1 to pad RGMII_RD1(B23)
+    // Config enet.RGMII_RD1 to pad RGMII_RD1(B23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_RD1(0x020E0078)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -346,7 +346,7 @@ void enet_iomux_config(void)
     //     ODT_RES7 (7) - Reserved
     writel((ODT_OFF & 0x7) << 8, IOMUXC_SW_PAD_CTL_GRP_RGMII_TERM);
 
-    // Config enet_RGMII_RD2 to pad RGMII_RD2(B24)
+    // Config enet.RGMII_RD2 to pad RGMII_RD2(B24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_RD2(0x020E007C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -440,7 +440,7 @@ void enet_iomux_config(void)
     //     ODT_RES7 (7) - Reserved
     writel((ODT_OFF & 0x7) << 8, IOMUXC_SW_PAD_CTL_GRP_RGMII_TERM);
 
-    // Config enet_RGMII_RD3 to pad RGMII_RD3(D23)
+    // Config enet.RGMII_RD3 to pad RGMII_RD3(D23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_RD3(0x020E0080)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -534,7 +534,7 @@ void enet_iomux_config(void)
     //     ODT_RES7 (7) - Reserved
     writel((ODT_OFF & 0x7) << 8, IOMUXC_SW_PAD_CTL_GRP_RGMII_TERM);
 
-    // Config enet_RGMII_RX_CTL to pad RGMII_RX_CTL(D22)
+    // Config enet.RGMII_RX_CTL to pad RGMII_RX_CTL(D22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_RX_CTL(0x020E006C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -628,7 +628,7 @@ void enet_iomux_config(void)
     //     ODT_RES7 (7) - Reserved
     writel((ODT_OFF & 0x7) << 8, IOMUXC_SW_PAD_CTL_GRP_RGMII_TERM);
 
-    // Config enet_RGMII_RXC to pad RGMII_RXC(B25)
+    // Config enet.RGMII_RXC to pad RGMII_RXC(B25)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_RXC(0x020E0084)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -722,7 +722,7 @@ void enet_iomux_config(void)
     //     ODT_RES7 (7) - Reserved
     writel((ODT_OFF & 0x7) << 8, IOMUXC_SW_PAD_CTL_GRP_RGMII_TERM);
 
-    // Config enet_RGMII_TD0 to pad RGMII_TD0(C22)
+    // Config enet.RGMII_TD0 to pad RGMII_TD0(C22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_TD0(0x020E005C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -791,7 +791,7 @@ void enet_iomux_config(void)
     //     DDR_SEL_DDR3 (3) - DDR3 mode (240 Ohm driver unit calibration, 240, 120, 80, 60, 48, 40, 32 Ohm drive strngths at 1.5V)
     writel((DDR_SEL_LPDDR2 & 0x3) << 18, IOMUXC_SW_PAD_CTL_GRP_DDR_TYPE_RGMII);
 
-    // Config enet_RGMII_TD1 to pad RGMII_TD1(F20)
+    // Config enet.RGMII_TD1 to pad RGMII_TD1(F20)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_TD1(0x020E0060)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -861,7 +861,7 @@ void enet_iomux_config(void)
     //     DDR_SEL_DDR3 (3) - DDR3 mode (240 Ohm driver unit calibration, 240, 120, 80, 60, 48, 40, 32 Ohm drive strngths at 1.5V)
     writel((DDR_SEL_LPDDR2 & 0x3) << 18, IOMUXC_SW_PAD_CTL_GRP_DDR_TYPE_RGMII);
 
-    // Config enet_RGMII_TD2 to pad RGMII_TD2(E21)
+    // Config enet.RGMII_TD2 to pad RGMII_TD2(E21)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_TD2(0x020E0064)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -931,7 +931,7 @@ void enet_iomux_config(void)
     //     DDR_SEL_DDR3 (3) - DDR3 mode (240 Ohm driver unit calibration, 240, 120, 80, 60, 48, 40, 32 Ohm drive strngths at 1.5V)
     writel((DDR_SEL_LPDDR2 & 0x3) << 18, IOMUXC_SW_PAD_CTL_GRP_DDR_TYPE_RGMII);
 
-    // Config enet_RGMII_TD3 to pad RGMII_TD3(A24)
+    // Config enet.RGMII_TD3 to pad RGMII_TD3(A24)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_TD3(0x020E0068)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1000,7 +1000,7 @@ void enet_iomux_config(void)
     //     DDR_SEL_DDR3 (3) - DDR3 mode (240 Ohm driver unit calibration, 240, 120, 80, 60, 48, 40, 32 Ohm drive strngths at 1.5V)
     writel((DDR_SEL_LPDDR2 & 0x3) << 18, IOMUXC_SW_PAD_CTL_GRP_DDR_TYPE_RGMII);
 
-    // Config enet_RGMII_TX_CTL to pad RGMII_TX_CTL(C23)
+    // Config enet.RGMII_TX_CTL to pad RGMII_TX_CTL(C23)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_TX_CTL(0x020E0074)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1070,7 +1070,7 @@ void enet_iomux_config(void)
     //     DDR_SEL_DDR3 (3) - DDR3 mode (240 Ohm driver unit calibration, 240, 120, 80, 60, 48, 40, 32 Ohm drive strngths at 1.5V)
     writel((DDR_SEL_LPDDR2 & 0x3) << 18, IOMUXC_SW_PAD_CTL_GRP_DDR_TYPE_RGMII);
 
-    // Config enet_RGMII_TXC to pad RGMII_TXC(D21)
+    // Config enet.RGMII_TXC to pad RGMII_TXC(D21)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_RGMII_TXC(0x020E0058)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -1141,7 +1141,7 @@ void enet_iomux_config(void)
     //     DDR_SEL_DDR3 (3) - DDR3 mode (240 Ohm driver unit calibration, 240, 120, 80, 60, 48, 40, 32 Ohm drive strngths at 1.5V)
     writel((DDR_SEL_LPDDR2 & 0x3) << 18, IOMUXC_SW_PAD_CTL_GRP_DDR_TYPE_RGMII);
 
-    // Config enet_TX_CLK to pad ENET_REF_CLK(V22)
+    // Config enet.TX_CLK to pad ENET_REF_CLK(V22)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_ENET_REF_CLK(0x020E01D4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

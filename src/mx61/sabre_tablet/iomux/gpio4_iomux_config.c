@@ -14,7 +14,8 @@
 // Function to config iomux for instance gpio4.
 void gpio4_iomux_config(void)
 {
-    // Config gpio4_GPIO[10] to pad KEY_COL2(W6)
+    // Config gpio4.GPIO[10] to pad KEY_COL2(W6)
+    // CODEC_PWR_EN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_COL2(0x020E0208)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -82,8 +83,8 @@ void gpio4_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_COL2);
 
-    // Config gpio4_GPIO[11] to pad KEY_ROW2(W4)
-    // KEY_ROW2
+    // Config gpio4.GPIO[11] to pad KEY_ROW2(W4)
+    // HDMI_CEC_IN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_ROW2(0x020E020C)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -152,8 +153,8 @@ void gpio4_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_ROW2);
 
-    // Config gpio4_GPIO[14] to pad KEY_COL4(T6)
-    // Baro_INT1
+    // Config gpio4.GPIO[14] to pad KEY_COL4(T6)
+    // PCIE_DIS_B
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_KEY_COL4(0x020E0218)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -221,8 +222,8 @@ void gpio4_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_KEY_COL4);
 
-    // Config gpio4_GPIO[5] to pad GPIO_19(P5)
-    // KEY_VOL_DN
+    // Config gpio4.GPIO[5] to pad GPIO_19(P5)
+    // CAN1_STBY
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_GPIO_19(0x020E0254)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

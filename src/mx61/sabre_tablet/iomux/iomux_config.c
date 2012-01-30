@@ -31,10 +31,10 @@ void iomux_config(void)
     kpp_iomux_config();
     pwm1_iomux_config();
     uart1_iomux_config();
-    uart3_iomux_config();
     usdhc2_iomux_config();
     usdhc3_iomux_config();
     usdhc4_iomux_config();
+    gps_iomux_config();
 }
 
 // Definitions for unused modules.
@@ -215,6 +215,10 @@ void tpsmp_iomux_config()
 };
 
 void uart2_iomux_config()
+{
+};
+
+void uart3_iomux_config()
 {
 };
 

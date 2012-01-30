@@ -14,7 +14,7 @@
 // Function to config iomux for instance usdhc3.
 void usdhc3_iomux_config(void)
 {
-    // Config usdhc3_CLK to pad SD3_CLK(D14)
+    // Config usdhc3.CLK to pad SD3_CLK(D14)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_CLK(0x020E02BC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -82,7 +82,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_CLK);
 
-    // Config usdhc3_CMD to pad SD3_CMD(B13)
+    // Config usdhc3.CMD to pad SD3_CMD(B13)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_CMD(0x020E02B8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -149,7 +149,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_CMD);
 
-    // Config usdhc3_DAT0 to pad SD3_DAT0(E14)
+    // Config usdhc3.DAT0 to pad SD3_DAT0(E14)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT0(0x020E02C0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -216,7 +216,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_DAT0);
 
-    // Config usdhc3_DAT1 to pad SD3_DAT1(F14)
+    // Config usdhc3.DAT1 to pad SD3_DAT1(F14)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT1(0x020E02C4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -284,7 +284,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_DAT1);
 
-    // Config usdhc3_DAT2 to pad SD3_DAT2(A15)
+    // Config usdhc3.DAT2 to pad SD3_DAT2(A15)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT2(0x020E02C8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -349,7 +349,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_DAT2);
 
-    // Config usdhc3_DAT3 to pad SD3_DAT3(B15)
+    // Config usdhc3.DAT3 to pad SD3_DAT3(B15)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT3(0x020E02CC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -416,7 +416,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_DAT3);
 
-    // Config usdhc3_DAT4 to pad SD3_DAT4(D13)
+    // Config usdhc3.DAT4 to pad SD3_DAT4(D13)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT4(0x020E02B4)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -483,7 +483,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_DAT4);
 
-    // Config usdhc3_DAT5 to pad SD3_DAT5(C13)
+    // Config usdhc3.DAT5 to pad SD3_DAT5(C13)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT5(0x020E02B0)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -550,7 +550,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_DAT5);
 
-    // Config usdhc3_DAT6 to pad SD3_DAT6(E13)
+    // Config usdhc3.DAT6 to pad SD3_DAT6(E13)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT6(0x020E02AC)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -617,7 +617,7 @@ void usdhc3_iomux_config(void)
            (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_SD3_DAT6);
 
-    // Config usdhc3_DAT7 to pad SD3_DAT7(F13)
+    // Config usdhc3.DAT7 to pad SD3_DAT7(F13)
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_DAT7(0x020E02A8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

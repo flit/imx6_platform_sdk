@@ -334,11 +334,22 @@ typedef enum {
     DCMAP_YUVA8888,
 } ips_dcmap_colorimetry_e;
 
+typedef enum {
+    CSI_YUV444 = 0,
+    CSI_YUYV,
+    CSI_UYVY,
+    CSI_Gereric,
+    CSI_RGB565,
+    CSI_RGB555,
+    CSI_RGB444,
+    CSI_JPEG,
+} ips_csi_colorimetry_e;
+
 enum disp_dev_flag {
     EPSON_VGA,
     CLAA_WVGA,
-	TRULY_MIPI_TFT480800,
-	SEIKO_WVGA_7INCH,
+    TRULY_MIPI_TFT480800,
+    SEIKO_WVGA_7INCH,
     SEIKO_WVGA_4_3INCH,
     AUO_XGA_LVDS,
     HannStar_XGA_LVDS,
@@ -406,6 +417,24 @@ typedef struct {
      int32_t(*panel_init) (int *arg);
      int32_t(*panel_deinit) (void);
 } ips_dev_panel_t;
+
+typedef struct {
+    uint32_t channel;
+    uint32_t addr0;
+    uint32_t addr1;
+    uint32_t width;
+    uint32_t height;
+    uint32_t npb;
+    uint32_t pixel_format;
+    uint32_t sl;                // sl for interleaved mode, sly for non-interleaved mode
+    uint32_t u_offset;          //uoffset
+    uint32_t bpp;
+    uint32_t so;
+    uint32_t bm;
+    uint32_t rot;
+    uint32_t hf;
+    uint32_t vf;
+} ipu_idmac_info_t;
 
 typedef struct ipu_res_info {
     uint32_t addr0_in;
@@ -547,16 +576,15 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
 void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
                        ips_dev_panel_t * panel);
 void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
-                         uint32_t panel_fw, uint32_t panel_fh, uint32_t data_format);
+                         ips_dev_panel_t * panel);
 
-void ipu_general_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
-                              uint32_t width, uint32_t height, uint32_t pixel_format);
+void ipu_general_idmac_config(uint32_t ipu_index, ipu_idmac_info_t * idmac_info);
+void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t addr0, uint32_t addr1, uint32_t width,
+                              uint32_t height, uint32_t pixel_format);
+void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t addr0, uint32_t addr1, uint32_t width,
+                              uint32_t height, uint32_t pixel_format);
 void ipu_csi_capture_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
                                   uint32_t pixel_format);
-void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
-                              uint32_t pixel_format);
-void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
-                              uint32_t pixel_format);
 void ipu_dualdisp_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
                                uint32_t pixel_format);
 void ipu_singledisp_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
@@ -572,9 +600,6 @@ int32_t ipu_idmac_channel_busy(int32_t ipu_index, int32_t channel);
 void ipu_idmac_channel_enable(int32_t ipu_index, int32_t channel, int32_t enable);
 void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
 inline void ipu_cpmem_mod_field(uint32_t base, int32_t w, int32_t bit, int32_t size, uint32_t v);
-void ipu_capture_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
-                              uint32_t width, uint32_t height, uint32_t panel_fw, uint32_t panel_fh,
-                              uint32_t pixel_format);
 
 void ipu_dmfc_config(uint32_t ipu_index, uint32_t channel);
 void ipu_dmfc_alloc(uint32_t ipu_index, uint32_t channel, uint32_t size, uint32_t start_addr,
@@ -625,7 +650,9 @@ int32_t ipu_ic_task_enable(int32_t ipu_index, int32_t task_type, int32_t task, i
 
 void ipu_write_field(int32_t ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data);
 
-void ipu_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height);
+void ipu_mipi_csi2_data_type_config(uint32_t ipu_index, uint32_t pixel_format);
+void ipu_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height, uint32_t data_format,
+                    uint32_t gate_mode);
 uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t map,
                                 uint32_t burst_size);
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc);

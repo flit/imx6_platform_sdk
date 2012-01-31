@@ -31,10 +31,11 @@ int32_t sensor_capture(void)
 
     /*step 1: enable panel */
     panel = search_panel("HannStar XGA LVDS");
-    panel->panel_init(NULL);
+    panel->panel_init(&ipu_index);
 
     /*step 2: setup IPU: from csi to display */
     ipu_iomux_config();
+    ipu_sw_reset(ipu_index, 1000);
     ipu_capture_setup(ipu_index, 640, 480, panel);
 
     /*step 3: setup sensor */
@@ -42,7 +43,7 @@ int32_t sensor_capture(void)
     sensor_config(sensor);
 
     /*step 4: enable ipu display channel */
-    ipu_enable_display(1);
+    ipu_enable_display(ipu_index);
 
     /*test 1: capture image from sensor */
     printf("Do you see the captured image (y or n)?\n");
@@ -59,6 +60,10 @@ int32_t sensor_capture(void)
             sensor_autofocus_init(sensor);
             while (is_input_char('y')) {
                 sensor_af_trigger(sensor);
+                printf("Do you see the viewfiner in the middle of camera?[y/n]\n");
+                if (!is_input_char('y')) {
+                    return TEST_FAILED;
+                }
                 printf("Trigger more? [y/n]\n");
             }
         }
@@ -68,6 +73,12 @@ int32_t sensor_capture(void)
     printf("Do you want to test standby mode? [y/n]\n");
     while (is_input_char('y')) {
         sensor_standby(read_value);
+        if (read_value == 1) {
+            printf("Do you see the still camera image? [y/n]\n");
+            if (!is_input_char('y')) {
+                return TEST_FAILED;
+            }
+        }
         read_value = 1 - read_value;
         printf("Trigger more? [y/n]\n");
     }

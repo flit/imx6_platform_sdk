@@ -178,34 +178,34 @@ int32_t ipu_idmac_channel_busy(int32_t ipu_index, int32_t channel)
  * @param	ipu_index:	ipu index
  * @param	conf:		ipu configuration data structure
  */
-void ipu_general_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
-                              uint32_t width, uint32_t height, uint32_t pixel_format)
+void ipu_general_idmac_config(uint32_t ipu_index, ipu_idmac_info_t * idmac_info)
 {
-    uint32_t sl, ubo;
-
-    if (pixel_format == INTERLEAVED_RGB) {
-        sl = 2 * width - 1;
-        ubo = 0;
-    } else {
-        sl = width - 1;
-        ubo = width * height;
-    }
+    uint32_t channel = idmac_info->channel;
 
     ipu_idmac_channel_enable(ipu_index, channel, 0);
     memset((void *)ipu_cpmem_addr(ipu_index, channel), 0, sizeof(ipu_cpmem_t));
 
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, addr0 / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, addr1 / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FW, width - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FH, height - 1);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, idmac_info->addr0 / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, idmac_info->addr1 / 8);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FW, idmac_info->width - 1);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FH, idmac_info->height - 1);
 
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_PFS, pixel_format);
-    ipu_idma_pixel_format_config(ipu_index, channel, pixel_format, sl, ubo);
+    /*setup default pixel format */
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_PFS, idmac_info->pixel_format);
+    ipu_idma_pixel_format_config(ipu_index, channel, idmac_info->pixel_format, idmac_info->sl,
+                                 idmac_info->u_offset);
 
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_NPB, 15);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_SO, 0);
+    /*setup pixel per burst */
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_NPB, idmac_info->npb);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_SO, idmac_info->so);
 
-    if ((void *)addr1 == NULL)
+    //setup rotate/vf/hf and block mode
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_ROT, idmac_info->rot);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_VF, idmac_info->vf);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_HF, idmac_info->hf);
+    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_BM, idmac_info->bm);
+
+    if ((void *)idmac_info->addr1 == NULL)
         ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
     else
         ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_DOUBLE_BUFFER);
@@ -221,15 +221,31 @@ void ipu_general_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t add
  * @param	height:		background height
  * @param	pixel_format:   background pixel format
  */
-void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
-                              uint32_t pixel_format)
+void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t addr0, uint32_t addr1, uint32_t width,
+                              uint32_t height, uint32_t pixel_format)
 {
+    ipu_idmac_info_t idmac_info;
+
     /*setup idma background channel from MEM to display
        channel: 23
-       buffer: single -- addr: CH23_EBA0
      */
-    ipu_general_idmac_config(ipu_index, MEM_TO_DP_BG_CH23, CH23_EBA0, (uint32_t) NULL, width,
-                             height, pixel_format);
+    memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
+    idmac_info.channel = MEM_TO_DP_BG_CH23;
+    idmac_info.addr0 = addr0;
+    idmac_info.addr1 = addr1;
+    idmac_info.width = width;
+    idmac_info.height = height;
+    idmac_info.pixel_format = pixel_format;
+    if (pixel_format == INTERLEAVED_RGB) {
+        idmac_info.sl = width * 2 - 1;
+        idmac_info.u_offset = 0;
+    } else {
+        idmac_info.sl = width - 1;
+        idmac_info.u_offset = width * height;
+    }
+
+    idmac_info.npb = 15;
+    ipu_general_idmac_config(ipu_index, &idmac_info);
 }
 
 /*!
@@ -240,15 +256,32 @@ void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t heigh
  * @param	height:		background height
  * @param	pixel_format:   background pixel format
  */
-void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t width, uint32_t height,
-                              uint32_t pixel_format)
+void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t addr0, uint32_t addr1, uint32_t width,
+                              uint32_t height, uint32_t pixel_format)
 {
+    ipu_idmac_info_t idmac_info;
+
     /*setup idma background channel from MEM to display
        channel: 27
-       buffer: single -- addr: CH23_EBA0
+       buffer addr: CH27_EBA0
      */
-    ipu_general_idmac_config(ipu_index, MEM_TO_DP_FG_CH27, CH27_EBA0, (uint32_t) NULL, width,
-                             height, pixel_format);
+    memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
+    idmac_info.channel = MEM_TO_DP_FG_CH27;
+    idmac_info.addr0 = addr0;
+    idmac_info.addr1 = addr1;
+    idmac_info.width = width;
+    idmac_info.height = height;
+    idmac_info.pixel_format = pixel_format;
+    if (pixel_format == INTERLEAVED_RGB) {
+        idmac_info.sl = width * 2 - 1;
+        idmac_info.u_offset = 0;
+    } else {
+        idmac_info.sl = width - 1;
+        idmac_info.u_offset = width * height;
+    }
+
+    idmac_info.npb = 15;        // for rotate operation, npb must be equal 7
+    ipu_general_idmac_config(ipu_index, &idmac_info);
 }
 
 void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
@@ -284,117 +317,77 @@ int32_t ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
 void ipu_rotate_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t channel_out,
                              ipu_rot_info_t rot_info)
 {
-    //input channel
-    ipu_idmac_channel_enable(ipu_index, channel_in, 0);
-    memset((void *)ipu_cpmem_addr(ipu_index, channel_in), 0, sizeof(ipu_cpmem_t));
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_EBA0, rot_info.addr0_in / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_EBA1, rot_info.addr1_in / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_FW, rot_info.width_in - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_FH, rot_info.height_in - 1);
+    ipu_idmac_info_t idmac_info;
 
-    //set pixel format
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_PFS, rot_info.pixel_format_in);
-    ipu_idma_pixel_format_config(ipu_index, channel_in, rot_info.pixel_format_in,
-                                 rot_info.strideline_in, rot_info.ubo_in);
+    /*setup input idmac channel */
+    memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
+    idmac_info.channel = channel_in;
+    idmac_info.addr0 = rot_info.addr0_in;
+    idmac_info.addr1 = rot_info.addr1_in;
+    idmac_info.width = rot_info.width_in;
+    idmac_info.height = rot_info.height_in;
+    idmac_info.pixel_format = rot_info.pixel_format_in;
+    idmac_info.sl = rot_info.strideline_in;
+    idmac_info.u_offset = rot_info.ubo_in;
+    idmac_info.npb = 7;         // for rotate operation, npb must be equal 7
+    idmac_info.rot = rot_info.rot;
+    idmac_info.bm = 1;
+    ipu_general_idmac_config(ipu_index, &idmac_info);
 
-    //number of pixels per burst
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_NPB, 7);   // for rotate operation, npb must be equal 7
-
-    //enable rotate and block mode
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_ROT, rot_info.rot);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_BM, 1);
-
-    if ((void *)rot_info.addr1_in == NULL)
-        ipu_idmac_channel_mode_sel(ipu_index, channel_in, IDMAC_SINGLE_BUFFER);
-    else
-        ipu_idmac_channel_mode_sel(ipu_index, channel_in, IDMAC_DOUBLE_BUFFER);
-    ipu_idmac_channel_enable(ipu_index, channel_in, 1);
-
-    //output channel
-    ipu_idmac_channel_enable(ipu_index, channel_out, 0);
-    memset((void *)ipu_cpmem_addr(ipu_index, channel_out), 0, sizeof(ipu_cpmem_t));
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_EBA0, rot_info.addr0_out / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_EBA1, rot_info.addr1_out / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_FW, rot_info.width_out - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_FH, rot_info.height_out - 1);
-
-    //set pixel format
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_PFS,
-                        rot_info.pixel_format_out);
-    ipu_idma_pixel_format_config(ipu_index, channel_out, rot_info.pixel_format_out,
-                                 rot_info.strideline_out, rot_info.ubo_out);
-
-    //number of pixels per burst
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_NPB, 7);
-
-    //enable hf/vf and block mode
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_BM, 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_ROT, 0);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_HF, rot_info.hf);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_VF, rot_info.vf);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_ID, 0);
-
-    if ((void *)rot_info.addr1_out == NULL)
-        ipu_idmac_channel_mode_sel(ipu_index, channel_out, IDMAC_SINGLE_BUFFER);
-    else
-        ipu_idmac_channel_mode_sel(ipu_index, channel_out, IDMAC_DOUBLE_BUFFER);
-    ipu_idmac_channel_enable(ipu_index, channel_out, 1);
+    /*setup output idmac channel */
+    memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
+    idmac_info.channel = channel_out;
+    idmac_info.addr0 = rot_info.addr0_out;
+    idmac_info.addr1 = rot_info.addr1_out;
+    idmac_info.width = rot_info.width_out;
+    idmac_info.height = rot_info.height_out;
+    idmac_info.pixel_format = rot_info.pixel_format_out;
+    idmac_info.sl = rot_info.strideline_out;
+    idmac_info.u_offset = rot_info.ubo_out;
+    idmac_info.npb = 7;         // for rotate operation, npb must be equal 7
+    idmac_info.rot = 0;
+    idmac_info.vf = rot_info.vf;
+    idmac_info.hf = rot_info.hf;
+    idmac_info.bm = 1;
+    ipu_general_idmac_config(ipu_index, &idmac_info);
 }
 
 void ipu_resize_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t channel_out,
                              ipu_res_info_t res_info)
 {
-    //input channel
-    ipu_idmac_channel_enable(ipu_index, channel_in, 0);
-    memset((void *)ipu_cpmem_addr(ipu_index, channel_in), 0, sizeof(ipu_cpmem_t));
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_EBA0, res_info.addr0_in / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_EBA1, res_info.addr1_in / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_FW, res_info.width_in - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_FH, res_info.height_in - 1);
+    ipu_idmac_info_t idmac_info;
 
-    //set pixel format
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_PFS, res_info.pixel_format_in);
-    ipu_idma_pixel_format_config(ipu_index, channel_in, res_info.pixel_format_in,
-                                 res_info.strideline_in, res_info.u_offset_in);
-
-    //number of pixels per burst
+    /*setup input idmac channel */
+    memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
+    idmac_info.channel = channel_in;
+    idmac_info.addr0 = res_info.addr0_in;
+    idmac_info.addr1 = res_info.addr1_in;
+    idmac_info.width = res_info.width_in;
+    idmac_info.height = res_info.height_in;
+    idmac_info.pixel_format = res_info.pixel_format_in;
+    idmac_info.sl = res_info.strideline_in;
+    idmac_info.u_offset = res_info.u_offset_in;
     if (res_info.width_in % 16 == 0)
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_NPB, 15);
+        idmac_info.npb = 15;    //number of pixels per burst
     else
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_in), CPMEM_NPB, 7);
+        idmac_info.npb = 7;
+    ipu_general_idmac_config(ipu_index, &idmac_info);
 
-    if ((void *)res_info.addr1_in == NULL)
-        ipu_idmac_channel_mode_sel(ipu_index, channel_in, IDMAC_SINGLE_BUFFER);
-    else
-        ipu_idmac_channel_mode_sel(ipu_index, channel_in, IDMAC_DOUBLE_BUFFER);
-    ipu_idmac_channel_enable(ipu_index, channel_in, 1);
-
-    //output channel
-    ipu_idmac_channel_enable(ipu_index, channel_out, 0);
-    memset((void *)ipu_cpmem_addr(ipu_index, channel_out), 0, sizeof(ipu_cpmem_t));
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_EBA0, res_info.addr0_out / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_EBA1, res_info.addr1_out / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_FW, res_info.width_out - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_FH, res_info.height_out - 1);
-
-    //set pixel format
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_PFS,
-                        res_info.pixel_format_out);
-    ipu_idma_pixel_format_config(ipu_index, channel_out, res_info.pixel_format_out,
-                                 res_info.strideline_out, res_info.u_offset_out);
-
-    //number of pixels per burst
+    /*setup output idmac channel */
+    memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
+    idmac_info.channel = channel_out;
+    idmac_info.addr0 = res_info.addr0_out;
+    idmac_info.addr1 = res_info.addr1_out;
+    idmac_info.width = res_info.width_out;
+    idmac_info.height = res_info.height_out;
+    idmac_info.pixel_format = res_info.pixel_format_out;
+    idmac_info.sl = res_info.strideline_out;
+    idmac_info.u_offset = res_info.u_offset_out;
     if (res_info.width_out % 16 == 0)
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_NPB, 15);
+        idmac_info.npb = 15;    //number of pixels per burst
     else
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel_out), CPMEM_NPB, 7);
-
-    if ((void *)res_info.addr1_out == NULL)
-        ipu_idmac_channel_mode_sel(ipu_index, channel_out, IDMAC_SINGLE_BUFFER);
-    else
-        ipu_idmac_channel_mode_sel(ipu_index, channel_out, IDMAC_DOUBLE_BUFFER);
-    ipu_idmac_channel_enable(ipu_index, channel_out, 1);
+        idmac_info.npb = 7;
+    ipu_general_idmac_config(ipu_index, &idmac_info);
 }
 
 void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t pixel_format,
@@ -461,46 +454,4 @@ void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t
         printf("Invalid pixel format!\n");
         break;
     }
-}
-
-/*!
- * Capture IPU DMA channel config
- *
- * @param	ipu_index:	ipu index
- * @param	conf:		ipu configuration data structure
- */
-void ipu_capture_idmac_config(uint32_t ipu_index, uint32_t channel, uint32_t addr0, uint32_t addr1,
-                              uint32_t width, uint32_t height, uint32_t panel_fw, uint32_t panel_fh,
-                              uint32_t pixel_format)
-{
-    uint32_t sl, ubo;
-
-    if (pixel_format == INTERLEAVED_RGB) {
-        sl = 2 * panel_fw - 1;
-        ubo = 0;
-    } else {
-        sl = panel_fw - 1;
-        ubo = panel_fw * panel_fh;
-    }
-
-    ipu_idmac_channel_enable(ipu_index, channel, 0);
-    memset((void *)ipu_cpmem_addr(ipu_index, channel), 0, sizeof(ipu_cpmem_t));
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA0, addr0 / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_EBA1, addr1 / 8);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FW, width - 1);
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_FH, height - 1);
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_PFS, pixel_format);
-    ipu_idma_pixel_format_config(ipu_index, channel, pixel_format, sl, ubo);
-
-    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_NPB, 3);
-//    ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), CPMEM_SO, 0);
-
-    if ((void *)addr1 == NULL)
-        ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_SINGLE_BUFFER);
-    else
-        ipu_idmac_channel_mode_sel(ipu_index, channel, IDMAC_DOUBLE_BUFFER);
-
-    ipu_idmac_channel_enable(ipu_index, channel, 1);
 }

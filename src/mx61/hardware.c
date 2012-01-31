@@ -359,6 +359,19 @@ void lvds_power_on(void)
     gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
 
+#ifdef MX61_SABRE_TABLET
+    // 3v3 on by default
+    // AUX_5V_EN LVDS0 power
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
+    gpio_dir_config(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
+    // PMIC_5V LVDS1 power on by default
+    // backlight both lvds1/0, disp0_contrast/disp0_pwm, gpio1[21]
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3, ALT5);
+    gpio_dir_config(GPIO_PORT1, 21, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
+#endif
+
 #ifdef MX61_ARD
     /*3.3V power supply through IOexpander */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);

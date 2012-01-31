@@ -19,21 +19,24 @@
  * @param width: frame width of camera input
  * @param height: frame height of camera input
  */
-void ipu_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height)
+void ipu_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height, uint32_t data_format,
+                    uint32_t gate_mode)
 {
     uint32_t csiVSC = 0, csiHSC = 0;
     uint32_t csiBottomSkip = 0, csiRightSkip = 0;
     uint32_t csiFrameHeight = height, csiFrameWidth = width;
 
     /*CSI0 sensor configuration */
+    //???? mipi no EN_POL
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_EN_POL, 0);
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_EXT_VSYNC, 1);
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1); //8bits per color
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, 1);   // YUV422
+    //ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, 1);   // YUV422
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, data_format); // YUV422
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_PACK_TIGHT, 0);
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, 0); // Gated clock mode
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, gate_mode); // Gated clock mode
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PIX_CLK_POL, 0);   // pos edge
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_POL, 0);
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL, 0);
@@ -57,6 +60,38 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height)
 
     ipu_write_field(ipu_index, IPU_IPU_CONF__CSI_SEL, 0);
     ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_EN, 1);
+
+    //???? mipi has IPU_CSI0_CPD_CTRL__ADDR
+    ipu_write_field(ipu_index, IPU_CSI0_CPD_CTRL__CSI0_CPD, 0);
+}
+
+void ipu_mipi_csi2_data_type_config(uint32_t ipu_index, uint32_t pixel_format)
+{
+
+    /*CSI0 settings for mipi */
+    switch (pixel_format) {
+    case CSI_UYVY:
+        ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI0, 0x1E);   //(UYVY)MIPI_YUV422 8bit
+        break;
+    case CSI_RGB565:
+        ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI0, 0x22);   //MIPI_RGB565
+        break;
+    case CSI_RGB555:
+        ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI0, 0x21);   //MIPI_RGB555
+        break;
+    case CSI_RGB444:
+        ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI0, 0x20);   //MIPI_RGB565
+        break;
+    default:
+        printf("\nThis mipi pixel format is not supported!\n");
+        return;
+    }
+
+    /*using CSI0_MIPI_DI0 by default, DI1~3 unused */
+    ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI1, 0);
+    ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI2, 0);
+    ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI3, 0);
+
 }
 
 /*

@@ -190,7 +190,7 @@ int32_t sensor_init(t_camera_profile * sensor)
         t_reg_param *setting = &preview_mode->setting[i];
         sensor_write_reg(sensor->i2c_dev_addr, setting->addr, &setting->value, setting->is_16bits);
         if (setting->delay_ms != 0)
-            hal_delay_us(setting->delay_ms * 1000);
+            hal_delay_us(setting->delay_ms);
 
         if (setting->verify) {
             sensor_read_reg(sensor->i2c_dev_addr, setting->addr, &read_value, setting->is_16bits);

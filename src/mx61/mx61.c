@@ -129,7 +129,9 @@ void ALL_test(void)
         hdmi_test();
         i2c_test();
         ipu_test();
+#ifndef MX61_SABRE_TABLET
         mipi_test();
+#endif
         sata_test();
         sdma_test();
         snvs_rtc_test();

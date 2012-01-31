@@ -34,7 +34,7 @@ int32_t ipu_test(void)
     ipu_iomux_config();
 
     printf("\nStart IPU test\n");
-    printf("Note that the Display test is using the Hannstar LVDS panel pluged into LVDS0/1\n");
+    printf("Note that the Display test is using the Hannstar LVDS panel pluged into LVDS0\n");
     /*enable panel */
     panel = search_panel("HannStar XGA LVDS");
     panel->panel_init(NULL);

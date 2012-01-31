@@ -287,8 +287,6 @@ void mipi_csi2_config(void)
 {
     uint32_t timeout = 0x100000;
 
-    ipu_mipi_csi2_setup(1, 640, 480, 1024, 768, PARTIAL_INTERLEAVED_YUV420);
-
     mipi_csi2_clock_set();
 
     mipi_cam_power_on();

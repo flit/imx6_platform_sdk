@@ -31,24 +31,18 @@ int32_t mipi_csi2_test(void)
 
     panel = search_panel("HannStar XGA LVDS");
 
+    ipu_mipi_csi2_setup(1, 640, 480, panel);
+
     mipi_csi2_config();
 
-    memset((void *)CH23_EBA0, 0xFF, 2 * panel->width * panel->height);
-    memset((void *)(CH23_EBA0 + panel->width * panel->height), 0x80,
-           panel->width * panel->height / 2);
-
-    ipu_display_setup(ipu_index, CH23_EBA0, (uint32_t) NULL, PARTIAL_INTERLEAVED_YUV420, panel);
-    /*enable ipu display channel */
+    //enable ipu display channel
     ipu_enable_display(ipu_index);
 
-    ipu_capture_disp_link(ipu_index, 0);
+    //ipu_capture_disp_link(ipu_index, 0);
 
     panel->panel_init(NULL);
 
     ipu_channel_buf_ready(ipu_index, 0, 0);
-
-    //hal_delay_us(1000);
-    //ipu_enable_display();
     ipu_channel_buf_ready(ipu_index, 23, 0);
 
     while (1) {

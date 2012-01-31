@@ -25,6 +25,9 @@
 #define L2CC_DAT_RAM_CTRL		0x00A0210C
 #define L2CC_PREFETCH_CTRL		0x00A02F60
 
+#define ROM_API_TABLE_BASE_ADDR     (0x000000c0)
+#define ROM_API_HWCNFG_SETUP_OFFSET   (0x08)
+
 #define PLATFORM_INIT           plat_dcd_startup
 // image starts at 0x00907000
 //flash header & DCD @ 0x400
@@ -386,9 +389,12 @@ read_obds:
  * check the _pu_irom_api_table for the address
  */
 before_calling_rom___pu_irom_hwcnfg_setup:
-    mov r4, #0x2000
-    add r4, r4, #0xed
-    blx r4	// This address might change in future ROM versions.
+    //mov r4, #0x2000
+    //add r4, r4, #0xed
+    //blx r4	// This address might change in future ROM versions.
+    ldr r3, =ROM_API_TABLE_BASE_ADDR         /* Address of rom_api_table is 0xc0 */
+    ldr r4, [r3, #ROM_API_HWCNFG_SETUP_OFFSET] /* hwcnfg setup function address is 3rd entry in the api table address 0xc8 */
+    blx r4  /* call into ROM function */
 after_calling_rom___pu_irom_hwcnfg_setup:
 
 // To return to ROM from plugin, we need to fill in these argument.

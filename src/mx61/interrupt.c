@@ -100,8 +100,3 @@ void default_interrupt_routine(void)
      */
     printf("Interrupt %d has been asserted\n", g_vectNum[0]);
 }
-
-void init_interrupts(void)
-{
-    /* nothing to be done for iMX6, this is placeholder for iMX53 compatibility */
-}

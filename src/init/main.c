@@ -23,13 +23,12 @@
 #include "time.h"
 
 extern void SDK_TEST(void);
-extern void init_interrupts(void);
 extern void disable_strict_align_check(void);
 extern void system_memory_arrange(void);
 
 /*!
  * main function that decides which tests to run and prompts the user before
- * runninng test.
+ * running test.
  * @return      should never return because ARM is at WFI (low power mode in the end)
  */
 int main(void)
@@ -40,9 +39,6 @@ int main(void)
 #endif
 
     platform_init();
-
-    // please keep this for i.MX53 and need to check what is needed here for i.MX61
-    init_interrupts();
 
     SDK_TEST();
 

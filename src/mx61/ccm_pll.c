@@ -214,14 +214,20 @@ void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
     case PERFMON1_BASE_ADDR:
         ccm_ccgrx = CCM_CCGR4;
         cgx_offset = CG(1);
+        /* specific bit 16 to enable */
+        writel((gating_mode & 0x1) << 16 , IOMUXC_GPR11);
         break;
     case PERFMON2_BASE_ADDR:
         ccm_ccgrx = CCM_CCGR4;
         cgx_offset = CG(2);
+        /* specific bit 16 to enable */
+        writel((gating_mode & 0x1) << 16 , IOMUXC_GPR11);
         break;
     case PERFMON3_BASE_ADDR:
         ccm_ccgrx = CCM_CCGR4;
         cgx_offset = CG(3);
+        /* specific bit 16 to enable */
+        writel((gating_mode & 0x1) << 16 , IOMUXC_GPR11);
         break;
     case GPMI_BASE_ADDR:
         ccm_ccgrx = CCM_CCGR4;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -27,6 +27,8 @@ extern unsigned int mc13892_i2c_reg(unsigned int reg, unsigned int val, unsigned
 extern int set_mac(void);
 extern void program_board_id_fuses(char *chip);
 extern void prog_pll(void);
+
+extern void init_interrupts(void);
 
 static char board_name[20];
 static char board_revision[20];
@@ -113,4 +115,7 @@ void platform_init(void)
     board_id = BOARD_TYPE_ID;
     board_rev = BOARD_VERSION_ID;
 #endif
+
+    /* moved from main.c */
+    init_interrupts();
 }

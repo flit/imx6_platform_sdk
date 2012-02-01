@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -13,7 +13,7 @@
 #define MEM_PRO_UNCACHEABLE
 #define MEM_PRO_UNBUFFERABEL
 
-/*This macro do nothing because the the mmu and cache has beed disabled*/
+/*This macro do nothing because the mmu and cache have been disabled*/
 #define MEM_VIRTUAL_2_PHYSICAL(addr,size,pro)
 
 typedef struct {

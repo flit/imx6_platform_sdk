@@ -12,12 +12,14 @@ static perfmon_res_p last_stats[PERFMON_INST];
 /*!
  * Configure the PerfMon trap mode.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  * @param   addr_low - lower address of the monitored range.
  * @param   addr_high - higher address of the monitored range.
- * @param   range_mode - monitor access inside or outside the range (IN_RANGE/OUT_RANGE).
+ * @param   range_mode - monitor access inside or outside
+ *                       the range (IN_RANGE/OUT_RANGE).
  */
-void perfmon_set_trap_mode(perfmon_id_e id, uint32_t addr_low, uint32_t addr_high, uint8_t range_mode)
+void perfmon_set_trap_mode(perfmon_id_e id, uint32_t addr_low,
+                           uint32_t addr_high, uint8_t range_mode)
 {
     uint32_t base = perfmon_list[id].base;
 
@@ -43,7 +45,7 @@ void perfmon_set_trap_mode(perfmon_id_e id, uint32_t addr_low, uint32_t addr_hig
 /*!
  * Configure the PerfMon latency mode.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  * @param   lat_threshold - latency threshold to generate an interrupt.
  */
 void perfmon_set_latency_mode(perfmon_id_e id, uint32_t lat_threshold)
@@ -66,8 +68,8 @@ void perfmon_set_latency_mode(perfmon_id_e id, uint32_t lat_threshold)
 /*!
  * Start monitoring the performance.
  *
- * @param   id - perfmon instance ID.
- * @param   mid - monitored masters ID.
+ * @param   id - perfmon instance PERFMON_IDx.
+ * @param   mid - monitored masters PERFMON_MIDx.
  * @param   trans - monitored direction : WRITE_TRANS / READ_TRANS.
  */
 void perfmon_start(perfmon_id_e id, perfmon_mid_e mid, perfmon_trans_e trans)
@@ -79,7 +81,8 @@ void perfmon_start(perfmon_id_e id, perfmon_mid_e mid, perfmon_trans_e trans)
     while (reg32_read(base + HW_PERFMON_CTRL) & BM_PERFMON_CTRL_CLR);
 
     /* clear all status flags */
-    reg32_write(base + HW_PERFMON_CTRL_CLR, BM_PERFMON_CTRL_LATENCY_IRQ | BM_PERFMON_CTRL_TRAP_IRQ);
+    reg32_write(base + HW_PERFMON_CTRL_CLR, BM_PERFMON_CTRL_LATENCY_IRQ |
+                                            BM_PERFMON_CTRL_TRAP_IRQ);
 
     /* set the monitored direction */
     if (trans == READ_TRANS)
@@ -102,7 +105,7 @@ void perfmon_start(perfmon_id_e id, perfmon_mid_e mid, perfmon_trans_e trans)
 /*!
  * Perform a snapshot of the monitored performances.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  */
 void perfmon_do_snapshot(perfmon_id_e id)
 {
@@ -129,7 +132,7 @@ void perfmon_do_snapshot(perfmon_id_e id)
  * or from the last one possibly issued after the interrupt of
  * an event (trap, latency). It optionally clears the counters.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  * @param   res - monitoring results.
  * @param   snapshot - perform a fresh snapshot TRUE/FALSE.
  * @param   clear_stat - clear the statistics TRUE/FALSE.
@@ -159,7 +162,7 @@ void perfmon_get_performance(perfmon_id_e id, perfmon_res_p res,
 /*!
  * Stop monitoring the performance.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  * @param   res - monitoring results.
  */
 void perfmon_stop(perfmon_id_e id, perfmon_res_p res)
@@ -224,7 +227,7 @@ void perfmon_interrupt_routine(void)
  * Setup PerfMon interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  * @param   state - ENABLE or DISABLE the interrupt.
  */
 void perfmon_setup_interrupt(perfmon_id_e id, uint8_t state)
@@ -242,21 +245,23 @@ void perfmon_setup_interrupt(perfmon_id_e id, uint8_t state)
 /*!
  * Initialize a performance monitor.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  */
 void perfmon_open(perfmon_id_e id)
 {
     uint32_t base = perfmon_list[id].base;
 
-    /* mysterious undefined bit */
-    writel(0x10000, IOMUXC_GPR11);
-
-    /* switch on the clock */
+    /* switch on the clock
+     * (for i.MX6, IOMUXC GPR11 has a bit to enable clocks to perfmon)
+     */
     clock_gating_config(base, CLOCK_ON);
 
     /* get the PerfMon out of reset */
     reg32_write(base + HW_PERFMON_CTRL_CLR,
                 BM_PERFMON_CTRL_SFTRST | BM_PERFMON_CTRL_CLKGATE);
+
+    /* clear the whole control register */
+    reg32_write(base + HW_PERFMON_CTRL, 0x0);
 
     /* allocate some space to store the latest stats of perfmon 'id' */
     last_stats[id] = malloc(sizeof(perfmon_res_t));
@@ -270,7 +275,7 @@ void perfmon_open(perfmon_id_e id)
 /*!
  * Properly disable a performance monitor.
  *
- * @param   id - perfmon instance ID.
+ * @param   id - perfmon instance PERFMON_IDx.
  */
 void perfmon_close(perfmon_id_e id)
 {
@@ -284,9 +289,6 @@ void perfmon_close(perfmon_id_e id)
 
     /* switch off the clock */
     clock_gating_config(base, CLOCK_OFF);
-
-    /* mysterious undefined bit */
-    writel(0x0, IOMUXC_GPR11);
 
     /* free the allocated space used to store the latest stats of perfmon 'id' */
     free(last_stats[id]);

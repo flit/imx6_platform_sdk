@@ -7,7 +7,10 @@
 #include <stdio.h>
 #include "hardware.h"
 
-#define PERFMON_TEST_BUF_SIZE	4096
+#define PERFMON_TEST_BUF_SIZE   4096
+#define LOW_OFFSET_TRAP_TEST   PERFMON_TEST_BUF_SIZE / 2
+#define HIGH_OFFSET_TRAP_TEST  PERFMON_TEST_BUF_SIZE
+
 #define MEM_WRITE           0x00
 #define MEM_WRITE_AND_TRAP  0x0F
 #define MEM_WRITE_AND_LATT  0xFF
@@ -26,9 +29,10 @@ int32_t perfmon_test(void)
     printf("Start performance monitor unit tests:");
 
     do {
-        printf("\n  1 - to monitor the performance of Cores memory write.\n");
-        printf("  2 - to monitor a memory write with address trap mode enabled.\n");
-        printf("  3 - to monitor a memory write with latency threshold enabled.\n");
+        printf("\n  To monitor the performances of:\n");
+        printf("  1 - a core memory write.\n");
+        printf("  2 - a core memory write with address trap mode enabled.\n");
+        printf("  3 - a core memory write with latency threshold enabled.\n");
         printf("  x - to exit.\n\n");
 
         do {
@@ -56,7 +60,24 @@ void monitor_memory_write(uint8_t test_mode)
 {
     perfmon_res_t res, res_end;
     uint32_t i, *perfmon_test_buffer;
+#ifdef bla
+//    .macro disable_L1_cache
+    __asm(
+        "mrc p15, 0, r0, c1, c0, 0;"
+        "bic r0, r0, #(0x1<<12);"
+        "bic r0, r0, #(0x1<<11);"
+        "bic r0, r0, #(0x1<<2);"
+        "bic r0, r0, #(0x1<<0);"
+        "mcr p15, 0, r0, c1, c0, 0;"
+        );
 
+//    .macro disable_L2_cache
+    __asm(
+        "ldr     r1, =0x00A02100;"
+        "mov     r0,#0;"
+        "str     r0,[r1];"
+        );
+#endif
     perfmon_test_buffer = malloc(PERFMON_TEST_BUF_SIZE*sizeof(uint32_t));
 
     /* initialize the performance monitor 3 to observe cores transfers */
@@ -76,8 +97,10 @@ void monitor_memory_write(uint8_t test_mode)
      *  when address goes outside
      *  perfmon_test_buffer -> perfmon_test_buffer+512.
      */
-        perfmon_set_trap_mode(PERFMON_ID3, (uint32_t) perfmon_test_buffer,
-                             (uint32_t)(perfmon_test_buffer+512), OUT_RANGE);
+        perfmon_set_trap_mode(PERFMON_ID3,
+                             (uint32_t) (perfmon_test_buffer + LOW_OFFSET_TRAP_TEST),
+                             (uint32_t)(perfmon_test_buffer + HIGH_OFFSET_TRAP_TEST),
+                             IN_RANGE);
      }
 
     /* start the monitoring */
@@ -99,7 +122,11 @@ void monitor_memory_write(uint8_t test_mode)
     free(perfmon_test_buffer);
 
     if(res.status & TRAP_EVENT)
-        printf("An address trap event occurred.\n");
+    {
+        printf("An address trap event occurred in\n");
+        printf("0x%X -> 0x%X\n",(uint32_t) (perfmon_test_buffer + LOW_OFFSET_TRAP_TEST),
+              (uint32_t)(perfmon_test_buffer + HIGH_OFFSET_TRAP_TEST));
+    }
     if(res.status & LATENCY_EVENT)
         printf("A latency threshold event occurred.\n");
     if(res.status & (TRAP_EVENT | LATENCY_EVENT))

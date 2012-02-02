@@ -40,9 +40,7 @@ typedef struct iram_t {
 #define false	0
 #endif
 
-typedef void (*vpu_callback) (int status);
-
-int IOSystemInit(void *callback);
+int IOSystemInit(void);
 int IOSystemShutdown(void);
 int IOGetMem(vpu_mem_desc * buff);
 int IOCodecCleanup(void);

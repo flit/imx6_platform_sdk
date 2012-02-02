@@ -34,7 +34,4 @@
 	printf("[WARN]\t" fmt, ## arg);	\
 	} while (0)
 
-#define ENTER_FUNC() dprintf(4, "enter %s()\n", __func__)
-#define EXIT_FUNC() dprintf(4, "exit %s()\n", __func__)
-
 #endif

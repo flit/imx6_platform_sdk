@@ -643,20 +643,6 @@ typedef struct vpu_versioninfo {
 #define VPU_LIB_VERSION(major, minor, release)	 \
 	(((major) << 12) + ((minor) << 8) + (release))
 
-/*
- * Revision History:
- * v5.3.0 [2011.07.30] Add mx6q vpu support
- * v5.2.0 [2011.07.04] Upgrading mx5x f/w to infinite instances support
- * v5.1.5 [2011.06.16] Remove code for not mx5x platforms
- * v5.0.1 [2010.03.03] Integrate mx53 vpu
- * v4.7.1 [2009.09.18] remove share memory file and update SWReset function
- * v4.7.0 [2009.08.03] upgrade mx51 fw to v1.2.0
- * v4.3.2 [2008.10.28] support loopback on MX51
- * v4.2.2 [2008.09.03] support encoder on MX51
- * v4.0.2 [2008.08.21] add the IOClkGateSet() for power saving.
- */
-#define VPU_LIB_VERSION_CODE	VPU_LIB_VERSION(5, 3, 7)
-
 extern unsigned int system_rev;
 
 #define CHIP_REV_1_0            	0x10
@@ -680,48 +666,46 @@ static inline int type## _rev (int rev)         \
 #define cpu_is_mx5x()		(mxc_is_cpu(0x51) || mxc_is_cpu(0x53))
 #define cpu_is_mx6q()		(mxc_is_cpu(0x61) || mxc_is_cpu(0x63))
 
-MXC_REV(cpu_is_mx27);
+RetCode VPU_Init(void);
+void VPU_UnInit(void);
+RetCode VPU_GetVersionInfo(vpu_versioninfo * verinfo);
 
-RetCode vpu_Init(void *);
-void vpu_UnInit(void);
-RetCode vpu_GetVersionInfo(vpu_versioninfo * verinfo);
-
-RetCode vpu_EncOpen(EncHandle *, EncOpenParam *);
-RetCode vpu_EncClose(EncHandle);
-RetCode vpu_EncGetInitialInfo(EncHandle, EncInitialInfo *);
-RetCode vpu_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
+RetCode VPU_EncOpen(EncHandle *, EncOpenParam *);
+RetCode VPU_EncClose(EncHandle);
+RetCode VPU_EncGetInitialInfo(EncHandle, EncInitialInfo *);
+RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
                                    int num, int frameBufStride, int sourceBufStride,
                                    PhysicalAddress subSampBaseA, PhysicalAddress subSampBaseB,
                                    EncExtBufInfo * pBufInfo);
-RetCode vpu_EncGetBitstreamBuffer(EncHandle handle, PhysicalAddress * prdPrt,
+RetCode VPU_EncGetBitstreamBuffer(EncHandle handle, PhysicalAddress * prdPrt,
                                   PhysicalAddress * pwrPtr, uint32_t * size);
-RetCode vpu_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size);
-RetCode vpu_EncStartOneFrame(EncHandle handle, EncParam * param);
-RetCode vpu_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info);
-RetCode vpu_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *parameter);
+RetCode VPU_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size);
+RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param);
+RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info);
+RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *parameter);
 
-RetCode vpu_DecOpen(DecHandle *, DecOpenParam *);
-RetCode vpu_DecClose(DecHandle);
-RetCode vpu_DecSetEscSeqInit(DecHandle handle, int escape);
-RetCode vpu_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info);
-RetCode vpu_DecRegisterFrameBuffer(DecHandle handle,
+RetCode VPU_DecOpen(DecHandle *, DecOpenParam *);
+RetCode VPU_DecClose(DecHandle);
+RetCode VPU_DecSetEscSeqInit(DecHandle handle, int escape);
+RetCode VPU_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info);
+RetCode VPU_DecRegisterFrameBuffer(DecHandle handle,
                                    FrameBuffer * bufArray, int num, int stride,
                                    DecBufInfo * pBufInfo);
-RetCode vpu_DecGetBitstreamBuffer(DecHandle handle, PhysicalAddress * paRdPtr,
+RetCode VPU_DecGetBitstreamBuffer(DecHandle handle, PhysicalAddress * paRdPtr,
                                   PhysicalAddress * paWrPtr, uint32_t * size);
-RetCode vpu_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size);
-RetCode vpu_DecStartOneFrame(DecHandle handle, DecParam * param);
-RetCode vpu_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info);
-RetCode vpu_DecBitBufferFlush(DecHandle handle);
-RetCode vpu_DecClrDispFlag(DecHandle handle, int index);
-RetCode vpu_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *parameter);
-RetCode vpu_EnableInterrupt(int sel);
-RetCode vpu_ClearInterrupt(void);
-int vpu_IsBusy(void);
+RetCode VPU_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size);
+RetCode VPU_DecStartOneFrame(DecHandle handle, DecParam * param);
+RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info);
+RetCode VPU_DecBitBufferFlush(DecHandle handle);
+RetCode VPU_DecClrDispFlag(DecHandle handle, int index);
+RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *parameter);
+RetCode VPU_EnableInterrupt(int sel);
+RetCode VPU_ClearInterrupt(void);
+int VPU_IsBusy(void);
 int jpu_IsBusy(void);
-int vpu_WaitForInt(int timeout_in_ms);
-RetCode vpu_SWReset(DecHandle handle, int index);
-int vpu_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
+int VPU_WaitForInt(int timeout_in_ms);
+RetCode VPU_SWReset(int forcedReset);
+int VPU_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
                       unsigned int addrY, unsigned int addrCb, unsigned int addrCr);
 
 #endif

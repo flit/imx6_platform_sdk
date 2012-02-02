@@ -56,19 +56,11 @@ inline unsigned long *reg_map(unsigned long offset)
 
 /*!
  * @brief IO system initialization.
- *  When user wants to start up the codec system,
- *  this function call is needed, to open the codec device,
- *  map the register into user space,
- *  get the working buffer/code buffer/parameter buffer,
- *  download the firmware, and then set up the interrupt signal path.
+ * before starting the codec, this function must be called first.
+ * the work buffer address and vpu base address are settled here
  *
- * @param callback vpu interrupt callback.
- *
- * @return
- * @li  0	          System initialization success.
- * @li -1		System initialization failure.
  */
-int IOSystemInit(void *callback)
+int IOSystemInit(void)
 {
     /*vpu base is equal to the physical address. MMU disabled */
     vpu_reg_base = (unsigned long)VPU_BASE_ADDR;

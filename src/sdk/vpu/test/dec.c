@@ -22,7 +22,7 @@ static int isInterlacedMPEG4 = 0;
 #define FRAME_TO_DECODE 10000
 
 /*
- * Fill the bitstream to vpu ring buffer
+ * Fill the bitstream to VPU ring buffer
  */
 int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
@@ -34,9 +34,9 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
     int size;
     int nread, room;
 
-    ret = vpu_DecGetBitstreamBuffer(handle, &pa_read_ptr, &pa_write_ptr, &space);
+    ret = VPU_DecGetBitstreamBuffer(handle, &pa_read_ptr, &pa_write_ptr, &space);
     if (ret != RETCODE_SUCCESS) {
-        err_msg("vpu_DecGetBitstreamBuffer failed\n");
+        err_msg("VPU_DecGetBitstreamBuffer failed\n");
         return -1;
     }
 
@@ -83,9 +83,9 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
         }
     }
 
-    ret = vpu_DecUpdateBitstreamBuffer(handle, nread);
+    ret = VPU_DecUpdateBitstreamBuffer(handle, nread);
     if (ret != RETCODE_SUCCESS) {
-        err_msg("vpu_DecUpdateBitstreamBuffer failed\n");
+        err_msg("VPU_DecUpdateBitstreamBuffer failed\n");
         return -1;
     }
 
@@ -130,23 +130,26 @@ int decoder_start(struct decode *dec)
                 rot_angle = 360 - rot_angle;
         } else
             rot_angle = 0;
-        vpu_DecGiveCommand(handle, SET_ROTATION_ANGLE, &rot_angle);
+        VPU_DecGiveCommand(handle, SET_ROTATION_ANGLE, &rot_angle);
 
         mirror = dec->cmdl->mirror;
-        vpu_DecGiveCommand(handle, SET_MIRROR_DIRECTION, &mirror);
+        VPU_DecGiveCommand(handle, SET_MIRROR_DIRECTION, &mirror);
 
         if (rot_en || dering_en) {
             rot_stride = (rot_angle == 90 || rot_angle == 270) ? fheight : fwidth;
         } else
             rot_stride = fwidth;
-        vpu_DecGiveCommand(handle, SET_ROTATOR_STRIDE, &rot_stride);
+        VPU_DecGiveCommand(handle, SET_ROTATOR_STRIDE, &rot_stride);
     }
 
     decparam.prescanEnable = dec->cmdl->prescan;
     decparam.prescanMode = 0;
 
     dec->handle->initDone = 1;
-    return 0;
+
+	/*Now we can start video decoding...*/
+
+	return 0;
 }
 
 void decoder_free_framebuffer(struct decode *dec)
@@ -275,7 +278,7 @@ int decoder_allocate_framebuffer(struct decode *dec)
     bufinfo.maxDecFrmInfo.maxMbY = dec->picheight / 16;
     bufinfo.maxDecFrmInfo.maxMbNum = dec->stride * dec->picheight / 256;
 
-    ret = vpu_DecRegisterFrameBuffer(handle, fb, dec->regfbcount, stride, &bufinfo);
+    ret = VPU_DecRegisterFrameBuffer(handle, fb, dec->regfbcount, stride, &bufinfo);
     if (ret != RETCODE_SUCCESS) {
         err_msg("Register frame buffer failed, ret=%d\n", ret);
         goto err;
@@ -305,11 +308,11 @@ int decoder_parse(struct decode *dec)
     RetCode ret;
 
     /* Parse bitstream and get width/height/framerate etc */
-    vpu_DecSetEscSeqInit(handle, 1);
-    ret = vpu_DecGetInitialInfo(handle, &initinfo);
-    vpu_DecSetEscSeqInit(handle, 0);
+    VPU_DecSetEscSeqInit(handle, 1);
+    ret = VPU_DecGetInitialInfo(handle, &initinfo);
+    VPU_DecSetEscSeqInit(handle, 0);
     if (ret != RETCODE_SUCCESS) {
-        err_msg("vpu_DecGetInitialInfo failed, ret:%d, errorcode:%d\n", ret, initinfo.errorcode);
+        err_msg("VPU_DecGetInitialInfo failed, ret:%d, errorcode:%d\n", ret, initinfo.errorcode);
         return -1;
     }
 
@@ -465,7 +468,7 @@ int decoder_parse(struct decode *dec)
     /*
      * We suggest to add two more buffers than minFrameBufferCount:
      *
-     * vpu_DecClrDispFlag is used to control framebuffer whether can be
+     * VPU_DecClrDispFlag is used to control framebuffer whether can be
      * used for decoder again. One framebuffer dequeue from IPU is delayed
      * for performance improvement and one framebuffer is delayed for
      * display flag clear.
@@ -571,9 +574,9 @@ int decoder_open(struct decode *dec)
     oparam.psSaveBuffer = dec->phy_ps_buf;
     oparam.psSaveBufferSize = PS_SAVE_SIZE;
 
-    ret = vpu_DecOpen(&handle, &oparam);
+    ret = VPU_DecOpen(&handle, &oparam);
     if (ret != RETCODE_SUCCESS) {
-        err_msg("vpu_DecOpen failed %d\n", ret);
+        err_msg("VPU_DecOpen failed %d\n", ret);
         return -1;
     }
 
@@ -586,12 +589,12 @@ void decoder_close(struct decode *dec)
     DecOutputInfo outinfo = { 0 };
     RetCode ret;
 
-    ret = vpu_DecClose(dec->handle);
+    ret = VPU_DecClose(dec->handle);
     if (ret == RETCODE_FRAME_NOT_COMPLETE) {
-        vpu_DecGetOutputInfo(dec->handle, &outinfo);
-        ret = vpu_DecClose(dec->handle);
+        VPU_DecGetOutputInfo(dec->handle, &outinfo);
+        ret = VPU_DecClose(dec->handle);
         if (ret != RETCODE_SUCCESS)
-            err_msg("vpu_DecClose failed\n");
+            err_msg("VPU_DecClose failed\n");
     }
 }
 
@@ -605,7 +608,7 @@ void decoder_frame_display(void)
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
         if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
             if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
-                vpu_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
+                VPU_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
                 disp_clr_index[i] = id;
                 if (gDecInstance[i]->cmdl->mapType != LINEAR_FRAME_MAP) {
                     while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
@@ -900,9 +903,9 @@ int decode_test(void *arg)
         decparam.skipframeNum = 0;
         decparam.iframeSearchEnable = 0;
 
-        if (!vpu_IsBusy() && !dec_fifo_is_full(&gDecFifo[inst])) {
-            vpu_DecStartOneFrame(gDecInstance[inst]->handle, &decparam);
-            while (vpu_IsBusy()) {
+        if (!VPU_IsBusy() && !dec_fifo_is_full(&gDecFifo[inst])) {
+            VPU_DecStartOneFrame(gDecInstance[inst]->handle, &decparam);
+            while (VPU_IsBusy()) {
                 /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
                 err =
                     dec_fill_bsbuffer(gDecInstance[inst]->handle, gDecInstance[inst]->cmdl,
@@ -910,7 +913,7 @@ int decode_test(void *arg)
                                       gBsBuffer[inst], STREAM_BUF_SIZE >> 2);
             };
 
-            vpu_DecGetOutputInfo(gDecInstance[inst]->handle, &outinfo);
+            VPU_DecGetOutputInfo(gDecInstance[inst]->handle, &outinfo);
 
             gDecInstance[inst]->totalFrameDecoded++;
             if (outinfo.indexFrameDisplay >= 0) {

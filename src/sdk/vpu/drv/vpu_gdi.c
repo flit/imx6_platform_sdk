@@ -157,7 +157,7 @@ void SetGDIRegs(GdiTiledMap * pTiledInfo)
         VpuWriteReg(GDI_RBC2_AXI_0 + 4 * i, pTiledInfo->rbc2axi_map[i]);
 }
 
-int vpu_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
+int VPU_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
                       unsigned int addrY, unsigned int addrCb, unsigned int addrCr)
 {
     CodecInst *pCodecInst;

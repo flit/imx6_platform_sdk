@@ -12,6 +12,7 @@
 
 static int frameRateInfo = 0;
 
+/*get the output of encoder to the destination*/
 static int enc_read_line_buffer(struct encode *enc, PhysicalAddress paBsBufAddr, int bsBufsize)
 {
     uint32_t vbuf;
@@ -30,7 +31,7 @@ enc_readbs_ring_buffer(EncHandle handle, struct cmd_line *cmd,
     PhysicalAddress pa_read_ptr, pa_write_ptr;
     uint32_t target_addr, size;
 
-    ret = vpu_EncGetBitstreamBuffer(handle, &pa_read_ptr, &pa_write_ptr, &size);
+    ret = VPU_EncGetBitstreamBuffer(handle, &pa_read_ptr, &pa_write_ptr, &size);
     if (ret != RETCODE_SUCCESS) {
         err_msg("EncGetBitstreamBuffer failed\n");
         return -1;
@@ -59,7 +60,7 @@ enc_readbs_ring_buffer(EncHandle handle, struct cmd_line *cmd,
             vpu_stream_write(cmd, (void *)target_addr, space);
         }
 
-        ret = vpu_EncUpdateBitstreamBuffer(handle, space);
+        ret = VPU_EncUpdateBitstreamBuffer(handle, space);
         if (ret != RETCODE_SUCCESS) {
             err_msg("EncUpdateBitstreamBuffer failed\n");
             return -1;
@@ -78,7 +79,7 @@ static int encoder_set_header(struct encode *enc)
     /* Must put encode header before encoding */
     if (enc->cmdl->format == STD_MPEG4) {
         enchdr_param.headerType = VOS_HEADER;
-        vpu_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
+        VPU_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
             ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
@@ -86,7 +87,7 @@ static int encoder_set_header(struct encode *enc)
         }
 
         enchdr_param.headerType = VIS_HEADER;
-        vpu_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
+        VPU_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
             ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
@@ -94,7 +95,7 @@ static int encoder_set_header(struct encode *enc)
         }
 
         enchdr_param.headerType = VOL_HEADER;
-        vpu_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
+        VPU_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
             ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
@@ -103,7 +104,7 @@ static int encoder_set_header(struct encode *enc)
     } else if (enc->cmdl->format == STD_AVC) {
         if (!enc->mvc_extension || !enc->mvc_paraset_refresh_en) {
             enchdr_param.headerType = SPS_RBSP;
-            vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
+            VPU_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
             if (enc->ringBufferEnable == 0) {
                 ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
                 if (ret < 0)
@@ -113,7 +114,7 @@ static int encoder_set_header(struct encode *enc)
 
         if (enc->mvc_extension) {
             enchdr_param.headerType = SPS_RBSP_MVC;
-            vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
+            VPU_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
             if (enc->ringBufferEnable == 0) {
                 ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
                 if (ret < 0)
@@ -122,7 +123,7 @@ static int encoder_set_header(struct encode *enc)
         }
 
         enchdr_param.headerType = PPS_RBSP;
-        vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
+        VPU_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
             ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
             if (ret < 0)
@@ -131,7 +132,7 @@ static int encoder_set_header(struct encode *enc)
 
         if (enc->mvc_extension) {   /* MVC */
             enchdr_param.headerType = PPS_RBSP_MVC;
-            vpu_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
+            VPU_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
             if (enc->ringBufferEnable == 0) {
                 ret = enc_read_line_buffer(enc, enchdr_param.buf, enchdr_param.size);
                 if (ret < 0)
@@ -255,7 +256,7 @@ int encoder_allocate_framebuffer(struct encode *enc)
     src_stride = (enc->src_picwidth + 15) & ~15;
 
     extbufinfo.scratchBuf = enc->scratchBuf;
-    ret = vpu_EncRegisterFrameBuffer(handle, fb, minfbcount, enc_stride, src_stride,
+    ret = VPU_EncRegisterFrameBuffer(handle, fb, minfbcount, enc_stride, src_stride,
                                      subSampBaseA, subSampBaseB, &extbufinfo);
     if (ret != RETCODE_SUCCESS) {
         err_msg("Register frame buffer failed\n");
@@ -306,7 +307,7 @@ static int encoder_start(struct encode *enc)
     uint32_t virt_bsbuf_end = virt_bsbuf_start + STREAM_BUF_SIZE;
     int encode_end = 0;
 
-/*put encode header*/
+	/*put encode header*/
     ret = encoder_set_header(enc);
     if (ret) {
         err_msg("Encode fill headers failed\n");
@@ -350,14 +351,14 @@ static int encoder_start(struct encode *enc)
         if (ret <= 0)
             break;
 
-        ret = vpu_EncStartOneFrame(handle, &enc_param);
+        ret = VPU_EncStartOneFrame(handle, &enc_param);
         if (ret != RETCODE_SUCCESS) {
-            err_msg("vpu_EncStartOneFrame failed Err code:%d\n", ret);
+            err_msg("VPU_EncStartOneFrame failed Err code:%d\n", ret);
             goto err2;
         }
 
-        while (vpu_IsBusy()) {
-            vpu_WaitForInt(200);
+        while (VPU_IsBusy()) {
+            VPU_WaitForInt(200);
             if (enc->ringBufferEnable == 1) {
                 ret = enc_readbs_ring_buffer(handle, enc->cmdl,
                                              virt_bsbuf_start, virt_bsbuf_end,
@@ -370,9 +371,9 @@ static int encoder_start(struct encode *enc)
             }
         }
 
-        ret = vpu_EncGetOutputInfo(handle, &outinfo);
+        ret = VPU_EncGetOutputInfo(handle, &outinfo);
         if (ret != RETCODE_SUCCESS) {
-            err_msg("vpu_EncGetOutputInfo failed Err code: %d\n", ret);
+            err_msg("VPU_EncGetOutputInfo failed Err code: %d\n", ret);
             goto err2;
         }
 
@@ -412,14 +413,14 @@ int encoder_configure(struct encode *enc)
     MirrorDirection mirror;
 
     if (enc->cmdl->rot_en) {
-        vpu_EncGiveCommand(handle, ENABLE_ROTATION, 0);
-        vpu_EncGiveCommand(handle, ENABLE_MIRRORING, 0);
-        vpu_EncGiveCommand(handle, SET_ROTATION_ANGLE, &enc->cmdl->rot_angle);
+        VPU_EncGiveCommand(handle, ENABLE_ROTATION, 0);
+        VPU_EncGiveCommand(handle, ENABLE_MIRRORING, 0);
+        VPU_EncGiveCommand(handle, SET_ROTATION_ANGLE, &enc->cmdl->rot_angle);
         mirror = enc->cmdl->mirror;
-        vpu_EncGiveCommand(handle, SET_MIRROR_DIRECTION, &mirror);
+        VPU_EncGiveCommand(handle, SET_MIRROR_DIRECTION, &mirror);
     }
 
-    ret = vpu_EncGetInitialInfo(handle, &initinfo);
+    ret = VPU_EncGetInitialInfo(handle, &initinfo);
     if (ret != RETCODE_SUCCESS) {
         err_msg("Encoder GetInitialInfo failed\n");
         return -1;
@@ -439,10 +440,10 @@ void encoder_close(struct encode *enc)
     EncOutputInfo outinfo = { 0 };
     RetCode ret;
 
-    ret = vpu_EncClose(enc->handle);
+    ret = VPU_EncClose(enc->handle);
     if (ret == RETCODE_FRAME_NOT_COMPLETE) {
-        vpu_EncGetOutputInfo(enc->handle, &outinfo);
-        vpu_EncClose(enc->handle);
+        VPU_EncGetOutputInfo(enc->handle, &outinfo);
+        VPU_EncClose(enc->handle);
     }
 }
 
@@ -567,7 +568,7 @@ int encoder_open(struct encode *enc)
         }
     }
 
-    ret = vpu_EncOpen(&handle, &encop);
+    ret = VPU_EncOpen(&handle, &encop);
     if (ret != RETCODE_SUCCESS) {
         err_msg("Encoder open failed %d\n", ret);
         return -1;
@@ -758,16 +759,16 @@ int encode_test(void *arg)
             decparam.skipframeNum = 0;
             decparam.iframeSearchEnable = 0;
 
-            if (!vpu_IsBusy() && !dec_fifo_is_full(&gDecFifo[0])) {
-                vpu_DecStartOneFrame(gDecInstance[0]->handle, &decparam);
-                while (vpu_IsBusy()) {
+            if (!VPU_IsBusy() && !dec_fifo_is_full(&gDecFifo[0])) {
+                VPU_DecStartOneFrame(gDecInstance[0]->handle, &decparam);
+                while (VPU_IsBusy()) {
                     /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
                     dec_fill_bsbuffer(gDecInstance[0]->handle, gDecInstance[0]->cmdl,
                                       gBsBuffer[0], gBsBuffer[0] + STREAM_BUF_SIZE,
                                       gBsBuffer[0], STREAM_BUF_SIZE >> 2);
                 };
 
-                vpu_DecGetOutputInfo(gDecInstance[0]->handle, &outinfo);
+                VPU_DecGetOutputInfo(gDecInstance[0]->handle, &outinfo);
                 if (outinfo.indexFrameDisplay >= 0) {
                     count++;
                     /*push the decoded frame into fifo */

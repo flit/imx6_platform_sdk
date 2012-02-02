@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "hardware.h"
 #include "vpu_util.h"
 #include "vpu_io.h"
 #include "vpu_debug.h"
@@ -930,6 +931,22 @@ void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromIn
     }
 }
 
+int vpu_sys_reset(int timeout)
+{
+    uint32_t val = 0;
+
+    val = readl(SRC_BASE_ADDR + SRC_SCR_OFFSET);
+    writel(val | (1 << 2), SRC_BASE_ADDR + SRC_SCR_OFFSET);
+
+    /*wait for the bit self cleared */
+    while (timeout-- > 0) {
+        val = readl(SRC_BASE_ADDR + SRC_SCR_OFFSET) & (1 << 2);
+        if (val == 0)
+            return true;
+    }
+    return false;
+}
+
 vpu_resource_t *vpu_semaphore_open(void)
 {
     int ret = 0;
@@ -957,39 +974,4 @@ vpu_resource_t *vpu_semaphore_open(void)
     }
     vpu_system_mem_size += share_mem.size;
     return semap;
-}
-
-int vpu_mx6q_swreset(int forcedReset)
-{
-    volatile int i;
-    uint32_t cmd;
-
-    if (forcedReset == 0) {
-        VpuWriteReg(GDI_BUS_CTRL, 0x11);
-        while (VpuReadReg(GDI_BUS_STATUS) != 0x77) ;
-        VpuWriteReg(GDI_BUS_CTRL, 0x00);
-    }
-
-    cmd = VPU_SW_RESET_BPU_CORE | VPU_SW_RESET_BPU_BUS;
-    cmd |= VPU_SW_RESET_VCE_CORE | VPU_SW_RESET_VCE_BUS;
-    VpuWriteReg(BIT_SW_RESET, cmd);
-    /* delay more than 64 vpu cycles */
-    for (i = 0; i < 50; i++) ;
-    while (VpuReadReg(BIT_SW_RESET_STATUS) != 0) ;
-
-    VpuWriteReg(BIT_SW_RESET, 0);
-    return RETCODE_SUCCESS;
-}
-
-int vpu_mx6q_hwreset(void)
-{
-    VpuWriteReg(GDI_BUS_CTRL, 0x11);
-    while (VpuReadReg(GDI_BUS_STATUS) != 0x77) ;
-    VpuWriteReg(GDI_BUS_CTRL, 0x00);
-
-    VpuWriteReg(BIT_BUSY_FLAG, 1);
-    VpuWriteReg(BIT_CODE_RUN, 1);
-    while (VpuReadReg(BIT_BUSY_FLAG)) ;
-
-    return RETCODE_SUCCESS;
 }

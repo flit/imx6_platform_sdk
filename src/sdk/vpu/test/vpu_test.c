@@ -51,16 +51,16 @@ int vpu_test(void)
     /* initialize VPU */
     framebuf_init();
 
-    err = vpu_Init(NULL);
+    err = VPU_Init();
     if (err) {
         err_msg("VPU Init Failure.\n");
         return -1;
     }
 
-    err = vpu_GetVersionInfo(&ver);
+    err = VPU_GetVersionInfo(&ver);
     if (err) {
         err_msg("Cannot get version info\n");
-        vpu_UnInit();
+        VPU_UnInit();
         return -1;
     }
 

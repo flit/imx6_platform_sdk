@@ -206,8 +206,19 @@ void mipi_csi2_clock_set(void)
     reg32_write(CCM_CCOSR, 0x10e0180);
 }
 
-void mipi_csi2_reset(void)
+int32_t mipi_csi2_set_lanes(uint32_t lanes)
 {
+    if (lanes > 4 || lanes < 1)
+        return FALSE;
+    reg32_write(CSI2_N_LANES, lanes - 1);
+    return TRUE;
+}
+
+void mipi_csi2_controller_program(void)
+{
+    //ov5640 support 2 lanes. (using lane 0 and lane 1)
+    mipi_csi2_set_lanes(2);
+
     /*PHY loopback test */
     reg32_write(CSI2_PHY_TST_CTRL0, 0x00000001);    //{phy_testclk,phy_testclr} = {0,1}
     reg32_write(CSI2_PHY_TST_CTRL1, 0x00000000);    //{phy_testen,phy_testdout,phy_testdin}
@@ -275,32 +286,34 @@ void mipi_cam_power_on(void)
 #endif
 }
 
-int32_t mipi_csi2_set_lanes(uint32_t lanes)
-{
-    if (lanes > 4 || lanes < 1)
-        return FALSE;
-    reg32_write(CSI2_N_LANES, 0x1);
-    return TRUE;
-}
-
 void mipi_csi2_config(void)
 {
     uint32_t timeout = 0x100000;
 
+    /*D-PHY initialize */
     mipi_csi2_clock_set();
-
     mipi_cam_power_on();
 
-    //ov5640 support 2 lanes. (using lane 0 and lane 1)
-    mipi_csi2_set_lanes(2);
+    /*CSI2 controller program */
+    mipi_csi2_controller_program();
 
-    mipi_csi2_reset();
-
-    mipi_sensor_config(I2C2_BASE_ADDR);
-
-    while ((reg32_read(CSI2_PHY_STATE) & 0xffffffff) == 0x00000200) {
+    /*check if D-PHY is ready to receive: clock lane and data lane in stop state */
+    timeout = 0x100000;
+    while ((reg32_read(CSI2_PHY_STATE) & 0xffffffff) == 0x00000230) {
         if (timeout-- < 0) {
             printf("Waiting for PHY ready timeout!!\n");
+            return;
+        }
+    }
+
+    /*config mipi camera sensor */
+    mipi_sensor_config(I2C2_BASE_ADDR);
+
+    /*check if ddr clock is received */
+    timeout = 0x100000;
+    while ((reg32_read(CSI2_PHY_STATE) & 0xffffffff) == 0x00000100) {
+        if (timeout-- < 0) {
+            printf("Waiting for DDR clock ready timeout!!\n");
             return;
         }
     }

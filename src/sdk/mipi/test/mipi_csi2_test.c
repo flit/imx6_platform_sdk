@@ -30,15 +30,13 @@ int32_t mipi_csi2_test(void)
     ipu_sw_reset(ipu_index, 1000);
 
     panel = search_panel("HannStar XGA LVDS");
+    panel->panel_init(NULL);
 
     ipu_mipi_csi2_setup(1, 640, 480, panel);
 
     mipi_csi2_config();
 
-    //enable ipu display channel
     ipu_enable_display(ipu_index);
-
-    //ipu_capture_disp_link(ipu_index, 0);
 
     panel->panel_init(NULL);
 

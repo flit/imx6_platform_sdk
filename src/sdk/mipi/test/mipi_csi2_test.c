@@ -38,8 +38,6 @@ int32_t mipi_csi2_test(void)
 
     ipu_enable_display(ipu_index);
 
-    panel->panel_init(NULL);
-
     ipu_channel_buf_ready(ipu_index, 0, 0);
     ipu_channel_buf_ready(ipu_index, 23, 0);
 

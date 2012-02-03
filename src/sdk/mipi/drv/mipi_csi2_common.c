@@ -199,8 +199,7 @@ void mipi_csi2_clock_set(void)
     while (!(reg32_read(ANATOP_BASE_ADDR + 0xA0) & 0x80000000)) ;   // wait for PLL lock
     reg32_write(ANATOP_BASE_ADDR + 0xA8, 0x00010000);
 
-    /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
-    reg32_write(CCM_CHSCCDR, 0x00012150);
+    /*select CSI0_MCLK osc_clk 24MHz, CKO1 output drives cko2 clock */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, ALT3);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, 0x1B0B0);
     reg32_write(CCM_CCOSR, 0x10e0180);

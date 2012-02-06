@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -15,6 +15,8 @@ static int pcie_dump_cfg_hdr_type0(pcie_cfg_hdr_type0_p header)
 {
     printf("Vendor ID: 0x%04x\n", header->vendor_id);
     printf("Device ID: 0x%04x\n", header->dev_id);
+    printf("Command: 0x%08x\n", header->cmd);
+    printf("Status: 0x%08x\n", header->status);
     printf("Header Type: %d\n", header->hdr_type);
     printf("BAR0: 0x%08x\n", header->bar0);
     printf("BAR1: 0x%08x\n", header->bar1);
@@ -30,6 +32,8 @@ static int pcie_dump_cfg_hdr_type1(pcie_cfg_hdr_type1_p header)
 {
     printf("Vendor ID: 0x%04x\n", header->vendor_id);
     printf("Device ID: 0x%04x\n", header->dev_id);
+    printf("Command: 0x%08x\n", header->cmd);
+    printf("Status: 0x%08x\n", header->status);
     printf("Header Type: %d\n", header->hdr_type);
     printf("BAR0: 0x%08x\n", header->bar0);
     printf("BAR1: 0x%08x\n", header->bar1);
@@ -57,6 +61,8 @@ int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t 
     uint32_t index = 0, i, j, size, tmp_val;
     pcie_cfg_hdr_type0_p tmp_hdr = (pcie_cfg_hdr_type0_p) header_base;
     uint32_t bar_off = FIELD_OFFSET(pcie_cfg_hdr_type0_t, bar0);
+    uint32_t cmd_off = FIELD_OFFSET(pcie_cfg_hdr_type0_t, cmd);
+    volatile uint32_t *cmd = (uint32_t *) ((uint32_t) header_base + cmd_off);
     volatile uint32_t *bar = (uint32_t *) ((uint32_t) header_base + bar_off);
 
     if (tmp_hdr->hdr_type == 0x00) {
@@ -69,15 +75,25 @@ int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t 
                 if (tmp_val & 0x01) {
                     res[index].type = RESOURCE_TYPE_IO;
                     j = 2;
+                    *cmd |= 0x01;
                 } else {
                     res[index].type = RESOURCE_TYPE_MEM;
                     j = 4;
+                    *cmd |= 0x01 << 1;
                 }
                 for (; j < 32; j++) {
                     if (tmp_val & (0x01 << j))
                         break;
                 }
                 res[index].size = 0x01 << j;
+
+                if (tmp_val & 0x04) {   //The bar is 64bits
+                    res[index].bits = 64;
+                    i++;
+                    bar++;
+                } else {
+                    res[index].bits = 32;
+                }
 
                 index++;
             }

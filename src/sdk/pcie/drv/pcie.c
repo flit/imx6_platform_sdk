@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -116,6 +116,8 @@ uint32_t pcie_map_space(uint32_t viewport, uint32_t tlp_type,
 
 int pcie_init(pcie_dm_mode_e dev_mode)
 {
+    uint32_t val;
+
     pcie_gpr_write_field(diag_status_bus_select, 0xb);
 
     pcie_gpr_write_field(app_ltssm_enable, 0);
@@ -162,6 +164,10 @@ int pcie_init(pcie_dm_mode_e dev_mode)
         printf("Link timeout.\n");
         return -1;
     }
+    //enable master, io, memory
+    val = reg32_read(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR);
+    val |= 0x07;
+    reg32_write(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR, val);
 
     return 0;
 }

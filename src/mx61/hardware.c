@@ -674,3 +674,89 @@ uint32_t GetCPUFreq(void)
 {
     return 1000000000;
 }
+
+void pcie_clk_setup(uint32_t enable)
+{
+    uint32_t val;
+
+    if (enable) {
+        // gate on pci-e clks
+        val = reg32_read(CCM_CCGR4);
+        val |= 0x3 << 0;
+        reg32_write(CCM_CCGR4, val);
+
+        // clear the powerdown bit
+        reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);
+        // enable pll
+        reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);
+        // wait the pll locked
+        while (!(reg32_read(HW_ANADIG_PLL_ETH_CTRL) & (0x01 << 31))) ;
+        // Disable bypass
+        reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);
+        // enable pci-e ref clk
+        reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 19);
+    }
+}
+
+void pcie_card_pwr_setup(uint32_t enable)
+{
+    i2c_init(I2C3_BASE_ADDR, 100000);
+
+    if (enable) {
+        //enable pciemini_3.3v
+        max7310_set_gpio_output(1, 2, 1);
+    } else {
+        max7310_set_gpio_output(1, 2, 0);
+    }
+}
+
+#define ANATOP_PLL_ENABLE_MASK          0x00002000
+#define ANATOP_PLL_BYPASS_MASK          0x00010000
+#define ANATOP_PLL_LOCK                 0x80000000
+#define ANATOP_PLL_PWDN_MASK            0x00001000
+#define ANATOP_PLL_HOLD_RING_OFF_MASK   0x00000800
+#define ANATOP_PCIE_CLK_ENABLE_MASK     0x00080000
+#define ANATOP_SATA_CLK_ENABLE_MASK     0x00100000
+#define ANATOP_BYPASS_SRC_LVDS1         0x00004000
+
+#define ENET_PLL_REG ((volatile uint32_t *)(ANATOP_BASE_ADDR + (0xE << 4)))
+#define ANA_MISC1_REG ((volatile uint32_t *)(ANATOP_BASE_ADDR + (0x16 << 4)))
+#define ANATOP_LVDS_CLK1_SRC_PCIE       0xA
+#define ANATOP_LVDS_CLK1_SRC_SATA       0xB
+#define ANATOP_LVDS_CLK1_OBEN_MASK       0x400
+#define ANATOP_LVDS_CLK1_IBEN_MASK       0x1000
+
+void enable_extrn_100mhz_clk(uint32_t enable)
+{
+    if (enable) {
+        /* Disable SATS clock gating used has external reference */
+        *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
+
+        *ANA_MISC1_REG &= ~ANATOP_LVDS_CLK1_IBEN_MASK;
+        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_SRC_SATA;
+        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_OBEN_MASK;
+    }
+}
+
+void enable_extrn_125mhz_clk(uint32_t enable)
+{
+    if (enable) {
+        /* Disable SATS clock gating used has external reference */
+        *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
+
+        *ANA_MISC1_REG &= ~ANATOP_LVDS_CLK1_IBEN_MASK;
+        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_SRC_PCIE;
+        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_OBEN_MASK;
+    }
+}
+
+void pcie_card_rst(void)
+{
+    i2c_init(I2C3_BASE_ADDR, 100000);
+
+    max7310_set_gpio_output(0, 2, 0);
+
+    hal_delay_us(200 * 1000);
+
+    max7310_set_gpio_output(0, 2, 1);
+}

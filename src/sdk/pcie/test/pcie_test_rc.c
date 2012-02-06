@@ -9,6 +9,8 @@
 #include "../inc/pcie_common.h"
 #include "../inc/pcie_prot.h"
 
+#define PCIE_VERIFY_PATTERN		0x5a
+
 extern int pcie_init(pcie_dm_mode_e dev_mode);
 
 extern void (*pcie_func_clk_setup) (uint32_t enable);
@@ -17,102 +19,17 @@ extern void (*pcie_func_card_pwr_setup) (uint32_t enable);
 extern void (*pcie_func_card_ref_clk_setup) (uint32_t enable);
 extern void (*pcie_func_card_rst) (void);
 
-/* Board specific routines, should move to hardware.c later.*/
-void pcie_clk_setup(uint32_t enable)
-{
-    uint32_t val;
-
-    if (enable) {
-        // gate on pci-e clks
-        val = reg32_read(CCM_CCGR4);
-        val |= 0x3 << 0;
-        reg32_write(CCM_CCGR4, val);
-
-        // clear the powerdown bit
-        reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);
-        // enable pll
-        reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);
-        // wait the pll locked
-        while (!(reg32_read(HW_ANADIG_PLL_ETH_CTRL) & (0x01 << 31))) ;
-        // Disable bypass
-        reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);
-        // enable pci-e ref clk
-        reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 19);
-    }
-}
-
-void pcie_card_pwr_setup(uint32_t enable)
-{
-    i2c_init(I2C3_BASE_ADDR, 100000);
-
-    if (enable) {
-        //enable pciemini_3.3v
-        max7310_set_gpio_output(1, 2, 1);
-    } else {
-        max7310_set_gpio_output(1, 2, 0);
-    }
-}
-
-#define ANATOP_PLL_ENABLE_MASK          0x00002000
-#define ANATOP_PLL_BYPASS_MASK          0x00010000
-#define ANATOP_PLL_LOCK                 0x80000000
-#define ANATOP_PLL_PWDN_MASK            0x00001000
-#define ANATOP_PLL_HOLD_RING_OFF_MASK   0x00000800
-#define ANATOP_PCIE_CLK_ENABLE_MASK     0x00080000
-#define ANATOP_SATA_CLK_ENABLE_MASK     0x00100000
-#define ANATOP_BYPASS_SRC_LVDS1         0x00004000
-
-#define ENET_PLL_REG ((volatile uint32_t *)(ANATOP_BASE_ADDR + (0xE << 4)))
-#define ANA_MISC1_REG ((volatile uint32_t *)(ANATOP_BASE_ADDR + (0x16 << 4)))
-#define ANATOP_LVDS_CLK1_SRC_PCIE       0xA
-#define ANATOP_LVDS_CLK1_SRC_SATA       0xB
-#define ANATOP_LVDS_CLK1_OBEN_MASK       0x400
-#define ANATOP_LVDS_CLK1_IBEN_MASK       0x1000
-
-void enable_extrn_100mhz_clk(uint32_t enable)
-{
-    if (enable) {
-        /* Disable SATS clock gating used has external reference */
-        *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
-
-        *ANA_MISC1_REG &= ~ANATOP_LVDS_CLK1_IBEN_MASK;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_SRC_SATA;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_OBEN_MASK;
-    }
-}
-
-void enable_extrn_125mhz_clk(uint32_t enable)
-{
-    if (enable) {
-        /* Disable SATS clock gating used has external reference */
-        *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
-
-        *ANA_MISC1_REG &= ~ANATOP_LVDS_CLK1_IBEN_MASK;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_SRC_PCIE;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_OBEN_MASK;
-    }
-}
-
-void pcie_card_rst(void)
-{
-    i2c_init(I2C3_BASE_ADDR, 100000);
-
-    max7310_set_gpio_output(0, 2, 0);
-
-    hal_delay_us(200 * 1000);
-
-    max7310_set_gpio_output(0, 2, 1);
-}
-
-/*********************************************************************/
-#define UNUSED_VARIABLE(x) (x) = (x);
+extern void pcie_clk_setup(uint32_t enable);
+extern void pcie_card_pwr_setup(uint32_t enable);
+extern void enable_extrn_100mhz_clk(uint32_t enable);
+extern void pcie_card_rst(void);
 
 pcie_resource_t ep1_resources[6];
 uint32_t res_num = 6;
 
 int pcie_test(void)
 {
-    uint32_t i;
+    uint32_t i, j;
     uint8_t ch;
 
     printf("\n---- Running PCIE test. Type 'y' to continue.\n");
@@ -171,6 +88,10 @@ int pcie_test(void)
     pcie_dump_cfg_header((uint32_t *) cfg_hdr_base);
 
     pcie_enum_resources((uint32_t *) cfg_hdr_base, ep1_resources, &res_num);
+    if (0 == res_num) {
+        printf("Enumerate endpoint's resource failed.\n");
+        return -1;
+    }
 
     printf("List the endpoint's resource requirement.\n");
     for (i = 0; i < res_num; i++) {
@@ -185,10 +106,9 @@ int pcie_test(void)
     }
 
     printf("Allocate resources for the endpoint.\n");
-
     uint32_t viewport = PCIE_IATU_VIEWPORT_1;
     uint32_t ep_io_base = 0, ep_mem_base = 0, base_cpu_side = PCIE_ARB_BASE_ADDR + SZ_64K;
-    uint32_t tlp_type = 0, size, bar, *ep_base = 0;
+    uint32_t tlp_type = 0, size, bar, *ep_base = NULL;
     char *str_space[] = { "IO", "Memory" };
     char *str = 0;
 
@@ -200,12 +120,14 @@ int pcie_test(void)
             tlp_type = TLP_TYPE_IORdWr;
             str = str_space[0];
             base_cpu_side = (base_cpu_side + 0xFF) & (~0xFF);
+            *ep_base = (*ep_base + 0xFF) & (~0xFF);
         } else if (ep1_resources[i].type == RESOURCE_TYPE_MEM) {
             ep_base = &ep_mem_base;
             tlp_type = TLP_TYPE_MemRdWr;
             str = str_space[1];
             // 4 Kbyre alligned
             base_cpu_side = (base_cpu_side + 0xFFF) & (~0xFFF);
+            *ep_base = (*ep_base + 0xFFF) & (~0xFFF);
         }
 
         printf("Map endpoint's bar%d %s space %d byte to CPU memory base 0x%x.\n ", bar, str, size,
@@ -216,19 +138,27 @@ int pcie_test(void)
         base_cpu_side += size;
     }
 
-    printf("Dump configuration header again.\n");
-    pcie_dump_cfg_header((uint32_t *) cfg_hdr_base);
-
-#if 0
-    printf("Write words to endpoint's memory space and read them back to verified.\n");
-
-    uint8_t *mem_space_base = (uint8_t *) ep1_resources[1].base;
-
-    printf("Write word to 0x%08x\n", (uint32_t) mem_space_base);
-    *mem_space_base = 0x12;
-
-    printf("Read back: 0x%08x vs 0x%08x\n", *mem_space_base, 0x12);
-#endif
+    printf("Verify the access to endpoint's first space.\n");
+    volatile uint8_t *space_ptr = NULL;
+    space_ptr = (volatile uint8_t *)ep1_resources[0].base;
+    if (ep1_resources[0].type == RESOURCE_TYPE_IO) {
+        printf
+            ("Since the endpoint's io space maybe read-only, this program just dump the first, please check they are correct or not.\n");
+        printf("Dump the first 4 bytes of the io space:");
+        for (j = 0; j < 4; j++, space_ptr++) {
+            printf("0x%02x\t", *space_ptr);
+        }
+        printf("\n");
+    } else {
+        *space_ptr = PCIE_VERIFY_PATTERN;
+        if (*space_ptr == PCIE_VERIFY_PATTERN) {
+            printf("The memory space access succeed.\n");
+        } else {
+            printf("The memory space access failed, 0x%08x vs 0x%08x.\n", PCIE_VERIFY_PATTERN,
+                   *space_ptr);
+            return -1;
+        }
+    }
 
     return 0;
 }

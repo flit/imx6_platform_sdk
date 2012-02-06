@@ -3,33 +3,66 @@
 # build_sdk
 #
 
+shopt -s extglob
+
 script=$(basename $0)
 script_full=$(which $0)
 script_path=$(dirname $script_full)
-clean_flag=n
 
 usage()
 {
-    echo "Generates Makefiles for the iMX SDK project."
-    echo "Makefiles are generated only for packages that are part of the platform specified as argument."
-    echo
     echo "Usage: "
-    echo "   $script [-target <mx53,mx61,...>] [-board <evb,qsb,smd,ard...>][-board_rev <1,2,...>] [-test <sdma,ipu,uart,ALL,...>] [-clean]"
-    echo "   The '-clean' is an optional argument to be used in case you wish to do a clean build"
+    echo "   $script -t <target> -b <board> [-v <rev>] [-r <test>] [-n] [-c]"
     echo
-    echo "For eg: 1. $script -target mx53 -board ard -board_rev 2 -test vpu"
-    echo "        2. $script -target mx53 -board lcb -board_rev 1 -test ALL -clean"
-    echo "        2. $script -target mx61 -board evb -board_rev 1 -test sdma -clean"
-    echo "        3. $script -target mx61 -board qsb -board_rev 1 -test ALL"
+    echo "Generates makefiles for the i.MX SDK project."
+    echo
+    echo "Options:"
+    echo "   -t, -target=<target>     Specify the target name. Required."
+    echo "   -b, -board=<brd>         Specify the board name. Required."
+    echo "   -v, -board_rev=<rev>     Sets the board revision. Optional, and the default is 1."
+    echo "   -r, -test=<name>         Optional argument to select a single test, or ALL for all tests."
+    echo "                            Defaults to ALL."
+    echo "   -c, -clean               Optional flag to force a clean build"
+    echo "   -n, -no-build            Don't actually run make."
+    echo
+    echo "   Short options take the same arguments as their respective long options."
+    echo "   The '=' is optional for long options; arguments can be specified as -arg=value or"
+    echo "   -arg value. Short options require a space between the option and value."
+    echo
+    echo "Generates makefiles for the specified combination of options. If -clean was specified,"
+    echo "'make clean' will be run. Then a regular build will be executed, unless the -no-build"
+    echo "argument is present. Makefiles are generated only for packages that are part of the"
+    echo "selected board."
+    echo
+    echo "Valid target and board combinations:"
+    echo
+    echo "  target=mx61 boards:"
+    echo "       ard              rev 1"
+    echo "       evb              rev 1 (MX6QCPUDDR3)"
+    echo "       sabre_tablet     rev 1"
+    echo
+    echo "Examples:"
+    echo
+    echo "  $script -target mx61 -board evb"
+    echo
+    echo "      Build for the mx61 evb board with default board rev of 1 and all tests."
+    echo
+    echo "  $script -t mx61 -b ard -v 1 -test sdma -clean"
+    echo
+    echo "      Build the mx61 ard board with explicit board rev 1, but only build the sdma test."
+    echo "      Clean before building."
+    echo
+    echo "  $script -target=mx61 -board=evb -test=gpmi -no-build"
+    echo
+    echo "      Generate the makefiles for mx61 evb and the gpmi test, but don't actually run make."
     echo
     echo
     exit 1
 }
 
 if [ $# -lt 1 ]; then
-    echo "Need to specify -target & -board as arguments"
+    echo "Need to specify at least -target and -board as arguments"
     echo
-    echo "$script:"
     usage
 fi
 
@@ -42,7 +75,8 @@ sdk_dir=$PWD
 while [ ! -f tools/gen_make.pl -o ! -d src/init ]; do
     if [ "$sdk_dir" = / ]; then
         echo "Couldn't find root of project tree. Script must be executed from root of project tree"
-        eval usage
+        echo
+        usage
     fi
     cd ..
     sdk_dir=$PWD
@@ -53,34 +87,54 @@ make_perl_script=$sdk_dir/tools/gen_make.pl
 
 os_name=$(uname)
 
+# Set default values for optional arguments.
+board_version=1
+test_name="ALL"
+clean_flag=n
+build_flag=y
+
 while [ $# -gt 0 ]; do
     case $1 in
-    -target )   soc_name=$2
-                shift
+    @(-t|-target?(=*)) )    soc_name=${1#-target=}
+                            if [ "$soc_name" = "$1" ]; then
+                                soc_name=$2
+                                shift
+                            fi
             ;;
 
-    -board )    board_name=$2
-                shift
+    @(-b|-board?(=*)) )     board_name=${1#-board=}
+                            if [ "$board_name" = "$1" ]; then
+                                board_name=$2
+                                shift
+                            fi
             ;;
-    -board_rev   )    board_version=$2
-                shift
+    @(-v|-board_rev?(=*)) ) board_version=${1#-board_rev=}
+                            if [ "$board_version" = "$1" ]; then
+                                board_version=$2
+                                shift
+                            fi
             ;;
-    -test  )    test_name=$2
-	    	shift
-	    ;;
-    -clean )    clean_flag=y
+    @(-r|-test?(=*)) )      test_name=${1#-test=}
+                            if [ "$test_name" = "$1" ]; then
+                                test_name=$2
+                                shift
+                            fi
+	        ;;
+    -c|-clean )             clean_flag=y
+            ;;
+    -n|-no-build )          build_flag=n
             ;;
 
     * )     echo "Incorrect parameter: $1"
             echo
-            echo "$script:"
             usage
             ;;
     esac
     shift
 done
 
-echo "Generating makefiles for ${soc_name}_${board_name}"
+# Generate makefile
+echo "Generating makefiles for ${soc_name}_${board_name} rev${board_version} test=${test_name}"
 
 perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $test_name
 
@@ -89,17 +143,27 @@ if [ $? -eq 1 ]; then
     echo "Failed to run the gen_make perl script."
     echo "Please double check the -board & -target arguments passed in"
     echo
-    echo "$script:"
     usage
     exit 1
 fi
 
+# Clean the build first if requested.
 if [ "$clean_flag" = y ]; then
     make clean TARGET=$soc_name
 fi
 
+# Run make if requested.
+if [ "$build_flag" = y ]; then
     #Do not include the '_' when calling the make
     make TARGET=$soc_name BOARD=$board_name BOARD_VERSION=$board_version TEST=$test_name
+    
+    echo
+    if [ $? -eq 0 ]; then
+        echo "Build passed!"
+    else
+        echo "Build failed with return code $?!"
+    fi
+fi
 
 echo
 echo "Done ... Build script completed"

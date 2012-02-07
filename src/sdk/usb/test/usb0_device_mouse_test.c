@@ -1,0 +1,466 @@
+/*
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
+ * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
+ * Freescale Semiconductor, Inc.
+*/
+
+/*!
+ * @file usb0_device_mouse_test.c
+ * @brief Emulate a USB mouse
+ *
+ * This test code demonstrates the use of control and interrupt endpoints.
+ * The mouse data (X/Y movement) is transferred in an interrupt transfer
+ */
+#include "usb.h"
+#include "usb_registers.h"
+#include "usb_defines.h"
+#include "soc_memory_map.h"
+
+#include <math.h>
+#include <float.h>
+
+
+//! X, Y displacement info
+#define MAX_DISP	300
+#define DISPLACE	2
+
+void poll_for_vbus (usb_module_t *port);
+void hid_device_enum(usb_module_t *port, usbdEndpointPair_t *endpointListAddress, usbDeviceDescriptor_t *DeviceDescriptor,\
+				usbConfigurationDescriptor_t *ConfigDescriptor, uint8_t *fullConfigBuffer, uint8_t *ReportDescriptor );
+
+//! Allocate memory for endpoint list
+// Hardware supports 8 IN and 8 OUT endpoints, including Endpoint 0
+// For non-control endpoints, In and OUT are completely independent.
+
+usbdEndpointPair_t endpointList[8]  __attribute__ ((aligned (4096))); // 4K aligned memory for 16 queue heads
+
+
+/*!
+ * @file usb0_device_mouse_test.c
+ * @brief Demo code to illustrate the programming of the OTG controller in device mode
+ *
+ */
+
+/*!
+ * Main program loop.
+  */
+void usb0_device_mouse_test (void)
+{
+	usb_module_t  portInfo, *port;
+	usbdEndpointDtd_t *usbDtd1, *usbDtd2, *usbDtd3, *usbDtd4;
+	usbPortSpeed_t portSpeed;
+	uint32_t mouseData[4];
+	usbdEndpointPair_t *endpointListAddress = (usbdEndpointPair_t *) &endpointList[0];
+
+	static float angle, angle_disp;
+	const float PI = 3.1415926535897932384626433832795f;
+
+
+	static int x, x_1;
+	static int y, y_1;
+	char x_disp, y_disp;
+
+
+	// declarations for HID device descriptors
+	usbDeviceDescriptor_t 			mouseDeviceDescriptor;
+	usbConfigurationDescriptor_t 	mouseConfigDescriptor;
+	usbInterfaceDescriptor_t 		mouseInterfaceDescriptor;
+	usbEndpointDescriptor_t 		mouseEndpointDescriptor;
+	usbHidDescriptor_t 				mouseHidDescriptor;
+
+
+	uint8_t* mouseReportDescriptor;
+
+	// select USB interface to use
+
+	port = &portInfo;
+	port->moduleName = "OTG controller";
+	port->moduleBaseAddress = (usbRegisters_t *)USBOH3_USB_BASE_ADDR;
+	port->controllerID = OTG;
+	port->phyType = Utmi;
+
+	mouseReportDescriptor = (uint8_t*) malloc(MAX_USB_DESC_SIZE);	// This is a variable length descriptor
+
+	//! initialize the descriptors for our device:
+
+	//! - Device descriptor
+	mouseDeviceDescriptor.bLength = 0x12;					// length of this descriptor
+	mouseDeviceDescriptor.bDescriptorType = 0x01;			// Device descriptor
+	mouseDeviceDescriptor.bcdUSB = 0x0200;					// USB version 2.0
+	mouseDeviceDescriptor.bDeviceClass = 0x00;				// Device class (specified in interface descriptor)
+	mouseDeviceDescriptor.bDeviceSubClass = 0x00;			// Device Subclass (specified in interface descriptor)
+	mouseDeviceDescriptor.bDeviceProtocol = 0x00;			// Device Protocol (specified in interface descriptor)
+	mouseDeviceDescriptor.bMaxPacketSize = 0x40;			// Max packet size for control endpoint
+	mouseDeviceDescriptor.idVendor = 0x15a2;				// Freescale Vendor ID. -- DO NOT USE IN A PRODUCT
+	mouseDeviceDescriptor.idProduct = 0x0001;				// Decvice ID -- DO NOT USE IN A PRODUCT
+	mouseDeviceDescriptor.bcdDevice = 0x0000;				// Device revsion
+	mouseDeviceDescriptor.iManufacturer = 0x00;				// Index of  Manufacturer string descriptor
+	mouseDeviceDescriptor.iProduct = 0x00;					// Index of Product string descriptor
+	mouseDeviceDescriptor.iSerialNumber = 0x00;				// Index of serial number string descriptor
+	mouseDeviceDescriptor.bNumConfigurations = 0x01;		// Number of configurations
+
+	//! - Config descriptor
+	mouseConfigDescriptor.bLength = 0x09;					//
+	mouseConfigDescriptor.bDescriptorType = 0x02;			// Configuration descriptor
+	mouseConfigDescriptor.wTotalLength = 0x22;				// Total length of data, includes interface, HID and endpoint
+	mouseConfigDescriptor.bNumInterfaces = 0x01;			// Number of interfaces
+	mouseConfigDescriptor.bConfigurationValue = 0x01;		// Number to select for this configuration
+	mouseConfigDescriptor.iConfiguration = 0x00;			// No string descriptor
+	mouseConfigDescriptor.bmAttributes = 0xC0;				// Self powered, No remote wakeup
+	mouseConfigDescriptor.MaxPower = 10;					// 20 mA Vbus power
+
+
+	//! - Interface descriptor
+	mouseInterfaceDescriptor.bLength = 0x09;
+	mouseInterfaceDescriptor.bDescriptorType = 0x04;		// Interface descriptor
+	mouseInterfaceDescriptor.bInterfaceNumber = 0x00;		// This interface = #0
+	mouseInterfaceDescriptor.bAlternateSetting = 0x00;		// Alternate setting
+	mouseInterfaceDescriptor.bNumEndpoints = 0x01;			// Number of endpoints for this interface
+	mouseInterfaceDescriptor.bInterfaceClass = 0x03;		// HID class interface
+	mouseInterfaceDescriptor.bInterfaceSubClass = 0x01;		// Boot interface Subclass
+	mouseInterfaceDescriptor.bInterfaceProtocol = 0x02;		// Mouse protocol
+	mouseInterfaceDescriptor.iInterface = 0;				// No string descriptor
+
+	//! - Endpoint descriptor for endpoint 1 (interrupt endpoint)
+	mouseEndpointDescriptor.bLength = 0x07;
+	mouseEndpointDescriptor.bDescriptorType = 0x05;			// Endpoint descriptor
+	mouseEndpointDescriptor.bEndpointAddress = 0x81;		// Endpoint 1 IN
+	mouseEndpointDescriptor.bmAttributes = 0x3;				// interrupt endpoint
+	mouseEndpointDescriptor.wMaxPacketSize = 0x0200; 		// max 6 bytes (for high_speed)
+	mouseEndpointDescriptor.bInterval = 0x0A;				// 10 ms interval
+
+	//! - HID descriptor
+	mouseHidDescriptor.bLength = 0x09;						//
+	mouseHidDescriptor.bDescriptorType = 0x21;				// HID descriptor
+	mouseHidDescriptor.bcdHID = 0x0101;						// HID Class spec 1.01
+	mouseHidDescriptor.bCountryCode = 0x00;					//
+	mouseHidDescriptor.bNumDescriptors = 0x01;				// 1 HID class descriptor to follow (report)
+	mouseHidDescriptor.bReportDescriptorType = 0x22;		// Report descriptor follows
+	mouseHidDescriptor.wDescriptorLength[0] = 0x34;			// Length of report descriptor byte 1
+	mouseHidDescriptor.wDescriptorLength[1] = 0x00;			// Length of report descriptor byte 2
+
+	// allocate a buffer for the data and copy the descriptors to the buffer
+
+	uint8_t *mouseConfigBuffer = (uint8_t *) malloc(mouseConfigDescriptor.wTotalLength);
+	uint8_t *bufferPointer = mouseConfigBuffer;
+
+	memcpy(bufferPointer, &mouseConfigDescriptor,mouseConfigDescriptor.bLength);		// copy Configuration descriptor
+	bufferPointer += mouseConfigDescriptor.bLength;
+	memcpy(bufferPointer, &mouseInterfaceDescriptor,mouseInterfaceDescriptor.bLength);	// copy Interface descriptor
+	bufferPointer += mouseInterfaceDescriptor.bLength;
+	memcpy(bufferPointer, &mouseHidDescriptor,mouseHidDescriptor.bLength);				// copy HID descriptor
+	bufferPointer += mouseHidDescriptor.bLength;
+	memcpy(bufferPointer, &mouseEndpointDescriptor,mouseEndpointDescriptor.bLength);	// copy Endpoint descriptor
+
+	//! Initialize the report descriptor
+	mouseReportDescriptor[0] = 0x05;
+	mouseReportDescriptor[1] = 0x01;
+	mouseReportDescriptor[2] = 0x09;
+	mouseReportDescriptor[3] = 0x02;
+	mouseReportDescriptor[4] = 0xA1;
+	mouseReportDescriptor[5] = 0x01;
+	mouseReportDescriptor[6] = 0x09;
+	mouseReportDescriptor[7] = 0x01;
+	mouseReportDescriptor[8] = 0xA1;
+	mouseReportDescriptor[9] = 0x00;
+	mouseReportDescriptor[10] = 0x05;
+	mouseReportDescriptor[11] = 0x09;
+	mouseReportDescriptor[12] = 0x19;
+	mouseReportDescriptor[13] = 0x01;
+	mouseReportDescriptor[14] = 0x29;
+	mouseReportDescriptor[15] = 0x05;
+	mouseReportDescriptor[16] = 0x15;
+	mouseReportDescriptor[17] = 0x00;
+	mouseReportDescriptor[18] = 0x25;
+	mouseReportDescriptor[19] = 0x01;
+	mouseReportDescriptor[20] = 0x95;
+	mouseReportDescriptor[21] = 0x05;
+	mouseReportDescriptor[22] = 0x75;
+	mouseReportDescriptor[23] = 0x01;
+	mouseReportDescriptor[24] = 0x81;
+	mouseReportDescriptor[25] = 0x02;
+	mouseReportDescriptor[26] = 0x95;
+	mouseReportDescriptor[27] = 0x01;
+	mouseReportDescriptor[28] = 0x75;
+	mouseReportDescriptor[29] = 0x03;
+	mouseReportDescriptor[30] = 0x81;
+	mouseReportDescriptor[31] = 0x01;
+	mouseReportDescriptor[32] = 0x05;
+	mouseReportDescriptor[33] = 0x01;
+	mouseReportDescriptor[34] = 0x09;
+	mouseReportDescriptor[35] = 0x30;
+	mouseReportDescriptor[36] = 0x09;
+	mouseReportDescriptor[37] = 0x31;
+	mouseReportDescriptor[38] = 0x09;
+	mouseReportDescriptor[39] = 0x38;
+	mouseReportDescriptor[40] = 0x15;
+	mouseReportDescriptor[41] = 0x81;
+	mouseReportDescriptor[42] = 0x25;
+	mouseReportDescriptor[43] = 0x7F;
+	mouseReportDescriptor[44] = 0x75;
+	mouseReportDescriptor[45] = 0x08;
+	mouseReportDescriptor[46] = 0x95;
+	mouseReportDescriptor[47] = 0x03;
+	mouseReportDescriptor[48] = 0x81;
+	mouseReportDescriptor[49] = 0x06;
+	mouseReportDescriptor[50] = 0xC0;
+	mouseReportDescriptor[51] = 0xC0;
+
+	//! Setup and start the controller.
+	//! Perform basic device initialization including setting up EP0.
+	usbd_device_init(port, endpointListAddress);
+
+	//! Perform enumeration.
+	hid_device_enum(port, endpointListAddress, &mouseDeviceDescriptor, &mouseConfigDescriptor, mouseConfigBuffer, mouseReportDescriptor);
+
+	//! Setup our interrupt endpoint.
+	//! - Enable endpoint 1 for status polling
+  	port->moduleBaseAddress->USB_ENDPTCTRL[1] = 0
+  						| USB_ENDPTCTRL_TXE
+  						| USB_ENDPTCTRL_TXT_INT
+  						| USB_ENDPTCTRL_RXT_BULK;
+
+	//! - Initialize IN endpoint queue head for endpoint 1
+  	usbdEndpointInfo_t endpoint1Info;
+  	endpoint1Info.endpointNumber = 1;
+  	endpoint1Info.endpointDirection = IN;
+  	endpoint1Info.interruptOnSetup = FALSE;
+  	endpoint1Info.maxPacketLength = portSpeed == usbSpeedFull ?64 :512;
+  	endpoint1Info.mult = 0;
+
+  	//! - Initialize the queue head
+  	//  Invalidate Next_dtd pointer for now.
+	usbd_endpoint_qh_init(endpointListAddress, &endpoint1Info, 0xDEAD0001);
+
+	/*!
+	 *  - Initialize dTDs for sending mouse data.
+	 *
+	 *  We  calculate four mouse positions at a time
+	 *  Each position takes 1 transfer descriptor that transfers 4 bytes (1 position)
+	 *  so there are four corresponding dTDs. We link the dTDs via the nextDtd pointer
+	 *  so the controller can respond to 4 requests without CPU intervention.
+	 *  The last dTD has it's "Interrupt_On_Completion" bit set so we get an interrupt when the last dTD is consumed.
+	 */
+	//! - Create the transfer descriptors
+	usbDtd1 = usbd_dtd_init(0x4, 0, 0, &mouseData[0]);
+	usbDtd2 = usbd_dtd_init(0x4, 0, 0, &mouseData[1]);
+	usbDtd3 = usbd_dtd_init(0x4, 0, 0, &mouseData[2]);
+	usbDtd4 = usbd_dtd_init(0x4, 1, 0, &mouseData[3]);
+
+	//! - Link the transfer descriptors
+	usbDtd1->nextDtd = (uint32_t) usbDtd2;
+	usbDtd2->nextDtd = (uint32_t) usbDtd3;
+	usbDtd3->nextDtd = (uint32_t) usbDtd4;
+
+	//! - Put the data in the transfer descriptor buffers
+	// Calculate pointer positions to make the cursor move in a circle
+	int i;
+	angle = 0;
+	x_1 = x = MAX_DISP/2;
+	y_1 = y = 0;
+	angle_disp = PI/180;
+
+	while(1)
+	{
+		/* Calculate the next 4 mouse displacement values to fill the 4 qTDs */
+		for ( i=0; i<4; i++)
+		{
+			x = (int) (cosf(angle) * MAX_DISP/2);
+			y = (int) (sinf(angle) * MAX_DISP/2);
+
+			x_disp = x - x_1;
+			y_disp = y - y_1;
+
+			x_1 = x;
+			y_1 = y;
+
+			angle = angle - angle_disp;
+			if (angle > 2*PI)
+				{
+				angle -= 2*PI;
+				}
+
+			mouseData[i] = (0
+								| ((x_disp&0xFF)<<16)
+								| ((y_disp&0xFF)<<8) );
+		}
+
+		//! Send the data:
+
+		//! - Add the transfer descriptors to the queue head
+		endpointList[1].in.nextDtd = (uint32_t)usbDtd1;
+
+	    //! - Prime the endpoint.
+		//! -- The controller is now ready to respond to an IN request from the host.
+	    port->moduleBaseAddress->USB_ENDPTPRIME |= USB_ENDPTPRIME_PETB(2);
+
+		//! - Wait for transfer to complete.
+	    // Only usbDtd4 will generate an interrupt when completed
+	    // as it is the only one with Interrupt On Completion set
+	    while (!(port->moduleBaseAddress->USB_USBSTS & USB_USBSTS_UI ));
+
+	    //! - Check the ENDPTCOMPLETE flag for our endpoint
+	    if(!(port->moduleBaseAddress->USB_ENDPTCOMPLETE & USB_ENDPTCOMPLETE_ETCE1)){
+	    	printf("Expected transfer complete flag not set\n");
+	    } else {
+	    	// - Clear the complete flag
+	    	port->moduleBaseAddress->USB_ENDPTCOMPLETE |= USB_ENDPTCOMPLETE_ETCE1;
+	    }
+
+	    //! - Check the active flag on the last transfer descriptor and wait for it to clear
+	    while (usbDtd4->dtdToken & USB_DTD_TOKEN_STAT_ACTIVE);
+
+		//! - Clear interrupt flag
+		port->moduleBaseAddress->USB_USBSTS |= USB_USBSTS_UI;
+
+		/* re-Initialize dTD tokens*/
+		usbDtd1->dtdToken |= USB_DTD_TOKEN_TOTAL_BYTES(4)
+								| USB_DTD_TOKEN_STAT_ACTIVE;
+		usbDtd2->dtdToken |= USB_DTD_TOKEN_TOTAL_BYTES(4)
+								| USB_DTD_TOKEN_STAT_ACTIVE;
+		usbDtd3->dtdToken |= USB_DTD_TOKEN_TOTAL_BYTES(4)
+								| USB_DTD_TOKEN_STAT_ACTIVE;
+		usbDtd4->dtdToken |= USB_DTD_TOKEN_TOTAL_BYTES(4)
+								| USB_DTD_TOKEN_STAT_ACTIVE;
+
+		/* re-initialize dTD buffer pointers for the next transfers*/
+		usbDtd1->dtdBuffer[0] = (uint32_t)&mouseData[0];
+		usbDtd2->dtdBuffer[0] = (uint32_t)&mouseData[1];
+		usbDtd3->dtdBuffer[0] = (uint32_t)&mouseData[2];
+		usbDtd4->dtdBuffer[0] = (uint32_t)&mouseData[3];
+
+
+	}
+}
+
+/*!
+ * Enumerate device
+ *
+ * @brief This function processes the setup transfers for the enumeration of the device
+ *
+ * @param	port				The USB controller to use
+ * @param	endpointListAddress	The address of the endpoint list
+ * @param	deviceDescriptor	Device descriptor to send
+ * @param	configDescriptor	Configuration descriptor of the device
+ * @param	fullConfigBuffer	Configuration descriptor of the device, including Interface, Hid and Endpoint descriptors
+ * @param	reportDescriptor	Report descriptor of the HID device
+ *
+*/
+void hid_device_enum(usb_module_t *port, usbdEndpointPair_t *endpointListAddress, usbDeviceDescriptor_t *deviceDescriptor, usbConfigurationDescriptor_t *configDescriptor,
+		uint8_t *fullConfigBuffer, uint8_t *reportDescriptor)
+{
+	uint32_t request;
+	uint32_t transferSize;
+	uint32_t deviceAddress;
+	uint32_t testMode;
+
+	printf("\nWaiting for reset to start enumeration.\n");
+	//! Wait for bus reset
+  	while (!( port->moduleBaseAddress->USB_USBSTS & USB_USBSTS_URI));
+
+	//! Handle USB bus reset
+  	usbd_bus_reset(port);
+
+	/* Allocate space to store the setup packet information. */
+  	usbdSetupPacket_t setupPacket;
+
+	//! Process all control transfers for enumeration.
+	int done = 0;
+	while (!done)
+	{
+		//! Get SETUP packet
+		usbd_get_setup_packet(port, endpointListAddress, &setupPacket);
+		request = setupPacket.bRequestType << 8 | setupPacket.bRequest;
+
+		switch (request)
+		{
+			case GET_DESCRIPTOR:
+				if(setupPacket.wValue == 0x100){		//! - send device descriptor.
+					// Send partial descriptor when less bytes than full descriptor are requested.
+					transferSize = setupPacket.wLength > 0x12 ? 0x12 : setupPacket.wLength;
+					usbd_device_send_control_packet(port, endpointListAddress, (uint8_t *)deviceDescriptor, transferSize);
+				}
+				else if(setupPacket.wValue == 0x0200) {	//! - send configuration descriptor.
+					// Send partial descriptor if less bytes than the descriptor size are requested
+					transferSize = setupPacket.wLength > configDescriptor->wTotalLength ? configDescriptor->wTotalLength : setupPacket.wLength;
+			   		usbd_device_send_control_packet(port, endpointListAddress, fullConfigBuffer, transferSize);
+				}
+				else {
+					printf("Unsupported descriptor request received\n");
+					while(1);
+				}
+			    break;
+
+			case SET_CONFIGURATION:
+				/*
+				 * For a USB mouse there is only one configuration, so this function
+	 			 * doesn't do anything with the configuration values sent by the host.
+	 			 * Just Acknowledge the request.
+	 			 */
+				usbd_device_send_zero_len_packet(port, endpointListAddress, 0);
+	 			break;
+
+			case SET_IDLE:
+				/*
+				 * HID class request
+				 */
+				usbd_device_send_zero_len_packet(port, endpointListAddress, 0);
+				break;
+
+			case GET_HID_CLASS_DESCRIPTOR:
+				if(setupPacket.wValue == 0x2200){		//! - Send report descriptor.
+					transferSize = setupPacket.wLength > 52 ? 52 : setupPacket.wLength;
+					usbd_device_send_control_packet(port, endpointListAddress, (uint8_t *)reportDescriptor, transferSize);
+
+					/*
+					 * The report descriptor should always be the last thing sent, so
+					 * at this point we are done with the enumeration.
+					 */
+					done = 1;
+				}
+	 			break;
+			case SET_FEATURE:
+				if(setupPacket.wValue == 0x0002){	//! process set test mode
+					// This supports the USBHSET tool to set the controller in test mode
+					usbd_device_send_zero_len_packet(port, endpointListAddress, 0);
+
+					// - Set the requested test mode in PORTSC and wait for power cycle
+					testMode = setupPacket.wIndex & 0xFF00 << 8 ;
+					port->moduleBaseAddress->USB_PORTSC |= testMode;
+
+					printf("Port set to test mode %d\n", setupPacket.wIndex >> 8 );
+				while(1); // - Wait here for power cycle / board reset
+				}
+				break;
+
+
+	 		default:
+	 			//! perform set address handling
+
+	 			// Check if command is a SET ADDRESS
+				if (setupPacket.bRequestType == 0x00 && setupPacket.bRequest == 0x05)
+				{
+					deviceAddress = (setupPacket.wValue) << 25;
+					deviceAddress |= 1 << 24; 					//! - Set ADRA bit to stage the new address
+
+					//! - Set the new device address;
+					//! -- the new address will become effective after an IN transaction is acknowledged
+					port->moduleBaseAddress->USB_DEVICEADDR = deviceAddress;
+
+					//! - Send zero-length packet to acknowledge.
+					usbd_device_send_zero_len_packet(port, endpointListAddress, 0);
+
+					break;
+				}
+				else
+					printf("ERR!!! Unsupported command.\n\n");
+				break;
+
+
+	 	} /* end switch */
+	} /* end while */
+
+	return;
+}
+/********************************************************************/

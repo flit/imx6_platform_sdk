@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -9,12 +9,7 @@
  * @file usbh_drv.c
  * @brief USB host driver.
  *
- * @ingroup diag_usb
  */
-
-#include "usb.h"
-#include "usb_registers.h"
-#include "usb_defines.h"
 
 /*!
  * Initialize the USB for host operation. This initialization sets
@@ -23,10 +18,15 @@
  * Parameters:
  * @param port      USB module to initialize
  */
+
+#include "usb.h"
+#include "usb_registers.h"
+#include "usb_defines.h"
+
 int usbh_init(usb_module_t *port)
 {
 	/*!
-	 *  First start clocks and PLL
+	 *  Start clocks and PLL
 	 */
 
 	if(usbEnableClocks(port) == -1)
@@ -97,6 +97,8 @@ int usbh_init(usb_module_t *port)
 	
 	return 0;
 }
+
+
 
 /*!
  * Initialize the periodic schedule. This function creates an empty
@@ -194,17 +196,9 @@ void usbh_bus_reset(struct usb_module *port)
 {
 	//! Set Port Reset
 	port->moduleBaseAddress->USB_PORTSC |= (USB_PORTSC_PR);
-	#ifdef DEBUG_PRINT
-		printf("Start reset.\n");
-    	printf("PORTSC = 0x%08x\n",(port->moduleBaseAddress->USB_PORTSC));
-    #endif
     
 	//! Wait for reset to finish
 	while (port->moduleBaseAddress->USB_PORTSC & (USB_PORTSC_PR));
-	
-    #ifdef DEBUG_PRINT			
-		printf("USB reset complete.\n\n");							
-	#endif							
 }
 
 /*!
@@ -235,8 +229,6 @@ usbPortSpeed_t usbh_get_port_speed(usb_module_t *port)
 
 /*!
  * Enable the asynchronous schedule
- *
- * @param port  USB module to send reset
  */
 void usbh_enable_asynchronous_schedule(usb_module_t *port)
 {
@@ -254,24 +246,24 @@ void usbh_enable_asynchronous_schedule(usb_module_t *port)
  */
 void usbh_disable_asynchronous_schedule(struct usb_module *port)
 {
-	//! Disable the asynchronous schedule */
+	//! Disable the asynchronous schedule
 	port->moduleBaseAddress->USB_USBCMD &= (~USB_USBCMD_ASE);
 	
-	//! Wait for asynchronous enable bit to clear */
+	//! Wait for asynchronous enable bit to clear
 	while (port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_ASE));
 }
 
 /*!
-* Disable the   periodic lists.
+* Disable the periodic lists.
 *
 * @param port  USB module
 */
 void usbh_disable_Periodic_list (struct usb_module *port)
 {
-	//! Disable the periodic schedule */
+	//! Disable the periodic schedule
 	port->moduleBaseAddress->USB_USBCMD &= (~USB_USBCMD_PSE);
 	
-	//! Wait for periodic schedule enable bit to clear */
+	//! Wait for periodic schedule enable bit to clear
 	while (port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_PSE));
 }
 
@@ -288,8 +280,8 @@ void usbh_disable_Periodic_list (struct usb_module *port)
 usbhTransferDescriptor_t * usbh_qtd_init(uint32_t transferSize, uint32_t ioc, uint32_t pid, uint32_t *bufferPointer)
 {
 	uint32_t token;
-	uint32_t bufferOffset;				// offset in first 4K buffer
-	int remainingSize;             // remaining number of byte to allocate
+	uint32_t bufferOffset;			// offset in first 4K buffer
+	int remainingSize;				// remaining number of byte to allocate
 
 	usbhTransferDescriptor_t  *usbhQtd;
 
@@ -299,7 +291,7 @@ usbhTransferDescriptor_t * usbh_qtd_init(uint32_t transferSize, uint32_t ioc, ui
 	/*!
 	 * Allocate memory for the transfer descriptor
 	 */
-	memoryPointer = (int)malloc(sizeof(usbhTransferDescriptor_t) + 63); // over allocate to accommodate 64-byte alignment
+	memoryPointer = (int)malloc(sizeof(usbhTransferDescriptor_t) + 63); // over-allocate to accommodate 64-byte alignment
 	if(memoryPointer == 0)
 	{
 		return NULL;         // No memory available
@@ -350,13 +342,13 @@ usbhTransferDescriptor_t * usbh_qtd_init(uint32_t transferSize, uint32_t ioc, ui
   							| USB_QTD_TOKEN_CERR(0x3)
   							| USB_QTD_TOKEN_STAT_ACTIVE );
   							
-  	//! allocate first buffer
-	//! first qtd buffer holds data up to first 4K address boundary)
+  	//! Allocate first buffer.
+	//! First qtd buffer holds data up to first 4K address boundary)
 	usbhQtd->qtdBuffer[0] = (uint32_t) bufferPointer;
 	bufferOffset = (uint32_t)bufferPointer % 4096;
 	remainingSize = (int)(transferSize - (4096 - bufferOffset));
 
-	//! assign remaining buffers
+	//! Assign remaining buffers.
 	//! All remaining buffers start at a 4K boundary
 
 	for(i = 1; i < 5; i++)
@@ -401,7 +393,7 @@ usbhQueueHead_t * usbh_qh_init(uint32_t max_packet, uint32_t head, uint32_t eps,
 
    /*!
 	* Allocate memory for the queue head.
-	* over allocate to accommodate 64-byte alignment
+	* - Over-allocate to accommodate 64-byte alignment
  	*/
 	memoryPointer = (uint32_t)malloc(sizeof(usbhQueueHead_t) + 63);
 	if(memoryPointer == 0)
@@ -410,7 +402,7 @@ usbhQueueHead_t * usbh_qh_init(uint32_t max_packet, uint32_t head, uint32_t eps,
 	}
 
    /*!
-	* Align QH on a 64 byte boundary.
+	* - Align QH on a 64 byte boundary.
 	*/
 	if((memoryPointer % 64) != 0)
 	{
@@ -421,11 +413,12 @@ usbhQueueHead_t * usbh_qh_init(uint32_t max_packet, uint32_t head, uint32_t eps,
 
 	queueHead->mallocPointer = memoryPointer;
 
+	//! - Set type and terminate bit
 	queueHead->queueHeadLinkPointer = (((uint32_t) queueHead)
 								| USB_QH_LINK_PTR_TYP_QH
 								| USB_QH_LINK_PTR_T  );
 								
-	//! Set endpoint speed
+	//! - Set endpoint speed
 	switch (eps)
 	{
 		case EPS_FULL:
@@ -444,6 +437,7 @@ usbhQueueHead_t * usbh_qh_init(uint32_t max_packet, uint32_t head, uint32_t eps,
 		    break;
 	}
 	
+	//! Set endpoint characteristics
 	if (head)
 		token |= USB_QH_EP_CHAR_H;
   			  		
@@ -453,17 +447,17 @@ usbhQueueHead_t * usbh_qh_init(uint32_t max_packet, uint32_t head, uint32_t eps,
   						 | USB_QH_EP_CHAR_EP(epnum)
   						 | USB_QH_EP_CHAR_DEV_ADDR(dev_addr) );
 		
-    /* Set interrupt to occur every 8ms */
+    /* - set interrupt to occur every 8ms */
     queueHead->endpointCapabilities = (USB_QH_EP_CAP_MULT_ONE
     					| USB_QH_EP_CAP_UFRAME_SMASK(smask));
     
 		
 	queueHead->currentQtd = 0;
-	queueHead->nextQtd = 1;					// Set terminate bit on Next qtd pointer
-	queueHead->alternateNextQtd = 1;		// Set terminate bit on alternate next qtd pointer
+	queueHead->nextQtd = 1;					//! - set terminate bit on Next qtd pointer
+	queueHead->alternateNextQtd = 1;		//! - set terminate bit on alternate next qtd pointer
 	queueHead->qtdToken = 0;
 
-	for(i = 0; i< 5; i++)              // Clear buffer pointers (for debug purposes)
+	for(i = 0; i< 5; i++)              //! - Clear buffer pointers (for debug purposes)
 	{
 		queueHead->qtdBuffer[i] = 0;
 	}

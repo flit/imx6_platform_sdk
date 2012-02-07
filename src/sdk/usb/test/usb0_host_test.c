@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,11 +8,12 @@
 /*!
  * @file usb0_host_test.c
  * @brief USB host driver.
- *
- * @ingroup diag_usb
  */
 
-#include "hardware.h"
+#include "usb.h"
+#include "usb_regs.h"
+#include "usb_registers.h"
+#include "soc_memory_map.h"
 
 int emuerateDevice (usb_module_t *, usbhQueueHead_t *, usbDeviceDescriptor_t *,uint8_t *,uint8_t *,uint8_t *,uint8_t *,uint8_t *);
 void usbh_set_device_address(usb_module_t *, usbhQueueHead_t *, uint32_t);
@@ -30,38 +31,45 @@ void wait(uint32_t);
 extern uint8_t usb_utmi_int_flag, usb_ulpi_int_flag;
 uint32_t frame_list[1024]  __attribute__ ((aligned (4096))); // 4K aligned frame list memory
 
-/********************************************************************/
+/*!
+ * @brief USB host test.
+ *
+ * This test enumerates a device and if it is a mouse,
+ * it will read the mouse data via an Interrupt endpoint,
+ * Clicking the right mouse button ends the test
+ */
 
 void usb0_host_test (void)
 {
 	int                    i, temp, periodic_base;
-	usbPortSpeed_t         usb_port_speed;
-	usbDeviceDescriptor_t  *device_descriptor;
-	uint8_t                *config_descriptor;
-	uint8_t                *interface_descriptor;
-	uint8_t                *hid_descriptor;
-	uint8_t                *ep_descriptor;
-	uint8_t                *report_descriptor;
+	usbPortSpeed_t         usb_port_speed;				// Speed of the interface
+	usbDeviceDescriptor_t  *device_descriptor;			// Pointer to the Device descriptor
+	uint8_t                *config_descriptor;			// Pointer to the Configuration descriptor
+	uint8_t                *interface_descriptor;		// Pointer to the Interface descriptor
+	uint8_t                *hid_descriptor;				// Pointer to the HID descriptor
+	uint8_t                *ep_descriptor;				// Pointer to the Endpoint descriptor
+	uint8_t                *report_descriptor;			// Pointer to the Report descriptor
 	usbRegisters_t         *UsbReg;
 	
 	usb_module_t *usbhModule;
-	usb_module_t usbOtgModule;
+	usb_module_t usbOtgModule;							// Controller to use
 
-	usbhQueueHead_t* usb_qh_ep0, * usb_qh_ep1;
-	usbhTransferDescriptor_t * int_qtd;
+	usbhQueueHead_t	*usb_qh_ep0, *usb_qh_ep1;			// Pointers to Queue Heads for the endpoints
+	usbhTransferDescriptor_t *int_qtd;					// Pointer to the transfer descriptor
 	
-	uint8_t usbhMouseData[MAX_USB_BUFFER_SIZE];
+	uint8_t usbhMouseData[MAX_USB_BUFFER_SIZE];			// Buffer to receive the mouse data (from the interrupt endpoint)
 	uint32_t int_transfer_size, int_packet_size, bytes_received;
 	
+	//! Initialize the controller info structure.
 	usbOtgModule.moduleName = "OTG controller";
 	usbOtgModule.moduleBaseAddress = (usbRegisters_t *)USBOH3_USB_BASE_ADDR;
 	usbOtgModule.controllerID = OTG;
 	usbOtgModule.phyType = Utmi;
 
 	usbhModule = &usbOtgModule;
-	UsbReg = usbhModule->moduleBaseAddress;
+	UsbReg = usbhModule->moduleBaseAddress;				// Pointer to the USB registers for this controller
 
-	// Allocate memory for the descriptors
+	//! Allocate memory for the descriptors.
 	device_descriptor = (usbDeviceDescriptor_t*) malloc (MAX_USB_DESC_SIZE);
 	config_descriptor = (uint8_t*) malloc (MAX_USB_DESC_SIZE);
 	interface_descriptor = (uint8_t*) malloc (MAX_USB_DESC_SIZE);
@@ -69,25 +77,22 @@ void usb0_host_test (void)
 	ep_descriptor = (uint8_t*) malloc (MAX_USB_DESC_SIZE);
 	report_descriptor = (uint8_t*) malloc (MAX_USB_DESC_SIZE);
 	
-    /* Global interrupt enable */
-
-	printf("Starting USB OTG host test.\n\n");
-
-	// Initialize the USB host controller
+	//! Initialize the USB host controller.
 	usbh_init(usbhModule);
 								
-	/* Wait for device connect */
+	//! Wait for device connect.
 	while(!( UsbReg->USB_PORTSC & (USB_PORTSC_CCS)));
 	printf("Connect detected.\n");	
 		
-	// Reset the device
-
+	//! Reset the device
  	usbh_bus_reset(usbhModule);
-	
+
+ 	//! Get current operating speed.
 	usb_port_speed = usbh_get_port_speed(usbhModule);
+
 	
-	
-	/* Create a QueueHead to use for EndPoint0. This single QH will be the
+	/*
+	 * ! Create a QueueHead to use for EndPoint0. This single QH will be the
 	 * asynchronous schedule during enumeration. 
 	 */
     switch (usb_port_speed)
@@ -97,7 +102,7 @@ void usb0_host_test (void)
 	 	    printf("Device connected at FULL speed\n");
 	 	    break;
 	    case usbSpeedLow:
-	      	usb_qh_ep0 = usbh_qh_init(0x40, 1, EPS_LOW, 0, 0, 0);
+	      	usb_qh_ep0 = usbh_qh_init(0x8, 1, EPS_LOW, 0, 0, 0);
 	 	    printf("Device connected at LOW speed\n");
 	      	break;
 	    case usbSpeedHigh:
@@ -115,10 +120,10 @@ void usb0_host_test (void)
      */
     UsbReg->USB_ASYNCLISTADDR = (uint32_t)usb_qh_ep0;
 
-    // Enable the asynchronous schedule
+    //! Enable the asynchronous schedule
     usbh_enable_asynchronous_schedule(usbhModule);
     
-	// Enumerate the attached device
+	//! Enumerate the attached device
 	 
 	if (emuerateDevice(usbhModule, usb_qh_ep0, device_descriptor, config_descriptor, interface_descriptor,
 				hid_descriptor, ep_descriptor, report_descriptor ))
@@ -130,17 +135,15 @@ void usb0_host_test (void)
 
     }
 
-	// We have a mouse connected.
-	/* Initialize the periodic schedule for the interrupt endpoint */
+	//! if we have a mouse connected.
+	//! Initialize the periodic schedule for the interrupt endpoint
 	periodic_base = usbh_periodic_schedule_init(usbhModule, FRAME_LIST_SIZE, (&frame_list[0]));
 	
-	/* Create a QH for endpoint 1 */
+	//! Create a queue head for endpoint 1
 	
 	usb_qh_ep1 = usbh_qh_init(0x8,0, EPS_LOW,1,DEVICE_ADDRESS,1);
 	
-	/* Invalidate the QH horizontal pointer since the init function will point
-	 * the QH back to itself.
-	 */
+	//! - Invalidate the QH horizontal pointer since the init function will point the QH back to itself.
 	usb_qh_ep1->queueHeadLinkPointer |= USB_QH_LINK_PTR_T;
 
 	/* This version of the code just polls the mouse once per iteration of
@@ -149,29 +152,32 @@ void usb0_host_test (void)
 	 * to the interrupt QH.
 	 */
 
-	/* Put the queue head to the periodic schedule */
+	//! - Put the queue head on the periodic schedule
 	*(uint32_t *)(periodic_base) = (uint32_t)usb_qh_ep1 + 0x002;
 
-	/* Initialize the amount of data to receive. In this case we will
+	/*
+	 *  Initialize the amount of data to receive. In this case we will
 	 * receive 20 packets per loop. ep_desc[04] inidicates the size of 
 	 * each packet. So transfer_size = 20 * ep_desc[04].
 	 */
 	int_packet_size = ep_descriptor[04];
 	int_transfer_size = 20 * int_packet_size;	
 
-	/* Create a qTD to transfer 20 packets worth of data */
+	//! Create a qTD to transfer 20 packets worth of data
 	int_qtd = usbh_qtd_init(int_transfer_size, 1, IN_PID, (uint32_t*) usbhMouseData);
-								
-/* This while(1) loop will allow for continuously receiving mouse data. Some
- * packets could be lost due to the time needed to reinitialize the qTD for the
- * next batch of transfers. So a more correct way to do this would be to create
- * multiple qTDs and rotate them for each iteration of the loop. For a mouse
- * application some data loss is acceptable, so only one qTD is used. 
- */									
+
+	//! Activate the queue head to start polling the device
+	/*
+	 * This while(1) loop will allow for continuously receiving mouse data. Some
+	 * packets could be lost due to the time needed to reinitialize the qTD for the
+	 * next batch of transfers. So a more correct way to do this would be to create
+	 * multiple qTDs and rotate them for each iteration of the loop. For a mouse
+	 * application some data loss is acceptable, so only one qTD is used.
+	 */
 	while(1)
 	{
 	
-		/* Point the QH to the qTD */
+		//! - Point the QH to the qTD
 		usb_qh_ep1->nextQtd = (uint32_t) int_qtd;
 		
 		/* Initialize bytes received counter */
@@ -179,23 +185,20 @@ void usb0_host_test (void)
 		
 		while (bytes_received < int_transfer_size)
 		{
-			/* Wait for transaction to complete */
-		#ifdef USB_USE_INT
-			while (usb_utmi_int_flag == 0);
-			usb_utmi_int_flag = 0;
-		#else
+			//! - Wait for a transaction to complete
 			while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));
 			UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
-		#endif
 		
-		    /* Check for errors */
+		    //! - Check for errors
 		  	if( UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
 		    {
 		    	printf("ERROR!!!\n");
 			    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
 		        printf("qTD status = 0x%08x\n",temp);	
+		        // Clear error flag
+				UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
 		    }
-		    else 	/* Display data if no error occurred. */
+		    else 	//! - Display data if no error occurred.
 		    {
 		     	printf("IN = ");
 		     	for(i=0; i < int_packet_size; i++)
@@ -203,13 +206,12 @@ void usb0_host_test (void)
 		     	printf("\n"); 
 		    }
 
-		  	if((uint8_t)usbhMouseData[bytes_received] == 1)    // Left moust button
+		  	//! - If Left mouse button pressed, exit and return to calling routine
+		  	if((uint8_t)usbhMouseData[bytes_received] == 1)    // Left mouse button
 		  	{
 		  		return;   // exit
 		  	}
 		            
-			/* Clear the USB interrupt error bit */
-			UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
 	
 			/* Increment bytes received counter */		
 			bytes_received = bytes_received + int_packet_size;
@@ -221,15 +223,14 @@ void usb0_host_test (void)
 				*(uint32_t *)((uint32_t)usb_qh_ep1+0x18) |= 0x00000080;
 		}
 		
-		/* Re-initialize the qTD to accept the next 20 packets*/
+		//! Re-initialize the qTD to accept the next 20 packets
 		int_qtd->qtdToken |= USB_QTD_TOKEN_TRANS_SIZE(int_transfer_size) | USB_QTD_TOKEN_STAT_ACTIVE;
 		int_qtd->qtdBuffer[0] = (uint32_t) usbhMouseData;
 	}		
 }
 
 /********************************************************************/
-/*!
- * This enumeration routine is specific for a HID class mouse device. The code
+/* This enumeration routine is specific for a HID class mouse device. The code
  * code be used as a starting for enumerating other devices. If drivers need
  * to be able to detect different types of devices (for example a keyboard or
  * a mouse could be attached), then some level of descriptor parsing would need
@@ -299,9 +300,7 @@ emuerateDevice(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDeviceDescrip
 	
 	return 1;
 }
-
 /********************************************************************/
-
 void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, uint32_t device_address)
 {
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2;
@@ -354,14 +353,13 @@ void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, ui
     free((void *)usb_qtd1->mallocPointer);
     free((void *)usb_qtd2->mallocPointer);
 }
-
 /********************************************************************/
 
 /*!
  * Read device descriptor from a connected device
  * This routine creates transfers descriptors read the device descriptor and adds them to the queue.
  * @param port
- * @param usb_qh_ep0       Queue Head (identifies device and endpoint)
+ * @param usbh_qh_ep0       Queue Head (identifies device and endpoint)
  * @param device_descriptor Device descriptor structure to hold device data
  */
 void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDeviceDescriptor_t *device_descriptor)
@@ -425,9 +423,7 @@ void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDevic
     free((void *)usb_qtd2->mallocPointer);
     free((void *)usb_qtd3->mallocPointer);
 }
-
 /********************************************************************/
-
 void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint8_t * config_descriptor)
 {
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2, *usb_qtd3;
@@ -496,9 +492,7 @@ void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
     free((void *)usb_qtd2->mallocPointer);
     free((void *)usb_qtd3->mallocPointer);
 }
-
 /********************************************************************/
-
 void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint8_t * interface_descriptor, uint8_t * hid_descriptor,
 						uint8_t * ep_descriptor)
 {
@@ -579,9 +573,7 @@ void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, u
     free((void *)usb_qtd2->mallocPointer);
     free((void *)usb_qtd3->mallocPointer);
 }
-
 /********************************************************************/
-
 void usbh_set_configuration(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint32_t config_value)
 {
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2;
@@ -643,9 +635,7 @@ void usbh_set_configuration(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, ui
     free((void *)usb_qtd1->mallocPointer);
     free((void *)usb_qtd2->mallocPointer);
 }
-
 /********************************************************************/
-
 void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint8_t *report_descriptor)
 {
 	usbhTransferDescriptor_t *usb_qtd1, *usb_qtd2, *usb_qtd3;

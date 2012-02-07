@@ -301,7 +301,7 @@ typedef struct usbRegisters
 #define USB_USBMODE_SLOM                 (0x8)
 #define USB_USBMODE_SDIS                 (0x10)
 /* Bit definitions and macros for USB_ENDPTSETUPSTAT */
-#define USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(x) (((x)&0xF)<<0)
+#define USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(x) (((x)&0xFF)<<0)
 
 /* Bit definitions and macros for USB_ENDPTPRIME */
 #define USB_ENDPTPRIME_PERB0             (0x1)
@@ -381,4 +381,4 @@ typedef struct usbRegisters
 #define USB_ENDPTCTRL_TXR                (0x400000)
 #define USB_ENDPTCTRL_TXE                (0x800000)
 
-#endif /* __USB_REGISTERS__ */
+#endif /* __USB_REGISTER_STRUCT__*/

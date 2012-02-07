@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -96,14 +96,140 @@ typedef struct usbDeviceDescriptor {
 	uint8_t		bDeviceClass;
 	uint8_t		bDeviceSubClass;
 	uint8_t		bDeviceProtocol;
-	uint8_t     bMaxPacketSize;
+	uint8_t		bMaxPacketSize;
 	uint16_t	idVendor;
-	uint16_t    idProduct;
-	uint16_t    bcdDevice;
-	uint8_t     iManufacturer;
-	uint8_t     iSerialNumber;
-	uint8_t     bNumConfigurations;
+	uint16_t	idProduct;
+	uint16_t	bcdDevice;
+	uint8_t		iManufacturer;
+	uint8_t		iProduct;
+	uint8_t 	iSerialNumber;
+	uint8_t 	bNumConfigurations;
 } usbDeviceDescriptor_t;
+
+typedef struct usbConfigurationDescriptor {
+	uint8_t		bLength;
+	uint8_t		bDescriptorType;
+	uint16_t	wTotalLength;
+	uint8_t		bNumInterfaces;
+	uint8_t		bConfigurationValue;
+	uint8_t		iConfiguration;
+	uint8_t		bmAttributes;
+	uint8_t		MaxPower;
+} usbConfigurationDescriptor_t;
+
+typedef struct usbInterfaceDescriptor {
+	uint8_t		bLength;
+	uint8_t		bDescriptorType;
+	uint8_t		bInterfaceNumber;
+	uint8_t		bAlternateSetting;
+	uint8_t		bNumEndpoints;
+	uint8_t		bInterfaceClass;
+	uint8_t		bInterfaceSubClass;
+	uint8_t		bInterfaceProtocol;
+	uint8_t		iInterface;
+} usbInterfaceDescriptor_t;
+
+typedef struct usbEndpointDescriptor {
+	uint8_t		bLength;
+	uint8_t		bDescriptorType;
+	uint8_t		bEndpointAddress;
+	uint8_t		bmAttributes;
+	uint16_t	wMaxPacketSize;
+	uint8_t		bInterval;
+} usbEndpointDescriptor_t;
+
+typedef struct usbHidDescriptor {
+	uint8_t		bLength;
+	uint8_t		bDescriptorType;
+	uint16_t	bcdHID;
+	uint8_t		bCountryCode;
+	uint8_t		bNumDescriptors;
+	uint8_t		bReportDescriptorType;
+	uint8_t		wDescriptorLength[2];		// !!!! Not aligned on 16-bit boundary  !!!
+} usbHidDescriptor_t;
+
+
+/*!
+ * Device driver definitions
+ */
+
+/*!
+ * USB device endpoint list
+ */
+
+typedef uint32_t endpointList_t [8];
+
+
+/*
+ * USB device setup packet
+ */
+
+typedef struct usbdSetupPacket {
+	uint8_t bRequestType;
+	uint8_t bRequest;
+	uint16_t wValue;
+	uint16_t wIndex;
+	uint16_t wLength;
+} usbdSetupPacket_t ;
+
+/*!
+ *  USB device endpoint queue head structure
+ */
+
+
+typedef struct usbdDeviceEndpointQueueHead {
+	uint32_t endpointCharacteristics;
+	uint32_t currentDtd;
+	uint32_t nextDtd;
+	uint32_t dtdToken;
+	uint32_t dtdBuffer[5];
+	uint32_t reserved;
+	usbdSetupPacket_t setupBuffer;
+	uint32_t reserved1[4];
+} usbdDeviceEndpointQueueHead_t;
+
+typedef struct usbdEndpointPair {
+	usbdDeviceEndpointQueueHead_t out;
+	usbdDeviceEndpointQueueHead_t in;
+} usbdEndpointPair_t;
+
+/*
+ *  USB device endpoint transfer descriptor
+ */
+typedef struct usbdEndpointDtd {
+	uint32_t nextDtd;
+	uint32_t dtdToken;
+	uint32_t dtdBuffer[5];
+	uint32_t mallocPointer;	/* Used to keep track of the memory allocated for the data structure */
+} usbdEndpointDtd_t;
+
+/*!
+ * Endpoint characteristics
+ */
+typedef enum usbdEndpointDirection {
+	IN,
+	OUT
+} usbdEndpointDirection_t;
+
+typedef struct usbdEndpointInfo {
+	usbPortSpeed_t Speed;
+	uint32_t endpointNumber;
+	usbdEndpointDirection_t endpointDirection;
+	uint32_t mult;
+	uint32_t maxPacketLength;
+	bool interruptOnSetup;
+} usbdEndpointInfo_t;
+
+/*!
+ * Definitions for Setup packet
+ */
+
+/* Defines for commands in setup packets */
+#define GET_DESCRIPTOR				0x8006
+#define SET_CONFIGURATION			0x0009
+#define SET_IDLE					0x210A
+#define GET_HID_CLASS_DESCRIPTOR	0x8106
+#define SET_FEATURE					0x0003
 
 
 
@@ -115,15 +241,31 @@ void usbh_enable_asynchronous_schedule(usb_module_t *port);
 void usbh_disable_asynchronous_schedule(usb_module_t *port);
 usbPortSpeed_t usbh_get_port_speed(usb_module_t *);
 uint32_t usbh_periodic_schedule_init(usb_module_t *, uint32_t frame_list_size, uint32_t *frame_list);
-int swap32(int);
 usbhTransferDescriptor_t * usbh_qtd_init(uint32_t, uint32_t, uint32_t, uint32_t*);
 usbhQueueHead_t * usbh_qh_init(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+uint32_t swap32(uint32_t data);
+
+//! device driver prototypes
+uint32_t usbd_device_init(usb_module_t *port, usbdEndpointPair_t *endpointList);
+usbPortSpeed_t usbd_bus_reset(usb_module_t *port);
+void usbd_get_setup_packet(usb_module_t *port, usbdEndpointPair_t *endpointList, usbdSetupPacket_t *setupPacket);
+void usbd_device_send_control_packet(usb_module_t *port, usbdEndpointPair_t *endpointList, uint8_t* buffer, uint32_t size);
+void usbd_device_send_zero_len_packet(usb_module_t *port, usbdEndpointPair_t *endpointList, uint32_t endpoint);
+void usbd_endpoint_qh_init(usbdEndpointPair_t *endpointList, usbdEndpointInfo_t *usbdEndpoint, uint32_t nextDtd);
+usbdEndpointDtd_t *usbd_dtd_init(uint32_t transferSize, uint32_t interruptOnComplete, uint32_t multOverride, uint32_t *bufferPointer);
+
+/*
+ * usbcommon prototypes
+ */
+usbPortSpeed_t usb_get_port_speed(usb_module_t *port);
 
 int usbEnableClocks(usb_module_t *port);
 int usbEnableTransceiver(usb_module_t *port);
 void usbEnableVbus(usb_module_t *port);
 void usbDisableVbus(usb_module_t *port);
 
+#define DTD_TERMINATE 0xDEAD001
+#define QTD_TERMINATE 0xDEAD001
 #define OUT_PID  0
 #define IN_PID  1
 #define SETUP_PID  2

@@ -112,7 +112,7 @@ int pcie_test(void)
     char *str_space[] = { "IO", "Memory" };
     char *str = 0;
 
-    for (i = 0; i < res_num; i++, viewport++) {
+    for (i = 0; (i < res_num) && (viewport < PCIE_IATU_VIEWPORT_MAX); i++, viewport++) {
         bar = ep1_resources[i].bar;
         size = ep1_resources[i].size;
         if (ep1_resources[i].type == RESOURCE_TYPE_IO) {
@@ -137,6 +137,11 @@ int pcie_test(void)
         *ep_base += size;
         base_cpu_side += size;
     }
+
+#if 0
+    printf("Dump the endpoint's configuration header.\n");
+    pcie_dump_cfg_header((uint32_t *) cfg_hdr_base);
+#endif
 
     printf("Verify the access to endpoint's first space.\n");
     volatile uint8_t *space_ptr = NULL;

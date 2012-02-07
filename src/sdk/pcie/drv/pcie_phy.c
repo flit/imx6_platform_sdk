@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -54,6 +54,14 @@ static int pcie_phy_cr_cap_addr(uint32_t addr)
     return 0;
 }
 
+/*! 
+ * This function read the control register of the PCIE phy
+ * @param    addr: address of the register to be read	
+ * @param    data:	register value be read
+ *
+ * @return   0 on success,
+ *           -1 if failed
+ */
 int pcie_phy_cr_read(uint32_t addr, uint32_t * data)
 {
     int32_t val;
@@ -83,6 +91,14 @@ int pcie_phy_cr_read(uint32_t addr, uint32_t * data)
     return 0;
 }
 
+/*! 
+ * This function write the control register of the PCIE phy
+ * @param    addr: address of the register to be written
+ * @param    data:	register value to be written
+ *
+ * @return   0 on success,
+ *           -1 if failed
+ */
 int pcie_phy_cr_write(uint32_t addr, uint32_t data)
 {
     int32_t val;

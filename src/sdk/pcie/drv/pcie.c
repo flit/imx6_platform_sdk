@@ -99,6 +99,18 @@ static int wait_link_up(int wait_ms)
 }
 
 /**************** Common routines **************************/
+
+/*! 
+ * Map endpoint's space to CPU side.
+ *
+ * @param    viewport:	the viewport number of iATU	
+ * @param    tlp_type:	the type of the transaction layer package
+ * @param	 addr_base_cpu_side: base address in CPU side
+ * @param	 addr_base_pcie_side: base address in PCIE side
+ * @param	 size: the size of the space to be mapped
+ *
+ * @return   base address in CPU side
+ */
 uint32_t pcie_map_space(uint32_t viewport, uint32_t tlp_type,
                         uint32_t addr_base_cpu_side, uint32_t addr_base_pcie_side, uint32_t size)
 {
@@ -114,6 +126,13 @@ uint32_t pcie_map_space(uint32_t viewport, uint32_t tlp_type,
     return addr_base_cpu_side;
 }
 
+/*! 
+ * This function initialized the PCIE controller.
+ *
+ * @param    dev_mode: the Mode of the PCIE controller, root complex or endpoint	
+ *
+ * @return   0 if succeed, -1 if failed
+ */
 int pcie_init(pcie_dm_mode_e dev_mode)
 {
     uint32_t val;

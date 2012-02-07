@@ -41,6 +41,14 @@ static int pcie_dump_cfg_hdr_type1(pcie_cfg_hdr_type1_p header)
     return 0;
 }
 
+/*! 
+ * This function dump the PCIE configuration header 
+ *
+ * @param    header_base: the base address of the configuration header to be dumped	
+ *
+ * @return   0 on success,
+ *           -1 if failed
+ */
 int pcie_dump_cfg_header(uint32_t * header_base)
 {
     pcie_cfg_hdr_type0_p tmp_hdr = (pcie_cfg_hdr_type0_p) header_base;
@@ -56,6 +64,16 @@ int pcie_dump_cfg_header(uint32_t * header_base)
     return 0;
 }
 
+/*! 
+ * This function enumerate the PCIE endpoint's IO/memory recource 
+ *
+ * @param    header_base: the base address of the configuration header to be enumerated
+ * @param	 res:	the array to save the resources enumerated
+ * @param	 num:	the number of the resources
+ *
+ * @return   0 on success,
+ *           -1 if failed
+ */
 int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t * num)
 {
     uint32_t index = 0, i, j, size, tmp_val;
@@ -105,6 +123,16 @@ int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t 
     return 0;
 }
 
+/*! 
+ * This function configure the endpoint's BARs 
+ *
+ * @param    header_base: the base address of the configuration header
+ * @param	 bar:	the index of the BAR to be configured
+ * @param	 base:	the base address to be written to the BAR
+ * @param	 base_msk:	the mask of the base
+ *
+ * @return   the base addrss of the BAR
+ */
 uint32_t pcie_cfg_ep_bar(uint32_t header_base, uint32_t bar, uint32_t base, uint32_t base_msk)
 {
     uint32_t bar_off = FIELD_OFFSET(pcie_cfg_hdr_type0_t, bar0);

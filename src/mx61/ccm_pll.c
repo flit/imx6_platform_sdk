@@ -418,3 +418,38 @@ void spdif_clk_cfg(void)
 
     clock_gating_config(SPDIF_BASE_ADDR, CLOCK_ON);
 }
+
+#define CORE_WB (1 << 17)
+#define WAIT_MODE   0x1
+#define STOP_MODE   0x2
+
+void enter_wait_state(void)
+{
+    uint32_t ccm_clpcr;
+
+    ccm_clpcr = readl(CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
+    writel(ccm_clpcr | CORE_WB | WAIT_MODE, CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
+
+    printf("0x%X \n",ccm_clpcr);
+
+/* Wait for interrupt instruction */
+    __asm(
+            "mov r0, #0x0;"
+            "mcr p15, 0, r0, c7, c0, 4;"
+            "nop;"
+            "nop;"
+            "nop;"
+            "nop;"
+            "nop;"
+          );
+
+}
+
+void ccm_lpm_test(void)
+{
+    printf("Low power modes test\n");
+
+    enter_wait_state();
+
+    while(1);
+}

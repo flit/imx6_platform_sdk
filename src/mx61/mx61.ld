@@ -16,6 +16,8 @@ MEMORY
 
 SECTIONS
 {
+    _start_image_add = ORIGIN(DDR);
+
     .vectors :
     {
         __vectors_start = .;
@@ -23,22 +25,37 @@ SECTIONS
         __vectors_end = .;
     }>DDR
 
-    .text :
+    . = ALIGN (4);
+    .text : 
     {
-        . = ALIGN (4);
-        *(.text)
+         *(.text)
     }
 
+	. = ALIGN(4);
+	.rodata :
+    {
+        *(.rodata)
+    }
+
+    . = ALIGN (4);
     .data :
-    { *(.data) }
+    {
+        *(.data)
+    }
+
+    . = ALIGN (4);
+    _end_image_add = .;
+    _image_size = _end_image_add - _start_image_add;
 
     .bss :
     {
-        . = ALIGN (4);
         __bss_start__ = .;
+/*
         *(.shbss)
         *(.bss .bss.* .gnu.linkonce.b.*)
         *(COMMON)
+*/
+        *(.bss)
         __bss_end__ = .;
     }
 
@@ -50,5 +67,4 @@ SECTIONS
     free_memory_start = .;
 
     _end = .;
-    __end = _end;
 }

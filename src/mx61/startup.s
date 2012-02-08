@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -93,9 +93,6 @@ primary_cpu_init:
     cmp     r1,r2
     stmltia r1!,{r3}
     blt     1b
-   
-    @bl enable_scu
-    @bl enableALL_interrupts_non_secure
    
     mov r0, #0xFF	   @ 0xFF is lowest priority level
     bl set_cpu_priority_mask

@@ -6,10 +6,6 @@
 */
 
 /*!
- * @defgroup diag_init Base SDK files
- */
-
-/*!
  * @file  interrupt.c
  *
  * @ingroup diag_init

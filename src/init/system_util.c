@@ -187,7 +187,7 @@ int _write(int fd, char *buf, int nbytes)
  * Exception signaling and handling for C lib functions. This function never returns.
  * @param    return_code     not used
  */
-void _sys_exit(int return_code)
+void _sys_exit(int32_t return_code)
 {
     // just put system into WFI mode
     __asm volatile (

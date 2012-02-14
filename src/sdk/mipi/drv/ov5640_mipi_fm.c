@@ -6,10 +6,6 @@
 */
 
 /*!
- * @defgroup diag_mipi MIPI DSI/CSI document
- */
-
-/*!
  * @file  mipi_cam_fm.h
  * @brief firmware for mipi cameras.
  *

@@ -6,10 +6,6 @@
 */
 
 /*!
- * @defgroup diag_init Base SDK files
- */
-
-/*!
  * @file  main.c
  * @brief main() function
  *

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2008-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -9,7 +9,7 @@
  * @file io.h
  * @brief       Basic defines
  *
- * @ingroup init
+ * @ingroup diag_init
  */
 #ifndef __IO_H__
 #define __IO_H__
@@ -17,10 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#ifndef NULL
-#define NULL				0
-#endif
+//#include <stdint.h>
+#include <stdbool.h>
 
 typedef unsigned long long uint64_t;
 typedef unsigned int uint32_t;
@@ -32,47 +30,74 @@ typedef int int32_t;
 typedef short int16_t;
 typedef char int8_t;
 
-typedef int bool;
-
-/* defines a pointer to a function */
+//! @brief Defines a pointer to a function.
 typedef void (*funct_t) (void);
 
 #define TRUE        1
 #define FALSE       0
 
-#define true        1
-#define false       0
+#define ENABLE      (1)
+#define DISABLE     (0)
 
-#define ENABLE      1          
-#define DISABLE     0
+#define NONE_CHAR   (0xFF)
 
-#define NONE_CHAR   0xFF
+//! @name Min/max macros
+//@{
+#if !defined(MIN)
+    #define MIN(a, b)   ((a) < (b) ? (a) : (b))
+#endif
 
+#if !defined(MAX)
+    #define MAX(a, b)   ((a) > (b) ? (a) : (b))
+#endif
+//@}
+
+//! @name Register read functions
+//@{
 #define reg8_read(addr)       *((volatile uint8_t *)(addr))
 #define reg16_read(addr)      *((volatile uint16_t *)(addr))
 #define reg32_read(addr)      *((volatile uint32_t *)(addr))
+//@}
 
+//! @name Register write functions
+//@{
 #define reg8_write(addr,val)  *((volatile uint8_t *)(addr)) = (val)
 #define reg16_write(addr,val) *((volatile uint16_t *)(addr)) = (val)
 #define reg32_write(addr,val) *((volatile uint32_t *)(addr)) = (val)
+//@}
 
+//! @name Memory read functions
+//@{
 #define mem8_read(addr)       *((volatile uint8_t *)(addr))
 #define mem16_read(addr)      *((volatile uint16_t *)(addr))
 #define mem32_read(addr)      *((volatile uint32_t *)(addr))
+//@}
 
+//! @name Memory write functions
+//@{
 #define mem8_write(addr,val)  *((volatile uint8_t *)(addr)) = (val)
 #define mem16_write(addr,val) *((volatile uint16_t *)(addr)) = (val)
 #define mem32_write(addr,val) *((volatile uint32_t *)(addr)) = (val)
+//@}
 
+//! @name Read functions
+//@{
 #define readb(a)        reg8_read(a)
 #define readw(a)        reg16_read(a)
 #define readl(a)        reg32_read(a)
+//@}
 
-/* prefered method to access registers */
+//! @name Write functrions
+//!
+//! The prefered method to access registers.
+//@{
 #define writeb(v, a)    reg8_write(a, v)
 #define writew(v, a)    reg16_write(a, v)
 #define writel(v, a)    reg32_write(a, v)
+//@}
 
+//! @name Bit set/clear functions
+//@{
 #define  reg8setbit(addr,bitpos) \
          reg8_write((addr),(reg8_read((addr)) | (1<<(bitpos))))
 
@@ -90,7 +115,10 @@ typedef void (*funct_t) (void);
 
 #define  reg32clrbit(addr,bitpos) \
          reg32_write((addr),(reg32_read((addr)) & (0xFFFFFFFF ^ (1<<(bitpos)))))
+//@}
 
+//! @name Masked write functions
+//@{
 #define reg8_write_mask(addr, data, mask) \
         reg8_write((addr),((reg8_read(addr) & (~mask)) | (mask & data)))
 
@@ -103,24 +131,25 @@ typedef void (*funct_t) (void);
 #define gen_msk32(start, end)	((0xFFFFFFFF << (start)) ^ (0xFFFFFFFF << ((end + 1))))
 #define reg32_set_field(addr, start, end, val) \
 		reg32_write_mask(addr, (val) << (start), gen_msk32((start, end)))
+//@}
 
-/*
+/*!
  * This macro is used to get certain bit field from a number
  */
 #define GET_FIELD(val, len, sh)          ((val >> sh) & ((1 << len) - 1))
 
-/*
+/*!
  * This macro is used to set certain bit field inside a number
  */
 #define SET_FIELD(val, len, sh, nval)    ((val & ~(((1 << len) - 1) << sh)) | (nval << sh))
 
 struct hw_module {
-    int8_t *name;       /* name of the module */
-    uint32_t base;      /* module base address */
-    uint32_t freq;      /* input clock frequency */
-    uint32_t irq_id;    /* ID of its interrupt */
-    void (*irq_subroutine)(void);   /* module interrupt sub-routine address */
-    void (*iomux_config) (void);   /* module I/O mux configuration function */
+    const char *name;       //!< name of the module
+    uint32_t base;      //!< module base address
+    uint32_t freq;      //!< input clock frequency
+    uint32_t irq_id;    //!< ID of its interrupt
+    void (*irq_subroutine)(void);   //!< module interrupt sub-routine address
+    void (*iomux_config) (void);   //!< module I/O mux configuration function
 };
 
 #ifdef SDK_DEBUG
@@ -131,9 +160,18 @@ struct hw_module {
 
 typedef int32_t (*sdk_test_t) (void);
 
-#define TEST_PASSED     0
-#define TEST_FAILED     -1
-#define TEST_BYPASSED   2
-#define TEST_NOTPRESENT 3
+//! @name Test results
+//@{
+#define TEST_PASSED     (0)
+#define TEST_FAILED     (-1)
+#define TEST_BYPASSED   (2)
+#define TEST_NOTPRESENT (3)
+//@}
+
+//! @name Return codes
+//@{
+// #define SUCCESS (0)
+// #define ERROR (1)
+//@}
 
 #endif // __IO_H__

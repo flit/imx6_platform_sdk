@@ -24,6 +24,7 @@
 *.bin
 *.gz
 output
+doc
 
 #
 # Top-level generic files

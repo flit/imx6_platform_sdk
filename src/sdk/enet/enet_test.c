@@ -6,10 +6,6 @@
 */
 
 /*!
- * @defgroup diag_enet Driver and test for the ethernet interface.
- */
-
-/*!
  * @file enet_test.c
  * @brief Test for the ethernet interface through the ENET + PHY.
  *

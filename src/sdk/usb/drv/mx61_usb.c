@@ -9,8 +9,8 @@
  * @file mx61_usb.c
  * @brief i.MX6x specific USB routines.
  *
- * The functions in this file address implementation specific handling like USB transceiver, PLL, clocks etc.
- * Each supported i.MX device has a dedicated set of routines.
+ * The functions in this file are implementation specific routines, like USB transceiver, PLL, clocks etc.\n
+ * Each supported i.MX device has a dedicated set of routines.\n
  * The routines are referenced in the usb_module structure.
  * 
  * @ingroup diag_usb
@@ -18,6 +18,11 @@
 
 #include "hardware.h"
 
+/*!
+ * This function enables the clocks needed for USB operation.
+ * @param port
+ * @return
+ */
 int usbEnableClocks(usb_module_t *port)
 {
 
@@ -25,14 +30,14 @@ int usbEnableClocks(usb_module_t *port)
 
 
 	/*!
-	 * First enable the USB clock for the controller
+	 * Enable the USB clock for the controller
 	 */
 
     *(volatile uint32_t *)(CCM_CCGR6) |= 0x00000003;
 
 
 	/*!
-	 * Enable the PLL
+	 * Enable the PLL\n
 	 * OTG, Host2 and Host3 controllers use USB_PLL0
 	 * Host1 controller uses USB_PLL1
 	 */
@@ -51,15 +56,15 @@ int usbEnableClocks(usb_module_t *port)
 		return (-1);
 	}
 
-	usbPllControl->SET = USBPLL_CTRL_POWER;     		  // Turn power on.
-    while (!(usbPllControl->RW & USBPLL_CTRL_LOCK));      // Wait for PLL to lock
-    usbPllControl->CLEAR = USBPLL_CTRL_BYPASS;    	      // Clear bypass
-    usbPllControl->SET = USBPLL_CTRL_ENABLE;      	      // Enable USB clocks
+	usbPllControl->SET = USBPLL_CTRL_POWER;     		  //! - Turn PLL power on.
+    while (!(usbPllControl->RW & USBPLL_CTRL_LOCK));      //! - Wait for PLL to lock
+    usbPllControl->CLEAR = USBPLL_CTRL_BYPASS;    	      //! - Clear bypass
+    usbPllControl->SET = USBPLL_CTRL_ENABLE;      	      //! - Enable PLL clock output for the PHY
 	return (0);
 }
 
 /*!
- * Enable USB transceiver
+ * Enable USB transceiver\n
  * This function enables the USB transceiver for the selected USB port.
  *
  * @param port      USB module to initialize
@@ -80,23 +85,23 @@ int usbEnableTransceiver(usb_module_t *port)
 	default:
 		break;
 	}
-    /* NOTE !! CLKGATE must be cleared before clearing power down */
-    usbPhy->USBPHY_CTRL.CLEAR =   (USBPHY_CTRL_SFTRST);   // clear SFTRST
-    usbPhy->USBPHY_CTRL.CLEAR = (USBPHY_CTRL_CLKGATE);    // clear CLKGATE
-    usbPhy->USBPHY_PWD.RW = 0;                            // clear all power down bits
+    //! NOTE !! CLKGATE must be cleared before clearing power down
+    usbPhy->USBPHY_CTRL.CLEAR =   (USBPHY_CTRL_SFTRST);   //! - clear SFTRST
+    usbPhy->USBPHY_CTRL.CLEAR = (USBPHY_CTRL_CLKGATE);    //! - clear CLKGATE
+    usbPhy->USBPHY_PWD.RW = 0;                            //! - clear all power down bits
     usbPhy->USBPHY_CTRL.SET = (3 << 14);
-    usbPhy->USBPHY_CTRL.SET = (1 << 1);                   // Enable Host Disconnect
+    usbPhy->USBPHY_CTRL.SET = (1 << 1);                   //! - Enable Host Disconnect
 
-    // Check if all power down bits are clear
+    //! Check if all power down bits are clear
     if(usbPhy->USBPHY_PWD.RW != 0 )
     	return -1;   // Phy still in power-down mode. Check if all clocks are running.
     else return 0;
 }
 
 /*!
- * This function enables Vbus for the given USB port
- * The procedure to enable Vbus depends on both the Chip and board hardware
- * This implementation is for the MX6q Sabre-AI board.
+ * This function enables Vbus for the given USB port\n
+ * The procedure to enable Vbus depends on both the Chip and board hardware\n
+ * This implementation is for the MX6q Sabre-AI board.\n
  *
  * @param port      USB module to initialize
  */
@@ -126,9 +131,9 @@ void usbEnableVbus(usb_module_t *port)
 }
 
 /*!
- * This function disables Vbus for the given USB port
- * The procedure to enable Vbus depends on both the Chip and board hardware
- * This implementation is for the MX6q Sabre-AI board
+ * This function disables Vbus for the given USB port\n
+ * The procedure to enable Vbus depends on both the Chip and board hardware\n
+ * This implementation is for the MX6q Sabre-AI board\n
  *
  * @param port      USB module to initialize
  */

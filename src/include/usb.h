@@ -253,7 +253,9 @@ void usbd_device_send_control_packet(usb_module_t *port, usbdEndpointPair_t *end
 void usbd_device_send_zero_len_packet(usb_module_t *port, usbdEndpointPair_t *endpointList, uint32_t endpoint);
 void usbd_endpoint_qh_init(usbdEndpointPair_t *endpointList, usbdEndpointInfo_t *usbdEndpoint, uint32_t nextDtd);
 usbdEndpointDtd_t *usbd_dtd_init(uint32_t transferSize, uint32_t interruptOnComplete, uint32_t multOverride, uint32_t *bufferPointer);
-
+void usbd_add_dtd(usb_module_t *port, usbdEndpointPair_t *endpointList, usbdEndpointInfo_t *usbdEndpoint, usbdEndpointDtd_t *new_dtd);
+usbdEndpointDtd_t *usbd_reclaim_dtd(usb_module_t *port, usbdEndpointPair_t *endpointList, usbdEndpointInfo_t *usbdEndpoint, usbdEndpointDtd_t *head);
+void fillBuffer(uint32_t *buffer);
 /*
  * usbcommon prototypes
  */
@@ -284,9 +286,6 @@ void usbDisableVbus(usb_module_t *port);
 #define USB_UTMI_PHY 1
 #define USB_ULPI_PHY 2
 #define USB_SERIAL_PHY 3
-
-
-/* Use USB interrupt i/o polling */
 
 #endif	/* _USB_H */
 

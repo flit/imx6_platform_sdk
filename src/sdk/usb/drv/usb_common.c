@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
@@ -8,6 +8,9 @@
 /*!
  * @file usb_common.c
  * @brief USB common routines.
+ */
+/*! This routine returns the current speed of the port\n
+ * This must be called after the bus reset is completed.
  *
  * @param	port			The usb controller
  * @return	usbPortSpeed	The operating speed full/high

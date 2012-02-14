@@ -107,7 +107,7 @@
 
 #define USB_DTD_NEXT_DTD_T   			0x00000001
 
-#define USB_DTD_TOKEN_TOTAL_BYTES(x)	(((x)&0x3FFF)<<16)
+#define USB_DTD_TOKEN_TOTAL_BYTES(x)	(((x)&0x7FFF)<<16)
 #define USB_DTD_TOKEN_IOC				0x00008000
 #define USB_DTD_TOKEN_MULTO(x)			(((x)&0x3)<<10)
 #define USB_DTD_TOKEN_MULTO_ONE			0x00000100

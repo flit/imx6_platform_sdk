@@ -22,13 +22,11 @@ void usbh_get_config_desc(usb_module_t *, usbhQueueHead_t *, uint8_t *);
 void usbh_get_interface_desc(usb_module_t *, usbhQueueHead_t *, uint8_t *,uint8_t *, uint8_t *);
 void usbh_set_configuration(usb_module_t *, usbhQueueHead_t *, uint32_t);
 void usbh_get_report_desc(usb_module_t *, usbhQueueHead_t *, uint8_t *);
-void wait(uint32_t);
 
 #define DEVICE_ADDRESS	0x2
 #define CONFIG_VALUE	0x1	/* This is the only valid config value for a USB mouse */
 #define FRAME_LIST_SIZE 32
 
-extern uint8_t usb_utmi_int_flag, usb_ulpi_int_flag;
 uint32_t frame_list[1024]  __attribute__ ((aligned (4096))); // 4K aligned frame list memory
 
 /*!
@@ -362,7 +360,7 @@ void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, ui
  * @param usbh_qh_ep0       Queue Head (identifies device and endpoint)
  * @param device_descriptor Device descriptor structure to hold device data
  */
-void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDeviceDescriptor_t *device_descriptor)
+void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usbh_qh_ep0, usbDeviceDescriptor_t *device_descriptor)
 {
 	usbhTransferDescriptor_t *usb_qtd1, *usb_qtd2, *usb_qtd3;
 	uint32_t temp;
@@ -383,7 +381,7 @@ void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDevic
     usb_qtd2->nextQtd = (uint32_t)usb_qtd3;
     
 	/* Point the QH to the linked list of qTDs */
-	usb_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
+	usbh_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
         	
 	/* Wait for transaction to complete and clear int flag*/
 	while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));

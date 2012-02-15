@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -12116,7 +12116,7 @@ void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel)
     int top_offset = (screenheight - height) / 2;
     int i = 0;
 
-    memset((void *)addr, 0x1F, 2 * screenheight * screenwidth);
+    memset((void *)addr, 0xFF, 2 * screenheight * screenwidth);
     for (i = 0; i < height; i++) {
         memcpy((void *)(addr + screenwidth * (top_offset + i) * 2 + left_offset * 2),
                &gImage_fsl[width * i * 2], width * 2);
@@ -12130,17 +12130,17 @@ void load_foreground_image(uint32_t addr, uint32_t width, uint32_t height)
 
 void load_horiz_image(uint32_t addr, uint32_t width, uint32_t height)
 {
-	uint32_t i;
-	uint16_t *RGB_pointer = (void *)addr;
-	uint16_t red = 0xF800, green = 0x07E0, blue = 0x001F;
-	
-	for (i = 0; i < width * height / 3; i++)
-    	memcpy(RGB_pointer++, &red, 2);
-	for (i = 0; i < width * height / 3; i++)
-    	memcpy(RGB_pointer++, &green, 2);
-	for (i = 0; i < width * height / 3; i++)
-    	memcpy(RGB_pointer++, &blue, 2);
-			
+    uint32_t i;
+    uint16_t *RGB_pointer = (void *)addr;
+    uint16_t red = 0xF800, green = 0x07E0, blue = 0x001F;
+
+    for (i = 0; i < width * height / 3; i++)
+        memcpy(RGB_pointer++, &red, 2);
+    for (i = 0; i < width * height / 3; i++)
+        memcpy(RGB_pointer++, &green, 2);
+    for (i = 0; i < width * height / 3; i++)
+        memcpy(RGB_pointer++, &blue, 2);
+
 /*    uint32_t segment = width * height / 2;
     memset((void *)addr, 0xFA, segment);
     memset((void *)addr + segment, 0x1F, segment);

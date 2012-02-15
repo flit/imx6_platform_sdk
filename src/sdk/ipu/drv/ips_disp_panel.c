@@ -78,15 +78,15 @@ extern void mipi_clock_set(void);
 
 static int mipi_display_init(int *ipu_index)
 {
-	mipi_backlight_en();
-	mipi_display_reset();
-	mipi_clock_set();
-	return true;
+    mipi_backlight_en();
+    mipi_display_reset();
+    mipi_clock_set();
+    return true;
 }
 
 static int mipi_display_deinit(void)
 {
-	return true;
+    return true;
 }
 
 ips_dev_panel_t disp_dev_list[] = {
@@ -193,21 +193,21 @@ ips_dev_panel_t disp_dev_list[] = {
      &sii9022_1080p60_init,
      &sii9022_1080p60_deinit,
      }
-	,
+    ,
     {
      "TRULY MIPI TFT480800",    // name
-	 TRULY_MIPI_TFT480800,		// panel_id_flag
+     TRULY_MIPI_TFT480800,      // panel_id_flag
      DCMAP_RGB888,              // data format for panel
      60,                        // refresh rate
      480,                       // panel width
      800,                       //panel height
-     27000000,                  // pixel clock frequency
-     8,                        // hsync start width
-     4,                        // hsync width
-     4,                        // hsyn back width
-     16,                        // vysnc start width
-     5,                        // vsync width
-     8,                         // vsync back width
+     24450000,                  // pixel clock frequency
+     16,                        // hsync start width
+     8,                         // hsync width
+     8,                         // hsyn back width
+     8,                         // vysnc start width
+     4,                         // vsync width
+     4,                         // vsync back width
      0,                         // delay from hsync to vsync
      0,                         // interlaced mode
      0,                         // clock selection, internal
@@ -216,8 +216,8 @@ ips_dev_panel_t disp_dev_list[] = {
      0,                         // vync polarity
      0,                         // drdy polarity
      0,                         // data polarity
-     &mipi_display_init,     // initialization
-     &mipi_display_deinit,   // deinit
+     &mipi_display_init,        // initialization
+     &mipi_display_deinit,      // deinit
      }
 };
 

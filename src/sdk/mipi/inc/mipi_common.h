@@ -23,41 +23,19 @@
 
 #define DPI_MODE 1
 #define IO_EXPANDER_ADDR    (0x1b)
-
 #define MIPI_CSI_ADDR       (0x3c)  //for 5640//78
-#define 	PLL_CLK  0x32       //PLL 27M ref_clk out
-                           //  950-1000MHz :0x74;
-                           //  900-950Mhz  :0x54
-                           //  850-900Mhz  :0x34
-                           //  800-850MHz  :0x14;
-                           //  750-800MHz  :0x32;
-                           //  700-750Mhz  :0x12
-                           //  650-700Mhz  :0x30
-                           //  600-650MHz  :0x10;
-                           //  550-600MHz  :0x2e;
-                           //  500-550Mhz  :0x0e
-                           //  450-500Mhz  :0x2c
-                           //  400-450MHz  :0x0c;
-                           //  360-400MHz  :0x4a;
-                           //  330-360Mhz  :0x2a
-                           //  300-330Mhz  :0x08
-                           //  270-300MHz  :0x28;
-                           //  250-270MHz  :0x08;
-                           //  240-250Mhz  :0x46
-                           //  210-240Mhz  :0x26
-                           //  200-210MHz  :0x06;
-                           //  180-200MHz  :0x44;
-                           //  160-180Mhz  :0x24
-                           //  150-160MHz  :0x04;
+
 ///////////////////////////////////////////////////////////////////////
 ////////DSI LINK DEFINITION////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-#define     CLKLANEBYTEPERIOD   10  //8.00 //125Mhz(1Ghz/lane)
+#define     CLKLANEBYTEPERIOD   10  //since we are using 800Mbps phy, the DSI controller working at 100Hz
 #define     NUMBEROFLANES       1   //2 Data Lanes
-///////////////////////////////////////////////////////////////////////
+#define 	DSI_CLK_DIV		0x107
+
+//////////////////////////////////////////////////////////////////////
 ////////VIDEO DEFINITION--480x800 period 25///////////////////////////
 ////////////////////////////////////////////////////////////////////////
-#define     PIXELCLOCKPERIOD    37.88   ///*8.00;*//*40.00;*////pixel clock period
+/*All these parameters are from the LCD spec*/
 #define     DPITHSA             8   //hsync valid witdh
 #define     DPITHBP             8   //Horizontal Back Porch
 #define     DPITHACT            480 //Horizontal active pixel
@@ -66,6 +44,9 @@
 #define     DPIVBPLINES         4   //Vertical Back Porch
 #define     DPIVACTLINES        800 //Vertical active lines
 #define     DPIVFPLINES         4   //Vertical Front Porch
+#define		DPIPIXELCLOCKPERIOD	40  //ns
+#define		DPIPIXELCLOCKFREQ	24.55   //MHz, the refresh rate is ~63Hz
+
 #define     DPIVCHANNELID       0   //Configures the DPI Virtual Channel ID that is indexed to the Video mode packets.
 #define     DPICOLORMODE        7   //DPI color coding. 0: 16bit config1; 1: 16bit config2; 2: 16bit config3; 3: 18bit config1; 4: 18bit config2; 5 to 7: 24 bit
 #define     DPIDATENACTLOW      1   //Set to configure Data enable pin (dpidaten) as Active low.
@@ -84,10 +65,8 @@
 #define     EN_ECC_RX            1  //Enables ECC reception, error correction and reporting.
 #define     EN_CRC_RX            1  //Enables CRC reception and error reporting
 #define     EN_VID_RX            1  //Generic interface read-back Virtual Channel identification
-////////////////////////////////////////////////////////////////////////
-#define     VIDEO_MODE_ENABLE    1  //;
-#define     COMMAND_MODE_ENABLE  0  //;
-////////////////////////////////////////////////////////////////////////
+#define     VIDEO_MODE_ENABLE    1
+#define     COMMAND_MODE_ENABLE  0
 #define     VID_MODE_EN          1  //Enables DPI Video mode transmission.
 #define     VIDEO_MODE           3  //0-syncro w/ sync pulses; 1-synchro w/ sync events; 2,3-synchro w/ sync events
 #define     LP_VSA_EN            1  //Enables the LOW power transition when in Vertical Sync Active Region
@@ -99,33 +78,32 @@
 #define     ENABLE_MULT_PKTS     0  //if there is no active video time overhead or in burst mode shoudl be set 0
 #define     ENABLE_NULL_PKTS     0  //if there is no active video time overhead or in burst mode shoudl be set 0
 #define     BAT_ACK_EN           0  //Enables the request for an acknowledge response at the end of a frame.
-/////////////////////////////////////////////////////////////////////////
 #define     BTA_MAX_TIME         0xd00
 #define     PHY_LP_TO_HS         0x40
 #define     PHY_HS_TO_LP         0x40
-////////////////////////////////////////////////////////////////////////////
 
-#define     GEN_SW_0P_LP_ENA     1  //;
-#define     GEN_SW_1P_LP_ENA     1  //;
-#define     GEN_SW_2P_LP_ENA     1  //;
-#define     GEN_SR_0P_LP_ENA     1  //;
-#define     GEN_SR_1P_LP_ENA     1  //;
-#define     GEN_SR_2P_LP_ENA     1  //;
-#define     DSC_SW_0P_LP_ENA     1  //;
-#define     DSC_SW_1P_LP_ENA     1  //;
-#define     DSC_SR_0P_LP_ENA     1  //;
-#define     MAX_READ_PACKET_SIZE 1  //;
-#define     GEN_LW_LP_ENA        0  //;
-#define     DCS_LW_LP_ENA        1  //;
-#define     ACK_REQUEST_ENABLE   0  //;
-#define     TEAR_FX_ENABLE       0  //;
-#define     PHY_STOP_WAIT_TIME   0x0    //
+#define     GEN_SW_0P_LP_ENA     1
+#define     GEN_SW_1P_LP_ENA     1
+#define     GEN_SW_2P_LP_ENA     1
+#define     GEN_SR_0P_LP_ENA     1
+#define     GEN_SR_1P_LP_ENA     1
+#define     GEN_SR_2P_LP_ENA     1
+#define     DSC_SW_0P_LP_ENA     1
+#define     DSC_SW_1P_LP_ENA     1
+#define     DSC_SR_0P_LP_ENA     1
+#define     MAX_READ_PACKET_SIZE 1
+#define     GEN_LW_LP_ENA        0
+#define     DCS_LW_LP_ENA        1
+#define     ACK_REQUEST_ENABLE   0
+#define     TEAR_FX_ENABLE       0
+#define     PHY_STOP_WAIT_TIME   0x10
 #define     TXREQESTCLKHS        1
 #define     TXREQULPSCLK         0
 #define     TXEXITULPSCLK        0
 #define     TXREQULPSLAN         0
 #define     TXEXITULPSLAN        0
 #define     TXTRIGGERS           0
+
 ////////////////////////////////////////////////////////////////////////
 /////////////////////DBI INTEFACE DEFINITION////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -135,19 +113,18 @@
 #define     DBILUTSIZECFG        1  //;//LUT size 0-48bytes; 1-128bytes; 2-192bytes; 3-48bytes
 #define     DBIOUTPARTIENA       1  //;
 #define     DBIWRITECOMSIZE      0x091  //;
-/////////////////////////////////////////////////////////////////////////
 #define     PIXELS_PER_PACKET   480
 #define     NUMBER_OF_CHUNKS    0x08
 #define     NULL_PKT_SIZE       0x08
+
 ////////////////////////////////////////////////////////////////////////
 //////////Video mode calc parames///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-#define     dpi2laneclkratio    PIXELCLOCKPERIOD/CLKLANEBYTEPERIOD  // The ratio of clk lane bytes per pixel
+#define     dpi2laneclkratio    DPIPIXELCLOCKPERIOD/CLKLANEBYTEPERIOD   // The ratio of clk lane bytes per pixel
 #define     DPI2BYTECLKRATIO    DPI2LANECLKRATIO*NUMBEROFLANES  // The ratio of byte clocks per pixel clock
-#define     THSA                (unsigned long)(ceil)(DPITHSA*dpi2laneclkratio)
-#define     THBP                (unsigned long)(ceil)(DPITHBP*dpi2laneclkratio) //HBP period configuration
-#define     THLINE              (unsigned long)(ceil)((DPITHSA+DPITHBP+DPITHACT+DPITHFP)*dpi2laneclkratio)  //THLINE period configuration
-////////////////////////////////////////////////////////////////////////
+#define     THSA                (unsigned int)(round)(DPITHSA*dpi2laneclkratio)
+#define     THBP                (unsigned int)(round)(DPITHBP*dpi2laneclkratio) //HBP period configuration
+#define     THLINE              (unsigned int)(round)((DPITHSA+DPITHBP+DPITHACT+DPITHFP)*dpi2laneclkratio)  //THLINE period configuration
 #define     CLKMGR_CFG          0x00
 #define     DPI_CFG             (DPIVCHANNELID)|(DPICOLORMODE<<2)|(DPIDATENACTLOW<<5)| \
                                 (DPIVSYNCACTLOW<<6)|(DPIHSYNCACTLOW<<7)|(DPICOLRMACTLOW<<8)|(DPISHTDMACTLOW<<9)|\
@@ -218,7 +195,6 @@
 #define    OFFSET_DSI_PHY_STATUS                   0x060
 #define    OFFSET_DSI_PHY_TST_CTRL0                0x064
 #define    OFFSET_DSI_PHY_TST_CTRL1                0x068
-////////////////////////////////////////////////////////////
 #define    OFFSET_DSI_DPHY_CTRL                    0xf00
 #define    OFFSET_DSI_DPHY_STATUS                  0xf04
 #define    OFFSET_CSI2_DPHY_CTRL0                  0xf08
@@ -226,7 +202,7 @@
 #define    OFFSET_CSI2_DPHY_STATUS                 0xf10
 #define    OFFSET_DPHY_TEST_CTRL                   0xf14
 
-////////////////////////////////////////////////////////////////
+/*MIPI CSI registers*/
 #define    CSI2_VERSION         (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_VERSION         )
 #define    CSI2_N_LANES		    (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_N_LANES	       )
 #define    CSI2_PHY_SHUTDOWNZ   (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_PHY_SHUTDOWNZ   )
@@ -243,6 +219,7 @@
 #define    CSI2_PHY_TST_CTRL1   (MIPI_CSI2_BASE_ADDR+ OFFSET_CSI2_PHY_TST_CTRL1   )
 #define    CSI2_SFT_RESET       (MIPI_CSI2_BASE_ADDR+ OFFSET_CSI2_SFT_RESET   )
 
+/*MIPI DSI registers*/
 #define    DSI_VERSION         (MIPI_DSI_BASE_ADDR+ OFFSET_DSI_VERSION         )
 #define    DSI_PWR_UP          (MIPI_DSI_BASE_ADDR+ OFFSET_DSI_PWR_UP          )
 #define    DSI_CLKMGR_CFG      (MIPI_DSI_BASE_ADDR+ OFFSET_DSI_CLKMGR_CFG      )

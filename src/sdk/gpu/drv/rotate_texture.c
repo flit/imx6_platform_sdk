@@ -5,11 +5,19 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file rotate_texture.c
+ * @brief Texture rotating routine
+ *
+ * @ingroup diag_enet
+ */
+
 #include "../inc/sdk_gpu_utilities.h"
 
 void rotateTexture(unsigned long phys)
 {
     unsigned long write_addr = phys;
+
     CallResolve(phys, 0, 1, 0);
     clearFrameBuffer(phys, 0xdeadbeef);
     write_addr = phys;
@@ -30697,5 +30705,4 @@ void rotateTexture(unsigned long phys)
     //CallResolve(phys,0, 1, 0);
     //clearFrameBuffer(phys,0xdeadbeef);
     //write_addr = phys;
-
 }

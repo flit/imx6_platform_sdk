@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file texture.c
+ * @brief Texture fucntions..
+ *
+ * @ingroup diag_enet
+ */
+
 #include "../inc/gpu_test_common.h"
 #include "../inc/texture5.h"
 #include "../inc/sdk_gpu_utilities.h"
@@ -31,6 +38,7 @@ static void loadTex_vtx_idx(void)
 void runTexture(unsigned long phys, int SuperSample)
 {
     unsigned long write_addr = phys;
+
     loadTexture();
     loadTex_vtx_idx();
 

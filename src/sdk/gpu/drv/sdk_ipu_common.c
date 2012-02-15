@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file sdk_ipu_common.c.c
+ * @brief IPU routines.
+ *
+ * @ingroup diag_enet
+ */
+
 #include "../inc/sdk_ipu_common.h"
 
 /* global IPU variables */

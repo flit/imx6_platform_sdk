@@ -5,6 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
+/*!
+ * @file sdk_gpu_utilities.c
+ * @brief Driver of the i.MX GPU.
+ *
+ * @ingroup diag_enet
+ */
+
 #include "../inc/sdk_gpu_utilities.h"
 #include "../inc/gpu_test_common.h"
 

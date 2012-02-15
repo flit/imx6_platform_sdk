@@ -12116,7 +12116,7 @@ void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel)
     int top_offset = (screenheight - height) / 2;
     int i = 0;
 
-    memset((void *)addr, 0xFF, 2 * screenheight * screenwidth);
+    memset((void *)addr, 0x1F, 2 * screenheight * screenwidth);
     for (i = 0; i < height; i++) {
         memcpy((void *)(addr + screenwidth * (top_offset + i) * 2 + left_offset * 2),
                &gImage_fsl[width * i * 2], width * 2);

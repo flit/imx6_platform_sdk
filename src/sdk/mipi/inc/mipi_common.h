@@ -44,8 +44,6 @@
 #define     DPIVBPLINES         4   //Vertical Back Porch
 #define     DPIVACTLINES        800 //Vertical active lines
 #define     DPIVFPLINES         4   //Vertical Front Porch
-#define		DPIPIXELCLOCKPERIOD	40  //ns
-#define		DPIPIXELCLOCKFREQ	24.55   //MHz, the refresh rate is ~63Hz
 
 #define     DPIVCHANNELID       0   //Configures the DPI Virtual Channel ID that is indexed to the Video mode packets.
 #define     DPICOLORMODE        7   //DPI color coding. 0: 16bit config1; 1: 16bit config2; 2: 16bit config3; 3: 18bit config1; 4: 18bit config2; 5 to 7: 24 bit
@@ -120,11 +118,7 @@
 ////////////////////////////////////////////////////////////////////////
 //////////Video mode calc parames///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-#define     dpi2laneclkratio    DPIPIXELCLOCKPERIOD/CLKLANEBYTEPERIOD   // The ratio of clk lane bytes per pixel
 #define     DPI2BYTECLKRATIO    DPI2LANECLKRATIO*NUMBEROFLANES  // The ratio of byte clocks per pixel clock
-#define     THSA                (unsigned int)(round)(DPITHSA*dpi2laneclkratio)
-#define     THBP                (unsigned int)(round)(DPITHBP*dpi2laneclkratio) //HBP period configuration
-#define     THLINE              (unsigned int)(round)((DPITHSA+DPITHBP+DPITHACT+DPITHFP)*dpi2laneclkratio)  //THLINE period configuration
 #define     CLKMGR_CFG          0x00
 #define     DPI_CFG             (DPIVCHANNELID)|(DPICOLORMODE<<2)|(DPIDATENACTLOW<<5)| \
                                 (DPIVSYNCACTLOW<<6)|(DPIHSYNCACTLOW<<7)|(DPICOLRMACTLOW<<8)|(DPISHTDMACTLOW<<9)|\

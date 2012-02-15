@@ -129,8 +129,12 @@ void mipi_lcd_init(void)
 void mipi_dsi_init(void)
 {
     int dlane = 1;              //data lane set to 1
+	int thsa, thbp, thline;
+	float dpi2_laneclk_ratio;
+	float pclk = 0;
+	float pperiod = 0;
 
-    /*step 1: keeping core and d-phy in reset state */
+	/*step 1: keeping core and d-phy in reset state */
     reg32_write(DSI_PWR_UP, 0x0);
     reg32_write(DSI_PHY_RSTZ, 0x00000000);
 
@@ -144,8 +148,14 @@ void mipi_dsi_init(void)
     reg32_write(DSI_CLKMGR_CFG, DSI_CLK_DIV);
     reg32_write(DSI_TMR_CFG, PHY_TIMING_CFG);
     reg32_write(DSI_VID_PKT_CFG, VID_PKT_CFG);  //pixel per packet is 480, one line 
-    /*set the timing */
-    reg32_write(DSI_TMR_LINE_CFG, TMR_LINE_CFG);
+    /*calculate and set the timing */
+	pclk = (264/((int)(264/24.55+0.5)));   //MHz, 264M is the IPU frequency
+	pperiod = ((float)(1000/pclk)); //ns
+   	dpi2_laneclk_ratio = (float)(pperiod/CLKLANEBYTEPERIOD); 
+	thsa = (int)(((float)DPITHSA)*dpi2_laneclk_ratio);
+	thbp = (int)(((float)DPITHBP)*dpi2_laneclk_ratio);
+	thline = (int)(((float)(DPITHSA+DPITHBP+DPITHACT+DPITHFP))*dpi2_laneclk_ratio);
+    reg32_write(DSI_TMR_LINE_CFG, (thline<<18)|(thbp<<9)|thsa);
     reg32_write(DSI_VTIMING_CFG, VTIMING_CFG);
     /*set the packet handleri, including the packet size and sync timing */
     reg32_write(DSI_PCKHDL_CFG, PCKHDL_CFG);

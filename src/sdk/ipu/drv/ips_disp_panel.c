@@ -201,7 +201,7 @@ ips_dev_panel_t disp_dev_list[] = {
      60,                        // refresh rate
      480,                       // panel width
      800,                       //panel height
-     24450000,                  // pixel clock frequency
+     24555000,                  // pixel clock frequency
      16,                        // hsync start width
      8,                         // hsync width
      8,                         // hsyn back width

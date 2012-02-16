@@ -24,7 +24,8 @@ sata_port_regs_t *imx_sata_port0 =
     (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(0, SATA_BASE_ADDR);
 sata_identify_data_t hdd_ident;
 disk_identify_t ident;
-sata_phy_ref_clk_t sata_phy_clk_sel = OSC_UNKNOWN;
+
+static sata_phy_ref_clk_t sata_phy_clk_sel = OSC_UNKNOWN;
 
 ///////////////////////////////////////////////////////////////////
 //                Extern Variables Re-declaration                //
@@ -35,6 +36,7 @@ sata_phy_ref_clk_t sata_phy_clk_sel = OSC_UNKNOWN;
 ///////////////////////////////////////////////////////////////////
 extern void sata_clock_enable(void);
 extern void sata_power_on(void);
+void sata_get_phy_src_clk(sata_phy_ref_clk_t *);
 //////////////////////////////////////////////////////////////////
 //                      Local Variables                          //
 ///////////////////////////////////////////////////////////////////
@@ -1350,6 +1352,8 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
     sata_port_regs_t *port_n_regs;
 
     sata_power_on();
+
+    sata_get_phy_src_clk(&sata_phy_clk_sel);
 
     if (sata_phy_clk_sel == OSC_UNKNOWN) {
         sata_phy_clk_sel = OSC_50MHZ;

@@ -94,6 +94,7 @@ void platform_init(void)
     show_ddr_config();
 }
 
+#ifdef ALL_TEST_ENABLE
 extern void sdma_test(void);
 extern void ipu_test(void);
 extern void uart_test(void);
@@ -122,7 +123,7 @@ void ALL_test(void)
         audio_test();
 #ifdef MX61_ARD
         flexcan_test();
-#endif
+#endif /* MX61_ARD */
         epit_test();
 
         gpt_test();
@@ -131,7 +132,7 @@ void ALL_test(void)
         ipu_test();
 #ifndef MX61_SABRE_TABLET
         mipi_test();
-#endif
+#endif /* MX61_SABRE_TABLET */
         sata_test();
         sdma_test();
         snvs_rtc_test();
@@ -140,7 +141,7 @@ void ALL_test(void)
 //         gpmi_test();
         spi_test();
         vpu_test();
-#endif
+#endif /* MX61_EVB */
         uart_test();
         usdhc_test();
 
@@ -152,3 +153,4 @@ void ALL_test(void)
         printf("\n...end of the tests suite.\n");
     }
 }
+#endif /* ALL_TEST_ENABLE */

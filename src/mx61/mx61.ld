@@ -50,11 +50,9 @@ SECTIONS
     .bss :
     {
         __bss_start__ = .;
-/*
         *(.shbss)
         *(.bss .bss.* .gnu.linkonce.b.*)
         *(COMMON)
-*/
         *(.bss)
         __bss_end__ = .;
     }

@@ -627,7 +627,6 @@ void imx_ar8031_reset(void)
 {
 }
 
-extern sata_phy_ref_clk_t sata_phy_clk_sel;
 /*!
  * SATA power on
  */
@@ -635,7 +634,6 @@ void sata_power_on(void)
 {
     //enable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0
     max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
-    sata_phy_clk_sel = ANATOP_ENET_PLL; //dummy. In fact, it is PLL8 for ENET
 }
 
 /*!

@@ -71,6 +71,10 @@ ifeq "$(BOARD_VERSION)" "1"
 C_DEFINES +=-DBOARD_VERSION1
 endif
 
+ifeq "$(TEST)" "ALL"
+C_DEFINES +=-DALL_TEST_ENABLE
+endif
+
 LD_FLAGS := $(DEBUG_FLAGS) $(THUMB_FLAGS) -nostartfiles
 LD_FLAGS += -lm
 LD_FLAGS += -T $(PROJ_DIR)/src/$(TARGET)/$(TARGET).ld

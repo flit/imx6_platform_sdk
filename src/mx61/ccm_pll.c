@@ -395,6 +395,14 @@ void sata_clock_disable(void)
 }
 
 /*!
+ * SATA related function to get the PHY source clock
+ */
+void sata_get_phy_src_clk(sata_phy_ref_clk_t *phy_ref_clk)
+{
+    *phy_ref_clk = ANATOP_ENET_PLL;
+}
+
+/*!
  * SPDIF clock configuration
  * Use the default setting as follow:
  * CDCDR[spdif0_clk_sel](PLL3)->CDCDR[spdif0_clk_pred](div2)->CDCDR[spdif0_clk_podf](div8)-> spdif0_clk_root, so
@@ -426,11 +434,28 @@ void spdif_clk_cfg(void)
 void enter_wait_state(void)
 {
     uint32_t ccm_clpcr;
+    uint8_t sel;
 
     ccm_clpcr = readl(CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
-    writel(ccm_clpcr | CORE_WB | WAIT_MODE, CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
+    ccm_clpcr |= CORE_WB | WAIT_MODE;
+    writel(ccm_clpcr , CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
 
-    printf("0x%X \n",ccm_clpcr);
+    printf("CCM_CLPCR : 0x%X \n",ccm_clpcr);
+    printf("GPC_ISR1 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR1_OFFSET));
+    printf("GPC_ISR2 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR2_OFFSET));
+    printf("GPC_ISR3 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR3_OFFSET));
+    printf("GPC_ISR4 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR4_OFFSET));
+
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR1_OFFSET);
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR2_OFFSET);
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR3_OFFSET);
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR4_OFFSET);
+
+    printf("Press a key to enter wait state...\n");
+
+    do {
+        sel = getchar();
+    } while (sel == (uint8_t) 0xFF);
 
 /* Wait for interrupt instruction */
     __asm(
@@ -442,6 +467,8 @@ void enter_wait_state(void)
             "nop;"
             "nop;"
           );
+
+    printf("Fail !!!!\n");
 
 }
 

@@ -224,7 +224,7 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_heig
     ipu_smfc_fifo_allocate(ipu_index, 0, 0, 3);
 
     /*step3: config csi for IPU */
-    ipu_csi_config(ipu_index, csi_width, csi_height, CSI_YUYV, 0);
+    ipu_csi_config(ipu_index, CSI_PARALLEL, csi_width, csi_height, CSI_YUYV, 0);
 
     /*step4: config display channel: idma, dmfc, dc, dp, di */
     ipu_display_setup(ipu_index, csi_mem0, csi_mem1, csi_pixel_format, panel);
@@ -263,34 +263,34 @@ void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_he
     memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
     idmac_info.channel = csi_in_channel;
     idmac_info.addr0 = CH23_EBA0;
-    idmac_info.addr1 = 0;
+    idmac_info.addr1 = CH23_EBA1;
     idmac_info.width = csi_width;
     idmac_info.height = csi_height;
     idmac_info.pixel_format = PARTIAL_INTERLEAVED_YUV420;
     idmac_info.sl = panel->width - 1;
     idmac_info.u_offset = panel->width * panel->height;
-    idmac_info.npb = 3;
-//    ipu_write_field(ipu_index, IPU_IPU_INT_CTRL_1__IDMAC_EOF_EN_0, 1);
+    idmac_info.npb = 15;
     ipu_general_idmac_config(ipu_index, &idmac_info);
 
     /*step2: allocate smfc fifo for CSI input channel */
     ipu_smfc_fifo_allocate(ipu_index, 0, 0, 3);
 
     /*step3: config csi for IPU */
-    ipu_write_field(ipu_index, IPU_IPU_CONF__CSI1_DATA_SOURCE, 1);  //csi1 data source is mipi
-    ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_DATA_SOURCE, 1);  //csi0 data souce is mipi
-    ipu_mipi_csi2_data_type_config(ipu_index, data_format); //config mipi data type
-    ipu_csi_config(ipu_index, csi_width, csi_height, data_format, 1);   //common csi setting for IPU
+    ipu_csi_config(ipu_index, CSI_MIPI, csi_width, csi_height, data_format, 1);
 
     /*step4: config display channel: idma, dmfc, dc, dp, di */
-    ipu_display_setup(ipu_index, CH23_EBA0, 0, PARTIAL_INTERLEAVED_YUV420, panel);
+    ipu_display_setup(ipu_index, CH23_EBA0, CH23_EBA1, PARTIAL_INTERLEAVED_YUV420, panel);
 
     /*step5: link csi and display */
     ipu_capture_disp_link(ipu_index, 0);
 
+
     /*step6: paint the other display area to white. */
     memset((void *)CH23_EBA0, 0xFF, 2 * panel->width * panel->height);
     memset((void *)(CH23_EBA0 + panel->width * panel->height), 0x80,
+           panel->width * panel->height / 2);
+    memset((void *)CH23_EBA1, 0xFF, 2 * panel->width * panel->height);
+    memset((void *)(CH23_EBA1 + panel->width * panel->height), 0x80,
            panel->width * panel->height / 2);
 }
 

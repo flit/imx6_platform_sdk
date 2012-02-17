@@ -32,14 +32,15 @@ int32_t mipi_csi2_test(void)
     panel = search_panel("HannStar XGA LVDS");
     panel->panel_init(NULL);
 
-    ipu_mipi_csi2_setup(1, 640, 480, panel);
-
     mipi_csi2_config();
 
+    ipu_mipi_csi2_setup(1, 640, 480, panel);
     ipu_enable_display(ipu_index);
 
     ipu_channel_buf_ready(ipu_index, 0, 0);
+    ipu_channel_buf_ready(ipu_index, 0, 1);
     ipu_channel_buf_ready(ipu_index, 23, 0);
+    ipu_channel_buf_ready(ipu_index, 23, 1);
 
     while (1) {
         printf("Stop MIPI CSI? [y/n]\n");

@@ -392,6 +392,11 @@ enum {
     DMFC_BURST_4X128,
 };
 
+enum {
+    CSI_PARALLEL,
+    CSI_MIPI,
+};
+
 typedef struct {
     char panel_name[32];
     uint32_t panel_id;
@@ -650,9 +655,8 @@ int32_t ipu_ic_task_enable(int32_t ipu_index, int32_t task_type, int32_t task, i
 
 void ipu_write_field(int32_t ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data);
 
-void ipu_mipi_csi2_data_type_config(uint32_t ipu_index, uint32_t pixel_format);
-void ipu_csi_config(uint32_t ipu_index, uint32_t width, uint32_t height, uint32_t data_format,
-                    uint32_t gate_mode);
+void ipu_csi_config(uint32_t ipu_index, uint32_t source, uint32_t width, uint32_t height,
+                    uint32_t data_format, uint32_t gate_mode);
 uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t map,
                                 uint32_t burst_size);
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc);

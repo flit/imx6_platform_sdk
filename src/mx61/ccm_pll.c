@@ -437,7 +437,7 @@ void enter_wait_state(void)
     uint8_t sel;
 
     ccm_clpcr = readl(CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
-    ccm_clpcr |= CORE_WB | WAIT_MODE;
+    ccm_clpcr |= CORE_WB | WAIT_MODE | (1 << 27) | (1 << 26) | (1 << 21) | (1 << 19) ;
     writel(ccm_clpcr , CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
 
     printf("CCM_CLPCR : 0x%X \n",ccm_clpcr);

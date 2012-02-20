@@ -43,7 +43,6 @@ void ccm_init(void)
      * => by default, ipg_podf divides by 2 => IPG_CLK@66MHz.
      */
     writel(0x00018D00, CCM_CBCDR);
-//    writel(0x00020324, CCM_CBCMR);
 
     /*
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
@@ -51,22 +50,13 @@ void ccm_init(void)
      */
     writel(readl(CCM_CSCDR1) & 0x0000003F, CCM_CSCDR1);
 
-    /* Power up 480MHz PLL */
-//    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00001000, 0x00001000);
-
-    /* Enable 480MHz PLL */
-//    reg32_write_mask(HW_ANADIG_USB1_PLL_480_CTRL_RW, 0x00002000, 0x00002000);
-
-    /* config IPU hsp clock, derived from AXI B */
-//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR);
-//    temp &= ~(0x000000C0);
-//    temp |= 0x00000040;
-//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCMR) = temp;
-    /* now set perclk_pred1 to div-by-2 */
-//    temp = *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR);
-//    temp &= ~(0x00380000);
-//    temp |= 0x00080000;
-//    *(volatile uint32_t *)(CCM_BASE_ADDR + CLKCTL_CBCDR) = temp;
+    /* Mask all interrupt sources that could wake up the processor when in
+       a low power mode. A source is individually masked/unmasked when the 
+       interrupt is enabled/disabled by the GIC/interrupt driver. */
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR1_OFFSET);
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR2_OFFSET);
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR3_OFFSET);
+    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR4_OFFSET);
 }
 
 /*!
@@ -133,7 +123,7 @@ uint32_t get_peri_clock(enum peri_clocks clock)
  * @param   cgx_offset - offset of the clock gating field: CG(x).
  * @param   gating_mode - clock gating mode: CLOCK_ON or CLOCK_OFF.
  */
-void ccm_ccgr_config(uint32_t ccm_ccgrx, uint32_t cgx_offset, uint8_t gating_mode)
+void ccm_ccgr_config(uint32_t ccm_ccgrx, uint32_t cgx_offset, uint32_t gating_mode)
 {
     if (gating_mode == CLOCK_ON)
         *(volatile uint32_t *)(ccm_ccgrx) |= cgx_offset;
@@ -146,7 +136,7 @@ void ccm_ccgr_config(uint32_t ccm_ccgrx, uint32_t cgx_offset, uint8_t gating_mod
  * @param   base_address - configure clock gating for that module from the base address.
  * @param   gating_mode - clock gating mode: CLOCK_ON or CLOCK_OFF.
  */
-void clock_gating_config(uint32_t base_address, uint8_t gating_mode)
+void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
 {
     uint32_t ccm_ccgrx = 0, cgx_offset = 0;
 
@@ -425,58 +415,74 @@ void spdif_clk_cfg(void)
     writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
 
     clock_gating_config(SPDIF_BASE_ADDR, CLOCK_ON);
+
+    return;
 }
 
-#define CORE_WB (1 << 17)
-#define WAIT_MODE   0x1
-#define STOP_MODE   0x2
-
-void enter_wait_state(void)
+/*!
+ * Mask/Unmask an interrupt source that can wake up the processor when in a
+ * low power mode.
+ * @param   irq_id - ID of the interrupt to mask/unmask.
+ * @param   state - masked/unmasked the source ID : ENABLE/DISABLE.
+ */
+void ccm_set_lpm_wakeup_source(uint32_t irq_id, uint32_t state)
 {
-    uint32_t ccm_clpcr;
-    uint8_t sel;
+    uint32_t reg_offset = 0, bit_offset = 0; 
+    uint32_t gpc_imr = 0;
 
-    ccm_clpcr = readl(CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
-    ccm_clpcr |= CORE_WB | WAIT_MODE | (1 << 27) | (1 << 26) | (1 << 21) | (1 << 19) ;
+    /* calculate the offset of the register handling that interrupt ID */
+    /* ID starts at 32, so for instance ID=89 is handled by IMR2 because
+       the integer part of the division is reg_offset = 2 */
+    reg_offset = (irq_id / 32);
+    /* and the rest of the previous division is used to calculate the bit
+       offset in the register, so for ID=89 this is bit_offset = 25 */
+    bit_offset = irq_id - 32 * reg_offset;
+
+    /* get the current value of the corresponding GPC_IMRx register */
+    gpc_imr = readl(GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
+
+    if(state == ENABLE)
+    {
+        /* clear the corresponding bit to unmask the interrupt source */
+        gpc_imr &= ~(1 << bit_offset);
+        /* write the new mask */
+        writel(gpc_imr, GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
+    }
+    else if(state == DISABLE)
+    {
+        /* set the corresponding bit to mask the interrupt source */
+        gpc_imr |= (1 << bit_offset);
+        /* write the new mask */
+        writel(gpc_imr, GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
+    }
+}
+
+/*!
+ * Prepare and enter in a low power mode.
+ * @param   lp_mode - low power mode : WAIT_MODE or STOP_MODE.
+ */
+void ccm_enter_low_power(uint32_t lp_mode)
+{
+    uint32_t ccm_clpcr = 0;
+
+    /* if MMDC channel 1 is not used, the handshake must be masked */
+    /* enable the well-biased mode - set disable core clock in wait - set
+       disable oscillator in stop */
+    ccm_clpcr = BYPASS_MMDC_CH1_HS | CORE_WB | SBYOS | ARM_CLK_DIS | lp_mode;
+    if(lp_mode == STOP_MODE)
+        /* enable peripherals well-biased */
+        ccm_clpcr |= PER_WB;
+
     writel(ccm_clpcr , CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
 
-    printf("CCM_CLPCR : 0x%X \n",ccm_clpcr);
-    printf("GPC_ISR1 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR1_OFFSET));
-    printf("GPC_ISR2 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR2_OFFSET));
-    printf("GPC_ISR3 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR3_OFFSET));
-    printf("GPC_ISR4 : 0x%X \n",readl(GPC_BASE_ADDR + GPC_ISR4_OFFSET));
-
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR1_OFFSET);
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR2_OFFSET);
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR3_OFFSET);
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR4_OFFSET);
-
-    printf("Press a key to enter wait state...\n");
-
-    do {
-        sel = getchar();
-    } while (sel == (uint8_t) 0xFF);
-
-/* Wait for interrupt instruction */
     __asm(
-            "mov r0, #0x0;"
-            "mcr p15, 0, r0, c7, c0, 4;"
-            "nop;"
-            "nop;"
-            "nop;"
-            "nop;"
-            "nop;"
+           /* data synchronization barrier (caches, TLB maintenance, ...) */
+            "dsb;"
+            /* wait for interrupt instruction */
+            "wfi;"
+            /* instruction synchronization barrier (flush the pipe-line) */
+            "isb;"
           );
 
-    printf("Fail !!!!\n");
-
-}
-
-void ccm_lpm_test(void)
-{
-    printf("Low power modes test\n");
-
-    enter_wait_state();
-
-    while(1);
+    return;
 }

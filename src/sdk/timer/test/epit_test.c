@@ -34,7 +34,7 @@ int32_t epit_test(void)
 
         do {
             sel = getchar();
-        } while (sel == (uint8_t) 0xFF);
+        } while (sel == (uint8_t) NONE_CHAR);
 
         if (sel == 'x') {
             printf("\nTest exit.\n");

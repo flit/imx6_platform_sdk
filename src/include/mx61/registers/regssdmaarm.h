@@ -12,12 +12,13 @@
 
 #ifndef REGS_SDMAARM_BASE
 #define REGS_SDMAARM_BASE (REGS_BASE + 0x020ec000)
-
 #endif
 
 
-/*
- * HW_SDMAARM_MC0PTR - ARM platform Channel 0 Pointer
+/*!
+ * @brief HW_SDMAARM_MC0PTR - ARM platform Channel 0 Pointer
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -25,8 +26,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned MC0PTR : 32;
-
+        unsigned MC0PTR : 32; //!< Channel 0 Pointer contains the 32-bit address, in ARM platform memory, of channel 0 control block (the boot channel). Appendix A fully describes the SDMA Application Programming Interface (API). The ARM platform has a read/write access and the SDMA has a read-only access.
     } B;
 } hw_sdmaarm_mc0ptr_t;
 #endif
@@ -50,7 +50,13 @@ typedef union
  * constants & macros for individual SDMAARM_MC0PTR bitfields
  */
 
-/* --- Register HW_SDMAARM_MC0PTR, field MC0PTR */
+/* --- Register HW_SDMAARM_MC0PTR, field MC0PTR
+ *
+ * Channel 0 Pointer contains the 32-bit address, in ARM platform
+ * memory, of channel 0 control block (the boot channel). Appendix A fully describes the SDMA
+ * Application Programming Interface (API). The ARM platform has a read/write access and the SDMA
+ * has                                 a read-only access.
+ */
 
 #define BP_SDMAARM_MC0PTR_MC0PTR      0
 #define BM_SDMAARM_MC0PTR_MC0PTR      0xffffffff
@@ -64,8 +70,10 @@ typedef union
 #define BW_SDMAARM_MC0PTR_MC0PTR(v)   BF_CS1(SDMAARM_MC0PTR, MC0PTR, v)
 #endif
 
-/*
- * HW_SDMAARM_INTR - Channel Interrupts
+/*!
+ * @brief HW_SDMAARM_INTR - Channel Interrupts
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -73,8 +81,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned HI : 32;
-
+        unsigned HI : 32; //!< The ARM platform Interrupts register contains the 32 HI[i] bits. If any bit is set, it will cause an interrupt to the ARM platform. This register is a "write-ones" register to the ARM platform. When the ARM platform sets a bit in this register the corresponding HI[i] bit is cleared. The interrupt service routine should clear individual channel bits when their interrupts are serviced, failure to do so will cause continuous interrupts. The SDMA is responsible for setting the HI[i] bit corresponding to the current channel when the corresponding done instruction is executed.
     } B;
 } hw_sdmaarm_intr_t;
 #endif
@@ -98,7 +105,18 @@ typedef union
  * constants & macros for individual SDMAARM_INTR bitfields
  */
 
-/* --- Register HW_SDMAARM_INTR, field HI */
+/* --- Register HW_SDMAARM_INTR, field HI
+ *
+ * The ARM platform Interrupts register contains the 32 HI[i] bits. If
+ * any bit is set, it will cause an interrupt to the ARM platform. This
+ * register is a "write-ones" register to the ARM platform. When the
+ * ARM platform sets a bit in this register the corresponding HI[i] bit
+ * is cleared. The interrupt service routine should clear individual
+ * channel bits when their interrupts are serviced, failure to do so
+ * will cause continuous interrupts. The SDMA is responsible for
+ * setting the HI[i] bit corresponding to the current channel when the
+ * corresponding done instruction is executed.
+ */
 
 #define BP_SDMAARM_INTR_HI      0
 #define BM_SDMAARM_INTR_HI      0xffffffff
@@ -112,8 +130,10 @@ typedef union
 #define BW_SDMAARM_INTR_HI(v)   BF_CS1(SDMAARM_INTR, HI, v)
 #endif
 
-/*
- * HW_SDMAARM_STOP_STAT - Channel Stop/Channel Status
+/*!
+ * @brief HW_SDMAARM_STOP_STAT - Channel Stop/Channel Status
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -121,8 +141,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned HE : 32;
-
+        unsigned HE : 32; //!< This 32-bit register gives access to the ARM platform Enable bits. There is one bit for every channel. This register is a "write-ones" register to the ARM platform. When the ARM platform writes 1 in bit i of this register, it clears the HE[i] and HSTART[i] bits. Reading this register yields the current state of the HE[i] bits.
     } B;
 } hw_sdmaarm_stop_stat_t;
 #endif
@@ -146,7 +165,14 @@ typedef union
  * constants & macros for individual SDMAARM_STOP_STAT bitfields
  */
 
-/* --- Register HW_SDMAARM_STOP_STAT, field HE */
+/* --- Register HW_SDMAARM_STOP_STAT, field HE
+ *
+ * This 32-bit register gives access to the ARM platform Enable bits.
+ * There is one bit for every channel. This register is a "write-ones"
+ * register to the ARM platform. When the ARM platform writes 1 in bit
+ * i of this register, it clears the HE[i] and HSTART[i] bits. Reading
+ * this register yields the current state of the HE[i] bits.
+ */
 
 #define BP_SDMAARM_STOP_STAT_HE      0
 #define BM_SDMAARM_STOP_STAT_HE      0xffffffff
@@ -160,8 +186,10 @@ typedef union
 #define BW_SDMAARM_STOP_STAT_HE(v)   BF_CS1(SDMAARM_STOP_STAT, HE, v)
 #endif
 
-/*
- * HW_SDMAARM_HSTART - Channel Start
+/*!
+ * @brief HW_SDMAARM_HSTART - Channel Start
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -169,8 +197,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned HSTART : 32;
-
+        unsigned HSTART : 32; //!< The HSTART/HE registers are 32 bits wide with one bit for every channel. When a bit is written to 1, it enables the corresponding channel. Two physical registers are accessed with that address (HSTART and HE), which enables the ARM platform to trigger a channel a second time before the first trigger is processed.   This register is a "write-ones" register to the ARM platform. Neither HSTART[i] bit can be set while the corresponding HE[i] bit is cleared.  When the ARM platform tries to set the HSTART[i] bit by writing a one (if the corresponding HE[i] bit is clear), the bit in the HSTART[i] register will remain cleared and the HE[i] bit will be set.  If the corresponding HE[i] bit was already set, the HSTART[i] bit will be set. The next time the SDMA channel i attempts to clear the HE[i] bit by means of a done instruction, the bit in the HSTART[i] register will be cleared and the HE[i] bit will take the old value of the HSTART[i] bit.  Reading this register yields the current state of the HSTART[i] bits. This mechanism enables the ARM platform to pipeline two HSTART commands per channel.
     } B;
 } hw_sdmaarm_hstart_t;
 #endif
@@ -194,7 +221,26 @@ typedef union
  * constants & macros for individual SDMAARM_HSTART bitfields
  */
 
-/* --- Register HW_SDMAARM_HSTART, field HSTART */
+/* --- Register HW_SDMAARM_HSTART, field HSTART
+ *
+ * The HSTART/HE registers are 32 bits wide with one bit for every
+ * channel. When a bit is written to 1, it enables the corresponding
+ * channel. Two physical registers are accessed with that address
+ * (HSTART and HE), which enables the ARM platform to trigger a channel
+ * a second time before the first trigger is processed.   This register is a "write-ones" register
+ * to the ARM platform.                                     Neither HSTART[i] bit can be set while
+ * the corresponding HE[i]                                     bit is cleared.  When the ARM
+ * platform tries to set the HSTART[i] bit by writing                                     a one (if
+ * the corresponding HE[i] bit is clear), the bit in the
+ * HSTART[i] register will remain cleared and the HE[i] bit will be
+ * set.  If the corresponding HE[i] bit was already set, the HSTART[i]
+ * bit will be set. The next time the SDMA channel i attempts to clear the HE[i] bit by means of a
+ * done instruction, the bit in the HSTART[i]                                     register will be
+ * cleared and the HE[i] bit will take the old                                     value of the
+ * HSTART[i] bit.  Reading this register yields the current state of the HSTART[i]
+ * bits. This mechanism enables the ARM platform to pipeline two
+ * HSTART commands per channel.
+ */
 
 #define BP_SDMAARM_HSTART_HSTART      0
 #define BM_SDMAARM_HSTART_HSTART      0xffffffff
@@ -208,8 +254,10 @@ typedef union
 #define BW_SDMAARM_HSTART_HSTART(v)   BF_CS1(SDMAARM_HSTART, HSTART, v)
 #endif
 
-/*
- * HW_SDMAARM_EVTOVR - Channel Event Override
+/*!
+ * @brief HW_SDMAARM_EVTOVR - Channel Event Override
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -217,8 +265,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EO : 32;
-
+        unsigned EO : 32; //!< The Channel Event Override register contains the 32 EO[i] bits. A bit set in this register causes the SDMA to ignore DMA requests when scheduling the corresponding channel.
     } B;
 } hw_sdmaarm_evtovr_t;
 #endif
@@ -242,7 +289,12 @@ typedef union
  * constants & macros for individual SDMAARM_EVTOVR bitfields
  */
 
-/* --- Register HW_SDMAARM_EVTOVR, field EO */
+/* --- Register HW_SDMAARM_EVTOVR, field EO
+ *
+ * The Channel Event Override register contains the 32 EO[i] bits. A bit
+ * set in this register causes the SDMA to ignore DMA requests when
+ * scheduling the corresponding channel.
+ */
 
 #define BP_SDMAARM_EVTOVR_EO      0
 #define BM_SDMAARM_EVTOVR_EO      0xffffffff
@@ -256,8 +308,10 @@ typedef union
 #define BW_SDMAARM_EVTOVR_EO(v)   BF_CS1(SDMAARM_EVTOVR, EO, v)
 #endif
 
-/*
- * HW_SDMAARM_DSPOVR - Channel BP Override
+/*!
+ * @brief HW_SDMAARM_DSPOVR - Channel BP Override
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -265,8 +319,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned DO : 32;
-
+        unsigned DO : 32; //!< The Channel BP Override register contains the 32 DO[i] bits. A bit set in this register causes the SDMA to ignore a BP enable condition when scheduling the corresponding channel. By default, all DO[i] bits are set to 1, which means that register can be ignored when the BP connections are not used.  This register is reserved. All DO bits should be set to the reset value of 1. A setting of 0 will prevent SDMA channels from starting according to the condition described in .
     } B;
 } hw_sdmaarm_dspovr_t;
 #endif
@@ -290,7 +343,17 @@ typedef union
  * constants & macros for individual SDMAARM_DSPOVR bitfields
  */
 
-/* --- Register HW_SDMAARM_DSPOVR, field DO */
+/* --- Register HW_SDMAARM_DSPOVR, field DO
+ *
+ * The Channel BP Override                                 register contains the 32 DO[i] bits. A
+ * bit set in this register                                 causes the SDMA to ignore a BP enable
+ * condition when scheduling the                                 corresponding channel. By default,
+ * all DO[i] bits are set to 1,                                 which means that register can be
+ * ignored when the BP connections are                                 not used.  This register is
+ * reserved. All DO                                 bits should be set to the reset value of 1. A
+ * setting of 0 will                                 prevent SDMA channels from starting according
+ * to the condition described in .
+ */
 
 #define BP_SDMAARM_DSPOVR_DO      0
 #define BM_SDMAARM_DSPOVR_DO      0xffffffff
@@ -304,8 +367,10 @@ typedef union
 #define BW_SDMAARM_DSPOVR_DO(v)   BF_CS1(SDMAARM_DSPOVR, DO, v)
 #endif
 
-/*
- * HW_SDMAARM_HOSTOVR - Channel ARM platform Override
+/*!
+ * @brief HW_SDMAARM_HOSTOVR - Channel ARM platform Override
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -313,8 +378,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned HO : 32;
-
+        unsigned HO : 32; //!< The Channel ARM platform Override register contains the 32 HO[i] bits. A bit set in this register causes the SDMA to ignore the ARM platform enable bit (HE) when scheduling the corresponding channel.
     } B;
 } hw_sdmaarm_hostovr_t;
 #endif
@@ -338,7 +402,13 @@ typedef union
  * constants & macros for individual SDMAARM_HOSTOVR bitfields
  */
 
-/* --- Register HW_SDMAARM_HOSTOVR, field HO */
+/* --- Register HW_SDMAARM_HOSTOVR, field HO
+ *
+ * The Channel ARM platform Override register contains the 32 HO[i]
+ * bits. A bit set in this register causes the SDMA to ignore the ARM
+ * platform enable bit (HE) when scheduling the corresponding
+ * channel.
+ */
 
 #define BP_SDMAARM_HOSTOVR_HO      0
 #define BM_SDMAARM_HOSTOVR_HO      0xffffffff
@@ -352,8 +422,10 @@ typedef union
 #define BW_SDMAARM_HOSTOVR_HO(v)   BF_CS1(SDMAARM_HOSTOVR, HO, v)
 #endif
 
-/*
- * HW_SDMAARM_EVTPEND - Channel Event Pending
+/*!
+ * @brief HW_SDMAARM_EVTPEND - Channel Event Pending
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -361,8 +433,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EP : 32;
-
+        unsigned EP : 32; //!< The Channel Event Pending register contains the 32 EP[i] bits. Reading this register enables the ARM platform to determine what channels are pending after the reception of a DMA request.   Setting a bit in this register causes the SDMA to reevaluate scheduling as if a DMA request mapped on this channel had occurred. This is useful for starting up channels, so that initialization is done before awaiting the first request. The scheduler can also set bits in the EVTPEND register according to the received DMA requests.  The EP[i] bit may be cleared by the done instruction when running the channel i script. This a "write-ones" mechanism: Writing a '0' does not clear the corresponding bit.
     } B;
 } hw_sdmaarm_evtpend_t;
 #endif
@@ -386,7 +457,20 @@ typedef union
  * constants & macros for individual SDMAARM_EVTPEND bitfields
  */
 
-/* --- Register HW_SDMAARM_EVTPEND, field EP */
+/* --- Register HW_SDMAARM_EVTPEND, field EP
+ *
+ * The Channel Event Pending register contains the 32 EP[i] bits.
+ * Reading this register enables the ARM platform to determine what
+ * channels are pending after the reception of a DMA request.   Setting a bit in this register
+ * causes the SDMA to reevaluate                                     scheduling as if a DMA request
+ * mapped on this channel had                                     occurred. This is useful for
+ * starting up channels, so that                                     initialization is done before
+ * awaiting the first request. The                                     scheduler can also set bits
+ * in the EVTPEND register according to                                     the received DMA
+ * requests.  The EP[i] bit may be cleared by the done instruction when running the channel i
+ * script. This a                                     "write-ones" mechanism: Writing a '0' does not
+ * clear the                                     corresponding bit.
+ */
 
 #define BP_SDMAARM_EVTPEND_EP      0
 #define BM_SDMAARM_EVTPEND_EP      0xffffffff
@@ -400,8 +484,10 @@ typedef union
 #define BW_SDMAARM_EVTPEND_EP(v)   BF_CS1(SDMAARM_EVTPEND, EP, v)
 #endif
 
-/*
- * HW_SDMAARM_DSPENBL - DSP (BP) Channel Enable
+/*!
+ * @brief HW_SDMAARM_RESET - Reset Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -409,58 +495,9 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned DE : 32;
-
-    } B;
-} hw_sdmaarm_dspenbl_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_DSPENBL register
- */
-#define HW_SDMAARM_DSPENBL_ADDR      (REGS_SDMAARM_BASE + 0x20)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_DSPENBL           (*(volatile hw_sdmaarm_dspenbl_t *) HW_SDMAARM_DSPENBL_ADDR)
-#define HW_SDMAARM_DSPENBL_RD()      (HW_SDMAARM_DSPENBL.U)
-#define HW_SDMAARM_DSPENBL_WR(v)     (HW_SDMAARM_DSPENBL.U = (v))
-#define HW_SDMAARM_DSPENBL_SET(v)    (HW_SDMAARM_DSPENBL_WR(HW_SDMAARM_DSPENBL_RD() |  (v)))
-#define HW_SDMAARM_DSPENBL_CLR(v)    (HW_SDMAARM_DSPENBL_WR(HW_SDMAARM_DSPENBL_RD() & ~(v)))
-#define HW_SDMAARM_DSPENBL_TOG(v)    (HW_SDMAARM_DSPENBL_WR(HW_SDMAARM_DSPENBL_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_DSPENBL bitfields
- */
-
-/* --- Register HW_SDMAARM_DSPENBL, field DE */
-
-#define BP_SDMAARM_DSPENBL_DE      0
-#define BM_SDMAARM_DSPENBL_DE      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_DSPENBL_DE(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_DSPENBL_DE)
-#else
-#define BF_SDMAARM_DSPENBL_DE(v)   (((v) << 0) & BM_SDMAARM_DSPENBL_DE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_DSPENBL_DE(v)   BF_CS1(SDMAARM_DSPENBL, DE, v)
-#endif
-
-/*
- * HW_SDMAARM_RESET - Reset Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 30;
-        unsigned RESCHED : 1;
-        unsigned RESET : 1;
-
+        unsigned RESET : 1; //!< When set, this bit causes the SDMA to be held in a software reset. The internal reset signal is held low 16 cycles; the RESET bit is automatically cleared when the internal reset signal rises.
+        unsigned RESCHED : 1; //!< When set, this bit forces the SDMA to reschedule as if a script had executed a done instruction. This enables the ARM platform to recover from a runaway script on a channel by clearing its HE[i] bit via the STOP register, and then forcing a reschedule via the RESCHED bit. The RESCHED bit is cleared when the context switch starts.
+        unsigned RESERVED0 : 30; //!< Reserved
     } B;
 } hw_sdmaarm_reset_t;
 #endif
@@ -484,21 +521,12 @@ typedef union
  * constants & macros for individual SDMAARM_RESET bitfields
  */
 
-/* --- Register HW_SDMAARM_RESET, field RESCHED */
-
-#define BP_SDMAARM_RESET_RESCHED      1
-#define BM_SDMAARM_RESET_RESCHED      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_RESET_RESCHED(v)   ((((reg32_t) v) << 1) & BM_SDMAARM_RESET_RESCHED)
-#else
-#define BF_SDMAARM_RESET_RESCHED(v)   (((v) << 1) & BM_SDMAARM_RESET_RESCHED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_RESET_RESCHED(v)   BF_CS1(SDMAARM_RESET, RESCHED, v)
-#endif
-
-/* --- Register HW_SDMAARM_RESET, field RESET */
+/* --- Register HW_SDMAARM_RESET, field RESET
+ *
+ * When set, this bit causes the SDMA to be held in a software reset.
+ * The internal reset signal is held low 16 cycles; the RESET bit is
+ * automatically cleared when the internal reset signal rises.
+ */
 
 #define BP_SDMAARM_RESET_RESET      0
 #define BM_SDMAARM_RESET_RESET      0x00000001
@@ -512,8 +540,32 @@ typedef union
 #define BW_SDMAARM_RESET_RESET(v)   BF_CS1(SDMAARM_RESET, RESET, v)
 #endif
 
-/*
- * HW_SDMAARM_EVTERR - DMA Request Error Register
+/* --- Register HW_SDMAARM_RESET, field RESCHED
+ *
+ * When set, this bit forces the SDMA to reschedule as if a script had
+ * executed a done instruction. This enables the ARM                                 platform to
+ * recover from a runaway script on a channel by clearing                                 its HE[i]
+ * bit via the STOP register, and then forcing a reschedule                                 via the
+ * RESCHED bit. The RESCHED bit is cleared when the context                                 switch
+ * starts.
+ */
+
+#define BP_SDMAARM_RESET_RESCHED      1
+#define BM_SDMAARM_RESET_RESCHED      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_RESET_RESCHED(v)   ((((reg32_t) v) << 1) & BM_SDMAARM_RESET_RESCHED)
+#else
+#define BF_SDMAARM_RESET_RESCHED(v)   (((v) << 1) & BM_SDMAARM_RESET_RESCHED)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_RESET_RESCHED(v)   BF_CS1(SDMAARM_RESET, RESCHED, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_EVTERR - DMA Request Error Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -521,8 +573,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CHNERR : 32;
-
+        unsigned CHNERR : 32; //!< This register is used by the SDMA to warn the ARM platform when an incoming DMA request was detected and it triggers a channel that is already pending or being serviced. This probably means there is an overflow of data for that channel.   An interrupt is sent to the ARM platform if the corresponding channel bit is set in the INTRMASK register.  This is a "write-ones" register for the scheduler. It is only able to set the flags. The flags are cleared when the register is read by the ARM platform or during SDMA reset.  The CHNERR[i] bit is set when a DMA request that triggers channel i is received through the corresponding input pins and the EP[i] bit is already set; the EVTERR[i] bit is unaffected if the ARM platform tries to set the EP[i] bit, whereas, that EP[i] bit is already set.
     } B;
 } hw_sdmaarm_evterr_t;
 #endif
@@ -546,7 +597,21 @@ typedef union
  * constants & macros for individual SDMAARM_EVTERR bitfields
  */
 
-/* --- Register HW_SDMAARM_EVTERR, field CHNERR */
+/* --- Register HW_SDMAARM_EVTERR, field CHNERR
+ *
+ * This register is used by the SDMA to warn the ARM platform when an
+ * incoming DMA request was detected and it triggers a channel that is
+ * already pending or being serviced. This probably means there is an
+ * overflow of data for that channel.   An interrupt is sent to the ARM platform if the
+ * corresponding                                     channel bit is set in the INTRMASK register.
+ * This is a "write-ones" register for the scheduler. It is only
+ * able to set the flags. The flags are cleared when the register
+ * is read by the ARM platform or during SDMA reset.  The CHNERR[i] bit is set when a DMA request
+ * that triggers                                     channel i is received through the corresponding
+ * input                                     pins and the EP[i] bit is already set; the EVTERR[i]
+ * bit is                                     unaffected if the ARM platform tries to set the EP[i]
+ * bit,                                     whereas, that EP[i] bit is already set.
+ */
 
 #define BP_SDMAARM_EVTERR_CHNERR      0
 #define BM_SDMAARM_EVTERR_CHNERR      0xffffffff
@@ -560,8 +625,10 @@ typedef union
 #define BW_SDMAARM_EVTERR_CHNERR(v)   BF_CS1(SDMAARM_EVTERR, CHNERR, v)
 #endif
 
-/*
- * HW_SDMAARM_INTRMASK - Channel ARM platform Interrupt Mask
+/*!
+ * @brief HW_SDMAARM_INTRMASK - Channel ARM platform Interrupt Mask
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -569,8 +636,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned HIMASK : 32;
-
+        unsigned HIMASK : 32; //!< The Interrupt Mask Register contains 32 interrupt generation mask bits. If bit HIMASK[i] is set, the HI[i] bit is set and an interrupt is sent to the ARM platform when a DMA request error is detected on channel i (for example, EVTERR[i] is set).
     } B;
 } hw_sdmaarm_intrmask_t;
 #endif
@@ -594,7 +660,13 @@ typedef union
  * constants & macros for individual SDMAARM_INTRMASK bitfields
  */
 
-/* --- Register HW_SDMAARM_INTRMASK, field HIMASK */
+/* --- Register HW_SDMAARM_INTRMASK, field HIMASK
+ *
+ * The Interrupt Mask Register contains 32 interrupt generation mask
+ * bits. If bit HIMASK[i] is set, the HI[i] bit is set and an interrupt
+ * is sent to the ARM platform when a DMA request error is detected on
+ * channel i (for example, EVTERR[i] is set).
+ */
 
 #define BP_SDMAARM_INTRMASK_HIMASK      0
 #define BM_SDMAARM_INTRMASK_HIMASK      0xffffffff
@@ -608,8 +680,10 @@ typedef union
 #define BW_SDMAARM_INTRMASK_HIMASK(v)   BF_CS1(SDMAARM_INTRMASK, HIMASK, v)
 #endif
 
-/*
- * HW_SDMAARM_PSW - Schedule Status
+/*!
+ * @brief HW_SDMAARM_PSW - Schedule Status
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -617,12 +691,11 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 16;
-        unsigned NCP : 3;
-        unsigned NCR : 5;
-        unsigned CCP : 4;
-        unsigned CCR : 4;
-
+        unsigned CCR : 4; //!< The Current Channel Register indicates the number of the channel that is being executed by the SDMA. SDMA. In the case that the SDMA has finished running the channel and has entered sleep state, CCR will indicate the previous running channel.
+        unsigned CCP : 4; //!< The Current Channel Priority indicates the priority of the current active channel. When the priority is 0, no channel is running: The SDMA is idle and the CCR value has no meaning. In the case that the SDMA has finished running the channel and has entered sleep state, CCP will indicate the priority of previous running channel.
+        unsigned NCR : 5; //!< The Next Channel Register indicates the number of the next scheduled pending channel with the highest priority.
+        unsigned NCP : 3; //!< The Next Channel Priority gives the next pending channel priority. When the priority is 0, it means there is no pending channel and the NCR value has no meaning.
+        unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_sdmaarm_psw_t;
 #endif
@@ -646,49 +719,13 @@ typedef union
  * constants & macros for individual SDMAARM_PSW bitfields
  */
 
-/* --- Register HW_SDMAARM_PSW, field NCP */
-
-#define BP_SDMAARM_PSW_NCP      13
-#define BM_SDMAARM_PSW_NCP      0x0000e000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PSW_NCP(v)   ((((reg32_t) v) << 13) & BM_SDMAARM_PSW_NCP)
-#else
-#define BF_SDMAARM_PSW_NCP(v)   (((v) << 13) & BM_SDMAARM_PSW_NCP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PSW_NCP(v)   BF_CS1(SDMAARM_PSW, NCP, v)
-#endif
-
-/* --- Register HW_SDMAARM_PSW, field NCR */
-
-#define BP_SDMAARM_PSW_NCR      8
-#define BM_SDMAARM_PSW_NCR      0x00001f00
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PSW_NCR(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_PSW_NCR)
-#else
-#define BF_SDMAARM_PSW_NCR(v)   (((v) << 8) & BM_SDMAARM_PSW_NCR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PSW_NCR(v)   BF_CS1(SDMAARM_PSW, NCR, v)
-#endif
-
-/* --- Register HW_SDMAARM_PSW, field CCP */
-
-#define BP_SDMAARM_PSW_CCP      4
-#define BM_SDMAARM_PSW_CCP      0x000000f0
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PSW_CCP(v)   ((((reg32_t) v) << 4) & BM_SDMAARM_PSW_CCP)
-#else
-#define BF_SDMAARM_PSW_CCP(v)   (((v) << 4) & BM_SDMAARM_PSW_CCP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PSW_CCP(v)   BF_CS1(SDMAARM_PSW, CCP, v)
-#endif
-
-/* --- Register HW_SDMAARM_PSW, field CCR */
+/* --- Register HW_SDMAARM_PSW, field CCR
+ *
+ * The Current Channel Register indicates the number of the channel that
+ * is being executed by the SDMA. SDMA. In the case that the SDMA has
+ * finished running the channel and has entered sleep state, CCR will
+ * indicate the previous running channel.
+ */
 
 #define BP_SDMAARM_PSW_CCR      0
 #define BM_SDMAARM_PSW_CCR      0x0000000f
@@ -702,8 +739,68 @@ typedef union
 #define BW_SDMAARM_PSW_CCR(v)   BF_CS1(SDMAARM_PSW, CCR, v)
 #endif
 
-/*
- * HW_SDMAARM_EVTERRDBG - DMA Request Error Register
+/* --- Register HW_SDMAARM_PSW, field CCP
+ *
+ * The Current Channel Priority indicates the priority of the current
+ * active channel. When the priority is 0, no channel is running: The
+ * SDMA is idle and the CCR value has no meaning. In the case that the
+ * SDMA has finished running the channel and has entered sleep state,
+ * CCP will indicate the priority of previous running channel.
+ */
+
+#define BP_SDMAARM_PSW_CCP      4
+#define BM_SDMAARM_PSW_CCP      0x000000f0
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_PSW_CCP(v)   ((((reg32_t) v) << 4) & BM_SDMAARM_PSW_CCP)
+#else
+#define BF_SDMAARM_PSW_CCP(v)   (((v) << 4) & BM_SDMAARM_PSW_CCP)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_PSW_CCP(v)   BF_CS1(SDMAARM_PSW, CCP, v)
+#endif
+
+/* --- Register HW_SDMAARM_PSW, field NCR
+ *
+ * The Next Channel Register indicates the number of the next scheduled
+ * pending channel with the highest priority.
+ */
+
+#define BP_SDMAARM_PSW_NCR      8
+#define BM_SDMAARM_PSW_NCR      0x00001f00
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_PSW_NCR(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_PSW_NCR)
+#else
+#define BF_SDMAARM_PSW_NCR(v)   (((v) << 8) & BM_SDMAARM_PSW_NCR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_PSW_NCR(v)   BF_CS1(SDMAARM_PSW, NCR, v)
+#endif
+
+/* --- Register HW_SDMAARM_PSW, field NCP
+ *
+ * The Next Channel Priority gives the next pending channel priority.
+ * When the priority is 0, it means there is no pending channel and the
+ * NCR value has no meaning.
+ */
+
+#define BP_SDMAARM_PSW_NCP      13
+#define BM_SDMAARM_PSW_NCP      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_PSW_NCP(v)   ((((reg32_t) v) << 13) & BM_SDMAARM_PSW_NCP)
+#else
+#define BF_SDMAARM_PSW_NCP(v)   (((v) << 13) & BM_SDMAARM_PSW_NCP)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_PSW_NCP(v)   BF_CS1(SDMAARM_PSW, NCP, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_EVTERRDBG - DMA Request Error Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -711,8 +808,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CHNERR : 32;
-
+        unsigned CHNERR : 32; //!< This register is the same as EVTERR, except reading it does not clear its contents. This address is meant to be used in debug mode. The ARM platform OnCE may check this register value without modifying it.
     } B;
 } hw_sdmaarm_evterrdbg_t;
 #endif
@@ -736,7 +832,13 @@ typedef union
  * constants & macros for individual SDMAARM_EVTERRDBG bitfields
  */
 
-/* --- Register HW_SDMAARM_EVTERRDBG, field CHNERR */
+/* --- Register HW_SDMAARM_EVTERRDBG, field CHNERR
+ *
+ * This register is the same as EVTERR, except reading it does not clear
+ * its contents. This address is meant to be used in debug mode. The
+ * ARM platform OnCE may check this register value without modifying
+ * it.
+ */
 
 #define BP_SDMAARM_EVTERRDBG_CHNERR      0
 #define BM_SDMAARM_EVTERRDBG_CHNERR      0xffffffff
@@ -750,8 +852,10 @@ typedef union
 #define BW_SDMAARM_EVTERRDBG_CHNERR(v)   BF_CS1(SDMAARM_EVTERRDBG, CHNERR, v)
 #endif
 
-/*
- * HW_SDMAARM_CONFIG - Configuration Register
+/*!
+ * @brief HW_SDMAARM_CONFIG - Configuration Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -759,17 +863,13 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 19;
-        unsigned DSPDMA : 1;
-        unsigned DSPDMA : 1;
-        unsigned DSPCTRL : 1;
-        unsigned DSPCTRL : 1;
-        unsigned RTDOBS : 1;
-        unsigned RESERVED1 : 6;
-        unsigned ACR : 1;
-        unsigned RESERVED2 : 2;
-        unsigned CSM : 2;
-
+        unsigned CSM : 2; //!< Selects the Context Switch Mode. The ARM platform has a read/write access. The SDMA cannot modify that register. The value at reset is 3, which selects the dynamic context switch by default. That register can be modified at anytime but the new context switch configuration will only be taken into account at the start of the next restore phase.  NOTE: The first call to SDMA's channel 0 Bootload script after reset should use static context switch mode to ensure the context RAM for channel 0 is initialized in the channel SAVE Phase. After Channel 0 is run once, then any of the dynamic context modes can be used.
+        unsigned RESERVED0 : 2; //!< Reserved
+        unsigned ACR : 1; //!< ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio between ARM platform DMA interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the internal SDMA core clock. The frequency selection is determined separately by the chip clock controller. This bit has to match the configuration of the chip clock controller that generates the clocks used in the SDMA.
+        unsigned RESERVED1 : 6; //!< Reserved
+        unsigned RTDOBS : 1; //!< Indicates if Real-Time Debug pins are used: They do not toggle by default in order to reduce power consumption.
+        unsigned RESERVED2 : 1; //!< 
+        unsigned RESERVED3 : 19; //!< Reserved
     } B;
 } hw_sdmaarm_config_t;
 #endif
@@ -793,91 +893,18 @@ typedef union
  * constants & macros for individual SDMAARM_CONFIG bitfields
  */
 
-/* --- Register HW_SDMAARM_CONFIG, field DSPDMA */
-
-#define BP_SDMAARM_CONFIG_DSPDMA      12
-#define BM_SDMAARM_CONFIG_DSPDMA      0x00001000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
-#else
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   (((v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CONFIG_DSPDMA(v)   BF_CS1(SDMAARM_CONFIG, DSPDMA, v)
-#endif
-
-/* --- Register HW_SDMAARM_CONFIG, field DSPDMA */
-
-#define BP_SDMAARM_CONFIG_DSPDMA      12
-#define BM_SDMAARM_CONFIG_DSPDMA      0x00001000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
-#else
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   (((v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CONFIG_DSPDMA(v)   BF_CS1(SDMAARM_CONFIG, DSPDMA, v)
-#endif
-
-/* --- Register HW_SDMAARM_CONFIG, field DSPCTRL */
-
-#define BP_SDMAARM_CONFIG_DSPCTRL      12
-#define BM_SDMAARM_CONFIG_DSPCTRL      0x00001000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_DSPCTRL(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_CONFIG_DSPCTRL)
-#else
-#define BF_SDMAARM_CONFIG_DSPCTRL(v)   (((v) << 12) & BM_SDMAARM_CONFIG_DSPCTRL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CONFIG_DSPCTRL(v)   BF_CS1(SDMAARM_CONFIG, DSPCTRL, v)
-#endif
-
-/* --- Register HW_SDMAARM_CONFIG, field DSPCTRL */
-
-#define BP_SDMAARM_CONFIG_DSPCTRL      12
-#define BM_SDMAARM_CONFIG_DSPCTRL      0x00001000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_DSPCTRL(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_CONFIG_DSPCTRL)
-#else
-#define BF_SDMAARM_CONFIG_DSPCTRL(v)   (((v) << 12) & BM_SDMAARM_CONFIG_DSPCTRL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CONFIG_DSPCTRL(v)   BF_CS1(SDMAARM_CONFIG, DSPCTRL, v)
-#endif
-
-/* --- Register HW_SDMAARM_CONFIG, field RTDOBS */
-
-#define BP_SDMAARM_CONFIG_RTDOBS      11
-#define BM_SDMAARM_CONFIG_RTDOBS      0x00000800
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_RTDOBS(v)   ((((reg32_t) v) << 11) & BM_SDMAARM_CONFIG_RTDOBS)
-#else
-#define BF_SDMAARM_CONFIG_RTDOBS(v)   (((v) << 11) & BM_SDMAARM_CONFIG_RTDOBS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CONFIG_RTDOBS(v)   BF_CS1(SDMAARM_CONFIG, RTDOBS, v)
-#endif
-
-/* --- Register HW_SDMAARM_CONFIG, field ACR */
-
-#define BP_SDMAARM_CONFIG_ACR      4
-#define BM_SDMAARM_CONFIG_ACR      0x00000010
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_ACR(v)   ((((reg32_t) v) << 4) & BM_SDMAARM_CONFIG_ACR)
-#else
-#define BF_SDMAARM_CONFIG_ACR(v)   (((v) << 4) & BM_SDMAARM_CONFIG_ACR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CONFIG_ACR(v)   BF_CS1(SDMAARM_CONFIG, ACR, v)
-#endif
-
-/* --- Register HW_SDMAARM_CONFIG, field CSM */
+/* --- Register HW_SDMAARM_CONFIG, field CSM
+ *
+ * Selects the Context Switch Mode. The ARM platform has a read/write
+ * access. The SDMA cannot modify that register. The value at reset is
+ * 3, which selects the dynamic context switch by default. That
+ * register can be modified at anytime but the new context switch
+ * configuration will only be taken into account at the start of the
+ * next restore phase.  NOTE: The first call to SDMA's channel 0 Bootload script after reset
+ * should use static context switch mode to ensure the context RAM for
+ * channel 0 is initialized in the channel SAVE Phase. After Channel 0
+ * is run once, then any of the dynamic context modes can be used.
+ */
 
 #define BP_SDMAARM_CONFIG_CSM      0
 #define BM_SDMAARM_CONFIG_CSM      0x00000003
@@ -891,8 +918,50 @@ typedef union
 #define BW_SDMAARM_CONFIG_CSM(v)   BF_CS1(SDMAARM_CONFIG, CSM, v)
 #endif
 
-/*
- * HW_SDMAARM_SDMA_LOCK - SDMA LOCK
+/* --- Register HW_SDMAARM_CONFIG, field ACR
+ *
+ * ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio
+ * between ARM platform DMA interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the
+ * internal SDMA core clock. The frequency selection is determined
+ * separately by the chip clock controller. This bit has to match the
+ * configuration of the chip clock controller that generates the clocks
+ * used in the SDMA.
+ */
+
+#define BP_SDMAARM_CONFIG_ACR      4
+#define BM_SDMAARM_CONFIG_ACR      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_CONFIG_ACR(v)   ((((reg32_t) v) << 4) & BM_SDMAARM_CONFIG_ACR)
+#else
+#define BF_SDMAARM_CONFIG_ACR(v)   (((v) << 4) & BM_SDMAARM_CONFIG_ACR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_CONFIG_ACR(v)   BF_CS1(SDMAARM_CONFIG, ACR, v)
+#endif
+
+/* --- Register HW_SDMAARM_CONFIG, field RTDOBS
+ *
+ * Indicates if Real-Time Debug pins are used: They do not toggle by
+ * default in order to reduce power consumption.
+ */
+
+#define BP_SDMAARM_CONFIG_RTDOBS      11
+#define BM_SDMAARM_CONFIG_RTDOBS      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_CONFIG_RTDOBS(v)   ((((reg32_t) v) << 11) & BM_SDMAARM_CONFIG_RTDOBS)
+#else
+#define BF_SDMAARM_CONFIG_RTDOBS(v)   (((v) << 11) & BM_SDMAARM_CONFIG_RTDOBS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_CONFIG_RTDOBS(v)   BF_CS1(SDMAARM_CONFIG, RTDOBS, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_ONCE_ENB - OnCE Enable
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -900,73 +969,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 30;
-        unsigned SRESET_LOCK_CLR : 1;
-        unsigned LOCK : 1;
-
-    } B;
-} hw_sdmaarm_sdma_lock_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_SDMA_LOCK register
- */
-#define HW_SDMAARM_SDMA_LOCK_ADDR      (REGS_SDMAARM_BASE + 0x3c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_SDMA_LOCK           (*(volatile hw_sdmaarm_sdma_lock_t *) HW_SDMAARM_SDMA_LOCK_ADDR)
-#define HW_SDMAARM_SDMA_LOCK_RD()      (HW_SDMAARM_SDMA_LOCK.U)
-#define HW_SDMAARM_SDMA_LOCK_WR(v)     (HW_SDMAARM_SDMA_LOCK.U = (v))
-#define HW_SDMAARM_SDMA_LOCK_SET(v)    (HW_SDMAARM_SDMA_LOCK_WR(HW_SDMAARM_SDMA_LOCK_RD() |  (v)))
-#define HW_SDMAARM_SDMA_LOCK_CLR(v)    (HW_SDMAARM_SDMA_LOCK_WR(HW_SDMAARM_SDMA_LOCK_RD() & ~(v)))
-#define HW_SDMAARM_SDMA_LOCK_TOG(v)    (HW_SDMAARM_SDMA_LOCK_WR(HW_SDMAARM_SDMA_LOCK_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_SDMA_LOCK bitfields
- */
-
-/* --- Register HW_SDMAARM_SDMA_LOCK, field SRESET_LOCK_CLR */
-
-#define BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      1
-#define BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   ((((reg32_t) v) << 1) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
-#else
-#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   (((v) << 1) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   BF_CS1(SDMAARM_SDMA_LOCK, SRESET_LOCK_CLR, v)
-#endif
-
-/* --- Register HW_SDMAARM_SDMA_LOCK, field LOCK */
-
-#define BP_SDMAARM_SDMA_LOCK_LOCK      0
-#define BM_SDMAARM_SDMA_LOCK_LOCK      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_LOCK_LOCK)
-#else
-#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   (((v) << 0) & BM_SDMAARM_SDMA_LOCK_LOCK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_SDMA_LOCK_LOCK(v)   BF_CS1(SDMAARM_SDMA_LOCK, LOCK, v)
-#endif
-
-/*
- * HW_SDMAARM_ONCE_ENB - OnCE Enable
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 31;
-        unsigned ENB : 1;
-
+        unsigned ENB : 1; //!< The OnCE Enable register selects the OnCE control source: When cleared (0), the OnCE registers are accessed through the JTAG interface; when set (1), the OnCE registers may be accessed by the ARM platform through the addresses described, as follows.   After reset, the OnCE registers are accessed through the JTAG interface.  Writing a 1 to ENB enables the ARM platform to access the ONCE_* as any other SDMA control register.  When cleared (0), all the ONCE_xxx registers cannot be written.   The value of ENB cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned RESERVED0 : 31; //!< Reserved
     } B;
 } hw_sdmaarm_once_enb_t;
 #endif
@@ -990,7 +994,18 @@ typedef union
  * constants & macros for individual SDMAARM_ONCE_ENB bitfields
  */
 
-/* --- Register HW_SDMAARM_ONCE_ENB, field ENB */
+/* --- Register HW_SDMAARM_ONCE_ENB, field ENB
+ *
+ * The OnCE Enable register selects the OnCE control source: When
+ * cleared (0), the OnCE registers are accessed through the JTAG
+ * interface; when set (1), the OnCE registers may be accessed by the
+ * ARM platform through the addresses described, as follows.   After reset, the OnCE registers are
+ * accessed through the JTAG                                     interface.  Writing a 1 to ENB
+ * enables the ARM platform to access the ONCE_*                                     as any other
+ * SDMA control register.  When cleared (0), all the ONCE_xxx registers cannot be written.   The
+ * value of ENB cannot be changed if the                                     LOCK bit in the
+ * SDMA_LOCK register is set.
+ */
 
 #define BP_SDMAARM_ONCE_ENB_ENB      0
 #define BM_SDMAARM_ONCE_ENB_ENB      0x00000001
@@ -1004,8 +1019,10 @@ typedef union
 #define BW_SDMAARM_ONCE_ENB_ENB(v)   BF_CS1(SDMAARM_ONCE_ENB, ENB, v)
 #endif
 
-/*
- * HW_SDMAARM_ONCE_DATA - OnCE Data Register
+/*!
+ * @brief HW_SDMAARM_ONCE_DATA - OnCE Data Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1013,8 +1030,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned DATA : 32;
-
+        unsigned DATA : 32; //!< Data register of the OnCE JTAG controller. Refer to for information on this register.
     } B;
 } hw_sdmaarm_once_data_t;
 #endif
@@ -1038,7 +1054,11 @@ typedef union
  * constants & macros for individual SDMAARM_ONCE_DATA bitfields
  */
 
-/* --- Register HW_SDMAARM_ONCE_DATA, field DATA */
+/* --- Register HW_SDMAARM_ONCE_DATA, field DATA
+ *
+ * Data register of the OnCE JTAG controller. Refer to for information
+ * on this register.
+ */
 
 #define BP_SDMAARM_ONCE_DATA_DATA      0
 #define BM_SDMAARM_ONCE_DATA_DATA      0xffffffff
@@ -1052,8 +1072,10 @@ typedef union
 #define BW_SDMAARM_ONCE_DATA_DATA(v)   BF_CS1(SDMAARM_ONCE_DATA, DATA, v)
 #endif
 
-/*
- * HW_SDMAARM_ONCE_INSTR - OnCE Instruction Register
+/*!
+ * @brief HW_SDMAARM_ONCE_INSTR - OnCE Instruction Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1061,9 +1083,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 16;
-        unsigned INSTR : 16;
-
+        unsigned INSTR : 16; //!< Instruction register of the OnCE JTAG controller. Refer to for information on this register.
+        unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_sdmaarm_once_instr_t;
 #endif
@@ -1087,7 +1108,11 @@ typedef union
  * constants & macros for individual SDMAARM_ONCE_INSTR bitfields
  */
 
-/* --- Register HW_SDMAARM_ONCE_INSTR, field INSTR */
+/* --- Register HW_SDMAARM_ONCE_INSTR, field INSTR
+ *
+ * Instruction register of the OnCE JTAG controller. Refer to for information
+ * on this register.
+ */
 
 #define BP_SDMAARM_ONCE_INSTR_INSTR      0
 #define BM_SDMAARM_ONCE_INSTR_INSTR      0x0000ffff
@@ -1101,8 +1126,10 @@ typedef union
 #define BW_SDMAARM_ONCE_INSTR_INSTR(v)   BF_CS1(SDMAARM_ONCE_INSTR, INSTR, v)
 #endif
 
-/*
- * HW_SDMAARM_ONCE_STAT - OnCE Status Register
+/*!
+ * @brief HW_SDMAARM_ONCE_STAT - OnCE Status Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1110,16 +1137,15 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 16;
-        unsigned PST : 4;
-        unsigned RCV : 1;
-        unsigned EDR : 1;
-        unsigned ODR : 1;
-        unsigned SWB : 1;
-        unsigned MST : 1;
-        unsigned RESERVED1 : 4;
-        unsigned ECDR : 3;
-
+        unsigned ECDR : 3; //!< Event Cell Debug Request. If the debug request comes from the event cell, the reason for entering debug mode is given by the EDR bits. If all three bits of the EDR are reset, then it did not generate any debug request. If the cell did generate a debug request, then at least one of the EDR bits is set (the meaning of the encoding is given below). The encoding of the EDR bits is useful to find out more precisely why the debug request was generated. A debug request from an event cell is generated for a specific combination of the addra_cond, addrb_cond, and data_cond conditions. The value of those fields is given by the EDR bits.
+        unsigned RESERVED0 : 4; //!< Reserved
+        unsigned MST : 1; //!< This flag is raised when the OnCE is controlled from the ARM platform peripheral interface.
+        unsigned SWB : 1; //!< This flag is raised when the SDMA has entered debug mode after a software breakpoint.
+        unsigned ODR : 1; //!< This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
+        unsigned EDR : 1; //!< This flag is raised when the SDMA has entered debug mode after an external debug request.
+        unsigned RCV : 1; //!< After each write access to the real time buffer (RTB), the RCV bit is set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
+        unsigned PST : 4; //!< The Processor Status bits reflect the state of the SDMA RISC engine. Its states are as follows:   The "Program" state is the usual instruction execution cycle.  The "Data" state is inserted when there are wait-states during a load or a store on the data bus (ld or st).  The "Change of Flow" state is the second cycle of any instruction that breaks the sequence of instructions (jumps and channel switching instructions).  The "Change of Flow in Loop" state is used when an error causes a hardware loop exit.  The "Debug" state means the SDMA is in debug mode.  The "Functional Unit" state is inserted when there are wait-states during a load or a store on the functional units bus (ldf or stf).  In "Sleep" modes, no script is running (this is the RISC engine idle state). The "after Reset" is slightly different because no context restoring phase will happen when a channel is triggered: The script located at address 0 will be executed (boot operation).  The "in Sleep" states are the same as above except they do not have any corresponding channel: They are used when entering debug mode after reset. The reason is that it is necessary to return to the "Sleep after Reset" state when leaving debug mode.
+        unsigned RESERVED1 : 16; //!< Reserved
     } B;
 } hw_sdmaarm_once_stat_t;
 #endif
@@ -1143,91 +1169,19 @@ typedef union
  * constants & macros for individual SDMAARM_ONCE_STAT bitfields
  */
 
-/* --- Register HW_SDMAARM_ONCE_STAT, field PST */
-
-#define BP_SDMAARM_ONCE_STAT_PST      12
-#define BM_SDMAARM_ONCE_STAT_PST      0x0000f000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_STAT_PST(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_ONCE_STAT_PST)
-#else
-#define BF_SDMAARM_ONCE_STAT_PST(v)   (((v) << 12) & BM_SDMAARM_ONCE_STAT_PST)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_ONCE_STAT_PST(v)   BF_CS1(SDMAARM_ONCE_STAT, PST, v)
-#endif
-
-/* --- Register HW_SDMAARM_ONCE_STAT, field RCV */
-
-#define BP_SDMAARM_ONCE_STAT_RCV      11
-#define BM_SDMAARM_ONCE_STAT_RCV      0x00000800
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_STAT_RCV(v)   ((((reg32_t) v) << 11) & BM_SDMAARM_ONCE_STAT_RCV)
-#else
-#define BF_SDMAARM_ONCE_STAT_RCV(v)   (((v) << 11) & BM_SDMAARM_ONCE_STAT_RCV)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_ONCE_STAT_RCV(v)   BF_CS1(SDMAARM_ONCE_STAT, RCV, v)
-#endif
-
-/* --- Register HW_SDMAARM_ONCE_STAT, field EDR */
-
-#define BP_SDMAARM_ONCE_STAT_EDR      10
-#define BM_SDMAARM_ONCE_STAT_EDR      0x00000400
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_STAT_EDR(v)   ((((reg32_t) v) << 10) & BM_SDMAARM_ONCE_STAT_EDR)
-#else
-#define BF_SDMAARM_ONCE_STAT_EDR(v)   (((v) << 10) & BM_SDMAARM_ONCE_STAT_EDR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_ONCE_STAT_EDR(v)   BF_CS1(SDMAARM_ONCE_STAT, EDR, v)
-#endif
-
-/* --- Register HW_SDMAARM_ONCE_STAT, field ODR */
-
-#define BP_SDMAARM_ONCE_STAT_ODR      9
-#define BM_SDMAARM_ONCE_STAT_ODR      0x00000200
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_STAT_ODR(v)   ((((reg32_t) v) << 9) & BM_SDMAARM_ONCE_STAT_ODR)
-#else
-#define BF_SDMAARM_ONCE_STAT_ODR(v)   (((v) << 9) & BM_SDMAARM_ONCE_STAT_ODR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_ONCE_STAT_ODR(v)   BF_CS1(SDMAARM_ONCE_STAT, ODR, v)
-#endif
-
-/* --- Register HW_SDMAARM_ONCE_STAT, field SWB */
-
-#define BP_SDMAARM_ONCE_STAT_SWB      8
-#define BM_SDMAARM_ONCE_STAT_SWB      0x00000100
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_STAT_SWB(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_ONCE_STAT_SWB)
-#else
-#define BF_SDMAARM_ONCE_STAT_SWB(v)   (((v) << 8) & BM_SDMAARM_ONCE_STAT_SWB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_ONCE_STAT_SWB(v)   BF_CS1(SDMAARM_ONCE_STAT, SWB, v)
-#endif
-
-/* --- Register HW_SDMAARM_ONCE_STAT, field MST */
-
-#define BP_SDMAARM_ONCE_STAT_MST      7
-#define BM_SDMAARM_ONCE_STAT_MST      0x00000080
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_STAT_MST(v)   ((((reg32_t) v) << 7) & BM_SDMAARM_ONCE_STAT_MST)
-#else
-#define BF_SDMAARM_ONCE_STAT_MST(v)   (((v) << 7) & BM_SDMAARM_ONCE_STAT_MST)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_ONCE_STAT_MST(v)   BF_CS1(SDMAARM_ONCE_STAT, MST, v)
-#endif
-
-/* --- Register HW_SDMAARM_ONCE_STAT, field ECDR */
+/* --- Register HW_SDMAARM_ONCE_STAT, field ECDR
+ *
+ * Event Cell Debug Request. If the debug request comes from the event
+ * cell, the reason for entering debug mode is given by the EDR bits.
+ * If all three bits of the EDR are reset, then it did not generate any
+ * debug request. If the cell did generate a debug request, then at
+ * least one of the EDR bits is set (the meaning of the encoding is
+ * given below). The encoding of the EDR bits is useful to find out
+ * more precisely why the debug request was generated. A debug request
+ * from an event cell is generated for a specific combination of the
+ * addra_cond, addrb_cond, and data_cond conditions. The value of those
+ * fields is given by the EDR bits.
+ */
 
 #define BP_SDMAARM_ONCE_STAT_ECDR      0
 #define BM_SDMAARM_ONCE_STAT_ECDR      0x00000007
@@ -1241,8 +1195,134 @@ typedef union
 #define BW_SDMAARM_ONCE_STAT_ECDR(v)   BF_CS1(SDMAARM_ONCE_STAT, ECDR, v)
 #endif
 
-/*
- * HW_SDMAARM_ONCE_CMD - OnCE Command Register
+/* --- Register HW_SDMAARM_ONCE_STAT, field MST
+ *
+ * This flag is raised when the OnCE is controlled from the ARM platform
+ * peripheral interface.
+ */
+
+#define BP_SDMAARM_ONCE_STAT_MST      7
+#define BM_SDMAARM_ONCE_STAT_MST      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_ONCE_STAT_MST(v)   ((((reg32_t) v) << 7) & BM_SDMAARM_ONCE_STAT_MST)
+#else
+#define BF_SDMAARM_ONCE_STAT_MST(v)   (((v) << 7) & BM_SDMAARM_ONCE_STAT_MST)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_ONCE_STAT_MST(v)   BF_CS1(SDMAARM_ONCE_STAT, MST, v)
+#endif
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field SWB
+ *
+ * This flag is raised when the SDMA has entered debug mode after a
+ * software breakpoint.
+ */
+
+#define BP_SDMAARM_ONCE_STAT_SWB      8
+#define BM_SDMAARM_ONCE_STAT_SWB      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_ONCE_STAT_SWB(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_ONCE_STAT_SWB)
+#else
+#define BF_SDMAARM_ONCE_STAT_SWB(v)   (((v) << 8) & BM_SDMAARM_ONCE_STAT_SWB)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_ONCE_STAT_SWB(v)   BF_CS1(SDMAARM_ONCE_STAT, SWB, v)
+#endif
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field ODR
+ *
+ * This flag is raised when the SDMA has entered debug mode after a OnCE
+ * debug request.
+ */
+
+#define BP_SDMAARM_ONCE_STAT_ODR      9
+#define BM_SDMAARM_ONCE_STAT_ODR      0x00000200
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_ONCE_STAT_ODR(v)   ((((reg32_t) v) << 9) & BM_SDMAARM_ONCE_STAT_ODR)
+#else
+#define BF_SDMAARM_ONCE_STAT_ODR(v)   (((v) << 9) & BM_SDMAARM_ONCE_STAT_ODR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_ONCE_STAT_ODR(v)   BF_CS1(SDMAARM_ONCE_STAT, ODR, v)
+#endif
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field EDR
+ *
+ * This flag is raised when the SDMA has entered debug mode after an
+ * external debug request.
+ */
+
+#define BP_SDMAARM_ONCE_STAT_EDR      10
+#define BM_SDMAARM_ONCE_STAT_EDR      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_ONCE_STAT_EDR(v)   ((((reg32_t) v) << 10) & BM_SDMAARM_ONCE_STAT_EDR)
+#else
+#define BF_SDMAARM_ONCE_STAT_EDR(v)   (((v) << 10) & BM_SDMAARM_ONCE_STAT_EDR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_ONCE_STAT_EDR(v)   BF_CS1(SDMAARM_ONCE_STAT, EDR, v)
+#endif
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field RCV
+ *
+ * After each write access to the real time buffer (RTB), the RCV bit is
+ * set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
+ */
+
+#define BP_SDMAARM_ONCE_STAT_RCV      11
+#define BM_SDMAARM_ONCE_STAT_RCV      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_ONCE_STAT_RCV(v)   ((((reg32_t) v) << 11) & BM_SDMAARM_ONCE_STAT_RCV)
+#else
+#define BF_SDMAARM_ONCE_STAT_RCV(v)   (((v) << 11) & BM_SDMAARM_ONCE_STAT_RCV)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_ONCE_STAT_RCV(v)   BF_CS1(SDMAARM_ONCE_STAT, RCV, v)
+#endif
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field PST
+ *
+ * The Processor Status bits reflect the state of the SDMA RISC engine.
+ * Its states are as follows:   The "Program" state is the usual instruction execution cycle.  The
+ * "Data" state is inserted when there are wait-states during a
+ * load or a store on the data bus (ld or st).  The "Change of Flow" state is the second cycle of
+ * any                                     instruction that breaks the sequence of instructions
+ * (jumps and                                     channel switching instructions).  The "Change of
+ * Flow in Loop" state is used when an error causes                                     a hardware
+ * loop exit.  The "Debug" state means the SDMA is in debug mode.  The "Functional Unit" state is
+ * inserted when there are                                     wait-states during a load or a store
+ * on the functional units bus                                     (ldf or stf).  In "Sleep" modes,
+ * no script is running (this is the RISC engine                                     idle state).
+ * The "after Reset" is slightly different because no                                     context
+ * restoring phase will happen when a channel is triggered:                                     The
+ * script located at address 0 will be executed (boot
+ * operation).  The "in Sleep" states are the same as above except they do not
+ * have any corresponding channel: They are used when entering
+ * debug mode after reset. The reason is that it is necessary to
+ * return to the "Sleep after Reset" state when leaving debug mode.
+ */
+
+#define BP_SDMAARM_ONCE_STAT_PST      12
+#define BM_SDMAARM_ONCE_STAT_PST      0x0000f000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_ONCE_STAT_PST(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_ONCE_STAT_PST)
+#else
+#define BF_SDMAARM_ONCE_STAT_PST(v)   (((v) << 12) & BM_SDMAARM_ONCE_STAT_PST)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_ONCE_STAT_PST(v)   BF_CS1(SDMAARM_ONCE_STAT, PST, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_ONCE_CMD - OnCE Command Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1250,9 +1330,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 28;
-        unsigned CMD : 4;
-
+        unsigned CMD : 4; //!< Writing to this register will cause the OnCE to execute the command that is written. When needed, the ONCE_DATA and ONCE_INSTR registers should be loaded with the correct value before writing the command to that register. For a list of the OnCE commands and their usage, see .  7-15 reserved
+        unsigned RESERVED0 : 28; //!< Reserved
     } B;
 } hw_sdmaarm_once_cmd_t;
 #endif
@@ -1276,7 +1355,14 @@ typedef union
  * constants & macros for individual SDMAARM_ONCE_CMD bitfields
  */
 
-/* --- Register HW_SDMAARM_ONCE_CMD, field CMD */
+/* --- Register HW_SDMAARM_ONCE_CMD, field CMD
+ *
+ * Writing to this register will cause the OnCE to execute the command
+ * that is written. When needed, the ONCE_DATA and ONCE_INSTR registers
+ * should be loaded with the correct value before writing the command
+ * to that register. For a list of the OnCE commands and their usage,
+ * see .  7-15 reserved
+ */
 
 #define BP_SDMAARM_ONCE_CMD_CMD      0
 #define BM_SDMAARM_ONCE_CMD_CMD      0x0000000f
@@ -1290,8 +1376,10 @@ typedef union
 #define BW_SDMAARM_ONCE_CMD_CMD(v)   BF_CS1(SDMAARM_ONCE_CMD, CMD, v)
 #endif
 
-/*
- * HW_SDMAARM_EVT_MIRROR - DMA Requests
+/*!
+ * @brief HW_SDMAARM_ILLINSTADDR - Illegal Instruction Trap Address
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1299,57 +1387,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EVENTS : 32;
-
-    } B;
-} hw_sdmaarm_evt_mirror_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_EVT_MIRROR register
- */
-#define HW_SDMAARM_EVT_MIRROR_ADDR      (REGS_SDMAARM_BASE + 0x54)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_EVT_MIRROR           (*(volatile hw_sdmaarm_evt_mirror_t *) HW_SDMAARM_EVT_MIRROR_ADDR)
-#define HW_SDMAARM_EVT_MIRROR_RD()      (HW_SDMAARM_EVT_MIRROR.U)
-#define HW_SDMAARM_EVT_MIRROR_WR(v)     (HW_SDMAARM_EVT_MIRROR.U = (v))
-#define HW_SDMAARM_EVT_MIRROR_SET(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() |  (v)))
-#define HW_SDMAARM_EVT_MIRROR_CLR(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() & ~(v)))
-#define HW_SDMAARM_EVT_MIRROR_TOG(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_EVT_MIRROR bitfields
- */
-
-/* --- Register HW_SDMAARM_EVT_MIRROR, field EVENTS */
-
-#define BP_SDMAARM_EVT_MIRROR_EVENTS      0
-#define BM_SDMAARM_EVT_MIRROR_EVENTS      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_EVT_MIRROR_EVENTS(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_EVT_MIRROR_EVENTS)
-#else
-#define BF_SDMAARM_EVT_MIRROR_EVENTS(v)   (((v) << 0) & BM_SDMAARM_EVT_MIRROR_EVENTS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_EVT_MIRROR_EVENTS(v)   BF_CS1(SDMAARM_EVT_MIRROR, EVENTS, v)
-#endif
-
-/*
- * HW_SDMAARM_ILLINSTADDR - Illegal Instruction Trap Address
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 18;
-        unsigned ILLINSTADDR : 14;
-
+        unsigned ILLINSTADDR : 14; //!< The Illegal Instruction Trap Address is the address where the SDMA jumps when an illegal instruction is executed. It is 0x0001 after reset.   The value of ILLINSTADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned RESERVED0 : 18; //!< Reserved
     } B;
 } hw_sdmaarm_illinstaddr_t;
 #endif
@@ -1373,7 +1412,13 @@ typedef union
  * constants & macros for individual SDMAARM_ILLINSTADDR bitfields
  */
 
-/* --- Register HW_SDMAARM_ILLINSTADDR, field ILLINSTADDR */
+/* --- Register HW_SDMAARM_ILLINSTADDR, field ILLINSTADDR
+ *
+ * The Illegal Instruction Trap Address is the address where the SDMA
+ * jumps when an illegal instruction is executed. It is 0x0001 after
+ * reset.   The value of ILLINSTADDR cannot be changed                                     if the
+ * LOCK bit in the SDMA_LOCK register is set.
+ */
 
 #define BP_SDMAARM_ILLINSTADDR_ILLINSTADDR      0
 #define BM_SDMAARM_ILLINSTADDR_ILLINSTADDR      0x00003fff
@@ -1387,8 +1432,10 @@ typedef union
 #define BW_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   BF_CS1(SDMAARM_ILLINSTADDR, ILLINSTADDR, v)
 #endif
 
-/*
- * HW_SDMAARM_CHN0ADDR - Channel 0 Boot Address
+/*!
+ * @brief HW_SDMAARM_CHN0ADDR - Channel 0 Boot Address
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1396,10 +1443,9 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 17;
-        unsigned SMSZ : 1;
-        unsigned CHN0ADDR : 14;
-
+        unsigned CHN0ADDR : 14; //!< This 14-bit register is used by the boot code of the SDMA. After reset, it points to the standard boot routine in ROM (channel 0 routine). By changing this address, you can perform a boot sequence with your own routine. The very first instructions of the boot code fetch the contents of this register (it is also mapped in the SDMA memory space) and jump to the given address. The reset value is 0x0050 (decimal 80).   The value of CHN0ADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned SMSZ : 1; //!< The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context. After reset, it is equal to 0, which defines a RAM space of 24 words for each channel. All of this area stores the channel context. By setting this bit, 32 words are reserved for every channel context, which gives eight additional words that can be used by the channel script to store any type of data. Those words are never erased by the context switching mechanism.   The value of SMSZ cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned RESERVED0 : 17; //!< Reserved
     } B;
 } hw_sdmaarm_chn0addr_t;
 #endif
@@ -1423,21 +1469,17 @@ typedef union
  * constants & macros for individual SDMAARM_CHN0ADDR bitfields
  */
 
-/* --- Register HW_SDMAARM_CHN0ADDR, field SMSZ */
-
-#define BP_SDMAARM_CHN0ADDR_SMSZ      14
-#define BM_SDMAARM_CHN0ADDR_SMSZ      0x00004000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_CHN0ADDR_SMSZ)
-#else
-#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   (((v) << 14) & BM_SDMAARM_CHN0ADDR_SMSZ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CHN0ADDR_SMSZ(v)   BF_CS1(SDMAARM_CHN0ADDR, SMSZ, v)
-#endif
-
-/* --- Register HW_SDMAARM_CHN0ADDR, field CHN0ADDR */
+/* --- Register HW_SDMAARM_CHN0ADDR, field CHN0ADDR
+ *
+ * This 14-bit register is used by the boot code of the SDMA. After
+ * reset, it points to the standard boot routine in ROM (channel 0
+ * routine). By changing this address, you can perform a boot sequence
+ * with your own routine. The very first instructions of the boot code
+ * fetch the contents of this register (it is also mapped in the SDMA
+ * memory space) and jump to the given address. The reset value is
+ * 0x0050 (decimal 80).   The value of CHN0ADDR cannot be changed if
+ * the LOCK bit in the SDMA_LOCK register is set.
+ */
 
 #define BP_SDMAARM_CHN0ADDR_CHN0ADDR      0
 #define BM_SDMAARM_CHN0ADDR_CHN0ADDR      0x00003fff
@@ -1451,56 +1493,35 @@ typedef union
 #define BW_SDMAARM_CHN0ADDR_CHN0ADDR(v)   BF_CS1(SDMAARM_CHN0ADDR, CHN0ADDR, v)
 #endif
 
-/*
- * HW_SDMAARM_EVT_MIRROR - DMA Requests
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned EVENTS : 32;
-
-    } B;
-} hw_sdmaarm_evt_mirror_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_EVT_MIRROR register
- */
-#define HW_SDMAARM_EVT_MIRROR_ADDR      (REGS_SDMAARM_BASE + 0x60)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_EVT_MIRROR           (*(volatile hw_sdmaarm_evt_mirror_t *) HW_SDMAARM_EVT_MIRROR_ADDR)
-#define HW_SDMAARM_EVT_MIRROR_RD()      (HW_SDMAARM_EVT_MIRROR.U)
-#define HW_SDMAARM_EVT_MIRROR_WR(v)     (HW_SDMAARM_EVT_MIRROR.U = (v))
-#define HW_SDMAARM_EVT_MIRROR_SET(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() |  (v)))
-#define HW_SDMAARM_EVT_MIRROR_CLR(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() & ~(v)))
-#define HW_SDMAARM_EVT_MIRROR_TOG(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_EVT_MIRROR bitfields
+/* --- Register HW_SDMAARM_CHN0ADDR, field SMSZ
+ *
+ * The bit 14 (Scratch Memory Size) determines if scratch memory must be
+ * available after every channel context. After reset, it is equal to
+ * 0, which defines a RAM space of 24 words for each channel. All of
+ * this area stores the channel context. By setting this bit, 32 words
+ * are reserved for every channel context, which gives eight additional
+ * words that can be used by the channel script to store any type of
+ * data. Those words are never erased by the context switching
+ * mechanism.   The value of SMSZ cannot be changed if the                                     LOCK
+ * bit in the SDMA_LOCK register is set.
  */
 
-/* --- Register HW_SDMAARM_EVT_MIRROR, field EVENTS */
-
-#define BP_SDMAARM_EVT_MIRROR_EVENTS      0
-#define BM_SDMAARM_EVT_MIRROR_EVENTS      0xffffffff
+#define BP_SDMAARM_CHN0ADDR_SMSZ      14
+#define BM_SDMAARM_CHN0ADDR_SMSZ      0x00004000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_EVT_MIRROR_EVENTS(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_EVT_MIRROR_EVENTS)
+#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_CHN0ADDR_SMSZ)
 #else
-#define BF_SDMAARM_EVT_MIRROR_EVENTS(v)   (((v) << 0) & BM_SDMAARM_EVT_MIRROR_EVENTS)
+#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   (((v) << 14) & BM_SDMAARM_CHN0ADDR_SMSZ)
 #endif
 #ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_EVT_MIRROR_EVENTS(v)   BF_CS1(SDMAARM_EVT_MIRROR, EVENTS, v)
+#define BW_SDMAARM_CHN0ADDR_SMSZ(v)   BF_CS1(SDMAARM_CHN0ADDR, SMSZ, v)
 #endif
 
-/*
- * HW_SDMAARM_EVT_MIRROR2 - DMA Requests 2
+/*!
+ * @brief HW_SDMAARM_XTRIG_CONF1 - Cross-Trigger Events Configuration Register                        1
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1508,77 +1529,18 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 16;
-        unsigned EVENTS : 16;
-
-    } B;
-} hw_sdmaarm_evt_mirror2_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_EVT_MIRROR2 register
- */
-#define HW_SDMAARM_EVT_MIRROR2_ADDR      (REGS_SDMAARM_BASE + 0x64)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_EVT_MIRROR2           (*(volatile hw_sdmaarm_evt_mirror2_t *) HW_SDMAARM_EVT_MIRROR2_ADDR)
-#define HW_SDMAARM_EVT_MIRROR2_RD()      (HW_SDMAARM_EVT_MIRROR2.U)
-#define HW_SDMAARM_EVT_MIRROR2_WR(v)     (HW_SDMAARM_EVT_MIRROR2.U = (v))
-#define HW_SDMAARM_EVT_MIRROR2_SET(v)    (HW_SDMAARM_EVT_MIRROR2_WR(HW_SDMAARM_EVT_MIRROR2_RD() |  (v)))
-#define HW_SDMAARM_EVT_MIRROR2_CLR(v)    (HW_SDMAARM_EVT_MIRROR2_WR(HW_SDMAARM_EVT_MIRROR2_RD() & ~(v)))
-#define HW_SDMAARM_EVT_MIRROR2_TOG(v)    (HW_SDMAARM_EVT_MIRROR2_WR(HW_SDMAARM_EVT_MIRROR2_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_EVT_MIRROR2 bitfields
- */
-
-/* --- Register HW_SDMAARM_EVT_MIRROR2, field EVENTS */
-
-#define BP_SDMAARM_EVT_MIRROR2_EVENTS      0
-#define BM_SDMAARM_EVT_MIRROR2_EVENTS      0x0000ffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_EVT_MIRROR2_EVENTS(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_EVT_MIRROR2_EVENTS)
-#else
-#define BF_SDMAARM_EVT_MIRROR2_EVENTS(v)   (((v) << 0) & BM_SDMAARM_EVT_MIRROR2_EVENTS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_EVT_MIRROR2_EVENTS(v)   BF_CS1(SDMAARM_EVT_MIRROR2, EVENTS, v)
-#endif
-
-/*
- * HW_SDMAARM_XTRIG_CONF1 - Cross-Trigger Events Configuration Register
-                        1
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 1;
-        unsigned CNF3 : 1;
-        unsigned RESERVED1 : 1;
-        unsigned NUM3 : 5;
-        unsigned NUM3 : 6;
-        unsigned RESERVED2 : 1;
-        unsigned CNF2 : 1;
-        unsigned RESERVED3 : 1;
-        unsigned NUM2 : 6;
-        unsigned NUM2 : 5;
-        unsigned RESERVED4 : 1;
-        unsigned CNF1 : 1;
-        unsigned RESERVED5 : 1;
-        unsigned NUM1 : 5;
-        unsigned NUM1 : 6;
-        unsigned RESERVED6 : 1;
-        unsigned CNF0 : 1;
-        unsigned RESERVED7 : 1;
-        unsigned NUM0 : 5;
-        unsigned NUM0 : 6;
-
+        unsigned RESERVED0 : 6; //!< 
+        unsigned CNF0 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned RESERVED2 : 6; //!< 
+        unsigned CNF1 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED3 : 1; //!< Reserved
+        unsigned RESERVED4 : 6; //!< 
+        unsigned CNF2 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED5 : 1; //!< Reserved
+        unsigned RESERVED6 : 6; //!< 
+        unsigned CNF3 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by the reception of a DMA request or by the starting of a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED7 : 1; //!< Reserved
     } B;
 } hw_sdmaarm_xtrig_conf1_t;
 #endif
@@ -1602,133 +1564,17 @@ typedef union
  * constants & macros for individual SDMAARM_XTRIG_CONF1 bitfields
  */
 
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF3 */
-
-#define BP_SDMAARM_XTRIG_CONF1_CNF3      30
-#define BM_SDMAARM_XTRIG_CONF1_CNF3      0x40000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   ((((reg32_t) v) << 30) & BM_SDMAARM_XTRIG_CONF1_CNF3)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   (((v) << 30) & BM_SDMAARM_XTRIG_CONF1_CNF3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_CNF3(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF3, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM3 */
-
-#define BP_SDMAARM_XTRIG_CONF1_NUM3      24
-#define BM_SDMAARM_XTRIG_CONF1_NUM3      0x1f000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM3(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM3, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM3 */
-
-#define BP_SDMAARM_XTRIG_CONF1_NUM3      24
-#define BM_SDMAARM_XTRIG_CONF1_NUM3      0x3f000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM3(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM3, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF2 */
-
-#define BP_SDMAARM_XTRIG_CONF1_CNF2      22
-#define BM_SDMAARM_XTRIG_CONF1_CNF2      0x00400000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   ((((reg32_t) v) << 22) & BM_SDMAARM_XTRIG_CONF1_CNF2)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   (((v) << 22) & BM_SDMAARM_XTRIG_CONF1_CNF2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_CNF2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF2, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM2 */
-
-#define BP_SDMAARM_XTRIG_CONF1_NUM2      16
-#define BM_SDMAARM_XTRIG_CONF1_NUM2      0x003f0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM2, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM2 */
-
-#define BP_SDMAARM_XTRIG_CONF1_NUM2      16
-#define BM_SDMAARM_XTRIG_CONF1_NUM2      0x001f0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM2, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF1 */
-
-#define BP_SDMAARM_XTRIG_CONF1_CNF1      14
-#define BM_SDMAARM_XTRIG_CONF1_CNF1      0x00004000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_XTRIG_CONF1_CNF1)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   (((v) << 14) & BM_SDMAARM_XTRIG_CONF1_CNF1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_CNF1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF1, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM1 */
-
-#define BP_SDMAARM_XTRIG_CONF1_NUM1      8
-#define BM_SDMAARM_XTRIG_CONF1_NUM1      0x00001f00
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM1, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM1 */
-
-#define BP_SDMAARM_XTRIG_CONF1_NUM1      8
-#define BM_SDMAARM_XTRIG_CONF1_NUM1      0x00003f00
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
-#else
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM1, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF0 */
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF0
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by receiving a DMA request or by starting a                                 channel
+ * script execution. When a pulse is                                     generated by starting of a
+ * channel script execution, it is in                                     fact generated by the
+ * restore part of the context switch                                     mechanism. Therefore, no
+ * pulse is generated the first time                                     channel 0 (boot channel) is
+ * executed after reset (on AP                                     demand).
+ */
 
 #define BP_SDMAARM_XTRIG_CONF1_CNF0      6
 #define BM_SDMAARM_XTRIG_CONF1_CNF0      0x00000040
@@ -1742,37 +1588,82 @@ typedef union
 #define BW_SDMAARM_XTRIG_CONF1_CNF0(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF0, v)
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM0 */
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF1
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by receiving a DMA request or by starting a                                 channel
+ * script execution. When a pulse is                                     generated by starting of a
+ * channel script execution, it is in                                     fact generated by the
+ * restore part of the context switch                                     mechanism. Therefore, no
+ * pulse is generated the first time                                     channel 0 (boot channel) is
+ * executed after reset (on AP                                     demand).
+ */
 
-#define BP_SDMAARM_XTRIG_CONF1_NUM0      0
-#define BM_SDMAARM_XTRIG_CONF1_NUM0      0x0000001f
+#define BP_SDMAARM_XTRIG_CONF1_CNF1      14
+#define BM_SDMAARM_XTRIG_CONF1_CNF1      0x00004000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_XTRIG_CONF1_CNF1)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   (((v) << 14) & BM_SDMAARM_XTRIG_CONF1_CNF1)
 #endif
 #ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM0(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM0, v)
+#define BW_SDMAARM_XTRIG_CONF1_CNF1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF1, v)
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM0 */
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF2
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by receiving a DMA request or by starting a                                 channel
+ * script execution. When a pulse is                                     generated by starting of a
+ * channel script execution, it is in                                     fact generated by the
+ * restore part of the context switch                                     mechanism. Therefore, no
+ * pulse is generated the first time                                     channel 0 (boot channel) is
+ * executed after reset (on AP                                     demand).
+ */
 
-#define BP_SDMAARM_XTRIG_CONF1_NUM0      0
-#define BM_SDMAARM_XTRIG_CONF1_NUM0      0x0000003f
+#define BP_SDMAARM_XTRIG_CONF1_CNF2      22
+#define BM_SDMAARM_XTRIG_CONF1_CNF2      0x00400000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   ((((reg32_t) v) << 22) & BM_SDMAARM_XTRIG_CONF1_CNF2)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   (((v) << 22) & BM_SDMAARM_XTRIG_CONF1_CNF2)
 #endif
 #ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF1_NUM0(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM0, v)
+#define BW_SDMAARM_XTRIG_CONF1_CNF2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF2, v)
 #endif
 
-/*
- * HW_SDMAARM_XTRIG_CONF2 - Cross-Trigger Events Configuration Register
-                        2
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF3
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by the reception of a DMA request or by the                                 starting
+ * of a channel script execution. When a pulse is generated by starting of a channel script
+ * execution, it is in fact generated by the restore part of the
+ * context switch mechanism. Therefore, no pulse is generated the
+ * first time channel 0 (boot channel) is executed after reset (on
+ * AP demand).
+ */
+
+#define BP_SDMAARM_XTRIG_CONF1_CNF3      30
+#define BM_SDMAARM_XTRIG_CONF1_CNF3      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   ((((reg32_t) v) << 30) & BM_SDMAARM_XTRIG_CONF1_CNF3)
+#else
+#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   (((v) << 30) & BM_SDMAARM_XTRIG_CONF1_CNF3)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF1_CNF3(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF3, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_XTRIG_CONF2 - Cross-Trigger Events Configuration Register                        2
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1780,27 +1671,18 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 1;
-        unsigned CNF7 : 1;
-        unsigned RESERVED1 : 1;
-        unsigned NUM7 : 5;
-        unsigned NUM7 : 6;
-        unsigned RESERVED2 : 1;
-        unsigned CNF6 : 1;
-        unsigned RESERVED3 : 1;
-        unsigned NUM6 : 5;
-        unsigned NUM6 : 6;
-        unsigned RESERVED4 : 1;
-        unsigned CNF5 : 1;
-        unsigned RESERVED5 : 1;
-        unsigned NUM5 : 5;
-        unsigned NUM5 : 6;
-        unsigned RESERVED6 : 1;
-        unsigned CNF4 : 1;
-        unsigned RESERVED7 : 1;
-        unsigned NUM4 : 5;
-        unsigned NUM4 : 6;
-
+        unsigned RESERVED0 : 6; //!< 
+        unsigned CNF4 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned RESERVED2 : 6; //!< 
+        unsigned CNF5 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution . When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED3 : 1; //!< Reserved
+        unsigned RESERVED4 : 6; //!< 
+        unsigned CNF6 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED5 : 1; //!< Reserved
+        unsigned RESERVED6 : 6; //!< 
+        unsigned CNF7 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED7 : 1; //!< Reserved
     } B;
 } hw_sdmaarm_xtrig_conf2_t;
 #endif
@@ -1824,133 +1706,17 @@ typedef union
  * constants & macros for individual SDMAARM_XTRIG_CONF2 bitfields
  */
 
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF7 */
-
-#define BP_SDMAARM_XTRIG_CONF2_CNF7      30
-#define BM_SDMAARM_XTRIG_CONF2_CNF7      0x40000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   ((((reg32_t) v) << 30) & BM_SDMAARM_XTRIG_CONF2_CNF7)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   (((v) << 30) & BM_SDMAARM_XTRIG_CONF2_CNF7)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_CNF7(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF7, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM7 */
-
-#define BP_SDMAARM_XTRIG_CONF2_NUM7      24
-#define BM_SDMAARM_XTRIG_CONF2_NUM7      0x1f000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM7(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM7, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM7 */
-
-#define BP_SDMAARM_XTRIG_CONF2_NUM7      24
-#define BM_SDMAARM_XTRIG_CONF2_NUM7      0x3f000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM7(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM7, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF6 */
-
-#define BP_SDMAARM_XTRIG_CONF2_CNF6      22
-#define BM_SDMAARM_XTRIG_CONF2_CNF6      0x00400000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   ((((reg32_t) v) << 22) & BM_SDMAARM_XTRIG_CONF2_CNF6)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   (((v) << 22) & BM_SDMAARM_XTRIG_CONF2_CNF6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_CNF6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF6, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM6 */
-
-#define BP_SDMAARM_XTRIG_CONF2_NUM6      16
-#define BM_SDMAARM_XTRIG_CONF2_NUM6      0x001f0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM6, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM6 */
-
-#define BP_SDMAARM_XTRIG_CONF2_NUM6      16
-#define BM_SDMAARM_XTRIG_CONF2_NUM6      0x003f0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM6, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF5 */
-
-#define BP_SDMAARM_XTRIG_CONF2_CNF5      14
-#define BM_SDMAARM_XTRIG_CONF2_CNF5      0x00004000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_XTRIG_CONF2_CNF5)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   (((v) << 14) & BM_SDMAARM_XTRIG_CONF2_CNF5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_CNF5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF5, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM5 */
-
-#define BP_SDMAARM_XTRIG_CONF2_NUM5      8
-#define BM_SDMAARM_XTRIG_CONF2_NUM5      0x00001f00
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM5, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM5 */
-
-#define BP_SDMAARM_XTRIG_CONF2_NUM5      8
-#define BM_SDMAARM_XTRIG_CONF2_NUM5      0x00003f00
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
-#else
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM5, v)
-#endif
-
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF4 */
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF4
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by receiving a DMA request or by starting a                                 channel
+ * script execution. When a pulse is                                     generated by starting of a
+ * channel script execution, it is in                                     fact generated by the
+ * restore part of the context switch                                     mechanism. Therefore, no
+ * pulse is generated the first time                                     channel 0 (boot channel) is
+ * executed after reset (on AP                                     demand).
+ */
 
 #define BP_SDMAARM_XTRIG_CONF2_CNF4      6
 #define BM_SDMAARM_XTRIG_CONF2_CNF4      0x00000040
@@ -1964,36 +1730,82 @@ typedef union
 #define BW_SDMAARM_XTRIG_CONF2_CNF4(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF4, v)
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM4 */
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF5
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by receiving a DMA request or by starting a                                 channel
+ * script execution . When a pulse is                                     generated by starting of a
+ * channel script execution, it is in                                     fact generated by the
+ * restore part of the context switch                                     mechanism. Therefore, no
+ * pulse is generated the first time                                     channel 0 (boot channel) is
+ * executed after reset (on AP                                     demand).
+ */
 
-#define BP_SDMAARM_XTRIG_CONF2_NUM4      0
-#define BM_SDMAARM_XTRIG_CONF2_NUM4      0x0000001f
+#define BP_SDMAARM_XTRIG_CONF2_CNF5      14
+#define BM_SDMAARM_XTRIG_CONF2_CNF5      0x00004000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_XTRIG_CONF2_CNF5)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   (((v) << 14) & BM_SDMAARM_XTRIG_CONF2_CNF5)
 #endif
 #ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM4(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM4, v)
+#define BW_SDMAARM_XTRIG_CONF2_CNF5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF5, v)
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM4 */
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF6
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by receiving a DMA request or by starting a                                 channel
+ * script execution. When a pulse is                                     generated by starting of a
+ * channel script execution, it is in                                     fact generated by the
+ * restore part of the context switch                                     mechanism. Therefore, no
+ * pulse is generated the first time                                     channel 0 (boot channel) is
+ * executed after reset (on AP                                     demand).
+ */
 
-#define BP_SDMAARM_XTRIG_CONF2_NUM4      0
-#define BM_SDMAARM_XTRIG_CONF2_NUM4      0x0000003f
+#define BP_SDMAARM_XTRIG_CONF2_CNF6      22
+#define BM_SDMAARM_XTRIG_CONF2_CNF6      0x00400000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   ((((reg32_t) v) << 22) & BM_SDMAARM_XTRIG_CONF2_CNF6)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   (((v) << 22) & BM_SDMAARM_XTRIG_CONF2_CNF6)
 #endif
 #ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_XTRIG_CONF2_NUM4(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM4, v)
+#define BW_SDMAARM_XTRIG_CONF2_CNF6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF6, v)
 #endif
 
-/*
- * HW_SDMAARM_OTB - Once Trace Buffer Register
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF7
+ *
+ * Configuration of the SDMA event line number i that is                                 connected
+ * to the cross-trigger. It determines whether the event line                                 pulse
+ * is generated by receiving a DMA request or by starting a                                 channel
+ * script execution. When a pulse is                                     generated by starting of a
+ * channel script execution, it is in                                     fact generated by the
+ * restore part of the context switch                                     mechanism. Therefore, no
+ * pulse is generated the first time                                     channel 0 (boot channel) is
+ * executed after reset (on AP                                     demand).
+ */
+
+#define BP_SDMAARM_XTRIG_CONF2_CNF7      30
+#define BM_SDMAARM_XTRIG_CONF2_CNF7      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   ((((reg32_t) v) << 30) & BM_SDMAARM_XTRIG_CONF2_CNF7)
+#else
+#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   (((v) << 30) & BM_SDMAARM_XTRIG_CONF2_CNF7)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF2_CNF7(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF7, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_SDMA_CHNPRI - Channel Priority Registers
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -2001,458 +1813,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 3;
-        unsigned TBF : 1;
-        unsigned TADDR : 14;
-        unsigned CHFADDR : 14;
-
-    } B;
-} hw_sdmaarm_otb_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_OTB register
- */
-#define HW_SDMAARM_OTB_ADDR      (REGS_SDMAARM_BASE + 0x78)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_OTB           (*(volatile hw_sdmaarm_otb_t *) HW_SDMAARM_OTB_ADDR)
-#define HW_SDMAARM_OTB_RD()      (HW_SDMAARM_OTB.U)
-#define HW_SDMAARM_OTB_WR(v)     (HW_SDMAARM_OTB.U = (v))
-#define HW_SDMAARM_OTB_SET(v)    (HW_SDMAARM_OTB_WR(HW_SDMAARM_OTB_RD() |  (v)))
-#define HW_SDMAARM_OTB_CLR(v)    (HW_SDMAARM_OTB_WR(HW_SDMAARM_OTB_RD() & ~(v)))
-#define HW_SDMAARM_OTB_TOG(v)    (HW_SDMAARM_OTB_WR(HW_SDMAARM_OTB_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_OTB bitfields
- */
-
-/* --- Register HW_SDMAARM_OTB, field TBF */
-
-#define BP_SDMAARM_OTB_TBF      28
-#define BM_SDMAARM_OTB_TBF      0x10000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_OTB_TBF(v)   ((((reg32_t) v) << 28) & BM_SDMAARM_OTB_TBF)
-#else
-#define BF_SDMAARM_OTB_TBF(v)   (((v) << 28) & BM_SDMAARM_OTB_TBF)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_OTB_TBF(v)   BF_CS1(SDMAARM_OTB, TBF, v)
-#endif
-
-/* --- Register HW_SDMAARM_OTB, field TADDR */
-
-#define BP_SDMAARM_OTB_TADDR      14
-#define BM_SDMAARM_OTB_TADDR      0x0fffc000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_OTB_TADDR(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_OTB_TADDR)
-#else
-#define BF_SDMAARM_OTB_TADDR(v)   (((v) << 14) & BM_SDMAARM_OTB_TADDR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_OTB_TADDR(v)   BF_CS1(SDMAARM_OTB, TADDR, v)
-#endif
-
-/* --- Register HW_SDMAARM_OTB, field CHFADDR */
-
-#define BP_SDMAARM_OTB_CHFADDR      0
-#define BM_SDMAARM_OTB_CHFADDR      0x00003fff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_OTB_CHFADDR(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_OTB_CHFADDR)
-#else
-#define BF_SDMAARM_OTB_CHFADDR(v)   (((v) << 0) & BM_SDMAARM_OTB_CHFADDR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_OTB_CHFADDR(v)   BF_CS1(SDMAARM_OTB, CHFADDR, v)
-#endif
-
-/*
- * HW_SDMAARM_PRF_CNT_ - Profile Counter Registers
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned COUNTER_CONFIG : 9;
-        unsigned OFL : 1;
-        unsigned COUNTER : 22;
-
-    } B;
-} hw_sdmaarm_prf_cnt__t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_PRF_CNT_ register
- */
-#define HW_SDMAARM_PRF_CNT__ADDR      (REGS_SDMAARM_BASE + 0x7c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_PRF_CNT_           (*(volatile hw_sdmaarm_prf_cnt__t *) HW_SDMAARM_PRF_CNT__ADDR)
-#define HW_SDMAARM_PRF_CNT__RD()      (HW_SDMAARM_PRF_CNT_.U)
-#define HW_SDMAARM_PRF_CNT__WR(v)     (HW_SDMAARM_PRF_CNT_.U = (v))
-#define HW_SDMAARM_PRF_CNT__SET(v)    (HW_SDMAARM_PRF_CNT__WR(HW_SDMAARM_PRF_CNT__RD() |  (v)))
-#define HW_SDMAARM_PRF_CNT__CLR(v)    (HW_SDMAARM_PRF_CNT__WR(HW_SDMAARM_PRF_CNT__RD() & ~(v)))
-#define HW_SDMAARM_PRF_CNT__TOG(v)    (HW_SDMAARM_PRF_CNT__WR(HW_SDMAARM_PRF_CNT__RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_PRF_CNT_ bitfields
- */
-
-/* --- Register HW_SDMAARM_PRF_CNT_, field COUNTER_CONFIG */
-
-#define BP_SDMAARM_PRF_CNT__COUNTER_CONFIG      23
-#define BM_SDMAARM_PRF_CNT__COUNTER_CONFIG      0xff800000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CNT__COUNTER_CONFIG(v)   ((((reg32_t) v) << 23) & BM_SDMAARM_PRF_CNT__COUNTER_CONFIG)
-#else
-#define BF_SDMAARM_PRF_CNT__COUNTER_CONFIG(v)   (((v) << 23) & BM_SDMAARM_PRF_CNT__COUNTER_CONFIG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CNT__COUNTER_CONFIG(v)   BF_CS1(SDMAARM_PRF_CNT_, COUNTER_CONFIG, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CNT_, field OFL */
-
-#define BP_SDMAARM_PRF_CNT__OFL      22
-#define BM_SDMAARM_PRF_CNT__OFL      0x00400000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CNT__OFL(v)   ((((reg32_t) v) << 22) & BM_SDMAARM_PRF_CNT__OFL)
-#else
-#define BF_SDMAARM_PRF_CNT__OFL(v)   (((v) << 22) & BM_SDMAARM_PRF_CNT__OFL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CNT__OFL(v)   BF_CS1(SDMAARM_PRF_CNT_, OFL, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CNT_, field COUNTER */
-
-#define BP_SDMAARM_PRF_CNT__COUNTER      0
-#define BM_SDMAARM_PRF_CNT__COUNTER      0x003fffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CNT__COUNTER(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_PRF_CNT__COUNTER)
-#else
-#define BF_SDMAARM_PRF_CNT__COUNTER(v)   (((v) << 0) & BM_SDMAARM_PRF_CNT__COUNTER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CNT__COUNTER(v)   BF_CS1(SDMAARM_PRF_CNT_, COUNTER, v)
-#endif
-
-/*
- * HW_SDMAARM_PRF_CFG - Profile config/status Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 18;
-        unsigned ISR : 1;
-        unsigned OFL6 : 1;
-        unsigned OFL5 : 1;
-        unsigned OFL4 : 1;
-        unsigned OFL3 : 1;
-        unsigned OFL2 : 1;
-        unsigned OFL1 : 1;
-        unsigned INT_EN_6 : 1;
-        unsigned INT_EN_5 : 1;
-        unsigned INT_EN_4 : 1;
-        unsigned INT_EN_3 : 1;
-        unsigned INT_EN_2 : 1;
-        unsigned INT_EN_1 : 1;
-        unsigned EN : 1;
-
-    } B;
-} hw_sdmaarm_prf_cfg_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_PRF_CFG register
- */
-#define HW_SDMAARM_PRF_CFG_ADDR      (REGS_SDMAARM_BASE + 0x94)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_PRF_CFG           (*(volatile hw_sdmaarm_prf_cfg_t *) HW_SDMAARM_PRF_CFG_ADDR)
-#define HW_SDMAARM_PRF_CFG_RD()      (HW_SDMAARM_PRF_CFG.U)
-#define HW_SDMAARM_PRF_CFG_WR(v)     (HW_SDMAARM_PRF_CFG.U = (v))
-#define HW_SDMAARM_PRF_CFG_SET(v)    (HW_SDMAARM_PRF_CFG_WR(HW_SDMAARM_PRF_CFG_RD() |  (v)))
-#define HW_SDMAARM_PRF_CFG_CLR(v)    (HW_SDMAARM_PRF_CFG_WR(HW_SDMAARM_PRF_CFG_RD() & ~(v)))
-#define HW_SDMAARM_PRF_CFG_TOG(v)    (HW_SDMAARM_PRF_CFG_WR(HW_SDMAARM_PRF_CFG_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_PRF_CFG bitfields
- */
-
-/* --- Register HW_SDMAARM_PRF_CFG, field ISR */
-
-#define BP_SDMAARM_PRF_CFG_ISR      13
-#define BM_SDMAARM_PRF_CFG_ISR      0x00002000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_ISR(v)   ((((reg32_t) v) << 13) & BM_SDMAARM_PRF_CFG_ISR)
-#else
-#define BF_SDMAARM_PRF_CFG_ISR(v)   (((v) << 13) & BM_SDMAARM_PRF_CFG_ISR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_ISR(v)   BF_CS1(SDMAARM_PRF_CFG, ISR, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field OFL6 */
-
-#define BP_SDMAARM_PRF_CFG_OFL6      12
-#define BM_SDMAARM_PRF_CFG_OFL6      0x00001000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_OFL6(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_PRF_CFG_OFL6)
-#else
-#define BF_SDMAARM_PRF_CFG_OFL6(v)   (((v) << 12) & BM_SDMAARM_PRF_CFG_OFL6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_OFL6(v)   BF_CS1(SDMAARM_PRF_CFG, OFL6, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field OFL5 */
-
-#define BP_SDMAARM_PRF_CFG_OFL5      11
-#define BM_SDMAARM_PRF_CFG_OFL5      0x00000800
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_OFL5(v)   ((((reg32_t) v) << 11) & BM_SDMAARM_PRF_CFG_OFL5)
-#else
-#define BF_SDMAARM_PRF_CFG_OFL5(v)   (((v) << 11) & BM_SDMAARM_PRF_CFG_OFL5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_OFL5(v)   BF_CS1(SDMAARM_PRF_CFG, OFL5, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field OFL4 */
-
-#define BP_SDMAARM_PRF_CFG_OFL4      10
-#define BM_SDMAARM_PRF_CFG_OFL4      0x00000400
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_OFL4(v)   ((((reg32_t) v) << 10) & BM_SDMAARM_PRF_CFG_OFL4)
-#else
-#define BF_SDMAARM_PRF_CFG_OFL4(v)   (((v) << 10) & BM_SDMAARM_PRF_CFG_OFL4)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_OFL4(v)   BF_CS1(SDMAARM_PRF_CFG, OFL4, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field OFL3 */
-
-#define BP_SDMAARM_PRF_CFG_OFL3      9
-#define BM_SDMAARM_PRF_CFG_OFL3      0x00000200
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_OFL3(v)   ((((reg32_t) v) << 9) & BM_SDMAARM_PRF_CFG_OFL3)
-#else
-#define BF_SDMAARM_PRF_CFG_OFL3(v)   (((v) << 9) & BM_SDMAARM_PRF_CFG_OFL3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_OFL3(v)   BF_CS1(SDMAARM_PRF_CFG, OFL3, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field OFL2 */
-
-#define BP_SDMAARM_PRF_CFG_OFL2      8
-#define BM_SDMAARM_PRF_CFG_OFL2      0x00000100
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_OFL2(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_PRF_CFG_OFL2)
-#else
-#define BF_SDMAARM_PRF_CFG_OFL2(v)   (((v) << 8) & BM_SDMAARM_PRF_CFG_OFL2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_OFL2(v)   BF_CS1(SDMAARM_PRF_CFG, OFL2, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field OFL1 */
-
-#define BP_SDMAARM_PRF_CFG_OFL1      7
-#define BM_SDMAARM_PRF_CFG_OFL1      0x00000080
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_OFL1(v)   ((((reg32_t) v) << 7) & BM_SDMAARM_PRF_CFG_OFL1)
-#else
-#define BF_SDMAARM_PRF_CFG_OFL1(v)   (((v) << 7) & BM_SDMAARM_PRF_CFG_OFL1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_OFL1(v)   BF_CS1(SDMAARM_PRF_CFG, OFL1, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field INT_EN_6 */
-
-#define BP_SDMAARM_PRF_CFG_INT_EN_6      6
-#define BM_SDMAARM_PRF_CFG_INT_EN_6      0x00000040
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_INT_EN_6(v)   ((((reg32_t) v) << 6) & BM_SDMAARM_PRF_CFG_INT_EN_6)
-#else
-#define BF_SDMAARM_PRF_CFG_INT_EN_6(v)   (((v) << 6) & BM_SDMAARM_PRF_CFG_INT_EN_6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_INT_EN_6(v)   BF_CS1(SDMAARM_PRF_CFG, INT_EN_6, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field INT_EN_5 */
-
-#define BP_SDMAARM_PRF_CFG_INT_EN_5      5
-#define BM_SDMAARM_PRF_CFG_INT_EN_5      0x00000020
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_INT_EN_5(v)   ((((reg32_t) v) << 5) & BM_SDMAARM_PRF_CFG_INT_EN_5)
-#else
-#define BF_SDMAARM_PRF_CFG_INT_EN_5(v)   (((v) << 5) & BM_SDMAARM_PRF_CFG_INT_EN_5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_INT_EN_5(v)   BF_CS1(SDMAARM_PRF_CFG, INT_EN_5, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field INT_EN_4 */
-
-#define BP_SDMAARM_PRF_CFG_INT_EN_4      4
-#define BM_SDMAARM_PRF_CFG_INT_EN_4      0x00000010
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_INT_EN_4(v)   ((((reg32_t) v) << 4) & BM_SDMAARM_PRF_CFG_INT_EN_4)
-#else
-#define BF_SDMAARM_PRF_CFG_INT_EN_4(v)   (((v) << 4) & BM_SDMAARM_PRF_CFG_INT_EN_4)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_INT_EN_4(v)   BF_CS1(SDMAARM_PRF_CFG, INT_EN_4, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field INT_EN_3 */
-
-#define BP_SDMAARM_PRF_CFG_INT_EN_3      3
-#define BM_SDMAARM_PRF_CFG_INT_EN_3      0x00000008
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_INT_EN_3(v)   ((((reg32_t) v) << 3) & BM_SDMAARM_PRF_CFG_INT_EN_3)
-#else
-#define BF_SDMAARM_PRF_CFG_INT_EN_3(v)   (((v) << 3) & BM_SDMAARM_PRF_CFG_INT_EN_3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_INT_EN_3(v)   BF_CS1(SDMAARM_PRF_CFG, INT_EN_3, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field INT_EN_2 */
-
-#define BP_SDMAARM_PRF_CFG_INT_EN_2      2
-#define BM_SDMAARM_PRF_CFG_INT_EN_2      0x00000004
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_INT_EN_2(v)   ((((reg32_t) v) << 2) & BM_SDMAARM_PRF_CFG_INT_EN_2)
-#else
-#define BF_SDMAARM_PRF_CFG_INT_EN_2(v)   (((v) << 2) & BM_SDMAARM_PRF_CFG_INT_EN_2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_INT_EN_2(v)   BF_CS1(SDMAARM_PRF_CFG, INT_EN_2, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field INT_EN_1 */
-
-#define BP_SDMAARM_PRF_CFG_INT_EN_1      1
-#define BM_SDMAARM_PRF_CFG_INT_EN_1      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_INT_EN_1(v)   ((((reg32_t) v) << 1) & BM_SDMAARM_PRF_CFG_INT_EN_1)
-#else
-#define BF_SDMAARM_PRF_CFG_INT_EN_1(v)   (((v) << 1) & BM_SDMAARM_PRF_CFG_INT_EN_1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_INT_EN_1(v)   BF_CS1(SDMAARM_PRF_CFG, INT_EN_1, v)
-#endif
-
-/* --- Register HW_SDMAARM_PRF_CFG, field EN */
-
-#define BP_SDMAARM_PRF_CFG_EN      0
-#define BM_SDMAARM_PRF_CFG_EN      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_PRF_CFG_EN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_PRF_CFG_EN)
-#else
-#define BF_SDMAARM_PRF_CFG_EN(v)   (((v) << 0) & BM_SDMAARM_PRF_CFG_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_PRF_CFG_EN(v)   BF_CS1(SDMAARM_PRF_CFG, EN, v)
-#endif
-
-/*
- * HW_SDMAARM_CHNENBL - Channel Enable RAM
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned ENBLN : 32;
-
-    } B;
-} hw_sdmaarm_chnenbl_t;
-#endif
-
-/*
- * constants & macros for entire SDMAARM_CHNENBL register
- */
-#define HW_SDMAARM_CHNENBL_ADDR      (REGS_SDMAARM_BASE + 0x80)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_CHNENBL           (*(volatile hw_sdmaarm_chnenbl_t *) HW_SDMAARM_CHNENBL_ADDR)
-#define HW_SDMAARM_CHNENBL_RD()      (HW_SDMAARM_CHNENBL.U)
-#define HW_SDMAARM_CHNENBL_WR(v)     (HW_SDMAARM_CHNENBL.U = (v))
-#define HW_SDMAARM_CHNENBL_SET(v)    (HW_SDMAARM_CHNENBL_WR(HW_SDMAARM_CHNENBL_RD() |  (v)))
-#define HW_SDMAARM_CHNENBL_CLR(v)    (HW_SDMAARM_CHNENBL_WR(HW_SDMAARM_CHNENBL_RD() & ~(v)))
-#define HW_SDMAARM_CHNENBL_TOG(v)    (HW_SDMAARM_CHNENBL_WR(HW_SDMAARM_CHNENBL_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_CHNENBL bitfields
- */
-
-/* --- Register HW_SDMAARM_CHNENBL, field ENBLN */
-
-#define BP_SDMAARM_CHNENBL_ENBLN      0
-#define BM_SDMAARM_CHNENBL_ENBLN      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CHNENBL_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_CHNENBL_ENBLN)
-#else
-#define BF_SDMAARM_CHNENBL_ENBLN(v)   (((v) << 0) & BM_SDMAARM_CHNENBL_ENBLN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_CHNENBL_ENBLN(v)   BF_CS1(SDMAARM_CHNENBL, ENBLN, v)
-#endif
-
-/*
- * HW_SDMAARM_SDMA_CHNPRI - Channel Priority Registers
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 29;
-        unsigned CHNPRIN : 3;
-
+        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri_t;
 #endif
@@ -2476,7 +1838,13 @@ typedef union
  * constants & macros for individual SDMAARM_SDMA_CHNPRI bitfields
  */
 
-/* --- Register HW_SDMAARM_SDMA_CHNPRI, field CHNPRIN */
+/* --- Register HW_SDMAARM_SDMA_CHNPRI, field CHNPRIN
+ *
+ * This contains the priority of channel number n . Useful values
+ * are between 1 and 7; 0 is reserved by the SDMA hardware to determine
+ * when there is no pending channel. Reset value is 0, which prevents
+ * the channels from starting.
+ */
 
 #define BP_SDMAARM_SDMA_CHNPRI_CHNPRIN      0
 #define BM_SDMAARM_SDMA_CHNPRI_CHNPRIN      0x00000007
@@ -2490,54 +1858,50 @@ typedef union
 #define BW_SDMAARM_SDMA_CHNPRI_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI, CHNPRIN, v)
 #endif
 
-/*
- * HW_SDMAARM_SDMA.CHNENBL - Channel Enable RAM
+
+
+/*!
+ * @brief All SDMAARM module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef union
+typedef struct
 {
-    reg32_t  U;
-    struct
-    {
-        unsigned ENBLN : 32;
-
-    } B;
-} hw_sdmaarm_sdma.chnenbl_t;
+    volatile hw_sdmaarm_mc0ptr_t MC0PTR; //!< ARM platform Channel 0 Pointer
+    volatile hw_sdmaarm_intr_t INTR; //!< Channel Interrupts
+    volatile hw_sdmaarm_stop_stat_t STOP_STAT; //!< Channel Stop/Channel Status
+    volatile hw_sdmaarm_hstart_t HSTART; //!< Channel Start
+    volatile hw_sdmaarm_evtovr_t EVTOVR; //!< Channel Event Override
+    volatile hw_sdmaarm_dspovr_t DSPOVR; //!< Channel BP Override
+    volatile hw_sdmaarm_hostovr_t HOSTOVR; //!< Channel ARM platform Override
+    volatile hw_sdmaarm_evtpend_t EVTPEND; //!< Channel Event Pending
+    reg32_t _reserved0;
+    volatile hw_sdmaarm_reset_t RESET; //!< Reset Register
+    volatile hw_sdmaarm_evterr_t EVTERR; //!< DMA Request Error Register
+    volatile hw_sdmaarm_intrmask_t INTRMASK; //!< Channel ARM platform Interrupt Mask
+    volatile hw_sdmaarm_psw_t PSW; //!< Schedule Status
+    volatile hw_sdmaarm_evterrdbg_t EVTERRDBG; //!< DMA Request Error Register
+    volatile hw_sdmaarm_config_t CONFIG; //!< Configuration Register
+    reg32_t _reserved1;
+    volatile hw_sdmaarm_once_enb_t ONCE_ENB; //!< OnCE Enable
+    volatile hw_sdmaarm_once_data_t ONCE_DATA; //!< OnCE Data Register
+    volatile hw_sdmaarm_once_instr_t ONCE_INSTR; //!< OnCE Instruction Register
+    volatile hw_sdmaarm_once_stat_t ONCE_STAT; //!< OnCE Status Register
+    volatile hw_sdmaarm_once_cmd_t ONCE_CMD; //!< OnCE Command Register
+    reg32_t _reserved2;
+    volatile hw_sdmaarm_illinstaddr_t ILLINSTADDR; //!< Illegal Instruction Trap Address
+    volatile hw_sdmaarm_chn0addr_t CHN0ADDR; //!< Channel 0 Boot Address
+    reg32_t _reserved3[4];
+    volatile hw_sdmaarm_xtrig_conf1_t XTRIG_CONF1; //!< Cross-Trigger Events Configuration Register                        1
+    volatile hw_sdmaarm_xtrig_conf2_t XTRIG_CONF2; //!< Cross-Trigger Events Configuration Register                        2
+    reg32_t _reserved4[34];
+    volatile hw_sdmaarm_sdma_chnpri_t SDMA_CHNPRI; //!< Channel Priority Registers
+} hw_sdmaarm_t
 #endif
 
-/*
- * constants & macros for entire SDMAARM_SDMA.CHNENBL register
- */
-#define HW_SDMAARM_SDMA.CHNENBL_ADDR      (REGS_SDMAARM_BASE + 0x200)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMAARM_SDMA.CHNENBL           (*(volatile hw_sdmaarm_sdma.chnenbl_t *) HW_SDMAARM_SDMA.CHNENBL_ADDR)
-#define HW_SDMAARM_SDMA.CHNENBL_RD()      (HW_SDMAARM_SDMA.CHNENBL.U)
-#define HW_SDMAARM_SDMA.CHNENBL_WR(v)     (HW_SDMAARM_SDMA.CHNENBL.U = (v))
-#define HW_SDMAARM_SDMA.CHNENBL_SET(v)    (HW_SDMAARM_SDMA.CHNENBL_WR(HW_SDMAARM_SDMA.CHNENBL_RD() |  (v)))
-#define HW_SDMAARM_SDMA.CHNENBL_CLR(v)    (HW_SDMAARM_SDMA.CHNENBL_WR(HW_SDMAARM_SDMA.CHNENBL_RD() & ~(v)))
-#define HW_SDMAARM_SDMA.CHNENBL_TOG(v)    (HW_SDMAARM_SDMA.CHNENBL_WR(HW_SDMAARM_SDMA.CHNENBL_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMAARM_SDMA.CHNENBL bitfields
- */
-
-/* --- Register HW_SDMAARM_SDMA.CHNENBL, field ENBLN */
-
-#define BP_SDMAARM_SDMA.CHNENBL_ENBLN      0
-#define BM_SDMAARM_SDMA.CHNENBL_ENBLN      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA.CHNENBL_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA.CHNENBL_ENBLN)
-#else
-#define BF_SDMAARM_SDMA.CHNENBL_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA.CHNENBL_ENBLN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMAARM_SDMA.CHNENBL_ENBLN(v)   BF_CS1(SDMAARM_SDMA.CHNENBL, ENBLN, v)
-#endif
+//! @brief Macro to access all SDMAARM registers.
+//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
+//!     use the '&' operator, like <code>&HW_SDMAARM(0)</code>.
+#define HW_SDMAARM     (*(volatile hw_sdmaarm_t *) REGS_SDMAARM_BASE)
 
 
 #endif // _SDMAARM_H
-

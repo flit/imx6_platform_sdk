@@ -12,12 +12,15 @@
 
 #ifndef REGS_VPU_BASE
 #define REGS_VPU_BASE (REGS_BASE + 0x02040000)
-
 #endif
 
 
-/*
- * HW_VPU_CODERUN - BIT Processor run start
+/*!
+ * @brief HW_VPU_CODERUN - BIT Processor run start
+ *
+ * See the figure below for illustration of valid bits in VPU Code Run
+ * Register and the table below for description of the bit fields in the
+ * register.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -25,9 +28,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 31;
-        unsigned VPU : 1;
-
+        unsigned VPU : 1; //!< VPU_CodeRun. BIT processor run start bit.
+        unsigned RESERVED0 : 31; //!< Reserved
     } B;
 } hw_vpu_coderun_t;
 #endif
@@ -51,7 +53,10 @@ typedef union
  * constants & macros for individual VPU_CODERUN bitfields
  */
 
-/* --- Register HW_VPU_CODERUN, field VPU */
+/* --- Register HW_VPU_CODERUN, field VPU
+ *
+ * VPU_CodeRun. BIT processor run start bit.
+ */
 
 #define BP_VPU_CODERUN_VPU      0
 #define BM_VPU_CODERUN_VPU      0x00000001
@@ -65,8 +70,12 @@ typedef union
 #define BW_VPU_CODERUN_VPU(v)   BF_CS1(VPU_CODERUN, VPU, v)
 #endif
 
-/*
- * HW_VPU_CODEDOWN - BIT Boot Code Download Data register
+/*!
+ * @brief HW_VPU_CODEDOWN - BIT Boot Code Download Data register
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Boot Code
+ * Download Data Register and the following table for description of the
+ * bit fields in the register.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -74,10 +83,9 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 3;
-        unsigned CODEADDR : 13;
-        unsigned CODEDATA : 16;
-
+        unsigned CODEDATA : 16; //!< CodeData[15:0]  Download data of VPU BIT boot code.
+        unsigned CODEADDR : 13; //!< CodeAddr[12:0]  Download address of VPU BIT boot code, which is VPU internal address of BIT processor.
+        unsigned RESERVED0 : 3; //!< Reserved
     } B;
 } hw_vpu_codedown_t;
 #endif
@@ -101,21 +109,10 @@ typedef union
  * constants & macros for individual VPU_CODEDOWN bitfields
  */
 
-/* --- Register HW_VPU_CODEDOWN, field CODEADDR */
-
-#define BP_VPU_CODEDOWN_CODEADDR      16
-#define BM_VPU_CODEDOWN_CODEADDR      0x1fff0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_VPU_CODEDOWN_CODEADDR(v)   ((((reg32_t) v) << 16) & BM_VPU_CODEDOWN_CODEADDR)
-#else
-#define BF_VPU_CODEDOWN_CODEADDR(v)   (((v) << 16) & BM_VPU_CODEDOWN_CODEADDR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_VPU_CODEDOWN_CODEADDR(v)   BF_CS1(VPU_CODEDOWN, CODEADDR, v)
-#endif
-
-/* --- Register HW_VPU_CODEDOWN, field CODEDATA */
+/* --- Register HW_VPU_CODEDOWN, field CODEDATA
+ *
+ * CodeData[15:0]  Download data of VPU BIT boot code.
+ */
 
 #define BP_VPU_CODEDOWN_CODEDATA      0
 #define BM_VPU_CODEDOWN_CODEDATA      0x0000ffff
@@ -129,8 +126,30 @@ typedef union
 #define BW_VPU_CODEDOWN_CODEDATA(v)   BF_CS1(VPU_CODEDOWN, CODEDATA, v)
 #endif
 
-/*
- * HW_VPU_HOSTINTREQ - Host Interrupt Request to BIT
+/* --- Register HW_VPU_CODEDOWN, field CODEADDR
+ *
+ * CodeAddr[12:0]  Download address of VPU BIT boot code, which is VPU internal address
+ * of BIT processor.
+ */
+
+#define BP_VPU_CODEDOWN_CODEADDR      16
+#define BM_VPU_CODEDOWN_CODEADDR      0x1fff0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_VPU_CODEDOWN_CODEADDR(v)   ((((reg32_t) v) << 16) & BM_VPU_CODEDOWN_CODEADDR)
+#else
+#define BF_VPU_CODEDOWN_CODEADDR(v)   (((v) << 16) & BM_VPU_CODEDOWN_CODEADDR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_VPU_CODEDOWN_CODEADDR(v)   BF_CS1(VPU_CODEDOWN, CODEADDR, v)
+#endif
+
+/*!
+ * @brief HW_VPU_HOSTINTREQ - Host Interrupt Request to BIT
+ *
+ * See the figure below for illustration of valid bits in VPU Host Interrupt
+ * Request Register and the following table for description of the bit
+ * fields in the register.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -138,9 +157,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 31;
-        unsigned INTREQ : 1;
-
+        unsigned INTREQ : 1; //!< IntReq. The host interrupt request bit.
+        unsigned RESERVED0 : 31; //!< Reserved
     } B;
 } hw_vpu_hostintreq_t;
 #endif
@@ -164,7 +182,10 @@ typedef union
  * constants & macros for individual VPU_HOSTINTREQ bitfields
  */
 
-/* --- Register HW_VPU_HOSTINTREQ, field INTREQ */
+/* --- Register HW_VPU_HOSTINTREQ, field INTREQ
+ *
+ * IntReq. The host interrupt request bit.
+ */
 
 #define BP_VPU_HOSTINTREQ_INTREQ      0
 #define BM_VPU_HOSTINTREQ_INTREQ      0x00000001
@@ -178,8 +199,12 @@ typedef union
 #define BW_VPU_HOSTINTREQ_INTREQ(v)   BF_CS1(VPU_HOSTINTREQ, INTREQ, v)
 #endif
 
-/*
- * HW_VPU_BITINTCLEAR - BIT Interrupt Clear
+/*!
+ * @brief HW_VPU_BITINTCLEAR - BIT Interrupt Clear
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Interrupt
+ * Clear Register and the following table for description of the bit fields
+ * in the register.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -187,9 +212,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 31;
-        unsigned INTCLEAR : 1;
-
+        unsigned INTCLEAR : 1; //!< IntClear. BIT interrupt clear bit.
+        unsigned RESERVED0 : 31; //!< Reserved
     } B;
 } hw_vpu_bitintclear_t;
 #endif
@@ -213,7 +237,10 @@ typedef union
  * constants & macros for individual VPU_BITINTCLEAR bitfields
  */
 
-/* --- Register HW_VPU_BITINTCLEAR, field INTCLEAR */
+/* --- Register HW_VPU_BITINTCLEAR, field INTCLEAR
+ *
+ * IntClear. BIT interrupt clear bit.
+ */
 
 #define BP_VPU_BITINTCLEAR_INTCLEAR      0
 #define BM_VPU_BITINTCLEAR_INTCLEAR      0x00000001
@@ -227,8 +254,12 @@ typedef union
 #define BW_VPU_BITINTCLEAR_INTCLEAR(v)   BF_CS1(VPU_BITINTCLEAR, INTCLEAR, v)
 #endif
 
-/*
- * HW_VPU_BITINTSTS - BIT Interrupt Status
+/*!
+ * @brief HW_VPU_BITINTSTS - BIT Interrupt Status
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Interrupt
+ * Status Register and the following table for description of the bit
+ * fields in the register.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -236,9 +267,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 31;
-        unsigned INTSTS : 1;
-
+        unsigned INTSTS : 1; //!< IntSts. BIT interrupt status bit.
+        unsigned RESERVED0 : 31; //!< Reserved
     } B;
 } hw_vpu_bitintsts_t;
 #endif
@@ -262,7 +292,10 @@ typedef union
  * constants & macros for individual VPU_BITINTSTS bitfields
  */
 
-/* --- Register HW_VPU_BITINTSTS, field INTSTS */
+/* --- Register HW_VPU_BITINTSTS, field INTSTS
+ *
+ * IntSts. BIT interrupt status bit.
+ */
 
 #define BP_VPU_BITINTSTS_INTSTS      0
 #define BM_VPU_BITINTSTS_INTSTS      0x00000001
@@ -276,8 +309,12 @@ typedef union
 #define BW_VPU_BITINTSTS_INTSTS(v)   BF_CS1(VPU_BITINTSTS, INTSTS, v)
 #endif
 
-/*
- * HW_VPU_BITCURPC - BIT Current PC
+/*!
+ * @brief HW_VPU_BITCURPC - BIT Current PC
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Current PC
+ * Register and the following table for description of the bit fields in
+ * the register.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -285,9 +322,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 18;
-        unsigned CURPC : 14;
-
+        unsigned CURPC : 14; //!< CurPc[13:0]. BIT current PC value.  Returns the current program counter of BIT processor by reading this register.
+        unsigned RESERVED0 : 18; //!< Reserved
     } B;
 } hw_vpu_bitcurpc_t;
 #endif
@@ -311,7 +347,11 @@ typedef union
  * constants & macros for individual VPU_BITCURPC bitfields
  */
 
-/* --- Register HW_VPU_BITCURPC, field CURPC */
+/* --- Register HW_VPU_BITCURPC, field CURPC
+ *
+ * CurPc[13:0]. BIT current PC value.  Returns the current program counter of BIT processor by
+ * reading this                                 register.
+ */
 
 #define BP_VPU_BITCURPC_CURPC      0
 #define BM_VPU_BITCURPC_CURPC      0x00003fff
@@ -325,8 +365,12 @@ typedef union
 #define BW_VPU_BITCURPC_CURPC(v)   BF_CS1(VPU_BITCURPC, CURPC, v)
 #endif
 
-/*
- * HW_VPU_BITCODECBUSY - BIT CODEC Busy
+/*!
+ * @brief HW_VPU_BITCODECBUSY - BIT CODEC Busy
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Codec Busy
+ * Register and the following table for description of the bit fields in
+ * the register.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -334,9 +378,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 31;
-        unsigned CODECBUSY : 1;
-
+        unsigned CODECBUSY : 1; //!< Codec busy flag for Bit processor.BIT processor write "1"to this register when the processor is running."0"means processor is waiting for a command.This value is connected to the o_vpu_idle.
+        unsigned RESERVED0 : 31; //!< Reserved
     } B;
 } hw_vpu_bitcodecbusy_t;
 #endif
@@ -360,7 +403,12 @@ typedef union
  * constants & macros for individual VPU_BITCODECBUSY bitfields
  */
 
-/* --- Register HW_VPU_BITCODECBUSY, field CODECBUSY */
+/* --- Register HW_VPU_BITCODECBUSY, field CODECBUSY
+ *
+ * Codec busy flag for Bit processor.BIT processor write "1"to this
+ * register when the processor is running."0"means processor is waiting
+ * for a command.This value is connected to the o_vpu_idle.
+ */
 
 #define BP_VPU_BITCODECBUSY_CODECBUSY      0
 #define BM_VPU_BITCODECBUSY_CODECBUSY      0x00000001
@@ -375,5 +423,29 @@ typedef union
 #endif
 
 
-#endif // _VPU_H
 
+/*!
+ * @brief All VPU module registers.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef struct
+{
+    volatile hw_vpu_coderun_t CODERUN; //!< BIT Processor run start
+    volatile hw_vpu_codedown_t CODEDOWN; //!< BIT Boot Code Download Data register
+    volatile hw_vpu_hostintreq_t HOSTINTREQ; //!< Host Interrupt Request to BIT
+    volatile hw_vpu_bitintclear_t BITINTCLEAR; //!< BIT Interrupt Clear
+    volatile hw_vpu_bitintsts_t BITINTSTS; //!< BIT Interrupt Status
+    reg32_t _reserved0;
+    volatile hw_vpu_bitcurpc_t BITCURPC; //!< BIT Current PC
+    reg32_t _reserved1;
+    volatile hw_vpu_bitcodecbusy_t BITCODECBUSY; //!< BIT CODEC Busy
+} hw_vpu_t
+#endif
+
+//! @brief Macro to access all VPU registers.
+//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
+//!     use the '&' operator, like <code>&HW_VPU(0)</code>.
+#define HW_VPU     (*(volatile hw_vpu_t *) REGS_VPU_BASE)
+
+
+#endif // _VPU_H

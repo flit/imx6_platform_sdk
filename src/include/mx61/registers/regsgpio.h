@@ -19,12 +19,25 @@
 #define REGS_GPIO5_BASE (REGS_BASE + 0x020b0000)
 #define REGS_GPIO6_BASE (REGS_BASE + 0x020b4000)
 #define REGS_GPIO_BASE(x) ( x == 0 ? REGS_GPIO0_BASE : x == 1 ? REGS_GPIO1_BASE : x == 2 ? REGS_GPIO2_BASE : x == 3 ? REGS_GPIO3_BASE : x == 4 ? REGS_GPIO4_BASE : x == 5 ? REGS_GPIO5_BASE : x == 6 ? REGS_GPIO6_BASE : 0xffff0000)
-
 #endif
 
 
-/*
- * HW_GPIO_DR - GPIO data register
+/*!
+ * @brief HW_GPIO_DR - GPIO data register
+ *
+ * The 32-bit GPIO_DR register stores data that is ready to be driven to the
+ * output lines. If the IOMUXC is in GPIO mode and a given GPIO direction
+ * bit is set, then the corresponding DR bit is driven to the output. If a
+ * given GPIO direction bit is cleared, then a read of GPIO_DR reflects the
+ * value of the corresponding signal.Two wait states are required in read
+ * access for synchronization.  The results of a read of a DR bit depends on the IOMUXC input mode
+ * settings and the corresponding GDIR bit as follows:   If GDIR[ n ] is set and IOMUXC input mode
+ * is GPIO, then reading                                     DR[ n ] returns the contents of DR[ n
+ * ].  If GDIR[ n ] is cleared and IOMUXC input mode is GPIO, then
+ * reading DR[ n ] returns the corresponding input signal's value.  If GDIR[ n ] is set and IOMUXC
+ * input mode is not GPIO, then                                 reading DR[ n ] returns the contents
+ * of DR[ n ].  If GDIR[ n ] is cleared and IOMUXC input mode is not GPIO, then
+ * reading DR[ n ] always returns zero.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -32,8 +45,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned DR : 32;
-
+        unsigned DR : 32; //!< Data bits. This register defines the value of the GPIO output when the signal is configured as an output (GDIR[n]=1). Writes to this register are stored in a register. Reading GPIO_DR returns the value stored in the register if the signal is configured as an output (GDIR[n]=1), or the input signal's value if configured as an input (GDIR[n]=0).  The I/O multiplexer must be configured to GPIO mode for the GPIO_DR value to connect with the signal. Reading the data register with the input path disabled always returns a zero value.
     } B;
 } hw_gpio_dr_t;
 #endif
@@ -57,7 +69,17 @@ typedef union
  * constants & macros for individual GPIO_DR bitfields
  */
 
-/* --- Register HW_GPIO_DR, field DR */
+/* --- Register HW_GPIO_DR, field DR
+ *
+ * Data bits. This register defines the value of the GPIO output when
+ * the signal is configured as an output (GDIR[n]=1). Writes to this
+ * register are stored in a register. Reading GPIO_DR returns the value
+ * stored in the register if the signal is configured as an output
+ * (GDIR[n]=1), or the input signal's value if configured as an input
+ * (GDIR[n]=0).  The I/O multiplexer must be configured to GPIO mode for the
+ * GPIO_DR value to connect with the signal. Reading the data register
+ * with the input path disabled always returns a zero value.
+ */
 
 #define BP_GPIO_DR_DR      0
 #define BM_GPIO_DR_DR      0xffffffff
@@ -71,8 +93,14 @@ typedef union
 #define BW_GPIO_DR_DR(v)   BF_CS1(GPIO_DR, DR, v)
 #endif
 
-/*
- * HW_GPIO_GDIR - GPIO direction register
+/*!
+ * @brief HW_GPIO_GDIR - GPIO direction register
+ *
+ * GPIO_GDIR functions as direction control when the IOMUXC is in GPIO mode.
+ * Each bit specifies the direction of a one-bit signal. The mapping of
+ * each DIR bit to a corresponding SoC signal is determined by the SoC's
+ * pin assignment and the IOMUX table-for more details consult the IOMUXC
+ * chapter.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -80,8 +108,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned GDIR : 32;
-
+        unsigned GDIR : 32; //!< GPIO direction bits. Bit n of this register defines the direction of the GPIO[n] signal.  GPIO_GDIR affects only the direction of the I/O signal when the corresponding bit in the I/O MUX is configured for GPIO.
     } B;
 } hw_gpio_gdir_t;
 #endif
@@ -105,7 +132,12 @@ typedef union
  * constants & macros for individual GPIO_GDIR bitfields
  */
 
-/* --- Register HW_GPIO_GDIR, field GDIR */
+/* --- Register HW_GPIO_GDIR, field GDIR
+ *
+ * GPIO direction bits. Bit n of this register defines the direction of
+ * the GPIO[n] signal.  GPIO_GDIR affects only the direction of the I/O signal when the
+ * corresponding bit in the I/O MUX is configured for GPIO.
+ */
 
 #define BP_GPIO_GDIR_GDIR      0
 #define BM_GPIO_GDIR_GDIR      0xffffffff
@@ -119,8 +151,14 @@ typedef union
 #define BW_GPIO_GDIR_GDIR(v)   BF_CS1(GPIO_GDIR, GDIR, v)
 #endif
 
-/*
- * HW_GPIO_PSR - GPIO pad status register
+/*!
+ * @brief HW_GPIO_PSR - GPIO pad status register
+ *
+ * GPIO_PSR is a read-only register. Each bit stores the value of the
+ * corresponding input signal (as configured in the IOMUX). This register
+ * is clocked with the ipg_clk_s clock, meaning that the input signal is
+ * sampled only when accessing this location. Two wait states are required
+ * any time this register is accessed for synchronization.  PSR[i]-pad sample
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -128,8 +166,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned PSR : 32;
-
+        unsigned PSR : 32; //!< GPIO pad status bits (status bits). Reading GPIO_PSR returns the state of the corresponding input signal.  Settings:  The I/O multiplexer must be configured to GPIO mode for GPIO_PSR to reflect the state of the corresponding signal. [What happens if the IOMUX is not configured to GPIO mode? Does it return 0?-- cpt]
     } B;
 } hw_gpio_psr_t;
 #endif
@@ -153,7 +190,14 @@ typedef union
  * constants & macros for individual GPIO_PSR bitfields
  */
 
-/* --- Register HW_GPIO_PSR, field PSR */
+/* --- Register HW_GPIO_PSR, field PSR
+ *
+ * GPIO pad status bits (status bits). Reading GPIO_PSR returns the
+ * state of the corresponding input signal.  Settings:  The I/O multiplexer must be configured to
+ * GPIO mode for GPIO_PSR                                 to reflect the state of the corresponding
+ * signal. [What happens if the IOMUX is not configured                                     to GPIO
+ * mode? Does it return 0?-- cpt]
+ */
 
 #define BP_GPIO_PSR_PSR      0
 #define BM_GPIO_PSR_PSR      0xffffffff
@@ -167,8 +211,11 @@ typedef union
 #define BW_GPIO_PSR_PSR(v)   BF_CS1(GPIO_PSR, PSR, v)
 #endif
 
-/*
- * HW_GPIO_ICR1 - GPIO interrupt configuration register1
+/*!
+ * @brief HW_GPIO_ICR1 - GPIO interrupt configuration register1
+ *
+ * GPIO_ICR1 contains 16 two-bit fields, where each field specifies the
+ * interrupt configuration for a different input signal.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -176,23 +223,22 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ICR0 : 2;
-        unsigned ICR1 : 2;
-        unsigned ICR2 : 2;
-        unsigned ICR3 : 2;
-        unsigned ICR4 : 2;
-        unsigned ICR5 : 2;
-        unsigned ICR6 : 2;
-        unsigned ICR7 : 2;
-        unsigned ICR8 : 2;
-        unsigned ICR9 : 2;
-        unsigned ICR10 : 2;
-        unsigned ICR11 : 2;
-        unsigned ICR12 : 2;
-        unsigned ICR13 : 2;
-        unsigned ICR14 : 2;
-        unsigned ICR15 : 2;
-
+        unsigned ICR0 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR1 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR2 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR3 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR4 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR5 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR6 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR7 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR8 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR9 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR10 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR11 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR12 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR13 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR14 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR15 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
     } B;
 } hw_gpio_icr1_t;
 #endif
@@ -216,7 +262,12 @@ typedef union
  * constants & macros for individual GPIO_ICR1 bitfields
  */
 
-/* --- Register HW_GPIO_ICR1, field ICR0 */
+/* --- Register HW_GPIO_ICR1, field ICR0
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR0      0
 #define BM_GPIO_ICR1_ICR0      0x00000003
@@ -230,7 +281,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR0(v)   BF_CS1(GPIO_ICR1, ICR0, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR1 */
+/* --- Register HW_GPIO_ICR1, field ICR1
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR1      2
 #define BM_GPIO_ICR1_ICR1      0x0000000c
@@ -244,7 +300,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR1(v)   BF_CS1(GPIO_ICR1, ICR1, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR2 */
+/* --- Register HW_GPIO_ICR1, field ICR2
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR2      4
 #define BM_GPIO_ICR1_ICR2      0x00000030
@@ -258,7 +319,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR2(v)   BF_CS1(GPIO_ICR1, ICR2, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR3 */
+/* --- Register HW_GPIO_ICR1, field ICR3
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR3      6
 #define BM_GPIO_ICR1_ICR3      0x000000c0
@@ -272,7 +338,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR3(v)   BF_CS1(GPIO_ICR1, ICR3, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR4 */
+/* --- Register HW_GPIO_ICR1, field ICR4
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR4      8
 #define BM_GPIO_ICR1_ICR4      0x00000300
@@ -286,7 +357,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR4(v)   BF_CS1(GPIO_ICR1, ICR4, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR5 */
+/* --- Register HW_GPIO_ICR1, field ICR5
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR5      10
 #define BM_GPIO_ICR1_ICR5      0x00000c00
@@ -300,7 +376,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR5(v)   BF_CS1(GPIO_ICR1, ICR5, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR6 */
+/* --- Register HW_GPIO_ICR1, field ICR6
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR6      12
 #define BM_GPIO_ICR1_ICR6      0x00003000
@@ -314,7 +395,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR6(v)   BF_CS1(GPIO_ICR1, ICR6, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR7 */
+/* --- Register HW_GPIO_ICR1, field ICR7
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR7      14
 #define BM_GPIO_ICR1_ICR7      0x0000c000
@@ -328,7 +414,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR7(v)   BF_CS1(GPIO_ICR1, ICR7, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR8 */
+/* --- Register HW_GPIO_ICR1, field ICR8
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR8      16
 #define BM_GPIO_ICR1_ICR8      0x00030000
@@ -342,7 +433,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR8(v)   BF_CS1(GPIO_ICR1, ICR8, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR9 */
+/* --- Register HW_GPIO_ICR1, field ICR9
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR9      18
 #define BM_GPIO_ICR1_ICR9      0x000c0000
@@ -356,7 +452,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR9(v)   BF_CS1(GPIO_ICR1, ICR9, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR10 */
+/* --- Register HW_GPIO_ICR1, field ICR10
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR10      20
 #define BM_GPIO_ICR1_ICR10      0x00300000
@@ -370,7 +471,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR10(v)   BF_CS1(GPIO_ICR1, ICR10, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR11 */
+/* --- Register HW_GPIO_ICR1, field ICR11
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR11      22
 #define BM_GPIO_ICR1_ICR11      0x00c00000
@@ -384,7 +490,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR11(v)   BF_CS1(GPIO_ICR1, ICR11, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR12 */
+/* --- Register HW_GPIO_ICR1, field ICR12
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR12      24
 #define BM_GPIO_ICR1_ICR12      0x03000000
@@ -398,7 +509,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR12(v)   BF_CS1(GPIO_ICR1, ICR12, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR13 */
+/* --- Register HW_GPIO_ICR1, field ICR13
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR13      26
 #define BM_GPIO_ICR1_ICR13      0x0c000000
@@ -412,7 +528,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR13(v)   BF_CS1(GPIO_ICR1, ICR13, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR14 */
+/* --- Register HW_GPIO_ICR1, field ICR14
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR14      28
 #define BM_GPIO_ICR1_ICR14      0x30000000
@@ -426,7 +547,12 @@ typedef union
 #define BW_GPIO_ICR1_ICR14(v)   BF_CS1(GPIO_ICR1, ICR14, v)
 #endif
 
-/* --- Register HW_GPIO_ICR1, field ICR15 */
+/* --- Register HW_GPIO_ICR1, field ICR15
+ *
+ * Interrupt configuration 1 fields. This register controls the active
+ * condition of the interrupt function for lines 15 to 0.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR1_ICR15      30
 #define BM_GPIO_ICR1_ICR15      0xc0000000
@@ -440,8 +566,11 @@ typedef union
 #define BW_GPIO_ICR1_ICR15(v)   BF_CS1(GPIO_ICR1, ICR15, v)
 #endif
 
-/*
- * HW_GPIO_ICR2 - GPIO interrupt configuration register2
+/*!
+ * @brief HW_GPIO_ICR2 - GPIO interrupt configuration register2
+ *
+ * GPIO_ICR2 contains 16 two-bit fields, where each field specifies the
+ * interrupt configuration for a different input signal.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -449,23 +578,22 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ICR16 : 2;
-        unsigned ICR17 : 2;
-        unsigned ICR18 : 2;
-        unsigned ICR19 : 2;
-        unsigned ICR20 : 2;
-        unsigned ICR21 : 2;
-        unsigned ICR22 : 2;
-        unsigned ICR23 : 2;
-        unsigned ICR24 : 2;
-        unsigned ICR25 : 2;
-        unsigned ICR26 : 2;
-        unsigned ICR27 : 2;
-        unsigned ICR28 : 2;
-        unsigned ICR29 : 2;
-        unsigned ICR30 : 2;
-        unsigned ICR31 : 2;
-
+        unsigned ICR16 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR17 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR18 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR19 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR20 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR21 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR22 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR23 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR24 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR25 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR26 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR27 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR28 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR29 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR30 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR31 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
     } B;
 } hw_gpio_icr2_t;
 #endif
@@ -489,7 +617,12 @@ typedef union
  * constants & macros for individual GPIO_ICR2 bitfields
  */
 
-/* --- Register HW_GPIO_ICR2, field ICR16 */
+/* --- Register HW_GPIO_ICR2, field ICR16
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR16      0
 #define BM_GPIO_ICR2_ICR16      0x00000003
@@ -503,7 +636,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR16(v)   BF_CS1(GPIO_ICR2, ICR16, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR17 */
+/* --- Register HW_GPIO_ICR2, field ICR17
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR17      2
 #define BM_GPIO_ICR2_ICR17      0x0000000c
@@ -517,7 +655,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR17(v)   BF_CS1(GPIO_ICR2, ICR17, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR18 */
+/* --- Register HW_GPIO_ICR2, field ICR18
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR18      4
 #define BM_GPIO_ICR2_ICR18      0x00000030
@@ -531,7 +674,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR18(v)   BF_CS1(GPIO_ICR2, ICR18, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR19 */
+/* --- Register HW_GPIO_ICR2, field ICR19
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR19      6
 #define BM_GPIO_ICR2_ICR19      0x000000c0
@@ -545,7 +693,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR19(v)   BF_CS1(GPIO_ICR2, ICR19, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR20 */
+/* --- Register HW_GPIO_ICR2, field ICR20
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR20      8
 #define BM_GPIO_ICR2_ICR20      0x00000300
@@ -559,7 +712,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR20(v)   BF_CS1(GPIO_ICR2, ICR20, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR21 */
+/* --- Register HW_GPIO_ICR2, field ICR21
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR21      10
 #define BM_GPIO_ICR2_ICR21      0x00000c00
@@ -573,7 +731,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR21(v)   BF_CS1(GPIO_ICR2, ICR21, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR22 */
+/* --- Register HW_GPIO_ICR2, field ICR22
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR22      12
 #define BM_GPIO_ICR2_ICR22      0x00003000
@@ -587,7 +750,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR22(v)   BF_CS1(GPIO_ICR2, ICR22, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR23 */
+/* --- Register HW_GPIO_ICR2, field ICR23
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR23      14
 #define BM_GPIO_ICR2_ICR23      0x0000c000
@@ -601,7 +769,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR23(v)   BF_CS1(GPIO_ICR2, ICR23, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR24 */
+/* --- Register HW_GPIO_ICR2, field ICR24
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR24      16
 #define BM_GPIO_ICR2_ICR24      0x00030000
@@ -615,7 +788,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR24(v)   BF_CS1(GPIO_ICR2, ICR24, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR25 */
+/* --- Register HW_GPIO_ICR2, field ICR25
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR25      18
 #define BM_GPIO_ICR2_ICR25      0x000c0000
@@ -629,7 +807,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR25(v)   BF_CS1(GPIO_ICR2, ICR25, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR26 */
+/* --- Register HW_GPIO_ICR2, field ICR26
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR26      20
 #define BM_GPIO_ICR2_ICR26      0x00300000
@@ -643,7 +826,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR26(v)   BF_CS1(GPIO_ICR2, ICR26, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR27 */
+/* --- Register HW_GPIO_ICR2, field ICR27
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR27      22
 #define BM_GPIO_ICR2_ICR27      0x00c00000
@@ -657,7 +845,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR27(v)   BF_CS1(GPIO_ICR2, ICR27, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR28 */
+/* --- Register HW_GPIO_ICR2, field ICR28
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR28      24
 #define BM_GPIO_ICR2_ICR28      0x03000000
@@ -671,7 +864,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR28(v)   BF_CS1(GPIO_ICR2, ICR28, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR29 */
+/* --- Register HW_GPIO_ICR2, field ICR29
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR29      26
 #define BM_GPIO_ICR2_ICR29      0x0c000000
@@ -685,7 +883,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR29(v)   BF_CS1(GPIO_ICR2, ICR29, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR30 */
+/* --- Register HW_GPIO_ICR2, field ICR30
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR30      28
 #define BM_GPIO_ICR2_ICR30      0x30000000
@@ -699,7 +902,12 @@ typedef union
 #define BW_GPIO_ICR2_ICR30(v)   BF_CS1(GPIO_ICR2, ICR30, v)
 #endif
 
-/* --- Register HW_GPIO_ICR2, field ICR31 */
+/* --- Register HW_GPIO_ICR2, field ICR31
+ *
+ * Interrupt configuration 2 fields. This register controls the active
+ * condition of the interrupt function for lines 31 to 16.  Settings:  Bits ICRn[1:0] determine the
+ * interrupt condition for signal n as                                 follows:
+ */
 
 #define BP_GPIO_ICR2_ICR31      30
 #define BM_GPIO_ICR2_ICR31      0xc0000000
@@ -713,8 +921,10 @@ typedef union
 #define BW_GPIO_ICR2_ICR31(v)   BF_CS1(GPIO_ICR2, ICR31, v)
 #endif
 
-/*
- * HW_GPIO_IMR - GPIO interrupt mask register
+/*!
+ * @brief HW_GPIO_IMR - GPIO interrupt mask register
+ *
+ * GPIO_IMR contains masking bits for each interrupt line.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -722,8 +932,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned IMR : 32;
-
+        unsigned IMR : 32; //!< Interrupt Mask bits. This register is used to enable or disable the interrupt function on each of the 32 GPIO signals.  Settings:  Bit IMR[n] (n=0...31) controls interrupt n as follows:
     } B;
 } hw_gpio_imr_t;
 #endif
@@ -747,7 +956,12 @@ typedef union
  * constants & macros for individual GPIO_IMR bitfields
  */
 
-/* --- Register HW_GPIO_IMR, field IMR */
+/* --- Register HW_GPIO_IMR, field IMR
+ *
+ * Interrupt Mask bits. This register is used to enable or disable the
+ * interrupt function on each of the 32 GPIO signals.  Settings:  Bit IMR[n] (n=0...31) controls
+ * interrupt n as follows:
+ */
 
 #define BP_GPIO_IMR_IMR      0
 #define BM_GPIO_IMR_IMR      0xffffffff
@@ -761,8 +975,16 @@ typedef union
 #define BW_GPIO_IMR_IMR(v)   BF_CS1(GPIO_IMR, IMR, v)
 #endif
 
-/*
- * HW_GPIO_ISR - GPIO interrupt status register
+/*!
+ * @brief HW_GPIO_ISR - GPIO interrupt status register
+ *
+ * The GPIO_ISR functions as an interrupt status indicator. Each bit
+ * indicates whether an interrupt condition has been met for the
+ * corresponding input signal. When an interrupt condition is met (as
+ * determined by the corresponding interrupt condition register field), the
+ * corresponding bit in this register is set. Two wait states are required
+ * in read access for synchronization. One wait state is required for
+ * reset.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -770,8 +992,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ISR : 32;
-
+        unsigned ISR : 32; //!< Interrupt status bits - Bit n of this register is asserted (active high) when the active condition (as determined by the corresponding ICR bit) is detected on the GPIO input and is waiting for service. The value of this register is independent of the value in GPIO_IMR.  When the active condition has been detected, the corresponding bit remains set until cleared by software. Status flags are cleared by writing a 1 to the corresponding bit position.
     } B;
 } hw_gpio_isr_t;
 #endif
@@ -795,7 +1016,16 @@ typedef union
  * constants & macros for individual GPIO_ISR bitfields
  */
 
-/* --- Register HW_GPIO_ISR, field ISR */
+/* --- Register HW_GPIO_ISR, field ISR
+ *
+ * Interrupt status bits - Bit n of this register is asserted (active
+ * high) when the active condition (as determined by the corresponding
+ * ICR bit) is detected on the GPIO input and is waiting for service.
+ * The value of this register is independent of the value in
+ * GPIO_IMR.  When the active condition has been detected, the corresponding bit
+ * remains set until cleared by software. Status flags are cleared by
+ * writing a 1 to the corresponding bit position.
+ */
 
 #define BP_GPIO_ISR_ISR      0
 #define BM_GPIO_ISR_ISR      0xffffffff
@@ -809,8 +1039,15 @@ typedef union
 #define BW_GPIO_ISR_ISR(v)   BF_CS1(GPIO_ISR, ISR, v)
 #endif
 
-/*
- * HW_GPIO_EDGE_SEL - GPIO edge select register
+/*!
+ * @brief HW_GPIO_EDGE_SEL - GPIO edge select register
+ *
+ * GPIO_EDGE_SEL may be used to override the ICR registers' configuration.
+ * If the GPIO_EDGE_SEL bit is set, then a rising edge or falling edge in
+ * the corresponding signal generates an interrupt. This register provides
+ * backward compatibility. On reset all bits are cleared (ICR is not
+ * overridden). [Is this single EDGE_SEL register                                 valid for all the
+ * GPIO's on the SoC? If so, should mention this --                                 CThron]
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -818,8 +1055,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned GPIO_EDGE_SEL : 32;
-
+        unsigned GPIO_EDGE_SEL : 32; //!< Edge select. When GPIO_EDGE_SEL[ n ] is set, the GPIO disregards the ICR[ n ] setting, and detects any edge on the corresponding input signal.
     } B;
 } hw_gpio_edge_sel_t;
 #endif
@@ -843,7 +1079,12 @@ typedef union
  * constants & macros for individual GPIO_EDGE_SEL bitfields
  */
 
-/* --- Register HW_GPIO_EDGE_SEL, field GPIO_EDGE_SEL */
+/* --- Register HW_GPIO_EDGE_SEL, field GPIO_EDGE_SEL
+ *
+ * Edge select. When GPIO_EDGE_SEL[ n ] is set, the GPIO disregards
+ * the ICR[ n ] setting, and detects any edge on the corresponding
+ * input signal.
+ */
 
 #define BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL      0
 #define BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL      0xffffffff
@@ -858,5 +1099,29 @@ typedef union
 #endif
 
 
-#endif // _GPIO_H
 
+/*!
+ * @brief All GPIO module registers.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef struct
+{
+    volatile hw_gpio_dr_t DR; //!< GPIO data register
+    volatile hw_gpio_gdir_t GDIR; //!< GPIO direction register
+    volatile hw_gpio_psr_t PSR; //!< GPIO pad status register
+    volatile hw_gpio_icr1_t ICR1; //!< GPIO interrupt configuration register1
+    volatile hw_gpio_icr2_t ICR2; //!< GPIO interrupt configuration register2
+    volatile hw_gpio_imr_t IMR; //!< GPIO interrupt mask register
+    volatile hw_gpio_isr_t ISR; //!< GPIO interrupt status register
+    volatile hw_gpio_edge_sel_t EDGE_SEL; //!< GPIO edge select register
+} hw_gpio_t
+#endif
+
+//! @brief Macro to access all GPIO registers.
+//! @param x GPIO instance number.
+//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
+//!     use the '&' operator, like <code>&HW_GPIO(0)</code>.
+#define HW_GPIO(x)     (*(volatile hw_gpio_t *) REGS_GPIO_BASE(x))
+
+
+#endif // _GPIO_H

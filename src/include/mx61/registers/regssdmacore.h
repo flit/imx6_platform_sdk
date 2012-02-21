@@ -12,12 +12,13 @@
 
 #ifndef REGS_SDMACORE_BASE
 #define REGS_SDMACORE_BASE (REGS_BASE + 0x020ec000)
-
 #endif
 
 
-/*
- * HW_SDMACORE_MC0PTR - ARM platform Channel 0 Pointer
+/*!
+ * @brief HW_SDMACORE_MC0PTR - ARM platform Channel 0 Pointer
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -25,8 +26,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned MC0PTR : 32;
-
+        unsigned MC0PTR : 32; //!< Contains the address-in the ARM platform memory space-of the initial SDMA context and scripts that are loaded by the SDMA boot script running on channel 0.
     } B;
 } hw_sdmacore_mc0ptr_t;
 #endif
@@ -50,7 +50,12 @@ typedef union
  * constants & macros for individual SDMACORE_MC0PTR bitfields
  */
 
-/* --- Register HW_SDMACORE_MC0PTR, field MC0PTR */
+/* --- Register HW_SDMACORE_MC0PTR, field MC0PTR
+ *
+ * Contains the address-in the ARM platform memory space-of the initial
+ * SDMA context and scripts that are loaded by the SDMA boot script
+ * running on channel 0.
+ */
 
 #define BP_SDMACORE_MC0PTR_MC0PTR      0
 #define BM_SDMACORE_MC0PTR_MC0PTR      0xffffffff
@@ -64,8 +69,10 @@ typedef union
 #define BW_SDMACORE_MC0PTR_MC0PTR(v)   BF_CS1(SDMACORE_MC0PTR, MC0PTR, v)
 #endif
 
-/*
- * HW_SDMACORE_DC0PTR - DSP Channel 0 Pointer
+/*!
+ * @brief HW_SDMACORE_CCPTR - Current Channel Pointer
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -73,57 +80,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned DC0PTR : 32;
-
-    } B;
-} hw_sdmacore_dc0ptr_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_DC0PTR register
- */
-#define HW_SDMACORE_DC0PTR_ADDR      (REGS_SDMACORE_BASE + 0x1)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_DC0PTR           (*(volatile hw_sdmacore_dc0ptr_t *) HW_SDMACORE_DC0PTR_ADDR)
-#define HW_SDMACORE_DC0PTR_RD()      (HW_SDMACORE_DC0PTR.U)
-#define HW_SDMACORE_DC0PTR_WR(v)     (HW_SDMACORE_DC0PTR.U = (v))
-#define HW_SDMACORE_DC0PTR_SET(v)    (HW_SDMACORE_DC0PTR_WR(HW_SDMACORE_DC0PTR_RD() |  (v)))
-#define HW_SDMACORE_DC0PTR_CLR(v)    (HW_SDMACORE_DC0PTR_WR(HW_SDMACORE_DC0PTR_RD() & ~(v)))
-#define HW_SDMACORE_DC0PTR_TOG(v)    (HW_SDMACORE_DC0PTR_WR(HW_SDMACORE_DC0PTR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_DC0PTR bitfields
- */
-
-/* --- Register HW_SDMACORE_DC0PTR, field DC0PTR */
-
-#define BP_SDMACORE_DC0PTR_DC0PTR      0
-#define BM_SDMACORE_DC0PTR_DC0PTR      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_DC0PTR_DC0PTR(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_DC0PTR_DC0PTR)
-#else
-#define BF_SDMACORE_DC0PTR_DC0PTR(v)   (((v) << 0) & BM_SDMACORE_DC0PTR_DC0PTR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_DC0PTR_DC0PTR(v)   BF_CS1(SDMACORE_DC0PTR, DC0PTR, v)
-#endif
-
-/*
- * HW_SDMACORE_CCPTR - Current Channel Pointer
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned CCPTR : 16;
-        unsigned RESERVED0 : 16;
-
+        unsigned CCPTR : 16; //!< Contains the start address of the context data for the current channel: Its value is CONTEXT_BASE + 24* CCR or CONTEXT_BASE + 32* CCR where CONTEXT_BASE = 0x0800. The value 24 or 32 is selected according to the programmed channel scratch RAM size in the register shown in .
+        unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_sdmacore_ccptr_t;
 #endif
@@ -147,7 +105,13 @@ typedef union
  * constants & macros for individual SDMACORE_CCPTR bitfields
  */
 
-/* --- Register HW_SDMACORE_CCPTR, field CCPTR */
+/* --- Register HW_SDMACORE_CCPTR, field CCPTR
+ *
+ * Contains the start address of the context data for the current
+ * channel: Its value is CONTEXT_BASE + 24* CCR or CONTEXT_BASE + 32* CCR where CONTEXT_BASE =
+ * 0x0800.                                 The value 24 or 32 is selected according to the
+ * programmed channel                                 scratch RAM size in the register shown in .
+ */
 
 #define BP_SDMACORE_CCPTR_CCPTR      0
 #define BM_SDMACORE_CCPTR_CCPTR      0x0000ffff
@@ -161,8 +125,10 @@ typedef union
 #define BW_SDMACORE_CCPTR_CCPTR(v)   BF_CS1(SDMACORE_CCPTR, CCPTR, v)
 #endif
 
-/*
- * HW_SDMACORE_CCR - Current Channel Register
+/*!
+ * @brief HW_SDMACORE_CCR - Current Channel Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -170,9 +136,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CCR : 5;
-        unsigned RESERVED0 : 27;
-
+        unsigned CCR : 5; //!< Contains the number of the current running channel whose context is installed. In the case that the SDMA has finished running the channel and has entered sleep state, CCR will indicate the previous running channel. The PST bits in the OSTAT register indicate when the SDMA is in sleep state.
+        unsigned RESERVED0 : 27; //!< Reserved
     } B;
 } hw_sdmacore_ccr_t;
 #endif
@@ -196,7 +161,14 @@ typedef union
  * constants & macros for individual SDMACORE_CCR bitfields
  */
 
-/* --- Register HW_SDMACORE_CCR, field CCR */
+/* --- Register HW_SDMACORE_CCR, field CCR
+ *
+ * Contains the number of the current running channel whose context is
+ * installed. In the case that the SDMA has finished running the
+ * channel and has entered sleep state, CCR will indicate the previous
+ * running channel. The PST bits in the OSTAT register indicate when
+ * the SDMA is in sleep state.
+ */
 
 #define BP_SDMACORE_CCR_CCR      0
 #define BM_SDMACORE_CCR_CCR      0x0000001f
@@ -210,8 +182,10 @@ typedef union
 #define BW_SDMACORE_CCR_CCR(v)   BF_CS1(SDMACORE_CCR, CCR, v)
 #endif
 
-/*
- * HW_SDMACORE_NCR - Highest Pending Channel Register
+/*!
+ * @brief HW_SDMACORE_NCR - Highest Pending Channel Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -219,9 +193,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned NCR : 5;
-        unsigned RESERVED0 : 27;
-
+        unsigned NCR : 5; //!< Contains the number of the pending channel that the scheduler has selected to run next.
+        unsigned RESERVED0 : 27; //!< Reserved
     } B;
 } hw_sdmacore_ncr_t;
 #endif
@@ -245,7 +218,11 @@ typedef union
  * constants & macros for individual SDMACORE_NCR bitfields
  */
 
-/* --- Register HW_SDMACORE_NCR, field NCR */
+/* --- Register HW_SDMACORE_NCR, field NCR
+ *
+ * Contains the number of the pending channel that the scheduler has
+ * selected to run next.
+ */
 
 #define BP_SDMACORE_NCR_NCR      0
 #define BM_SDMACORE_NCR_NCR      0x0000001f
@@ -259,8 +236,32 @@ typedef union
 #define BW_SDMACORE_NCR_NCR(v)   BF_CS1(SDMACORE_NCR, NCR, v)
 #endif
 
-/*
- * HW_SDMACORE_EVENTS - External DMA Requests Mirror
+/*!
+ * @brief HW_SDMACORE_EVENTS - External DMA Requests Mirror
+ *
+ * This register is very useful in the case of DMA requests that are active
+ * when a peripheral FIFO level is above the programmed watermark. The
+ * activation of the DMA request (rising edge) is detected by the SDMA
+ * logic and it can enable one or several channels. One of the channels
+ * accesses the peripheral and reads or writes a number of data that
+ * matches the watermark level (for example, if the watermark is four
+ * words, the channel reads or writes four words). If the channel is effectively executed long after
+ * the DMA request was                             received, reading or writing the watermark number
+ * of data may not be                             sufficient to reset the DMA request (for example,
+ * if the FIFO watermark                             is four and at the channel execution it already
+ * contains nine pieces of                             data). This means no new rising edge may be
+ * detected by the SDMA,                             although there still remains transfers to
+ * perform. Therefore, if the                             channel were terminated at that time, it
+ * would not be restarted, causing                             potential overrun or underrun of the
+ * peripheral.  The proposed mechanism is for the channel to check this register after it
+ * has performed the "watermark" number of accesses to the peripheral. If
+ * the bit for the DMA request that triggers this channel is set, it means
+ * there is still another watermark number of data to transfer. This goes
+ * on until the bit is cleared. The same script can be used for multiple
+ * channels that require this behavior. The script can determine its
+ * channel number from the CCR register and infer the corresponding DMA
+ * request bit to check. It needs a reference table that is coherent with
+ * the request-channel matrix that the ARM platform programmed.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -268,8 +269,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EVENTS : 32;
-
+        unsigned EVENTS : 32; //!< Reflects the status of the SDMA's external DMA requests. It is meant to allow any channel to monitor the states of these SDMA inputs.  This register displays EVENTS 0-31. The EVENTS2 register displays events 32-47.
     } B;
 } hw_sdmacore_events_t;
 #endif
@@ -293,7 +293,12 @@ typedef union
  * constants & macros for individual SDMACORE_EVENTS bitfields
  */
 
-/* --- Register HW_SDMACORE_EVENTS, field EVENTS */
+/* --- Register HW_SDMACORE_EVENTS, field EVENTS
+ *
+ * Reflects the status of the SDMA's external DMA requests. It is meant
+ * to allow any channel to monitor the states of these SDMA inputs.  This register displays EVENTS
+ * 0-31. The                                     EVENTS2 register displays events 32-47.
+ */
 
 #define BP_SDMACORE_EVENTS_EVENTS      0
 #define BM_SDMACORE_EVENTS_EVENTS      0xffffffff
@@ -307,8 +312,10 @@ typedef union
 #define BW_SDMACORE_EVENTS_EVENTS(v)   BF_CS1(SDMACORE_EVENTS, EVENTS, v)
 #endif
 
-/*
- * HW_SDMACORE_CCPRI - Current Channel Priority
+/*!
+ * @brief HW_SDMACORE_CCPRI - Current Channel Priority
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -316,9 +323,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CCPRI : 3;
-        unsigned RESERVED0 : 29;
-
+        unsigned CCPRI : 3; //!< Contains the 3-bit priority of the channel whose context is installed. It is 0 when no channel is running.  1-7 current channel priority
+        unsigned RESERVED0 : 29; //!< Reserved
     } B;
 } hw_sdmacore_ccpri_t;
 #endif
@@ -342,7 +348,11 @@ typedef union
  * constants & macros for individual SDMACORE_CCPRI bitfields
  */
 
-/* --- Register HW_SDMACORE_CCPRI, field CCPRI */
+/* --- Register HW_SDMACORE_CCPRI, field CCPRI
+ *
+ * Contains the 3-bit priority of the channel whose context is
+ * installed. It is 0 when no channel is running.  1-7 current channel priority
+ */
 
 #define BP_SDMACORE_CCPRI_CCPRI      0
 #define BM_SDMACORE_CCPRI_CCPRI      0x00000007
@@ -356,8 +366,10 @@ typedef union
 #define BW_SDMACORE_CCPRI_CCPRI(v)   BF_CS1(SDMACORE_CCPRI, CCPRI, v)
 #endif
 
-/*
- * HW_SDMACORE_NCPRI - Next Channel Priority
+/*!
+ * @brief HW_SDMACORE_NCPRI - Next Channel Priority
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -365,9 +377,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned NCPRI : 3;
-        unsigned RESERVED0 : 29;
-
+        unsigned NCPRI : 3; //!< Contains the 3-bit priority of the channel the scheduler has selected to run next. It is 0 when no other channel is pending.
+        unsigned RESERVED0 : 29; //!< Reserved
     } B;
 } hw_sdmacore_ncpri_t;
 #endif
@@ -391,7 +402,11 @@ typedef union
  * constants & macros for individual SDMACORE_NCPRI bitfields
  */
 
-/* --- Register HW_SDMACORE_NCPRI, field NCPRI */
+/* --- Register HW_SDMACORE_NCPRI, field NCPRI
+ *
+ * Contains the 3-bit priority of the channel the scheduler has selected
+ * to run next. It is 0 when no other channel is pending.
+ */
 
 #define BP_SDMACORE_NCPRI_NCPRI      0
 #define BM_SDMACORE_NCPRI_NCPRI      0x00000007
@@ -405,8 +420,10 @@ typedef union
 #define BW_SDMACORE_NCPRI_NCPRI(v)   BF_CS1(SDMACORE_NCPRI, NCPRI, v)
 #endif
 
-/*
- * HW_SDMACORE_ECOUNT - OnCE Event Cell Counter
+/*!
+ * @brief HW_SDMACORE_ECOUNT - OnCE Event Cell Counter
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -414,9 +431,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ECOUNT : 16;
-        unsigned RESERVED0 : 16;
-
+        unsigned ECOUNT : 16; //!< The event cell counter contains the number of times minus one that an event detection must occur before generating a debug request.   This register should be written before any attempt to use the event detection counter during an event detection process.  The counter is cleared on a JTAG reset.
+        unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_sdmacore_ecount_t;
 #endif
@@ -440,7 +456,13 @@ typedef union
  * constants & macros for individual SDMACORE_ECOUNT bitfields
  */
 
-/* --- Register HW_SDMACORE_ECOUNT, field ECOUNT */
+/* --- Register HW_SDMACORE_ECOUNT, field ECOUNT
+ *
+ * The event cell counter contains the number of times minus one that an
+ * event detection must occur before generating a debug request.   This register should be written
+ * before any attempt to use the                                     event detection counter during
+ * an event detection process.  The counter is cleared on a JTAG reset.
+ */
 
 #define BP_SDMACORE_ECOUNT_ECOUNT      0
 #define BM_SDMACORE_ECOUNT_ECOUNT      0x0000ffff
@@ -454,8 +476,10 @@ typedef union
 #define BW_SDMACORE_ECOUNT_ECOUNT(v)   BF_CS1(SDMACORE_ECOUNT, ECOUNT, v)
 #endif
 
-/*
- * HW_SDMACORE_ECTL - OnCE Event Cell Control Register
+/*!
+ * @brief HW_SDMACORE_ECTL - OnCE Event Cell Control Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -463,16 +487,15 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ATS : 2;
-        unsigned AATC : 2;
-        unsigned ABTC : 2;
-        unsigned ATC : 2;
-        unsigned DTC : 2;
-        unsigned ECTC : 2;
-        unsigned CNT : 1;
-        unsigned EN : 1;
-        unsigned RESERVED0 : 18;
-
+        unsigned ATS : 2; //!< The access type select bits define the memory access type required on the SDMA memory bus.
+        unsigned AATC : 2; //!< The Address A Trigger Condition (AATC) controls the operations performed by address comparator A. All operations are performed on unsigned values. This comparator A outputs the addressA condition.
+        unsigned ABTC : 2; //!< The Address B Trigger Condition (ABTC) controls the operations performed by address comparator B. All operations are performed on unsigned values. This comparator B outputs the addressB condition.
+        unsigned ATC : 2; //!< The address trigger condition bits select how the two address conditions (addressA and addressB) are combined to define the global address matching condition. The supported combinations are described, as follows.
+        unsigned DTC : 2; //!< The data trigger condition bits define when data is considered matching after comparison with the data register of the event detection unit. The operations are performed on unsigned values.
+        unsigned ECTC : 2; //!< The event cell trigger condition bits select the combination of address and data matching conditions that generate the final address/data condition. During program execution, if this event cell trigger condition goes to 1, a debug request is sent to the SDMA. The EN bit must be set to enable the debug request generation.
+        unsigned CNT : 1; //!< Event Counter Enable. The event counter enable bit determines if the cell counter is used during the event detection. In order to use the event counter during an event detection process, the event cell counter register should be loaded with a value equal to the number of times minus one that an event occurs before a debug request is sent. After every event detection, the counter is decreased. When the counter reaches the value 0, the event detection cell sends a debug request to the core. The event counter register should be written and the EN bit should be set before each new event detection process uses the event counter.
+        unsigned EN : 1; //!< Event Cell Enable. If the EN bit is set, the event cell is allowed to generate debug requests (the cell is awakened). If it is cleared, the event detection unit is disabled and no hardware breakpoint is generated, but matching conditions are still reflected on the emulation pin.
+        unsigned RESERVED0 : 18; //!< Reserved
     } B;
 } hw_sdmacore_ectl_t;
 #endif
@@ -496,7 +519,11 @@ typedef union
  * constants & macros for individual SDMACORE_ECTL bitfields
  */
 
-/* --- Register HW_SDMACORE_ECTL, field ATS */
+/* --- Register HW_SDMACORE_ECTL, field ATS
+ *
+ * The access type select bits define the memory access type required on
+ * the SDMA memory bus.
+ */
 
 #define BP_SDMACORE_ECTL_ATS      0
 #define BM_SDMACORE_ECTL_ATS      0x00000003
@@ -510,7 +537,13 @@ typedef union
 #define BW_SDMACORE_ECTL_ATS(v)   BF_CS1(SDMACORE_ECTL, ATS, v)
 #endif
 
-/* --- Register HW_SDMACORE_ECTL, field AATC */
+/* --- Register HW_SDMACORE_ECTL, field AATC
+ *
+ * The Address A Trigger Condition (AATC) controls the operations
+ * performed by address comparator A. All operations are performed on
+ * unsigned values. This comparator A outputs the addressA
+ * condition.
+ */
 
 #define BP_SDMACORE_ECTL_AATC      2
 #define BM_SDMACORE_ECTL_AATC      0x0000000c
@@ -524,7 +557,13 @@ typedef union
 #define BW_SDMACORE_ECTL_AATC(v)   BF_CS1(SDMACORE_ECTL, AATC, v)
 #endif
 
-/* --- Register HW_SDMACORE_ECTL, field ABTC */
+/* --- Register HW_SDMACORE_ECTL, field ABTC
+ *
+ * The Address B Trigger Condition (ABTC) controls the operations
+ * performed by address comparator B. All operations are performed on
+ * unsigned values. This comparator B outputs the addressB
+ * condition.
+ */
 
 #define BP_SDMACORE_ECTL_ABTC      4
 #define BM_SDMACORE_ECTL_ABTC      0x00000030
@@ -538,7 +577,13 @@ typedef union
 #define BW_SDMACORE_ECTL_ABTC(v)   BF_CS1(SDMACORE_ECTL, ABTC, v)
 #endif
 
-/* --- Register HW_SDMACORE_ECTL, field ATC */
+/* --- Register HW_SDMACORE_ECTL, field ATC
+ *
+ * The address trigger condition bits select how the two address
+ * conditions (addressA and addressB) are combined to define the global
+ * address matching condition. The supported combinations are
+ * described, as follows.
+ */
 
 #define BP_SDMACORE_ECTL_ATC      6
 #define BM_SDMACORE_ECTL_ATC      0x000000c0
@@ -552,7 +597,12 @@ typedef union
 #define BW_SDMACORE_ECTL_ATC(v)   BF_CS1(SDMACORE_ECTL, ATC, v)
 #endif
 
-/* --- Register HW_SDMACORE_ECTL, field DTC */
+/* --- Register HW_SDMACORE_ECTL, field DTC
+ *
+ * The data trigger condition bits define when data is considered
+ * matching after comparison with the data register of the event
+ * detection unit. The operations are performed on unsigned values.
+ */
 
 #define BP_SDMACORE_ECTL_DTC      8
 #define BM_SDMACORE_ECTL_DTC      0x00000300
@@ -566,7 +616,14 @@ typedef union
 #define BW_SDMACORE_ECTL_DTC(v)   BF_CS1(SDMACORE_ECTL, DTC, v)
 #endif
 
-/* --- Register HW_SDMACORE_ECTL, field ECTC */
+/* --- Register HW_SDMACORE_ECTL, field ECTC
+ *
+ * The event cell trigger condition bits select the combination of
+ * address and data matching conditions that generate the final
+ * address/data condition. During program execution, if this event cell
+ * trigger condition goes to 1, a debug request is sent to the SDMA.
+ * The EN bit must be set to enable the debug request generation.
+ */
 
 #define BP_SDMACORE_ECTL_ECTC      10
 #define BM_SDMACORE_ECTL_ECTC      0x00000c00
@@ -580,7 +637,19 @@ typedef union
 #define BW_SDMACORE_ECTL_ECTC(v)   BF_CS1(SDMACORE_ECTL, ECTC, v)
 #endif
 
-/* --- Register HW_SDMACORE_ECTL, field CNT */
+/* --- Register HW_SDMACORE_ECTL, field CNT
+ *
+ * Event Counter Enable. The event counter enable bit determines if the
+ * cell counter is used during the event detection. In order to use the
+ * event counter during an event detection process, the event cell
+ * counter register should be loaded with a value equal to the number
+ * of times minus one that an event occurs before a debug request is
+ * sent. After every event detection, the counter is decreased. When
+ * the counter reaches the value 0, the event detection cell sends a
+ * debug request to the core. The event counter register should be
+ * written and the EN bit should be set before each new event detection
+ * process uses the event counter.
+ */
 
 #define BP_SDMACORE_ECTL_CNT      12
 #define BM_SDMACORE_ECTL_CNT      0x00001000
@@ -594,7 +663,14 @@ typedef union
 #define BW_SDMACORE_ECTL_CNT(v)   BF_CS1(SDMACORE_ECTL, CNT, v)
 #endif
 
-/* --- Register HW_SDMACORE_ECTL, field EN */
+/* --- Register HW_SDMACORE_ECTL, field EN
+ *
+ * Event Cell Enable. If the EN bit is set, the event cell is allowed to
+ * generate debug requests (the cell is awakened). If it is cleared,
+ * the event detection unit is disabled and no hardware breakpoint is
+ * generated, but matching conditions are still reflected on the
+ * emulation pin.
+ */
 
 #define BP_SDMACORE_ECTL_EN      13
 #define BM_SDMACORE_ECTL_EN      0x00002000
@@ -608,8 +684,10 @@ typedef union
 #define BW_SDMACORE_ECTL_EN(v)   BF_CS1(SDMACORE_ECTL, EN, v)
 #endif
 
-/*
- * HW_SDMACORE_EAA - OnCE Event Address Register A
+/*!
+ * @brief HW_SDMACORE_EAA - OnCE Event Address Register A
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -617,9 +695,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EAA : 16;
-        unsigned RESERVED0 : 16;
-
+        unsigned EAA : 16; //!< Event Cell Address Register A computes an address A condition. It is cleared on a JTAG reset.
+        unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_sdmacore_eaa_t;
 #endif
@@ -643,7 +720,11 @@ typedef union
  * constants & macros for individual SDMACORE_EAA bitfields
  */
 
-/* --- Register HW_SDMACORE_EAA, field EAA */
+/* --- Register HW_SDMACORE_EAA, field EAA
+ *
+ * Event Cell Address Register A computes an address A condition. It is
+ * cleared on a JTAG reset.
+ */
 
 #define BP_SDMACORE_EAA_EAA      0
 #define BM_SDMACORE_EAA_EAA      0x0000ffff
@@ -657,8 +738,10 @@ typedef union
 #define BW_SDMACORE_EAA_EAA(v)   BF_CS1(SDMACORE_EAA, EAA, v)
 #endif
 
-/*
- * HW_SDMACORE_EAB - OnCE Event Cell Address Register B
+/*!
+ * @brief HW_SDMACORE_EAB - OnCE Event Cell Address Register B
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -666,9 +749,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EAB : 16;
-        unsigned RESERVED0 : 16;
-
+        unsigned EAB : 16; //!< Event Cell Address Register B computes an address B condition. It is cleared on a JTAG reset.
+        unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_sdmacore_eab_t;
 #endif
@@ -692,7 +774,11 @@ typedef union
  * constants & macros for individual SDMACORE_EAB bitfields
  */
 
-/* --- Register HW_SDMACORE_EAB, field EAB */
+/* --- Register HW_SDMACORE_EAB, field EAB
+ *
+ * Event Cell Address Register B computes an address B condition. It is
+ * cleared on a JTAG reset.
+ */
 
 #define BP_SDMACORE_EAB_EAB      0
 #define BM_SDMACORE_EAB_EAB      0x0000ffff
@@ -706,8 +792,10 @@ typedef union
 #define BW_SDMACORE_EAB_EAB(v)   BF_CS1(SDMACORE_EAB, EAB, v)
 #endif
 
-/*
- * HW_SDMACORE_EAM - OnCE Event Cell Address Mask
+/*!
+ * @brief HW_SDMACORE_EAM - OnCE Event Cell Address Mask
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -715,9 +803,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EAM : 16;
-        unsigned RESERVED0 : 16;
-
+        unsigned EAM : 16; //!< The Event Cell Address Mask contains a user-defined address mask value. This mask is applied to the address value latched from the memory address bus before performing the address comparison.  There is a common address mask value for both address comparators. If bit i of this register is set, then bit i of the address value latched from the memory bus does not influence the result of the address comparison. The register is cleared on a JTAG reset.
+        unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_sdmacore_eam_t;
 #endif
@@ -741,7 +828,16 @@ typedef union
  * constants & macros for individual SDMACORE_EAM bitfields
  */
 
-/* --- Register HW_SDMACORE_EAM, field EAM */
+/* --- Register HW_SDMACORE_EAM, field EAM
+ *
+ * The Event Cell Address Mask contains a user-defined address mask
+ * value. This mask is applied to the address value latched from the
+ * memory address bus before performing the address comparison.  There is a common address mask
+ * value for both address comparators.                                 If bit i of this register is
+ * set, then bit i of the                                 address value latched from the memory bus
+ * does not influence the                                 result of the address comparison. The
+ * register is cleared on a JTAG                                 reset.
+ */
 
 #define BP_SDMACORE_EAM_EAM      0
 #define BM_SDMACORE_EAM_EAM      0x0000ffff
@@ -755,8 +851,10 @@ typedef union
 #define BW_SDMACORE_EAM_EAM(v)   BF_CS1(SDMACORE_EAM, EAM, v)
 #endif
 
-/*
- * HW_SDMACORE_ED - OnCE Event Cell Data Register
+/*!
+ * @brief HW_SDMACORE_ED - OnCE Event Cell Data Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -764,8 +862,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ED : 32;
-
+        unsigned ED : 32; //!< The event cell data register contains a user defined data value. This data value is an input for the data comparator which generates the data condition. It is cleared on a JTAG reset.
     } B;
 } hw_sdmacore_ed_t;
 #endif
@@ -789,7 +886,12 @@ typedef union
  * constants & macros for individual SDMACORE_ED bitfields
  */
 
-/* --- Register HW_SDMACORE_ED, field ED */
+/* --- Register HW_SDMACORE_ED, field ED
+ *
+ * The event cell data register contains a user defined data value. This
+ * data value is an input for the data comparator which generates the
+ * data condition. It is cleared on a JTAG reset.
+ */
 
 #define BP_SDMACORE_ED_ED      0
 #define BM_SDMACORE_ED_ED      0xffffffff
@@ -803,8 +905,10 @@ typedef union
 #define BW_SDMACORE_ED_ED(v)   BF_CS1(SDMACORE_ED, ED, v)
 #endif
 
-/*
- * HW_SDMACORE_EDM - OnCE Event Cell Data Mask
+/*!
+ * @brief HW_SDMACORE_EDM - OnCE Event Cell Data Mask
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -812,8 +916,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned EDM : 32;
-
+        unsigned EDM : 32; //!< The event cell data mask register contains the user-defined data mask value.   This mask is applied to the data value latched from the memory bus before performing the data comparison.  Setting bit i of the event cell data mask register means that bit i of the data value latched from the address bus does not influence the result of the data comparison.  The data mask is cleared on a JTAG reset.
     } B;
 } hw_sdmacore_edm_t;
 #endif
@@ -837,7 +940,15 @@ typedef union
  * constants & macros for individual SDMACORE_EDM bitfields
  */
 
-/* --- Register HW_SDMACORE_EDM, field EDM */
+/* --- Register HW_SDMACORE_EDM, field EDM
+ *
+ * The event cell data mask register contains the user-defined data mask
+ * value.   This mask is applied to the data value latched from the memory
+ * bus before performing the data comparison.  Setting bit i of the event cell data mask register
+ * means                                     that bit i of the data value latched from the address
+ * bus                                     does not influence the result of the data comparison.
+ * The data mask is cleared on a JTAG reset.
+ */
 
 #define BP_SDMACORE_EDM_EDM      0
 #define BM_SDMACORE_EDM_EDM      0xffffffff
@@ -851,8 +962,10 @@ typedef union
 #define BW_SDMACORE_EDM_EDM(v)   BF_CS1(SDMACORE_EDM, EDM, v)
 #endif
 
-/*
- * HW_SDMACORE_RTB - OnCE Real-Time Buffer
+/*!
+ * @brief HW_SDMACORE_RTB - OnCE Real-Time Buffer
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -860,8 +973,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RTB : 32;
-
+        unsigned RTB : 32; //!< The Real Time Buffer register stores and retrieves run time information without putting the SDMA in debug mode. Writing to that register triggers a pulse on a specific real-time debug pin whose connection depends on the chip implementation.  The RTB value can be accessed by the OnCE under ARM platform or JTAG control using the rbuffer command.
     } B;
 } hw_sdmacore_rtb_t;
 #endif
@@ -885,7 +997,14 @@ typedef union
  * constants & macros for individual SDMACORE_RTB bitfields
  */
 
-/* --- Register HW_SDMACORE_RTB, field RTB */
+/* --- Register HW_SDMACORE_RTB, field RTB
+ *
+ * The Real Time Buffer register stores and retrieves run time
+ * information without putting the SDMA in debug mode. Writing to that
+ * register triggers a pulse on a specific real-time debug pin whose
+ * connection depends on the chip implementation.  The RTB value can be accessed by the OnCE under
+ * ARM platform or JTAG                                 control using the rbuffer command.
+ */
 
 #define BP_SDMACORE_RTB_RTB      0
 #define BM_SDMACORE_RTB_RTB      0xffffffff
@@ -899,8 +1018,10 @@ typedef union
 #define BW_SDMACORE_RTB_RTB(v)   BF_CS1(SDMACORE_RTB, RTB, v)
 #endif
 
-/*
- * HW_SDMACORE_TB - OnCE Trace Buffer
+/*!
+ * @brief HW_SDMACORE_TB - OnCE Trace Buffer
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -908,11 +1029,10 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CHFADDR : 14;
-        unsigned TADDR : 14;
-        unsigned TBF : 1;
-        unsigned RESERVED0 : 3;
-
+        unsigned CHFADDR : 14; //!< The change of flow address is the address where the change of flow is taken when executing a change of flow instruction.
+        unsigned TADDR : 14; //!< The target address is the address taken after the execution of the change of flow instruction.
+        unsigned TBF : 1; //!< The Trace Buffer Flag is set when the buffer contains the addresses of a valid change of flow. The contents of the buffer should be ignored otherwise.
+        unsigned RESERVED0 : 3; //!< Reserved
     } B;
 } hw_sdmacore_tb_t;
 #endif
@@ -936,7 +1056,11 @@ typedef union
  * constants & macros for individual SDMACORE_TB bitfields
  */
 
-/* --- Register HW_SDMACORE_TB, field CHFADDR */
+/* --- Register HW_SDMACORE_TB, field CHFADDR
+ *
+ * The change of flow address is the address where the change of flow is
+ * taken when executing a change of flow instruction.
+ */
 
 #define BP_SDMACORE_TB_CHFADDR      0
 #define BM_SDMACORE_TB_CHFADDR      0x00003fff
@@ -950,7 +1074,11 @@ typedef union
 #define BW_SDMACORE_TB_CHFADDR(v)   BF_CS1(SDMACORE_TB, CHFADDR, v)
 #endif
 
-/* --- Register HW_SDMACORE_TB, field TADDR */
+/* --- Register HW_SDMACORE_TB, field TADDR
+ *
+ * The target address is the address taken after the execution of the
+ * change of flow instruction.
+ */
 
 #define BP_SDMACORE_TB_TADDR      14
 #define BM_SDMACORE_TB_TADDR      0x0fffc000
@@ -964,7 +1092,12 @@ typedef union
 #define BW_SDMACORE_TB_TADDR(v)   BF_CS1(SDMACORE_TB, TADDR, v)
 #endif
 
-/* --- Register HW_SDMACORE_TB, field TBF */
+/* --- Register HW_SDMACORE_TB, field TBF
+ *
+ * The Trace Buffer Flag is set when the buffer contains the addresses
+ * of a valid change of flow. The contents of the buffer should be
+ * ignored otherwise.
+ */
 
 #define BP_SDMACORE_TB_TBF      28
 #define BM_SDMACORE_TB_TBF      0x10000000
@@ -978,8 +1111,10 @@ typedef union
 #define BW_SDMACORE_TB_TBF(v)   BF_CS1(SDMACORE_TB, TBF, v)
 #endif
 
-/*
- * HW_SDMACORE_OSTAT - OnCE Status
+/*!
+ * @brief HW_SDMACORE_OSTAT - OnCE Status
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -987,16 +1122,15 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ECDR : 3;
-        unsigned RESERVED0 : 4;
-        unsigned MST : 1;
-        unsigned SWB : 1;
-        unsigned ODR : 1;
-        unsigned EDR : 1;
-        unsigned RCV : 1;
-        unsigned PST : 4;
-        unsigned RESERVED1 : 16;
-
+        unsigned ECDR : 3; //!< Event Cell Debug Request. If the debug request comes from the event cell, the reason for entering debug mode is given by the EDR bits. The encoding of the EDR bits is useful to find out more precisely why the debug request was generated. A debug request from an event cell is generated for a specific combination of the addressA, addressB, and data conditions; the value of those fields is given by the EDR bits. If all three bits of the EDR are reset, then it did not generate any debug request. If the cell did generate a debug request, then at least one EDR bit is set; the meaning of the encoding is as follows:
+        unsigned RESERVED0 : 4; //!< Reserved
+        unsigned MST : 1; //!< This flag is raised when the OnCE is controlled from the ARM platform peripheral interface.
+        unsigned SWB : 1; //!< This flag is raised when the SDMA has entered debug mode after a software breakpoint.
+        unsigned ODR : 1; //!< This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
+        unsigned EDR : 1; //!< This flag is raised when the SDMA has entered debug mode after an external debug request.
+        unsigned RCV : 1; //!< After each write access to the real time buffer (RTB), the RCV bit is set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
+        unsigned PST : 4; //!< The Processor Status bits reflect the state of the SDMA RISC engine.   The "Program" state is the usual instruction execution cycle.  The "Data" state is inserted when there are wait-states during a load or a store on the data bus (ld or st).  The "Change of Flow" state is the second cycle of any instruction that breaks the sequence of instructions (jumps and channel-switching instructions).  The "Change of Flow in Loop" state is used when an error causes a hardware loop exit.  The "Debug" state means the SDMA is in debug mode.  The "Functional Unit" state is inserted when there are wait-states during a load or a store on the functional units bus (ldf or stf).  In "Sleep" modes, no script is running (this is the RISC engine idle state). The "after Reset" is slightly different because no context restoring phase will happen when a channel is triggered: The script located at address 0 will be executed (boot operation).  The "in Sleep" states are the same as above except they do not have any corresponding channel. They are used when entering debug mode after reset; the reason is that it is necessary to return to the "Sleep after Reset" state when leaving debug mode.
+        unsigned RESERVED1 : 16; //!< Reserved
     } B;
 } hw_sdmacore_ostat_t;
 #endif
@@ -1020,7 +1154,19 @@ typedef union
  * constants & macros for individual SDMACORE_OSTAT bitfields
  */
 
-/* --- Register HW_SDMACORE_OSTAT, field ECDR */
+/* --- Register HW_SDMACORE_OSTAT, field ECDR
+ *
+ * Event Cell Debug Request. If the debug request comes from the event
+ * cell, the reason for entering debug mode is given by the EDR bits.
+ * The encoding of the EDR bits is useful to find out more precisely
+ * why the debug request was generated. A debug request from an event
+ * cell is generated for a specific combination of the addressA,
+ * addressB, and data conditions; the value of those fields is given by
+ * the EDR bits. If all three bits of the EDR are reset, then it did
+ * not generate any debug request. If the cell did generate a debug
+ * request, then at least one EDR bit is set; the meaning of the
+ * encoding is as follows:
+ */
 
 #define BP_SDMACORE_OSTAT_ECDR      0
 #define BM_SDMACORE_OSTAT_ECDR      0x00000007
@@ -1034,7 +1180,11 @@ typedef union
 #define BW_SDMACORE_OSTAT_ECDR(v)   BF_CS1(SDMACORE_OSTAT, ECDR, v)
 #endif
 
-/* --- Register HW_SDMACORE_OSTAT, field MST */
+/* --- Register HW_SDMACORE_OSTAT, field MST
+ *
+ * This flag is raised when the OnCE is controlled from the ARM platform
+ * peripheral interface.
+ */
 
 #define BP_SDMACORE_OSTAT_MST      7
 #define BM_SDMACORE_OSTAT_MST      0x00000080
@@ -1048,7 +1198,11 @@ typedef union
 #define BW_SDMACORE_OSTAT_MST(v)   BF_CS1(SDMACORE_OSTAT, MST, v)
 #endif
 
-/* --- Register HW_SDMACORE_OSTAT, field SWB */
+/* --- Register HW_SDMACORE_OSTAT, field SWB
+ *
+ * This flag is raised when the SDMA has entered debug mode after a
+ * software breakpoint.
+ */
 
 #define BP_SDMACORE_OSTAT_SWB      8
 #define BM_SDMACORE_OSTAT_SWB      0x00000100
@@ -1062,7 +1216,11 @@ typedef union
 #define BW_SDMACORE_OSTAT_SWB(v)   BF_CS1(SDMACORE_OSTAT, SWB, v)
 #endif
 
-/* --- Register HW_SDMACORE_OSTAT, field ODR */
+/* --- Register HW_SDMACORE_OSTAT, field ODR
+ *
+ * This flag is raised when the SDMA has entered debug mode after a OnCE
+ * debug request.
+ */
 
 #define BP_SDMACORE_OSTAT_ODR      9
 #define BM_SDMACORE_OSTAT_ODR      0x00000200
@@ -1076,7 +1234,11 @@ typedef union
 #define BW_SDMACORE_OSTAT_ODR(v)   BF_CS1(SDMACORE_OSTAT, ODR, v)
 #endif
 
-/* --- Register HW_SDMACORE_OSTAT, field EDR */
+/* --- Register HW_SDMACORE_OSTAT, field EDR
+ *
+ * This flag is raised when the SDMA has entered debug mode after an
+ * external debug request.
+ */
 
 #define BP_SDMACORE_OSTAT_EDR      10
 #define BM_SDMACORE_OSTAT_EDR      0x00000400
@@ -1090,7 +1252,11 @@ typedef union
 #define BW_SDMACORE_OSTAT_EDR(v)   BF_CS1(SDMACORE_OSTAT, EDR, v)
 #endif
 
-/* --- Register HW_SDMACORE_OSTAT, field RCV */
+/* --- Register HW_SDMACORE_OSTAT, field RCV
+ *
+ * After each write access to the real time buffer (RTB), the RCV bit is
+ * set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
+ */
 
 #define BP_SDMACORE_OSTAT_RCV      11
 #define BM_SDMACORE_OSTAT_RCV      0x00000800
@@ -1104,7 +1270,26 @@ typedef union
 #define BW_SDMACORE_OSTAT_RCV(v)   BF_CS1(SDMACORE_OSTAT, RCV, v)
 #endif
 
-/* --- Register HW_SDMACORE_OSTAT, field PST */
+/* --- Register HW_SDMACORE_OSTAT, field PST
+ *
+ * The Processor Status bits reflect the state of the SDMA RISC
+ * engine.   The "Program" state is the usual instruction execution cycle.  The "Data" state is
+ * inserted when there are wait-states during a                                     load or a store
+ * on the data bus (ld or st).  The "Change of Flow" state is the second cycle of any
+ * instruction that breaks the sequence of instructions (jumps and
+ * channel-switching instructions).  The "Change of Flow in Loop" state is used when an error causes
+ * a hardware loop exit.  The "Debug" state means the SDMA is in debug mode.  The "Functional Unit"
+ * state is inserted when there are                                     wait-states during a load or
+ * a store on the functional units bus                                     (ldf or stf).  In "Sleep"
+ * modes, no script is running (this is the RISC engine                                     idle
+ * state). The "after Reset" is slightly different because no
+ * context restoring phase will happen when a channel is triggered:
+ * The script located at address 0 will be executed (boot
+ * operation).  The "in Sleep" states are the same as above except they do not
+ * have any corresponding channel. They are used when entering
+ * debug mode after reset; the reason is that it is necessary to
+ * return to the "Sleep after Reset" state when leaving debug mode.
+ */
 
 #define BP_SDMACORE_OSTAT_PST      12
 #define BM_SDMACORE_OSTAT_PST      0x0000f000
@@ -1118,8 +1303,10 @@ typedef union
 #define BW_SDMACORE_OSTAT_PST(v)   BF_CS1(SDMACORE_OSTAT, PST, v)
 #endif
 
-/*
- * HW_SDMACORE_MCHN0ADDR - Channel 0 Boot Address
+/*!
+ * @brief HW_SDMACORE_MCHN0ADDR - Channel 0 Boot Address
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1127,10 +1314,9 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CHN0ADDR : 14;
-        unsigned SMSZ : 1;
-        unsigned RESERVED0 : 17;
-
+        unsigned CHN0ADDR : 14; //!< Contains the address of the channel 0 routine programmed by the ARM platform; it is loaded into a general register at the very start of the boot and the SDMA jumps to the address it contains. By default, it points to the standard boot routine in ROM.
+        unsigned SMSZ : 1; //!< The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context. After reset, it is equal to 0, which defines a RAM space of 24 words for each channel. All of this area stores the channel context. By setting this bit, 32 words are reserved for every channel context, which gives eight additional words that can be used by the channel script to store any type of data. Those words are never erased by the context switching mechanism.
+        unsigned RESERVED0 : 17; //!< Reserved
     } B;
 } hw_sdmacore_mchn0addr_t;
 #endif
@@ -1154,7 +1340,13 @@ typedef union
  * constants & macros for individual SDMACORE_MCHN0ADDR bitfields
  */
 
-/* --- Register HW_SDMACORE_MCHN0ADDR, field CHN0ADDR */
+/* --- Register HW_SDMACORE_MCHN0ADDR, field CHN0ADDR
+ *
+ * Contains the address of the channel 0 routine programmed by the ARM
+ * platform; it is loaded into a general register at the very start of
+ * the boot and the SDMA jumps to the address it contains. By default,
+ * it points to the standard boot routine in ROM.
+ */
 
 #define BP_SDMACORE_MCHN0ADDR_CHN0ADDR      0
 #define BM_SDMACORE_MCHN0ADDR_CHN0ADDR      0x00003fff
@@ -1168,7 +1360,17 @@ typedef union
 #define BW_SDMACORE_MCHN0ADDR_CHN0ADDR(v)   BF_CS1(SDMACORE_MCHN0ADDR, CHN0ADDR, v)
 #endif
 
-/* --- Register HW_SDMACORE_MCHN0ADDR, field SMSZ */
+/* --- Register HW_SDMACORE_MCHN0ADDR, field SMSZ
+ *
+ * The bit 14 (Scratch Memory Size) determines if scratch memory must be
+ * available after every channel context. After reset, it is equal to
+ * 0, which defines a RAM space of 24 words for each channel. All of
+ * this area stores the channel context. By setting this bit, 32 words
+ * are reserved for every channel context, which gives eight additional
+ * words that can be used by the channel script to store any type of
+ * data. Those words are never erased by the context switching
+ * mechanism.
+ */
 
 #define BP_SDMACORE_MCHN0ADDR_SMSZ      14
 #define BM_SDMACORE_MCHN0ADDR_SMSZ      0x00004000
@@ -1182,533 +1384,39 @@ typedef union
 #define BW_SDMACORE_MCHN0ADDR_SMSZ(v)   BF_CS1(SDMACORE_MCHN0ADDR, SMSZ, v)
 #endif
 
-/*
- * HW_SDMACORE_ENDIANNESS - ENDIAN Status Register
+
+
+/*!
+ * @brief All SDMACORE module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef union
+typedef struct
 {
-    reg32_t  U;
-    struct
-    {
-        unsigned APEND : 1;
-        unsigned RESERVED0 : 2;
-        unsigned BPEND : 1;
-        unsigned RESERVED1 : 1;
-        unsigned BYTESWP : 1;
-        unsigned RESERVED2 : 29;
-
-    } B;
-} hw_sdmacore_endianness_t;
+    volatile hw_sdmacore_mc0ptr_t MC0PTR; //!< ARM platform Channel 0 Pointer
+    volatile hw_sdmacore_ccptr_t CCPTR; //!< Current Channel Pointer
+    volatile hw_sdmacore_ccr_t CCR; //!< Current Channel Register
+    volatile hw_sdmacore_ncr_t NCR; //!< Highest Pending Channel Register
+    volatile hw_sdmacore_events_t EVENTS; //!< External DMA Requests Mirror
+    volatile hw_sdmacore_ccpri_t CCPRI; //!< Current Channel Priority
+    volatile hw_sdmacore_ncpri_t NCPRI; //!< Next Channel Priority
+    volatile hw_sdmacore_ecount_t ECOUNT; //!< OnCE Event Cell Counter
+    volatile hw_sdmacore_ectl_t ECTL; //!< OnCE Event Cell Control Register
+    volatile hw_sdmacore_eaa_t EAA; //!< OnCE Event Address Register A
+    volatile hw_sdmacore_eab_t EAB; //!< OnCE Event Cell Address Register B
+    volatile hw_sdmacore_eam_t EAM; //!< OnCE Event Cell Address Mask
+    volatile hw_sdmacore_ed_t ED; //!< OnCE Event Cell Data Register
+    volatile hw_sdmacore_edm_t EDM; //!< OnCE Event Cell Data Mask
+    volatile hw_sdmacore_rtb_t RTB; //!< OnCE Real-Time Buffer
+    volatile hw_sdmacore_tb_t TB; //!< OnCE Trace Buffer
+    volatile hw_sdmacore_ostat_t OSTAT; //!< OnCE Status
+    volatile hw_sdmacore_mchn0addr_t MCHN0ADDR; //!< Channel 0 Boot Address
+} hw_sdmacore_t
 #endif
 
-/*
- * constants & macros for entire SDMACORE_ENDIANNESS register
- */
-#define HW_SDMACORE_ENDIANNESS_ADDR      (REGS_SDMACORE_BASE + 0x1d)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_ENDIANNESS           (*(volatile hw_sdmacore_endianness_t *) HW_SDMACORE_ENDIANNESS_ADDR)
-#define HW_SDMACORE_ENDIANNESS_RD()      (HW_SDMACORE_ENDIANNESS.U)
-#define HW_SDMACORE_ENDIANNESS_WR(v)     (HW_SDMACORE_ENDIANNESS.U = (v))
-#define HW_SDMACORE_ENDIANNESS_SET(v)    (HW_SDMACORE_ENDIANNESS_WR(HW_SDMACORE_ENDIANNESS_RD() |  (v)))
-#define HW_SDMACORE_ENDIANNESS_CLR(v)    (HW_SDMACORE_ENDIANNESS_WR(HW_SDMACORE_ENDIANNESS_RD() & ~(v)))
-#define HW_SDMACORE_ENDIANNESS_TOG(v)    (HW_SDMACORE_ENDIANNESS_WR(HW_SDMACORE_ENDIANNESS_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_ENDIANNESS bitfields
- */
-
-/* --- Register HW_SDMACORE_ENDIANNESS, field APEND */
-
-#define BP_SDMACORE_ENDIANNESS_APEND      0
-#define BM_SDMACORE_ENDIANNESS_APEND      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_ENDIANNESS_APEND(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_ENDIANNESS_APEND)
-#else
-#define BF_SDMACORE_ENDIANNESS_APEND(v)   (((v) << 0) & BM_SDMACORE_ENDIANNESS_APEND)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_ENDIANNESS_APEND(v)   BF_CS1(SDMACORE_ENDIANNESS, APEND, v)
-#endif
-
-/* --- Register HW_SDMACORE_ENDIANNESS, field BPEND */
-
-#define BP_SDMACORE_ENDIANNESS_BPEND      1
-#define BM_SDMACORE_ENDIANNESS_BPEND      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_ENDIANNESS_BPEND(v)   ((((reg32_t) v) << 1) & BM_SDMACORE_ENDIANNESS_BPEND)
-#else
-#define BF_SDMACORE_ENDIANNESS_BPEND(v)   (((v) << 1) & BM_SDMACORE_ENDIANNESS_BPEND)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_ENDIANNESS_BPEND(v)   BF_CS1(SDMACORE_ENDIANNESS, BPEND, v)
-#endif
-
-/* --- Register HW_SDMACORE_ENDIANNESS, field BYTESWP */
-
-#define BP_SDMACORE_ENDIANNESS_BYTESWP      2
-#define BM_SDMACORE_ENDIANNESS_BYTESWP      0x00000004
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_ENDIANNESS_BYTESWP(v)   ((((reg32_t) v) << 2) & BM_SDMACORE_ENDIANNESS_BYTESWP)
-#else
-#define BF_SDMACORE_ENDIANNESS_BYTESWP(v)   (((v) << 2) & BM_SDMACORE_ENDIANNESS_BYTESWP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_ENDIANNESS_BYTESWP(v)   BF_CS1(SDMACORE_ENDIANNESS, BYTESWP, v)
-#endif
-
-/*
- * HW_SDMACORE_MODE - Mode Status Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned APEND : 1;
-        unsigned RESERVED0 : 2;
-        unsigned BPEND : 1;
-        unsigned BYTESWP : 1;
-        unsigned DSPCTRL : 1;
-        unsigned RESERVED1 : 28;
-
-    } B;
-} hw_sdmacore_mode_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_MODE register
- */
-#define HW_SDMACORE_MODE_ADDR      (REGS_SDMACORE_BASE + 0x1d)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_MODE           (*(volatile hw_sdmacore_mode_t *) HW_SDMACORE_MODE_ADDR)
-#define HW_SDMACORE_MODE_RD()      (HW_SDMACORE_MODE.U)
-#define HW_SDMACORE_MODE_WR(v)     (HW_SDMACORE_MODE.U = (v))
-#define HW_SDMACORE_MODE_SET(v)    (HW_SDMACORE_MODE_WR(HW_SDMACORE_MODE_RD() |  (v)))
-#define HW_SDMACORE_MODE_CLR(v)    (HW_SDMACORE_MODE_WR(HW_SDMACORE_MODE_RD() & ~(v)))
-#define HW_SDMACORE_MODE_TOG(v)    (HW_SDMACORE_MODE_WR(HW_SDMACORE_MODE_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_MODE bitfields
- */
-
-/* --- Register HW_SDMACORE_MODE, field APEND */
-
-#define BP_SDMACORE_MODE_APEND      0
-#define BM_SDMACORE_MODE_APEND      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_MODE_APEND(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_MODE_APEND)
-#else
-#define BF_SDMACORE_MODE_APEND(v)   (((v) << 0) & BM_SDMACORE_MODE_APEND)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_MODE_APEND(v)   BF_CS1(SDMACORE_MODE, APEND, v)
-#endif
-
-/* --- Register HW_SDMACORE_MODE, field BPEND */
-
-#define BP_SDMACORE_MODE_BPEND      1
-#define BM_SDMACORE_MODE_BPEND      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_MODE_BPEND(v)   ((((reg32_t) v) << 1) & BM_SDMACORE_MODE_BPEND)
-#else
-#define BF_SDMACORE_MODE_BPEND(v)   (((v) << 1) & BM_SDMACORE_MODE_BPEND)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_MODE_BPEND(v)   BF_CS1(SDMACORE_MODE, BPEND, v)
-#endif
-
-/* --- Register HW_SDMACORE_MODE, field BYTESWP */
-
-#define BP_SDMACORE_MODE_BYTESWP      2
-#define BM_SDMACORE_MODE_BYTESWP      0x00000004
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_MODE_BYTESWP(v)   ((((reg32_t) v) << 2) & BM_SDMACORE_MODE_BYTESWP)
-#else
-#define BF_SDMACORE_MODE_BYTESWP(v)   (((v) << 2) & BM_SDMACORE_MODE_BYTESWP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_MODE_BYTESWP(v)   BF_CS1(SDMACORE_MODE, BYTESWP, v)
-#endif
-
-/* --- Register HW_SDMACORE_MODE, field DSPCTRL */
-
-#define BP_SDMACORE_MODE_DSPCTRL      3
-#define BM_SDMACORE_MODE_DSPCTRL      0x00000008
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_MODE_DSPCTRL(v)   ((((reg32_t) v) << 3) & BM_SDMACORE_MODE_DSPCTRL)
-#else
-#define BF_SDMACORE_MODE_DSPCTRL(v)   (((v) << 3) & BM_SDMACORE_MODE_DSPCTRL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_MODE_DSPCTRL(v)   BF_CS1(SDMACORE_MODE, DSPCTRL, v)
-#endif
-
-/*
- * HW_SDMACORE_SDMA_LOCK - Lock Status Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned LOCK : 1;
-        unsigned RESERVED0 : 31;
-
-    } B;
-} hw_sdmacore_sdma_lock_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_SDMA_LOCK register
- */
-#define HW_SDMACORE_SDMA_LOCK_ADDR      (REGS_SDMACORE_BASE + 0x1e)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_SDMA_LOCK           (*(volatile hw_sdmacore_sdma_lock_t *) HW_SDMACORE_SDMA_LOCK_ADDR)
-#define HW_SDMACORE_SDMA_LOCK_RD()      (HW_SDMACORE_SDMA_LOCK.U)
-#define HW_SDMACORE_SDMA_LOCK_WR(v)     (HW_SDMACORE_SDMA_LOCK.U = (v))
-#define HW_SDMACORE_SDMA_LOCK_SET(v)    (HW_SDMACORE_SDMA_LOCK_WR(HW_SDMACORE_SDMA_LOCK_RD() |  (v)))
-#define HW_SDMACORE_SDMA_LOCK_CLR(v)    (HW_SDMACORE_SDMA_LOCK_WR(HW_SDMACORE_SDMA_LOCK_RD() & ~(v)))
-#define HW_SDMACORE_SDMA_LOCK_TOG(v)    (HW_SDMACORE_SDMA_LOCK_WR(HW_SDMACORE_SDMA_LOCK_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_SDMA_LOCK bitfields
- */
-
-/* --- Register HW_SDMACORE_SDMA_LOCK, field LOCK */
-
-#define BP_SDMACORE_SDMA_LOCK_LOCK      0
-#define BM_SDMACORE_SDMA_LOCK_LOCK      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_SDMA_LOCK_LOCK(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_SDMA_LOCK_LOCK)
-#else
-#define BF_SDMACORE_SDMA_LOCK_LOCK(v)   (((v) << 0) & BM_SDMACORE_SDMA_LOCK_LOCK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_SDMA_LOCK_LOCK(v)   BF_CS1(SDMACORE_SDMA_LOCK, LOCK, v)
-#endif
-
-/*
- * HW_SDMACORE_EVENTS2 - External DMA Requests Mirror #2
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned EVENTS : 16;
-        unsigned RESERVED0 : 16;
-
-    } B;
-} hw_sdmacore_events2_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_EVENTS2 register
- */
-#define HW_SDMACORE_EVENTS2_ADDR      (REGS_SDMACORE_BASE + 0x1f)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_EVENTS2           (*(volatile hw_sdmacore_events2_t *) HW_SDMACORE_EVENTS2_ADDR)
-#define HW_SDMACORE_EVENTS2_RD()      (HW_SDMACORE_EVENTS2.U)
-#define HW_SDMACORE_EVENTS2_WR(v)     (HW_SDMACORE_EVENTS2.U = (v))
-#define HW_SDMACORE_EVENTS2_SET(v)    (HW_SDMACORE_EVENTS2_WR(HW_SDMACORE_EVENTS2_RD() |  (v)))
-#define HW_SDMACORE_EVENTS2_CLR(v)    (HW_SDMACORE_EVENTS2_WR(HW_SDMACORE_EVENTS2_RD() & ~(v)))
-#define HW_SDMACORE_EVENTS2_TOG(v)    (HW_SDMACORE_EVENTS2_WR(HW_SDMACORE_EVENTS2_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_EVENTS2 bitfields
- */
-
-/* --- Register HW_SDMACORE_EVENTS2, field EVENTS */
-
-#define BP_SDMACORE_EVENTS2_EVENTS      0
-#define BM_SDMACORE_EVENTS2_EVENTS      0x0000ffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_EVENTS2_EVENTS(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_EVENTS2_EVENTS)
-#else
-#define BF_SDMACORE_EVENTS2_EVENTS(v)   (((v) << 0) & BM_SDMACORE_EVENTS2_EVENTS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_EVENTS2_EVENTS(v)   BF_CS1(SDMACORE_EVENTS2, EVENTS, v)
-#endif
-
-/*
- * HW_SDMACORE_HE - AP Enable Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned HE : 32;
-
-    } B;
-} hw_sdmacore_he_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_HE register
- */
-#define HW_SDMACORE_HE_ADDR      (REGS_SDMACORE_BASE + 0x20)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_HE           (*(volatile hw_sdmacore_he_t *) HW_SDMACORE_HE_ADDR)
-#define HW_SDMACORE_HE_RD()      (HW_SDMACORE_HE.U)
-#define HW_SDMACORE_HE_WR(v)     (HW_SDMACORE_HE.U = (v))
-#define HW_SDMACORE_HE_SET(v)    (HW_SDMACORE_HE_WR(HW_SDMACORE_HE_RD() |  (v)))
-#define HW_SDMACORE_HE_CLR(v)    (HW_SDMACORE_HE_WR(HW_SDMACORE_HE_RD() & ~(v)))
-#define HW_SDMACORE_HE_TOG(v)    (HW_SDMACORE_HE_WR(HW_SDMACORE_HE_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_HE bitfields
- */
-
-/* --- Register HW_SDMACORE_HE, field HE */
-
-#define BP_SDMACORE_HE_HE      0
-#define BM_SDMACORE_HE_HE      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_HE_HE(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_HE_HE)
-#else
-#define BF_SDMACORE_HE_HE(v)   (((v) << 0) & BM_SDMACORE_HE_HE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_HE_HE(v)   BF_CS1(SDMACORE_HE, HE, v)
-#endif
-
-/*
- * HW_SDMACORE_DE - BP Enable Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned DE : 32;
-
-    } B;
-} hw_sdmacore_de_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_DE register
- */
-#define HW_SDMACORE_DE_ADDR      (REGS_SDMACORE_BASE + 0x21)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_DE           (*(volatile hw_sdmacore_de_t *) HW_SDMACORE_DE_ADDR)
-#define HW_SDMACORE_DE_RD()      (HW_SDMACORE_DE.U)
-#define HW_SDMACORE_DE_WR(v)     (HW_SDMACORE_DE.U = (v))
-#define HW_SDMACORE_DE_SET(v)    (HW_SDMACORE_DE_WR(HW_SDMACORE_DE_RD() |  (v)))
-#define HW_SDMACORE_DE_CLR(v)    (HW_SDMACORE_DE_WR(HW_SDMACORE_DE_RD() & ~(v)))
-#define HW_SDMACORE_DE_TOG(v)    (HW_SDMACORE_DE_WR(HW_SDMACORE_DE_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_DE bitfields
- */
-
-/* --- Register HW_SDMACORE_DE, field DE */
-
-#define BP_SDMACORE_DE_DE      0
-#define BM_SDMACORE_DE_DE      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_DE_DE(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_DE_DE)
-#else
-#define BF_SDMACORE_DE_DE(v)   (((v) << 0) & BM_SDMACORE_DE_DE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_DE_DE(v)   BF_CS1(SDMACORE_DE, DE, v)
-#endif
-
-/*
- * HW_SDMACORE_PRIV - Current Channel BP Privilege Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned BPPRIV : 1;
-        unsigned RESERVED0 : 31;
-
-    } B;
-} hw_sdmacore_priv_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_PRIV register
- */
-#define HW_SDMACORE_PRIV_ADDR      (REGS_SDMACORE_BASE + 0x22)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_PRIV           (*(volatile hw_sdmacore_priv_t *) HW_SDMACORE_PRIV_ADDR)
-#define HW_SDMACORE_PRIV_RD()      (HW_SDMACORE_PRIV.U)
-#define HW_SDMACORE_PRIV_WR(v)     (HW_SDMACORE_PRIV.U = (v))
-#define HW_SDMACORE_PRIV_SET(v)    (HW_SDMACORE_PRIV_WR(HW_SDMACORE_PRIV_RD() |  (v)))
-#define HW_SDMACORE_PRIV_CLR(v)    (HW_SDMACORE_PRIV_WR(HW_SDMACORE_PRIV_RD() & ~(v)))
-#define HW_SDMACORE_PRIV_TOG(v)    (HW_SDMACORE_PRIV_WR(HW_SDMACORE_PRIV_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_PRIV bitfields
- */
-
-/* --- Register HW_SDMACORE_PRIV, field BPPRIV */
-
-#define BP_SDMACORE_PRIV_BPPRIV      0
-#define BM_SDMACORE_PRIV_BPPRIV      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_PRIV_BPPRIV(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_PRIV_BPPRIV)
-#else
-#define BF_SDMACORE_PRIV_BPPRIV(v)   (((v) << 0) & BM_SDMACORE_PRIV_BPPRIV)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_PRIV_BPPRIV(v)   BF_CS1(SDMACORE_PRIV, BPPRIV, v)
-#endif
-
-/*
- * HW_SDMACORE_PRF_CNT - Profile Free Running Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned COUNTER : 22;
-        unsigned OFL : 1;
-        unsigned RES : 6;
-        unsigned EN : 1;
-        unsigned SEL : 2;
-
-    } B;
-} hw_sdmacore_prf_cnt_t;
-#endif
-
-/*
- * constants & macros for entire SDMACORE_PRF_CNT register
- */
-#define HW_SDMACORE_PRF_CNT_ADDR      (REGS_SDMACORE_BASE + 0x23)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SDMACORE_PRF_CNT           (*(volatile hw_sdmacore_prf_cnt_t *) HW_SDMACORE_PRF_CNT_ADDR)
-#define HW_SDMACORE_PRF_CNT_RD()      (HW_SDMACORE_PRF_CNT.U)
-#define HW_SDMACORE_PRF_CNT_WR(v)     (HW_SDMACORE_PRF_CNT.U = (v))
-#define HW_SDMACORE_PRF_CNT_SET(v)    (HW_SDMACORE_PRF_CNT_WR(HW_SDMACORE_PRF_CNT_RD() |  (v)))
-#define HW_SDMACORE_PRF_CNT_CLR(v)    (HW_SDMACORE_PRF_CNT_WR(HW_SDMACORE_PRF_CNT_RD() & ~(v)))
-#define HW_SDMACORE_PRF_CNT_TOG(v)    (HW_SDMACORE_PRF_CNT_WR(HW_SDMACORE_PRF_CNT_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SDMACORE_PRF_CNT bitfields
- */
-
-/* --- Register HW_SDMACORE_PRF_CNT, field COUNTER */
-
-#define BP_SDMACORE_PRF_CNT_COUNTER      0
-#define BM_SDMACORE_PRF_CNT_COUNTER      0x003fffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_PRF_CNT_COUNTER(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_PRF_CNT_COUNTER)
-#else
-#define BF_SDMACORE_PRF_CNT_COUNTER(v)   (((v) << 0) & BM_SDMACORE_PRF_CNT_COUNTER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_PRF_CNT_COUNTER(v)   BF_CS1(SDMACORE_PRF_CNT, COUNTER, v)
-#endif
-
-/* --- Register HW_SDMACORE_PRF_CNT, field OFL */
-
-#define BP_SDMACORE_PRF_CNT_OFL      22
-#define BM_SDMACORE_PRF_CNT_OFL      0x00400000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_PRF_CNT_OFL(v)   ((((reg32_t) v) << 22) & BM_SDMACORE_PRF_CNT_OFL)
-#else
-#define BF_SDMACORE_PRF_CNT_OFL(v)   (((v) << 22) & BM_SDMACORE_PRF_CNT_OFL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_PRF_CNT_OFL(v)   BF_CS1(SDMACORE_PRF_CNT, OFL, v)
-#endif
-
-/* --- Register HW_SDMACORE_PRF_CNT, field RES */
-
-#define BP_SDMACORE_PRF_CNT_RES      23
-#define BM_SDMACORE_PRF_CNT_RES      0x1f800000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_PRF_CNT_RES(v)   ((((reg32_t) v) << 23) & BM_SDMACORE_PRF_CNT_RES)
-#else
-#define BF_SDMACORE_PRF_CNT_RES(v)   (((v) << 23) & BM_SDMACORE_PRF_CNT_RES)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_PRF_CNT_RES(v)   BF_CS1(SDMACORE_PRF_CNT, RES, v)
-#endif
-
-/* --- Register HW_SDMACORE_PRF_CNT, field EN */
-
-#define BP_SDMACORE_PRF_CNT_EN      29
-#define BM_SDMACORE_PRF_CNT_EN      0x20000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_PRF_CNT_EN(v)   ((((reg32_t) v) << 29) & BM_SDMACORE_PRF_CNT_EN)
-#else
-#define BF_SDMACORE_PRF_CNT_EN(v)   (((v) << 29) & BM_SDMACORE_PRF_CNT_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_PRF_CNT_EN(v)   BF_CS1(SDMACORE_PRF_CNT, EN, v)
-#endif
-
-/* --- Register HW_SDMACORE_PRF_CNT, field SEL */
-
-#define BP_SDMACORE_PRF_CNT_SEL      30
-#define BM_SDMACORE_PRF_CNT_SEL      0xc0000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SDMACORE_PRF_CNT_SEL(v)   ((((reg32_t) v) << 30) & BM_SDMACORE_PRF_CNT_SEL)
-#else
-#define BF_SDMACORE_PRF_CNT_SEL(v)   (((v) << 30) & BM_SDMACORE_PRF_CNT_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SDMACORE_PRF_CNT_SEL(v)   BF_CS1(SDMACORE_PRF_CNT, SEL, v)
-#endif
+//! @brief Macro to access all SDMACORE registers.
+//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
+//!     use the '&' operator, like <code>&HW_SDMACORE(0)</code>.
+#define HW_SDMACORE     (*(volatile hw_sdmacore_t *) REGS_SDMACORE_BASE)
 
 
 #endif // _SDMACORE_H
-

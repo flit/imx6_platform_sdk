@@ -12,12 +12,15 @@
 
 #ifndef REGS_SJC_BASE
 #define REGS_SJC_BASE (REGS_BASE + 0x00000000)
-
 #endif
 
 
-/*
- * HW_SJC_GPUSR1 - General Purpose Unsecured Status Register 1
+/*!
+ * @brief HW_SJC_GPUSR1 - General Purpose Unsecured Status Register 1
+ *
+ * The General Purpose Unsecured Status Register 1 is a read only registers
+ * used to check the status of the different Cores and of the PLL. The rest
+ * of its bits are for general purpose use.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -25,14 +28,13 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned A_DBG : 1;
-        unsigned A_WFI : 1;
-        unsigned S_STAT : 3;
-        unsigned RESERVED0 : 2;
-        unsigned RESERVED1 : 1;
-        unsigned PLL_LOCK : 1;
-        unsigned RESERVED2 : 23;
-
+        unsigned A_DBG : 1; //!< ARM core debug status bit  Bit 0 is the ARM core DBGACK (debug acknowledge)  DBGACK can be overwritten in the ARM core DCR to force a particular DBGACK value. Consequently interpretation of the DBGACK value is highly dependent on the debug sequence. When this bit is HIGH, ARM core is in debug.
+        unsigned A_WFI : 1; //!< ARM core wait-for interrupt bit  Bit 1 is the ARM core standbywfi (stand by wait-for interrupt). When this bit is HIGH, ARM core is in wait for interrupt mode.
+        unsigned S_STAT : 3; //!< 3 LSBits of SDMA core statusH.
+        unsigned RESERVED0 : 2; //!< Reserved.
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned PLL_LOCK : 1; //!< PLL_LOCK  A Combined PLL-Lock flag indicator, for all the PLL's.
+        unsigned RESERVED2 : 23; //!< Reserved.
     } B;
 } hw_sjc_gpusr1_t;
 #endif
@@ -56,7 +58,14 @@ typedef union
  * constants & macros for individual SJC_GPUSR1 bitfields
  */
 
-/* --- Register HW_SJC_GPUSR1, field A_DBG */
+/* --- Register HW_SJC_GPUSR1, field A_DBG
+ *
+ * ARM core debug status bit  Bit 0 is the ARM core DBGACK (debug acknowledge)  DBGACK can be
+ * overwritten in the ARM core DCR to force a particular                                 DBGACK
+ * value. Consequently interpretation of the DBGACK value is                                 highly
+ * dependent on the debug sequence. When this bit is HIGH, ARM                                 core
+ * is in debug.
+ */
 
 #define BP_SJC_GPUSR1_A_DBG      0
 #define BM_SJC_GPUSR1_A_DBG      0x00000001
@@ -70,7 +79,11 @@ typedef union
 #define BW_SJC_GPUSR1_A_DBG(v)   BF_CS1(SJC_GPUSR1, A_DBG, v)
 #endif
 
-/* --- Register HW_SJC_GPUSR1, field A_WFI */
+/* --- Register HW_SJC_GPUSR1, field A_WFI
+ *
+ * ARM core wait-for interrupt bit  Bit 1 is the ARM core standbywfi (stand by wait-for interrupt).
+ * When                                 this bit is HIGH, ARM core is in wait for interrupt mode.
+ */
 
 #define BP_SJC_GPUSR1_A_WFI      1
 #define BM_SJC_GPUSR1_A_WFI      0x00000002
@@ -84,7 +97,10 @@ typedef union
 #define BW_SJC_GPUSR1_A_WFI(v)   BF_CS1(SJC_GPUSR1, A_WFI, v)
 #endif
 
-/* --- Register HW_SJC_GPUSR1, field S_STAT */
+/* --- Register HW_SJC_GPUSR1, field S_STAT
+ *
+ * 3 LSBits of SDMA core statusH.
+ */
 
 #define BP_SJC_GPUSR1_S_STAT      2
 #define BM_SJC_GPUSR1_S_STAT      0x0000001c
@@ -98,7 +114,10 @@ typedef union
 #define BW_SJC_GPUSR1_S_STAT(v)   BF_CS1(SJC_GPUSR1, S_STAT, v)
 #endif
 
-/* --- Register HW_SJC_GPUSR1, field PLL_LOCK */
+/* --- Register HW_SJC_GPUSR1, field PLL_LOCK
+ *
+ * PLL_LOCK  A Combined PLL-Lock flag indicator, for all the PLL's.
+ */
 
 #define BP_SJC_GPUSR1_PLL_LOCK      8
 #define BM_SJC_GPUSR1_PLL_LOCK      0x00000100
@@ -112,8 +131,10 @@ typedef union
 #define BW_SJC_GPUSR1_PLL_LOCK(v)   BF_CS1(SJC_GPUSR1, PLL_LOCK, v)
 #endif
 
-/*
- * HW_SJC_GPUSR2 - General Purpose Unsecured Status Register 2
+/*!
+ * @brief HW_SJC_GPUSR2 - General Purpose Unsecured Status Register 2
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -121,11 +142,10 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned STBYWFI : 4;
-        unsigned S_STAT : 4;
-        unsigned STBYWFE : 4;
-        unsigned RESERVED0 : 20;
-
+        unsigned STBYWFI : 4; //!< STBYWFI[3:0]  These bits provide status of "Standby Wait-For-Interrupt" state of all ARM cores.
+        unsigned S_STAT : 4; //!< S_STAT[3:0]  SDMA debug status bits: debug_core_state[3:0]
+        unsigned STBYWFE : 4; //!< STBYWFE[3:0]  Reflecting the "Standby Wait For Event" signals of all cores.
+        unsigned RESERVED0 : 20; //!< Reserved
     } B;
 } hw_sjc_gpusr2_t;
 #endif
@@ -149,7 +169,10 @@ typedef union
  * constants & macros for individual SJC_GPUSR2 bitfields
  */
 
-/* --- Register HW_SJC_GPUSR2, field STBYWFI */
+/* --- Register HW_SJC_GPUSR2, field STBYWFI
+ *
+ * STBYWFI[3:0]  These bits provide status of "Standby Wait-For-Interrupt" state of all ARM cores.
+ */
 
 #define BP_SJC_GPUSR2_STBYWFI      0
 #define BM_SJC_GPUSR2_STBYWFI      0x0000000f
@@ -163,7 +186,10 @@ typedef union
 #define BW_SJC_GPUSR2_STBYWFI(v)   BF_CS1(SJC_GPUSR2, STBYWFI, v)
 #endif
 
-/* --- Register HW_SJC_GPUSR2, field S_STAT */
+/* --- Register HW_SJC_GPUSR2, field S_STAT
+ *
+ * S_STAT[3:0]  SDMA debug status bits: debug_core_state[3:0]
+ */
 
 #define BP_SJC_GPUSR2_S_STAT      4
 #define BM_SJC_GPUSR2_S_STAT      0x000000f0
@@ -177,7 +203,10 @@ typedef union
 #define BW_SJC_GPUSR2_S_STAT(v)   BF_CS1(SJC_GPUSR2, S_STAT, v)
 #endif
 
-/* --- Register HW_SJC_GPUSR2, field STBYWFE */
+/* --- Register HW_SJC_GPUSR2, field STBYWFE
+ *
+ * STBYWFE[3:0]  Reflecting the "Standby Wait For Event" signals of all cores.
+ */
 
 #define BP_SJC_GPUSR2_STBYWFE      8
 #define BM_SJC_GPUSR2_STBYWFE      0x00000f00
@@ -191,8 +220,10 @@ typedef union
 #define BW_SJC_GPUSR2_STBYWFE(v)   BF_CS1(SJC_GPUSR2, STBYWFE, v)
 #endif
 
-/*
- * HW_SJC_GPUSR3 - General Purpose Unsecured Status Register 3
+/*!
+ * @brief HW_SJC_GPUSR3 - General Purpose Unsecured Status Register 3
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -200,11 +231,10 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned IPG_WAIT : 1;
-        unsigned IPG_STOP : 1;
-        unsigned SYS_WAIT : 1;
-        unsigned RESERVED0 : 29;
-
+        unsigned IPG_WAIT : 1; //!< IPG_WAIT  CCM's "ipg_wait" signal indication
+        unsigned IPG_STOP : 1; //!< IPG_STOP  CCM's "ipg_stop" signal indication
+        unsigned SYS_WAIT : 1; //!< System In wait  Indication on System in wait mode (from CCM).
+        unsigned RESERVED0 : 29; //!< Reserved
     } B;
 } hw_sjc_gpusr3_t;
 #endif
@@ -228,7 +258,10 @@ typedef union
  * constants & macros for individual SJC_GPUSR3 bitfields
  */
 
-/* --- Register HW_SJC_GPUSR3, field IPG_WAIT */
+/* --- Register HW_SJC_GPUSR3, field IPG_WAIT
+ *
+ * IPG_WAIT  CCM's "ipg_wait" signal indication
+ */
 
 #define BP_SJC_GPUSR3_IPG_WAIT      0
 #define BM_SJC_GPUSR3_IPG_WAIT      0x00000001
@@ -242,7 +275,10 @@ typedef union
 #define BW_SJC_GPUSR3_IPG_WAIT(v)   BF_CS1(SJC_GPUSR3, IPG_WAIT, v)
 #endif
 
-/* --- Register HW_SJC_GPUSR3, field IPG_STOP */
+/* --- Register HW_SJC_GPUSR3, field IPG_STOP
+ *
+ * IPG_STOP  CCM's "ipg_stop" signal indication
+ */
 
 #define BP_SJC_GPUSR3_IPG_STOP      1
 #define BM_SJC_GPUSR3_IPG_STOP      0x00000002
@@ -256,7 +292,10 @@ typedef union
 #define BW_SJC_GPUSR3_IPG_STOP(v)   BF_CS1(SJC_GPUSR3, IPG_STOP, v)
 #endif
 
-/* --- Register HW_SJC_GPUSR3, field SYS_WAIT */
+/* --- Register HW_SJC_GPUSR3, field SYS_WAIT
+ *
+ * System In wait  Indication on System in wait mode (from CCM).
+ */
 
 #define BP_SJC_GPUSR3_SYS_WAIT      2
 #define BM_SJC_GPUSR3_SYS_WAIT      0x00000004
@@ -270,8 +309,12 @@ typedef union
 #define BW_SJC_GPUSR3_SYS_WAIT(v)   BF_CS1(SJC_GPUSR3, SYS_WAIT, v)
 #endif
 
-/*
- * HW_SJC_GPSSR - General Purpose Secured Status Register
+/*!
+ * @brief HW_SJC_GPSSR - General Purpose Secured Status Register
+ *
+ * The General Purpose Secured Status Register is a read-only register used
+ * to check the status of the different critical information in the SoC.
+ * This register cannot be accessed in secure modes.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -279,8 +322,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned GPSSR : 32;
-
+        unsigned GPSSR : 32; //!< General Purpose Secured Status Register  Register is used for testing and debug.
     } B;
 } hw_sjc_gpssr_t;
 #endif
@@ -304,7 +346,10 @@ typedef union
  * constants & macros for individual SJC_GPSSR bitfields
  */
 
-/* --- Register HW_SJC_GPSSR, field GPSSR */
+/* --- Register HW_SJC_GPSSR, field GPSSR
+ *
+ * General Purpose Secured Status Register  Register is used for testing and debug.
+ */
 
 #define BP_SJC_GPSSR_GPSSR      0
 #define BM_SJC_GPSSR_GPSSR      0xffffffff
@@ -318,8 +363,11 @@ typedef union
 #define BW_SJC_GPSSR_GPSSR(v)   BF_CS1(SJC_GPSSR, GPSSR, v)
 #endif
 
-/*
- * HW_SJC_DCR - Debug Control Register
+/*!
+ * @brief HW_SJC_DCR - Debug Control Register
+ *
+ * This register is used to control propagation of debug request from DE_B pad to the cores and
+ * debug signals from internal logic to the DE_B pad.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -327,15 +375,14 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned DE_TO_ARM : 1;
-        unsigned DE_TO_SDMA : 1;
-        unsigned RESERVED0 : 1;
-        unsigned DEBUG_OBS : 1;
-        unsigned RESERVED1 : 1;
-        unsigned DIRECT_SDMA_REQ_EN : 1;
-        unsigned DIRECT_ARM_REQ_EN : 1;
-        unsigned RESERVED2 : 25;
-
+        unsigned DE_TO_ARM : 1; //!< ARM platform debug request input propagation  This bit controls the propagation of debug request to ARM platform ("dbgreq"), when the JTAG state machine is put in "ENTER_DEBUG" IR instruction.
+        unsigned DE_TO_SDMA : 1; //!< SDMA debug request input propagation  This bit controls the propagation of debug request to SDMA, when the JTAG state machine is put in "ENTER_DEBUG" IR instruction..
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned DEBUG_OBS : 1; //!< Debug observability  This bit controls the propagation of the "system debug" input to SJC  For i.MX 6x, the SJC's "system_debug" input is tied to logic HIGH value, therefore, set of "debug_obs" bit, will result in unconditional assertion of DE_B pad.
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned DIRECT_SDMA_REQ_EN : 1; //!< Debug enable of the sdma debug request  This bit controls the propagation of debug request DE_B to the sdma.
+        unsigned DIRECT_ARM_REQ_EN : 1; //!< Pass Debug Enable event from DE_B pin to ARM platform debug request signal(s).  This bit controls the propagation of debug request DE_B to the Arm platform.
+        unsigned RESERVED2 : 25; //!< Reserved
     } B;
 } hw_sjc_dcr_t;
 #endif
@@ -359,7 +406,12 @@ typedef union
  * constants & macros for individual SJC_DCR bitfields
  */
 
-/* --- Register HW_SJC_DCR, field DE_TO_ARM */
+/* --- Register HW_SJC_DCR, field DE_TO_ARM
+ *
+ * ARM platform debug request input propagation  This bit controls the propagation of debug request
+ * to ARM platform ("dbgreq"), when the JTAG state machine is put in "ENTER_DEBUG" IR
+ * instruction.
+ */
 
 #define BP_SJC_DCR_DE_TO_ARM      0
 #define BM_SJC_DCR_DE_TO_ARM      0x00000001
@@ -373,7 +425,12 @@ typedef union
 #define BW_SJC_DCR_DE_TO_ARM(v)   BF_CS1(SJC_DCR, DE_TO_ARM, v)
 #endif
 
-/* --- Register HW_SJC_DCR, field DE_TO_SDMA */
+/* --- Register HW_SJC_DCR, field DE_TO_SDMA
+ *
+ * SDMA debug request input propagation  This bit controls the propagation of debug request to SDMA,
+ * when the JTAG state machine is put in "ENTER_DEBUG" IR
+ * instruction..
+ */
 
 #define BP_SJC_DCR_DE_TO_SDMA      1
 #define BM_SJC_DCR_DE_TO_SDMA      0x00000002
@@ -387,7 +444,12 @@ typedef union
 #define BW_SJC_DCR_DE_TO_SDMA(v)   BF_CS1(SJC_DCR, DE_TO_SDMA, v)
 #endif
 
-/* --- Register HW_SJC_DCR, field DEBUG_OBS */
+/* --- Register HW_SJC_DCR, field DEBUG_OBS
+ *
+ * Debug observability  This bit controls the propagation of the "system debug" input to SJC  For
+ * i.MX 6x, the SJC's "system_debug" input is tied to logic HIGH value, therefore, set of
+ * "debug_obs" bit, will result in unconditional assertion of DE_B pad.
+ */
 
 #define BP_SJC_DCR_DEBUG_OBS      3
 #define BM_SJC_DCR_DEBUG_OBS      0x00000008
@@ -401,7 +463,11 @@ typedef union
 #define BW_SJC_DCR_DEBUG_OBS(v)   BF_CS1(SJC_DCR, DEBUG_OBS, v)
 #endif
 
-/* --- Register HW_SJC_DCR, field DIRECT_SDMA_REQ_EN */
+/* --- Register HW_SJC_DCR, field DIRECT_SDMA_REQ_EN
+ *
+ * Debug enable of the sdma debug request  This bit controls the propagation of debug request DE_B
+ * to the                                 sdma.
+ */
 
 #define BP_SJC_DCR_DIRECT_SDMA_REQ_EN      5
 #define BM_SJC_DCR_DIRECT_SDMA_REQ_EN      0x00000020
@@ -415,7 +481,11 @@ typedef union
 #define BW_SJC_DCR_DIRECT_SDMA_REQ_EN(v)   BF_CS1(SJC_DCR, DIRECT_SDMA_REQ_EN, v)
 #endif
 
-/* --- Register HW_SJC_DCR, field DIRECT_ARM_REQ_EN */
+/* --- Register HW_SJC_DCR, field DIRECT_ARM_REQ_EN
+ *
+ * Pass Debug Enable event from DE_B pin to ARM platform debug request signal(s).  This bit controls
+ * the propagation of debug request DE_B to the                                 Arm platform.
+ */
 
 #define BP_SJC_DCR_DIRECT_ARM_REQ_EN      6
 #define BM_SJC_DCR_DIRECT_ARM_REQ_EN      0x00000040
@@ -429,8 +499,10 @@ typedef union
 #define BW_SJC_DCR_DIRECT_ARM_REQ_EN(v)   BF_CS1(SJC_DCR, DIRECT_ARM_REQ_EN, v)
 #endif
 
-/*
- * HW_SJC_SSR - Security Status Register
+/*!
+ * @brief HW_SJC_SSR - Security Status Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -438,25 +510,21 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned KTF : 1;
-        unsigned KTA : 1;
-        unsigned SWF : 1;
-        unsigned SWE : 1;
-        unsigned EBF : 1;
-        unsigned EBG : 1;
-        unsigned RESERVED0 : 1;
-        unsigned RESERVED1 : 1;
-        unsigned FT : 1;
-        unsigned SJM : 2;
-        unsigned RSSTAT : 2;
-        unsigned SECBLK : 1;
-        unsigned RESERVED2 : 1;
-        unsigned BOOTIND : 1;
-        unsigned RESERVED3 : 2;
-        unsigned RESERVED4 : 1;
-        unsigned F_LATCH : 1;
-        unsigned RESERVED5 : 15;
-
+        unsigned KTF : 1; //!< Kill Trace Enable fuse value
+        unsigned KTA : 1; //!< Kill Trace is active
+        unsigned SWF : 1; //!< Software JTAG enable fuse  Status of the no SW disable JTAG fuse
+        unsigned SWE : 1; //!< SW enable  SW JTAG enable status
+        unsigned EBF : 1; //!< External Boot fuse  Status of the external boot disable fuse
+        unsigned EBG : 1; //!< External boot granted  External boot enabled, requested and granted
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned FT : 1; //!< Fuse type  Fuse type bit - e-fuse or laser fuse
+        unsigned SJM : 2; //!< SJC Secure mode  Secure JTAG mode, as set by external fuses. These bits do not reflect the change due to burn of Bypass Secure JTAG fuse.
+        unsigned RSSTAT : 2; //!< Response status  Response status bits
+        unsigned RESERVED2 : 1; //!< Reserved
+        unsigned BOOTIND : 1; //!< Boot Indication  Inverted Internal Boot indication, i.e inverse of SRC:  "src_int_boot" signal
+        unsigned RESERVED3 : 2; //!< Reserved
+        unsigned RESERVED4 : 15; //!< Reserved.
     } B;
 } hw_sjc_ssr_t;
 #endif
@@ -480,7 +548,10 @@ typedef union
  * constants & macros for individual SJC_SSR bitfields
  */
 
-/* --- Register HW_SJC_SSR, field KTF */
+/* --- Register HW_SJC_SSR, field KTF
+ *
+ * Kill Trace Enable fuse value
+ */
 
 #define BP_SJC_SSR_KTF      0
 #define BM_SJC_SSR_KTF      0x00000001
@@ -494,7 +565,10 @@ typedef union
 #define BW_SJC_SSR_KTF(v)   BF_CS1(SJC_SSR, KTF, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field KTA */
+/* --- Register HW_SJC_SSR, field KTA
+ *
+ * Kill Trace is active
+ */
 
 #define BP_SJC_SSR_KTA      1
 #define BM_SJC_SSR_KTA      0x00000002
@@ -508,7 +582,10 @@ typedef union
 #define BW_SJC_SSR_KTA(v)   BF_CS1(SJC_SSR, KTA, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field SWF */
+/* --- Register HW_SJC_SSR, field SWF
+ *
+ * Software JTAG enable fuse  Status of the no SW disable JTAG fuse
+ */
 
 #define BP_SJC_SSR_SWF      2
 #define BM_SJC_SSR_SWF      0x00000004
@@ -522,7 +599,10 @@ typedef union
 #define BW_SJC_SSR_SWF(v)   BF_CS1(SJC_SSR, SWF, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field SWE */
+/* --- Register HW_SJC_SSR, field SWE
+ *
+ * SW enable  SW JTAG enable status
+ */
 
 #define BP_SJC_SSR_SWE      3
 #define BM_SJC_SSR_SWE      0x00000008
@@ -536,7 +616,10 @@ typedef union
 #define BW_SJC_SSR_SWE(v)   BF_CS1(SJC_SSR, SWE, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field EBF */
+/* --- Register HW_SJC_SSR, field EBF
+ *
+ * External Boot fuse  Status of the external boot disable fuse
+ */
 
 #define BP_SJC_SSR_EBF      4
 #define BM_SJC_SSR_EBF      0x00000010
@@ -550,7 +633,10 @@ typedef union
 #define BW_SJC_SSR_EBF(v)   BF_CS1(SJC_SSR, EBF, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field EBG */
+/* --- Register HW_SJC_SSR, field EBG
+ *
+ * External boot granted  External boot enabled, requested and granted
+ */
 
 #define BP_SJC_SSR_EBG      5
 #define BM_SJC_SSR_EBG      0x00000020
@@ -564,7 +650,10 @@ typedef union
 #define BW_SJC_SSR_EBG(v)   BF_CS1(SJC_SSR, EBG, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field FT */
+/* --- Register HW_SJC_SSR, field FT
+ *
+ * Fuse type  Fuse type bit - e-fuse or laser fuse
+ */
 
 #define BP_SJC_SSR_FT      8
 #define BM_SJC_SSR_FT      0x00000100
@@ -578,7 +667,11 @@ typedef union
 #define BW_SJC_SSR_FT(v)   BF_CS1(SJC_SSR, FT, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field SJM */
+/* --- Register HW_SJC_SSR, field SJM
+ *
+ * SJC Secure mode  Secure JTAG mode, as set by external fuses. These bits do not reflect the change
+ * due to burn of Bypass Secure JTAG fuse.
+ */
 
 #define BP_SJC_SSR_SJM      9
 #define BM_SJC_SSR_SJM      0x00000600
@@ -592,7 +685,10 @@ typedef union
 #define BW_SJC_SSR_SJM(v)   BF_CS1(SJC_SSR, SJM, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field RSSTAT */
+/* --- Register HW_SJC_SSR, field RSSTAT
+ *
+ * Response status  Response status bits
+ */
 
 #define BP_SJC_SSR_RSSTAT      11
 #define BM_SJC_SSR_RSSTAT      0x00001800
@@ -606,21 +702,10 @@ typedef union
 #define BW_SJC_SSR_RSSTAT(v)   BF_CS1(SJC_SSR, RSSTAT, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field SECBLK */
-
-#define BP_SJC_SSR_SECBLK      13
-#define BM_SJC_SSR_SECBLK      0x00002000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_SSR_SECBLK(v)   ((((reg32_t) v) << 13) & BM_SJC_SSR_SECBLK)
-#else
-#define BF_SJC_SSR_SECBLK(v)   (((v) << 13) & BM_SJC_SSR_SECBLK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_SSR_SECBLK(v)   BF_CS1(SJC_SSR, SECBLK, v)
-#endif
-
-/* --- Register HW_SJC_SSR, field BOOTIND */
+/* --- Register HW_SJC_SSR, field BOOTIND
+ *
+ * Boot Indication  Inverted Internal Boot indication, i.e inverse of SRC:  "src_int_boot" signal
+ */
 
 #define BP_SJC_SSR_BOOTIND      14
 #define BM_SJC_SSR_BOOTIND      0x00004000
@@ -634,22 +719,19 @@ typedef union
 #define BW_SJC_SSR_BOOTIND(v)   BF_CS1(SJC_SSR, BOOTIND, v)
 #endif
 
-/* --- Register HW_SJC_SSR, field F_LATCH */
-
-#define BP_SJC_SSR_F_LATCH      16
-#define BM_SJC_SSR_F_LATCH      0x00010000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_SSR_F_LATCH(v)   ((((reg32_t) v) << 16) & BM_SJC_SSR_F_LATCH)
-#else
-#define BF_SJC_SSR_F_LATCH(v)   (((v) << 16) & BM_SJC_SSR_F_LATCH)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_SSR_F_LATCH(v)   BF_CS1(SJC_SSR, F_LATCH, v)
-#endif
-
-/*
- * HW_SJC_CPCR - Charge Pump Configuration Register
+/*!
+ * @brief HW_SJC_GPCCR - General Purpose Clocks Control Register
+ *
+ * This register is used to configure clock                                 related modes in SOC,
+ * see System Configuration chapter for more                                 information. Those bits
+ * are directly                                 connected to JTAG outputs. Bit 0 of GPCCR controls
+ * SDMA clocks                                 invocation. When out of reset, the SDMA is in sleep
+ * mode with no                                 SDMA clock running. Unlike events, debug requests
+ * does not wake SDMA                                 if it is in sleep mode. The debug request is
+ * recognized by the SDMA                                 only when it exits sleep mode upon
+ * reception of an event. To be able                                 to enter debug mode even if no
+ * event is triggered, the SDMA clock on                                 bit needs to be set prior
+ * to sending the debug request (clear at                                 reset).
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -657,56 +739,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CPCR : 32;
-
-    } B;
-} hw_sjc_cpcr_t;
-#endif
-
-/*
- * constants & macros for entire SJC_CPCR register
- */
-#define HW_SJC_CPCR_ADDR      (REGS_SJC_BASE + 0x6)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_CPCR           (*(volatile hw_sjc_cpcr_t *) HW_SJC_CPCR_ADDR)
-#define HW_SJC_CPCR_RD()      (HW_SJC_CPCR.U)
-#define HW_SJC_CPCR_WR(v)     (HW_SJC_CPCR.U = (v))
-#define HW_SJC_CPCR_SET(v)    (HW_SJC_CPCR_WR(HW_SJC_CPCR_RD() |  (v)))
-#define HW_SJC_CPCR_CLR(v)    (HW_SJC_CPCR_WR(HW_SJC_CPCR_RD() & ~(v)))
-#define HW_SJC_CPCR_TOG(v)    (HW_SJC_CPCR_WR(HW_SJC_CPCR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_CPCR bitfields
- */
-
-/* --- Register HW_SJC_CPCR, field CPCR */
-
-#define BP_SJC_CPCR_CPCR      0
-#define BM_SJC_CPCR_CPCR      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_CPCR_CPCR(v)   ((((reg32_t) v) << 0) & BM_SJC_CPCR_CPCR)
-#else
-#define BF_SJC_CPCR_CPCR(v)   (((v) << 0) & BM_SJC_CPCR_CPCR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_CPCR_CPCR(v)   BF_CS1(SJC_CPCR, CPCR, v)
-#endif
-
-/*
- * HW_SJC_GPCCR - General Purpose Clocks Control Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 31;
-
+        unsigned RESERVED0 : 32; //!< 
     } B;
 } hw_sjc_gpccr_t;
 #endif
@@ -730,8 +763,10 @@ typedef union
  * constants & macros for individual SJC_GPCCR bitfields
  */
 
-/*
- * HW_SJC_PLLBR - PLL Bypass Register
+/*!
+ * @brief HW_SJC_GPUCR - General Purpose Unsecured Control Register n
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -739,41 +774,7 @@ typedef union
     reg32_t  U;
     struct
     {
-
-    } B;
-} hw_sjc_pllbr_t;
-#endif
-
-/*
- * constants & macros for entire SJC_PLLBR register
- */
-#define HW_SJC_PLLBR_ADDR      (REGS_SJC_BASE + 0x8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_PLLBR           (*(volatile hw_sjc_pllbr_t *) HW_SJC_PLLBR_ADDR)
-#define HW_SJC_PLLBR_RD()      (HW_SJC_PLLBR.U)
-#define HW_SJC_PLLBR_WR(v)     (HW_SJC_PLLBR.U = (v))
-#define HW_SJC_PLLBR_SET(v)    (HW_SJC_PLLBR_WR(HW_SJC_PLLBR_RD() |  (v)))
-#define HW_SJC_PLLBR_CLR(v)    (HW_SJC_PLLBR_WR(HW_SJC_PLLBR_RD() & ~(v)))
-#define HW_SJC_PLLBR_TOG(v)    (HW_SJC_PLLBR_WR(HW_SJC_PLLBR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_PLLBR bitfields
- */
-
-/*
- * HW_SJC_GPUCR - General Purpose Unsecured Control Register n
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RESERVED0 : 32;
-
+        unsigned RESERVED0 : 32; //!< Reserved.
     } B;
 } hw_sjc_gpucr_t;
 #endif
@@ -797,8 +798,13 @@ typedef union
  * constants & macros for individual SJC_GPUCR bitfields
  */
 
-/*
- * HW_SJC_GPSCR - General Purpose Secured Control Register
+/*!
+ * @brief HW_SJC_GPSCR - General Purpose Secured Control Register
+ *
+ * This register is used to configure JTAG for special test or debug modes.
+ * This register is secured (accessible in secure jtag mode #3, #4 and #2
+ * with response entered). Those bits are directly connected to SJC
+ * outputs.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -806,8 +812,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 32;
-
+        unsigned RESERVED0 : 32; //!< Reserved.
     } B;
 } hw_sjc_gpscr_t;
 #endif
@@ -831,707 +836,30 @@ typedef union
  * constants & macros for individual SJC_GPSCR bitfields
  */
 
-/*
- * HW_SJC_TESTREG - Test Register
+
+
+/*!
+ * @brief All SJC module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef union
+typedef struct
 {
-    reg16_t  U;
-    struct
-    {
-        unsigned short TESTREG : 16;
-
-    } B;
-} hw_sjc_testreg_t;
-#endif
-
-/*
- * constants & macros for entire SJC_TESTREG register
- */
-#define HW_SJC_TESTREG_ADDR      (REGS_SJC_BASE + 0xc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_TESTREG           (*(volatile hw_sjc_testreg_t *) HW_SJC_TESTREG_ADDR)
-#define HW_SJC_TESTREG_RD()      (HW_SJC_TESTREG.U)
-#define HW_SJC_TESTREG_WR(v)     (HW_SJC_TESTREG.U = (v))
-#define HW_SJC_TESTREG_SET(v)    (HW_SJC_TESTREG_WR(HW_SJC_TESTREG_RD() |  (v)))
-#define HW_SJC_TESTREG_CLR(v)    (HW_SJC_TESTREG_WR(HW_SJC_TESTREG_RD() & ~(v)))
-#define HW_SJC_TESTREG_TOG(v)    (HW_SJC_TESTREG_WR(HW_SJC_TESTREG_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_TESTREG bitfields
- */
-
-/* --- Register HW_SJC_TESTREG, field TESTREG */
-
-#define BP_SJC_TESTREG_TESTREG      0
-#define BM_SJC_TESTREG_TESTREG      0x0000ffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_TESTREG_TESTREG(v)   ((((reg32_t) v) << 0) & BM_SJC_TESTREG_TESTREG)
-#else
-#define BF_SJC_TESTREG_TESTREG(v)   (((v) << 0) & BM_SJC_TESTREG_TESTREG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_TESTREG_TESTREG(v)   BF_CS1(SJC_TESTREG, TESTREG, v)
-#endif
-
-/*
- * HW_SJC_SASR - Serial Access Select Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg16_t  U;
-    struct
-    {
-        unsigned short SASR : 6;
-        unsigned short RESERVED0 : 10;
-
-    } B;
-} hw_sjc_sasr_t;
-#endif
-
-/*
- * constants & macros for entire SJC_SASR register
- */
-#define HW_SJC_SASR_ADDR      (REGS_SJC_BASE + 0xd)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_SASR           (*(volatile hw_sjc_sasr_t *) HW_SJC_SASR_ADDR)
-#define HW_SJC_SASR_RD()      (HW_SJC_SASR.U)
-#define HW_SJC_SASR_WR(v)     (HW_SJC_SASR.U = (v))
-#define HW_SJC_SASR_SET(v)    (HW_SJC_SASR_WR(HW_SJC_SASR_RD() |  (v)))
-#define HW_SJC_SASR_CLR(v)    (HW_SJC_SASR_WR(HW_SJC_SASR_RD() & ~(v)))
-#define HW_SJC_SASR_TOG(v)    (HW_SJC_SASR_WR(HW_SJC_SASR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_SASR bitfields
- */
-
-/* --- Register HW_SJC_SASR, field SASR */
-
-#define BP_SJC_SASR_SASR      0
-#define BM_SJC_SASR_SASR      0x0000003f
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_SASR_SASR(v)   ((((reg32_t) v) << 0) & BM_SJC_SASR_SASR)
-#else
-#define BF_SJC_SASR_SASR(v)   (((v) << 0) & BM_SJC_SASR_SASR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_SASR_SASR(v)   BF_CS1(SJC_SASR, SASR, v)
-#endif
-
-/*
- * HW_SJC_BISTCR1 - BIST Configuration Register 1
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RELEASE_EN : 1;
-        unsigned INVOKE : 1;
-        unsigned BIST_SELECT : 10;
-        unsigned BCR : 20;
-
-    } B;
-} hw_sjc_bistcr1_t;
-#endif
-
-/*
- * constants & macros for entire SJC_BISTCR1 register
- */
-#define HW_SJC_BISTCR1_ADDR      (REGS_SJC_BASE + 0xe)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_BISTCR1           (*(volatile hw_sjc_bistcr1_t *) HW_SJC_BISTCR1_ADDR)
-#define HW_SJC_BISTCR1_RD()      (HW_SJC_BISTCR1.U)
-#define HW_SJC_BISTCR1_WR(v)     (HW_SJC_BISTCR1.U = (v))
-#define HW_SJC_BISTCR1_SET(v)    (HW_SJC_BISTCR1_WR(HW_SJC_BISTCR1_RD() |  (v)))
-#define HW_SJC_BISTCR1_CLR(v)    (HW_SJC_BISTCR1_WR(HW_SJC_BISTCR1_RD() & ~(v)))
-#define HW_SJC_BISTCR1_TOG(v)    (HW_SJC_BISTCR1_WR(HW_SJC_BISTCR1_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_BISTCR1 bitfields
- */
-
-/* --- Register HW_SJC_BISTCR1, field RELEASE_EN */
-
-#define BP_SJC_BISTCR1_RELEASE_EN      0
-#define BM_SJC_BISTCR1_RELEASE_EN      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR1_RELEASE_EN(v)   ((((reg32_t) v) << 0) & BM_SJC_BISTCR1_RELEASE_EN)
-#else
-#define BF_SJC_BISTCR1_RELEASE_EN(v)   (((v) << 0) & BM_SJC_BISTCR1_RELEASE_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR1_RELEASE_EN(v)   BF_CS1(SJC_BISTCR1, RELEASE_EN, v)
-#endif
-
-/* --- Register HW_SJC_BISTCR1, field INVOKE */
-
-#define BP_SJC_BISTCR1_INVOKE      1
-#define BM_SJC_BISTCR1_INVOKE      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR1_INVOKE(v)   ((((reg32_t) v) << 1) & BM_SJC_BISTCR1_INVOKE)
-#else
-#define BF_SJC_BISTCR1_INVOKE(v)   (((v) << 1) & BM_SJC_BISTCR1_INVOKE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR1_INVOKE(v)   BF_CS1(SJC_BISTCR1, INVOKE, v)
-#endif
-
-/* --- Register HW_SJC_BISTCR1, field BIST_SELECT */
-
-#define BP_SJC_BISTCR1_BIST_SELECT      2
-#define BM_SJC_BISTCR1_BIST_SELECT      0x00000ffc
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR1_BIST_SELECT(v)   ((((reg32_t) v) << 2) & BM_SJC_BISTCR1_BIST_SELECT)
-#else
-#define BF_SJC_BISTCR1_BIST_SELECT(v)   (((v) << 2) & BM_SJC_BISTCR1_BIST_SELECT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR1_BIST_SELECT(v)   BF_CS1(SJC_BISTCR1, BIST_SELECT, v)
-#endif
-
-/* --- Register HW_SJC_BISTCR1, field BCR */
-
-#define BP_SJC_BISTCR1_BCR      12
-#define BM_SJC_BISTCR1_BCR      0xfffff000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR1_BCR(v)   ((((reg32_t) v) << 12) & BM_SJC_BISTCR1_BCR)
-#else
-#define BF_SJC_BISTCR1_BCR(v)   (((v) << 12) & BM_SJC_BISTCR1_BCR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR1_BCR(v)   BF_CS1(SJC_BISTCR1, BCR, v)
-#endif
-
-/*
- * HW_SJC_BISTCR3 - BIST Configuration Register 3
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RELEASE_EN : 1;
-        unsigned SELECT : 2;
-        unsigned BCR3 : 29;
-
-    } B;
-} hw_sjc_bistcr3_t;
-#endif
-
-/*
- * constants & macros for entire SJC_BISTCR3 register
- */
-#define HW_SJC_BISTCR3_ADDR      (REGS_SJC_BASE + 0x10)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_BISTCR3           (*(volatile hw_sjc_bistcr3_t *) HW_SJC_BISTCR3_ADDR)
-#define HW_SJC_BISTCR3_RD()      (HW_SJC_BISTCR3.U)
-#define HW_SJC_BISTCR3_WR(v)     (HW_SJC_BISTCR3.U = (v))
-#define HW_SJC_BISTCR3_SET(v)    (HW_SJC_BISTCR3_WR(HW_SJC_BISTCR3_RD() |  (v)))
-#define HW_SJC_BISTCR3_CLR(v)    (HW_SJC_BISTCR3_WR(HW_SJC_BISTCR3_RD() & ~(v)))
-#define HW_SJC_BISTCR3_TOG(v)    (HW_SJC_BISTCR3_WR(HW_SJC_BISTCR3_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_BISTCR3 bitfields
- */
-
-/* --- Register HW_SJC_BISTCR3, field RELEASE_EN */
-
-#define BP_SJC_BISTCR3_RELEASE_EN      0
-#define BM_SJC_BISTCR3_RELEASE_EN      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR3_RELEASE_EN(v)   ((((reg32_t) v) << 0) & BM_SJC_BISTCR3_RELEASE_EN)
-#else
-#define BF_SJC_BISTCR3_RELEASE_EN(v)   (((v) << 0) & BM_SJC_BISTCR3_RELEASE_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR3_RELEASE_EN(v)   BF_CS1(SJC_BISTCR3, RELEASE_EN, v)
-#endif
-
-/* --- Register HW_SJC_BISTCR3, field SELECT */
-
-#define BP_SJC_BISTCR3_SELECT      1
-#define BM_SJC_BISTCR3_SELECT      0x00000006
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR3_SELECT(v)   ((((reg32_t) v) << 1) & BM_SJC_BISTCR3_SELECT)
-#else
-#define BF_SJC_BISTCR3_SELECT(v)   (((v) << 1) & BM_SJC_BISTCR3_SELECT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR3_SELECT(v)   BF_CS1(SJC_BISTCR3, SELECT, v)
-#endif
-
-/* --- Register HW_SJC_BISTCR3, field BCR3 */
-
-#define BP_SJC_BISTCR3_BCR3      3
-#define BM_SJC_BISTCR3_BCR3      0xfffffff8
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR3_BCR3(v)   ((((reg32_t) v) << 3) & BM_SJC_BISTCR3_BCR3)
-#else
-#define BF_SJC_BISTCR3_BCR3(v)   (((v) << 3) & BM_SJC_BISTCR3_BCR3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR3_BCR3(v)   BF_CS1(SJC_BISTCR3, BCR3, v)
-#endif
-
-/*
- * HW_SJC_BISTCR4 - BIST Configuration Register 4
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned RELEASE_EN : 1;
-        unsigned BCR4 : 31;
-
-    } B;
-} hw_sjc_bistcr4_t;
-#endif
-
-/*
- * constants & macros for entire SJC_BISTCR4 register
- */
-#define HW_SJC_BISTCR4_ADDR      (REGS_SJC_BASE + 0x11)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_BISTCR4           (*(volatile hw_sjc_bistcr4_t *) HW_SJC_BISTCR4_ADDR)
-#define HW_SJC_BISTCR4_RD()      (HW_SJC_BISTCR4.U)
-#define HW_SJC_BISTCR4_WR(v)     (HW_SJC_BISTCR4.U = (v))
-#define HW_SJC_BISTCR4_SET(v)    (HW_SJC_BISTCR4_WR(HW_SJC_BISTCR4_RD() |  (v)))
-#define HW_SJC_BISTCR4_CLR(v)    (HW_SJC_BISTCR4_WR(HW_SJC_BISTCR4_RD() & ~(v)))
-#define HW_SJC_BISTCR4_TOG(v)    (HW_SJC_BISTCR4_WR(HW_SJC_BISTCR4_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_BISTCR4 bitfields
- */
-
-/* --- Register HW_SJC_BISTCR4, field RELEASE_EN */
-
-#define BP_SJC_BISTCR4_RELEASE_EN      0
-#define BM_SJC_BISTCR4_RELEASE_EN      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR4_RELEASE_EN(v)   ((((reg32_t) v) << 0) & BM_SJC_BISTCR4_RELEASE_EN)
-#else
-#define BF_SJC_BISTCR4_RELEASE_EN(v)   (((v) << 0) & BM_SJC_BISTCR4_RELEASE_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR4_RELEASE_EN(v)   BF_CS1(SJC_BISTCR4, RELEASE_EN, v)
-#endif
-
-/* --- Register HW_SJC_BISTCR4, field BCR4 */
-
-#define BP_SJC_BISTCR4_BCR4      1
-#define BM_SJC_BISTCR4_BCR4      0xfffffffe
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTCR4_BCR4(v)   ((((reg32_t) v) << 1) & BM_SJC_BISTCR4_BCR4)
-#else
-#define BF_SJC_BISTCR4_BCR4(v)   (((v) << 1) & BM_SJC_BISTCR4_BCR4)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTCR4_BCR4(v)   BF_CS1(SJC_BISTCR4, BCR4, v)
-#endif
-
-/*
- * HW_SJC_MBISTPASSR1 - Memory BIST Pass-Fail Register 1
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned MBISTPASSR : 32;
-
-    } B;
-} hw_sjc_mbistpassr1_t;
-#endif
-
-/*
- * constants & macros for entire SJC_MBISTPASSR1 register
- */
-#define HW_SJC_MBISTPASSR1_ADDR      (REGS_SJC_BASE + 0x15)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_MBISTPASSR1           (*(volatile hw_sjc_mbistpassr1_t *) HW_SJC_MBISTPASSR1_ADDR)
-#define HW_SJC_MBISTPASSR1_RD()      (HW_SJC_MBISTPASSR1.U)
-#define HW_SJC_MBISTPASSR1_WR(v)     (HW_SJC_MBISTPASSR1.U = (v))
-#define HW_SJC_MBISTPASSR1_SET(v)    (HW_SJC_MBISTPASSR1_WR(HW_SJC_MBISTPASSR1_RD() |  (v)))
-#define HW_SJC_MBISTPASSR1_CLR(v)    (HW_SJC_MBISTPASSR1_WR(HW_SJC_MBISTPASSR1_RD() & ~(v)))
-#define HW_SJC_MBISTPASSR1_TOG(v)    (HW_SJC_MBISTPASSR1_WR(HW_SJC_MBISTPASSR1_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_MBISTPASSR1 bitfields
- */
-
-/* --- Register HW_SJC_MBISTPASSR1, field MBISTPASSR */
-
-#define BP_SJC_MBISTPASSR1_MBISTPASSR      0
-#define BM_SJC_MBISTPASSR1_MBISTPASSR      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_MBISTPASSR1_MBISTPASSR(v)   ((((reg32_t) v) << 0) & BM_SJC_MBISTPASSR1_MBISTPASSR)
-#else
-#define BF_SJC_MBISTPASSR1_MBISTPASSR(v)   (((v) << 0) & BM_SJC_MBISTPASSR1_MBISTPASSR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_MBISTPASSR1_MBISTPASSR(v)   BF_CS1(SJC_MBISTPASSR1, MBISTPASSR, v)
-#endif
-
-/*
- * HW_SJC_MBISTDONER1 - Memory BIST Done Register 1
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned MBISTDONER1 : 32;
-
-    } B;
-} hw_sjc_mbistdoner1_t;
-#endif
-
-/*
- * constants & macros for entire SJC_MBISTDONER1 register
- */
-#define HW_SJC_MBISTDONER1_ADDR      (REGS_SJC_BASE + 0x17)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_MBISTDONER1           (*(volatile hw_sjc_mbistdoner1_t *) HW_SJC_MBISTDONER1_ADDR)
-#define HW_SJC_MBISTDONER1_RD()      (HW_SJC_MBISTDONER1.U)
-#define HW_SJC_MBISTDONER1_WR(v)     (HW_SJC_MBISTDONER1.U = (v))
-#define HW_SJC_MBISTDONER1_SET(v)    (HW_SJC_MBISTDONER1_WR(HW_SJC_MBISTDONER1_RD() |  (v)))
-#define HW_SJC_MBISTDONER1_CLR(v)    (HW_SJC_MBISTDONER1_WR(HW_SJC_MBISTDONER1_RD() & ~(v)))
-#define HW_SJC_MBISTDONER1_TOG(v)    (HW_SJC_MBISTDONER1_WR(HW_SJC_MBISTDONER1_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_MBISTDONER1 bitfields
- */
-
-/* --- Register HW_SJC_MBISTDONER1, field MBISTDONER1 */
-
-#define BP_SJC_MBISTDONER1_MBISTDONER1      0
-#define BM_SJC_MBISTDONER1_MBISTDONER1      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_MBISTDONER1_MBISTDONER1(v)   ((((reg32_t) v) << 0) & BM_SJC_MBISTDONER1_MBISTDONER1)
-#else
-#define BF_SJC_MBISTDONER1_MBISTDONER1(v)   (((v) << 0) & BM_SJC_MBISTDONER1_MBISTDONER1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_MBISTDONER1_MBISTDONER1(v)   BF_CS1(SJC_MBISTDONER1, MBISTDONER1, v)
-#endif
-
-/*
- * HW_SJC_MBISTMASRR1 - Memory BIST Mask Register 1
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned MBISTMASKR1 : 32;
-
-    } B;
-} hw_sjc_mbistmasrr1_t;
-#endif
-
-/*
- * constants & macros for entire SJC_MBISTMASRR1 register
- */
-#define HW_SJC_MBISTMASRR1_ADDR      (REGS_SJC_BASE + 0x19)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_MBISTMASRR1           (*(volatile hw_sjc_mbistmasrr1_t *) HW_SJC_MBISTMASRR1_ADDR)
-#define HW_SJC_MBISTMASRR1_RD()      (HW_SJC_MBISTMASRR1.U)
-#define HW_SJC_MBISTMASRR1_WR(v)     (HW_SJC_MBISTMASRR1.U = (v))
-#define HW_SJC_MBISTMASRR1_SET(v)    (HW_SJC_MBISTMASRR1_WR(HW_SJC_MBISTMASRR1_RD() |  (v)))
-#define HW_SJC_MBISTMASRR1_CLR(v)    (HW_SJC_MBISTMASRR1_WR(HW_SJC_MBISTMASRR1_RD() & ~(v)))
-#define HW_SJC_MBISTMASRR1_TOG(v)    (HW_SJC_MBISTMASRR1_WR(HW_SJC_MBISTMASRR1_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_MBISTMASRR1 bitfields
- */
-
-/* --- Register HW_SJC_MBISTMASRR1, field MBISTMASKR1 */
-
-#define BP_SJC_MBISTMASRR1_MBISTMASKR1      0
-#define BM_SJC_MBISTMASRR1_MBISTMASKR1      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_MBISTMASRR1_MBISTMASKR1(v)   ((((reg32_t) v) << 0) & BM_SJC_MBISTMASRR1_MBISTMASKR1)
-#else
-#define BF_SJC_MBISTMASRR1_MBISTMASKR1(v)   (((v) << 0) & BM_SJC_MBISTMASRR1_MBISTMASKR1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_MBISTMASRR1_MBISTMASKR1(v)   BF_CS1(SJC_MBISTMASRR1, MBISTMASKR1, v)
-#endif
-
-/*
- * HW_SJC_BISTPASSR - BIST Pass-Fail Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned BISTPASSR : 32;
-
-    } B;
-} hw_sjc_bistpassr_t;
-#endif
-
-/*
- * constants & macros for entire SJC_BISTPASSR register
- */
-#define HW_SJC_BISTPASSR_ADDR      (REGS_SJC_BASE + 0x21)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_BISTPASSR           (*(volatile hw_sjc_bistpassr_t *) HW_SJC_BISTPASSR_ADDR)
-#define HW_SJC_BISTPASSR_RD()      (HW_SJC_BISTPASSR.U)
-#define HW_SJC_BISTPASSR_WR(v)     (HW_SJC_BISTPASSR.U = (v))
-#define HW_SJC_BISTPASSR_SET(v)    (HW_SJC_BISTPASSR_WR(HW_SJC_BISTPASSR_RD() |  (v)))
-#define HW_SJC_BISTPASSR_CLR(v)    (HW_SJC_BISTPASSR_WR(HW_SJC_BISTPASSR_RD() & ~(v)))
-#define HW_SJC_BISTPASSR_TOG(v)    (HW_SJC_BISTPASSR_WR(HW_SJC_BISTPASSR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_BISTPASSR bitfields
- */
-
-/* --- Register HW_SJC_BISTPASSR, field BISTPASSR */
-
-#define BP_SJC_BISTPASSR_BISTPASSR      0
-#define BM_SJC_BISTPASSR_BISTPASSR      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTPASSR_BISTPASSR(v)   ((((reg32_t) v) << 0) & BM_SJC_BISTPASSR_BISTPASSR)
-#else
-#define BF_SJC_BISTPASSR_BISTPASSR(v)   (((v) << 0) & BM_SJC_BISTPASSR_BISTPASSR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTPASSR_BISTPASSR(v)   BF_CS1(SJC_BISTPASSR, BISTPASSR, v)
-#endif
-
-/*
- * HW_SJC_BISTDONER - BIST DOne Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned BISTDONER : 32;
-
-    } B;
-} hw_sjc_bistdoner_t;
-#endif
-
-/*
- * constants & macros for entire SJC_BISTDONER register
- */
-#define HW_SJC_BISTDONER_ADDR      (REGS_SJC_BASE + 0x22)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_BISTDONER           (*(volatile hw_sjc_bistdoner_t *) HW_SJC_BISTDONER_ADDR)
-#define HW_SJC_BISTDONER_RD()      (HW_SJC_BISTDONER.U)
-#define HW_SJC_BISTDONER_WR(v)     (HW_SJC_BISTDONER.U = (v))
-#define HW_SJC_BISTDONER_SET(v)    (HW_SJC_BISTDONER_WR(HW_SJC_BISTDONER_RD() |  (v)))
-#define HW_SJC_BISTDONER_CLR(v)    (HW_SJC_BISTDONER_WR(HW_SJC_BISTDONER_RD() & ~(v)))
-#define HW_SJC_BISTDONER_TOG(v)    (HW_SJC_BISTDONER_WR(HW_SJC_BISTDONER_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_BISTDONER bitfields
- */
-
-/* --- Register HW_SJC_BISTDONER, field BISTDONER */
-
-#define BP_SJC_BISTDONER_BISTDONER      0
-#define BM_SJC_BISTDONER_BISTDONER      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_BISTDONER_BISTDONER(v)   ((((reg32_t) v) << 0) & BM_SJC_BISTDONER_BISTDONER)
-#else
-#define BF_SJC_BISTDONER_BISTDONER(v)   (((v) << 0) & BM_SJC_BISTDONER_BISTDONER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_BISTDONER_BISTDONER(v)   BF_CS1(SJC_BISTDONER, BISTDONER, v)
-#endif
-
-/*
- * HW_SJC_MONBISTSELR - Monitor BIST Select Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg16_t  U;
-    struct
-    {
-        unsigned short MONBISTSELR : 3;
-        unsigned short RESERVED0 : 13;
-
-    } B;
-} hw_sjc_monbistselr_t;
-#endif
-
-/*
- * constants & macros for entire SJC_MONBISTSELR register
- */
-#define HW_SJC_MONBISTSELR_ADDR      (REGS_SJC_BASE + 0x23)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_MONBISTSELR           (*(volatile hw_sjc_monbistselr_t *) HW_SJC_MONBISTSELR_ADDR)
-#define HW_SJC_MONBISTSELR_RD()      (HW_SJC_MONBISTSELR.U)
-#define HW_SJC_MONBISTSELR_WR(v)     (HW_SJC_MONBISTSELR.U = (v))
-#define HW_SJC_MONBISTSELR_SET(v)    (HW_SJC_MONBISTSELR_WR(HW_SJC_MONBISTSELR_RD() |  (v)))
-#define HW_SJC_MONBISTSELR_CLR(v)    (HW_SJC_MONBISTSELR_WR(HW_SJC_MONBISTSELR_RD() & ~(v)))
-#define HW_SJC_MONBISTSELR_TOG(v)    (HW_SJC_MONBISTSELR_WR(HW_SJC_MONBISTSELR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_MONBISTSELR bitfields
- */
-
-/* --- Register HW_SJC_MONBISTSELR, field MONBISTSELR */
-
-#define BP_SJC_MONBISTSELR_MONBISTSELR      0
-#define BM_SJC_MONBISTSELR_MONBISTSELR      0x00000007
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_MONBISTSELR_MONBISTSELR(v)   ((((reg32_t) v) << 0) & BM_SJC_MONBISTSELR_MONBISTSELR)
-#else
-#define BF_SJC_MONBISTSELR_MONBISTSELR(v)   (((v) << 0) & BM_SJC_MONBISTSELR_MONBISTSELR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_MONBISTSELR_MONBISTSELR(v)   BF_CS1(SJC_MONBISTSELR, MONBISTSELR, v)
-#endif
-
-/*
- * HW_SJC_RWCVALCR - Rval / Wval Control Register
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned WVAL : 4;
-        unsigned RESERVED0 : 4;
-        unsigned RVAL : 4;
-        unsigned RESERVED1 : 4;
-        unsigned VAL_SEL : 4;
-        unsigned RESERVED2 : 12;
-
-    } B;
-} hw_sjc_rwcvalcr_t;
-#endif
-
-/*
- * constants & macros for entire SJC_RWCVALCR register
- */
-#define HW_SJC_RWCVALCR_ADDR      (REGS_SJC_BASE + 0x23)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_RWCVALCR           (*(volatile hw_sjc_rwcvalcr_t *) HW_SJC_RWCVALCR_ADDR)
-#define HW_SJC_RWCVALCR_RD()      (HW_SJC_RWCVALCR.U)
-#define HW_SJC_RWCVALCR_WR(v)     (HW_SJC_RWCVALCR.U = (v))
-#define HW_SJC_RWCVALCR_SET(v)    (HW_SJC_RWCVALCR_WR(HW_SJC_RWCVALCR_RD() |  (v)))
-#define HW_SJC_RWCVALCR_CLR(v)    (HW_SJC_RWCVALCR_WR(HW_SJC_RWCVALCR_RD() & ~(v)))
-#define HW_SJC_RWCVALCR_TOG(v)    (HW_SJC_RWCVALCR_WR(HW_SJC_RWCVALCR_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual SJC_RWCVALCR bitfields
- */
-
-/* --- Register HW_SJC_RWCVALCR, field WVAL */
-
-#define BP_SJC_RWCVALCR_WVAL      0
-#define BM_SJC_RWCVALCR_WVAL      0x0000000f
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_RWCVALCR_WVAL(v)   ((((reg32_t) v) << 0) & BM_SJC_RWCVALCR_WVAL)
-#else
-#define BF_SJC_RWCVALCR_WVAL(v)   (((v) << 0) & BM_SJC_RWCVALCR_WVAL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_RWCVALCR_WVAL(v)   BF_CS1(SJC_RWCVALCR, WVAL, v)
-#endif
-
-/* --- Register HW_SJC_RWCVALCR, field RVAL */
-
-#define BP_SJC_RWCVALCR_RVAL      8
-#define BM_SJC_RWCVALCR_RVAL      0x00000f00
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_RWCVALCR_RVAL(v)   ((((reg32_t) v) << 8) & BM_SJC_RWCVALCR_RVAL)
-#else
-#define BF_SJC_RWCVALCR_RVAL(v)   (((v) << 8) & BM_SJC_RWCVALCR_RVAL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_RWCVALCR_RVAL(v)   BF_CS1(SJC_RWCVALCR, RVAL, v)
-#endif
-
-/* --- Register HW_SJC_RWCVALCR, field VAL_SEL */
-
-#define BP_SJC_RWCVALCR_VAL_SEL      16
-#define BM_SJC_RWCVALCR_VAL_SEL      0x000f0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_SJC_RWCVALCR_VAL_SEL(v)   ((((reg32_t) v) << 16) & BM_SJC_RWCVALCR_VAL_SEL)
-#else
-#define BF_SJC_RWCVALCR_VAL_SEL(v)   (((v) << 16) & BM_SJC_RWCVALCR_VAL_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_SJC_RWCVALCR_VAL_SEL(v)   BF_CS1(SJC_RWCVALCR, VAL_SEL, v)
-#endif
+    volatile hw_sjc_gpusr1_t GPUSR1; //!< General Purpose Unsecured Status Register 1
+    volatile hw_sjc_gpusr2_t GPUSR2; //!< General Purpose Unsecured Status Register 2
+    volatile hw_sjc_gpusr3_t GPUSR3; //!< General Purpose Unsecured Status Register 3
+    volatile hw_sjc_gpssr_t GPSSR; //!< General Purpose Secured Status Register
+    volatile hw_sjc_dcr_t DCR; //!< Debug Control Register
+    volatile hw_sjc_ssr_t SSR; //!< Security Status Register
+    volatile hw_sjc_gpccr_t GPCCR; //!< General Purpose Clocks Control Register
+    volatile hw_sjc_gpucr_t GPUCR; //!< General Purpose Unsecured Control Register n
+    volatile hw_sjc_gpscr_t GPSCR; //!< General Purpose Secured Control Register
+} hw_sjc_t
+#endif
+
+//! @brief Macro to access all SJC registers.
+//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
+//!     use the '&' operator, like <code>&HW_SJC(0)</code>.
+#define HW_SJC     (*(volatile hw_sjc_t *) REGS_SJC_BASE)
 
 
 #endif // _SJC_H
-

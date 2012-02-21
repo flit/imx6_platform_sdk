@@ -12,12 +12,16 @@
 
 #ifndef REGS_USBNC_BASE
 #define REGS_USBNC_BASE (REGS_BASE + 0x02184000)
-
 #endif
 
 
-/*
- * HW_USBNC_USB_OTG_CTRL - USB OTG Control Register
+/*!
+ * @brief HW_USBNC_USB_OTG_CTRL - USB OTG Control Register
+ *
+ * The USB OTG control register controls the integration specific features of the USB OTG
+ * module. These features are not directly related to the USB functionality, but control
+ * special features, interfacing on the USB ports, as well as power control and wake-up
+ * functionality.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -25,26 +29,20 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 7;
-        unsigned OVER_CUR_DIS : 1;
-        unsigned OVER_CUR_POL : 1;
-        unsigned PWR_POL : 1;
-        unsigned WIE : 1;
-        unsigned RESET : 1;
-        unsigned SUSPENDM : 1;
-        unsigned UTMI_ON_CLOCK : 1;
-        unsigned WKUP_SW_EN : 1;
-        unsigned WKUP_SW : 1;
-        unsigned WKUP_ID_EN : 1;
-        unsigned WKUP_VBUS_EN : 1;
-        unsigned RESERVED1 : 13;
-        unsigned FLT_DIS : 1;
-        unsigned PHY_CLK_JIT : 3;
-        unsigned RESERVED2 : 1;
-        unsigned FORCE_FS : 1;
-        unsigned RESERVED3 : 7;
-        unsigned WIR : 1;
-
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned OVER_CUR_DIS : 1; //!< Disable OTG Overcurrent Detection
+        unsigned OVER_CUR_POL : 1; //!< OTG Polarity of Overcurrent  The polarity of OTG port overcurrent event
+        unsigned PWR_POL : 1; //!< OTG Power Polarity  This bit should be set according to PMIC Power Pin polarity.
+        unsigned WIE : 1; //!< OTG Wake-up Interrupt Enable  This bit enables or disables the OTG wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
+        unsigned RESET : 1; //!< Force OTG UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+        unsigned SUSPENDM : 1; //!< Force OTG UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+        unsigned UTMI_ON_CLOCK : 1; //!< Force OTG UTMI PHY clock output on even if suspend mode.
+        unsigned WKUP_SW_EN : 1; //!< OTG Software Wake-up Enable
+        unsigned WKUP_SW : 1; //!< OTG Software Wake-up
+        unsigned WKUP_ID_EN : 1; //!< OTG Wake-up on ID change enable
+        unsigned WKUP_VBUS_EN : 1; //!< OTG wake-up on VBUS change enable
+        unsigned RESERVED1 : 13; //!< Reserved
+        unsigned WIR : 1; //!< OTG Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_otg_ctrl_t;
 #endif
@@ -68,7 +66,10 @@ typedef union
  * constants & macros for individual USBNC_USB_OTG_CTRL bitfields
  */
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field OVER_CUR_DIS */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field OVER_CUR_DIS
+ *
+ * Disable OTG Overcurrent Detection
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_OVER_CUR_DIS      7
 #define BM_USBNC_USB_OTG_CTRL_OVER_CUR_DIS      0x00000080
@@ -82,7 +83,10 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_OVER_CUR_DIS(v)   BF_CS1(USBNC_USB_OTG_CTRL, OVER_CUR_DIS, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field OVER_CUR_POL */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field OVER_CUR_POL
+ *
+ * OTG Polarity of Overcurrent  The polarity of OTG port overcurrent event
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_OVER_CUR_POL      8
 #define BM_USBNC_USB_OTG_CTRL_OVER_CUR_POL      0x00000100
@@ -96,7 +100,10 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_OVER_CUR_POL(v)   BF_CS1(USBNC_USB_OTG_CTRL, OVER_CUR_POL, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field PWR_POL */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field PWR_POL
+ *
+ * OTG Power Polarity  This bit should be set according to PMIC Power Pin polarity.
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_PWR_POL      9
 #define BM_USBNC_USB_OTG_CTRL_PWR_POL      0x00000200
@@ -110,7 +117,13 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_PWR_POL(v)   BF_CS1(USBNC_USB_OTG_CTRL, PWR_POL, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field WIE */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field WIE
+ *
+ * OTG Wake-up Interrupt Enable  This bit enables or disables the OTG wake-up interrupt. Disabling
+ * the interrupt also                                 clears the Interrupt request bit. Wake-up
+ * interrupt enable should be turned off after                                 receiving a wake-up
+ * interrupt and turned on again prior to going in suspend mode
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_WIE      10
 #define BM_USBNC_USB_OTG_CTRL_WIE      0x00000400
@@ -124,7 +137,11 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_WIE(v)   BF_CS1(USBNC_USB_OTG_CTRL, WIE, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field RESET */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field RESET
+ *
+ * Force OTG UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal
+ * operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_RESET      11
 #define BM_USBNC_USB_OTG_CTRL_RESET      0x00000800
@@ -138,7 +155,12 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_RESET(v)   BF_CS1(USBNC_USB_OTG_CTRL, RESET, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field SUSPENDM */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field SUSPENDM
+ *
+ * Force OTG UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal
+ * operation, S/W should set                                 bits SUSP and PHCD in USB core register
+ * PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_SUSPENDM      12
 #define BM_USBNC_USB_OTG_CTRL_SUSPENDM      0x00001000
@@ -152,7 +174,10 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_SUSPENDM(v)   BF_CS1(USBNC_USB_OTG_CTRL, SUSPENDM, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field UTMI_ON_CLOCK */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field UTMI_ON_CLOCK
+ *
+ * Force OTG UTMI PHY clock output on even if suspend mode.
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK      13
 #define BM_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK      0x00002000
@@ -166,7 +191,10 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK(v)   BF_CS1(USBNC_USB_OTG_CTRL, UTMI_ON_CLOCK, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_SW_EN */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_SW_EN
+ *
+ * OTG Software Wake-up Enable
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_WKUP_SW_EN      14
 #define BM_USBNC_USB_OTG_CTRL_WKUP_SW_EN      0x00004000
@@ -180,7 +208,10 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_WKUP_SW_EN(v)   BF_CS1(USBNC_USB_OTG_CTRL, WKUP_SW_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_SW */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_SW
+ *
+ * OTG Software Wake-up
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_WKUP_SW      15
 #define BM_USBNC_USB_OTG_CTRL_WKUP_SW      0x00008000
@@ -194,7 +225,10 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_WKUP_SW(v)   BF_CS1(USBNC_USB_OTG_CTRL, WKUP_SW, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_ID_EN */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_ID_EN
+ *
+ * OTG Wake-up on ID change enable
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_WKUP_ID_EN      16
 #define BM_USBNC_USB_OTG_CTRL_WKUP_ID_EN      0x00010000
@@ -208,7 +242,10 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_WKUP_ID_EN(v)   BF_CS1(USBNC_USB_OTG_CTRL, WKUP_ID_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_VBUS_EN */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field WKUP_VBUS_EN
+ *
+ * OTG wake-up on VBUS change enable
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN      17
 #define BM_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN      0x00020000
@@ -222,49 +259,12 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN(v)   BF_CS1(USBNC_USB_OTG_CTRL, WKUP_VBUS_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_OTG_CTRL, field FLT_DIS */
-
-#define BP_USBNC_USB_OTG_CTRL_FLT_DIS      18
-#define BM_USBNC_USB_OTG_CTRL_FLT_DIS      0x00040000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_OTG_CTRL_FLT_DIS(v)   ((((reg32_t) v) << 18) & BM_USBNC_USB_OTG_CTRL_FLT_DIS)
-#else
-#define BF_USBNC_USB_OTG_CTRL_FLT_DIS(v)   (((v) << 18) & BM_USBNC_USB_OTG_CTRL_FLT_DIS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_OTG_CTRL_FLT_DIS(v)   BF_CS1(USBNC_USB_OTG_CTRL, FLT_DIS, v)
-#endif
-
-/* --- Register HW_USBNC_USB_OTG_CTRL, field PHY_CLK_JIT */
-
-#define BP_USBNC_USB_OTG_CTRL_PHY_CLK_JIT      19
-#define BM_USBNC_USB_OTG_CTRL_PHY_CLK_JIT      0x00380000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_OTG_CTRL_PHY_CLK_JIT(v)   ((((reg32_t) v) << 19) & BM_USBNC_USB_OTG_CTRL_PHY_CLK_JIT)
-#else
-#define BF_USBNC_USB_OTG_CTRL_PHY_CLK_JIT(v)   (((v) << 19) & BM_USBNC_USB_OTG_CTRL_PHY_CLK_JIT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_OTG_CTRL_PHY_CLK_JIT(v)   BF_CS1(USBNC_USB_OTG_CTRL, PHY_CLK_JIT, v)
-#endif
-
-/* --- Register HW_USBNC_USB_OTG_CTRL, field FORCE_FS */
-
-#define BP_USBNC_USB_OTG_CTRL_FORCE_FS      23
-#define BM_USBNC_USB_OTG_CTRL_FORCE_FS      0x00800000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_OTG_CTRL_FORCE_FS(v)   ((((reg32_t) v) << 23) & BM_USBNC_USB_OTG_CTRL_FORCE_FS)
-#else
-#define BF_USBNC_USB_OTG_CTRL_FORCE_FS(v)   (((v) << 23) & BM_USBNC_USB_OTG_CTRL_FORCE_FS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_OTG_CTRL_FORCE_FS(v)   BF_CS1(USBNC_USB_OTG_CTRL, FORCE_FS, v)
-#endif
-
-/* --- Register HW_USBNC_USB_OTG_CTRL, field WIR */
+/* --- Register HW_USBNC_USB_OTG_CTRL, field WIR
+ *
+ * OTG Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received on
+ * the OTG port. This bit                                 is cleared by disabling the wake-up
+ * interrupt (clearing bit "OWIE").
+ */
 
 #define BP_USBNC_USB_OTG_CTRL_WIR      31
 #define BM_USBNC_USB_OTG_CTRL_WIR      0x80000000
@@ -278,8 +278,12 @@ typedef union
 #define BW_USBNC_USB_OTG_CTRL_WIR(v)   BF_CS1(USBNC_USB_OTG_CTRL, WIR, v)
 #endif
 
-/*
- * HW_USBNC_USB_UH1_CTRL - USB Host1 Control Register
+/*!
+ * @brief HW_USBNC_USB_UH1_CTRL - USB Host1 Control Register
+ *
+ * The USB Host1 control register controls the integration specific features of the USB Host1
+ * module. These features are not directly related to the USB functionality, but control special
+ * features, interfacing on the USB ports, as well as power control and wake-up functionality.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -287,24 +291,20 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 7;
-        unsigned OVER_CUR_DIS : 1;
-        unsigned OVER_CUR_POL : 1;
-        unsigned PWR_POL : 1;
-        unsigned WIE : 1;
-        unsigned RESET : 1;
-        unsigned SUSPENDM : 1;
-        unsigned UTMI_ON_CLOCK : 1;
-        unsigned WKUP_SW_EN : 1;
-        unsigned WKUP_SW : 1;
-        unsigned WKUP_ID_EN : 1;
-        unsigned WKUP_VBUS_EN : 1;
-        unsigned RESERVED1 : 13;
-        unsigned RESERVED2 : 5;
-        unsigned FORCE_FS : 1;
-        unsigned RESERVED3 : 7;
-        unsigned WIR : 1;
-
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned OVER_CUR_DIS : 1; //!< Disable Host 1 Overcurrent Detection
+        unsigned OVER_CUR_POL : 1; //!< Host 1 Polarity of Overcurrent  The polarity of Host 1 port overcurrent event
+        unsigned PWR_POL : 1; //!< Host1 Power Polarity  This bit should be set according to PMIC Power Pin polarity.
+        unsigned WIE : 1; //!< Host 1 Wake-up Interrupt Enable  This bit enables or disables the Host 1 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
+        unsigned RESET : 1; //!< Force Host 1 UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+        unsigned SUSPENDM : 1; //!< Force Host 1 UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+        unsigned UTMI_ON_CLOCK : 1; //!< Force Host 1 UTMI PHY clock output on even if suspend mode.
+        unsigned WKUP_SW_EN : 1; //!< Host 1 Software Wake-up Enable
+        unsigned WKUP_SW : 1; //!< Host 1 Software Wake-up
+        unsigned WKUP_ID_EN : 1; //!< Host 1 Wake-up on ID change enable
+        unsigned WKUP_VBUS_EN : 1; //!< Host 1 wake-up on VBUS change enable
+        unsigned RESERVED1 : 13; //!< Reserved
+        unsigned WIR : 1; //!< Host 1 Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_uh1_ctrl_t;
 #endif
@@ -328,7 +328,10 @@ typedef union
  * constants & macros for individual USBNC_USB_UH1_CTRL bitfields
  */
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field OVER_CUR_DIS */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field OVER_CUR_DIS
+ *
+ * Disable Host 1 Overcurrent Detection
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_OVER_CUR_DIS      7
 #define BM_USBNC_USB_UH1_CTRL_OVER_CUR_DIS      0x00000080
@@ -342,7 +345,10 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_OVER_CUR_DIS(v)   BF_CS1(USBNC_USB_UH1_CTRL, OVER_CUR_DIS, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field OVER_CUR_POL */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field OVER_CUR_POL
+ *
+ * Host 1 Polarity of Overcurrent  The polarity of Host 1 port overcurrent event
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_OVER_CUR_POL      8
 #define BM_USBNC_USB_UH1_CTRL_OVER_CUR_POL      0x00000100
@@ -356,7 +362,10 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_OVER_CUR_POL(v)   BF_CS1(USBNC_USB_UH1_CTRL, OVER_CUR_POL, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field PWR_POL */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field PWR_POL
+ *
+ * Host1 Power Polarity  This bit should be set according to PMIC Power Pin polarity.
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_PWR_POL      9
 #define BM_USBNC_USB_UH1_CTRL_PWR_POL      0x00000200
@@ -370,7 +379,13 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_PWR_POL(v)   BF_CS1(USBNC_USB_UH1_CTRL, PWR_POL, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field WIE */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field WIE
+ *
+ * Host 1 Wake-up Interrupt Enable  This bit enables or disables the Host 1 wake-up interrupt.
+ * Disabling the interrupt also                                 clears the Interrupt request bit.
+ * Wake-up interrupt enable should be turned off after                                 receiving a
+ * wake-up interrupt and turned on again prior to going in suspend mode
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_WIE      10
 #define BM_USBNC_USB_UH1_CTRL_WIE      0x00000400
@@ -384,7 +399,11 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_WIE(v)   BF_CS1(USBNC_USB_UH1_CTRL, WIE, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field RESET */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field RESET
+ *
+ * Force Host 1 UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal
+ * operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_RESET      11
 #define BM_USBNC_USB_UH1_CTRL_RESET      0x00000800
@@ -398,7 +417,12 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_RESET(v)   BF_CS1(USBNC_USB_UH1_CTRL, RESET, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field SUSPENDM */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field SUSPENDM
+ *
+ * Force Host 1 UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal
+ * operation, S/W should set                                 bits SUSP and PHCD in USB core register
+ * PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_SUSPENDM      12
 #define BM_USBNC_USB_UH1_CTRL_SUSPENDM      0x00001000
@@ -412,7 +436,10 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_SUSPENDM(v)   BF_CS1(USBNC_USB_UH1_CTRL, SUSPENDM, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field UTMI_ON_CLOCK */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field UTMI_ON_CLOCK
+ *
+ * Force Host 1 UTMI PHY clock output on even if suspend mode.
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK      13
 #define BM_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK      0x00002000
@@ -426,7 +453,10 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK(v)   BF_CS1(USBNC_USB_UH1_CTRL, UTMI_ON_CLOCK, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_SW_EN */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_SW_EN
+ *
+ * Host 1 Software Wake-up Enable
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_WKUP_SW_EN      14
 #define BM_USBNC_USB_UH1_CTRL_WKUP_SW_EN      0x00004000
@@ -440,7 +470,10 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_WKUP_SW_EN(v)   BF_CS1(USBNC_USB_UH1_CTRL, WKUP_SW_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_SW */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_SW
+ *
+ * Host 1 Software Wake-up
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_WKUP_SW      15
 #define BM_USBNC_USB_UH1_CTRL_WKUP_SW      0x00008000
@@ -454,7 +487,10 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_WKUP_SW(v)   BF_CS1(USBNC_USB_UH1_CTRL, WKUP_SW, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_ID_EN */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_ID_EN
+ *
+ * Host 1 Wake-up on ID change enable
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_WKUP_ID_EN      16
 #define BM_USBNC_USB_UH1_CTRL_WKUP_ID_EN      0x00010000
@@ -468,7 +504,10 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_WKUP_ID_EN(v)   BF_CS1(USBNC_USB_UH1_CTRL, WKUP_ID_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_VBUS_EN */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field WKUP_VBUS_EN
+ *
+ * Host 1 wake-up on VBUS change enable
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN      17
 #define BM_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN      0x00020000
@@ -482,21 +521,12 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN(v)   BF_CS1(USBNC_USB_UH1_CTRL, WKUP_VBUS_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH1_CTRL, field FORCE_FS */
-
-#define BP_USBNC_USB_UH1_CTRL_FORCE_FS      23
-#define BM_USBNC_USB_UH1_CTRL_FORCE_FS      0x00800000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH1_CTRL_FORCE_FS(v)   ((((reg32_t) v) << 23) & BM_USBNC_USB_UH1_CTRL_FORCE_FS)
-#else
-#define BF_USBNC_USB_UH1_CTRL_FORCE_FS(v)   (((v) << 23) & BM_USBNC_USB_UH1_CTRL_FORCE_FS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH1_CTRL_FORCE_FS(v)   BF_CS1(USBNC_USB_UH1_CTRL, FORCE_FS, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH1_CTRL, field WIR */
+/* --- Register HW_USBNC_USB_UH1_CTRL, field WIR
+ *
+ * Host 1 Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received
+ * on the OTG port. This bit                                 is cleared by disabling the wake-up
+ * interrupt (clearing bit "OWIE").
+ */
 
 #define BP_USBNC_USB_UH1_CTRL_WIR      31
 #define BM_USBNC_USB_UH1_CTRL_WIR      0x80000000
@@ -510,8 +540,13 @@ typedef union
 #define BW_USBNC_USB_UH1_CTRL_WIR(v)   BF_CS1(USBNC_USB_UH1_CTRL, WIR, v)
 #endif
 
-/*
- * HW_USBNC_USB_UH2_CTRL - USB Host2 Control Register
+/*!
+ * @brief HW_USBNC_USB_UH2_CTRL - USB Host2 Control Register
+ *
+ * The USB Host2 control register controls the integration specific features of the USB host2
+ * module. These features are not directly related to the USB functionality, but control
+ * special features, interfacing on the USB ports, as well as power control and wake-up
+ * functionality.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -519,16 +554,15 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 10;
-        unsigned WIE : 1;
-        unsigned RESET : 1;
-        unsigned SUSPENDM : 1;
-        unsigned RESERVED1 : 1;
-        unsigned WKUP_SW_EN : 1;
-        unsigned WKUP_SW : 1;
-        unsigned RESERVED2 : 15;
-        unsigned WIR : 1;
-
+        unsigned RESERVED0 : 10; //!< Reserved
+        unsigned WIE : 1; //!< Host 2 Wake-up Interrupt Enable  This bit enables or disables the Host 2 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
+        unsigned RESET : 1; //!< Force Host 2 UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+        unsigned SUSPENDM : 1; //!< Force Host 2 UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+        unsigned RESERVED1 : 1; //!< Force OTG UTMI PHY 480M clock output on when Host 2 is not in suspend mode.
+        unsigned WKUP_SW_EN : 1; //!< Host 2 Software Wake-up Enable
+        unsigned WKUP_SW : 1; //!< Host 2 Software Wake-up
+        unsigned RESERVED2 : 15; //!< Reserved
+        unsigned WIR : 1; //!< Host 2 Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received on the Host 2 port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_uh2_ctrl_t;
 #endif
@@ -552,7 +586,13 @@ typedef union
  * constants & macros for individual USBNC_USB_UH2_CTRL bitfields
  */
 
-/* --- Register HW_USBNC_USB_UH2_CTRL, field WIE */
+/* --- Register HW_USBNC_USB_UH2_CTRL, field WIE
+ *
+ * Host 2 Wake-up Interrupt Enable  This bit enables or disables the Host 2 wake-up interrupt.
+ * Disabling the interrupt also                                 clears the Interrupt request bit.
+ * Wake-up interrupt enable should be turned off after                                 receiving a
+ * wake-up interrupt and turned on again prior to going in suspend mode
+ */
 
 #define BP_USBNC_USB_UH2_CTRL_WIE      10
 #define BM_USBNC_USB_UH2_CTRL_WIE      0x00000400
@@ -566,7 +606,11 @@ typedef union
 #define BW_USBNC_USB_UH2_CTRL_WIE(v)   BF_CS1(USBNC_USB_UH2_CTRL, WIE, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH2_CTRL, field RESET */
+/* --- Register HW_USBNC_USB_UH2_CTRL, field RESET
+ *
+ * Force Host 2 UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal
+ * operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_UH2_CTRL_RESET      11
 #define BM_USBNC_USB_UH2_CTRL_RESET      0x00000800
@@ -580,7 +624,12 @@ typedef union
 #define BW_USBNC_USB_UH2_CTRL_RESET(v)   BF_CS1(USBNC_USB_UH2_CTRL, RESET, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH2_CTRL, field SUSPENDM */
+/* --- Register HW_USBNC_USB_UH2_CTRL, field SUSPENDM
+ *
+ * Force Host 2 UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal
+ * operation, S/W should set                                 bits SUSP and PHCD in USB core register
+ * PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_UH2_CTRL_SUSPENDM      12
 #define BM_USBNC_USB_UH2_CTRL_SUSPENDM      0x00001000
@@ -594,7 +643,10 @@ typedef union
 #define BW_USBNC_USB_UH2_CTRL_SUSPENDM(v)   BF_CS1(USBNC_USB_UH2_CTRL, SUSPENDM, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH2_CTRL, field WKUP_SW_EN */
+/* --- Register HW_USBNC_USB_UH2_CTRL, field WKUP_SW_EN
+ *
+ * Host 2 Software Wake-up Enable
+ */
 
 #define BP_USBNC_USB_UH2_CTRL_WKUP_SW_EN      14
 #define BM_USBNC_USB_UH2_CTRL_WKUP_SW_EN      0x00004000
@@ -608,7 +660,10 @@ typedef union
 #define BW_USBNC_USB_UH2_CTRL_WKUP_SW_EN(v)   BF_CS1(USBNC_USB_UH2_CTRL, WKUP_SW_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH2_CTRL, field WKUP_SW */
+/* --- Register HW_USBNC_USB_UH2_CTRL, field WKUP_SW
+ *
+ * Host 2 Software Wake-up
+ */
 
 #define BP_USBNC_USB_UH2_CTRL_WKUP_SW      15
 #define BM_USBNC_USB_UH2_CTRL_WKUP_SW      0x00008000
@@ -622,7 +677,12 @@ typedef union
 #define BW_USBNC_USB_UH2_CTRL_WKUP_SW(v)   BF_CS1(USBNC_USB_UH2_CTRL, WKUP_SW, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH2_CTRL, field WIR */
+/* --- Register HW_USBNC_USB_UH2_CTRL, field WIR
+ *
+ * Host 2 Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received
+ * on the Host 2 port. This bit                                 is cleared by disabling the wake-up
+ * interrupt (clearing bit "OWIE").
+ */
 
 #define BP_USBNC_USB_UH2_CTRL_WIR      31
 #define BM_USBNC_USB_UH2_CTRL_WIR      0x80000000
@@ -636,8 +696,13 @@ typedef union
 #define BW_USBNC_USB_UH2_CTRL_WIR(v)   BF_CS1(USBNC_USB_UH2_CTRL, WIR, v)
 #endif
 
-/*
- * HW_USBNC_USB_UH3_CTRL - USB Host3 Control Register
+/*!
+ * @brief HW_USBNC_USB_UH3_CTRL - USB Host3 Control Register
+ *
+ * The USB Host3 control register controls the integration specific features of the USB Host3
+ * module. These features are not directly related to the USB functionality, but control
+ * special features, interfacing on the USB ports, as well as power control and wake-up
+ * functionality.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -645,16 +710,15 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 10;
-        unsigned WIE : 1;
-        unsigned RESET : 1;
-        unsigned SUSPENDM : 1;
-        unsigned RESERVED1 : 1;
-        unsigned WKUP_SW_EN : 1;
-        unsigned WKUP_SW : 1;
-        unsigned RESERVED2 : 15;
-        unsigned WIR : 1;
-
+        unsigned RESERVED0 : 10; //!< Reserved0
+        unsigned WIE : 1; //!< Host 3 Wake-up Interrupt Enable  This bit enables or disables the Host 3 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
+        unsigned RESET : 1; //!< Force Host 3 UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+        unsigned SUSPENDM : 1; //!< Force Host 3 UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+        unsigned RESERVED1 : 1; //!< Force OTG UTMI PHY 480M clock output on when Host 3 is not in suspend mode.
+        unsigned WKUP_SW_EN : 1; //!< Host 3 Software Wake-up Enable
+        unsigned WKUP_SW : 1; //!< Host 3 Software Wake-up
+        unsigned RESERVED2 : 15; //!< Reserved
+        unsigned WIR : 1; //!< Host 3 Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_uh3_ctrl_t;
 #endif
@@ -678,7 +742,13 @@ typedef union
  * constants & macros for individual USBNC_USB_UH3_CTRL bitfields
  */
 
-/* --- Register HW_USBNC_USB_UH3_CTRL, field WIE */
+/* --- Register HW_USBNC_USB_UH3_CTRL, field WIE
+ *
+ * Host 3 Wake-up Interrupt Enable  This bit enables or disables the Host 3 wake-up interrupt.
+ * Disabling the interrupt also                                 clears the Interrupt request bit.
+ * Wake-up interrupt enable should be turned off after                                 receiving a
+ * wake-up interrupt and turned on again prior to going in suspend mode
+ */
 
 #define BP_USBNC_USB_UH3_CTRL_WIE      10
 #define BM_USBNC_USB_UH3_CTRL_WIE      0x00000400
@@ -692,7 +762,11 @@ typedef union
 #define BW_USBNC_USB_UH3_CTRL_WIE(v)   BF_CS1(USBNC_USB_UH3_CTRL, WIE, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH3_CTRL, field RESET */
+/* --- Register HW_USBNC_USB_UH3_CTRL, field RESET
+ *
+ * Force Host 3 UTMI PHY Reset  This bit is used to force a reset to the UTMI PHY.  During normal
+ * operation, S/W should set USBCMD.RST bit to reset the UTMI PHY  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_UH3_CTRL_RESET      11
 #define BM_USBNC_USB_UH3_CTRL_RESET      0x00000800
@@ -706,7 +780,12 @@ typedef union
 #define BW_USBNC_USB_UH3_CTRL_RESET(v)   BF_CS1(USBNC_USB_UH3_CTRL, RESET, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH3_CTRL, field SUSPENDM */
+/* --- Register HW_USBNC_USB_UH3_CTRL, field SUSPENDM
+ *
+ * Force Host 3 UTMI PHY Suspend  This bit is used to put PHY into suspend mode. During normal
+ * operation, S/W should set                                 bits SUSP and PHCD in USB core register
+ * PORTSC1 to put PHY into suspend mode.  For Freescale test only.
+ */
 
 #define BP_USBNC_USB_UH3_CTRL_SUSPENDM      12
 #define BM_USBNC_USB_UH3_CTRL_SUSPENDM      0x00001000
@@ -720,7 +799,10 @@ typedef union
 #define BW_USBNC_USB_UH3_CTRL_SUSPENDM(v)   BF_CS1(USBNC_USB_UH3_CTRL, SUSPENDM, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH3_CTRL, field WKUP_SW_EN */
+/* --- Register HW_USBNC_USB_UH3_CTRL, field WKUP_SW_EN
+ *
+ * Host 3 Software Wake-up Enable
+ */
 
 #define BP_USBNC_USB_UH3_CTRL_WKUP_SW_EN      14
 #define BM_USBNC_USB_UH3_CTRL_WKUP_SW_EN      0x00004000
@@ -734,7 +816,10 @@ typedef union
 #define BW_USBNC_USB_UH3_CTRL_WKUP_SW_EN(v)   BF_CS1(USBNC_USB_UH3_CTRL, WKUP_SW_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH3_CTRL, field WKUP_SW */
+/* --- Register HW_USBNC_USB_UH3_CTRL, field WKUP_SW
+ *
+ * Host 3 Software Wake-up
+ */
 
 #define BP_USBNC_USB_UH3_CTRL_WKUP_SW      15
 #define BM_USBNC_USB_UH3_CTRL_WKUP_SW      0x00008000
@@ -748,7 +833,12 @@ typedef union
 #define BW_USBNC_USB_UH3_CTRL_WKUP_SW(v)   BF_CS1(USBNC_USB_UH3_CTRL, WKUP_SW, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH3_CTRL, field WIR */
+/* --- Register HW_USBNC_USB_UH3_CTRL, field WIR
+ *
+ * Host 3 Wake-up Interrupt Request  This bit indicates that a wake-up interrupt request is received
+ * on the OTG port. This bit                                 is cleared by disabling the wake-up
+ * interrupt (clearing bit "OWIE").
+ */
 
 #define BP_USBNC_USB_UH3_CTRL_WIR      31
 #define BM_USBNC_USB_UH3_CTRL_WIR      0x80000000
@@ -762,8 +852,12 @@ typedef union
 #define BW_USBNC_USB_UH3_CTRL_WIR(v)   BF_CS1(USBNC_USB_UH3_CTRL, WIR, v)
 #endif
 
-/*
- * HW_USBNC_USB_UH2_HSIC_CTRL - USB Host2 HSIC Control Register
+/*!
+ * @brief HW_USBNC_USB_UH2_HSIC_CTRL - USB Host2 HSIC Control Register
+ *
+ * The USB Host2 HSIC control register controls Host2 high speed IC configuration. These
+ * features are not directly related to the USB functionality, but control special features,
+ * interfacing on the USB ports, as well as power control.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -771,17 +865,11 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 11;
-        unsigned HSIC_CLK_ON : 1;
-        unsigned HSIC_EN : 1;
-        unsigned RESERVED1 : 18;
-        unsigned IDLE_DETECT_OPTION : 1;
-        unsigned LOOPBACK_DISABLE : 1;
-        unsigned KEEPEN_FORCE : 1;
-        unsigned KEEPEN_ASYNC_RST : 1;
-        unsigned RESERVED2 : 14;
-        unsigned CLK_VLD : 1;
-
+        unsigned RESERVED0 : 11; //!< Reserved
+        unsigned HSIC_CLK_ON : 1; //!< Force Host2 HSIC module 480M clock on, even when in Host 2 is in suspend mode.
+        unsigned HSIC_EN : 1; //!< Host2 HSIC enable
+        unsigned RESERVED1 : 18; //!< Reserved
+        unsigned CLK_VLD : 1; //!< Indicating whether Host2 HSIC clock is valid.
     } B;
 } hw_usbnc_usb_uh2_hsic_ctrl_t;
 #endif
@@ -805,7 +893,10 @@ typedef union
  * constants & macros for individual USBNC_USB_UH2_HSIC_CTRL bitfields
  */
 
-/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field HSIC_CLK_ON */
+/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field HSIC_CLK_ON
+ *
+ * Force Host2 HSIC module 480M clock on, even when in Host 2 is in suspend mode.
+ */
 
 #define BP_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON      11
 #define BM_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON      0x00000800
@@ -819,7 +910,10 @@ typedef union
 #define BW_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON(v)   BF_CS1(USBNC_USB_UH2_HSIC_CTRL, HSIC_CLK_ON, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field HSIC_EN */
+/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field HSIC_EN
+ *
+ * Host2 HSIC enable
+ */
 
 #define BP_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN      12
 #define BM_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN      0x00001000
@@ -833,63 +927,10 @@ typedef union
 #define BW_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN(v)   BF_CS1(USBNC_USB_UH2_HSIC_CTRL, HSIC_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field IDLE_DETECT_OPTION */
-
-#define BP_USBNC_USB_UH2_HSIC_CTRL_IDLE_DETECT_OPTION      13
-#define BM_USBNC_USB_UH2_HSIC_CTRL_IDLE_DETECT_OPTION      0x00002000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH2_HSIC_CTRL_IDLE_DETECT_OPTION(v)   ((((reg32_t) v) << 13) & BM_USBNC_USB_UH2_HSIC_CTRL_IDLE_DETECT_OPTION)
-#else
-#define BF_USBNC_USB_UH2_HSIC_CTRL_IDLE_DETECT_OPTION(v)   (((v) << 13) & BM_USBNC_USB_UH2_HSIC_CTRL_IDLE_DETECT_OPTION)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH2_HSIC_CTRL_IDLE_DETECT_OPTION(v)   BF_CS1(USBNC_USB_UH2_HSIC_CTRL, IDLE_DETECT_OPTION, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field LOOPBACK_DISABLE */
-
-#define BP_USBNC_USB_UH2_HSIC_CTRL_LOOPBACK_DISABLE      14
-#define BM_USBNC_USB_UH2_HSIC_CTRL_LOOPBACK_DISABLE      0x00004000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH2_HSIC_CTRL_LOOPBACK_DISABLE(v)   ((((reg32_t) v) << 14) & BM_USBNC_USB_UH2_HSIC_CTRL_LOOPBACK_DISABLE)
-#else
-#define BF_USBNC_USB_UH2_HSIC_CTRL_LOOPBACK_DISABLE(v)   (((v) << 14) & BM_USBNC_USB_UH2_HSIC_CTRL_LOOPBACK_DISABLE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH2_HSIC_CTRL_LOOPBACK_DISABLE(v)   BF_CS1(USBNC_USB_UH2_HSIC_CTRL, LOOPBACK_DISABLE, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field KEEPEN_FORCE */
-
-#define BP_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_FORCE      15
-#define BM_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_FORCE      0x00008000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_FORCE(v)   ((((reg32_t) v) << 15) & BM_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_FORCE)
-#else
-#define BF_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_FORCE(v)   (((v) << 15) & BM_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_FORCE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_FORCE(v)   BF_CS1(USBNC_USB_UH2_HSIC_CTRL, KEEPEN_FORCE, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field KEEPEN_ASYNC_RST */
-
-#define BP_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_ASYNC_RST      16
-#define BM_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_ASYNC_RST      0x00010000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_ASYNC_RST(v)   ((((reg32_t) v) << 16) & BM_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_ASYNC_RST)
-#else
-#define BF_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_ASYNC_RST(v)   (((v) << 16) & BM_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_ASYNC_RST)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH2_HSIC_CTRL_KEEPEN_ASYNC_RST(v)   BF_CS1(USBNC_USB_UH2_HSIC_CTRL, KEEPEN_ASYNC_RST, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field CLK_VLD */
+/* --- Register HW_USBNC_USB_UH2_HSIC_CTRL, field CLK_VLD
+ *
+ * Indicating whether Host2 HSIC clock is valid.
+ */
 
 #define BP_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD      31
 #define BM_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD      0x80000000
@@ -903,8 +944,12 @@ typedef union
 #define BW_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD(v)   BF_CS1(USBNC_USB_UH2_HSIC_CTRL, CLK_VLD, v)
 #endif
 
-/*
- * HW_USBNC_USB_UH3_HSIC_CTRL - USB Host3 HSIC Control Register
+/*!
+ * @brief HW_USBNC_USB_UH3_HSIC_CTRL - USB Host3 HSIC Control Register
+ *
+ * The USB Host3 HSIC control register controls Host3 high speed IC configuration. These
+ * features are not directly related to the USB functionality, but control special features,
+ * interfacing on the USB ports, as well as power control.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -912,17 +957,11 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 11;
-        unsigned HSIC_CLK_ON : 1;
-        unsigned HSIC_EN : 1;
-        unsigned RESERVED1 : 18;
-        unsigned IDLE_DETECT_OPTION : 1;
-        unsigned LOOPBACK_DISABLE : 1;
-        unsigned KEEPEN_FORCE : 1;
-        unsigned KEEPEN_ASYNC_RST : 1;
-        unsigned RESERVED2 : 14;
-        unsigned CLK_VLD : 1;
-
+        unsigned RESERVED0 : 11; //!< Reserved
+        unsigned HSIC_CLK_ON : 1; //!< Force Host3 HSIC module 480M clock on, even when in Host 2 is in suspend mode.
+        unsigned HSIC_EN : 1; //!< Host3 HSIC enable
+        unsigned RESERVED1 : 18; //!< Reserved
+        unsigned CLK_VLD : 1; //!< Indicating whether Host3 HSIC clock is valid.
     } B;
 } hw_usbnc_usb_uh3_hsic_ctrl_t;
 #endif
@@ -946,7 +985,10 @@ typedef union
  * constants & macros for individual USBNC_USB_UH3_HSIC_CTRL bitfields
  */
 
-/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field HSIC_CLK_ON */
+/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field HSIC_CLK_ON
+ *
+ * Force Host3 HSIC module 480M clock on, even when in Host 2 is in suspend mode.
+ */
 
 #define BP_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON      11
 #define BM_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON      0x00000800
@@ -960,7 +1002,10 @@ typedef union
 #define BW_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON(v)   BF_CS1(USBNC_USB_UH3_HSIC_CTRL, HSIC_CLK_ON, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field HSIC_EN */
+/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field HSIC_EN
+ *
+ * Host3 HSIC enable
+ */
 
 #define BP_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN      12
 #define BM_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN      0x00001000
@@ -974,63 +1019,10 @@ typedef union
 #define BW_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN(v)   BF_CS1(USBNC_USB_UH3_HSIC_CTRL, HSIC_EN, v)
 #endif
 
-/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field IDLE_DETECT_OPTION */
-
-#define BP_USBNC_USB_UH3_HSIC_CTRL_IDLE_DETECT_OPTION      13
-#define BM_USBNC_USB_UH3_HSIC_CTRL_IDLE_DETECT_OPTION      0x00002000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH3_HSIC_CTRL_IDLE_DETECT_OPTION(v)   ((((reg32_t) v) << 13) & BM_USBNC_USB_UH3_HSIC_CTRL_IDLE_DETECT_OPTION)
-#else
-#define BF_USBNC_USB_UH3_HSIC_CTRL_IDLE_DETECT_OPTION(v)   (((v) << 13) & BM_USBNC_USB_UH3_HSIC_CTRL_IDLE_DETECT_OPTION)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH3_HSIC_CTRL_IDLE_DETECT_OPTION(v)   BF_CS1(USBNC_USB_UH3_HSIC_CTRL, IDLE_DETECT_OPTION, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field LOOPBACK_DISABLE */
-
-#define BP_USBNC_USB_UH3_HSIC_CTRL_LOOPBACK_DISABLE      14
-#define BM_USBNC_USB_UH3_HSIC_CTRL_LOOPBACK_DISABLE      0x00004000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH3_HSIC_CTRL_LOOPBACK_DISABLE(v)   ((((reg32_t) v) << 14) & BM_USBNC_USB_UH3_HSIC_CTRL_LOOPBACK_DISABLE)
-#else
-#define BF_USBNC_USB_UH3_HSIC_CTRL_LOOPBACK_DISABLE(v)   (((v) << 14) & BM_USBNC_USB_UH3_HSIC_CTRL_LOOPBACK_DISABLE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH3_HSIC_CTRL_LOOPBACK_DISABLE(v)   BF_CS1(USBNC_USB_UH3_HSIC_CTRL, LOOPBACK_DISABLE, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field KEEPEN_FORCE */
-
-#define BP_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_FORCE      15
-#define BM_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_FORCE      0x00008000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_FORCE(v)   ((((reg32_t) v) << 15) & BM_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_FORCE)
-#else
-#define BF_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_FORCE(v)   (((v) << 15) & BM_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_FORCE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_FORCE(v)   BF_CS1(USBNC_USB_UH3_HSIC_CTRL, KEEPEN_FORCE, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field KEEPEN_ASYNC_RST */
-
-#define BP_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_ASYNC_RST      16
-#define BM_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_ASYNC_RST      0x00010000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_ASYNC_RST(v)   ((((reg32_t) v) << 16) & BM_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_ASYNC_RST)
-#else
-#define BF_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_ASYNC_RST(v)   (((v) << 16) & BM_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_ASYNC_RST)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH3_HSIC_CTRL_KEEPEN_ASYNC_RST(v)   BF_CS1(USBNC_USB_UH3_HSIC_CTRL, KEEPEN_ASYNC_RST, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field CLK_VLD */
+/* --- Register HW_USBNC_USB_UH3_HSIC_CTRL, field CLK_VLD
+ *
+ * Indicating whether Host3 HSIC clock is valid.
+ */
 
 #define BP_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD      31
 #define BM_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD      0x80000000
@@ -1044,8 +1036,10 @@ typedef union
 #define BW_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD(v)   BF_CS1(USBNC_USB_UH3_HSIC_CTRL, CLK_VLD, v)
 #endif
 
-/*
- * HW_USBNC_USB_OTG_PHY_CTRL_0 - OTG UTMI PHY Control 0 Register
+/*!
+ * @brief HW_USBNC_USB_OTG_PHY_CTRL_0 - OTG UTMI PHY Control 0 Register
+ *
+ * USB OTG UTMI PHY control register 0 is used to control the on-chip OTG UTMI PHY.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1053,13 +1047,9 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CHRGDET_INT_FLG : 1;
-        unsigned RESERVED0 : 3;
-        unsigned CHRGDET_INT_EN : 1;
-        unsigned CHRGDET : 1;
-        unsigned RESERVED1 : 28;
-        unsigned UTMI_CLK_VLD : 1;
-
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned RESERVED1 : 28; //!< Reserved
+        unsigned UTMI_CLK_VLD : 1; //!< Indicating whether OTG UTMI PHY clock is valid
     } B;
 } hw_usbnc_usb_otg_phy_ctrl_0_t;
 #endif
@@ -1083,49 +1073,10 @@ typedef union
  * constants & macros for individual USBNC_USB_OTG_PHY_CTRL_0 bitfields
  */
 
-/* --- Register HW_USBNC_USB_OTG_PHY_CTRL_0, field CHRGDET_INT_FLG */
-
-#define BP_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_FLG      0
-#define BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_FLG      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_FLG(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_FLG)
-#else
-#define BF_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_FLG(v)   (((v) << 0) & BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_FLG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_FLG(v)   BF_CS1(USBNC_USB_OTG_PHY_CTRL_0, CHRGDET_INT_FLG, v)
-#endif
-
-/* --- Register HW_USBNC_USB_OTG_PHY_CTRL_0, field CHRGDET_INT_EN */
-
-#define BP_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_EN      1
-#define BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_EN      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_EN(v)   ((((reg32_t) v) << 1) & BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_EN)
-#else
-#define BF_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_EN(v)   (((v) << 1) & BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET_INT_EN(v)   BF_CS1(USBNC_USB_OTG_PHY_CTRL_0, CHRGDET_INT_EN, v)
-#endif
-
-/* --- Register HW_USBNC_USB_OTG_PHY_CTRL_0, field CHRGDET */
-
-#define BP_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET      2
-#define BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET      0x00000004
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET(v)   ((((reg32_t) v) << 2) & BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET)
-#else
-#define BF_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET(v)   (((v) << 2) & BM_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_OTG_PHY_CTRL_0_CHRGDET(v)   BF_CS1(USBNC_USB_OTG_PHY_CTRL_0, CHRGDET, v)
-#endif
-
-/* --- Register HW_USBNC_USB_OTG_PHY_CTRL_0, field UTMI_CLK_VLD */
+/* --- Register HW_USBNC_USB_OTG_PHY_CTRL_0, field UTMI_CLK_VLD
+ *
+ * Indicating whether OTG UTMI PHY clock is valid
+ */
 
 #define BP_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD      31
 #define BM_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD      0x80000000
@@ -1139,8 +1090,10 @@ typedef union
 #define BW_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD(v)   BF_CS1(USBNC_USB_OTG_PHY_CTRL_0, UTMI_CLK_VLD, v)
 #endif
 
-/*
- * HW_USBNC_USB_UH1_PHY_CTRL_0 - Host1 UTMI PHY Control 0 Register
+/*!
+ * @brief HW_USBNC_USB_UH1_PHY_CTRL_0 - Host1 UTMI PHY Control 0 Register
+ *
+ * USB Host1 UTMI PHY Control Register 0 are used to control the on-chip Host1 UTMI PHY.
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -1148,13 +1101,9 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CHRGDET_INT_FLG : 1;
-        unsigned RESERVED0 : 3;
-        unsigned CHRGDET_INT_EN : 1;
-        unsigned CHRGDET : 1;
-        unsigned RESERVED1 : 28;
-        unsigned UTMI_CLK_VLD : 1;
-
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned RESERVED1 : 28; //!< Reserved
+        unsigned UTMI_CLK_VLD : 1; //!< Indicating whether Host 1 UTMI PHY clock is valid
     } B;
 } hw_usbnc_usb_uh1_phy_ctrl_0_t;
 #endif
@@ -1178,49 +1127,10 @@ typedef union
  * constants & macros for individual USBNC_USB_UH1_PHY_CTRL_0 bitfields
  */
 
-/* --- Register HW_USBNC_USB_UH1_PHY_CTRL_0, field CHRGDET_INT_FLG */
-
-#define BP_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_FLG      0
-#define BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_FLG      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_FLG(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_FLG)
-#else
-#define BF_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_FLG(v)   (((v) << 0) & BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_FLG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_FLG(v)   BF_CS1(USBNC_USB_UH1_PHY_CTRL_0, CHRGDET_INT_FLG, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH1_PHY_CTRL_0, field CHRGDET_INT_EN */
-
-#define BP_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_EN      1
-#define BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_EN      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_EN(v)   ((((reg32_t) v) << 1) & BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_EN)
-#else
-#define BF_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_EN(v)   (((v) << 1) & BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET_INT_EN(v)   BF_CS1(USBNC_USB_UH1_PHY_CTRL_0, CHRGDET_INT_EN, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH1_PHY_CTRL_0, field CHRGDET */
-
-#define BP_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET      2
-#define BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET      0x00000004
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET(v)   ((((reg32_t) v) << 2) & BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET)
-#else
-#define BF_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET(v)   (((v) << 2) & BM_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH1_PHY_CTRL_0_CHRGDET(v)   BF_CS1(USBNC_USB_UH1_PHY_CTRL_0, CHRGDET, v)
-#endif
-
-/* --- Register HW_USBNC_USB_UH1_PHY_CTRL_0, field UTMI_CLK_VLD */
+/* --- Register HW_USBNC_USB_UH1_PHY_CTRL_0, field UTMI_CLK_VLD
+ *
+ * Indicating whether Host 1 UTMI PHY clock is valid
+ */
 
 #define BP_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD      31
 #define BM_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD      0x80000000
@@ -1234,294 +1144,30 @@ typedef union
 #define BW_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD(v)   BF_CS1(USBNC_USB_UH1_PHY_CTRL_0, UTMI_CLK_VLD, v)
 #endif
 
-/*
- * HW_USBNC_USB_UH2_HSIC_DLL_CFG1 - USB Host2 HSIC DLL Configuration Register 1
+
+
+/*!
+ * @brief All USBNC module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef union
+typedef struct
 {
-    reg32_t  U;
-    struct
-    {
-        unsigned DLY_SEL : 32;
-
-    } B;
-} hw_usbnc_usb_uh2_hsic_dll_cfg1_t;
+    reg32_t _reserved0[512];
+    volatile hw_usbnc_usb_otg_ctrl_t USB_OTG_CTRL; //!< USB OTG Control Register
+    volatile hw_usbnc_usb_uh1_ctrl_t USB_UH1_CTRL; //!< USB Host1 Control Register
+    volatile hw_usbnc_usb_uh2_ctrl_t USB_UH2_CTRL; //!< USB Host2 Control Register
+    volatile hw_usbnc_usb_uh3_ctrl_t USB_UH3_CTRL; //!< USB Host3 Control Register
+    volatile hw_usbnc_usb_uh2_hsic_ctrl_t USB_UH2_HSIC_CTRL; //!< USB Host2 HSIC Control Register
+    volatile hw_usbnc_usb_uh3_hsic_ctrl_t USB_UH3_HSIC_CTRL; //!< USB Host3 HSIC Control Register
+    volatile hw_usbnc_usb_otg_phy_ctrl_0_t USB_OTG_PHY_CTRL_0; //!< OTG UTMI PHY Control 0 Register
+    volatile hw_usbnc_usb_uh1_phy_ctrl_0_t USB_UH1_PHY_CTRL_0; //!< Host1 UTMI PHY Control 0 Register
+} hw_usbnc_t
 #endif
 
-/*
- * constants & macros for entire USBNC_USB_UH2_HSIC_DLL_CFG1 register
- */
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG1_ADDR      (REGS_USBNC_BASE + 0x820)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG1           (*(volatile hw_usbnc_usb_uh2_hsic_dll_cfg1_t *) HW_USBNC_USB_UH2_HSIC_DLL_CFG1_ADDR)
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG1_RD()      (HW_USBNC_USB_UH2_HSIC_DLL_CFG1.U)
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG1_WR(v)     (HW_USBNC_USB_UH2_HSIC_DLL_CFG1.U = (v))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG1_SET(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG1_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG1_RD() |  (v)))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG1_CLR(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG1_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG1_RD() & ~(v)))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG1_TOG(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG1_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG1_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual USBNC_USB_UH2_HSIC_DLL_CFG1 bitfields
- */
-
-/* --- Register HW_USBNC_USB_UH2_HSIC_DLL_CFG1, field DLY_SEL */
-
-#define BP_USBNC_USB_UH2_HSIC_DLL_CFG1_DLY_SEL      0
-#define BM_USBNC_USB_UH2_HSIC_DLL_CFG1_DLY_SEL      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH2_HSIC_DLL_CFG1_DLY_SEL(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_UH2_HSIC_DLL_CFG1_DLY_SEL)
-#else
-#define BF_USBNC_USB_UH2_HSIC_DLL_CFG1_DLY_SEL(v)   (((v) << 0) & BM_USBNC_USB_UH2_HSIC_DLL_CFG1_DLY_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH2_HSIC_DLL_CFG1_DLY_SEL(v)   BF_CS1(USBNC_USB_UH2_HSIC_DLL_CFG1, DLY_SEL, v)
-#endif
-
-/*
- * HW_USBNC_USB_UH2_HSIC_DLL_CFG2 - USB Host2 HSIC DLL Configuration Register 2
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned DLY_SEL : 32;
-
-    } B;
-} hw_usbnc_usb_uh2_hsic_dll_cfg2_t;
-#endif
-
-/*
- * constants & macros for entire USBNC_USB_UH2_HSIC_DLL_CFG2 register
- */
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG2_ADDR      (REGS_USBNC_BASE + 0x824)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG2           (*(volatile hw_usbnc_usb_uh2_hsic_dll_cfg2_t *) HW_USBNC_USB_UH2_HSIC_DLL_CFG2_ADDR)
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG2_RD()      (HW_USBNC_USB_UH2_HSIC_DLL_CFG2.U)
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG2_WR(v)     (HW_USBNC_USB_UH2_HSIC_DLL_CFG2.U = (v))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG2_SET(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG2_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG2_RD() |  (v)))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG2_CLR(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG2_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG2_RD() & ~(v)))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG2_TOG(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG2_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG2_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual USBNC_USB_UH2_HSIC_DLL_CFG2 bitfields
- */
-
-/* --- Register HW_USBNC_USB_UH2_HSIC_DLL_CFG2, field DLY_SEL */
-
-#define BP_USBNC_USB_UH2_HSIC_DLL_CFG2_DLY_SEL      0
-#define BM_USBNC_USB_UH2_HSIC_DLL_CFG2_DLY_SEL      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH2_HSIC_DLL_CFG2_DLY_SEL(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_UH2_HSIC_DLL_CFG2_DLY_SEL)
-#else
-#define BF_USBNC_USB_UH2_HSIC_DLL_CFG2_DLY_SEL(v)   (((v) << 0) & BM_USBNC_USB_UH2_HSIC_DLL_CFG2_DLY_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH2_HSIC_DLL_CFG2_DLY_SEL(v)   BF_CS1(USBNC_USB_UH2_HSIC_DLL_CFG2, DLY_SEL, v)
-#endif
-
-/*
- * HW_USBNC_USB_UH2_HSIC_DLL_CFG3 - USB Host2 HSIC DLL Configuration Register 3
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned DLY_SEL : 32;
-
-    } B;
-} hw_usbnc_usb_uh2_hsic_dll_cfg3_t;
-#endif
-
-/*
- * constants & macros for entire USBNC_USB_UH2_HSIC_DLL_CFG3 register
- */
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG3_ADDR      (REGS_USBNC_BASE + 0x828)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG3           (*(volatile hw_usbnc_usb_uh2_hsic_dll_cfg3_t *) HW_USBNC_USB_UH2_HSIC_DLL_CFG3_ADDR)
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG3_RD()      (HW_USBNC_USB_UH2_HSIC_DLL_CFG3.U)
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG3_WR(v)     (HW_USBNC_USB_UH2_HSIC_DLL_CFG3.U = (v))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG3_SET(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG3_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG3_RD() |  (v)))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG3_CLR(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG3_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG3_RD() & ~(v)))
-#define HW_USBNC_USB_UH2_HSIC_DLL_CFG3_TOG(v)    (HW_USBNC_USB_UH2_HSIC_DLL_CFG3_WR(HW_USBNC_USB_UH2_HSIC_DLL_CFG3_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual USBNC_USB_UH2_HSIC_DLL_CFG3 bitfields
- */
-
-/* --- Register HW_USBNC_USB_UH2_HSIC_DLL_CFG3, field DLY_SEL */
-
-#define BP_USBNC_USB_UH2_HSIC_DLL_CFG3_DLY_SEL      0
-#define BM_USBNC_USB_UH2_HSIC_DLL_CFG3_DLY_SEL      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH2_HSIC_DLL_CFG3_DLY_SEL(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_UH2_HSIC_DLL_CFG3_DLY_SEL)
-#else
-#define BF_USBNC_USB_UH2_HSIC_DLL_CFG3_DLY_SEL(v)   (((v) << 0) & BM_USBNC_USB_UH2_HSIC_DLL_CFG3_DLY_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH2_HSIC_DLL_CFG3_DLY_SEL(v)   BF_CS1(USBNC_USB_UH2_HSIC_DLL_CFG3, DLY_SEL, v)
-#endif
-
-/*
- * HW_USBNC_USB_UH3_HSIC_DLL_CFG1 - USB Host3 HSIC DLL Configuration Register 1
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned DLY_SEL : 32;
-
-    } B;
-} hw_usbnc_usb_uh3_hsic_dll_cfg1_t;
-#endif
-
-/*
- * constants & macros for entire USBNC_USB_UH3_HSIC_DLL_CFG1 register
- */
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG1_ADDR      (REGS_USBNC_BASE + 0x830)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG1           (*(volatile hw_usbnc_usb_uh3_hsic_dll_cfg1_t *) HW_USBNC_USB_UH3_HSIC_DLL_CFG1_ADDR)
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG1_RD()      (HW_USBNC_USB_UH3_HSIC_DLL_CFG1.U)
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG1_WR(v)     (HW_USBNC_USB_UH3_HSIC_DLL_CFG1.U = (v))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG1_SET(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG1_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG1_RD() |  (v)))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG1_CLR(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG1_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG1_RD() & ~(v)))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG1_TOG(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG1_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG1_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual USBNC_USB_UH3_HSIC_DLL_CFG1 bitfields
- */
-
-/* --- Register HW_USBNC_USB_UH3_HSIC_DLL_CFG1, field DLY_SEL */
-
-#define BP_USBNC_USB_UH3_HSIC_DLL_CFG1_DLY_SEL      0
-#define BM_USBNC_USB_UH3_HSIC_DLL_CFG1_DLY_SEL      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH3_HSIC_DLL_CFG1_DLY_SEL(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_UH3_HSIC_DLL_CFG1_DLY_SEL)
-#else
-#define BF_USBNC_USB_UH3_HSIC_DLL_CFG1_DLY_SEL(v)   (((v) << 0) & BM_USBNC_USB_UH3_HSIC_DLL_CFG1_DLY_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH3_HSIC_DLL_CFG1_DLY_SEL(v)   BF_CS1(USBNC_USB_UH3_HSIC_DLL_CFG1, DLY_SEL, v)
-#endif
-
-/*
- * HW_USBNC_USB_UH3_HSIC_DLL_CFG2 - USB Host3 HSIC DLL Configuration Register 2
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned DLY_SEL : 32;
-
-    } B;
-} hw_usbnc_usb_uh3_hsic_dll_cfg2_t;
-#endif
-
-/*
- * constants & macros for entire USBNC_USB_UH3_HSIC_DLL_CFG2 register
- */
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG2_ADDR      (REGS_USBNC_BASE + 0x834)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG2           (*(volatile hw_usbnc_usb_uh3_hsic_dll_cfg2_t *) HW_USBNC_USB_UH3_HSIC_DLL_CFG2_ADDR)
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG2_RD()      (HW_USBNC_USB_UH3_HSIC_DLL_CFG2.U)
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG2_WR(v)     (HW_USBNC_USB_UH3_HSIC_DLL_CFG2.U = (v))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG2_SET(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG2_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG2_RD() |  (v)))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG2_CLR(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG2_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG2_RD() & ~(v)))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG2_TOG(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG2_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG2_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual USBNC_USB_UH3_HSIC_DLL_CFG2 bitfields
- */
-
-/* --- Register HW_USBNC_USB_UH3_HSIC_DLL_CFG2, field DLY_SEL */
-
-#define BP_USBNC_USB_UH3_HSIC_DLL_CFG2_DLY_SEL      0
-#define BM_USBNC_USB_UH3_HSIC_DLL_CFG2_DLY_SEL      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH3_HSIC_DLL_CFG2_DLY_SEL(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_UH3_HSIC_DLL_CFG2_DLY_SEL)
-#else
-#define BF_USBNC_USB_UH3_HSIC_DLL_CFG2_DLY_SEL(v)   (((v) << 0) & BM_USBNC_USB_UH3_HSIC_DLL_CFG2_DLY_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH3_HSIC_DLL_CFG2_DLY_SEL(v)   BF_CS1(USBNC_USB_UH3_HSIC_DLL_CFG2, DLY_SEL, v)
-#endif
-
-/*
- * HW_USBNC_USB_UH3_HSIC_DLL_CFG3 - USB Host3 HSIC DLL Configuration Register 3
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg32_t  U;
-    struct
-    {
-        unsigned DLY_SEL : 32;
-
-    } B;
-} hw_usbnc_usb_uh3_hsic_dll_cfg3_t;
-#endif
-
-/*
- * constants & macros for entire USBNC_USB_UH3_HSIC_DLL_CFG3 register
- */
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG3_ADDR      (REGS_USBNC_BASE + 0x838)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG3           (*(volatile hw_usbnc_usb_uh3_hsic_dll_cfg3_t *) HW_USBNC_USB_UH3_HSIC_DLL_CFG3_ADDR)
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG3_RD()      (HW_USBNC_USB_UH3_HSIC_DLL_CFG3.U)
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG3_WR(v)     (HW_USBNC_USB_UH3_HSIC_DLL_CFG3.U = (v))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG3_SET(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG3_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG3_RD() |  (v)))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG3_CLR(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG3_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG3_RD() & ~(v)))
-#define HW_USBNC_USB_UH3_HSIC_DLL_CFG3_TOG(v)    (HW_USBNC_USB_UH3_HSIC_DLL_CFG3_WR(HW_USBNC_USB_UH3_HSIC_DLL_CFG3_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual USBNC_USB_UH3_HSIC_DLL_CFG3 bitfields
- */
-
-/* --- Register HW_USBNC_USB_UH3_HSIC_DLL_CFG3, field DLY_SEL */
-
-#define BP_USBNC_USB_UH3_HSIC_DLL_CFG3_DLY_SEL      0
-#define BM_USBNC_USB_UH3_HSIC_DLL_CFG3_DLY_SEL      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_USBNC_USB_UH3_HSIC_DLL_CFG3_DLY_SEL(v)   ((((reg32_t) v) << 0) & BM_USBNC_USB_UH3_HSIC_DLL_CFG3_DLY_SEL)
-#else
-#define BF_USBNC_USB_UH3_HSIC_DLL_CFG3_DLY_SEL(v)   (((v) << 0) & BM_USBNC_USB_UH3_HSIC_DLL_CFG3_DLY_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_USBNC_USB_UH3_HSIC_DLL_CFG3_DLY_SEL(v)   BF_CS1(USBNC_USB_UH3_HSIC_DLL_CFG3, DLY_SEL, v)
-#endif
+//! @brief Macro to access all USBNC registers.
+//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
+//!     use the '&' operator, like <code>&HW_USBNC(0)</code>.
+#define HW_USBNC     (*(volatile hw_usbnc_t *) REGS_USBNC_BASE)
 
 
 #endif // _USBNC_H
-

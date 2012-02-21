@@ -14,12 +14,13 @@
 #define REGS_DCIC0_BASE (REGS_BASE + 0x020e4000)
 #define REGS_DCIC1_BASE (REGS_BASE + 0x020e8000)
 #define REGS_DCIC_BASE(x) ( x == 0 ? REGS_DCIC0_BASE : x == 1 ? REGS_DCIC1_BASE : 0xffff0000)
-
 #endif
 
 
-/*
- * HW_DCIC_DCICC - DCIC Control Register
+/*!
+ * @brief HW_DCIC_DCICC - DCIC Control Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -27,14 +28,13 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 24;
-        unsigned CLK_POL : 1;
-        unsigned VSYNC_POL : 1;
-        unsigned HSYNC_POL : 1;
-        unsigned DE_POL : 1;
-        unsigned RESERVED1 : 3;
-        unsigned IC_EN : 1;
-
+        unsigned IC_EN : 1; //!< Integrity Check enable. Main enable switch.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned DE_POL : 1; //!< DATA_EN_IN signal polarity.
+        unsigned HSYNC_POL : 1; //!< HSYNC_IN signal polarity.
+        unsigned VSYNC_POL : 1; //!< VSYNC_IN signal polarity.
+        unsigned CLK_POL : 1; //!< DISP_CLK signal polarity.
+        unsigned RESERVED1 : 24; //!< Reserved
     } B;
 } hw_dcic_dcicc_t;
 #endif
@@ -58,63 +58,10 @@ typedef union
  * constants & macros for individual DCIC_DCICC bitfields
  */
 
-/* --- Register HW_DCIC_DCICC, field CLK_POL */
-
-#define BP_DCIC_DCICC_CLK_POL      7
-#define BM_DCIC_DCICC_CLK_POL      0x00000080
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICC_CLK_POL(v)   ((((reg32_t) v) << 7) & BM_DCIC_DCICC_CLK_POL)
-#else
-#define BF_DCIC_DCICC_CLK_POL(v)   (((v) << 7) & BM_DCIC_DCICC_CLK_POL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICC_CLK_POL(v)   BF_CS1(DCIC_DCICC, CLK_POL, v)
-#endif
-
-/* --- Register HW_DCIC_DCICC, field VSYNC_POL */
-
-#define BP_DCIC_DCICC_VSYNC_POL      6
-#define BM_DCIC_DCICC_VSYNC_POL      0x00000040
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICC_VSYNC_POL(v)   ((((reg32_t) v) << 6) & BM_DCIC_DCICC_VSYNC_POL)
-#else
-#define BF_DCIC_DCICC_VSYNC_POL(v)   (((v) << 6) & BM_DCIC_DCICC_VSYNC_POL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICC_VSYNC_POL(v)   BF_CS1(DCIC_DCICC, VSYNC_POL, v)
-#endif
-
-/* --- Register HW_DCIC_DCICC, field HSYNC_POL */
-
-#define BP_DCIC_DCICC_HSYNC_POL      5
-#define BM_DCIC_DCICC_HSYNC_POL      0x00000020
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICC_HSYNC_POL(v)   ((((reg32_t) v) << 5) & BM_DCIC_DCICC_HSYNC_POL)
-#else
-#define BF_DCIC_DCICC_HSYNC_POL(v)   (((v) << 5) & BM_DCIC_DCICC_HSYNC_POL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICC_HSYNC_POL(v)   BF_CS1(DCIC_DCICC, HSYNC_POL, v)
-#endif
-
-/* --- Register HW_DCIC_DCICC, field DE_POL */
-
-#define BP_DCIC_DCICC_DE_POL      4
-#define BM_DCIC_DCICC_DE_POL      0x00000010
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICC_DE_POL(v)   ((((reg32_t) v) << 4) & BM_DCIC_DCICC_DE_POL)
-#else
-#define BF_DCIC_DCICC_DE_POL(v)   (((v) << 4) & BM_DCIC_DCICC_DE_POL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICC_DE_POL(v)   BF_CS1(DCIC_DCICC, DE_POL, v)
-#endif
-
-/* --- Register HW_DCIC_DCICC, field IC_EN */
+/* --- Register HW_DCIC_DCICC, field IC_EN
+ *
+ * Integrity Check enable. Main enable switch.
+ */
 
 #define BP_DCIC_DCICC_IC_EN      0
 #define BM_DCIC_DCICC_IC_EN      0x00000001
@@ -128,8 +75,78 @@ typedef union
 #define BW_DCIC_DCICC_IC_EN(v)   BF_CS1(DCIC_DCICC, IC_EN, v)
 #endif
 
-/*
- * HW_DCIC_DCICIC - DCIC Interrupt Control Register
+/* --- Register HW_DCIC_DCICC, field DE_POL
+ *
+ * DATA_EN_IN signal polarity.
+ */
+
+#define BP_DCIC_DCICC_DE_POL      4
+#define BM_DCIC_DCICC_DE_POL      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICC_DE_POL(v)   ((((reg32_t) v) << 4) & BM_DCIC_DCICC_DE_POL)
+#else
+#define BF_DCIC_DCICC_DE_POL(v)   (((v) << 4) & BM_DCIC_DCICC_DE_POL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICC_DE_POL(v)   BF_CS1(DCIC_DCICC, DE_POL, v)
+#endif
+
+/* --- Register HW_DCIC_DCICC, field HSYNC_POL
+ *
+ * HSYNC_IN signal polarity.
+ */
+
+#define BP_DCIC_DCICC_HSYNC_POL      5
+#define BM_DCIC_DCICC_HSYNC_POL      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICC_HSYNC_POL(v)   ((((reg32_t) v) << 5) & BM_DCIC_DCICC_HSYNC_POL)
+#else
+#define BF_DCIC_DCICC_HSYNC_POL(v)   (((v) << 5) & BM_DCIC_DCICC_HSYNC_POL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICC_HSYNC_POL(v)   BF_CS1(DCIC_DCICC, HSYNC_POL, v)
+#endif
+
+/* --- Register HW_DCIC_DCICC, field VSYNC_POL
+ *
+ * VSYNC_IN signal polarity.
+ */
+
+#define BP_DCIC_DCICC_VSYNC_POL      6
+#define BM_DCIC_DCICC_VSYNC_POL      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICC_VSYNC_POL(v)   ((((reg32_t) v) << 6) & BM_DCIC_DCICC_VSYNC_POL)
+#else
+#define BF_DCIC_DCICC_VSYNC_POL(v)   (((v) << 6) & BM_DCIC_DCICC_VSYNC_POL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICC_VSYNC_POL(v)   BF_CS1(DCIC_DCICC, VSYNC_POL, v)
+#endif
+
+/* --- Register HW_DCIC_DCICC, field CLK_POL
+ *
+ * DISP_CLK signal polarity.
+ */
+
+#define BP_DCIC_DCICC_CLK_POL      7
+#define BM_DCIC_DCICC_CLK_POL      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICC_CLK_POL(v)   ((((reg32_t) v) << 7) & BM_DCIC_DCICC_CLK_POL)
+#else
+#define BF_DCIC_DCICC_CLK_POL(v)   (((v) << 7) & BM_DCIC_DCICC_CLK_POL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICC_CLK_POL(v)   BF_CS1(DCIC_DCICC, CLK_POL, v)
+#endif
+
+/*!
+ * @brief HW_DCIC_DCICIC - DCIC Interrupt Control Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -137,14 +154,13 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 15;
-        unsigned EXT_SIG_EN : 1;
-        unsigned RESERVED1 : 12;
-        unsigned FREEZE_MASK : 1;
-        unsigned RESERVED2 : 1;
-        unsigned FI_MASK : 1;
-        unsigned EI_MASK : 1;
-
+        unsigned EI_MASK : 1; //!< Error Interrupt mask. Can be changed only while FREEZE_MASK = 0.
+        unsigned FI_MASK : 1; //!< Functional Interrupt mask. Can be changed only while FREEZE_MASK = 0.
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned FREEZE_MASK : 1; //!< Disable change of interrupt masks. "Sticky" bit which can be set once and cleared by reset only.
+        unsigned RESERVED1 : 12; //!< Reserved
+        unsigned EXT_SIG_EN : 1; //!< External controller mismatch indication signal.
+        unsigned RESERVED2 : 15; //!< Reserved
     } B;
 } hw_dcic_dcicic_t;
 #endif
@@ -168,49 +184,10 @@ typedef union
  * constants & macros for individual DCIC_DCICIC bitfields
  */
 
-/* --- Register HW_DCIC_DCICIC, field EXT_SIG_EN */
-
-#define BP_DCIC_DCICIC_EXT_SIG_EN      16
-#define BM_DCIC_DCICIC_EXT_SIG_EN      0x00010000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICIC_EXT_SIG_EN(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICIC_EXT_SIG_EN)
-#else
-#define BF_DCIC_DCICIC_EXT_SIG_EN(v)   (((v) << 16) & BM_DCIC_DCICIC_EXT_SIG_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICIC_EXT_SIG_EN(v)   BF_CS1(DCIC_DCICIC, EXT_SIG_EN, v)
-#endif
-
-/* --- Register HW_DCIC_DCICIC, field FREEZE_MASK */
-
-#define BP_DCIC_DCICIC_FREEZE_MASK      3
-#define BM_DCIC_DCICIC_FREEZE_MASK      0x00000008
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICIC_FREEZE_MASK(v)   ((((reg32_t) v) << 3) & BM_DCIC_DCICIC_FREEZE_MASK)
-#else
-#define BF_DCIC_DCICIC_FREEZE_MASK(v)   (((v) << 3) & BM_DCIC_DCICIC_FREEZE_MASK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICIC_FREEZE_MASK(v)   BF_CS1(DCIC_DCICIC, FREEZE_MASK, v)
-#endif
-
-/* --- Register HW_DCIC_DCICIC, field FI_MASK */
-
-#define BP_DCIC_DCICIC_FI_MASK      1
-#define BM_DCIC_DCICIC_FI_MASK      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICIC_FI_MASK(v)   ((((reg32_t) v) << 1) & BM_DCIC_DCICIC_FI_MASK)
-#else
-#define BF_DCIC_DCICIC_FI_MASK(v)   (((v) << 1) & BM_DCIC_DCICIC_FI_MASK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICIC_FI_MASK(v)   BF_CS1(DCIC_DCICIC, FI_MASK, v)
-#endif
-
-/* --- Register HW_DCIC_DCICIC, field EI_MASK */
+/* --- Register HW_DCIC_DCICIC, field EI_MASK
+ *
+ * Error Interrupt mask. Can be changed only while FREEZE_MASK = 0.
+ */
 
 #define BP_DCIC_DCICIC_EI_MASK      0
 #define BM_DCIC_DCICIC_EI_MASK      0x00000001
@@ -224,8 +201,63 @@ typedef union
 #define BW_DCIC_DCICIC_EI_MASK(v)   BF_CS1(DCIC_DCICIC, EI_MASK, v)
 #endif
 
-/*
- * HW_DCIC_DCICS - DCIC Status Register
+/* --- Register HW_DCIC_DCICIC, field FI_MASK
+ *
+ * Functional Interrupt mask. Can be changed only while FREEZE_MASK =
+ * 0.
+ */
+
+#define BP_DCIC_DCICIC_FI_MASK      1
+#define BM_DCIC_DCICIC_FI_MASK      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICIC_FI_MASK(v)   ((((reg32_t) v) << 1) & BM_DCIC_DCICIC_FI_MASK)
+#else
+#define BF_DCIC_DCICIC_FI_MASK(v)   (((v) << 1) & BM_DCIC_DCICIC_FI_MASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICIC_FI_MASK(v)   BF_CS1(DCIC_DCICIC, FI_MASK, v)
+#endif
+
+/* --- Register HW_DCIC_DCICIC, field FREEZE_MASK
+ *
+ * Disable change of interrupt masks. "Sticky" bit which can be set once
+ * and cleared by reset only.
+ */
+
+#define BP_DCIC_DCICIC_FREEZE_MASK      3
+#define BM_DCIC_DCICIC_FREEZE_MASK      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICIC_FREEZE_MASK(v)   ((((reg32_t) v) << 3) & BM_DCIC_DCICIC_FREEZE_MASK)
+#else
+#define BF_DCIC_DCICIC_FREEZE_MASK(v)   (((v) << 3) & BM_DCIC_DCICIC_FREEZE_MASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICIC_FREEZE_MASK(v)   BF_CS1(DCIC_DCICIC, FREEZE_MASK, v)
+#endif
+
+/* --- Register HW_DCIC_DCICIC, field EXT_SIG_EN
+ *
+ * External controller mismatch indication signal.
+ */
+
+#define BP_DCIC_DCICIC_EXT_SIG_EN      16
+#define BM_DCIC_DCICIC_EXT_SIG_EN      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICIC_EXT_SIG_EN(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICIC_EXT_SIG_EN)
+#else
+#define BF_DCIC_DCICIC_EXT_SIG_EN(v)   (((v) << 16) & BM_DCIC_DCICIC_EXT_SIG_EN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICIC_EXT_SIG_EN(v)   BF_CS1(DCIC_DCICIC, EXT_SIG_EN, v)
+#endif
+
+/*!
+ * @brief HW_DCIC_DCICS - DCIC Status Register
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -233,11 +265,10 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 14;
-        unsigned FI_STAT : 1;
-        unsigned EI_STAT : 1;
-        unsigned ROI_MATCH_STAT : 16;
-
+        unsigned ROI_MATCH_STAT : 16; //!< Each set bit of this field indicates there was a mismatch at appropriate ROIs signature during the last frame.  Valid only for active ROIs.  Write "1" to clear.
+        unsigned EI_STAT : 1; //!< Error Interrupt status.  Result of "OR" operation on ROI_MATCH_STAT[15:0] bits. Cleared when these bits are clear.
+        unsigned FI_STAT : 1; //!< Functional Interrupt status. Write "1" to clear.
+        unsigned RESERVED0 : 14; //!< Reserved
     } B;
 } hw_dcic_dcics_t;
 #endif
@@ -261,35 +292,12 @@ typedef union
  * constants & macros for individual DCIC_DCICS bitfields
  */
 
-/* --- Register HW_DCIC_DCICS, field FI_STAT */
-
-#define BP_DCIC_DCICS_FI_STAT      17
-#define BM_DCIC_DCICS_FI_STAT      0x00020000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICS_FI_STAT(v)   ((((reg32_t) v) << 17) & BM_DCIC_DCICS_FI_STAT)
-#else
-#define BF_DCIC_DCICS_FI_STAT(v)   (((v) << 17) & BM_DCIC_DCICS_FI_STAT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICS_FI_STAT(v)   BF_CS1(DCIC_DCICS, FI_STAT, v)
-#endif
-
-/* --- Register HW_DCIC_DCICS, field EI_STAT */
-
-#define BP_DCIC_DCICS_EI_STAT      16
-#define BM_DCIC_DCICS_EI_STAT      0x00010000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICS_EI_STAT(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICS_EI_STAT)
-#else
-#define BF_DCIC_DCICS_EI_STAT(v)   (((v) << 16) & BM_DCIC_DCICS_EI_STAT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICS_EI_STAT(v)   BF_CS1(DCIC_DCICS, EI_STAT, v)
-#endif
-
-/* --- Register HW_DCIC_DCICS, field ROI_MATCH_STAT */
+/* --- Register HW_DCIC_DCICS, field ROI_MATCH_STAT
+ *
+ * Each set bit of this field indicates there was a mismatch at
+ * appropriate ROIs signature during the last frame.  Valid only for active ROIs.  Write "1" to
+ * clear.
+ */
 
 #define BP_DCIC_DCICS_ROI_MATCH_STAT      0
 #define BM_DCIC_DCICS_ROI_MATCH_STAT      0x0000ffff
@@ -303,8 +311,45 @@ typedef union
 #define BW_DCIC_DCICS_ROI_MATCH_STAT(v)   BF_CS1(DCIC_DCICS, ROI_MATCH_STAT, v)
 #endif
 
-/*
- * HW_DCIC_DCICRC - DCIC ROI Config Register m
+/* --- Register HW_DCIC_DCICS, field EI_STAT
+ *
+ * Error Interrupt status.  Result of "OR" operation on ROI_MATCH_STAT[15:0] bits. Cleared when
+ * these bits are clear.
+ */
+
+#define BP_DCIC_DCICS_EI_STAT      16
+#define BM_DCIC_DCICS_EI_STAT      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICS_EI_STAT(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICS_EI_STAT)
+#else
+#define BF_DCIC_DCICS_EI_STAT(v)   (((v) << 16) & BM_DCIC_DCICS_EI_STAT)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICS_EI_STAT(v)   BF_CS1(DCIC_DCICS, EI_STAT, v)
+#endif
+
+/* --- Register HW_DCIC_DCICS, field FI_STAT
+ *
+ * Functional Interrupt status. Write "1" to clear.
+ */
+
+#define BP_DCIC_DCICS_FI_STAT      17
+#define BM_DCIC_DCICS_FI_STAT      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICS_FI_STAT(v)   ((((reg32_t) v) << 17) & BM_DCIC_DCICS_FI_STAT)
+#else
+#define BF_DCIC_DCICS_FI_STAT(v)   (((v) << 17) & BM_DCIC_DCICS_FI_STAT)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICS_FI_STAT(v)   BF_CS1(DCIC_DCICS, FI_STAT, v)
+#endif
+
+/*!
+ * @brief HW_DCIC_DCICRC - DCIC ROI Config Register m
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -312,13 +357,12 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned ROI_EN : 1;
-        unsigned ROI_FREEZE : 1;
-        unsigned RESERVED0 : 2;
-        unsigned START_OFFSET_Y : 12;
-        unsigned RESERVED1 : 3;
-        unsigned START_OFFSET_X : 13;
-
+        unsigned START_OFFSET_X : 13; //!< Column number of ROIs upper-left corner (X coordinate)  Range: 0 to 2^ 13 -1
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned START_OFFSET_Y : 12; //!< Row number of ROIs upper-left corner (Y coordinate)  Range: 0 to 2^ 12 -1
+        unsigned RESERVED1 : 2; //!< Reserved
+        unsigned ROI_FREEZE : 1; //!< When set, the only parameter of ROI #m that can be changed is reference signature.  "Sticky" bit - can be set once and cleared by reset only.
+        unsigned ROI_EN : 1; //!< ROI #m tracking enable
     } B;
 } hw_dcic_dcicrc_t;
 #endif
@@ -342,49 +386,10 @@ typedef union
  * constants & macros for individual DCIC_DCICRC bitfields
  */
 
-/* --- Register HW_DCIC_DCICRC, field ROI_EN */
-
-#define BP_DCIC_DCICRC_ROI_EN      31
-#define BM_DCIC_DCICRC_ROI_EN      0x80000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICRC_ROI_EN(v)   ((((reg32_t) v) << 31) & BM_DCIC_DCICRC_ROI_EN)
-#else
-#define BF_DCIC_DCICRC_ROI_EN(v)   (((v) << 31) & BM_DCIC_DCICRC_ROI_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICRC_ROI_EN(v)   BF_CS1(DCIC_DCICRC, ROI_EN, v)
-#endif
-
-/* --- Register HW_DCIC_DCICRC, field ROI_FREEZE */
-
-#define BP_DCIC_DCICRC_ROI_FREEZE      30
-#define BM_DCIC_DCICRC_ROI_FREEZE      0x40000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICRC_ROI_FREEZE(v)   ((((reg32_t) v) << 30) & BM_DCIC_DCICRC_ROI_FREEZE)
-#else
-#define BF_DCIC_DCICRC_ROI_FREEZE(v)   (((v) << 30) & BM_DCIC_DCICRC_ROI_FREEZE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICRC_ROI_FREEZE(v)   BF_CS1(DCIC_DCICRC, ROI_FREEZE, v)
-#endif
-
-/* --- Register HW_DCIC_DCICRC, field START_OFFSET_Y */
-
-#define BP_DCIC_DCICRC_START_OFFSET_Y      16
-#define BM_DCIC_DCICRC_START_OFFSET_Y      0x0fff0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICRC_START_OFFSET_Y(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICRC_START_OFFSET_Y)
-#else
-#define BF_DCIC_DCICRC_START_OFFSET_Y(v)   (((v) << 16) & BM_DCIC_DCICRC_START_OFFSET_Y)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICRC_START_OFFSET_Y(v)   BF_CS1(DCIC_DCICRC, START_OFFSET_Y, v)
-#endif
-
-/* --- Register HW_DCIC_DCICRC, field START_OFFSET_X */
+/* --- Register HW_DCIC_DCICRC, field START_OFFSET_X
+ *
+ * Column number of ROIs upper-left corner (X coordinate)  Range: 0 to 2^ 13 -1
+ */
 
 #define BP_DCIC_DCICRC_START_OFFSET_X      0
 #define BM_DCIC_DCICRC_START_OFFSET_X      0x00001fff
@@ -398,8 +403,62 @@ typedef union
 #define BW_DCIC_DCICRC_START_OFFSET_X(v)   BF_CS1(DCIC_DCICRC, START_OFFSET_X, v)
 #endif
 
-/*
- * HW_DCIC_DCICRS - DCIC ROI Size Register m
+/* --- Register HW_DCIC_DCICRC, field START_OFFSET_Y
+ *
+ * Row number of ROIs upper-left corner (Y coordinate)  Range: 0 to 2^ 12 -1
+ */
+
+#define BP_DCIC_DCICRC_START_OFFSET_Y      16
+#define BM_DCIC_DCICRC_START_OFFSET_Y      0x0fff0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICRC_START_OFFSET_Y(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICRC_START_OFFSET_Y)
+#else
+#define BF_DCIC_DCICRC_START_OFFSET_Y(v)   (((v) << 16) & BM_DCIC_DCICRC_START_OFFSET_Y)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICRC_START_OFFSET_Y(v)   BF_CS1(DCIC_DCICRC, START_OFFSET_Y, v)
+#endif
+
+/* --- Register HW_DCIC_DCICRC, field ROI_FREEZE
+ *
+ * When set, the only parameter of ROI #m that can be changed is
+ * reference signature.  "Sticky" bit - can be set once and cleared by reset only.
+ */
+
+#define BP_DCIC_DCICRC_ROI_FREEZE      30
+#define BM_DCIC_DCICRC_ROI_FREEZE      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICRC_ROI_FREEZE(v)   ((((reg32_t) v) << 30) & BM_DCIC_DCICRC_ROI_FREEZE)
+#else
+#define BF_DCIC_DCICRC_ROI_FREEZE(v)   (((v) << 30) & BM_DCIC_DCICRC_ROI_FREEZE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICRC_ROI_FREEZE(v)   BF_CS1(DCIC_DCICRC, ROI_FREEZE, v)
+#endif
+
+/* --- Register HW_DCIC_DCICRC, field ROI_EN
+ *
+ * ROI #m tracking enable
+ */
+
+#define BP_DCIC_DCICRC_ROI_EN      31
+#define BM_DCIC_DCICRC_ROI_EN      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICRC_ROI_EN(v)   ((((reg32_t) v) << 31) & BM_DCIC_DCICRC_ROI_EN)
+#else
+#define BF_DCIC_DCICRC_ROI_EN(v)   (((v) << 31) & BM_DCIC_DCICRC_ROI_EN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICRC_ROI_EN(v)   BF_CS1(DCIC_DCICRC, ROI_EN, v)
+#endif
+
+/*!
+ * @brief HW_DCIC_DCICRS - DCIC ROI Size Register m
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -407,11 +466,10 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 4;
-        unsigned END_OFFSET_Y : 12;
-        unsigned RESERVED1 : 3;
-        unsigned END_OFFSET_X : 13;
-
+        unsigned END_OFFSET_X : 13; //!< Column number of ROIs lower-right corner (X coordinate)  Range: 1 to 2^ 13 -1
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned END_OFFSET_Y : 12; //!< Row number of ROIs lower-right corner (Y coordinate)  Range: 1 to 2^ 12 -1
+        unsigned RESERVED1 : 4; //!< Reserved
     } B;
 } hw_dcic_dcicrs_t;
 #endif
@@ -435,21 +493,10 @@ typedef union
  * constants & macros for individual DCIC_DCICRS bitfields
  */
 
-/* --- Register HW_DCIC_DCICRS, field END_OFFSET_Y */
-
-#define BP_DCIC_DCICRS_END_OFFSET_Y      16
-#define BM_DCIC_DCICRS_END_OFFSET_Y      0x0fff0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DCIC_DCICRS_END_OFFSET_Y(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICRS_END_OFFSET_Y)
-#else
-#define BF_DCIC_DCICRS_END_OFFSET_Y(v)   (((v) << 16) & BM_DCIC_DCICRS_END_OFFSET_Y)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DCIC_DCICRS_END_OFFSET_Y(v)   BF_CS1(DCIC_DCICRS, END_OFFSET_Y, v)
-#endif
-
-/* --- Register HW_DCIC_DCICRS, field END_OFFSET_X */
+/* --- Register HW_DCIC_DCICRS, field END_OFFSET_X
+ *
+ * Column number of ROIs lower-right corner (X coordinate)  Range: 1 to 2^ 13 -1
+ */
 
 #define BP_DCIC_DCICRS_END_OFFSET_X      0
 #define BM_DCIC_DCICRS_END_OFFSET_X      0x00001fff
@@ -463,8 +510,27 @@ typedef union
 #define BW_DCIC_DCICRS_END_OFFSET_X(v)   BF_CS1(DCIC_DCICRS, END_OFFSET_X, v)
 #endif
 
-/*
- * HW_DCIC_DCICRRS - DCIC ROI Reference Signature Register m
+/* --- Register HW_DCIC_DCICRS, field END_OFFSET_Y
+ *
+ * Row number of ROIs lower-right corner (Y coordinate)  Range: 1 to 2^ 12 -1
+ */
+
+#define BP_DCIC_DCICRS_END_OFFSET_Y      16
+#define BM_DCIC_DCICRS_END_OFFSET_Y      0x0fff0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICRS_END_OFFSET_Y(v)   ((((reg32_t) v) << 16) & BM_DCIC_DCICRS_END_OFFSET_Y)
+#else
+#define BF_DCIC_DCICRS_END_OFFSET_Y(v)   (((v) << 16) & BM_DCIC_DCICRS_END_OFFSET_Y)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_DCIC_DCICRS_END_OFFSET_Y(v)   BF_CS1(DCIC_DCICRS, END_OFFSET_Y, v)
+#endif
+
+/*!
+ * @brief HW_DCIC_DCICRRS - DCIC ROI Reference Signature Register m
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -472,8 +538,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned REFERENCE_SIGNATURE : 32;
-
+        unsigned REFERENCE_SIGNATURE : 32; //!< 32-bit expected signature (CRC calculation result) for ROI #m
     } B;
 } hw_dcic_dcicrrs_t;
 #endif
@@ -497,7 +562,10 @@ typedef union
  * constants & macros for individual DCIC_DCICRRS bitfields
  */
 
-/* --- Register HW_DCIC_DCICRRS, field REFERENCE_SIGNATURE */
+/* --- Register HW_DCIC_DCICRRS, field REFERENCE_SIGNATURE
+ *
+ * 32-bit expected signature (CRC calculation result) for ROI #m
+ */
 
 #define BP_DCIC_DCICRRS_REFERENCE_SIGNATURE      0
 #define BM_DCIC_DCICRRS_REFERENCE_SIGNATURE      0xffffffff
@@ -511,8 +579,10 @@ typedef union
 #define BW_DCIC_DCICRRS_REFERENCE_SIGNATURE(v)   BF_CS1(DCIC_DCICRRS, REFERENCE_SIGNATURE, v)
 #endif
 
-/*
- * HW_DCIC_DCICRCS - DCIC ROI Calculated Signature m
+/*!
+ * @brief HW_DCIC_DCICRCS - DCIC ROI Calculated Signature m
+ *
+
  */
 #ifndef __LANGUAGE_ASM__
 typedef union
@@ -520,8 +590,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned CALCULATED_SIGNATURE : 32;
-
+        unsigned CALCULATED_SIGNATURE : 32; //!< 32-bit actual signature (CRC calculation result) for ROI #m during the last frame.  Updated automatically at the beginning of a next frame.
     } B;
 } hw_dcic_dcicrcs_t;
 #endif
@@ -545,7 +614,11 @@ typedef union
  * constants & macros for individual DCIC_DCICRCS bitfields
  */
 
-/* --- Register HW_DCIC_DCICRCS, field CALCULATED_SIGNATURE */
+/* --- Register HW_DCIC_DCICRCS, field CALCULATED_SIGNATURE
+ *
+ * 32-bit actual signature (CRC calculation result) for ROI #m during
+ * the last frame.  Updated automatically at the beginning of a next frame.
+ */
 
 #define BP_DCIC_DCICRCS_CALCULATED_SIGNATURE      0
 #define BM_DCIC_DCICRCS_CALCULATED_SIGNATURE      0xffffffff
@@ -560,5 +633,29 @@ typedef union
 #endif
 
 
-#endif // _DCIC_H
 
+/*!
+ * @brief All DCIC module registers.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef struct
+{
+    volatile hw_dcic_dcicc_t DCICC; //!< DCIC Control Register
+    volatile hw_dcic_dcicic_t DCICIC; //!< DCIC Interrupt Control Register
+    volatile hw_dcic_dcics_t DCICS; //!< DCIC Status Register
+    reg32_t _reserved0;
+    volatile hw_dcic_dcicrc_t DCICRC; //!< DCIC ROI Config Register m
+    volatile hw_dcic_dcicrs_t DCICRS; //!< DCIC ROI Size Register m
+    volatile hw_dcic_dcicrrs_t DCICRRS; //!< DCIC ROI Reference Signature Register m
+    volatile hw_dcic_dcicrcs_t DCICRCS; //!< DCIC ROI Calculated Signature m
+} hw_dcic_t
+#endif
+
+//! @brief Macro to access all DCIC registers.
+//! @param x DCIC instance number.
+//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
+//!     use the '&' operator, like <code>&HW_DCIC(0)</code>.
+#define HW_DCIC(x)     (*(volatile hw_dcic_t *) REGS_DCIC_BASE(x))
+
+
+#endif // _DCIC_H

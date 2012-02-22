@@ -42,10 +42,11 @@ typedef union
         unsigned short WDZST : 1; //!< Watchdog Low Power. Determines the operation of the WDOG-1 during low-power modes. This bit is write once-only.  The WDOG-1 can continue/suspend the timer operation in the low-power modes (STOP , WAIT  and DOZE mode).
         unsigned short WDBG : 1; //!< Watchdog DEBUG Enable. Determines the operation of the WDOG-1 during DEBUG mode. This bit is write once-only.
         unsigned short WDE : 1; //!< Watchdog Enable. Enables or disables the WDOG-1 block. This is a write one once only bit. It is not possible to clear this bit by a software write, once the bit is set.  This bit can be set/reset in debug mode (exception).
-        unsigned short RESERVED0 : 1; //!< 
+        unsigned short WDT : 1; //!< WDOG   (ipp_wdog)  Time-out assertion. Determines if the WDOG   (ipp_wdog)  gets asserted upon a Watchdog Time-out Event. This is a write-one once only bit.  There is no effect on wdog_rst (WDOG Reset) upon writing on this bit. WDOG   (ipp_wdog)  gets asserted along with wdog_rst if this bit is set.
         unsigned short SRS : 1; //!< Software Reset Signal. Controls the software assertion of the WDOG-generated reset signal wdog_rst . This bit automatically resets to "1" after it has been asserted to "0".  This bit does not generate the software reset to the block. The Peripheral Clock  (ipg_clk)  must be on to write to this bit.
         unsigned short WDA : 1; //!< WDOG   (ipp_wdog)  assertion. Controls the software assertion of the WDOG  ( ipp_wdog ) signal.
-        unsigned short RESERVED1 : 2; //!< 
+        unsigned short RESERVED0 : 1; //!< 
+        unsigned short WDW : 1; //!< Watchdog Disable for Wait. This bit determines the operation of WDOG-1 during Low Power WAIT mode. This is a write once only bit.
         unsigned short WT : 8; //!< Watchdog Time-out Field. This 8-bit field contains the time-out value that is loaded into the Watchdog counter after the service routine has been performed or after the Watchdog is enabled. After reset, WT[7:0] must have a value written to it before enabling the Watchdog otherwise count value of zero which is 0.5 seconds is loaded into the counter.  The time-out value can be written at any point of time but it is loaded to the counter at the time when WDOG-1 is enabled or after the service routine has been performed. For more information see .
     } B;
 } hw_wdog_wcr_t;
@@ -126,6 +127,26 @@ typedef union
 #define BW_WDOG_WCR_WDE(v)   BF_CS1(WDOG_WCR, WDE, v)
 #endif
 
+/* --- Register HW_WDOG_WCR, field WDT
+ *
+ * WDOG   (ipp_wdog)  Time-out assertion. Determines if the WDOG   (ipp_wdog)  gets asserted upon a
+ * Watchdog Time-out                                 Event. This is a write-one once only bit.
+ * There is no effect on wdog_rst (WDOG Reset) upon writing on                                 this
+ * bit. WDOG   (ipp_wdog)  gets asserted along with wdog_rst if this bit is set.
+ */
+
+#define BP_WDOG_WCR_WDT      3
+#define BM_WDOG_WCR_WDT      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_WDOG_WCR_WDT(v)   ((((reg32_t) v) << 3) & BM_WDOG_WCR_WDT)
+#else
+#define BF_WDOG_WCR_WDT(v)   (((v) << 3) & BM_WDOG_WCR_WDT)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_WDOG_WCR_WDT(v)   BF_CS1(WDOG_WCR, WDT, v)
+#endif
+
 /* --- Register HW_WDOG_WCR, field SRS
  *
  * Software Reset Signal. Controls the software assertion of the WDOG-generated reset signal
@@ -162,6 +183,24 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_WDOG_WCR_WDA(v)   BF_CS1(WDOG_WCR, WDA, v)
+#endif
+
+/* --- Register HW_WDOG_WCR, field WDW
+ *
+ * Watchdog Disable for Wait. This bit determines the operation of WDOG-1 during Low Power
+ * WAIT mode. This is a write once only bit.
+ */
+
+#define BP_WDOG_WCR_WDW      7
+#define BM_WDOG_WCR_WDW      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_WDOG_WCR_WDW(v)   ((((reg32_t) v) << 7) & BM_WDOG_WCR_WDW)
+#else
+#define BF_WDOG_WCR_WDW(v)   (((v) << 7) & BM_WDOG_WCR_WDW)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_WDOG_WCR_WDW(v)   BF_CS1(WDOG_WCR, WDW, v)
 #endif
 
 /* --- Register HW_WDOG_WCR, field WT
@@ -343,6 +382,162 @@ typedef union
 #define BW_WDOG_WRSR_POR(v)   BF_CS1(WDOG_WRSR, POR, v)
 #endif
 
+/*!
+ * @brief HW_WDOG_WICR - Watchdog Interrupt Control Register
+ *
+ * The WDOG_WICR controls the WDOG-1 interrupt generation.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg16_t  U;
+    struct
+    {
+        unsigned short WICT : 8; //!< Watchdog Interrupt Count Time-out (WICT) field determines, how long before the counter time-out must the interrupt occur. The reset value is 0x04 implies interrupt will occur 2 seconds before time-out. The maximum value that can be programmed to WICT field is 127.5 seconds with a resolution of 0.5 seconds.  This field is write once only. Once the software does a write access to this field, it will get locked and cannot be reprogrammed till the next system reset assertion.
+        unsigned short RESERVED0 : 6; //!< Reserved.
+        unsigned short WTIS : 1; //!< Watchdog TImer Interrupt Status bit will reflect the timer interrupt status, whether interrupt has occurred or not.Once the interrupt has been triggered software must clear this bit by writing 1 to it.
+        unsigned short WIE : 1; //!< Watchdog Timer Interrupt enable bit. Reset value is 0.   This bit is a write once only bit. Once the software does a write access to this bit, it will get locked and cannot be reprogrammed till the next system reset assertion
+    } B;
+} hw_wdog_wicr_t;
+#endif
+
+/*
+ * constants & macros for entire multi-block WDOG_WICR register
+ */
+#define HW_WDOG_WICR_ADDR(x)      (REGS_WDOG_BASE(x) + 0x6)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_WDOG_WICR(x)           (*(volatile hw_wdog_wicr_t *) HW_WDOG_WICR_ADDR(x))
+#define HW_WDOG_WICR_RD(x)        (HW_WDOG_WICR(x).U)
+#define HW_WDOG_WICR_WR(x, v)     (HW_WDOG_WICR(x).U = (v))
+#define HW_WDOG_WICR_SET(x, v)    (HW_WDOG_WICR_WR(x, HW_WDOG_WICR_RD(x) |  (v)))
+#define HW_WDOG_WICR_CLR(x, v)    (HW_WDOG_WICR_WR(x, HW_WDOG_WICR_RD(x) & ~(v)))
+#define HW_WDOG_WICR_TOG(x, v)    (HW_WDOG_WICR_WR(x, HW_WDOG_WICR_RD(x) ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual WDOG_WICR bitfields
+ */
+
+/* --- Register HW_WDOG_WICR, field WICT
+ *
+ * Watchdog Interrupt Count Time-out (WICT) field determines, how long before the counter
+ * time-out must the interrupt occur. The reset value is 0x04 implies interrupt will occur
+ * 2 seconds before time-out. The maximum value that can be programmed to WICT field is
+ * 127.5 seconds with a resolution of 0.5 seconds.  This field is write once only. Once the software
+ * does a write access to this field, it                                 will get locked and cannot
+ * be reprogrammed till the next system reset assertion.
+ */
+
+#define BP_WDOG_WICR_WICT      0
+#define BM_WDOG_WICR_WICT      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_WDOG_WICR_WICT(v)   ((((reg32_t) v) << 0) & BM_WDOG_WICR_WICT)
+#else
+#define BF_WDOG_WICR_WICT(v)   (((v) << 0) & BM_WDOG_WICR_WICT)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_WDOG_WICR_WICT(v)   BF_CS1(WDOG_WICR, WICT, v)
+#endif
+
+/* --- Register HW_WDOG_WICR, field WTIS
+ *
+ * Watchdog TImer Interrupt Status bit will reflect the timer interrupt status, whether
+ * interrupt has occurred or not.Once the interrupt has been triggered software must clear
+ * this bit by writing 1 to it.
+ */
+
+#define BP_WDOG_WICR_WTIS      14
+#define BM_WDOG_WICR_WTIS      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_WDOG_WICR_WTIS(v)   ((((reg32_t) v) << 14) & BM_WDOG_WICR_WTIS)
+#else
+#define BF_WDOG_WICR_WTIS(v)   (((v) << 14) & BM_WDOG_WICR_WTIS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_WDOG_WICR_WTIS(v)   BF_CS1(WDOG_WICR, WTIS, v)
+#endif
+
+/* --- Register HW_WDOG_WICR, field WIE
+ *
+ * Watchdog Timer Interrupt enable bit. Reset value is 0.   This bit is a write once only bit. Once
+ * the software does a write access to this bit,                                 it will get locked
+ * and cannot be reprogrammed till the next system reset                                 assertion
+ */
+
+#define BP_WDOG_WICR_WIE      15
+#define BM_WDOG_WICR_WIE      0x00008000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_WDOG_WICR_WIE(v)   ((((reg32_t) v) << 15) & BM_WDOG_WICR_WIE)
+#else
+#define BF_WDOG_WICR_WIE(v)   (((v) << 15) & BM_WDOG_WICR_WIE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_WDOG_WICR_WIE(v)   BF_CS1(WDOG_WICR, WIE, v)
+#endif
+
+/*!
+ * @brief HW_WDOG_WMCR - Watchdog Miscellaneous Control Register
+ *
+ * WDOG_WMCR Controls the Power Down counter operation.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg16_t  U;
+    struct
+    {
+        unsigned short PDE : 1; //!< Power Down Enable bit. Reset value of this bit is 1, which means the power down counter inside the WDOG-1 is enabled after reset. The software must write 0 to this bit to disable the counter within 16 seconds of reset de-assertion. Once disabled this counter cannot be enabled again. See for operation of this counter.  This bit is write-one once only bit. Once software sets this bit it cannot be reset till the next system reset.
+        unsigned short RESERVED0 : 15; //!< Reserved.
+    } B;
+} hw_wdog_wmcr_t;
+#endif
+
+/*
+ * constants & macros for entire multi-block WDOG_WMCR register
+ */
+#define HW_WDOG_WMCR_ADDR(x)      (REGS_WDOG_BASE(x) + 0x8)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_WDOG_WMCR(x)           (*(volatile hw_wdog_wmcr_t *) HW_WDOG_WMCR_ADDR(x))
+#define HW_WDOG_WMCR_RD(x)        (HW_WDOG_WMCR(x).U)
+#define HW_WDOG_WMCR_WR(x, v)     (HW_WDOG_WMCR(x).U = (v))
+#define HW_WDOG_WMCR_SET(x, v)    (HW_WDOG_WMCR_WR(x, HW_WDOG_WMCR_RD(x) |  (v)))
+#define HW_WDOG_WMCR_CLR(x, v)    (HW_WDOG_WMCR_WR(x, HW_WDOG_WMCR_RD(x) & ~(v)))
+#define HW_WDOG_WMCR_TOG(x, v)    (HW_WDOG_WMCR_WR(x, HW_WDOG_WMCR_RD(x) ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual WDOG_WMCR bitfields
+ */
+
+/* --- Register HW_WDOG_WMCR, field PDE
+ *
+ * Power Down Enable bit. Reset value of this bit is 1, which means the power down counter
+ * inside the WDOG-1 is enabled after reset. The software must write 0 to this bit to
+ * disable the counter within 16 seconds of reset de-assertion. Once disabled this counter
+ * cannot be enabled again. See for operation of this counter.  This bit is write-one once only bit.
+ * Once software sets this bit it cannot be reset                                 till the next
+ * system reset.
+ */
+
+#define BP_WDOG_WMCR_PDE      0
+#define BM_WDOG_WMCR_PDE      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_WDOG_WMCR_PDE(v)   ((((reg32_t) v) << 0) & BM_WDOG_WMCR_PDE)
+#else
+#define BF_WDOG_WMCR_PDE(v)   (((v) << 0) & BM_WDOG_WMCR_PDE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_WDOG_WMCR_PDE(v)   BF_CS1(WDOG_WMCR, PDE, v)
+#endif
+
 
 
 /*!
@@ -354,6 +549,8 @@ typedef struct
     volatile hw_wdog_wcr_t WCR; //!< Watchdog Control Register
     volatile hw_wdog_wsr_t WSR; //!< Watchdog Service Register
     volatile hw_wdog_wrsr_t WRSR; //!< Watchdog Reset Status Register
+    volatile hw_wdog_wicr_t WICR; //!< Watchdog Interrupt Control Register
+    volatile hw_wdog_wmcr_t WMCR; //!< Watchdog Miscellaneous Control Register
 } hw_wdog_t
 #endif
 

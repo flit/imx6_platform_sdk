@@ -121,7 +121,7 @@ typedef union
         unsigned short RESERVED0 : 4; //!< Reserved, should be cleared
         unsigned short KDIE : 1; //!< Keypad Key Depress Interrupt Enable. Software should ensure that the interrupt for a Key Release event is masked until it has entered the key pressed state, and vice-versa, unless this activity is desired (as might be the case when a repeated interrupt is to be generated). The synchronizer chains are capable of being initialized to detect repeated key presses or releases. If they are not initialized when the corresponding event flag is cleared, false interrupts may be generated for depress (or release) events shorter than the length of the corresponding chain.
         unsigned short KRIE : 1; //!< Keypad Release Interrupt Enable. The software should ensure that the interrupt for a Key Release event is masked until it has entered the key pressed state, and vice versa, unless this activity is desired (as might be the case when a repeated interrupt is to be generated). The synchronizer chains are capable of being initialized to detect repeated key presses or releases. If they are not initialized when the corresponding event flag is cleared, false interrupts may be generated for depress (or release) events shorter than the length of the corresponding chain.
-        unsigned short RESERVED1 : 6; //!< 
+        unsigned short RESERVED1 : 6; //!< Reserved
     } B;
 } hw_kpp_kpsr_t;
 #endif

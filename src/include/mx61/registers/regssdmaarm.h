@@ -868,8 +868,8 @@ typedef union
         unsigned ACR : 1; //!< ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio between ARM platform DMA interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the internal SDMA core clock. The frequency selection is determined separately by the chip clock controller. This bit has to match the configuration of the chip clock controller that generates the clocks used in the SDMA.
         unsigned RESERVED1 : 6; //!< Reserved
         unsigned RTDOBS : 1; //!< Indicates if Real-Time Debug pins are used: They do not toggle by default in order to reduce power consumption.
-        unsigned RESERVED2 : 1; //!< 
-        unsigned RESERVED3 : 19; //!< Reserved
+        unsigned DSPDMA : 1; //!< This bit's function is reserved and should be configured as zero.
+        unsigned RESERVED2 : 19; //!< Reserved
     } B;
 } hw_sdmaarm_config_t;
 #endif
@@ -956,6 +956,106 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SDMAARM_CONFIG_RTDOBS(v)   BF_CS1(SDMAARM_CONFIG, RTDOBS, v)
+#endif
+
+/* --- Register HW_SDMAARM_CONFIG, field DSPDMA
+ *
+ * This bit's function is reserved and should be                                 configured as zero.
+ */
+
+#define BP_SDMAARM_CONFIG_DSPDMA      12
+#define BM_SDMAARM_CONFIG_DSPDMA      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_CONFIG_DSPDMA(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
+#else
+#define BF_SDMAARM_CONFIG_DSPDMA(v)   (((v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_CONFIG_DSPDMA(v)   BF_CS1(SDMAARM_CONFIG, DSPDMA, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_SDMA_LOCK - SDMA LOCK
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned LOCK : 1; //!< The LOCK bit is used to restrict access to update SDMA script memory through ROM channel zero scripts and through the OnCE interface under ARM platform control.  The LOCK bit is set:   The SDMA_LOCK, ONCE_ENB,CH0ADDR, and ILLINSTADDR registers cannot be written. These registers can be read, but writes are ignored.  SDMA software executing out of ROM or RAM may check the LOCK bit in the LOCK register to determine if certain operations are allowed, such as up-loading new scripts.   Once the LOCK bit is set to 1, only a reset can clear it. The LOCK bit is cleared by a hardware reset. LOCK is cleared by a software reset only if SRESET_LOCK_CLR is set.
+        unsigned SRESET_LOCK_CLR : 1; //!< The SRESET_LOCK_CLR bit determine if the LOCK bit is cleared on a software reset triggered by writing to the RESET register. This bit cannot be changed if LOCK=1. SREST_LOCK_CLR is cleared by conditions that clear the LOCK bit.
+        unsigned RESERVED0 : 30; //!< Reserved
+    } B;
+} hw_sdmaarm_sdma_lock_t;
+#endif
+
+/*
+ * constants & macros for entire SDMAARM_SDMA_LOCK register
+ */
+#define HW_SDMAARM_SDMA_LOCK_ADDR      (REGS_SDMAARM_BASE + 0x3c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SDMAARM_SDMA_LOCK           (*(volatile hw_sdmaarm_sdma_lock_t *) HW_SDMAARM_SDMA_LOCK_ADDR)
+#define HW_SDMAARM_SDMA_LOCK_RD()      (HW_SDMAARM_SDMA_LOCK.U)
+#define HW_SDMAARM_SDMA_LOCK_WR(v)     (HW_SDMAARM_SDMA_LOCK.U = (v))
+#define HW_SDMAARM_SDMA_LOCK_SET(v)    (HW_SDMAARM_SDMA_LOCK_WR(HW_SDMAARM_SDMA_LOCK_RD() |  (v)))
+#define HW_SDMAARM_SDMA_LOCK_CLR(v)    (HW_SDMAARM_SDMA_LOCK_WR(HW_SDMAARM_SDMA_LOCK_RD() & ~(v)))
+#define HW_SDMAARM_SDMA_LOCK_TOG(v)    (HW_SDMAARM_SDMA_LOCK_WR(HW_SDMAARM_SDMA_LOCK_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual SDMAARM_SDMA_LOCK bitfields
+ */
+
+/* --- Register HW_SDMAARM_SDMA_LOCK, field LOCK
+ *
+ * The LOCK bit is used to restrict access to update SDMA script memory
+ * through ROM channel zero scripts and through the OnCE interface
+ * under ARM platform control.  The LOCK bit is set:   The SDMA_LOCK, ONCE_ENB,CH0ADDR, and
+ * ILLINSTADDR registers                                     cannot be written. These registers can
+ * be read, but writes are                                     ignored.  SDMA software executing out
+ * of ROM or RAM may check the LOCK bit                                     in the LOCK register to
+ * determine if certain operations are allowed, such as up-loading
+ * new scripts.   Once the LOCK bit is set to 1, only a reset can clear it. The LOCK
+ * bit is cleared by a hardware reset. LOCK is cleared by a software
+ * reset only if SRESET_LOCK_CLR is set.
+ */
+
+#define BP_SDMAARM_SDMA_LOCK_LOCK      0
+#define BM_SDMAARM_SDMA_LOCK_LOCK      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_LOCK_LOCK)
+#else
+#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   (((v) << 0) & BM_SDMAARM_SDMA_LOCK_LOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_SDMA_LOCK_LOCK(v)   BF_CS1(SDMAARM_SDMA_LOCK, LOCK, v)
+#endif
+
+/* --- Register HW_SDMAARM_SDMA_LOCK, field SRESET_LOCK_CLR
+ *
+ * The SRESET_LOCK_CLR bit determine if the LOCK bit is cleared on a
+ * software reset triggered by writing to the RESET register. This bit
+ * cannot be changed if LOCK=1. SREST_LOCK_CLR is cleared by conditions
+ * that clear the LOCK bit.
+ */
+
+#define BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      1
+#define BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   ((((reg32_t) v) << 1) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
+#else
+#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   (((v) << 1) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   BF_CS1(SDMAARM_SDMA_LOCK, SRESET_LOCK_CLR, v)
 #endif
 
 /*!
@@ -1519,6 +1619,121 @@ typedef union
 #endif
 
 /*!
+ * @brief HW_SDMAARM_EVT_MIRROR - DMA Requests
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned EVENTS : 32; //!< This register reflects the DMA requests received by the SDMA for events 31-0. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of 32 DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR register is cleared following read access.
+    } B;
+} hw_sdmaarm_evt_mirror_t;
+#endif
+
+/*
+ * constants & macros for entire SDMAARM_EVT_MIRROR register
+ */
+#define HW_SDMAARM_EVT_MIRROR_ADDR      (REGS_SDMAARM_BASE + 0x60)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SDMAARM_EVT_MIRROR           (*(volatile hw_sdmaarm_evt_mirror_t *) HW_SDMAARM_EVT_MIRROR_ADDR)
+#define HW_SDMAARM_EVT_MIRROR_RD()      (HW_SDMAARM_EVT_MIRROR.U)
+#define HW_SDMAARM_EVT_MIRROR_WR(v)     (HW_SDMAARM_EVT_MIRROR.U = (v))
+#define HW_SDMAARM_EVT_MIRROR_SET(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() |  (v)))
+#define HW_SDMAARM_EVT_MIRROR_CLR(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() & ~(v)))
+#define HW_SDMAARM_EVT_MIRROR_TOG(v)    (HW_SDMAARM_EVT_MIRROR_WR(HW_SDMAARM_EVT_MIRROR_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual SDMAARM_EVT_MIRROR bitfields
+ */
+
+/* --- Register HW_SDMAARM_EVT_MIRROR, field EVENTS
+ *
+ * This register reflects the DMA requests received by the SDMA for
+ * events 31-0. The ARM platform and the SDMA have a read-only access.
+ * There is one bit associated with each of 32 DMA request events. This
+ * information may be useful during debug of the blocks that generate
+ * the DMA requests. The EVT_MIRROR register is cleared following read
+ * access.
+ */
+
+#define BP_SDMAARM_EVT_MIRROR_EVENTS      0
+#define BM_SDMAARM_EVT_MIRROR_EVENTS      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_EVT_MIRROR_EVENTS(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_EVT_MIRROR_EVENTS)
+#else
+#define BF_SDMAARM_EVT_MIRROR_EVENTS(v)   (((v) << 0) & BM_SDMAARM_EVT_MIRROR_EVENTS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_EVT_MIRROR_EVENTS(v)   BF_CS1(SDMAARM_EVT_MIRROR, EVENTS, v)
+#endif
+
+/*!
+ * @brief HW_SDMAARM_EVT_MIRROR2 - DMA Requests 2
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned EVENTS : 16; //!< This register reflects the DMA requests received by the SDMA for events 47-32. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR2 register is cleared following read access.
+        unsigned RESERVED0 : 16; //!< Reserved
+    } B;
+} hw_sdmaarm_evt_mirror2_t;
+#endif
+
+/*
+ * constants & macros for entire SDMAARM_EVT_MIRROR2 register
+ */
+#define HW_SDMAARM_EVT_MIRROR2_ADDR      (REGS_SDMAARM_BASE + 0x64)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SDMAARM_EVT_MIRROR2           (*(volatile hw_sdmaarm_evt_mirror2_t *) HW_SDMAARM_EVT_MIRROR2_ADDR)
+#define HW_SDMAARM_EVT_MIRROR2_RD()      (HW_SDMAARM_EVT_MIRROR2.U)
+#define HW_SDMAARM_EVT_MIRROR2_WR(v)     (HW_SDMAARM_EVT_MIRROR2.U = (v))
+#define HW_SDMAARM_EVT_MIRROR2_SET(v)    (HW_SDMAARM_EVT_MIRROR2_WR(HW_SDMAARM_EVT_MIRROR2_RD() |  (v)))
+#define HW_SDMAARM_EVT_MIRROR2_CLR(v)    (HW_SDMAARM_EVT_MIRROR2_WR(HW_SDMAARM_EVT_MIRROR2_RD() & ~(v)))
+#define HW_SDMAARM_EVT_MIRROR2_TOG(v)    (HW_SDMAARM_EVT_MIRROR2_WR(HW_SDMAARM_EVT_MIRROR2_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual SDMAARM_EVT_MIRROR2 bitfields
+ */
+
+/* --- Register HW_SDMAARM_EVT_MIRROR2, field EVENTS
+ *
+ * This register reflects the DMA requests received by the SDMA for
+ * events 47-32. The ARM platform and the SDMA have a read-only access.
+ * There is one bit associated with each of DMA request events. This
+ * information may be useful during debug of the blocks that generate
+ * the DMA requests. The EVT_MIRROR2 register is cleared following read
+ * access.
+ */
+
+#define BP_SDMAARM_EVT_MIRROR2_EVENTS      0
+#define BM_SDMAARM_EVT_MIRROR2_EVENTS      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_EVT_MIRROR2_EVENTS(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_EVT_MIRROR2_EVENTS)
+#else
+#define BF_SDMAARM_EVT_MIRROR2_EVENTS(v)   (((v) << 0) & BM_SDMAARM_EVT_MIRROR2_EVENTS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_EVT_MIRROR2_EVENTS(v)   BF_CS1(SDMAARM_EVT_MIRROR2, EVENTS, v)
+#endif
+
+/*!
  * @brief HW_SDMAARM_XTRIG_CONF1 - Cross-Trigger Events Configuration Register                        1
  *
 
@@ -1529,18 +1744,18 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 6; //!< 
+        unsigned NUM0 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF0 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned RESERVED2 : 6; //!< 
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned NUM1 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF1 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RESERVED4 : 6; //!< 
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned NUM2 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF2 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED5 : 1; //!< Reserved
-        unsigned RESERVED6 : 6; //!< 
+        unsigned RESERVED2 : 1; //!< Reserved
+        unsigned NUM3 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF3 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by the reception of a DMA request or by the starting of a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED7 : 1; //!< Reserved
+        unsigned RESERVED3 : 1; //!< Reserved
     } B;
 } hw_sdmaarm_xtrig_conf1_t;
 #endif
@@ -1564,6 +1779,24 @@ typedef union
  * constants & macros for individual SDMAARM_XTRIG_CONF1 bitfields
  */
 
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM0
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF1_NUM0      0
+#define BM_SDMAARM_XTRIG_CONF1_NUM0      0x0000003f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+#else
+#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF1_NUM0(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM0, v)
+#endif
+
 /* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF0
  *
  * Configuration of the SDMA event line number i that is                                 connected
@@ -1586,6 +1819,24 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SDMAARM_XTRIG_CONF1_CNF0(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF0, v)
+#endif
+
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM1
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF1_NUM1      8
+#define BM_SDMAARM_XTRIG_CONF1_NUM1      0x00003f00
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
+#else
+#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF1_NUM1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM1, v)
 #endif
 
 /* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF1
@@ -1612,6 +1863,24 @@ typedef union
 #define BW_SDMAARM_XTRIG_CONF1_CNF1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF1, v)
 #endif
 
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM2
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF1_NUM2      16
+#define BM_SDMAARM_XTRIG_CONF1_NUM2      0x003f0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
+#else
+#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF1_NUM2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM2, v)
+#endif
+
 /* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF2
  *
  * Configuration of the SDMA event line number i that is                                 connected
@@ -1634,6 +1903,24 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SDMAARM_XTRIG_CONF1_CNF2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF2, v)
+#endif
+
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field NUM3
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF1_NUM3      24
+#define BM_SDMAARM_XTRIG_CONF1_NUM3      0x3f000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
+#else
+#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF1_NUM3(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM3, v)
 #endif
 
 /* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF3
@@ -1671,18 +1958,18 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 6; //!< 
+        unsigned NUM4 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF4 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned RESERVED2 : 6; //!< 
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned NUM5 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF5 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution . When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RESERVED4 : 6; //!< 
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned NUM6 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF6 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED5 : 1; //!< Reserved
-        unsigned RESERVED6 : 6; //!< 
+        unsigned RESERVED2 : 1; //!< Reserved
+        unsigned NUM7 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
         unsigned CNF7 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED7 : 1; //!< Reserved
+        unsigned RESERVED3 : 1; //!< Reserved
     } B;
 } hw_sdmaarm_xtrig_conf2_t;
 #endif
@@ -1706,6 +1993,24 @@ typedef union
  * constants & macros for individual SDMAARM_XTRIG_CONF2 bitfields
  */
 
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM4
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF2_NUM4      0
+#define BM_SDMAARM_XTRIG_CONF2_NUM4      0x0000003f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+#else
+#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF2_NUM4(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM4, v)
+#endif
+
 /* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF4
  *
  * Configuration of the SDMA event line number i that is                                 connected
@@ -1728,6 +2033,24 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SDMAARM_XTRIG_CONF2_CNF4(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF4, v)
+#endif
+
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM5
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF2_NUM5      8
+#define BM_SDMAARM_XTRIG_CONF2_NUM5      0x00003f00
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
+#else
+#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF2_NUM5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM5, v)
 #endif
 
 /* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF5
@@ -1754,6 +2077,24 @@ typedef union
 #define BW_SDMAARM_XTRIG_CONF2_CNF5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF5, v)
 #endif
 
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM6
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF2_NUM6      16
+#define BM_SDMAARM_XTRIG_CONF2_NUM6      0x003f0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
+#else
+#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF2_NUM6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM6, v)
+#endif
+
 /* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF6
  *
  * Configuration of the SDMA event line number i that is                                 connected
@@ -1776,6 +2117,24 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SDMAARM_XTRIG_CONF2_CNF6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF6, v)
+#endif
+
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field NUM7
+ *
+ * Contains the number of the DMA request or channel that triggers the
+ * pulse on the cross-trigger event line number i .
+ */
+
+#define BP_SDMAARM_XTRIG_CONF2_NUM7      24
+#define BM_SDMAARM_XTRIG_CONF2_NUM7      0x3f000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
+#else
+#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_XTRIG_CONF2_NUM7(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM7, v)
 #endif
 
 /* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF7
@@ -1858,6 +2217,64 @@ typedef union
 #define BW_SDMAARM_SDMA_CHNPRI_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI, CHNPRIN, v)
 #endif
 
+/*!
+ * @brief HW_SDMAARM_SDMA.CHNENBL - Channel Enable RAM
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+    } B;
+} hw_sdmaarm_sdma.chnenbl_t;
+#endif
+
+/*
+ * constants & macros for entire SDMAARM_SDMA.CHNENBL register
+ */
+#define HW_SDMAARM_SDMA.CHNENBL_ADDR      (REGS_SDMAARM_BASE + 0x200)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SDMAARM_SDMA.CHNENBL           (*(volatile hw_sdmaarm_sdma.chnenbl_t *) HW_SDMAARM_SDMA.CHNENBL_ADDR)
+#define HW_SDMAARM_SDMA.CHNENBL_RD()      (HW_SDMAARM_SDMA.CHNENBL.U)
+#define HW_SDMAARM_SDMA.CHNENBL_WR(v)     (HW_SDMAARM_SDMA.CHNENBL.U = (v))
+#define HW_SDMAARM_SDMA.CHNENBL_SET(v)    (HW_SDMAARM_SDMA.CHNENBL_WR(HW_SDMAARM_SDMA.CHNENBL_RD() |  (v)))
+#define HW_SDMAARM_SDMA.CHNENBL_CLR(v)    (HW_SDMAARM_SDMA.CHNENBL_WR(HW_SDMAARM_SDMA.CHNENBL_RD() & ~(v)))
+#define HW_SDMAARM_SDMA.CHNENBL_TOG(v)    (HW_SDMAARM_SDMA.CHNENBL_WR(HW_SDMAARM_SDMA.CHNENBL_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual SDMAARM_SDMA.CHNENBL bitfields
+ */
+
+/* --- Register HW_SDMAARM_SDMA.CHNENBL, field ENBLN
+ *
+ * This 32-bit value selects the channels that are triggered by the DMA
+ * request number n . If ENBLn[i] is set to 1, bit EP[i] will be                                 set
+ * when the DMA request n is received. These 48 32-bit                                 registers are
+ * physically located in a RAM, with no known reset                                 value. It is
+ * thus essential for the ARM platform to program them                                 before any
+ * DMA request is triggered to the SDMA, otherwise an                                 unpredictable
+ * combination of channels may be started.
+ */
+
+#define BP_SDMAARM_SDMA.CHNENBL_ENBLN      0
+#define BM_SDMAARM_SDMA.CHNENBL_ENBLN      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMAARM_SDMA.CHNENBL_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA.CHNENBL_ENBLN)
+#else
+#define BF_SDMAARM_SDMA.CHNENBL_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA.CHNENBL_ENBLN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMAARM_SDMA.CHNENBL_ENBLN(v)   BF_CS1(SDMAARM_SDMA.CHNENBL, ENBLN, v)
+#endif
+
 
 
 /*!
@@ -1881,20 +2298,24 @@ typedef struct
     volatile hw_sdmaarm_psw_t PSW; //!< Schedule Status
     volatile hw_sdmaarm_evterrdbg_t EVTERRDBG; //!< DMA Request Error Register
     volatile hw_sdmaarm_config_t CONFIG; //!< Configuration Register
-    reg32_t _reserved1;
+    volatile hw_sdmaarm_sdma_lock_t SDMA_LOCK; //!< SDMA LOCK
     volatile hw_sdmaarm_once_enb_t ONCE_ENB; //!< OnCE Enable
     volatile hw_sdmaarm_once_data_t ONCE_DATA; //!< OnCE Data Register
     volatile hw_sdmaarm_once_instr_t ONCE_INSTR; //!< OnCE Instruction Register
     volatile hw_sdmaarm_once_stat_t ONCE_STAT; //!< OnCE Status Register
     volatile hw_sdmaarm_once_cmd_t ONCE_CMD; //!< OnCE Command Register
-    reg32_t _reserved2;
+    reg32_t _reserved1;
     volatile hw_sdmaarm_illinstaddr_t ILLINSTADDR; //!< Illegal Instruction Trap Address
     volatile hw_sdmaarm_chn0addr_t CHN0ADDR; //!< Channel 0 Boot Address
-    reg32_t _reserved3[4];
+    volatile hw_sdmaarm_evt_mirror_t EVT_MIRROR; //!< DMA Requests
+    volatile hw_sdmaarm_evt_mirror2_t EVT_MIRROR2; //!< DMA Requests 2
+    reg32_t _reserved2[2];
     volatile hw_sdmaarm_xtrig_conf1_t XTRIG_CONF1; //!< Cross-Trigger Events Configuration Register                        1
     volatile hw_sdmaarm_xtrig_conf2_t XTRIG_CONF2; //!< Cross-Trigger Events Configuration Register                        2
-    reg32_t _reserved4[34];
+    reg32_t _reserved3[34];
     volatile hw_sdmaarm_sdma_chnpri_t SDMA_CHNPRI; //!< Channel Priority Registers
+    reg32_t _reserved4[63];
+    volatile hw_sdmaarm_sdma.chnenbl_t SDMA.CHNENBL; //!< Channel Enable RAM
 } hw_sdmaarm_t
 #endif
 

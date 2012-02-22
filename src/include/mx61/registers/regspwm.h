@@ -40,7 +40,10 @@ typedef union
         unsigned POUTC : 2; //!< PWM Output Configuration. This bit field determines the mode of PWM output on the output pin.
         unsigned HCTR : 1; //!< Half-word Data Swap Control. This bit determines which half word data from the 32-bit IP Bus interface is written into the lower 16 bits of the sample register.
         unsigned BCTR : 1; //!< Byte Data Swap Control. This bit determines the byte ordering of the 16-bit data when it goes into the FIFO from the sample register.
-        unsigned RESERVED0 : 4; //!< 
+        unsigned DBGEN : 1; //!< Debug Mode Enable. This bit keeps the PWM functional in debug mode. When this bit is cleared, the input clock is gated off in debug mode. This bit is not affected by software reset. It is cleared by hardware reset.
+        unsigned WAITEN : 1; //!< Wait Mode Enable. This bit keeps the PWM functional in wait mode. When this bit is cleared, the input clock is gated off in wait mode. This bit is not affected by software reset. It is cleared by hardware reset.
+        unsigned DOZEN : 1; //!< Doze Mode Enable. This bit keeps the PWM functional in doze mode. When this bit is cleared, the input clock is gated off in doze mode. This bit is not affected by software reset. It is cleared by hardware reset.
+        unsigned STOPEN : 1; //!< Stop Mode Enable. This bit keeps the PWM functional while in stop mode. When this bit is cleared, the input clock is gated off in stop mode. This bit is not affected by software reset. It is cleared by hardware reset.
         unsigned FWM : 2; //!< FIFO Water Mark. These bits are used to set the data level at which the FIFO empty flag will be set and the corresponding interrupt generated
         unsigned RESERVED : 4; //!< Reserved. These reserved bits are always read as zero.
     } B;
@@ -219,6 +222,86 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_PWM_PWMCR_BCTR(v)   BF_CS1(PWM_PWMCR, BCTR, v)
+#endif
+
+/* --- Register HW_PWM_PWMCR, field DBGEN
+ *
+ * Debug Mode Enable. This bit keeps the PWM functional in debug mode.
+ * When this bit is cleared, the input clock is gated off in debug
+ * mode. This bit is not affected by software reset. It is cleared by
+ * hardware reset.
+ */
+
+#define BP_PWM_PWMCR_DBGEN      22
+#define BM_PWM_PWMCR_DBGEN      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PWM_PWMCR_DBGEN(v)   ((((reg32_t) v) << 22) & BM_PWM_PWMCR_DBGEN)
+#else
+#define BF_PWM_PWMCR_DBGEN(v)   (((v) << 22) & BM_PWM_PWMCR_DBGEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_PWM_PWMCR_DBGEN(v)   BF_CS1(PWM_PWMCR, DBGEN, v)
+#endif
+
+/* --- Register HW_PWM_PWMCR, field WAITEN
+ *
+ * Wait Mode Enable. This bit keeps the PWM functional in wait mode.
+ * When this bit is cleared, the input clock is gated off in wait mode.
+ * This bit is not affected by software reset. It is cleared by
+ * hardware reset.
+ */
+
+#define BP_PWM_PWMCR_WAITEN      23
+#define BM_PWM_PWMCR_WAITEN      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PWM_PWMCR_WAITEN(v)   ((((reg32_t) v) << 23) & BM_PWM_PWMCR_WAITEN)
+#else
+#define BF_PWM_PWMCR_WAITEN(v)   (((v) << 23) & BM_PWM_PWMCR_WAITEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_PWM_PWMCR_WAITEN(v)   BF_CS1(PWM_PWMCR, WAITEN, v)
+#endif
+
+/* --- Register HW_PWM_PWMCR, field DOZEN
+ *
+ * Doze Mode Enable. This bit keeps the PWM functional in doze mode.
+ * When this bit is cleared, the input clock is gated off in doze mode.
+ * This bit is not affected by software reset. It is cleared by
+ * hardware reset.
+ */
+
+#define BP_PWM_PWMCR_DOZEN      24
+#define BM_PWM_PWMCR_DOZEN      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PWM_PWMCR_DOZEN(v)   ((((reg32_t) v) << 24) & BM_PWM_PWMCR_DOZEN)
+#else
+#define BF_PWM_PWMCR_DOZEN(v)   (((v) << 24) & BM_PWM_PWMCR_DOZEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_PWM_PWMCR_DOZEN(v)   BF_CS1(PWM_PWMCR, DOZEN, v)
+#endif
+
+/* --- Register HW_PWM_PWMCR, field STOPEN
+ *
+ * Stop Mode Enable. This bit keeps the PWM functional while in stop
+ * mode. When this bit is cleared, the input clock is gated off in stop
+ * mode. This bit is not affected by software reset. It is cleared by
+ * hardware reset.
+ */
+
+#define BP_PWM_PWMCR_STOPEN      25
+#define BM_PWM_PWMCR_STOPEN      0x02000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PWM_PWMCR_STOPEN(v)   ((((reg32_t) v) << 25) & BM_PWM_PWMCR_STOPEN)
+#else
+#define BF_PWM_PWMCR_STOPEN(v)   (((v) << 25) & BM_PWM_PWMCR_STOPEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_PWM_PWMCR_STOPEN(v)   BF_CS1(PWM_PWMCR, STOPEN, v)
 #endif
 
 /* --- Register HW_PWM_PWMCR, field FWM

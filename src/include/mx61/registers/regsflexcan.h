@@ -2525,7 +2525,7 @@ typedef union
         unsigned TXCRC : 15; //!< This field indicates the CRC value of the last message transmitted {FlexCAN3IPSRpsCkr,FlexCAN3TxRpsCkr} . This field is updated at the same time the Tx Interrupt Flag is asserted.
         unsigned RESERVED0 : 1; //!< Reserved
         unsigned MBCRC : 7; //!< This field indicates the number of the Mailbox corresponding to the value in TXCRC field.
-        unsigned RESERVED1 : 9; //!< 
+        unsigned RESERVED1 : 9; //!< Reserved
     } B;
 } hw_flexcan_crcr_t;
 #endif

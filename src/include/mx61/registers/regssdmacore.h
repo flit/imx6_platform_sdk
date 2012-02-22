@@ -1384,6 +1384,171 @@ typedef union
 #define BW_SDMACORE_MCHN0ADDR_SMSZ(v)   BF_CS1(SDMACORE_MCHN0ADDR, SMSZ, v)
 #endif
 
+/*!
+ * @brief HW_SDMACORE_ENDIANNESS - ENDIAN Status Register
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned APEND : 1; //!< APEND indicates the endian mode of the Peripheral and  Burst DMA2 and Burst DMA interfaces.  This bit is tied to logic '1' indicating little-endian mode.
+        unsigned RESERVED0 : 2; //!< Reserved
+        unsigned RESERVED1 : 29; //!< Reserved
+    } B;
+} hw_sdmacore_endianness_t;
+#endif
+
+/*
+ * constants & macros for entire SDMACORE_ENDIANNESS register
+ */
+#define HW_SDMACORE_ENDIANNESS_ADDR      (REGS_SDMACORE_BASE + 0x1d)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SDMACORE_ENDIANNESS           (*(volatile hw_sdmacore_endianness_t *) HW_SDMACORE_ENDIANNESS_ADDR)
+#define HW_SDMACORE_ENDIANNESS_RD()      (HW_SDMACORE_ENDIANNESS.U)
+#define HW_SDMACORE_ENDIANNESS_WR(v)     (HW_SDMACORE_ENDIANNESS.U = (v))
+#define HW_SDMACORE_ENDIANNESS_SET(v)    (HW_SDMACORE_ENDIANNESS_WR(HW_SDMACORE_ENDIANNESS_RD() |  (v)))
+#define HW_SDMACORE_ENDIANNESS_CLR(v)    (HW_SDMACORE_ENDIANNESS_WR(HW_SDMACORE_ENDIANNESS_RD() & ~(v)))
+#define HW_SDMACORE_ENDIANNESS_TOG(v)    (HW_SDMACORE_ENDIANNESS_WR(HW_SDMACORE_ENDIANNESS_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual SDMACORE_ENDIANNESS bitfields
+ */
+
+/* --- Register HW_SDMACORE_ENDIANNESS, field APEND
+ *
+ * APEND indicates the endian mode of the Peripheral and  Burst DMA2 and Burst DMA interfaces.  This
+ * bit is tied to logic '1' indicating little-endian mode.
+ */
+
+#define BP_SDMACORE_ENDIANNESS_APEND      0
+#define BM_SDMACORE_ENDIANNESS_APEND      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMACORE_ENDIANNESS_APEND(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_ENDIANNESS_APEND)
+#else
+#define BF_SDMACORE_ENDIANNESS_APEND(v)   (((v) << 0) & BM_SDMACORE_ENDIANNESS_APEND)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMACORE_ENDIANNESS_APEND(v)   BF_CS1(SDMACORE_ENDIANNESS, APEND, v)
+#endif
+
+/*!
+ * @brief HW_SDMACORE_SDMA_LOCK - Lock Status Register
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned LOCK : 1; //!< The LOCK bit reports the value of the LOCK bit in the SDMA_LOCK status register. SDMA software may use this value to determine if certain operations such as loading of new scripts is allowed.
+        unsigned RESERVED0 : 31; //!< Reserved
+    } B;
+} hw_sdmacore_sdma_lock_t;
+#endif
+
+/*
+ * constants & macros for entire SDMACORE_SDMA_LOCK register
+ */
+#define HW_SDMACORE_SDMA_LOCK_ADDR      (REGS_SDMACORE_BASE + 0x1e)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SDMACORE_SDMA_LOCK           (*(volatile hw_sdmacore_sdma_lock_t *) HW_SDMACORE_SDMA_LOCK_ADDR)
+#define HW_SDMACORE_SDMA_LOCK_RD()      (HW_SDMACORE_SDMA_LOCK.U)
+#define HW_SDMACORE_SDMA_LOCK_WR(v)     (HW_SDMACORE_SDMA_LOCK.U = (v))
+#define HW_SDMACORE_SDMA_LOCK_SET(v)    (HW_SDMACORE_SDMA_LOCK_WR(HW_SDMACORE_SDMA_LOCK_RD() |  (v)))
+#define HW_SDMACORE_SDMA_LOCK_CLR(v)    (HW_SDMACORE_SDMA_LOCK_WR(HW_SDMACORE_SDMA_LOCK_RD() & ~(v)))
+#define HW_SDMACORE_SDMA_LOCK_TOG(v)    (HW_SDMACORE_SDMA_LOCK_WR(HW_SDMACORE_SDMA_LOCK_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual SDMACORE_SDMA_LOCK bitfields
+ */
+
+/* --- Register HW_SDMACORE_SDMA_LOCK, field LOCK
+ *
+ * The LOCK bit reports the value of the LOCK bit in the SDMA_LOCK
+ * status register. SDMA software may use this value to determine if
+ * certain operations such as loading of new scripts is allowed.
+ */
+
+#define BP_SDMACORE_SDMA_LOCK_LOCK      0
+#define BM_SDMACORE_SDMA_LOCK_LOCK      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMACORE_SDMA_LOCK_LOCK(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_SDMA_LOCK_LOCK)
+#else
+#define BF_SDMACORE_SDMA_LOCK_LOCK(v)   (((v) << 0) & BM_SDMACORE_SDMA_LOCK_LOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMACORE_SDMA_LOCK_LOCK(v)   BF_CS1(SDMACORE_SDMA_LOCK, LOCK, v)
+#endif
+
+/*!
+ * @brief HW_SDMACORE_EVENTS2 - External DMA Requests Mirror #2
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned EVENTS : 16; //!< Reflects the status of the SDMA's external DMA requests. It is meant to allow any channel to monitor the states of these SDMA inputs.  This register displays EVENTS 32-47. The separate EVENTS register displays events 0-31.
+        unsigned RESERVED0 : 16; //!< Reserved
+    } B;
+} hw_sdmacore_events2_t;
+#endif
+
+/*
+ * constants & macros for entire SDMACORE_EVENTS2 register
+ */
+#define HW_SDMACORE_EVENTS2_ADDR      (REGS_SDMACORE_BASE + 0x1f)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SDMACORE_EVENTS2           (*(volatile hw_sdmacore_events2_t *) HW_SDMACORE_EVENTS2_ADDR)
+#define HW_SDMACORE_EVENTS2_RD()      (HW_SDMACORE_EVENTS2.U)
+#define HW_SDMACORE_EVENTS2_WR(v)     (HW_SDMACORE_EVENTS2.U = (v))
+#define HW_SDMACORE_EVENTS2_SET(v)    (HW_SDMACORE_EVENTS2_WR(HW_SDMACORE_EVENTS2_RD() |  (v)))
+#define HW_SDMACORE_EVENTS2_CLR(v)    (HW_SDMACORE_EVENTS2_WR(HW_SDMACORE_EVENTS2_RD() & ~(v)))
+#define HW_SDMACORE_EVENTS2_TOG(v)    (HW_SDMACORE_EVENTS2_WR(HW_SDMACORE_EVENTS2_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual SDMACORE_EVENTS2 bitfields
+ */
+
+/* --- Register HW_SDMACORE_EVENTS2, field EVENTS
+ *
+ * Reflects the status of the SDMA's external DMA requests. It is meant
+ * to allow any channel to monitor the states of these SDMA inputs.  This register displays EVENTS
+ * 32-47. The separate EVENTS register                                 displays events 0-31.
+ */
+
+#define BP_SDMACORE_EVENTS2_EVENTS      0
+#define BM_SDMACORE_EVENTS2_EVENTS      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMACORE_EVENTS2_EVENTS(v)   ((((reg32_t) v) << 0) & BM_SDMACORE_EVENTS2_EVENTS)
+#else
+#define BF_SDMACORE_EVENTS2_EVENTS(v)   (((v) << 0) & BM_SDMACORE_EVENTS2_EVENTS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SDMACORE_EVENTS2_EVENTS(v)   BF_CS1(SDMACORE_EVENTS2, EVENTS, v)
+#endif
+
 
 
 /*!
@@ -1410,6 +1575,9 @@ typedef struct
     volatile hw_sdmacore_tb_t TB; //!< OnCE Trace Buffer
     volatile hw_sdmacore_ostat_t OSTAT; //!< OnCE Status
     volatile hw_sdmacore_mchn0addr_t MCHN0ADDR; //!< Channel 0 Boot Address
+    volatile hw_sdmacore_endianness_t ENDIANNESS; //!< ENDIAN Status Register
+    volatile hw_sdmacore_sdma_lock_t SDMA_LOCK; //!< Lock Status Register
+    volatile hw_sdmacore_events2_t EVENTS2; //!< External DMA Requests Mirror #2
 } hw_sdmacore_t
 #endif
 

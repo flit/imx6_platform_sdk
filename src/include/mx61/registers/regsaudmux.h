@@ -237,6 +237,125 @@ typedef union
 #endif
 
 /*!
+ * @brief HW_AUDMUX_PDCR1 - Port Data Control Register 1
+ *
+ * PDCR1 is the Port Data Control Register for Port 1.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned INMMASK : 8; //!< Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
+        unsigned MODE : 1; //!< Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following:   Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port.  Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned TXRXEN : 1; //!< Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
+        unsigned RXDSEL : 3; //!< Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_audmux_pdcr1_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PDCR1 register
+ */
+#define HW_AUDMUX_PDCR1_ADDR      (REGS_AUDMUX_BASE + 0x4)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PDCR1           (*(volatile hw_audmux_pdcr1_t *) HW_AUDMUX_PDCR1_ADDR)
+#define HW_AUDMUX_PDCR1_RD()      (HW_AUDMUX_PDCR1.U)
+#define HW_AUDMUX_PDCR1_WR(v)     (HW_AUDMUX_PDCR1.U = (v))
+#define HW_AUDMUX_PDCR1_SET(v)    (HW_AUDMUX_PDCR1_WR(HW_AUDMUX_PDCR1_RD() |  (v)))
+#define HW_AUDMUX_PDCR1_CLR(v)    (HW_AUDMUX_PDCR1_WR(HW_AUDMUX_PDCR1_RD() & ~(v)))
+#define HW_AUDMUX_PDCR1_TOG(v)    (HW_AUDMUX_PDCR1_WR(HW_AUDMUX_PDCR1_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual AUDMUX_PDCR1 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PDCR1, field INMMASK
+ *
+ * Internal Network Mode Mask. Bit mask that selects the ports from
+ * which the RxD signals are to be ANDed together for internal network
+ * mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from
+ * Port 1.
+ */
+
+#define BP_AUDMUX_PDCR1_INMMASK      0
+#define BM_AUDMUX_PDCR1_INMMASK      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR1_INMMASK(v)   ((((reg32_t) v) << 0) & BM_AUDMUX_PDCR1_INMMASK)
+#else
+#define BF_AUDMUX_PDCR1_INMMASK(v)   (((v) << 0) & BM_AUDMUX_PDCR1_INMMASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR1_INMMASK(v)   BF_CS1(AUDMUX_PDCR1, INMMASK, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR1, field MODE
+ *
+ * Mode Select. This field selects the mode in which the port is to
+ * operate. The modes of operation include the following:   Normal mode, in which the RxD from the
+ * port selected by RXDSEL                                     is routed to the port.  Internal
+ * Network mode in which RxD from other ports are ANDed
+ * together. RXDSEL is ignored. INMMASK determines which RxD
+ * signals are ANDed together.
+ */
+
+#define BP_AUDMUX_PDCR1_MODE      8
+#define BM_AUDMUX_PDCR1_MODE      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR1_MODE(v)   ((((reg32_t) v) << 8) & BM_AUDMUX_PDCR1_MODE)
+#else
+#define BF_AUDMUX_PDCR1_MODE(v)   (((v) << 8) & BM_AUDMUX_PDCR1_MODE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR1_MODE(v)   BF_CS1(AUDMUX_PDCR1, MODE, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR1, field TXRXEN
+ *
+ * Transmit/Receive Switch Enable. Swaps the transmit and receive
+ * signals.
+ */
+
+#define BP_AUDMUX_PDCR1_TXRXEN      12
+#define BM_AUDMUX_PDCR1_TXRXEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR1_TXRXEN(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PDCR1_TXRXEN)
+#else
+#define BF_AUDMUX_PDCR1_TXRXEN(v)   (((v) << 12) & BM_AUDMUX_PDCR1_TXRXEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR1_TXRXEN(v)   BF_CS1(AUDMUX_PDCR1, TXRXEN, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR1, field RXDSEL
+ *
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL
+ * is ignored if MODE = 0 1                                 (that is, Internal Network Mode is
+ * enabled).
+ */
+
+#define BP_AUDMUX_PDCR1_RXDSEL      13
+#define BM_AUDMUX_PDCR1_RXDSEL      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR1_RXDSEL(v)   ((((reg32_t) v) << 13) & BM_AUDMUX_PDCR1_RXDSEL)
+#else
+#define BF_AUDMUX_PDCR1_RXDSEL(v)   (((v) << 13) & BM_AUDMUX_PDCR1_RXDSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR1_RXDSEL(v)   BF_CS1(AUDMUX_PDCR1, RXDSEL, v)
+#endif
+
+/*!
  * @brief HW_AUDMUX_PTCR2 - Port Timing Control Register 2
  *
  * PTCR2 is the Port Timing Control Register for Port 2.
@@ -455,6 +574,125 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_AUDMUX_PTCR2_TFS_DIR(v)   BF_CS1(AUDMUX_PTCR2, TFS_DIR, v)
+#endif
+
+/*!
+ * @brief HW_AUDMUX_PDCR2 - Port Data Control Register 2
+ *
+ * PDCR2 is the Port Data Control Register for Port 2.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned INMMASK : 8; //!< Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
+        unsigned MODE : 1; //!< Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following:   Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port.  Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned TXRXEN : 1; //!< Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
+        unsigned RXDSEL : 3; //!< Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_audmux_pdcr2_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PDCR2 register
+ */
+#define HW_AUDMUX_PDCR2_ADDR      (REGS_AUDMUX_BASE + 0xc)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PDCR2           (*(volatile hw_audmux_pdcr2_t *) HW_AUDMUX_PDCR2_ADDR)
+#define HW_AUDMUX_PDCR2_RD()      (HW_AUDMUX_PDCR2.U)
+#define HW_AUDMUX_PDCR2_WR(v)     (HW_AUDMUX_PDCR2.U = (v))
+#define HW_AUDMUX_PDCR2_SET(v)    (HW_AUDMUX_PDCR2_WR(HW_AUDMUX_PDCR2_RD() |  (v)))
+#define HW_AUDMUX_PDCR2_CLR(v)    (HW_AUDMUX_PDCR2_WR(HW_AUDMUX_PDCR2_RD() & ~(v)))
+#define HW_AUDMUX_PDCR2_TOG(v)    (HW_AUDMUX_PDCR2_WR(HW_AUDMUX_PDCR2_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual AUDMUX_PDCR2 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PDCR2, field INMMASK
+ *
+ * Internal Network Mode Mask. Bit mask that selects the ports from
+ * which the RxD signals are to be ANDed together for internal network
+ * mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from
+ * Port 1.
+ */
+
+#define BP_AUDMUX_PDCR2_INMMASK      0
+#define BM_AUDMUX_PDCR2_INMMASK      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR2_INMMASK(v)   ((((reg32_t) v) << 0) & BM_AUDMUX_PDCR2_INMMASK)
+#else
+#define BF_AUDMUX_PDCR2_INMMASK(v)   (((v) << 0) & BM_AUDMUX_PDCR2_INMMASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR2_INMMASK(v)   BF_CS1(AUDMUX_PDCR2, INMMASK, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR2, field MODE
+ *
+ * Mode Select. This field selects the mode in which the port is to
+ * operate. The modes of operation include the following:   Normal mode, in which the RxD from the
+ * port selected by RXDSEL                                     is routed to the port.  Internal
+ * Network mode in which RxD from other ports are ANDed
+ * together. RXDSEL is ignored. INMMASK determines which RxD
+ * signals are ANDed together.
+ */
+
+#define BP_AUDMUX_PDCR2_MODE      8
+#define BM_AUDMUX_PDCR2_MODE      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR2_MODE(v)   ((((reg32_t) v) << 8) & BM_AUDMUX_PDCR2_MODE)
+#else
+#define BF_AUDMUX_PDCR2_MODE(v)   (((v) << 8) & BM_AUDMUX_PDCR2_MODE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR2_MODE(v)   BF_CS1(AUDMUX_PDCR2, MODE, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR2, field TXRXEN
+ *
+ * Transmit/Receive Switch Enable. Swaps the transmit and receive
+ * signals.
+ */
+
+#define BP_AUDMUX_PDCR2_TXRXEN      12
+#define BM_AUDMUX_PDCR2_TXRXEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR2_TXRXEN(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PDCR2_TXRXEN)
+#else
+#define BF_AUDMUX_PDCR2_TXRXEN(v)   (((v) << 12) & BM_AUDMUX_PDCR2_TXRXEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR2_TXRXEN(v)   BF_CS1(AUDMUX_PDCR2, TXRXEN, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR2, field RXDSEL
+ *
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL
+ * is ignored if MODE = 0 1                                 (that is, Internal Network Mode is
+ * enabled).
+ */
+
+#define BP_AUDMUX_PDCR2_RXDSEL      13
+#define BM_AUDMUX_PDCR2_RXDSEL      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR2_RXDSEL(v)   ((((reg32_t) v) << 13) & BM_AUDMUX_PDCR2_RXDSEL)
+#else
+#define BF_AUDMUX_PDCR2_RXDSEL(v)   (((v) << 13) & BM_AUDMUX_PDCR2_RXDSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR2_RXDSEL(v)   BF_CS1(AUDMUX_PDCR2, RXDSEL, v)
 #endif
 
 /*!
@@ -679,6 +917,125 @@ typedef union
 #endif
 
 /*!
+ * @brief HW_AUDMUX_PDCR3 - Port Data Control Register 3
+ *
+ * PDCR3 is the Port Data Control Register for Port 3.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned INMMASK : 8; //!< Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
+        unsigned MODE : 1; //!< Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following:   Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port.  Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned TXRXEN : 1; //!< Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
+        unsigned RXDSEL : 3; //!< Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_audmux_pdcr3_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PDCR3 register
+ */
+#define HW_AUDMUX_PDCR3_ADDR      (REGS_AUDMUX_BASE + 0x14)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PDCR3           (*(volatile hw_audmux_pdcr3_t *) HW_AUDMUX_PDCR3_ADDR)
+#define HW_AUDMUX_PDCR3_RD()      (HW_AUDMUX_PDCR3.U)
+#define HW_AUDMUX_PDCR3_WR(v)     (HW_AUDMUX_PDCR3.U = (v))
+#define HW_AUDMUX_PDCR3_SET(v)    (HW_AUDMUX_PDCR3_WR(HW_AUDMUX_PDCR3_RD() |  (v)))
+#define HW_AUDMUX_PDCR3_CLR(v)    (HW_AUDMUX_PDCR3_WR(HW_AUDMUX_PDCR3_RD() & ~(v)))
+#define HW_AUDMUX_PDCR3_TOG(v)    (HW_AUDMUX_PDCR3_WR(HW_AUDMUX_PDCR3_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual AUDMUX_PDCR3 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PDCR3, field INMMASK
+ *
+ * Internal Network Mode Mask. Bit mask that selects the ports from
+ * which the RxD signals are to be ANDed together for internal network
+ * mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from
+ * Port 1.
+ */
+
+#define BP_AUDMUX_PDCR3_INMMASK      0
+#define BM_AUDMUX_PDCR3_INMMASK      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR3_INMMASK(v)   ((((reg32_t) v) << 0) & BM_AUDMUX_PDCR3_INMMASK)
+#else
+#define BF_AUDMUX_PDCR3_INMMASK(v)   (((v) << 0) & BM_AUDMUX_PDCR3_INMMASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR3_INMMASK(v)   BF_CS1(AUDMUX_PDCR3, INMMASK, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR3, field MODE
+ *
+ * Mode Select. This field selects the mode in which the port is to
+ * operate. The modes of operation include the following:   Normal mode, in which the RxD from the
+ * port selected by RXDSEL                                     is routed to the port.  Internal
+ * Network mode in which RxD from other ports are ANDed
+ * together. RXDSEL is ignored. INMMASK determines which RxD
+ * signals are ANDed together.
+ */
+
+#define BP_AUDMUX_PDCR3_MODE      8
+#define BM_AUDMUX_PDCR3_MODE      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR3_MODE(v)   ((((reg32_t) v) << 8) & BM_AUDMUX_PDCR3_MODE)
+#else
+#define BF_AUDMUX_PDCR3_MODE(v)   (((v) << 8) & BM_AUDMUX_PDCR3_MODE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR3_MODE(v)   BF_CS1(AUDMUX_PDCR3, MODE, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR3, field TXRXEN
+ *
+ * Transmit/Receive Switch Enable. Swaps the transmit and receive
+ * signals.
+ */
+
+#define BP_AUDMUX_PDCR3_TXRXEN      12
+#define BM_AUDMUX_PDCR3_TXRXEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR3_TXRXEN(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PDCR3_TXRXEN)
+#else
+#define BF_AUDMUX_PDCR3_TXRXEN(v)   (((v) << 12) & BM_AUDMUX_PDCR3_TXRXEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR3_TXRXEN(v)   BF_CS1(AUDMUX_PDCR3, TXRXEN, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR3, field RXDSEL
+ *
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL
+ * is ignored if MODE = 0 1                                 (that is, Internal Network Mode is
+ * enabled).
+ */
+
+#define BP_AUDMUX_PDCR3_RXDSEL      13
+#define BM_AUDMUX_PDCR3_RXDSEL      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR3_RXDSEL(v)   ((((reg32_t) v) << 13) & BM_AUDMUX_PDCR3_RXDSEL)
+#else
+#define BF_AUDMUX_PDCR3_RXDSEL(v)   (((v) << 13) & BM_AUDMUX_PDCR3_RXDSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR3_RXDSEL(v)   BF_CS1(AUDMUX_PDCR3, RXDSEL, v)
+#endif
+
+/*!
  * @brief HW_AUDMUX_PTCR - Port Timing Control Register n
  *
  * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
@@ -899,6 +1256,482 @@ typedef union
 #define BW_AUDMUX_PTCR_TFS_DIR(v)   BF_CS1(AUDMUX_PTCR, TFS_DIR, v)
 #endif
 
+/*!
+ * @brief HW_AUDMUX_PDCR4 - Port Data Control Register 4
+ *
+ * PDCR4 is the Port Data Control Register for Port 4.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned INMMASK : 8; //!< Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
+        unsigned MODE : 1; //!< Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following:   Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port.  Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned TXRXEN : 1; //!< Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
+        unsigned RXDSEL : 3; //!< Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_audmux_pdcr4_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PDCR4 register
+ */
+#define HW_AUDMUX_PDCR4_ADDR      (REGS_AUDMUX_BASE + 0x1c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PDCR4           (*(volatile hw_audmux_pdcr4_t *) HW_AUDMUX_PDCR4_ADDR)
+#define HW_AUDMUX_PDCR4_RD()      (HW_AUDMUX_PDCR4.U)
+#define HW_AUDMUX_PDCR4_WR(v)     (HW_AUDMUX_PDCR4.U = (v))
+#define HW_AUDMUX_PDCR4_SET(v)    (HW_AUDMUX_PDCR4_WR(HW_AUDMUX_PDCR4_RD() |  (v)))
+#define HW_AUDMUX_PDCR4_CLR(v)    (HW_AUDMUX_PDCR4_WR(HW_AUDMUX_PDCR4_RD() & ~(v)))
+#define HW_AUDMUX_PDCR4_TOG(v)    (HW_AUDMUX_PDCR4_WR(HW_AUDMUX_PDCR4_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual AUDMUX_PDCR4 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PDCR4, field INMMASK
+ *
+ * Internal Network Mode Mask. Bit mask that selects the ports from
+ * which the RxD signals are to be ANDed together for internal network
+ * mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from
+ * Port 1.
+ */
+
+#define BP_AUDMUX_PDCR4_INMMASK      0
+#define BM_AUDMUX_PDCR4_INMMASK      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR4_INMMASK(v)   ((((reg32_t) v) << 0) & BM_AUDMUX_PDCR4_INMMASK)
+#else
+#define BF_AUDMUX_PDCR4_INMMASK(v)   (((v) << 0) & BM_AUDMUX_PDCR4_INMMASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR4_INMMASK(v)   BF_CS1(AUDMUX_PDCR4, INMMASK, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR4, field MODE
+ *
+ * Mode Select. This field selects the mode in which the port is to
+ * operate. The modes of operation include the following:   Normal mode, in which the RxD from the
+ * port selected by RXDSEL                                     is routed to the port.  Internal
+ * Network mode in which RxD from other ports are ANDed
+ * together. RXDSEL is ignored. INMMASK determines which RxD
+ * signals are ANDed together.
+ */
+
+#define BP_AUDMUX_PDCR4_MODE      8
+#define BM_AUDMUX_PDCR4_MODE      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR4_MODE(v)   ((((reg32_t) v) << 8) & BM_AUDMUX_PDCR4_MODE)
+#else
+#define BF_AUDMUX_PDCR4_MODE(v)   (((v) << 8) & BM_AUDMUX_PDCR4_MODE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR4_MODE(v)   BF_CS1(AUDMUX_PDCR4, MODE, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR4, field TXRXEN
+ *
+ * Transmit/Receive Switch Enable. Swaps the transmit and receive
+ * signals.
+ */
+
+#define BP_AUDMUX_PDCR4_TXRXEN      12
+#define BM_AUDMUX_PDCR4_TXRXEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR4_TXRXEN(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PDCR4_TXRXEN)
+#else
+#define BF_AUDMUX_PDCR4_TXRXEN(v)   (((v) << 12) & BM_AUDMUX_PDCR4_TXRXEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR4_TXRXEN(v)   BF_CS1(AUDMUX_PDCR4, TXRXEN, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR4, field RXDSEL
+ *
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL
+ * is ignored if MODE = 0 1                                 (that is, Internal Network Mode is
+ * enabled).
+ */
+
+#define BP_AUDMUX_PDCR4_RXDSEL      13
+#define BM_AUDMUX_PDCR4_RXDSEL      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR4_RXDSEL(v)   ((((reg32_t) v) << 13) & BM_AUDMUX_PDCR4_RXDSEL)
+#else
+#define BF_AUDMUX_PDCR4_RXDSEL(v)   (((v) << 13) & BM_AUDMUX_PDCR4_RXDSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR4_RXDSEL(v)   BF_CS1(AUDMUX_PDCR4, RXDSEL, v)
+#endif
+
+/*!
+ * @brief HW_AUDMUX_PDCR5 - Port Data Control Register 5
+ *
+ * PDCR5 is the Port Data Control Register for Port 5.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned INMMASK : 8; //!< Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
+        unsigned MODE : 1; //!< Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following:   Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port.  Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned TXRXEN : 1; //!< Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
+        unsigned RXDSEL : 3; //!< Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_audmux_pdcr5_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PDCR5 register
+ */
+#define HW_AUDMUX_PDCR5_ADDR      (REGS_AUDMUX_BASE + 0x24)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PDCR5           (*(volatile hw_audmux_pdcr5_t *) HW_AUDMUX_PDCR5_ADDR)
+#define HW_AUDMUX_PDCR5_RD()      (HW_AUDMUX_PDCR5.U)
+#define HW_AUDMUX_PDCR5_WR(v)     (HW_AUDMUX_PDCR5.U = (v))
+#define HW_AUDMUX_PDCR5_SET(v)    (HW_AUDMUX_PDCR5_WR(HW_AUDMUX_PDCR5_RD() |  (v)))
+#define HW_AUDMUX_PDCR5_CLR(v)    (HW_AUDMUX_PDCR5_WR(HW_AUDMUX_PDCR5_RD() & ~(v)))
+#define HW_AUDMUX_PDCR5_TOG(v)    (HW_AUDMUX_PDCR5_WR(HW_AUDMUX_PDCR5_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual AUDMUX_PDCR5 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PDCR5, field INMMASK
+ *
+ * Internal Network Mode Mask. Bit mask that selects the ports from
+ * which the RxD signals are to be ANDed together for internal network
+ * mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from
+ * Port 1.
+ */
+
+#define BP_AUDMUX_PDCR5_INMMASK      0
+#define BM_AUDMUX_PDCR5_INMMASK      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR5_INMMASK(v)   ((((reg32_t) v) << 0) & BM_AUDMUX_PDCR5_INMMASK)
+#else
+#define BF_AUDMUX_PDCR5_INMMASK(v)   (((v) << 0) & BM_AUDMUX_PDCR5_INMMASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR5_INMMASK(v)   BF_CS1(AUDMUX_PDCR5, INMMASK, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR5, field MODE
+ *
+ * Mode Select. This field selects the mode in which the port is to
+ * operate. The modes of operation include the following:   Normal mode, in which the RxD from the
+ * port selected by RXDSEL                                     is routed to the port.  Internal
+ * Network mode in which RxD from other ports are ANDed
+ * together. RXDSEL is ignored. INMMASK determines which RxD
+ * signals are ANDed together.
+ */
+
+#define BP_AUDMUX_PDCR5_MODE      8
+#define BM_AUDMUX_PDCR5_MODE      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR5_MODE(v)   ((((reg32_t) v) << 8) & BM_AUDMUX_PDCR5_MODE)
+#else
+#define BF_AUDMUX_PDCR5_MODE(v)   (((v) << 8) & BM_AUDMUX_PDCR5_MODE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR5_MODE(v)   BF_CS1(AUDMUX_PDCR5, MODE, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR5, field TXRXEN
+ *
+ * Transmit/Receive Switch Enable. Swaps the transmit and receive
+ * signals.
+ */
+
+#define BP_AUDMUX_PDCR5_TXRXEN      12
+#define BM_AUDMUX_PDCR5_TXRXEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR5_TXRXEN(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PDCR5_TXRXEN)
+#else
+#define BF_AUDMUX_PDCR5_TXRXEN(v)   (((v) << 12) & BM_AUDMUX_PDCR5_TXRXEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR5_TXRXEN(v)   BF_CS1(AUDMUX_PDCR5, TXRXEN, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR5, field RXDSEL
+ *
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL
+ * is ignored if MODE = 0 1                                 (that is, Internal Network Mode is
+ * enabled).
+ */
+
+#define BP_AUDMUX_PDCR5_RXDSEL      13
+#define BM_AUDMUX_PDCR5_RXDSEL      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR5_RXDSEL(v)   ((((reg32_t) v) << 13) & BM_AUDMUX_PDCR5_RXDSEL)
+#else
+#define BF_AUDMUX_PDCR5_RXDSEL(v)   (((v) << 13) & BM_AUDMUX_PDCR5_RXDSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR5_RXDSEL(v)   BF_CS1(AUDMUX_PDCR5, RXDSEL, v)
+#endif
+
+/*!
+ * @brief HW_AUDMUX_PDCR6 - Port Data Control Register 6
+ *
+ * PDCR6 is the Port Data Control Register for Port 6.
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned INMMASK : 8; //!< Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
+        unsigned MODE : 1; //!< Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following:   Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port.  Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned TXRXEN : 1; //!< Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
+        unsigned RXDSEL : 3; //!< Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_audmux_pdcr6_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PDCR6 register
+ */
+#define HW_AUDMUX_PDCR6_ADDR      (REGS_AUDMUX_BASE + 0x2c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PDCR6           (*(volatile hw_audmux_pdcr6_t *) HW_AUDMUX_PDCR6_ADDR)
+#define HW_AUDMUX_PDCR6_RD()      (HW_AUDMUX_PDCR6.U)
+#define HW_AUDMUX_PDCR6_WR(v)     (HW_AUDMUX_PDCR6.U = (v))
+#define HW_AUDMUX_PDCR6_SET(v)    (HW_AUDMUX_PDCR6_WR(HW_AUDMUX_PDCR6_RD() |  (v)))
+#define HW_AUDMUX_PDCR6_CLR(v)    (HW_AUDMUX_PDCR6_WR(HW_AUDMUX_PDCR6_RD() & ~(v)))
+#define HW_AUDMUX_PDCR6_TOG(v)    (HW_AUDMUX_PDCR6_WR(HW_AUDMUX_PDCR6_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual AUDMUX_PDCR6 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PDCR6, field INMMASK
+ *
+ * Internal Network Mode Mask. Bit mask that selects the ports from
+ * which the RxD signals are to be ANDed together for internal network
+ * mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from
+ * Port 1.
+ */
+
+#define BP_AUDMUX_PDCR6_INMMASK      0
+#define BM_AUDMUX_PDCR6_INMMASK      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR6_INMMASK(v)   ((((reg32_t) v) << 0) & BM_AUDMUX_PDCR6_INMMASK)
+#else
+#define BF_AUDMUX_PDCR6_INMMASK(v)   (((v) << 0) & BM_AUDMUX_PDCR6_INMMASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR6_INMMASK(v)   BF_CS1(AUDMUX_PDCR6, INMMASK, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR6, field MODE
+ *
+ * Mode Select. This field selects the mode in which the port is to
+ * operate. The modes of operation include the following:   Normal mode, in which the RxD from the
+ * port selected by RXDSEL                                     is routed to the port.  Internal
+ * Network mode in which RxD from other ports are ANDed
+ * together. RXDSEL is ignored. INMMASK determines which RxD
+ * signals are ANDed together.
+ */
+
+#define BP_AUDMUX_PDCR6_MODE      8
+#define BM_AUDMUX_PDCR6_MODE      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR6_MODE(v)   ((((reg32_t) v) << 8) & BM_AUDMUX_PDCR6_MODE)
+#else
+#define BF_AUDMUX_PDCR6_MODE(v)   (((v) << 8) & BM_AUDMUX_PDCR6_MODE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR6_MODE(v)   BF_CS1(AUDMUX_PDCR6, MODE, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR6, field TXRXEN
+ *
+ * Transmit/Receive Switch Enable. Swaps the transmit and receive
+ * signals.
+ */
+
+#define BP_AUDMUX_PDCR6_TXRXEN      12
+#define BM_AUDMUX_PDCR6_TXRXEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR6_TXRXEN(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PDCR6_TXRXEN)
+#else
+#define BF_AUDMUX_PDCR6_TXRXEN(v)   (((v) << 12) & BM_AUDMUX_PDCR6_TXRXEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR6_TXRXEN(v)   BF_CS1(AUDMUX_PDCR6, TXRXEN, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR6, field RXDSEL
+ *
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL
+ * is ignored if MODE = 0 1                                 (that is, Internal Network Mode is
+ * enabled).
+ */
+
+#define BP_AUDMUX_PDCR6_RXDSEL      13
+#define BM_AUDMUX_PDCR6_RXDSEL      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR6_RXDSEL(v)   ((((reg32_t) v) << 13) & BM_AUDMUX_PDCR6_RXDSEL)
+#else
+#define BF_AUDMUX_PDCR6_RXDSEL(v)   (((v) << 13) & BM_AUDMUX_PDCR6_RXDSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR6_RXDSEL(v)   BF_CS1(AUDMUX_PDCR6, RXDSEL, v)
+#endif
+
+/*!
+ * @brief HW_AUDMUX_PDCR7 - Port Data Control Register 7
+ *
+ * PDCR7 PDCR6 is the Port Data Control Register for Port 7 Port 6 .
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned INMMASK : 8; //!< Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
+        unsigned MODE : 1; //!< Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following:   Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port.  Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned TXRXEN : 1; //!< Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
+        unsigned RXDSEL : 3; //!< Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_audmux_pdcr7_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PDCR7 register
+ */
+#define HW_AUDMUX_PDCR7_ADDR      (REGS_AUDMUX_BASE + 0x34)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PDCR7           (*(volatile hw_audmux_pdcr7_t *) HW_AUDMUX_PDCR7_ADDR)
+#define HW_AUDMUX_PDCR7_RD()      (HW_AUDMUX_PDCR7.U)
+#define HW_AUDMUX_PDCR7_WR(v)     (HW_AUDMUX_PDCR7.U = (v))
+#define HW_AUDMUX_PDCR7_SET(v)    (HW_AUDMUX_PDCR7_WR(HW_AUDMUX_PDCR7_RD() |  (v)))
+#define HW_AUDMUX_PDCR7_CLR(v)    (HW_AUDMUX_PDCR7_WR(HW_AUDMUX_PDCR7_RD() & ~(v)))
+#define HW_AUDMUX_PDCR7_TOG(v)    (HW_AUDMUX_PDCR7_WR(HW_AUDMUX_PDCR7_RD() ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual AUDMUX_PDCR7 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PDCR7, field INMMASK
+ *
+ * Internal Network Mode Mask. Bit mask that selects the ports from
+ * which the RxD signals are to be ANDed together for internal network
+ * mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from
+ * Port 1.
+ */
+
+#define BP_AUDMUX_PDCR7_INMMASK      0
+#define BM_AUDMUX_PDCR7_INMMASK      0x000000ff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR7_INMMASK(v)   ((((reg32_t) v) << 0) & BM_AUDMUX_PDCR7_INMMASK)
+#else
+#define BF_AUDMUX_PDCR7_INMMASK(v)   (((v) << 0) & BM_AUDMUX_PDCR7_INMMASK)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR7_INMMASK(v)   BF_CS1(AUDMUX_PDCR7, INMMASK, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR7, field MODE
+ *
+ * Mode Select. This field selects the mode in which the port is to
+ * operate. The modes of operation include the following:   Normal mode, in which the RxD from the
+ * port selected by RXDSEL                                     is routed to the port.  Internal
+ * Network mode in which RxD from other ports are ANDed
+ * together. RXDSEL is ignored. INMMASK determines which RxD
+ * signals are ANDed together.
+ */
+
+#define BP_AUDMUX_PDCR7_MODE      8
+#define BM_AUDMUX_PDCR7_MODE      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR7_MODE(v)   ((((reg32_t) v) << 8) & BM_AUDMUX_PDCR7_MODE)
+#else
+#define BF_AUDMUX_PDCR7_MODE(v)   (((v) << 8) & BM_AUDMUX_PDCR7_MODE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR7_MODE(v)   BF_CS1(AUDMUX_PDCR7, MODE, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR7, field TXRXEN
+ *
+ * Transmit/Receive Switch Enable. Swaps the transmit and receive
+ * signals.
+ */
+
+#define BP_AUDMUX_PDCR7_TXRXEN      12
+#define BM_AUDMUX_PDCR7_TXRXEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR7_TXRXEN(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PDCR7_TXRXEN)
+#else
+#define BF_AUDMUX_PDCR7_TXRXEN(v)   (((v) << 12) & BM_AUDMUX_PDCR7_TXRXEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR7_TXRXEN(v)   BF_CS1(AUDMUX_PDCR7, TXRXEN, v)
+#endif
+
+/* --- Register HW_AUDMUX_PDCR7, field RXDSEL
+ *
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL
+ * is ignored if MODE = 0 1                                 (that is, Internal Network Mode is
+ * enabled).
+ */
+
+#define BP_AUDMUX_PDCR7_RXDSEL      13
+#define BM_AUDMUX_PDCR7_RXDSEL      0x0000e000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PDCR7_RXDSEL(v)   ((((reg32_t) v) << 13) & BM_AUDMUX_PDCR7_RXDSEL)
+#else
+#define BF_AUDMUX_PDCR7_RXDSEL(v)   (((v) << 13) & BM_AUDMUX_PDCR7_RXDSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_AUDMUX_PDCR7_RXDSEL(v)   BF_CS1(AUDMUX_PDCR7, RXDSEL, v)
+#endif
+
 
 
 /*!
@@ -908,12 +1741,19 @@ typedef union
 typedef struct
 {
     volatile hw_audmux_ptcr1_t PTCR1; //!< Port Timing Control Register 1
-    reg32_t _reserved0;
+    volatile hw_audmux_pdcr1_t PDCR1; //!< Port Data Control Register 1
     volatile hw_audmux_ptcr2_t PTCR2; //!< Port Timing Control Register 2
-    reg32_t _reserved1;
+    volatile hw_audmux_pdcr2_t PDCR2; //!< Port Data Control Register 2
     volatile hw_audmux_ptcr3_t PTCR3; //!< Port Timing Control Register 3
-    reg32_t _reserved2;
+    volatile hw_audmux_pdcr3_t PDCR3; //!< Port Data Control Register 3
     volatile hw_audmux_ptcr_t PTCR; //!< Port Timing Control Register n
+    volatile hw_audmux_pdcr4_t PDCR4; //!< Port Data Control Register 4
+    reg32_t _reserved0;
+    volatile hw_audmux_pdcr5_t PDCR5; //!< Port Data Control Register 5
+    reg32_t _reserved1;
+    volatile hw_audmux_pdcr6_t PDCR6; //!< Port Data Control Register 6
+    reg32_t _reserved2;
+    volatile hw_audmux_pdcr7_t PDCR7; //!< Port Data Control Register 7
 } hw_audmux_t
 #endif
 

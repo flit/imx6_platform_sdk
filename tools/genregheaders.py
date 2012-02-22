@@ -40,17 +40,12 @@ from UserDict import UserDict
 #
 # @par Remaining tasks:
 # - Support RW/RO registers and bitfields.
-# - Ensure bitfields are sorted in the correct order for struct members and #defines.
 # - Support SCT variants of registers, and registers that dont have them.
 # - Print warning for registers with too many bits.
-# - Insert reserved bits if bits are missing from a register.
-# - Insert padding into struct with all registers if there are holes in the address ranges.
-# - Improve parsing of numeric values (fix failed generation for some XML files).
 # - Improve formatting of long description comments.
 # - Warn for registers with duplicate addresses or names.
 # - Allow a base address, instances, and instance offsets to be specified if a design file is not
 #   available.
-# - Fully support feature attribtues.
 # - Support creating multi-instance registers.
 #
 # @par Version history:
@@ -60,7 +55,7 @@ from UserDict import UserDict
 #
 
 # Tool version number and copyright string.
-kToolVersion = "1.0b1"
+kToolVersion = "1.0b2"
 kToolCopyright = "Copyright (c) 2012 Freescale Semiconductor, Inc. All rights reserved."
 
 kProductNames = ['mx6dq', 'mx6sl', 'mx6sdl']
@@ -90,10 +85,22 @@ def formatIdentifier(text):
 # @param base Base of the number. Pass 0 to use the string prefix to determine the base.
 # @return The integer value of @a addressString.
 def convertHexValue(addressString, base=0):
-    if base==0 and addressString.startswith('0x'):
+    if addressString.startswith('0x'):
         addressString = addressString[2:]
         base = 16
-    return int(''.join([d for d in addressString if (d in string.hexdigits)]), base)
+
+    digits = ''.join([d for d in addressString if (d in string.hexdigits)])
+
+    hasHexDigit = False
+    for d in digits:
+        if d in 'abcdefABCDEF':
+            hasHexDigit = True
+            break
+
+    if hasHexDigit or digits.startswith('0'):
+        base = 16
+    
+    return int(digits, base)
 
 ##
 # @brief Check an attribute against a list of values.
@@ -126,6 +133,15 @@ def filterAttributes(elem, attribs):
     
     # Everything checks out.
     return True
+
+##
+# @brief Get the text of an element path, or an empty string.
+def getElementText(rootElem, path):
+    elem = rootElem.find(path)
+    if elem is None or elem.text is None:
+        return ''
+    else:
+        return elem.text
 
 ##
 # @brief Exception thrown to indicate a mismatched product.
@@ -170,8 +186,8 @@ class Register:
         if not filterAttributes(elem, filterAttribs):
             raise WrongProductException()
         
-        self.name = formatIdentifier(elem.find('registerName').text)
-        self.fullName = elem.find('registerNameMore/registerNameFull').text.strip().replace('\n', '')
+        self.name = formatIdentifier(getElementText(elem, 'registerName'))
+        self.fullName = getElementText(elem, 'registerNameMore/registerNameFull').strip().replace('\n', '')
         self.description = formatText(elem.find('registerBody/registerDescription'))
         
         self.formattedName = "%s_%s" % (self.component.name, self.name)
@@ -179,12 +195,12 @@ class Register:
         
         # Extract register details.
         props = elem.find('registerBody/registerProperties/registerPropset')
-        self.addressOffset = convertHexValue(props.find('addressOffset').text)
-        self.sizeInBits = convertHexValue(props.find('registerSize').text)
+        self.addressOffset = convertHexValue(getElementText(props, 'addressOffset'))
+        self.sizeInBits = int(getElementText(props, 'registerSize'), 0)
         self.sizeInBytes = self.sizeInBits / 8
-        self.access = props.find('registerAccess').text
+        self.access = getElementText(props, 'registerAccess')
         self.isWritable = (self.access == 'RW')
-        self.resetValue = convertHexValue(props.find('registerResetValue').text)
+        self.resetValue = convertHexValue(getElementText(props, 'registerResetValue'))
         
         if self.sizeInBits == 32:
             self.bitFieldType = "unsigned"
@@ -201,7 +217,7 @@ class Register:
         if dims is not None:
             dimValue = dims.find('dimensionValue').text
             if dimValue is not None:
-                self.relatedRegisterSuffixes = dims.find('unitQualifier').text.split(',')
+                self.relatedRegisterSuffixes = getElementText(dims, 'unitQualifier').split(',')
         
         # Create the BitField objects.
         self.bitFields = []
@@ -277,7 +293,7 @@ class BitField:
         
         self.register = reg
         self.element = elem
-        self.name = formatIdentifier(elem.find('bitFieldName').text)
+        self.name = formatIdentifier(getElementText(elem, 'bitFieldName'))
         self.description = formatText(elem.find('bitFieldBody/bitFieldDescription'))
         
         # Check for the special reserved bitfield name.
@@ -300,9 +316,9 @@ class BitField:
         
         # Get bitfield properties.
         props = elem.find('bitFieldBody/bitFieldProperties/bitFieldPropset')
-        self.width = int(props.find('bitWidth').text)
-        self.offset = int(props.find('bitOffset').text)
-        self.access = props.find('bitFieldAccess').text
+        self.width = int(getElementText(props, 'bitWidth'))
+        self.offset = int(getElementText(props, 'bitOffset'))
+        self.access = getElementText(props, 'bitFieldAccess')
         
         # Build mask.
         self._buildMask()
@@ -430,10 +446,17 @@ class MemoryMap:
             print "%s: 0x%08x" % (i.name, i.baseAddress)
     
     def getBaseAddress(self, name, instance):
-        return self.components[name][instance].baseAddress
+        try:
+            return self.components[name][instance].baseAddress
+        except KeyError:
+            print >> sys.stderr, "Warning: failed to find base address for component %s instance %d" % (name, instance)
+            return 0
     
     def getInstanceCount(self, name):
-        return len(self.components[name])
+        try:
+            return len(self.components[name])
+        except KeyError:
+            return 0
         
 
 fileTemplate = u"""/*
@@ -801,30 +824,42 @@ class HeaderGeneratorTool:
         
         return MemoryMap(designTree.getroot())
     
-    def _buildComponent(self, memoryMap, componentXml):
-        # Parse the component XML into a tree.
-        tree = ElementTree.ElementTree()
-        tree.parse(componentXml)
-        
-        # Extract the component's name.
-        componentName = tree.find('ip-data/ip-name').text
-        
-        # Create component instance.
-        component = Component(memoryMap, componentName)
-        
-        addrBlock = tree.find('memoryMap/addressBlock')
-        registerElements = addrBlock.findall('register')
-        
-        regs = []
-        for r in registerElements:
-            try:
-                thisReg = Register(component, r, self.filterAttribs)
-                #thisReg.dump()
-                component.addRegister(thisReg)
-            except WrongProductException:
-                # Ignore this exception. It simply means that this register doesn't belong to the
-                # product we're working with.
-                pass
+    def _buildComponent(self, memoryMap, componentXmlFiles, forcedComponentName):
+        component = None
+        for componentXml in componentXmlFiles:
+            # Parse the component XML into a tree.
+            tree = ElementTree.ElementTree()
+            tree.parse(componentXml)
+            
+            # Extract the component's name. Fall back to componentName if ip-name is not there.
+            nameNode = tree.find('ip-data/ip-name')
+            if nameNode is None:
+                nameNode = tree.find('componentName')
+            componentName = nameNode.text.strip()
+            
+            # Create component instance. If the component was already created, compare the name of
+            # this component with previous ones to make sure they're the same.
+            if component is None:
+                if forcedComponentName is None:
+                    nameToUse = componentName
+                else:
+                    nameToUse = forcedComponentName
+                component = Component(memoryMap, nameToUse)
+            elif (forcedComponentName is None) and (componentName != component.name):
+                raise Exception("Error: not all input files are for the same component (%s, %s)" % (componentName, thisComponentName))
+            
+            # Get the list of registers.
+            addrBlock = tree.find('memoryMap/addressBlock')
+            registerElements = addrBlock.findall('register')
+            
+            for r in registerElements:
+                try:
+                    newReg = Register(component, r, self.filterAttribs)
+                    component.addRegister(newReg)
+                except WrongProductException:
+                    # Ignore this exception. It simply means that this register doesn't belong to the
+                    # product we're working with.
+                    pass
         
         return component
     
@@ -832,15 +867,33 @@ class HeaderGeneratorTool:
     # @brief Generate the register header file from input XML files.
     # @param self
     # @param designXml Chip design XML file object. May be None, but register addresses will be incorrect.
-    # @param componentXml Component XML file object that contains the register definitions.
-    def _generateHeader(self, designXml, componentXml):
+    # @param componentXmlFiles List of component XML file object that contains the register definitions.
+    # @param forcedComponentName
+    def _generateHeader(self, designXml, componentXmlFiles, forcedComponentName):
         # Create memory map and component objects from XML.
         memoryMap = self._buildMap(designXml)
-        component = self._buildComponent(memoryMap, componentXml)
+        component = self._buildComponent(memoryMap, componentXmlFiles, forcedComponentName)
         
         generator = HeaderGenerator(component)
         generator.generate()
 
+    def _readFilterFile(self, filterFile):
+        tree = ElementTree.ElementTree()
+        tree.parse(filterFile)
+        result = {}
+        for prop in tree.findall('prop'):
+            action = prop.get('action')
+            attribute = prop.get('att')
+            value = prop.get('val')
+            
+            if action == 'include':
+                if not result.has_key(attribute):
+                    result[attribute] = []
+                
+                result[attribute].append(value)
+        
+        return result
+    
     ##
     # @brief Read the command line and generate the output file.
     #
@@ -868,18 +921,21 @@ class HeaderGeneratorTool:
         if args.design is None:
             print "Warning: no design XML was provided, register addresses will be invalid!"
         
-        # Read features from a file and add to features list.
-        if args.features_file is not None:
-            args.feature += [k.strip() for k in args.features_file.readlines() if (len(k.strip()) > 0)]
+        # Uppercase the forced component name.
+        if args.name is not None:
+            args.name = args.name.upper()
         
-        self.filterAttribs = { 'product':[args.product.lower()],
-                                'feature':args.feature,
-                                'audience':[args.audience.lower()] }
+        # Read features from a file and add to features list.
+        if args.filters is not None:
+            self.filterAttribs = self._readFilterFile(args.filters)
+        else:
+            self.filterAttribs = { 'product':[args.product.lower()],
+                                    'feature':args.feature,
+                                    'audience':[args.audience.lower()] }
         #print >> sys.stderr, 'filter=' + repr(self.filterAttribs)
         
-        # Generate the heade file from the input XML.
-        for theComponent in args.components:
-            self._generateHeader(args.design, theComponent)
+        # Generate the header file from the input XML.
+        self._generateHeader(args.design, args.components, args.name)
         
     ##
     # @brief Parse command line options into an options dictionary.
@@ -904,10 +960,11 @@ class HeaderGeneratorTool:
         parser.add_argument("-d", "--design", type=argparse.FileType('r'), help="Specify the design file with component details.")
         parser.add_argument("-p", "--product", default='mx6dq', help="Set the product name.")
         parser.add_argument("-f", "--feature", action="append", help="Add a named feature.", default=[])
-        parser.add_argument("--features-file", type=argparse.FileType('r'), help="Read features from a file.")
+        parser.add_argument("--filters", type=argparse.FileType('r'), help="Read filters from an XML file.")
         parser.add_argument("-a", "--audience", default='customer', help="Specify the audience.")
         parser.add_argument("-q", "--quiet", action="store_true", help="Don't print informational messages.")
-        parser.add_argument("components", nargs='*', type=argparse.FileType('r'), help="Component XML file.")
+        parser.add_argument("-n", "--name", help="Force component name to a value.")
+        parser.add_argument("components", nargs='*', type=argparse.FileType('r'), help="Component XML files. Must be for the same component.")
 
         #Retrieve agruments(list) and options(dictionary)
         return parser.parse_args()

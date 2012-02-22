@@ -739,7 +739,9 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 32; //!< 
+        unsigned SCLKR : 1; //!< SDMA Clock ON Register - This bit forces the clock on of the SDMA
+        unsigned ACLKOFFDIS : 1; //!< Disable/prevent ARM platform clock/power shutdown
+        unsigned RESERVED0 : 30; //!< Reserved
     } B;
 } hw_sjc_gpccr_t;
 #endif
@@ -762,6 +764,40 @@ typedef union
 /*
  * constants & macros for individual SJC_GPCCR bitfields
  */
+
+/* --- Register HW_SJC_GPCCR, field SCLKR
+ *
+ * SDMA Clock ON Register - This bit forces the clock on of the                                 SDMA
+ */
+
+#define BP_SJC_GPCCR_SCLKR      0
+#define BM_SJC_GPCCR_SCLKR      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SJC_GPCCR_SCLKR(v)   ((((reg32_t) v) << 0) & BM_SJC_GPCCR_SCLKR)
+#else
+#define BF_SJC_GPCCR_SCLKR(v)   (((v) << 0) & BM_SJC_GPCCR_SCLKR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SJC_GPCCR_SCLKR(v)   BF_CS1(SJC_GPCCR, SCLKR, v)
+#endif
+
+/* --- Register HW_SJC_GPCCR, field ACLKOFFDIS
+ *
+ * Disable/prevent ARM platform clock/power shutdown
+ */
+
+#define BP_SJC_GPCCR_ACLKOFFDIS      1
+#define BM_SJC_GPCCR_ACLKOFFDIS      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SJC_GPCCR_ACLKOFFDIS(v)   ((((reg32_t) v) << 1) & BM_SJC_GPCCR_ACLKOFFDIS)
+#else
+#define BF_SJC_GPCCR_ACLKOFFDIS(v)   (((v) << 1) & BM_SJC_GPCCR_ACLKOFFDIS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SJC_GPCCR_ACLKOFFDIS(v)   BF_CS1(SJC_GPCCR, ACLKOFFDIS, v)
+#endif
 
 /*!
  * @brief HW_SJC_GPUCR - General Purpose Unsecured Control Register n

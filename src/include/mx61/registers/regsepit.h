@@ -43,7 +43,7 @@ typedef union
         unsigned IOVW : 1; //!< EPIT counter overwrite enable. This bit controls the counter data when the modulus register is written. When this bit is set, all writes to the load register overwrites the counter contents and the counter starts subsequently counting down from the programmed value.
         unsigned DBGEN : 1; //!< This bit is used to keep the EPIT functional in debug mode. When this bit is cleared, the input clock is gated off in debug mode.This bit is reset by hardware reset. A software reset does not affect this bit.
         unsigned WAITEN : 1; //!< This read/write control bit enables the operation of the EPIT during wait mode. This bit is reset by a hardware reset. A software reset does not affect this bit.
-        unsigned RESERVED0 : 1; //!< 
+        unsigned RESERVED0 : 1; //!< Reserved. Writing to these bits does not affect the functionality of EPIT. These bits are always read as zero.
         unsigned STOPEN : 1; //!< EPIT stop mode enable. This read/write control bit enables the operation of the EPIT during stop mode. This bit is reset by a hardware reset and unaffected by software reset.
         unsigned OM : 2; //!< EPIT output mode.This bit field determines the mode of EPIT output on the output pin.
         unsigned CLKSRC : 2; //!< Select clock source  These bits determine which clock input is to be selected for running the counter. This field value should only be changed when the EPIT is disabled by clearing the EN bit in this register. For other programming requirements while changing clock source, refer to .

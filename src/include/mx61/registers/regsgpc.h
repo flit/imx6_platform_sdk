@@ -29,15 +29,15 @@ typedef union
         unsigned GPU_VPU_PDN_REQ : 1; //!< GPU /VPU Power Down request. Self-cleared bit.  * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
         unsigned GPU_VPU_PUP_REQ : 1; //!< GPU /VPU Power Up request. Self-cleared bit.  * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
         unsigned RESERVED0 : 2; //!< Reserved
-        unsigned _ : 1; //!< Display Power Down request. Self-cleared bit.  * Note: software may directly control display power gate and utilize hardware control for reset sequence
-        unsigned _1 : 1; //!< Display Power Up request. Self-cleared bit.  * Note: software may directly control display power gate and utilize hardware control for reset sequence
-        unsigned RESERVED1 : 10; //!< Reserved
+        unsigned RESERVED1 : 1; //!< Display Power Down request. Self-cleared bit.  * Note: software may directly control display power gate and utilize hardware control for reset sequence
+        unsigned RESERVED2 : 1; //!< Display Power Up request. Self-cleared bit.  * Note: software may directly control display power gate and utilize hardware control for reset sequence
+        unsigned RESERVED3 : 10; //!< Reserved
         unsigned DVFS0CR : 1; //!< DVFS0 (ARM) Change request (bit is read-only)
-        unsigned RESERVED2 : 3; //!< Reserved
-        unsigned RESERVED3 : 1; //!< Reserved
+        unsigned RESERVED4 : 3; //!< Reserved
+        unsigned RESERVED5 : 1; //!< Reserved
         unsigned GPCIRQM : 1; //!< GPC interrupt/event masking
-        unsigned _2 : 1; //!< L2 Cache Power Gate Enable
-        unsigned RESERVED4 : 9; //!< Reserved
+        unsigned RESERVED6 : 1; //!< L2 Cache Power Gate Enable
+        unsigned RESERVED7 : 9; //!< Reserved
     } B;
 } hw_gpc_cntr_t;
 #endif
@@ -97,42 +97,6 @@ typedef union
 #define BW_GPC_CNTR_GPU_VPU_PUP_REQ(v)   BF_CS1(GPC_CNTR, GPU_VPU_PUP_REQ, v)
 #endif
 
-/* --- Register HW_GPC_CNTR, field _
- *
- * Display Power Down request. Self-cleared bit.  * Note: software may directly control display
- * power gate and utilize hardware control for reset sequence
- */
-
-#define BP_GPC_CNTR__      4
-#define BM_GPC_CNTR__      0x00000010
-
-#ifndef __LANGUAGE_ASM__
-#define BF_GPC_CNTR__(v)   ((((reg32_t) v) << 4) & BM_GPC_CNTR__)
-#else
-#define BF_GPC_CNTR__(v)   (((v) << 4) & BM_GPC_CNTR__)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_CNTR__(v)   BF_CS1(GPC_CNTR, _, v)
-#endif
-
-/* --- Register HW_GPC_CNTR, field _
- *
- * Display Power Up request. Self-cleared bit.  * Note: software may directly control display power
- * gate and utilize hardware control for reset sequence
- */
-
-#define BP_GPC_CNTR__      5
-#define BM_GPC_CNTR__      0x00000020
-
-#ifndef __LANGUAGE_ASM__
-#define BF_GPC_CNTR__(v)   ((((reg32_t) v) << 5) & BM_GPC_CNTR__)
-#else
-#define BF_GPC_CNTR__(v)   (((v) << 5) & BM_GPC_CNTR__)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_CNTR__(v)   BF_CS1(GPC_CNTR, _, v)
-#endif
-
 /* --- Register HW_GPC_CNTR, field DVFS0CR
  *
  * DVFS0 (ARM) Change request (bit is read-only)
@@ -165,23 +129,6 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_GPC_CNTR_GPCIRQM(v)   BF_CS1(GPC_CNTR, GPCIRQM, v)
-#endif
-
-/* --- Register HW_GPC_CNTR, field _
- *
- * L2 Cache Power Gate Enable
- */
-
-#define BP_GPC_CNTR__      22
-#define BM_GPC_CNTR__      0x00400000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_GPC_CNTR__(v)   ((((reg32_t) v) << 22) & BM_GPC_CNTR__)
-#else
-#define BF_GPC_CNTR__(v)   (((v) << 22) & BM_GPC_CNTR__)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_CNTR__(v)   BF_CS1(GPC_CNTR, _, v)
 #endif
 
 /*!

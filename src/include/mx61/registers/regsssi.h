@@ -165,7 +165,8 @@ typedef union
         unsigned CLK_IST : 1; //!< Clock Idle State. This bit controls the idle state of the transmit clock port during SSI internal gated mode.  Note: When Clock idle state is '1' the clock polarity should always be negedge triggered and when Clock idle = '0' the clock polarity should always be positive edge triggered.
         unsigned TFR_CLK_DIS : 1; //!< Transmit Frame Clock Disable.  This bit provide option to keep the Frame-sync and Clock enabled or disabled after current transmit frame, in which transmitter is disabled by clearing TE bit. Writing to this bit has effect only when SSI is enabled TE is disabled.
         unsigned RFR_CLK_DIS : 1; //!< Receive Frame Clock Disable.  This bit provides the option to keep the Frame-sync and Clock enabled or to disable them after the receive frame in which the receiver is disabled. Writing to this bit has effect only when RE is disabled.The receiver is disabled by clearing the RE bit.
-        unsigned RESERVED0 : 20; //!< 
+        unsigned SYNC_TX_FS : 1; //!< SYNC_FS_TX bit provides a safe window for TE to be visible to the internal circuit which is just after FS occurrence. When SYNC_TX_FS is set, TE(SCR[1]) gets latched on FS occurrence & latched TE is used to enable/disable SSI transmitter. TE needs setup of 2 bit-clock cycles before occurrence of FS. If TE is changed within 2 bit-clock cycles of FS occurrence, there is high probability that TE will be latched on next FS.  Note: With TFR_CLK_DIS feature on, TE is used directly to enable transmitter in following cases (i) Sync mode & Rx disabled (ii) Async Mode. Latched-TE is used to disable the transmitter.  This bit has no relevance in gated mode and AC97 mode.
+        unsigned RESERVED0 : 19; //!< Reserved
     } B;
 } hw_ssi_ssi_scr_t;
 #endif
@@ -435,6 +436,32 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SSI_SSI_SCR_RFR_CLK_DIS(v)   BF_CS1(SSI_SSI_SCR, RFR_CLK_DIS, v)
+#endif
+
+/* --- Register HW_SSI_SSI_SCR, field SYNC_TX_FS
+ *
+ * SYNC_FS_TX bit provides a safe window for TE to be visible to the
+ * internal circuit which is just after FS occurrence. When SYNC_TX_FS
+ * is set, TE(SCR[1]) gets latched on FS occurrence & latched TE is
+ * used to enable/disable SSI transmitter. TE needs setup of 2                                 bit-
+ * clock cycles before occurrence of FS. If TE is changed within 2
+ * bit-clock cycles of FS occurrence, there is high probability that TE
+ * will be latched on next FS.  Note: With TFR_CLK_DIS feature on, TE is used directly to enable
+ * transmitter in following cases (i) Sync mode & Rx disabled (ii)
+ * Async Mode. Latched-TE is used to disable the transmitter.  This bit has no relevance in gated
+ * mode and AC97 mode.
+ */
+
+#define BP_SSI_SSI_SCR_SYNC_TX_FS      12
+#define BM_SSI_SSI_SCR_SYNC_TX_FS      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SSI_SSI_SCR_SYNC_TX_FS(v)   ((((reg32_t) v) << 12) & BM_SSI_SSI_SCR_SYNC_TX_FS)
+#else
+#define BF_SSI_SSI_SCR_SYNC_TX_FS(v)   (((v) << 12) & BM_SSI_SSI_SCR_SYNC_TX_FS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SSI_SSI_SCR_SYNC_TX_FS(v)   BF_CS1(SSI_SSI_SCR, SYNC_TX_FS, v)
 #endif
 
 /*!

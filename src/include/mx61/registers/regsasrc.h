@@ -32,12 +32,19 @@ typedef union
         unsigned ASREB : 1; //!< ASRC Enable B  Enable the operation of the conversion B of ASRC. When ASREB is cleared, operation of conversion B is disabled.
         unsigned ASREC : 1; //!< ASRC Enable C  Enable the operation of the conversion C of ASRC. When ASREC is cleared, operation of conversion C is disabled.
         unsigned SRST : 1; //!< Software Reset  This bit is self-clear bit. Once it is been written as 1, it will generate a software reset signal inside ASRC. After 9 cycles of the ASRC processing clock, this reset process will stop, and this bit will be cleared automatically.
-        unsigned RESERVED0 : 15; //!< 
+        unsigned RESERVED0 : 8; //!< Reserved. Should be written as zero for compatibility.
+        unsigned IDRA : 1; //!< Use Ideal Ratio for Pair A  When USRA=0, this bit has no usage.  When USRA=1 and IDRA=0, ASRC internal measured ratio will be used.  When USRA=1 and IDRA=1, the idea ratio from the interface register ASRIDRHA, ASRIDRLA will be used. It is suggested to manually set ASRCFG:POSTMODA, ASRCFG:PREMODA according to in this case.
+        unsigned USRA : 1; //!< Use Ratio for Pair A  Use ratio as the input to ASRC. This bit is used in conjunction with IDRA control bit.
+        unsigned IDRB : 1; //!< Use Ideal Ratio for Pair B  When USRB=0, this bit has no usage.  When USRB=1 and IDRB=0, ASRC internal measured ratio will be used.  When USRB=1 and IDRB=1, the idea ratio from the interface register ASRIDRHB, ASRIDRLB will be used.It is suggested to manually set ASRCFG:POSTMODB, ASRCFG:PREMODB according to in this case.
+        unsigned USRB : 1; //!< Use Ratio for Pair B  Use ratio as the input to ASRC. This bit is used in conjunction with IDRB control bit.
+        unsigned IDRC : 1; //!< Use Ideal Ratio for Pair C  When USRC=0, this bit has no usage.  When USRC=1 and IDRC=0, ASRC internal measured ratio will be used.  When USRC=1 and IDRC=1, the idea ratio from the interface register ASRIDRHC, ASRIDRLC will be used. It is suggested to manually set ASRCFG:POSTMODC, ASRCFG:PREMODC according to in this case.
+        unsigned USRC : 1; //!< Use Ratio for Pair C  Use ratio as the input to ASRC. This bit is used in conjunction with IDRC control bit.
+        unsigned RESERVED1 : 1; //!< Reserved. Should be written as zero for compatibility.
         unsigned ATSA : 1; //!< ASRC Pair A Automatic Selection For Processing Options  When this bit is 1, pair A will automatic update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA , ASRCFG:HFA see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ).  When this bit is 0, the user is responsible for choosing the proper processing options for pair A.  This bit should be disabled when {USRA, IDRA}={1,1}.
         unsigned ATSB : 1; //!< ASRC Pair B Automatic Selection For Processing Options  When this bit is 1, pair B will automatic update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB , ASRCFG:HFB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ).  When this bit is 0, the user is responsible for choosing the proper processing options for pair B.  This bit should be disabled when {USRB, IDRB}={1,1}.
         unsigned ATSC : 1; //!< ASRC Pair C Automatic Selection For Processing Options  When this bit is 1, pair C will automatic update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC , ASRCFG:HFC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ).  When this bit is 0, the user is responsible for choosing the proper processing options for pair C. This bit should be disabled when {USRC, IDRC}={1,1}.
-        unsigned RESERVED1 : 1; //!< 
-        unsigned RESERVED2 : 8; //!< 
+        unsigned RESERVED2 : 1; //!< Reserved. Should be written as zero for compatibility.
+        unsigned RESERVED3 : 8; //!< 
     } B;
 } hw_asrc_asrctr_t;
 #endif
@@ -150,6 +157,123 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_ASRC_ASRCTR_SRST(v)   BF_CS1(ASRC_ASRCTR, SRST, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCTR, field IDRA
+ *
+ * Use Ideal Ratio for Pair A  When USRA=0, this bit has no usage.  When USRA=1 and IDRA=0, ASRC
+ * internal measured ratio will be                                 used.  When USRA=1 and IDRA=1,
+ * the idea ratio from the interface register                                 ASRIDRHA, ASRIDRLA
+ * will be used. It is suggested to manually set                                 ASRCFG:POSTMODA,
+ * ASRCFG:PREMODA according to in this case.
+ */
+
+#define BP_ASRC_ASRCTR_IDRA      13
+#define BM_ASRC_ASRCTR_IDRA      0x00002000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCTR_IDRA(v)   ((((reg32_t) v) << 13) & BM_ASRC_ASRCTR_IDRA)
+#else
+#define BF_ASRC_ASRCTR_IDRA(v)   (((v) << 13) & BM_ASRC_ASRCTR_IDRA)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCTR_IDRA(v)   BF_CS1(ASRC_ASRCTR, IDRA, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCTR, field USRA
+ *
+ * Use Ratio for Pair A  Use ratio as the input to ASRC. This bit is used in conjunction with
+ * IDRA control bit.
+ */
+
+#define BP_ASRC_ASRCTR_USRA      14
+#define BM_ASRC_ASRCTR_USRA      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCTR_USRA(v)   ((((reg32_t) v) << 14) & BM_ASRC_ASRCTR_USRA)
+#else
+#define BF_ASRC_ASRCTR_USRA(v)   (((v) << 14) & BM_ASRC_ASRCTR_USRA)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCTR_USRA(v)   BF_CS1(ASRC_ASRCTR, USRA, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCTR, field IDRB
+ *
+ * Use Ideal Ratio for Pair B  When USRB=0, this bit has no usage.  When USRB=1 and IDRB=0, ASRC
+ * internal measured ratio will be                                 used.  When USRB=1 and IDRB=1,
+ * the idea ratio from the interface register                                 ASRIDRHB, ASRIDRLB
+ * will be used.It is suggested to manually set                                 ASRCFG:POSTMODB,
+ * ASRCFG:PREMODB according to in this case.
+ */
+
+#define BP_ASRC_ASRCTR_IDRB      15
+#define BM_ASRC_ASRCTR_IDRB      0x00008000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCTR_IDRB(v)   ((((reg32_t) v) << 15) & BM_ASRC_ASRCTR_IDRB)
+#else
+#define BF_ASRC_ASRCTR_IDRB(v)   (((v) << 15) & BM_ASRC_ASRCTR_IDRB)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCTR_IDRB(v)   BF_CS1(ASRC_ASRCTR, IDRB, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCTR, field USRB
+ *
+ * Use Ratio for Pair B  Use ratio as the input to ASRC. This bit is used in conjunction with
+ * IDRB control bit.
+ */
+
+#define BP_ASRC_ASRCTR_USRB      16
+#define BM_ASRC_ASRCTR_USRB      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCTR_USRB(v)   ((((reg32_t) v) << 16) & BM_ASRC_ASRCTR_USRB)
+#else
+#define BF_ASRC_ASRCTR_USRB(v)   (((v) << 16) & BM_ASRC_ASRCTR_USRB)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCTR_USRB(v)   BF_CS1(ASRC_ASRCTR, USRB, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCTR, field IDRC
+ *
+ * Use Ideal Ratio for Pair C  When USRC=0, this bit has no usage.  When USRC=1 and IDRC=0, ASRC
+ * internal measured ratio will be                                 used.  When USRC=1 and IDRC=1,
+ * the idea ratio from the interface register                                 ASRIDRHC, ASRIDRLC
+ * will be used. It is suggested to manually set                                 ASRCFG:POSTMODC,
+ * ASRCFG:PREMODC according to in this case.
+ */
+
+#define BP_ASRC_ASRCTR_IDRC      17
+#define BM_ASRC_ASRCTR_IDRC      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCTR_IDRC(v)   ((((reg32_t) v) << 17) & BM_ASRC_ASRCTR_IDRC)
+#else
+#define BF_ASRC_ASRCTR_IDRC(v)   (((v) << 17) & BM_ASRC_ASRCTR_IDRC)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCTR_IDRC(v)   BF_CS1(ASRC_ASRCTR, IDRC, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCTR, field USRC
+ *
+ * Use Ratio for Pair C  Use ratio as the input to ASRC. This bit is used in conjunction with
+ * IDRC control bit.
+ */
+
+#define BP_ASRC_ASRCTR_USRC      18
+#define BM_ASRC_ASRCTR_USRC      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCTR_USRC(v)   ((((reg32_t) v) << 18) & BM_ASRC_ASRCTR_USRC)
+#else
+#define BF_ASRC_ASRCTR_USRC(v)   (((v) << 18) & BM_ASRC_ASRCTR_USRC)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCTR_USRC(v)   BF_CS1(ASRC_ASRCTR, USRC, v)
 #endif
 
 /* --- Register HW_ASRC_ASRCTR, field ATSA
@@ -427,7 +551,10 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 24; //!< 
+        unsigned ANCA : 3; //!< Number of A Channels
+        unsigned ANCB : 3; //!< Number of B Channels
+        unsigned ANCC : 3; //!< Number of C Channels ANCC+ANCB+ANCA<=10. Hardware is not checking the constraint. Programmer should take the responsibility to ensure the constraint is satisfied.
+        unsigned RESERVED0 : 15; //!< Reserved. Should be written as zero for compatibility.
         unsigned RESERVED1 : 8; //!< 
     } B;
 } hw_asrc_asrcncr_t;
@@ -452,6 +579,59 @@ typedef union
  * constants & macros for individual ASRC_ASRCNCR bitfields
  */
 
+/* --- Register HW_ASRC_ASRCNCR, field ANCA
+ *
+ * Number of A Channels
+ */
+
+#define BP_ASRC_ASRCNCR_ANCA      0
+#define BM_ASRC_ASRCNCR_ANCA      0x00000007
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCNCR_ANCA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRCNCR_ANCA)
+#else
+#define BF_ASRC_ASRCNCR_ANCA(v)   (((v) << 0) & BM_ASRC_ASRCNCR_ANCA)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCNCR_ANCA(v)   BF_CS1(ASRC_ASRCNCR, ANCA, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCNCR, field ANCB
+ *
+ * Number of B Channels
+ */
+
+#define BP_ASRC_ASRCNCR_ANCB      3
+#define BM_ASRC_ASRCNCR_ANCB      0x00000038
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCNCR_ANCB(v)   ((((reg32_t) v) << 3) & BM_ASRC_ASRCNCR_ANCB)
+#else
+#define BF_ASRC_ASRCNCR_ANCB(v)   (((v) << 3) & BM_ASRC_ASRCNCR_ANCB)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCNCR_ANCB(v)   BF_CS1(ASRC_ASRCNCR, ANCB, v)
+#endif
+
+/* --- Register HW_ASRC_ASRCNCR, field ANCC
+ *
+ * Number of C Channels ANCC+ANCB+ANCA<=10. Hardware is not
+ * checking the constraint. Programmer should take the
+ * responsibility to ensure the constraint is satisfied.
+ */
+
+#define BP_ASRC_ASRCNCR_ANCC      6
+#define BM_ASRC_ASRCNCR_ANCC      0x000001c0
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRCNCR_ANCC(v)   ((((reg32_t) v) << 6) & BM_ASRC_ASRCNCR_ANCC)
+#else
+#define BF_ASRC_ASRCNCR_ANCC(v)   (((v) << 6) & BM_ASRC_ASRCNCR_ANCC)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_ASRC_ASRCNCR_ANCC(v)   BF_CS1(ASRC_ASRCNCR, ANCC, v)
+#endif
+
 /*!
  * @brief HW_ASRC_ASRCFG - ASRC Filter Configuration Status Register
  *
@@ -464,7 +644,7 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 6; //!< 
+        unsigned RESERVED0 : 6; //!< Reserved. Should be written as zero for compatibility.
         unsigned PREMODA : 2; //!< Pre-Processing Configuration for Conversion Pair A  These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
         unsigned POSTMODA : 2; //!< Post-Processing Configuration for Conversion Pair A  These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
         unsigned PREMODB : 2; //!< Pre-Processing Configuration for Conversion Pair B  These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.

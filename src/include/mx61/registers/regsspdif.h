@@ -396,9 +396,9 @@ typedef union
         unsigned RESERVED0 : 3; //!< Reserved, return zeros when read
         unsigned GAINSEL : 3; //!< Gain selection:
         unsigned LOCK : 1; //!< LOCK bit to show that the internal DPLL is locked, read only
-        unsigned RESERVED1 : 4; //!< 
-        unsigned RESERVED2 : 13; //!< Reserved, return zeros when read
-        unsigned RESERVED3 : 8; //!< 
+        unsigned CLKSRC_SEL : 4; //!< Clock source selection, all other settings not shown are reserved:
+        unsigned RESERVED1 : 13; //!< Reserved, return zeros when read
+        unsigned RESERVED2 : 8; //!< 
     } B;
 } hw_spdif_srpc_t;
 #endif
@@ -454,6 +454,24 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SPDIF_SRPC_LOCK(v)   BF_CS1(SPDIF_SRPC, LOCK, v)
+#endif
+
+/* --- Register HW_SPDIF_SRPC, field CLKSRC_SEL
+ *
+ * Clock source selection, all other settings not shown are
+ * reserved:
+ */
+
+#define BP_SPDIF_SRPC_CLKSRC_SEL      7
+#define BM_SPDIF_SRPC_CLKSRC_SEL      0x00000780
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SPDIF_SRPC_CLKSRC_SEL(v)   ((((reg32_t) v) << 7) & BM_SPDIF_SRPC_CLKSRC_SEL)
+#else
+#define BF_SPDIF_SRPC_CLKSRC_SEL(v)   (((v) << 7) & BM_SPDIF_SRPC_CLKSRC_SEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SPDIF_SRPC_CLKSRC_SEL(v)   BF_CS1(SPDIF_SRPC, CLKSRC_SEL, v)
 #endif
 
 /*!
@@ -2087,10 +2105,11 @@ typedef union
     struct
     {
         unsigned TXCLK_DF : 7; //!< Divider factor (1-128)
-        unsigned RESERVED0 : 4; //!< 
+        unsigned TX_ALL_CLK_EN : 1; //!< Spdif transfer clock enable.When data is going to be transfered, this bit should be set to1.
+        unsigned TXCLK_SOURCE : 3; //!< 
         unsigned SYSCLK_DF : 9; //!< system clock divider factor, 2~512.
-        unsigned RESERVED1 : 4; //!< Reserved, return zeros when read
-        unsigned RESERVED2 : 8; //!< 
+        unsigned RESERVED0 : 4; //!< Reserved, return zeros when read
+        unsigned RESERVED1 : 8; //!< 
     } B;
 } hw_spdif_stc_t;
 #endif
@@ -2129,6 +2148,41 @@ typedef union
 #endif
 #ifndef __LANGUAGE_ASM__
 #define BW_SPDIF_STC_TXCLK_DF(v)   BF_CS1(SPDIF_STC, TXCLK_DF, v)
+#endif
+
+/* --- Register HW_SPDIF_STC, field TX_ALL_CLK_EN
+ *
+ * Spdif transfer clock enable.When data is going to be transfered, this
+ * bit should be set to1.
+ */
+
+#define BP_SPDIF_STC_TX_ALL_CLK_EN      7
+#define BM_SPDIF_STC_TX_ALL_CLK_EN      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SPDIF_STC_TX_ALL_CLK_EN(v)   ((((reg32_t) v) << 7) & BM_SPDIF_STC_TX_ALL_CLK_EN)
+#else
+#define BF_SPDIF_STC_TX_ALL_CLK_EN(v)   (((v) << 7) & BM_SPDIF_STC_TX_ALL_CLK_EN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SPDIF_STC_TX_ALL_CLK_EN(v)   BF_CS1(SPDIF_STC, TX_ALL_CLK_EN, v)
+#endif
+
+/* --- Register HW_SPDIF_STC, field TXCLK_SOURCE
+ *
+
+ */
+
+#define BP_SPDIF_STC_TXCLK_SOURCE      8
+#define BM_SPDIF_STC_TXCLK_SOURCE      0x00000700
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SPDIF_STC_TXCLK_SOURCE(v)   ((((reg32_t) v) << 8) & BM_SPDIF_STC_TXCLK_SOURCE)
+#else
+#define BF_SPDIF_STC_TXCLK_SOURCE(v)   (((v) << 8) & BM_SPDIF_STC_TXCLK_SOURCE)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_SPDIF_STC_TXCLK_SOURCE(v)   BF_CS1(SPDIF_STC, TXCLK_SOURCE, v)
 #endif
 
 /* --- Register HW_SPDIF_STC, field SYSCLK_DF

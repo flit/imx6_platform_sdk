@@ -1732,7 +1732,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 4; //!< 
+        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned SAD : 1; //!< RS-485 Slave Address Detected Interrupt Flag.  Indicates if RS-485 Slave Address was detected . SAD was asserted in RS-485 mode when the SADEN bit is set and Slave Address is detected in RxFIFO (in Nomal Address Detect Mode, the 9 th data bit = 1; in Automatic Address Detect Mode, the received charater matches the programmed SLADDR).
         unsigned AWAKE : 1; //!< Asynchronous WAKE Interrupt Flag. Indicates that a falling edge was detected on the UART_RXD_IR RXD pin. Clear AWAKE by writing 1 to it. Writing 0 to AWAKE has no effect.  Caution: AWAKE Interrupt flag is affected by external RXD pin whether in loopback mode (UTS[12] = 1'b1) or not (see UART RS-485 Mode Control Register ).
         unsigned AIRINT : 1; //!< Asynchronous IR WAKE Interrupt Flag. Indicates that the IR WAKE pulse was detected on the UART_RXD_IR RXD pin. Clear AIRINT by writing 1 to it. Writing 0 to AIRINT has no effect.  Caution: AIRINT Interrupt flag is affected by external RXD pin whether in loopback mode (UTS[12] = 1'b1) or not (see ).
         unsigned RXDS : 1; //!< Receiver IDLE Interrupt Flag. Indicates that the receiver state machine is in an IDLE state, the next state is IDLE, and the receive pin is high. RXDS is automatically cleared when a character is received. RXDS is active only when the receiver is enabled.
@@ -1768,6 +1769,27 @@ typedef union
 /*
  * constants & macros for individual UARTV2_USR1 bitfields
  */
+
+/* --- Register HW_UARTV2_USR1, field SAD
+ *
+ * RS-485 Slave Address Detected Interrupt Flag.  Indicates if RS-485 Slave Address was detected .
+ * SAD was asserted in                                 RS-485 mode when the SADEN bit is set and
+ * Slave Address is detected                                 in RxFIFO (in Nomal Address Detect
+ * Mode, the 9 th data bit                                 = 1; in Automatic Address Detect Mode,
+ * the received charater matches                                 the programmed SLADDR).
+ */
+
+#define BP_UARTV2_USR1_SAD      3
+#define BM_UARTV2_USR1_SAD      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_SAD(v)   ((((reg32_t) v) << 3) & BM_UARTV2_USR1_SAD)
+#else
+#define BF_UARTV2_USR1_SAD(v)   (((v) << 3) & BM_UARTV2_USR1_SAD)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_UARTV2_USR1_SAD(v)   BF_CS1(UARTV2_USR1, SAD, v)
+#endif
 
 /* --- Register HW_UARTV2_USR1, field AWAKE
  *
@@ -2720,7 +2742,8 @@ typedef union
     reg32_t  U;
     struct
     {
-        unsigned RESERVED0 : 32; //!< 
+        unsigned ONEMS : 24; //!< One Millisecond Register. This 24-bit register must contain the value of the UART internal frequency ( ref_clk in ) divided by 1000. The internal frequency is obtained after the UART BRM internal divider (F ( ref_clk ) = F( module_clock ) / RFDIV).  In fact this register contains the value corresponding to the number of UART BRM internal clock cycles present in one millisecond.  The ONEMS (and UTIM) registers value are used in the escape character detection feature ( ) to count the number of clock cycles left between two escape characters. The ONEMS register is also used in infrared special case mode (IRSC = UCR4[5] = 1'b1), see .
+        unsigned RESERVED0 : 8; //!< Reserved
     } B;
 } hw_uartv2_onems_t;
 #endif
@@ -2743,6 +2766,32 @@ typedef union
 /*
  * constants & macros for individual UARTV2_ONEMS bitfields
  */
+
+/* --- Register HW_UARTV2_ONEMS, field ONEMS
+ *
+ * One Millisecond Register. This 24-bit register must contain                                 the
+ * value of the UART internal frequency ( ref_clk in ) divided by
+ * 1000. The internal frequency is obtained after the UART BRM internal
+ * divider (F ( ref_clk ) = F( module_clock ) / RFDIV).  In fact this register contains the value
+ * corresponding to the number                                 of UART BRM internal clock cycles
+ * present in one millisecond.  The ONEMS (and UTIM) registers value are used in the escape
+ * character                                 detection feature                                     (
+ * ) to count the number of clock cycles left                                 between two escape
+ * characters. The ONEMS register is also used in                                 infrared special
+ * case mode (IRSC = UCR4[5] = 1'b1), see .
+ */
+
+#define BP_UARTV2_ONEMS_ONEMS      0
+#define BM_UARTV2_ONEMS_ONEMS      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_ONEMS_ONEMS(v)   ((((reg32_t) v) << 0) & BM_UARTV2_ONEMS_ONEMS)
+#else
+#define BF_UARTV2_ONEMS_ONEMS(v)   (((v) << 0) & BM_UARTV2_ONEMS_ONEMS)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_UARTV2_ONEMS_ONEMS(v)   BF_CS1(UARTV2_ONEMS, ONEMS, v)
+#endif
 
 /*!
  * @brief HW_UARTV2_UTS - UART Test Register
@@ -2973,6 +3022,134 @@ typedef union
 #define BW_UARTV2_UTS_FRCPERR(v)   BF_CS1(UARTV2_UTS, FRCPERR, v)
 #endif
 
+/*!
+ * @brief HW_UARTV2_UMCR - UART RS-485 Mode Control Register
+ *
+
+ */
+#ifndef __LANGUAGE_ASM__
+typedef union
+{
+    reg32_t  U;
+    struct
+    {
+        unsigned MDEN : 1; //!< 9-bit data or Multidrop Mode (RS-485) Enable.
+        unsigned SLAM : 1; //!< RS-485 Slave Address Detect Mode Selection.
+        unsigned TXB8 : 1; //!< Transmit RS-485 bit 8 (the ninth bit or 9 th bit).  In RS-485 mode, software writes TXB8 bit as the 9 th data bit to be transmitted.
+        unsigned SADEN : 1; //!< RS-485 Slave Address Detected Interrupt Enable.
+        unsigned RESERVED0 : 4; //!< Reserved
+        unsigned SLADDR : 8; //!< RS-485 Slave Address Character.  Holds the selected slave adress character that the receiver wil try to detect.
+        unsigned RESERVED1 : 16; //!< Reserved
+    } B;
+} hw_uartv2_umcr_t;
+#endif
+
+/*
+ * constants & macros for entire multi-block UARTV2_UMCR register
+ */
+#define HW_UARTV2_UMCR_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xb8)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_UARTV2_UMCR(x)           (*(volatile hw_uartv2_umcr_t *) HW_UARTV2_UMCR_ADDR(x))
+#define HW_UARTV2_UMCR_RD(x)        (HW_UARTV2_UMCR(x).U)
+#define HW_UARTV2_UMCR_WR(x, v)     (HW_UARTV2_UMCR(x).U = (v))
+#define HW_UARTV2_UMCR_SET(x, v)    (HW_UARTV2_UMCR_WR(x, HW_UARTV2_UMCR_RD(x) |  (v)))
+#define HW_UARTV2_UMCR_CLR(x, v)    (HW_UARTV2_UMCR_WR(x, HW_UARTV2_UMCR_RD(x) & ~(v)))
+#define HW_UARTV2_UMCR_TOG(x, v)    (HW_UARTV2_UMCR_WR(x, HW_UARTV2_UMCR_RD(x) ^  (v)))
+#endif
+
+
+/*
+ * constants & macros for individual UARTV2_UMCR bitfields
+ */
+
+/* --- Register HW_UARTV2_UMCR, field MDEN
+ *
+ * 9-bit data or Multidrop Mode (RS-485) Enable.
+ */
+
+#define BP_UARTV2_UMCR_MDEN      0
+#define BM_UARTV2_UMCR_MDEN      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_UMCR_MDEN(v)   ((((reg32_t) v) << 0) & BM_UARTV2_UMCR_MDEN)
+#else
+#define BF_UARTV2_UMCR_MDEN(v)   (((v) << 0) & BM_UARTV2_UMCR_MDEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_UARTV2_UMCR_MDEN(v)   BF_CS1(UARTV2_UMCR, MDEN, v)
+#endif
+
+/* --- Register HW_UARTV2_UMCR, field SLAM
+ *
+ * RS-485 Slave Address Detect Mode Selection.
+ */
+
+#define BP_UARTV2_UMCR_SLAM      1
+#define BM_UARTV2_UMCR_SLAM      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_UMCR_SLAM(v)   ((((reg32_t) v) << 1) & BM_UARTV2_UMCR_SLAM)
+#else
+#define BF_UARTV2_UMCR_SLAM(v)   (((v) << 1) & BM_UARTV2_UMCR_SLAM)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_UARTV2_UMCR_SLAM(v)   BF_CS1(UARTV2_UMCR, SLAM, v)
+#endif
+
+/* --- Register HW_UARTV2_UMCR, field TXB8
+ *
+ * Transmit RS-485 bit 8 (the ninth bit or 9 th bit).  In RS-485 mode, software writes TXB8 bit as
+ * the 9 th data                                 bit to be transmitted.
+ */
+
+#define BP_UARTV2_UMCR_TXB8      2
+#define BM_UARTV2_UMCR_TXB8      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_UMCR_TXB8(v)   ((((reg32_t) v) << 2) & BM_UARTV2_UMCR_TXB8)
+#else
+#define BF_UARTV2_UMCR_TXB8(v)   (((v) << 2) & BM_UARTV2_UMCR_TXB8)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_UARTV2_UMCR_TXB8(v)   BF_CS1(UARTV2_UMCR, TXB8, v)
+#endif
+
+/* --- Register HW_UARTV2_UMCR, field SADEN
+ *
+ * RS-485 Slave Address Detected Interrupt Enable.
+ */
+
+#define BP_UARTV2_UMCR_SADEN      3
+#define BM_UARTV2_UMCR_SADEN      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_UMCR_SADEN(v)   ((((reg32_t) v) << 3) & BM_UARTV2_UMCR_SADEN)
+#else
+#define BF_UARTV2_UMCR_SADEN(v)   (((v) << 3) & BM_UARTV2_UMCR_SADEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_UARTV2_UMCR_SADEN(v)   BF_CS1(UARTV2_UMCR, SADEN, v)
+#endif
+
+/* --- Register HW_UARTV2_UMCR, field SLADDR
+ *
+ * RS-485 Slave Address Character.  Holds the selected slave adress character that the receiver wil
+ * try                                 to detect.
+ */
+
+#define BP_UARTV2_UMCR_SLADDR      8
+#define BM_UARTV2_UMCR_SLADDR      0x0000ff00
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_UMCR_SLADDR(v)   ((((reg32_t) v) << 8) & BM_UARTV2_UMCR_SLADDR)
+#else
+#define BF_UARTV2_UMCR_SLADDR(v)   (((v) << 8) & BM_UARTV2_UMCR_SLADDR)
+#endif
+#ifndef __LANGUAGE_ASM__
+#define BW_UARTV2_UMCR_SLADDR(v)   BF_CS1(UARTV2_UMCR, SLADDR, v)
+#endif
+
 
 
 /*!
@@ -2999,6 +3176,7 @@ typedef struct
     volatile hw_uartv2_ubrc_t UBRC; //!< UART Baud Rate Count Register
     volatile hw_uartv2_onems_t ONEMS; //!< UART One Millisecond Register
     volatile hw_uartv2_uts_t UTS; //!< UART Test Register
+    volatile hw_uartv2_umcr_t UMCR; //!< UART RS-485 Mode Control Register
 } hw_uartv2_t
 #endif
 

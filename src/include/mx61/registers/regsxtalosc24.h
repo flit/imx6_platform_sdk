@@ -10,25 +10,35 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_XTALOSC24M_MISC0 - Miscellaneous Register 0
+ *
+ * hw_xtalosc24m_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_XTALOSC24M_BASE
-#define REGS_XTALOSC24M_BASE (REGS_BASE + 0x020c8000)
+#define REGS_XTALOSC24M_BASE (0x020c8000) //!< Base address for XTALOSC24M.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_XTALOSC24M_MISC0 - Miscellaneous Register 0
+ * @brief HW_XTALOSC24M_MISC0 - Miscellaneous Register 0 (RW)
  *
  * This register defines the control and status bits for miscellaneous analog blocks.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned REFTOP_PWD : 1; //!< Control bit to power-down the analog bandgap reference circuitry. Not related to oscillator.  A note of caution, the bandgap is necessary for correct operation of most of the LDO, pll, and other analog functions on the die.
+        unsigned REFTOP_PWD : 1; //!< Control bit to power-down the analog bandgap reference circuitry. Not related to oscillator. A note of caution, the bandgap is necessary for correct operation of most of the LDO, pll, and other analog functions on the die.
         unsigned RESERVED0 : 2; //!< Reserved
-        unsigned REFTOP_SELFBIASOFF : 1; //!< Control bit to disable the self-bias circuit in the analog bandgap.  The self-bias circuit is used by the bandgap during startup. This bit should be set after the bandgap has stabilized and is necessary for best noise performance of analog blocks using the outputs of the bandgap. Not related to oscillator.  Value should be returned to zero before removing vddhigh_in or asserting bit 0 of this register (REFTOP_PWD) to assure proper restart of the circuit.
+        unsigned REFTOP_SELFBIASOFF : 1; //!< Control bit to disable the self-bias circuit in the analog bandgap. The self-bias circuit is used by the bandgap during startup. This bit should be set after the bandgap has stabilized and is necessary for best noise performance of analog blocks using the outputs of the bandgap. Not related to oscillator. Value should be returned to zero before removing vddhigh_in or asserting bit 0 of this register (REFTOP_PWD) to assure proper restart of the circuit.
         unsigned REFTOP_VBGADJ : 3; //!< Not related to oscillator.
         unsigned REFTOP_VBGUP : 1; //!< Status bit which signals that the analog bandgap voltage is up and stable. 1- Stable. Not related to oscillator.
         unsigned RESERVED1 : 4; //!< Reserved
@@ -60,14 +70,13 @@ typedef union
 #define HW_XTALOSC24M_MISC0_TOG(v)    (HW_XTALOSC24M_MISC0_WR(HW_XTALOSC24M_MISC0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual XTALOSC24M_MISC0 bitfields
  */
 
-/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_PWD
+/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_PWD (RW)
  *
- * Control bit to power-down the analog bandgap reference circuitry. Not related to oscillator.  A
+ * Control bit to power-down the analog bandgap reference circuitry. Not related to oscillator. A
  * note of caution, the bandgap is necessary for correct operation of most of the LDO, pll, and
  * other analog functions on the die.
  */
@@ -81,16 +90,21 @@ typedef union
 #define BF_XTALOSC24M_MISC0_REFTOP_PWD(v)   (((v) << 0) & BM_XTALOSC24M_MISC0_REFTOP_PWD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REFTOP_PWD field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_PWD(v)   BF_CS1(XTALOSC24M_MISC0, REFTOP_PWD, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_SELFBIASOFF
+/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_SELFBIASOFF (RW)
  *
- * Control bit to disable the self-bias circuit in the analog bandgap.  The self-bias circuit is
- * used by the bandgap during startup.   This bit should be set after the bandgap has stabilized and
- * is necessary for best noise performance of analog blocks using the outputs of the bandgap. Not
- * related to oscillator.  Value should be returned to zero before removing vddhigh_in or asserting
+ * Control bit to disable the self-bias circuit in the analog bandgap. The self-bias circuit is used
+ * by the bandgap during startup. This bit should be set after the bandgap has stabilized and is
+ * necessary for best noise performance of analog blocks using the outputs of the bandgap. Not
+ * related to oscillator. Value should be returned to zero before removing vddhigh_in or asserting
  * bit 0 of this register (REFTOP_PWD) to assure proper restart of the circuit.
+ *
+ * Values:
+ * 0 - Uses coarse bias currents for startup
+ * 1 - Uses bandgap based bias currents for best performance.
  */
 
 #define BP_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF      3
@@ -102,12 +116,24 @@ typedef union
 #define BF_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF(v)   (((v) << 3) & BM_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REFTOP_SELFBIASOFF field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF(v)   BF_CS1(XTALOSC24M_MISC0, REFTOP_SELFBIASOFF, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_VBGADJ
+
+/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_VBGADJ (RW)
  *
  * Not related to oscillator.
+ *
+ * Values:
+ * 000 - Nominal VBG
+ * 001 - VBG+0.78%
+ * 010 - VBG+1.56%
+ * 011 - VBG+2.34%
+ * 100 - VBG+0.78%
+ * 101 - VBG+1.56%
+ * 110 - VBG+2.34%
+ * 111 - VBG+3.12%
  */
 
 #define BP_XTALOSC24M_MISC0_REFTOP_VBGADJ      4
@@ -119,10 +145,12 @@ typedef union
 #define BF_XTALOSC24M_MISC0_REFTOP_VBGADJ(v)   (((v) << 4) & BM_XTALOSC24M_MISC0_REFTOP_VBGADJ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REFTOP_VBGADJ field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_VBGADJ(v)   BF_CS1(XTALOSC24M_MISC0, REFTOP_VBGADJ, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_VBGUP
+
+/* --- Register HW_XTALOSC24M_MISC0, field REFTOP_VBGUP (RW)
  *
  * Status bit which signals that the analog bandgap voltage is up and stable. 1- Stable. Not related
  * to oscillator.
@@ -137,13 +165,14 @@ typedef union
 #define BF_XTALOSC24M_MISC0_REFTOP_VBGUP(v)   (((v) << 7) & BM_XTALOSC24M_MISC0_REFTOP_VBGUP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REFTOP_VBGUP field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_VBGUP(v)   BF_CS1(XTALOSC24M_MISC0, REFTOP_VBGUP, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field STOP_MODE_CONFIG
+/* --- Register HW_XTALOSC24M_MISC0, field STOP_MODE_CONFIG (RW)
  *
  * Configure the analog behavior in stop mode. 0 - all analog except rtc powered down on stop mode
- * assertion;  1 - certain analog functions such as certain regulators left up. Not related to
+ * assertion; 1 - certain analog functions such as certain regulators left up. Not related to
  * oscillator.
  */
 
@@ -156,13 +185,20 @@ typedef union
 #define BF_XTALOSC24M_MISC0_STOP_MODE_CONFIG(v)   (((v) << 12) & BM_XTALOSC24M_MISC0_STOP_MODE_CONFIG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the STOP_MODE_CONFIG field to a new value.
 #define BW_XTALOSC24M_MISC0_STOP_MODE_CONFIG(v)   BF_CS1(XTALOSC24M_MISC0, STOP_MODE_CONFIG, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field OSC_I
+/* --- Register HW_XTALOSC24M_MISC0, field OSC_I (RW)
  *
  * This bit field determines the bias current in the 24MHz oscillator. The idea is to start up with
  * the highest bias current which can be decreased after startup if determined to be acceptable.
+ *
+ * Values:
+ * 00 - Nominal
+ * 01 - Decrease current by 12.5%
+ * 10 - Decrease current by 25.0%
+ * 11 - Decrease current by 37.5%
  */
 
 #define BP_XTALOSC24M_MISC0_OSC_I      14
@@ -174,28 +210,21 @@ typedef union
 #define BF_XTALOSC24M_MISC0_OSC_I(v)   (((v) << 14) & BM_XTALOSC24M_MISC0_OSC_I)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OSC_I field to a new value.
 #define BW_XTALOSC24M_MISC0_OSC_I(v)   BF_CS1(XTALOSC24M_MISC0, OSC_I, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field OSC_XTALOK
+
+/* --- Register HW_XTALOSC24M_MISC0, field OSC_XTALOK (RO)
  *
- * Status bit which signals that the output of the 24MHz crystal oscillator is stable.   Generated
+ * Status bit which signals that the output of the 24MHz crystal oscillator is stable. Generated
  * from a timer and active detection of the actual frequency.
  */
 
 #define BP_XTALOSC24M_MISC0_OSC_XTALOK      16
 #define BM_XTALOSC24M_MISC0_OSC_XTALOK      0x00010000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_XTALOSC24M_MISC0_OSC_XTALOK(v)   ((((reg32_t) v) << 16) & BM_XTALOSC24M_MISC0_OSC_XTALOK)
-#else
-#define BF_XTALOSC24M_MISC0_OSC_XTALOK(v)   (((v) << 16) & BM_XTALOSC24M_MISC0_OSC_XTALOK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_XTALOSC24M_MISC0_OSC_XTALOK(v)   BF_CS1(XTALOSC24M_MISC0, OSC_XTALOK, v)
-#endif
-
-/* --- Register HW_XTALOSC24M_MISC0, field OSC_XTALOK_EN
+/* --- Register HW_XTALOSC24M_MISC0, field OSC_XTALOK_EN (RW)
  *
  * Enable bit
  */
@@ -209,12 +238,19 @@ typedef union
 #define BF_XTALOSC24M_MISC0_OSC_XTALOK_EN(v)   (((v) << 17) & BM_XTALOSC24M_MISC0_OSC_XTALOK_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OSC_XTALOK_EN field to a new value.
 #define BW_XTALOSC24M_MISC0_OSC_XTALOK_EN(v)   BF_CS1(XTALOSC24M_MISC0, OSC_XTALOK_EN, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field WBCP_VPW_THRESH
+/* --- Register HW_XTALOSC24M_MISC0, field WBCP_VPW_THRESH (RW)
  *
  * This signal alters the voltage that the pwell is charged pumped to. Not related to oscillator.
+ *
+ * Values:
+ * 00 - Nominal output pwell bias voltage.
+ * 01 - Increase pwell output voltage by 25mV.
+ * 10 - Decrease pwell output pwell voltage by 25mV.
+ * 11 - Decrease pwell output pwell voltage by 50mV.
  */
 
 #define BP_XTALOSC24M_MISC0_WBCP_VPW_THRESH      18
@@ -226,14 +262,20 @@ typedef union
 #define BF_XTALOSC24M_MISC0_WBCP_VPW_THRESH(v)   (((v) << 18) & BM_XTALOSC24M_MISC0_WBCP_VPW_THRESH)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WBCP_VPW_THRESH field to a new value.
 #define BW_XTALOSC24M_MISC0_WBCP_VPW_THRESH(v)   BF_CS1(XTALOSC24M_MISC0, WBCP_VPW_THRESH, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field CLKGATE_CTRL
+
+/* --- Register HW_XTALOSC24M_MISC0, field CLKGATE_CTRL (RW)
  *
  * This bit allows disabling the clock gate (always un-gated) for teh xtal 24MHz clock that clocks
  * the digital logic in the analog block. Do not change the field during a low power event. This is
  * not a field that the user would normally need to modify
+ *
+ * Values:
+ * 0 - Allow the logic to automatically gate the clock when the XTAL is powered down.
+ * 1 - Prevent the logic from ever gating off the clock.
  */
 
 #define BP_XTALOSC24M_MISC0_CLKGATE_CTRL      25
@@ -245,14 +287,26 @@ typedef union
 #define BF_XTALOSC24M_MISC0_CLKGATE_CTRL(v)   (((v) << 25) & BM_XTALOSC24M_MISC0_CLKGATE_CTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLKGATE_CTRL field to a new value.
 #define BW_XTALOSC24M_MISC0_CLKGATE_CTRL(v)   BF_CS1(XTALOSC24M_MISC0, CLKGATE_CTRL, v)
 #endif
 
-/* --- Register HW_XTALOSC24M_MISC0, field CLKGATE_DELAY
+
+/* --- Register HW_XTALOSC24M_MISC0, field CLKGATE_DELAY (RW)
  *
  * This field specifies the delay between powering up the XTAL 24MHz clock and release the clock to
  * the digital logic inside the analog block. Do not change the field during a low power event. This
  * is not a field that the user would normally need to modify
+ *
+ * Values:
+ * 000 - 0.5ms
+ * 001 - 1.0ms
+ * 010 - 2.0ms
+ * 011 - 3.0ms
+ * 100 - 4.0ms
+ * 101 - 5.0ms
+ * 110 - 6.0ms
+ * 111 - 7.0ms
  */
 
 #define BP_XTALOSC24M_MISC0_CLKGATE_DELAY      26
@@ -264,6 +318,7 @@ typedef union
 #define BF_XTALOSC24M_MISC0_CLKGATE_DELAY(v)   (((v) << 26) & BM_XTALOSC24M_MISC0_CLKGATE_DELAY)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLKGATE_DELAY field to a new value.
 #define BW_XTALOSC24M_MISC0_CLKGATE_DELAY(v)   BF_CS1(XTALOSC24M_MISC0, CLKGATE_DELAY, v)
 #endif
 

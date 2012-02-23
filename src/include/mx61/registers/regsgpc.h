@@ -10,27 +10,46 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_GPC_CNTR - GPC Interface control register
+ * - HW_GPC_PGR - GPC Power Gating Register
+ * - HW_GPC_IMR1 - IRQ masking register 1
+ * - HW_GPC_IMR2 - IRQ masking register 2
+ * - HW_GPC_IMR3 - IRQ masking register 3
+ * - HW_GPC_IMR4 - IRQ masking register 4
+ * - HW_GPC_ISR1 - IRQ status resister 1
+ * - HW_GPC_ISR2 - IRQ status resister 2
+ * - HW_GPC_ISR3 - IRQ status resister 3
+ * - HW_GPC_ISR4 - IRQ status resister 4
+ *
+ * hw_gpc_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_GPC_BASE
-#define REGS_GPC_BASE (REGS_BASE + 0x020dc000)
+#define REGS_GPC_BASE (0x020dc000) //!< Base address for GPC.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPC_CNTR - GPC Interface control register
+ * @brief HW_GPC_CNTR - GPC Interface control register (RW)
  *
  * CNTR - Interface control register
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned GPU_VPU_PDN_REQ : 1; //!< GPU /VPU Power Down request. Self-cleared bit.  * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
-        unsigned GPU_VPU_PUP_REQ : 1; //!< GPU /VPU Power Up request. Self-cleared bit.  * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
+        unsigned GPU_VPU_PDN_REQ : 1; //!< GPU /VPU Power Down request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
+        unsigned GPU_VPU_PUP_REQ : 1; //!< GPU /VPU Power Up request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
         unsigned RESERVED0 : 2; //!< Reserved
-        unsigned RESERVED1 : 1; //!< Display Power Down request. Self-cleared bit.  * Note: software may directly control display power gate and utilize hardware control for reset sequence
-        unsigned RESERVED2 : 1; //!< Display Power Up request. Self-cleared bit.  * Note: software may directly control display power gate and utilize hardware control for reset sequence
+        unsigned RESERVED1 : 1; //!< Display Power Down request. Self-cleared bit. * Note: software may directly control display power gate and utilize hardware control for reset sequence
+        unsigned RESERVED2 : 1; //!< Display Power Up request. Self-cleared bit. * Note: software may directly control display power gate and utilize hardware control for reset sequence
         unsigned RESERVED3 : 10; //!< Reserved
         unsigned DVFS0CR : 1; //!< DVFS0 (ARM) Change request (bit is read-only)
         unsigned RESERVED4 : 3; //!< Reserved
@@ -56,15 +75,18 @@ typedef union
 #define HW_GPC_CNTR_TOG(v)    (HW_GPC_CNTR_WR(HW_GPC_CNTR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPC_CNTR bitfields
  */
 
-/* --- Register HW_GPC_CNTR, field GPU_VPU_PDN_REQ
+/* --- Register HW_GPC_CNTR, field GPU_VPU_PDN_REQ (RW)
  *
- * GPU /VPU Power Down request. Self-cleared bit.  * Note: Power switch for GPU /VPU power domain is
- * controlled by anatop                                 configuration, not GPU /VPU PGC signals
+ * GPU /VPU Power Down request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is
+ * controlled by anatop configuration, not GPU /VPU PGC signals
+ *
+ * Values:
+ * 1 - Request Power Down sequence to start for GPU /VPU
+ * 0 - no request
  */
 
 #define BP_GPC_CNTR_GPU_VPU_PDN_REQ      0
@@ -76,13 +98,19 @@ typedef union
 #define BF_GPC_CNTR_GPU_VPU_PDN_REQ(v)   (((v) << 0) & BM_GPC_CNTR_GPU_VPU_PDN_REQ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPU_VPU_PDN_REQ field to a new value.
 #define BW_GPC_CNTR_GPU_VPU_PDN_REQ(v)   BF_CS1(GPC_CNTR, GPU_VPU_PDN_REQ, v)
 #endif
 
-/* --- Register HW_GPC_CNTR, field GPU_VPU_PUP_REQ
+
+/* --- Register HW_GPC_CNTR, field GPU_VPU_PUP_REQ (RW)
  *
- * GPU /VPU Power Up request. Self-cleared bit.  * Note: Power switch for GPU /VPU power domain is
- * controlled by anatop                                 configuration, not GPU /VPU PGC signals
+ * GPU /VPU Power Up request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is
+ * controlled by anatop configuration, not GPU /VPU PGC signals
+ *
+ * Values:
+ * 1 - Request Power Up sequence to start for GPU /VPU
+ * 0 - no request
  */
 
 #define BP_GPC_CNTR_GPU_VPU_PUP_REQ      1
@@ -94,29 +122,31 @@ typedef union
 #define BF_GPC_CNTR_GPU_VPU_PUP_REQ(v)   (((v) << 1) & BM_GPC_CNTR_GPU_VPU_PUP_REQ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPU_VPU_PUP_REQ field to a new value.
 #define BW_GPC_CNTR_GPU_VPU_PUP_REQ(v)   BF_CS1(GPC_CNTR, GPU_VPU_PUP_REQ, v)
 #endif
 
-/* --- Register HW_GPC_CNTR, field DVFS0CR
+
+/* --- Register HW_GPC_CNTR, field DVFS0CR (RO)
  *
  * DVFS0 (ARM) Change request (bit is read-only)
+ *
+ * Values:
+ * 1 - DVFS0 is requesting for frequency/voltage update
+ * 0 - DVFS0 has no request
  */
 
 #define BP_GPC_CNTR_DVFS0CR      16
 #define BM_GPC_CNTR_DVFS0CR      0x00010000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPC_CNTR_DVFS0CR(v)   ((((reg32_t) v) << 16) & BM_GPC_CNTR_DVFS0CR)
-#else
-#define BF_GPC_CNTR_DVFS0CR(v)   (((v) << 16) & BM_GPC_CNTR_DVFS0CR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_CNTR_DVFS0CR(v)   BF_CS1(GPC_CNTR, DVFS0CR, v)
-#endif
 
-/* --- Register HW_GPC_CNTR, field GPCIRQM
+/* --- Register HW_GPC_CNTR, field GPCIRQM (RW)
  *
  * GPC interrupt/event masking
+ *
+ * Values:
+ * 1 - interrupt/event is masked
+ * 0 - not masked
  */
 
 #define BP_GPC_CNTR_GPCIRQM      21
@@ -128,22 +158,24 @@ typedef union
 #define BF_GPC_CNTR_GPCIRQM(v)   (((v) << 21) & BM_GPC_CNTR_GPCIRQM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPCIRQM field to a new value.
 #define BW_GPC_CNTR_GPCIRQM(v)   BF_CS1(GPC_CNTR, GPCIRQM, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPC_PGR - GPC Power Gating Register
+ * @brief HW_GPC_PGR - GPC Power Gating Register (RW)
  *
  * PGR - Power Gating Register
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 29; //!< Reserved
-        unsigned DRCIC : 2; //!< Debug ref cir in mux control   Note: DPTC_LP should be programmed to ref_cir_0 only
+        unsigned DRCIC : 2; //!< Debug ref cir in mux control Note: DPTC_LP should be programmed to ref_cir_0 only
         unsigned RESERVED1 : 1; //!< Reserved
     } B;
 } hw_gpc_pgr_t;
@@ -163,15 +195,19 @@ typedef union
 #define HW_GPC_PGR_TOG(v)    (HW_GPC_PGR_WR(HW_GPC_PGR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPC_PGR bitfields
  */
 
-/* --- Register HW_GPC_PGR, field DRCIC
+/* --- Register HW_GPC_PGR, field DRCIC (RW)
  *
- * Debug ref cir in mux control   Note: DPTC_LP should be programmed to
- * ref_cir_0 only
+ * Debug ref cir in mux control Note: DPTC_LP should be programmed to ref_cir_0 only
+ *
+ * Values:
+ * 00 - ccm_cosr_1_clk_in
+ * 01 - ccm_cosr_2_clk_in
+ * 10 - restricted
+ * 11 - restricted
  */
 
 #define BP_GPC_PGR_DRCIC      29
@@ -183,18 +219,20 @@ typedef union
 #define BF_GPC_PGR_DRCIC(v)   (((v) << 29) & BM_GPC_PGR_DRCIC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DRCIC field to a new value.
 #define BW_GPC_PGR_DRCIC(v)   BF_CS1(GPC_PGR, DRCIC, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPC_IMR1 - IRQ masking register 1
+ * @brief HW_GPC_IMR1 - IRQ masking register 1 (RW)
  *
  * IMR1 Register - masking of irq[31:0].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IMR1 : 32; //!< IRQ[31:0] masking bits: 1-irq masked, 0-irq is not masked
@@ -216,12 +254,11 @@ typedef union
 #define HW_GPC_IMR1_TOG(v)    (HW_GPC_IMR1_WR(HW_GPC_IMR1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPC_IMR1 bitfields
  */
 
-/* --- Register HW_GPC_IMR1, field IMR1
+/* --- Register HW_GPC_IMR1, field IMR1 (RW)
  *
  * IRQ[31:0] masking bits: 1-irq masked, 0-irq is not masked
  */
@@ -235,18 +272,19 @@ typedef union
 #define BF_GPC_IMR1_IMR1(v)   (((v) << 0) & BM_GPC_IMR1_IMR1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IMR1 field to a new value.
 #define BW_GPC_IMR1_IMR1(v)   BF_CS1(GPC_IMR1, IMR1, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPC_IMR2 - IRQ masking register 2
+ * @brief HW_GPC_IMR2 - IRQ masking register 2 (RW)
  *
  * IMR2 Register - masking of irq[63:32].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IMR2 : 32; //!< IRQ[63:32] masking bits: 1-irq masked, 0-irq is not masked
@@ -268,12 +306,11 @@ typedef union
 #define HW_GPC_IMR2_TOG(v)    (HW_GPC_IMR2_WR(HW_GPC_IMR2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPC_IMR2 bitfields
  */
 
-/* --- Register HW_GPC_IMR2, field IMR2
+/* --- Register HW_GPC_IMR2, field IMR2 (RW)
  *
  * IRQ[63:32] masking bits: 1-irq masked, 0-irq is not masked
  */
@@ -287,18 +324,19 @@ typedef union
 #define BF_GPC_IMR2_IMR2(v)   (((v) << 0) & BM_GPC_IMR2_IMR2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IMR2 field to a new value.
 #define BW_GPC_IMR2_IMR2(v)   BF_CS1(GPC_IMR2, IMR2, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPC_IMR3 - IRQ masking register 3
+ * @brief HW_GPC_IMR3 - IRQ masking register 3 (RW)
  *
  * IMR3 Register - masking of irq[95:64].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IMR3 : 32; //!< IRQ[95:64] masking bits: 1-irq masked, 0-irq is not masked
@@ -320,12 +358,11 @@ typedef union
 #define HW_GPC_IMR3_TOG(v)    (HW_GPC_IMR3_WR(HW_GPC_IMR3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPC_IMR3 bitfields
  */
 
-/* --- Register HW_GPC_IMR3, field IMR3
+/* --- Register HW_GPC_IMR3, field IMR3 (RW)
  *
  * IRQ[95:64] masking bits: 1-irq masked, 0-irq is not masked
  */
@@ -339,18 +376,19 @@ typedef union
 #define BF_GPC_IMR3_IMR3(v)   (((v) << 0) & BM_GPC_IMR3_IMR3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IMR3 field to a new value.
 #define BW_GPC_IMR3_IMR3(v)   BF_CS1(GPC_IMR3, IMR3, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPC_IMR4 - IRQ masking register 4
+ * @brief HW_GPC_IMR4 - IRQ masking register 4 (RW)
  *
  * IMR4 Register - masking of irq[127:96].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IMR4 : 32; //!< IRQ[127:96] masking bits: 1-irq masked, 0-irq is not masked
@@ -372,12 +410,11 @@ typedef union
 #define HW_GPC_IMR4_TOG(v)    (HW_GPC_IMR4_WR(HW_GPC_IMR4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPC_IMR4 bitfields
  */
 
-/* --- Register HW_GPC_IMR4, field IMR4
+/* --- Register HW_GPC_IMR4, field IMR4 (RW)
  *
  * IRQ[127:96] masking bits: 1-irq masked, 0-irq is not masked
  */
@@ -391,18 +428,19 @@ typedef union
 #define BF_GPC_IMR4_IMR4(v)   (((v) << 0) & BM_GPC_IMR4_IMR4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IMR4 field to a new value.
 #define BW_GPC_IMR4_IMR4(v)   BF_CS1(GPC_IMR4, IMR4, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPC_ISR1 - IRQ status resister 1
+ * @brief HW_GPC_ISR1 - IRQ status resister 1 (RO)
  *
  * ISR1 Register - status of irq [31:0].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ISR1 : 32; //!< IRQ[31:0] status, read only
@@ -418,18 +456,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPC_ISR1           (*(volatile hw_gpc_isr1_t *) HW_GPC_ISR1_ADDR)
 #define HW_GPC_ISR1_RD()      (HW_GPC_ISR1.U)
-#define HW_GPC_ISR1_WR(v)     (HW_GPC_ISR1.U = (v))
-#define HW_GPC_ISR1_SET(v)    (HW_GPC_ISR1_WR(HW_GPC_ISR1_RD() |  (v)))
-#define HW_GPC_ISR1_CLR(v)    (HW_GPC_ISR1_WR(HW_GPC_ISR1_RD() & ~(v)))
-#define HW_GPC_ISR1_TOG(v)    (HW_GPC_ISR1_WR(HW_GPC_ISR1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPC_ISR1 bitfields
  */
 
-/* --- Register HW_GPC_ISR1, field ISR1
+/* --- Register HW_GPC_ISR1, field ISR1 (RO)
  *
  * IRQ[31:0] status, read only
  */
@@ -438,23 +471,14 @@ typedef union
 #define BM_GPC_ISR1_ISR1      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPC_ISR1_ISR1(v)   ((((reg32_t) v) << 0) & BM_GPC_ISR1_ISR1)
-#else
-#define BF_GPC_ISR1_ISR1(v)   (((v) << 0) & BM_GPC_ISR1_ISR1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_ISR1_ISR1(v)   BF_CS1(GPC_ISR1, ISR1, v)
-#endif
-
 /*!
- * @brief HW_GPC_ISR2 - IRQ status resister 2
+ * @brief HW_GPC_ISR2 - IRQ status resister 2 (RO)
  *
  * ISR2 Register - status of irq [63:32].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ISR2 : 32; //!< IRQ[63:32] status, read only
@@ -470,18 +494,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPC_ISR2           (*(volatile hw_gpc_isr2_t *) HW_GPC_ISR2_ADDR)
 #define HW_GPC_ISR2_RD()      (HW_GPC_ISR2.U)
-#define HW_GPC_ISR2_WR(v)     (HW_GPC_ISR2.U = (v))
-#define HW_GPC_ISR2_SET(v)    (HW_GPC_ISR2_WR(HW_GPC_ISR2_RD() |  (v)))
-#define HW_GPC_ISR2_CLR(v)    (HW_GPC_ISR2_WR(HW_GPC_ISR2_RD() & ~(v)))
-#define HW_GPC_ISR2_TOG(v)    (HW_GPC_ISR2_WR(HW_GPC_ISR2_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPC_ISR2 bitfields
  */
 
-/* --- Register HW_GPC_ISR2, field ISR2
+/* --- Register HW_GPC_ISR2, field ISR2 (RO)
  *
  * IRQ[63:32] status, read only
  */
@@ -490,23 +509,14 @@ typedef union
 #define BM_GPC_ISR2_ISR2      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPC_ISR2_ISR2(v)   ((((reg32_t) v) << 0) & BM_GPC_ISR2_ISR2)
-#else
-#define BF_GPC_ISR2_ISR2(v)   (((v) << 0) & BM_GPC_ISR2_ISR2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_ISR2_ISR2(v)   BF_CS1(GPC_ISR2, ISR2, v)
-#endif
-
 /*!
- * @brief HW_GPC_ISR3 - IRQ status resister 3
+ * @brief HW_GPC_ISR3 - IRQ status resister 3 (RO)
  *
  * ISR3 Register - status of irq [95:64].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ISR3 : 32; //!< IRQ[95:64] status, read only
@@ -522,18 +532,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPC_ISR3           (*(volatile hw_gpc_isr3_t *) HW_GPC_ISR3_ADDR)
 #define HW_GPC_ISR3_RD()      (HW_GPC_ISR3.U)
-#define HW_GPC_ISR3_WR(v)     (HW_GPC_ISR3.U = (v))
-#define HW_GPC_ISR3_SET(v)    (HW_GPC_ISR3_WR(HW_GPC_ISR3_RD() |  (v)))
-#define HW_GPC_ISR3_CLR(v)    (HW_GPC_ISR3_WR(HW_GPC_ISR3_RD() & ~(v)))
-#define HW_GPC_ISR3_TOG(v)    (HW_GPC_ISR3_WR(HW_GPC_ISR3_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPC_ISR3 bitfields
  */
 
-/* --- Register HW_GPC_ISR3, field ISR3
+/* --- Register HW_GPC_ISR3, field ISR3 (RO)
  *
  * IRQ[95:64] status, read only
  */
@@ -542,23 +547,14 @@ typedef union
 #define BM_GPC_ISR3_ISR3      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPC_ISR3_ISR3(v)   ((((reg32_t) v) << 0) & BM_GPC_ISR3_ISR3)
-#else
-#define BF_GPC_ISR3_ISR3(v)   (((v) << 0) & BM_GPC_ISR3_ISR3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_ISR3_ISR3(v)   BF_CS1(GPC_ISR3, ISR3, v)
-#endif
-
 /*!
- * @brief HW_GPC_ISR4 - IRQ status resister 4
+ * @brief HW_GPC_ISR4 - IRQ status resister 4 (RO)
  *
  * ISR4 Register - status of irq [127:96].
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ISR4 : 32; //!< IRQ[127:96] status, read only
@@ -574,34 +570,19 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPC_ISR4           (*(volatile hw_gpc_isr4_t *) HW_GPC_ISR4_ADDR)
 #define HW_GPC_ISR4_RD()      (HW_GPC_ISR4.U)
-#define HW_GPC_ISR4_WR(v)     (HW_GPC_ISR4.U = (v))
-#define HW_GPC_ISR4_SET(v)    (HW_GPC_ISR4_WR(HW_GPC_ISR4_RD() |  (v)))
-#define HW_GPC_ISR4_CLR(v)    (HW_GPC_ISR4_WR(HW_GPC_ISR4_RD() & ~(v)))
-#define HW_GPC_ISR4_TOG(v)    (HW_GPC_ISR4_WR(HW_GPC_ISR4_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPC_ISR4 bitfields
  */
 
-/* --- Register HW_GPC_ISR4, field ISR4
+/* --- Register HW_GPC_ISR4, field ISR4 (RO)
  *
  * IRQ[127:96] status, read only
  */
 
 #define BP_GPC_ISR4_ISR4      0
 #define BM_GPC_ISR4_ISR4      0xffffffff
-
-#ifndef __LANGUAGE_ASM__
-#define BF_GPC_ISR4_ISR4(v)   ((((reg32_t) v) << 0) & BM_GPC_ISR4_ISR4)
-#else
-#define BF_GPC_ISR4_ISR4(v)   (((v) << 0) & BM_GPC_ISR4_ISR4)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPC_ISR4_ISR4(v)   BF_CS1(GPC_ISR4, ISR4, v)
-#endif
-
 
 
 /*!

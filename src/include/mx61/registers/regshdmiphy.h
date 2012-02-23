@@ -10,28 +10,76 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_HDMI_PHY_PWRCTRL - Power Control
+ * - HW_HDMI_PHY_SERDIVCTRL - Serializer Divider Control
+ * - HW_HDMI_PHY_SERCKCTRL - Serializer Clock Control
+ * - HW_HDMI_PHY_SERCKKILLCTRL - Serializer Clock Kill Control
+ * - HW_HDMI_PHY_TXRESCTRL - Transmitter and Resistance Calibration Control
+ * - HW_HDMI_PHY_CKCALCTRL - Clock Calibration Control
+ * - HW_HDMI_PHY_CPCE_CTRL - Color Depth, Pixel Repetition, Clock Divider for PLL and MPLL, and Edge Rate Control
+ * - HW_HDMI_PHY_TXCLKMEASCTRL - Tx and Clock Measure Control
+ * - HW_HDMI_PHY_TXMEASCTRL - Tx Measure Control
+ * - HW_HDMI_PHY_CKSYMTXCTRL - Clock Symbol and Transmitter Control
+ * - HW_HDMI_PHY_CMPSEQCTRL - Comparator Sequence Control
+ * - HW_HDMI_PHY_CMPPWRCTRL - Comparator Power Control
+ * - HW_HDMI_PHY_CMPMODECTRL - Comparator Mode Control
+ * - HW_HDMI_PHY_MEASCTRL - Measure Control
+ * - HW_HDMI_PHY_VLEVCTRL - Voltage Level Control
+ * - HW_HDMI_PHY_D2ACTRL - Digital-to-Analog Control
+ * - HW_HDMI_PHY_CURRCTRL - Current Control
+ * - HW_HDMI_PHY_DRVANACTRL - Drive Analog Control
+ * - HW_HDMI_PHY_PLLMEASCTRL - PLL Measure Control
+ * - HW_HDMI_PHY_PLLPHBYCTRL - PLL Phase and Bypass Control
+ * - HW_HDMI_PHY_GRP_CTRL - Gear Shift, Reset Mode, and Power State Control
+ * - HW_HDMI_PHY_GMPCTRL - Gmp Control
+ * - HW_HDMI_PHY_MPLLMEASCTRL - MPLL Measure Control
+ * - HW_HDMI_PHY_MSM_CTRL - MPLL and PLL Phase, Scope Clock Select, and MUX Clock Control
+ * - HW_HDMI_PHY_SCRPB_STATUS - Scope, Comparator Result and Power Bad Status
+ * - HW_HDMI_PHY_TXTERM - Transmission Termination
+ * - HW_HDMI_PHY_PTRPT_ENBL - Power Sequence, TX Clock Alignment, Resistance Calibration, Pattern Generator Skip Bit, and TMDS Encoder Enable
+ * - HW_HDMI_PHY_PATTERNGEN - Pattern Generator Mode
+ * - HW_HDMI_PHY_SDCAP_MODE - The Soft-Reset and DAC Enable, Clock Alignment and PG Mode
+ * - HW_HDMI_PHY_SCOPEMODE - Scope Mode register
+ * - HW_HDMI_PHY_DIGTXMODE - Digital Transmission Mode
+ * - HW_HDMI_PHY_STR_STATUS - Scope, Transmission Clock Alignment, and Resistance Calibration Set-on-Done Status
+ * - HW_HDMI_PHY_SCOPECNT0 - Scope Counter on Channel 0
+ * - HW_HDMI_PHY_SCOPECNT1 - Scope Counter on Channel 1
+ * - HW_HDMI_PHY_SCOPECNT2 - Scope Counter on Channel 2
+ * - HW_HDMI_PHY_SCOPECNTCLK - Scope Counter on Clock Channel
+ * - HW_HDMI_PHY_SCOPESAMPLE - Scope Sample Count MSB, Scope Sample Repetition
+ * - HW_HDMI_PHY_SCOPECNTMSB01 - Scope Counter MSB Channel 0 and Channel 1
+ * - HW_HDMI_PHY_SCOPECNTMSB2CK - Scope Counter MSB Channel 2 and Clock Channel
+ *
+ * hw_hdmi_phy_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_HDMI_PHY_BASE
-#define REGS_HDMI_PHY_BASE (REGS_BASE + 0x00000000)
+#define REGS_HDMI_PHY_BASE (0x00000000) //!< Base address for HDMI_PHY.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_PWRCTRL - Power Control
+ * @brief HW_HDMI_PHY_PWRCTRL - Power Control (RW)
  *
  * Register name : PWRCTRL  Access type : Read/write/override  Address : 0x00  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short CK_PWRON : 1; //!< Clock Power-On  This bit powers on or powers off the clock driver.
-        unsigned short TX_PWRON2 : 1; //!< Transmitter Power-On 2  This bit powers on or powers off the transmitter driver for channel 2.
-        unsigned short TX_PWRON1 : 1; //!< Transmitter Power-On 1  This bit powers on or powers off the transmitter driver for channel 1.
-        unsigned short TX_PWRON0 : 1; //!< Transmitter Power-On 0  This bit powers on or powers off the transmitter driver for channel 0.
-        unsigned short TX_PWRON : 1; //!< Transmitter Power-On  This bit enables users to power down the entire PHY through the I2C interface.
+        unsigned short CK_PWRON : 1; //!< Clock Power-On This bit powers on or powers off the clock driver.
+        unsigned short TX_PWRON2 : 1; //!< Transmitter Power-On 2 This bit powers on or powers off the transmitter driver for channel 2.
+        unsigned short TX_PWRON1 : 1; //!< Transmitter Power-On 1 This bit powers on or powers off the transmitter driver for channel 1.
+        unsigned short TX_PWRON0 : 1; //!< Transmitter Power-On 0 This bit powers on or powers off the transmitter driver for channel 0.
+        unsigned short TX_PWRON : 1; //!< Transmitter Power-On This bit enables users to power down the entire PHY through the I2C interface.
         unsigned short RESERVED0 : 10; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -52,14 +100,17 @@ typedef union
 #define HW_HDMI_PHY_PWRCTRL_TOG(v)    (HW_HDMI_PHY_PWRCTRL_WR(HW_HDMI_PHY_PWRCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_PWRCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_PWRCTRL, field CK_PWRON
+/* --- Register HW_HDMI_PHY_PWRCTRL, field CK_PWRON (RW)
  *
- * Clock Power-On  This bit powers on or powers off the clock driver.
+ * Clock Power-On This bit powers on or powers off the clock driver.
+ *
+ * Values:
+ * 0 - Power off the clock driver, if the Override bit is 0.
+ * 1 - Power on the clock driver, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PWRCTRL_CK_PWRON      0
@@ -71,12 +122,18 @@ typedef union
 #define BF_HDMI_PHY_PWRCTRL_CK_PWRON(v)   (((v) << 0) & BM_HDMI_PHY_PWRCTRL_CK_PWRON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_PWRON field to a new value.
 #define BW_HDMI_PHY_PWRCTRL_CK_PWRON(v)   BF_CS1(HDMI_PHY_PWRCTRL, CK_PWRON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON2
+
+/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON2 (RW)
  *
- * Transmitter Power-On 2  This bit powers on or powers off the transmitter driver for channel 2.
+ * Transmitter Power-On 2 This bit powers on or powers off the transmitter driver for channel 2.
+ *
+ * Values:
+ * 0 - Power off the transmitter driver for the third channel, if the Override bit is 0.
+ * 1 - Power on the transmitter driver for the third channel, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON2      1
@@ -88,12 +145,18 @@ typedef union
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON2(v)   (((v) << 1) & BM_HDMI_PHY_PWRCTRL_TX_PWRON2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_PWRON2 field to a new value.
 #define BW_HDMI_PHY_PWRCTRL_TX_PWRON2(v)   BF_CS1(HDMI_PHY_PWRCTRL, TX_PWRON2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON1
+
+/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON1 (RW)
  *
- * Transmitter Power-On 1  This bit powers on or powers off the transmitter driver for channel 1.
+ * Transmitter Power-On 1 This bit powers on or powers off the transmitter driver for channel 1.
+ *
+ * Values:
+ * 0 - Power off the transmitter driver for the second channel, if the Override bit is 0.
+ * 1 - Power on the transmitter driver for the second channel, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON1      2
@@ -105,12 +168,18 @@ typedef union
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON1(v)   (((v) << 2) & BM_HDMI_PHY_PWRCTRL_TX_PWRON1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_PWRON1 field to a new value.
 #define BW_HDMI_PHY_PWRCTRL_TX_PWRON1(v)   BF_CS1(HDMI_PHY_PWRCTRL, TX_PWRON1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON0
+
+/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON0 (RW)
  *
- * Transmitter Power-On 0  This bit powers on or powers off the transmitter driver for channel 0.
+ * Transmitter Power-On 0 This bit powers on or powers off the transmitter driver for channel 0.
+ *
+ * Values:
+ * 0 - Power off the transmitter driver for the first channel, if the Override bit is 0.
+ * 1 - Power on the transmitter driver for the first channel, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON0      3
@@ -122,13 +191,19 @@ typedef union
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON0(v)   (((v) << 3) & BM_HDMI_PHY_PWRCTRL_TX_PWRON0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_PWRON0 field to a new value.
 #define BW_HDMI_PHY_PWRCTRL_TX_PWRON0(v)   BF_CS1(HDMI_PHY_PWRCTRL, TX_PWRON0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON
+
+/* --- Register HW_HDMI_PHY_PWRCTRL, field TX_PWRON (RW)
  *
- * Transmitter Power-On  This bit enables users to power down the entire PHY through the I2C
+ * Transmitter Power-On This bit enables users to power down the entire PHY through the I2C
  * interface.
+ *
+ * Values:
+ * 0 - Power off the PHY, if the Override bit is 1.
+ * 1 - Power on the PHY, if the Override bit is 1.
  */
 
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON      4
@@ -140,10 +215,12 @@ typedef union
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON(v)   (((v) << 4) & BM_HDMI_PHY_PWRCTRL_TX_PWRON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_PWRON field to a new value.
 #define BW_HDMI_PHY_PWRCTRL_TX_PWRON(v)   BF_CS1(HDMI_PHY_PWRCTRL, TX_PWRON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PWRCTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_PWRCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -158,24 +235,25 @@ typedef union
 #define BF_HDMI_PHY_PWRCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_PWRCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_PWRCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_PWRCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_SERDIVCTRL - Serializer Divider Control
+ * @brief HW_HDMI_PHY_SERDIVCTRL - Serializer Divider Control (RW)
  *
  * Register name : SERDIVCTRL  Access type : Read/write/override  Address : 0x01  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short TX_SER_DIV_EN2 : 1; //!< Transmitter Serializer Divider Enable 2  This bit enables or disables the low-speed clock in serializer 2.
-        unsigned short TX_SER_DIV_EN1 : 1; //!< Transmitter Serializer Divider Enable 1  This bit enables or disables the low-speed clock in serializer 1.
-        unsigned short TX_SER_DIV_EN0 : 1; //!< Transmitter Serializer Divider Enable 0  This bit enables or disables the low-speed clock in serializer 0.
+        unsigned short TX_SER_DIV_EN2 : 1; //!< Transmitter Serializer Divider Enable 2 This bit enables or disables the low-speed clock in serializer 2.
+        unsigned short TX_SER_DIV_EN1 : 1; //!< Transmitter Serializer Divider Enable 1 This bit enables or disables the low-speed clock in serializer 1.
+        unsigned short TX_SER_DIV_EN0 : 1; //!< Transmitter Serializer Divider Enable 0 This bit enables or disables the low-speed clock in serializer 0.
         unsigned short RESERVED0 : 12; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -196,15 +274,18 @@ typedef union
 #define HW_HDMI_PHY_SERDIVCTRL_TOG(v)    (HW_HDMI_PHY_SERDIVCTRL_WR(HW_HDMI_PHY_SERDIVCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_SERDIVCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN2
+/* --- Register HW_HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN2 (RW)
  *
- * Transmitter Serializer Divider Enable 2  This bit enables or disables the low-speed clock in
+ * Transmitter Serializer Divider Enable 2 This bit enables or disables the low-speed clock in
  * serializer 2.
+ *
+ * Values:
+ * 0 - Disable the low-speed clock in the third serializer, if the Override bit is 0.
+ * 1 - Enable the low-speed clock in the third serializer, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2      0
@@ -216,13 +297,19 @@ typedef union
 #define BF_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2(v)   (((v) << 0) & BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_DIV_EN2 field to a new value.
 #define BW_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2(v)   BF_CS1(HDMI_PHY_SERDIVCTRL, TX_SER_DIV_EN2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN1
+
+/* --- Register HW_HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN1 (RW)
  *
- * Transmitter Serializer Divider Enable 1  This bit enables or disables the low-speed clock in
+ * Transmitter Serializer Divider Enable 1 This bit enables or disables the low-speed clock in
  * serializer 1.
+ *
+ * Values:
+ * 0 - Disable the low-speed clock in the second serializer, if the Override bit is 0.
+ * 1 - Enable the low-speed clock in the second serializer, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1      1
@@ -234,13 +321,19 @@ typedef union
 #define BF_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1(v)   (((v) << 1) & BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_DIV_EN1 field to a new value.
 #define BW_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1(v)   BF_CS1(HDMI_PHY_SERDIVCTRL, TX_SER_DIV_EN1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN0
+
+/* --- Register HW_HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN0 (RW)
  *
- * Transmitter Serializer Divider Enable 0  This bit enables or disables the low-speed clock in
+ * Transmitter Serializer Divider Enable 0 This bit enables or disables the low-speed clock in
  * serializer 0.
+ *
+ * Values:
+ * 0 - Disable the low-speed clock in the first serializer, if the Override bit is 0.
+ * 1 - Enable the low-speed clock in the first serializer, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0      2
@@ -252,10 +345,12 @@ typedef union
 #define BF_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0(v)   (((v) << 2) & BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_DIV_EN0 field to a new value.
 #define BW_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0(v)   BF_CS1(HDMI_PHY_SERDIVCTRL, TX_SER_DIV_EN0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERDIVCTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_SERDIVCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -270,24 +365,25 @@ typedef union
 #define BF_HDMI_PHY_SERDIVCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_SERDIVCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_SERDIVCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_SERDIVCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_SERCKCTRL - Serializer Clock Control
+ * @brief HW_HDMI_PHY_SERCKCTRL - Serializer Clock Control (RW)
  *
  * Register name : SERCKCTRL  Access type : Read/write/override  Address : 0x02  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short TX_SER_CLK_EN2 : 1; //!< Transmitter Serializer Clock Enable 2  This bit enables or disables the high-speed clock in serializer two.
-        unsigned short TX_SER_CLK_EN1 : 1; //!< Transmitter Serializer Clock Enable 1  This bit enables or disables the high-speed clock in serializer 1.
-        unsigned short TX_SER_CLK_EN0 : 1; //!< Transmitter Serializer Clock Enable 0  This bit enables or disables the high-speed clock in serializer 0.
+        unsigned short TX_SER_CLK_EN2 : 1; //!< Transmitter Serializer Clock Enable 2 This bit enables or disables the high-speed clock in serializer two.
+        unsigned short TX_SER_CLK_EN1 : 1; //!< Transmitter Serializer Clock Enable 1 This bit enables or disables the high-speed clock in serializer 1.
+        unsigned short TX_SER_CLK_EN0 : 1; //!< Transmitter Serializer Clock Enable 0 This bit enables or disables the high-speed clock in serializer 0.
         unsigned short RESERVED0 : 12; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -308,15 +404,18 @@ typedef union
 #define HW_HDMI_PHY_SERCKCTRL_TOG(v)    (HW_HDMI_PHY_SERCKCTRL_WR(HW_HDMI_PHY_SERCKCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_SERCKCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN2
+/* --- Register HW_HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN2 (RW)
  *
- * Transmitter Serializer Clock Enable 2  This bit enables or disables the high-speed clock in
+ * Transmitter Serializer Clock Enable 2 This bit enables or disables the high-speed clock in
  * serializer two.
+ *
+ * Values:
+ * 0 - Disable the high-speed clock in the third serializer, if the Override bit is 0.
+ * 1 - Enable the high-speed clock in the third serializer, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2      0
@@ -328,13 +427,19 @@ typedef union
 #define BF_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2(v)   (((v) << 0) & BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_CLK_EN2 field to a new value.
 #define BW_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2(v)   BF_CS1(HDMI_PHY_SERCKCTRL, TX_SER_CLK_EN2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN1
+
+/* --- Register HW_HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN1 (RW)
  *
- * Transmitter Serializer Clock Enable 1  This bit enables or disables the high-speed clock in
+ * Transmitter Serializer Clock Enable 1 This bit enables or disables the high-speed clock in
  * serializer 1.
+ *
+ * Values:
+ * 0 - Disable the high-speed clock in the second serializer, if the Override bit is 0.
+ * 1 - Enable the high-speed clock in the second serializer, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1      1
@@ -346,13 +451,19 @@ typedef union
 #define BF_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1(v)   (((v) << 1) & BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_CLK_EN1 field to a new value.
 #define BW_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1(v)   BF_CS1(HDMI_PHY_SERCKCTRL, TX_SER_CLK_EN1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN0
+
+/* --- Register HW_HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN0 (RW)
  *
- * Transmitter Serializer Clock Enable 0  This bit enables or disables the high-speed clock in
+ * Transmitter Serializer Clock Enable 0 This bit enables or disables the high-speed clock in
  * serializer 0.
+ *
+ * Values:
+ * 0 - Disable the high-speed clock in the first serializer, if the Override bit is 0.
+ * 1 - Enable the high-speed clock in the first serializer, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0      2
@@ -364,10 +475,12 @@ typedef union
 #define BF_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0(v)   (((v) << 2) & BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_CLK_EN0 field to a new value.
 #define BW_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0(v)   BF_CS1(HDMI_PHY_SERCKCTRL, TX_SER_CLK_EN0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERCKCTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_SERCKCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -382,24 +495,25 @@ typedef union
 #define BF_HDMI_PHY_SERCKCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_SERCKCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_SERCKCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_SERCKCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_SERCKKILLCTRL - Serializer Clock Kill Control
+ * @brief HW_HDMI_PHY_SERCKKILLCTRL - Serializer Clock Kill Control (RW)
  *
  * Register name : SERCKKILLCTRL  Access type : Read/write/override  Address : 0x03  Value at reset
  * : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short TX_SER_CLK_KILL2 : 1; //!< Transmitter Serializer Clock Kill 2  This bit is used to delay the tx_ck_out2 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out2 clock.
-        unsigned short TX_SER_CLK_KILL1 : 1; //!< Transmitter Serializer Clock Kill 1  This bit is used to delay the tx_ck_out1 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out1 clock.
-        unsigned short TX_SER_CLK_KILL0 : 1; //!< Transmitter Serializer Clock Kill 0  This bit is used to delay the tx_ck_out0 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out0 clock.
+        unsigned short TX_SER_CLK_KILL2 : 1; //!< Transmitter Serializer Clock Kill 2 This bit is used to delay the tx_ck_out2 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out2 clock.
+        unsigned short TX_SER_CLK_KILL1 : 1; //!< Transmitter Serializer Clock Kill 1 This bit is used to delay the tx_ck_out1 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out1 clock.
+        unsigned short TX_SER_CLK_KILL0 : 1; //!< Transmitter Serializer Clock Kill 0 This bit is used to delay the tx_ck_out0 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out0 clock.
         unsigned short RESERVED0 : 12; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -420,16 +534,19 @@ typedef union
 #define HW_HDMI_PHY_SERCKKILLCTRL_TOG(v)    (HW_HDMI_PHY_SERCKKILLCTRL_WR(HW_HDMI_PHY_SERCKKILLCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_SERCKKILLCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL2
+/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL2 (RW)
  *
- * Transmitter Serializer Clock Kill 2  This bit is used to delay the tx_ck_out2 sampling clock by a
+ * Transmitter Serializer Clock Kill 2 This bit is used to delay the tx_ck_out2 sampling clock by a
  * time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of
  * the tx_ck_out2 clock.
+ *
+ * Values:
+ * 0 - No effect, if the Override bit is 0.
+ * 1 - Delay the tx_ck_out2 clock by 0.2 UI, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2      0
@@ -441,14 +558,20 @@ typedef union
 #define BF_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2(v)   (((v) << 0) & BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_CLK_KILL2 field to a new value.
 #define BW_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2(v)   BF_CS1(HDMI_PHY_SERCKKILLCTRL, TX_SER_CLK_KILL2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL1
+
+/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL1 (RW)
  *
- * Transmitter Serializer Clock Kill 1  This bit is used to delay the tx_ck_out1 sampling clock by a
+ * Transmitter Serializer Clock Kill 1 This bit is used to delay the tx_ck_out1 sampling clock by a
  * time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of
  * the tx_ck_out1 clock.
+ *
+ * Values:
+ * 0 - No effect, if the Override bit is 0.
+ * 1 - Delay the tx_ck_out1 clock by 0.2 UI, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1      1
@@ -460,14 +583,20 @@ typedef union
 #define BF_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1(v)   (((v) << 1) & BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_CLK_KILL1 field to a new value.
 #define BW_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1(v)   BF_CS1(HDMI_PHY_SERCKKILLCTRL, TX_SER_CLK_KILL1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL0
+
+/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL0 (RW)
  *
- * Transmitter Serializer Clock Kill 0  This bit is used to delay the tx_ck_out0 sampling clock by a
+ * Transmitter Serializer Clock Kill 0 This bit is used to delay the tx_ck_out0 sampling clock by a
  * time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of
  * the tx_ck_out0 clock.
+ *
+ * Values:
+ * 0 - No effect, if the Override bit is 0.
+ * 1 - Delay the tx_ck_out0 clock by 0.2 UI, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0      2
@@ -479,10 +608,12 @@ typedef union
 #define BF_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0(v)   (((v) << 2) & BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SER_CLK_KILL0 field to a new value.
 #define BW_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0(v)   BF_CS1(HDMI_PHY_SERCKKILLCTRL, TX_SER_CLK_KILL0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_SERCKKILLCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -497,23 +628,24 @@ typedef union
 #define BF_HDMI_PHY_SERCKKILLCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_SERCKKILLCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_SERCKKILLCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_SERCKKILLCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_TXRESCTRL - Transmitter and Resistance Calibration Control
+ * @brief HW_HDMI_PHY_TXRESCTRL - Transmitter and Resistance Calibration Control (RW)
  *
  * Register name : TXRESCALCTRL  Access type : Read/write/override  Address : 0x04  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short RESCAL_REP : 7; //!< Resistance Calibration Replica  This bus controls the bias voltage of the transmitter driver. rescal_rep[6:0]  provides 64 voltage levels; the specific values are defined from lab test results.
-        unsigned short TX_RESCAL : 7; //!< Transmitter Resistance Calibration  This bus controls the parallel termination of the transmitter drivers and sets termination to a value based on the calibration algorithm performed in the support resistance calibration module. tx_rescal[6:0] provides 64 termination levels; the specific values are defined from lab test results.
+        unsigned short RESCAL_REP : 7; //!< Resistance Calibration Replica This bus controls the bias voltage of the transmitter driver. rescal_rep[6:0] provides 64 voltage levels; the specific values are defined from lab test results.
+        unsigned short TX_RESCAL : 7; //!< Transmitter Resistance Calibration This bus controls the parallel termination of the transmitter drivers and sets termination to a value based on the calibration algorithm performed in the support resistance calibration module. tx_rescal[6:0] provides 64 termination levels; the specific values are defined from lab test results.
         unsigned short RESERVED0 : 1; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -534,15 +666,14 @@ typedef union
 #define HW_HDMI_PHY_TXRESCTRL_TOG(v)    (HW_HDMI_PHY_TXRESCTRL_WR(HW_HDMI_PHY_TXRESCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_TXRESCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_TXRESCTRL, field RESCAL_REP
+/* --- Register HW_HDMI_PHY_TXRESCTRL, field RESCAL_REP (RW)
  *
- * Resistance Calibration Replica  This bus controls the bias voltage of the transmitter driver.
- * rescal_rep[6:0]  provides 64 voltage levels; the specific values are defined from lab test
+ * Resistance Calibration Replica This bus controls the bias voltage of the transmitter driver.
+ * rescal_rep[6:0] provides 64 voltage levels; the specific values are defined from lab test
  * results.
  */
 
@@ -555,12 +686,13 @@ typedef union
 #define BF_HDMI_PHY_TXRESCTRL_RESCAL_REP(v)   (((v) << 0) & BM_HDMI_PHY_TXRESCTRL_RESCAL_REP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RESCAL_REP field to a new value.
 #define BW_HDMI_PHY_TXRESCTRL_RESCAL_REP(v)   BF_CS1(HDMI_PHY_TXRESCTRL, RESCAL_REP, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_TXRESCTRL, field TX_RESCAL
+/* --- Register HW_HDMI_PHY_TXRESCTRL, field TX_RESCAL (RW)
  *
- * Transmitter Resistance Calibration  This bus controls the parallel termination of the transmitter
+ * Transmitter Resistance Calibration This bus controls the parallel termination of the transmitter
  * drivers and sets termination to a value based on the calibration algorithm performed in the
  * support resistance calibration module. tx_rescal[6:0] provides 64 termination levels; the
  * specific values are defined from lab test results.
@@ -575,10 +707,11 @@ typedef union
 #define BF_HDMI_PHY_TXRESCTRL_TX_RESCAL(v)   (((v) << 7) & BM_HDMI_PHY_TXRESCTRL_TX_RESCAL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_RESCAL field to a new value.
 #define BW_HDMI_PHY_TXRESCTRL_TX_RESCAL(v)   BF_CS1(HDMI_PHY_TXRESCTRL, TX_RESCAL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_TXRESCTRL, field OVERRIDE
+/* --- Register HW_HDMI_PHY_TXRESCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -593,22 +726,23 @@ typedef union
 #define BF_HDMI_PHY_TXRESCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_TXRESCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_TXRESCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_TXRESCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_CKCALCTRL - Clock Calibration Control
+ * @brief HW_HDMI_PHY_CKCALCTRL - Clock Calibration Control (RW)
  *
  * Register name : CKCALCTRL  Access type : Read/write/override  Address : 0x05  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short CK_RESCAL : 7; //!< Clock Resistance Calibration  This bus controls the termination of the clock driver and sets the termination to a value based on the calibration algorithm performed in the support resistance calibration module. ck_rescal[6:0] provides 64 termination levels; the specific values are defined from lab test results.
+        unsigned short CK_RESCAL : 7; //!< Clock Resistance Calibration This bus controls the termination of the clock driver and sets the termination to a value based on the calibration algorithm performed in the support resistance calibration module. ck_rescal[6:0] provides 64 termination levels; the specific values are defined from lab test results.
         unsigned short RESERVED0 : 8; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -629,14 +763,13 @@ typedef union
 #define HW_HDMI_PHY_CKCALCTRL_TOG(v)    (HW_HDMI_PHY_CKCALCTRL_WR(HW_HDMI_PHY_CKCALCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_CKCALCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CKCALCTRL, field CK_RESCAL
+/* --- Register HW_HDMI_PHY_CKCALCTRL, field CK_RESCAL (RW)
  *
- * Clock Resistance Calibration  This bus controls the termination of the clock driver and sets the
+ * Clock Resistance Calibration This bus controls the termination of the clock driver and sets the
  * termination to a value based on the calibration algorithm performed in the support resistance
  * calibration module. ck_rescal[6:0] provides 64 termination levels; the specific values are
  * defined from lab test results.
@@ -651,10 +784,11 @@ typedef union
 #define BF_HDMI_PHY_CKCALCTRL_CK_RESCAL(v)   (((v) << 0) & BM_HDMI_PHY_CKCALCTRL_CK_RESCAL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_RESCAL field to a new value.
 #define BW_HDMI_PHY_CKCALCTRL_CK_RESCAL(v)   BF_CS1(HDMI_PHY_CKCALCTRL, CK_RESCAL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CKCALCTRL, field OVERRIDE
+/* --- Register HW_HDMI_PHY_CKCALCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -669,26 +803,27 @@ typedef union
 #define BF_HDMI_PHY_CKCALCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_CKCALCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_CKCALCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_CKCALCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_CPCE_CTRL - Color Depth, Pixel Repetition, Clock Divider for PLL and MPLL, and Edge Rate Control
+ * @brief HW_HDMI_PHY_CPCE_CTRL - Color Depth, Pixel Repetition, Clock Divider for PLL and MPLL, and Edge Rate Control (RW)
  *
  * Register name : -  Access type : Read/write  Address : 0x06  Value at reset : 0x0400
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short CLR_DPTH : 2; //!< Color Depth  This bus controls the factor by which to divide the reference clock (PCLK) by the output TMDS rate (ck_ref_mpll_p/m).
-        unsigned short PIXEL_REP : 3; //!< Pixel Repetition  This bus controls another factor by which to divide the input frequency (refclk) by the output TMDS rate (ck_ref_mpll_p/m).  FTMDS/Fin = (clr_depth[1:0] x pixel_rep[2]) / (pixel_rep[1:0])
-        unsigned short PLL_N_CNTRL : 2; //!< Programmable Divider Control  This bus controls the programmable divider modules, which are set based on the refclk_p/m (pixel rate) input reference frequency to keep the ring oscillator within the required range (740 MHz through 1.48 GHz in PLL).
-        unsigned short MPLL_N_CNTRL : 2; //!< Programmable Divider Control  This bus controls the programmable divider modulus, which are set based on the ck_ref_mpll_p/m (TMDS rate) input reference frequency to keep the ring oscillator within the required range (925 MHz through 1.85 GHz in MPLL).
-        unsigned short CK_EDGERATE : 2; //!< Clock Edge Rate  This bus controls the slew rate of the clock output driver.
-        unsigned short TX_EDGERATE : 2; //!< Transmitter Edge Rate  This bus controls the slew rate of the transmitter output driver.
+        unsigned short CLR_DPTH : 2; //!< Color Depth This bus controls the factor by which to divide the reference clock (PCLK) by the output TMDS rate (ck_ref_mpll_p/m).
+        unsigned short PIXEL_REP : 3; //!< Pixel Repetition This bus controls another factor by which to divide the input frequency (refclk) by the output TMDS rate (ck_ref_mpll_p/m). FTMDS/Fin = (clr_depth[1:0] x pixel_rep[2]) / (pixel_rep[1:0])
+        unsigned short PLL_N_CNTRL : 2; //!< Programmable Divider Control This bus controls the programmable divider modules, which are set based on the refclk_p/m (pixel rate) input reference frequency to keep the ring oscillator within the required range (740 MHz through 1.48 GHz in PLL).
+        unsigned short MPLL_N_CNTRL : 2; //!< Programmable Divider Control This bus controls the programmable divider modulus, which are set based on the ck_ref_mpll_p/m (TMDS rate) input reference frequency to keep the ring oscillator within the required range (925 MHz through 1.85 GHz in MPLL).
+        unsigned short CK_EDGERATE : 2; //!< Clock Edge Rate This bus controls the slew rate of the clock output driver.
+        unsigned short TX_EDGERATE : 2; //!< Transmitter Edge Rate This bus controls the slew rate of the transmitter output driver.
         unsigned short PREP_DIV : 2; //!< Digital Pixel Repetition Divider Controls the ratio by which the internal TMDS clock is divided to generate PREPCLK.
         unsigned short RESERVED0 : 1; //!< Reserved
     } B;
@@ -709,15 +844,20 @@ typedef union
 #define HW_HDMI_PHY_CPCE_CTRL_TOG(v)    (HW_HDMI_PHY_CPCE_CTRL_WR(HW_HDMI_PHY_CPCE_CTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_CPCE_CTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CPCE_CTRL, field CLR_DPTH
+/* --- Register HW_HDMI_PHY_CPCE_CTRL, field CLR_DPTH (RW)
  *
- * Color Depth  This bus controls the factor by which to divide the reference clock (PCLK) by the
+ * Color Depth This bus controls the factor by which to divide the reference clock (PCLK) by the
  * output TMDS rate (ck_ref_mpll_p/m).
+ *
+ * Values:
+ * 00 - Divide by 4.
+ * 01 - Divide by 5.
+ * 10 - Divide by 6.
+ * 11 - Divide by 8.
  */
 
 #define BP_HDMI_PHY_CPCE_CTRL_CLR_DPTH      0
@@ -729,14 +869,23 @@ typedef union
 #define BF_HDMI_PHY_CPCE_CTRL_CLR_DPTH(v)   (((v) << 0) & BM_HDMI_PHY_CPCE_CTRL_CLR_DPTH)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLR_DPTH field to a new value.
 #define BW_HDMI_PHY_CPCE_CTRL_CLR_DPTH(v)   BF_CS1(HDMI_PHY_CPCE_CTRL, CLR_DPTH, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CPCE_CTRL, field PIXEL_REP
+
+/* --- Register HW_HDMI_PHY_CPCE_CTRL, field PIXEL_REP (RW)
  *
- * Pixel Repetition  This bus controls another factor by which to divide the input frequency
- * (refclk) by the output TMDS rate (ck_ref_mpll_p/m).  FTMDS/Fin = (clr_depth[1:0] x pixel_rep[2])
- * / (pixel_rep[1:0])
+ * Pixel Repetition This bus controls another factor by which to divide the input frequency (refclk)
+ * by the output TMDS rate (ck_ref_mpll_p/m). FTMDS/Fin = (clr_depth[1:0] x pixel_rep[2]) /
+ * (pixel_rep[1:0])
+ *
+ * Values:
+ * 0 - Pixel_rep[2] Divide by 1.
+ * 00 - Pixel_rep[1:0] Divide by 4.
+ * 1 - Pixel_rep[2] Divide by 2.
+ * 01 - Pixel_rep[1:0] Divide by 2.
+ * 1x - Pixel_rep[1:0] Divide by 1.
  */
 
 #define BP_HDMI_PHY_CPCE_CTRL_PIXEL_REP      2
@@ -748,14 +897,22 @@ typedef union
 #define BF_HDMI_PHY_CPCE_CTRL_PIXEL_REP(v)   (((v) << 2) & BM_HDMI_PHY_CPCE_CTRL_PIXEL_REP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PIXEL_REP field to a new value.
 #define BW_HDMI_PHY_CPCE_CTRL_PIXEL_REP(v)   BF_CS1(HDMI_PHY_CPCE_CTRL, PIXEL_REP, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CPCE_CTRL, field PLL_N_CNTRL
+
+/* --- Register HW_HDMI_PHY_CPCE_CTRL, field PLL_N_CNTRL (RW)
  *
- * Programmable Divider Control  This bus controls the programmable divider modules, which are set
+ * Programmable Divider Control This bus controls the programmable divider modules, which are set
  * based on the refclk_p/m (pixel rate) input reference frequency to keep the ring oscillator within
  * the required range (740 MHz through 1.48 GHz in PLL).
+ *
+ * Values:
+ * 00 - N = 1 (for TMDS rate of 184.1-370 MHz)
+ * 01 - N = 2 (for TMDS rate of 92.51-185 MHz)
+ * 10 - N = 4 (for TMDS rate of 45.26-92.5 MHz)
+ * 11 - N = 8 (for TMDS rate (not the pixel rate) up to 45.25 MHz)
  */
 
 #define BP_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL      5
@@ -767,14 +924,22 @@ typedef union
 #define BF_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL(v)   (((v) << 5) & BM_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_N_CNTRL field to a new value.
 #define BW_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL(v)   BF_CS1(HDMI_PHY_CPCE_CTRL, PLL_N_CNTRL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CPCE_CTRL, field MPLL_N_CNTRL
+
+/* --- Register HW_HDMI_PHY_CPCE_CTRL, field MPLL_N_CNTRL (RW)
  *
- * Programmable Divider Control  This bus controls the programmable divider modulus, which are set
+ * Programmable Divider Control This bus controls the programmable divider modulus, which are set
  * based on the ck_ref_mpll_p/m (TMDS rate) input reference frequency to keep the ring oscillator
  * within the required range (925 MHz through 1.85 GHz in MPLL).
+ *
+ * Values:
+ * 00 - N = 1 (for TMDS rate of 184.1-370 MHz)
+ * 01 - N = 2 (for TMDS rate of 92.51-185 MHz)
+ * 10 - N = 4 (for TMDS rate of 45.26-92.5 MHz)
+ * 11 - N = 8 (for TMDS rate up to 45.25 MHz)
  */
 
 #define BP_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL      7
@@ -786,12 +951,20 @@ typedef union
 #define BF_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL(v)   (((v) << 7) & BM_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_N_CNTRL field to a new value.
 #define BW_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL(v)   BF_CS1(HDMI_PHY_CPCE_CTRL, MPLL_N_CNTRL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CPCE_CTRL, field CK_EDGERATE
+
+/* --- Register HW_HDMI_PHY_CPCE_CTRL, field CK_EDGERATE (RW)
  *
- * Clock Edge Rate  This bus controls the slew rate of the clock output driver.
+ * Clock Edge Rate This bus controls the slew rate of the clock output driver.
+ *
+ * Values:
+ * 0 - ck_edgerate[0]: Slow edges
+ * 0 - ck_edgerate[1]: Disable edge rate override.
+ * 1 - ck_edgerate[0]: Fast edges
+ * 1 - ck_edgerate[1]: Enable edge rate override.
  */
 
 #define BP_HDMI_PHY_CPCE_CTRL_CK_EDGERATE      9
@@ -803,12 +976,20 @@ typedef union
 #define BF_HDMI_PHY_CPCE_CTRL_CK_EDGERATE(v)   (((v) << 9) & BM_HDMI_PHY_CPCE_CTRL_CK_EDGERATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_EDGERATE field to a new value.
 #define BW_HDMI_PHY_CPCE_CTRL_CK_EDGERATE(v)   BF_CS1(HDMI_PHY_CPCE_CTRL, CK_EDGERATE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CPCE_CTRL, field TX_EDGERATE
+
+/* --- Register HW_HDMI_PHY_CPCE_CTRL, field TX_EDGERATE (RW)
  *
- * Transmitter Edge Rate  This bus controls the slew rate of the transmitter output driver.
+ * Transmitter Edge Rate This bus controls the slew rate of the transmitter output driver.
+ *
+ * Values:
+ * 0 - tx_edgerate[0]: Slow edges
+ * 0 - tx_edgerate[1]: Disable edge rate override.
+ * 1 - tx_edgerate[0]: Fast edges
+ * 1 - tx_edgerate[1]: Enable edge rate override.
  */
 
 #define BP_HDMI_PHY_CPCE_CTRL_TX_EDGERATE      11
@@ -820,13 +1001,21 @@ typedef union
 #define BF_HDMI_PHY_CPCE_CTRL_TX_EDGERATE(v)   (((v) << 11) & BM_HDMI_PHY_CPCE_CTRL_TX_EDGERATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_EDGERATE field to a new value.
 #define BW_HDMI_PHY_CPCE_CTRL_TX_EDGERATE(v)   BF_CS1(HDMI_PHY_CPCE_CTRL, TX_EDGERATE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CPCE_CTRL, field PREP_DIV
+
+/* --- Register HW_HDMI_PHY_CPCE_CTRL, field PREP_DIV (RW)
  *
  * Digital Pixel Repetition Divider Controls the ratio by which the internal TMDS clock is divided
  * to generate PREPCLK.
+ *
+ * Values:
+ * 00 - Divide by 1 (8 bit).
+ * 01 - Divide by 1.25 (10 bits).
+ * 10 - Divide by 1.5 (12 bits).
+ * 11 - Divide by 2 (16 bits).
  */
 
 #define BP_HDMI_PHY_CPCE_CTRL_PREP_DIV      13
@@ -838,11 +1027,14 @@ typedef union
 #define BF_HDMI_PHY_CPCE_CTRL_PREP_DIV(v)   (((v) << 13) & BM_HDMI_PHY_CPCE_CTRL_PREP_DIV)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PREP_DIV field to a new value.
 #define BW_HDMI_PHY_CPCE_CTRL_PREP_DIV(v)   BF_CS1(HDMI_PHY_CPCE_CTRL, PREP_DIV, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_TXCLKMEASCTRL - Tx and Clock Measure Control
+ * @brief HW_HDMI_PHY_TXCLKMEASCTRL - Tx and Clock Measure Control (RW)
  *
  * Register name : TXCKMEASCTRL  Access type : Read/write  Address : 0x07  Value at reset : 0x0000
  * tx_meas_iv2[7:0]        Effective Bit  Register Value  Description    tx_meas_iv2[0]  00000001
@@ -869,14 +1061,13 @@ typedef union
  * power supply) to the analog test bus.    ck_meas_iv[7]  10000000  Connect V cm (common DC voltage
  * of scope) to the analog test bus.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short CK_MEAS_IV : 8; //!< Clock Measure Internal Voltage  This bus is used to test specific voltages for the clock lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the ck_meas_iv[7:0] table.
-        unsigned short TX_MEAS_IV2 : 8; //!< Transmitter Measure Internal Voltage 2  This bus is used to test specific voltages for third transmitter lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the tx_meas_iv2[7:0] table.
+        unsigned short CK_MEAS_IV : 8; //!< Clock Measure Internal Voltage This bus is used to test specific voltages for the clock lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the ck_meas_iv[7:0] table.
+        unsigned short TX_MEAS_IV2 : 8; //!< Transmitter Measure Internal Voltage 2 This bus is used to test specific voltages for third transmitter lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the tx_meas_iv2[7:0] table.
     } B;
 } hw_hdmi_phy_txclkmeasctrl_t;
 #endif
@@ -895,14 +1086,13 @@ typedef union
 #define HW_HDMI_PHY_TXCLKMEASCTRL_TOG(v)    (HW_HDMI_PHY_TXCLKMEASCTRL_WR(HW_HDMI_PHY_TXCLKMEASCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_TXCLKMEASCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_TXCLKMEASCTRL, field CK_MEAS_IV
+/* --- Register HW_HDMI_PHY_TXCLKMEASCTRL, field CK_MEAS_IV (RW)
  *
- * Clock Measure Internal Voltage  This bus is used to test specific voltages for the clock
+ * Clock Measure Internal Voltage This bus is used to test specific voltages for the clock
  * lane/channel by applying voltages on the atb_sense port based on configured currents, as
  * described in the ck_meas_iv[7:0] table.
  */
@@ -916,12 +1106,13 @@ typedef union
 #define BF_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV(v)   (((v) << 0) & BM_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_MEAS_IV field to a new value.
 #define BW_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV(v)   BF_CS1(HDMI_PHY_TXCLKMEASCTRL, CK_MEAS_IV, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_TXCLKMEASCTRL, field TX_MEAS_IV2
+/* --- Register HW_HDMI_PHY_TXCLKMEASCTRL, field TX_MEAS_IV2 (RW)
  *
- * Transmitter Measure Internal Voltage 2  This bus is used to test specific voltages for third
+ * Transmitter Measure Internal Voltage 2 This bus is used to test specific voltages for third
  * transmitter lane/channel by applying voltages on the atb_sense port based on configured currents,
  * as described in the tx_meas_iv2[7:0] table.
  */
@@ -935,11 +1126,13 @@ typedef union
 #define BF_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2(v)   (((v) << 8) & BM_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_MEAS_IV2 field to a new value.
 #define BW_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2(v)   BF_CS1(HDMI_PHY_TXCLKMEASCTRL, TX_MEAS_IV2, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_TXMEASCTRL - Tx Measure Control
+ * @brief HW_HDMI_PHY_TXMEASCTRL - Tx Measure Control (RW)
  *
  * Register name : TXMEASCTRL  Access type : Read/write  Address : 0x08  Value at reset : 0x0000
  * tx_meas_iv1[7:0]        Effective Bit  Register Value  Description    tx_meas_iv1[0]  00000001
@@ -966,14 +1159,13 @@ typedef union
  * power supply) to the analog test bus.    tx_meas_iv0[7]  10000000  Connect V cm (common DC
  * voltage of scope) to the analog test bus.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short TX_MEAS_IV1 : 8; //!< Transmitter Measure Internal Voltage 1  This bus is used to test specific voltages for the second transmitter lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the tx_meas_iv1[7:0] table.
-        unsigned short TX_MEAS_IV0 : 8; //!< Transmitter Measure Internal Voltage 0  This bus is used to test specific voltages for the first transmitter lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the tx_meas_iv0[7:0] table.
+        unsigned short TX_MEAS_IV1 : 8; //!< Transmitter Measure Internal Voltage 1 This bus is used to test specific voltages for the second transmitter lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the tx_meas_iv1[7:0] table.
+        unsigned short TX_MEAS_IV0 : 8; //!< Transmitter Measure Internal Voltage 0 This bus is used to test specific voltages for the first transmitter lane/channel by applying voltages on the atb_sense port based on configured currents, as described in the tx_meas_iv0[7:0] table.
     } B;
 } hw_hdmi_phy_txmeasctrl_t;
 #endif
@@ -992,14 +1184,13 @@ typedef union
 #define HW_HDMI_PHY_TXMEASCTRL_TOG(v)    (HW_HDMI_PHY_TXMEASCTRL_WR(HW_HDMI_PHY_TXMEASCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_TXMEASCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_TXMEASCTRL, field TX_MEAS_IV1
+/* --- Register HW_HDMI_PHY_TXMEASCTRL, field TX_MEAS_IV1 (RW)
  *
- * Transmitter Measure Internal Voltage 1  This bus is used to test specific voltages for the second
+ * Transmitter Measure Internal Voltage 1 This bus is used to test specific voltages for the second
  * transmitter lane/channel by applying voltages on the atb_sense port based on configured currents,
  * as described in the tx_meas_iv1[7:0] table.
  */
@@ -1013,12 +1204,13 @@ typedef union
 #define BF_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1(v)   (((v) << 0) & BM_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_MEAS_IV1 field to a new value.
 #define BW_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1(v)   BF_CS1(HDMI_PHY_TXMEASCTRL, TX_MEAS_IV1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_TXMEASCTRL, field TX_MEAS_IV0
+/* --- Register HW_HDMI_PHY_TXMEASCTRL, field TX_MEAS_IV0 (RW)
  *
- * Transmitter Measure Internal Voltage 0  This bus is used to test specific voltages for the first
+ * Transmitter Measure Internal Voltage 0 This bus is used to test specific voltages for the first
  * transmitter lane/channel by applying voltages on the atb_sense port based on configured currents,
  * as described in the tx_meas_iv0[7:0] table.
  */
@@ -1032,25 +1224,26 @@ typedef union
 #define BF_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0(v)   (((v) << 8) & BM_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_MEAS_IV0 field to a new value.
 #define BW_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0(v)   BF_CS1(HDMI_PHY_TXMEASCTRL, TX_MEAS_IV0, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_CKSYMTXCTRL - Clock Symbol and Transmitter Control
+ * @brief HW_HDMI_PHY_CKSYMTXCTRL - Clock Symbol and Transmitter Control (RW)
  *
  * Register name : CKSYMTXCTRL  Access type : Read/write/override  Address : 0x09  Value at reset :
  * 0x0009
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short CK_SYMON : 1; //!< Clock Symbol On  This bit enables the clock symbol driver. To enable the clock driver, the ck_powon bit must be high. In addition, there is no pre-emphasis enable for the clock driver.
-        unsigned short TX_TRBON : 1; //!< Transmitter Trailer B On  This bit enables the transmitter trailer B driver(s). To enable the transmitter trailer B driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel must be high.
-        unsigned short TX_TRAON : 1; //!< Transmitter Trailer A On  This bit enables the transmitter trailer A driver(s). To enable the transmitter trailer A driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel must be high.
-        unsigned short TX_SYMON : 1; //!< Transmitter Symbol On  This bit enables the transmitter symbol driver(s), To enable the transmitter driver(s), the tx_pwron bit for each channel must be high.
+        unsigned short CK_SYMON : 1; //!< Clock Symbol On This bit enables the clock symbol driver. To enable the clock driver, the ck_powon bit must be high. In addition, there is no pre-emphasis enable for the clock driver.
+        unsigned short TX_TRBON : 1; //!< Transmitter Trailer B On This bit enables the transmitter trailer B driver(s). To enable the transmitter trailer B driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel must be high.
+        unsigned short TX_TRAON : 1; //!< Transmitter Trailer A On This bit enables the transmitter trailer A driver(s). To enable the transmitter trailer A driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel must be high.
+        unsigned short TX_SYMON : 1; //!< Transmitter Symbol On This bit enables the transmitter symbol driver(s), To enable the transmitter driver(s), the tx_pwron bit for each channel must be high.
         unsigned short RESERVED0 : 11; //!< Reserved
         unsigned short OVERRIDE : 1; //!< 
     } B;
@@ -1071,15 +1264,18 @@ typedef union
 #define HW_HDMI_PHY_CKSYMTXCTRL_TOG(v)    (HW_HDMI_PHY_CKSYMTXCTRL_WR(HW_HDMI_PHY_CKSYMTXCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_CKSYMTXCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field CK_SYMON
+/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field CK_SYMON (RW)
  *
- * Clock Symbol On  This bit enables the clock symbol driver. To enable the clock driver, the
+ * Clock Symbol On This bit enables the clock symbol driver. To enable the clock driver, the
  * ck_powon bit must be high. In addition, there is no pre-emphasis enable for the clock driver.
+ *
+ * Values:
+ * 0 - Disable the clock symbol driver, if the Override bit is 0.
+ * 1 - Enable the clock symbol driver, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_CKSYMTXCTRL_CK_SYMON      0
@@ -1091,14 +1287,20 @@ typedef union
 #define BF_HDMI_PHY_CKSYMTXCTRL_CK_SYMON(v)   (((v) << 0) & BM_HDMI_PHY_CKSYMTXCTRL_CK_SYMON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_SYMON field to a new value.
 #define BW_HDMI_PHY_CKSYMTXCTRL_CK_SYMON(v)   BF_CS1(HDMI_PHY_CKSYMTXCTRL, CK_SYMON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field TX_TRBON
+
+/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field TX_TRBON (RW)
  *
- * Transmitter Trailer B On  This bit enables the transmitter trailer B driver(s). To enable the
+ * Transmitter Trailer B On This bit enables the transmitter trailer B driver(s). To enable the
  * transmitter trailer B driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel
  * must be high.
+ *
+ * Values:
+ * 0 - Disable the transmitter trailer B driver(s), if the Override bit is 0.
+ * 1 - Enable the transmitter trailer B driver(s), if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_CKSYMTXCTRL_TX_TRBON      1
@@ -1110,14 +1312,20 @@ typedef union
 #define BF_HDMI_PHY_CKSYMTXCTRL_TX_TRBON(v)   (((v) << 1) & BM_HDMI_PHY_CKSYMTXCTRL_TX_TRBON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_TRBON field to a new value.
 #define BW_HDMI_PHY_CKSYMTXCTRL_TX_TRBON(v)   BF_CS1(HDMI_PHY_CKSYMTXCTRL, TX_TRBON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field TX_TRAON
+
+/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field TX_TRAON (RW)
  *
- * Transmitter Trailer A On  This bit enables the transmitter trailer A driver(s). To enable the
+ * Transmitter Trailer A On This bit enables the transmitter trailer A driver(s). To enable the
  * transmitter trailer A driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel
  * must be high.
+ *
+ * Values:
+ * 0 - Disable the transmitter trailer A driver(s), if the Override bit is 0.
+ * 1 - Enable the transmitter trailer A driver(s), if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_CKSYMTXCTRL_TX_TRAON      2
@@ -1129,13 +1337,19 @@ typedef union
 #define BF_HDMI_PHY_CKSYMTXCTRL_TX_TRAON(v)   (((v) << 2) & BM_HDMI_PHY_CKSYMTXCTRL_TX_TRAON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_TRAON field to a new value.
 #define BW_HDMI_PHY_CKSYMTXCTRL_TX_TRAON(v)   BF_CS1(HDMI_PHY_CKSYMTXCTRL, TX_TRAON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field TX_SYMON
+
+/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field TX_SYMON (RW)
  *
- * Transmitter Symbol On  This bit enables the transmitter symbol driver(s), To enable the
+ * Transmitter Symbol On This bit enables the transmitter symbol driver(s), To enable the
  * transmitter driver(s), the tx_pwron bit for each channel must be high.
+ *
+ * Values:
+ * 0 - Disable the transmitter symbol driver(s), if the Override bit is 0.
+ * 1 - Enable the transmitter symbol driver(s), if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_CKSYMTXCTRL_TX_SYMON      3
@@ -1147,10 +1361,12 @@ typedef union
 #define BF_HDMI_PHY_CKSYMTXCTRL_TX_SYMON(v)   (((v) << 3) & BM_HDMI_PHY_CKSYMTXCTRL_TX_SYMON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_SYMON field to a new value.
 #define BW_HDMI_PHY_CKSYMTXCTRL_TX_SYMON(v)   BF_CS1(HDMI_PHY_CKSYMTXCTRL, TX_SYMON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_CKSYMTXCTRL, field OVERRIDE (RW)
  *
 
  */
@@ -1164,22 +1380,23 @@ typedef union
 #define BF_HDMI_PHY_CKSYMTXCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_CKSYMTXCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_CKSYMTXCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_CKSYMTXCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_CMPSEQCTRL - Comparator Sequence Control
+ * @brief HW_HDMI_PHY_CMPSEQCTRL - Comparator Sequence Control (RW)
  *
  * Register name : CMPSEQCTRL  Access type : Read/write/override  Address : 0x0A  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SUP_COMP_RT_R : 1; //!< Support Comparator Resistance Termination  This bit controls the comparator sequence.
+        unsigned short SUP_COMP_RT_R : 1; //!< Support Comparator Resistance Termination This bit controls the comparator sequence.
         unsigned short RESERVED0 : 14; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -1200,14 +1417,18 @@ typedef union
 #define HW_HDMI_PHY_CMPSEQCTRL_TOG(v)    (HW_HDMI_PHY_CMPSEQCTRL_WR(HW_HDMI_PHY_CMPSEQCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_CMPSEQCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CMPSEQCTRL, field SUP_COMP_RT_R
+/* --- Register HW_HDMI_PHY_CMPSEQCTRL, field SUP_COMP_RT_R (RW)
  *
- * Support Comparator Resistance Termination  This bit controls the comparator sequence.
+ * Support Comparator Resistance Termination This bit controls the comparator sequence.
+ *
+ * Values:
+ * 0 - Latch the first input, if the Override bit is 0.
+ * 1 - Latch the second input, then set the comparator's output pin by the result of comparison, if the
+ *     Override bit is 0.
  */
 
 #define BP_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R      0
@@ -1219,10 +1440,12 @@ typedef union
 #define BF_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R(v)   (((v) << 0) & BM_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_COMP_RT_R field to a new value.
 #define BW_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R(v)   BF_CS1(HDMI_PHY_CMPSEQCTRL, SUP_COMP_RT_R, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CMPSEQCTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_CMPSEQCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -1237,22 +1460,23 @@ typedef union
 #define BF_HDMI_PHY_CMPSEQCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_CMPSEQCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_CMPSEQCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_CMPSEQCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_CMPPWRCTRL - Comparator Power Control
+ * @brief HW_HDMI_PHY_CMPPWRCTRL - Comparator Power Control (RW)
  *
  * Register name : CMPPWRCTRL  Access type : Read/write/override  Address : 0x0B  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SUP_COMP_RT_PWRON : 1; //!< Support Comparator Resistance Termination Power-On  This bit powers on the Comparator module.
+        unsigned short SUP_COMP_RT_PWRON : 1; //!< Support Comparator Resistance Termination Power-On This bit powers on the Comparator module.
         unsigned short RESERVED0 : 14; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -1273,14 +1497,18 @@ typedef union
 #define HW_HDMI_PHY_CMPPWRCTRL_TOG(v)    (HW_HDMI_PHY_CMPPWRCTRL_WR(HW_HDMI_PHY_CMPPWRCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_CMPPWRCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CMPPWRCTRL, field SUP_COMP_RT_PWRON
+/* --- Register HW_HDMI_PHY_CMPPWRCTRL, field SUP_COMP_RT_PWRON (RW)
  *
- * Support Comparator Resistance Termination Power-On  This bit powers on the Comparator module.
+ * Support Comparator Resistance Termination Power-On This bit powers on the Comparator module.
+ *
+ * Values:
+ * 0 - Power off the Comparator module and connect the comparator's output to ground, if the Override bit
+ *     is 0.
+ * 1 - Power on the Comparator module, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON      0
@@ -1292,10 +1520,12 @@ typedef union
 #define BF_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON(v)   (((v) << 0) & BM_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_COMP_RT_PWRON field to a new value.
 #define BW_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON(v)   BF_CS1(HDMI_PHY_CMPPWRCTRL, SUP_COMP_RT_PWRON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CMPPWRCTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_CMPPWRCTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -1310,22 +1540,23 @@ typedef union
 #define BF_HDMI_PHY_CMPPWRCTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_CMPPWRCTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_CMPPWRCTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_CMPPWRCTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_CMPMODECTRL - Comparator Mode Control
+ * @brief HW_HDMI_PHY_CMPMODECTRL - Comparator Mode Control (RW)
  *
  * Register name : CMPMODECTRL  Access type : Read/write/override  Address : 0x0C  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SUP_COMP_MODE : 1; //!< Support Comparator Mode  This bit selects the comparator mode.
+        unsigned short SUP_COMP_MODE : 1; //!< Support Comparator Mode This bit selects the comparator mode.
         unsigned short RESERVED0 : 14; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -1346,14 +1577,17 @@ typedef union
 #define HW_HDMI_PHY_CMPMODECTRL_TOG(v)    (HW_HDMI_PHY_CMPMODECTRL_WR(HW_HDMI_PHY_CMPMODECTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_CMPMODECTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CMPMODECTRL, field SUP_COMP_MODE
+/* --- Register HW_HDMI_PHY_CMPMODECTRL, field SUP_COMP_MODE (RW)
  *
- * Support Comparator Mode  This bit selects the comparator mode.
+ * Support Comparator Mode This bit selects the comparator mode.
+ *
+ * Values:
+ * 0 - Testing mode (ADC mode)
+ * 1 - Calibration mode
  */
 
 #define BP_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE      0
@@ -1365,10 +1599,12 @@ typedef union
 #define BF_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE(v)   (((v) << 0) & BM_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_COMP_MODE field to a new value.
 #define BW_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE(v)   BF_CS1(HDMI_PHY_CMPMODECTRL, SUP_COMP_MODE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CMPMODECTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_CMPMODECTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -1383,25 +1619,26 @@ typedef union
 #define BF_HDMI_PHY_CMPMODECTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_CMPMODECTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_CMPMODECTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_CMPMODECTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_MEASCTRL - Measure Control
+ * @brief HW_HDMI_PHY_MEASCTRL - Measure Control (RW)
  *
  * Register name : MEASCTRL  Access type : Read/write  Address : 0x0D  Value at reset : 0x0000  Two
  * or more of the previous register bits must not be set to 1 simultaneously; doing so can lead to a
  * hardware problem.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SUP_DAC_ON_ATB : 1; //!< Support Digital-to-Analog Converter On Analog Test Bus  This bit connects or disconnects the DAC's output on the analog test bus to test the performance of the DAC through Integral Non-Linearity (INL) and Differential Non-Linearity (DNL).
-        unsigned short SUP_POR_MEAS_IV : 2; //!< Support Power Measure Internal Voltage  This bus connects or disconnects a single output signal on the analog test bus to measure the voltage of two nodes of the support power block.
-        unsigned short SUP_ATB_ON_REXT : 1; //!< Support Analog Test Bus On External Calibration Resistance  This bit connects or disconnects the V rext node to/from the analog test bus.
+        unsigned short SUP_DAC_ON_ATB : 1; //!< Support Digital-to-Analog Converter On Analog Test Bus This bit connects or disconnects the DAC's output on the analog test bus to test the performance of the DAC through Integral Non-Linearity (INL) and Differential Non-Linearity (DNL).
+        unsigned short SUP_POR_MEAS_IV : 2; //!< Support Power Measure Internal Voltage This bus connects or disconnects a single output signal on the analog test bus to measure the voltage of two nodes of the support power block.
+        unsigned short SUP_ATB_ON_REXT : 1; //!< Support Analog Test Bus On External Calibration Resistance This bit connects or disconnects the V rext node to/from the analog test bus.
         unsigned short RESERVED0 : 12; //!< Reserved
     } B;
 } hw_hdmi_phy_measctrl_t;
@@ -1421,16 +1658,19 @@ typedef union
 #define HW_HDMI_PHY_MEASCTRL_TOG(v)    (HW_HDMI_PHY_MEASCTRL_WR(HW_HDMI_PHY_MEASCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_MEASCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_MEASCTRL, field SUP_DAC_ON_ATB
+/* --- Register HW_HDMI_PHY_MEASCTRL, field SUP_DAC_ON_ATB (RW)
  *
- * Support Digital-to-Analog Converter On Analog Test Bus  This bit connects or disconnects the
- * DAC's output on the analog test bus to test the performance of the DAC through Integral Non-
- * Linearity (INL) and Differential Non-Linearity (DNL).
+ * Support Digital-to-Analog Converter On Analog Test Bus This bit connects or disconnects the DAC's
+ * output on the analog test bus to test the performance of the DAC through Integral Non-Linearity
+ * (INL) and Differential Non-Linearity (DNL).
+ *
+ * Values:
+ * 0 - Disconnect the DAC's output from the analog test bus.
+ * 1 - Connect the DAC's output to the analog test bus.
  */
 
 #define BP_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB      0
@@ -1442,13 +1682,19 @@ typedef union
 #define BF_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB(v)   (((v) << 0) & BM_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_DAC_ON_ATB field to a new value.
 #define BW_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB(v)   BF_CS1(HDMI_PHY_MEASCTRL, SUP_DAC_ON_ATB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MEASCTRL, field SUP_POR_MEAS_IV
+
+/* --- Register HW_HDMI_PHY_MEASCTRL, field SUP_POR_MEAS_IV (RW)
  *
- * Support Power Measure Internal Voltage  This bus connects or disconnects a single output signal
- * on the analog test bus to measure the voltage of two nodes of the support power block.
+ * Support Power Measure Internal Voltage This bus connects or disconnects a single output signal on
+ * the analog test bus to measure the voltage of two nodes of the support power block.
+ *
+ * Values:
+ * 01 - Connect V be (Bipolar transistor voltage) to the analog test bus.
+ * 10 - Connect V bg (Band-gap voltage) to the analog test bus.
  */
 
 #define BP_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV      1
@@ -1460,13 +1706,19 @@ typedef union
 #define BF_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV(v)   (((v) << 1) & BM_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_POR_MEAS_IV field to a new value.
 #define BW_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV(v)   BF_CS1(HDMI_PHY_MEASCTRL, SUP_POR_MEAS_IV, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MEASCTRL, field SUP_ATB_ON_REXT
+
+/* --- Register HW_HDMI_PHY_MEASCTRL, field SUP_ATB_ON_REXT (RW)
  *
- * Support Analog Test Bus On External Calibration Resistance  This bit connects or disconnects the
- * V rext node to/from the analog test bus.
+ * Support Analog Test Bus On External Calibration Resistance This bit connects or disconnects the V
+ * rext node to/from the analog test bus.
+ *
+ * Values:
+ * 0 - Disconnect the V rext node from the analog test bus.
+ * 1 - Connect the V rext node to the analog test bus.
  */
 
 #define BP_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT      3
@@ -1478,22 +1730,24 @@ typedef union
 #define BF_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT(v)   (((v) << 3) & BM_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_ATB_ON_REXT field to a new value.
 #define BW_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT(v)   BF_CS1(HDMI_PHY_MEASCTRL, SUP_ATB_ON_REXT, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_VLEVCTRL - Voltage Level Control
+ * @brief HW_HDMI_PHY_VLEVCTRL - Voltage Level Control (RW)
  *
  * Register name : VLEVCTRL  Access type : Read/write  Address : 0x0E  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SUP_CK_LVL : 5; //!< Support Clock Level  This bus controls the reference voltage level of the Clock Channel module. This voltage reference has a direct relation with the output signal voltage level. For more information about the driver voltage level configuration, see .
-        unsigned short SUP_TX_LVL : 5; //!< Support Transmitter Level  This bus controls the reference voltage level of the three transmitter channel modules. This voltage reference has a direct relation with the output signal voltage level. For more information about the driver voltage level configuration, see .
+        unsigned short SUP_CK_LVL : 5; //!< Support Clock Level This bus controls the reference voltage level of the Clock Channel module. This voltage reference has a direct relation with the output signal voltage level. For more information about the driver voltage level configuration, see .
+        unsigned short SUP_TX_LVL : 5; //!< Support Transmitter Level This bus controls the reference voltage level of the three transmitter channel modules. This voltage reference has a direct relation with the output signal voltage level. For more information about the driver voltage level configuration, see .
         unsigned short RESERVED0 : 6; //!< Reserved
     } B;
 } hw_hdmi_phy_vlevctrl_t;
@@ -1513,14 +1767,13 @@ typedef union
 #define HW_HDMI_PHY_VLEVCTRL_TOG(v)    (HW_HDMI_PHY_VLEVCTRL_WR(HW_HDMI_PHY_VLEVCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_VLEVCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_VLEVCTRL, field SUP_CK_LVL
+/* --- Register HW_HDMI_PHY_VLEVCTRL, field SUP_CK_LVL (RW)
  *
- * Support Clock Level  This bus controls the reference voltage level of the Clock Channel module.
+ * Support Clock Level This bus controls the reference voltage level of the Clock Channel module.
  * This voltage reference has a direct relation with the output signal voltage level. For more
  * information about the driver voltage level configuration, see .
  */
@@ -1534,12 +1787,13 @@ typedef union
 #define BF_HDMI_PHY_VLEVCTRL_SUP_CK_LVL(v)   (((v) << 0) & BM_HDMI_PHY_VLEVCTRL_SUP_CK_LVL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_CK_LVL field to a new value.
 #define BW_HDMI_PHY_VLEVCTRL_SUP_CK_LVL(v)   BF_CS1(HDMI_PHY_VLEVCTRL, SUP_CK_LVL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_VLEVCTRL, field SUP_TX_LVL
+/* --- Register HW_HDMI_PHY_VLEVCTRL, field SUP_TX_LVL (RW)
  *
- * Support Transmitter Level  This bus controls the reference voltage level of the three transmitter
+ * Support Transmitter Level This bus controls the reference voltage level of the three transmitter
  * channel modules. This voltage reference has a direct relation with the output signal voltage
  * level. For more information about the driver voltage level configuration, see .
  */
@@ -1553,23 +1807,24 @@ typedef union
 #define BF_HDMI_PHY_VLEVCTRL_SUP_TX_LVL(v)   (((v) << 5) & BM_HDMI_PHY_VLEVCTRL_SUP_TX_LVL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_TX_LVL field to a new value.
 #define BW_HDMI_PHY_VLEVCTRL_SUP_TX_LVL(v)   BF_CS1(HDMI_PHY_VLEVCTRL, SUP_TX_LVL, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_D2ACTRL - Digital-to-Analog Control
+ * @brief HW_HDMI_PHY_D2ACTRL - Digital-to-Analog Control (RW)
  *
  * Register name : D2ACTRL  Access type : Read/write/override  Address : 0x0F  Value at reset :
  * 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SUP_DAC_TH_N : 3; //!< Support Digital-to-Analog Thermometer Inverted  This bus value is inverted and defined in the thermometer code to represent the binary code of the two MSB's of the 9-bit DAC value.  Note : To increase the stability of the DAC block, the two MSB's of the 9-bit DAC value are represented in thermometer code, not in binary code. The MSB's of the 9-bit DAC value is split into two thermometer-code bits. A transition from 0 to 1 of the 9-bit DAC value's MSB is represented by "00" -> "01" -> "11" in thermometer code.
-        unsigned short SUP_DAC_N : 8; //!< Support Analog-to-Digital Inverted  This bus represents the LSB's of the 9-bit DAC value.
+        unsigned short SUP_DAC_TH_N : 3; //!< Support Digital-to-Analog Thermometer Inverted This bus value is inverted and defined in the thermometer code to represent the binary code of the two MSB's of the 9-bit DAC value. Note : To increase the stability of the DAC block, the two MSB's of the 9-bit DAC value are represented in thermometer code, not in binary code. The MSB's of the 9-bit DAC value is split into two thermometer-code bits. A transition from 0 to 1 of the 9-bit DAC value's MSB is represented by "00" -> "01" -> "11" in thermometer code.
+        unsigned short SUP_DAC_N : 8; //!< Support Analog-to-Digital Inverted This bus represents the LSB's of the 9-bit DAC value.
         unsigned short RESERVED0 : 4; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -1590,15 +1845,14 @@ typedef union
 #define HW_HDMI_PHY_D2ACTRL_TOG(v)    (HW_HDMI_PHY_D2ACTRL_WR(HW_HDMI_PHY_D2ACTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_D2ACTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_D2ACTRL, field SUP_DAC_TH_N
+/* --- Register HW_HDMI_PHY_D2ACTRL, field SUP_DAC_TH_N (RW)
  *
- * Support Digital-to-Analog Thermometer Inverted  This bus value is inverted and defined in the
- * thermometer code to represent the binary code of the two MSB's of the 9-bit DAC value.  Note : To
+ * Support Digital-to-Analog Thermometer Inverted This bus value is inverted and defined in the
+ * thermometer code to represent the binary code of the two MSB's of the 9-bit DAC value. Note : To
  * increase the stability of the DAC block, the two MSB's of the 9-bit DAC value are represented in
  * thermometer code, not in binary code. The MSB's of the 9-bit DAC value is split into two
  * thermometer-code bits. A transition from 0 to 1 of the 9-bit DAC value's MSB is represented by
@@ -1614,12 +1868,13 @@ typedef union
 #define BF_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N(v)   (((v) << 0) & BM_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_DAC_TH_N field to a new value.
 #define BW_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N(v)   BF_CS1(HDMI_PHY_D2ACTRL, SUP_DAC_TH_N, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_D2ACTRL, field SUP_DAC_N
+/* --- Register HW_HDMI_PHY_D2ACTRL, field SUP_DAC_N (RW)
  *
- * Support Analog-to-Digital Inverted  This bus represents the LSB's of the 9-bit DAC value.
+ * Support Analog-to-Digital Inverted This bus represents the LSB's of the 9-bit DAC value.
  */
 
 #define BP_HDMI_PHY_D2ACTRL_SUP_DAC_N      3
@@ -1631,10 +1886,11 @@ typedef union
 #define BF_HDMI_PHY_D2ACTRL_SUP_DAC_N(v)   (((v) << 3) & BM_HDMI_PHY_D2ACTRL_SUP_DAC_N)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUP_DAC_N field to a new value.
 #define BW_HDMI_PHY_D2ACTRL_SUP_DAC_N(v)   BF_CS1(HDMI_PHY_D2ACTRL, SUP_DAC_N, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_D2ACTRL, field OVERRIDE
+/* --- Register HW_HDMI_PHY_D2ACTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -1649,24 +1905,25 @@ typedef union
 #define BF_HDMI_PHY_D2ACTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_D2ACTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_D2ACTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_D2ACTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_CURRCTRL - Current Control
+ * @brief HW_HDMI_PHY_CURRCTRL - Current Control (RW)
  *
  * Register name : CURRCTRL  Access type : Read/write  Address : 0x10  Value at reset : 0x08AB
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short PLL_INT_CNTRL : 3; //!< PLL Charge Pump Integral Control  This bus controls the PLL charge pump integral current. Eight levels of charge pump integral current value are possible. The specific values are defined in .  Default (reset) value of pll_int_cntrl[2:0] is 100.
-        unsigned short PLL_PROP_CNTRL : 3; //!< PLL Proportional Control  This bus controls the PLL charge pump proportional current. Eight levels of charge pump proportional current value are possible. The specific values are defined in .  Default (reset) value of pll_int_cntrl is 011.
-        unsigned short MPLL_INT_CNTRL : 3; //!< MPLL Integral Control  This bus controls the charge pump integral current. Eight levels of charge pump integral current value are possible. The specific values are defined in .  Default (reset) value of pll_int_cntrl[1:0] is 100.
-        unsigned short MPLL_PROP_CNTRL : 3; //!< MPLL Proportional Control  This bus controls the MPLL charge pump proportional current. Eight levels of charge pump proportional current value are possible. The specific values are defined in .  Default (reset) value of pll_prop_cntrl[1:0] is 100.
+        unsigned short PLL_INT_CNTRL : 3; //!< PLL Charge Pump Integral Control This bus controls the PLL charge pump integral current. Eight levels of charge pump integral current value are possible. The specific values are defined in . Default (reset) value of pll_int_cntrl[2:0] is 100.
+        unsigned short PLL_PROP_CNTRL : 3; //!< PLL Proportional Control This bus controls the PLL charge pump proportional current. Eight levels of charge pump proportional current value are possible. The specific values are defined in . Default (reset) value of pll_int_cntrl is 011.
+        unsigned short MPLL_INT_CNTRL : 3; //!< MPLL Integral Control This bus controls the charge pump integral current. Eight levels of charge pump integral current value are possible. The specific values are defined in . Default (reset) value of pll_int_cntrl[1:0] is 100.
+        unsigned short MPLL_PROP_CNTRL : 3; //!< MPLL Proportional Control This bus controls the MPLL charge pump proportional current. Eight levels of charge pump proportional current value are possible. The specific values are defined in . Default (reset) value of pll_prop_cntrl[1:0] is 100.
         unsigned short RESERVED0 : 4; //!< Reserved
     } B;
 } hw_hdmi_phy_currctrl_t;
@@ -1686,14 +1943,13 @@ typedef union
 #define HW_HDMI_PHY_CURRCTRL_TOG(v)    (HW_HDMI_PHY_CURRCTRL_WR(HW_HDMI_PHY_CURRCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_CURRCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CURRCTRL, field PLL_INT_CNTRL
+/* --- Register HW_HDMI_PHY_CURRCTRL, field PLL_INT_CNTRL (RW)
  *
- * PLL Charge Pump Integral Control  This bus controls the PLL charge pump integral current. Eight
+ * PLL Charge Pump Integral Control This bus controls the PLL charge pump integral current. Eight
  * levels of charge pump integral current value are possible. The specific values are defined in .
  * Default (reset) value of pll_int_cntrl[2:0] is 100.
  */
@@ -1707,14 +1963,15 @@ typedef union
 #define BF_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL(v)   (((v) << 0) & BM_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_INT_CNTRL field to a new value.
 #define BW_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL(v)   BF_CS1(HDMI_PHY_CURRCTRL, PLL_INT_CNTRL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CURRCTRL, field PLL_PROP_CNTRL
+/* --- Register HW_HDMI_PHY_CURRCTRL, field PLL_PROP_CNTRL (RW)
  *
- * PLL Proportional Control  This bus controls the PLL charge pump proportional current. Eight
- * levels of charge pump proportional current value are possible. The specific values are defined in
- * .  Default (reset) value of pll_int_cntrl is 011.
+ * PLL Proportional Control This bus controls the PLL charge pump proportional current. Eight levels
+ * of charge pump proportional current value are possible. The specific values are defined in .
+ * Default (reset) value of pll_int_cntrl is 011.
  */
 
 #define BP_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL      3
@@ -1726,13 +1983,14 @@ typedef union
 #define BF_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL(v)   (((v) << 3) & BM_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_PROP_CNTRL field to a new value.
 #define BW_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL(v)   BF_CS1(HDMI_PHY_CURRCTRL, PLL_PROP_CNTRL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CURRCTRL, field MPLL_INT_CNTRL
+/* --- Register HW_HDMI_PHY_CURRCTRL, field MPLL_INT_CNTRL (RW)
  *
- * MPLL Integral Control  This bus controls the charge pump integral current. Eight levels of charge
- * pump integral current value are possible. The specific values are defined in .  Default (reset)
+ * MPLL Integral Control This bus controls the charge pump integral current. Eight levels of charge
+ * pump integral current value are possible. The specific values are defined in . Default (reset)
  * value of pll_int_cntrl[1:0] is 100.
  */
 
@@ -1745,14 +2003,15 @@ typedef union
 #define BF_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL(v)   (((v) << 6) & BM_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_INT_CNTRL field to a new value.
 #define BW_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL(v)   BF_CS1(HDMI_PHY_CURRCTRL, MPLL_INT_CNTRL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CURRCTRL, field MPLL_PROP_CNTRL
+/* --- Register HW_HDMI_PHY_CURRCTRL, field MPLL_PROP_CNTRL (RW)
  *
- * MPLL Proportional Control  This bus controls the MPLL charge pump proportional current. Eight
+ * MPLL Proportional Control This bus controls the MPLL charge pump proportional current. Eight
  * levels of charge pump proportional current value are possible. The specific values are defined in
- * .  Default (reset) value of pll_prop_cntrl[1:0] is 100.
+ * . Default (reset) value of pll_prop_cntrl[1:0] is 100.
  */
 
 #define BP_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL      9
@@ -1764,23 +2023,24 @@ typedef union
 #define BF_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL(v)   (((v) << 9) & BM_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_PROP_CNTRL field to a new value.
 #define BW_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL(v)   BF_CS1(HDMI_PHY_CURRCTRL, MPLL_PROP_CNTRL, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_DRVANACTRL - Drive Analog Control
+ * @brief HW_HDMI_PHY_DRVANACTRL - Drive Analog Control (RW)
  *
  * Register name : DRVANACTRL  Access type : Read/write/override  Address : 0x11  Value at reset :
  * 0x0003
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short MPLL_DRV_ANA : 1; //!< MPLL Drive Analog  This bit enables or disables driving the ck_ref_p/m clocks to all transmitters  (tx_topa).  Default (reset) value of mpll_drv_ana is 1.
-        unsigned short PLL_DRV_ANA : 1; //!< PLL Drive Analog  This bit enables or disables driving the ck_ref_mpll_p/m clocks to the MPLL  module.  Default (reset) value of pll_drv_ana is 1.
+        unsigned short MPLL_DRV_ANA : 1; //!< MPLL Drive Analog This bit enables or disables driving the ck_ref_p/m clocks to all transmitters (tx_topa). Default (reset) value of mpll_drv_ana is 1.
+        unsigned short PLL_DRV_ANA : 1; //!< PLL Drive Analog This bit enables or disables driving the ck_ref_mpll_p/m clocks to the MPLL module. Default (reset) value of pll_drv_ana is 1.
         unsigned short RESERVED0 : 13; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -1801,15 +2061,19 @@ typedef union
 #define HW_HDMI_PHY_DRVANACTRL_TOG(v)    (HW_HDMI_PHY_DRVANACTRL_WR(HW_HDMI_PHY_DRVANACTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_DRVANACTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_DRVANACTRL, field MPLL_DRV_ANA
+/* --- Register HW_HDMI_PHY_DRVANACTRL, field MPLL_DRV_ANA (RW)
  *
- * MPLL Drive Analog  This bit enables or disables driving the ck_ref_p/m clocks to all transmitters
- * (tx_topa).  Default (reset) value of mpll_drv_ana is 1.
+ * MPLL Drive Analog This bit enables or disables driving the ck_ref_p/m clocks to all transmitters
+ * (tx_topa). Default (reset) value of mpll_drv_ana is 1.
+ *
+ * Values:
+ * 0 - Set ck_ref_p high; ck_ref_m low, if the Override bit is 0.
+ * 1 - Enable ck_ref_mpll output clock (125-1700 MHz ck_ref_p/m) to be driven to all transmitters
+ *     (tx_topa), if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA      0
@@ -1821,13 +2085,19 @@ typedef union
 #define BF_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA(v)   (((v) << 0) & BM_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_DRV_ANA field to a new value.
 #define BW_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA(v)   BF_CS1(HDMI_PHY_DRVANACTRL, MPLL_DRV_ANA, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DRVANACTRL, field PLL_DRV_ANA
+
+/* --- Register HW_HDMI_PHY_DRVANACTRL, field PLL_DRV_ANA (RW)
  *
- * PLL Drive Analog  This bit enables or disables driving the ck_ref_mpll_p/m clocks to the MPLL
- * module.  Default (reset) value of pll_drv_ana is 1.
+ * PLL Drive Analog This bit enables or disables driving the ck_ref_mpll_p/m clocks to the MPLL
+ * module. Default (reset) value of pll_drv_ana is 1.
+ *
+ * Values:
+ * 0 - Set ck_ref_mpll low, if the Override bit is 0.
+ * 1 - Enable 25-340 MHz output clock (ck_ref_mpll_p/m) to be driven to MPLL, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA      1
@@ -1839,10 +2109,12 @@ typedef union
 #define BF_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA(v)   (((v) << 1) & BM_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_DRV_ANA field to a new value.
 #define BW_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA(v)   BF_CS1(HDMI_PHY_DRVANACTRL, PLL_DRV_ANA, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DRVANACTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_DRVANACTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -1857,11 +2129,13 @@ typedef union
 #define BF_HDMI_PHY_DRVANACTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_DRVANACTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_DRVANACTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_DRVANACTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_PLLMEASCTRL - PLL Measure Control
+ * @brief HW_HDMI_PHY_PLLMEASCTRL - PLL Measure Control (RW)
  *
  * Register name : PLLMEASCTRL  Access type : Read/write  Address : 0x12  Value at reset : 0x0000
  * With the exception of pll_atb_sense_sel and pll_meas_iv[9], two or more of the previous register
@@ -1878,15 +2152,14 @@ typedef union
  * Enables the phase mixer and pll_cko_pm_p/m.    Pll_meas_iv[10]  10000000000  Measures the voltage
  * corresponding to the output phase of the clr_dpth divider (fb_clk) with respect to refclk.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short PLL_MEAS_GD : 1; //!< PLL Measure Ground  This bit connects or disconnects the ground signal to the atb_sense (analog test bus) bus.
-        unsigned short PLL_MEAS_IV : 11; //!< PLL Measure Internal Voltage  This bus enables or disables measuring various PLL node voltages and branch currents.  For information about the bit settings, see the pll_meas_iv[10:0] table.
-        unsigned short PLL_ATB_SENSE_SEL : 1; //!< PLL Analog Test Bus Sense Select  This bit enables or disables internal signals of the PLL to be connected to the analog test bus. Without setting this bit, no measurements can be made on the atb_sense line.  Default (reset) value of pll_atb_sense_sel is 0.
+        unsigned short PLL_MEAS_GD : 1; //!< PLL Measure Ground This bit connects or disconnects the ground signal to the atb_sense (analog test bus) bus.
+        unsigned short PLL_MEAS_IV : 11; //!< PLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages and branch currents. For information about the bit settings, see the pll_meas_iv[10:0] table.
+        unsigned short PLL_ATB_SENSE_SEL : 1; //!< PLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be connected to the analog test bus. Without setting this bit, no measurements can be made on the atb_sense line. Default (reset) value of pll_atb_sense_sel is 0.
         unsigned short RESERVED0 : 3; //!< Reserved
     } B;
 } hw_hdmi_phy_pllmeasctrl_t;
@@ -1906,15 +2179,18 @@ typedef union
 #define HW_HDMI_PHY_PLLMEASCTRL_TOG(v)    (HW_HDMI_PHY_PLLMEASCTRL_WR(HW_HDMI_PHY_PLLMEASCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_PLLMEASCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_PLLMEASCTRL, field PLL_MEAS_GD
+/* --- Register HW_HDMI_PHY_PLLMEASCTRL, field PLL_MEAS_GD (RW)
  *
- * PLL Measure Ground  This bit connects or disconnects the ground signal to the atb_sense (analog
+ * PLL Measure Ground This bit connects or disconnects the ground signal to the atb_sense (analog
  * test bus) bus.
+ *
+ * Values:
+ * 0 - Disconnect the ground signal from the atb_sense bus.
+ * 1 - Connect the ground signal to the atb_sense bus.
  */
 
 #define BP_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD      0
@@ -1926,13 +2202,15 @@ typedef union
 #define BF_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD(v)   (((v) << 0) & BM_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_MEAS_GD field to a new value.
 #define BW_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD(v)   BF_CS1(HDMI_PHY_PLLMEASCTRL, PLL_MEAS_GD, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PLLMEASCTRL, field PLL_MEAS_IV
+
+/* --- Register HW_HDMI_PHY_PLLMEASCTRL, field PLL_MEAS_IV (RW)
  *
- * PLL Measure Internal Voltage  This bus enables or disables measuring various PLL node voltages
- * and branch currents.  For information about the bit settings, see the pll_meas_iv[10:0] table.
+ * PLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages and
+ * branch currents. For information about the bit settings, see the pll_meas_iv[10:0] table.
  */
 
 #define BP_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV      1
@@ -1944,14 +2222,19 @@ typedef union
 #define BF_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV(v)   (((v) << 1) & BM_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_MEAS_IV field to a new value.
 #define BW_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV(v)   BF_CS1(HDMI_PHY_PLLMEASCTRL, PLL_MEAS_IV, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PLLMEASCTRL, field PLL_ATB_SENSE_SEL
+/* --- Register HW_HDMI_PHY_PLLMEASCTRL, field PLL_ATB_SENSE_SEL (RW)
  *
- * PLL Analog Test Bus Sense Select  This bit enables or disables internal signals of the PLL to be
+ * PLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be
  * connected to the analog test bus. Without setting this bit, no measurements can be made on the
- * atb_sense line.  Default (reset) value of pll_atb_sense_sel is 0.
+ * atb_sense line. Default (reset) value of pll_atb_sense_sel is 0.
+ *
+ * Values:
+ * 0 - Disable the ability to measure internal DC signals on the atb_sense line in the PLL.
+ * 1 - Enable the ability to measure internal DC signals on the atb_sense line in the PLL.
  */
 
 #define BP_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL      12
@@ -1963,23 +2246,25 @@ typedef union
 #define BF_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL(v)   (((v) << 12) & BM_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_ATB_SENSE_SEL field to a new value.
 #define BW_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL(v)   BF_CS1(HDMI_PHY_PLLMEASCTRL, PLL_ATB_SENSE_SEL, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_PLLPHBYCTRL - PLL Phase and Bypass Control
+ * @brief HW_HDMI_PHY_PLLPHBYCTRL - PLL Phase and Bypass Control (RW)
  *
  * Register name : PLLPHBYCTRL  Access type : Read/write  Address : 0x13  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short PLL_PH_SEL : 10; //!< PLL Phase Select  This bus is a control word for the PLL's phase mixer that enables the phase of pll_cko_pm_p/m to be varied ± 0.5 UI of the VCO frequency, which is 740-1,480 MHz.
-        unsigned short PLL_PH_SEL_CK : 1; //!< PLL Phase Select Clock  This bit enables or disables latching the ph_sel[9:0] into a 9-bit DAC used in the phase mixer.
-        unsigned short BYPASS_PPLL : 1; //!< Bypass Pre-PLL  This bit enables or disables bypassing the pre-PLL.
+        unsigned short PLL_PH_SEL : 10; //!< PLL Phase Select This bus is a control word for the PLL's phase mixer that enables the phase of pll_cko_pm_p/m to be varied ± 0.5 UI of the VCO frequency, which is 740-1,480 MHz.
+        unsigned short PLL_PH_SEL_CK : 1; //!< PLL Phase Select Clock This bit enables or disables latching the ph_sel[9:0] into a 9-bit DAC used in the phase mixer.
+        unsigned short BYPASS_PPLL : 1; //!< Bypass Pre-PLL This bit enables or disables bypassing the pre-PLL.
         unsigned short RESERVED0 : 4; //!< Reserved
     } B;
 } hw_hdmi_phy_pllphbyctrl_t;
@@ -1999,14 +2284,13 @@ typedef union
 #define HW_HDMI_PHY_PLLPHBYCTRL_TOG(v)    (HW_HDMI_PHY_PLLPHBYCTRL_WR(HW_HDMI_PHY_PLLPHBYCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_PLLPHBYCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_PLLPHBYCTRL, field PLL_PH_SEL
+/* --- Register HW_HDMI_PHY_PLLPHBYCTRL, field PLL_PH_SEL (RW)
  *
- * PLL Phase Select  This bus is a control word for the PLL's phase mixer that enables the phase of
+ * PLL Phase Select This bus is a control word for the PLL's phase mixer that enables the phase of
  * pll_cko_pm_p/m to be varied ± 0.5 UI of the VCO frequency, which is 740-1,480 MHz.
  */
 
@@ -2019,13 +2303,18 @@ typedef union
 #define BF_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL(v)   (((v) << 0) & BM_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_PH_SEL field to a new value.
 #define BW_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL(v)   BF_CS1(HDMI_PHY_PLLPHBYCTRL, PLL_PH_SEL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PLLPHBYCTRL, field PLL_PH_SEL_CK
+/* --- Register HW_HDMI_PHY_PLLPHBYCTRL, field PLL_PH_SEL_CK (RW)
  *
- * PLL Phase Select Clock  This bit enables or disables latching the ph_sel[9:0] into a 9-bit DAC
+ * PLL Phase Select Clock This bit enables or disables latching the ph_sel[9:0] into a 9-bit DAC
  * used in the phase mixer.
+ *
+ * Values:
+ * 0 - Disable latching the pll_ph_sel[9:0] into the 9-bit DAC.
+ * 1 - Enable latching the pll_ph_sel[9:0] into the 9-bit DAC.
  */
 
 #define BP_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK      10
@@ -2037,12 +2326,18 @@ typedef union
 #define BF_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK(v)   (((v) << 10) & BM_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_PH_SEL_CK field to a new value.
 #define BW_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK(v)   BF_CS1(HDMI_PHY_PLLPHBYCTRL, PLL_PH_SEL_CK, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PLLPHBYCTRL, field BYPASS_PPLL
+
+/* --- Register HW_HDMI_PHY_PLLPHBYCTRL, field BYPASS_PPLL (RW)
  *
- * Bypass Pre-PLL  This bit enables or disables bypassing the pre-PLL.
+ * Bypass Pre-PLL This bit enables or disables bypassing the pre-PLL.
+ *
+ * Values:
+ * 0 - Disable bypassing pll_top by forcing refclk_mpll_ref low.
+ * 1 - Enable bypassing pll_top by buffering refclk to refclk_mpll_ref.
  */
 
 #define BP_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL      11
@@ -2054,26 +2349,28 @@ typedef union
 #define BF_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL(v)   (((v) << 11) & BM_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASS_PPLL field to a new value.
 #define BW_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL(v)   BF_CS1(HDMI_PHY_PLLPHBYCTRL, BYPASS_PPLL, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_GRP_CTRL - Gear Shift, Reset Mode, and Power State Control
+ * @brief HW_HDMI_PHY_GRP_CTRL - Gear Shift, Reset Mode, and Power State Control (RW)
  *
  * Register name : -  Access type : Read/write/override  Address : 0x14  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short MPLL_GEAR_SHIFT : 1; //!< MPLL Gear Shift  This bit enables or disables Rapid Locking mode, where the mpll_gear_shift bit is asserted for 25 µs when coming out of reset, then deasserted before clocks are valid.
-        unsigned short PLL_GEAR_SHIFT : 1; //!< PLL Gear Shift  This bit enables or disables Rapid Locking mode, where the pll_gear_shift bit is asserted for 25 µs when coming out of reset, then deasserted before clocks are valid.
-        unsigned short MPLL_RST : 1; //!< MPLL Reset  This bit is used to place the MPLL in Reset mode.
-        unsigned short MPLL_PWR_ON : 1; //!< MPLL Power-On  This bit is used to power-on/off the MPLL module.
-        unsigned short PLL_RST : 1; //!< PLL Reset  This bit is used to place the MPLL in Reset mode.
-        unsigned short PLL_PWR_ON : 1; //!< PLL Power-On  This bit is used to power on/off the PLL module.  Note: If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
+        unsigned short MPLL_GEAR_SHIFT : 1; //!< MPLL Gear Shift This bit enables or disables Rapid Locking mode, where the mpll_gear_shift bit is asserted for 25 µs when coming out of reset, then deasserted before clocks are valid.
+        unsigned short PLL_GEAR_SHIFT : 1; //!< PLL Gear Shift This bit enables or disables Rapid Locking mode, where the pll_gear_shift bit is asserted for 25 µs when coming out of reset, then deasserted before clocks are valid.
+        unsigned short MPLL_RST : 1; //!< MPLL Reset This bit is used to place the MPLL in Reset mode.
+        unsigned short MPLL_PWR_ON : 1; //!< MPLL Power-On This bit is used to power-on/off the MPLL module.
+        unsigned short PLL_RST : 1; //!< PLL Reset This bit is used to place the MPLL in Reset mode.
+        unsigned short PLL_PWR_ON : 1; //!< PLL Power-On This bit is used to power on/off the PLL module. Note: If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
         unsigned short RESERVED0 : 9; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -2094,15 +2391,18 @@ typedef union
 #define HW_HDMI_PHY_GRP_CTRL_TOG(v)    (HW_HDMI_PHY_GRP_CTRL_WR(HW_HDMI_PHY_GRP_CTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_GRP_CTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_GRP_CTRL, field MPLL_GEAR_SHIFT
+/* --- Register HW_HDMI_PHY_GRP_CTRL, field MPLL_GEAR_SHIFT (RW)
  *
- * MPLL Gear Shift  This bit enables or disables Rapid Locking mode, where the mpll_gear_shift bit
- * is asserted for 25 µs when coming out of reset, then deasserted before clocks are valid.
+ * MPLL Gear Shift This bit enables or disables Rapid Locking mode, where the mpll_gear_shift bit is
+ * asserted for 25 µs when coming out of reset, then deasserted before clocks are valid.
+ *
+ * Values:
+ * 0 - Disable Rapid Locking mode, if the Override bit is 0.
+ * 1 - Enable Rapid Locking mode, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT      0
@@ -2114,13 +2414,19 @@ typedef union
 #define BF_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT(v)   (((v) << 0) & BM_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_GEAR_SHIFT field to a new value.
 #define BW_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT(v)   BF_CS1(HDMI_PHY_GRP_CTRL, MPLL_GEAR_SHIFT, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_GRP_CTRL, field PLL_GEAR_SHIFT
+
+/* --- Register HW_HDMI_PHY_GRP_CTRL, field PLL_GEAR_SHIFT (RW)
  *
- * PLL Gear Shift  This bit enables or disables Rapid Locking mode, where the pll_gear_shift bit is
+ * PLL Gear Shift This bit enables or disables Rapid Locking mode, where the pll_gear_shift bit is
  * asserted for 25 µs when coming out of reset, then deasserted before clocks are valid.
+ *
+ * Values:
+ * 0 - Disable Rapid Locking mode, if the Override bit is 0.
+ * 1 - Enable Rapid Locking mode, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT      1
@@ -2132,12 +2438,18 @@ typedef union
 #define BF_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT(v)   (((v) << 1) & BM_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_GEAR_SHIFT field to a new value.
 #define BW_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT(v)   BF_CS1(HDMI_PHY_GRP_CTRL, PLL_GEAR_SHIFT, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_GRP_CTRL, field MPLL_RST
+
+/* --- Register HW_HDMI_PHY_GRP_CTRL, field MPLL_RST (RW)
  *
- * MPLL Reset  This bit is used to place the MPLL in Reset mode.
+ * MPLL Reset This bit is used to place the MPLL in Reset mode.
+ *
+ * Values:
+ * 0 - Enable MPLL to operate normally, if the Override bit is 0.
+ * 1 - Place the MPLL in Reset mode, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_GRP_CTRL_MPLL_RST      2
@@ -2149,12 +2461,18 @@ typedef union
 #define BF_HDMI_PHY_GRP_CTRL_MPLL_RST(v)   (((v) << 2) & BM_HDMI_PHY_GRP_CTRL_MPLL_RST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_RST field to a new value.
 #define BW_HDMI_PHY_GRP_CTRL_MPLL_RST(v)   BF_CS1(HDMI_PHY_GRP_CTRL, MPLL_RST, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_GRP_CTRL, field MPLL_PWR_ON
+
+/* --- Register HW_HDMI_PHY_GRP_CTRL, field MPLL_PWR_ON (RW)
  *
- * MPLL Power-On  This bit is used to power-on/off the MPLL module.
+ * MPLL Power-On This bit is used to power-on/off the MPLL module.
+ *
+ * Values:
+ * 0 - Power on MPLL and set all output clocks to DC levels, if the Override bit is 0.
+ * 1 - Power off MPLL and enable it to operate normally, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON      3
@@ -2166,12 +2484,18 @@ typedef union
 #define BF_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON(v)   (((v) << 3) & BM_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_PWR_ON field to a new value.
 #define BW_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON(v)   BF_CS1(HDMI_PHY_GRP_CTRL, MPLL_PWR_ON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_GRP_CTRL, field PLL_RST
+
+/* --- Register HW_HDMI_PHY_GRP_CTRL, field PLL_RST (RW)
  *
- * PLL Reset  This bit is used to place the MPLL in Reset mode.
+ * PLL Reset This bit is used to place the MPLL in Reset mode.
+ *
+ * Values:
+ * 0 - Enable PLL to operate normally, if the Override bit is 0.
+ * 1 - Place the PLL in Reset mode, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_GRP_CTRL_PLL_RST      4
@@ -2183,13 +2507,19 @@ typedef union
 #define BF_HDMI_PHY_GRP_CTRL_PLL_RST(v)   (((v) << 4) & BM_HDMI_PHY_GRP_CTRL_PLL_RST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_RST field to a new value.
 #define BW_HDMI_PHY_GRP_CTRL_PLL_RST(v)   BF_CS1(HDMI_PHY_GRP_CTRL, PLL_RST, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_GRP_CTRL, field PLL_PWR_ON
+
+/* --- Register HW_HDMI_PHY_GRP_CTRL, field PLL_PWR_ON (RW)
  *
- * PLL Power-On  This bit is used to power on/off the PLL module.  Note: If the Override bit is set
- * to 1, the working value is the Override bit value, not the registered value.
+ * PLL Power-On This bit is used to power on/off the PLL module. Note: If the Override bit is set to
+ * 1, the working value is the Override bit value, not the registered value.
+ *
+ * Values:
+ * 0 - Power off PLL and draw minimal current, if the Override bit is 0.
+ * 1 - Power on PLL and enable it to operate normally, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_GRP_CTRL_PLL_PWR_ON      5
@@ -2201,10 +2531,12 @@ typedef union
 #define BF_HDMI_PHY_GRP_CTRL_PLL_PWR_ON(v)   (((v) << 5) & BM_HDMI_PHY_GRP_CTRL_PLL_PWR_ON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_PWR_ON field to a new value.
 #define BW_HDMI_PHY_GRP_CTRL_PLL_PWR_ON(v)   BF_CS1(HDMI_PHY_GRP_CTRL, PLL_PWR_ON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_GRP_CTRL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_GRP_CTRL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -2219,22 +2551,23 @@ typedef union
 #define BF_HDMI_PHY_GRP_CTRL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_GRP_CTRL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_GRP_CTRL_OVERRIDE(v)   BF_CS1(HDMI_PHY_GRP_CTRL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_GMPCTRL - Gmp Control
+ * @brief HW_HDMI_PHY_GMPCTRL - Gmp Control (RW)
  *
  * Register name : GMPCTRL  Access type : Read/write  Address : 0x15  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short MPLL_GMP_CNTRL : 2; //!< MPLL gmp Control  This bus controls the effective loop-filter resistance (= 1/gmp) to increase or decrease MPLL bandwidth and to compensate for changes in the Divider module (n_cntrl).
-        unsigned short PLL_GMP_CNTRL : 2; //!< PLL gmp Control  This bus controls the effective loop-filter resistance (equal) to increase or decrease PLL bandwidth and to compensate for changes in the Divider module (n_cntrl).
+        unsigned short MPLL_GMP_CNTRL : 2; //!< MPLL gmp Control This bus controls the effective loop-filter resistance (= 1/gmp) to increase or decrease MPLL bandwidth and to compensate for changes in the Divider module (n_cntrl).
+        unsigned short PLL_GMP_CNTRL : 2; //!< PLL gmp Control This bus controls the effective loop-filter resistance (equal) to increase or decrease PLL bandwidth and to compensate for changes in the Divider module (n_cntrl).
         unsigned short RESERVED0 : 12; //!< Reserved
     } B;
 } hw_hdmi_phy_gmpctrl_t;
@@ -2254,15 +2587,20 @@ typedef union
 #define HW_HDMI_PHY_GMPCTRL_TOG(v)    (HW_HDMI_PHY_GMPCTRL_WR(HW_HDMI_PHY_GMPCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_GMPCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_GMPCTRL, field MPLL_GMP_CNTRL
+/* --- Register HW_HDMI_PHY_GMPCTRL, field MPLL_GMP_CNTRL (RW)
  *
- * MPLL gmp Control  This bus controls the effective loop-filter resistance (= 1/gmp) to increase or
+ * MPLL gmp Control This bus controls the effective loop-filter resistance (= 1/gmp) to increase or
  * decrease MPLL bandwidth and to compensate for changes in the Divider module (n_cntrl).
+ *
+ * Values:
+ * 00 - TMDS rate up to 45.25 MHz
+ * 01 - TMDS rate of 45.26-92.5 MHz
+ * 10 - TMDS rate of 92.51-185 MHz
+ * 11 - TMDS rate of 184.1-370 MHz
  */
 
 #define BP_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL      0
@@ -2274,13 +2612,21 @@ typedef union
 #define BF_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL(v)   (((v) << 0) & BM_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_GMP_CNTRL field to a new value.
 #define BW_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL(v)   BF_CS1(HDMI_PHY_GMPCTRL, MPLL_GMP_CNTRL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_GMPCTRL, field PLL_GMP_CNTRL
+
+/* --- Register HW_HDMI_PHY_GMPCTRL, field PLL_GMP_CNTRL (RW)
  *
- * PLL gmp Control  This bus controls the effective loop-filter resistance (equal) to increase or
+ * PLL gmp Control This bus controls the effective loop-filter resistance (equal) to increase or
  * decrease PLL bandwidth and to compensate for changes in the Divider module (n_cntrl).
+ *
+ * Values:
+ * 00 - TMDS rate up to 45.25 MHz
+ * 01 - TMDS rate of 45.26-92.5 MHz
+ * 10 - TMDS rate of 92.51-185 MHz
+ * 11 - TMDS rate of 184.1-370 MHz
  */
 
 #define BP_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL      2
@@ -2292,11 +2638,14 @@ typedef union
 #define BF_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL(v)   (((v) << 2) & BM_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_GMP_CNTRL field to a new value.
 #define BW_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL(v)   BF_CS1(HDMI_PHY_GMPCTRL, PLL_GMP_CNTRL, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_MPLLMEASCTRL - MPLL Measure Control
+ * @brief HW_HDMI_PHY_MPLLMEASCTRL - MPLL Measure Control (RW)
  *
  * Register name : MPLLMEASCTRL  Access type : Read/write  Address : 0x16  Value at reset : 0x0000
  * With the exception of mpll_atb_sense_sel, mpll_meas_iv[9], and mpll_meas_iv[11], two or more of
@@ -2318,15 +2667,14 @@ typedef union
  * therefore, bitclk_p/m is multiplexed to ck_ref_p/m (normally, if n_cntrl = 00, ck0_p/m is
  * multiplexed to ck_ref_p/m and DCC loop is enabled.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short MPLL_MEAS_GD : 1; //!< MPLL Measure Ground  This bit connects or disconnects the ground signal to the atb_sense (analog test bus) bus.
-        unsigned short MPLL_MEAS_IV : 12; //!< MPLL Measure Internal Voltage  This bus enables or disables measuring various PLL node voltages and branch currents.  For information about the bit settings, see the mpll_meas_iv[11:0] table.
-        unsigned short MPLL_ATB_SENSE_SEL : 1; //!< MPLL Analog Test Bus Sense Select  This bit enables or disables internal signals of the PLL to be connected to the analog test bus. Without setting this bit, no measurements can be made on the atb_sense line.  Default (reset) value of mpll_atb_sense_sel is 0.
+        unsigned short MPLL_MEAS_GD : 1; //!< MPLL Measure Ground This bit connects or disconnects the ground signal to the atb_sense (analog test bus) bus.
+        unsigned short MPLL_MEAS_IV : 12; //!< MPLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages and branch currents. For information about the bit settings, see the mpll_meas_iv[11:0] table.
+        unsigned short MPLL_ATB_SENSE_SEL : 1; //!< MPLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be connected to the analog test bus. Without setting this bit, no measurements can be made on the atb_sense line. Default (reset) value of mpll_atb_sense_sel is 0.
         unsigned short RESERVED0 : 2; //!< Reserved
     } B;
 } hw_hdmi_phy_mpllmeasctrl_t;
@@ -2346,15 +2694,18 @@ typedef union
 #define HW_HDMI_PHY_MPLLMEASCTRL_TOG(v)    (HW_HDMI_PHY_MPLLMEASCTRL_WR(HW_HDMI_PHY_MPLLMEASCTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_MPLLMEASCTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_MPLLMEASCTRL, field MPLL_MEAS_GD
+/* --- Register HW_HDMI_PHY_MPLLMEASCTRL, field MPLL_MEAS_GD (RW)
  *
- * MPLL Measure Ground  This bit connects or disconnects the ground signal to the atb_sense (analog
+ * MPLL Measure Ground This bit connects or disconnects the ground signal to the atb_sense (analog
  * test bus) bus.
+ *
+ * Values:
+ * 0 - Disconnect the ground signal from the atb_sense bus.
+ * 1 - Connect the ground signal to the atb_sense bus.
  */
 
 #define BP_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD      0
@@ -2366,13 +2717,15 @@ typedef union
 #define BF_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD(v)   (((v) << 0) & BM_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_MEAS_GD field to a new value.
 #define BW_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD(v)   BF_CS1(HDMI_PHY_MPLLMEASCTRL, MPLL_MEAS_GD, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MPLLMEASCTRL, field MPLL_MEAS_IV
+
+/* --- Register HW_HDMI_PHY_MPLLMEASCTRL, field MPLL_MEAS_IV (RW)
  *
- * MPLL Measure Internal Voltage  This bus enables or disables measuring various PLL node voltages
- * and branch currents.  For information about the bit settings, see the mpll_meas_iv[11:0] table.
+ * MPLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages
+ * and branch currents. For information about the bit settings, see the mpll_meas_iv[11:0] table.
  */
 
 #define BP_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV      1
@@ -2384,14 +2737,19 @@ typedef union
 #define BF_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV(v)   (((v) << 1) & BM_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_MEAS_IV field to a new value.
 #define BW_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV(v)   BF_CS1(HDMI_PHY_MPLLMEASCTRL, MPLL_MEAS_IV, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MPLLMEASCTRL, field MPLL_ATB_SENSE_SEL
+/* --- Register HW_HDMI_PHY_MPLLMEASCTRL, field MPLL_ATB_SENSE_SEL (RW)
  *
- * MPLL Analog Test Bus Sense Select  This bit enables or disables internal signals of the PLL to be
+ * MPLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be
  * connected to the analog test bus. Without setting this bit, no measurements can be made on the
- * atb_sense line.  Default (reset) value of mpll_atb_sense_sel is 0.
+ * atb_sense line. Default (reset) value of mpll_atb_sense_sel is 0.
+ *
+ * Values:
+ * 0 - Disable the ability to measure internal DC signals on the atb_sense line in the PLL.
+ * 1 - Enable the ability to measure internal DC signals on the atb_sense line in the PLL.
  */
 
 #define BP_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL      13
@@ -2403,11 +2761,14 @@ typedef union
 #define BF_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL(v)   (((v) << 13) & BM_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_ATB_SENSE_SEL field to a new value.
 #define BW_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL(v)   BF_CS1(HDMI_PHY_MPLLMEASCTRL, MPLL_ATB_SENSE_SEL, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_MSM_CTRL - MPLL and PLL Phase, Scope Clock Select, and MUX Clock Control
+ * @brief HW_HDMI_PHY_MSM_CTRL - MPLL and PLL Phase, Scope Clock Select, and MUX Clock Control (RW)
  *
  * Register name : -  Access type : Read/write  Address : 0x17  Value at reset : 0x0000  The table
  * below describes the cko_sel[1:0] bit settings. (The cko_sel[1:0] default value is 00.)
@@ -2419,16 +2780,15 @@ typedef union
  * both off)  Bypass  Off (No output TMDS clock)    10  Non-Coherent  Bypass  PCLK (Input reference
  * clock to HDMI 3D Tx PHY)    11  Coherent  Bypass  fb_clk (MPLL feedback clock)
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_CK_SEL : 1; //!< Scope Clock Select  Selects the clock to connect to the scope clock signal: the differential pll_cko_p/m or the differential mpll_cko_p/m.
-        unsigned short CKO_SEL : 2; //!< Clock Output Select  This bus selects the clock to be connected to the output TMDS clock channel.   Notes:    Normal mode: The color depth or pixel repetition is required, which means that the PLL is powered on (pll_pwr_on bit is set to 1) and the bypass_ppll bit is set to 0.  Bypass mode: The color depth and the pixel repetition is not required, which means that the PLL is powered off (pll_pwr_on bit is set to 0) and the bypass_ppll bit is set to 1.   For information about the cko_sel[1:0] bit settings and corresponding PLL/MPLL  modes, see the cko_sel[1:0] table.
-        unsigned short MPLL_PH_SEL : 10; //!< MPLL Phase Select  This bus is a control word for the MPLL's phase mixer and enables the phase of pll_cko_pm_p /m to be varied ± 0.5 UI of the VCO frequency, which has a range of 925-1,850 MHz.
-        unsigned short MPLL_PH_SEL_CK : 1; //!< MPLL Phase Select Clock  This bit enables or disables latching ph_sel[9:0] into a 9-bit DAC used in the phase mixer.
+        unsigned short SCOPE_CK_SEL : 1; //!< Scope Clock Select Selects the clock to connect to the scope clock signal: the differential pll_cko_p/m or the differential mpll_cko_p/m.
+        unsigned short CKO_SEL : 2; //!< Clock Output Select This bus selects the clock to be connected to the output TMDS clock channel. Notes: Normal mode: The color depth or pixel repetition is required, which means that the PLL is powered on (pll_pwr_on bit is set to 1) and the bypass_ppll bit is set to 0. Bypass mode: The color depth and the pixel repetition is not required, which means that the PLL is powered off (pll_pwr_on bit is set to 0) and the bypass_ppll bit is set to 1. For information about the cko_sel[1:0] bit settings and corresponding PLL/MPLL modes, see the cko_sel[1:0] table.
+        unsigned short MPLL_PH_SEL : 10; //!< MPLL Phase Select This bus is a control word for the MPLL's phase mixer and enables the phase of pll_cko_pm_p /m to be varied ± 0.5 UI of the VCO frequency, which has a range of 925-1,850 MHz.
+        unsigned short MPLL_PH_SEL_CK : 1; //!< MPLL Phase Select Clock This bit enables or disables latching ph_sel[9:0] into a 9-bit DAC used in the phase mixer.
         unsigned short RESERVED0 : 2; //!< Reserved
     } B;
 } hw_hdmi_phy_msm_ctrl_t;
@@ -2448,15 +2808,20 @@ typedef union
 #define HW_HDMI_PHY_MSM_CTRL_TOG(v)    (HW_HDMI_PHY_MSM_CTRL_WR(HW_HDMI_PHY_MSM_CTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_MSM_CTRL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_MSM_CTRL, field SCOPE_CK_SEL
+/* --- Register HW_HDMI_PHY_MSM_CTRL, field SCOPE_CK_SEL (RW)
  *
- * Scope Clock Select  Selects the clock to connect to the scope clock signal: the differential
+ * Scope Clock Select Selects the clock to connect to the scope clock signal: the differential
  * pll_cko_p/m or the differential mpll_cko_p/m.
+ *
+ * Values:
+ * 0 - Connect the mpll_cko_pm_p/m to the clock scope (this clock has a range of 23.125-45.25 MHz) where
+ *     the mpll_meas_iv[9] bit must be high.
+ * 1 - Connect the pll_cko_pm_p/m to the clock scope (this clock has a range of 23.125-45.25 MHz) where the
+ *     pll_meas_iv[9] bit must be high.
  */
 
 #define BP_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL      0
@@ -2468,17 +2833,19 @@ typedef union
 #define BF_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL(v)   (((v) << 0) & BM_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_CK_SEL field to a new value.
 #define BW_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL(v)   BF_CS1(HDMI_PHY_MSM_CTRL, SCOPE_CK_SEL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MSM_CTRL, field CKO_SEL
+
+/* --- Register HW_HDMI_PHY_MSM_CTRL, field CKO_SEL (RW)
  *
- * Clock Output Select  This bus selects the clock to be connected to the output TMDS clock channel.
- * Notes:    Normal mode: The color depth or pixel repetition is required, which means that the PLL
- * is powered on (pll_pwr_on bit is set to 1) and the bypass_ppll bit is set to 0.  Bypass mode: The
+ * Clock Output Select This bus selects the clock to be connected to the output TMDS clock channel.
+ * Notes: Normal mode: The color depth or pixel repetition is required, which means that the PLL is
+ * powered on (pll_pwr_on bit is set to 1) and the bypass_ppll bit is set to 0. Bypass mode: The
  * color depth and the pixel repetition is not required, which means that the PLL is powered off
- * (pll_pwr_on bit is set to 0) and the bypass_ppll bit is set to 1.   For information about the
- * cko_sel[1:0] bit settings and corresponding PLL/MPLL  modes, see the cko_sel[1:0] table.
+ * (pll_pwr_on bit is set to 0) and the bypass_ppll bit is set to 1. For information about the
+ * cko_sel[1:0] bit settings and corresponding PLL/MPLL modes, see the cko_sel[1:0] table.
  */
 
 #define BP_HDMI_PHY_MSM_CTRL_CKO_SEL      1
@@ -2490,12 +2857,13 @@ typedef union
 #define BF_HDMI_PHY_MSM_CTRL_CKO_SEL(v)   (((v) << 1) & BM_HDMI_PHY_MSM_CTRL_CKO_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CKO_SEL field to a new value.
 #define BW_HDMI_PHY_MSM_CTRL_CKO_SEL(v)   BF_CS1(HDMI_PHY_MSM_CTRL, CKO_SEL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MSM_CTRL, field MPLL_PH_SEL
+/* --- Register HW_HDMI_PHY_MSM_CTRL, field MPLL_PH_SEL (RW)
  *
- * MPLL Phase Select  This bus is a control word for the MPLL's phase mixer and enables the phase of
+ * MPLL Phase Select This bus is a control word for the MPLL's phase mixer and enables the phase of
  * pll_cko_pm_p /m to be varied ± 0.5 UI of the VCO frequency, which has a range of 925-1,850 MHz.
  */
 
@@ -2508,13 +2876,18 @@ typedef union
 #define BF_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL(v)   (((v) << 3) & BM_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_PH_SEL field to a new value.
 #define BW_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL(v)   BF_CS1(HDMI_PHY_MSM_CTRL, MPLL_PH_SEL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MSM_CTRL, field MPLL_PH_SEL_CK
+/* --- Register HW_HDMI_PHY_MSM_CTRL, field MPLL_PH_SEL_CK (RW)
  *
- * MPLL Phase Select Clock  This bit enables or disables latching ph_sel[9:0] into a 9-bit DAC used
+ * MPLL Phase Select Clock This bit enables or disables latching ph_sel[9:0] into a 9-bit DAC used
  * in the phase mixer.
+ *
+ * Values:
+ * 0 - Disable latching mpll_ph_sel[9:0] into the 9-bit DAC.
+ * 1 - Enable latching mpll_ph_sel[9:0] into the 9-bit DAC.
  */
 
 #define BP_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK      13
@@ -2526,25 +2899,27 @@ typedef union
 #define BF_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK(v)   (((v) << 13) & BM_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_PH_SEL_CK field to a new value.
 #define BW_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK(v)   BF_CS1(HDMI_PHY_MSM_CTRL, MPLL_PH_SEL_CK, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_SCRPB_STATUS - Scope, Comparator Result and Power Bad Status
+ * @brief HW_HDMI_PHY_SCRPB_STATUS - Scope, Comparator Result and Power Bad Status (RO)
  *
  * Register name : -  Access type : Read-only  Address : 0x18  Value at reset : N/A
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short CK_SCOPE_OUT : 1; //!< Clock Scope Output Signal
         unsigned short TX_SCOPE_OUT2 : 1; //!< Scoping Value for Lane 2
         unsigned short TX_SCOPE_OUT1 : 1; //!< Scoping Value for Lane 1
         unsigned short TX_SCOPE_OUT0 : 1; //!< Scoping Value for Lane 0
-        unsigned short SUP_COMP_RT_RESULT : 1; //!< Support Comparator Resistance Termination Result  This bit represents the result of the comparison process.
+        unsigned short SUP_COMP_RT_RESULT : 1; //!< Support Comparator Resistance Termination Result This bit represents the result of the comparison process.
         unsigned short RESERVED0 : 1; //!< Reserved
         unsigned short ADC_VAL : 10; //!< ADC/DAC bit word (analog signal value)
     } B;
@@ -2559,104 +2934,79 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_HDMI_PHY_SCRPB_STATUS           (*(volatile hw_hdmi_phy_scrpb_status_t *) HW_HDMI_PHY_SCRPB_STATUS_ADDR)
 #define HW_HDMI_PHY_SCRPB_STATUS_RD()      (HW_HDMI_PHY_SCRPB_STATUS.U)
-#define HW_HDMI_PHY_SCRPB_STATUS_WR(v)     (HW_HDMI_PHY_SCRPB_STATUS.U = (v))
-#define HW_HDMI_PHY_SCRPB_STATUS_SET(v)    (HW_HDMI_PHY_SCRPB_STATUS_WR(HW_HDMI_PHY_SCRPB_STATUS_RD() |  (v)))
-#define HW_HDMI_PHY_SCRPB_STATUS_CLR(v)    (HW_HDMI_PHY_SCRPB_STATUS_WR(HW_HDMI_PHY_SCRPB_STATUS_RD() & ~(v)))
-#define HW_HDMI_PHY_SCRPB_STATUS_TOG(v)    (HW_HDMI_PHY_SCRPB_STATUS_WR(HW_HDMI_PHY_SCRPB_STATUS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual HDMI_PHY_SCRPB_STATUS bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field CK_SCOPE_OUT
+/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field CK_SCOPE_OUT (RO)
  *
  * Clock Scope Output Signal
+ *
+ * Values:
+ * 0 - The clock driver output is not differential.
+ * 1 - The clock driver output is differential.
  */
 
 #define BP_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT      0
 #define BM_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT)
-#else
-#define BF_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT(v)   (((v) << 0) & BM_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT(v)   BF_CS1(HDMI_PHY_SCRPB_STATUS, CK_SCOPE_OUT, v)
-#endif
 
-/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT2
+/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT2 (RO)
  *
  * Scoping Value for Lane 2
+ *
+ * Values:
+ * 0 - The driver output of lane 2 is not differential.
+ * 1 - The driver output of lane 2 is differential.
  */
 
 #define BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2      1
 #define BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2(v)   ((((reg32_t) v) << 1) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2)
-#else
-#define BF_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2(v)   (((v) << 1) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2(v)   BF_CS1(HDMI_PHY_SCRPB_STATUS, TX_SCOPE_OUT2, v)
-#endif
 
-/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT1
+/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT1 (RO)
  *
  * Scoping Value for Lane 1
+ *
+ * Values:
+ * 0 - The driver output of lane 1 is not differential.
+ * 1 - The driver output of lane 1 is differential.
  */
 
 #define BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1      2
 #define BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1(v)   ((((reg32_t) v) << 2) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1)
-#else
-#define BF_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1(v)   (((v) << 2) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1(v)   BF_CS1(HDMI_PHY_SCRPB_STATUS, TX_SCOPE_OUT1, v)
-#endif
 
-/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT0
+/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT0 (RO)
  *
  * Scoping Value for Lane 0
+ *
+ * Values:
+ * 0 - The driver output of lane 0 is not differential.
+ * 1 - The driver output of lane 0 is differential.
  */
 
 #define BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0      3
 #define BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0(v)   ((((reg32_t) v) << 3) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0)
-#else
-#define BF_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0(v)   (((v) << 3) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0(v)   BF_CS1(HDMI_PHY_SCRPB_STATUS, TX_SCOPE_OUT0, v)
-#endif
 
-/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field SUP_COMP_RT_RESULT
+/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field SUP_COMP_RT_RESULT (RO)
  *
- * Support Comparator Resistance Termination Result  This bit represents the result of the
- * comparison process.
+ * Support Comparator Resistance Termination Result This bit represents the result of the comparison
+ * process.
+ *
+ * Values:
+ * 0 - The first input is greater than or equal to the second input.
+ * 1 - The first input is less than the second input.
  */
 
 #define BP_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT      4
 #define BM_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT(v)   ((((reg32_t) v) << 4) & BM_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT)
-#else
-#define BF_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT(v)   (((v) << 4) & BM_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT(v)   BF_CS1(HDMI_PHY_SCRPB_STATUS, SUP_COMP_RT_RESULT, v)
-#endif
 
-/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field ADC_VAL
+/* --- Register HW_HDMI_PHY_SCRPB_STATUS, field ADC_VAL (RO)
  *
  * ADC/DAC bit word (analog signal value)
  */
@@ -2665,26 +3015,17 @@ typedef union
 #define BM_HDMI_PHY_SCRPB_STATUS_ADC_VAL      0x0000ffc0
 
 #ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCRPB_STATUS_ADC_VAL(v)   ((((reg32_t) v) << 6) & BM_HDMI_PHY_SCRPB_STATUS_ADC_VAL)
-#else
-#define BF_HDMI_PHY_SCRPB_STATUS_ADC_VAL(v)   (((v) << 6) & BM_HDMI_PHY_SCRPB_STATUS_ADC_VAL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCRPB_STATUS_ADC_VAL(v)   BF_CS1(HDMI_PHY_SCRPB_STATUS, ADC_VAL, v)
-#endif
-
 /*!
- * @brief HW_HDMI_PHY_TXTERM - Transmission Termination
+ * @brief HW_HDMI_PHY_TXTERM - Transmission Termination (RW)
  *
  * Register name : TXTERM  Access type : Read/write  Address : 0x19  Value at reset : 0x0007
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short D_TX_TERM : 3; //!< Digital Transmission Termination  This bus defines the transmission termination (resistance) value, which is set by the HDMI controller. The formula for the resistance value is:  R = 50 / (1 - 0.125 x d_tx_term)  This equation is valid only when d_tx_term equals 0-6.   000: 50 Ω  001: 56.14 Ω  010: 66.67 Ω  011: 80 Ω  100: 100 Ω  101: 133.33 Ω  110: 200 Ω  111: Open circuit
+        unsigned short D_TX_TERM : 3; //!< Digital Transmission Termination This bus defines the transmission termination (resistance) value, which is set by the HDMI controller. The formula for the resistance value is: R = 50 / (1 - 0.125 x d_tx_term) This equation is valid only when d_tx_term equals 0-6. 000: 50 Ω 001: 56.14 Ω 010: 66.67 Ω 011: 80 Ω 100: 100 Ω 101: 133.33 Ω 110: 200 Ω 111: Open circuit
         unsigned short RESERVED0 : 13; //!< Reserved
     } B;
 } hw_hdmi_phy_txterm_t;
@@ -2704,17 +3045,16 @@ typedef union
 #define HW_HDMI_PHY_TXTERM_TOG(v)    (HW_HDMI_PHY_TXTERM_WR(HW_HDMI_PHY_TXTERM_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_TXTERM bitfields
  */
 
-/* --- Register HW_HDMI_PHY_TXTERM, field D_TX_TERM
+/* --- Register HW_HDMI_PHY_TXTERM, field D_TX_TERM (RW)
  *
- * Digital Transmission Termination  This bus defines the transmission termination (resistance)
- * value, which is set by the HDMI controller. The formula for the resistance value is:  R = 50 / (1
- * - 0.125 x d_tx_term)  This equation is valid only when d_tx_term equals 0-6.   000: 50 Ω  001:
- * 56.14 Ω  010: 66.67 Ω  011: 80 Ω  100: 100 Ω  101: 133.33 Ω  110: 200 Ω  111: Open circuit
+ * Digital Transmission Termination This bus defines the transmission termination (resistance)
+ * value, which is set by the HDMI controller. The formula for the resistance value is: R = 50 / (1
+ * - 0.125 x d_tx_term) This equation is valid only when d_tx_term equals 0-6. 000: 50 Ω 001: 56.14
+ * Ω 010: 66.67 Ω 011: 80 Ω 100: 100 Ω 101: 133.33 Ω 110: 200 Ω 111: Open circuit
  */
 
 #define BP_HDMI_PHY_TXTERM_D_TX_TERM      0
@@ -2726,29 +3066,30 @@ typedef union
 #define BF_HDMI_PHY_TXTERM_D_TX_TERM(v)   (((v) << 0) & BM_HDMI_PHY_TXTERM_D_TX_TERM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the D_TX_TERM field to a new value.
 #define BW_HDMI_PHY_TXTERM_D_TX_TERM(v)   BF_CS1(HDMI_PHY_TXTERM, D_TX_TERM, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_PTRPT_ENBL - Power Sequence, TX Clock Alignment, Resistance Calibration, Pattern Generator Skip Bit, and TMDS Encoder Enable
+ * @brief HW_HDMI_PHY_PTRPT_ENBL - Power Sequence, TX Clock Alignment, Resistance Calibration, Pattern Generator Skip Bit, and TMDS Encoder Enable (RW)
  *
  * Register name : -  Access type : Read/write/override  Address : 0x1A  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short REFCLK_ENB : 1; //!< Reference Clock Enable  This bit enables or disables the input reference clock.
-        unsigned short CKO_WORD_ENB : 1; //!< Output Clock Word Enable  This bit enables the output word clock.
-        unsigned short TX_READY : 1; //!< Transmission Ready  This bit indicates whether the PHY transmit driver is ready to transmit data.
-        unsigned short TX_CK_ALIGN_ENB : 1; //!< Transmission Clock Alignment Enable  This bit disables or enables the clock alignment FSM.
-        unsigned short RCAL_ENB : 1; //!< Resistance Calibration Enable  This bit enables or disables the resistance clock alignment process.
-        unsigned short CK_REF_ENB : 1; //!< Clock Reference Enable  This bit powers up the clock alignment and the resistance calibration modules.
-        unsigned short PG_SKIP_BIT0 : 1; //!< Pattern Generator Skip Bit 0  This bit enables or disables pattern generator skip bit feature for channel 0.
-        unsigned short PG_SKIP_BIT1 : 1; //!< Pattern Generator Skip Bit 1  This bit enables or disables pattern generator skip bit feature for channel 1.
-        unsigned short PG_SKIP_BIT2 : 1; //!< Pattern Generator Skip Bit 2  This bit enables or disables pattern generator skip bit feature for channel 2.
+        unsigned short REFCLK_ENB : 1; //!< Reference Clock Enable This bit enables or disables the input reference clock.
+        unsigned short CKO_WORD_ENB : 1; //!< Output Clock Word Enable This bit enables the output word clock.
+        unsigned short TX_READY : 1; //!< Transmission Ready This bit indicates whether the PHY transmit driver is ready to transmit data.
+        unsigned short TX_CK_ALIGN_ENB : 1; //!< Transmission Clock Alignment Enable This bit disables or enables the clock alignment FSM.
+        unsigned short RCAL_ENB : 1; //!< Resistance Calibration Enable This bit enables or disables the resistance clock alignment process.
+        unsigned short CK_REF_ENB : 1; //!< Clock Reference Enable This bit powers up the clock alignment and the resistance calibration modules.
+        unsigned short PG_SKIP_BIT0 : 1; //!< Pattern Generator Skip Bit 0 This bit enables or disables pattern generator skip bit feature for channel 0.
+        unsigned short PG_SKIP_BIT1 : 1; //!< Pattern Generator Skip Bit 1 This bit enables or disables pattern generator skip bit feature for channel 1.
+        unsigned short PG_SKIP_BIT2 : 1; //!< Pattern Generator Skip Bit 2 This bit enables or disables pattern generator skip bit feature for channel 2.
         unsigned short RESERVED0 : 6; //!< Reserved
         unsigned short OVERRIDE : 1; //!< If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -2769,14 +3110,17 @@ typedef union
 #define HW_HDMI_PHY_PTRPT_ENBL_TOG(v)    (HW_HDMI_PHY_PTRPT_ENBL_WR(HW_HDMI_PHY_PTRPT_ENBL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_PTRPT_ENBL bitfields
  */
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field REFCLK_ENB
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field REFCLK_ENB (RW)
  *
- * Reference Clock Enable  This bit enables or disables the input reference clock.
+ * Reference Clock Enable This bit enables or disables the input reference clock.
+ *
+ * Values:
+ * 0 - Disable the input reference clock, if the Override bit is 0.
+ * 1 - Enable the input reference clock, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB      0
@@ -2788,12 +3132,18 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB(v)   (((v) << 0) & BM_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REFCLK_ENB field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, REFCLK_ENB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field CKO_WORD_ENB
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field CKO_WORD_ENB (RW)
  *
- * Output Clock Word Enable  This bit enables the output word clock.
+ * Output Clock Word Enable This bit enables the output word clock.
+ *
+ * Values:
+ * 0 - Disable the output clock word, if the Override bit is 0.
+ * 1 - Enable the output clock word, if the Override bit is 0
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB      1
@@ -2805,12 +3155,18 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB(v)   (((v) << 1) & BM_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CKO_WORD_ENB field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, CKO_WORD_ENB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field TX_READY
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field TX_READY (RW)
  *
- * Transmission Ready  This bit indicates whether the PHY transmit driver is ready to transmit data.
+ * Transmission Ready This bit indicates whether the PHY transmit driver is ready to transmit data.
+ *
+ * Values:
+ * 0 - PHY transmit driver is not ready to transmit data, if the Override bit is 0.
+ * 1 - PHY transmit driver is ready to transmit data, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_TX_READY      2
@@ -2822,12 +3178,18 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_TX_READY(v)   (((v) << 2) & BM_HDMI_PHY_PTRPT_ENBL_TX_READY)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_READY field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_TX_READY(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, TX_READY, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field TX_CK_ALIGN_ENB
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field TX_CK_ALIGN_ENB (RW)
  *
- * Transmission Clock Alignment Enable  This bit disables or enables the clock alignment FSM.
+ * Transmission Clock Alignment Enable This bit disables or enables the clock alignment FSM.
+ *
+ * Values:
+ * 0 - Disable transmission clock alignment FSM, if the Override bit is 0.
+ * 1 - Enable transmission clock alignment FSM, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB      3
@@ -2839,13 +3201,19 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB(v)   (((v) << 3) & BM_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CK_ALIGN_ENB field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, TX_CK_ALIGN_ENB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field RCAL_ENB
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field RCAL_ENB (RW)
  *
- * Resistance Calibration Enable  This bit enables or disables the resistance clock alignment
+ * Resistance Calibration Enable This bit enables or disables the resistance clock alignment
  * process.
+ *
+ * Values:
+ * 0 - Disable the resistance calibration FSM, if the Override bit is 0.
+ * 1 - Enable the resistance calibration FSM, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_RCAL_ENB      4
@@ -2857,13 +3225,19 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_RCAL_ENB(v)   (((v) << 4) & BM_HDMI_PHY_PTRPT_ENBL_RCAL_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RCAL_ENB field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_RCAL_ENB(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, RCAL_ENB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field CK_REF_ENB
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field CK_REF_ENB (RW)
  *
- * Clock Reference Enable  This bit powers up the clock alignment and the resistance calibration
+ * Clock Reference Enable This bit powers up the clock alignment and the resistance calibration
  * modules.
+ *
+ * Values:
+ * 0 - Powers down the clock alignment and the resistance calibration modules, if the Override bit is 0.
+ * 1 - Powers up the clock alignment and the resistance calibration modules, if the Override bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB      5
@@ -2875,13 +3249,21 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB(v)   (((v) << 5) & BM_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_REF_ENB field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, CK_REF_ENB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT0
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT0 (RW)
  *
- * Pattern Generator Skip Bit 0  This bit enables or disables pattern generator skip bit feature for
+ * Pattern Generator Skip Bit 0 This bit enables or disables pattern generator skip bit feature for
  * channel 0.
+ *
+ * Values:
+ * 0 - Disable the pattern generator skip bit feature for the first transmitting channel, if the Override
+ *     bit is 0.
+ * 1 - Enable the pattern generator skip bit feature for the first transmitting channel, if the Override
+ *     bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0      6
@@ -2893,13 +3275,21 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0(v)   (((v) << 6) & BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_SKIP_BIT0 field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, PG_SKIP_BIT0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT1
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT1 (RW)
  *
- * Pattern Generator Skip Bit 1  This bit enables or disables pattern generator skip bit feature for
+ * Pattern Generator Skip Bit 1 This bit enables or disables pattern generator skip bit feature for
  * channel 1.
+ *
+ * Values:
+ * 0 - Disable the pattern generator skip bit feature for the second transmitting channel, if the Override
+ *     bit is 0.
+ * 1 - Enable the pattern generator skip bit feature for the second transmitting channel, if the Override
+ *     bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1      7
@@ -2911,13 +3301,21 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1(v)   (((v) << 7) & BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_SKIP_BIT1 field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, PG_SKIP_BIT1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT2
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT2 (RW)
  *
- * Pattern Generator Skip Bit 2  This bit enables or disables pattern generator skip bit feature for
+ * Pattern Generator Skip Bit 2 This bit enables or disables pattern generator skip bit feature for
  * channel 2.
+ *
+ * Values:
+ * 0 - Disable the pattern generator skip bit feature for the third transmitting channel, if the Override
+ *     bit is 0.
+ * 1 - Enable the pattern generator skip bit feature for the third transmitting channel, if the Override
+ *     bit is 0.
  */
 
 #define BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2      8
@@ -2929,10 +3327,12 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2(v)   (((v) << 8) & BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_SKIP_BIT2 field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, PG_SKIP_BIT2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field OVERRIDE
+
+/* --- Register HW_HDMI_PHY_PTRPT_ENBL, field OVERRIDE (RW)
  *
  * If the Override bit is set to 1, the working value is the Override bit value, not the registered
  * value.
@@ -2947,24 +3347,25 @@ typedef union
 #define BF_HDMI_PHY_PTRPT_ENBL_OVERRIDE(v)   (((v) << 15) & BM_HDMI_PHY_PTRPT_ENBL_OVERRIDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVERRIDE field to a new value.
 #define BW_HDMI_PHY_PTRPT_ENBL_OVERRIDE(v)   BF_CS1(HDMI_PHY_PTRPT_ENBL, OVERRIDE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_PATTERNGEN - Pattern Generator Mode
+ * @brief HW_HDMI_PHY_PATTERNGEN - Pattern Generator Mode (RW)
  *
  * Register name : PATTERNGEN  Access type : Read/write  Address : 0x1B  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short PG_PAT : 10; //!< Pattern Generator Generated Pattern  This bus carries the generated pattern from the Pattern Generator module.
-        unsigned short PG_INSERT_ERR0 : 1; //!< Pattern Generator Insert Error Zero  This bit enables or disables error insertion inside the generated pattern for channel 0.
-        unsigned short PG_INSERT_ERR1 : 1; //!< Pattern Generator Insert Error One  This bit enables or disables error insertion inside the generated pattern for channel 1.
-        unsigned short PG_INSERT_ERR2 : 1; //!< Pattern Generator Insert Error Two  This bit enables or disables error insertion inside the generated pattern for channel 2.
+        unsigned short PG_PAT : 10; //!< Pattern Generator Generated Pattern This bus carries the generated pattern from the Pattern Generator module.
+        unsigned short PG_INSERT_ERR0 : 1; //!< Pattern Generator Insert Error Zero This bit enables or disables error insertion inside the generated pattern for channel 0.
+        unsigned short PG_INSERT_ERR1 : 1; //!< Pattern Generator Insert Error One This bit enables or disables error insertion inside the generated pattern for channel 1.
+        unsigned short PG_INSERT_ERR2 : 1; //!< Pattern Generator Insert Error Two This bit enables or disables error insertion inside the generated pattern for channel 2.
         unsigned short RESERVED0 : 3; //!< Reserved
     } B;
 } hw_hdmi_phy_patterngen_t;
@@ -2984,14 +3385,13 @@ typedef union
 #define HW_HDMI_PHY_PATTERNGEN_TOG(v)    (HW_HDMI_PHY_PATTERNGEN_WR(HW_HDMI_PHY_PATTERNGEN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_PATTERNGEN bitfields
  */
 
-/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_PAT
+/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_PAT (RW)
  *
- * Pattern Generator Generated Pattern  This bus carries the generated pattern from the Pattern
+ * Pattern Generator Generated Pattern This bus carries the generated pattern from the Pattern
  * Generator module.
  */
 
@@ -3004,13 +3404,18 @@ typedef union
 #define BF_HDMI_PHY_PATTERNGEN_PG_PAT(v)   (((v) << 0) & BM_HDMI_PHY_PATTERNGEN_PG_PAT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_PAT field to a new value.
 #define BW_HDMI_PHY_PATTERNGEN_PG_PAT(v)   BF_CS1(HDMI_PHY_PATTERNGEN, PG_PAT, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR0
+/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR0 (RW)
  *
- * Pattern Generator Insert Error Zero  This bit enables or disables error insertion inside the
+ * Pattern Generator Insert Error Zero This bit enables or disables error insertion inside the
  * generated pattern for channel 0.
+ *
+ * Values:
+ * 0 - Do not insert error inside generated pattern for the first transmit channel.
+ * 1 - Insert error inside generated pattern for the first transmit channel.
  */
 
 #define BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0      10
@@ -3022,13 +3427,19 @@ typedef union
 #define BF_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0(v)   (((v) << 10) & BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_INSERT_ERR0 field to a new value.
 #define BW_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0(v)   BF_CS1(HDMI_PHY_PATTERNGEN, PG_INSERT_ERR0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR1
+
+/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR1 (RW)
  *
- * Pattern Generator Insert Error One  This bit enables or disables error insertion inside the
+ * Pattern Generator Insert Error One This bit enables or disables error insertion inside the
  * generated pattern for channel 1.
+ *
+ * Values:
+ * 0 - Do not insert error inside generated pattern for the second transmit channel.
+ * 1 - Insert error inside generated pattern for the second transmit channel.
  */
 
 #define BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1      11
@@ -3040,13 +3451,19 @@ typedef union
 #define BF_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1(v)   (((v) << 11) & BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_INSERT_ERR1 field to a new value.
 #define BW_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1(v)   BF_CS1(HDMI_PHY_PATTERNGEN, PG_INSERT_ERR1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR2
+
+/* --- Register HW_HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR2 (RW)
  *
- * Pattern Generator Insert Error Two  This bit enables or disables error insertion inside the
+ * Pattern Generator Insert Error Two This bit enables or disables error insertion inside the
  * generated pattern for channel 2.
+ *
+ * Values:
+ * 0 - Do not insert error inside generated pattern for the third transmit channel.
+ * 1 - Insert error inside generated pattern for the third transmit channel.
  */
 
 #define BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2      12
@@ -3058,26 +3475,28 @@ typedef union
 #define BF_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2(v)   (((v) << 12) & BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_INSERT_ERR2 field to a new value.
 #define BW_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2(v)   BF_CS1(HDMI_PHY_PATTERNGEN, PG_INSERT_ERR2, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_SDCAP_MODE - The Soft-Reset and DAC Enable, Clock Alignment and PG Mode
+ * @brief HW_HDMI_PHY_SDCAP_MODE - The Soft-Reset and DAC Enable, Clock Alignment and PG Mode (RW)
  *
  * Register name : -  Access type : Read/write  Address : 0x1C  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SOFT_RESET : 1; //!< Soft Reset  This bit enables or disables the soft-reset feature.
-        unsigned short ADC_ENB : 1; //!< Analog-to-Digital Converter Enable  This bit enables or disables the analog-to-digital converter.
-        unsigned short TX_CK_ALIGN_MODE : 1; //!< Transmission Clock Alignment Mode  This bit selects the Transmission Clock Alignment mode.
-        unsigned short PG_MODE0 : 3; //!< Pattern Generator Mode 0  This bus is used to select the mode of the Pattern Generator module for channel 0.
-        unsigned short PG_MODE1 : 3; //!< Pattern Generator Mode 1  This bus is used to select the mode of the Pattern Generator module for channel 1.
-        unsigned short PG_MODE2 : 3; //!< Pattern Generator Mode 2  This bus is used to select the mode of the Pattern Generator module for channel 2.
+        unsigned short SOFT_RESET : 1; //!< Soft Reset This bit enables or disables the soft-reset feature.
+        unsigned short ADC_ENB : 1; //!< Analog-to-Digital Converter Enable This bit enables or disables the analog-to-digital converter.
+        unsigned short TX_CK_ALIGN_MODE : 1; //!< Transmission Clock Alignment Mode This bit selects the Transmission Clock Alignment mode.
+        unsigned short PG_MODE0 : 3; //!< Pattern Generator Mode 0 This bus is used to select the mode of the Pattern Generator module for channel 0.
+        unsigned short PG_MODE1 : 3; //!< Pattern Generator Mode 1 This bus is used to select the mode of the Pattern Generator module for channel 1.
+        unsigned short PG_MODE2 : 3; //!< Pattern Generator Mode 2 This bus is used to select the mode of the Pattern Generator module for channel 2.
         unsigned short RESERVED0 : 4; //!< Reserved
     } B;
 } hw_hdmi_phy_sdcap_mode_t;
@@ -3097,14 +3516,17 @@ typedef union
 #define HW_HDMI_PHY_SDCAP_MODE_TOG(v)    (HW_HDMI_PHY_SDCAP_MODE_WR(HW_HDMI_PHY_SDCAP_MODE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_SDCAP_MODE bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SDCAP_MODE, field SOFT_RESET
+/* --- Register HW_HDMI_PHY_SDCAP_MODE, field SOFT_RESET (RW)
  *
- * Soft Reset  This bit enables or disables the soft-reset feature.
+ * Soft Reset This bit enables or disables the soft-reset feature.
+ *
+ * Values:
+ * 0 - Do not perform a soft reset.
+ * 1 - Perform a soft reset by resetting all the system FSMs except the I 2 C and Control Register modules.
  */
 
 #define BP_HDMI_PHY_SDCAP_MODE_SOFT_RESET      0
@@ -3116,12 +3538,18 @@ typedef union
 #define BF_HDMI_PHY_SDCAP_MODE_SOFT_RESET(v)   (((v) << 0) & BM_HDMI_PHY_SDCAP_MODE_SOFT_RESET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SOFT_RESET field to a new value.
 #define BW_HDMI_PHY_SDCAP_MODE_SOFT_RESET(v)   BF_CS1(HDMI_PHY_SDCAP_MODE, SOFT_RESET, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SDCAP_MODE, field ADC_ENB
+
+/* --- Register HW_HDMI_PHY_SDCAP_MODE, field ADC_ENB (RW)
  *
- * Analog-to-Digital Converter Enable  This bit enables or disables the analog-to-digital converter.
+ * Analog-to-Digital Converter Enable This bit enables or disables the analog-to-digital converter.
+ *
+ * Values:
+ * 0 - Disable the analog-to-digital converter.
+ * 1 - Enable the analog-to-digital converter, which is used in the Resistance Calibration module.
  */
 
 #define BP_HDMI_PHY_SDCAP_MODE_ADC_ENB      1
@@ -3133,12 +3561,18 @@ typedef union
 #define BF_HDMI_PHY_SDCAP_MODE_ADC_ENB(v)   (((v) << 1) & BM_HDMI_PHY_SDCAP_MODE_ADC_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADC_ENB field to a new value.
 #define BW_HDMI_PHY_SDCAP_MODE_ADC_ENB(v)   BF_CS1(HDMI_PHY_SDCAP_MODE, ADC_ENB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SDCAP_MODE, field TX_CK_ALIGN_MODE
+
+/* --- Register HW_HDMI_PHY_SDCAP_MODE, field TX_CK_ALIGN_MODE (RW)
  *
- * Transmission Clock Alignment Mode  This bit selects the Transmission Clock Alignment mode.
+ * Transmission Clock Alignment Mode This bit selects the Transmission Clock Alignment mode.
+ *
+ * Values:
+ * 0 - Align the three lanes based on lane 1.
+ * 1 - Align each of the three lanes separately in the following order: lane 2, lane 0, then lane 1.
  */
 
 #define BP_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE      2
@@ -3150,13 +3584,32 @@ typedef union
 #define BF_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE(v)   (((v) << 2) & BM_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CK_ALIGN_MODE field to a new value.
 #define BW_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE(v)   BF_CS1(HDMI_PHY_SDCAP_MODE, TX_CK_ALIGN_MODE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SDCAP_MODE, field PG_MODE0
+
+/* --- Register HW_HDMI_PHY_SDCAP_MODE, field PG_MODE0 (RW)
  *
- * Pattern Generator Mode 0  This bus is used to select the mode of the Pattern Generator module for
+ * Pattern Generator Mode 0 This bus is used to select the mode of the Pattern Generator module for
  * channel 0.
+ *
+ * Values:
+ * 000 - Disable the Pattern Generator module.
+ * 001 - Enable the Pattern Generator module and generate a sequence of patterns for the first channel using
+ *     LFSR 15 equation (for example, x15 + x14 + 1).
+ * 010 - Enable the Pattern Generator module and generate a sequence of patterns for the first channel using
+ *     LFSR 7 equation (for example, x7 + x6 + 1).
+ * 011 - Enable the Pattern Generator module and generate a sequence of patterns for the first channel with
+ *     the fixed word, which is saved inside the pg_pat[9:0] field of the PATTERNGEN register.
+ * 100 - Enable the Pattern Generator module and generate a sequence of patterns for the first channel with
+ *     DC-balanced word (for example, 0's or 1's and their inverted values).
+ * 101 - Enable the Pattern Generator module and generate a sequence of patterns for the first channel with
+ *     fixed pattern using word of 0's word, 1's word, random word, the saved pattern inside the
+ *     pg_pat[9:0] field of the PATTERNGEN register, and the inverted pg_pat[9:0] values (for
+ *     example, 9 bits of 0's, 9 bits of 1's, 3FF, pg_pat[9:0], ~ pg_pat[9:0]).
+ * 110 - Reserved
+ * 111 - Reserved
  */
 
 #define BP_HDMI_PHY_SDCAP_MODE_PG_MODE0      3
@@ -3168,13 +3621,32 @@ typedef union
 #define BF_HDMI_PHY_SDCAP_MODE_PG_MODE0(v)   (((v) << 3) & BM_HDMI_PHY_SDCAP_MODE_PG_MODE0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_MODE0 field to a new value.
 #define BW_HDMI_PHY_SDCAP_MODE_PG_MODE0(v)   BF_CS1(HDMI_PHY_SDCAP_MODE, PG_MODE0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SDCAP_MODE, field PG_MODE1
+
+/* --- Register HW_HDMI_PHY_SDCAP_MODE, field PG_MODE1 (RW)
  *
- * Pattern Generator Mode 1  This bus is used to select the mode of the Pattern Generator module for
+ * Pattern Generator Mode 1 This bus is used to select the mode of the Pattern Generator module for
  * channel 1.
+ *
+ * Values:
+ * 000 - Disable the Pattern Generator module.
+ * 001 - Enable the Pattern Generator module and generate a sequence of patterns for the second channel using
+ *     LFSR 15 equation (for example, x15 + x14 + 1).
+ * 010 - second the Pattern Generator module and generate a sequence of patterns for the first channel using
+ *     LFSR 7 equation (for example, x7 + x6 + 1).
+ * 011 - Enable the Pattern Generator module and generate a sequence of patterns for the second channel with
+ *     the fixed word, which is saved inside the pg_pat[9:0] field of the PATTERNGEN register.
+ * 100 - Enable the Pattern Generator module and generate a sequence of patterns for the second channel with
+ *     DC-balanced word (for example, 0's or 1's and their inverted values).
+ * 101 - Enable the Pattern Generator module and generate a sequence of patterns for the second channel with
+ *     fixed pattern using word of 0's word, 1's word, random word, the saved pattern inside the
+ *     pg_pat[9:0] field of the PATTERNGEN register, and the inverted pg_pat[9:0] values (for
+ *     example, 9 bits of 0's, 9 bits of 1's, 3FF, pg_pat[9:0], ~ pg_pat[9:0]).
+ * 110 - Reserved
+ * 111 - Reserved
  */
 
 #define BP_HDMI_PHY_SDCAP_MODE_PG_MODE1      6
@@ -3186,13 +3658,32 @@ typedef union
 #define BF_HDMI_PHY_SDCAP_MODE_PG_MODE1(v)   (((v) << 6) & BM_HDMI_PHY_SDCAP_MODE_PG_MODE1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_MODE1 field to a new value.
 #define BW_HDMI_PHY_SDCAP_MODE_PG_MODE1(v)   BF_CS1(HDMI_PHY_SDCAP_MODE, PG_MODE1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SDCAP_MODE, field PG_MODE2
+
+/* --- Register HW_HDMI_PHY_SDCAP_MODE, field PG_MODE2 (RW)
  *
- * Pattern Generator Mode 2  This bus is used to select the mode of the Pattern Generator module for
+ * Pattern Generator Mode 2 This bus is used to select the mode of the Pattern Generator module for
  * channel 2.
+ *
+ * Values:
+ * 000 - Disable the Pattern Generator module.
+ * 001 - Enable the Pattern Generator module and generate a sequence of patterns for the third channel using
+ *     LFSR 15 equation (for example, x15 + x14 + 1).
+ * 010 - Enable the Pattern Generator module and generate a sequence of patterns for the third channel using
+ *     LFSR 7 equation (for example, x7 + x6 + 1).
+ * 011 - Enable the Pattern Generator module and generate a sequence of patterns for the third channel with
+ *     the fixed word, which is saved inside the pg_pat[9:0] field of the PATTERNGEN register.
+ * 100 - Enable the Pattern Generator module and generate a sequence of patterns for the third channel with
+ *     DC-balanced word (for example, 0's or 1's and their inverted values).
+ * 101 - Enable the Pattern Generator module and generate a sequence of patterns for the third channel with
+ *     fixed pattern using word of 0's word, 1's word, random word, the saved pattern inside the
+ *     pg_pat[9:0] field of the PATTERNGEN register, and the inverted pg_pat[9:0] values (for
+ *     example, 9 bits of 0's, 9 bits of 1's, 3FF, pg_pat[9:0], ~ pg_pat[9:0]).
+ * 110 - Reserved
+ * 111 - Reserved
  */
 
 #define BP_HDMI_PHY_SDCAP_MODE_PG_MODE2      9
@@ -3204,25 +3695,27 @@ typedef union
 #define BF_HDMI_PHY_SDCAP_MODE_PG_MODE2(v)   (((v) << 9) & BM_HDMI_PHY_SDCAP_MODE_PG_MODE2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PG_MODE2 field to a new value.
 #define BW_HDMI_PHY_SDCAP_MODE_PG_MODE2(v)   BF_CS1(HDMI_PHY_SDCAP_MODE, PG_MODE2, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_SCOPEMODE - Scope Mode register
+ * @brief HW_HDMI_PHY_SCOPEMODE - Scope Mode register (RW)
  *
  * Register name : SCOPEMODE  Access type : Read/write  Address : 0x1D  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_SAMPLE_CNT : 10; //!< Scope Sample Counter  Indicates the number of samples that will be counted (should be multiple of the LFSR length). This count includes only the LSB bits; if the LFSR15 was used, you must program the new bits under the 0x24 register.
-        unsigned short SCOPE_ENB0 : 1; //!< Scope Enable 0  This bit enables or disables the tracing of 1's on channel 0.
-        unsigned short SCOPE_ENB1 : 1; //!< Scope Enable 1  This bit enables or disables the tracing of 1's on channel 1.
-        unsigned short SCOPE_ENB2 : 1; //!< Scope Enable 2  This bit enables or disables the tracing of 1's on channel 2.
-        unsigned short CK_SCOPE_ENB : 1; //!< Clock Scope Enable  This bit enables or disables the tracing of 1's on the clock channel.
+        unsigned short SCOPE_SAMPLE_CNT : 10; //!< Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of the LFSR length). This count includes only the LSB bits; if the LFSR15 was used, you must program the new bits under the 0x24 register.
+        unsigned short SCOPE_ENB0 : 1; //!< Scope Enable 0 This bit enables or disables the tracing of 1's on channel 0.
+        unsigned short SCOPE_ENB1 : 1; //!< Scope Enable 1 This bit enables or disables the tracing of 1's on channel 1.
+        unsigned short SCOPE_ENB2 : 1; //!< Scope Enable 2 This bit enables or disables the tracing of 1's on channel 2.
+        unsigned short CK_SCOPE_ENB : 1; //!< Clock Scope Enable This bit enables or disables the tracing of 1's on the clock channel.
         unsigned short RESERVED0 : 2; //!< Reserved
     } B;
 } hw_hdmi_phy_scopemode_t;
@@ -3242,14 +3735,13 @@ typedef union
 #define HW_HDMI_PHY_SCOPEMODE_TOG(v)    (HW_HDMI_PHY_SCOPEMODE_WR(HW_HDMI_PHY_SCOPEMODE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_SCOPEMODE bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_SAMPLE_CNT
+/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_SAMPLE_CNT (RW)
  *
- * Scope Sample Counter  Indicates the number of samples that will be counted (should be multiple of
+ * Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of
  * the LFSR length). This count includes only the LSB bits; if the LFSR15 was used, you must program
  * the new bits under the 0x24 register.
  */
@@ -3263,12 +3755,17 @@ typedef union
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT(v)   (((v) << 0) & BM_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_SAMPLE_CNT field to a new value.
 #define BW_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT(v)   BF_CS1(HDMI_PHY_SCOPEMODE, SCOPE_SAMPLE_CNT, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_ENB0
+/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_ENB0 (RW)
  *
- * Scope Enable 0  This bit enables or disables the tracing of 1's on channel 0.
+ * Scope Enable 0 This bit enables or disables the tracing of 1's on channel 0.
+ *
+ * Values:
+ * 0 - Disable the tracing of 1's on the first channel.
+ * 1 - Enable the tracing of 1's on the first channel.
  */
 
 #define BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB0      10
@@ -3280,12 +3777,18 @@ typedef union
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_ENB0(v)   (((v) << 10) & BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_ENB0 field to a new value.
 #define BW_HDMI_PHY_SCOPEMODE_SCOPE_ENB0(v)   BF_CS1(HDMI_PHY_SCOPEMODE, SCOPE_ENB0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_ENB1
+
+/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_ENB1 (RW)
  *
- * Scope Enable 1  This bit enables or disables the tracing of 1's on channel 1.
+ * Scope Enable 1 This bit enables or disables the tracing of 1's on channel 1.
+ *
+ * Values:
+ * 0 - Disable the tracing of 1's on the second channel.
+ * 1 - Enable the tracing of 1's on the second channel.
  */
 
 #define BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB1      11
@@ -3297,12 +3800,18 @@ typedef union
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_ENB1(v)   (((v) << 11) & BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_ENB1 field to a new value.
 #define BW_HDMI_PHY_SCOPEMODE_SCOPE_ENB1(v)   BF_CS1(HDMI_PHY_SCOPEMODE, SCOPE_ENB1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_ENB2
+
+/* --- Register HW_HDMI_PHY_SCOPEMODE, field SCOPE_ENB2 (RW)
  *
- * Scope Enable 2  This bit enables or disables the tracing of 1's on channel 2.
+ * Scope Enable 2 This bit enables or disables the tracing of 1's on channel 2.
+ *
+ * Values:
+ * 0 - Disable the tracing of 1's on the third channel.
+ * 1 - Enable the tracing of 1's on the third channel.
  */
 
 #define BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB2      12
@@ -3314,12 +3823,18 @@ typedef union
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_ENB2(v)   (((v) << 12) & BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_ENB2 field to a new value.
 #define BW_HDMI_PHY_SCOPEMODE_SCOPE_ENB2(v)   BF_CS1(HDMI_PHY_SCOPEMODE, SCOPE_ENB2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_SCOPEMODE, field CK_SCOPE_ENB
+
+/* --- Register HW_HDMI_PHY_SCOPEMODE, field CK_SCOPE_ENB (RW)
  *
- * Clock Scope Enable  This bit enables or disables the tracing of 1's on the clock channel.
+ * Clock Scope Enable This bit enables or disables the tracing of 1's on the clock channel.
+ *
+ * Values:
+ * 0 - Disable the tracing of 1's on the clock.
+ * 1 - Enable the tracing of 1's on the clock.
  */
 
 #define BP_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB      13
@@ -3331,11 +3846,14 @@ typedef union
 #define BF_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB(v)   (((v) << 13) & BM_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_SCOPE_ENB field to a new value.
 #define BW_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB(v)   BF_CS1(HDMI_PHY_SCOPEMODE, CK_SCOPE_ENB, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_DIGTXMODE - Digital Transmission Mode
+ * @brief HW_HDMI_PHY_DIGTXMODE - Digital Transmission Mode (RW)
  *
  * Register name : DIGTXMODE  Access type : Read/write  Address : 0x1E  Value at reset : 0x0000
  * dtb_select[6:0]   The dtb_select[6:0] encodings for the bit pairs are as follows:   Power
@@ -3395,20 +3913,19 @@ typedef union
  * Rx Sense    0x64: dtb[1] = rx_sense of clock driver and dtb[0] = rx_sense of CH2's driver  0x65:
  * dtb[1] = rx_sense of CH1's driver and dtb[0] = rx_sense of CH0's driver  0x66: -
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SKIP_BIT0 : 1; //!< Skip Bit 0  This bit enables or disables skipping of the ninth bit of the transmitted pattern on channel 0.
-        unsigned short SKIP_BIT1 : 1; //!< Skip Bit 1  This bit enables or disables skipping of the ninth bit of the transmitted pattern on channel 1.
-        unsigned short SKIP_BIT2 : 1; //!< Skip Bit 2  This bit enables or disables skipping of the ninth bit of the transmitted pattern on channel 2.
-        unsigned short CKO_WORD_DIV_ENB : 1; //!< Clock Output Word Divider Enable  This bit enables or disables the output clock word divider.
-        unsigned short INVERT_DATA0 : 1; //!< Inverter Data 0  This bit enables or disables the inverting feature for the transmitted pattern on channel 0.
-        unsigned short INVERT_DATA1 : 1; //!< Inverter Data 1  This bit enables or disables the inverting feature for the transmitted pattern on channel 1.
-        unsigned short INVERT_DATA2 : 1; //!< Inverter Data 2  This bit enables or disables the inverting feature for the transmitted pattern on channel 2.
-        unsigned short DTB_SELECT : 6; //!< Debug Test Bus Select  This field determines the pair of bits placed on the dtb[1:0] bus. These selected pairs of bits come from the control register. The values that appear on dtb[1:0] are the current values actually stored in the control register (not the override values) with the exception of I 2 C values, which are not stored in the control register.  For information about the bit pairs, see dtb_select[6:0] .
+        unsigned short SKIP_BIT0 : 1; //!< Skip Bit 0 This bit enables or disables skipping of the ninth bit of the transmitted pattern on channel 0.
+        unsigned short SKIP_BIT1 : 1; //!< Skip Bit 1 This bit enables or disables skipping of the ninth bit of the transmitted pattern on channel 1.
+        unsigned short SKIP_BIT2 : 1; //!< Skip Bit 2 This bit enables or disables skipping of the ninth bit of the transmitted pattern on channel 2.
+        unsigned short CKO_WORD_DIV_ENB : 1; //!< Clock Output Word Divider Enable This bit enables or disables the output clock word divider.
+        unsigned short INVERT_DATA0 : 1; //!< Inverter Data 0 This bit enables or disables the inverting feature for the transmitted pattern on channel 0.
+        unsigned short INVERT_DATA1 : 1; //!< Inverter Data 1 This bit enables or disables the inverting feature for the transmitted pattern on channel 1.
+        unsigned short INVERT_DATA2 : 1; //!< Inverter Data 2 This bit enables or disables the inverting feature for the transmitted pattern on channel 2.
+        unsigned short DTB_SELECT : 6; //!< Debug Test Bus Select This field determines the pair of bits placed on the dtb[1:0] bus. These selected pairs of bits come from the control register. The values that appear on dtb[1:0] are the current values actually stored in the control register (not the override values) with the exception of I 2 C values, which are not stored in the control register. For information about the bit pairs, see dtb_select[6:0] .
         unsigned short RESERVED0 : 3; //!< Reserved
     } B;
 } hw_hdmi_phy_digtxmode_t;
@@ -3428,15 +3945,18 @@ typedef union
 #define HW_HDMI_PHY_DIGTXMODE_TOG(v)    (HW_HDMI_PHY_DIGTXMODE_WR(HW_HDMI_PHY_DIGTXMODE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_DIGTXMODE bitfields
  */
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field SKIP_BIT0
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field SKIP_BIT0 (RW)
  *
- * Skip Bit 0  This bit enables or disables skipping of the ninth bit of the transmitted pattern on
+ * Skip Bit 0 This bit enables or disables skipping of the ninth bit of the transmitted pattern on
  * channel 0.
+ *
+ * Values:
+ * 0 - Disable the skipping feature on the first channel.
+ * 1 - Enable the skipping feature on the first channel.
  */
 
 #define BP_HDMI_PHY_DIGTXMODE_SKIP_BIT0      0
@@ -3448,13 +3968,19 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_SKIP_BIT0(v)   (((v) << 0) & BM_HDMI_PHY_DIGTXMODE_SKIP_BIT0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SKIP_BIT0 field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_SKIP_BIT0(v)   BF_CS1(HDMI_PHY_DIGTXMODE, SKIP_BIT0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field SKIP_BIT1
+
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field SKIP_BIT1 (RW)
  *
- * Skip Bit 1  This bit enables or disables skipping of the ninth bit of the transmitted pattern on
+ * Skip Bit 1 This bit enables or disables skipping of the ninth bit of the transmitted pattern on
  * channel 1.
+ *
+ * Values:
+ * 0 - Disable the skipping feature on the second channel.
+ * 1 - Enable the skipping feature on the second channel.
  */
 
 #define BP_HDMI_PHY_DIGTXMODE_SKIP_BIT1      1
@@ -3466,13 +3992,19 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_SKIP_BIT1(v)   (((v) << 1) & BM_HDMI_PHY_DIGTXMODE_SKIP_BIT1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SKIP_BIT1 field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_SKIP_BIT1(v)   BF_CS1(HDMI_PHY_DIGTXMODE, SKIP_BIT1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field SKIP_BIT2
+
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field SKIP_BIT2 (RW)
  *
- * Skip Bit 2  This bit enables or disables skipping of the ninth bit of the transmitted pattern on
+ * Skip Bit 2 This bit enables or disables skipping of the ninth bit of the transmitted pattern on
  * channel 2.
+ *
+ * Values:
+ * 0 - Disable the skipping feature on the third channel.
+ * 1 - Enable the skipping feature on the third channel.
  */
 
 #define BP_HDMI_PHY_DIGTXMODE_SKIP_BIT2      2
@@ -3484,12 +4016,18 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_SKIP_BIT2(v)   (((v) << 2) & BM_HDMI_PHY_DIGTXMODE_SKIP_BIT2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SKIP_BIT2 field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_SKIP_BIT2(v)   BF_CS1(HDMI_PHY_DIGTXMODE, SKIP_BIT2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field CKO_WORD_DIV_ENB
+
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field CKO_WORD_DIV_ENB (RW)
  *
- * Clock Output Word Divider Enable  This bit enables or disables the output clock word divider.
+ * Clock Output Word Divider Enable This bit enables or disables the output clock word divider.
+ *
+ * Values:
+ * 0 - Disable the output clock divider.
+ * 1 - Enable the output clock divider.
  */
 
 #define BP_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB      3
@@ -3501,13 +4039,19 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB(v)   (((v) << 3) & BM_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CKO_WORD_DIV_ENB field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB(v)   BF_CS1(HDMI_PHY_DIGTXMODE, CKO_WORD_DIV_ENB, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field INVERT_DATA0
+
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field INVERT_DATA0 (RW)
  *
- * Inverter Data 0  This bit enables or disables the inverting feature for the transmitted pattern
- * on channel 0.
+ * Inverter Data 0 This bit enables or disables the inverting feature for the transmitted pattern on
+ * channel 0.
+ *
+ * Values:
+ * 0 - Disable the inverting feature on the first channel.
+ * 1 - Enable the inverting feature on the first channel.
  */
 
 #define BP_HDMI_PHY_DIGTXMODE_INVERT_DATA0      4
@@ -3519,13 +4063,19 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_INVERT_DATA0(v)   (((v) << 4) & BM_HDMI_PHY_DIGTXMODE_INVERT_DATA0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INVERT_DATA0 field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_INVERT_DATA0(v)   BF_CS1(HDMI_PHY_DIGTXMODE, INVERT_DATA0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field INVERT_DATA1
+
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field INVERT_DATA1 (RW)
  *
- * Inverter Data 1  This bit enables or disables the inverting feature for the transmitted pattern
- * on channel 1.
+ * Inverter Data 1 This bit enables or disables the inverting feature for the transmitted pattern on
+ * channel 1.
+ *
+ * Values:
+ * 0 - Disable the inverting feature on the second channel.
+ * 1 - Enable the inverting feature on the second channel.
  */
 
 #define BP_HDMI_PHY_DIGTXMODE_INVERT_DATA1      5
@@ -3537,13 +4087,19 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_INVERT_DATA1(v)   (((v) << 5) & BM_HDMI_PHY_DIGTXMODE_INVERT_DATA1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INVERT_DATA1 field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_INVERT_DATA1(v)   BF_CS1(HDMI_PHY_DIGTXMODE, INVERT_DATA1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field INVERT_DATA2
+
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field INVERT_DATA2 (RW)
  *
- * Inverter Data 2  This bit enables or disables the inverting feature for the transmitted pattern
- * on channel 2.
+ * Inverter Data 2 This bit enables or disables the inverting feature for the transmitted pattern on
+ * channel 2.
+ *
+ * Values:
+ * 0 - Disable the inverting feature on the third channel.
+ * 1 - Enable the inverting feature on the third channel.
  */
 
 #define BP_HDMI_PHY_DIGTXMODE_INVERT_DATA2      6
@@ -3555,15 +4111,17 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_INVERT_DATA2(v)   (((v) << 6) & BM_HDMI_PHY_DIGTXMODE_INVERT_DATA2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INVERT_DATA2 field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_INVERT_DATA2(v)   BF_CS1(HDMI_PHY_DIGTXMODE, INVERT_DATA2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_DIGTXMODE, field DTB_SELECT
+
+/* --- Register HW_HDMI_PHY_DIGTXMODE, field DTB_SELECT (RW)
  *
- * Debug Test Bus Select  This field determines the pair of bits placed on the dtb[1:0] bus. These
+ * Debug Test Bus Select This field determines the pair of bits placed on the dtb[1:0] bus. These
  * selected pairs of bits come from the control register. The values that appear on dtb[1:0] are the
  * current values actually stored in the control register (not the override values) with the
- * exception of I 2 C values, which are not stored in the control register.  For information about
+ * exception of I 2 C values, which are not stored in the control register. For information about
  * the bit pairs, see dtb_select[6:0] .
  */
 
@@ -3576,27 +4134,28 @@ typedef union
 #define BF_HDMI_PHY_DIGTXMODE_DTB_SELECT(v)   (((v) << 7) & BM_HDMI_PHY_DIGTXMODE_DTB_SELECT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DTB_SELECT field to a new value.
 #define BW_HDMI_PHY_DIGTXMODE_DTB_SELECT(v)   BF_CS1(HDMI_PHY_DIGTXMODE, DTB_SELECT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_STR_STATUS - Scope, Transmission Clock Alignment, and Resistance Calibration Set-on-Done Status
+ * @brief HW_HDMI_PHY_STR_STATUS - Scope, Transmission Clock Alignment, and Resistance Calibration Set-on-Done Status (RW)
  *
  * Register name : -  Access type : Read/write/asynchronous set-on-done  Address : 0x1F  Value at
  * reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_DONE0 : 1; //!< Scope Done 0  This bit indicates the status of tracing of 1's on channel 0.
-        unsigned short SCOPE_DONE1 : 1; //!< Scope Done 1  This bit indicates the status of tracing of 1's on channel 1.
-        unsigned short SCOPE_DONE2 : 1; //!< Scope Done 2  This bit indicates the status of tracing of 1's on channel 2.
-        unsigned short CK_SCOPE_DONE : 1; //!< Clock Scope Done  This bit indicates the status of tracing of 1's on the clock channel.
-        unsigned short TX_CK_ALIGN_DONE : 1; //!< Transmission Clock Alignment Done  This bit indicates the status of completing the transmission clock alignment FSM.
-        unsigned short RCAL_ADC_DONE : 1; //!< Resistance Calibration Analog-to-Digital Converter Done  This bit indicates the status of completing the resistance calibration FSM.
+        unsigned short SCOPE_DONE0 : 1; //!< Scope Done 0 This bit indicates the status of tracing of 1's on channel 0.
+        unsigned short SCOPE_DONE1 : 1; //!< Scope Done 1 This bit indicates the status of tracing of 1's on channel 1.
+        unsigned short SCOPE_DONE2 : 1; //!< Scope Done 2 This bit indicates the status of tracing of 1's on channel 2.
+        unsigned short CK_SCOPE_DONE : 1; //!< Clock Scope Done This bit indicates the status of tracing of 1's on the clock channel.
+        unsigned short TX_CK_ALIGN_DONE : 1; //!< Transmission Clock Alignment Done This bit indicates the status of completing the transmission clock alignment FSM.
+        unsigned short RCAL_ADC_DONE : 1; //!< Resistance Calibration Analog-to-Digital Converter Done This bit indicates the status of completing the resistance calibration FSM.
         unsigned short RESERVED0 : 10; //!< Reserved
     } B;
 } hw_hdmi_phy_str_status_t;
@@ -3616,14 +4175,17 @@ typedef union
 #define HW_HDMI_PHY_STR_STATUS_TOG(v)    (HW_HDMI_PHY_STR_STATUS_WR(HW_HDMI_PHY_STR_STATUS_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_STR_STATUS bitfields
  */
 
-/* --- Register HW_HDMI_PHY_STR_STATUS, field SCOPE_DONE0
+/* --- Register HW_HDMI_PHY_STR_STATUS, field SCOPE_DONE0 (RW)
  *
- * Scope Done 0  This bit indicates the status of tracing of 1's on channel 0.
+ * Scope Done 0 This bit indicates the status of tracing of 1's on channel 0.
+ *
+ * Values:
+ * 0 - The tracing process on channel 0 is not complete.
+ * 1 - The tracing process on channel 0 is complete.
  */
 
 #define BP_HDMI_PHY_STR_STATUS_SCOPE_DONE0      0
@@ -3635,12 +4197,18 @@ typedef union
 #define BF_HDMI_PHY_STR_STATUS_SCOPE_DONE0(v)   (((v) << 0) & BM_HDMI_PHY_STR_STATUS_SCOPE_DONE0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_DONE0 field to a new value.
 #define BW_HDMI_PHY_STR_STATUS_SCOPE_DONE0(v)   BF_CS1(HDMI_PHY_STR_STATUS, SCOPE_DONE0, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_STR_STATUS, field SCOPE_DONE1
+
+/* --- Register HW_HDMI_PHY_STR_STATUS, field SCOPE_DONE1 (RW)
  *
- * Scope Done 1  This bit indicates the status of tracing of 1's on channel 1.
+ * Scope Done 1 This bit indicates the status of tracing of 1's on channel 1.
+ *
+ * Values:
+ * 0 - The tracing process on channel 1 is not complete.
+ * 1 - The tracing process on channel 1 is complete.
  */
 
 #define BP_HDMI_PHY_STR_STATUS_SCOPE_DONE1      1
@@ -3652,12 +4220,18 @@ typedef union
 #define BF_HDMI_PHY_STR_STATUS_SCOPE_DONE1(v)   (((v) << 1) & BM_HDMI_PHY_STR_STATUS_SCOPE_DONE1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_DONE1 field to a new value.
 #define BW_HDMI_PHY_STR_STATUS_SCOPE_DONE1(v)   BF_CS1(HDMI_PHY_STR_STATUS, SCOPE_DONE1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_STR_STATUS, field SCOPE_DONE2
+
+/* --- Register HW_HDMI_PHY_STR_STATUS, field SCOPE_DONE2 (RW)
  *
- * Scope Done 2  This bit indicates the status of tracing of 1's on channel 2.
+ * Scope Done 2 This bit indicates the status of tracing of 1's on channel 2.
+ *
+ * Values:
+ * 0 - The tracing process on channel 2 is not complete.
+ * 1 - The tracing process on channel 2 is complete.
  */
 
 #define BP_HDMI_PHY_STR_STATUS_SCOPE_DONE2      2
@@ -3669,12 +4243,18 @@ typedef union
 #define BF_HDMI_PHY_STR_STATUS_SCOPE_DONE2(v)   (((v) << 2) & BM_HDMI_PHY_STR_STATUS_SCOPE_DONE2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_DONE2 field to a new value.
 #define BW_HDMI_PHY_STR_STATUS_SCOPE_DONE2(v)   BF_CS1(HDMI_PHY_STR_STATUS, SCOPE_DONE2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_STR_STATUS, field CK_SCOPE_DONE
+
+/* --- Register HW_HDMI_PHY_STR_STATUS, field CK_SCOPE_DONE (RW)
  *
- * Clock Scope Done  This bit indicates the status of tracing of 1's on the clock channel.
+ * Clock Scope Done This bit indicates the status of tracing of 1's on the clock channel.
+ *
+ * Values:
+ * 0 - The tracing process on the clock channel is not complete.
+ * 1 - The tracing process on the clock channel is complete.
  */
 
 #define BP_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE      3
@@ -3686,13 +4266,19 @@ typedef union
 #define BF_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE(v)   (((v) << 3) & BM_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CK_SCOPE_DONE field to a new value.
 #define BW_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE(v)   BF_CS1(HDMI_PHY_STR_STATUS, CK_SCOPE_DONE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_STR_STATUS, field TX_CK_ALIGN_DONE
+
+/* --- Register HW_HDMI_PHY_STR_STATUS, field TX_CK_ALIGN_DONE (RW)
  *
- * Transmission Clock Alignment Done  This bit indicates the status of completing the transmission
+ * Transmission Clock Alignment Done This bit indicates the status of completing the transmission
  * clock alignment FSM.
+ *
+ * Values:
+ * 0 - The transmission clock alignment FSM is not complete.
+ * 1 - The transmission clock alignment FSM is complete.
  */
 
 #define BP_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE      4
@@ -3704,13 +4290,19 @@ typedef union
 #define BF_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE(v)   (((v) << 4) & BM_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CK_ALIGN_DONE field to a new value.
 #define BW_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE(v)   BF_CS1(HDMI_PHY_STR_STATUS, TX_CK_ALIGN_DONE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_STR_STATUS, field RCAL_ADC_DONE
+
+/* --- Register HW_HDMI_PHY_STR_STATUS, field RCAL_ADC_DONE (RW)
  *
- * Resistance Calibration Analog-to-Digital Converter Done  This bit indicates the status of
+ * Resistance Calibration Analog-to-Digital Converter Done This bit indicates the status of
  * completing the resistance calibration FSM.
+ *
+ * Values:
+ * 0 - The resistance calibration FSM is not complete.
+ * 1 - The resistance calibration FSM is complete.
  */
 
 #define BP_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE      5
@@ -3722,21 +4314,23 @@ typedef union
 #define BF_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE(v)   (((v) << 5) & BM_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RCAL_ADC_DONE field to a new value.
 #define BW_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE(v)   BF_CS1(HDMI_PHY_STR_STATUS, RCAL_ADC_DONE, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_HDMI_PHY_SCOPECNT0 - Scope Counter on Channel 0
+ * @brief HW_HDMI_PHY_SCOPECNT0 - Scope Counter on Channel 0 (RO)
  *
  * Register name : SCOPECNT0  Access type : Read-only  Address : 0x20  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_ONES_CNT0 : 16; //!< Scope 1's Counter 0  This register carries the number of counted 1's on channel 0. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
+        unsigned short SCOPE_ONES_CNT0 : 16; //!< Scope 1's Counter 0 This register carries the number of counted 1's on channel 0. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
     } B;
 } hw_hdmi_phy_scopecnt0_t;
 #endif
@@ -3749,20 +4343,15 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_HDMI_PHY_SCOPECNT0           (*(volatile hw_hdmi_phy_scopecnt0_t *) HW_HDMI_PHY_SCOPECNT0_ADDR)
 #define HW_HDMI_PHY_SCOPECNT0_RD()      (HW_HDMI_PHY_SCOPECNT0.U)
-#define HW_HDMI_PHY_SCOPECNT0_WR(v)     (HW_HDMI_PHY_SCOPECNT0.U = (v))
-#define HW_HDMI_PHY_SCOPECNT0_SET(v)    (HW_HDMI_PHY_SCOPECNT0_WR(HW_HDMI_PHY_SCOPECNT0_RD() |  (v)))
-#define HW_HDMI_PHY_SCOPECNT0_CLR(v)    (HW_HDMI_PHY_SCOPECNT0_WR(HW_HDMI_PHY_SCOPECNT0_RD() & ~(v)))
-#define HW_HDMI_PHY_SCOPECNT0_TOG(v)    (HW_HDMI_PHY_SCOPECNT0_WR(HW_HDMI_PHY_SCOPECNT0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual HDMI_PHY_SCOPECNT0 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPECNT0, field SCOPE_ONES_CNT0
+/* --- Register HW_HDMI_PHY_SCOPECNT0, field SCOPE_ONES_CNT0 (RO)
  *
- * Scope 1's Counter 0  This register carries the number of counted 1's on channel 0. If the LFSR15
+ * Scope 1's Counter 0 This register carries the number of counted 1's on channel 0. If the LFSR15
  * was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
  */
 
@@ -3770,26 +4359,17 @@ typedef union
 #define BM_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0)
-#else
-#define BF_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0(v)   (((v) << 0) & BM_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0(v)   BF_CS1(HDMI_PHY_SCOPECNT0, SCOPE_ONES_CNT0, v)
-#endif
-
 /*!
- * @brief HW_HDMI_PHY_SCOPECNT1 - Scope Counter on Channel 1
+ * @brief HW_HDMI_PHY_SCOPECNT1 - Scope Counter on Channel 1 (RO)
  *
  * Register name : SCOPECNT1  Access type : Read-only  Address : 0x21  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_ONES_CNT1 : 16; //!< Scope 1's Counter 1  This register carries the number of counted 1's on channel 1. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
+        unsigned short SCOPE_ONES_CNT1 : 16; //!< Scope 1's Counter 1 This register carries the number of counted 1's on channel 1. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
     } B;
 } hw_hdmi_phy_scopecnt1_t;
 #endif
@@ -3802,20 +4382,15 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_HDMI_PHY_SCOPECNT1           (*(volatile hw_hdmi_phy_scopecnt1_t *) HW_HDMI_PHY_SCOPECNT1_ADDR)
 #define HW_HDMI_PHY_SCOPECNT1_RD()      (HW_HDMI_PHY_SCOPECNT1.U)
-#define HW_HDMI_PHY_SCOPECNT1_WR(v)     (HW_HDMI_PHY_SCOPECNT1.U = (v))
-#define HW_HDMI_PHY_SCOPECNT1_SET(v)    (HW_HDMI_PHY_SCOPECNT1_WR(HW_HDMI_PHY_SCOPECNT1_RD() |  (v)))
-#define HW_HDMI_PHY_SCOPECNT1_CLR(v)    (HW_HDMI_PHY_SCOPECNT1_WR(HW_HDMI_PHY_SCOPECNT1_RD() & ~(v)))
-#define HW_HDMI_PHY_SCOPECNT1_TOG(v)    (HW_HDMI_PHY_SCOPECNT1_WR(HW_HDMI_PHY_SCOPECNT1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual HDMI_PHY_SCOPECNT1 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPECNT1, field SCOPE_ONES_CNT1
+/* --- Register HW_HDMI_PHY_SCOPECNT1, field SCOPE_ONES_CNT1 (RO)
  *
- * Scope 1's Counter 1  This register carries the number of counted 1's on channel 1. If the LFSR15
+ * Scope 1's Counter 1 This register carries the number of counted 1's on channel 1. If the LFSR15
  * was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
  */
 
@@ -3823,26 +4398,17 @@ typedef union
 #define BM_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1)
-#else
-#define BF_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1(v)   (((v) << 0) & BM_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1(v)   BF_CS1(HDMI_PHY_SCOPECNT1, SCOPE_ONES_CNT1, v)
-#endif
-
 /*!
- * @brief HW_HDMI_PHY_SCOPECNT2 - Scope Counter on Channel 2
+ * @brief HW_HDMI_PHY_SCOPECNT2 - Scope Counter on Channel 2 (RO)
  *
  * Register name : SCOPECNT2  Access type : Read-only  Address : 0x22  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_ONES_CNT2 : 16; //!< Scope 1's Counter 2  This register carries the number of counted 1's on channel 2. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
+        unsigned short SCOPE_ONES_CNT2 : 16; //!< Scope 1's Counter 2 This register carries the number of counted 1's on channel 2. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
     } B;
 } hw_hdmi_phy_scopecnt2_t;
 #endif
@@ -3855,20 +4421,15 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_HDMI_PHY_SCOPECNT2           (*(volatile hw_hdmi_phy_scopecnt2_t *) HW_HDMI_PHY_SCOPECNT2_ADDR)
 #define HW_HDMI_PHY_SCOPECNT2_RD()      (HW_HDMI_PHY_SCOPECNT2.U)
-#define HW_HDMI_PHY_SCOPECNT2_WR(v)     (HW_HDMI_PHY_SCOPECNT2.U = (v))
-#define HW_HDMI_PHY_SCOPECNT2_SET(v)    (HW_HDMI_PHY_SCOPECNT2_WR(HW_HDMI_PHY_SCOPECNT2_RD() |  (v)))
-#define HW_HDMI_PHY_SCOPECNT2_CLR(v)    (HW_HDMI_PHY_SCOPECNT2_WR(HW_HDMI_PHY_SCOPECNT2_RD() & ~(v)))
-#define HW_HDMI_PHY_SCOPECNT2_TOG(v)    (HW_HDMI_PHY_SCOPECNT2_WR(HW_HDMI_PHY_SCOPECNT2_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual HDMI_PHY_SCOPECNT2 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPECNT2, field SCOPE_ONES_CNT2
+/* --- Register HW_HDMI_PHY_SCOPECNT2, field SCOPE_ONES_CNT2 (RO)
  *
- * Scope 1's Counter 2  This register carries the number of counted 1's on channel 2. If the LFSR15
+ * Scope 1's Counter 2 This register carries the number of counted 1's on channel 2. If the LFSR15
  * was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
  */
 
@@ -3876,26 +4437,17 @@ typedef union
 #define BM_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2)
-#else
-#define BF_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2(v)   (((v) << 0) & BM_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2(v)   BF_CS1(HDMI_PHY_SCOPECNT2, SCOPE_ONES_CNT2, v)
-#endif
-
 /*!
- * @brief HW_HDMI_PHY_SCOPECNTCLK - Scope Counter on Clock Channel
+ * @brief HW_HDMI_PHY_SCOPECNTCLK - Scope Counter on Clock Channel (RO)
  *
  * Register name : SCOPECNTCK  Access type : Read-only  Address : 0x23  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short CK_SCOPE_ONES_CNT : 16; //!< Clock Scope 1's Counter  This register carries the number of counted 1's on the clock channel. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
+        unsigned short CK_SCOPE_ONES_CNT : 16; //!< Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
     } B;
 } hw_hdmi_phy_scopecntclk_t;
 #endif
@@ -3908,20 +4460,15 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_HDMI_PHY_SCOPECNTCLK           (*(volatile hw_hdmi_phy_scopecntclk_t *) HW_HDMI_PHY_SCOPECNTCLK_ADDR)
 #define HW_HDMI_PHY_SCOPECNTCLK_RD()      (HW_HDMI_PHY_SCOPECNTCLK.U)
-#define HW_HDMI_PHY_SCOPECNTCLK_WR(v)     (HW_HDMI_PHY_SCOPECNTCLK.U = (v))
-#define HW_HDMI_PHY_SCOPECNTCLK_SET(v)    (HW_HDMI_PHY_SCOPECNTCLK_WR(HW_HDMI_PHY_SCOPECNTCLK_RD() |  (v)))
-#define HW_HDMI_PHY_SCOPECNTCLK_CLR(v)    (HW_HDMI_PHY_SCOPECNTCLK_WR(HW_HDMI_PHY_SCOPECNTCLK_RD() & ~(v)))
-#define HW_HDMI_PHY_SCOPECNTCLK_TOG(v)    (HW_HDMI_PHY_SCOPECNTCLK_WR(HW_HDMI_PHY_SCOPECNTCLK_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual HDMI_PHY_SCOPECNTCLK bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPECNTCLK, field CK_SCOPE_ONES_CNT
+/* --- Register HW_HDMI_PHY_SCOPECNTCLK, field CK_SCOPE_ONES_CNT (RO)
  *
- * Clock Scope 1's Counter  This register carries the number of counted 1's on the clock channel. If
+ * Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel. If
  * the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x26
  * register.
  */
@@ -3930,27 +4477,18 @@ typedef union
 #define BM_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT)
-#else
-#define BF_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT(v)   (((v) << 0) & BM_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT(v)   BF_CS1(HDMI_PHY_SCOPECNTCLK, CK_SCOPE_ONES_CNT, v)
-#endif
-
 /*!
- * @brief HW_HDMI_PHY_SCOPESAMPLE - Scope Sample Count MSB, Scope Sample Repetition
+ * @brief HW_HDMI_PHY_SCOPESAMPLE - Scope Sample Count MSB, Scope Sample Repetition (RW)
  *
  * Register name : SCOPESAMPLE  Access type : Read/write  Address : 0x24  Value at reset : 0x13c0
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_SAMPLE_CNT : 6; //!< Scope Sample Counter  Indicates the number of samples that will be counted (should be multiple of the  LFSR length). These samples are the MSB bits only.
-        unsigned short SCOPE_SAMPLE_REP : 7; //!< Scope Sample Repetition  Number of repetitions made by the scope FSM. The total samples captured is scope_sample_rep x scope_sample_cnt.
+        unsigned short SCOPE_SAMPLE_CNT : 6; //!< Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of the LFSR length). These samples are the MSB bits only.
+        unsigned short SCOPE_SAMPLE_REP : 7; //!< Scope Sample Repetition Number of repetitions made by the scope FSM. The total samples captured is scope_sample_rep x scope_sample_cnt.
         unsigned short RESERVED0 : 3; //!< Reserved
     } B;
 } hw_hdmi_phy_scopesample_t;
@@ -3970,32 +4508,22 @@ typedef union
 #define HW_HDMI_PHY_SCOPESAMPLE_TOG(v)    (HW_HDMI_PHY_SCOPESAMPLE_WR(HW_HDMI_PHY_SCOPESAMPLE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual HDMI_PHY_SCOPESAMPLE bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPESAMPLE, field SCOPE_SAMPLE_CNT
+/* --- Register HW_HDMI_PHY_SCOPESAMPLE, field SCOPE_SAMPLE_CNT (RO)
  *
- * Scope Sample Counter  Indicates the number of samples that will be counted (should be multiple of
- * the  LFSR length). These samples are the MSB bits only.
+ * Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of
+ * the LFSR length). These samples are the MSB bits only.
  */
 
 #define BP_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT      0
 #define BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT      0x0000003f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT)
-#else
-#define BF_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT(v)   (((v) << 0) & BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT(v)   BF_CS1(HDMI_PHY_SCOPESAMPLE, SCOPE_SAMPLE_CNT, v)
-#endif
-
-/* --- Register HW_HDMI_PHY_SCOPESAMPLE, field SCOPE_SAMPLE_REP
+/* --- Register HW_HDMI_PHY_SCOPESAMPLE, field SCOPE_SAMPLE_REP (RO)
  *
- * Scope Sample Repetition  Number of repetitions made by the scope FSM. The total samples captured
+ * Scope Sample Repetition Number of repetitions made by the scope FSM. The total samples captured
  * is scope_sample_rep x scope_sample_cnt.
  */
 
@@ -4003,27 +4531,18 @@ typedef union
 #define BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP      0x00001fc0
 
 #ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP(v)   ((((reg32_t) v) << 6) & BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP)
-#else
-#define BF_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP(v)   (((v) << 6) & BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP(v)   BF_CS1(HDMI_PHY_SCOPESAMPLE, SCOPE_SAMPLE_REP, v)
-#endif
-
 /*!
- * @brief HW_HDMI_PHY_SCOPECNTMSB01 - Scope Counter MSB Channel 0 and Channel 1
+ * @brief HW_HDMI_PHY_SCOPECNTMSB01 - Scope Counter MSB Channel 0 and Channel 1 (RO)
  *
  * Register name : SCOPECNTMSB01  Access type : Read-only  Address : 0x25  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_ONES_CNT0 : 8; //!< Scope 1's Counter 0  This register carries the number of counted 1's on channel 0. These 1's are the  MSB bits only.
-        unsigned short SCOPE_ONES_CNT1 : 5; //!< Scope 1's Counter 1  This register carries the number of counted 1's on channel 1. These 1's are the  MSB bits only.
+        unsigned short SCOPE_ONES_CNT0 : 8; //!< Scope 1's Counter 0 This register carries the number of counted 1's on channel 0. These 1's are the MSB bits only.
+        unsigned short SCOPE_ONES_CNT1 : 5; //!< Scope 1's Counter 1 This register carries the number of counted 1's on channel 1. These 1's are the MSB bits only.
         unsigned short RESERVED0 : 3; //!< Reserved
     } B;
 } hw_hdmi_phy_scopecntmsb01_t;
@@ -4037,66 +4556,43 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_HDMI_PHY_SCOPECNTMSB01           (*(volatile hw_hdmi_phy_scopecntmsb01_t *) HW_HDMI_PHY_SCOPECNTMSB01_ADDR)
 #define HW_HDMI_PHY_SCOPECNTMSB01_RD()      (HW_HDMI_PHY_SCOPECNTMSB01.U)
-#define HW_HDMI_PHY_SCOPECNTMSB01_WR(v)     (HW_HDMI_PHY_SCOPECNTMSB01.U = (v))
-#define HW_HDMI_PHY_SCOPECNTMSB01_SET(v)    (HW_HDMI_PHY_SCOPECNTMSB01_WR(HW_HDMI_PHY_SCOPECNTMSB01_RD() |  (v)))
-#define HW_HDMI_PHY_SCOPECNTMSB01_CLR(v)    (HW_HDMI_PHY_SCOPECNTMSB01_WR(HW_HDMI_PHY_SCOPECNTMSB01_RD() & ~(v)))
-#define HW_HDMI_PHY_SCOPECNTMSB01_TOG(v)    (HW_HDMI_PHY_SCOPECNTMSB01_WR(HW_HDMI_PHY_SCOPECNTMSB01_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual HDMI_PHY_SCOPECNTMSB01 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPECNTMSB01, field SCOPE_ONES_CNT0
+/* --- Register HW_HDMI_PHY_SCOPECNTMSB01, field SCOPE_ONES_CNT0 (RO)
  *
- * Scope 1's Counter 0  This register carries the number of counted 1's on channel 0. These 1's are
- * the  MSB bits only.
+ * Scope 1's Counter 0 This register carries the number of counted 1's on channel 0. These 1's are
+ * the MSB bits only.
  */
 
 #define BP_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0      0
 #define BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0      0x000000ff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0)
-#else
-#define BF_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0(v)   (((v) << 0) & BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0(v)   BF_CS1(HDMI_PHY_SCOPECNTMSB01, SCOPE_ONES_CNT0, v)
-#endif
-
-/* --- Register HW_HDMI_PHY_SCOPECNTMSB01, field SCOPE_ONES_CNT1
+/* --- Register HW_HDMI_PHY_SCOPECNTMSB01, field SCOPE_ONES_CNT1 (RO)
  *
- * Scope 1's Counter 1  This register carries the number of counted 1's on channel 1. These 1's are
- * the  MSB bits only.
+ * Scope 1's Counter 1 This register carries the number of counted 1's on channel 1. These 1's are
+ * the MSB bits only.
  */
 
 #define BP_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1      8
 #define BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1      0x00001f00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1(v)   ((((reg32_t) v) << 8) & BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1)
-#else
-#define BF_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1(v)   (((v) << 8) & BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1(v)   BF_CS1(HDMI_PHY_SCOPECNTMSB01, SCOPE_ONES_CNT1, v)
-#endif
-
 /*!
- * @brief HW_HDMI_PHY_SCOPECNTMSB2CK - Scope Counter MSB Channel 2 and Clock Channel
+ * @brief HW_HDMI_PHY_SCOPECNTMSB2CK - Scope Counter MSB Channel 2 and Clock Channel (RO)
  *
  * Register name : SCOPECNTMSB2CK  Access type : Read-only  Address : 0x26  Value at reset : 0x0000
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short SCOPE_ONES_CNT2 : 6; //!< Scope 1's Counter 2  This register carries the number of counted 1's on channel 2. These 1's are the  MSB bits only.
-        unsigned short CK_SCOPE_ONES_CNT : 7; //!< Clock Scope 1's Counter  This register carries the number of counted 1's on the clock channel. These 1's are the MSB bits only.
+        unsigned short SCOPE_ONES_CNT2 : 6; //!< Scope 1's Counter 2 This register carries the number of counted 1's on channel 2. These 1's are the MSB bits only.
+        unsigned short CK_SCOPE_ONES_CNT : 7; //!< Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel. These 1's are the MSB bits only.
         unsigned short RESERVED0 : 3; //!< Reserved
     } B;
 } hw_hdmi_phy_scopecntmsb2ck_t;
@@ -4110,53 +4606,29 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_HDMI_PHY_SCOPECNTMSB2CK           (*(volatile hw_hdmi_phy_scopecntmsb2ck_t *) HW_HDMI_PHY_SCOPECNTMSB2CK_ADDR)
 #define HW_HDMI_PHY_SCOPECNTMSB2CK_RD()      (HW_HDMI_PHY_SCOPECNTMSB2CK.U)
-#define HW_HDMI_PHY_SCOPECNTMSB2CK_WR(v)     (HW_HDMI_PHY_SCOPECNTMSB2CK.U = (v))
-#define HW_HDMI_PHY_SCOPECNTMSB2CK_SET(v)    (HW_HDMI_PHY_SCOPECNTMSB2CK_WR(HW_HDMI_PHY_SCOPECNTMSB2CK_RD() |  (v)))
-#define HW_HDMI_PHY_SCOPECNTMSB2CK_CLR(v)    (HW_HDMI_PHY_SCOPECNTMSB2CK_WR(HW_HDMI_PHY_SCOPECNTMSB2CK_RD() & ~(v)))
-#define HW_HDMI_PHY_SCOPECNTMSB2CK_TOG(v)    (HW_HDMI_PHY_SCOPECNTMSB2CK_WR(HW_HDMI_PHY_SCOPECNTMSB2CK_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual HDMI_PHY_SCOPECNTMSB2CK bitfields
  */
 
-/* --- Register HW_HDMI_PHY_SCOPECNTMSB2CK, field SCOPE_ONES_CNT2
+/* --- Register HW_HDMI_PHY_SCOPECNTMSB2CK, field SCOPE_ONES_CNT2 (RO)
  *
- * Scope 1's Counter 2  This register carries the number of counted 1's on channel 2. These 1's are
- * the  MSB bits only.
+ * Scope 1's Counter 2 This register carries the number of counted 1's on channel 2. These 1's are
+ * the MSB bits only.
  */
 
 #define BP_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2      0
 #define BM_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2      0x0000003f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2)
-#else
-#define BF_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2(v)   (((v) << 0) & BM_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2(v)   BF_CS1(HDMI_PHY_SCOPECNTMSB2CK, SCOPE_ONES_CNT2, v)
-#endif
-
-/* --- Register HW_HDMI_PHY_SCOPECNTMSB2CK, field CK_SCOPE_ONES_CNT
+/* --- Register HW_HDMI_PHY_SCOPECNTMSB2CK, field CK_SCOPE_ONES_CNT (RO)
  *
- * Clock Scope 1's Counter  This register carries the number of counted 1's on the clock channel.
+ * Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel.
  * These 1's are the MSB bits only.
  */
 
 #define BP_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT      6
 #define BM_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT      0x00001fc0
-
-#ifndef __LANGUAGE_ASM__
-#define BF_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT(v)   ((((reg32_t) v) << 6) & BM_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT)
-#else
-#define BF_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT(v)   (((v) << 6) & BM_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT(v)   BF_CS1(HDMI_PHY_SCOPECNTMSB2CK, CK_SCOPE_ONES_CNT, v)
-#endif
-
 
 
 /*!

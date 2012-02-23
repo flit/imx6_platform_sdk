@@ -39,28 +39,45 @@ from UserDict import UserDict
 # XML that is used to create the register sections of Freescale reference manuals.
 #
 # @par Remaining tasks:
-# - Support RW/RO registers and bitfields.
 # - Support SCT variants of registers, and registers that dont have them.
 # - Print warning for registers with too many bits.
-# - Improve formatting of long description comments.
-# - Warn for registers with duplicate addresses or names.
 # - Allow a base address, instances, and instance offsets to be specified if a design file is not
-#   available.
+#   available. (/)
 # - Support creating multi-instance registers.
+# - Do HTML entities need to be converted?
+# - Do a better job cleaning up register and bitfield names.
 #
 # @par Version history:
 #
-# 1.0:
-# - initial version
+# 1.0b3:
+# - Improve formatting of long description comments.
+# - Compress whitespace in all text.
+# - Warn for registers with duplicate addresses or names.
+# - Added comment with list of all registers at top of header.
+# - A few header improvements.
+# - Support RW/RO registers and bitfields.
+# - Moved template strings to CHeaderTemplates class.
+# - Renamed WrongProductException to ExcludedByFilterException.
+#
+# 1.0b2:
+# - initial released version
 #
 
 # Tool version number and copyright string.
-kToolVersion = "1.0b2"
+kToolVersion = "1.0b3"
 kToolCopyright = "Copyright (c) 2012 Freescale Semiconductor, Inc. All rights reserved."
 
-kProductNames = ['mx6dq', 'mx6sl', 'mx6sdl']
+# Possible access modes for registers and bitfields.
+kAccessModes = ['RW', 'RO', 'WO', 'ROZ', 'ROO', 'RU']
 
-kAccessModes = ['RW', 'RO', 'ROZ', 'ROO', 'RU']
+##
+# @brief Replace runs of whitespace with single space characters.
+#
+# Also strips whitespace off the beginning and end of the input text.
+def cleanWhitespace(text):
+    if text is None:
+        return ''
+    return ' '.join(re.split('[ \t\n]+', text.strip()))
 
 ##
 # @brief Turns an Element tree into a string.
@@ -68,7 +85,9 @@ kAccessModes = ['RW', 'RO', 'ROZ', 'ROO', 'RU']
 # Given a tree of Element objects, this function will produce readable output from the text
 # contained in those elements.
 def formatText(rootElem):
-    return " ".join([q.strip() for q in rootElem.itertext()])
+    if rootElem is None:
+        return ''
+    return " ".join([cleanWhitespace(q) for q in rootElem.itertext()])
 
 ##
 # @brief Make text into a valid C identifier.
@@ -85,6 +104,9 @@ def formatIdentifier(text):
 # @param base Base of the number. Pass 0 to use the string prefix to determine the base.
 # @return The integer value of @a addressString.
 def convertHexValue(addressString, base=0):
+    if len(addressString) == 0:
+        return 0
+    
     if addressString.startswith('0x'):
         addressString = addressString[2:]
         base = 16
@@ -101,6 +123,21 @@ def convertHexValue(addressString, base=0):
         base = 16
     
     return int(digits, base)
+
+##
+# @brief Convert a binary number from string to an integer.
+# @exception Exception Raised if the input string is not a binary number, i.e. if it contains
+#   characters other than '0' or '1'.
+def convertBinaryValue(valueString):
+    if len(addressString) == 0:
+        return 0
+    
+    result = 0
+    for i in range(len(valueString)):
+        digit = valueString[-(i + 1)]
+        if digit not in "01":
+            raise Exception("string in not a binary value: " + valueString)
+        result += int(digit) << i
 
 ##
 # @brief Check an attribute against a list of values.
@@ -141,11 +178,11 @@ def getElementText(rootElem, path):
     if elem is None or elem.text is None:
         return ''
     else:
-        return elem.text
+        return cleanWhitespace(elem.text)
 
 ##
 # @brief Exception thrown to indicate a mismatched product.
-class WrongProductException(Exception):
+class ExcludedByFilterException(Exception):
     pass
 
 ##
@@ -165,17 +202,41 @@ class Component:
         self.structName = "hw_%s_t" % (self.name.lower())
     
     def addRegister(self, reg):
+        # Check for a pre-existing register with the same name.
+        if self.getRegisterWithName(reg.name) is not None:
+            print >> sys.stderr, "Warning: register already exists with the name %s!" % reg.name
+            return
+        
+        # Check for register with the same address offset.
+        if self.getRegisterWithOffset(reg.addressOffset) is not None:
+            print >> sys.stderr, "Warning: register %s has the same offset as another register!" % reg.name
+            return
+        
         # Add the new register.
         self.registers.append(reg)
         
         # Sort registers by address.
         self.registers.sort(key=lambda reg:reg.addressOffset)
+    
+    def getRegisterWithName(self, name):
+        for reg in self.registers:
+            if reg.name == name:
+                return reg
+        
+        return None
+    
+    def getRegisterWithOffset(self, offset):
+        for reg in self.registers:
+            if reg.addressOffset == offset:
+                return reg
+        
+        return None
 
 ##
 # @brief Register definition.
 class Register:
     ##
-    # @exception WrongProductException Raised when the XML element has an attribute that specifies
+    # @exception ExcludedByFilterException Raised when the XML element has an attribute that specifies
     #   that it belongs to a product other than the one passed on @a productName.
     def __init__(self, component, elem, filterAttribs):
         self.memoryMap = component.memoryMap
@@ -184,10 +245,10 @@ class Register:
         
         # Filter based on attributes.
         if not filterAttributes(elem, filterAttribs):
-            raise WrongProductException()
+            raise ExcludedByFilterException()
         
         self.name = formatIdentifier(getElementText(elem, 'registerName'))
-        self.fullName = getElementText(elem, 'registerNameMore/registerNameFull').strip().replace('\n', '')
+        self.fullName = getElementText(elem, 'registerNameMore/registerNameFull')
         self.description = formatText(elem.find('registerBody/registerDescription'))
         
         self.formattedName = "%s_%s" % (self.component.name, self.name)
@@ -199,7 +260,8 @@ class Register:
         self.sizeInBits = int(getElementText(props, 'registerSize'), 0)
         self.sizeInBytes = self.sizeInBits / 8
         self.access = getElementText(props, 'registerAccess')
-        self.isWritable = (self.access == 'RW')
+        self.isReadable = (self.access != 'WO')
+        self.isWritable = (self.access in ['RW', 'WO'])
         self.resetValue = convertHexValue(getElementText(props, 'registerResetValue'))
         
         if self.sizeInBits == 32:
@@ -224,7 +286,7 @@ class Register:
         for e in elem.findall('bitField'):
             try:
                 self.bitFields.append(BitField(self, e, filterAttribs))
-            except WrongProductException:
+            except ExcludedByFilterException:
                 # Just ignore this exception
                 pass
         
@@ -284,12 +346,12 @@ class BitField:
     nameFilter = re.compile(r'^([a-zA-Z_]+[a-zA-Z0-9_]*)')
     
     ##
-    # @exception WrongProductException Raised when the XML element has an attribute that specifies
+    # @exception ExcludedByFilterException Raised when the XML element has an attribute that specifies
     #   that it belongs to a product other than the one passed on @a productName.
     def __init__(self, reg, elem, filterAttribs):
         # Filter based on attributes.
         if not filterAttributes(elem, filterAttribs):
-            raise WrongProductException()
+            raise ExcludedByFilterException()
         
         self.register = reg
         self.element = elem
@@ -319,35 +381,67 @@ class BitField:
         self.width = int(getElementText(props, 'bitWidth'))
         self.offset = int(getElementText(props, 'bitOffset'))
         self.access = getElementText(props, 'bitFieldAccess')
+        self.isReadable = (self.access != 'WO')
+        self.isWritable = (self.access in ['RW', 'WO'])
         
         # Build mask.
         self._buildMask()
         
         # Build values list.
-        allValueElems = elem.findall('bitFieldBody/bitFieldValues/bitFieldValueGroup')
+        self._buildValuesList(elem.findall('bitFieldBody/bitFieldValues/bitFieldValueGroup'), filterAttribs)
         
+    def _buildValuesList(self, allValueElems, filterAttribs):
         self.values = []
         for valueElem in allValueElems:
             # Check filter.
-            if not filterAttributes(elem, filterAttribs):
+            if not filterAttributes(valueElem, filterAttribs):
                 continue
             
+            # Get element nodes.
             value = valueElem.find('bitFieldValue')
             name = valueElem.find('bitFieldValueName')
             desc = valueElem.find('bitFieldValueDescription')
-            if value is None or name is None:
+            
+            # Skip if there is no value or name node.
+            if value is None: # or name is None:
                 continue
             
-            thisValue = UserDict()
-            thisValue.value = int(value.text, 0)
-            thisValue.name = name.text
+            # Check filter on name and value nodes.
+            if not filterAttributes(value, filterAttribs): # or not filterAttributes(name, filterAttribs):
+                continue
             
-            if desc is None:
+            # Build the value info dictionary.
+            thisValue = UserDict()
+            thisValue.valueText = cleanWhitespace(value.text)
+            
+            # Check for a binary value.
+            try:
+                if len(thisValue.valueText) == self.width:
+                    thisValue.value = convertBinaryValue(thisValue.valueText)
+                else:
+                    thisValue.value = convertHexValue(thisValue.valueText)
+            except:
+                # Ignore a failure to convert the value to an int.
+                thisValue.value = 0
+            
+            if name is not None and filterAttributes(name, filterAttribs):
+                thisValue.name = cleanWhitespace(name.text)
+            else:
+                thisValue.name = None
+            
+            # Skip if the name is empty.
+            #if len(thisValue.name) == 0:
+            #    continue
+            
+            if desc is None or not filterAttributes(desc, filterAttribs):
                 thisValue.desc = ''
             else:
                 thisValue.desc = formatText(desc)
             
             self.values.append(thisValue)
+        
+        # Now sort the values array by value.
+        self.values.sort(key=lambda x:x.value)
     
     def _buildMask(self):
         self.mask = 0
@@ -397,7 +491,7 @@ class MemoryMap:
                 self.components[name] = instances
                 
             except Exception, e:
-                print "Error processing component: " + str(e)
+                print >> sys.stderr, "Error processing component: " + str(e)
     
     ##
     # @return A list containing UserDict objects for each instance of the component.
@@ -457,9 +551,14 @@ class MemoryMap:
             return len(self.components[name])
         except KeyError:
             return 0
-        
 
-fileTemplate = u"""/*
+##
+# @brief Class to hold template strings for header generation.
+#
+# The template strings are separated into this class in order to break the "view" out from the
+# controller.
+class CHeaderTemplates:
+    fileTemplate = u"""/*
  * Copyright (C) {year}, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
@@ -471,34 +570,47 @@ fileTemplate = u"""/*
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+{registerList} *
+ * {component.structName} - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{{
 #ifndef REGS_{component.name}_BASE
 {baseAddressMacros}#endif
-
+//@}}
 {registerDefinitions}
-
 {moduleStructDefinition}
 
 #endif // _{component.name}_H
 """
 
-baseAddressTemplate = u"#define REGS_{component.name}_BASE (REGS_BASE + {component.baseAddress:#010x})\n"
+    baseAddressTemplate = u"#define REGS_{component.name}_BASE ({component.baseAddress:#010x}) //!< Base address for {component.name}.\n"
 
-baseAddressTemplateMulti = u"#define REGS_{component.name}{instanceNumber}_BASE (REGS_BASE + {instanceOffset:#010x})\n"
+    baseAddressTemplateMulti = u"#define REGS_{component.name}{instanceNumber}_BASE ({instanceOffset:#010x}) //!< Base address for {component.name} instance number {instanceNumber}.\n"
 
-baseAddressMultiMacroTemplate1 = u"#define REGS_{component.name}_BASE(x) ( "
-baseAddressMultiMacroTemplate2 = u"x == {instanceNumber} ? REGS_{component.name}{instanceNumber}_BASE : "
-baseAddressMultiMacroTemplate3= u"0xffff0000)\n"
+    baseAddressMultiMacroTemplate1 = u"""
+//! @brief Get the base address of {component.name} by instance number.
+//! @param x {component.name} instance number, from 0 through {component.count}.
+#define REGS_{component.name}_BASE(x) ( """
+    baseAddressMultiMacroTemplate2 = u"x == {instanceNumber} ? REGS_{component.name}{instanceNumber}_BASE : "
+    baseAddressMultiMacroTemplate3= u"0xffff0000)\n"
+    
+    regListEntryTemplate = u" * - HW_{reg.formattedName} - {reg.fullName}\n"
 
-regTemplate = u"""
+    regTemplate = u"""
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_{reg.formattedName} - {reg.fullName}
+ * @brief HW_{reg.formattedName} - {reg.fullName} ({reg.access})
  *
 {regComment}
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {{
-    reg{reg.sizeInBits}_t  U;
+    reg{reg.sizeInBits}_t U;
     struct
     {{
 {bitFields}    }} B;
@@ -512,29 +624,23 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_{reg.formattedName}           (*(volatile {reg.structName} *) HW_{reg.formattedName}_ADDR)
-#define HW_{reg.formattedName}_RD()      (HW_{reg.formattedName}.U)
-#define HW_{reg.formattedName}_WR(v)     (HW_{reg.formattedName}.U = (v))
-#define HW_{reg.formattedName}_SET(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() |  (v)))
-#define HW_{reg.formattedName}_CLR(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() & ~(v)))
-#define HW_{reg.formattedName}_TOG(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() ^  (v)))
-#endif
-
+{readMacros}{writeMacros}{sctMacros}#endif
 
 /*
  * constants & macros for individual {reg.formattedName} bitfields
  */
 """
 
-regTemplateMulti = u"""
+    regTemplateMulti = u"""
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_{reg.formattedName} - {reg.fullName}
+ * @brief HW_{reg.formattedName} - {reg.fullName} ({reg.access})
  *
 {regComment}
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {{
-    reg{reg.sizeInBits}_t  U;
+    reg{reg.sizeInBits}_t U;
     struct
     {{
 {bitFields}    }} B;
@@ -548,43 +654,58 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_{reg.formattedName}(x)           (*(volatile {reg.structName} *) HW_{reg.formattedName}_ADDR(x))
-#define HW_{reg.formattedName}_RD(x)        (HW_{reg.formattedName}(x).U)
-#define HW_{reg.formattedName}_WR(x, v)     (HW_{reg.formattedName}(x).U = (v))
-#define HW_{reg.formattedName}_SET(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) |  (v)))
-#define HW_{reg.formattedName}_CLR(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) & ~(v)))
-#define HW_{reg.formattedName}_TOG(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) ^  (v)))
-#endif
-
+{readMacros}{writeMacros}{sctMacros}#endif
 
 /*
  * constants & macros for individual {reg.formattedName} bitfields
  */
 """
+    
+    regReadTemplate = u"#define HW_{reg.formattedName}_RD()      (HW_{reg.formattedName}.U)\n"
+    regReadTemplateMulti = u"#define HW_{reg.formattedName}_RD(x)        (HW_{reg.formattedName}(x).U)\n"
+    
+    regWriteTemplate = u"#define HW_{reg.formattedName}_WR(v)     (HW_{reg.formattedName}.U = (v))\n"
+    regWriteTemplateMulti = u"#define HW_{reg.formattedName}_WR(x, v)     (HW_{reg.formattedName}(x).U = (v))\n"
+    
+    regSctTemplate = u"""#define HW_{reg.formattedName}_SET(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() |  (v)))
+#define HW_{reg.formattedName}_CLR(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() & ~(v)))
+#define HW_{reg.formattedName}_TOG(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() ^  (v)))
+"""
+    regSctTemplateMulti = u"""#define HW_{reg.formattedName}_SET(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) |  (v)))
+#define HW_{reg.formattedName}_CLR(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) & ~(v)))
+#define HW_{reg.formattedName}_TOG(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) ^  (v)))
+"""
 
-structBitFieldTemplate = u"        {fieldType} {fieldName} : {fieldWidth}; //!< {fieldDesc}\n"
+    structBitFieldTemplate = u"        {fieldType} {fieldName} : {fieldWidth}; //!< {fieldDesc}\n"
 
-bitFieldTemplate = u"""
-/* --- Register HW_{reg.formattedName}, field {field.name}
+    bitFieldTemplate = u"""
+/* --- Register HW_{reg.formattedName}, field {field.name} ({field.access})
  *
-{fieldComment}
- */
+{fieldComment} */
 
 #define BP_{field.formattedName}      {field.offset}
 #define BM_{field.formattedName}      {field.mask:#010x}
+"""
 
+    bitFieldValuePrefixTemplate = u" *\n * Values:\n"
+    bitFieldValueCommentTemplate = u" * {value.name} = {value.valueText} - {valueDesc}\n"
+    bitFieldValueNoNameCommentTemplate = u" * {value.valueText} - {valueDesc}\n"
+    
+    bitFieldWriteTemplate = u"""
 #ifndef __LANGUAGE_ASM__
 #define BF_{field.formattedName}(v)   ((((reg32_t) v) << {field.offset}) & BM_{field.formattedName})
 #else
 #define BF_{field.formattedName}(v)   (((v) << {field.offset}) & BM_{field.formattedName})
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the {field.name} field to a new value.
 #define BW_{field.formattedName}(v)   BF_CS1({component.name}_{reg.name}, {field.name}, v)
 #endif
 """
 
-bitFieldValueTemplate = u"#define BV_{field.formattedName}__{value.name}    {value.value:#x}\n"
+    bitFieldValueTemplate = u"#define BV_{field.formattedName}__{value.name}    {value.value:#x}\n"
 
-moduleStructTemplate = u"""
+    moduleStructTemplate = u"""
 /*!
  * @brief All {component.name} module registers.
  */
@@ -595,17 +716,17 @@ typedef struct
 #endif
 """
 
-moduleStructMemberTemplate = u"    volatile {reg.structName} {reg.name}; //!< {reg.fullName}\n"
-moduleStructPaddingTemplate = u"    {paddingType} {paddingName}{paddingBytes};\n"
+    moduleStructMemberTemplate = u"    volatile {reg.structName} {reg.name}; //!< {reg.fullName}\n"
+    moduleStructPaddingTemplate = u"    {paddingType} {paddingName}{paddingBytes};\n"
 
-moduleStructRefTemplate = u"""
+    moduleStructRefTemplate = u"""
 //! @brief Macro to access all {component.name} registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_{component.name}(0)</code>.
 #define HW_{component.name}     (*(volatile {component.structName} *) REGS_{component.name}_BASE)
 """
 
-moduleStructRefTemplateMulti = u"""
+    moduleStructRefTemplateMulti = u"""
 //! @brief Macro to access all {component.name} registers.
 //! @param x {component.name} instance number.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
@@ -618,8 +739,9 @@ moduleStructRefTemplateMulti = u"""
 class HeaderGenerator:
     def __init__(self, component):
         self.component = component
-        
+        self.templates = CHeaderTemplates
         self.commentWrapper = textwrap.TextWrapper(width=100, initial_indent=" * ", subsequent_indent=" * ")
+        self.bitfieldValueCommentWrapper = textwrap.TextWrapper(width=100, subsequent_indent=" *     ")
     
     ##
     # @brief Generate output.
@@ -631,17 +753,19 @@ class HeaderGenerator:
         
         baseAddressMacros = self._generateBaseAddressMacros()
         moduleStruct = self._generateModuleStruct()
+        registerList = self._generateRegisterList()
         
         # Get the current year.
         year = datetime.datetime.today().year
         
         formatDict = { 'component':self.component,
                         'baseAddressMacros':baseAddressMacros,
+                        'registerList':registerList,
                         'registerDefinitions':regs,
                         'moduleStructDefinition':moduleStruct,
                         'year':year}
         
-        s = fileTemplate.format(**formatDict)
+        s = self.templates.fileTemplate.format(**formatDict)
         
         # Write the header in UTF-8 encoding to the output file.
         writer = codecs.getwriter('utf-8')(outputFile)
@@ -651,37 +775,65 @@ class HeaderGenerator:
         output = ""
         
         if not self.component.isMultiInstance:
-            output = baseAddressTemplate.format(component=self.component)
+            output = self.templates.baseAddressTemplate.format(component=self.component)
         else:
-            txt = baseAddressMultiMacroTemplate1.format(component=self.component)
+            txt = self.templates.baseAddressMultiMacroTemplate1.format(component=self.component)
             
             for i in range(self.component.count):
                 offset = self.component.memoryMap.getBaseAddress(self.component.name, i)
                 formatDict = { 'component':self.component,
                                 'instanceNumber':i,
                                 'instanceOffset':offset }
-                output += baseAddressTemplateMulti.format(**formatDict)
-                txt += baseAddressMultiMacroTemplate2.format(**formatDict)
+                output += self.templates.baseAddressTemplateMulti.format(**formatDict)
+                txt += self.templates.baseAddressMultiMacroTemplate2.format(**formatDict)
             
-            output += txt + baseAddressMultiMacroTemplate3
+            output += txt + self.templates.baseAddressMultiMacroTemplate3
+        
+        return output
+    
+    def _generateRegisterList(self):
+        output = ""
+        
+        for reg in self.component.registers:
+            output += self.templates.regListEntryTemplate.format(reg=reg)
         
         return output
         
     def _generateRegister(self, reg):
-        bitFields = self._generateStructBitfields(reg)
+        # Select templates based on whether the compoennt is multi-instance.
+        if self.component.isMultiInstance:
+            whichTemplate = self.templates.regTemplateMulti
+            whichReadTemplate = self.templates.regReadTemplateMulti
+            whichWriteTemplate = self.templates.regWriteTemplateMulti
+            whichSctTemplate = self.templates.regSctTemplateMulti
+        else:
+            whichTemplate = self.templates.regTemplate
+            whichReadTemplate = self.templates.regReadTemplate
+            whichWriteTemplate = self.templates.regWriteTemplate
+            whichSctTemplate = self.templates.regSctTemplate
         
+        bitFields = self._generateStructBitfields(reg)
         regComment = self.commentWrapper.fill(reg.description.strip().replace('\n', ' '))
-        #"\n".join([" * " + l for l in textwrap.wrap(reg.description.strip(), 100)])
         
         formatDict = { 'component':self.component,
                         'reg':reg,
                         'bitFields':bitFields,
-                        'regComment':regComment }
+                        'regComment':regComment,
+                        'readMacros':'',
+                        'writeMacros':'',
+                        'sctMacros':'' }
         
-        if self.component.isMultiInstance:
-            whichTemplate = regTemplateMulti
-        else:
-            whichTemplate = regTemplate
+        # Add register read macros if the register is readable.
+        if reg.isReadable:
+            formatDict['readMacros'] = whichReadTemplate.format(**formatDict)
+        
+        # Add register write macros if the register is writable.
+        if reg.isWritable:
+            formatDict['writeMacros'] = whichWriteTemplate.format(**formatDict)
+        
+        # Add SCT macros if the register is both readable and writable.
+        if reg.isReadable and reg.isWritable:
+            formatDict['sctMacros'] = whichSctTemplate.format(**formatDict)
         
         output = whichTemplate.format(**formatDict)
         output += self._generateBitfields(reg)
@@ -720,14 +872,15 @@ class HeaderGenerator:
             usedNames.append(fieldName)
             
             # Clean up field description so it fits on one line.
-            cleanDescription = " ".join([l.strip() for l in f.description.splitlines()])
+            cleanDescription = cleanWhitespace(f.description)
+            #" ".join([l.strip() for l in f.description.splitlines()])
             
             # Now generate this struct member definition.
             formatDict = { 'fieldName':fieldName,
                             'fieldWidth':f.width,
                             'fieldType':reg.bitFieldType,
                             'fieldDesc':cleanDescription}
-            output += structBitFieldTemplate.format(**formatDict)
+            output += self.templates.structBitFieldTemplate.format(**formatDict)
         
         return output
     
@@ -735,21 +888,42 @@ class HeaderGenerator:
         output = ""
         
         for f in reg.bitFields:
+            # Skip reserved bitfields.
             if f.isReserved:
                 continue
             
-            fieldComment = self.commentWrapper.fill(f.description.strip().replace('\n', ' '))
+            # Generate the comment for the bitfield.
+            fieldComment = self.commentWrapper.fill(cleanWhitespace(f.description)) + '\n'
+
+            # Add comments for each bitfield value.
+            if len(f.values):
+                fieldComment += self.templates.bitFieldValuePrefixTemplate
+                for v in f.values:
+                    if v.name:
+                        theTemplate = self.templates.bitFieldValueCommentTemplate
+                    else:
+                        theTemplate = self.templates.bitFieldValueNoNameCommentTemplate
+                    
+                    valueDesc = self.bitfieldValueCommentWrapper.fill(v.desc)
+                    fieldComment += theTemplate.format(value=v, valueDesc=valueDesc)
             
+            # Generate the main bitfield definitions.
             formatDict = { 'component':self.component,
                             'reg':reg,
                             'field':f,
                             'fieldComment':fieldComment }
-            output += bitFieldTemplate.format(**formatDict)
+            output += self.templates.bitFieldTemplate.format(**formatDict)
             
+            # Now append the bitfield write macros if both the register and bitfield are RW.
+            if reg.isWritable and f.isWritable:
+                output += self.templates.bitFieldWriteTemplate.format(**formatDict)
+            
+            # Append bitfield value macros. Only add macros for values that have names.
             if len(f.values):
                 output += "\n"
             for v in f.values:
-                output += bitFieldValueTemplate.format(value=v, **formatDict)
+                if v.name:
+                    output += self.templates.bitFieldValueTemplate.format(value=v, **formatDict)
         
         return output
     
@@ -784,19 +958,19 @@ class HeaderGenerator:
                 paddingName = "_reserved%d" % paddingCount
                 paddingCount += 1
                 
-                members += moduleStructPaddingTemplate.format(paddingType=t, paddingName=paddingName, paddingBytes=nStr)
+                members += self.templates.moduleStructPaddingTemplate.format(paddingType=t, paddingName=paddingName, paddingBytes=nStr)
             
-            members += moduleStructMemberTemplate.format(reg=aReg)
+            members += self.templates.moduleStructMemberTemplate.format(reg=aReg)
             currentOffset += aReg.sizeInBytes
         
         formatDict = { 'component':self.component,
                         'structMembers':members }
-        output = moduleStructTemplate.format(**formatDict)
+        output = self.templates.moduleStructTemplate.format(**formatDict)
         
         if self.component.isMultiInstance:
-            refTemplate = moduleStructRefTemplateMulti
+            refTemplate = self.templates.moduleStructRefTemplateMulti
         else:
-            refTemplate = moduleStructRefTemplate
+            refTemplate = self.templates.moduleStructRefTemplate
         
         output += refTemplate.format(**formatDict)
         
@@ -856,7 +1030,7 @@ class HeaderGeneratorTool:
                 try:
                     newReg = Register(component, r, self.filterAttribs)
                     component.addRegister(newReg)
-                except WrongProductException:
+                except ExcludedByFilterException:
                     # Ignore this exception. It simply means that this register doesn't belong to the
                     # product we're working with.
                     pass
@@ -910,16 +1084,12 @@ class HeaderGeneratorTool:
 
         # Verify that there is input.
         if len(args.components) == 0:
-            print "Error: no input component XML was provided"
+            print >> sys.stderr, "Error: no input component XML was provided"
             return
-        
-        # Make sure the product is known.
-        if args.product.lower() not in kProductNames:
-            print "Error: unrecognized product name '%s'" % args.product
         
         # Check for a design file.
         if args.design is None:
-            print "Warning: no design XML was provided, register addresses will be invalid!"
+            print >> sys.stderr, "Warning: no design XML was provided, register addresses will be invalid!"
         
         # Uppercase the forced component name.
         if args.name is not None:

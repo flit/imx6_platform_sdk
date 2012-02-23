@@ -10,20 +10,65 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_GPU2D_AQHICLOCKCONTROL - Clock Control Register
+ * - HW_GPU2D_AQHIIDLE - Idle Status Register
+ * - HW_GPU2D_AQAXICONFIG - AXI Configuration Register
+ * - HW_GPU2D_AQAXISTATUS - AXI Status Register
+ * - HW_GPU2D_AQINTRACKNOWLEDGE - Interrupt Acknowledge Register
+ * - HW_GPU2D_AQINTRENBL - Interrupt Enable Register
+ * - HW_GPU2D_AQIDENT - Identification Register
+ * - HW_GPU2D_FEATURES - Features Register
+ * - HW_GPU2D_CHIPID - Chip Identification Register
+ * - HW_GPU2D_CHIPREV - Chip Revision Register
+ * - HW_GPU2D_CHIPDATE - Chip Release Date Register
+ * - HW_GPU2D_CHIPTIME - Chip Release Time Register
+ * - HW_GPU2D_CHIPCUSTOMER - Chip Customer Register
+ * - HW_GPU2D_MINORFEATURES0 - Minor Features Register 0
+ * - HW_GPU2D_CACHECONTROL - Cache Control Register
+ * - HW_GPU2D_RESETMEMCOUNTERS - Reset Mem Counters Register
+ * - HW_GPU2D_TOTALREADS - Read Count Register
+ * - HW_GPU2D_TOTALWRITES - Write Count Register
+ * - HW_GPU2D_CHIPSPECS - Chip Specification Register
+ * - HW_GPU2D_TOTALWRITEBURSTS - Write Data Count Register
+ * - HW_GPU2D_TOTALWRITEREQS - Write REQ Count Register
+ * - HW_GPU2D_TOTALWRITELASTS - Total WLAST Count Register
+ * - HW_GPU2D_TOTALREADBURSTS - Total Read Data Count Register
+ * - HW_GPU2D_TOTALREADREQS - Total Read REQ Count Register
+ * - HW_GPU2D_TOTALREADLASTS - Total RLAST Count Register
+ * - HW_GPU2D_GPOUT0 - General Purpose Register 0
+ * - HW_GPU2D_GPOUT1 - General Purpose Register 1
+ * - HW_GPU2D_GPOUT2 - General Purpose Register 2
+ * - HW_GPU2D_AXICONTROL - AXI Control Register
+ * - HW_GPU2D_MINORFEATURES1 - Minor Features Register 1
+ * - HW_GPU2D_TOTALCYCLES - Total Cycle Counter Register
+ * - HW_GPU2D_TOTALIDLECYLES - Total Idle Cycle Register
+ * - HW_GPU2D_CHIPSPECS2 - Chip Specification Register
+ * - HW_GPU2D_MODULEPOWERCONTROLS - Power Control Register
+ * - HW_GPU2D_MODULEPOWERMODULECONTROL - Power Level Register
+ * - HW_GPU2D_MODULEPOWERMODULESTATUS - Power Status Register
+ *
+ * hw_gpu2d_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_GPU2D_BASE
-#define REGS_GPU2D_BASE (REGS_BASE + 0x00134000)
+#define REGS_GPU2D_BASE (0x00134000) //!< Base address for GPU2D.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_AQHICLOCKCONTROL - Clock Control Register
+ * @brief HW_GPU2D_AQHICLOCKCONTROL - Clock Control Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 4; //!< Reserved
@@ -59,12 +104,11 @@ typedef union
 #define HW_GPU2D_AQHICLOCKCONTROL_TOG(v)    (HW_GPU2D_AQHICLOCKCONTROL_WR(HW_GPU2D_AQHICLOCKCONTROL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_AQHICLOCKCONTROL bitfields
  */
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field MULTI_PIPE_USE_SINGLE_AXI
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field MULTI_PIPE_USE_SINGLE_AXI (RW)
  *
  * Force all the transactions to go to one AXI.
  */
@@ -78,10 +122,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI(v)   (((v) << 4) & BM_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MULTI_PIPE_USE_SINGLE_AXI field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, MULTI_PIPE_USE_SINGLE_AXI, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field MULTI_PIPE_REG_SELECT
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field MULTI_PIPE_REG_SELECT (RW)
  *
  * Determines which HI/MC to use while reading registers.
  */
@@ -95,10 +140,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT(v)   (((v) << 8) & BM_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MULTI_PIPE_REG_SELECT field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, MULTI_PIPE_REG_SELECT, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field ISOLATE_GPU
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field ISOLATE_GPU (RW)
  *
  * Isolate GPU bit
  */
@@ -112,10 +158,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU(v)   (((v) << 12) & BM_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ISOLATE_GPU field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, ISOLATE_GPU, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field IDLE_VG
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field IDLE_VG (RW)
  *
  * VG pipe is idle.
  */
@@ -129,10 +176,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_IDLE_VG(v)   (((v) << 13) & BM_GPU2D_AQHICLOCKCONTROL_IDLE_VG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDLE_VG field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_IDLE_VG(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, IDLE_VG, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field IDLE2_D
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field IDLE2_D (RW)
  *
  * 2D pipe is idle.
  */
@@ -146,10 +194,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_IDLE2_D(v)   (((v) << 14) & BM_GPU2D_AQHICLOCKCONTROL_IDLE2_D)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDLE2_D field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_IDLE2_D(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, IDLE2_D, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field IDLE3_D
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field IDLE3_D (RW)
  *
  * 3D pipe is idle.
  */
@@ -163,10 +212,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_IDLE3_D(v)   (((v) << 15) & BM_GPU2D_AQHICLOCKCONTROL_IDLE3_D)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDLE3_D field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_IDLE3_D(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, IDLE3_D, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field SOFT_RESET
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field SOFT_RESET (RW)
  *
  * Soft resets the IP.
  */
@@ -180,13 +230,13 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_SOFT_RESET(v)   (((v) << 19) & BM_GPU2D_AQHICLOCKCONTROL_SOFT_RESET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SOFT_RESET field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_SOFT_RESET(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, SOFT_RESET, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field DISABLE_DEBUG_REGISTERS
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field DISABLE_DEBUG_REGISTERS (RW)
  *
- * Disable debug registers. If this bit is 1, debug registers are clock
- * gated.
+ * Disable debug registers. If this bit is 1, debug registers are clock gated.
  */
 
 #define BP_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS      20
@@ -198,10 +248,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS(v)   (((v) << 20) & BM_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_DEBUG_REGISTERS field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, DISABLE_DEBUG_REGISTERS, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field DISABLE_RAM_CLOCK_GATING
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field DISABLE_RAM_CLOCK_GATING (RW)
  *
  * Disables clock gating for rams.
  */
@@ -215,10 +266,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING(v)   (((v) << 21) & BM_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_RAM_CLOCK_GATING field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, DISABLE_RAM_CLOCK_GATING, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field FSCALE_CMD_LOAD
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field FSCALE_CMD_LOAD (RW)
  *
 
  */
@@ -232,10 +284,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD(v)   (((v) << 22) & BM_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FSCALE_CMD_LOAD field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, FSCALE_CMD_LOAD, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field FSCALE_VAL
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field FSCALE_VAL (RW)
  *
 
  */
@@ -249,10 +302,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL(v)   (((v) << 23) & BM_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FSCALE_VAL field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, FSCALE_VAL, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field CLK2D_DIS
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field CLK2D_DIS (RW)
  *
  * Disable 2D clock.
  */
@@ -266,10 +320,11 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS(v)   (((v) << 30) & BM_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLK2D_DIS field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, CLK2D_DIS, v)
 #endif
 
-/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field CLK3D_DIS
+/* --- Register HW_GPU2D_AQHICLOCKCONTROL, field CLK3D_DIS (RW)
  *
  * Disable 3D clock.
  */
@@ -283,18 +338,19 @@ typedef union
 #define BF_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS(v)   (((v) << 31) & BM_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLK3D_DIS field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS(v)   BF_CS1(GPU2D_AQHICLOCKCONTROL, CLK3D_DIS, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_AQHIIDLE - Idle Status Register
+ * @brief HW_GPU2D_AQHIIDLE - Idle Status Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned AXI_LP : 1; //!< AXI is in low power mode.
@@ -323,18 +379,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_AQHIIDLE           (*(volatile hw_gpu2d_aqhiidle_t *) HW_GPU2D_AQHIIDLE_ADDR)
 #define HW_GPU2D_AQHIIDLE_RD()      (HW_GPU2D_AQHIIDLE.U)
-#define HW_GPU2D_AQHIIDLE_WR(v)     (HW_GPU2D_AQHIIDLE.U = (v))
-#define HW_GPU2D_AQHIIDLE_SET(v)    (HW_GPU2D_AQHIIDLE_WR(HW_GPU2D_AQHIIDLE_RD() |  (v)))
-#define HW_GPU2D_AQHIIDLE_CLR(v)    (HW_GPU2D_AQHIIDLE_WR(HW_GPU2D_AQHIIDLE_RD() & ~(v)))
-#define HW_GPU2D_AQHIIDLE_TOG(v)    (HW_GPU2D_AQHIIDLE_WR(HW_GPU2D_AQHIIDLE_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_AQHIIDLE bitfields
  */
 
-/* --- Register HW_GPU2D_AQHIIDLE, field AXI_LP
+/* --- Register HW_GPU2D_AQHIIDLE, field AXI_LP (RO)
  *
  * AXI is in low power mode.
  */
@@ -342,16 +393,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_AXI_LP      0
 #define BM_GPU2D_AQHIIDLE_AXI_LP      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_AXI_LP(v)   ((((reg32_t) v) << 0) & BM_GPU2D_AQHIIDLE_AXI_LP)
-#else
-#define BF_GPU2D_AQHIIDLE_AXI_LP(v)   (((v) << 0) & BM_GPU2D_AQHIIDLE_AXI_LP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_AXI_LP(v)   BF_CS1(GPU2D_AQHIIDLE, AXI_LP, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_TS
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_TS (RO)
  *
  * TS is idle.
  */
@@ -359,16 +401,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_TS      20
 #define BM_GPU2D_AQHIIDLE_IDLE_TS      0x00100000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_TS(v)   ((((reg32_t) v) << 20) & BM_GPU2D_AQHIIDLE_IDLE_TS)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_TS(v)   (((v) << 20) & BM_GPU2D_AQHIIDLE_IDLE_TS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_TS(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_TS, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_FP
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_FP (RO)
  *
  * FP is idle.
  */
@@ -376,16 +409,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_FP      21
 #define BM_GPU2D_AQHIIDLE_IDLE_FP      0x00200000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_FP(v)   ((((reg32_t) v) << 21) & BM_GPU2D_AQHIIDLE_IDLE_FP)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_FP(v)   (((v) << 21) & BM_GPU2D_AQHIIDLE_IDLE_FP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_FP(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_FP, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_IM
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_IM (RO)
  *
  * IM is idle.
  */
@@ -393,16 +417,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_IM      22
 #define BM_GPU2D_AQHIIDLE_IDLE_IM      0x00400000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_IM(v)   ((((reg32_t) v) << 22) & BM_GPU2D_AQHIIDLE_IDLE_IM)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_IM(v)   (((v) << 22) & BM_GPU2D_AQHIIDLE_IDLE_IM)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_IM(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_IM, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_VG
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_VG (RO)
  *
  * VG is idle.
  */
@@ -410,16 +425,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_VG      23
 #define BM_GPU2D_AQHIIDLE_IDLE_VG      0x00800000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_VG(v)   ((((reg32_t) v) << 23) & BM_GPU2D_AQHIIDLE_IDLE_VG)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_VG(v)   (((v) << 23) & BM_GPU2D_AQHIIDLE_IDLE_VG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_VG(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_VG, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_TX
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_TX (RO)
  *
  * TX is idle.
  */
@@ -427,16 +433,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_TX      24
 #define BM_GPU2D_AQHIIDLE_IDLE_TX      0x01000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_TX(v)   ((((reg32_t) v) << 24) & BM_GPU2D_AQHIIDLE_IDLE_TX)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_TX(v)   (((v) << 24) & BM_GPU2D_AQHIIDLE_IDLE_TX)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_TX(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_TX, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_RA
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_RA (RO)
  *
  * RA is idle.
  */
@@ -444,16 +441,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_RA      25
 #define BM_GPU2D_AQHIIDLE_IDLE_RA      0x02000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_RA(v)   ((((reg32_t) v) << 25) & BM_GPU2D_AQHIIDLE_IDLE_RA)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_RA(v)   (((v) << 25) & BM_GPU2D_AQHIIDLE_IDLE_RA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_RA(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_RA, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_SE
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_SE (RO)
  *
  * SE is idle.
  */
@@ -461,16 +449,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_SE      26
 #define BM_GPU2D_AQHIIDLE_IDLE_SE      0x04000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_SE(v)   ((((reg32_t) v) << 26) & BM_GPU2D_AQHIIDLE_IDLE_SE)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_SE(v)   (((v) << 26) & BM_GPU2D_AQHIIDLE_IDLE_SE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_SE(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_SE, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_PA
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_PA (RO)
  *
  * PA is idle.
  */
@@ -478,16 +457,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_PA      27
 #define BM_GPU2D_AQHIIDLE_IDLE_PA      0x08000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_PA(v)   ((((reg32_t) v) << 27) & BM_GPU2D_AQHIIDLE_IDLE_PA)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_PA(v)   (((v) << 27) & BM_GPU2D_AQHIIDLE_IDLE_PA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_PA(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_PA, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_SH
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_SH (RO)
  *
  * SH is idle.
  */
@@ -495,16 +465,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_SH      28
 #define BM_GPU2D_AQHIIDLE_IDLE_SH      0x10000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_SH(v)   ((((reg32_t) v) << 28) & BM_GPU2D_AQHIIDLE_IDLE_SH)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_SH(v)   (((v) << 28) & BM_GPU2D_AQHIIDLE_IDLE_SH)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_SH(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_SH, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_PE
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_PE (RO)
  *
  * PE is idle.
  */
@@ -512,16 +473,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_PE      29
 #define BM_GPU2D_AQHIIDLE_IDLE_PE      0x20000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_PE(v)   ((((reg32_t) v) << 29) & BM_GPU2D_AQHIIDLE_IDLE_PE)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_PE(v)   (((v) << 29) & BM_GPU2D_AQHIIDLE_IDLE_PE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_PE(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_PE, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_DE
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_DE (RO)
  *
  * DE is idle.
  */
@@ -529,16 +481,7 @@ typedef union
 #define BP_GPU2D_AQHIIDLE_IDLE_DE      30
 #define BM_GPU2D_AQHIIDLE_IDLE_DE      0x40000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_DE(v)   ((((reg32_t) v) << 30) & BM_GPU2D_AQHIIDLE_IDLE_DE)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_DE(v)   (((v) << 30) & BM_GPU2D_AQHIIDLE_IDLE_DE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_DE(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_DE, v)
-#endif
-
-/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_FE
+/* --- Register HW_GPU2D_AQHIIDLE, field IDLE_FE (RO)
  *
  * FE is idle.
  */
@@ -547,23 +490,14 @@ typedef union
 #define BM_GPU2D_AQHIIDLE_IDLE_FE      0x80000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQHIIDLE_IDLE_FE(v)   ((((reg32_t) v) << 31) & BM_GPU2D_AQHIIDLE_IDLE_FE)
-#else
-#define BF_GPU2D_AQHIIDLE_IDLE_FE(v)   (((v) << 31) & BM_GPU2D_AQHIIDLE_IDLE_FE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQHIIDLE_IDLE_FE(v)   BF_CS1(GPU2D_AQHIIDLE, IDLE_FE, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_AQAXICONFIG - AXI Configuration Register
+ * @brief HW_GPU2D_AQAXICONFIG - AXI Configuration Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 16; //!< Reserved
@@ -589,12 +523,11 @@ typedef union
 #define HW_GPU2D_AQAXICONFIG_TOG(v)    (HW_GPU2D_AQAXICONFIG_WR(HW_GPU2D_AQAXICONFIG_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_AQAXICONFIG bitfields
  */
 
-/* --- Register HW_GPU2D_AQAXICONFIG, field ARCACHE
+/* --- Register HW_GPU2D_AQAXICONFIG, field ARCACHE (RW)
  *
 
  */
@@ -608,10 +541,11 @@ typedef union
 #define BF_GPU2D_AQAXICONFIG_ARCACHE(v)   (((v) << 16) & BM_GPU2D_AQAXICONFIG_ARCACHE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ARCACHE field to a new value.
 #define BW_GPU2D_AQAXICONFIG_ARCACHE(v)   BF_CS1(GPU2D_AQAXICONFIG, ARCACHE, v)
 #endif
 
-/* --- Register HW_GPU2D_AQAXICONFIG, field AWCACHE
+/* --- Register HW_GPU2D_AQAXICONFIG, field AWCACHE (RW)
  *
 
  */
@@ -625,10 +559,11 @@ typedef union
 #define BF_GPU2D_AQAXICONFIG_AWCACHE(v)   (((v) << 20) & BM_GPU2D_AQAXICONFIG_AWCACHE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AWCACHE field to a new value.
 #define BW_GPU2D_AQAXICONFIG_AWCACHE(v)   BF_CS1(GPU2D_AQAXICONFIG, AWCACHE, v)
 #endif
 
-/* --- Register HW_GPU2D_AQAXICONFIG, field ARID
+/* --- Register HW_GPU2D_AQAXICONFIG, field ARID (RW)
  *
 
  */
@@ -642,10 +577,11 @@ typedef union
 #define BF_GPU2D_AQAXICONFIG_ARID(v)   (((v) << 24) & BM_GPU2D_AQAXICONFIG_ARID)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ARID field to a new value.
 #define BW_GPU2D_AQAXICONFIG_ARID(v)   BF_CS1(GPU2D_AQAXICONFIG, ARID, v)
 #endif
 
-/* --- Register HW_GPU2D_AQAXICONFIG, field AWID
+/* --- Register HW_GPU2D_AQAXICONFIG, field AWID (RW)
  *
 
  */
@@ -659,18 +595,19 @@ typedef union
 #define BF_GPU2D_AQAXICONFIG_AWID(v)   (((v) << 28) & BM_GPU2D_AQAXICONFIG_AWID)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AWID field to a new value.
 #define BW_GPU2D_AQAXICONFIG_AWID(v)   BF_CS1(GPU2D_AQAXICONFIG, AWID, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_AQAXISTATUS - AXI Status Register
+ * @brief HW_GPU2D_AQAXISTATUS - AXI Status Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned WR_ERR_ID : 4; //!< 
@@ -696,12 +633,11 @@ typedef union
 #define HW_GPU2D_AQAXISTATUS_TOG(v)    (HW_GPU2D_AQAXISTATUS_WR(HW_GPU2D_AQAXISTATUS_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_AQAXISTATUS bitfields
  */
 
-/* --- Register HW_GPU2D_AQAXISTATUS, field WR_ERR_ID
+/* --- Register HW_GPU2D_AQAXISTATUS, field WR_ERR_ID (RW)
  *
 
  */
@@ -715,10 +651,11 @@ typedef union
 #define BF_GPU2D_AQAXISTATUS_WR_ERR_ID(v)   (((v) << 0) & BM_GPU2D_AQAXISTATUS_WR_ERR_ID)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WR_ERR_ID field to a new value.
 #define BW_GPU2D_AQAXISTATUS_WR_ERR_ID(v)   BF_CS1(GPU2D_AQAXISTATUS, WR_ERR_ID, v)
 #endif
 
-/* --- Register HW_GPU2D_AQAXISTATUS, field RD_ERR_ID
+/* --- Register HW_GPU2D_AQAXISTATUS, field RD_ERR_ID (RW)
  *
 
  */
@@ -732,10 +669,11 @@ typedef union
 #define BF_GPU2D_AQAXISTATUS_RD_ERR_ID(v)   (((v) << 4) & BM_GPU2D_AQAXISTATUS_RD_ERR_ID)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RD_ERR_ID field to a new value.
 #define BW_GPU2D_AQAXISTATUS_RD_ERR_ID(v)   BF_CS1(GPU2D_AQAXISTATUS, RD_ERR_ID, v)
 #endif
 
-/* --- Register HW_GPU2D_AQAXISTATUS, field DET_WR_ERR
+/* --- Register HW_GPU2D_AQAXISTATUS, field DET_WR_ERR (RW)
  *
 
  */
@@ -749,10 +687,11 @@ typedef union
 #define BF_GPU2D_AQAXISTATUS_DET_WR_ERR(v)   (((v) << 8) & BM_GPU2D_AQAXISTATUS_DET_WR_ERR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DET_WR_ERR field to a new value.
 #define BW_GPU2D_AQAXISTATUS_DET_WR_ERR(v)   BF_CS1(GPU2D_AQAXISTATUS, DET_WR_ERR, v)
 #endif
 
-/* --- Register HW_GPU2D_AQAXISTATUS, field DET_RD_ERR
+/* --- Register HW_GPU2D_AQAXISTATUS, field DET_RD_ERR (RW)
  *
 
  */
@@ -766,20 +705,20 @@ typedef union
 #define BF_GPU2D_AQAXISTATUS_DET_RD_ERR(v)   (((v) << 9) & BM_GPU2D_AQAXISTATUS_DET_RD_ERR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DET_RD_ERR field to a new value.
 #define BW_GPU2D_AQAXISTATUS_DET_RD_ERR(v)   BF_CS1(GPU2D_AQAXISTATUS, DET_RD_ERR, v)
 #endif
 
-/*!
- * @brief HW_GPU2D_AQINTRACKNOWLEDGE - Interrupt Acknowledge Register
- *
- * Interrupt acknowledge register. Each bit represents a corresponding event
- * being triggered. Reading frmo this register clears the outstanding
- * interrupt.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_AQINTRACKNOWLEDGE - Interrupt Acknowledge Register (RO)
+ *
+ * Interrupt acknowledge register. Each bit represents a corresponding event being triggered.
+ * Reading frmo this register clears the outstanding interrupt.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned INTR_VEC : 32; //!< 
@@ -795,18 +734,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_AQINTRACKNOWLEDGE           (*(volatile hw_gpu2d_aqintracknowledge_t *) HW_GPU2D_AQINTRACKNOWLEDGE_ADDR)
 #define HW_GPU2D_AQINTRACKNOWLEDGE_RD()      (HW_GPU2D_AQINTRACKNOWLEDGE.U)
-#define HW_GPU2D_AQINTRACKNOWLEDGE_WR(v)     (HW_GPU2D_AQINTRACKNOWLEDGE.U = (v))
-#define HW_GPU2D_AQINTRACKNOWLEDGE_SET(v)    (HW_GPU2D_AQINTRACKNOWLEDGE_WR(HW_GPU2D_AQINTRACKNOWLEDGE_RD() |  (v)))
-#define HW_GPU2D_AQINTRACKNOWLEDGE_CLR(v)    (HW_GPU2D_AQINTRACKNOWLEDGE_WR(HW_GPU2D_AQINTRACKNOWLEDGE_RD() & ~(v)))
-#define HW_GPU2D_AQINTRACKNOWLEDGE_TOG(v)    (HW_GPU2D_AQINTRACKNOWLEDGE_WR(HW_GPU2D_AQINTRACKNOWLEDGE_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_AQINTRACKNOWLEDGE bitfields
  */
 
-/* --- Register HW_GPU2D_AQINTRACKNOWLEDGE, field INTR_VEC
+/* --- Register HW_GPU2D_AQINTRACKNOWLEDGE, field INTR_VEC (RO)
  *
 
  */
@@ -815,23 +749,14 @@ typedef union
 #define BM_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC(v)   ((((reg32_t) v) << 0) & BM_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC)
-#else
-#define BF_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC(v)   (((v) << 0) & BM_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC(v)   BF_CS1(GPU2D_AQINTRACKNOWLEDGE, INTR_VEC, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_AQINTRENBL - Interrupt Enable Register
+ * @brief HW_GPU2D_AQINTRENBL - Interrupt Enable Register (RW)
  *
  * Interrupt enable register. Each bit enables a corresponding event.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned INTR_ENBL_VEC : 32; //!< 
@@ -853,12 +778,11 @@ typedef union
 #define HW_GPU2D_AQINTRENBL_TOG(v)    (HW_GPU2D_AQINTRENBL_WR(HW_GPU2D_AQINTRENBL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_AQINTRENBL bitfields
  */
 
-/* --- Register HW_GPU2D_AQINTRENBL, field INTR_ENBL_VEC
+/* --- Register HW_GPU2D_AQINTRENBL, field INTR_ENBL_VEC (RW)
  *
 
  */
@@ -872,19 +796,19 @@ typedef union
 #define BF_GPU2D_AQINTRENBL_INTR_ENBL_VEC(v)   (((v) << 0) & BM_GPU2D_AQINTRENBL_INTR_ENBL_VEC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INTR_ENBL_VEC field to a new value.
 #define BW_GPU2D_AQINTRENBL_INTR_ENBL_VEC(v)   BF_CS1(GPU2D_AQINTRENBL, INTR_ENBL_VEC, v)
 #endif
 
-/*!
- * @brief HW_GPU2D_AQIDENT - Identification Register
- *
- * Identification register. This register has no set reset value. It varies
- * with the implementation.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_AQIDENT - Identification Register (RO)
+ *
+ * Identification register. This register has no set reset value. It varies with the implementation.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CUSTOMER : 8; //!< Customer value.
@@ -904,18 +828,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_AQIDENT           (*(volatile hw_gpu2d_aqident_t *) HW_GPU2D_AQIDENT_ADDR)
 #define HW_GPU2D_AQIDENT_RD()      (HW_GPU2D_AQIDENT.U)
-#define HW_GPU2D_AQIDENT_WR(v)     (HW_GPU2D_AQIDENT.U = (v))
-#define HW_GPU2D_AQIDENT_SET(v)    (HW_GPU2D_AQIDENT_WR(HW_GPU2D_AQIDENT_RD() |  (v)))
-#define HW_GPU2D_AQIDENT_CLR(v)    (HW_GPU2D_AQIDENT_WR(HW_GPU2D_AQIDENT_RD() & ~(v)))
-#define HW_GPU2D_AQIDENT_TOG(v)    (HW_GPU2D_AQIDENT_WR(HW_GPU2D_AQIDENT_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_AQIDENT bitfields
  */
 
-/* --- Register HW_GPU2D_AQIDENT, field CUSTOMER
+/* --- Register HW_GPU2D_AQIDENT, field CUSTOMER (RO)
  *
  * Customer value.
  */
@@ -923,16 +842,7 @@ typedef union
 #define BP_GPU2D_AQIDENT_CUSTOMER      0
 #define BM_GPU2D_AQIDENT_CUSTOMER      0x000000ff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQIDENT_CUSTOMER(v)   ((((reg32_t) v) << 0) & BM_GPU2D_AQIDENT_CUSTOMER)
-#else
-#define BF_GPU2D_AQIDENT_CUSTOMER(v)   (((v) << 0) & BM_GPU2D_AQIDENT_CUSTOMER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQIDENT_CUSTOMER(v)   BF_CS1(GPU2D_AQIDENT, CUSTOMER, v)
-#endif
-
-/* --- Register HW_GPU2D_AQIDENT, field TECHNOLOGY
+/* --- Register HW_GPU2D_AQIDENT, field TECHNOLOGY (RO)
  *
  * Technology value.
  */
@@ -940,16 +850,7 @@ typedef union
 #define BP_GPU2D_AQIDENT_TECHNOLOGY      8
 #define BM_GPU2D_AQIDENT_TECHNOLOGY      0x00000f00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQIDENT_TECHNOLOGY(v)   ((((reg32_t) v) << 8) & BM_GPU2D_AQIDENT_TECHNOLOGY)
-#else
-#define BF_GPU2D_AQIDENT_TECHNOLOGY(v)   (((v) << 8) & BM_GPU2D_AQIDENT_TECHNOLOGY)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQIDENT_TECHNOLOGY(v)   BF_CS1(GPU2D_AQIDENT, TECHNOLOGY, v)
-#endif
-
-/* --- Register HW_GPU2D_AQIDENT, field REVISION
+/* --- Register HW_GPU2D_AQIDENT, field REVISION (RO)
  *
  * Revision value.
  */
@@ -957,16 +858,7 @@ typedef union
 #define BP_GPU2D_AQIDENT_REVISION      12
 #define BM_GPU2D_AQIDENT_REVISION      0x0000f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQIDENT_REVISION(v)   ((((reg32_t) v) << 12) & BM_GPU2D_AQIDENT_REVISION)
-#else
-#define BF_GPU2D_AQIDENT_REVISION(v)   (((v) << 12) & BM_GPU2D_AQIDENT_REVISION)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQIDENT_REVISION(v)   BF_CS1(GPU2D_AQIDENT, REVISION, v)
-#endif
-
-/* --- Register HW_GPU2D_AQIDENT, field PRODUCT
+/* --- Register HW_GPU2D_AQIDENT, field PRODUCT (RO)
  *
  * Product value.
  */
@@ -974,42 +866,39 @@ typedef union
 #define BP_GPU2D_AQIDENT_PRODUCT      16
 #define BM_GPU2D_AQIDENT_PRODUCT      0x00ff0000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQIDENT_PRODUCT(v)   ((((reg32_t) v) << 16) & BM_GPU2D_AQIDENT_PRODUCT)
-#else
-#define BF_GPU2D_AQIDENT_PRODUCT(v)   (((v) << 16) & BM_GPU2D_AQIDENT_PRODUCT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQIDENT_PRODUCT(v)   BF_CS1(GPU2D_AQIDENT, PRODUCT, v)
-#endif
-
-/* --- Register HW_GPU2D_AQIDENT, field FAMILY
+/* --- Register HW_GPU2D_AQIDENT, field FAMILY (RO)
  *
  * Family value.
+ *
+ * Values:
+ * 01 - GC500
+ * 02 - GC520
+ * 03 - GC530
+ * 04 - GC400
+ * 05 - GC450
+ * 08 - GC600
+ * 09 - GC700
+ * 0A - GC350
+ * 10 - GC1000
+ * 0B - GC380
+ * 0C - GC800
+ * 14 - GC2000
  */
 
 #define BP_GPU2D_AQIDENT_FAMILY      24
 #define BM_GPU2D_AQIDENT_FAMILY      0xff000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_AQIDENT_FAMILY(v)   ((((reg32_t) v) << 24) & BM_GPU2D_AQIDENT_FAMILY)
-#else
-#define BF_GPU2D_AQIDENT_FAMILY(v)   (((v) << 24) & BM_GPU2D_AQIDENT_FAMILY)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_AQIDENT_FAMILY(v)   BF_CS1(GPU2D_AQIDENT, FAMILY, v)
-#endif
 
-/*!
- * @brief HW_GPU2D_FEATURES - Features Register
- *
- * Shows which features are enabled in this chip. This register has no set
- * reset value. It varies with the implementation.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_FEATURES - Features Register (RO)
+ *
+ * Shows which features are enabled in this chip. This register has no set reset value. It varies
+ * with the implementation.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned FE20_BIT_INDEX : 1; //!< Supports 20 bit index.
@@ -1056,571 +945,438 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_FEATURES           (*(volatile hw_gpu2d_features_t *) HW_GPU2D_FEATURES_ADDR)
 #define HW_GPU2D_FEATURES_RD()      (HW_GPU2D_FEATURES.U)
-#define HW_GPU2D_FEATURES_WR(v)     (HW_GPU2D_FEATURES.U = (v))
-#define HW_GPU2D_FEATURES_SET(v)    (HW_GPU2D_FEATURES_WR(HW_GPU2D_FEATURES_RD() |  (v)))
-#define HW_GPU2D_FEATURES_CLR(v)    (HW_GPU2D_FEATURES_WR(HW_GPU2D_FEATURES_RD() & ~(v)))
-#define HW_GPU2D_FEATURES_TOG(v)    (HW_GPU2D_FEATURES_WR(HW_GPU2D_FEATURES_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_FEATURES bitfields
  */
 
-/* --- Register HW_GPU2D_FEATURES, field FE20_BIT_INDEX
+/* --- Register HW_GPU2D_FEATURES, field FE20_BIT_INDEX (RO)
  *
  * Supports 20 bit index.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_FE20_BIT_INDEX      0
 #define BM_GPU2D_FEATURES_FE20_BIT_INDEX      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_FE20_BIT_INDEX(v)   ((((reg32_t) v) << 0) & BM_GPU2D_FEATURES_FE20_BIT_INDEX)
-#else
-#define BF_GPU2D_FEATURES_FE20_BIT_INDEX(v)   (((v) << 0) & BM_GPU2D_FEATURES_FE20_BIT_INDEX)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_FE20_BIT_INDEX(v)   BF_CS1(GPU2D_FEATURES, FE20_BIT_INDEX, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field RS_YUV_TARGET
+/* --- Register HW_GPU2D_FEATURES, field RS_YUV_TARGET (RO)
  *
  * Supports resolving into YUV target.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_RS_YUV_TARGET      1
 #define BM_GPU2D_FEATURES_RS_YUV_TARGET      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_RS_YUV_TARGET(v)   ((((reg32_t) v) << 1) & BM_GPU2D_FEATURES_RS_YUV_TARGET)
-#else
-#define BF_GPU2D_FEATURES_RS_YUV_TARGET(v)   (((v) << 1) & BM_GPU2D_FEATURES_RS_YUV_TARGET)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_RS_YUV_TARGET(v)   BF_CS1(GPU2D_FEATURES, RS_YUV_TARGET, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field BYTE_WRITE_3D
+/* --- Register HW_GPU2D_FEATURES, field BYTE_WRITE_3D (RO)
  *
  * 3D PE has byte write capability.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_BYTE_WRITE_3D      2
 #define BM_GPU2D_FEATURES_BYTE_WRITE_3D      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_BYTE_WRITE_3D(v)   ((((reg32_t) v) << 2) & BM_GPU2D_FEATURES_BYTE_WRITE_3D)
-#else
-#define BF_GPU2D_FEATURES_BYTE_WRITE_3D(v)   (((v) << 2) & BM_GPU2D_FEATURES_BYTE_WRITE_3D)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_BYTE_WRITE_3D(v)   BF_CS1(GPU2D_FEATURES, BYTE_WRITE_3D, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field FE20
+/* --- Register HW_GPU2D_FEATURES, field FE20 (RO)
  *
  * FE 2.0 is present.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_FE20      3
 #define BM_GPU2D_FEATURES_FE20      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_FE20(v)   ((((reg32_t) v) << 3) & BM_GPU2D_FEATURES_FE20)
-#else
-#define BF_GPU2D_FEATURES_FE20(v)   (((v) << 3) & BM_GPU2D_FEATURES_FE20)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_FE20(v)   BF_CS1(GPU2D_FEATURES, FE20, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field VGTS
+/* --- Register HW_GPU2D_FEATURES, field VGTS (RO)
  *
  * VG tessellator is present.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_VGTS      4
 #define BM_GPU2D_FEATURES_VGTS      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_VGTS(v)   ((((reg32_t) v) << 4) & BM_GPU2D_FEATURES_VGTS)
-#else
-#define BF_GPU2D_FEATURES_VGTS(v)   (((v) << 4) & BM_GPU2D_FEATURES_VGTS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_VGTS(v)   BF_CS1(GPU2D_FEATURES, VGTS, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field PIPE_VG
+/* --- Register HW_GPU2D_FEATURES, field PIPE_VG (RO)
  *
  * VG pipe is present.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_PIPE_VG      5
 #define BM_GPU2D_FEATURES_PIPE_VG      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_PIPE_VG(v)   ((((reg32_t) v) << 5) & BM_GPU2D_FEATURES_PIPE_VG)
-#else
-#define BF_GPU2D_FEATURES_PIPE_VG(v)   (((v) << 5) & BM_GPU2D_FEATURES_PIPE_VG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_PIPE_VG(v)   BF_CS1(GPU2D_FEATURES, PIPE_VG, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field MEM32_BIT_SUPPORT
+/* --- Register HW_GPU2D_FEATURES, field MEM32_BIT_SUPPORT (RO)
  *
  * 32 bit memory address support.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_MEM32_BIT_SUPPORT      6
 #define BM_GPU2D_FEATURES_MEM32_BIT_SUPPORT      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_MEM32_BIT_SUPPORT(v)   ((((reg32_t) v) << 6) & BM_GPU2D_FEATURES_MEM32_BIT_SUPPORT)
-#else
-#define BF_GPU2D_FEATURES_MEM32_BIT_SUPPORT(v)   (((v) << 6) & BM_GPU2D_FEATURES_MEM32_BIT_SUPPORT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_MEM32_BIT_SUPPORT(v)   BF_CS1(GPU2D_FEATURES, MEM32_BIT_SUPPORT, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field YUY2_RENDER_TARGET
+/* --- Register HW_GPU2D_FEATURES, field YUY2_RENDER_TARGET (RO)
  *
  * YUY2 support in PE and YUY2 to RGB conversion in resolve.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_YUY2_RENDER_TARGET      7
 #define BM_GPU2D_FEATURES_YUY2_RENDER_TARGET      0x00000080
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_YUY2_RENDER_TARGET(v)   ((((reg32_t) v) << 7) & BM_GPU2D_FEATURES_YUY2_RENDER_TARGET)
-#else
-#define BF_GPU2D_FEATURES_YUY2_RENDER_TARGET(v)   (((v) << 7) & BM_GPU2D_FEATURES_YUY2_RENDER_TARGET)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_YUY2_RENDER_TARGET(v)   BF_CS1(GPU2D_FEATURES, YUY2_RENDER_TARGET, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field HALF_TX_CACHE
+/* --- Register HW_GPU2D_FEATURES, field HALF_TX_CACHE (RO)
  *
  * TX cache is half.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_HALF_TX_CACHE      8
 #define BM_GPU2D_FEATURES_HALF_TX_CACHE      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_HALF_TX_CACHE(v)   ((((reg32_t) v) << 8) & BM_GPU2D_FEATURES_HALF_TX_CACHE)
-#else
-#define BF_GPU2D_FEATURES_HALF_TX_CACHE(v)   (((v) << 8) & BM_GPU2D_FEATURES_HALF_TX_CACHE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_HALF_TX_CACHE(v)   BF_CS1(GPU2D_FEATURES, HALF_TX_CACHE, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field HALF_PE_CACHE
+/* --- Register HW_GPU2D_FEATURES, field HALF_PE_CACHE (RO)
  *
  * PE cache is half.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_HALF_PE_CACHE      9
 #define BM_GPU2D_FEATURES_HALF_PE_CACHE      0x00000200
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_HALF_PE_CACHE(v)   ((((reg32_t) v) << 9) & BM_GPU2D_FEATURES_HALF_PE_CACHE)
-#else
-#define BF_GPU2D_FEATURES_HALF_PE_CACHE(v)   (((v) << 9) & BM_GPU2D_FEATURES_HALF_PE_CACHE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_HALF_PE_CACHE(v)   BF_CS1(GPU2D_FEATURES, HALF_PE_CACHE, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field YUY2_AVERAGING
+/* --- Register HW_GPU2D_FEATURES, field YUY2_AVERAGING (RO)
  *
  * YUY2 averaging support in resolve.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_YUY2_AVERAGING      10
 #define BM_GPU2D_FEATURES_YUY2_AVERAGING      0x00000400
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_YUY2_AVERAGING(v)   ((((reg32_t) v) << 10) & BM_GPU2D_FEATURES_YUY2_AVERAGING)
-#else
-#define BF_GPU2D_FEATURES_YUY2_AVERAGING(v)   (((v) << 10) & BM_GPU2D_FEATURES_YUY2_AVERAGING)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_YUY2_AVERAGING(v)   BF_CS1(GPU2D_FEATURES, YUY2_AVERAGING, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field NO_SCALER
+/* --- Register HW_GPU2D_FEATURES, field NO_SCALER (RO)
  *
  * IP does not have 2D scaler.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_NO_SCALER      11
 #define BM_GPU2D_FEATURES_NO_SCALER      0x00000800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_NO_SCALER(v)   ((((reg32_t) v) << 11) & BM_GPU2D_FEATURES_NO_SCALER)
-#else
-#define BF_GPU2D_FEATURES_NO_SCALER(v)   (((v) << 11) & BM_GPU2D_FEATURES_NO_SCALER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_NO_SCALER(v)   BF_CS1(GPU2D_FEATURES, NO_SCALER, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field BYTE_WRITE_2D
+/* --- Register HW_GPU2D_FEATURES, field BYTE_WRITE_2D (RO)
  *
  * Supports byte write in 2D.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_BYTE_WRITE_2D      12
 #define BM_GPU2D_FEATURES_BYTE_WRITE_2D      0x00001000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_BYTE_WRITE_2D(v)   ((((reg32_t) v) << 12) & BM_GPU2D_FEATURES_BYTE_WRITE_2D)
-#else
-#define BF_GPU2D_FEATURES_BYTE_WRITE_2D(v)   (((v) << 12) & BM_GPU2D_FEATURES_BYTE_WRITE_2D)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_BYTE_WRITE_2D(v)   BF_CS1(GPU2D_FEATURES, BYTE_WRITE_2D, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field BUFFER_INTERLEAVING
+/* --- Register HW_GPU2D_FEATURES, field BUFFER_INTERLEAVING (RO)
  *
  * IP supports interleaving depth and color buffers.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_BUFFER_INTERLEAVING      13
 #define BM_GPU2D_FEATURES_BUFFER_INTERLEAVING      0x00002000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_BUFFER_INTERLEAVING(v)   ((((reg32_t) v) << 13) & BM_GPU2D_FEATURES_BUFFER_INTERLEAVING)
-#else
-#define BF_GPU2D_FEATURES_BUFFER_INTERLEAVING(v)   (((v) << 13) & BM_GPU2D_FEATURES_BUFFER_INTERLEAVING)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_BUFFER_INTERLEAVING(v)   BF_CS1(GPU2D_FEATURES, BUFFER_INTERLEAVING, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field NO422_TEXTURE
+/* --- Register HW_GPU2D_FEATURES, field NO422_TEXTURE (RO)
  *
  * IP does not have 422 texture input format.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_NO422_TEXTURE      14
 #define BM_GPU2D_FEATURES_NO422_TEXTURE      0x00004000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_NO422_TEXTURE(v)   ((((reg32_t) v) << 14) & BM_GPU2D_FEATURES_NO422_TEXTURE)
-#else
-#define BF_GPU2D_FEATURES_NO422_TEXTURE(v)   (((v) << 14) & BM_GPU2D_FEATURES_NO422_TEXTURE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_NO422_TEXTURE(v)   BF_CS1(GPU2D_FEATURES, NO422_TEXTURE, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field NO_EZ
+/* --- Register HW_GPU2D_FEATURES, field NO_EZ (RO)
  *
  * IP does not have early-Z.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_NO_EZ      15
 #define BM_GPU2D_FEATURES_NO_EZ      0x00008000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_NO_EZ(v)   ((((reg32_t) v) << 15) & BM_GPU2D_FEATURES_NO_EZ)
-#else
-#define BF_GPU2D_FEATURES_NO_EZ(v)   (((v) << 15) & BM_GPU2D_FEATURES_NO_EZ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_NO_EZ(v)   BF_CS1(GPU2D_FEATURES, NO_EZ, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field MIN_AREA
+/* --- Register HW_GPU2D_FEATURES, field MIN_AREA (RO)
  *
  * IP is configured to have minimum area.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_MIN_AREA      16
 #define BM_GPU2D_FEATURES_MIN_AREA      0x00010000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_MIN_AREA(v)   ((((reg32_t) v) << 16) & BM_GPU2D_FEATURES_MIN_AREA)
-#else
-#define BF_GPU2D_FEATURES_MIN_AREA(v)   (((v) << 16) & BM_GPU2D_FEATURES_MIN_AREA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_MIN_AREA(v)   BF_CS1(GPU2D_FEATURES, MIN_AREA, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field MODULE_CG
+/* --- Register HW_GPU2D_FEATURES, field MODULE_CG (RO)
  *
  * Second level clock gating is available.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_MODULE_CG      17
 #define BM_GPU2D_FEATURES_MODULE_CG      0x00020000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_MODULE_CG(v)   ((((reg32_t) v) << 17) & BM_GPU2D_FEATURES_MODULE_CG)
-#else
-#define BF_GPU2D_FEATURES_MODULE_CG(v)   (((v) << 17) & BM_GPU2D_FEATURES_MODULE_CG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_MODULE_CG(v)   BF_CS1(GPU2D_FEATURES, MODULE_CG, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field YUV420_TILER
+/* --- Register HW_GPU2D_FEATURES, field YUV420_TILER (RO)
  *
  * YUV 4:2:0 tiler is available.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_YUV420_TILER      18
 #define BM_GPU2D_FEATURES_YUV420_TILER      0x00040000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_YUV420_TILER(v)   ((((reg32_t) v) << 18) & BM_GPU2D_FEATURES_YUV420_TILER)
-#else
-#define BF_GPU2D_FEATURES_YUV420_TILER(v)   (((v) << 18) & BM_GPU2D_FEATURES_YUV420_TILER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_YUV420_TILER(v)   BF_CS1(GPU2D_FEATURES, YUV420_TILER, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field HIGH_DYNAMIC_RANGE
+/* --- Register HW_GPU2D_FEATURES, field HIGH_DYNAMIC_RANGE (RO)
  *
  * Shows if the IP has HDR support.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE      19
 #define BM_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE      0x00080000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE(v)   ((((reg32_t) v) << 19) & BM_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE)
-#else
-#define BF_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE(v)   (((v) << 19) & BM_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE(v)   BF_CS1(GPU2D_FEATURES, HIGH_DYNAMIC_RANGE, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field FAST_SCALER
+/* --- Register HW_GPU2D_FEATURES, field FAST_SCALER (RO)
  *
  * Shows if the IP has HD scaler.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_FAST_SCALER      20
 #define BM_GPU2D_FEATURES_FAST_SCALER      0x00100000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_FAST_SCALER(v)   ((((reg32_t) v) << 20) & BM_GPU2D_FEATURES_FAST_SCALER)
-#else
-#define BF_GPU2D_FEATURES_FAST_SCALER(v)   (((v) << 20) & BM_GPU2D_FEATURES_FAST_SCALER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_FAST_SCALER(v)   BF_CS1(GPU2D_FEATURES, FAST_SCALER, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field ETC1_TEXTURE_COMPRESSION
+/* --- Register HW_GPU2D_FEATURES, field ETC1_TEXTURE_COMPRESSION (RO)
  *
  * ETC1 texture compression.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION      21
 #define BM_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION      0x00200000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION(v)   ((((reg32_t) v) << 21) & BM_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION)
-#else
-#define BF_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION(v)   (((v) << 21) & BM_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION(v)   BF_CS1(GPU2D_FEATURES, ETC1_TEXTURE_COMPRESSION, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field PIPE_2D
+/* --- Register HW_GPU2D_FEATURES, field PIPE_2D (RO)
  *
  * Shows if there is 2D engine.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_PIPE_2D      22
 #define BM_GPU2D_FEATURES_PIPE_2D      0x00400000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_PIPE_2D(v)   ((((reg32_t) v) << 22) & BM_GPU2D_FEATURES_PIPE_2D)
-#else
-#define BF_GPU2D_FEATURES_PIPE_2D(v)   (((v) << 22) & BM_GPU2D_FEATURES_PIPE_2D)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_PIPE_2D(v)   BF_CS1(GPU2D_FEATURES, PIPE_2D, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field DC
+/* --- Register HW_GPU2D_FEATURES, field DC (RO)
  *
  * Shows if there is a display controller in the IP.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_DC      23
 #define BM_GPU2D_FEATURES_DC      0x00800000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_DC(v)   ((((reg32_t) v) << 23) & BM_GPU2D_FEATURES_DC)
-#else
-#define BF_GPU2D_FEATURES_DC(v)   (((v) << 23) & BM_GPU2D_FEATURES_DC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_DC(v)   BF_CS1(GPU2D_FEATURES, DC, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field MSAA
+/* --- Register HW_GPU2D_FEATURES, field MSAA (RO)
  *
  * MSAA support.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_MSAA      24
 #define BM_GPU2D_FEATURES_MSAA      0x01000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_MSAA(v)   ((((reg32_t) v) << 24) & BM_GPU2D_FEATURES_MSAA)
-#else
-#define BF_GPU2D_FEATURES_MSAA(v)   (((v) << 24) & BM_GPU2D_FEATURES_MSAA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_MSAA(v)   BF_CS1(GPU2D_FEATURES, MSAA, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field YUV420_FILTER
+/* --- Register HW_GPU2D_FEATURES, field YUV420_FILTER (RO)
  *
  * YUV 4:2:0 support in filter blit.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_YUV420_FILTER      25
 #define BM_GPU2D_FEATURES_YUV420_FILTER      0x02000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_YUV420_FILTER(v)   ((((reg32_t) v) << 25) & BM_GPU2D_FEATURES_YUV420_FILTER)
-#else
-#define BF_GPU2D_FEATURES_YUV420_FILTER(v)   (((v) << 25) & BM_GPU2D_FEATURES_YUV420_FILTER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_YUV420_FILTER(v)   BF_CS1(GPU2D_FEATURES, YUV420_FILTER, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field ZCOMPRESSION
+/* --- Register HW_GPU2D_FEATURES, field ZCOMPRESSION (RO)
  *
  * Depth and color compression.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_ZCOMPRESSION      26
 #define BM_GPU2D_FEATURES_ZCOMPRESSION      0x04000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_ZCOMPRESSION(v)   ((((reg32_t) v) << 26) & BM_GPU2D_FEATURES_ZCOMPRESSION)
-#else
-#define BF_GPU2D_FEATURES_ZCOMPRESSION(v)   (((v) << 26) & BM_GPU2D_FEATURES_ZCOMPRESSION)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_ZCOMPRESSION(v)   BF_CS1(GPU2D_FEATURES, ZCOMPRESSION, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field DEBUG_MODE
+/* --- Register HW_GPU2D_FEATURES, field DEBUG_MODE (RO)
  *
  * Debug registers.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_DEBUG_MODE      27
 #define BM_GPU2D_FEATURES_DEBUG_MODE      0x08000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_DEBUG_MODE(v)   ((((reg32_t) v) << 27) & BM_GPU2D_FEATURES_DEBUG_MODE)
-#else
-#define BF_GPU2D_FEATURES_DEBUG_MODE(v)   (((v) << 27) & BM_GPU2D_FEATURES_DEBUG_MODE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_DEBUG_MODE(v)   BF_CS1(GPU2D_FEATURES, DEBUG_MODE, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field DXT_TEXTURE_COMPRESSION
+/* --- Register HW_GPU2D_FEATURES, field DXT_TEXTURE_COMPRESSION (RO)
  *
  * DXT texture compression.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION      28
 #define BM_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION      0x10000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION(v)   ((((reg32_t) v) << 28) & BM_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION)
-#else
-#define BF_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION(v)   (((v) << 28) & BM_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION(v)   BF_CS1(GPU2D_FEATURES, DXT_TEXTURE_COMPRESSION, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field PIPE_3D
+/* --- Register HW_GPU2D_FEATURES, field PIPE_3D (RO)
  *
  * 3D pipe.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_PIPE_3D      29
 #define BM_GPU2D_FEATURES_PIPE_3D      0x20000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_PIPE_3D(v)   ((((reg32_t) v) << 29) & BM_GPU2D_FEATURES_PIPE_3D)
-#else
-#define BF_GPU2D_FEATURES_PIPE_3D(v)   (((v) << 29) & BM_GPU2D_FEATURES_PIPE_3D)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_PIPE_3D(v)   BF_CS1(GPU2D_FEATURES, PIPE_3D, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field SPECIAL_ANTI_ALIASING
+/* --- Register HW_GPU2D_FEATURES, field SPECIAL_ANTI_ALIASING (RO)
  *
  * Full-screen anti-aliasing.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING      30
 #define BM_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING      0x40000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING(v)   ((((reg32_t) v) << 30) & BM_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING)
-#else
-#define BF_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING(v)   (((v) << 30) & BM_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING(v)   BF_CS1(GPU2D_FEATURES, SPECIAL_ANTI_ALIASING, v)
-#endif
 
-/* --- Register HW_GPU2D_FEATURES, field FAST_CLEAR
+/* --- Register HW_GPU2D_FEATURES, field FAST_CLEAR (RO)
  *
  * Fast clear.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_FEATURES_FAST_CLEAR      31
 #define BM_GPU2D_FEATURES_FAST_CLEAR      0x80000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_FEATURES_FAST_CLEAR(v)   ((((reg32_t) v) << 31) & BM_GPU2D_FEATURES_FAST_CLEAR)
-#else
-#define BF_GPU2D_FEATURES_FAST_CLEAR(v)   (((v) << 31) & BM_GPU2D_FEATURES_FAST_CLEAR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_FEATURES_FAST_CLEAR(v)   BF_CS1(GPU2D_FEATURES, FAST_CLEAR, v)
-#endif
 
-/*!
- * @brief HW_GPU2D_CHIPID - Chip Identification Register
- *
- * Shows the ID for the chip in BCD. This register has no set reset value.
- * It varies with the implementation.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_CHIPID - Chip Identification Register (RO)
+ *
+ * Shows the ID for the chip in BCD. This register has no set reset value. It varies with the
+ * implementation.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ID : 32; //!< Id.
@@ -1636,18 +1392,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_CHIPID           (*(volatile hw_gpu2d_chipid_t *) HW_GPU2D_CHIPID_ADDR)
 #define HW_GPU2D_CHIPID_RD()      (HW_GPU2D_CHIPID.U)
-#define HW_GPU2D_CHIPID_WR(v)     (HW_GPU2D_CHIPID.U = (v))
-#define HW_GPU2D_CHIPID_SET(v)    (HW_GPU2D_CHIPID_WR(HW_GPU2D_CHIPID_RD() |  (v)))
-#define HW_GPU2D_CHIPID_CLR(v)    (HW_GPU2D_CHIPID_WR(HW_GPU2D_CHIPID_RD() & ~(v)))
-#define HW_GPU2D_CHIPID_TOG(v)    (HW_GPU2D_CHIPID_WR(HW_GPU2D_CHIPID_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_CHIPID bitfields
  */
 
-/* --- Register HW_GPU2D_CHIPID, field ID
+/* --- Register HW_GPU2D_CHIPID, field ID (RO)
  *
  * Id.
  */
@@ -1656,24 +1407,15 @@ typedef union
 #define BM_GPU2D_CHIPID_ID      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPID_ID(v)   ((((reg32_t) v) << 0) & BM_GPU2D_CHIPID_ID)
-#else
-#define BF_GPU2D_CHIPID_ID(v)   (((v) << 0) & BM_GPU2D_CHIPID_ID)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPID_ID(v)   BF_CS1(GPU2D_CHIPID, ID, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_CHIPREV - Chip Revision Register
+ * @brief HW_GPU2D_CHIPREV - Chip Revision Register (RO)
  *
- * Shows the revision for the chip in BCD. This register has no set reset
- * value. It varies with the implementation.
+ * Shows the revision for the chip in BCD. This register has no set reset value. It varies with the
+ * implementation.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned REV : 32; //!< Revision.
@@ -1689,18 +1431,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_CHIPREV           (*(volatile hw_gpu2d_chiprev_t *) HW_GPU2D_CHIPREV_ADDR)
 #define HW_GPU2D_CHIPREV_RD()      (HW_GPU2D_CHIPREV.U)
-#define HW_GPU2D_CHIPREV_WR(v)     (HW_GPU2D_CHIPREV.U = (v))
-#define HW_GPU2D_CHIPREV_SET(v)    (HW_GPU2D_CHIPREV_WR(HW_GPU2D_CHIPREV_RD() |  (v)))
-#define HW_GPU2D_CHIPREV_CLR(v)    (HW_GPU2D_CHIPREV_WR(HW_GPU2D_CHIPREV_RD() & ~(v)))
-#define HW_GPU2D_CHIPREV_TOG(v)    (HW_GPU2D_CHIPREV_WR(HW_GPU2D_CHIPREV_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_CHIPREV bitfields
  */
 
-/* --- Register HW_GPU2D_CHIPREV, field REV
+/* --- Register HW_GPU2D_CHIPREV, field REV (RO)
  *
  * Revision.
  */
@@ -1709,24 +1446,15 @@ typedef union
 #define BM_GPU2D_CHIPREV_REV      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPREV_REV(v)   ((((reg32_t) v) << 0) & BM_GPU2D_CHIPREV_REV)
-#else
-#define BF_GPU2D_CHIPREV_REV(v)   (((v) << 0) & BM_GPU2D_CHIPREV_REV)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPREV_REV(v)   BF_CS1(GPU2D_CHIPREV, REV, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_CHIPDATE - Chip Release Date Register
+ * @brief HW_GPU2D_CHIPDATE - Chip Release Date Register (RO)
  *
- * Shows the release date for the IP. This register has no set reset value.
- * It varies with the implementation.
+ * Shows the release date for the IP. This register has no set reset value. It varies with the
+ * implementation.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned DATE : 32; //!< Date.
@@ -1742,18 +1470,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_CHIPDATE           (*(volatile hw_gpu2d_chipdate_t *) HW_GPU2D_CHIPDATE_ADDR)
 #define HW_GPU2D_CHIPDATE_RD()      (HW_GPU2D_CHIPDATE.U)
-#define HW_GPU2D_CHIPDATE_WR(v)     (HW_GPU2D_CHIPDATE.U = (v))
-#define HW_GPU2D_CHIPDATE_SET(v)    (HW_GPU2D_CHIPDATE_WR(HW_GPU2D_CHIPDATE_RD() |  (v)))
-#define HW_GPU2D_CHIPDATE_CLR(v)    (HW_GPU2D_CHIPDATE_WR(HW_GPU2D_CHIPDATE_RD() & ~(v)))
-#define HW_GPU2D_CHIPDATE_TOG(v)    (HW_GPU2D_CHIPDATE_WR(HW_GPU2D_CHIPDATE_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_CHIPDATE bitfields
  */
 
-/* --- Register HW_GPU2D_CHIPDATE, field DATE
+/* --- Register HW_GPU2D_CHIPDATE, field DATE (RO)
  *
  * Date.
  */
@@ -1762,24 +1485,15 @@ typedef union
 #define BM_GPU2D_CHIPDATE_DATE      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPDATE_DATE(v)   ((((reg32_t) v) << 0) & BM_GPU2D_CHIPDATE_DATE)
-#else
-#define BF_GPU2D_CHIPDATE_DATE(v)   (((v) << 0) & BM_GPU2D_CHIPDATE_DATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPDATE_DATE(v)   BF_CS1(GPU2D_CHIPDATE, DATE, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_CHIPTIME - Chip Release Time Register
+ * @brief HW_GPU2D_CHIPTIME - Chip Release Time Register (RO)
  *
- * Shows the release time for the IP. This register has no set reset value.
- * It varies with the implementation.
+ * Shows the release time for the IP. This register has no set reset value. It varies with the
+ * implementation.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned TIME : 32; //!< Time.
@@ -1795,18 +1509,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_CHIPTIME           (*(volatile hw_gpu2d_chiptime_t *) HW_GPU2D_CHIPTIME_ADDR)
 #define HW_GPU2D_CHIPTIME_RD()      (HW_GPU2D_CHIPTIME.U)
-#define HW_GPU2D_CHIPTIME_WR(v)     (HW_GPU2D_CHIPTIME.U = (v))
-#define HW_GPU2D_CHIPTIME_SET(v)    (HW_GPU2D_CHIPTIME_WR(HW_GPU2D_CHIPTIME_RD() |  (v)))
-#define HW_GPU2D_CHIPTIME_CLR(v)    (HW_GPU2D_CHIPTIME_WR(HW_GPU2D_CHIPTIME_RD() & ~(v)))
-#define HW_GPU2D_CHIPTIME_TOG(v)    (HW_GPU2D_CHIPTIME_WR(HW_GPU2D_CHIPTIME_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_CHIPTIME bitfields
  */
 
-/* --- Register HW_GPU2D_CHIPTIME, field TIME
+/* --- Register HW_GPU2D_CHIPTIME, field TIME (RO)
  *
  * Time.
  */
@@ -1815,24 +1524,15 @@ typedef union
 #define BM_GPU2D_CHIPTIME_TIME      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPTIME_TIME(v)   ((((reg32_t) v) << 0) & BM_GPU2D_CHIPTIME_TIME)
-#else
-#define BF_GPU2D_CHIPTIME_TIME(v)   (((v) << 0) & BM_GPU2D_CHIPTIME_TIME)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPTIME_TIME(v)   BF_CS1(GPU2D_CHIPTIME, TIME, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_CHIPCUSTOMER - Chip Customer Register
+ * @brief HW_GPU2D_CHIPCUSTOMER - Chip Customer Register (RO)
  *
- * Shows the customer and group for the IP. This register has no set reset
- * value. It varies with the implementation.
+ * Shows the customer and group for the IP. This register has no set reset value. It varies with the
+ * implementation.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned GROUP : 16; //!< Group.
@@ -1849,18 +1549,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_CHIPCUSTOMER           (*(volatile hw_gpu2d_chipcustomer_t *) HW_GPU2D_CHIPCUSTOMER_ADDR)
 #define HW_GPU2D_CHIPCUSTOMER_RD()      (HW_GPU2D_CHIPCUSTOMER.U)
-#define HW_GPU2D_CHIPCUSTOMER_WR(v)     (HW_GPU2D_CHIPCUSTOMER.U = (v))
-#define HW_GPU2D_CHIPCUSTOMER_SET(v)    (HW_GPU2D_CHIPCUSTOMER_WR(HW_GPU2D_CHIPCUSTOMER_RD() |  (v)))
-#define HW_GPU2D_CHIPCUSTOMER_CLR(v)    (HW_GPU2D_CHIPCUSTOMER_WR(HW_GPU2D_CHIPCUSTOMER_RD() & ~(v)))
-#define HW_GPU2D_CHIPCUSTOMER_TOG(v)    (HW_GPU2D_CHIPCUSTOMER_WR(HW_GPU2D_CHIPCUSTOMER_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_CHIPCUSTOMER bitfields
  */
 
-/* --- Register HW_GPU2D_CHIPCUSTOMER, field GROUP
+/* --- Register HW_GPU2D_CHIPCUSTOMER, field GROUP (RO)
  *
  * Group.
  */
@@ -1868,16 +1563,7 @@ typedef union
 #define BP_GPU2D_CHIPCUSTOMER_GROUP      0
 #define BM_GPU2D_CHIPCUSTOMER_GROUP      0x0000ffff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPCUSTOMER_GROUP(v)   ((((reg32_t) v) << 0) & BM_GPU2D_CHIPCUSTOMER_GROUP)
-#else
-#define BF_GPU2D_CHIPCUSTOMER_GROUP(v)   (((v) << 0) & BM_GPU2D_CHIPCUSTOMER_GROUP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPCUSTOMER_GROUP(v)   BF_CS1(GPU2D_CHIPCUSTOMER, GROUP, v)
-#endif
-
-/* --- Register HW_GPU2D_CHIPCUSTOMER, field COMPANY
+/* --- Register HW_GPU2D_CHIPCUSTOMER, field COMPANY (RO)
  *
  * Company.
  */
@@ -1886,24 +1572,15 @@ typedef union
 #define BM_GPU2D_CHIPCUSTOMER_COMPANY      0xffff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPCUSTOMER_COMPANY(v)   ((((reg32_t) v) << 16) & BM_GPU2D_CHIPCUSTOMER_COMPANY)
-#else
-#define BF_GPU2D_CHIPCUSTOMER_COMPANY(v)   (((v) << 16) & BM_GPU2D_CHIPCUSTOMER_COMPANY)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPCUSTOMER_COMPANY(v)   BF_CS1(GPU2D_CHIPCUSTOMER, COMPANY, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_MINORFEATURES0 - Minor Features Register 0
+ * @brief HW_GPU2D_MINORFEATURES0 - Minor Features Register 0 (RO)
  *
- * Shows which minor features are enabled in this chip. This register has no
- * set reset value. It varies with the implementation.
+ * Shows which minor features are enabled in this chip. This register has no set reset value. It
+ * varies with the implementation.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned FLIP_Y : 1; //!< Y flipping capability is added to resolve.
@@ -1950,556 +1627,425 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_MINORFEATURES0           (*(volatile hw_gpu2d_minorfeatures0_t *) HW_GPU2D_MINORFEATURES0_ADDR)
 #define HW_GPU2D_MINORFEATURES0_RD()      (HW_GPU2D_MINORFEATURES0.U)
-#define HW_GPU2D_MINORFEATURES0_WR(v)     (HW_GPU2D_MINORFEATURES0.U = (v))
-#define HW_GPU2D_MINORFEATURES0_SET(v)    (HW_GPU2D_MINORFEATURES0_WR(HW_GPU2D_MINORFEATURES0_RD() |  (v)))
-#define HW_GPU2D_MINORFEATURES0_CLR(v)    (HW_GPU2D_MINORFEATURES0_WR(HW_GPU2D_MINORFEATURES0_RD() & ~(v)))
-#define HW_GPU2D_MINORFEATURES0_TOG(v)    (HW_GPU2D_MINORFEATURES0_WR(HW_GPU2D_MINORFEATURES0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_MINORFEATURES0 bitfields
  */
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field FLIP_Y
+/* --- Register HW_GPU2D_MINORFEATURES0, field FLIP_Y (RO)
  *
  * Y flipping capability is added to resolve.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_FLIP_Y      0
 #define BM_GPU2D_MINORFEATURES0_FLIP_Y      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_FLIP_Y(v)   ((((reg32_t) v) << 0) & BM_GPU2D_MINORFEATURES0_FLIP_Y)
-#else
-#define BF_GPU2D_MINORFEATURES0_FLIP_Y(v)   (((v) << 0) & BM_GPU2D_MINORFEATURES0_FLIP_Y)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_FLIP_Y(v)   BF_CS1(GPU2D_MINORFEATURES0, FLIP_Y, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field DUAL_RETURN_BUS
+/* --- Register HW_GPU2D_MINORFEATURES0, field DUAL_RETURN_BUS (RO)
  *
  * Dual Return Bus from HI to clients.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS      1
 #define BM_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS(v)   ((((reg32_t) v) << 1) & BM_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS)
-#else
-#define BF_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS(v)   (((v) << 1) & BM_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS(v)   BF_CS1(GPU2D_MINORFEATURES0, DUAL_RETURN_BUS, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field ENDIANNESS_CONFIG
+/* --- Register HW_GPU2D_MINORFEATURES0, field ENDIANNESS_CONFIG (RO)
  *
  * Configurable endianness support.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG      2
 #define BM_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG(v)   ((((reg32_t) v) << 2) & BM_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG)
-#else
-#define BF_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG(v)   (((v) << 2) & BM_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG(v)   BF_CS1(GPU2D_MINORFEATURES0, ENDIANNESS_CONFIG, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field TEXTURE8_K
+/* --- Register HW_GPU2D_MINORFEATURES0, field TEXTURE8_K (RO)
  *
  * Supports 8Kx8K textures.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_TEXTURE8_K      3
 #define BM_GPU2D_MINORFEATURES0_TEXTURE8_K      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_TEXTURE8_K(v)   ((((reg32_t) v) << 3) & BM_GPU2D_MINORFEATURES0_TEXTURE8_K)
-#else
-#define BF_GPU2D_MINORFEATURES0_TEXTURE8_K(v)   (((v) << 3) & BM_GPU2D_MINORFEATURES0_TEXTURE8_K)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_TEXTURE8_K(v)   BF_CS1(GPU2D_MINORFEATURES0, TEXTURE8_K, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field CORRECT_TEXTURE_CONVERTER
+/* --- Register HW_GPU2D_MINORFEATURES0, field CORRECT_TEXTURE_CONVERTER (RO)
  *
  * Driver hack is not needed.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER      4
 #define BM_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER(v)   ((((reg32_t) v) << 4) & BM_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER)
-#else
-#define BF_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER(v)   (((v) << 4) & BM_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER(v)   BF_CS1(GPU2D_MINORFEATURES0, CORRECT_TEXTURE_CONVERTER, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field SPECIAL_MSAA_LOD
+/* --- Register HW_GPU2D_MINORFEATURES0, field SPECIAL_MSAA_LOD (RO)
  *
  * Special LOD calculation when MSAA is on.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD      5
 #define BM_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD(v)   ((((reg32_t) v) << 5) & BM_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD)
-#else
-#define BF_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD(v)   (((v) << 5) & BM_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD(v)   BF_CS1(GPU2D_MINORFEATURES0, SPECIAL_MSAA_LOD, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field FAST_CLEAR_FLUSH
+/* --- Register HW_GPU2D_MINORFEATURES0, field FAST_CLEAR_FLUSH (RO)
  *
  * Proper flush is done in fast clear cache.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH      6
 #define BM_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH(v)   ((((reg32_t) v) << 6) & BM_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH)
-#else
-#define BF_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH(v)   (((v) << 6) & BM_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH(v)   BF_CS1(GPU2D_MINORFEATURES0, FAST_CLEAR_FLUSH, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field CORRECT_AUTO_DISABLE
+/* --- Register HW_GPU2D_MINORFEATURES0, field CORRECT_AUTO_DISABLE (RO)
  *
  * Auto disable in FC is correct.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE      8
 #define BM_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE(v)   ((((reg32_t) v) << 8) & BM_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE)
-#else
-#define BF_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE(v)   (((v) << 8) & BM_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE(v)   BF_CS1(GPU2D_MINORFEATURES0, CORRECT_AUTO_DISABLE, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field RENDER_8K
+/* --- Register HW_GPU2D_MINORFEATURES0, field RENDER_8K (RO)
  *
  * Supports 8K render target.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_RENDER_8K      9
 #define BM_GPU2D_MINORFEATURES0_RENDER_8K      0x00000200
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_RENDER_8K(v)   ((((reg32_t) v) << 9) & BM_GPU2D_MINORFEATURES0_RENDER_8K)
-#else
-#define BF_GPU2D_MINORFEATURES0_RENDER_8K(v)   (((v) << 9) & BM_GPU2D_MINORFEATURES0_RENDER_8K)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_RENDER_8K(v)   BF_CS1(GPU2D_MINORFEATURES0, RENDER_8K, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field TILE_STATUS_2BITS
+/* --- Register HW_GPU2D_MINORFEATURES0, field TILE_STATUS_2BITS (RO)
  *
  * 2 bits are used instead of 4 bits for tile status.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS      10
 #define BM_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS      0x00000400
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS(v)   ((((reg32_t) v) << 10) & BM_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS)
-#else
-#define BF_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS(v)   (((v) << 10) & BM_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS(v)   BF_CS1(GPU2D_MINORFEATURES0, TILE_STATUS_2BITS, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field SEPARATE_TILE_STATUS_WHEN_INTERLEAVED
+/* --- Register HW_GPU2D_MINORFEATURES0, field SEPARATE_TILE_STATUS_WHEN_INTERLEAVED (RO)
  *
  * Use 2 separate tile status buffers in interleaved mode.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED      11
 #define BM_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED      0x00000800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED(v)   ((((reg32_t) v) << 11) & BM_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED)
-#else
-#define BF_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED(v)   (((v) << 11) & BM_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED(v)   BF_CS1(GPU2D_MINORFEATURES0, SEPARATE_TILE_STATUS_WHEN_INTERLEAVED, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field SUPER_TILED_32X32
+/* --- Register HW_GPU2D_MINORFEATURES0, field SUPER_TILED_32X32 (RO)
  *
  * 32x32 super tile is available.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_SUPER_TILED_32X32      12
 #define BM_GPU2D_MINORFEATURES0_SUPER_TILED_32X32      0x00001000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_SUPER_TILED_32X32(v)   ((((reg32_t) v) << 12) & BM_GPU2D_MINORFEATURES0_SUPER_TILED_32X32)
-#else
-#define BF_GPU2D_MINORFEATURES0_SUPER_TILED_32X32(v)   (((v) << 12) & BM_GPU2D_MINORFEATURES0_SUPER_TILED_32X32)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_SUPER_TILED_32X32(v)   BF_CS1(GPU2D_MINORFEATURES0, SUPER_TILED_32X32, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field VG_20
+/* --- Register HW_GPU2D_MINORFEATURES0, field VG_20 (RO)
  *
  * Major updates to VG pipe (TS buffer tiling. State masking.).
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_VG_20      13
 #define BM_GPU2D_MINORFEATURES0_VG_20      0x00002000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_VG_20(v)   ((((reg32_t) v) << 13) & BM_GPU2D_MINORFEATURES0_VG_20)
-#else
-#define BF_GPU2D_MINORFEATURES0_VG_20(v)   (((v) << 13) & BM_GPU2D_MINORFEATURES0_VG_20)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_VG_20(v)   BF_CS1(GPU2D_MINORFEATURES0, VG_20, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field TS_EXTENDED_COMMANDS
+/* --- Register HW_GPU2D_MINORFEATURES0, field TS_EXTENDED_COMMANDS (RO)
  *
  * New commands added to the tessellator.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS      14
 #define BM_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS      0x00004000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS(v)   ((((reg32_t) v) << 14) & BM_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS)
-#else
-#define BF_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS(v)   (((v) << 14) & BM_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS(v)   BF_CS1(GPU2D_MINORFEATURES0, TS_EXTENDED_COMMANDS, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field COMPRESSION_FIFO_FIXED
+/* --- Register HW_GPU2D_MINORFEATURES0, field COMPRESSION_FIFO_FIXED (RO)
  *
- * If this bit is not set, the FIFO counter should be set to 50. Else,
- * the default should remain.
+ * If this bit is not set, the FIFO counter should be set to 50. Else, the default should remain.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED      15
 #define BM_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED      0x00008000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED(v)   ((((reg32_t) v) << 15) & BM_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED)
-#else
-#define BF_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED(v)   (((v) << 15) & BM_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED(v)   BF_CS1(GPU2D_MINORFEATURES0, COMPRESSION_FIFO_FIXED, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field EXTRA_SHADER_INSTRUCTIONS0
+/* --- Register HW_GPU2D_MINORFEATURES0, field EXTRA_SHADER_INSTRUCTIONS0 (RO)
  *
  * Floor, ceil, and sign instructions are available.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0      16
 #define BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0      0x00010000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0(v)   ((((reg32_t) v) << 16) & BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0)
-#else
-#define BF_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0(v)   (((v) << 16) & BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0(v)   BF_CS1(GPU2D_MINORFEATURES0, EXTRA_SHADER_INSTRUCTIONS0, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field VG_FILTER
+/* --- Register HW_GPU2D_MINORFEATURES0, field VG_FILTER (RO)
  *
  * VG filter is available.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_VG_FILTER      17
 #define BM_GPU2D_MINORFEATURES0_VG_FILTER      0x00020000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_VG_FILTER(v)   ((((reg32_t) v) << 17) & BM_GPU2D_MINORFEATURES0_VG_FILTER)
-#else
-#define BF_GPU2D_MINORFEATURES0_VG_FILTER(v)   (((v) << 17) & BM_GPU2D_MINORFEATURES0_VG_FILTER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_VG_FILTER(v)   BF_CS1(GPU2D_MINORFEATURES0, VG_FILTER, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field VG_21
+/* --- Register HW_GPU2D_MINORFEATURES0, field VG_21 (RO)
  *
- * Minor updates to VG pipe (Event generation from VG, TS, PE). Tiled
- * image support.
+ * Minor updates to VG pipe (Event generation from VG, TS, PE). Tiled image support.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_VG_21      18
 #define BM_GPU2D_MINORFEATURES0_VG_21      0x00040000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_VG_21(v)   ((((reg32_t) v) << 18) & BM_GPU2D_MINORFEATURES0_VG_21)
-#else
-#define BF_GPU2D_MINORFEATURES0_VG_21(v)   (((v) << 18) & BM_GPU2D_MINORFEATURES0_VG_21)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_VG_21(v)   BF_CS1(GPU2D_MINORFEATURES0, VG_21, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field SHADER_GETS_W
+/* --- Register HW_GPU2D_MINORFEATURES0, field SHADER_GETS_W (RO)
  *
  * W is sent to SH from RA.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_SHADER_GETS_W      19
 #define BM_GPU2D_MINORFEATURES0_SHADER_GETS_W      0x00080000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_SHADER_GETS_W(v)   ((((reg32_t) v) << 19) & BM_GPU2D_MINORFEATURES0_SHADER_GETS_W)
-#else
-#define BF_GPU2D_MINORFEATURES0_SHADER_GETS_W(v)   (((v) << 19) & BM_GPU2D_MINORFEATURES0_SHADER_GETS_W)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_SHADER_GETS_W(v)   BF_CS1(GPU2D_MINORFEATURES0, SHADER_GETS_W, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field EXTRA_SHADER_INSTRUCTIONS1
+/* --- Register HW_GPU2D_MINORFEATURES0, field EXTRA_SHADER_INSTRUCTIONS1 (RO)
  *
  * Sqrt, sin, cos instructions are available.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1      20
 #define BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1      0x00100000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1(v)   ((((reg32_t) v) << 20) & BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1)
-#else
-#define BF_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1(v)   (((v) << 20) & BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1(v)   BF_CS1(GPU2D_MINORFEATURES0, EXTRA_SHADER_INSTRUCTIONS1, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field DEFAULT_REG0
+/* --- Register HW_GPU2D_MINORFEATURES0, field DEFAULT_REG0 (RO)
  *
  * Unavailable registers will return 0.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_DEFAULT_REG0      21
 #define BM_GPU2D_MINORFEATURES0_DEFAULT_REG0      0x00200000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_DEFAULT_REG0(v)   ((((reg32_t) v) << 21) & BM_GPU2D_MINORFEATURES0_DEFAULT_REG0)
-#else
-#define BF_GPU2D_MINORFEATURES0_DEFAULT_REG0(v)   (((v) << 21) & BM_GPU2D_MINORFEATURES0_DEFAULT_REG0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_DEFAULT_REG0(v)   BF_CS1(GPU2D_MINORFEATURES0, DEFAULT_REG0, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field MC_20
+/* --- Register HW_GPU2D_MINORFEATURES0, field MC_20 (RO)
  *
  * New style MC with separate paths for color and depth.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_MC_20      22
 #define BM_GPU2D_MINORFEATURES0_MC_20      0x00400000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_MC_20(v)   ((((reg32_t) v) << 22) & BM_GPU2D_MINORFEATURES0_MC_20)
-#else
-#define BF_GPU2D_MINORFEATURES0_MC_20(v)   (((v) << 22) & BM_GPU2D_MINORFEATURES0_MC_20)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_MC_20(v)   BF_CS1(GPU2D_MINORFEATURES0, MC_20, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field SHADER_MSAA_SIDEBAND
+/* --- Register HW_GPU2D_MINORFEATURES0, field SHADER_MSAA_SIDEBAND (RO)
  *
  * Put the MSAA data into sideband fifo.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND      23
 #define BM_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND      0x00800000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND(v)   ((((reg32_t) v) << 23) & BM_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND)
-#else
-#define BF_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND(v)   (((v) << 23) & BM_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND(v)   BF_CS1(GPU2D_MINORFEATURES0, SHADER_MSAA_SIDEBAND, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field BUG_FIXES0
+/* --- Register HW_GPU2D_MINORFEATURES0, field BUG_FIXES0 (RO)
  *
 
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_BUG_FIXES0      24
 #define BM_GPU2D_MINORFEATURES0_BUG_FIXES0      0x01000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_BUG_FIXES0(v)   ((((reg32_t) v) << 24) & BM_GPU2D_MINORFEATURES0_BUG_FIXES0)
-#else
-#define BF_GPU2D_MINORFEATURES0_BUG_FIXES0(v)   (((v) << 24) & BM_GPU2D_MINORFEATURES0_BUG_FIXES0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_BUG_FIXES0(v)   BF_CS1(GPU2D_MINORFEATURES0, BUG_FIXES0, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field VAA
+/* --- Register HW_GPU2D_MINORFEATURES0, field VAA (RO)
  *
  * VAA is available or not.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_VAA      25
 #define BM_GPU2D_MINORFEATURES0_VAA      0x02000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_VAA(v)   ((((reg32_t) v) << 25) & BM_GPU2D_MINORFEATURES0_VAA)
-#else
-#define BF_GPU2D_MINORFEATURES0_VAA(v)   (((v) << 25) & BM_GPU2D_MINORFEATURES0_VAA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_VAA(v)   BF_CS1(GPU2D_MINORFEATURES0, VAA, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field BYPASS_IN_MSAA
+/* --- Register HW_GPU2D_MINORFEATURES0, field BYPASS_IN_MSAA (RO)
  *
  * Shader supports bypass mode when MSAA is enabled.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA      26
 #define BM_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA      0x04000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA(v)   ((((reg32_t) v) << 26) & BM_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA)
-#else
-#define BF_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA(v)   (((v) << 26) & BM_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA(v)   BF_CS1(GPU2D_MINORFEATURES0, BYPASS_IN_MSAA, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field HIERARCHICAL_Z
+/* --- Register HW_GPU2D_MINORFEATURES0, field HIERARCHICAL_Z (RO)
  *
  * Hierarchiccal Z is supported.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_HIERARCHICAL_Z      27
 #define BM_GPU2D_MINORFEATURES0_HIERARCHICAL_Z      0x08000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_HIERARCHICAL_Z(v)   ((((reg32_t) v) << 27) & BM_GPU2D_MINORFEATURES0_HIERARCHICAL_Z)
-#else
-#define BF_GPU2D_MINORFEATURES0_HIERARCHICAL_Z(v)   (((v) << 27) & BM_GPU2D_MINORFEATURES0_HIERARCHICAL_Z)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_HIERARCHICAL_Z(v)   BF_CS1(GPU2D_MINORFEATURES0, HIERARCHICAL_Z, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field NEW_TEXTURE
+/* --- Register HW_GPU2D_MINORFEATURES0, field NEW_TEXTURE (RO)
  *
  * New texture unit is available.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_NEW_TEXTURE      28
 #define BM_GPU2D_MINORFEATURES0_NEW_TEXTURE      0x10000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_NEW_TEXTURE(v)   ((((reg32_t) v) << 28) & BM_GPU2D_MINORFEATURES0_NEW_TEXTURE)
-#else
-#define BF_GPU2D_MINORFEATURES0_NEW_TEXTURE(v)   (((v) << 28) & BM_GPU2D_MINORFEATURES0_NEW_TEXTURE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_NEW_TEXTURE(v)   BF_CS1(GPU2D_MINORFEATURES0, NEW_TEXTURE, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field A8_TARGET_SUPPORT
+/* --- Register HW_GPU2D_MINORFEATURES0, field A8_TARGET_SUPPORT (RO)
  *
  * 2D engine supports A8 target.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT      29
 #define BM_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT      0x20000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT(v)   ((((reg32_t) v) << 29) & BM_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT)
-#else
-#define BF_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT(v)   (((v) << 29) & BM_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT(v)   BF_CS1(GPU2D_MINORFEATURES0, A8_TARGET_SUPPORT, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field CORRECT_STENCIL
+/* --- Register HW_GPU2D_MINORFEATURES0, field CORRECT_STENCIL (RO)
  *
  * Correct stencil behavior in depth only.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_CORRECT_STENCIL      30
 #define BM_GPU2D_MINORFEATURES0_CORRECT_STENCIL      0x40000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_CORRECT_STENCIL(v)   ((((reg32_t) v) << 30) & BM_GPU2D_MINORFEATURES0_CORRECT_STENCIL)
-#else
-#define BF_GPU2D_MINORFEATURES0_CORRECT_STENCIL(v)   (((v) << 30) & BM_GPU2D_MINORFEATURES0_CORRECT_STENCIL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_CORRECT_STENCIL(v)   BF_CS1(GPU2D_MINORFEATURES0, CORRECT_STENCIL, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES0, field ENHANCE_VR
+/* --- Register HW_GPU2D_MINORFEATURES0, field ENHANCE_VR (RO)
  *
- * Enhance VR and add a mode to walk 16 pixels in 16-bit mode in
- * Vertical pass to improve $ hit rate when rotating 90/270.
+ * Enhance VR and add a mode to walk 16 pixels in 16-bit mode in Vertical pass to improve $ hit rate
+ * when rotating 90/270.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES0_ENHANCE_VR      31
 #define BM_GPU2D_MINORFEATURES0_ENHANCE_VR      0x80000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES0_ENHANCE_VR(v)   ((((reg32_t) v) << 31) & BM_GPU2D_MINORFEATURES0_ENHANCE_VR)
-#else
-#define BF_GPU2D_MINORFEATURES0_ENHANCE_VR(v)   (((v) << 31) & BM_GPU2D_MINORFEATURES0_ENHANCE_VR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES0_ENHANCE_VR(v)   BF_CS1(GPU2D_MINORFEATURES0, ENHANCE_VR, v)
-#endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_CACHECONTROL - Cache Control Register
+ * @brief HW_GPU2D_CACHECONTROL - Cache Control Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned NOT_USED : 32; //!< Reserved
@@ -2521,12 +2067,11 @@ typedef union
 #define HW_GPU2D_CACHECONTROL_TOG(v)    (HW_GPU2D_CACHECONTROL_WR(HW_GPU2D_CACHECONTROL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_CACHECONTROL bitfields
  */
 
-/* --- Register HW_GPU2D_CACHECONTROL, field NOT_USED
+/* --- Register HW_GPU2D_CACHECONTROL, field NOT_USED (RW)
  *
  * Reserved
  */
@@ -2540,19 +2085,20 @@ typedef union
 #define BF_GPU2D_CACHECONTROL_NOT_USED(v)   (((v) << 0) & BM_GPU2D_CACHECONTROL_NOT_USED)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NOT_USED field to a new value.
 #define BW_GPU2D_CACHECONTROL_NOT_USED(v)   BF_CS1(GPU2D_CACHECONTROL, NOT_USED, v)
 #endif
 
-/*!
- * @brief HW_GPU2D_RESETMEMCOUNTERS - Reset Mem Counters Register
- *
- * Writing 1 will reset the counters and stop counting. Write 0 to start
- * counting again. This register is write only so it has no reset                             value.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_RESETMEMCOUNTERS - Reset Mem Counters Register (WO)
+ *
+ * Writing 1 will reset the counters and stop counting. Write 0 to start counting again. This
+ * register is write only so it has no reset value.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESET : 32; //!< 
@@ -2567,19 +2113,14 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_RESETMEMCOUNTERS           (*(volatile hw_gpu2d_resetmemcounters_t *) HW_GPU2D_RESETMEMCOUNTERS_ADDR)
-#define HW_GPU2D_RESETMEMCOUNTERS_RD()      (HW_GPU2D_RESETMEMCOUNTERS.U)
 #define HW_GPU2D_RESETMEMCOUNTERS_WR(v)     (HW_GPU2D_RESETMEMCOUNTERS.U = (v))
-#define HW_GPU2D_RESETMEMCOUNTERS_SET(v)    (HW_GPU2D_RESETMEMCOUNTERS_WR(HW_GPU2D_RESETMEMCOUNTERS_RD() |  (v)))
-#define HW_GPU2D_RESETMEMCOUNTERS_CLR(v)    (HW_GPU2D_RESETMEMCOUNTERS_WR(HW_GPU2D_RESETMEMCOUNTERS_RD() & ~(v)))
-#define HW_GPU2D_RESETMEMCOUNTERS_TOG(v)    (HW_GPU2D_RESETMEMCOUNTERS_WR(HW_GPU2D_RESETMEMCOUNTERS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_RESETMEMCOUNTERS bitfields
  */
 
-/* --- Register HW_GPU2D_RESETMEMCOUNTERS, field RESET
+/* --- Register HW_GPU2D_RESETMEMCOUNTERS, field RESET (WO)
  *
 
  */
@@ -2593,18 +2134,19 @@ typedef union
 #define BF_GPU2D_RESETMEMCOUNTERS_RESET(v)   (((v) << 0) & BM_GPU2D_RESETMEMCOUNTERS_RESET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RESET field to a new value.
 #define BW_GPU2D_RESETMEMCOUNTERS_RESET(v)   BF_CS1(GPU2D_RESETMEMCOUNTERS, RESET, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_TOTALREADS - Read Count Register
+ * @brief HW_GPU2D_TOTALREADS - Read Count Register (RO)
  *
  * Total reads in terms of 64bits.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -2620,18 +2162,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALREADS           (*(volatile hw_gpu2d_totalreads_t *) HW_GPU2D_TOTALREADS_ADDR)
 #define HW_GPU2D_TOTALREADS_RD()      (HW_GPU2D_TOTALREADS.U)
-#define HW_GPU2D_TOTALREADS_WR(v)     (HW_GPU2D_TOTALREADS.U = (v))
-#define HW_GPU2D_TOTALREADS_SET(v)    (HW_GPU2D_TOTALREADS_WR(HW_GPU2D_TOTALREADS_RD() |  (v)))
-#define HW_GPU2D_TOTALREADS_CLR(v)    (HW_GPU2D_TOTALREADS_WR(HW_GPU2D_TOTALREADS_RD() & ~(v)))
-#define HW_GPU2D_TOTALREADS_TOG(v)    (HW_GPU2D_TOTALREADS_WR(HW_GPU2D_TOTALREADS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALREADS bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALREADS, field COUNT
+/* --- Register HW_GPU2D_TOTALREADS, field COUNT (RO)
  *
 
  */
@@ -2640,23 +2177,14 @@ typedef union
 #define BM_GPU2D_TOTALREADS_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALREADS_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALREADS_COUNT)
-#else
-#define BF_GPU2D_TOTALREADS_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALREADS_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALREADS_COUNT(v)   BF_CS1(GPU2D_TOTALREADS, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_TOTALWRITES - Write Count Register
+ * @brief HW_GPU2D_TOTALWRITES - Write Count Register (RO)
  *
  * Total writes in terms of 64bits.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -2672,18 +2200,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALWRITES           (*(volatile hw_gpu2d_totalwrites_t *) HW_GPU2D_TOTALWRITES_ADDR)
 #define HW_GPU2D_TOTALWRITES_RD()      (HW_GPU2D_TOTALWRITES.U)
-#define HW_GPU2D_TOTALWRITES_WR(v)     (HW_GPU2D_TOTALWRITES.U = (v))
-#define HW_GPU2D_TOTALWRITES_SET(v)    (HW_GPU2D_TOTALWRITES_WR(HW_GPU2D_TOTALWRITES_RD() |  (v)))
-#define HW_GPU2D_TOTALWRITES_CLR(v)    (HW_GPU2D_TOTALWRITES_WR(HW_GPU2D_TOTALWRITES_RD() & ~(v)))
-#define HW_GPU2D_TOTALWRITES_TOG(v)    (HW_GPU2D_TOTALWRITES_WR(HW_GPU2D_TOTALWRITES_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALWRITES bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALWRITES, field COUNT
+/* --- Register HW_GPU2D_TOTALWRITES, field COUNT (RO)
  *
 
  */
@@ -2692,24 +2215,14 @@ typedef union
 #define BM_GPU2D_TOTALWRITES_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALWRITES_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALWRITES_COUNT)
-#else
-#define BF_GPU2D_TOTALWRITES_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALWRITES_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALWRITES_COUNT(v)   BF_CS1(GPU2D_TOTALWRITES, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_CHIPSPECS - Chip Specification Register
+ * @brief HW_GPU2D_CHIPSPECS - Chip Specification Register (RO)
  *
- * Specs for the chip. This register has no set reset value. It varies with
- * the implementation.
+ * Specs for the chip. This register has no set reset value. It varies with the implementation.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned VERTEX_OUTPUT_BUFFER_SIZE : 4; //!< Log2 of vertex output buffer size.
@@ -2732,18 +2245,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_CHIPSPECS           (*(volatile hw_gpu2d_chipspecs_t *) HW_GPU2D_CHIPSPECS_ADDR)
 #define HW_GPU2D_CHIPSPECS_RD()      (HW_GPU2D_CHIPSPECS.U)
-#define HW_GPU2D_CHIPSPECS_WR(v)     (HW_GPU2D_CHIPSPECS.U = (v))
-#define HW_GPU2D_CHIPSPECS_SET(v)    (HW_GPU2D_CHIPSPECS_WR(HW_GPU2D_CHIPSPECS_RD() |  (v)))
-#define HW_GPU2D_CHIPSPECS_CLR(v)    (HW_GPU2D_CHIPSPECS_WR(HW_GPU2D_CHIPSPECS_RD() & ~(v)))
-#define HW_GPU2D_CHIPSPECS_TOG(v)    (HW_GPU2D_CHIPSPECS_WR(HW_GPU2D_CHIPSPECS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_CHIPSPECS bitfields
  */
 
-/* --- Register HW_GPU2D_CHIPSPECS, field VERTEX_OUTPUT_BUFFER_SIZE
+/* --- Register HW_GPU2D_CHIPSPECS, field VERTEX_OUTPUT_BUFFER_SIZE (RO)
  *
  * Log2 of vertex output buffer size.
  */
@@ -2751,16 +2259,7 @@ typedef union
 #define BP_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE      0
 #define BM_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE      0x0000000f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE(v)   ((((reg32_t) v) << 0) & BM_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE)
-#else
-#define BF_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE(v)   (((v) << 0) & BM_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE(v)   BF_CS1(GPU2D_CHIPSPECS, VERTEX_OUTPUT_BUFFER_SIZE, v)
-#endif
-
-/* --- Register HW_GPU2D_CHIPSPECS, field NUM_PIXEL_PIPES
+/* --- Register HW_GPU2D_CHIPSPECS, field NUM_PIXEL_PIPES (RO)
  *
  * Number of pixel pipes.
  */
@@ -2768,16 +2267,7 @@ typedef union
 #define BP_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES      4
 #define BM_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES      0x00000070
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES(v)   ((((reg32_t) v) << 4) & BM_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES)
-#else
-#define BF_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES(v)   (((v) << 4) & BM_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES(v)   BF_CS1(GPU2D_CHIPSPECS, NUM_PIXEL_PIPES, v)
-#endif
-
-/* --- Register HW_GPU2D_CHIPSPECS, field NUM_SHADER_CORES
+/* --- Register HW_GPU2D_CHIPSPECS, field NUM_SHADER_CORES (RO)
  *
  * Number of shader cores.
  */
@@ -2785,16 +2275,7 @@ typedef union
 #define BP_GPU2D_CHIPSPECS_NUM_SHADER_CORES      7
 #define BM_GPU2D_CHIPSPECS_NUM_SHADER_CORES      0x00000f80
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPSPECS_NUM_SHADER_CORES(v)   ((((reg32_t) v) << 7) & BM_GPU2D_CHIPSPECS_NUM_SHADER_CORES)
-#else
-#define BF_GPU2D_CHIPSPECS_NUM_SHADER_CORES(v)   (((v) << 7) & BM_GPU2D_CHIPSPECS_NUM_SHADER_CORES)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPSPECS_NUM_SHADER_CORES(v)   BF_CS1(GPU2D_CHIPSPECS, NUM_SHADER_CORES, v)
-#endif
-
-/* --- Register HW_GPU2D_CHIPSPECS, field VERTEX_CACHE_SIZE
+/* --- Register HW_GPU2D_CHIPSPECS, field VERTEX_CACHE_SIZE (RO)
  *
  * Number of entries in the vertex shader cache.
  */
@@ -2802,16 +2283,7 @@ typedef union
 #define BP_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE      15
 #define BM_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE      0x000f8000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE(v)   ((((reg32_t) v) << 15) & BM_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE)
-#else
-#define BF_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE(v)   (((v) << 15) & BM_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE(v)   BF_CS1(GPU2D_CHIPSPECS, VERTEX_CACHE_SIZE, v)
-#endif
-
-/* --- Register HW_GPU2D_CHIPSPECS, field THREAD_COUNT
+/* --- Register HW_GPU2D_CHIPSPECS, field THREAD_COUNT (RO)
  *
  * Log2 of thread count.
  */
@@ -2819,16 +2291,7 @@ typedef union
 #define BP_GPU2D_CHIPSPECS_THREAD_COUNT      20
 #define BM_GPU2D_CHIPSPECS_THREAD_COUNT      0x00f00000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPSPECS_THREAD_COUNT(v)   ((((reg32_t) v) << 20) & BM_GPU2D_CHIPSPECS_THREAD_COUNT)
-#else
-#define BF_GPU2D_CHIPSPECS_THREAD_COUNT(v)   (((v) << 20) & BM_GPU2D_CHIPSPECS_THREAD_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPSPECS_THREAD_COUNT(v)   BF_CS1(GPU2D_CHIPSPECS, THREAD_COUNT, v)
-#endif
-
-/* --- Register HW_GPU2D_CHIPSPECS, field TEMP_REGISTERS
+/* --- Register HW_GPU2D_CHIPSPECS, field TEMP_REGISTERS (RO)
  *
  * Log2 of temporary registers.
  */
@@ -2836,16 +2299,7 @@ typedef union
 #define BP_GPU2D_CHIPSPECS_TEMP_REGISTERS      24
 #define BM_GPU2D_CHIPSPECS_TEMP_REGISTERS      0x0f000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPSPECS_TEMP_REGISTERS(v)   ((((reg32_t) v) << 24) & BM_GPU2D_CHIPSPECS_TEMP_REGISTERS)
-#else
-#define BF_GPU2D_CHIPSPECS_TEMP_REGISTERS(v)   (((v) << 24) & BM_GPU2D_CHIPSPECS_TEMP_REGISTERS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPSPECS_TEMP_REGISTERS(v)   BF_CS1(GPU2D_CHIPSPECS, TEMP_REGISTERS, v)
-#endif
-
-/* --- Register HW_GPU2D_CHIPSPECS, field STREAMS
+/* --- Register HW_GPU2D_CHIPSPECS, field STREAMS (RO)
  *
  * Number of vertex streams.
  */
@@ -2854,24 +2308,14 @@ typedef union
 #define BM_GPU2D_CHIPSPECS_STREAMS      0xf0000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_CHIPSPECS_STREAMS(v)   ((((reg32_t) v) << 28) & BM_GPU2D_CHIPSPECS_STREAMS)
-#else
-#define BF_GPU2D_CHIPSPECS_STREAMS(v)   (((v) << 28) & BM_GPU2D_CHIPSPECS_STREAMS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_CHIPSPECS_STREAMS(v)   BF_CS1(GPU2D_CHIPSPECS, STREAMS, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_TOTALWRITEBURSTS - Write Data Count Register
+ * @brief HW_GPU2D_TOTALWRITEBURSTS - Write Data Count Register (RO)
  *
- * Total write Data Count in terms of 64bits. This register has no reset
- * value.
+ * Total write Data Count in terms of 64bits. This register has no reset value.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -2887,18 +2331,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALWRITEBURSTS           (*(volatile hw_gpu2d_totalwritebursts_t *) HW_GPU2D_TOTALWRITEBURSTS_ADDR)
 #define HW_GPU2D_TOTALWRITEBURSTS_RD()      (HW_GPU2D_TOTALWRITEBURSTS.U)
-#define HW_GPU2D_TOTALWRITEBURSTS_WR(v)     (HW_GPU2D_TOTALWRITEBURSTS.U = (v))
-#define HW_GPU2D_TOTALWRITEBURSTS_SET(v)    (HW_GPU2D_TOTALWRITEBURSTS_WR(HW_GPU2D_TOTALWRITEBURSTS_RD() |  (v)))
-#define HW_GPU2D_TOTALWRITEBURSTS_CLR(v)    (HW_GPU2D_TOTALWRITEBURSTS_WR(HW_GPU2D_TOTALWRITEBURSTS_RD() & ~(v)))
-#define HW_GPU2D_TOTALWRITEBURSTS_TOG(v)    (HW_GPU2D_TOTALWRITEBURSTS_WR(HW_GPU2D_TOTALWRITEBURSTS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALWRITEBURSTS bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALWRITEBURSTS, field COUNT
+/* --- Register HW_GPU2D_TOTALWRITEBURSTS, field COUNT (RO)
  *
 
  */
@@ -2907,23 +2346,14 @@ typedef union
 #define BM_GPU2D_TOTALWRITEBURSTS_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALWRITEBURSTS_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALWRITEBURSTS_COUNT)
-#else
-#define BF_GPU2D_TOTALWRITEBURSTS_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALWRITEBURSTS_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALWRITEBURSTS_COUNT(v)   BF_CS1(GPU2D_TOTALWRITEBURSTS, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_TOTALWRITEREQS - Write REQ Count Register
+ * @brief HW_GPU2D_TOTALWRITEREQS - Write REQ Count Register (RO)
  *
  * Total write Request Count. This register has no reset value.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -2939,18 +2369,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALWRITEREQS           (*(volatile hw_gpu2d_totalwritereqs_t *) HW_GPU2D_TOTALWRITEREQS_ADDR)
 #define HW_GPU2D_TOTALWRITEREQS_RD()      (HW_GPU2D_TOTALWRITEREQS.U)
-#define HW_GPU2D_TOTALWRITEREQS_WR(v)     (HW_GPU2D_TOTALWRITEREQS.U = (v))
-#define HW_GPU2D_TOTALWRITEREQS_SET(v)    (HW_GPU2D_TOTALWRITEREQS_WR(HW_GPU2D_TOTALWRITEREQS_RD() |  (v)))
-#define HW_GPU2D_TOTALWRITEREQS_CLR(v)    (HW_GPU2D_TOTALWRITEREQS_WR(HW_GPU2D_TOTALWRITEREQS_RD() & ~(v)))
-#define HW_GPU2D_TOTALWRITEREQS_TOG(v)    (HW_GPU2D_TOTALWRITEREQS_WR(HW_GPU2D_TOTALWRITEREQS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALWRITEREQS bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALWRITEREQS, field COUNT
+/* --- Register HW_GPU2D_TOTALWRITEREQS, field COUNT (RO)
  *
 
  */
@@ -2959,24 +2384,14 @@ typedef union
 #define BM_GPU2D_TOTALWRITEREQS_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALWRITEREQS_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALWRITEREQS_COUNT)
-#else
-#define BF_GPU2D_TOTALWRITEREQS_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALWRITEREQS_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALWRITEREQS_COUNT(v)   BF_CS1(GPU2D_TOTALWRITEREQS, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_TOTALWRITELASTS - Total WLAST Count Register
+ * @brief HW_GPU2D_TOTALWRITELASTS - Total WLAST Count Register (RO)
  *
- * Total WLAST Count. This is used to match with GCTotalWriteReqs. This
- * register has no reset value.
+ * Total WLAST Count. This is used to match with GCTotalWriteReqs. This register has no reset value.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -2992,18 +2407,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALWRITELASTS           (*(volatile hw_gpu2d_totalwritelasts_t *) HW_GPU2D_TOTALWRITELASTS_ADDR)
 #define HW_GPU2D_TOTALWRITELASTS_RD()      (HW_GPU2D_TOTALWRITELASTS.U)
-#define HW_GPU2D_TOTALWRITELASTS_WR(v)     (HW_GPU2D_TOTALWRITELASTS.U = (v))
-#define HW_GPU2D_TOTALWRITELASTS_SET(v)    (HW_GPU2D_TOTALWRITELASTS_WR(HW_GPU2D_TOTALWRITELASTS_RD() |  (v)))
-#define HW_GPU2D_TOTALWRITELASTS_CLR(v)    (HW_GPU2D_TOTALWRITELASTS_WR(HW_GPU2D_TOTALWRITELASTS_RD() & ~(v)))
-#define HW_GPU2D_TOTALWRITELASTS_TOG(v)    (HW_GPU2D_TOTALWRITELASTS_WR(HW_GPU2D_TOTALWRITELASTS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALWRITELASTS bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALWRITELASTS, field COUNT
+/* --- Register HW_GPU2D_TOTALWRITELASTS, field COUNT (RO)
  *
 
  */
@@ -3012,24 +2422,14 @@ typedef union
 #define BM_GPU2D_TOTALWRITELASTS_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALWRITELASTS_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALWRITELASTS_COUNT)
-#else
-#define BF_GPU2D_TOTALWRITELASTS_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALWRITELASTS_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALWRITELASTS_COUNT(v)   BF_CS1(GPU2D_TOTALWRITELASTS, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_TOTALREADBURSTS - Total Read Data Count Register
+ * @brief HW_GPU2D_TOTALREADBURSTS - Total Read Data Count Register (RO)
  *
- * Total Read Data Count in terms of 64bits. This register has no reset
- * value.
+ * Total Read Data Count in terms of 64bits. This register has no reset value.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -3045,18 +2445,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALREADBURSTS           (*(volatile hw_gpu2d_totalreadbursts_t *) HW_GPU2D_TOTALREADBURSTS_ADDR)
 #define HW_GPU2D_TOTALREADBURSTS_RD()      (HW_GPU2D_TOTALREADBURSTS.U)
-#define HW_GPU2D_TOTALREADBURSTS_WR(v)     (HW_GPU2D_TOTALREADBURSTS.U = (v))
-#define HW_GPU2D_TOTALREADBURSTS_SET(v)    (HW_GPU2D_TOTALREADBURSTS_WR(HW_GPU2D_TOTALREADBURSTS_RD() |  (v)))
-#define HW_GPU2D_TOTALREADBURSTS_CLR(v)    (HW_GPU2D_TOTALREADBURSTS_WR(HW_GPU2D_TOTALREADBURSTS_RD() & ~(v)))
-#define HW_GPU2D_TOTALREADBURSTS_TOG(v)    (HW_GPU2D_TOTALREADBURSTS_WR(HW_GPU2D_TOTALREADBURSTS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALREADBURSTS bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALREADBURSTS, field COUNT
+/* --- Register HW_GPU2D_TOTALREADBURSTS, field COUNT (RO)
  *
 
  */
@@ -3065,23 +2460,14 @@ typedef union
 #define BM_GPU2D_TOTALREADBURSTS_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALREADBURSTS_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALREADBURSTS_COUNT)
-#else
-#define BF_GPU2D_TOTALREADBURSTS_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALREADBURSTS_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALREADBURSTS_COUNT(v)   BF_CS1(GPU2D_TOTALREADBURSTS, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_TOTALREADREQS - Total Read REQ Count Register
+ * @brief HW_GPU2D_TOTALREADREQS - Total Read REQ Count Register (RO)
  *
  * Total Read Request Count. This register has no reset value.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -3097,18 +2483,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALREADREQS           (*(volatile hw_gpu2d_totalreadreqs_t *) HW_GPU2D_TOTALREADREQS_ADDR)
 #define HW_GPU2D_TOTALREADREQS_RD()      (HW_GPU2D_TOTALREADREQS.U)
-#define HW_GPU2D_TOTALREADREQS_WR(v)     (HW_GPU2D_TOTALREADREQS.U = (v))
-#define HW_GPU2D_TOTALREADREQS_SET(v)    (HW_GPU2D_TOTALREADREQS_WR(HW_GPU2D_TOTALREADREQS_RD() |  (v)))
-#define HW_GPU2D_TOTALREADREQS_CLR(v)    (HW_GPU2D_TOTALREADREQS_WR(HW_GPU2D_TOTALREADREQS_RD() & ~(v)))
-#define HW_GPU2D_TOTALREADREQS_TOG(v)    (HW_GPU2D_TOTALREADREQS_WR(HW_GPU2D_TOTALREADREQS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALREADREQS bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALREADREQS, field COUNT
+/* --- Register HW_GPU2D_TOTALREADREQS, field COUNT (RO)
  *
 
  */
@@ -3117,24 +2498,14 @@ typedef union
 #define BM_GPU2D_TOTALREADREQS_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALREADREQS_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALREADREQS_COUNT)
-#else
-#define BF_GPU2D_TOTALREADREQS_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALREADREQS_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALREADREQS_COUNT(v)   BF_CS1(GPU2D_TOTALREADREQS, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_TOTALREADLASTS - Total RLAST Count Register
+ * @brief HW_GPU2D_TOTALREADLASTS - Total RLAST Count Register (RO)
  *
- * Total RLAST Count. This is used to match with GCTotalReadReqs. This
- * register has no reset value.
+ * Total RLAST Count. This is used to match with GCTotalReadReqs. This register has no reset value.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -3150,18 +2521,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_TOTALREADLASTS           (*(volatile hw_gpu2d_totalreadlasts_t *) HW_GPU2D_TOTALREADLASTS_ADDR)
 #define HW_GPU2D_TOTALREADLASTS_RD()      (HW_GPU2D_TOTALREADLASTS.U)
-#define HW_GPU2D_TOTALREADLASTS_WR(v)     (HW_GPU2D_TOTALREADLASTS.U = (v))
-#define HW_GPU2D_TOTALREADLASTS_SET(v)    (HW_GPU2D_TOTALREADLASTS_WR(HW_GPU2D_TOTALREADLASTS_RD() |  (v)))
-#define HW_GPU2D_TOTALREADLASTS_CLR(v)    (HW_GPU2D_TOTALREADLASTS_WR(HW_GPU2D_TOTALREADLASTS_RD() & ~(v)))
-#define HW_GPU2D_TOTALREADLASTS_TOG(v)    (HW_GPU2D_TOTALREADLASTS_WR(HW_GPU2D_TOTALREADLASTS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_TOTALREADLASTS bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALREADLASTS, field COUNT
+/* --- Register HW_GPU2D_TOTALREADLASTS, field COUNT (RO)
  *
 
  */
@@ -3170,23 +2536,14 @@ typedef union
 #define BM_GPU2D_TOTALREADLASTS_COUNT      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_TOTALREADLASTS_COUNT(v)   ((((reg32_t) v) << 0) & BM_GPU2D_TOTALREADLASTS_COUNT)
-#else
-#define BF_GPU2D_TOTALREADLASTS_COUNT(v)   (((v) << 0) & BM_GPU2D_TOTALREADLASTS_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_TOTALREADLASTS_COUNT(v)   BF_CS1(GPU2D_TOTALREADLASTS, COUNT, v)
-#endif
-
 /*!
- * @brief HW_GPU2D_GPOUT0 - General Purpose Register 0
+ * @brief HW_GPU2D_GPOUT0 - General Purpose Register 0 (RW)
  *
  * General Purpose output register0. R/W but not connected to anywhere
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -3208,12 +2565,11 @@ typedef union
 #define HW_GPU2D_GPOUT0_TOG(v)    (HW_GPU2D_GPOUT0_WR(HW_GPU2D_GPOUT0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_GPOUT0 bitfields
  */
 
-/* --- Register HW_GPU2D_GPOUT0, field COUNT
+/* --- Register HW_GPU2D_GPOUT0, field COUNT (RW)
  *
 
  */
@@ -3227,18 +2583,19 @@ typedef union
 #define BF_GPU2D_GPOUT0_COUNT(v)   (((v) << 0) & BM_GPU2D_GPOUT0_COUNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the COUNT field to a new value.
 #define BW_GPU2D_GPOUT0_COUNT(v)   BF_CS1(GPU2D_GPOUT0, COUNT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_GPOUT1 - General Purpose Register 1
+ * @brief HW_GPU2D_GPOUT1 - General Purpose Register 1 (RW)
  *
  * General Purpose output register1. R/W but not connected to anywhere
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -3260,12 +2617,11 @@ typedef union
 #define HW_GPU2D_GPOUT1_TOG(v)    (HW_GPU2D_GPOUT1_WR(HW_GPU2D_GPOUT1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_GPOUT1 bitfields
  */
 
-/* --- Register HW_GPU2D_GPOUT1, field COUNT
+/* --- Register HW_GPU2D_GPOUT1, field COUNT (RW)
  *
 
  */
@@ -3279,18 +2635,19 @@ typedef union
 #define BF_GPU2D_GPOUT1_COUNT(v)   (((v) << 0) & BM_GPU2D_GPOUT1_COUNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the COUNT field to a new value.
 #define BW_GPU2D_GPOUT1_COUNT(v)   BF_CS1(GPU2D_GPOUT1, COUNT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_GPOUT2 - General Purpose Register 2
+ * @brief HW_GPU2D_GPOUT2 - General Purpose Register 2 (RW)
  *
  * General Purpose output register2. R/W but not connected to anywhere
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 32; //!< 
@@ -3312,12 +2669,11 @@ typedef union
 #define HW_GPU2D_GPOUT2_TOG(v)    (HW_GPU2D_GPOUT2_WR(HW_GPU2D_GPOUT2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_GPOUT2 bitfields
  */
 
-/* --- Register HW_GPU2D_GPOUT2, field COUNT
+/* --- Register HW_GPU2D_GPOUT2, field COUNT (RW)
  *
 
  */
@@ -3331,18 +2687,19 @@ typedef union
 #define BF_GPU2D_GPOUT2_COUNT(v)   (((v) << 0) & BM_GPU2D_GPOUT2_COUNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the COUNT field to a new value.
 #define BW_GPU2D_GPOUT2_COUNT(v)   BF_CS1(GPU2D_GPOUT2, COUNT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_AXICONTROL - AXI Control Register
+ * @brief HW_GPU2D_AXICONTROL - AXI Control Register (RW)
  *
  * Special Handling on AXI Bus
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned WR_FULL_BURST_MODE : 32; //!< 
@@ -3364,14 +2721,17 @@ typedef union
 #define HW_GPU2D_AXICONTROL_TOG(v)    (HW_GPU2D_AXICONTROL_WR(HW_GPU2D_AXICONTROL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_AXICONTROL bitfields
  */
 
-/* --- Register HW_GPU2D_AXICONTROL, field WR_FULL_BURST_MODE
+/* --- Register HW_GPU2D_AXICONTROL, field WR_FULL_BURST_MODE (RW)
  *
 
+ *
+ * Values:
+ * 0 - NO_BURST_RESET_VALUE
+ * 1 - BURST_RESET_VALUE
  */
 
 #define BP_GPU2D_AXICONTROL_WR_FULL_BURST_MODE      0
@@ -3383,19 +2743,21 @@ typedef union
 #define BF_GPU2D_AXICONTROL_WR_FULL_BURST_MODE(v)   (((v) << 0) & BM_GPU2D_AXICONTROL_WR_FULL_BURST_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WR_FULL_BURST_MODE field to a new value.
 #define BW_GPU2D_AXICONTROL_WR_FULL_BURST_MODE(v)   BF_CS1(GPU2D_AXICONTROL, WR_FULL_BURST_MODE, v)
 #endif
 
-/*!
- * @brief HW_GPU2D_MINORFEATURES1 - Minor Features Register 1
- *
- * Shows which features are enabled in this chip. This register has no set
- * reset value. It varies with the implementation.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_MINORFEATURES1 - Minor Features Register 1 (RO)
+ *
+ * Shows which features are enabled in this chip. This register has no set reset value. It varies
+ * with the implementation.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 26; //!< Reserved
@@ -3417,130 +2779,99 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_MINORFEATURES1           (*(volatile hw_gpu2d_minorfeatures1_t *) HW_GPU2D_MINORFEATURES1_ADDR)
 #define HW_GPU2D_MINORFEATURES1_RD()      (HW_GPU2D_MINORFEATURES1.U)
-#define HW_GPU2D_MINORFEATURES1_WR(v)     (HW_GPU2D_MINORFEATURES1.U = (v))
-#define HW_GPU2D_MINORFEATURES1_SET(v)    (HW_GPU2D_MINORFEATURES1_WR(HW_GPU2D_MINORFEATURES1_RD() |  (v)))
-#define HW_GPU2D_MINORFEATURES1_CLR(v)    (HW_GPU2D_MINORFEATURES1_WR(HW_GPU2D_MINORFEATURES1_RD() & ~(v)))
-#define HW_GPU2D_MINORFEATURES1_TOG(v)    (HW_GPU2D_MINORFEATURES1_WR(HW_GPU2D_MINORFEATURES1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_MINORFEATURES1 bitfields
  */
 
-/* --- Register HW_GPU2D_MINORFEATURES1, field TEXTURE_STRIDE
+/* --- Register HW_GPU2D_MINORFEATURES1, field TEXTURE_STRIDE (RO)
  *
  * Texture has stride and memory addressing.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES1_TEXTURE_STRIDE      26
 #define BM_GPU2D_MINORFEATURES1_TEXTURE_STRIDE      0x04000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES1_TEXTURE_STRIDE(v)   ((((reg32_t) v) << 26) & BM_GPU2D_MINORFEATURES1_TEXTURE_STRIDE)
-#else
-#define BF_GPU2D_MINORFEATURES1_TEXTURE_STRIDE(v)   (((v) << 26) & BM_GPU2D_MINORFEATURES1_TEXTURE_STRIDE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES1_TEXTURE_STRIDE(v)   BF_CS1(GPU2D_MINORFEATURES1, TEXTURE_STRIDE, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES1, field BUG_FIXES2
+/* --- Register HW_GPU2D_MINORFEATURES1, field BUG_FIXES2 (RO)
  *
 
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES1_BUG_FIXES2      27
 #define BM_GPU2D_MINORFEATURES1_BUG_FIXES2      0x08000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES1_BUG_FIXES2(v)   ((((reg32_t) v) << 27) & BM_GPU2D_MINORFEATURES1_BUG_FIXES2)
-#else
-#define BF_GPU2D_MINORFEATURES1_BUG_FIXES2(v)   (((v) << 27) & BM_GPU2D_MINORFEATURES1_BUG_FIXES2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES1_BUG_FIXES2(v)   BF_CS1(GPU2D_MINORFEATURES1, BUG_FIXES2, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES1, field BUG_FIXES1
+/* --- Register HW_GPU2D_MINORFEATURES1, field BUG_FIXES1 (RO)
  *
 
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES1_BUG_FIXES1      28
 #define BM_GPU2D_MINORFEATURES1_BUG_FIXES1      0x10000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES1_BUG_FIXES1(v)   ((((reg32_t) v) << 28) & BM_GPU2D_MINORFEATURES1_BUG_FIXES1)
-#else
-#define BF_GPU2D_MINORFEATURES1_BUG_FIXES1(v)   (((v) << 28) & BM_GPU2D_MINORFEATURES1_BUG_FIXES1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES1_BUG_FIXES1(v)   BF_CS1(GPU2D_MINORFEATURES1, BUG_FIXES1, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES1, field VG_DOUBLE_BUFFER
+/* --- Register HW_GPU2D_MINORFEATURES1, field VG_DOUBLE_BUFFER (RO)
  *
- * Double buffering support for VG (second TS-->VG semaphore is
- * present).
+ * Double buffering support for VG (second TS-->VG semaphore is present).
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER      29
 #define BM_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER      0x20000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER(v)   ((((reg32_t) v) << 29) & BM_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER)
-#else
-#define BF_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER(v)   (((v) << 29) & BM_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER(v)   BF_CS1(GPU2D_MINORFEATURES1, VG_DOUBLE_BUFFER, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES1, field V2_COMPRESSION
+/* --- Register HW_GPU2D_MINORFEATURES1, field V2_COMPRESSION (RO)
  *
  * V2 compression.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES1_V2_COMPRESSION      30
 #define BM_GPU2D_MINORFEATURES1_V2_COMPRESSION      0x40000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES1_V2_COMPRESSION(v)   ((((reg32_t) v) << 30) & BM_GPU2D_MINORFEATURES1_V2_COMPRESSION)
-#else
-#define BF_GPU2D_MINORFEATURES1_V2_COMPRESSION(v)   (((v) << 30) & BM_GPU2D_MINORFEATURES1_V2_COMPRESSION)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES1_V2_COMPRESSION(v)   BF_CS1(GPU2D_MINORFEATURES1, V2_COMPRESSION, v)
-#endif
 
-/* --- Register HW_GPU2D_MINORFEATURES1, field RSUV_SWIZZLE
+/* --- Register HW_GPU2D_MINORFEATURES1, field RSUV_SWIZZLE (RO)
  *
  * Resolve UV swizzle.
+ *
+ * Values:
+ * 0 - NONE
+ * 1 - AVAILABLE
  */
 
 #define BP_GPU2D_MINORFEATURES1_RSUV_SWIZZLE      31
 #define BM_GPU2D_MINORFEATURES1_RSUV_SWIZZLE      0x80000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MINORFEATURES1_RSUV_SWIZZLE(v)   ((((reg32_t) v) << 31) & BM_GPU2D_MINORFEATURES1_RSUV_SWIZZLE)
-#else
-#define BF_GPU2D_MINORFEATURES1_RSUV_SWIZZLE(v)   (((v) << 31) & BM_GPU2D_MINORFEATURES1_RSUV_SWIZZLE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MINORFEATURES1_RSUV_SWIZZLE(v)   BF_CS1(GPU2D_MINORFEATURES1, RSUV_SWIZZLE, v)
-#endif
 
-/*!
- * @brief HW_GPU2D_TOTALCYCLES - Total Cycle Counter Register
- *
- * Total cycles. This register is a free running counter. It can be reset by
- * writing 0 to it.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_TOTALCYCLES - Total Cycle Counter Register (RW)
+ *
+ * Total cycles. This register is a free running counter. It can be reset by writing 0 to it.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CYCLES : 32; //!< 
@@ -3562,12 +2893,11 @@ typedef union
 #define HW_GPU2D_TOTALCYCLES_TOG(v)    (HW_GPU2D_TOTALCYCLES_WR(HW_GPU2D_TOTALCYCLES_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_TOTALCYCLES bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALCYCLES, field CYCLES
+/* --- Register HW_GPU2D_TOTALCYCLES, field CYCLES (RW)
  *
 
  */
@@ -3581,20 +2911,20 @@ typedef union
 #define BF_GPU2D_TOTALCYCLES_CYCLES(v)   (((v) << 0) & BM_GPU2D_TOTALCYCLES_CYCLES)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CYCLES field to a new value.
 #define BW_GPU2D_TOTALCYCLES_CYCLES(v)   BF_CS1(GPU2D_TOTALCYCLES, CYCLES, v)
 #endif
 
-/*!
- * @brief HW_GPU2D_TOTALIDLECYLES - Total Idle Cycle Register
- *
- * Total cycles where the GPU is idle. It is reset when gcTotalCycles
- * register is written to. It looks at all the blocks but FE when
- * determining the IP is idle.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_TOTALIDLECYLES - Total Idle Cycle Register (RW)
+ *
+ * Total cycles where the GPU is idle. It is reset when gcTotalCycles register is written to. It
+ * looks at all the blocks but FE when determining the IP is idle.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CYCLES : 32; //!< 
@@ -3616,12 +2946,11 @@ typedef union
 #define HW_GPU2D_TOTALIDLECYLES_TOG(v)    (HW_GPU2D_TOTALIDLECYLES_WR(HW_GPU2D_TOTALIDLECYLES_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_TOTALIDLECYLES bitfields
  */
 
-/* --- Register HW_GPU2D_TOTALIDLECYLES, field CYCLES
+/* --- Register HW_GPU2D_TOTALIDLECYLES, field CYCLES (RW)
  *
 
  */
@@ -3635,20 +2964,20 @@ typedef union
 #define BF_GPU2D_TOTALIDLECYLES_CYCLES(v)   (((v) << 0) & BM_GPU2D_TOTALIDLECYLES_CYCLES)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CYCLES field to a new value.
 #define BW_GPU2D_TOTALIDLECYLES_CYCLES(v)   BF_CS1(GPU2D_TOTALIDLECYLES, CYCLES, v)
 #endif
 
-/*!
- * @brief HW_GPU2D_CHIPSPECS2 - Chip Specification Register
- *
- * Set address to 0x020 from 1G per Joseph                             Hernanzez  Specs for the
- * chip. This register has no reset value. It varies with the
- * implementation.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_CHIPSPECS2 - Chip Specification Register (RW)
+ *
+ * Set address to 0x020 from 1G per Joseph Hernanzez  Specs for the chip. This register has no reset
+ * value. It varies with the implementation.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CYCLES : 32; //!< 
@@ -3670,12 +2999,11 @@ typedef union
 #define HW_GPU2D_CHIPSPECS2_TOG(v)    (HW_GPU2D_CHIPSPECS2_WR(HW_GPU2D_CHIPSPECS2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_CHIPSPECS2 bitfields
  */
 
-/* --- Register HW_GPU2D_CHIPSPECS2, field CYCLES
+/* --- Register HW_GPU2D_CHIPSPECS2, field CYCLES (RW)
  *
 
  */
@@ -3689,22 +3017,22 @@ typedef union
 #define BF_GPU2D_CHIPSPECS2_CYCLES(v)   (((v) << 0) & BM_GPU2D_CHIPSPECS2_CYCLES)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CYCLES field to a new value.
 #define BW_GPU2D_CHIPSPECS2_CYCLES(v)   BF_CS1(GPU2D_CHIPSPECS2, CYCLES, v)
 #endif
 
-/*!
- * @brief HW_GPU2D_MODULEPOWERCONTROLS - Power Control Register
- *
- * The Power Management register set has just a few registers for
- * controlling clock gating within the core. GC400 allows the user to
- * control the clock gating of each internal module independently of the
- * other modules. Users can access all of these registers via the AHB
- * Bus.  Control register for module level power controls.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_GPU2D_MODULEPOWERCONTROLS - Power Control Register (RW)
+ *
+ * The Power Management register set has just a few registers for controlling clock gating within
+ * the core. GC400 allows the user to control the clock gating of each internal module independently
+ * of the other modules. Users can access all of these registers via the AHB Bus.  Control register
+ * for module level power controls.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned TURN_OFF_COUNTER : 16; //!< Counter value for clock gating the module if the module is idle for this amount of clock cycles.
@@ -3732,15 +3060,13 @@ typedef union
 #define HW_GPU2D_MODULEPOWERCONTROLS_TOG(v)    (HW_GPU2D_MODULEPOWERCONTROLS_WR(HW_GPU2D_MODULEPOWERCONTROLS_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_MODULEPOWERCONTROLS bitfields
  */
 
-/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field TURN_OFF_COUNTER
+/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field TURN_OFF_COUNTER (RW)
  *
- * Counter value for clock gating the module if the module is idle for
- * this amount of clock cycles.
+ * Counter value for clock gating the module if the module is idle for this amount of clock cycles.
  */
 
 #define BP_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER      0
@@ -3752,10 +3078,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER(v)   (((v) << 0) & BM_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TURN_OFF_COUNTER field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER(v)   BF_CS1(GPU2D_MODULEPOWERCONTROLS, TURN_OFF_COUNTER, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field TURN_ON_COUNTER
+/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field TURN_ON_COUNTER (RW)
  *
  * Number of clock cycles to wait after turning on the clock.
  */
@@ -3769,10 +3096,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER(v)   (((v) << 24) & BM_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TURN_ON_COUNTER field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER(v)   BF_CS1(GPU2D_MODULEPOWERCONTROLS, TURN_ON_COUNTER, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field DISABLE_STARVE_MODULE_CLOCK_GATING
+/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field DISABLE_STARVE_MODULE_CLOCK_GATING (RW)
  *
  * Disables module level clock gating for starve/idle condition.
  */
@@ -3786,10 +3114,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING(v)   (((v) << 29) & BM_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_STARVE_MODULE_CLOCK_GATING field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING(v)   BF_CS1(GPU2D_MODULEPOWERCONTROLS, DISABLE_STARVE_MODULE_CLOCK_GATING, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field DISABLE_STALL_MODULE_CLOCK_GATING
+/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field DISABLE_STALL_MODULE_CLOCK_GATING (RW)
  *
  * Disables module level clock gating for stall condition.
  */
@@ -3803,10 +3132,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING(v)   (((v) << 30) & BM_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_STALL_MODULE_CLOCK_GATING field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING(v)   BF_CS1(GPU2D_MODULEPOWERCONTROLS, DISABLE_STALL_MODULE_CLOCK_GATING, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field ENABLE_MODULE_CLOCK_GATING
+/* --- Register HW_GPU2D_MODULEPOWERCONTROLS, field ENABLE_MODULE_CLOCK_GATING (RW)
  *
  * Enables module level clock gating.
  */
@@ -3820,18 +3150,19 @@ typedef union
 #define BF_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING(v)   (((v) << 31) & BM_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ENABLE_MODULE_CLOCK_GATING field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING(v)   BF_CS1(GPU2D_MODULEPOWERCONTROLS, ENABLE_MODULE_CLOCK_GATING, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_MODULEPOWERMODULECONTROL - Power Level Register
+ * @brief HW_GPU2D_MODULEPOWERMODULECONTROL - Power Level Register (RW)
  *
  * Module level control registers.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 20; //!< Reserved
@@ -3865,12 +3196,11 @@ typedef union
 #define HW_GPU2D_MODULEPOWERMODULECONTROL_TOG(v)    (HW_GPU2D_MODULEPOWERMODULECONTROL_WR(HW_GPU2D_MODULEPOWERMODULECONTROL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual GPU2D_MODULEPOWERMODULECONTROL bitfields
  */
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_TS
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_TS (RW)
  *
  * Disables module level clock gating for TS.
  */
@@ -3884,10 +3214,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS(v)   (((v) << 20) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_TS field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_TS, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_FP
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_FP (RW)
  *
  * Disables module level clock gating for FP.
  */
@@ -3901,10 +3232,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP(v)   (((v) << 21) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_FP field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_FP, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_IM
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_IM (RW)
  *
  * Disables module level clock gating for IM.
  */
@@ -3918,10 +3250,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM(v)   (((v) << 22) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_IM field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_IM, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_VG
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_VG (RW)
  *
  * Disables module level clock gating for VG.
  */
@@ -3935,10 +3268,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG(v)   (((v) << 23) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_VG field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_VG, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_TX
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_TX (RW)
  *
  * Disables module level clock gating for TX.
  */
@@ -3952,10 +3286,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX(v)   (((v) << 24) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_TX field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_TX, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_RA
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_RA (RW)
  *
  * Disables module level clock gating for RA.
  */
@@ -3969,10 +3304,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA(v)   (((v) << 25) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_RA field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_RA, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_SE
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_SE (RW)
  *
  * Disables module level clock gating for SE.
  */
@@ -3986,10 +3322,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE(v)   (((v) << 26) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_SE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_SE, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_PA
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_PA (RW)
  *
  * Disables module level clock gating for PA.
  */
@@ -4003,10 +3340,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA(v)   (((v) << 27) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_PA field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_PA, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_SH
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_SH (RW)
  *
  * Disables module level clock gating for SH.
  */
@@ -4020,10 +3358,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH(v)   (((v) << 28) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_SH field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_SH, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_PE
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_PE (RW)
  *
  * Disables module level clock gating for PE.
  */
@@ -4037,10 +3376,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE(v)   (((v) << 29) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_PE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_PE, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_DE
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_DE (RW)
  *
  * Disables module level clock gating for DE.
  */
@@ -4054,10 +3394,11 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE(v)   (((v) << 30) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_DE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_DE, v)
 #endif
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_FE
+/* --- Register HW_GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_FE (RW)
  *
  * Disables module level clock gating for FE.
  */
@@ -4071,18 +3412,19 @@ typedef union
 #define BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE(v)   (((v) << 31) & BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DISABLE_MODULE_CLOCK_GATING_FE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE(v)   BF_CS1(GPU2D_MODULEPOWERMODULECONTROL, DISABLE_MODULE_CLOCK_GATING_FE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_GPU2D_MODULEPOWERMODULESTATUS - Power Status Register
+ * @brief HW_GPU2D_MODULEPOWERMODULESTATUS - Power Status Register (RO)
  *
  * Module level control status.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 20; //!< Reserved
@@ -4110,18 +3452,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPU2D_MODULEPOWERMODULESTATUS           (*(volatile hw_gpu2d_modulepowermodulestatus_t *) HW_GPU2D_MODULEPOWERMODULESTATUS_ADDR)
 #define HW_GPU2D_MODULEPOWERMODULESTATUS_RD()      (HW_GPU2D_MODULEPOWERMODULESTATUS.U)
-#define HW_GPU2D_MODULEPOWERMODULESTATUS_WR(v)     (HW_GPU2D_MODULEPOWERMODULESTATUS.U = (v))
-#define HW_GPU2D_MODULEPOWERMODULESTATUS_SET(v)    (HW_GPU2D_MODULEPOWERMODULESTATUS_WR(HW_GPU2D_MODULEPOWERMODULESTATUS_RD() |  (v)))
-#define HW_GPU2D_MODULEPOWERMODULESTATUS_CLR(v)    (HW_GPU2D_MODULEPOWERMODULESTATUS_WR(HW_GPU2D_MODULEPOWERMODULESTATUS_RD() & ~(v)))
-#define HW_GPU2D_MODULEPOWERMODULESTATUS_TOG(v)    (HW_GPU2D_MODULEPOWERMODULESTATUS_WR(HW_GPU2D_MODULEPOWERMODULESTATUS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual GPU2D_MODULEPOWERMODULESTATUS bitfields
  */
 
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_TS
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_TS (RO)
  *
  * Module level clock gating is ON for TS.
  */
@@ -4129,16 +3466,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS      20
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS      0x00100000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS(v)   ((((reg32_t) v) << 20) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS(v)   (((v) << 20) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_TS, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_FP
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_FP (RO)
  *
  * Module level clock gating is ON for FP.
  */
@@ -4146,16 +3474,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP      21
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP      0x00200000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP(v)   ((((reg32_t) v) << 21) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP(v)   (((v) << 21) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_FP, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_IM
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_IM (RO)
  *
  * Module level clock gating is ON for IM.
  */
@@ -4163,16 +3482,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM      22
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM      0x00400000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM(v)   ((((reg32_t) v) << 22) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM(v)   (((v) << 22) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_IM, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_VG
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_VG (RO)
  *
  * Module level clock gating is ON for VG.
  */
@@ -4180,16 +3490,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG      23
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG      0x00800000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG(v)   ((((reg32_t) v) << 23) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG(v)   (((v) << 23) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_VG, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_TX
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_TX (RO)
  *
  * Module level clock gating is ON for TX.
  */
@@ -4197,16 +3498,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX      24
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX      0x01000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX(v)   ((((reg32_t) v) << 24) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX(v)   (((v) << 24) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_TX, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_RA
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_RA (RO)
  *
  * Module level clock gating is ON for RA.
  */
@@ -4214,16 +3506,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA      25
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA      0x02000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA(v)   ((((reg32_t) v) << 25) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA(v)   (((v) << 25) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_RA, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_SE
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_SE (RO)
  *
  * Module level clock gating is ON for SE.
  */
@@ -4231,16 +3514,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE      26
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE      0x04000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE(v)   ((((reg32_t) v) << 26) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE(v)   (((v) << 26) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_SE, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_PA
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_PA (RO)
  *
  * Module level clock gating is ON for PA.
  */
@@ -4248,16 +3522,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA      27
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA      0x08000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA(v)   ((((reg32_t) v) << 27) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA(v)   (((v) << 27) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_PA, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_SH
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_SH (RO)
  *
  * Module level clock gating is ON for SH.
  */
@@ -4265,16 +3530,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH      28
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH      0x10000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH(v)   ((((reg32_t) v) << 28) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH(v)   (((v) << 28) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_SH, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_PE
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_PE (RO)
  *
  * Module level clock gating is ON for PE.
  */
@@ -4282,16 +3538,7 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE      29
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE      0x20000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE(v)   ((((reg32_t) v) << 29) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE(v)   (((v) << 29) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_PE, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_DE
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_DE (RO)
  *
  * Module level clock gating is ON for DE.
  */
@@ -4299,32 +3546,13 @@ typedef union
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE      30
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE      0x40000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE(v)   ((((reg32_t) v) << 30) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE(v)   (((v) << 30) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_DE, v)
-#endif
-
-/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_FE
+/* --- Register HW_GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_FE (RO)
  *
  * Module level clock gating is ON for FE.
  */
 
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE      31
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE      0x80000000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE(v)   ((((reg32_t) v) << 31) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE)
-#else
-#define BF_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE(v)   (((v) << 31) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE(v)   BF_CS1(GPU2D_MODULEPOWERMODULESTATUS, MODULE_CLOCK_GATED_FE, v)
-#endif
-
 
 
 /*!

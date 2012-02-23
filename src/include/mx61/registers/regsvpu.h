@@ -10,22 +10,37 @@
 
 #include "regs.h"
 
-#ifndef REGS_VPU_BASE
-#define REGS_VPU_BASE (REGS_BASE + 0x02040000)
-#endif
-
-
-/*!
- * @brief HW_VPU_CODERUN - BIT Processor run start
+/*
+ * Registers defined in this header file.
  *
- * See the figure below for illustration of valid bits in VPU Code Run
- * Register and the table below for description of the bit fields in the
- * register.
+ * - HW_VPU_CODERUN - BIT Processor run start
+ * - HW_VPU_CODEDOWN - BIT Boot Code Download Data register
+ * - HW_VPU_HOSTINTREQ - Host Interrupt Request to BIT
+ * - HW_VPU_BITINTCLEAR - BIT Interrupt Clear
+ * - HW_VPU_BITINTSTS - BIT Interrupt Status
+ * - HW_VPU_BITCURPC - BIT Current PC
+ * - HW_VPU_BITCODECBUSY - BIT CODEC Busy
+ *
+ * hw_vpu_t - Struct containing all module registers.
  */
+
+//! @name Module base addresses
+//@{
+#ifndef REGS_VPU_BASE
+#define REGS_VPU_BASE (0x02040000) //!< Base address for VPU.
+#endif
+//@}
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_VPU_CODERUN - BIT Processor run start (WO)
+ *
+ * See the figure below for illustration of valid bits in VPU Code Run Register and the table below
+ * for description of the bit fields in the register.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned VPU : 1; //!< VPU_CodeRun. BIT processor run start bit.
@@ -41,21 +56,20 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_VPU_CODERUN           (*(volatile hw_vpu_coderun_t *) HW_VPU_CODERUN_ADDR)
-#define HW_VPU_CODERUN_RD()      (HW_VPU_CODERUN.U)
 #define HW_VPU_CODERUN_WR(v)     (HW_VPU_CODERUN.U = (v))
-#define HW_VPU_CODERUN_SET(v)    (HW_VPU_CODERUN_WR(HW_VPU_CODERUN_RD() |  (v)))
-#define HW_VPU_CODERUN_CLR(v)    (HW_VPU_CODERUN_WR(HW_VPU_CODERUN_RD() & ~(v)))
-#define HW_VPU_CODERUN_TOG(v)    (HW_VPU_CODERUN_WR(HW_VPU_CODERUN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual VPU_CODERUN bitfields
  */
 
-/* --- Register HW_VPU_CODERUN, field VPU
+/* --- Register HW_VPU_CODERUN, field VPU (WO)
  *
  * VPU_CodeRun. BIT processor run start bit.
+ *
+ * Values:
+ * 0 - BIT Processor stop execution.
+ * 1 - BIT Processor start execution.
  */
 
 #define BP_VPU_CODERUN_VPU      0
@@ -67,24 +81,25 @@ typedef union
 #define BF_VPU_CODERUN_VPU(v)   (((v) << 0) & BM_VPU_CODERUN_VPU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VPU field to a new value.
 #define BW_VPU_CODERUN_VPU(v)   BF_CS1(VPU_CODERUN, VPU, v)
 #endif
 
-/*!
- * @brief HW_VPU_CODEDOWN - BIT Boot Code Download Data register
- *
- * See the figure below for illustration of valid bits in VPU BIT Boot Code
- * Download Data Register and the following table for description of the
- * bit fields in the register.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_VPU_CODEDOWN - BIT Boot Code Download Data register (WO)
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Boot Code Download Data Register
+ * and the following table for description of the bit fields in the register.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned CODEDATA : 16; //!< CodeData[15:0]  Download data of VPU BIT boot code.
-        unsigned CODEADDR : 13; //!< CodeAddr[12:0]  Download address of VPU BIT boot code, which is VPU internal address of BIT processor.
+        unsigned CODEDATA : 16; //!< CodeData[15:0] Download data of VPU BIT boot code.
+        unsigned CODEADDR : 13; //!< CodeAddr[12:0] Download address of VPU BIT boot code, which is VPU internal address of BIT processor.
         unsigned RESERVED0 : 3; //!< Reserved
     } B;
 } hw_vpu_codedown_t;
@@ -97,21 +112,16 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_VPU_CODEDOWN           (*(volatile hw_vpu_codedown_t *) HW_VPU_CODEDOWN_ADDR)
-#define HW_VPU_CODEDOWN_RD()      (HW_VPU_CODEDOWN.U)
 #define HW_VPU_CODEDOWN_WR(v)     (HW_VPU_CODEDOWN.U = (v))
-#define HW_VPU_CODEDOWN_SET(v)    (HW_VPU_CODEDOWN_WR(HW_VPU_CODEDOWN_RD() |  (v)))
-#define HW_VPU_CODEDOWN_CLR(v)    (HW_VPU_CODEDOWN_WR(HW_VPU_CODEDOWN_RD() & ~(v)))
-#define HW_VPU_CODEDOWN_TOG(v)    (HW_VPU_CODEDOWN_WR(HW_VPU_CODEDOWN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual VPU_CODEDOWN bitfields
  */
 
-/* --- Register HW_VPU_CODEDOWN, field CODEDATA
+/* --- Register HW_VPU_CODEDOWN, field CODEDATA (WO)
  *
- * CodeData[15:0]  Download data of VPU BIT boot code.
+ * CodeData[15:0] Download data of VPU BIT boot code.
  */
 
 #define BP_VPU_CODEDOWN_CODEDATA      0
@@ -123,13 +133,14 @@ typedef union
 #define BF_VPU_CODEDOWN_CODEDATA(v)   (((v) << 0) & BM_VPU_CODEDOWN_CODEDATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CODEDATA field to a new value.
 #define BW_VPU_CODEDOWN_CODEDATA(v)   BF_CS1(VPU_CODEDOWN, CODEDATA, v)
 #endif
 
-/* --- Register HW_VPU_CODEDOWN, field CODEADDR
+/* --- Register HW_VPU_CODEDOWN, field CODEADDR (WO)
  *
- * CodeAddr[12:0]  Download address of VPU BIT boot code, which is VPU internal address
- * of BIT processor.
+ * CodeAddr[12:0] Download address of VPU BIT boot code, which is VPU internal address of BIT
+ * processor.
  */
 
 #define BP_VPU_CODEDOWN_CODEADDR      16
@@ -141,20 +152,20 @@ typedef union
 #define BF_VPU_CODEDOWN_CODEADDR(v)   (((v) << 16) & BM_VPU_CODEDOWN_CODEADDR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CODEADDR field to a new value.
 #define BW_VPU_CODEDOWN_CODEADDR(v)   BF_CS1(VPU_CODEDOWN, CODEADDR, v)
 #endif
 
-/*!
- * @brief HW_VPU_HOSTINTREQ - Host Interrupt Request to BIT
- *
- * See the figure below for illustration of valid bits in VPU Host Interrupt
- * Request Register and the following table for description of the bit
- * fields in the register.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_VPU_HOSTINTREQ - Host Interrupt Request to BIT (WO)
+ *
+ * See the figure below for illustration of valid bits in VPU Host Interrupt Request Register and
+ * the following table for description of the bit fields in the register.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned INTREQ : 1; //!< IntReq. The host interrupt request bit.
@@ -170,21 +181,20 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_VPU_HOSTINTREQ           (*(volatile hw_vpu_hostintreq_t *) HW_VPU_HOSTINTREQ_ADDR)
-#define HW_VPU_HOSTINTREQ_RD()      (HW_VPU_HOSTINTREQ.U)
 #define HW_VPU_HOSTINTREQ_WR(v)     (HW_VPU_HOSTINTREQ.U = (v))
-#define HW_VPU_HOSTINTREQ_SET(v)    (HW_VPU_HOSTINTREQ_WR(HW_VPU_HOSTINTREQ_RD() |  (v)))
-#define HW_VPU_HOSTINTREQ_CLR(v)    (HW_VPU_HOSTINTREQ_WR(HW_VPU_HOSTINTREQ_RD() & ~(v)))
-#define HW_VPU_HOSTINTREQ_TOG(v)    (HW_VPU_HOSTINTREQ_WR(HW_VPU_HOSTINTREQ_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual VPU_HOSTINTREQ bitfields
  */
 
-/* --- Register HW_VPU_HOSTINTREQ, field INTREQ
+/* --- Register HW_VPU_HOSTINTREQ, field INTREQ (WO)
  *
  * IntReq. The host interrupt request bit.
+ *
+ * Values:
+ * 0 - No host interrupt is requested.
+ * 1 - The host processor request interrupt to the BIT processor.
  */
 
 #define BP_VPU_HOSTINTREQ_INTREQ      0
@@ -196,20 +206,21 @@ typedef union
 #define BF_VPU_HOSTINTREQ_INTREQ(v)   (((v) << 0) & BM_VPU_HOSTINTREQ_INTREQ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INTREQ field to a new value.
 #define BW_VPU_HOSTINTREQ_INTREQ(v)   BF_CS1(VPU_HOSTINTREQ, INTREQ, v)
 #endif
 
-/*!
- * @brief HW_VPU_BITINTCLEAR - BIT Interrupt Clear
- *
- * See the figure below for illustration of valid bits in VPU BIT Interrupt
- * Clear Register and the following table for description of the bit fields
- * in the register.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_VPU_BITINTCLEAR - BIT Interrupt Clear (WO)
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Interrupt Clear Register and the
+ * following table for description of the bit fields in the register.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned INTCLEAR : 1; //!< IntClear. BIT interrupt clear bit.
@@ -225,21 +236,20 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_VPU_BITINTCLEAR           (*(volatile hw_vpu_bitintclear_t *) HW_VPU_BITINTCLEAR_ADDR)
-#define HW_VPU_BITINTCLEAR_RD()      (HW_VPU_BITINTCLEAR.U)
 #define HW_VPU_BITINTCLEAR_WR(v)     (HW_VPU_BITINTCLEAR.U = (v))
-#define HW_VPU_BITINTCLEAR_SET(v)    (HW_VPU_BITINTCLEAR_WR(HW_VPU_BITINTCLEAR_RD() |  (v)))
-#define HW_VPU_BITINTCLEAR_CLR(v)    (HW_VPU_BITINTCLEAR_WR(HW_VPU_BITINTCLEAR_RD() & ~(v)))
-#define HW_VPU_BITINTCLEAR_TOG(v)    (HW_VPU_BITINTCLEAR_WR(HW_VPU_BITINTCLEAR_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual VPU_BITINTCLEAR bitfields
  */
 
-/* --- Register HW_VPU_BITINTCLEAR, field INTCLEAR
+/* --- Register HW_VPU_BITINTCLEAR, field INTCLEAR (WO)
  *
  * IntClear. BIT interrupt clear bit.
+ *
+ * Values:
+ * 0 - No operation is issued.
+ * 1 - Clear the BIT interrupt to the host.
  */
 
 #define BP_VPU_BITINTCLEAR_INTCLEAR      0
@@ -251,20 +261,21 @@ typedef union
 #define BF_VPU_BITINTCLEAR_INTCLEAR(v)   (((v) << 0) & BM_VPU_BITINTCLEAR_INTCLEAR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INTCLEAR field to a new value.
 #define BW_VPU_BITINTCLEAR_INTCLEAR(v)   BF_CS1(VPU_BITINTCLEAR, INTCLEAR, v)
 #endif
 
-/*!
- * @brief HW_VPU_BITINTSTS - BIT Interrupt Status
- *
- * See the figure below for illustration of valid bits in VPU BIT Interrupt
- * Status Register and the following table for description of the bit
- * fields in the register.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_VPU_BITINTSTS - BIT Interrupt Status (RO)
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Interrupt Status Register and the
+ * following table for description of the bit fields in the register.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned INTSTS : 1; //!< IntSts. BIT interrupt status bit.
@@ -281,48 +292,39 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_VPU_BITINTSTS           (*(volatile hw_vpu_bitintsts_t *) HW_VPU_BITINTSTS_ADDR)
 #define HW_VPU_BITINTSTS_RD()      (HW_VPU_BITINTSTS.U)
-#define HW_VPU_BITINTSTS_WR(v)     (HW_VPU_BITINTSTS.U = (v))
-#define HW_VPU_BITINTSTS_SET(v)    (HW_VPU_BITINTSTS_WR(HW_VPU_BITINTSTS_RD() |  (v)))
-#define HW_VPU_BITINTSTS_CLR(v)    (HW_VPU_BITINTSTS_WR(HW_VPU_BITINTSTS_RD() & ~(v)))
-#define HW_VPU_BITINTSTS_TOG(v)    (HW_VPU_BITINTSTS_WR(HW_VPU_BITINTSTS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual VPU_BITINTSTS bitfields
  */
 
-/* --- Register HW_VPU_BITINTSTS, field INTSTS
+/* --- Register HW_VPU_BITINTSTS, field INTSTS (RO)
  *
  * IntSts. BIT interrupt status bit.
+ *
+ * Values:
+ * 0 - No BIT interrupt is asserted.
+ * 1 - The BIT interrupt is asserted to the host. It is cleared when the host processor write "1" to
+ *     VPU_BitIntClear register.
  */
 
 #define BP_VPU_BITINTSTS_INTSTS      0
 #define BM_VPU_BITINTSTS_INTSTS      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_VPU_BITINTSTS_INTSTS(v)   ((((reg32_t) v) << 0) & BM_VPU_BITINTSTS_INTSTS)
-#else
-#define BF_VPU_BITINTSTS_INTSTS(v)   (((v) << 0) & BM_VPU_BITINTSTS_INTSTS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_VPU_BITINTSTS_INTSTS(v)   BF_CS1(VPU_BITINTSTS, INTSTS, v)
-#endif
 
-/*!
- * @brief HW_VPU_BITCURPC - BIT Current PC
- *
- * See the figure below for illustration of valid bits in VPU BIT Current PC
- * Register and the following table for description of the bit fields in
- * the register.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_VPU_BITCURPC - BIT Current PC (RO)
+ *
+ * See the figure below for illustration of valid bits in VPU BIT Current PC Register and the
+ * following table for description of the bit fields in the register.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned CURPC : 14; //!< CurPc[13:0]. BIT current PC value.  Returns the current program counter of BIT processor by reading this register.
+        unsigned CURPC : 14; //!< CurPc[13:0]. BIT current PC value. Returns the current program counter of BIT processor by reading this register.
         unsigned RESERVED0 : 18; //!< Reserved
     } B;
 } hw_vpu_bitcurpc_t;
@@ -336,46 +338,31 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_VPU_BITCURPC           (*(volatile hw_vpu_bitcurpc_t *) HW_VPU_BITCURPC_ADDR)
 #define HW_VPU_BITCURPC_RD()      (HW_VPU_BITCURPC.U)
-#define HW_VPU_BITCURPC_WR(v)     (HW_VPU_BITCURPC.U = (v))
-#define HW_VPU_BITCURPC_SET(v)    (HW_VPU_BITCURPC_WR(HW_VPU_BITCURPC_RD() |  (v)))
-#define HW_VPU_BITCURPC_CLR(v)    (HW_VPU_BITCURPC_WR(HW_VPU_BITCURPC_RD() & ~(v)))
-#define HW_VPU_BITCURPC_TOG(v)    (HW_VPU_BITCURPC_WR(HW_VPU_BITCURPC_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual VPU_BITCURPC bitfields
  */
 
-/* --- Register HW_VPU_BITCURPC, field CURPC
+/* --- Register HW_VPU_BITCURPC, field CURPC (RO)
  *
- * CurPc[13:0]. BIT current PC value.  Returns the current program counter of BIT processor by
- * reading this                                 register.
+ * CurPc[13:0]. BIT current PC value. Returns the current program counter of BIT processor by
+ * reading this register.
  */
 
 #define BP_VPU_BITCURPC_CURPC      0
 #define BM_VPU_BITCURPC_CURPC      0x00003fff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_VPU_BITCURPC_CURPC(v)   ((((reg32_t) v) << 0) & BM_VPU_BITCURPC_CURPC)
-#else
-#define BF_VPU_BITCURPC_CURPC(v)   (((v) << 0) & BM_VPU_BITCURPC_CURPC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_VPU_BITCURPC_CURPC(v)   BF_CS1(VPU_BITCURPC, CURPC, v)
-#endif
-
 /*!
- * @brief HW_VPU_BITCODECBUSY - BIT CODEC Busy
+ * @brief HW_VPU_BITCODECBUSY - BIT CODEC Busy (RO)
  *
- * See the figure below for illustration of valid bits in VPU BIT Codec Busy
- * Register and the following table for description of the bit fields in
- * the register.
+ * See the figure below for illustration of valid bits in VPU BIT Codec Busy Register and the
+ * following table for description of the bit fields in the register.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CODECBUSY : 1; //!< Codec busy flag for Bit processor.BIT processor write "1"to this register when the processor is running."0"means processor is waiting for a command.This value is connected to the o_vpu_idle.
@@ -392,36 +379,20 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_VPU_BITCODECBUSY           (*(volatile hw_vpu_bitcodecbusy_t *) HW_VPU_BITCODECBUSY_ADDR)
 #define HW_VPU_BITCODECBUSY_RD()      (HW_VPU_BITCODECBUSY.U)
-#define HW_VPU_BITCODECBUSY_WR(v)     (HW_VPU_BITCODECBUSY.U = (v))
-#define HW_VPU_BITCODECBUSY_SET(v)    (HW_VPU_BITCODECBUSY_WR(HW_VPU_BITCODECBUSY_RD() |  (v)))
-#define HW_VPU_BITCODECBUSY_CLR(v)    (HW_VPU_BITCODECBUSY_WR(HW_VPU_BITCODECBUSY_RD() & ~(v)))
-#define HW_VPU_BITCODECBUSY_TOG(v)    (HW_VPU_BITCODECBUSY_WR(HW_VPU_BITCODECBUSY_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual VPU_BITCODECBUSY bitfields
  */
 
-/* --- Register HW_VPU_BITCODECBUSY, field CODECBUSY
+/* --- Register HW_VPU_BITCODECBUSY, field CODECBUSY (RO)
  *
- * Codec busy flag for Bit processor.BIT processor write "1"to this
- * register when the processor is running."0"means processor is waiting
- * for a command.This value is connected to the o_vpu_idle.
+ * Codec busy flag for Bit processor.BIT processor write "1"to this register when the processor is
+ * running."0"means processor is waiting for a command.This value is connected to the o_vpu_idle.
  */
 
 #define BP_VPU_BITCODECBUSY_CODECBUSY      0
 #define BM_VPU_BITCODECBUSY_CODECBUSY      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_VPU_BITCODECBUSY_CODECBUSY(v)   ((((reg32_t) v) << 0) & BM_VPU_BITCODECBUSY_CODECBUSY)
-#else
-#define BF_VPU_BITCODECBUSY_CODECBUSY(v)   (((v) << 0) & BM_VPU_BITCODECBUSY_CODECBUSY)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_VPU_BITCODECBUSY_CODECBUSY(v)   BF_CS1(VPU_BITCODECBUSY, CODECBUSY, v)
-#endif
-
 
 
 /*!

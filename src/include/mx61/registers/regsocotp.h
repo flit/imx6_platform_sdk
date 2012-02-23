@@ -10,28 +10,173 @@
 
 #include "regs.h"
 
-#ifndef REGS_OCOTP_BASE
-#define REGS_OCOTP_BASE (REGS_BASE + 0x021bc000)
-#endif
-
-
-/*!
- * @brief HW_OCOTP_CTRL - OTP Controller Control Register
+/*
+ * Registers defined in this header file.
  *
- * The OCOTP Control and Status Register specifies the copy state, as well
- * as the control required for random access of the OTP memory  OCOTP_CTRL: 0x000  The OCOTP Control
- * and Status Register provides the necessary software                             interface for
- * performing read and write operations to the On-Chip OTP                             (One-Time
- * Programmable ROM). The control fields such as WR_UNLOCK, ADDR                             and
- * BUSY/ERROR may be used in conjuction with the HW_OCOTP_DATA register
- * to perform write operations. Read operations to the On-Chip OTP are
- * involving ADDR, BUSY/ERROR bit field and HW_OCOTP_READ_CTRL register.
- * Read value is saved in HW_OCOTP_READ_FUSE_DATA register.   EXAMPLE   Empty Example.
+ * - HW_OCOTP_CTRL - OTP Controller Control Register
+ * - HW_OCOTP_TIMING - OTP Controller Timing Register
+ * - HW_OCOTP_DATA - OTP Controller Write Data Register
+ * - HW_OCOTP_READ_CTRL - OTP Controller Write Data Register
+ * - HW_OCOTP_READ_FUSE_DATA - OTP Controller Read Data Register
+ * - HW_OCOTP_SW_STICKY - Sticky bit Register
+ * - HW_OCOTP_SCS - Software Controllable Signals Register
+ * - HW_OCOTP_CRC_ADDR - OTP Controller CRC test address
+ * - HW_OCOTP_CRC_VALUE - OTP Controller CRC Value Register
+ * - HW_OCOTP_VERSION - OTP Controller Version Register
+ * - HW_OCOTP_LOCK - Value of OTP Bank0 Word0 (Lock controls)
+ * - HW_OCOTP_CFG0 - Value of OTP Bank0 Word1 (Configuration and Manufacturing Info.)
+ * - HW_OCOTP_CFG1 - Value of OTP Bank0 Word2 (Configuration and Manufacturing Info.)
+ * - HW_OCOTP_CFG2 - Value of OTP Bank0 Word3 (Configuration and Manufacturing Info.)
+ * - HW_OCOTP_CFG3 - Value of OTP Bank0 Word4 (Configuration and Manufacturing Info.)
+ * - HW_OCOTP_CFG4 - Value of OTP Bank0 Word5 (Configuration and Manufacturing Info.)
+ * - HW_OCOTP_CFG5 - Value of OTP Bank0 Word6 (Configuration and Manufacturing Info.)
+ * - HW_OCOTP_CFG6 - Value of OTP Bank0 Word7 (Configuration and Manufacturing Info.)
+ * - HW_OCOTP_MEM0 - Value of OTP Bank1 Word0 (Memory Related Info.)
+ * - HW_OCOTP_MEM1 - Value of OTP Bank1 Word1 (Memory Related Info.)
+ * - HW_OCOTP_MEM2 - Value of OTP Bank1 Word2 (Memory Related Info.)
+ * - HW_OCOTP_MEM3 - Value of OTP Bank1 Word3 (Memory Related Info.)
+ * - HW_OCOTP_MEM4 - Value of OTP Bank1 Word4 (Memory Related Info.)
+ * - HW_OCOTP_ANA0 - Value of OTP Bank1 Word5 (Memory Related Info.)
+ * - HW_OCOTP_ANA1 - Value of OTP Bank1 Word6 (General Purpose Customer Defined Info.)
+ * - HW_OCOTP_ANA2 - Value of OTP Bank1 Word7 (General Purpose Customer Defined Info.)
+ * - HW_OCOTP_OTPMK0 - Shadow Register for OTP Bank2 Word0 (OTPMK and CRYPTO Key)
+ * - HW_OCOTP_OTPMK1 - Shadow Register for OTP Bank2 Word1 (OTPMK and CRYPTO Key)
+ * - HW_OCOTP_OTPMK2 - Shadow Register for OTP Bank2 Word2 (OTPMK and CRYPTO Key)
+ * - HW_OCOTP_OTPMK3 - Shadow Register for OTP Bank2 Word3 (OTPMK and CRYPTO Key)
+ * - HW_OCOTP_OTPMK4 - Shadow Register for OTP Bank2 Word4 (OTPMK Key)
+ * - HW_OCOTP_OTPMK5 - Shadow Register for OTP Bank2 Word5 (OTPMK Key)
+ * - HW_OCOTP_OTPMK6 - Shadow Register for OTP Bank2 Word6 (OTPMK Key)
+ * - HW_OCOTP_OTPMK7 - Shadow Register for OTP Bank2 Word7 (OTPMK Key)
+ * - HW_OCOTP_SRK0 - Shadow Register for OTP Bank3 Word0 (SRK Hash)
+ * - HW_OCOTP_SRK1 - Shadow Register for OTP Bank3 Word1 (SRK Hash)
+ * - HW_OCOTP_SRK2 - Shadow Register for OTP Bank3 Word2 (SRK Hash)
+ * - HW_OCOTP_SRK3 - Shadow Register for OTP Bank3 Word3 (SRK Hash)
+ * - HW_OCOTP_SRK4 - Shadow Register for OTP Bank3 Word4 (SRK Hash)
+ * - HW_OCOTP_SRK5 - Shadow Register for OTP Bank3 Word5 (SRK Hash)
+ * - HW_OCOTP_SRK6 - Shadow Register for OTP Bank3 Word6 (SRK Hash)
+ * - HW_OCOTP_SRK7 - Shadow Register for OTP Bank3 Word7 (SRK Hash)
+ * - HW_OCOTP_RESP0 - Value of OTP Bank4 Word0 (Secure JTAG Response Field)
+ * - HW_OCOTP_HSJC_RESP1 - Value of OTP Bank4 Word1 (Secure JTAG Response Field)
+ * - HW_OCOTP_MAC0 - Value of OTP Bank4 Word2 (MAC Address)
+ * - HW_OCOTP_MAC1 - Value of OTP Bank4 Word3 (MAC Address)
+ * - HW_OCOTP_HDCP_KSV0 - Value of OTP Bank4 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KSV1 - Value of OTP Bank4 Word5 (HW Capabilities)
+ * - HW_OCOTP_GP1 - Value of OTP Bank4 Word6 (HW Capabilities)
+ * - HW_OCOTP_GP2 - Value of OTP Bank4 Word7 (HW Capabilities)
+ * - HW_OCOTP_DTCP_KEY0 - Value of OTP Bank5 Word0 (HW Capabilities)
+ * - HW_OCOTP_DTCP_KEY1 - Value of OTP Bank5 Word1 (HW Capabilities)
+ * - HW_OCOTP_DTCP_KEY2 - Value of OTP Bank5 Word2 (HW Capabilities)
+ * - HW_OCOTP_DTCP_KEY3 - Value of OTP Bank5 Word3 (HW Capabilities)
+ * - HW_OCOTP_DTCP_KEY4 - Value of OTP Bank5 Word4 (HW Capabilities)
+ * - HW_OCOTP_MISC_CONF - Value of OTP Bank5 Word5 (HW Capabilities)
+ * - HW_OCOTP_FIELD_RETURN - Value of OTP Bank5 Word6 (HW Capabilities)
+ * - HW_OCOTP_SRK_REVOKE - Value of OTP Bank5 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY0 - Value of OTP Bank6 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY1 - Value of OTP Bank6 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY2 - Value of OTP Bank6 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY3 - Value of OTP Bank6 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY4 - Value of OTP Bank6 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY5 - Value of OTP Bank6 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY6 - Value of OTP Bank6 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY7 - Value of OTP Bank6 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY8 - Value of OTP Bank7 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY9 - Value of OTP Bank7 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY10 - Value of OTP Bank7 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY11 - Value of OTP Bank7 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY12 - Value of OTP Bank7 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY13 - Value of OTP Bank7 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY14 - Value of OTP Bank7 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY15 - Value of OTP Bank7 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY16 - Value of OTP Bank8 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY17 - Value of OTP Bank8 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY18 - Value of OTP Bank8 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY19 - Value of OTP Bank8 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY20 - Value of OTP Bank8 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY21 - Value of OTP Bank8 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY22 - Value of OTP Bank8 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY23 - Value of OTP Bank8 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY24 - Value of OTP Bank9 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY25 - Value of OTP Bank9 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY26 - Value of OTP Bank9 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY27 - Value of OTP Bank9 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY28 - Value of OTP Bank9 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY29 - Value of OTP Bank9 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY30 - Value of OTP Bank9 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY31 - Value of OTP Bank9 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY32 - Value of OTP Bank10 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY33 - Value of OTP Bank10 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY34 - Value of OTP Bank10 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY35 - Value of OTP Bank10 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY36 - Value of OTP Bank10 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY37 - Value of OTP Bank10 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY38 - Value of OTP Bank10 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY39 - Value of OTP Bank10 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY40 - Value of OTP Bank11 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY41 - Value of OTP Bank11 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY42 - Value of OTP Bank11 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY43 - Value of OTP Bank11 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY44 - Value of OTP Bank11 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY45 - Value of OTP Bank11 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY46 - Value of OTP Bank11 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY47 - Value of OTP Bank11 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY48 - Value of OTP Bank12 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY49 - Value of OTP Bank12 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY50 - Value of OTP Bank12 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY51 - Value of OTP Bank12 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY52 - Value of OTP Bank12 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY53 - Value of OTP Bank12 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY54 - Value of OTP Bank12 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY55 - Value of OTP Bank12 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY56 - Value of OTP Bank13 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY57 - Value of OTP Bank13 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY58 - Value of OTP Bank13 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY59 - Value of OTP Bank13 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY60 - Value of OTP Bank13 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY61 - Value of OTP Bank13 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY62 - Value of OTP Bank13 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY63 - Value of OTP Bank13 Word7 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY64 - Value of OTP Bank14 Word0 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY65 - Value of OTP Bank14 Word1 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY66 - Value of OTP Bank14 Word2 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY67 - Value of OTP Bank14 Word3 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY68 - Value of OTP Bank14 Word4 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY69 - Value of OTP Bank14 Word5 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY70 - Value of OTP Bank14 Word6 (HW Capabilities)
+ * - HW_OCOTP_HDCP_KEY71 - Value of OTP Bank14 Word7 (HW Capabilities)
+ * - HW_OCOTP_CRC0 - Value of OTP Bank15 Word0 (HW Capabilities)
+ * - HW_OCOTP_CRC1 - Value of OTP Bank15 Word1 (HW Capabilities)
+ * - HW_OCOTP_CRC2 - Value of OTP Bank15 Word2 (HW Capabilities)
+ * - HW_OCOTP_CRC3 - Value of OTP Bank15 Word3 (HW Capabilities)
+ * - HW_OCOTP_CRC4 - Value of OTP Bank15 Word4 (HW Capabilities)
+ * - HW_OCOTP_CRC5 - Value of OTP Bank15 Word5 (HW Capabilities)
+ * - HW_OCOTP_CRC6 - Value of OTP Bank15 Word6 (HW Capabilities)
+ * - HW_OCOTP_CRC7 - Value of OTP Bank15 Word5 (HW Capabilities)
+ *
+ * hw_ocotp_t - Struct containing all module registers.
  */
+
+//! @name Module base addresses
+//@{
+#ifndef REGS_OCOTP_BASE
+#define REGS_OCOTP_BASE (0x021bc000) //!< Base address for OCOTP.
+#endif
+//@}
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CTRL - OTP Controller Control Register (RW)
+ *
+ * The OCOTP Control and Status Register specifies the copy state, as well as the control required
+ * for random access of the OTP memory  OCOTP_CTRL: 0x000  The OCOTP Control and Status Register
+ * provides the necessary software interface for performing read and write operations to the On-Chip
+ * OTP (One-Time Programmable ROM). The control fields such as WR_UNLOCK, ADDR and BUSY/ERROR may be
+ * used in conjuction with the HW_OCOTP_DATA register to perform write operations. Read operations
+ * to the On-Chip OTP are involving ADDR, BUSY/ERROR bit field and HW_OCOTP_READ_CTRL register. Read
+ * value is saved in HW_OCOTP_READ_FUSE_DATA register.   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ADDR : 7; //!< OTP write and read access address register. Specifies one of 128 word address locations (0x00 - 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of this value. This internal copy will not update until the access is complete.
@@ -61,18 +206,15 @@ typedef union
 #define HW_OCOTP_CTRL_TOG(v)    (HW_OCOTP_CTRL_WR(HW_OCOTP_CTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CTRL bitfields
  */
 
-/* --- Register HW_OCOTP_CTRL, field ADDR
+/* --- Register HW_OCOTP_CTRL, field ADDR (RW)
  *
- * OTP write and read access address register. Specifies one of 128
- * word address locations (0x00 - 0x7f). If a valid access is accepted
- * by the controller, the controller makes an internal copy of this
- * value. This internal copy will not update until the access is
- * complete.
+ * OTP write and read access address register. Specifies one of 128 word address locations (0x00 -
+ * 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of
+ * this value. This internal copy will not update until the access is complete.
  */
 
 #define BP_OCOTP_CTRL_ADDR      0
@@ -84,40 +226,29 @@ typedef union
 #define BF_OCOTP_CTRL_ADDR(v)   (((v) << 0) & BM_OCOTP_CTRL_ADDR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADDR field to a new value.
 #define BW_OCOTP_CTRL_ADDR(v)   BF_CS1(OCOTP_CTRL, ADDR, v)
 #endif
 
-/* --- Register HW_OCOTP_CTRL, field BUSY
+/* --- Register HW_OCOTP_CTRL, field BUSY (RO)
  *
- * OTP controller status bit. When active, no new write access or read
- * access to OTP(including RELOAD_SHADOWS) can be performed. Cleared by
- * controller when access complete. After reset (or after setting
- * RELOAD_SHADOWS), this bit is set by the controller until the HW/SW
- * and LOCK registers are successfully copied, after which time it is
- * automatically cleared by the controller.
+ * OTP controller status bit. When active, no new write access or read access to OTP(including
+ * RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or
+ * after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK
+ * registers are successfully copied, after which time it is automatically cleared by the
+ * controller.
  */
 
 #define BP_OCOTP_CTRL_BUSY      8
 #define BM_OCOTP_CTRL_BUSY      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_CTRL_BUSY(v)   ((((reg32_t) v) << 8) & BM_OCOTP_CTRL_BUSY)
-#else
-#define BF_OCOTP_CTRL_BUSY(v)   (((v) << 8) & BM_OCOTP_CTRL_BUSY)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_CTRL_BUSY(v)   BF_CS1(OCOTP_CTRL, BUSY, v)
-#endif
-
-/* --- Register HW_OCOTP_CTRL, field ERROR
+/* --- Register HW_OCOTP_CTRL, field ERROR (RW)
  *
- * Set by the controller when an access to a locked region(OTP or shadow
- * register) is requested. Must be cleared before any further access
- * can be performed. This bit can only be set by the controller. This
- * bit is also set if the Pin interface is active and software requests
- * an access to the OTP. In this instance, the ERROR bit cannot be
- * cleared until the Pin interface access has completed. Reset this bit
- * by writing a one to the SCT clear address space and not by a general
+ * Set by the controller when an access to a locked region(OTP or shadow register) is requested.
+ * Must be cleared before any further access can be performed. This bit can only be set by the
+ * controller. This bit is also set if the Pin interface is active and software requests an access
+ * to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has
+ * completed. Reset this bit by writing a one to the SCT clear address space and not by a general
  * write.
  */
 
@@ -130,15 +261,15 @@ typedef union
 #define BF_OCOTP_CTRL_ERROR(v)   (((v) << 9) & BM_OCOTP_CTRL_ERROR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ERROR field to a new value.
 #define BW_OCOTP_CTRL_ERROR(v)   BF_CS1(OCOTP_CTRL, ERROR, v)
 #endif
 
-/* --- Register HW_OCOTP_CTRL, field RELOAD_SHADOWS
+/* --- Register HW_OCOTP_CTRL, field RELOAD_SHADOWS (RW)
  *
- * Set to force re-loading the shadow registers (HW/SW capability and
- * LOCK). This operation will automatically set BUSY. Once the shadow
- * registers have been re-loaded, BUSY and RELOAD_SHADOWS are
- * automatically cleared by the controller.
+ * Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will
+ * automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS
+ * are automatically cleared by the controller.
  */
 
 #define BP_OCOTP_CTRL_RELOAD_SHADOWS      10
@@ -150,14 +281,14 @@ typedef union
 #define BF_OCOTP_CTRL_RELOAD_SHADOWS(v)   (((v) << 10) & BM_OCOTP_CTRL_RELOAD_SHADOWS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RELOAD_SHADOWS field to a new value.
 #define BW_OCOTP_CTRL_RELOAD_SHADOWS(v)   BF_CS1(OCOTP_CTRL, RELOAD_SHADOWS, v)
 #endif
 
-/* --- Register HW_OCOTP_CTRL, field CRC_TEST
+/* --- Register HW_OCOTP_CTRL, field CRC_TEST (RW)
  *
- * Set to calculate CRC according to start address and end address in
- * CRC_ADDR register.And compare with CRC fuse word according CRC
- * address in CRC_ADDR register to generate CRC_FAIL flag
+ * Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare
+ * with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
  */
 
 #define BP_OCOTP_CTRL_CRC_TEST      11
@@ -169,13 +300,13 @@ typedef union
 #define BF_OCOTP_CTRL_CRC_TEST(v)   (((v) << 11) & BM_OCOTP_CTRL_CRC_TEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_TEST field to a new value.
 #define BW_OCOTP_CTRL_CRC_TEST(v)   BF_CS1(OCOTP_CTRL, CRC_TEST, v)
 #endif
 
-/* --- Register HW_OCOTP_CTRL, field CRC_FAIL
+/* --- Register HW_OCOTP_CTRL, field CRC_FAIL (RW)
  *
- * Set by controller when calculated CRC value is not equal to appointed
- * CRC fuse word
+ * Set by controller when calculated CRC value is not equal to appointed CRC fuse word
  */
 
 #define BP_OCOTP_CTRL_CRC_FAIL      12
@@ -187,17 +318,20 @@ typedef union
 #define BF_OCOTP_CTRL_CRC_FAIL(v)   (((v) << 12) & BM_OCOTP_CTRL_CRC_FAIL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_FAIL field to a new value.
 #define BW_OCOTP_CTRL_CRC_FAIL(v)   BF_CS1(OCOTP_CTRL, CRC_FAIL, v)
 #endif
 
-/* --- Register HW_OCOTP_CTRL, field WR_UNLOCK
+/* --- Register HW_OCOTP_CTRL, field WR_UNLOCK (RW)
  *
- * Write 0x3E77 to enable OTP write accesses. NOTE: This register must
- * be unlocked on a write-by-write basis (a write is initiated when
- * HW_OCOTP_DATA is written), so the UNLOCK bitfield must contain the
- * correct key value during all writes to HW_OCOTP_DATA, otherwise a
- * write shall not be initiated. This field is automatically cleared
- * after a successful write completion (clearing of BUSY).
+ * Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-
+ * write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must
+ * contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be
+ * initiated. This field is automatically cleared after a successful write completion (clearing of
+ * BUSY).
+ *
+ * Values:
+ * KEY = 0x3E77 - Key needed to unlock HW_OCOTP_DATA register.
  */
 
 #define BP_OCOTP_CTRL_WR_UNLOCK      16
@@ -209,22 +343,22 @@ typedef union
 #define BF_OCOTP_CTRL_WR_UNLOCK(v)   (((v) << 16) & BM_OCOTP_CTRL_WR_UNLOCK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WR_UNLOCK field to a new value.
 #define BW_OCOTP_CTRL_WR_UNLOCK(v)   BF_CS1(OCOTP_CTRL, WR_UNLOCK, v)
 #endif
 
 #define BV_OCOTP_CTRL_WR_UNLOCK__KEY    0x3e77
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_OCOTP_TIMING - OTP Controller Timing Register
+ * @brief HW_OCOTP_TIMING - OTP Controller Timing Register (RW)
  *
  * The OCOTP Data Register is used for OTP Programming  This register specifies timing parameters
- * for programming and reading the                             OCOTP fuse array.   EXAMPLE   Empty
- * Example.
+ * for programming and reading the OCOTP fuse array.   EXAMPLE   Empty Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned STROBE_PROG : 12; //!< This count value specifies the strobe period in one time write OTP. Tpgm = ((STROBE_PROG+1)- 2*(RELAX+1)) /ipg_clk_freq. It is given in number of ipg_clk periods.
@@ -250,16 +384,14 @@ typedef union
 #define HW_OCOTP_TIMING_TOG(v)    (HW_OCOTP_TIMING_WR(HW_OCOTP_TIMING_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_TIMING bitfields
  */
 
-/* --- Register HW_OCOTP_TIMING, field STROBE_PROG
+/* --- Register HW_OCOTP_TIMING, field STROBE_PROG (RW)
  *
- * This count value specifies the strobe period in one time write OTP.
- * Tpgm = ((STROBE_PROG+1)- 2*(RELAX+1)) /ipg_clk_freq. It is given in
- * number of ipg_clk periods.
+ * This count value specifies the strobe period in one time write OTP. Tpgm = ((STROBE_PROG+1)-
+ * 2*(RELAX+1)) /ipg_clk_freq. It is given in number of ipg_clk periods.
  */
 
 #define BP_OCOTP_TIMING_STROBE_PROG      0
@@ -271,14 +403,14 @@ typedef union
 #define BF_OCOTP_TIMING_STROBE_PROG(v)   (((v) << 0) & BM_OCOTP_TIMING_STROBE_PROG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the STROBE_PROG field to a new value.
 #define BW_OCOTP_TIMING_STROBE_PROG(v)   BF_CS1(OCOTP_TIMING, STROBE_PROG, v)
 #endif
 
-/* --- Register HW_OCOTP_TIMING, field RELAX
+/* --- Register HW_OCOTP_TIMING, field RELAX (RW)
  *
- * This count value specifies the time to add to all default timing
- * parameters other than the Tpgm and Trd. It is given in number of
- * ipg_clk periods.
+ * This count value specifies the time to add to all default timing parameters other than the Tpgm
+ * and Trd. It is given in number of ipg_clk periods.
  */
 
 #define BP_OCOTP_TIMING_RELAX      12
@@ -290,14 +422,14 @@ typedef union
 #define BF_OCOTP_TIMING_RELAX(v)   (((v) << 12) & BM_OCOTP_TIMING_RELAX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RELAX field to a new value.
 #define BW_OCOTP_TIMING_RELAX(v)   BF_CS1(OCOTP_TIMING, RELAX, v)
 #endif
 
-/* --- Register HW_OCOTP_TIMING, field STROBE_READ
+/* --- Register HW_OCOTP_TIMING, field STROBE_READ (RW)
  *
- * This count value specifies the strobe period in one time read OTP.
- * Trd = ((STROBE_READ+1)- 2*(RELAX+1)) /ipg_clk_freq. It is given in
- * number of ipg_clk periods.
+ * This count value specifies the strobe period in one time read OTP. Trd = ((STROBE_READ+1)-
+ * 2*(RELAX+1)) /ipg_clk_freq. It is given in number of ipg_clk periods.
  */
 
 #define BP_OCOTP_TIMING_STROBE_READ      16
@@ -309,14 +441,14 @@ typedef union
 #define BF_OCOTP_TIMING_STROBE_READ(v)   (((v) << 16) & BM_OCOTP_TIMING_STROBE_READ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the STROBE_READ field to a new value.
 #define BW_OCOTP_TIMING_STROBE_READ(v)   BF_CS1(OCOTP_TIMING, STROBE_READ, v)
 #endif
 
-/* --- Register HW_OCOTP_TIMING, field WAIT
+/* --- Register HW_OCOTP_TIMING, field WAIT (RW)
  *
- * This count value specifies time interval between auto read and write
- * access in one time program. It is given in number of ipg_clk
- * periods.
+ * This count value specifies time interval between auto read and write access in one time program.
+ * It is given in number of ipg_clk periods.
  */
 
 #define BP_OCOTP_TIMING_WAIT      22
@@ -328,21 +460,21 @@ typedef union
 #define BF_OCOTP_TIMING_WAIT(v)   (((v) << 22) & BM_OCOTP_TIMING_WAIT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WAIT field to a new value.
 #define BW_OCOTP_TIMING_WAIT(v)   BF_CS1(OCOTP_TIMING, WAIT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_OCOTP_DATA - OTP Controller Write Data Register
+ * @brief HW_OCOTP_DATA - OTP Controller Write Data Register (RW)
  *
  * The OCOTP Data Register is used for OTP Programming  This register is used in conjuction with
- * HW_OCOTP_CTRL to perform                             one-time writes to the OTP. Please see the
- * "Software Write Sequence"                             section for operating details.   EXAMPLE
- * Empty Example.
+ * HW_OCOTP_CTRL to perform one-time writes to the OTP. Please see the "Software Write Sequence"
+ * section for operating details.   EXAMPLE   Empty Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned DATA : 32; //!< Used to initiate a write to OTP. Please see the "Software Write Sequence" section for operating details.
@@ -364,15 +496,14 @@ typedef union
 #define HW_OCOTP_DATA_TOG(v)    (HW_OCOTP_DATA_WR(HW_OCOTP_DATA_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_DATA bitfields
  */
 
-/* --- Register HW_OCOTP_DATA, field DATA
+/* --- Register HW_OCOTP_DATA, field DATA (RW)
  *
- * Used to initiate a write to OTP. Please see the "Software Write
- * Sequence" section for operating details.
+ * Used to initiate a write to OTP. Please see the "Software Write Sequence" section for operating
+ * details.
  */
 
 #define BP_OCOTP_DATA_DATA      0
@@ -384,20 +515,21 @@ typedef union
 #define BF_OCOTP_DATA_DATA(v)   (((v) << 0) & BM_OCOTP_DATA_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA field to a new value.
 #define BW_OCOTP_DATA_DATA(v)   BF_CS1(OCOTP_DATA, DATA, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_OCOTP_READ_CTRL - OTP Controller Write Data Register
+ * @brief HW_OCOTP_READ_CTRL - OTP Controller Write Data Register (RW)
  *
  * The OCOTP Register is used for OTP Read  This register is used in conjuction with HW_OCOTP_CTRL
- * to perform one                             time read to the OTP. Please see the "Software read
- * Sequence" section                             for operating details.   EXAMPLE   Empty Example.
+ * to perform one time read to the OTP. Please see the "Software read Sequence" section for
+ * operating details.   EXAMPLE   Empty Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned READ_FUSE : 1; //!< Used to initiate a read to OTP. Please see the "Software read Sequence" section for operating details.
@@ -420,15 +552,14 @@ typedef union
 #define HW_OCOTP_READ_CTRL_TOG(v)    (HW_OCOTP_READ_CTRL_WR(HW_OCOTP_READ_CTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_READ_CTRL bitfields
  */
 
-/* --- Register HW_OCOTP_READ_CTRL, field READ_FUSE
+/* --- Register HW_OCOTP_READ_CTRL, field READ_FUSE (RW)
  *
- * Used to initiate a read to OTP. Please see the "Software read
- * Sequence" section for operating details.
+ * Used to initiate a read to OTP. Please see the "Software read Sequence" section for operating
+ * details.
  */
 
 #define BP_OCOTP_READ_CTRL_READ_FUSE      0
@@ -440,18 +571,19 @@ typedef union
 #define BF_OCOTP_READ_CTRL_READ_FUSE(v)   (((v) << 0) & BM_OCOTP_READ_CTRL_READ_FUSE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the READ_FUSE field to a new value.
 #define BW_OCOTP_READ_CTRL_READ_FUSE(v)   BF_CS1(OCOTP_READ_CTRL, READ_FUSE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_OCOTP_READ_FUSE_DATA - OTP Controller Read Data Register
+ * @brief HW_OCOTP_READ_FUSE_DATA - OTP Controller Read Data Register (RW)
  *
  * The OCOTP Data Register is used for OTP Read  The data read from OTP   EXAMPLE   Empty Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned DATA : 32; //!< The data read from OTP
@@ -473,12 +605,11 @@ typedef union
 #define HW_OCOTP_READ_FUSE_DATA_TOG(v)    (HW_OCOTP_READ_FUSE_DATA_WR(HW_OCOTP_READ_FUSE_DATA_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_READ_FUSE_DATA bitfields
  */
 
-/* --- Register HW_OCOTP_READ_FUSE_DATA, field DATA
+/* --- Register HW_OCOTP_READ_FUSE_DATA, field DATA (RW)
  *
  * The data read from OTP
  */
@@ -492,19 +623,20 @@ typedef union
 #define BF_OCOTP_READ_FUSE_DATA_DATA(v)   (((v) << 0) & BM_OCOTP_READ_FUSE_DATA_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA field to a new value.
 #define BW_OCOTP_READ_FUSE_DATA_DATA(v)   BF_CS1(OCOTP_READ_FUSE_DATA, DATA, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_OCOTP_SW_STICKY - Sticky bit Register
+ * @brief HW_OCOTP_SW_STICKY - Sticky bit Register (RW)
  *
  * Some SW sticky bits .  Some sticky bits are used by SW to lock some fuse area , shadow registers
  * and other features.   EXAMPLE   Empty Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 1; //!< Reserved.
@@ -529,17 +661,15 @@ typedef union
 #define HW_OCOTP_SW_STICKY_TOG(v)    (HW_OCOTP_SW_STICKY_WR(HW_OCOTP_SW_STICKY_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SW_STICKY bitfields
  */
 
-/* --- Register HW_OCOTP_SW_STICKY, field SRK_REVOKE_LOCK
+/* --- Register HW_OCOTP_SW_STICKY, field SRK_REVOKE_LOCK (RW)
  *
- * Shadow register write and OTP write lock for SRK_REVOKE region. When
- * set, the writing of this region's shadow register and OTP fuse word
- * are blocked. Once this bit is set, it is always high unless a POR is
- * issued.
+ * Shadow register write and OTP write lock for SRK_REVOKE region. When set, the writing of this
+ * region's shadow register and OTP fuse word are blocked. Once this bit is set, it is always high
+ * unless a POR is issued.
  */
 
 #define BP_OCOTP_SW_STICKY_SRK_REVOKE_LOCK      1
@@ -551,15 +681,15 @@ typedef union
 #define BF_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(v)   (((v) << 1) & BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SRK_REVOKE_LOCK field to a new value.
 #define BW_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(v)   BF_CS1(OCOTP_SW_STICKY, SRK_REVOKE_LOCK, v)
 #endif
 
-/* --- Register HW_OCOTP_SW_STICKY, field FIELD_RETURN_LOCK
+/* --- Register HW_OCOTP_SW_STICKY, field FIELD_RETURN_LOCK (RW)
  *
- * Shadow register write and OTP write lock for FIELD_RETURN region.
- * When set, the writing of this region's shadow register and OTP fuse
- * word are blocked.Once this bit is set, it is always high unless a
- * POR is issued.
+ * Shadow register write and OTP write lock for FIELD_RETURN region. When set, the writing of this
+ * region's shadow register and OTP fuse word are blocked.Once this bit is set, it is always high
+ * unless a POR is issued.
  */
 
 #define BP_OCOTP_SW_STICKY_FIELD_RETURN_LOCK      2
@@ -571,23 +701,24 @@ typedef union
 #define BF_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)   (((v) << 2) & BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FIELD_RETURN_LOCK field to a new value.
 #define BW_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)   BF_CS1(OCOTP_SW_STICKY, FIELD_RETURN_LOCK, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SCS - Software Controllable Signals Register
- *
- * HW_OCOTP_SCS: 0x060  This register holds volatile configuration values that can be set and
- * locked by trusted software. All values are returned to their defualt
- * values after POR.   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SCS - Software Controllable Signals Register (RW)
+ *
+ * HW_OCOTP_SCS: 0x060  This register holds volatile configuration values that can be set and locked
+ * by trusted software. All values are returned to their defualt values after POR.   EXAMPLE   Empty
+ * Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned HAB_JDE : 1; //!< HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a properlay signed command to do so is found and validated by the HAB.  The HAB must lock the register before passing control to the OS whether or not JTAG debugging has been enabled.  Once JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG debugging is enabled by the HAB (though this signal may be gated off).
+        unsigned HAB_JDE : 1; //!< HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a properlay signed command to do so is found and validated by the HAB. The HAB must lock the register before passing control to the OS whether or not JTAG debugging has been enabled. Once JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG debugging is enabled by the HAB (though this signal may be gated off).
         unsigned SPARE : 30; //!< Unallocated read/write bits for implementation specific software use.
         unsigned LOCK : 1; //!< When set, all of the bits in this register are locked and can not be changed through SW programming. This bit is only reset after a POR is issued.
     } B;
@@ -608,21 +739,21 @@ typedef union
 #define HW_OCOTP_SCS_TOG(v)    (HW_OCOTP_SCS_WR(HW_OCOTP_SCS_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SCS bitfields
  */
 
-/* --- Register HW_OCOTP_SCS, field HAB_JDE
+/* --- Register HW_OCOTP_SCS, field HAB_JDE (RW)
  *
- * HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG
- * debugging, assuming that a properlay signed command to do so is
- * found and validated by the HAB.  The HAB must lock the register before passing control to the OS
- * whether or not JTAG debugging has been enabled.  Once JTAG is enabled by this bit, it can not be
- * disabled unless the                                 system is reset by POR. 0: JTAG debugging is
- * not enabled by the HAB                                 (it may still be enabled by other
- * mechanisms). 1: JTAG                                 debugging is enabled by the HAB (though this
- * signal may be gated                                 off).
+ * HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a
+ * properlay signed command to do so is found and validated by the HAB. The HAB must lock the
+ * register before passing control to the OS whether or not JTAG debugging has been enabled. Once
+ * JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG
+ * debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG
+ * debugging is enabled by the HAB (though this signal may be gated off).
+ *
+ * Values:
+ * 1 - JTAG debugging is enabled by the HAB (though this signal may be gated off)
  */
 
 #define BP_OCOTP_SCS_HAB_JDE      0
@@ -634,13 +765,14 @@ typedef union
 #define BF_OCOTP_SCS_HAB_JDE(v)   (((v) << 0) & BM_OCOTP_SCS_HAB_JDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HAB_JDE field to a new value.
 #define BW_OCOTP_SCS_HAB_JDE(v)   BF_CS1(OCOTP_SCS, HAB_JDE, v)
 #endif
 
-/* --- Register HW_OCOTP_SCS, field SPARE
+
+/* --- Register HW_OCOTP_SCS, field SPARE (RW)
  *
- * Unallocated read/write bits for implementation specific software
- * use.
+ * Unallocated read/write bits for implementation specific software use.
  */
 
 #define BP_OCOTP_SCS_SPARE      1
@@ -652,14 +784,14 @@ typedef union
 #define BF_OCOTP_SCS_SPARE(v)   (((v) << 1) & BM_OCOTP_SCS_SPARE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SPARE field to a new value.
 #define BW_OCOTP_SCS_SPARE(v)   BF_CS1(OCOTP_SCS, SPARE, v)
 #endif
 
-/* --- Register HW_OCOTP_SCS, field LOCK
+/* --- Register HW_OCOTP_SCS, field LOCK (RW)
  *
- * When set, all of the bits in this register are locked and can not be
- * changed through SW programming. This bit is only reset after a POR
- * is issued.
+ * When set, all of the bits in this register are locked and can not be changed through SW
+ * programming. This bit is only reset after a POR is issued.
  */
 
 #define BP_OCOTP_SCS_LOCK      31
@@ -671,19 +803,20 @@ typedef union
 #define BF_OCOTP_SCS_LOCK(v)   (((v) << 31) & BM_OCOTP_SCS_LOCK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK field to a new value.
 #define BW_OCOTP_SCS_LOCK(v)   BF_CS1(OCOTP_SCS, LOCK, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_OCOTP_CRC_ADDR - OTP Controller CRC test address
+ * @brief HW_OCOTP_CRC_ADDR - OTP Controller CRC test address (RW)
  *
  * The OCOTP Data Register is used for OTP Read  The address for CRC calculation   EXAMPLE   Empty
  * Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned DATA_START_ADDR : 8; //!< End address of fuse location for CRC calculation
@@ -708,12 +841,11 @@ typedef union
 #define HW_OCOTP_CRC_ADDR_TOG(v)    (HW_OCOTP_CRC_ADDR_WR(HW_OCOTP_CRC_ADDR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC_ADDR bitfields
  */
 
-/* --- Register HW_OCOTP_CRC_ADDR, field DATA_START_ADDR
+/* --- Register HW_OCOTP_CRC_ADDR, field DATA_START_ADDR (RW)
  *
  * End address of fuse location for CRC calculation
  */
@@ -727,10 +859,11 @@ typedef union
 #define BF_OCOTP_CRC_ADDR_DATA_START_ADDR(v)   (((v) << 0) & BM_OCOTP_CRC_ADDR_DATA_START_ADDR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA_START_ADDR field to a new value.
 #define BW_OCOTP_CRC_ADDR_DATA_START_ADDR(v)   BF_CS1(OCOTP_CRC_ADDR, DATA_START_ADDR, v)
 #endif
 
-/* --- Register HW_OCOTP_CRC_ADDR, field DATA_END_ADDR
+/* --- Register HW_OCOTP_CRC_ADDR, field DATA_END_ADDR (RW)
  *
  * Start address of fuse location for CRC calculation
  */
@@ -744,10 +877,11 @@ typedef union
 #define BF_OCOTP_CRC_ADDR_DATA_END_ADDR(v)   (((v) << 8) & BM_OCOTP_CRC_ADDR_DATA_END_ADDR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA_END_ADDR field to a new value.
 #define BW_OCOTP_CRC_ADDR_DATA_END_ADDR(v)   BF_CS1(OCOTP_CRC_ADDR, DATA_END_ADDR, v)
 #endif
 
-/* --- Register HW_OCOTP_CRC_ADDR, field CRC_ADDR
+/* --- Register HW_OCOTP_CRC_ADDR, field CRC_ADDR (RW)
  *
  * Address of 32-bit CRC result for comparing
  */
@@ -761,19 +895,20 @@ typedef union
 #define BF_OCOTP_CRC_ADDR_CRC_ADDR(v)   (((v) << 16) & BM_OCOTP_CRC_ADDR_CRC_ADDR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_ADDR field to a new value.
 #define BW_OCOTP_CRC_ADDR_CRC_ADDR(v)   BF_CS1(OCOTP_CRC_ADDR, CRC_ADDR, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_OCOTP_CRC_VALUE - OTP Controller CRC Value Register
+ * @brief HW_OCOTP_CRC_VALUE - OTP Controller CRC Value Register (RW)
  *
  * The OCOTP Data Register is used for OTP Read  The crc32 value based on CRC_ADDR   EXAMPLE   Empty
  * Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned DATA : 32; //!< The crc32 value based on CRC_ADDR
@@ -795,12 +930,11 @@ typedef union
 #define HW_OCOTP_CRC_VALUE_TOG(v)    (HW_OCOTP_CRC_VALUE_WR(HW_OCOTP_CRC_VALUE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC_VALUE bitfields
  */
 
-/* --- Register HW_OCOTP_CRC_VALUE, field DATA
+/* --- Register HW_OCOTP_CRC_VALUE, field DATA (RW)
  *
  * The crc32 value based on CRC_ADDR
  */
@@ -814,20 +948,20 @@ typedef union
 #define BF_OCOTP_CRC_VALUE_DATA(v)   (((v) << 0) & BM_OCOTP_CRC_VALUE_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA field to a new value.
 #define BW_OCOTP_CRC_VALUE_DATA(v)   BF_CS1(OCOTP_CRC_VALUE, DATA, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_VERSION - OTP Controller Version Register
- *
- * This register always returns a known read value for debug purposes it
- * indicates the version of the block.  This register indicates the RTL version in use.   EXAMPLE
- * Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_VERSION - OTP Controller Version Register (RO)
+ *
+ * This register always returns a known read value for debug purposes it indicates the version of
+ * the block.  This register indicates the RTL version in use.   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned STEP : 16; //!< Fixed read-only value reflecting the stepping of the RTL version.
@@ -845,81 +979,47 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_OCOTP_VERSION           (*(volatile hw_ocotp_version_t *) HW_OCOTP_VERSION_ADDR)
 #define HW_OCOTP_VERSION_RD()      (HW_OCOTP_VERSION.U)
-#define HW_OCOTP_VERSION_WR(v)     (HW_OCOTP_VERSION.U = (v))
-#define HW_OCOTP_VERSION_SET(v)    (HW_OCOTP_VERSION_WR(HW_OCOTP_VERSION_RD() |  (v)))
-#define HW_OCOTP_VERSION_CLR(v)    (HW_OCOTP_VERSION_WR(HW_OCOTP_VERSION_RD() & ~(v)))
-#define HW_OCOTP_VERSION_TOG(v)    (HW_OCOTP_VERSION_WR(HW_OCOTP_VERSION_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual OCOTP_VERSION bitfields
  */
 
-/* --- Register HW_OCOTP_VERSION, field STEP
+/* --- Register HW_OCOTP_VERSION, field STEP (RO)
  *
- * Fixed read-only value reflecting the stepping of the RTL                                 version.
+ * Fixed read-only value reflecting the stepping of the RTL version.
  */
 
 #define BP_OCOTP_VERSION_STEP      0
 #define BM_OCOTP_VERSION_STEP      0x0000ffff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_VERSION_STEP(v)   ((((reg32_t) v) << 0) & BM_OCOTP_VERSION_STEP)
-#else
-#define BF_OCOTP_VERSION_STEP(v)   (((v) << 0) & BM_OCOTP_VERSION_STEP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_VERSION_STEP(v)   BF_CS1(OCOTP_VERSION, STEP, v)
-#endif
-
-/* --- Register HW_OCOTP_VERSION, field MINOR
+/* --- Register HW_OCOTP_VERSION, field MINOR (RO)
  *
- * Fixed read-only value reflecting the MINOR field of the RTL
- * version.
+ * Fixed read-only value reflecting the MINOR field of the RTL version.
  */
 
 #define BP_OCOTP_VERSION_MINOR      16
 #define BM_OCOTP_VERSION_MINOR      0x00ff0000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_VERSION_MINOR(v)   ((((reg32_t) v) << 16) & BM_OCOTP_VERSION_MINOR)
-#else
-#define BF_OCOTP_VERSION_MINOR(v)   (((v) << 16) & BM_OCOTP_VERSION_MINOR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_VERSION_MINOR(v)   BF_CS1(OCOTP_VERSION, MINOR, v)
-#endif
-
-/* --- Register HW_OCOTP_VERSION, field MAJOR
+/* --- Register HW_OCOTP_VERSION, field MAJOR (RO)
  *
- * Fixed read-only value reflecting the MAJOR field of the RTL
- * version.
+ * Fixed read-only value reflecting the MAJOR field of the RTL version.
  */
 
 #define BP_OCOTP_VERSION_MAJOR      24
 #define BM_OCOTP_VERSION_MAJOR      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_VERSION_MAJOR(v)   ((((reg32_t) v) << 24) & BM_OCOTP_VERSION_MAJOR)
-#else
-#define BF_OCOTP_VERSION_MAJOR(v)   (((v) << 24) & BM_OCOTP_VERSION_MAJOR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_VERSION_MAJOR(v)   BF_CS1(OCOTP_VERSION, MAJOR, v)
-#endif
-
 /*!
- * @brief HW_OCOTP_LOCK - Value of OTP Bank0 Word0 (Lock controls)
+ * @brief HW_OCOTP_LOCK - Value of OTP Bank0 Word0 (Lock controls) (RO)
  *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 0 (ADDR
- * = 0x00).   EXAMPLE   Empty Example.
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 0 (ADDR = 0x00).
+ * EXAMPLE   Empty Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned TESTER : 2; //!< Status of shadow register and OTP write lock for tester region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
@@ -956,315 +1056,159 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_OCOTP_LOCK           (*(volatile hw_ocotp_lock_t *) HW_OCOTP_LOCK_ADDR)
 #define HW_OCOTP_LOCK_RD()      (HW_OCOTP_LOCK.U)
-#define HW_OCOTP_LOCK_WR(v)     (HW_OCOTP_LOCK.U = (v))
-#define HW_OCOTP_LOCK_SET(v)    (HW_OCOTP_LOCK_WR(HW_OCOTP_LOCK_RD() |  (v)))
-#define HW_OCOTP_LOCK_CLR(v)    (HW_OCOTP_LOCK_WR(HW_OCOTP_LOCK_RD() & ~(v)))
-#define HW_OCOTP_LOCK_TOG(v)    (HW_OCOTP_LOCK_WR(HW_OCOTP_LOCK_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual OCOTP_LOCK bitfields
  */
 
-/* --- Register HW_OCOTP_LOCK, field TESTER
+/* --- Register HW_OCOTP_LOCK, field TESTER (RO)
  *
- * Status of shadow register and OTP write lock for tester region. When
- * bit 1 is set, the writing of this region's shadow register is
- * blocked. When bit 0 is set, the writing of this region's OTP fuse
- * word is blocked.
+ * Status of shadow register and OTP write lock for tester region. When bit 1 is set, the writing of
+ * this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP
+ * fuse word is blocked.
  */
 
 #define BP_OCOTP_LOCK_TESTER      0
 #define BM_OCOTP_LOCK_TESTER      0x00000003
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_TESTER(v)   ((((reg32_t) v) << 0) & BM_OCOTP_LOCK_TESTER)
-#else
-#define BF_OCOTP_LOCK_TESTER(v)   (((v) << 0) & BM_OCOTP_LOCK_TESTER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_TESTER(v)   BF_CS1(OCOTP_LOCK, TESTER, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field BOOT_CFG
+/* --- Register HW_OCOTP_LOCK, field BOOT_CFG (RO)
  *
- * Status of shadow register and OTP write lock for boot_cfg region.
- * When bit 1 is set, the writing of this region's shadow register is
- * blocked. When bit 0 is set, the writing of this region's OTP fuse
- * word is blocked.
+ * Status of shadow register and OTP write lock for boot_cfg region. When bit 1 is set, the writing
+ * of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP
+ * fuse word is blocked.
  */
 
 #define BP_OCOTP_LOCK_BOOT_CFG      2
 #define BM_OCOTP_LOCK_BOOT_CFG      0x0000000c
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_BOOT_CFG(v)   ((((reg32_t) v) << 2) & BM_OCOTP_LOCK_BOOT_CFG)
-#else
-#define BF_OCOTP_LOCK_BOOT_CFG(v)   (((v) << 2) & BM_OCOTP_LOCK_BOOT_CFG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_BOOT_CFG(v)   BF_CS1(OCOTP_LOCK, BOOT_CFG, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field MEM_TRIM
+/* --- Register HW_OCOTP_LOCK, field MEM_TRIM (RO)
  *
- * Status of shadow register and OTP write lock for mem_trim region.
- * When bit 1 is set, the writing of this region's shadow register is
- * blocked. When bit 0 is set, the writing of this region's OTP fuse
- * word is blocked.
+ * Status of shadow register and OTP write lock for mem_trim region. When bit 1 is set, the writing
+ * of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP
+ * fuse word is blocked.
  */
 
 #define BP_OCOTP_LOCK_MEM_TRIM      4
 #define BM_OCOTP_LOCK_MEM_TRIM      0x00000030
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_MEM_TRIM(v)   ((((reg32_t) v) << 4) & BM_OCOTP_LOCK_MEM_TRIM)
-#else
-#define BF_OCOTP_LOCK_MEM_TRIM(v)   (((v) << 4) & BM_OCOTP_LOCK_MEM_TRIM)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_MEM_TRIM(v)   BF_CS1(OCOTP_LOCK, MEM_TRIM, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field SJC_RESP
+/* --- Register HW_OCOTP_LOCK, field SJC_RESP (RO)
  *
- * Status of shadow register read and write, OTP read and write lock for
- * sjc_resp region. When set, the writing of this region's shadow
- * register and OTP fuse word are blocked. The read of this region's
- * shadow register and OTP fuse word are also blocked.
+ * Status of shadow register read and write, OTP read and write lock for sjc_resp region. When set,
+ * the writing of this region's shadow register and OTP fuse word are blocked. The read of this
+ * region's shadow register and OTP fuse word are also blocked.
  */
 
 #define BP_OCOTP_LOCK_SJC_RESP      6
 #define BM_OCOTP_LOCK_SJC_RESP      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_SJC_RESP(v)   ((((reg32_t) v) << 6) & BM_OCOTP_LOCK_SJC_RESP)
-#else
-#define BF_OCOTP_LOCK_SJC_RESP(v)   (((v) << 6) & BM_OCOTP_LOCK_SJC_RESP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_SJC_RESP(v)   BF_CS1(OCOTP_LOCK, SJC_RESP, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field MAC_ADDR
+/* --- Register HW_OCOTP_LOCK, field MAC_ADDR (RO)
  *
- * Status of shadow register and OTP write lock for mac_addr region.
- * When bit 1 is set, the writing of this region's shadow register is
- * blocked. When bit 0 is set, the writing of this region's OTP fuse
- * word is blocked.
+ * Status of shadow register and OTP write lock for mac_addr region. When bit 1 is set, the writing
+ * of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP
+ * fuse word is blocked.
  */
 
 #define BP_OCOTP_LOCK_MAC_ADDR      8
 #define BM_OCOTP_LOCK_MAC_ADDR      0x00000300
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_MAC_ADDR(v)   ((((reg32_t) v) << 8) & BM_OCOTP_LOCK_MAC_ADDR)
-#else
-#define BF_OCOTP_LOCK_MAC_ADDR(v)   (((v) << 8) & BM_OCOTP_LOCK_MAC_ADDR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_MAC_ADDR(v)   BF_CS1(OCOTP_LOCK, MAC_ADDR, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field GP1
+/* --- Register HW_OCOTP_LOCK, field GP1 (RO)
  *
- * Status of shadow register and OTP write lock for gp2 region. When bit
- * 1 is set, the writing of this region's shadow register is blocked.
- * When bit 0 is set, the writing of this region's OTP fuse word is
- * blocked.
+ * Status of shadow register and OTP write lock for gp2 region. When bit 1 is set, the writing of
+ * this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP
+ * fuse word is blocked.
  */
 
 #define BP_OCOTP_LOCK_GP1      10
 #define BM_OCOTP_LOCK_GP1      0x00000c00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_GP1(v)   ((((reg32_t) v) << 10) & BM_OCOTP_LOCK_GP1)
-#else
-#define BF_OCOTP_LOCK_GP1(v)   (((v) << 10) & BM_OCOTP_LOCK_GP1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_GP1(v)   BF_CS1(OCOTP_LOCK, GP1, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field GP2
+/* --- Register HW_OCOTP_LOCK, field GP2 (RO)
  *
- * Status of shadow register and OTP write lock for gp2 region. When bit
- * 1 is set, the writing of this region's shadow register is blocked.
- * When bit 0 is set, the writing of this region's OTP fuse word is
- * blocked.
+ * Status of shadow register and OTP write lock for gp2 region. When bit 1 is set, the writing of
+ * this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP
+ * fuse word is blocked.
  */
 
 #define BP_OCOTP_LOCK_GP2      12
 #define BM_OCOTP_LOCK_GP2      0x00003000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_GP2(v)   ((((reg32_t) v) << 12) & BM_OCOTP_LOCK_GP2)
-#else
-#define BF_OCOTP_LOCK_GP2(v)   (((v) << 12) & BM_OCOTP_LOCK_GP2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_GP2(v)   BF_CS1(OCOTP_LOCK, GP2, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field SRK
+/* --- Register HW_OCOTP_LOCK, field SRK (RO)
  *
- * Status of shadow register and OTP write lock for srk region. When
- * set, the writing of this region's shadow register and OTP fuse word
- * are blocked.
+ * Status of shadow register and OTP write lock for srk region. When set, the writing of this
+ * region's shadow register and OTP fuse word are blocked.
  */
 
 #define BP_OCOTP_LOCK_SRK      14
 #define BM_OCOTP_LOCK_SRK      0x00004000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_SRK(v)   ((((reg32_t) v) << 14) & BM_OCOTP_LOCK_SRK)
-#else
-#define BF_OCOTP_LOCK_SRK(v)   (((v) << 14) & BM_OCOTP_LOCK_SRK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_SRK(v)   BF_CS1(OCOTP_LOCK, SRK, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field DTCP_KEY
+/* --- Register HW_OCOTP_LOCK, field DTCP_KEY (RO)
  *
- * Status of shadow register lock for the region contained in the SRK
- * registers. When set, the over-riding (writing) of this region's
- * shadow bits is blocked. These shadow registers are always
+ * Status of shadow register lock for the region contained in the SRK registers. When set, the over-
+ * riding (writing) of this region's shadow bits is blocked. These shadow registers are always
  * readable.
  */
 
 #define BP_OCOTP_LOCK_DTCP_KEY      16
 #define BM_OCOTP_LOCK_DTCP_KEY      0x00010000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_DTCP_KEY(v)   ((((reg32_t) v) << 16) & BM_OCOTP_LOCK_DTCP_KEY)
-#else
-#define BF_OCOTP_LOCK_DTCP_KEY(v)   (((v) << 16) & BM_OCOTP_LOCK_DTCP_KEY)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_DTCP_KEY(v)   BF_CS1(OCOTP_LOCK, DTCP_KEY, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field OTPMK
+/* --- Register HW_OCOTP_LOCK, field OTPMK (RO)
  *
- * Status of shadow register read and write, OTP read and write lock for
- * otpmk region. When set, the writing of this region's shadow register
- * and OTP fuse word are blocked. The read of this region's shadow
- * register and OTP fuse word are also blocked.
+ * Status of shadow register read and write, OTP read and write lock for otpmk region. When set, the
+ * writing of this region's shadow register and OTP fuse word are blocked. The read of this region's
+ * shadow register and OTP fuse word are also blocked.
  */
 
 #define BP_OCOTP_LOCK_OTPMK      17
 #define BM_OCOTP_LOCK_OTPMK      0x00020000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_OTPMK(v)   ((((reg32_t) v) << 17) & BM_OCOTP_LOCK_OTPMK)
-#else
-#define BF_OCOTP_LOCK_OTPMK(v)   (((v) << 17) & BM_OCOTP_LOCK_OTPMK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_OTPMK(v)   BF_CS1(OCOTP_LOCK, OTPMK, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field ANALOG
+/* --- Register HW_OCOTP_LOCK, field ANALOG (RO)
  *
- * Status of shadow register and OTP write lock for analog region. When
- * bit 1 is set, the writing of this region's shadow register is
- * blocked. When bit 0 is set, the writing of this region's OTP fuse
- * word is blocked.
+ * Status of shadow register and OTP write lock for analog region. When bit 1 is set, the writing of
+ * this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP
+ * fuse word is blocked.
  */
 
 #define BP_OCOTP_LOCK_ANALOG      18
 #define BM_OCOTP_LOCK_ANALOG      0x000c0000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_ANALOG(v)   ((((reg32_t) v) << 18) & BM_OCOTP_LOCK_ANALOG)
-#else
-#define BF_OCOTP_LOCK_ANALOG(v)   (((v) << 18) & BM_OCOTP_LOCK_ANALOG)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_ANALOG(v)   BF_CS1(OCOTP_LOCK, ANALOG, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field HDCP_KSV
+/* --- Register HW_OCOTP_LOCK, field HDCP_KSV (RO)
  *
- * Status of shadow register and OTP write lock for hdcp_ksv region.
- * When set, the writing of this region's shadow register and OTP fuse
- * word are blocked.
+ * Status of shadow register and OTP write lock for hdcp_ksv region. When set, the writing of this
+ * region's shadow register and OTP fuse word are blocked.
  */
 
 #define BP_OCOTP_LOCK_HDCP_KSV      20
 #define BM_OCOTP_LOCK_HDCP_KSV      0x00100000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_HDCP_KSV(v)   ((((reg32_t) v) << 20) & BM_OCOTP_LOCK_HDCP_KSV)
-#else
-#define BF_OCOTP_LOCK_HDCP_KSV(v)   (((v) << 20) & BM_OCOTP_LOCK_HDCP_KSV)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_HDCP_KSV(v)   BF_CS1(OCOTP_LOCK, HDCP_KSV, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field HDCP_KEYS
+/* --- Register HW_OCOTP_LOCK, field HDCP_KEYS (RO)
  *
- * Status of OTP write, shadow register read and write for hdcp_key
- * region. When set, the writing of this region's shadow register and
- * OTP fuse word are blocked. HDTP key shadow register also can be not
- * read by ARM if set. The HDCP key region can not support OTP read
- * feature in any case.
+ * Status of OTP write, shadow register read and write for hdcp_key region. When set, the writing of
+ * this region's shadow register and OTP fuse word are blocked. HDTP key shadow register also can be
+ * not read by ARM if set. The HDCP key region can not support OTP read feature in any case.
  */
 
 #define BP_OCOTP_LOCK_HDCP_KEYS      21
 #define BM_OCOTP_LOCK_HDCP_KEYS      0x00200000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_HDCP_KEYS(v)   ((((reg32_t) v) << 21) & BM_OCOTP_LOCK_HDCP_KEYS)
-#else
-#define BF_OCOTP_LOCK_HDCP_KEYS(v)   (((v) << 21) & BM_OCOTP_LOCK_HDCP_KEYS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_HDCP_KEYS(v)   BF_CS1(OCOTP_LOCK, HDCP_KEYS, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field MISC_CONF
+/* --- Register HW_OCOTP_LOCK, field MISC_CONF (RO)
  *
- * Status of shadow register and OTP write lock for misc_conf region.
- * When set, the writing of this region's shadow register and OTP fuse
- * word are blocked.
+ * Status of shadow register and OTP write lock for misc_conf region. When set, the writing of this
+ * region's shadow register and OTP fuse word are blocked.
  */
 
 #define BP_OCOTP_LOCK_MISC_CONF      22
 #define BM_OCOTP_LOCK_MISC_CONF      0x00400000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_MISC_CONF(v)   ((((reg32_t) v) << 22) & BM_OCOTP_LOCK_MISC_CONF)
-#else
-#define BF_OCOTP_LOCK_MISC_CONF(v)   (((v) << 22) & BM_OCOTP_LOCK_MISC_CONF)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_MISC_CONF(v)   BF_CS1(OCOTP_LOCK, MISC_CONF, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field DTCP_DEV_CERT
+/* --- Register HW_OCOTP_LOCK, field DTCP_DEV_CERT (RO)
  *
- * Status of shadow register and OTP write lock for dtcp_dev_cert
- * region. When set, the writing of this region's shadow register and
- * OTP fuse word are blocked.
+ * Status of shadow register and OTP write lock for dtcp_dev_cert region. When set, the writing of
+ * this region's shadow register and OTP fuse word are blocked.
  */
 
 #define BP_OCOTP_LOCK_DTCP_DEV_CERT      23
 #define BM_OCOTP_LOCK_DTCP_DEV_CERT      0x00800000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_DTCP_DEV_CERT(v)   ((((reg32_t) v) << 23) & BM_OCOTP_LOCK_DTCP_DEV_CERT)
-#else
-#define BF_OCOTP_LOCK_DTCP_DEV_CERT(v)   (((v) << 23) & BM_OCOTP_LOCK_DTCP_DEV_CERT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_DTCP_DEV_CERT(v)   BF_CS1(OCOTP_LOCK, DTCP_DEV_CERT, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field PIN
+/* --- Register HW_OCOTP_LOCK, field PIN (RO)
  *
  * Status of Pin access lock bit. When set, pin access is disabled.
  */
@@ -1272,58 +1216,29 @@ typedef union
 #define BP_OCOTP_LOCK_PIN      25
 #define BM_OCOTP_LOCK_PIN      0x02000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_PIN(v)   ((((reg32_t) v) << 25) & BM_OCOTP_LOCK_PIN)
-#else
-#define BF_OCOTP_LOCK_PIN(v)   (((v) << 25) & BM_OCOTP_LOCK_PIN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_PIN(v)   BF_CS1(OCOTP_LOCK, PIN, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field CRC_GP_LO_LOCK
+/* --- Register HW_OCOTP_LOCK, field CRC_GP_LO_LOCK (RO)
  *
- * Status of shadow register write and read, OTP program and read lock
- * for lower 128 bits CRC region. When bit 1 is set, the reading and
- * writing of this region's OTP fuse and reading of shadow register are
- * blocked.When bit 0 is set, the writing of this region's shadow
- * register and OTP fuse are blocked.
+ * Status of shadow register write and read, OTP program and read lock for lower 128 bits CRC
+ * region. When bit 1 is set, the reading and writing of this region's OTP fuse and reading of
+ * shadow register are blocked.When bit 0 is set, the writing of this region's shadow register and
+ * OTP fuse are blocked.
  */
 
 #define BP_OCOTP_LOCK_CRC_GP_LO_LOCK      26
 #define BM_OCOTP_LOCK_CRC_GP_LO_LOCK      0x0c000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_CRC_GP_LO_LOCK(v)   ((((reg32_t) v) << 26) & BM_OCOTP_LOCK_CRC_GP_LO_LOCK)
-#else
-#define BF_OCOTP_LOCK_CRC_GP_LO_LOCK(v)   (((v) << 26) & BM_OCOTP_LOCK_CRC_GP_LO_LOCK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_CRC_GP_LO_LOCK(v)   BF_CS1(OCOTP_LOCK, CRC_GP_LO_LOCK, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field CRC_GP_HI_LOCK
+/* --- Register HW_OCOTP_LOCK, field CRC_GP_HI_LOCK (RO)
  *
- * Status of shadow register write and read, OTP program and read lock
- * for upper 128 bits CRC region. When bit 1 is set, the reading and
- * writing of this region's OTP fuse and reading of shadow register are
- * blocked.When bit 0 is set, the writing of this region's shadow
- * register and OTP fuse are blocked.
+ * Status of shadow register write and read, OTP program and read lock for upper 128 bits CRC
+ * region. When bit 1 is set, the reading and writing of this region's OTP fuse and reading of
+ * shadow register are blocked.When bit 0 is set, the writing of this region's shadow register and
+ * OTP fuse are blocked.
  */
 
 #define BP_OCOTP_LOCK_CRC_GP_HI_LOCK      28
 #define BM_OCOTP_LOCK_CRC_GP_HI_LOCK      0x30000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_CRC_GP_HI_LOCK(v)   ((((reg32_t) v) << 28) & BM_OCOTP_LOCK_CRC_GP_HI_LOCK)
-#else
-#define BF_OCOTP_LOCK_CRC_GP_HI_LOCK(v)   (((v) << 28) & BM_OCOTP_LOCK_CRC_GP_HI_LOCK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_CRC_GP_HI_LOCK(v)   BF_CS1(OCOTP_LOCK, CRC_GP_HI_LOCK, v)
-#endif
-
-/* --- Register HW_OCOTP_LOCK, field UNALLOCATED
+/* --- Register HW_OCOTP_LOCK, field UNALLOCATED (RO)
  *
  * Value of un-used portion of LOCK word
  */
@@ -1332,25 +1247,16 @@ typedef union
 #define BM_OCOTP_LOCK_UNALLOCATED      0xc0000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_OCOTP_LOCK_UNALLOCATED(v)   ((((reg32_t) v) << 30) & BM_OCOTP_LOCK_UNALLOCATED)
-#else
-#define BF_OCOTP_LOCK_UNALLOCATED(v)   (((v) << 30) & BM_OCOTP_LOCK_UNALLOCATED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_OCOTP_LOCK_UNALLOCATED(v)   BF_CS1(OCOTP_LOCK, UNALLOCATED, v)
-#endif
-
 /*!
- * @brief HW_OCOTP_CFG0 - Value of OTP Bank0 Word1 (Configuration and Manufacturing                        Info.)
+ * @brief HW_OCOTP_CFG0 - Value of OTP Bank0 Word1 (Configuration and Manufacturing Info.) (RW)
  *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 1 (ADDR
- * = 0x01).   EXAMPLE   Empty Example.
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 1 (ADDR = 0x01).
+ * EXAMPLE   Empty Example.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< This register contains 32 bits of the Unique ID and SJC_CHALLENGE field. Reflects value of OTP Bank 0, word 1 (ADDR = 0x01). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
@@ -1372,17 +1278,15 @@ typedef union
 #define HW_OCOTP_CFG0_TOG(v)    (HW_OCOTP_CFG0_WR(HW_OCOTP_CFG0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CFG0 bitfields
  */
 
-/* --- Register HW_OCOTP_CFG0, field BITS
+/* --- Register HW_OCOTP_CFG0, field BITS (RW)
  *
- * This register contains 32 bits of the Unique ID and SJC_CHALLENGE
- * field. Reflects value of OTP Bank 0, word 1 (ADDR = 0x01). These
- * bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is
- * set.
+ * This register contains 32 bits of the Unique ID and SJC_CHALLENGE field. Reflects value of OTP
+ * Bank 0, word 1 (ADDR = 0x01). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit
+ * is set.
  */
 
 #define BP_OCOTP_CFG0_BITS      0
@@ -1394,20 +1298,21 @@ typedef union
 #define BF_OCOTP_CFG0_BITS(v)   (((v) << 0) & BM_OCOTP_CFG0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG0_BITS(v)   BF_CS1(OCOTP_CFG0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CFG1 - Value of OTP Bank0 Word2 (Configuration and Manufacturing                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  shadowed memory mapped access to OTP Bank 0, word 2 (ADDR
- * = 0x02).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CFG1 - Value of OTP Bank0 Word2 (Configuration and Manufacturing Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  shadowed memory mapped access to OTP Bank 0, word 2 (ADDR = 0x02).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< This register contains 32 bits of the Unique ID and SJC_CHALLENGE field. Reflects value of OTP Bank 0, word 2 (ADDR = 0x02). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
@@ -1429,17 +1334,15 @@ typedef union
 #define HW_OCOTP_CFG1_TOG(v)    (HW_OCOTP_CFG1_WR(HW_OCOTP_CFG1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CFG1 bitfields
  */
 
-/* --- Register HW_OCOTP_CFG1, field BITS
+/* --- Register HW_OCOTP_CFG1, field BITS (RW)
  *
- * This register contains 32 bits of the Unique ID and SJC_CHALLENGE
- * field. Reflects value of OTP Bank 0, word 2 (ADDR = 0x02). These
- * bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is
- * set.
+ * This register contains 32 bits of the Unique ID and SJC_CHALLENGE field. Reflects value of OTP
+ * Bank 0, word 2 (ADDR = 0x02). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit
+ * is set.
  */
 
 #define BP_OCOTP_CFG1_BITS      0
@@ -1451,20 +1354,21 @@ typedef union
 #define BF_OCOTP_CFG1_BITS(v)   (((v) << 0) & BM_OCOTP_CFG1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG1_BITS(v)   BF_CS1(OCOTP_CFG1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CFG2 - Value of OTP Bank0 Word3 (Configuration and Manufacturing                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 3 (ADDR
- * = 0x03).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CFG2 - Value of OTP Bank0 Word3 (Configuration and Manufacturing Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 3 (ADDR = 0x03).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 0, word 3 (ADDR = 0x03). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
@@ -1486,15 +1390,14 @@ typedef union
 #define HW_OCOTP_CFG2_TOG(v)    (HW_OCOTP_CFG2_WR(HW_OCOTP_CFG2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CFG2 bitfields
  */
 
-/* --- Register HW_OCOTP_CFG2, field BITS
+/* --- Register HW_OCOTP_CFG2, field BITS (RW)
  *
- * Reflects value of OTP Bank 0, word 3 (ADDR = 0x03). These bits become
- * read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
+ * Reflects value of OTP Bank 0, word 3 (ADDR = 0x03). These bits become read-only after the
+ * HW_OCOTP_LOCK_TESTER[1] bit is set.
  */
 
 #define BP_OCOTP_CFG2_BITS      0
@@ -1506,20 +1409,21 @@ typedef union
 #define BF_OCOTP_CFG2_BITS(v)   (((v) << 0) & BM_OCOTP_CFG2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG2_BITS(v)   BF_CS1(OCOTP_CFG2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CFG3 - Value of OTP Bank0 Word4 (Configuration and Manufacturing                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Non-shadowed memory mapped access to OTP Bank 0, word 4
- * (ADDR =                             0x04).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CFG3 - Value of OTP Bank0 Word4 (Configuration and Manufacturing Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Non-shadowed memory mapped access to OTP Bank 0, word 4 (ADDR =
+ * 0x04).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 0, word 4 (ADDR = 0x04). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
@@ -1541,15 +1445,14 @@ typedef union
 #define HW_OCOTP_CFG3_TOG(v)    (HW_OCOTP_CFG3_WR(HW_OCOTP_CFG3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CFG3 bitfields
  */
 
-/* --- Register HW_OCOTP_CFG3, field BITS
+/* --- Register HW_OCOTP_CFG3, field BITS (RW)
  *
- * Reflects value of OTP Bank 0, word 4 (ADDR = 0x04). These bits become
- * read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
+ * Reflects value of OTP Bank 0, word 4 (ADDR = 0x04). These bits become read-only after the
+ * HW_OCOTP_LOCK_TESTER[1] bit is set.
  */
 
 #define BP_OCOTP_CFG3_BITS      0
@@ -1561,20 +1464,21 @@ typedef union
 #define BF_OCOTP_CFG3_BITS(v)   (((v) << 0) & BM_OCOTP_CFG3_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG3_BITS(v)   BF_CS1(OCOTP_CFG3, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CFG4 - Value of OTP Bank0 Word5 (Configuration and Manufacturing                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 5 (ADDR
- * = 0x05).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CFG4 - Value of OTP Bank0 Word5 (Configuration and Manufacturing Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 5 (ADDR = 0x05).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 0, word 5 (ADDR = 0x05). These bits become read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
@@ -1596,15 +1500,14 @@ typedef union
 #define HW_OCOTP_CFG4_TOG(v)    (HW_OCOTP_CFG4_WR(HW_OCOTP_CFG4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CFG4 bitfields
  */
 
-/* --- Register HW_OCOTP_CFG4, field BITS
+/* --- Register HW_OCOTP_CFG4, field BITS (RW)
  *
- * Reflects value of OTP Bank 0, word 5 (ADDR = 0x05). These bits become
- * read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
+ * Reflects value of OTP Bank 0, word 5 (ADDR = 0x05). These bits become read-only after the
+ * HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
  */
 
 #define BP_OCOTP_CFG4_BITS      0
@@ -1616,20 +1519,21 @@ typedef union
 #define BF_OCOTP_CFG4_BITS(v)   (((v) << 0) & BM_OCOTP_CFG4_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG4_BITS(v)   BF_CS1(OCOTP_CFG4, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CFG5 - Value of OTP Bank0 Word6 (Configuration and Manufacturing                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 6 (ADDR
- * = 0x06).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CFG5 - Value of OTP Bank0 Word6 (Configuration and Manufacturing Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 6 (ADDR = 0x06).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 0, word 6 (ADDR = 0x06). These bits become read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
@@ -1651,15 +1555,14 @@ typedef union
 #define HW_OCOTP_CFG5_TOG(v)    (HW_OCOTP_CFG5_WR(HW_OCOTP_CFG5_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CFG5 bitfields
  */
 
-/* --- Register HW_OCOTP_CFG5, field BITS
+/* --- Register HW_OCOTP_CFG5, field BITS (RW)
  *
- * Reflects value of OTP Bank 0, word 6 (ADDR = 0x06). These bits become
- * read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
+ * Reflects value of OTP Bank 0, word 6 (ADDR = 0x06). These bits become read-only after the
+ * HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
  */
 
 #define BP_OCOTP_CFG5_BITS      0
@@ -1671,20 +1574,21 @@ typedef union
 #define BF_OCOTP_CFG5_BITS(v)   (((v) << 0) & BM_OCOTP_CFG5_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG5_BITS(v)   BF_CS1(OCOTP_CFG5, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CFG6 - Value of OTP Bank0 Word7 (Configuration and Manufacturing                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 7 (ADDR
- * = 0x07).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CFG6 - Value of OTP Bank0 Word7 (Configuration and Manufacturing Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 0, word 7 (ADDR = 0x07).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 0, word 7 (ADDR = 0x07). These bits become read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
@@ -1706,15 +1610,14 @@ typedef union
 #define HW_OCOTP_CFG6_TOG(v)    (HW_OCOTP_CFG6_WR(HW_OCOTP_CFG6_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CFG6 bitfields
  */
 
-/* --- Register HW_OCOTP_CFG6, field BITS
+/* --- Register HW_OCOTP_CFG6, field BITS (RW)
  *
- * Reflects value of OTP Bank 0, word 7 (ADDR = 0x07). These bits become
- * read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
+ * Reflects value of OTP Bank 0, word 7 (ADDR = 0x07). These bits become read-only after the
+ * HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
  */
 
 #define BP_OCOTP_CFG6_BITS      0
@@ -1726,20 +1629,21 @@ typedef union
 #define BF_OCOTP_CFG6_BITS(v)   (((v) << 0) & BM_OCOTP_CFG6_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG6_BITS(v)   BF_CS1(OCOTP_CFG6, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MEM0 - Value of OTP Bank1 Word0 (Memory Related                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 0 (ADDR
- * = 0x08).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MEM0 - Value of OTP Bank1 Word0 (Memory Related Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 0 (ADDR = 0x08).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 0 (ADDR = 0x08). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
@@ -1761,15 +1665,14 @@ typedef union
 #define HW_OCOTP_MEM0_TOG(v)    (HW_OCOTP_MEM0_WR(HW_OCOTP_MEM0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MEM0 bitfields
  */
 
-/* --- Register HW_OCOTP_MEM0, field BITS
+/* --- Register HW_OCOTP_MEM0, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 0 (ADDR = 0x08). These bits become
- * read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+ * Reflects value of OTP bank 1, word 0 (ADDR = 0x08). These bits become read-only after the
+ * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 
 #define BP_OCOTP_MEM0_BITS      0
@@ -1781,20 +1684,21 @@ typedef union
 #define BF_OCOTP_MEM0_BITS(v)   (((v) << 0) & BM_OCOTP_MEM0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM0_BITS(v)   BF_CS1(OCOTP_MEM0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MEM1 - Value of OTP Bank1 Word1 (Memory Related                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 1 (ADDR
- * = 0x09).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MEM1 - Value of OTP Bank1 Word1 (Memory Related Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 1 (ADDR = 0x09).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 1 (ADDR = 0x09). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
@@ -1816,15 +1720,14 @@ typedef union
 #define HW_OCOTP_MEM1_TOG(v)    (HW_OCOTP_MEM1_WR(HW_OCOTP_MEM1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MEM1 bitfields
  */
 
-/* --- Register HW_OCOTP_MEM1, field BITS
+/* --- Register HW_OCOTP_MEM1, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 1 (ADDR = 0x09). These bits become
- * read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+ * Reflects value of OTP bank 1, word 1 (ADDR = 0x09). These bits become read-only after the
+ * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 
 #define BP_OCOTP_MEM1_BITS      0
@@ -1836,20 +1739,21 @@ typedef union
 #define BF_OCOTP_MEM1_BITS(v)   (((v) << 0) & BM_OCOTP_MEM1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM1_BITS(v)   BF_CS1(OCOTP_MEM1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MEM2 - Value of OTP Bank1 Word2 (Memory Related                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 2 (ADDR
- * = 0x0A).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MEM2 - Value of OTP Bank1 Word2 (Memory Related Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 2 (ADDR = 0x0A).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 2 (ADDR = 0x0A). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
@@ -1871,15 +1775,14 @@ typedef union
 #define HW_OCOTP_MEM2_TOG(v)    (HW_OCOTP_MEM2_WR(HW_OCOTP_MEM2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MEM2 bitfields
  */
 
-/* --- Register HW_OCOTP_MEM2, field BITS
+/* --- Register HW_OCOTP_MEM2, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 2 (ADDR = 0x0A). These bits become
- * read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+ * Reflects value of OTP bank 1, word 2 (ADDR = 0x0A). These bits become read-only after the
+ * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 
 #define BP_OCOTP_MEM2_BITS      0
@@ -1891,20 +1794,21 @@ typedef union
 #define BF_OCOTP_MEM2_BITS(v)   (((v) << 0) & BM_OCOTP_MEM2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM2_BITS(v)   BF_CS1(OCOTP_MEM2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MEM3 - Value of OTP Bank1 Word3 (Memory Related                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 3 (ADDR
- * = 0x0B).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MEM3 - Value of OTP Bank1 Word3 (Memory Related Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 3 (ADDR = 0x0B).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 3 (ADDR = 0x0B). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
@@ -1926,15 +1830,14 @@ typedef union
 #define HW_OCOTP_MEM3_TOG(v)    (HW_OCOTP_MEM3_WR(HW_OCOTP_MEM3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MEM3 bitfields
  */
 
-/* --- Register HW_OCOTP_MEM3, field BITS
+/* --- Register HW_OCOTP_MEM3, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 3 (ADDR = 0x0B). These bits become
- * read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+ * Reflects value of OTP bank 1, word 3 (ADDR = 0x0B). These bits become read-only after the
+ * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 
 #define BP_OCOTP_MEM3_BITS      0
@@ -1946,20 +1849,21 @@ typedef union
 #define BF_OCOTP_MEM3_BITS(v)   (((v) << 0) & BM_OCOTP_MEM3_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM3_BITS(v)   BF_CS1(OCOTP_MEM3, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MEM4 - Value of OTP Bank1 Word4 (Memory Related                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 4 (ADDR
- * = 0x0C).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MEM4 - Value of OTP Bank1 Word4 (Memory Related Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 4 (ADDR = 0x0C).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 4 (ADDR = 0x0C). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
@@ -1981,15 +1885,14 @@ typedef union
 #define HW_OCOTP_MEM4_TOG(v)    (HW_OCOTP_MEM4_WR(HW_OCOTP_MEM4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MEM4 bitfields
  */
 
-/* --- Register HW_OCOTP_MEM4, field BITS
+/* --- Register HW_OCOTP_MEM4, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 4 (ADDR = 0x0C). These bits become
- * read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+ * Reflects value of OTP bank 1, word 4 (ADDR = 0x0C). These bits become read-only after the
+ * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 
 #define BP_OCOTP_MEM4_BITS      0
@@ -2001,20 +1904,21 @@ typedef union
 #define BF_OCOTP_MEM4_BITS(v)   (((v) << 0) & BM_OCOTP_MEM4_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM4_BITS(v)   BF_CS1(OCOTP_MEM4, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_ANA0 - Value of OTP Bank1 Word5 (Memory Related                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 5 (ADDR
- * = 0x0D).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_ANA0 - Value of OTP Bank1 Word5 (Memory Related Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 5 (ADDR = 0x0D).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 5 (ADDR = 0x0D). These bits become read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
@@ -2036,15 +1940,14 @@ typedef union
 #define HW_OCOTP_ANA0_TOG(v)    (HW_OCOTP_ANA0_WR(HW_OCOTP_ANA0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_ANA0 bitfields
  */
 
-/* --- Register HW_OCOTP_ANA0, field BITS
+/* --- Register HW_OCOTP_ANA0, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 5 (ADDR = 0x0D). These bits become
- * read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
+ * Reflects value of OTP bank 1, word 5 (ADDR = 0x0D). These bits become read-only after the
+ * HW_OCOTP_LOCK_ANALOG[1] bit is set.
  */
 
 #define BP_OCOTP_ANA0_BITS      0
@@ -2056,20 +1959,21 @@ typedef union
 #define BF_OCOTP_ANA0_BITS(v)   (((v) << 0) & BM_OCOTP_ANA0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA0_BITS(v)   BF_CS1(OCOTP_ANA0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_ANA1 - Value of OTP Bank1 Word6 (General Purpose Customer Defined                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 6 (ADDR
- * = 0x0E).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_ANA1 - Value of OTP Bank1 Word6 (General Purpose Customer Defined Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 6 (ADDR = 0x0E).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 6 (ADDR = 0x0E). These bits become read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
@@ -2091,15 +1995,14 @@ typedef union
 #define HW_OCOTP_ANA1_TOG(v)    (HW_OCOTP_ANA1_WR(HW_OCOTP_ANA1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_ANA1 bitfields
  */
 
-/* --- Register HW_OCOTP_ANA1, field BITS
+/* --- Register HW_OCOTP_ANA1, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 6 (ADDR = 0x0E). These bits become
- * read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
+ * Reflects value of OTP bank 1, word 6 (ADDR = 0x0E). These bits become read-only after the
+ * HW_OCOTP_LOCK_ANALOG[1] bit is set.
  */
 
 #define BP_OCOTP_ANA1_BITS      0
@@ -2111,20 +2014,21 @@ typedef union
 #define BF_OCOTP_ANA1_BITS(v)   (((v) << 0) & BM_OCOTP_ANA1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA1_BITS(v)   BF_CS1(OCOTP_ANA1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_ANA2 - Value of OTP Bank1 Word7 (General Purpose Customer Defined                        Info.)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 7 (ADDR
- * = 0x0F).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_ANA2 - Value of OTP Bank1 Word7 (General Purpose Customer Defined Info.) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP bank 1, word 7 (ADDR = 0x0F).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP bank 1, word 7 (ADDR = 0x0F). These bits become read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
@@ -2146,15 +2050,14 @@ typedef union
 #define HW_OCOTP_ANA2_TOG(v)    (HW_OCOTP_ANA2_WR(HW_OCOTP_ANA2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_ANA2 bitfields
  */
 
-/* --- Register HW_OCOTP_ANA2, field BITS
+/* --- Register HW_OCOTP_ANA2, field BITS (RW)
  *
- * Reflects value of OTP bank 1, word 7 (ADDR = 0x0F). These bits become
- * read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
+ * Reflects value of OTP bank 1, word 7 (ADDR = 0x0F). These bits become read-only after the
+ * HW_OCOTP_LOCK_ANALOG[1] bit is set.
  */
 
 #define BP_OCOTP_ANA2_BITS      0
@@ -2166,20 +2069,21 @@ typedef union
 #define BF_OCOTP_ANA2_BITS(v)   (((v) << 0) & BM_OCOTP_ANA2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA2_BITS(v)   BF_CS1(OCOTP_ANA2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK0 - Shadow Register for OTP Bank2 Word0 (OTPMK and CRYPTO                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 0 (ADDR
- * = 0x10).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK0 - Shadow Register for OTP Bank2 Word0 (OTPMK and CRYPTO Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 0 (ADDR =
+ * 0x10).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word0 (Copy of OTP Bank 2, word 0 (ADDR = 0x10)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2201,17 +2105,15 @@ typedef union
 #define HW_OCOTP_OTPMK0_TOG(v)    (HW_OCOTP_OTPMK0_WR(HW_OCOTP_OTPMK0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK0 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK0, field BITS
+/* --- Register HW_OCOTP_OTPMK0, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word0 (Copy of OTP Bank 2, word 0
- * (ADDR = 0x10)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word0 (Copy of OTP Bank 2, word 0 (ADDR = 0x10)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK0_BITS      0
@@ -2223,20 +2125,21 @@ typedef union
 #define BF_OCOTP_OTPMK0_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK0_BITS(v)   BF_CS1(OCOTP_OTPMK0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK1 - Shadow Register for OTP Bank2 Word1 (OTPMK and CRYPTO                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 1 (ADDR
- * = 0x11).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK1 - Shadow Register for OTP Bank2 Word1 (OTPMK and CRYPTO Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 1 (ADDR =
+ * 0x11).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word1 (Copy of OTP Bank 2, word 1 (ADDR = 0x11)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2258,17 +2161,15 @@ typedef union
 #define HW_OCOTP_OTPMK1_TOG(v)    (HW_OCOTP_OTPMK1_WR(HW_OCOTP_OTPMK1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK1 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK1, field BITS
+/* --- Register HW_OCOTP_OTPMK1, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word1 (Copy of OTP Bank 2, word 1
- * (ADDR = 0x11)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word1 (Copy of OTP Bank 2, word 1 (ADDR = 0x11)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK1_BITS      0
@@ -2280,20 +2181,21 @@ typedef union
 #define BF_OCOTP_OTPMK1_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK1_BITS(v)   BF_CS1(OCOTP_OTPMK1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK2 - Shadow Register for OTP Bank2 Word2 (OTPMK and CRYPTO                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 2 (ADDR
- * = 0x12).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK2 - Shadow Register for OTP Bank2 Word2 (OTPMK and CRYPTO Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 2 (ADDR =
+ * 0x12).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word2 (Copy of OTP Bank 2, word 2 (ADDR = 0x12)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2315,17 +2217,15 @@ typedef union
 #define HW_OCOTP_OTPMK2_TOG(v)    (HW_OCOTP_OTPMK2_WR(HW_OCOTP_OTPMK2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK2 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK2, field BITS
+/* --- Register HW_OCOTP_OTPMK2, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word2 (Copy of OTP Bank 2, word 2
- * (ADDR = 0x12)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word2 (Copy of OTP Bank 2, word 2 (ADDR = 0x12)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK2_BITS      0
@@ -2337,20 +2237,21 @@ typedef union
 #define BF_OCOTP_OTPMK2_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK2_BITS(v)   BF_CS1(OCOTP_OTPMK2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK3 - Shadow Register for OTP Bank2 Word3 (OTPMK and CRYPTO                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 3 (ADDR
- * = 0x13).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK3 - Shadow Register for OTP Bank2 Word3 (OTPMK and CRYPTO Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 3 (ADDR =
+ * 0x13).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word3 (Copy of OTP Bank 2, word 3 (ADDR = 0x13)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2372,17 +2273,15 @@ typedef union
 #define HW_OCOTP_OTPMK3_TOG(v)    (HW_OCOTP_OTPMK3_WR(HW_OCOTP_OTPMK3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK3 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK3, field BITS
+/* --- Register HW_OCOTP_OTPMK3, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word3 (Copy of OTP Bank 2, word 3
- * (ADDR = 0x13)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word3 (Copy of OTP Bank 2, word 3 (ADDR = 0x13)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK3_BITS      0
@@ -2394,20 +2293,21 @@ typedef union
 #define BF_OCOTP_OTPMK3_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK3_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK3_BITS(v)   BF_CS1(OCOTP_OTPMK3, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK4 - Shadow Register for OTP Bank2 Word4 (OTPMK                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 4 (ADDR
- * = 0x14).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK4 - Shadow Register for OTP Bank2 Word4 (OTPMK Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 4 (ADDR =
+ * 0x14).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word4 (Copy of OTP Bank 2, word 4 (ADDR = 0x14)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2429,17 +2329,15 @@ typedef union
 #define HW_OCOTP_OTPMK4_TOG(v)    (HW_OCOTP_OTPMK4_WR(HW_OCOTP_OTPMK4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK4 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK4, field BITS
+/* --- Register HW_OCOTP_OTPMK4, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word4 (Copy of OTP Bank 2, word 4
- * (ADDR = 0x14)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word4 (Copy of OTP Bank 2, word 4 (ADDR = 0x14)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK4_BITS      0
@@ -2451,20 +2349,21 @@ typedef union
 #define BF_OCOTP_OTPMK4_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK4_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK4_BITS(v)   BF_CS1(OCOTP_OTPMK4, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK5 - Shadow Register for OTP Bank2 Word5 (OTPMK                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 5 (ADDR
- * = 0x15).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK5 - Shadow Register for OTP Bank2 Word5 (OTPMK Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 5 (ADDR =
+ * 0x15).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word5 (Copy of OTP Bank 2, word 5 (ADDR = 0x15)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2486,17 +2385,15 @@ typedef union
 #define HW_OCOTP_OTPMK5_TOG(v)    (HW_OCOTP_OTPMK5_WR(HW_OCOTP_OTPMK5_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK5 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK5, field BITS
+/* --- Register HW_OCOTP_OTPMK5, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word5 (Copy of OTP Bank 2, word 5
- * (ADDR = 0x15)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word5 (Copy of OTP Bank 2, word 5 (ADDR = 0x15)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK5_BITS      0
@@ -2508,20 +2405,21 @@ typedef union
 #define BF_OCOTP_OTPMK5_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK5_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK5_BITS(v)   BF_CS1(OCOTP_OTPMK5, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK6 - Shadow Register for OTP Bank2 Word6 (OTPMK                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 6 (ADDR
- * = 0x16).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK6 - Shadow Register for OTP Bank2 Word6 (OTPMK Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 6 (ADDR =
+ * 0x16).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word6 (Copy of OTP Bank 2, word 6 (ADDR = 0x16)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2543,17 +2441,15 @@ typedef union
 #define HW_OCOTP_OTPMK6_TOG(v)    (HW_OCOTP_OTPMK6_WR(HW_OCOTP_OTPMK6_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK6 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK6, field BITS
+/* --- Register HW_OCOTP_OTPMK6, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word6 (Copy of OTP Bank 2, word 6
- * (ADDR = 0x16)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word6 (Copy of OTP Bank 2, word 6 (ADDR = 0x16)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK6_BITS      0
@@ -2565,20 +2461,21 @@ typedef union
 #define BF_OCOTP_OTPMK6_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK6_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK6_BITS(v)   BF_CS1(OCOTP_OTPMK6, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_OTPMK7 - Shadow Register for OTP Bank2 Word7 (OTPMK                        Key)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 7 (ADDR
- * = 0x17).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_OTPMK7 - Shadow Register for OTP Bank2 Word7 (OTPMK Key) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 2, word 7 (ADDR =
+ * 0x17).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the OTPMK Key word7 (Copy of OTP Bank 2, word 7 (ADDR = 0x17)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -2600,17 +2497,15 @@ typedef union
 #define HW_OCOTP_OTPMK7_TOG(v)    (HW_OCOTP_OTPMK7_WR(HW_OCOTP_OTPMK7_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_OTPMK7 bitfields
  */
 
-/* --- Register HW_OCOTP_OTPMK7, field BITS
+/* --- Register HW_OCOTP_OTPMK7, field BITS (RW)
  *
- * Shadow register for the OTPMK Key word7 (Copy of OTP Bank 2, word 7
- * (ADDR = 0x17)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the OTPMK Key word7 (Copy of OTP Bank 2, word 7 (ADDR = 0x17)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_OTPMK7_BITS      0
@@ -2622,20 +2517,21 @@ typedef union
 #define BF_OCOTP_OTPMK7_BITS(v)   (((v) << 0) & BM_OCOTP_OTPMK7_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK7_BITS(v)   BF_CS1(OCOTP_OTPMK7, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK0 - Shadow Register for OTP Bank3 Word0 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 0 (ADDR
- * = 0x18).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK0 - Shadow Register for OTP Bank3 Word0 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 0 (ADDR =
+ * 0x18).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word0 (Copy of OTP Bank 3, word 0 (ADDR = 0x1C)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -2657,16 +2553,14 @@ typedef union
 #define HW_OCOTP_SRK0_TOG(v)    (HW_OCOTP_SRK0_WR(HW_OCOTP_SRK0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK0 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK0, field BITS
+/* --- Register HW_OCOTP_SRK0, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word0 (Copy of OTP
- * Bank 3, word 0 (ADDR = 0x1C)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word0 (Copy of OTP Bank 3, word 0 (ADDR =
+ * 0x1C)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK0_BITS      0
@@ -2678,20 +2572,21 @@ typedef union
 #define BF_OCOTP_SRK0_BITS(v)   (((v) << 0) & BM_OCOTP_SRK0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK0_BITS(v)   BF_CS1(OCOTP_SRK0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK1 - Shadow Register for OTP Bank3 Word1 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 1 (ADDR
- * = 0x19).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK1 - Shadow Register for OTP Bank3 Word1 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 1 (ADDR =
+ * 0x19).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word1 (Copy of OTP Bank 3, word 1 (ADDR = 0x1D)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -2713,16 +2608,14 @@ typedef union
 #define HW_OCOTP_SRK1_TOG(v)    (HW_OCOTP_SRK1_WR(HW_OCOTP_SRK1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK1 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK1, field BITS
+/* --- Register HW_OCOTP_SRK1, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word1 (Copy of OTP
- * Bank 3, word 1 (ADDR = 0x1D)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word1 (Copy of OTP Bank 3, word 1 (ADDR =
+ * 0x1D)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK1_BITS      0
@@ -2734,20 +2627,21 @@ typedef union
 #define BF_OCOTP_SRK1_BITS(v)   (((v) << 0) & BM_OCOTP_SRK1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK1_BITS(v)   BF_CS1(OCOTP_SRK1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK2 - Shadow Register for OTP Bank3 Word2 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 2 (ADDR
- * = 0x1A).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK2 - Shadow Register for OTP Bank3 Word2 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 2 (ADDR =
+ * 0x1A).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word2 (Copy of OTP Bank 3, word 2 (ADDR = 0x1E)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -2769,16 +2663,14 @@ typedef union
 #define HW_OCOTP_SRK2_TOG(v)    (HW_OCOTP_SRK2_WR(HW_OCOTP_SRK2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK2 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK2, field BITS
+/* --- Register HW_OCOTP_SRK2, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word2 (Copy of OTP
- * Bank 3, word 2 (ADDR = 0x1E)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word2 (Copy of OTP Bank 3, word 2 (ADDR =
+ * 0x1E)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK2_BITS      0
@@ -2790,20 +2682,21 @@ typedef union
 #define BF_OCOTP_SRK2_BITS(v)   (((v) << 0) & BM_OCOTP_SRK2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK2_BITS(v)   BF_CS1(OCOTP_SRK2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK3 - Shadow Register for OTP Bank3 Word3 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 3 (ADDR
- * = 0x1B).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK3 - Shadow Register for OTP Bank3 Word3 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 3 (ADDR =
+ * 0x1B).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word3 (Copy of OTP Bank 3, word 3 (ADDR = 0x1F)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -2825,16 +2718,14 @@ typedef union
 #define HW_OCOTP_SRK3_TOG(v)    (HW_OCOTP_SRK3_WR(HW_OCOTP_SRK3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK3 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK3, field BITS
+/* --- Register HW_OCOTP_SRK3, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word3 (Copy of OTP
- * Bank 3, word 3 (ADDR = 0x1F)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word3 (Copy of OTP Bank 3, word 3 (ADDR =
+ * 0x1F)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK3_BITS      0
@@ -2846,20 +2737,21 @@ typedef union
 #define BF_OCOTP_SRK3_BITS(v)   (((v) << 0) & BM_OCOTP_SRK3_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK3_BITS(v)   BF_CS1(OCOTP_SRK3, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK4 - Shadow Register for OTP Bank3 Word4 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 4 (ADDR
- * = 0x1C).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK4 - Shadow Register for OTP Bank3 Word4 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 4 (ADDR =
+ * 0x1C).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word4 (Copy of OTP Bank 3, word 4 (ADDR = 0x20)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -2881,16 +2773,14 @@ typedef union
 #define HW_OCOTP_SRK4_TOG(v)    (HW_OCOTP_SRK4_WR(HW_OCOTP_SRK4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK4 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK4, field BITS
+/* --- Register HW_OCOTP_SRK4, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word4 (Copy of OTP
- * Bank 3, word 4 (ADDR = 0x20)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word4 (Copy of OTP Bank 3, word 4 (ADDR =
+ * 0x20)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK4_BITS      0
@@ -2902,20 +2792,21 @@ typedef union
 #define BF_OCOTP_SRK4_BITS(v)   (((v) << 0) & BM_OCOTP_SRK4_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK4_BITS(v)   BF_CS1(OCOTP_SRK4, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK5 - Shadow Register for OTP Bank3 Word5 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 5 (ADDR
- * = 0x1D).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK5 - Shadow Register for OTP Bank3 Word5 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 5 (ADDR =
+ * 0x1D).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word5 (Copy of OTP Bank 3, word 5 (ADDR = 0x21)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -2937,16 +2828,14 @@ typedef union
 #define HW_OCOTP_SRK5_TOG(v)    (HW_OCOTP_SRK5_WR(HW_OCOTP_SRK5_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK5 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK5, field BITS
+/* --- Register HW_OCOTP_SRK5, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word5 (Copy of OTP
- * Bank 3, word 5 (ADDR = 0x21)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word5 (Copy of OTP Bank 3, word 5 (ADDR =
+ * 0x21)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK5_BITS      0
@@ -2958,20 +2847,21 @@ typedef union
 #define BF_OCOTP_SRK5_BITS(v)   (((v) << 0) & BM_OCOTP_SRK5_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK5_BITS(v)   BF_CS1(OCOTP_SRK5, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK6 - Shadow Register for OTP Bank3 Word6 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 6 (ADDR
- * = 0x1E).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK6 - Shadow Register for OTP Bank3 Word6 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 6 (ADDR =
+ * 0x1E).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word6 (Copy of OTP Bank 3, word 6 (ADDR = 0x22)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -2993,16 +2883,14 @@ typedef union
 #define HW_OCOTP_SRK6_TOG(v)    (HW_OCOTP_SRK6_WR(HW_OCOTP_SRK6_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK6 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK6, field BITS
+/* --- Register HW_OCOTP_SRK6, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word6 (Copy of OTP
- * Bank 3, word 6 (ADDR = 0x22)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word6 (Copy of OTP Bank 3, word 6 (ADDR =
+ * 0x22)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK6_BITS      0
@@ -3014,20 +2902,21 @@ typedef union
 #define BF_OCOTP_SRK6_BITS(v)   (((v) << 0) & BM_OCOTP_SRK6_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK6_BITS(v)   BF_CS1(OCOTP_SRK6, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK7 - Shadow Register for OTP Bank3 Word7 (SRK                        Hash)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 7 (ADDR
- * = 0x1F).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK7 - Shadow Register for OTP Bank3 Word7 (SRK Hash) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS].  Shadowed memory mapped access to OTP Bank 3, word 7 (ADDR =
+ * 0x1F).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the hash of the Super Root Key word7 (Copy of OTP Bank 3, word 7 (ADDR = 0x23)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
@@ -3049,16 +2938,14 @@ typedef union
 #define HW_OCOTP_SRK7_TOG(v)    (HW_OCOTP_SRK7_WR(HW_OCOTP_SRK7_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK7 bitfields
  */
 
-/* --- Register HW_OCOTP_SRK7, field BITS
+/* --- Register HW_OCOTP_SRK7, field BITS (RW)
  *
- * Shadow register for the hash of the Super Root Key word7 (Copy of OTP
- * Bank 3, word 7 (ADDR = 0x23)). These bits become read-only after the
- * HW_OCOTP_LOCK_SRK bit is set.
+ * Shadow register for the hash of the Super Root Key word7 (Copy of OTP Bank 3, word 7 (ADDR =
+ * 0x23)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 
 #define BP_OCOTP_SRK7_BITS      0
@@ -3070,20 +2957,21 @@ typedef union
 #define BF_OCOTP_SRK7_BITS(v)   (((v) << 0) & BM_OCOTP_SRK7_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK7_BITS(v)   BF_CS1(OCOTP_SRK7, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_RESP0 - Value of OTP Bank4 Word0 (Secure JTAG Response                        Field)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 0 (ADDR
- * = 0x20).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_RESP0 - Value of OTP Bank4 Word0 (Secure JTAG Response Field) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 0 (ADDR = 0x20).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the SJC_RESP Key word0 (Copy of OTP Bank 4, word 0 (ADDR = 0x20)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -3105,17 +2993,15 @@ typedef union
 #define HW_OCOTP_RESP0_TOG(v)    (HW_OCOTP_RESP0_WR(HW_OCOTP_RESP0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_RESP0 bitfields
  */
 
-/* --- Register HW_OCOTP_RESP0, field BITS
+/* --- Register HW_OCOTP_RESP0, field BITS (RW)
  *
- * Shadow register for the SJC_RESP Key word0 (Copy of OTP Bank 4, word
- * 0 (ADDR = 0x20)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the SJC_RESP Key word0 (Copy of OTP Bank 4, word 0 (ADDR = 0x20)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_RESP0_BITS      0
@@ -3127,20 +3013,21 @@ typedef union
 #define BF_OCOTP_RESP0_BITS(v)   (((v) << 0) & BM_OCOTP_RESP0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_RESP0_BITS(v)   BF_CS1(OCOTP_RESP0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HSJC_RESP1 - Value of OTP Bank4 Word1 (Secure JTAG Response                        Field)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 1 (ADDR
- * = 0x21).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HSJC_RESP1 - Value of OTP Bank4 Word1 (Secure JTAG Response Field) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 1 (ADDR = 0x21).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Shadow register for the SJC_RESP Key word1 (Copy of OTP Bank 4, word 1 (ADDR = 0x21)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
@@ -3162,17 +3049,15 @@ typedef union
 #define HW_OCOTP_HSJC_RESP1_TOG(v)    (HW_OCOTP_HSJC_RESP1_WR(HW_OCOTP_HSJC_RESP1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HSJC_RESP1 bitfields
  */
 
-/* --- Register HW_OCOTP_HSJC_RESP1, field BITS
+/* --- Register HW_OCOTP_HSJC_RESP1, field BITS (RW)
  *
- * Shadow register for the SJC_RESP Key word1 (Copy of OTP Bank 4, word
- * 1 (ADDR = 0x21)). These bits can be not read and wrotten after the
- * HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns 0xBADA_BADA and
- * sets HW_OCOTP_CTRL[ERROR].
+ * Shadow register for the SJC_RESP Key word1 (Copy of OTP Bank 4, word 1 (ADDR = 0x21)). These bits
+ * can be not read and wrotten after the HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns
+ * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 
 #define BP_OCOTP_HSJC_RESP1_BITS      0
@@ -3184,20 +3069,21 @@ typedef union
 #define BF_OCOTP_HSJC_RESP1_BITS(v)   (((v) << 0) & BM_OCOTP_HSJC_RESP1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HSJC_RESP1_BITS(v)   BF_CS1(OCOTP_HSJC_RESP1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MAC0 - Value of OTP Bank4 Word2 (MAC Address)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 2 (ADDR
- * = 0x22).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MAC0 - Value of OTP Bank4 Word2 (MAC Address) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 2 (ADDR = 0x22).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 4, word 2 (ADDR = 0x22).
@@ -3219,12 +3105,11 @@ typedef union
 #define HW_OCOTP_MAC0_TOG(v)    (HW_OCOTP_MAC0_WR(HW_OCOTP_MAC0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MAC0 bitfields
  */
 
-/* --- Register HW_OCOTP_MAC0, field BITS
+/* --- Register HW_OCOTP_MAC0, field BITS (RW)
  *
  * Reflects value of OTP Bank 4, word 2 (ADDR = 0x22).
  */
@@ -3238,20 +3123,21 @@ typedef union
 #define BF_OCOTP_MAC0_BITS(v)   (((v) << 0) & BM_OCOTP_MAC0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MAC0_BITS(v)   BF_CS1(OCOTP_MAC0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MAC1 - Value of OTP Bank4 Word3 (MAC Address)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 3 (ADDR
- * = 0x23).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MAC1 - Value of OTP Bank4 Word3 (MAC Address) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 3 (ADDR = 0x23).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 4, word 3 (ADDR = 0x23).
@@ -3273,12 +3159,11 @@ typedef union
 #define HW_OCOTP_MAC1_TOG(v)    (HW_OCOTP_MAC1_WR(HW_OCOTP_MAC1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MAC1 bitfields
  */
 
-/* --- Register HW_OCOTP_MAC1, field BITS
+/* --- Register HW_OCOTP_MAC1, field BITS (RW)
  *
  * Reflects value of OTP Bank 4, word 3 (ADDR = 0x23).
  */
@@ -3292,20 +3177,21 @@ typedef union
 #define BF_OCOTP_MAC1_BITS(v)   (((v) << 0) & BM_OCOTP_MAC1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MAC1_BITS(v)   BF_CS1(OCOTP_MAC1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KSV0 - Value of OTP Bank4 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 4 (ADDR
- * = 0x24).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KSV0 - Value of OTP Bank4 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 4 (ADDR = 0x24).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 4, word 4 (ADDR = 0x24).
@@ -3327,12 +3213,11 @@ typedef union
 #define HW_OCOTP_HDCP_KSV0_TOG(v)    (HW_OCOTP_HDCP_KSV0_WR(HW_OCOTP_HDCP_KSV0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KSV0 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KSV0, field BITS
+/* --- Register HW_OCOTP_HDCP_KSV0, field BITS (RW)
  *
  * Reflects value of OTP Bank 4, word 4 (ADDR = 0x24).
  */
@@ -3346,20 +3231,21 @@ typedef union
 #define BF_OCOTP_HDCP_KSV0_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KSV0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KSV0_BITS(v)   BF_CS1(OCOTP_HDCP_KSV0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KSV1 - Value of OTP Bank4 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 5 (ADDR
- * = 0x25).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KSV1 - Value of OTP Bank4 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 5 (ADDR = 0x25).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 4, word 5 (ADDR = 0x25).
@@ -3381,12 +3267,11 @@ typedef union
 #define HW_OCOTP_HDCP_KSV1_TOG(v)    (HW_OCOTP_HDCP_KSV1_WR(HW_OCOTP_HDCP_KSV1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KSV1 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KSV1, field BITS
+/* --- Register HW_OCOTP_HDCP_KSV1, field BITS (RW)
  *
  * Reflects value of OTP Bank 4, word 5 (ADDR = 0x25).
  */
@@ -3400,20 +3285,21 @@ typedef union
 #define BF_OCOTP_HDCP_KSV1_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KSV1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KSV1_BITS(v)   BF_CS1(OCOTP_HDCP_KSV1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_GP1 - Value of OTP Bank4 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 6 (ADDR
- * = 0x26).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_GP1 - Value of OTP Bank4 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 6 (ADDR = 0x26).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 4, word 6 (ADDR = 0x26).
@@ -3435,12 +3321,11 @@ typedef union
 #define HW_OCOTP_GP1_TOG(v)    (HW_OCOTP_GP1_WR(HW_OCOTP_GP1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_GP1 bitfields
  */
 
-/* --- Register HW_OCOTP_GP1, field BITS
+/* --- Register HW_OCOTP_GP1, field BITS (RW)
  *
  * Reflects value of OTP Bank 4, word 6 (ADDR = 0x26).
  */
@@ -3454,20 +3339,21 @@ typedef union
 #define BF_OCOTP_GP1_BITS(v)   (((v) << 0) & BM_OCOTP_GP1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP1_BITS(v)   BF_CS1(OCOTP_GP1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_GP2 - Value of OTP Bank4 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 7 (ADDR
- * = 0x27).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_GP2 - Value of OTP Bank4 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 4, word 7 (ADDR = 0x27).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 4, word 7 (ADDR = 0x27).
@@ -3489,12 +3375,11 @@ typedef union
 #define HW_OCOTP_GP2_TOG(v)    (HW_OCOTP_GP2_WR(HW_OCOTP_GP2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_GP2 bitfields
  */
 
-/* --- Register HW_OCOTP_GP2, field BITS
+/* --- Register HW_OCOTP_GP2, field BITS (RW)
  *
  * Reflects value of OTP Bank 4, word 7 (ADDR = 0x27).
  */
@@ -3508,20 +3393,21 @@ typedef union
 #define BF_OCOTP_GP2_BITS(v)   (((v) << 0) & BM_OCOTP_GP2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP2_BITS(v)   BF_CS1(OCOTP_GP2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_DTCP_KEY0 - Value of OTP Bank5 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 0 (ADDR
- * = 0x28).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_DTCP_KEY0 - Value of OTP Bank5 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 0 (ADDR = 0x28).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 0 (ADDR = 0x28).
@@ -3543,12 +3429,11 @@ typedef union
 #define HW_OCOTP_DTCP_KEY0_TOG(v)    (HW_OCOTP_DTCP_KEY0_WR(HW_OCOTP_DTCP_KEY0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_DTCP_KEY0 bitfields
  */
 
-/* --- Register HW_OCOTP_DTCP_KEY0, field BITS
+/* --- Register HW_OCOTP_DTCP_KEY0, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 0 (ADDR = 0x28).
  */
@@ -3562,20 +3447,21 @@ typedef union
 #define BF_OCOTP_DTCP_KEY0_BITS(v)   (((v) << 0) & BM_OCOTP_DTCP_KEY0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY0_BITS(v)   BF_CS1(OCOTP_DTCP_KEY0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_DTCP_KEY1 - Value of OTP Bank5 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 1 (ADDR
- * = 0x29).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_DTCP_KEY1 - Value of OTP Bank5 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 1 (ADDR = 0x29).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 1 (ADDR = 0x29).
@@ -3597,12 +3483,11 @@ typedef union
 #define HW_OCOTP_DTCP_KEY1_TOG(v)    (HW_OCOTP_DTCP_KEY1_WR(HW_OCOTP_DTCP_KEY1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_DTCP_KEY1 bitfields
  */
 
-/* --- Register HW_OCOTP_DTCP_KEY1, field BITS
+/* --- Register HW_OCOTP_DTCP_KEY1, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 1 (ADDR = 0x29).
  */
@@ -3616,20 +3501,21 @@ typedef union
 #define BF_OCOTP_DTCP_KEY1_BITS(v)   (((v) << 0) & BM_OCOTP_DTCP_KEY1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY1_BITS(v)   BF_CS1(OCOTP_DTCP_KEY1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_DTCP_KEY2 - Value of OTP Bank5 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 2 (ADDR
- * = 0x2a).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_DTCP_KEY2 - Value of OTP Bank5 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 2 (ADDR = 0x2a).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 2 (ADDR = 0x2a).
@@ -3651,12 +3537,11 @@ typedef union
 #define HW_OCOTP_DTCP_KEY2_TOG(v)    (HW_OCOTP_DTCP_KEY2_WR(HW_OCOTP_DTCP_KEY2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_DTCP_KEY2 bitfields
  */
 
-/* --- Register HW_OCOTP_DTCP_KEY2, field BITS
+/* --- Register HW_OCOTP_DTCP_KEY2, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 2 (ADDR = 0x2a).
  */
@@ -3670,20 +3555,21 @@ typedef union
 #define BF_OCOTP_DTCP_KEY2_BITS(v)   (((v) << 0) & BM_OCOTP_DTCP_KEY2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY2_BITS(v)   BF_CS1(OCOTP_DTCP_KEY2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_DTCP_KEY3 - Value of OTP Bank5 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 3 (ADDR
- * = 0x2b).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_DTCP_KEY3 - Value of OTP Bank5 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 3 (ADDR = 0x2b).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 3 (ADDR = 0x2b).
@@ -3705,12 +3591,11 @@ typedef union
 #define HW_OCOTP_DTCP_KEY3_TOG(v)    (HW_OCOTP_DTCP_KEY3_WR(HW_OCOTP_DTCP_KEY3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_DTCP_KEY3 bitfields
  */
 
-/* --- Register HW_OCOTP_DTCP_KEY3, field BITS
+/* --- Register HW_OCOTP_DTCP_KEY3, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 3 (ADDR = 0x2b).
  */
@@ -3724,20 +3609,21 @@ typedef union
 #define BF_OCOTP_DTCP_KEY3_BITS(v)   (((v) << 0) & BM_OCOTP_DTCP_KEY3_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY3_BITS(v)   BF_CS1(OCOTP_DTCP_KEY3, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_DTCP_KEY4 - Value of OTP Bank5 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 4 (ADDR
- * = 0x2c).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_DTCP_KEY4 - Value of OTP Bank5 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 4 (ADDR = 0x2c).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 4 (ADDR = 0x2c).
@@ -3759,12 +3645,11 @@ typedef union
 #define HW_OCOTP_DTCP_KEY4_TOG(v)    (HW_OCOTP_DTCP_KEY4_WR(HW_OCOTP_DTCP_KEY4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_DTCP_KEY4 bitfields
  */
 
-/* --- Register HW_OCOTP_DTCP_KEY4, field BITS
+/* --- Register HW_OCOTP_DTCP_KEY4, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 4 (ADDR = 0x2c).
  */
@@ -3778,20 +3663,21 @@ typedef union
 #define BF_OCOTP_DTCP_KEY4_BITS(v)   (((v) << 0) & BM_OCOTP_DTCP_KEY4_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY4_BITS(v)   BF_CS1(OCOTP_DTCP_KEY4, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_MISC_CONF - Value of OTP Bank5 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 5 (ADDR
- * = 0x2d).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_MISC_CONF - Value of OTP Bank5 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 5 (ADDR = 0x2d).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 5 (ADDR = 0x2d).
@@ -3813,12 +3699,11 @@ typedef union
 #define HW_OCOTP_MISC_CONF_TOG(v)    (HW_OCOTP_MISC_CONF_WR(HW_OCOTP_MISC_CONF_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_MISC_CONF bitfields
  */
 
-/* --- Register HW_OCOTP_MISC_CONF, field BITS
+/* --- Register HW_OCOTP_MISC_CONF, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 5 (ADDR = 0x2d).
  */
@@ -3832,20 +3717,21 @@ typedef union
 #define BF_OCOTP_MISC_CONF_BITS(v)   (((v) << 0) & BM_OCOTP_MISC_CONF_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MISC_CONF_BITS(v)   BF_CS1(OCOTP_MISC_CONF, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_FIELD_RETURN - Value of OTP Bank5 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 6 (ADDR
- * = 0x2e).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_FIELD_RETURN - Value of OTP Bank5 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 6 (ADDR = 0x2e).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 6 (ADDR = 0x2e).
@@ -3867,12 +3753,11 @@ typedef union
 #define HW_OCOTP_FIELD_RETURN_TOG(v)    (HW_OCOTP_FIELD_RETURN_WR(HW_OCOTP_FIELD_RETURN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_FIELD_RETURN bitfields
  */
 
-/* --- Register HW_OCOTP_FIELD_RETURN, field BITS
+/* --- Register HW_OCOTP_FIELD_RETURN, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 6 (ADDR = 0x2e).
  */
@@ -3886,20 +3771,21 @@ typedef union
 #define BF_OCOTP_FIELD_RETURN_BITS(v)   (((v) << 0) & BM_OCOTP_FIELD_RETURN_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_FIELD_RETURN_BITS(v)   BF_CS1(OCOTP_FIELD_RETURN, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_SRK_REVOKE - Value of OTP Bank5 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 7 (ADDR
- * = 0x2f).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SRK_REVOKE - Value of OTP Bank5 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 5, word 7 (ADDR = 0x2f).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 5, word 7 (ADDR = 0x2f).
@@ -3921,12 +3807,11 @@ typedef union
 #define HW_OCOTP_SRK_REVOKE_TOG(v)    (HW_OCOTP_SRK_REVOKE_WR(HW_OCOTP_SRK_REVOKE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_SRK_REVOKE bitfields
  */
 
-/* --- Register HW_OCOTP_SRK_REVOKE, field BITS
+/* --- Register HW_OCOTP_SRK_REVOKE, field BITS (RW)
  *
  * Reflects value of OTP Bank 5, word 7 (ADDR = 0x2f).
  */
@@ -3940,20 +3825,21 @@ typedef union
 #define BF_OCOTP_SRK_REVOKE_BITS(v)   (((v) << 0) & BM_OCOTP_SRK_REVOKE_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK_REVOKE_BITS(v)   BF_CS1(OCOTP_SRK_REVOKE, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY0 - Value of OTP Bank6 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 0 (ADDR
- * = 0x30).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY0 - Value of OTP Bank6 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 0 (ADDR = 0x30).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 0 (ADDR = 0x30).
@@ -3975,12 +3861,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY0_TOG(v)    (HW_OCOTP_HDCP_KEY0_WR(HW_OCOTP_HDCP_KEY0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY0 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY0, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY0, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 0 (ADDR = 0x30).
  */
@@ -3994,20 +3879,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY0_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY0_BITS(v)   BF_CS1(OCOTP_HDCP_KEY0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY1 - Value of OTP Bank6 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 1 (ADDR
- * = 0x31).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY1 - Value of OTP Bank6 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 1 (ADDR = 0x31).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 1 (ADDR = 0x31).
@@ -4029,12 +3915,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY1_TOG(v)    (HW_OCOTP_HDCP_KEY1_WR(HW_OCOTP_HDCP_KEY1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY1 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY1, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY1, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 1 (ADDR = 0x31).
  */
@@ -4048,20 +3933,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY1_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY1_BITS(v)   BF_CS1(OCOTP_HDCP_KEY1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY2 - Value of OTP Bank6 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 2 (ADDR
- * = 0x32).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY2 - Value of OTP Bank6 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 2 (ADDR = 0x32).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 2 (ADDR = 0x32).
@@ -4083,12 +3969,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY2_TOG(v)    (HW_OCOTP_HDCP_KEY2_WR(HW_OCOTP_HDCP_KEY2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY2 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY2, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY2, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 2 (ADDR = 0x32).
  */
@@ -4102,20 +3987,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY2_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY2_BITS(v)   BF_CS1(OCOTP_HDCP_KEY2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY3 - Value of OTP Bank6 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 3 (ADDR
- * = 0x33).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY3 - Value of OTP Bank6 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 3 (ADDR = 0x33).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 3 (ADDR = 0x33).
@@ -4137,12 +4023,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY3_TOG(v)    (HW_OCOTP_HDCP_KEY3_WR(HW_OCOTP_HDCP_KEY3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY3 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY3, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY3, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 3 (ADDR = 0x33).
  */
@@ -4156,20 +4041,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY3_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY3_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY3_BITS(v)   BF_CS1(OCOTP_HDCP_KEY3, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY4 - Value of OTP Bank6 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank Bank 6, word 4
- * (ADDR =                             0x34).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY4 - Value of OTP Bank6 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank Bank 6, word 4 (ADDR =
+ * 0x34).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 4 (ADDR = 0x34).
@@ -4191,12 +4077,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY4_TOG(v)    (HW_OCOTP_HDCP_KEY4_WR(HW_OCOTP_HDCP_KEY4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY4 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY4, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY4, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 4 (ADDR = 0x34).
  */
@@ -4210,20 +4095,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY4_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY4_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY4_BITS(v)   BF_CS1(OCOTP_HDCP_KEY4, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY5 - Value of OTP Bank6 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 5 (ADDR
- * = 0x35).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY5 - Value of OTP Bank6 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 5 (ADDR = 0x35).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 5 (ADDR = 0x35).
@@ -4245,12 +4131,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY5_TOG(v)    (HW_OCOTP_HDCP_KEY5_WR(HW_OCOTP_HDCP_KEY5_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY5 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY5, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY5, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 5 (ADDR = 0x35).
  */
@@ -4264,20 +4149,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY5_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY5_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY5_BITS(v)   BF_CS1(OCOTP_HDCP_KEY5, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY6 - Value of OTP Bank6 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 6 (ADDR
- * = 0x36).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY6 - Value of OTP Bank6 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 6 (ADDR = 0x36).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 6 (ADDR = 0x36).
@@ -4299,12 +4185,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY6_TOG(v)    (HW_OCOTP_HDCP_KEY6_WR(HW_OCOTP_HDCP_KEY6_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY6 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY6, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY6, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 6 (ADDR = 0x36).
  */
@@ -4318,20 +4203,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY6_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY6_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY6_BITS(v)   BF_CS1(OCOTP_HDCP_KEY6, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY7 - Value of OTP Bank6 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 7 (ADDR
- * = 0x37).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY7 - Value of OTP Bank6 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 6, word 7 (ADDR = 0x37).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 6, word 7 (ADDR = 0x37).
@@ -4353,12 +4239,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY7_TOG(v)    (HW_OCOTP_HDCP_KEY7_WR(HW_OCOTP_HDCP_KEY7_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY7 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY7, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY7, field BITS (RW)
  *
  * Reflects value of OTP Bank 6, word 7 (ADDR = 0x37).
  */
@@ -4372,20 +4257,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY7_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY7_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY7_BITS(v)   BF_CS1(OCOTP_HDCP_KEY7, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY8 - Value of OTP Bank7 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 0 (ADDR
- * = 0x38).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY8 - Value of OTP Bank7 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 0 (ADDR = 0x38).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 0 (ADDR = 0x38).
@@ -4407,12 +4293,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY8_TOG(v)    (HW_OCOTP_HDCP_KEY8_WR(HW_OCOTP_HDCP_KEY8_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY8 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY8, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY8, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 0 (ADDR = 0x38).
  */
@@ -4426,20 +4311,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY8_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY8_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY8_BITS(v)   BF_CS1(OCOTP_HDCP_KEY8, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY9 - Value of OTP Bank7 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 1 (ADDR
- * = 0x39).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY9 - Value of OTP Bank7 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 1 (ADDR = 0x39).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 1 (ADDR = 0x39).
@@ -4461,12 +4347,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY9_TOG(v)    (HW_OCOTP_HDCP_KEY9_WR(HW_OCOTP_HDCP_KEY9_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY9 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY9, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY9, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 1 (ADDR = 0x39).
  */
@@ -4480,20 +4365,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY9_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY9_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY9_BITS(v)   BF_CS1(OCOTP_HDCP_KEY9, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY10 - Value of OTP Bank7 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 2 (ADDR
- * = 0x3a).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY10 - Value of OTP Bank7 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 2 (ADDR = 0x3a).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 2 (ADDR = 0x3a).
@@ -4515,12 +4401,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY10_TOG(v)    (HW_OCOTP_HDCP_KEY10_WR(HW_OCOTP_HDCP_KEY10_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY10 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY10, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY10, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 2 (ADDR = 0x3a).
  */
@@ -4534,20 +4419,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY10_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY10_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY10_BITS(v)   BF_CS1(OCOTP_HDCP_KEY10, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY11 - Value of OTP Bank7 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 3 (ADDR
- * = 0x3b).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY11 - Value of OTP Bank7 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 3 (ADDR = 0x3b).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 3 (ADDR = 0x3b).
@@ -4569,12 +4455,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY11_TOG(v)    (HW_OCOTP_HDCP_KEY11_WR(HW_OCOTP_HDCP_KEY11_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY11 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY11, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY11, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 3 (ADDR = 0x3b).
  */
@@ -4588,20 +4473,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY11_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY11_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY11_BITS(v)   BF_CS1(OCOTP_HDCP_KEY11, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY12 - Value of OTP Bank7 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 4 (ADDR
- * = 0x3c).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY12 - Value of OTP Bank7 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 4 (ADDR = 0x3c).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 4 (ADDR = 0x3c).
@@ -4623,12 +4509,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY12_TOG(v)    (HW_OCOTP_HDCP_KEY12_WR(HW_OCOTP_HDCP_KEY12_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY12 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY12, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY12, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 4 (ADDR = 0x3c).
  */
@@ -4642,20 +4527,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY12_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY12_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY12_BITS(v)   BF_CS1(OCOTP_HDCP_KEY12, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY13 - Value of OTP Bank7 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 5 (ADDR
- * = 0x3d).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY13 - Value of OTP Bank7 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 5 (ADDR = 0x3d).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 5 (ADDR = 0x3d).
@@ -4677,12 +4563,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY13_TOG(v)    (HW_OCOTP_HDCP_KEY13_WR(HW_OCOTP_HDCP_KEY13_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY13 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY13, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY13, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 5 (ADDR = 0x3d).
  */
@@ -4696,20 +4581,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY13_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY13_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY13_BITS(v)   BF_CS1(OCOTP_HDCP_KEY13, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY14 - Value of OTP Bank7 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 6 (ADDR
- * = 0x3e).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY14 - Value of OTP Bank7 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 6 (ADDR = 0x3e).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 6 (ADDR = 0x3e).
@@ -4731,12 +4617,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY14_TOG(v)    (HW_OCOTP_HDCP_KEY14_WR(HW_OCOTP_HDCP_KEY14_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY14 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY14, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY14, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 6 (ADDR = 0x3e).
  */
@@ -4750,20 +4635,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY14_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY14_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY14_BITS(v)   BF_CS1(OCOTP_HDCP_KEY14, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY15 - Value of OTP Bank7 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 7 (ADDR
- * = 0x3f).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY15 - Value of OTP Bank7 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 7, word 7 (ADDR = 0x3f).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 7, word 7 (ADDR = 0x3f).
@@ -4785,12 +4671,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY15_TOG(v)    (HW_OCOTP_HDCP_KEY15_WR(HW_OCOTP_HDCP_KEY15_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY15 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY15, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY15, field BITS (RW)
  *
  * Reflects value of OTP Bank 7, word 7 (ADDR = 0x3f).
  */
@@ -4804,20 +4689,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY15_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY15_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY15_BITS(v)   BF_CS1(OCOTP_HDCP_KEY15, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY16 - Value of OTP Bank8 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 0 (ADDR
- * = 0x40).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY16 - Value of OTP Bank8 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 0 (ADDR = 0x40).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 0 (ADDR = 0x40).
@@ -4839,12 +4725,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY16_TOG(v)    (HW_OCOTP_HDCP_KEY16_WR(HW_OCOTP_HDCP_KEY16_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY16 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY16, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY16, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 0 (ADDR = 0x40).
  */
@@ -4858,20 +4743,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY16_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY16_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY16_BITS(v)   BF_CS1(OCOTP_HDCP_KEY16, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY17 - Value of OTP Bank8 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 1 (ADDR
- * = 0x41).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY17 - Value of OTP Bank8 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 1 (ADDR = 0x41).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 1 (ADDR = 0x41).
@@ -4893,12 +4779,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY17_TOG(v)    (HW_OCOTP_HDCP_KEY17_WR(HW_OCOTP_HDCP_KEY17_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY17 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY17, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY17, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 1 (ADDR = 0x41).
  */
@@ -4912,20 +4797,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY17_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY17_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY17_BITS(v)   BF_CS1(OCOTP_HDCP_KEY17, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY18 - Value of OTP Bank8 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 2 (ADDR
- * = 0x42).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY18 - Value of OTP Bank8 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 2 (ADDR = 0x42).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 2 (ADDR = 0x42).
@@ -4947,12 +4833,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY18_TOG(v)    (HW_OCOTP_HDCP_KEY18_WR(HW_OCOTP_HDCP_KEY18_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY18 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY18, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY18, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 2 (ADDR = 0x42).
  */
@@ -4966,20 +4851,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY18_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY18_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY18_BITS(v)   BF_CS1(OCOTP_HDCP_KEY18, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY19 - Value of OTP Bank8 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 3 (ADDR
- * = 0x43).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY19 - Value of OTP Bank8 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 3 (ADDR = 0x43).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 3 (ADDR = 0x43).
@@ -5001,12 +4887,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY19_TOG(v)    (HW_OCOTP_HDCP_KEY19_WR(HW_OCOTP_HDCP_KEY19_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY19 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY19, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY19, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 3 (ADDR = 0x43).
  */
@@ -5020,20 +4905,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY19_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY19_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY19_BITS(v)   BF_CS1(OCOTP_HDCP_KEY19, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY20 - Value of OTP Bank8 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 4 (ADDR
- * = 0x44).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY20 - Value of OTP Bank8 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 4 (ADDR = 0x44).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 4 (ADDR = 0x44).
@@ -5055,12 +4941,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY20_TOG(v)    (HW_OCOTP_HDCP_KEY20_WR(HW_OCOTP_HDCP_KEY20_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY20 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY20, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY20, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 4 (ADDR = 0x44).
  */
@@ -5074,20 +4959,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY20_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY20_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY20_BITS(v)   BF_CS1(OCOTP_HDCP_KEY20, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY21 - Value of OTP Bank8 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 5 (ADDR
- * = 0x45).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY21 - Value of OTP Bank8 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 5 (ADDR = 0x45).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 5 (ADDR = 0x45).
@@ -5109,12 +4995,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY21_TOG(v)    (HW_OCOTP_HDCP_KEY21_WR(HW_OCOTP_HDCP_KEY21_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY21 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY21, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY21, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 5 (ADDR = 0x45).
  */
@@ -5128,20 +5013,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY21_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY21_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY21_BITS(v)   BF_CS1(OCOTP_HDCP_KEY21, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY22 - Value of OTP Bank8 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 6 (ADDR
- * = 0x46).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY22 - Value of OTP Bank8 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 6 (ADDR = 0x46).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 6 (ADDR = 0x46).
@@ -5163,12 +5049,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY22_TOG(v)    (HW_OCOTP_HDCP_KEY22_WR(HW_OCOTP_HDCP_KEY22_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY22 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY22, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY22, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 6 (ADDR = 0x46).
  */
@@ -5182,20 +5067,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY22_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY22_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY22_BITS(v)   BF_CS1(OCOTP_HDCP_KEY22, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY23 - Value of OTP Bank8 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 7 (ADDR
- * = 0x47).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY23 - Value of OTP Bank8 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 8, word 7 (ADDR = 0x47).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 8, word 7 (ADDR = 0x47).
@@ -5217,12 +5103,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY23_TOG(v)    (HW_OCOTP_HDCP_KEY23_WR(HW_OCOTP_HDCP_KEY23_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY23 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY23, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY23, field BITS (RW)
  *
  * Reflects value of OTP Bank 8, word 7 (ADDR = 0x47).
  */
@@ -5236,20 +5121,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY23_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY23_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY23_BITS(v)   BF_CS1(OCOTP_HDCP_KEY23, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY24 - Value of OTP Bank9 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 0 (ADDR
- * = 0x48).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY24 - Value of OTP Bank9 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 0 (ADDR = 0x48).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 0 (ADDR = 0x48).
@@ -5271,12 +5157,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY24_TOG(v)    (HW_OCOTP_HDCP_KEY24_WR(HW_OCOTP_HDCP_KEY24_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY24 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY24, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY24, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 0 (ADDR = 0x48).
  */
@@ -5290,20 +5175,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY24_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY24_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY24_BITS(v)   BF_CS1(OCOTP_HDCP_KEY24, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY25 - Value of OTP Bank9 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 1 (ADDR
- * = 0x49).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY25 - Value of OTP Bank9 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 1 (ADDR = 0x49).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 1 (ADDR = 0x49).
@@ -5325,12 +5211,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY25_TOG(v)    (HW_OCOTP_HDCP_KEY25_WR(HW_OCOTP_HDCP_KEY25_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY25 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY25, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY25, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 1 (ADDR = 0x49).
  */
@@ -5344,20 +5229,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY25_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY25_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY25_BITS(v)   BF_CS1(OCOTP_HDCP_KEY25, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY26 - Value of OTP Bank9 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 2 (ADDR
- * = 0x4a).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY26 - Value of OTP Bank9 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 2 (ADDR = 0x4a).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 2 (ADDR = 0x4a).
@@ -5379,12 +5265,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY26_TOG(v)    (HW_OCOTP_HDCP_KEY26_WR(HW_OCOTP_HDCP_KEY26_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY26 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY26, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY26, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 2 (ADDR = 0x4a).
  */
@@ -5398,20 +5283,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY26_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY26_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY26_BITS(v)   BF_CS1(OCOTP_HDCP_KEY26, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY27 - Value of OTP Bank9 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 3 (ADDR
- * = 0x4b).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY27 - Value of OTP Bank9 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 3 (ADDR = 0x4b).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 3 (ADDR = 0x4b).
@@ -5433,12 +5319,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY27_TOG(v)    (HW_OCOTP_HDCP_KEY27_WR(HW_OCOTP_HDCP_KEY27_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY27 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY27, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY27, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 3 (ADDR = 0x4b).
  */
@@ -5452,20 +5337,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY27_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY27_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY27_BITS(v)   BF_CS1(OCOTP_HDCP_KEY27, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY28 - Value of OTP Bank9 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 4 (ADDR
- * = 0x4c).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY28 - Value of OTP Bank9 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 4 (ADDR = 0x4c).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 4 (ADDR = 0x4c).
@@ -5487,12 +5373,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY28_TOG(v)    (HW_OCOTP_HDCP_KEY28_WR(HW_OCOTP_HDCP_KEY28_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY28 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY28, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY28, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 4 (ADDR = 0x4c).
  */
@@ -5506,20 +5391,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY28_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY28_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY28_BITS(v)   BF_CS1(OCOTP_HDCP_KEY28, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY29 - Value of OTP Bank9 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 5 (ADDR
- * = 0x4d).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY29 - Value of OTP Bank9 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 5 (ADDR = 0x4d).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 5 (ADDR = 0x4d).
@@ -5541,12 +5427,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY29_TOG(v)    (HW_OCOTP_HDCP_KEY29_WR(HW_OCOTP_HDCP_KEY29_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY29 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY29, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY29, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 5 (ADDR = 0x4d).
  */
@@ -5560,20 +5445,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY29_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY29_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY29_BITS(v)   BF_CS1(OCOTP_HDCP_KEY29, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY30 - Value of OTP Bank9 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 6 (ADDR
- * = 0x4e).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY30 - Value of OTP Bank9 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 6 (ADDR = 0x4e).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 6 (ADDR = 0x4e).
@@ -5595,12 +5481,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY30_TOG(v)    (HW_OCOTP_HDCP_KEY30_WR(HW_OCOTP_HDCP_KEY30_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY30 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY30, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY30, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 6 (ADDR = 0x4e).
  */
@@ -5614,20 +5499,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY30_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY30_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY30_BITS(v)   BF_CS1(OCOTP_HDCP_KEY30, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY31 - Value of OTP Bank9 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 7 (ADDR
- * = 0x4f).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY31 - Value of OTP Bank9 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 9, word 7 (ADDR = 0x4f).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 9, word 7 (ADDR = 0x4f).
@@ -5649,12 +5535,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY31_TOG(v)    (HW_OCOTP_HDCP_KEY31_WR(HW_OCOTP_HDCP_KEY31_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY31 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY31, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY31, field BITS (RW)
  *
  * Reflects value of OTP Bank 9, word 7 (ADDR = 0x4f).
  */
@@ -5668,20 +5553,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY31_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY31_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY31_BITS(v)   BF_CS1(OCOTP_HDCP_KEY31, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY32 - Value of OTP Bank10 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 0 (ADDR
- * = 0x50).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY32 - Value of OTP Bank10 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 0 (ADDR =
+ * 0x50).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 0 (ADDR = 0x50).
@@ -5703,12 +5589,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY32_TOG(v)    (HW_OCOTP_HDCP_KEY32_WR(HW_OCOTP_HDCP_KEY32_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY32 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY32, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY32, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 0 (ADDR = 0x50).
  */
@@ -5722,20 +5607,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY32_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY32_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY32_BITS(v)   BF_CS1(OCOTP_HDCP_KEY32, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY33 - Value of OTP Bank10 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 1 (ADDR
- * = 0x51).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY33 - Value of OTP Bank10 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 1 (ADDR =
+ * 0x51).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 1 (ADDR = 0x51).
@@ -5757,12 +5643,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY33_TOG(v)    (HW_OCOTP_HDCP_KEY33_WR(HW_OCOTP_HDCP_KEY33_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY33 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY33, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY33, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 1 (ADDR = 0x51).
  */
@@ -5776,20 +5661,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY33_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY33_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY33_BITS(v)   BF_CS1(OCOTP_HDCP_KEY33, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY34 - Value of OTP Bank10 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 2 (ADDR
- * = 0x52).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY34 - Value of OTP Bank10 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 2 (ADDR =
+ * 0x52).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 2 (ADDR = 0x52).
@@ -5811,12 +5697,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY34_TOG(v)    (HW_OCOTP_HDCP_KEY34_WR(HW_OCOTP_HDCP_KEY34_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY34 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY34, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY34, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 2 (ADDR = 0x52).
  */
@@ -5830,20 +5715,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY34_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY34_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY34_BITS(v)   BF_CS1(OCOTP_HDCP_KEY34, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY35 - Value of OTP Bank10 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 3 (ADDR
- * = 0x53).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY35 - Value of OTP Bank10 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 3 (ADDR =
+ * 0x53).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 3 (ADDR = 0x53).
@@ -5865,12 +5751,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY35_TOG(v)    (HW_OCOTP_HDCP_KEY35_WR(HW_OCOTP_HDCP_KEY35_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY35 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY35, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY35, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 3 (ADDR = 0x53).
  */
@@ -5884,20 +5769,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY35_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY35_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY35_BITS(v)   BF_CS1(OCOTP_HDCP_KEY35, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY36 - Value of OTP Bank10 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 4 (ADDR
- * = 0x54).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY36 - Value of OTP Bank10 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 4 (ADDR =
+ * 0x54).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 4 (ADDR = 0x54).
@@ -5919,12 +5805,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY36_TOG(v)    (HW_OCOTP_HDCP_KEY36_WR(HW_OCOTP_HDCP_KEY36_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY36 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY36, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY36, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 4 (ADDR = 0x54).
  */
@@ -5938,20 +5823,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY36_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY36_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY36_BITS(v)   BF_CS1(OCOTP_HDCP_KEY36, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY37 - Value of OTP Bank10 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 5 (ADDR
- * = 0x55).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY37 - Value of OTP Bank10 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 5 (ADDR =
+ * 0x55).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 5 (ADDR = 0x55).
@@ -5973,12 +5859,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY37_TOG(v)    (HW_OCOTP_HDCP_KEY37_WR(HW_OCOTP_HDCP_KEY37_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY37 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY37, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY37, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 5 (ADDR = 0x55).
  */
@@ -5992,20 +5877,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY37_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY37_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY37_BITS(v)   BF_CS1(OCOTP_HDCP_KEY37, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY38 - Value of OTP Bank10 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 6 (ADDR
- * = 0x56).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY38 - Value of OTP Bank10 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 6 (ADDR =
+ * 0x56).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 6 (ADDR = 0x56).
@@ -6027,12 +5913,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY38_TOG(v)    (HW_OCOTP_HDCP_KEY38_WR(HW_OCOTP_HDCP_KEY38_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY38 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY38, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY38, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 6 (ADDR = 0x56).
  */
@@ -6046,20 +5931,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY38_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY38_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY38_BITS(v)   BF_CS1(OCOTP_HDCP_KEY38, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY39 - Value of OTP Bank10 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 7 (ADDR
- * = 0x57).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY39 - Value of OTP Bank10 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 10, word 7 (ADDR =
+ * 0x57).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 10, word 7 (ADDR = 0x57).
@@ -6081,12 +5967,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY39_TOG(v)    (HW_OCOTP_HDCP_KEY39_WR(HW_OCOTP_HDCP_KEY39_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY39 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY39, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY39, field BITS (RW)
  *
  * Reflects value of OTP Bank 10, word 7 (ADDR = 0x57).
  */
@@ -6100,20 +5985,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY39_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY39_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY39_BITS(v)   BF_CS1(OCOTP_HDCP_KEY39, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY40 - Value of OTP Bank11 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 0 (ADDR
- * = 0x58).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY40 - Value of OTP Bank11 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 0 (ADDR =
+ * 0x58).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 0 (ADDR = 0x58).
@@ -6135,12 +6021,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY40_TOG(v)    (HW_OCOTP_HDCP_KEY40_WR(HW_OCOTP_HDCP_KEY40_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY40 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY40, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY40, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 0 (ADDR = 0x58).
  */
@@ -6154,20 +6039,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY40_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY40_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY40_BITS(v)   BF_CS1(OCOTP_HDCP_KEY40, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY41 - Value of OTP Bank11 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 1 (ADDR
- * = 0x59).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY41 - Value of OTP Bank11 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 1 (ADDR =
+ * 0x59).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 1 (ADDR = 0x59).
@@ -6189,12 +6075,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY41_TOG(v)    (HW_OCOTP_HDCP_KEY41_WR(HW_OCOTP_HDCP_KEY41_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY41 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY41, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY41, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 1 (ADDR = 0x59).
  */
@@ -6208,20 +6093,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY41_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY41_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY41_BITS(v)   BF_CS1(OCOTP_HDCP_KEY41, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY42 - Value of OTP Bank11 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 2 (ADDR
- * = 0x5a).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY42 - Value of OTP Bank11 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 2 (ADDR =
+ * 0x5a).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 2 (ADDR = 0x5a).
@@ -6243,12 +6129,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY42_TOG(v)    (HW_OCOTP_HDCP_KEY42_WR(HW_OCOTP_HDCP_KEY42_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY42 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY42, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY42, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 2 (ADDR = 0x5a).
  */
@@ -6262,20 +6147,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY42_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY42_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY42_BITS(v)   BF_CS1(OCOTP_HDCP_KEY42, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY43 - Value of OTP Bank11 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 3 (ADDR
- * = 0x5b).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY43 - Value of OTP Bank11 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 3 (ADDR =
+ * 0x5b).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 3 (ADDR = 0x5b).
@@ -6297,12 +6183,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY43_TOG(v)    (HW_OCOTP_HDCP_KEY43_WR(HW_OCOTP_HDCP_KEY43_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY43 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY43, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY43, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 3 (ADDR = 0x5b).
  */
@@ -6316,20 +6201,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY43_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY43_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY43_BITS(v)   BF_CS1(OCOTP_HDCP_KEY43, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY44 - Value of OTP Bank11 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 4 (ADDR
- * = 0x5c).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY44 - Value of OTP Bank11 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 4 (ADDR =
+ * 0x5c).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 4 (ADDR = 0x5c).
@@ -6351,12 +6237,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY44_TOG(v)    (HW_OCOTP_HDCP_KEY44_WR(HW_OCOTP_HDCP_KEY44_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY44 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY44, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY44, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 4 (ADDR = 0x5c).
  */
@@ -6370,20 +6255,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY44_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY44_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY44_BITS(v)   BF_CS1(OCOTP_HDCP_KEY44, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY45 - Value of OTP Bank11 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 5 (ADDR
- * = 0x5d).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY45 - Value of OTP Bank11 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 5 (ADDR =
+ * 0x5d).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 5 (ADDR = 0x5d).
@@ -6405,12 +6291,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY45_TOG(v)    (HW_OCOTP_HDCP_KEY45_WR(HW_OCOTP_HDCP_KEY45_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY45 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY45, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY45, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 5 (ADDR = 0x5d).
  */
@@ -6424,20 +6309,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY45_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY45_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY45_BITS(v)   BF_CS1(OCOTP_HDCP_KEY45, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY46 - Value of OTP Bank11 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 6 (ADDR
- * = 0x5e).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY46 - Value of OTP Bank11 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 6 (ADDR =
+ * 0x5e).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 6 (ADDR = 0x5e).
@@ -6459,12 +6345,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY46_TOG(v)    (HW_OCOTP_HDCP_KEY46_WR(HW_OCOTP_HDCP_KEY46_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY46 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY46, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY46, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 6 (ADDR = 0x5e).
  */
@@ -6478,20 +6363,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY46_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY46_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY46_BITS(v)   BF_CS1(OCOTP_HDCP_KEY46, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY47 - Value of OTP Bank11 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 7 (ADDR
- * = 0x5f).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY47 - Value of OTP Bank11 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 11, word 7 (ADDR =
+ * 0x5f).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 11, word 7 (ADDR = 0x5f).
@@ -6513,12 +6399,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY47_TOG(v)    (HW_OCOTP_HDCP_KEY47_WR(HW_OCOTP_HDCP_KEY47_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY47 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY47, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY47, field BITS (RW)
  *
  * Reflects value of OTP Bank 11, word 7 (ADDR = 0x5f).
  */
@@ -6532,20 +6417,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY47_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY47_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY47_BITS(v)   BF_CS1(OCOTP_HDCP_KEY47, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY48 - Value of OTP Bank12 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 0 (ADDR
- * = 0x60).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY48 - Value of OTP Bank12 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 0 (ADDR =
+ * 0x60).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 0 (ADDR = 0x60).
@@ -6567,12 +6453,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY48_TOG(v)    (HW_OCOTP_HDCP_KEY48_WR(HW_OCOTP_HDCP_KEY48_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY48 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY48, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY48, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 0 (ADDR = 0x60).
  */
@@ -6586,20 +6471,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY48_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY48_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY48_BITS(v)   BF_CS1(OCOTP_HDCP_KEY48, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY49 - Value of OTP Bank12 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 1 (ADDR
- * = 0x61).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY49 - Value of OTP Bank12 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 1 (ADDR =
+ * 0x61).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 1 (ADDR = 0x61).
@@ -6621,12 +6507,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY49_TOG(v)    (HW_OCOTP_HDCP_KEY49_WR(HW_OCOTP_HDCP_KEY49_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY49 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY49, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY49, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 1 (ADDR = 0x61).
  */
@@ -6640,20 +6525,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY49_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY49_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY49_BITS(v)   BF_CS1(OCOTP_HDCP_KEY49, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY50 - Value of OTP Bank12 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 2 (ADDR
- * = 0x62).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY50 - Value of OTP Bank12 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 2 (ADDR =
+ * 0x62).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 2 (ADDR = 0x62).
@@ -6675,12 +6561,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY50_TOG(v)    (HW_OCOTP_HDCP_KEY50_WR(HW_OCOTP_HDCP_KEY50_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY50 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY50, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY50, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 2 (ADDR = 0x62).
  */
@@ -6694,20 +6579,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY50_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY50_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY50_BITS(v)   BF_CS1(OCOTP_HDCP_KEY50, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY51 - Value of OTP Bank12 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 3 (ADDR
- * = 0x63).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY51 - Value of OTP Bank12 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 3 (ADDR =
+ * 0x63).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 3 (ADDR = 0x63).
@@ -6729,12 +6615,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY51_TOG(v)    (HW_OCOTP_HDCP_KEY51_WR(HW_OCOTP_HDCP_KEY51_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY51 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY51, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY51, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 3 (ADDR = 0x63).
  */
@@ -6748,20 +6633,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY51_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY51_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY51_BITS(v)   BF_CS1(OCOTP_HDCP_KEY51, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY52 - Value of OTP Bank12 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 4 (ADDR
- * = 0x64).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY52 - Value of OTP Bank12 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 4 (ADDR =
+ * 0x64).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 4 (ADDR = 0x64).
@@ -6783,12 +6669,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY52_TOG(v)    (HW_OCOTP_HDCP_KEY52_WR(HW_OCOTP_HDCP_KEY52_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY52 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY52, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY52, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 4 (ADDR = 0x64).
  */
@@ -6802,20 +6687,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY52_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY52_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY52_BITS(v)   BF_CS1(OCOTP_HDCP_KEY52, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY53 - Value of OTP Bank12 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 5 (ADDR
- * = 0x65).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY53 - Value of OTP Bank12 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 5 (ADDR =
+ * 0x65).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 5 (ADDR = 0x65).
@@ -6837,12 +6723,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY53_TOG(v)    (HW_OCOTP_HDCP_KEY53_WR(HW_OCOTP_HDCP_KEY53_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY53 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY53, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY53, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 5 (ADDR = 0x65).
  */
@@ -6856,20 +6741,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY53_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY53_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY53_BITS(v)   BF_CS1(OCOTP_HDCP_KEY53, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY54 - Value of OTP Bank12 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 6 (ADDR
- * = 0x66).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY54 - Value of OTP Bank12 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 6 (ADDR =
+ * 0x66).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 6 (ADDR = 0x66).
@@ -6891,12 +6777,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY54_TOG(v)    (HW_OCOTP_HDCP_KEY54_WR(HW_OCOTP_HDCP_KEY54_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY54 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY54, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY54, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 6 (ADDR = 0x66).
  */
@@ -6910,20 +6795,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY54_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY54_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY54_BITS(v)   BF_CS1(OCOTP_HDCP_KEY54, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY55 - Value of OTP Bank12 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 7 (ADDR
- * = 0x67).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY55 - Value of OTP Bank12 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 12, word 7 (ADDR =
+ * 0x67).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 12, word 7 (ADDR = 0x67).
@@ -6945,12 +6831,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY55_TOG(v)    (HW_OCOTP_HDCP_KEY55_WR(HW_OCOTP_HDCP_KEY55_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY55 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY55, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY55, field BITS (RW)
  *
  * Reflects value of OTP Bank 12, word 7 (ADDR = 0x67).
  */
@@ -6964,20 +6849,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY55_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY55_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY55_BITS(v)   BF_CS1(OCOTP_HDCP_KEY55, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY56 - Value of OTP Bank13 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 0 (ADDR
- * = 0x68).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY56 - Value of OTP Bank13 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 0 (ADDR =
+ * 0x68).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 13, word 0 (ADDR = 0x68).
@@ -6999,12 +6885,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY56_TOG(v)    (HW_OCOTP_HDCP_KEY56_WR(HW_OCOTP_HDCP_KEY56_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY56 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY56, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY56, field BITS (RW)
  *
  * Reflects value of OTP Bank 13, word 0 (ADDR = 0x68).
  */
@@ -7018,20 +6903,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY56_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY56_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY56_BITS(v)   BF_CS1(OCOTP_HDCP_KEY56, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY57 - Value of OTP Bank13 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 1 (ADDR
- * = 0x69).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY57 - Value of OTP Bank13 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 1 (ADDR =
+ * 0x69).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 13, word 1 (ADDR = 0x69).
@@ -7053,12 +6939,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY57_TOG(v)    (HW_OCOTP_HDCP_KEY57_WR(HW_OCOTP_HDCP_KEY57_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY57 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY57, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY57, field BITS (RW)
  *
  * Reflects value of OTP Bank 13, word 1 (ADDR = 0x69).
  */
@@ -7072,20 +6957,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY57_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY57_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY57_BITS(v)   BF_CS1(OCOTP_HDCP_KEY57, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY58 - Value of OTP Bank13 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 2 (ADDR
- * = 0x6a).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY58 - Value of OTP Bank13 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 2 (ADDR =
+ * 0x6a).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 13, word 2 (ADDR = 0x6a).
@@ -7107,12 +6993,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY58_TOG(v)    (HW_OCOTP_HDCP_KEY58_WR(HW_OCOTP_HDCP_KEY58_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY58 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY58, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY58, field BITS (RW)
  *
  * Reflects value of OTP Bank 13, word 2 (ADDR = 0x6a).
  */
@@ -7126,20 +7011,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY58_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY58_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY58_BITS(v)   BF_CS1(OCOTP_HDCP_KEY58, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY59 - Value of OTP Bank13 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 3 (ADDR
- * = 0x6b).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY59 - Value of OTP Bank13 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 3 (ADDR =
+ * 0x6b).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 13, word 3 (ADDR = 0x6b).
@@ -7161,12 +7047,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY59_TOG(v)    (HW_OCOTP_HDCP_KEY59_WR(HW_OCOTP_HDCP_KEY59_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY59 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY59, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY59, field BITS (RW)
  *
  * Reflects value of OTP Bank 13, word 3 (ADDR = 0x6b).
  */
@@ -7180,20 +7065,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY59_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY59_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY59_BITS(v)   BF_CS1(OCOTP_HDCP_KEY59, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY60 - Value of OTP Bank13 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 4 (ADDR
- * = 0x6c).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY60 - Value of OTP Bank13 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 4 (ADDR =
+ * 0x6c).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 13, word 4 (ADDR = 0x6c).
@@ -7215,12 +7101,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY60_TOG(v)    (HW_OCOTP_HDCP_KEY60_WR(HW_OCOTP_HDCP_KEY60_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY60 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY60, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY60, field BITS (RW)
  *
  * Reflects value of OTP Bank 13, word 4 (ADDR = 0x6c).
  */
@@ -7234,20 +7119,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY60_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY60_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY60_BITS(v)   BF_CS1(OCOTP_HDCP_KEY60, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY61 - Value of OTP Bank13 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 5 (ADDR
- * = 0x6d).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY61 - Value of OTP Bank13 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 5 (ADDR =
+ * 0x6d).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 13, word 5 (ADDR = 0x6d).
@@ -7269,12 +7155,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY61_TOG(v)    (HW_OCOTP_HDCP_KEY61_WR(HW_OCOTP_HDCP_KEY61_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY61 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY61, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY61, field BITS (RW)
  *
  * Reflects value of OTP Bank 13, word 5 (ADDR = 0x6d).
  */
@@ -7288,20 +7173,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY61_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY61_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY61_BITS(v)   BF_CS1(OCOTP_HDCP_KEY61, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY62 - Value of OTP Bank13 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to Bank 13, word 6 (ADDR =
- * 0x6e).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY62 - Value of OTP Bank13 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to Bank 13, word 6 (ADDR = 0x6e).
+ * EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of Bank 13, word 6 (ADDR = 0x6e).
@@ -7323,12 +7209,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY62_TOG(v)    (HW_OCOTP_HDCP_KEY62_WR(HW_OCOTP_HDCP_KEY62_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY62 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY62, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY62, field BITS (RW)
  *
  * Reflects value of Bank 13, word 6 (ADDR = 0x6e).
  */
@@ -7342,20 +7227,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY62_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY62_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY62_BITS(v)   BF_CS1(OCOTP_HDCP_KEY62, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY63 - Value of OTP Bank13 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 7 (ADDR
- * = 0x6f).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY63 - Value of OTP Bank13 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 13, word 7 (ADDR =
+ * 0x6f).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 13, word 7 (ADDR = 0x6f).
@@ -7377,12 +7263,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY63_TOG(v)    (HW_OCOTP_HDCP_KEY63_WR(HW_OCOTP_HDCP_KEY63_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY63 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY63, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY63, field BITS (RW)
  *
  * Reflects value of OTP Bank 13, word 7 (ADDR = 0x6f).
  */
@@ -7396,20 +7281,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY63_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY63_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY63_BITS(v)   BF_CS1(OCOTP_HDCP_KEY63, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY64 - Value of OTP Bank14 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 0 (ADDR
- * = 0x70).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY64 - Value of OTP Bank14 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 0 (ADDR =
+ * 0x70).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 0 (ADDR = 0x70).
@@ -7431,12 +7317,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY64_TOG(v)    (HW_OCOTP_HDCP_KEY64_WR(HW_OCOTP_HDCP_KEY64_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY64 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY64, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY64, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 0 (ADDR = 0x70).
  */
@@ -7450,20 +7335,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY64_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY64_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY64_BITS(v)   BF_CS1(OCOTP_HDCP_KEY64, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY65 - Value of OTP Bank14 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 1 (ADDR
- * = 0x71).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY65 - Value of OTP Bank14 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 1 (ADDR =
+ * 0x71).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 1 (ADDR = 0x71).
@@ -7485,12 +7371,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY65_TOG(v)    (HW_OCOTP_HDCP_KEY65_WR(HW_OCOTP_HDCP_KEY65_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY65 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY65, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY65, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 1 (ADDR = 0x71).
  */
@@ -7504,20 +7389,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY65_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY65_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY65_BITS(v)   BF_CS1(OCOTP_HDCP_KEY65, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY66 - Value of OTP Bank14 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 2 (ADDR
- * = 0x72).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY66 - Value of OTP Bank14 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 2 (ADDR =
+ * 0x72).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 2 (ADDR = 0x72).
@@ -7539,12 +7425,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY66_TOG(v)    (HW_OCOTP_HDCP_KEY66_WR(HW_OCOTP_HDCP_KEY66_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY66 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY66, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY66, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 2 (ADDR = 0x72).
  */
@@ -7558,20 +7443,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY66_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY66_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY66_BITS(v)   BF_CS1(OCOTP_HDCP_KEY66, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY67 - Value of OTP Bank14 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 3 (ADDR
- * = 0x73).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY67 - Value of OTP Bank14 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 3 (ADDR =
+ * 0x73).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 3 (ADDR = 0x73).
@@ -7593,12 +7479,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY67_TOG(v)    (HW_OCOTP_HDCP_KEY67_WR(HW_OCOTP_HDCP_KEY67_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY67 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY67, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY67, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 3 (ADDR = 0x73).
  */
@@ -7612,20 +7497,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY67_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY67_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY67_BITS(v)   BF_CS1(OCOTP_HDCP_KEY67, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY68 - Value of OTP Bank14 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 4 (ADDR
- * = 0x74).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY68 - Value of OTP Bank14 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 4 (ADDR =
+ * 0x74).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 4 (ADDR = 0x74).
@@ -7647,12 +7533,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY68_TOG(v)    (HW_OCOTP_HDCP_KEY68_WR(HW_OCOTP_HDCP_KEY68_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY68 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY68, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY68, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 4 (ADDR = 0x74).
  */
@@ -7666,20 +7551,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY68_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY68_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY68_BITS(v)   BF_CS1(OCOTP_HDCP_KEY68, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY69 - Value of OTP Bank14 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 5 (ADDR
- * = 0x75).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY69 - Value of OTP Bank14 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 5 (ADDR =
+ * 0x75).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 5 (ADDR = 0x75).
@@ -7701,12 +7587,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY69_TOG(v)    (HW_OCOTP_HDCP_KEY69_WR(HW_OCOTP_HDCP_KEY69_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY69 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY69, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY69, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 5 (ADDR = 0x75).
  */
@@ -7720,20 +7605,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY69_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY69_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY69_BITS(v)   BF_CS1(OCOTP_HDCP_KEY69, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY70 - Value of OTP Bank14 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 6 (ADDR
- * = 0x76).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY70 - Value of OTP Bank14 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 6 (ADDR =
+ * 0x76).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 6 (ADDR = 0x76).
@@ -7755,12 +7641,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY70_TOG(v)    (HW_OCOTP_HDCP_KEY70_WR(HW_OCOTP_HDCP_KEY70_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY70 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY70, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY70, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 6 (ADDR = 0x76).
  */
@@ -7774,20 +7659,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY70_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY70_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY70_BITS(v)   BF_CS1(OCOTP_HDCP_KEY70, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_HDCP_KEY71 - Value of OTP Bank14 Word7 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 7 (ADDR
- * = 0x77).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_HDCP_KEY71 - Value of OTP Bank14 Word7 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 14, word 7 (ADDR =
+ * 0x77).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 14, word 7 (ADDR = 0x77).
@@ -7809,12 +7695,11 @@ typedef union
 #define HW_OCOTP_HDCP_KEY71_TOG(v)    (HW_OCOTP_HDCP_KEY71_WR(HW_OCOTP_HDCP_KEY71_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_HDCP_KEY71 bitfields
  */
 
-/* --- Register HW_OCOTP_HDCP_KEY71, field BITS
+/* --- Register HW_OCOTP_HDCP_KEY71, field BITS (RW)
  *
  * Reflects value of OTP Bank 14, word 7 (ADDR = 0x77).
  */
@@ -7828,20 +7713,21 @@ typedef union
 #define BF_OCOTP_HDCP_KEY71_BITS(v)   (((v) << 0) & BM_OCOTP_HDCP_KEY71_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY71_BITS(v)   BF_CS1(OCOTP_HDCP_KEY71, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC0 - Value of OTP Bank15 Word0 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 0 (ADDR
- * = 0x78).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC0 - Value of OTP Bank15 Word0 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 0 (ADDR =
+ * 0x78).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 0 (ADDR = 0x78).
@@ -7863,12 +7749,11 @@ typedef union
 #define HW_OCOTP_CRC0_TOG(v)    (HW_OCOTP_CRC0_WR(HW_OCOTP_CRC0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC0 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC0, field BITS
+/* --- Register HW_OCOTP_CRC0, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 0 (ADDR = 0x78).
  */
@@ -7882,20 +7767,21 @@ typedef union
 #define BF_OCOTP_CRC0_BITS(v)   (((v) << 0) & BM_OCOTP_CRC0_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC0_BITS(v)   BF_CS1(OCOTP_CRC0, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC1 - Value of OTP Bank15 Word1 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 1 (ADDR
- * = 0x79).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC1 - Value of OTP Bank15 Word1 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 1 (ADDR =
+ * 0x79).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 1 (ADDR = 0x79).
@@ -7917,12 +7803,11 @@ typedef union
 #define HW_OCOTP_CRC1_TOG(v)    (HW_OCOTP_CRC1_WR(HW_OCOTP_CRC1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC1 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC1, field BITS
+/* --- Register HW_OCOTP_CRC1, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 1 (ADDR = 0x79).
  */
@@ -7936,20 +7821,21 @@ typedef union
 #define BF_OCOTP_CRC1_BITS(v)   (((v) << 0) & BM_OCOTP_CRC1_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC1_BITS(v)   BF_CS1(OCOTP_CRC1, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC2 - Value of OTP Bank15 Word2 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 2 (ADDR
- * = 0x7A).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC2 - Value of OTP Bank15 Word2 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 2 (ADDR =
+ * 0x7A).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 2 (ADDR = 0x7A).
@@ -7971,12 +7857,11 @@ typedef union
 #define HW_OCOTP_CRC2_TOG(v)    (HW_OCOTP_CRC2_WR(HW_OCOTP_CRC2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC2 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC2, field BITS
+/* --- Register HW_OCOTP_CRC2, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 2 (ADDR = 0x7A).
  */
@@ -7990,20 +7875,21 @@ typedef union
 #define BF_OCOTP_CRC2_BITS(v)   (((v) << 0) & BM_OCOTP_CRC2_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC2_BITS(v)   BF_CS1(OCOTP_CRC2, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC3 - Value of OTP Bank15 Word3 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 3 (ADDR
- * = 0x7B).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC3 - Value of OTP Bank15 Word3 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 3 (ADDR =
+ * 0x7B).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 3 (ADDR = 0x7B).
@@ -8025,12 +7911,11 @@ typedef union
 #define HW_OCOTP_CRC3_TOG(v)    (HW_OCOTP_CRC3_WR(HW_OCOTP_CRC3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC3 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC3, field BITS
+/* --- Register HW_OCOTP_CRC3, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 3 (ADDR = 0x7B).
  */
@@ -8044,20 +7929,21 @@ typedef union
 #define BF_OCOTP_CRC3_BITS(v)   (((v) << 0) & BM_OCOTP_CRC3_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC3_BITS(v)   BF_CS1(OCOTP_CRC3, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC4 - Value of OTP Bank15 Word4 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 4 (ADDR
- * = 0x7C).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC4 - Value of OTP Bank15 Word4 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 4 (ADDR =
+ * 0x7C).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 4 (ADDR = 0x7C).
@@ -8079,12 +7965,11 @@ typedef union
 #define HW_OCOTP_CRC4_TOG(v)    (HW_OCOTP_CRC4_WR(HW_OCOTP_CRC4_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC4 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC4, field BITS
+/* --- Register HW_OCOTP_CRC4, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 4 (ADDR = 0x7C).
  */
@@ -8098,20 +7983,21 @@ typedef union
 #define BF_OCOTP_CRC4_BITS(v)   (((v) << 0) & BM_OCOTP_CRC4_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC4_BITS(v)   BF_CS1(OCOTP_CRC4, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC5 - Value of OTP Bank15 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 5 (ADDR
- * = 0x7D).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC5 - Value of OTP Bank15 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 5 (ADDR =
+ * 0x7D).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 5 (ADDR = 0x7D).
@@ -8133,12 +8019,11 @@ typedef union
 #define HW_OCOTP_CRC5_TOG(v)    (HW_OCOTP_CRC5_WR(HW_OCOTP_CRC5_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC5 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC5, field BITS
+/* --- Register HW_OCOTP_CRC5, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 5 (ADDR = 0x7D).
  */
@@ -8152,20 +8037,21 @@ typedef union
 #define BF_OCOTP_CRC5_BITS(v)   (((v) << 0) & BM_OCOTP_CRC5_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC5_BITS(v)   BF_CS1(OCOTP_CRC5, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC6 - Value of OTP Bank15 Word6 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 6 (ADDR
- * = 0x7E).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC6 - Value of OTP Bank15 Word6 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 6 (ADDR =
+ * 0x7E).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 6 (ADDR = 0x7E).
@@ -8187,12 +8073,11 @@ typedef union
 #define HW_OCOTP_CRC6_TOG(v)    (HW_OCOTP_CRC6_WR(HW_OCOTP_CRC6_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC6 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC6, field BITS
+/* --- Register HW_OCOTP_CRC6, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 6 (ADDR = 0x7E).
  */
@@ -8206,20 +8091,21 @@ typedef union
 #define BF_OCOTP_CRC6_BITS(v)   (((v) << 0) & BM_OCOTP_CRC6_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC6_BITS(v)   BF_CS1(OCOTP_CRC6, BITS, v)
 #endif
 
-/*!
- * @brief HW_OCOTP_CRC7 - Value of OTP Bank15 Word5 (HW Capabilities)
- *
- * Copied from the OTP automatically after reset. Can be re-loaded by
- * setting HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 7 (ADDR
- * = 0x7F).   EXAMPLE   Empty Example.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CRC7 - Value of OTP Bank15 Word5 (HW Capabilities) (RW)
+ *
+ * Copied from the OTP automatically after reset. Can be re-loaded by setting
+ * HW_OCOTP_CTRL[RELOAD_SHADOWS]  Shadowed memory mapped access to OTP Bank 15, word 7 (ADDR =
+ * 0x7F).   EXAMPLE   Empty Example.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned BITS : 32; //!< Reflects value of OTP Bank 15, word 7 (ADDR = 0x7F).
@@ -8241,12 +8127,11 @@ typedef union
 #define HW_OCOTP_CRC7_TOG(v)    (HW_OCOTP_CRC7_WR(HW_OCOTP_CRC7_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual OCOTP_CRC7 bitfields
  */
 
-/* --- Register HW_OCOTP_CRC7, field BITS
+/* --- Register HW_OCOTP_CRC7, field BITS (RW)
  *
  * Reflects value of OTP Bank 15, word 7 (ADDR = 0x7F).
  */
@@ -8260,9 +8145,9 @@ typedef union
 #define BF_OCOTP_CRC7_BITS(v)   (((v) << 0) & BM_OCOTP_CRC7_BITS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC7_BITS(v)   BF_CS1(OCOTP_CRC7, BITS, v)
 #endif
-
 
 
 /*!
@@ -8293,71 +8178,71 @@ typedef struct
     reg32_t _reserved9[219];
     volatile hw_ocotp_lock_t LOCK; //!< Value of OTP Bank0 Word0 (Lock controls)
     reg32_t _reserved10[3];
-    volatile hw_ocotp_cfg0_t CFG0; //!< Value of OTP Bank0 Word1 (Configuration and Manufacturing                        Info.)
+    volatile hw_ocotp_cfg0_t CFG0; //!< Value of OTP Bank0 Word1 (Configuration and Manufacturing Info.)
     reg32_t _reserved11[3];
-    volatile hw_ocotp_cfg1_t CFG1; //!< Value of OTP Bank0 Word2 (Configuration and Manufacturing                        Info.)
+    volatile hw_ocotp_cfg1_t CFG1; //!< Value of OTP Bank0 Word2 (Configuration and Manufacturing Info.)
     reg32_t _reserved12[3];
-    volatile hw_ocotp_cfg2_t CFG2; //!< Value of OTP Bank0 Word3 (Configuration and Manufacturing                        Info.)
+    volatile hw_ocotp_cfg2_t CFG2; //!< Value of OTP Bank0 Word3 (Configuration and Manufacturing Info.)
     reg32_t _reserved13[3];
-    volatile hw_ocotp_cfg3_t CFG3; //!< Value of OTP Bank0 Word4 (Configuration and Manufacturing                        Info.)
+    volatile hw_ocotp_cfg3_t CFG3; //!< Value of OTP Bank0 Word4 (Configuration and Manufacturing Info.)
     reg32_t _reserved14[3];
-    volatile hw_ocotp_cfg4_t CFG4; //!< Value of OTP Bank0 Word5 (Configuration and Manufacturing                        Info.)
+    volatile hw_ocotp_cfg4_t CFG4; //!< Value of OTP Bank0 Word5 (Configuration and Manufacturing Info.)
     reg32_t _reserved15[3];
-    volatile hw_ocotp_cfg5_t CFG5; //!< Value of OTP Bank0 Word6 (Configuration and Manufacturing                        Info.)
+    volatile hw_ocotp_cfg5_t CFG5; //!< Value of OTP Bank0 Word6 (Configuration and Manufacturing Info.)
     reg32_t _reserved16[3];
-    volatile hw_ocotp_cfg6_t CFG6; //!< Value of OTP Bank0 Word7 (Configuration and Manufacturing                        Info.)
+    volatile hw_ocotp_cfg6_t CFG6; //!< Value of OTP Bank0 Word7 (Configuration and Manufacturing Info.)
     reg32_t _reserved17[3];
-    volatile hw_ocotp_mem0_t MEM0; //!< Value of OTP Bank1 Word0 (Memory Related                        Info.)
+    volatile hw_ocotp_mem0_t MEM0; //!< Value of OTP Bank1 Word0 (Memory Related Info.)
     reg32_t _reserved18[3];
-    volatile hw_ocotp_mem1_t MEM1; //!< Value of OTP Bank1 Word1 (Memory Related                        Info.)
+    volatile hw_ocotp_mem1_t MEM1; //!< Value of OTP Bank1 Word1 (Memory Related Info.)
     reg32_t _reserved19[3];
-    volatile hw_ocotp_mem2_t MEM2; //!< Value of OTP Bank1 Word2 (Memory Related                        Info.)
+    volatile hw_ocotp_mem2_t MEM2; //!< Value of OTP Bank1 Word2 (Memory Related Info.)
     reg32_t _reserved20[3];
-    volatile hw_ocotp_mem3_t MEM3; //!< Value of OTP Bank1 Word3 (Memory Related                        Info.)
+    volatile hw_ocotp_mem3_t MEM3; //!< Value of OTP Bank1 Word3 (Memory Related Info.)
     reg32_t _reserved21[3];
-    volatile hw_ocotp_mem4_t MEM4; //!< Value of OTP Bank1 Word4 (Memory Related                        Info.)
+    volatile hw_ocotp_mem4_t MEM4; //!< Value of OTP Bank1 Word4 (Memory Related Info.)
     reg32_t _reserved22[3];
-    volatile hw_ocotp_ana0_t ANA0; //!< Value of OTP Bank1 Word5 (Memory Related                        Info.)
+    volatile hw_ocotp_ana0_t ANA0; //!< Value of OTP Bank1 Word5 (Memory Related Info.)
     reg32_t _reserved23[3];
-    volatile hw_ocotp_ana1_t ANA1; //!< Value of OTP Bank1 Word6 (General Purpose Customer Defined                        Info.)
+    volatile hw_ocotp_ana1_t ANA1; //!< Value of OTP Bank1 Word6 (General Purpose Customer Defined Info.)
     reg32_t _reserved24[3];
-    volatile hw_ocotp_ana2_t ANA2; //!< Value of OTP Bank1 Word7 (General Purpose Customer Defined                        Info.)
+    volatile hw_ocotp_ana2_t ANA2; //!< Value of OTP Bank1 Word7 (General Purpose Customer Defined Info.)
     reg32_t _reserved25[3];
-    volatile hw_ocotp_otpmk0_t OTPMK0; //!< Shadow Register for OTP Bank2 Word0 (OTPMK and CRYPTO                        Key)
+    volatile hw_ocotp_otpmk0_t OTPMK0; //!< Shadow Register for OTP Bank2 Word0 (OTPMK and CRYPTO Key)
     reg32_t _reserved26[3];
-    volatile hw_ocotp_otpmk1_t OTPMK1; //!< Shadow Register for OTP Bank2 Word1 (OTPMK and CRYPTO                        Key)
+    volatile hw_ocotp_otpmk1_t OTPMK1; //!< Shadow Register for OTP Bank2 Word1 (OTPMK and CRYPTO Key)
     reg32_t _reserved27[3];
-    volatile hw_ocotp_otpmk2_t OTPMK2; //!< Shadow Register for OTP Bank2 Word2 (OTPMK and CRYPTO                        Key)
+    volatile hw_ocotp_otpmk2_t OTPMK2; //!< Shadow Register for OTP Bank2 Word2 (OTPMK and CRYPTO Key)
     reg32_t _reserved28[3];
-    volatile hw_ocotp_otpmk3_t OTPMK3; //!< Shadow Register for OTP Bank2 Word3 (OTPMK and CRYPTO                        Key)
+    volatile hw_ocotp_otpmk3_t OTPMK3; //!< Shadow Register for OTP Bank2 Word3 (OTPMK and CRYPTO Key)
     reg32_t _reserved29[3];
-    volatile hw_ocotp_otpmk4_t OTPMK4; //!< Shadow Register for OTP Bank2 Word4 (OTPMK                        Key)
+    volatile hw_ocotp_otpmk4_t OTPMK4; //!< Shadow Register for OTP Bank2 Word4 (OTPMK Key)
     reg32_t _reserved30[3];
-    volatile hw_ocotp_otpmk5_t OTPMK5; //!< Shadow Register for OTP Bank2 Word5 (OTPMK                        Key)
+    volatile hw_ocotp_otpmk5_t OTPMK5; //!< Shadow Register for OTP Bank2 Word5 (OTPMK Key)
     reg32_t _reserved31[3];
-    volatile hw_ocotp_otpmk6_t OTPMK6; //!< Shadow Register for OTP Bank2 Word6 (OTPMK                        Key)
+    volatile hw_ocotp_otpmk6_t OTPMK6; //!< Shadow Register for OTP Bank2 Word6 (OTPMK Key)
     reg32_t _reserved32[3];
-    volatile hw_ocotp_otpmk7_t OTPMK7; //!< Shadow Register for OTP Bank2 Word7 (OTPMK                        Key)
+    volatile hw_ocotp_otpmk7_t OTPMK7; //!< Shadow Register for OTP Bank2 Word7 (OTPMK Key)
     reg32_t _reserved33[3];
-    volatile hw_ocotp_srk0_t SRK0; //!< Shadow Register for OTP Bank3 Word0 (SRK                        Hash)
+    volatile hw_ocotp_srk0_t SRK0; //!< Shadow Register for OTP Bank3 Word0 (SRK Hash)
     reg32_t _reserved34[3];
-    volatile hw_ocotp_srk1_t SRK1; //!< Shadow Register for OTP Bank3 Word1 (SRK                        Hash)
+    volatile hw_ocotp_srk1_t SRK1; //!< Shadow Register for OTP Bank3 Word1 (SRK Hash)
     reg32_t _reserved35[3];
-    volatile hw_ocotp_srk2_t SRK2; //!< Shadow Register for OTP Bank3 Word2 (SRK                        Hash)
+    volatile hw_ocotp_srk2_t SRK2; //!< Shadow Register for OTP Bank3 Word2 (SRK Hash)
     reg32_t _reserved36[3];
-    volatile hw_ocotp_srk3_t SRK3; //!< Shadow Register for OTP Bank3 Word3 (SRK                        Hash)
+    volatile hw_ocotp_srk3_t SRK3; //!< Shadow Register for OTP Bank3 Word3 (SRK Hash)
     reg32_t _reserved37[3];
-    volatile hw_ocotp_srk4_t SRK4; //!< Shadow Register for OTP Bank3 Word4 (SRK                        Hash)
+    volatile hw_ocotp_srk4_t SRK4; //!< Shadow Register for OTP Bank3 Word4 (SRK Hash)
     reg32_t _reserved38[3];
-    volatile hw_ocotp_srk5_t SRK5; //!< Shadow Register for OTP Bank3 Word5 (SRK                        Hash)
+    volatile hw_ocotp_srk5_t SRK5; //!< Shadow Register for OTP Bank3 Word5 (SRK Hash)
     reg32_t _reserved39[3];
-    volatile hw_ocotp_srk6_t SRK6; //!< Shadow Register for OTP Bank3 Word6 (SRK                        Hash)
+    volatile hw_ocotp_srk6_t SRK6; //!< Shadow Register for OTP Bank3 Word6 (SRK Hash)
     reg32_t _reserved40[3];
-    volatile hw_ocotp_srk7_t SRK7; //!< Shadow Register for OTP Bank3 Word7 (SRK                        Hash)
+    volatile hw_ocotp_srk7_t SRK7; //!< Shadow Register for OTP Bank3 Word7 (SRK Hash)
     reg32_t _reserved41[3];
-    volatile hw_ocotp_resp0_t RESP0; //!< Value of OTP Bank4 Word0 (Secure JTAG Response                        Field)
+    volatile hw_ocotp_resp0_t RESP0; //!< Value of OTP Bank4 Word0 (Secure JTAG Response Field)
     reg32_t _reserved42[3];
-    volatile hw_ocotp_hsjc_resp1_t HSJC_RESP1; //!< Value of OTP Bank4 Word1 (Secure JTAG Response                        Field)
+    volatile hw_ocotp_hsjc_resp1_t HSJC_RESP1; //!< Value of OTP Bank4 Word1 (Secure JTAG Response Field)
     reg32_t _reserved43[3];
     volatile hw_ocotp_mac0_t MAC0; //!< Value of OTP Bank4 Word2 (MAC Address)
     reg32_t _reserved44[3];

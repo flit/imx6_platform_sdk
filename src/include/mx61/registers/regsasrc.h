@@ -10,39 +10,76 @@
 
 #include "regs.h"
 
-#ifndef REGS_ASRC_BASE
-#define REGS_ASRC_BASE (REGS_BASE + 0x02034000)
-#endif
-
-
-/*!
- * @brief HW_ASRC_ASRCTR - ASRC Control Register
+/*
+ * Registers defined in this header file.
  *
- * The ASRC control register (ASRCTR) is a 24-bit read/write register that
- * controls the ASRC operations.
+ * - HW_ASRC_ASRCTR - ASRC Control Register
+ * - HW_ASRC_ASRIER - ASRC Interrupt Enable Register
+ * - HW_ASRC_ASRCNCR - ASRC Channel Number Configuration Register
+ * - HW_ASRC_ASRCFG - ASRC Filter Configuration Status Register
+ * - HW_ASRC_ASRCSR - ASRC Clock Source Register
+ * - HW_ASRC_ASRCDR1 - ASRC Clock Divider Register 1
+ * - HW_ASRC_ASRCDR2 - ASRC Clock Divider Register 2
+ * - HW_ASRC_ASRSTR - ASRC Status Register
+ * - HW_ASRC_ASRPMN - ASRC Parameter Register n
+ * - HW_ASRC_ASRTFR1 - ASRC ASRC Task Queue FIFO Register 1
+ * - HW_ASRC_ASRCCR - ASRC Channel Counter Register
+ * - HW_ASRC_ASRDI - ASRC Data Input Register for Pair
+ * - HW_ASRC_ASRDO - ASRC Data Output Register for Pair
+ * - HW_ASRC_ASRIDRHA - ASRC Ideal Ratio for Pair A-High Part
+ * - HW_ASRC_ASRIDRLA - ASRC Ideal Ratio for Pair A -Low Part
+ * - HW_ASRC_ASRIDRHB - ASRC Ideal Ratio for Pair B-High Part
+ * - HW_ASRC_ASRIDRLB - ASRC Ideal Ratio for Pair B-Low Part
+ * - HW_ASRC_ASRIDRHC - ASRC Ideal Ratio for Pair C-High Part
+ * - HW_ASRC_ASRIDRLC - ASRC Ideal Ratio for Pair C-Low Part
+ * - HW_ASRC_ASR76K - ASRC 76kHz Period in terms of ASRC processing clock
+ * - HW_ASRC_ASR56K - ASRC 56kHz Period in terms of ASRC processing clock
+ * - HW_ASRC_ASRMCRA - ASRC Misc Control Register for Pair A
+ * - HW_ASRC_ASRFSTA - ASRC FIFO Status Register for Pair A
+ * - HW_ASRC_ASRMCRB - ASRC Misc Control Register for Pair B
+ * - HW_ASRC_ASRFSTB - ASRC FIFO Status Register for Pair B
+ * - HW_ASRC_ASRMCRC - ASRC Misc Control Register for Pair C
+ * - HW_ASRC_ASRFSTC - ASRC FIFO Status Register for Pair C
+ * - HW_ASRC_ASRMCR1 - ASRC Misc Control Register 1 for Pair X
+ *
+ * hw_asrc_t - Struct containing all module registers.
  */
+
+//! @name Module base addresses
+//@{
+#ifndef REGS_ASRC_BASE
+#define REGS_ASRC_BASE (0x02034000) //!< Base address for ASRC.
+#endif
+//@}
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRCTR - ASRC Control Register (RW)
+ *
+ * The ASRC control register (ASRCTR) is a 24-bit read/write register that controls the ASRC
+ * operations.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned ASRCEN : 1; //!< ASRC Enable  Enable the operation of ASRC.
-        unsigned ASREA : 1; //!< ASRC Enable A  Enable the operation of the conversion A of ASRC. When ASREA is cleared, operation of conversion A is disabled.
-        unsigned ASREB : 1; //!< ASRC Enable B  Enable the operation of the conversion B of ASRC. When ASREB is cleared, operation of conversion B is disabled.
-        unsigned ASREC : 1; //!< ASRC Enable C  Enable the operation of the conversion C of ASRC. When ASREC is cleared, operation of conversion C is disabled.
-        unsigned SRST : 1; //!< Software Reset  This bit is self-clear bit. Once it is been written as 1, it will generate a software reset signal inside ASRC. After 9 cycles of the ASRC processing clock, this reset process will stop, and this bit will be cleared automatically.
+        unsigned ASRCEN : 1; //!< ASRC Enable Enable the operation of ASRC.
+        unsigned ASREA : 1; //!< ASRC Enable A Enable the operation of the conversion A of ASRC. When ASREA is cleared, operation of conversion A is disabled.
+        unsigned ASREB : 1; //!< ASRC Enable B Enable the operation of the conversion B of ASRC. When ASREB is cleared, operation of conversion B is disabled.
+        unsigned ASREC : 1; //!< ASRC Enable C Enable the operation of the conversion C of ASRC. When ASREC is cleared, operation of conversion C is disabled.
+        unsigned SRST : 1; //!< Software Reset This bit is self-clear bit. Once it is been written as 1, it will generate a software reset signal inside ASRC. After 9 cycles of the ASRC processing clock, this reset process will stop, and this bit will be cleared automatically.
         unsigned RESERVED0 : 8; //!< Reserved. Should be written as zero for compatibility.
-        unsigned IDRA : 1; //!< Use Ideal Ratio for Pair A  When USRA=0, this bit has no usage.  When USRA=1 and IDRA=0, ASRC internal measured ratio will be used.  When USRA=1 and IDRA=1, the idea ratio from the interface register ASRIDRHA, ASRIDRLA will be used. It is suggested to manually set ASRCFG:POSTMODA, ASRCFG:PREMODA according to in this case.
-        unsigned USRA : 1; //!< Use Ratio for Pair A  Use ratio as the input to ASRC. This bit is used in conjunction with IDRA control bit.
-        unsigned IDRB : 1; //!< Use Ideal Ratio for Pair B  When USRB=0, this bit has no usage.  When USRB=1 and IDRB=0, ASRC internal measured ratio will be used.  When USRB=1 and IDRB=1, the idea ratio from the interface register ASRIDRHB, ASRIDRLB will be used.It is suggested to manually set ASRCFG:POSTMODB, ASRCFG:PREMODB according to in this case.
-        unsigned USRB : 1; //!< Use Ratio for Pair B  Use ratio as the input to ASRC. This bit is used in conjunction with IDRB control bit.
-        unsigned IDRC : 1; //!< Use Ideal Ratio for Pair C  When USRC=0, this bit has no usage.  When USRC=1 and IDRC=0, ASRC internal measured ratio will be used.  When USRC=1 and IDRC=1, the idea ratio from the interface register ASRIDRHC, ASRIDRLC will be used. It is suggested to manually set ASRCFG:POSTMODC, ASRCFG:PREMODC according to in this case.
-        unsigned USRC : 1; //!< Use Ratio for Pair C  Use ratio as the input to ASRC. This bit is used in conjunction with IDRC control bit.
+        unsigned IDRA : 1; //!< Use Ideal Ratio for Pair A When USRA=0, this bit has no usage. When USRA=1 and IDRA=0, ASRC internal measured ratio will be used. When USRA=1 and IDRA=1, the idea ratio from the interface register ASRIDRHA, ASRIDRLA will be used. It is suggested to manually set ASRCFG:POSTMODA, ASRCFG:PREMODA according to in this case.
+        unsigned USRA : 1; //!< Use Ratio for Pair A Use ratio as the input to ASRC. This bit is used in conjunction with IDRA control bit.
+        unsigned IDRB : 1; //!< Use Ideal Ratio for Pair B When USRB=0, this bit has no usage. When USRB=1 and IDRB=0, ASRC internal measured ratio will be used. When USRB=1 and IDRB=1, the idea ratio from the interface register ASRIDRHB, ASRIDRLB will be used.It is suggested to manually set ASRCFG:POSTMODB, ASRCFG:PREMODB according to in this case.
+        unsigned USRB : 1; //!< Use Ratio for Pair B Use ratio as the input to ASRC. This bit is used in conjunction with IDRB control bit.
+        unsigned IDRC : 1; //!< Use Ideal Ratio for Pair C When USRC=0, this bit has no usage. When USRC=1 and IDRC=0, ASRC internal measured ratio will be used. When USRC=1 and IDRC=1, the idea ratio from the interface register ASRIDRHC, ASRIDRLC will be used. It is suggested to manually set ASRCFG:POSTMODC, ASRCFG:PREMODC according to in this case.
+        unsigned USRC : 1; //!< Use Ratio for Pair C Use ratio as the input to ASRC. This bit is used in conjunction with IDRC control bit.
         unsigned RESERVED1 : 1; //!< Reserved. Should be written as zero for compatibility.
-        unsigned ATSA : 1; //!< ASRC Pair A Automatic Selection For Processing Options  When this bit is 1, pair A will automatic update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA , ASRCFG:HFA see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ).  When this bit is 0, the user is responsible for choosing the proper processing options for pair A.  This bit should be disabled when {USRA, IDRA}={1,1}.
-        unsigned ATSB : 1; //!< ASRC Pair B Automatic Selection For Processing Options  When this bit is 1, pair B will automatic update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB , ASRCFG:HFB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ).  When this bit is 0, the user is responsible for choosing the proper processing options for pair B.  This bit should be disabled when {USRB, IDRB}={1,1}.
-        unsigned ATSC : 1; //!< ASRC Pair C Automatic Selection For Processing Options  When this bit is 1, pair C will automatic update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC , ASRCFG:HFC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ).  When this bit is 0, the user is responsible for choosing the proper processing options for pair C. This bit should be disabled when {USRC, IDRC}={1,1}.
+        unsigned ATSA : 1; //!< ASRC Pair A Automatic Selection For Processing Options When this bit is 1, pair A will automatic update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA , ASRCFG:HFA see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair A. This bit should be disabled when {USRA, IDRA}={1,1}.
+        unsigned ATSB : 1; //!< ASRC Pair B Automatic Selection For Processing Options When this bit is 1, pair B will automatic update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB , ASRCFG:HFB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair B. This bit should be disabled when {USRB, IDRB}={1,1}.
+        unsigned ATSC : 1; //!< ASRC Pair C Automatic Selection For Processing Options When this bit is 1, pair C will automatic update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC , ASRCFG:HFC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair C. This bit should be disabled when {USRC, IDRC}={1,1}.
         unsigned RESERVED2 : 1; //!< Reserved. Should be written as zero for compatibility.
         unsigned RESERVED3 : 8; //!< 
     } B;
@@ -63,14 +100,13 @@ typedef union
 #define HW_ASRC_ASRCTR_TOG(v)    (HW_ASRC_ASRCTR_WR(HW_ASRC_ASRCTR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRCTR bitfields
  */
 
-/* --- Register HW_ASRC_ASRCTR, field ASRCEN
+/* --- Register HW_ASRC_ASRCTR, field ASRCEN (RW)
  *
- * ASRC Enable  Enable the operation of ASRC.
+ * ASRC Enable Enable the operation of ASRC.
  */
 
 #define BP_ASRC_ASRCTR_ASRCEN      0
@@ -82,13 +118,14 @@ typedef union
 #define BF_ASRC_ASRCTR_ASRCEN(v)   (((v) << 0) & BM_ASRC_ASRCTR_ASRCEN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASRCEN field to a new value.
 #define BW_ASRC_ASRCTR_ASRCEN(v)   BF_CS1(ASRC_ASRCTR, ASRCEN, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field ASREA
+/* --- Register HW_ASRC_ASRCTR, field ASREA (RW)
  *
- * ASRC Enable A  Enable the operation of the conversion A of ASRC. When ASREA is
- * cleared, operation of conversion A is disabled.
+ * ASRC Enable A Enable the operation of the conversion A of ASRC. When ASREA is cleared, operation
+ * of conversion A is disabled.
  */
 
 #define BP_ASRC_ASRCTR_ASREA      1
@@ -100,13 +137,14 @@ typedef union
 #define BF_ASRC_ASRCTR_ASREA(v)   (((v) << 1) & BM_ASRC_ASRCTR_ASREA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASREA field to a new value.
 #define BW_ASRC_ASRCTR_ASREA(v)   BF_CS1(ASRC_ASRCTR, ASREA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field ASREB
+/* --- Register HW_ASRC_ASRCTR, field ASREB (RW)
  *
- * ASRC Enable B  Enable the operation of the conversion B of ASRC. When ASREB is
- * cleared, operation of conversion B is disabled.
+ * ASRC Enable B Enable the operation of the conversion B of ASRC. When ASREB is cleared, operation
+ * of conversion B is disabled.
  */
 
 #define BP_ASRC_ASRCTR_ASREB      2
@@ -118,13 +156,14 @@ typedef union
 #define BF_ASRC_ASRCTR_ASREB(v)   (((v) << 2) & BM_ASRC_ASRCTR_ASREB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASREB field to a new value.
 #define BW_ASRC_ASRCTR_ASREB(v)   BF_CS1(ASRC_ASRCTR, ASREB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field ASREC
+/* --- Register HW_ASRC_ASRCTR, field ASREC (RW)
  *
- * ASRC Enable C  Enable the operation of the conversion C of ASRC. When ASREC is
- * cleared, operation of conversion C is disabled.
+ * ASRC Enable C Enable the operation of the conversion C of ASRC. When ASREC is cleared, operation
+ * of conversion C is disabled.
  */
 
 #define BP_ASRC_ASRCTR_ASREC      3
@@ -136,15 +175,15 @@ typedef union
 #define BF_ASRC_ASRCTR_ASREC(v)   (((v) << 3) & BM_ASRC_ASRCTR_ASREC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASREC field to a new value.
 #define BW_ASRC_ASRCTR_ASREC(v)   BF_CS1(ASRC_ASRCTR, ASREC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field SRST
+/* --- Register HW_ASRC_ASRCTR, field SRST (WO)
  *
- * Software Reset  This bit is self-clear bit. Once it is been written as 1, it will
- * generate a software reset signal inside ASRC. After 9 cycles of the
- * ASRC processing clock, this reset process will stop, and this bit
- * will be cleared automatically.
+ * Software Reset This bit is self-clear bit. Once it is been written as 1, it will generate a
+ * software reset signal inside ASRC. After 9 cycles of the ASRC processing clock, this reset
+ * process will stop, and this bit will be cleared automatically.
  */
 
 #define BP_ASRC_ASRCTR_SRST      4
@@ -156,15 +195,15 @@ typedef union
 #define BF_ASRC_ASRCTR_SRST(v)   (((v) << 4) & BM_ASRC_ASRCTR_SRST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SRST field to a new value.
 #define BW_ASRC_ASRCTR_SRST(v)   BF_CS1(ASRC_ASRCTR, SRST, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field IDRA
+/* --- Register HW_ASRC_ASRCTR, field IDRA (RW)
  *
- * Use Ideal Ratio for Pair A  When USRA=0, this bit has no usage.  When USRA=1 and IDRA=0, ASRC
- * internal measured ratio will be                                 used.  When USRA=1 and IDRA=1,
- * the idea ratio from the interface register                                 ASRIDRHA, ASRIDRLA
- * will be used. It is suggested to manually set                                 ASRCFG:POSTMODA,
+ * Use Ideal Ratio for Pair A When USRA=0, this bit has no usage. When USRA=1 and IDRA=0, ASRC
+ * internal measured ratio will be used. When USRA=1 and IDRA=1, the idea ratio from the interface
+ * register ASRIDRHA, ASRIDRLA will be used. It is suggested to manually set ASRCFG:POSTMODA,
  * ASRCFG:PREMODA according to in this case.
  */
 
@@ -177,13 +216,14 @@ typedef union
 #define BF_ASRC_ASRCTR_IDRA(v)   (((v) << 13) & BM_ASRC_ASRCTR_IDRA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRA field to a new value.
 #define BW_ASRC_ASRCTR_IDRA(v)   BF_CS1(ASRC_ASRCTR, IDRA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field USRA
+/* --- Register HW_ASRC_ASRCTR, field USRA (RW)
  *
- * Use Ratio for Pair A  Use ratio as the input to ASRC. This bit is used in conjunction with
- * IDRA control bit.
+ * Use Ratio for Pair A Use ratio as the input to ASRC. This bit is used in conjunction with IDRA
+ * control bit.
  */
 
 #define BP_ASRC_ASRCTR_USRA      14
@@ -195,15 +235,15 @@ typedef union
 #define BF_ASRC_ASRCTR_USRA(v)   (((v) << 14) & BM_ASRC_ASRCTR_USRA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the USRA field to a new value.
 #define BW_ASRC_ASRCTR_USRA(v)   BF_CS1(ASRC_ASRCTR, USRA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field IDRB
+/* --- Register HW_ASRC_ASRCTR, field IDRB (RW)
  *
- * Use Ideal Ratio for Pair B  When USRB=0, this bit has no usage.  When USRB=1 and IDRB=0, ASRC
- * internal measured ratio will be                                 used.  When USRB=1 and IDRB=1,
- * the idea ratio from the interface register                                 ASRIDRHB, ASRIDRLB
- * will be used.It is suggested to manually set                                 ASRCFG:POSTMODB,
+ * Use Ideal Ratio for Pair B When USRB=0, this bit has no usage. When USRB=1 and IDRB=0, ASRC
+ * internal measured ratio will be used. When USRB=1 and IDRB=1, the idea ratio from the interface
+ * register ASRIDRHB, ASRIDRLB will be used.It is suggested to manually set ASRCFG:POSTMODB,
  * ASRCFG:PREMODB according to in this case.
  */
 
@@ -216,13 +256,14 @@ typedef union
 #define BF_ASRC_ASRCTR_IDRB(v)   (((v) << 15) & BM_ASRC_ASRCTR_IDRB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRB field to a new value.
 #define BW_ASRC_ASRCTR_IDRB(v)   BF_CS1(ASRC_ASRCTR, IDRB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field USRB
+/* --- Register HW_ASRC_ASRCTR, field USRB (RW)
  *
- * Use Ratio for Pair B  Use ratio as the input to ASRC. This bit is used in conjunction with
- * IDRB control bit.
+ * Use Ratio for Pair B Use ratio as the input to ASRC. This bit is used in conjunction with IDRB
+ * control bit.
  */
 
 #define BP_ASRC_ASRCTR_USRB      16
@@ -234,15 +275,15 @@ typedef union
 #define BF_ASRC_ASRCTR_USRB(v)   (((v) << 16) & BM_ASRC_ASRCTR_USRB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the USRB field to a new value.
 #define BW_ASRC_ASRCTR_USRB(v)   BF_CS1(ASRC_ASRCTR, USRB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field IDRC
+/* --- Register HW_ASRC_ASRCTR, field IDRC (RW)
  *
- * Use Ideal Ratio for Pair C  When USRC=0, this bit has no usage.  When USRC=1 and IDRC=0, ASRC
- * internal measured ratio will be                                 used.  When USRC=1 and IDRC=1,
- * the idea ratio from the interface register                                 ASRIDRHC, ASRIDRLC
- * will be used. It is suggested to manually set                                 ASRCFG:POSTMODC,
+ * Use Ideal Ratio for Pair C When USRC=0, this bit has no usage. When USRC=1 and IDRC=0, ASRC
+ * internal measured ratio will be used. When USRC=1 and IDRC=1, the idea ratio from the interface
+ * register ASRIDRHC, ASRIDRLC will be used. It is suggested to manually set ASRCFG:POSTMODC,
  * ASRCFG:PREMODC according to in this case.
  */
 
@@ -255,13 +296,14 @@ typedef union
 #define BF_ASRC_ASRCTR_IDRC(v)   (((v) << 17) & BM_ASRC_ASRCTR_IDRC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRC field to a new value.
 #define BW_ASRC_ASRCTR_IDRC(v)   BF_CS1(ASRC_ASRCTR, IDRC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field USRC
+/* --- Register HW_ASRC_ASRCTR, field USRC (RW)
  *
- * Use Ratio for Pair C  Use ratio as the input to ASRC. This bit is used in conjunction with
- * IDRC control bit.
+ * Use Ratio for Pair C Use ratio as the input to ASRC. This bit is used in conjunction with IDRC
+ * control bit.
  */
 
 #define BP_ASRC_ASRCTR_USRC      18
@@ -273,21 +315,19 @@ typedef union
 #define BF_ASRC_ASRCTR_USRC(v)   (((v) << 18) & BM_ASRC_ASRCTR_USRC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the USRC field to a new value.
 #define BW_ASRC_ASRCTR_USRC(v)   BF_CS1(ASRC_ASRCTR, USRC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field ATSA
+/* --- Register HW_ASRC_ASRCTR, field ATSA (RW)
  *
- * ASRC Pair A Automatic Selection For Processing Options  When this bit is 1, pair A will automatic
- * update its pre-processing                                 and post-processing options (ASRCFG:
- * PREMODA, ASRCFG:POSTMODA , ASRCFG:HFA see ASRC Misc Control Register 1
- * for Pair C ) based on the frequencies it detected. To use this option, the two
- * parameter registers(ASR76K and ASR56K) should be set correctly
- * (see ASRC Misc Control                                         Register 1 for Pair C and ASRC
- * Misc Control Register                                         1 for Pair C ).  When this bit is
- * 0, the user is responsible for choosing the proper                                 processing
- * options for pair A.  This bit should be disabled when                                 {USRA,
- * IDRA}={1,1}.
+ * ASRC Pair A Automatic Selection For Processing Options When this bit is 1, pair A will automatic
+ * update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA ,
+ * ASRCFG:HFA see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To
+ * use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC
+ * Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit
+ * is 0, the user is responsible for choosing the proper processing options for pair A. This bit
+ * should be disabled when {USRA, IDRA}={1,1}.
  */
 
 #define BP_ASRC_ASRCTR_ATSA      20
@@ -299,20 +339,19 @@ typedef union
 #define BF_ASRC_ASRCTR_ATSA(v)   (((v) << 20) & BM_ASRC_ASRCTR_ATSA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATSA field to a new value.
 #define BW_ASRC_ASRCTR_ATSA(v)   BF_CS1(ASRC_ASRCTR, ATSA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field ATSB
+/* --- Register HW_ASRC_ASRCTR, field ATSB (RW)
  *
- * ASRC Pair B Automatic Selection For Processing Options  When this bit is 1, pair B will automatic
- * update its pre-processing                                 and post-processing options (ASRCFG:
- * PREMODB, ASRCFG:POSTMODB , ASRCFG:HFB see ASRC Misc Control Register 1
- * for Pair C ) based on the frequencies it detected. To use                                 this
- * option, the two parameter registers(ASR76K and ASR56K) should                                 be
- * set correctly (see ASRC                                     Misc Control Register 1 for Pair C
- * and ASRC Misc Control Register 1                                     for Pair C ).  When this bit
- * is 0, the user is responsible for choosing the proper                                 processing
- * options for pair B.  This bit should be disabled when {USRB, IDRB}={1,1}.
+ * ASRC Pair B Automatic Selection For Processing Options When this bit is 1, pair B will automatic
+ * update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB ,
+ * ASRCFG:HFB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To
+ * use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC
+ * Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit
+ * is 0, the user is responsible for choosing the proper processing options for pair B. This bit
+ * should be disabled when {USRB, IDRB}={1,1}.
  */
 
 #define BP_ASRC_ASRCTR_ATSB      21
@@ -324,21 +363,19 @@ typedef union
 #define BF_ASRC_ASRCTR_ATSB(v)   (((v) << 21) & BM_ASRC_ASRCTR_ATSB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATSB field to a new value.
 #define BW_ASRC_ASRCTR_ATSB(v)   BF_CS1(ASRC_ASRCTR, ATSB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCTR, field ATSC
+/* --- Register HW_ASRC_ASRCTR, field ATSC (RW)
  *
- * ASRC Pair C Automatic Selection For Processing Options  When this bit is 1, pair C will automatic
- * update its pre-processing                                 and post-processing options (ASRCFG:
- * PREMODC, ASRCFG:POSTMODC , ASRCFG:HFC see ASRC Misc Control Register 1
- * for Pair C ) based on the frequencies it detected. To use                                 this
- * option, the two parameter registers(ASR76K and ASR56K) should                                 be
- * set correctly (see ASRC                                     Misc Control Register 1 for Pair C
- * and ASRC Misc Control Register 1                                     for Pair C ).  When this bit
- * is 0, the user is responsible for choosing the proper                                 processing
- * options for pair C. This bit should be disabled when                             {USRC,
- * IDRC}={1,1}.
+ * ASRC Pair C Automatic Selection For Processing Options When this bit is 1, pair C will automatic
+ * update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC ,
+ * ASRCFG:HFC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To
+ * use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC
+ * Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit
+ * is 0, the user is responsible for choosing the proper processing options for pair C. This bit
+ * should be disabled when {USRC, IDRC}={1,1}.
  */
 
 #define BP_ASRC_ASRCTR_ATSC      22
@@ -350,29 +387,30 @@ typedef union
 #define BF_ASRC_ASRCTR_ATSC(v)   (((v) << 22) & BM_ASRC_ASRCTR_ATSC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATSC field to a new value.
 #define BW_ASRC_ASRCTR_ATSC(v)   BF_CS1(ASRC_ASRCTR, ATSC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRIER - ASRC Interrupt Enable Register
- *
- * These 8 bits combined with corresponding 8 LSBs                                 in ASRSTR
- * register can generate interrupt requests.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRIER - ASRC Interrupt Enable Register (RW)
+ *
+ * These 8 bits combined with corresponding 8 LSBs in ASRSTR register can generate interrupt
+ * requests.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned ADIEA : 1; //!< Data Input A Interrupt Enable  Enables the data input A Interrupt.
-        unsigned ADIEB : 1; //!< Data Input B Interrupt Enable  Enables the data input B interrupt.
-        unsigned ADIEC : 1; //!< Data Input C Interrupt Enable  Enables the data input C interrupt.
-        unsigned ADOEA : 1; //!< Data Output A Interrupt Enable  Enables the data output A interrupt.
-        unsigned ADOEB : 1; //!< Data Output B Interrupt Enable  Enables the data output B interrupt.
-        unsigned ADOEC : 1; //!< Data Output C Interrupt Enable  Enables the data output C interrupt.
-        unsigned AOLIE : 1; //!< Overload Interrupt Enable  Enables the overload interrupt.
-        unsigned AFPWE : 1; //!< FP in Wait State Interrupt Enable  Enables the FP in wait state interrupt.
+        unsigned ADIEA : 1; //!< Data Input A Interrupt Enable Enables the data input A Interrupt.
+        unsigned ADIEB : 1; //!< Data Input B Interrupt Enable Enables the data input B interrupt.
+        unsigned ADIEC : 1; //!< Data Input C Interrupt Enable Enables the data input C interrupt.
+        unsigned ADOEA : 1; //!< Data Output A Interrupt Enable Enables the data output A interrupt.
+        unsigned ADOEB : 1; //!< Data Output B Interrupt Enable Enables the data output B interrupt.
+        unsigned ADOEC : 1; //!< Data Output C Interrupt Enable Enables the data output C interrupt.
+        unsigned AOLIE : 1; //!< Overload Interrupt Enable Enables the overload interrupt.
+        unsigned AFPWE : 1; //!< FP in Wait State Interrupt Enable Enables the FP in wait state interrupt.
         unsigned RESERVED0 : 16; //!< Reserved. Should be written as zero for compatibility.
         unsigned RESERVED1 : 8; //!< 
     } B;
@@ -393,14 +431,17 @@ typedef union
 #define HW_ASRC_ASRIER_TOG(v)    (HW_ASRC_ASRIER_WR(HW_ASRC_ASRIER_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRIER bitfields
  */
 
-/* --- Register HW_ASRC_ASRIER, field ADIEA
+/* --- Register HW_ASRC_ASRIER, field ADIEA (RW)
  *
- * Data Input A Interrupt Enable  Enables the data input A Interrupt.
+ * Data Input A Interrupt Enable Enables the data input A Interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_ADIEA      0
@@ -412,12 +453,18 @@ typedef union
 #define BF_ASRC_ASRIER_ADIEA(v)   (((v) << 0) & BM_ASRC_ASRIER_ADIEA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADIEA field to a new value.
 #define BW_ASRC_ASRIER_ADIEA(v)   BF_CS1(ASRC_ASRIER, ADIEA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRIER, field ADIEB
+
+/* --- Register HW_ASRC_ASRIER, field ADIEB (RW)
  *
- * Data Input B Interrupt Enable  Enables the data input B interrupt.
+ * Data Input B Interrupt Enable Enables the data input B interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_ADIEB      1
@@ -429,12 +476,18 @@ typedef union
 #define BF_ASRC_ASRIER_ADIEB(v)   (((v) << 1) & BM_ASRC_ASRIER_ADIEB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADIEB field to a new value.
 #define BW_ASRC_ASRIER_ADIEB(v)   BF_CS1(ASRC_ASRIER, ADIEB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRIER, field ADIEC
+
+/* --- Register HW_ASRC_ASRIER, field ADIEC (RW)
  *
- * Data Input C Interrupt Enable  Enables the data input C interrupt.
+ * Data Input C Interrupt Enable Enables the data input C interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_ADIEC      2
@@ -446,12 +499,18 @@ typedef union
 #define BF_ASRC_ASRIER_ADIEC(v)   (((v) << 2) & BM_ASRC_ASRIER_ADIEC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADIEC field to a new value.
 #define BW_ASRC_ASRIER_ADIEC(v)   BF_CS1(ASRC_ASRIER, ADIEC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRIER, field ADOEA
+
+/* --- Register HW_ASRC_ASRIER, field ADOEA (RW)
  *
- * Data Output A Interrupt Enable  Enables the data output A interrupt.
+ * Data Output A Interrupt Enable Enables the data output A interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_ADOEA      3
@@ -463,12 +522,18 @@ typedef union
 #define BF_ASRC_ASRIER_ADOEA(v)   (((v) << 3) & BM_ASRC_ASRIER_ADOEA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADOEA field to a new value.
 #define BW_ASRC_ASRIER_ADOEA(v)   BF_CS1(ASRC_ASRIER, ADOEA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRIER, field ADOEB
+
+/* --- Register HW_ASRC_ASRIER, field ADOEB (RW)
  *
- * Data Output B Interrupt Enable  Enables the data output B interrupt.
+ * Data Output B Interrupt Enable Enables the data output B interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_ADOEB      4
@@ -480,12 +545,18 @@ typedef union
 #define BF_ASRC_ASRIER_ADOEB(v)   (((v) << 4) & BM_ASRC_ASRIER_ADOEB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADOEB field to a new value.
 #define BW_ASRC_ASRIER_ADOEB(v)   BF_CS1(ASRC_ASRIER, ADOEB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRIER, field ADOEC
+
+/* --- Register HW_ASRC_ASRIER, field ADOEC (RW)
  *
- * Data Output C Interrupt Enable  Enables the data output C interrupt.
+ * Data Output C Interrupt Enable Enables the data output C interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_ADOEC      5
@@ -497,12 +568,18 @@ typedef union
 #define BF_ASRC_ASRIER_ADOEC(v)   (((v) << 5) & BM_ASRC_ASRIER_ADOEC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADOEC field to a new value.
 #define BW_ASRC_ASRIER_ADOEC(v)   BF_CS1(ASRC_ASRIER, ADOEC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRIER, field AOLIE
+
+/* --- Register HW_ASRC_ASRIER, field AOLIE (RW)
  *
- * Overload Interrupt Enable  Enables the overload interrupt.
+ * Overload Interrupt Enable Enables the overload interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_AOLIE      6
@@ -514,12 +591,18 @@ typedef union
 #define BF_ASRC_ASRIER_AOLIE(v)   (((v) << 6) & BM_ASRC_ASRIER_AOLIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOLIE field to a new value.
 #define BW_ASRC_ASRIER_AOLIE(v)   BF_CS1(ASRC_ASRIER, AOLIE, v)
 #endif
 
-/* --- Register HW_ASRC_ASRIER, field AFPWE
+
+/* --- Register HW_ASRC_ASRIER, field AFPWE (RW)
  *
- * FP in Wait State Interrupt Enable  Enables the FP in wait state interrupt.
+ * FP in Wait State Interrupt Enable Enables the FP in wait state interrupt.
+ *
+ * Values:
+ * 1 - interrupt enabled
+ * 0 - interrupt disabled
  */
 
 #define BP_ASRC_ASRIER_AFPWE      7
@@ -531,24 +614,25 @@ typedef union
 #define BF_ASRC_ASRIER_AFPWE(v)   (((v) << 7) & BM_ASRC_ASRIER_AFPWE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AFPWE field to a new value.
 #define BW_ASRC_ASRIER_AFPWE(v)   BF_CS1(ASRC_ASRIER, AFPWE, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRCNCR - ASRC Channel Number Configuration Register
- *
- * The ASRC channel number configuration register (ASRCNCR) is a 24-bit
- * read/write register that sets the number of channels used by each ASRC
- * conversion pair.  There are 10 channels available for distribution among 3 conversion
- * pairs, they are ordered as 0,1,...,9. The bottom [0, ANCA-1] channels
- * are used for pair A, the top [10-ANCC, 9] channels are used for pair C,
- * and the [ANCA, ANCA+ANCB-1] channels are allocated for pair B. In case
- * that ANCA=0, then the [0, ANCB-1] channels are assigned for pair B.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRCNCR - ASRC Channel Number Configuration Register (RW)
+ *
+ * The ASRC channel number configuration register (ASRCNCR) is a 24-bit read/write register that
+ * sets the number of channels used by each ASRC conversion pair.  There are 10 channels available
+ * for distribution among 3 conversion pairs, they are ordered as 0,1,...,9. The bottom [0, ANCA-1]
+ * channels are used for pair A, the top [10-ANCC, 9] channels are used for pair C, and the [ANCA,
+ * ANCA+ANCB-1] channels are allocated for pair B. In case that ANCA=0, then the [0, ANCB-1]
+ * channels are assigned for pair B.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ANCA : 3; //!< Number of A Channels
@@ -574,14 +658,27 @@ typedef union
 #define HW_ASRC_ASRCNCR_TOG(v)    (HW_ASRC_ASRCNCR_WR(HW_ASRC_ASRCNCR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRCNCR bitfields
  */
 
-/* --- Register HW_ASRC_ASRCNCR, field ANCA
+/* --- Register HW_ASRC_ASRCNCR, field ANCA (RW)
  *
  * Number of A Channels
+ *
+ * Values:
+ * 0000 - 0 channels in A (Pair A is disabled)
+ * 0001 - 1 channel in A
+ * 0010 - 2 channels in A
+ * 0011 - 3 channels in A
+ * 0100 - 4 channels in A
+ * 0101 - 5 channels in A
+ * 0110 - 6 channels in A
+ * 0111 - 7 channels in A
+ * 1000 - 8 channels in A
+ * 1001 - 9 channels in A
+ * 1010 - 10 channels in A
+ * 1011-1111 - Should not be used.
  */
 
 #define BP_ASRC_ASRCNCR_ANCA      0
@@ -593,12 +690,28 @@ typedef union
 #define BF_ASRC_ASRCNCR_ANCA(v)   (((v) << 0) & BM_ASRC_ASRCNCR_ANCA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ANCA field to a new value.
 #define BW_ASRC_ASRCNCR_ANCA(v)   BF_CS1(ASRC_ASRCNCR, ANCA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCNCR, field ANCB
+
+/* --- Register HW_ASRC_ASRCNCR, field ANCB (RW)
  *
  * Number of B Channels
+ *
+ * Values:
+ * 0000 - 0 channels in B (Pair B is disabled)
+ * 0001 - 1 channel in B
+ * 0010 - 2 channels in B
+ * 0011 - 3 channels in B
+ * 0100 - 4 channels in B
+ * 0101 - 5 channels in B
+ * 0110 - 6 channels in B
+ * 0111 - 7 channels in B
+ * 1000 - 8 channels in B
+ * 1001 - 9 channels in B
+ * 1010 - 10 channels in B
+ * 1011-1111 - Should not be used.
  */
 
 #define BP_ASRC_ASRCNCR_ANCB      3
@@ -610,14 +723,29 @@ typedef union
 #define BF_ASRC_ASRCNCR_ANCB(v)   (((v) << 3) & BM_ASRC_ASRCNCR_ANCB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ANCB field to a new value.
 #define BW_ASRC_ASRCNCR_ANCB(v)   BF_CS1(ASRC_ASRCNCR, ANCB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCNCR, field ANCC
+
+/* --- Register HW_ASRC_ASRCNCR, field ANCC (RW)
  *
- * Number of C Channels ANCC+ANCB+ANCA<=10. Hardware is not
- * checking the constraint. Programmer should take the
- * responsibility to ensure the constraint is satisfied.
+ * Number of C Channels ANCC+ANCB+ANCA<=10. Hardware is not checking the constraint. Programmer
+ * should take the responsibility to ensure the constraint is satisfied.
+ *
+ * Values:
+ * 0000 - 0 channels in C (Pair C is disabled)
+ * 0001 - 1 channel in C
+ * 0010 - 2 channels in C
+ * 0011 - 3 channels in C
+ * 0100 - 4 channels in C
+ * 0101 - 5 channels in C
+ * 0110 - 6 channels in C
+ * 0111 - 7 channels in C
+ * 1000 - 8 channels in C
+ * 1001 - 9 channels in C
+ * 1010 - 10 channels in C
+ * 1011-1111 - Should not be used.
  */
 
 #define BP_ASRC_ASRCNCR_ANCC      6
@@ -629,34 +757,36 @@ typedef union
 #define BF_ASRC_ASRCNCR_ANCC(v)   (((v) << 6) & BM_ASRC_ASRCNCR_ANCC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ANCC field to a new value.
 #define BW_ASRC_ASRCNCR_ANCC(v)   BF_CS1(ASRC_ASRCNCR, ANCC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRCFG - ASRC Filter Configuration Status Register
- *
- * The ASRC configuration status register (ASRCFG) is a 24-bit read/write
- * register that sets and/or automatically senses the ASRC operations.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRCFG - ASRC Filter Configuration Status Register (RW)
+ *
+ * The ASRC configuration status register (ASRCFG) is a 24-bit read/write register that sets and/or
+ * automatically senses the ASRC operations.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 6; //!< Reserved. Should be written as zero for compatibility.
-        unsigned PREMODA : 2; //!< Pre-Processing Configuration for Conversion Pair A  These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
-        unsigned POSTMODA : 2; //!< Post-Processing Configuration for Conversion Pair A  These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
-        unsigned PREMODB : 2; //!< Pre-Processing Configuration for Conversion Pair B  These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
-        unsigned POSTMODB : 2; //!< Post-Processing Configuration for Conversion Pair B  These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
-        unsigned PREMODC : 2; //!< Pre-Processing Configuration for Conversion Pair C  These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
-        unsigned POSTMODC : 2; //!< Post-Processing Configuration for Conversion Pair C  These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
+        unsigned PREMODA : 2; //!< Pre-Processing Configuration for Conversion Pair A These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
+        unsigned POSTMODA : 2; //!< Post-Processing Configuration for Conversion Pair A These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
+        unsigned PREMODB : 2; //!< Pre-Processing Configuration for Conversion Pair B These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
+        unsigned POSTMODB : 2; //!< Post-Processing Configuration for Conversion Pair B These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
+        unsigned PREMODC : 2; //!< Pre-Processing Configuration for Conversion Pair C These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
+        unsigned POSTMODC : 2; //!< Post-Processing Configuration for Conversion Pair C These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
         unsigned NDPRA : 1; //!< Not Use Default Parameters for RAM-stored Parameters For Conversion Pair A
         unsigned NDPRB : 1; //!< Not Use Default Parameters for RAM-stored Parameters For Conversion Pair B
         unsigned NDPRC : 1; //!< Not Use Default Parameters for RAM-stored Parameters For Conversion Pair C
-        unsigned INIRQA : 1; //!< Initialization for Conversion Pair A is served  When this bit is 1, it means the initialization for conversion pair A is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREA=0 or ASRCTR:ASRCEN=0).
-        unsigned INIRQB : 1; //!< Initialization for Conversion Pair B is served  When this bit is 1, it means the initialization for conversion pair B is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREB=0 or ASRCTR:ASRCEN=0).
-        unsigned INIRQC : 1; //!< Initialization for Conversion Pair C is served  When this bit is 1, it means the initialization for conversion pair C is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREC=0 or ASRCTR:ASRCEN=0).
+        unsigned INIRQA : 1; //!< Initialization for Conversion Pair A is served When this bit is 1, it means the initialization for conversion pair A is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREA=0 or ASRCTR:ASRCEN=0).
+        unsigned INIRQB : 1; //!< Initialization for Conversion Pair B is served When this bit is 1, it means the initialization for conversion pair B is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREB=0 or ASRCTR:ASRCEN=0).
+        unsigned INIRQC : 1; //!< Initialization for Conversion Pair C is served When this bit is 1, it means the initialization for conversion pair C is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREC=0 or ASRCTR:ASRCEN=0).
         unsigned RESERVED1 : 8; //!< 
     } B;
 } hw_asrc_asrcfg_t;
@@ -676,18 +806,22 @@ typedef union
 #define HW_ASRC_ASRCFG_TOG(v)    (HW_ASRC_ASRCFG_WR(HW_ASRC_ASRCFG_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRCFG bitfields
  */
 
-/* --- Register HW_ASRC_ASRCFG, field PREMODA
+/* --- Register HW_ASRC_ASRCFG, field PREMODA (RW)
  *
- * Pre-Processing Configuration for Conversion Pair A  These bits will be read/write by user if
- * ASRCTR:ATSA=0, and can also                                 be automatically updated by the ASRC
- * internal logic if ASRCTR:ATSA=1                                 (see ASRC Misc Control
- * Register 1 for Pair C ). These bits set the selection of                                 the pre-
+ * Pre-Processing Configuration for Conversion Pair A These bits will be read/write by user if
+ * ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1
+ * (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-
  * processing configuration.
+ *
+ * Values:
+ * 00 - Select Upsampling-by-2 as defined in
+ * 01 - Select Direct-Connection as defined in
+ * 10 - Select Downsampling-by-2 as defined in
+ * 11 - Select passthrough mode. In this case, POSTMODA[1-0] ,HFA[1:0] have no use.
  */
 
 #define BP_ASRC_ASRCFG_PREMODA      6
@@ -699,16 +833,22 @@ typedef union
 #define BF_ASRC_ASRCFG_PREMODA(v)   (((v) << 6) & BM_ASRC_ASRCFG_PREMODA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PREMODA field to a new value.
 #define BW_ASRC_ASRCFG_PREMODA(v)   BF_CS1(ASRC_ASRCFG, PREMODA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field POSTMODA
+
+/* --- Register HW_ASRC_ASRCFG, field POSTMODA (RW)
  *
- * Post-Processing Configuration for Conversion Pair A  These bits will be read/write by user if
- * ASRCTR:ATSA=0, and can also                                 be automatically updated by the ASRC
- * internal logic if ASRCTR:ATSA=1                                 (see ASRC Misc Control
- * Register 1 for Pair C ). These bits set the selection of                                 the
- * post-processing configuration.
+ * Post-Processing Configuration for Conversion Pair A These bits will be read/write by user if
+ * ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1
+ * (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-
+ * processing configuration.
+ *
+ * Values:
+ * 00 - Select Upsampling-by-2 as defined in
+ * 01 - Select Direct-Connection as defined in
+ * 10 - Select Downsampling-by-2 as defined in
  */
 
 #define BP_ASRC_ASRCFG_POSTMODA      8
@@ -720,16 +860,23 @@ typedef union
 #define BF_ASRC_ASRCFG_POSTMODA(v)   (((v) << 8) & BM_ASRC_ASRCFG_POSTMODA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the POSTMODA field to a new value.
 #define BW_ASRC_ASRCFG_POSTMODA(v)   BF_CS1(ASRC_ASRCFG, POSTMODA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field PREMODB
+
+/* --- Register HW_ASRC_ASRCFG, field PREMODB (RW)
  *
- * Pre-Processing Configuration for Conversion Pair B  These bits will be read/write by user if
- * ASRCTR:ATSB=0, and can also                                 be automatically updated by the ASRC
- * internal logic if ASRCTR:ATSB=1                                 (see ASRC Misc Control
- * Register 1 for Pair C ). These bits set the selection of                                 the pre-
+ * Pre-Processing Configuration for Conversion Pair B These bits will be read/write by user if
+ * ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1
+ * (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-
  * processing configuration.
+ *
+ * Values:
+ * 00 - Select Upsampling-by-2 as defined in
+ * 01 - Select Direct-Connection as defined in
+ * 10 - Select Downsampling-by-2 as defined in
+ * 11 - Select passthrough mode. In this case, POSTMODB[1-0] ,HFB[1:0] have no use.
  */
 
 #define BP_ASRC_ASRCFG_PREMODB      10
@@ -741,16 +888,22 @@ typedef union
 #define BF_ASRC_ASRCFG_PREMODB(v)   (((v) << 10) & BM_ASRC_ASRCFG_PREMODB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PREMODB field to a new value.
 #define BW_ASRC_ASRCFG_PREMODB(v)   BF_CS1(ASRC_ASRCFG, PREMODB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field POSTMODB
+
+/* --- Register HW_ASRC_ASRCFG, field POSTMODB (RW)
  *
- * Post-Processing Configuration for Conversion Pair B  These bits will be read/write by user if
- * ASRCTR:ATSB=0, and can also                                 be automatically updated by the ASRC
- * internal logic if ASRCTR:ATSB=1                                 (see ASRC Misc Control
- * Register 1 for Pair C ). These bits set the selection of                                 the
- * post-processing configuration.
+ * Post-Processing Configuration for Conversion Pair B These bits will be read/write by user if
+ * ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1
+ * (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-
+ * processing configuration.
+ *
+ * Values:
+ * 00 - Select Upsampling-by-2 as defined in
+ * 01 - Select Direct-Connection as defined in
+ * 10 - Select Downsampling-by-2 as defined in
  */
 
 #define BP_ASRC_ASRCFG_POSTMODB      12
@@ -762,16 +915,23 @@ typedef union
 #define BF_ASRC_ASRCFG_POSTMODB(v)   (((v) << 12) & BM_ASRC_ASRCFG_POSTMODB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the POSTMODB field to a new value.
 #define BW_ASRC_ASRCFG_POSTMODB(v)   BF_CS1(ASRC_ASRCFG, POSTMODB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field PREMODC
+
+/* --- Register HW_ASRC_ASRCFG, field PREMODC (RW)
  *
- * Pre-Processing Configuration for Conversion Pair C  These bits will be read/write by user if
- * ASRCTR:ATSC=0, and can also                                 be automatically updated by the ASRC
- * internal logic if ASRCTR:ATSC=1                                 (see ASRC Misc Control
- * Register 1 for Pair C ). These bits set the selection of                                 the pre-
+ * Pre-Processing Configuration for Conversion Pair C These bits will be read/write by user if
+ * ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1
+ * (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-
  * processing configuration.
+ *
+ * Values:
+ * 00 - Select Upsampling-by-2 as defined in
+ * 01 - Select Direct-Connection as defined in
+ * 10 - Select Downsampling-by-2 as defined in
+ * 11 - Select passthrough mode. In this case, POSTMODC[1-0] ,HFC[1:0] have no use.
  */
 
 #define BP_ASRC_ASRCFG_PREMODC      14
@@ -783,16 +943,22 @@ typedef union
 #define BF_ASRC_ASRCFG_PREMODC(v)   (((v) << 14) & BM_ASRC_ASRCFG_PREMODC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PREMODC field to a new value.
 #define BW_ASRC_ASRCFG_PREMODC(v)   BF_CS1(ASRC_ASRCFG, PREMODC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field POSTMODC
+
+/* --- Register HW_ASRC_ASRCFG, field POSTMODC (RW)
  *
- * Post-Processing Configuration for Conversion Pair C  These bits will be read/write by user if
- * ASRCTR:ATSC=0, and can also                                 be automatically updated by the ASRC
- * internal logic if ASRCTR:ATSC=1                                 (see ASRC Misc Control
- * Register 1 for Pair C ). These bits set the selection of                                 the
- * post-processing configuration.
+ * Post-Processing Configuration for Conversion Pair C These bits will be read/write by user if
+ * ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1
+ * (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-
+ * processing configuration.
+ *
+ * Values:
+ * 00 - Select Upsampling-by-2 as defined in Signal Processing Flow.
+ * 01 - Select Direct-Connection as defined in Signal Processing Flow.
+ * 10 - Select Downsampling-by-2 as defined in Signal Processing Flow.
  */
 
 #define BP_ASRC_ASRCFG_POSTMODC      16
@@ -804,13 +970,18 @@ typedef union
 #define BF_ASRC_ASRCFG_POSTMODC(v)   (((v) << 16) & BM_ASRC_ASRCFG_POSTMODC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the POSTMODC field to a new value.
 #define BW_ASRC_ASRCFG_POSTMODC(v)   BF_CS1(ASRC_ASRCFG, POSTMODC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field NDPRA
+
+/* --- Register HW_ASRC_ASRCFG, field NDPRA (RW)
  *
- * Not Use Default Parameters for RAM-stored Parameters For Conversion
- * Pair A
+ * Not Use Default Parameters for RAM-stored Parameters For Conversion Pair A
+ *
+ * Values:
+ * 0 - Use default parameters for RAM-stored parameters. Override any parameters already in RAM.
+ * 1 - Don't use default parameters for RAM-stored parameters. Use the parameters already stored in RAM.
  */
 
 #define BP_ASRC_ASRCFG_NDPRA      18
@@ -822,13 +993,18 @@ typedef union
 #define BF_ASRC_ASRCFG_NDPRA(v)   (((v) << 18) & BM_ASRC_ASRCFG_NDPRA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NDPRA field to a new value.
 #define BW_ASRC_ASRCFG_NDPRA(v)   BF_CS1(ASRC_ASRCFG, NDPRA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field NDPRB
+
+/* --- Register HW_ASRC_ASRCFG, field NDPRB (RW)
  *
- * Not Use Default Parameters for RAM-stored Parameters For Conversion
- * Pair B
+ * Not Use Default Parameters for RAM-stored Parameters For Conversion Pair B
+ *
+ * Values:
+ * 0 - Use default parameters for RAM-stored parameters. Override any parameters already in RAM.
+ * 1 - Don't use default parameters for RAM-stored parameter. Use the parameters already stored in RAM.
  */
 
 #define BP_ASRC_ASRCFG_NDPRB      19
@@ -840,13 +1016,18 @@ typedef union
 #define BF_ASRC_ASRCFG_NDPRB(v)   (((v) << 19) & BM_ASRC_ASRCFG_NDPRB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NDPRB field to a new value.
 #define BW_ASRC_ASRCFG_NDPRB(v)   BF_CS1(ASRC_ASRCFG, NDPRB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field NDPRC
+
+/* --- Register HW_ASRC_ASRCFG, field NDPRC (RW)
  *
- * Not Use Default Parameters for RAM-stored Parameters For Conversion
- * Pair C
+ * Not Use Default Parameters for RAM-stored Parameters For Conversion Pair C
+ *
+ * Values:
+ * 0 - Use default parameters for RAM-stored parameters. Override any parameters already in RAM.
+ * 1 - Don't use default parameters for RAM-stored parameters. Use the parameters already stored in RAM.
  */
 
 #define BP_ASRC_ASRCFG_NDPRC      20
@@ -858,84 +1039,59 @@ typedef union
 #define BF_ASRC_ASRCFG_NDPRC(v)   (((v) << 20) & BM_ASRC_ASRCFG_NDPRC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NDPRC field to a new value.
 #define BW_ASRC_ASRCFG_NDPRC(v)   BF_CS1(ASRC_ASRCFG, NDPRC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCFG, field INIRQA
+
+/* --- Register HW_ASRC_ASRCFG, field INIRQA (RO)
  *
- * Initialization for Conversion Pair A is served  When this bit is 1, it means the initialization
- * for conversion pair A                                 is served. This bit is cleared by disabling
- * the ASRC conversion pair                                 (ASRCTR:ASREA=0 or ASRCTR:ASRCEN=0).
+ * Initialization for Conversion Pair A is served When this bit is 1, it means the initialization
+ * for conversion pair A is served. This bit is cleared by disabling the ASRC conversion pair
+ * (ASRCTR:ASREA=0 or ASRCTR:ASRCEN=0).
  */
 
 #define BP_ASRC_ASRCFG_INIRQA      21
 #define BM_ASRC_ASRCFG_INIRQA      0x00200000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRCFG_INIRQA(v)   ((((reg32_t) v) << 21) & BM_ASRC_ASRCFG_INIRQA)
-#else
-#define BF_ASRC_ASRCFG_INIRQA(v)   (((v) << 21) & BM_ASRC_ASRCFG_INIRQA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRCFG_INIRQA(v)   BF_CS1(ASRC_ASRCFG, INIRQA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRCFG, field INIRQB
+/* --- Register HW_ASRC_ASRCFG, field INIRQB (RO)
  *
- * Initialization for Conversion Pair B is served  When this bit is 1, it means the initialization
- * for conversion pair B                                 is served. This bit is cleared by disabling
- * the ASRC conversion pair                                 (ASRCTR:ASREB=0 or ASRCTR:ASRCEN=0).
+ * Initialization for Conversion Pair B is served When this bit is 1, it means the initialization
+ * for conversion pair B is served. This bit is cleared by disabling the ASRC conversion pair
+ * (ASRCTR:ASREB=0 or ASRCTR:ASRCEN=0).
  */
 
 #define BP_ASRC_ASRCFG_INIRQB      22
 #define BM_ASRC_ASRCFG_INIRQB      0x00400000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRCFG_INIRQB(v)   ((((reg32_t) v) << 22) & BM_ASRC_ASRCFG_INIRQB)
-#else
-#define BF_ASRC_ASRCFG_INIRQB(v)   (((v) << 22) & BM_ASRC_ASRCFG_INIRQB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRCFG_INIRQB(v)   BF_CS1(ASRC_ASRCFG, INIRQB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRCFG, field INIRQC
+/* --- Register HW_ASRC_ASRCFG, field INIRQC (RO)
  *
- * Initialization for Conversion Pair C is served  When this bit is 1, it means the initialization
- * for conversion pair C                                 is served. This bit is cleared by disabling
- * the ASRC conversion pair                                 (ASRCTR:ASREC=0 or ASRCTR:ASRCEN=0).
+ * Initialization for Conversion Pair C is served When this bit is 1, it means the initialization
+ * for conversion pair C is served. This bit is cleared by disabling the ASRC conversion pair
+ * (ASRCTR:ASREC=0 or ASRCTR:ASRCEN=0).
  */
 
 #define BP_ASRC_ASRCFG_INIRQC      23
 #define BM_ASRC_ASRCFG_INIRQC      0x00800000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRCFG_INIRQC(v)   ((((reg32_t) v) << 23) & BM_ASRC_ASRCFG_INIRQC)
-#else
-#define BF_ASRC_ASRCFG_INIRQC(v)   (((v) << 23) & BM_ASRC_ASRCFG_INIRQC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRCFG_INIRQC(v)   BF_CS1(ASRC_ASRCFG, INIRQC, v)
-#endif
-
 /*!
- * @brief HW_ASRC_ASRCSR - ASRC Clock Source Register
+ * @brief HW_ASRC_ASRCSR - ASRC Clock Source Register (RW)
  *
- * The ASRC clock source register (ASRCSR) is a 24-bit read/write register
- * that controls the sources of the input and output clocks of the ASRC.  The clock connections are
- * shown in ASRC Misc Control Register 1 for Pair C , also shown in :   Bit Clock Definitions
- * Bit Clk Name  Definitions      0  ESAI RX clock    1  SSI-1 RX clock    2  SSI-2 RX clock    3
- * SSI-3 RX clock    4  SPDIF RX clock    5  MLB Bit clock    6  bit clock 6 should connect to one
- * of the three pads: KEY_ROW3,GPIO_0,GPIO_18, which is configured by register
+ * The ASRC clock source register (ASRCSR) is a 24-bit read/write register that controls the sources
+ * of the input and output clocks of the ASRC.  The clock connections are shown in ASRC Misc Control
+ * Register 1 for Pair C , also shown in :   Bit Clock Definitions       Bit Clk Name  Definitions
+ * 0  ESAI RX clock    1  SSI-1 RX clock    2  SSI-2 RX clock    3  SSI-3 RX clock    4  SPDIF RX
+ * clock    5  MLB Bit clock    6  bit clock 6 should connect to one of the three pads:
+ * KEY_ROW3,GPIO_0,GPIO_18, which is configured by register
  * IOMUXC_IOMUXC_ASRC_ASRCK_CLOCK_6_SELECT_INPUT    7  tied to zero    8  ESAI TX clock    9  SSI-1
  * TX clock    a  SSI-2 TX clock    b  SSI-3 TX clock    c  SPDIF TX clock    d  bit clock d is
  * configured by spdif1_clk_pred and spdif1_clk_podf in CCM_CDCDR, but it is better to describe it
  * also in CCM spec.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned AICSA : 4; //!< Input Clock Source A
@@ -963,14 +1119,31 @@ typedef union
 #define HW_ASRC_ASRCSR_TOG(v)    (HW_ASRC_ASRCSR_WR(HW_ASRC_ASRCSR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRCSR bitfields
  */
 
-/* --- Register HW_ASRC_ASRCSR, field AICSA
+/* --- Register HW_ASRC_ASRCSR, field AICSA (RW)
  *
  * Input Clock Source A
+ *
+ * Values:
+ * 0000 - bit clock 0
+ * 0001 - bit clock 1
+ * 0010 - bit clock 2
+ * 0011 - bit clock 3
+ * 0100 - bit clock 4
+ * 0101 - bit clock 5
+ * 0110 - bit clock 6
+ * 0111 - bit clock 7
+ * 1000 - bit clock 8
+ * 1001 - bit clock 9
+ * 1010 - bit clock A
+ * 1011 - bit clock B
+ * 1100 - bit clock C
+ * 1101 - bit clock D
+ * 1111 - clock disabled, connected to zero
+ * any other value - bit clock 0
  */
 
 #define BP_ASRC_ASRCSR_AICSA      0
@@ -982,12 +1155,32 @@ typedef union
 #define BF_ASRC_ASRCSR_AICSA(v)   (((v) << 0) & BM_ASRC_ASRCSR_AICSA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICSA field to a new value.
 #define BW_ASRC_ASRCSR_AICSA(v)   BF_CS1(ASRC_ASRCSR, AICSA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCSR, field AICSB
+
+/* --- Register HW_ASRC_ASRCSR, field AICSB (RW)
  *
  * Input Clock Source B
+ *
+ * Values:
+ * 0000 - bit clock 0
+ * 0001 - bit clock 1
+ * 0010 - bit clock 2
+ * 0011 - bit clock 3
+ * 0100 - bit clock 4
+ * 0101 - bit clock 5
+ * 0110 - bit clock 6
+ * 0111 - bit clock 7
+ * 1000 - bit clock 8
+ * 1001 - bit clock 9
+ * 1010 - bit clock A
+ * 1011 - bit clock B
+ * 1100 - bit clock C
+ * 1101 - bit clock D
+ * 1111 - clock disabled, connected to zero
+ * any other value - bit clock 0
  */
 
 #define BP_ASRC_ASRCSR_AICSB      4
@@ -999,12 +1192,32 @@ typedef union
 #define BF_ASRC_ASRCSR_AICSB(v)   (((v) << 4) & BM_ASRC_ASRCSR_AICSB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICSB field to a new value.
 #define BW_ASRC_ASRCSR_AICSB(v)   BF_CS1(ASRC_ASRCSR, AICSB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCSR, field AICSC
+
+/* --- Register HW_ASRC_ASRCSR, field AICSC (RW)
  *
  * Input Clock Source C
+ *
+ * Values:
+ * 0000 - bit clock 0
+ * 0001 - bit clock 1
+ * 0010 - bit clock 2
+ * 0011 - bit clock 3
+ * 0100 - bit clock 4
+ * 0101 - bit clock 5
+ * 0110 - bit clock 6
+ * 0111 - bit clock 7
+ * 1000 - bit clock 8
+ * 1001 - bit clock 9
+ * 1010 - bit clock A
+ * 1011 - bit clock B
+ * 1100 - bit clock C
+ * 1101 - bit clock D
+ * 1111 - clock disabled, connected to zero
+ * any other value - bit clock 0
  */
 
 #define BP_ASRC_ASRCSR_AICSC      8
@@ -1016,12 +1229,32 @@ typedef union
 #define BF_ASRC_ASRCSR_AICSC(v)   (((v) << 8) & BM_ASRC_ASRCSR_AICSC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICSC field to a new value.
 #define BW_ASRC_ASRCSR_AICSC(v)   BF_CS1(ASRC_ASRCSR, AICSC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCSR, field AOCSA
+
+/* --- Register HW_ASRC_ASRCSR, field AOCSA (RW)
  *
  * Output Clock Source A
+ *
+ * Values:
+ * 0000 - bit clock 0
+ * 0001 - bit clock 1
+ * 0010 - bit clock 2
+ * 0011 - bit clock 3
+ * 0100 - bit clock 4
+ * 0101 - bit clock 5
+ * 0110 - bit clock 6
+ * 0111 - bit clock 7
+ * 1000 - bit clock 8
+ * 1001 - bit clock 9
+ * 1010 - bit clock A
+ * 1011 - bit clock B
+ * 1100 - bit clock C
+ * 1101 - bit clock D
+ * 1111 - clock disabled, connected to zero
+ * any other value - bit clock 0
  */
 
 #define BP_ASRC_ASRCSR_AOCSA      12
@@ -1033,12 +1266,32 @@ typedef union
 #define BF_ASRC_ASRCSR_AOCSA(v)   (((v) << 12) & BM_ASRC_ASRCSR_AOCSA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCSA field to a new value.
 #define BW_ASRC_ASRCSR_AOCSA(v)   BF_CS1(ASRC_ASRCSR, AOCSA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCSR, field AOCSB
+
+/* --- Register HW_ASRC_ASRCSR, field AOCSB (RW)
  *
  * Output Clock Source B
+ *
+ * Values:
+ * 0000 - bit clock 0
+ * 0001 - bit clock 1
+ * 0010 - bit clock 2
+ * 0011 - bit clock 3
+ * 0100 - bit clock 4
+ * 0101 - bit clock 5
+ * 0110 - bit clock 6
+ * 0111 - bit clock 7
+ * 1000 - bit clock 8
+ * 1001 - bit clock 9
+ * 1010 - bit clock A
+ * 1011 - bit clock B
+ * 1100 - bit clock C
+ * 1101 - bit clock D
+ * 1111 - clock disabled, connected to zero
+ * any other value - bit clock 0
  */
 
 #define BP_ASRC_ASRCSR_AOCSB      16
@@ -1050,12 +1303,32 @@ typedef union
 #define BF_ASRC_ASRCSR_AOCSB(v)   (((v) << 16) & BM_ASRC_ASRCSR_AOCSB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCSB field to a new value.
 #define BW_ASRC_ASRCSR_AOCSB(v)   BF_CS1(ASRC_ASRCSR, AOCSB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCSR, field AOCSC
+
+/* --- Register HW_ASRC_ASRCSR, field AOCSC (RW)
  *
  * Output Clock Source C
+ *
+ * Values:
+ * 0000 - bit clock 0
+ * 0001 - bit clock 1
+ * 0010 - bit clock 2
+ * 0011 - bit clock 3
+ * 0100 - bit clock 4
+ * 0101 - bit clock 5
+ * 0110 - bit clock 6
+ * 0111 - bit clock 7
+ * 1000 - bit clock 8
+ * 1001 - bit clock 9
+ * 1010 - bit clock A
+ * 1011 - bit clock B
+ * 1100 - bit clock C
+ * 1101 - bit clock D
+ * 1111 - clock disabled, connected to zero
+ * any other value - bit clock 0
  */
 
 #define BP_ASRC_ASRCSR_AOCSC      20
@@ -1067,30 +1340,31 @@ typedef union
 #define BF_ASRC_ASRCSR_AOCSC(v)   (((v) << 20) & BM_ASRC_ASRCSR_AOCSC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCSC field to a new value.
 #define BW_ASRC_ASRCSR_AOCSC(v)   BF_CS1(ASRC_ASRCSR, AOCSC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRCDR1 - ASRC Clock Divider Register 1
- *
- * The ASRC clock divider register (ASRCDR1) is a two 24-bit read/write
- * register that controls the division factors of the ASRC input and output
- * clock sources.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRCDR1 - ASRC Clock Divider Register 1 (RW)
+ *
+ * The ASRC clock divider register (ASRCDR1) is a two 24-bit read/write register that controls the
+ * division factors of the ASRC input and output clock sources.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned AICPA : 3; //!< Input Clock Prescaler A  Specify the prescaling factor of the input prescaler A. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AICDA : 3; //!< Input Clock Divider A  Specify the divide ratio of the input clock divider A. The divide ratio may range from 1 to 8 (AICDA[2:0] = 000 to 111).
-        unsigned AICPB : 3; //!< Input Clock Prescaler B  Specify the prescaling factor of the input prescaler B. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AICDB : 3; //!< Input Clock Divider B  Specify the divide ratio of the input clock divider B. The divide ratio may range from 1 to 8 (AICDB[2:0] = 000 to 111).
-        unsigned AOCPA : 3; //!< Output Clock Prescaler A  Specify the prescaling factor of the output prescaler A. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AOCDA : 3; //!< Output Clock Divider A  Specify the divide ratio of the output clock divider A. The divide ratio may range from 1 to 8 (AOCDA[2:0] = 000 to 111).
-        unsigned AOCPB : 3; //!< Output Clock Prescaler B  Specify the prescaling factor of the output prescaler B. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AOCDB : 3; //!< Output Clock Divider B  Specify the divide ratio of the output clock divider B. The divide ratio may range from 1 to 8 (AOCDB[2:0] = 000 to 111).
+        unsigned AICPA : 3; //!< Input Clock Prescaler A Specify the prescaling factor of the input prescaler A. The prescaling ratio may be any power of 2 from 1 to 128.
+        unsigned AICDA : 3; //!< Input Clock Divider A Specify the divide ratio of the input clock divider A. The divide ratio may range from 1 to 8 (AICDA[2:0] = 000 to 111).
+        unsigned AICPB : 3; //!< Input Clock Prescaler B Specify the prescaling factor of the input prescaler B. The prescaling ratio may be any power of 2 from 1 to 128.
+        unsigned AICDB : 3; //!< Input Clock Divider B Specify the divide ratio of the input clock divider B. The divide ratio may range from 1 to 8 (AICDB[2:0] = 000 to 111).
+        unsigned AOCPA : 3; //!< Output Clock Prescaler A Specify the prescaling factor of the output prescaler A. The prescaling ratio may be any power of 2 from 1 to 128.
+        unsigned AOCDA : 3; //!< Output Clock Divider A Specify the divide ratio of the output clock divider A. The divide ratio may range from 1 to 8 (AOCDA[2:0] = 000 to 111).
+        unsigned AOCPB : 3; //!< Output Clock Prescaler B Specify the prescaling factor of the output prescaler B. The prescaling ratio may be any power of 2 from 1 to 128.
+        unsigned AOCDB : 3; //!< Output Clock Divider B Specify the divide ratio of the output clock divider B. The divide ratio may range from 1 to 8 (AOCDB[2:0] = 000 to 111).
         unsigned RESERVED0 : 8; //!< 
     } B;
 } hw_asrc_asrcdr1_t;
@@ -1110,15 +1384,14 @@ typedef union
 #define HW_ASRC_ASRCDR1_TOG(v)    (HW_ASRC_ASRCDR1_WR(HW_ASRC_ASRCDR1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRCDR1 bitfields
  */
 
-/* --- Register HW_ASRC_ASRCDR1, field AICPA
+/* --- Register HW_ASRC_ASRCDR1, field AICPA (RW)
  *
- * Input Clock Prescaler A  Specify the prescaling factor of the input prescaler A. The
- * prescaling ratio may be any power of 2 from 1 to 128.
+ * Input Clock Prescaler A Specify the prescaling factor of the input prescaler A. The prescaling
+ * ratio may be any power of 2 from 1 to 128.
  */
 
 #define BP_ASRC_ASRCDR1_AICPA      0
@@ -1130,13 +1403,14 @@ typedef union
 #define BF_ASRC_ASRCDR1_AICPA(v)   (((v) << 0) & BM_ASRC_ASRCDR1_AICPA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICPA field to a new value.
 #define BW_ASRC_ASRCDR1_AICPA(v)   BF_CS1(ASRC_ASRCDR1, AICPA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR1, field AICDA
+/* --- Register HW_ASRC_ASRCDR1, field AICDA (RW)
  *
- * Input Clock Divider A  Specify the divide ratio of the input clock divider A. The divide
- * ratio may range from 1 to 8 (AICDA[2:0] = 000 to 111).
+ * Input Clock Divider A Specify the divide ratio of the input clock divider A. The divide ratio may
+ * range from 1 to 8 (AICDA[2:0] = 000 to 111).
  */
 
 #define BP_ASRC_ASRCDR1_AICDA      3
@@ -1148,13 +1422,14 @@ typedef union
 #define BF_ASRC_ASRCDR1_AICDA(v)   (((v) << 3) & BM_ASRC_ASRCDR1_AICDA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICDA field to a new value.
 #define BW_ASRC_ASRCDR1_AICDA(v)   BF_CS1(ASRC_ASRCDR1, AICDA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR1, field AICPB
+/* --- Register HW_ASRC_ASRCDR1, field AICPB (RW)
  *
- * Input Clock Prescaler B  Specify the prescaling factor of the input prescaler B. The
- * prescaling ratio may be any power of 2 from 1 to 128.
+ * Input Clock Prescaler B Specify the prescaling factor of the input prescaler B. The prescaling
+ * ratio may be any power of 2 from 1 to 128.
  */
 
 #define BP_ASRC_ASRCDR1_AICPB      6
@@ -1166,13 +1441,14 @@ typedef union
 #define BF_ASRC_ASRCDR1_AICPB(v)   (((v) << 6) & BM_ASRC_ASRCDR1_AICPB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICPB field to a new value.
 #define BW_ASRC_ASRCDR1_AICPB(v)   BF_CS1(ASRC_ASRCDR1, AICPB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR1, field AICDB
+/* --- Register HW_ASRC_ASRCDR1, field AICDB (RW)
  *
- * Input Clock Divider B  Specify the divide ratio of the input clock divider B. The divide
- * ratio may range from 1 to 8 (AICDB[2:0] = 000 to 111).
+ * Input Clock Divider B Specify the divide ratio of the input clock divider B. The divide ratio may
+ * range from 1 to 8 (AICDB[2:0] = 000 to 111).
  */
 
 #define BP_ASRC_ASRCDR1_AICDB      9
@@ -1184,13 +1460,14 @@ typedef union
 #define BF_ASRC_ASRCDR1_AICDB(v)   (((v) << 9) & BM_ASRC_ASRCDR1_AICDB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICDB field to a new value.
 #define BW_ASRC_ASRCDR1_AICDB(v)   BF_CS1(ASRC_ASRCDR1, AICDB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR1, field AOCPA
+/* --- Register HW_ASRC_ASRCDR1, field AOCPA (RW)
  *
- * Output Clock Prescaler A  Specify the prescaling factor of the output prescaler A. The
- * prescaling ratio may be any power of 2 from 1 to 128.
+ * Output Clock Prescaler A Specify the prescaling factor of the output prescaler A. The prescaling
+ * ratio may be any power of 2 from 1 to 128.
  */
 
 #define BP_ASRC_ASRCDR1_AOCPA      12
@@ -1202,13 +1479,14 @@ typedef union
 #define BF_ASRC_ASRCDR1_AOCPA(v)   (((v) << 12) & BM_ASRC_ASRCDR1_AOCPA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCPA field to a new value.
 #define BW_ASRC_ASRCDR1_AOCPA(v)   BF_CS1(ASRC_ASRCDR1, AOCPA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR1, field AOCDA
+/* --- Register HW_ASRC_ASRCDR1, field AOCDA (RW)
  *
- * Output Clock Divider A  Specify the divide ratio of the output clock divider A. The divide
- * ratio may range from 1 to 8 (AOCDA[2:0] = 000 to 111).
+ * Output Clock Divider A Specify the divide ratio of the output clock divider A. The divide ratio
+ * may range from 1 to 8 (AOCDA[2:0] = 000 to 111).
  */
 
 #define BP_ASRC_ASRCDR1_AOCDA      15
@@ -1220,13 +1498,14 @@ typedef union
 #define BF_ASRC_ASRCDR1_AOCDA(v)   (((v) << 15) & BM_ASRC_ASRCDR1_AOCDA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCDA field to a new value.
 #define BW_ASRC_ASRCDR1_AOCDA(v)   BF_CS1(ASRC_ASRCDR1, AOCDA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR1, field AOCPB
+/* --- Register HW_ASRC_ASRCDR1, field AOCPB (RW)
  *
- * Output Clock Prescaler B  Specify the prescaling factor of the output prescaler B. The
- * prescaling ratio may be any power of 2 from 1 to 128.
+ * Output Clock Prescaler B Specify the prescaling factor of the output prescaler B. The prescaling
+ * ratio may be any power of 2 from 1 to 128.
  */
 
 #define BP_ASRC_ASRCDR1_AOCPB      18
@@ -1238,13 +1517,14 @@ typedef union
 #define BF_ASRC_ASRCDR1_AOCPB(v)   (((v) << 18) & BM_ASRC_ASRCDR1_AOCPB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCPB field to a new value.
 #define BW_ASRC_ASRCDR1_AOCPB(v)   BF_CS1(ASRC_ASRCDR1, AOCPB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR1, field AOCDB
+/* --- Register HW_ASRC_ASRCDR1, field AOCDB (RW)
  *
- * Output Clock Divider B  Specify the divide ratio of the output clock divider B. The divide
- * ratio may range from 1 to 8 (AOCDB[2:0] = 000 to 111).
+ * Output Clock Divider B Specify the divide ratio of the output clock divider B. The divide ratio
+ * may range from 1 to 8 (AOCDB[2:0] = 000 to 111).
  */
 
 #define BP_ASRC_ASRCDR1_AOCDB      21
@@ -1256,26 +1536,26 @@ typedef union
 #define BF_ASRC_ASRCDR1_AOCDB(v)   (((v) << 21) & BM_ASRC_ASRCDR1_AOCDB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCDB field to a new value.
 #define BW_ASRC_ASRCDR1_AOCDB(v)   BF_CS1(ASRC_ASRCDR1, AOCDB, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRCDR2 - ASRC Clock Divider Register 2
- *
- * The ASRC clock divider register (ASRCDR2) is a two 24-bit read/write
- * register that controls the division factors of the ASRC input and output
- * clock sources.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRCDR2 - ASRC Clock Divider Register 2 (RW)
+ *
+ * The ASRC clock divider register (ASRCDR2) is a two 24-bit read/write register that controls the
+ * division factors of the ASRC input and output clock sources.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned AICPC : 3; //!< Input Clock Prescaler C  Specify the prescaling factor of the input prescaler C. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AICDC : 3; //!< Input Clock Divider C  Specify the divide ratio of the input clock divider C. The divide ratio may range from 1 to 8 (AICDC[2:0] = 000 to 111).
-        unsigned AOCPC : 3; //!< Output Clock Prescaler C  Specify the prescaling factor of the output prescaler C. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AOCDC : 3; //!< Output Clock Divider C  Specify the divide ratio of the output clock divider C. The divide ratio may range from 1 to 8 (AOCDC[2:0] = 000 to 111).
+        unsigned AICPC : 3; //!< Input Clock Prescaler C Specify the prescaling factor of the input prescaler C. The prescaling ratio may be any power of 2 from 1 to 128.
+        unsigned AICDC : 3; //!< Input Clock Divider C Specify the divide ratio of the input clock divider C. The divide ratio may range from 1 to 8 (AICDC[2:0] = 000 to 111).
+        unsigned AOCPC : 3; //!< Output Clock Prescaler C Specify the prescaling factor of the output prescaler C. The prescaling ratio may be any power of 2 from 1 to 128.
+        unsigned AOCDC : 3; //!< Output Clock Divider C Specify the divide ratio of the output clock divider C. The divide ratio may range from 1 to 8 (AOCDC[2:0] = 000 to 111).
         unsigned RESERVED0 : 12; //!< Reserved. Should be written as zero for compatibility.
         unsigned RESERVED1 : 8; //!< 
     } B;
@@ -1296,15 +1576,14 @@ typedef union
 #define HW_ASRC_ASRCDR2_TOG(v)    (HW_ASRC_ASRCDR2_WR(HW_ASRC_ASRCDR2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRCDR2 bitfields
  */
 
-/* --- Register HW_ASRC_ASRCDR2, field AICPC
+/* --- Register HW_ASRC_ASRCDR2, field AICPC (RW)
  *
- * Input Clock Prescaler C  Specify the prescaling factor of the input prescaler C. The
- * prescaling ratio may be any power of 2 from 1 to 128.
+ * Input Clock Prescaler C Specify the prescaling factor of the input prescaler C. The prescaling
+ * ratio may be any power of 2 from 1 to 128.
  */
 
 #define BP_ASRC_ASRCDR2_AICPC      0
@@ -1316,13 +1595,14 @@ typedef union
 #define BF_ASRC_ASRCDR2_AICPC(v)   (((v) << 0) & BM_ASRC_ASRCDR2_AICPC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICPC field to a new value.
 #define BW_ASRC_ASRCDR2_AICPC(v)   BF_CS1(ASRC_ASRCDR2, AICPC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR2, field AICDC
+/* --- Register HW_ASRC_ASRCDR2, field AICDC (RW)
  *
- * Input Clock Divider C  Specify the divide ratio of the input clock divider C. The divide
- * ratio may range from 1 to 8 (AICDC[2:0] = 000 to 111).
+ * Input Clock Divider C Specify the divide ratio of the input clock divider C. The divide ratio may
+ * range from 1 to 8 (AICDC[2:0] = 000 to 111).
  */
 
 #define BP_ASRC_ASRCDR2_AICDC      3
@@ -1334,13 +1614,14 @@ typedef union
 #define BF_ASRC_ASRCDR2_AICDC(v)   (((v) << 3) & BM_ASRC_ASRCDR2_AICDC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AICDC field to a new value.
 #define BW_ASRC_ASRCDR2_AICDC(v)   BF_CS1(ASRC_ASRCDR2, AICDC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR2, field AOCPC
+/* --- Register HW_ASRC_ASRCDR2, field AOCPC (RW)
  *
- * Output Clock Prescaler C  Specify the prescaling factor of the output prescaler C. The
- * prescaling ratio may be any power of 2 from 1 to 128.
+ * Output Clock Prescaler C Specify the prescaling factor of the output prescaler C. The prescaling
+ * ratio may be any power of 2 from 1 to 128.
  */
 
 #define BP_ASRC_ASRCDR2_AOCPC      6
@@ -1352,13 +1633,14 @@ typedef union
 #define BF_ASRC_ASRCDR2_AOCPC(v)   (((v) << 6) & BM_ASRC_ASRCDR2_AOCPC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCPC field to a new value.
 #define BW_ASRC_ASRCDR2_AOCPC(v)   BF_CS1(ASRC_ASRCDR2, AOCPC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCDR2, field AOCDC
+/* --- Register HW_ASRC_ASRCDR2, field AOCDC (RW)
  *
- * Output Clock Divider C  Specify the divide ratio of the output clock divider C. The divide
- * ratio may range from 1 to 8 (AOCDC[2:0] = 000 to 111).
+ * Output Clock Divider C Specify the divide ratio of the output clock divider C. The divide ratio
+ * may range from 1 to 8 (AOCDC[2:0] = 000 to 111).
  */
 
 #define BP_ASRC_ASRCDR2_AOCDC      9
@@ -1370,45 +1652,45 @@ typedef union
 #define BF_ASRC_ASRCDR2_AOCDC(v)   (((v) << 9) & BM_ASRC_ASRCDR2_AOCDC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AOCDC field to a new value.
 #define BW_ASRC_ASRCDR2_AOCDC(v)   BF_CS1(ASRC_ASRCDR2, AOCDC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRSTR - ASRC Status Register
- *
- * The ASRC status register (ASRSTR) is a 24-bit read-write register used by
- * the processor core to examine the status of the ASRC block and clear the
- * overload interrupt request and AOLE flag bit. Read the status register
- * will return the current state of ASRC.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRSTR - ASRC Status Register (RO)
+ *
+ * The ASRC status register (ASRSTR) is a 24-bit read-write register used by the processor core to
+ * examine the status of the ASRC block and clear the overload interrupt request and AOLE flag bit.
+ * Read the status register will return the current state of ASRC.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned AIDEA : 1; //!< Number of data in Input Data Buffer A is less than threshold  When set, this bit indicates that number of data still available in ASRDIRA is less than threshold and the processor can write data to ASRDIRA. When AIDEA is set, the ASRC generates data input A interrupt request to the processor, if enabled (that is, ASRCTR:ADIEA = 1). A DMA request is always generated when the AIDEA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AIDEB : 1; //!< Number of data in Input Data Buffer B is less than threshold  When set, this bit indicates that number of data still available in ASRDIRB is less than threshold and the processor can write data to ASRDIRB. When AIDEB is set, the ASRC generates data input B interrupt request to the processor, if enabled (that is, ASRCTR:ADIEB = 1). A DMA request is always generated when the AIDEB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AIDEC : 1; //!< Number of data in Input Data Buffer C is less than threshold  When set, this bit indicates that number of data still available in ASRDIRC is less than threshold and the processor can write data to ASRDIRC. When AIDEC is set, the ASRC generates data input C interrupt request to the processor, if enabled (that is, ASRCTR:ADIEC = 1). A DMA request is always generated when the AIDEC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AODFA : 1; //!< Number of data in Output Data Buffer A is greater than threshold  When set, this bit indicates that number of data already existing in ASRDORA is greater than threshold and the processor can read data from ASRDORA. When AODFA is set, the ASRC generates data output A interrupt request to the processor, if enabled (that is, ASRCTR:ADOEA = 1). A DMA request is always generated when the AODFA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AODFB : 1; //!< Number of data in Output Data Buffer B is greater than threshold  When set, this bit indicates that number of data already existing in ASRDORB is greater than threshold and the processor can read data from ASRDORB. When AODFB is set, the ASRC generates data output B interrupt request to the processor, if enabled (that is, ASRCTR:ADOEB = 1). A DMA request is always generated when the AODFB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AODFC : 1; //!< Number of data in Output Data Buffer C is greater than threshold  When set, this bit indicates that number of data already existing in ASRDORC is greater than threshold and the processor can read data from ASRDORC. When AODFC is set, the ASRC generates data output C interrupt request to the processor, if enabled (that is, ASRCTR:ADOEC = 1). A DMA request is always generated when the AODFC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AOLE : 1; //!< Overload Error Flag  When set, this bit indicates that the task rate is too high for the ASRC to handle. The reasons for overload may be:  - too high input clock frequency,  - too high output clock frequency,  - incorrect selection of the pre-filter,  - low ASRC processing clock,  - too many channels,  - underrun,  - or any combination of the reasons above.  Since the ASRC uses the same hardware resources to perform various tasks, the real reason for the overload is not straight forward, and it should be carefully analyzed by the programmer.  If ASRCTR:AOLIE=1, an interrupt will be proposed when this bit is set.  Write any value with this bit set as one into the status register will clear this bit and the interrupt request proposed by this bit.
-        unsigned FPWT : 1; //!< FP is in wait states  This bit is for debug only.  When set, this bit indicates that ASRC is in wait states.  When clear, this bit indicates that ASRC is not in wait states.  If ASRCTR:AFPWE=1 and ASRCTR:ASDBG=1, an interrupt will be proposed when this bit is set.
-        unsigned AIDUA : 1; //!< Input Data Buffer A has underflowed  When set, this bit indicates that input data buffer A has underflowed.  When clear, this bit indicates that input data buffer A has not underflowed.
-        unsigned AIDUB : 1; //!< Input Data Buffer B has underflowed  When set, this bit indicates that input data buffer B has underflowed.  When clear, this bit indicates that input data buffer B has not underflowed.
-        unsigned AIDUC : 1; //!< Input Data Buffer C has underflowed  When set, this bit indicates that input data buffer C has underflowed.  When clear, this bit indicates that input data buffer C has not underflowed.
-        unsigned AODOA : 1; //!< Output Data Buffer A has overflowed  When set, this bit indicates that output data buffer A has overflowed. When clear, this bit indicates that output data buffer A has not overflowed
-        unsigned AODOB : 1; //!< Output Data Buffer B has overflowed  When set, this bit indicates that output data buffer B has overflowed. When clear, this bit indicates that output data buffer B has not overflowed
-        unsigned AODOC : 1; //!< Output Data Buffer C has overflowed  When set, this bit indicates that output data buffer C has overflowed. When clear, this bit indicates that output data buffer C has not overflowed
-        unsigned AIOLA : 1; //!< Pair A Input Task Overload  When set, this bit indicates that pair A input task is oveloaded. This may help to check the reason why overload interrupt happens.  The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AIOLB : 1; //!< Pair B Input Task Overload  When set, this bit indicates that pair B input task is oveloaded. This may help to check the reason why overload interrupt happens.  The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AIOLC : 1; //!< Pair C Input Task Overload  When set, this bit indicates that pair C input task is oveloaded. This may help to check the reason why overload interrupt happens.  The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AOOLA : 1; //!< Pair A Output Task Overload  When set, this bit indicates that pair A output task is oveloaded. This may help to check the reason why overload interrupt happens.  The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AOOLB : 1; //!< Pair B Output Task Overload  When set, this bit indicates that pair B output task is oveloaded. This may help to check the reason why overload interrupt happens.  The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AOOLC : 1; //!< Pair C Output Task Overload  When set, this bit indicates that pair C output task is oveloaded. This may help to check the reason why overload interrupt happens.  The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned ATQOL : 1; //!< Task Queue FIFO overload  When set, this bit indicates that task queue FIFO logic is oveloaded. This may help to check the reason why overload interrupt happens.  The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned DSLCNT : 1; //!< DSL Counter Input to FIFO ready  When set, this bit indicates that new DSL counter information is stored in the internal ASRC FIFO. When clear, this bit indicates that new DSL counter information is in the process of storage into the internal ASRC FIFO.  When ASRIER:AFPWE=1, the rising edge of this signal will propose an interrupt request.  Writing any value with this bit set will clear the interrupt request proposed by the rising edge of this bit.
+        unsigned AIDEA : 1; //!< Number of data in Input Data Buffer A is less than threshold When set, this bit indicates that number of data still available in ASRDIRA is less than threshold and the processor can write data to ASRDIRA. When AIDEA is set, the ASRC generates data input A interrupt request to the processor, if enabled (that is, ASRCTR:ADIEA = 1). A DMA request is always generated when the AIDEA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
+        unsigned AIDEB : 1; //!< Number of data in Input Data Buffer B is less than threshold When set, this bit indicates that number of data still available in ASRDIRB is less than threshold and the processor can write data to ASRDIRB. When AIDEB is set, the ASRC generates data input B interrupt request to the processor, if enabled (that is, ASRCTR:ADIEB = 1). A DMA request is always generated when the AIDEB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
+        unsigned AIDEC : 1; //!< Number of data in Input Data Buffer C is less than threshold When set, this bit indicates that number of data still available in ASRDIRC is less than threshold and the processor can write data to ASRDIRC. When AIDEC is set, the ASRC generates data input C interrupt request to the processor, if enabled (that is, ASRCTR:ADIEC = 1). A DMA request is always generated when the AIDEC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
+        unsigned AODFA : 1; //!< Number of data in Output Data Buffer A is greater than threshold When set, this bit indicates that number of data already existing in ASRDORA is greater than threshold and the processor can read data from ASRDORA. When AODFA is set, the ASRC generates data output A interrupt request to the processor, if enabled (that is, ASRCTR:ADOEA = 1). A DMA request is always generated when the AODFA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
+        unsigned AODFB : 1; //!< Number of data in Output Data Buffer B is greater than threshold When set, this bit indicates that number of data already existing in ASRDORB is greater than threshold and the processor can read data from ASRDORB. When AODFB is set, the ASRC generates data output B interrupt request to the processor, if enabled (that is, ASRCTR:ADOEB = 1). A DMA request is always generated when the AODFB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
+        unsigned AODFC : 1; //!< Number of data in Output Data Buffer C is greater than threshold When set, this bit indicates that number of data already existing in ASRDORC is greater than threshold and the processor can read data from ASRDORC. When AODFC is set, the ASRC generates data output C interrupt request to the processor, if enabled (that is, ASRCTR:ADOEC = 1). A DMA request is always generated when the AODFC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
+        unsigned AOLE : 1; //!< Overload Error Flag When set, this bit indicates that the task rate is too high for the ASRC to handle. The reasons for overload may be: - too high input clock frequency, - too high output clock frequency, - incorrect selection of the pre-filter, - low ASRC processing clock, - too many channels, - underrun, - or any combination of the reasons above. Since the ASRC uses the same hardware resources to perform various tasks, the real reason for the overload is not straight forward, and it should be carefully analyzed by the programmer. If ASRCTR:AOLIE=1, an interrupt will be proposed when this bit is set. Write any value with this bit set as one into the status register will clear this bit and the interrupt request proposed by this bit.
+        unsigned FPWT : 1; //!< FP is in wait states This bit is for debug only. When set, this bit indicates that ASRC is in wait states. When clear, this bit indicates that ASRC is not in wait states. If ASRCTR:AFPWE=1 and ASRCTR:ASDBG=1, an interrupt will be proposed when this bit is set.
+        unsigned AIDUA : 1; //!< Input Data Buffer A has underflowed When set, this bit indicates that input data buffer A has underflowed. When clear, this bit indicates that input data buffer A has not underflowed.
+        unsigned AIDUB : 1; //!< Input Data Buffer B has underflowed When set, this bit indicates that input data buffer B has underflowed. When clear, this bit indicates that input data buffer B has not underflowed.
+        unsigned AIDUC : 1; //!< Input Data Buffer C has underflowed When set, this bit indicates that input data buffer C has underflowed. When clear, this bit indicates that input data buffer C has not underflowed.
+        unsigned AODOA : 1; //!< Output Data Buffer A has overflowed When set, this bit indicates that output data buffer A has overflowed. When clear, this bit indicates that output data buffer A has not overflowed
+        unsigned AODOB : 1; //!< Output Data Buffer B has overflowed When set, this bit indicates that output data buffer B has overflowed. When clear, this bit indicates that output data buffer B has not overflowed
+        unsigned AODOC : 1; //!< Output Data Buffer C has overflowed When set, this bit indicates that output data buffer C has overflowed. When clear, this bit indicates that output data buffer C has not overflowed
+        unsigned AIOLA : 1; //!< Pair A Input Task Overload When set, this bit indicates that pair A input task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
+        unsigned AIOLB : 1; //!< Pair B Input Task Overload When set, this bit indicates that pair B input task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
+        unsigned AIOLC : 1; //!< Pair C Input Task Overload When set, this bit indicates that pair C input task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
+        unsigned AOOLA : 1; //!< Pair A Output Task Overload When set, this bit indicates that pair A output task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
+        unsigned AOOLB : 1; //!< Pair B Output Task Overload When set, this bit indicates that pair B output task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
+        unsigned AOOLC : 1; //!< Pair C Output Task Overload When set, this bit indicates that pair C output task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
+        unsigned ATQOL : 1; //!< Task Queue FIFO overload When set, this bit indicates that task queue FIFO logic is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
+        unsigned DSLCNT : 1; //!< DSL Counter Input to FIFO ready When set, this bit indicates that new DSL counter information is stored in the internal ASRC FIFO. When clear, this bit indicates that new DSL counter information is in the process of storage into the internal ASRC FIFO. When ASRIER:AFPWE=1, the rising edge of this signal will propose an interrupt request. Writing any value with this bit set will clear the interrupt request proposed by the rising edge of this bit.
         unsigned RESERVED0 : 2; //!< Reserved. Should be written as zero for compatibility.
         unsigned RESERVED1 : 8; //!< 
     } B;
@@ -1423,491 +1705,265 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_ASRC_ASRSTR           (*(volatile hw_asrc_asrstr_t *) HW_ASRC_ASRSTR_ADDR)
 #define HW_ASRC_ASRSTR_RD()      (HW_ASRC_ASRSTR.U)
-#define HW_ASRC_ASRSTR_WR(v)     (HW_ASRC_ASRSTR.U = (v))
-#define HW_ASRC_ASRSTR_SET(v)    (HW_ASRC_ASRSTR_WR(HW_ASRC_ASRSTR_RD() |  (v)))
-#define HW_ASRC_ASRSTR_CLR(v)    (HW_ASRC_ASRSTR_WR(HW_ASRC_ASRSTR_RD() & ~(v)))
-#define HW_ASRC_ASRSTR_TOG(v)    (HW_ASRC_ASRSTR_WR(HW_ASRC_ASRSTR_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual ASRC_ASRSTR bitfields
  */
 
-/* --- Register HW_ASRC_ASRSTR, field AIDEA
+/* --- Register HW_ASRC_ASRSTR, field AIDEA (RO)
  *
- * Number of data in Input Data Buffer A is less than threshold  When set, this bit indicates that
- * number of data still available in                                 ASRDIRA is less than threshold
- * and the processor can write data to                                 ASRDIRA. When AIDEA is set,
- * the ASRC generates data input A                                 interrupt request to the
- * processor, if enabled (that is,                                 ASRCTR:ADIEA = 1). A DMA request
- * is always generated when the AIDEA                                 bit is set, but a DMA transfer
- * takes place only if a DMA channel is                                 active and triggered by this
- * event.
+ * Number of data in Input Data Buffer A is less than threshold When set, this bit indicates that
+ * number of data still available in ASRDIRA is less than threshold and the processor can write data
+ * to ASRDIRA. When AIDEA is set, the ASRC generates data input A interrupt request to the
+ * processor, if enabled (that is, ASRCTR:ADIEA = 1). A DMA request is always generated when the
+ * AIDEA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by
+ * this event.
  */
 
 #define BP_ASRC_ASRSTR_AIDEA      0
 #define BM_ASRC_ASRSTR_AIDEA      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIDEA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRSTR_AIDEA)
-#else
-#define BF_ASRC_ASRSTR_AIDEA(v)   (((v) << 0) & BM_ASRC_ASRSTR_AIDEA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIDEA(v)   BF_CS1(ASRC_ASRSTR, AIDEA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIDEB
+/* --- Register HW_ASRC_ASRSTR, field AIDEB (RO)
  *
- * Number of data in Input Data Buffer B is less than threshold  When set, this bit indicates that
- * number of data still available in                                 ASRDIRB is less than threshold
- * and the processor can write data to                                 ASRDIRB. When AIDEB is set,
- * the ASRC generates data input B                                 interrupt request to the
- * processor, if enabled (that is,                                 ASRCTR:ADIEB = 1). A DMA request
- * is always generated when the AIDEB                                 bit is set, but a DMA transfer
- * takes place only if a DMA channel is                                 active and triggered by this
- * event.
+ * Number of data in Input Data Buffer B is less than threshold When set, this bit indicates that
+ * number of data still available in ASRDIRB is less than threshold and the processor can write data
+ * to ASRDIRB. When AIDEB is set, the ASRC generates data input B interrupt request to the
+ * processor, if enabled (that is, ASRCTR:ADIEB = 1). A DMA request is always generated when the
+ * AIDEB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by
+ * this event.
  */
 
 #define BP_ASRC_ASRSTR_AIDEB      1
 #define BM_ASRC_ASRSTR_AIDEB      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIDEB(v)   ((((reg32_t) v) << 1) & BM_ASRC_ASRSTR_AIDEB)
-#else
-#define BF_ASRC_ASRSTR_AIDEB(v)   (((v) << 1) & BM_ASRC_ASRSTR_AIDEB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIDEB(v)   BF_CS1(ASRC_ASRSTR, AIDEB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIDEC
+/* --- Register HW_ASRC_ASRSTR, field AIDEC (RO)
  *
- * Number of data in Input Data Buffer C is less than threshold  When set, this bit indicates that
- * number of data still available in                                 ASRDIRC is less than threshold
- * and the processor can write data to                                 ASRDIRC. When AIDEC is set,
- * the ASRC generates data input C                                 interrupt request to the
- * processor, if enabled (that is,                                 ASRCTR:ADIEC = 1). A DMA request
- * is always generated when the AIDEC                                 bit is set, but a DMA transfer
- * takes place only if a DMA channel is                                 active and triggered by this
- * event.
+ * Number of data in Input Data Buffer C is less than threshold When set, this bit indicates that
+ * number of data still available in ASRDIRC is less than threshold and the processor can write data
+ * to ASRDIRC. When AIDEC is set, the ASRC generates data input C interrupt request to the
+ * processor, if enabled (that is, ASRCTR:ADIEC = 1). A DMA request is always generated when the
+ * AIDEC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by
+ * this event.
  */
 
 #define BP_ASRC_ASRSTR_AIDEC      2
 #define BM_ASRC_ASRSTR_AIDEC      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIDEC(v)   ((((reg32_t) v) << 2) & BM_ASRC_ASRSTR_AIDEC)
-#else
-#define BF_ASRC_ASRSTR_AIDEC(v)   (((v) << 2) & BM_ASRC_ASRSTR_AIDEC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIDEC(v)   BF_CS1(ASRC_ASRSTR, AIDEC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AODFA
+/* --- Register HW_ASRC_ASRSTR, field AODFA (RO)
  *
- * Number of data in Output Data Buffer A is greater than threshold  When set, this bit indicates
- * that number of data already existing in                                 ASRDORA is greater than
- * threshold and the processor can read data                                 from ASRDORA. When
- * AODFA is set, the ASRC generates data output A                                 interrupt request
- * to the processor, if enabled (that is,                                 ASRCTR:ADOEA = 1). A DMA
- * request is always generated when the AODFA                                 bit is set, but a DMA
- * transfer takes place only if a DMA channel is                                 active and
- * triggered by this event.
+ * Number of data in Output Data Buffer A is greater than threshold When set, this bit indicates
+ * that number of data already existing in ASRDORA is greater than threshold and the processor can
+ * read data from ASRDORA. When AODFA is set, the ASRC generates data output A interrupt request to
+ * the processor, if enabled (that is, ASRCTR:ADOEA = 1). A DMA request is always generated when the
+ * AODFA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by
+ * this event.
  */
 
 #define BP_ASRC_ASRSTR_AODFA      3
 #define BM_ASRC_ASRSTR_AODFA      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AODFA(v)   ((((reg32_t) v) << 3) & BM_ASRC_ASRSTR_AODFA)
-#else
-#define BF_ASRC_ASRSTR_AODFA(v)   (((v) << 3) & BM_ASRC_ASRSTR_AODFA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AODFA(v)   BF_CS1(ASRC_ASRSTR, AODFA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AODFB
+/* --- Register HW_ASRC_ASRSTR, field AODFB (RO)
  *
- * Number of data in Output Data Buffer B is greater than threshold  When set, this bit indicates
- * that number of data already existing in                                 ASRDORB is greater than
- * threshold and the processor can read data                                 from ASRDORB. When
- * AODFB is set, the ASRC generates data output B                                 interrupt request
- * to the processor, if enabled (that is,                                 ASRCTR:ADOEB = 1). A DMA
- * request is always generated when the AODFB                                 bit is set, but a DMA
- * transfer takes place only if a DMA channel is                                 active and
- * triggered by this event.
+ * Number of data in Output Data Buffer B is greater than threshold When set, this bit indicates
+ * that number of data already existing in ASRDORB is greater than threshold and the processor can
+ * read data from ASRDORB. When AODFB is set, the ASRC generates data output B interrupt request to
+ * the processor, if enabled (that is, ASRCTR:ADOEB = 1). A DMA request is always generated when the
+ * AODFB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by
+ * this event.
  */
 
 #define BP_ASRC_ASRSTR_AODFB      4
 #define BM_ASRC_ASRSTR_AODFB      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AODFB(v)   ((((reg32_t) v) << 4) & BM_ASRC_ASRSTR_AODFB)
-#else
-#define BF_ASRC_ASRSTR_AODFB(v)   (((v) << 4) & BM_ASRC_ASRSTR_AODFB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AODFB(v)   BF_CS1(ASRC_ASRSTR, AODFB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AODFC
+/* --- Register HW_ASRC_ASRSTR, field AODFC (RO)
  *
- * Number of data in Output Data Buffer C is greater than threshold  When set, this bit indicates
- * that number of data already existing in                                 ASRDORC is greater than
- * threshold and the processor can read data                                 from ASRDORC. When
- * AODFC is set, the ASRC generates data output C                                 interrupt request
- * to the processor, if enabled (that is,                                 ASRCTR:ADOEC = 1). A DMA
- * request is always generated when the AODFC                                 bit is set, but a DMA
- * transfer takes place only if a DMA channel is                                 active and
- * triggered by this event.
+ * Number of data in Output Data Buffer C is greater than threshold When set, this bit indicates
+ * that number of data already existing in ASRDORC is greater than threshold and the processor can
+ * read data from ASRDORC. When AODFC is set, the ASRC generates data output C interrupt request to
+ * the processor, if enabled (that is, ASRCTR:ADOEC = 1). A DMA request is always generated when the
+ * AODFC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by
+ * this event.
  */
 
 #define BP_ASRC_ASRSTR_AODFC      5
 #define BM_ASRC_ASRSTR_AODFC      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AODFC(v)   ((((reg32_t) v) << 5) & BM_ASRC_ASRSTR_AODFC)
-#else
-#define BF_ASRC_ASRSTR_AODFC(v)   (((v) << 5) & BM_ASRC_ASRSTR_AODFC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AODFC(v)   BF_CS1(ASRC_ASRSTR, AODFC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AOLE
+/* --- Register HW_ASRC_ASRSTR, field AOLE (RO)
  *
- * Overload Error Flag  When set, this bit indicates that the task rate is too high for the
- * ASRC to handle. The reasons for overload may be:  - too high input clock frequency,  - too high
- * output clock frequency,  - incorrect selection of the pre-filter,  - low ASRC processing clock,
- * - too many channels,  - underrun,  - or any combination of the reasons above.  Since the ASRC
- * uses the same hardware resources to perform various                                 tasks, the
- * real reason for the overload is not straight forward, and                                 it
- * should be carefully analyzed by the programmer.  If ASRCTR:AOLIE=1, an interrupt will be proposed
- * when this bit is                                 set.  Write any value with this bit set as one
- * into the status register                                 will clear this bit and the interrupt
- * request proposed by this                                 bit.
+ * Overload Error Flag When set, this bit indicates that the task rate is too high for the ASRC to
+ * handle. The reasons for overload may be: - too high input clock frequency, - too high output
+ * clock frequency, - incorrect selection of the pre-filter, - low ASRC processing clock, - too many
+ * channels, - underrun, - or any combination of the reasons above. Since the ASRC uses the same
+ * hardware resources to perform various tasks, the real reason for the overload is not straight
+ * forward, and it should be carefully analyzed by the programmer. If ASRCTR:AOLIE=1, an interrupt
+ * will be proposed when this bit is set. Write any value with this bit set as one into the status
+ * register will clear this bit and the interrupt request proposed by this bit.
  */
 
 #define BP_ASRC_ASRSTR_AOLE      6
 #define BM_ASRC_ASRSTR_AOLE      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AOLE(v)   ((((reg32_t) v) << 6) & BM_ASRC_ASRSTR_AOLE)
-#else
-#define BF_ASRC_ASRSTR_AOLE(v)   (((v) << 6) & BM_ASRC_ASRSTR_AOLE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AOLE(v)   BF_CS1(ASRC_ASRSTR, AOLE, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field FPWT
+/* --- Register HW_ASRC_ASRSTR, field FPWT (RO)
  *
- * FP is in wait states  This bit is for debug only.  When set, this bit indicates that ASRC is in
- * wait states.  When clear, this bit indicates that ASRC is not in wait states.  If ASRCTR:AFPWE=1
- * and ASRCTR:ASDBG=1, an interrupt will be proposed                                 when this bit
- * is set.
+ * FP is in wait states This bit is for debug only. When set, this bit indicates that ASRC is in
+ * wait states. When clear, this bit indicates that ASRC is not in wait states. If ASRCTR:AFPWE=1
+ * and ASRCTR:ASDBG=1, an interrupt will be proposed when this bit is set.
  */
 
 #define BP_ASRC_ASRSTR_FPWT      7
 #define BM_ASRC_ASRSTR_FPWT      0x00000080
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_FPWT(v)   ((((reg32_t) v) << 7) & BM_ASRC_ASRSTR_FPWT)
-#else
-#define BF_ASRC_ASRSTR_FPWT(v)   (((v) << 7) & BM_ASRC_ASRSTR_FPWT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_FPWT(v)   BF_CS1(ASRC_ASRSTR, FPWT, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIDUA
+/* --- Register HW_ASRC_ASRSTR, field AIDUA (RO)
  *
- * Input Data Buffer A has underflowed  When set, this bit indicates that input data buffer A has
- * underflowed.  When clear, this bit indicates that input data buffer A has not
- * underflowed.
+ * Input Data Buffer A has underflowed When set, this bit indicates that input data buffer A has
+ * underflowed. When clear, this bit indicates that input data buffer A has not underflowed.
  */
 
 #define BP_ASRC_ASRSTR_AIDUA      8
 #define BM_ASRC_ASRSTR_AIDUA      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIDUA(v)   ((((reg32_t) v) << 8) & BM_ASRC_ASRSTR_AIDUA)
-#else
-#define BF_ASRC_ASRSTR_AIDUA(v)   (((v) << 8) & BM_ASRC_ASRSTR_AIDUA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIDUA(v)   BF_CS1(ASRC_ASRSTR, AIDUA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIDUB
+/* --- Register HW_ASRC_ASRSTR, field AIDUB (RO)
  *
- * Input Data Buffer B has underflowed  When set, this bit indicates that input data buffer B has
- * underflowed.  When clear, this bit indicates that input data buffer B has not
- * underflowed.
+ * Input Data Buffer B has underflowed When set, this bit indicates that input data buffer B has
+ * underflowed. When clear, this bit indicates that input data buffer B has not underflowed.
  */
 
 #define BP_ASRC_ASRSTR_AIDUB      9
 #define BM_ASRC_ASRSTR_AIDUB      0x00000200
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIDUB(v)   ((((reg32_t) v) << 9) & BM_ASRC_ASRSTR_AIDUB)
-#else
-#define BF_ASRC_ASRSTR_AIDUB(v)   (((v) << 9) & BM_ASRC_ASRSTR_AIDUB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIDUB(v)   BF_CS1(ASRC_ASRSTR, AIDUB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIDUC
+/* --- Register HW_ASRC_ASRSTR, field AIDUC (RO)
  *
- * Input Data Buffer C has underflowed  When set, this bit indicates that input data buffer C has
- * underflowed.  When clear, this bit indicates that input data buffer C has not
- * underflowed.
+ * Input Data Buffer C has underflowed When set, this bit indicates that input data buffer C has
+ * underflowed. When clear, this bit indicates that input data buffer C has not underflowed.
  */
 
 #define BP_ASRC_ASRSTR_AIDUC      10
 #define BM_ASRC_ASRSTR_AIDUC      0x00000400
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIDUC(v)   ((((reg32_t) v) << 10) & BM_ASRC_ASRSTR_AIDUC)
-#else
-#define BF_ASRC_ASRSTR_AIDUC(v)   (((v) << 10) & BM_ASRC_ASRSTR_AIDUC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIDUC(v)   BF_CS1(ASRC_ASRSTR, AIDUC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AODOA
+/* --- Register HW_ASRC_ASRSTR, field AODOA (RO)
  *
- * Output Data Buffer A has overflowed  When set, this bit indicates that output data buffer A has
- * overflowed. When clear, this bit indicates that output data buffer A
- * has not overflowed
+ * Output Data Buffer A has overflowed When set, this bit indicates that output data buffer A has
+ * overflowed. When clear, this bit indicates that output data buffer A has not overflowed
  */
 
 #define BP_ASRC_ASRSTR_AODOA      11
 #define BM_ASRC_ASRSTR_AODOA      0x00000800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AODOA(v)   ((((reg32_t) v) << 11) & BM_ASRC_ASRSTR_AODOA)
-#else
-#define BF_ASRC_ASRSTR_AODOA(v)   (((v) << 11) & BM_ASRC_ASRSTR_AODOA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AODOA(v)   BF_CS1(ASRC_ASRSTR, AODOA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AODOB
+/* --- Register HW_ASRC_ASRSTR, field AODOB (RO)
  *
- * Output Data Buffer B has overflowed  When set, this bit indicates that output data buffer B has
- * overflowed. When clear, this bit indicates that output data buffer B
- * has not overflowed
+ * Output Data Buffer B has overflowed When set, this bit indicates that output data buffer B has
+ * overflowed. When clear, this bit indicates that output data buffer B has not overflowed
  */
 
 #define BP_ASRC_ASRSTR_AODOB      12
 #define BM_ASRC_ASRSTR_AODOB      0x00001000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AODOB(v)   ((((reg32_t) v) << 12) & BM_ASRC_ASRSTR_AODOB)
-#else
-#define BF_ASRC_ASRSTR_AODOB(v)   (((v) << 12) & BM_ASRC_ASRSTR_AODOB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AODOB(v)   BF_CS1(ASRC_ASRSTR, AODOB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AODOC
+/* --- Register HW_ASRC_ASRSTR, field AODOC (RO)
  *
- * Output Data Buffer C has overflowed  When set, this bit indicates that output data buffer C has
- * overflowed. When clear, this bit indicates that output data buffer C
- * has not overflowed
+ * Output Data Buffer C has overflowed When set, this bit indicates that output data buffer C has
+ * overflowed. When clear, this bit indicates that output data buffer C has not overflowed
  */
 
 #define BP_ASRC_ASRSTR_AODOC      13
 #define BM_ASRC_ASRSTR_AODOC      0x00002000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AODOC(v)   ((((reg32_t) v) << 13) & BM_ASRC_ASRSTR_AODOC)
-#else
-#define BF_ASRC_ASRSTR_AODOC(v)   (((v) << 13) & BM_ASRC_ASRSTR_AODOC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AODOC(v)   BF_CS1(ASRC_ASRSTR, AODOC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIOLA
+/* --- Register HW_ASRC_ASRSTR, field AIOLA (RO)
  *
- * Pair A Input Task Overload  When set, this bit indicates that pair A input task is oveloaded.
- * This may help to check the reason why overload interrupt                                 happens.
- * The bit is cleared when writing ASRCTR:AOLIE as 1.
+ * Pair A Input Task Overload When set, this bit indicates that pair A input task is oveloaded. This
+ * may help to check the reason why overload interrupt happens. The bit is cleared when writing
+ * ASRCTR:AOLIE as 1.
  */
 
 #define BP_ASRC_ASRSTR_AIOLA      14
 #define BM_ASRC_ASRSTR_AIOLA      0x00004000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIOLA(v)   ((((reg32_t) v) << 14) & BM_ASRC_ASRSTR_AIOLA)
-#else
-#define BF_ASRC_ASRSTR_AIOLA(v)   (((v) << 14) & BM_ASRC_ASRSTR_AIOLA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIOLA(v)   BF_CS1(ASRC_ASRSTR, AIOLA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIOLB
+/* --- Register HW_ASRC_ASRSTR, field AIOLB (RO)
  *
- * Pair B Input Task Overload  When set, this bit indicates that pair B input task is oveloaded.
- * This may help to check the reason why overload interrupt                                 happens.
- * The bit is cleared when writing ASRCTR:AOLIE as 1.
+ * Pair B Input Task Overload When set, this bit indicates that pair B input task is oveloaded. This
+ * may help to check the reason why overload interrupt happens. The bit is cleared when writing
+ * ASRCTR:AOLIE as 1.
  */
 
 #define BP_ASRC_ASRSTR_AIOLB      15
 #define BM_ASRC_ASRSTR_AIOLB      0x00008000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIOLB(v)   ((((reg32_t) v) << 15) & BM_ASRC_ASRSTR_AIOLB)
-#else
-#define BF_ASRC_ASRSTR_AIOLB(v)   (((v) << 15) & BM_ASRC_ASRSTR_AIOLB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIOLB(v)   BF_CS1(ASRC_ASRSTR, AIOLB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AIOLC
+/* --- Register HW_ASRC_ASRSTR, field AIOLC (RO)
  *
- * Pair C Input Task Overload  When set, this bit indicates that pair C input task is oveloaded.
- * This may help to check the reason why overload interrupt                                 happens.
- * The bit is cleared when writing ASRCTR:AOLIE as 1.
+ * Pair C Input Task Overload When set, this bit indicates that pair C input task is oveloaded. This
+ * may help to check the reason why overload interrupt happens. The bit is cleared when writing
+ * ASRCTR:AOLIE as 1.
  */
 
 #define BP_ASRC_ASRSTR_AIOLC      16
 #define BM_ASRC_ASRSTR_AIOLC      0x00010000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AIOLC(v)   ((((reg32_t) v) << 16) & BM_ASRC_ASRSTR_AIOLC)
-#else
-#define BF_ASRC_ASRSTR_AIOLC(v)   (((v) << 16) & BM_ASRC_ASRSTR_AIOLC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AIOLC(v)   BF_CS1(ASRC_ASRSTR, AIOLC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AOOLA
+/* --- Register HW_ASRC_ASRSTR, field AOOLA (RO)
  *
- * Pair A Output Task Overload  When set, this bit indicates that pair A output task is oveloaded.
- * This may help to check the reason why overload interrupt                                 happens.
- * The bit is cleared when writing ASRCTR:AOLIE as 1.
+ * Pair A Output Task Overload When set, this bit indicates that pair A output task is oveloaded.
+ * This may help to check the reason why overload interrupt happens. The bit is cleared when writing
+ * ASRCTR:AOLIE as 1.
  */
 
 #define BP_ASRC_ASRSTR_AOOLA      17
 #define BM_ASRC_ASRSTR_AOOLA      0x00020000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AOOLA(v)   ((((reg32_t) v) << 17) & BM_ASRC_ASRSTR_AOOLA)
-#else
-#define BF_ASRC_ASRSTR_AOOLA(v)   (((v) << 17) & BM_ASRC_ASRSTR_AOOLA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AOOLA(v)   BF_CS1(ASRC_ASRSTR, AOOLA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AOOLB
+/* --- Register HW_ASRC_ASRSTR, field AOOLB (RO)
  *
- * Pair B Output Task Overload  When set, this bit indicates that pair B output task is oveloaded.
- * This may help to check the reason why overload interrupt                                 happens.
- * The bit is cleared when writing ASRCTR:AOLIE as 1.
+ * Pair B Output Task Overload When set, this bit indicates that pair B output task is oveloaded.
+ * This may help to check the reason why overload interrupt happens. The bit is cleared when writing
+ * ASRCTR:AOLIE as 1.
  */
 
 #define BP_ASRC_ASRSTR_AOOLB      18
 #define BM_ASRC_ASRSTR_AOOLB      0x00040000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AOOLB(v)   ((((reg32_t) v) << 18) & BM_ASRC_ASRSTR_AOOLB)
-#else
-#define BF_ASRC_ASRSTR_AOOLB(v)   (((v) << 18) & BM_ASRC_ASRSTR_AOOLB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AOOLB(v)   BF_CS1(ASRC_ASRSTR, AOOLB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field AOOLC
+/* --- Register HW_ASRC_ASRSTR, field AOOLC (RO)
  *
- * Pair C Output Task Overload  When set, this bit indicates that pair C output task is oveloaded.
- * This may help to check the reason why overload interrupt                                 happens.
- * The bit is cleared when writing ASRCTR:AOLIE as 1.
+ * Pair C Output Task Overload When set, this bit indicates that pair C output task is oveloaded.
+ * This may help to check the reason why overload interrupt happens. The bit is cleared when writing
+ * ASRCTR:AOLIE as 1.
  */
 
 #define BP_ASRC_ASRSTR_AOOLC      19
 #define BM_ASRC_ASRSTR_AOOLC      0x00080000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_AOOLC(v)   ((((reg32_t) v) << 19) & BM_ASRC_ASRSTR_AOOLC)
-#else
-#define BF_ASRC_ASRSTR_AOOLC(v)   (((v) << 19) & BM_ASRC_ASRSTR_AOOLC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_AOOLC(v)   BF_CS1(ASRC_ASRSTR, AOOLC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field ATQOL
+/* --- Register HW_ASRC_ASRSTR, field ATQOL (RO)
  *
- * Task Queue FIFO overload  When set, this bit indicates that task queue FIFO logic is oveloaded.
- * This may help to check the reason why overload interrupt                                 happens.
- * The bit is cleared when writing ASRCTR:AOLIE as 1.
+ * Task Queue FIFO overload When set, this bit indicates that task queue FIFO logic is oveloaded.
+ * This may help to check the reason why overload interrupt happens. The bit is cleared when writing
+ * ASRCTR:AOLIE as 1.
  */
 
 #define BP_ASRC_ASRSTR_ATQOL      20
 #define BM_ASRC_ASRSTR_ATQOL      0x00100000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_ATQOL(v)   ((((reg32_t) v) << 20) & BM_ASRC_ASRSTR_ATQOL)
-#else
-#define BF_ASRC_ASRSTR_ATQOL(v)   (((v) << 20) & BM_ASRC_ASRSTR_ATQOL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_ATQOL(v)   BF_CS1(ASRC_ASRSTR, ATQOL, v)
-#endif
-
-/* --- Register HW_ASRC_ASRSTR, field DSLCNT
+/* --- Register HW_ASRC_ASRSTR, field DSLCNT (RO)
  *
- * DSL Counter Input to FIFO ready  When set, this bit indicates that new DSL counter information is
- * stored in the internal ASRC FIFO. When clear, this bit indicates that
- * new DSL counter information is in the process of storage into the
- * internal ASRC FIFO.  When ASRIER:AFPWE=1, the rising edge of this signal will propose an
- * interrupt request.  Writing any value with this bit set will clear the interrupt request
- * proposed by the rising edge of this bit.
+ * DSL Counter Input to FIFO ready When set, this bit indicates that new DSL counter information is
+ * stored in the internal ASRC FIFO. When clear, this bit indicates that new DSL counter information
+ * is in the process of storage into the internal ASRC FIFO. When ASRIER:AFPWE=1, the rising edge of
+ * this signal will propose an interrupt request. Writing any value with this bit set will clear the
+ * interrupt request proposed by the rising edge of this bit.
  */
 
 #define BP_ASRC_ASRSTR_DSLCNT      21
 #define BM_ASRC_ASRSTR_DSLCNT      0x00200000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRSTR_DSLCNT(v)   ((((reg32_t) v) << 21) & BM_ASRC_ASRSTR_DSLCNT)
-#else
-#define BF_ASRC_ASRSTR_DSLCNT(v)   (((v) << 21) & BM_ASRC_ASRSTR_DSLCNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRSTR_DSLCNT(v)   BF_CS1(ASRC_ASRSTR, DSLCNT, v)
-#endif
-
 /*!
- * @brief HW_ASRC_ASRPMN - ASRC Parameter Register n
+ * @brief HW_ASRC_ASRPMN - ASRC Parameter Register n (RW)
  *
  * Parameter registers determine the performance of ASRC.  The parameter registers must be
- * initialized by software before ASRC is                             enabled. Recommended values
- * are given in ASRC Misc Control Register 1 for                                 Pair C below,
- * ASRC Parameter Registers (ASRPM1~ASRPM5)          Register  Offset  Access  Reset Value
- * Recommend Value      asrcpm1  0x40  R/W  0x00_0000  0x7fffff    asrcpm2  0x44  R/W  0x00_0000
- * 0x255555    asrcpm3  0x48  R/W  0x00_0000  0xff7280    asrcpm4  0x4C  R/W  0x00_0000  0xff7280
- * asrcpm5  0x50  R/W  0x00_0000  0xff7280
+ * initialized by software before ASRC is enabled. Recommended values are given in ASRC Misc Control
+ * Register 1 for Pair C below,   ASRC Parameter Registers (ASRPM1~ASRPM5)          Register  Offset
+ * Access  Reset Value  Recommend Value      asrcpm1  0x40  R/W  0x00_0000  0x7fffff    asrcpm2
+ * 0x44  R/W  0x00_0000  0x255555    asrcpm3  0x48  R/W  0x00_0000  0xff7280    asrcpm4  0x4C  R/W
+ * 0x00_0000  0xff7280    asrcpm5  0x50  R/W  0x00_0000  0xff7280
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned PARAMETER_VALUE : 24; //!< See recommended values table.
@@ -1930,12 +1986,11 @@ typedef union
 #define HW_ASRC_ASRPMN_TOG(v)    (HW_ASRC_ASRPMN_WR(HW_ASRC_ASRPMN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRPMN bitfields
  */
 
-/* --- Register HW_ASRC_ASRPMN, field PARAMETER_VALUE
+/* --- Register HW_ASRC_ASRPMN, field PARAMETER_VALUE (RW)
  *
  * See recommended values table.
  */
@@ -1949,19 +2004,20 @@ typedef union
 #define BF_ASRC_ASRPMN_PARAMETER_VALUE(v)   (((v) << 0) & BM_ASRC_ASRPMN_PARAMETER_VALUE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PARAMETER_VALUE field to a new value.
 #define BW_ASRC_ASRPMN_PARAMETER_VALUE(v)   BF_CS1(ASRC_ASRPMN, PARAMETER_VALUE, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRTFR1 - ASRC ASRC Task Queue FIFO Register 1
- *
- * These registers define and show The register defines and                                 shows
- * the parameters for ASRC inner task queue FIFOs.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRTFR1 - ASRC ASRC Task Queue FIFO Register 1 (RW)
+ *
+ * These registers define and show The register defines and shows the parameters for ASRC inner task
+ * queue FIFOs.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 6; //!< Reserved. Should be written as zero for compatibility.
@@ -1987,12 +2043,11 @@ typedef union
 #define HW_ASRC_ASRTFR1_TOG(v)    (HW_ASRC_ASRTFR1_WR(HW_ASRC_ASRTFR1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRTFR1 bitfields
  */
 
-/* --- Register HW_ASRC_ASRTFR1, field TF_BASE
+/* --- Register HW_ASRC_ASRTFR1, field TF_BASE (RW)
  *
  * Base address for task queue FIFO. Set to 0x7C.
  */
@@ -2006,10 +2061,11 @@ typedef union
 #define BF_ASRC_ASRTFR1_TF_BASE(v)   (((v) << 6) & BM_ASRC_ASRTFR1_TF_BASE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TF_BASE field to a new value.
 #define BW_ASRC_ASRTFR1_TF_BASE(v)   BF_CS1(ASRC_ASRTFR1, TF_BASE, v)
 #endif
 
-/* --- Register HW_ASRC_ASRTFR1, field TF_FILL
+/* --- Register HW_ASRC_ASRTFR1, field TF_FILL (RO)
  *
  * Current number of entries in task queue FIFO.
  */
@@ -2018,34 +2074,24 @@ typedef union
 #define BM_ASRC_ASRTFR1_TF_FILL      0x000fe000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRTFR1_TF_FILL(v)   ((((reg32_t) v) << 13) & BM_ASRC_ASRTFR1_TF_FILL)
-#else
-#define BF_ASRC_ASRTFR1_TF_FILL(v)   (((v) << 13) & BM_ASRC_ASRTFR1_TF_FILL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRTFR1_TF_FILL(v)   BF_CS1(ASRC_ASRTFR1, TF_FILL, v)
-#endif
-
 /*!
- * @brief HW_ASRC_ASRCCR - ASRC Channel Counter Register
+ * @brief HW_ASRC_ASRCCR - ASRC Channel Counter Register (RW)
  *
- * The ASRC channel counter register (ASRCCR) is a 24-bit read/write
- * register that sets and reflects the current specific input/output FIFO
- * being accessed through shared peripheral bus for each ASRC conversion
- * pair.
+ * The ASRC channel counter register (ASRCCR) is a 24-bit read/write register that sets and reflects
+ * the current specific input/output FIFO being accessed through shared peripheral bus for each ASRC
+ * conversion pair.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned ACIA : 4; //!< The channel counter for Pair A's input FIFO  These bits stand for the current channel being accessed through shared peripheral bus for Pair A's input FIFO's usage. The value can be any value between [0, ANCA-1]
-        unsigned ACIB : 4; //!< The channel counter for Pair B's input FIFO  These bits stand for the current channel being accessed through shared peripheral bus for Pair B's input FIFO's usage. The value can be any value between [0, ANCB-1]
-        unsigned ACIC : 4; //!< The channel counter for Pair C's input FIFO  These bits stand for the current channel being accessed through shared peripheral bus for Pair C's input FIFO's usage. The value can be any value between [0, ANCC-1]
-        unsigned ACOA : 4; //!< The channel counter for Pair A's output FIFO  These bits stand for the current channel being accessed through shared peripheral bus for Pair A's output FIFO's usage. The value can be any value between [0, ANCA-1]
-        unsigned ACOB : 4; //!< The channel counter for Pair B's output FIFO  These bits stand for the current channel being accessed through shared peripheral bus for Pair B's output FIFO's usage. The value can be any value between [0, ANCB-1]
-        unsigned ACOC : 4; //!< The channel counter for Pair C's output FIFO  These bits stand for the current channel being accessed through shared peripheral bus for Pair C's output FIFO's usage. The value can be any value between [0, ANCC-1]
+        unsigned ACIA : 4; //!< The channel counter for Pair A's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair A's input FIFO's usage. The value can be any value between [0, ANCA-1]
+        unsigned ACIB : 4; //!< The channel counter for Pair B's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair B's input FIFO's usage. The value can be any value between [0, ANCB-1]
+        unsigned ACIC : 4; //!< The channel counter for Pair C's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair C's input FIFO's usage. The value can be any value between [0, ANCC-1]
+        unsigned ACOA : 4; //!< The channel counter for Pair A's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair A's output FIFO's usage. The value can be any value between [0, ANCA-1]
+        unsigned ACOB : 4; //!< The channel counter for Pair B's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair B's output FIFO's usage. The value can be any value between [0, ANCB-1]
+        unsigned ACOC : 4; //!< The channel counter for Pair C's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair C's output FIFO's usage. The value can be any value between [0, ANCC-1]
         unsigned RESERVED0 : 8; //!< 
     } B;
 } hw_asrc_asrccr_t;
@@ -2065,16 +2111,15 @@ typedef union
 #define HW_ASRC_ASRCCR_TOG(v)    (HW_ASRC_ASRCCR_WR(HW_ASRC_ASRCCR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRCCR bitfields
  */
 
-/* --- Register HW_ASRC_ASRCCR, field ACIA
+/* --- Register HW_ASRC_ASRCCR, field ACIA (RW)
  *
- * The channel counter for Pair A's input FIFO  These bits stand for the current channel being
- * accessed through                                 shared peripheral bus for Pair A's input FIFO's
- * usage. The value can                                 be any value between [0, ANCA-1]
+ * The channel counter for Pair A's input FIFO These bits stand for the current channel being
+ * accessed through shared peripheral bus for Pair A's input FIFO's usage. The value can be any
+ * value between [0, ANCA-1]
  */
 
 #define BP_ASRC_ASRCCR_ACIA      0
@@ -2086,14 +2131,15 @@ typedef union
 #define BF_ASRC_ASRCCR_ACIA(v)   (((v) << 0) & BM_ASRC_ASRCCR_ACIA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ACIA field to a new value.
 #define BW_ASRC_ASRCCR_ACIA(v)   BF_CS1(ASRC_ASRCCR, ACIA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCCR, field ACIB
+/* --- Register HW_ASRC_ASRCCR, field ACIB (RW)
  *
- * The channel counter for Pair B's input FIFO  These bits stand for the current channel being
- * accessed through                                 shared peripheral bus for Pair B's input FIFO's
- * usage. The value can                                 be any value between [0, ANCB-1]
+ * The channel counter for Pair B's input FIFO These bits stand for the current channel being
+ * accessed through shared peripheral bus for Pair B's input FIFO's usage. The value can be any
+ * value between [0, ANCB-1]
  */
 
 #define BP_ASRC_ASRCCR_ACIB      4
@@ -2105,14 +2151,15 @@ typedef union
 #define BF_ASRC_ASRCCR_ACIB(v)   (((v) << 4) & BM_ASRC_ASRCCR_ACIB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ACIB field to a new value.
 #define BW_ASRC_ASRCCR_ACIB(v)   BF_CS1(ASRC_ASRCCR, ACIB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCCR, field ACIC
+/* --- Register HW_ASRC_ASRCCR, field ACIC (RW)
  *
- * The channel counter for Pair C's input FIFO  These bits stand for the current channel being
- * accessed through                                 shared peripheral bus for Pair C's input FIFO's
- * usage. The value can                                 be any value between [0, ANCC-1]
+ * The channel counter for Pair C's input FIFO These bits stand for the current channel being
+ * accessed through shared peripheral bus for Pair C's input FIFO's usage. The value can be any
+ * value between [0, ANCC-1]
  */
 
 #define BP_ASRC_ASRCCR_ACIC      8
@@ -2124,14 +2171,15 @@ typedef union
 #define BF_ASRC_ASRCCR_ACIC(v)   (((v) << 8) & BM_ASRC_ASRCCR_ACIC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ACIC field to a new value.
 #define BW_ASRC_ASRCCR_ACIC(v)   BF_CS1(ASRC_ASRCCR, ACIC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCCR, field ACOA
+/* --- Register HW_ASRC_ASRCCR, field ACOA (RW)
  *
- * The channel counter for Pair A's output FIFO  These bits stand for the current channel being
- * accessed through                                 shared peripheral bus for Pair A's output FIFO's
- * usage. The value                                 can be any value between [0, ANCA-1]
+ * The channel counter for Pair A's output FIFO These bits stand for the current channel being
+ * accessed through shared peripheral bus for Pair A's output FIFO's usage. The value can be any
+ * value between [0, ANCA-1]
  */
 
 #define BP_ASRC_ASRCCR_ACOA      12
@@ -2143,14 +2191,15 @@ typedef union
 #define BF_ASRC_ASRCCR_ACOA(v)   (((v) << 12) & BM_ASRC_ASRCCR_ACOA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ACOA field to a new value.
 #define BW_ASRC_ASRCCR_ACOA(v)   BF_CS1(ASRC_ASRCCR, ACOA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCCR, field ACOB
+/* --- Register HW_ASRC_ASRCCR, field ACOB (RW)
  *
- * The channel counter for Pair B's output FIFO  These bits stand for the current channel being
- * accessed through                                 shared peripheral bus for Pair B's output FIFO's
- * usage. The value                                 can be any value between [0, ANCB-1]
+ * The channel counter for Pair B's output FIFO These bits stand for the current channel being
+ * accessed through shared peripheral bus for Pair B's output FIFO's usage. The value can be any
+ * value between [0, ANCB-1]
  */
 
 #define BP_ASRC_ASRCCR_ACOB      16
@@ -2162,14 +2211,15 @@ typedef union
 #define BF_ASRC_ASRCCR_ACOB(v)   (((v) << 16) & BM_ASRC_ASRCCR_ACOB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ACOB field to a new value.
 #define BW_ASRC_ASRCCR_ACOB(v)   BF_CS1(ASRC_ASRCCR, ACOB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRCCR, field ACOC
+/* --- Register HW_ASRC_ASRCCR, field ACOC (RW)
  *
- * The channel counter for Pair C's output FIFO  These bits stand for the current channel being
- * accessed through                                 shared peripheral bus for Pair C's output FIFO's
- * usage. The value                                 can be any value between [0, ANCC-1]
+ * The channel counter for Pair C's output FIFO These bits stand for the current channel being
+ * accessed through shared peripheral bus for Pair C's output FIFO's usage. The value can be any
+ * value between [0, ANCC-1]
  */
 
 #define BP_ASRC_ASRCCR_ACOC      20
@@ -2181,20 +2231,21 @@ typedef union
 #define BF_ASRC_ASRCCR_ACOC(v)   (((v) << 20) & BM_ASRC_ASRCCR_ACOC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ACOC field to a new value.
 #define BW_ASRC_ASRCCR_ACOC(v)   BF_CS1(ASRC_ASRCCR, ACOC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRDI - ASRC Data Input Register for Pair
- *
- * These registers are the interface registers for the audio data input of
- * pair A,B,C respectively. They are backed by FIFOs.  The usage of these registers is shown in
- * "xref to                             56898: Heading5: 1.2.3.2.1 Data Input Modes"
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRDI - ASRC Data Input Register for Pair (WO)
+ *
+ * These registers are the interface registers for the audio data input of pair A,B,C respectively.
+ * They are backed by FIFOs.  The usage of these registers is shown in "xref to 56898: Heading5:
+ * 1.2.3.2.1 Data Input Modes"
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned DATA : 24; //!< Audio data input
@@ -2210,19 +2261,14 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_ASRC_ASRDI           (*(volatile hw_asrc_asrdi_t *) HW_ASRC_ASRDI_ADDR)
-#define HW_ASRC_ASRDI_RD()      (HW_ASRC_ASRDI.U)
 #define HW_ASRC_ASRDI_WR(v)     (HW_ASRC_ASRDI.U = (v))
-#define HW_ASRC_ASRDI_SET(v)    (HW_ASRC_ASRDI_WR(HW_ASRC_ASRDI_RD() |  (v)))
-#define HW_ASRC_ASRDI_CLR(v)    (HW_ASRC_ASRDI_WR(HW_ASRC_ASRDI_RD() & ~(v)))
-#define HW_ASRC_ASRDI_TOG(v)    (HW_ASRC_ASRDI_WR(HW_ASRC_ASRDI_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual ASRC_ASRDI bitfields
  */
 
-/* --- Register HW_ASRC_ASRDI, field DATA
+/* --- Register HW_ASRC_ASRDI, field DATA (WO)
  *
  * Audio data input
  */
@@ -2236,20 +2282,20 @@ typedef union
 #define BF_ASRC_ASRDI_DATA(v)   (((v) << 0) & BM_ASRC_ASRDI_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA field to a new value.
 #define BW_ASRC_ASRDI_DATA(v)   BF_CS1(ASRC_ASRDI, DATA, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRDO - ASRC Data Output Register for Pair
- *
- * These registers are the interface registers for the audio data output of
- * pair A,B,C respectively. They are backed by FIFOs.  The usage of these registers is shown in xref
- * to                             "Data Output modes."
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRDO - ASRC Data Output Register for Pair (RO)
+ *
+ * These registers are the interface registers for the audio data output of pair A,B,C respectively.
+ * They are backed by FIFOs.  The usage of these registers is shown in xref to "Data Output modes."
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned DATA : 24; //!< Audio data output
@@ -2266,18 +2312,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_ASRC_ASRDO           (*(volatile hw_asrc_asrdo_t *) HW_ASRC_ASRDO_ADDR)
 #define HW_ASRC_ASRDO_RD()      (HW_ASRC_ASRDO.U)
-#define HW_ASRC_ASRDO_WR(v)     (HW_ASRC_ASRDO.U = (v))
-#define HW_ASRC_ASRDO_SET(v)    (HW_ASRC_ASRDO_WR(HW_ASRC_ASRDO_RD() |  (v)))
-#define HW_ASRC_ASRDO_CLR(v)    (HW_ASRC_ASRDO_WR(HW_ASRC_ASRDO_RD() & ~(v)))
-#define HW_ASRC_ASRDO_TOG(v)    (HW_ASRC_ASRDO_WR(HW_ASRC_ASRDO_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual ASRC_ASRDO bitfields
  */
 
-/* --- Register HW_ASRC_ASRDO, field DATA
+/* --- Register HW_ASRC_ASRDO, field DATA (RO)
  *
  * Audio data output
  */
@@ -2286,26 +2327,16 @@ typedef union
 #define BM_ASRC_ASRDO_DATA      0x00ffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRDO_DATA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRDO_DATA)
-#else
-#define BF_ASRC_ASRDO_DATA(v)   (((v) << 0) & BM_ASRC_ASRDO_DATA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRDO_DATA(v)   BF_CS1(ASRC_ASRDO, DATA, v)
-#endif
-
 /*!
- * @brief HW_ASRC_ASRIDRHA - ASRC Ideal Ratio for Pair A-High Part
+ * @brief HW_ASRC_ASRIDRHA - ASRC Ideal Ratio for Pair A-High Part (RW)
  *
- * The ideal ratio registers                             (ASRIDRHA, ASRIDRLA) hold the ratio value
- * IDRATIOA. IDRATIOA =                                 Fs inA /Fs outA = Ts outA /Ts inA is a
- * 32-bit fixed point value with 26 fractional bits. This value                             is only
- * useful when ASRCTR:{USRA, IDRA}=2'b11.
+ * The ideal ratio registers (ASRIDRHA, ASRIDRLA) hold the ratio value IDRATIOA. IDRATIOA = Fs inA
+ * /Fs outA = Ts outA /Ts inA is a 32-bit fixed point value with 26 fractional bits. This value is
+ * only useful when ASRCTR:{USRA, IDRA}=2'b11.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IDRATIOA : 8; //!< IDRATIOA[31:24]. High part of ideal ratio value for pair A
@@ -2329,12 +2360,11 @@ typedef union
 #define HW_ASRC_ASRIDRHA_TOG(v)    (HW_ASRC_ASRIDRHA_WR(HW_ASRC_ASRIDRHA_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRIDRHA bitfields
  */
 
-/* --- Register HW_ASRC_ASRIDRHA, field IDRATIOA
+/* --- Register HW_ASRC_ASRIDRHA, field IDRATIOA (RW)
  *
  * IDRATIOA[31:24]. High part of ideal ratio value for pair A
  */
@@ -2348,21 +2378,21 @@ typedef union
 #define BF_ASRC_ASRIDRHA_IDRATIOA(v)   (((v) << 0) & BM_ASRC_ASRIDRHA_IDRATIOA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRATIOA field to a new value.
 #define BW_ASRC_ASRIDRHA_IDRATIOA(v)   BF_CS1(ASRC_ASRIDRHA, IDRATIOA, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRIDRLA - ASRC Ideal Ratio for Pair A -Low Part
- *
- * The ideal ratio registers                             (ASRIDRHA, ASRIDRLA) hold the ratio value
- * IDRATIOA. IDRATIOA =                                 Fs inA /Fs outA = Ts outA /Ts inA is a
- * 32-bit fixed point value with 26 fractional bits. This value                             is only
- * useful when ASRCTR:{USRA, IDRA}=2'b11.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRIDRLA - ASRC Ideal Ratio for Pair A -Low Part (RW)
+ *
+ * The ideal ratio registers (ASRIDRHA, ASRIDRLA) hold the ratio value IDRATIOA. IDRATIOA = Fs inA
+ * /Fs outA = Ts outA /Ts inA is a 32-bit fixed point value with 26 fractional bits. This value is
+ * only useful when ASRCTR:{USRA, IDRA}=2'b11.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IDRATIOA : 24; //!< IDRATIOA[23:0]. Low part of ideal ratio value for pair A
@@ -2385,12 +2415,11 @@ typedef union
 #define HW_ASRC_ASRIDRLA_TOG(v)    (HW_ASRC_ASRIDRLA_WR(HW_ASRC_ASRIDRLA_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRIDRLA bitfields
  */
 
-/* --- Register HW_ASRC_ASRIDRLA, field IDRATIOA
+/* --- Register HW_ASRC_ASRIDRLA, field IDRATIOA (RW)
  *
  * IDRATIOA[23:0]. Low part of ideal ratio value for pair A
  */
@@ -2404,21 +2433,21 @@ typedef union
 #define BF_ASRC_ASRIDRLA_IDRATIOA(v)   (((v) << 0) & BM_ASRC_ASRIDRLA_IDRATIOA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRATIOA field to a new value.
 #define BW_ASRC_ASRIDRLA_IDRATIOA(v)   BF_CS1(ASRC_ASRIDRLA, IDRATIOA, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRIDRHB - ASRC Ideal Ratio for Pair B-High Part
- *
- * The ideal ratio registers (ASRIDRHB, ASRIDRLB) hold the ratio value
- * IDRATIOB. IDRATIOB = Fs inB /Fs outB =                                 Ts outB /Ts inB is a
- * 32-bit fixed point value                             with 26 fractional bits. This value is only
- * useful when ASRCTR:{USRB,                             IDRB}=2'b11.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRIDRHB - ASRC Ideal Ratio for Pair B-High Part (RW)
+ *
+ * The ideal ratio registers (ASRIDRHB, ASRIDRLB) hold the ratio value IDRATIOB. IDRATIOB = Fs inB
+ * /Fs outB = Ts outB /Ts inB is a 32-bit fixed point value with 26 fractional bits. This value is
+ * only useful when ASRCTR:{USRB, IDRB}=2'b11.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IDRATIOB : 8; //!< IDRATIOB[31:24]. High part of ideal ratio value for pair B.
@@ -2442,12 +2471,11 @@ typedef union
 #define HW_ASRC_ASRIDRHB_TOG(v)    (HW_ASRC_ASRIDRHB_WR(HW_ASRC_ASRIDRHB_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRIDRHB bitfields
  */
 
-/* --- Register HW_ASRC_ASRIDRHB, field IDRATIOB
+/* --- Register HW_ASRC_ASRIDRHB, field IDRATIOB (RW)
  *
  * IDRATIOB[31:24]. High part of ideal ratio value for pair B.
  */
@@ -2461,21 +2489,21 @@ typedef union
 #define BF_ASRC_ASRIDRHB_IDRATIOB(v)   (((v) << 0) & BM_ASRC_ASRIDRHB_IDRATIOB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRATIOB field to a new value.
 #define BW_ASRC_ASRIDRHB_IDRATIOB(v)   BF_CS1(ASRC_ASRIDRHB, IDRATIOB, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRIDRLB - ASRC Ideal Ratio for Pair B-Low Part
- *
- * The ideal ratio registers (ASRIDRHB, ASRIDRLB) hold the ratio value
- * IDRATIOB. IDRATIOB = Fs inB /Fs outB =                                 Ts outB /Ts inB is a
- * 32-bit fixed point value                             with 26 fractional bits. This value is only
- * useful when ASRCTR:{USRB,                             IDRB}=2'b11.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRIDRLB - ASRC Ideal Ratio for Pair B-Low Part (RW)
+ *
+ * The ideal ratio registers (ASRIDRHB, ASRIDRLB) hold the ratio value IDRATIOB. IDRATIOB = Fs inB
+ * /Fs outB = Ts outB /Ts inB is a 32-bit fixed point value with 26 fractional bits. This value is
+ * only useful when ASRCTR:{USRB, IDRB}=2'b11.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IDRATIOB : 24; //!< IDRATIOB[23:0]. Low part of ideal ratio value for pair B.
@@ -2498,12 +2526,11 @@ typedef union
 #define HW_ASRC_ASRIDRLB_TOG(v)    (HW_ASRC_ASRIDRLB_WR(HW_ASRC_ASRIDRLB_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRIDRLB bitfields
  */
 
-/* --- Register HW_ASRC_ASRIDRLB, field IDRATIOB
+/* --- Register HW_ASRC_ASRIDRLB, field IDRATIOB (RW)
  *
  * IDRATIOB[23:0]. Low part of ideal ratio value for pair B.
  */
@@ -2517,21 +2544,21 @@ typedef union
 #define BF_ASRC_ASRIDRLB_IDRATIOB(v)   (((v) << 0) & BM_ASRC_ASRIDRLB_IDRATIOB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRATIOB field to a new value.
 #define BW_ASRC_ASRIDRLB_IDRATIOB(v)   BF_CS1(ASRC_ASRIDRLB, IDRATIOB, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRIDRHC - ASRC Ideal Ratio for Pair C-High Part
- *
- * The ideal ratio registers (ASRIDRHC, ASRIDRLC) hold the ratio value
- * IDRATIOC. IDRATIOC = Fs inC /Fs outC =                                 Ts outC /Ts inC is a
- * 32-bit fixed point value                             with 26 fractional bits. This value is only
- * useful when ASRCTR:{USRC,                             IDRC}=2'b11.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRIDRHC - ASRC Ideal Ratio for Pair C-High Part (RW)
+ *
+ * The ideal ratio registers (ASRIDRHC, ASRIDRLC) hold the ratio value IDRATIOC. IDRATIOC = Fs inC
+ * /Fs outC = Ts outC /Ts inC is a 32-bit fixed point value with 26 fractional bits. This value is
+ * only useful when ASRCTR:{USRC, IDRC}=2'b11.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IDRATIOC : 8; //!< IDRATIOC[31:24]. High part of ideal ratio value for pair C.
@@ -2555,12 +2582,11 @@ typedef union
 #define HW_ASRC_ASRIDRHC_TOG(v)    (HW_ASRC_ASRIDRHC_WR(HW_ASRC_ASRIDRHC_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRIDRHC bitfields
  */
 
-/* --- Register HW_ASRC_ASRIDRHC, field IDRATIOC
+/* --- Register HW_ASRC_ASRIDRHC, field IDRATIOC (RW)
  *
  * IDRATIOC[31:24]. High part of ideal ratio value for pair C.
  */
@@ -2574,21 +2600,21 @@ typedef union
 #define BF_ASRC_ASRIDRHC_IDRATIOC(v)   (((v) << 0) & BM_ASRC_ASRIDRHC_IDRATIOC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRATIOC field to a new value.
 #define BW_ASRC_ASRIDRHC_IDRATIOC(v)   BF_CS1(ASRC_ASRIDRHC, IDRATIOC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRIDRLC - ASRC Ideal Ratio for Pair C-Low Part
- *
- * The ideal ratio registers (ASRIDRHC, ASRIDRLC) hold the ratio value
- * IDRATIOC. IDRATIOC = Fs inC /Fs outC =                                 Ts outC /Ts inC is a
- * 32-bit fixed point value                             with 26 fractional bits. This value is only
- * useful when ASRCTR:{USRC,                             IDRC}=2'b11.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRIDRLC - ASRC Ideal Ratio for Pair C-Low Part (RW)
+ *
+ * The ideal ratio registers (ASRIDRHC, ASRIDRLC) hold the ratio value IDRATIOC. IDRATIOC = Fs inC
+ * /Fs outC = Ts outC /Ts inC is a 32-bit fixed point value with 26 fractional bits. This value is
+ * only useful when ASRCTR:{USRC, IDRC}=2'b11.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned IDRATIOC : 24; //!< IDRATIOC[23:0]. Low part of ideal ratio value for pair C.
@@ -2611,12 +2637,11 @@ typedef union
 #define HW_ASRC_ASRIDRLC_TOG(v)    (HW_ASRC_ASRIDRLC_WR(HW_ASRC_ASRIDRLC_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRIDRLC bitfields
  */
 
-/* --- Register HW_ASRC_ASRIDRLC, field IDRATIOC
+/* --- Register HW_ASRC_ASRIDRLC, field IDRATIOC (RW)
  *
  * IDRATIOC[23:0]. Low part of ideal ratio value for pair C.
  */
@@ -2630,26 +2655,24 @@ typedef union
 #define BF_ASRC_ASRIDRLC_IDRATIOC(v)   (((v) << 0) & BM_ASRC_ASRIDRLC_IDRATIOC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IDRATIOC field to a new value.
 #define BW_ASRC_ASRIDRLC_IDRATIOC(v)   BF_CS1(ASRC_ASRIDRLC, IDRATIOC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASR76K - ASRC 76kHz Period in terms of ASRC processing                        clock
- *
- * The register (ASR76K) holds the period of the 76kHz sampling clock in
- * terms of the ASRC processing clock with frequency Fs ASRC .                             ASR76K =
- * Fs ASRC /Fs 76k . Reset value is 0x0A47 which                             assumes that Fs ASRC
- * =200MHz. This register is used to help the                             ASRC internal logic to
- * decide the pre-processing and the post-processing                             options
- * automatically (see ASRC                                 Misc Control Register 1 for Pair C and
- * ASRC Misc Control Register 1 for                                 Pair C ). In a system when Fs
- * ASRC =133MHz, the value                             should be assigned explicitly as 0x06D6 in
- * user application code.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASR76K - ASRC 76kHz Period in terms of ASRC processing clock (RW)
+ *
+ * The register (ASR76K) holds the period of the 76kHz sampling clock in terms of the ASRC
+ * processing clock with frequency Fs ASRC . ASR76K = Fs ASRC /Fs 76k . Reset value is 0x0A47 which
+ * assumes that Fs ASRC =200MHz. This register is used to help the ASRC internal logic to decide the
+ * pre-processing and the post-processing options automatically (see ASRC Misc Control Register 1
+ * for Pair C and ASRC Misc Control Register 1 for Pair C ). In a system when Fs ASRC =133MHz, the
+ * value should be assigned explicitly as 0x06D6 in user application code.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ASR76K : 17; //!< Value for the period of the 76kHz sampling clock.
@@ -2673,12 +2696,11 @@ typedef union
 #define HW_ASRC_ASR76K_TOG(v)    (HW_ASRC_ASR76K_WR(HW_ASRC_ASR76K_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASR76K bitfields
  */
 
-/* --- Register HW_ASRC_ASR76K, field ASR76K
+/* --- Register HW_ASRC_ASR76K, field ASR76K (RW)
  *
  * Value for the period of the 76kHz sampling clock.
  */
@@ -2692,26 +2714,24 @@ typedef union
 #define BF_ASRC_ASR76K_ASR76K(v)   (((v) << 0) & BM_ASRC_ASR76K_ASR76K)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASR76K field to a new value.
 #define BW_ASRC_ASR76K_ASR76K(v)   BF_CS1(ASRC_ASR76K, ASR76K, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASR56K - ASRC 56kHz Period in terms of ASRC processing                        clock
- *
- * The register (ASR56K) holds the period of the 56kHz sampling clock in
- * terms of the ASRC processing clock with frequency Fs ASRC .                             ASR56K =
- * Fs ASRC /Fs 56k . Reset value is 0x0DF3 which                             assumes that Fs ASRC
- * =200MHz. This register is used to help the                             ASRC internal logic to
- * decide the pre-processing and the post-processing                             options
- * automatically (see ASRC                                 Misc Control Register 1 for Pair C and
- * ASRC Misc Control Register 1 for                                 Pair C ). In a system when Fs
- * ASRC =133MHz, the value                             should be assigned explicitly as 0x0947 in
- * user application code.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASR56K - ASRC 56kHz Period in terms of ASRC processing clock (RW)
+ *
+ * The register (ASR56K) holds the period of the 56kHz sampling clock in terms of the ASRC
+ * processing clock with frequency Fs ASRC . ASR56K = Fs ASRC /Fs 56k . Reset value is 0x0DF3 which
+ * assumes that Fs ASRC =200MHz. This register is used to help the ASRC internal logic to decide the
+ * pre-processing and the post-processing options automatically (see ASRC Misc Control Register 1
+ * for Pair C and ASRC Misc Control Register 1 for Pair C ). In a system when Fs ASRC =133MHz, the
+ * value should be assigned explicitly as 0x0947 in user application code.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned ASR56K : 17; //!< Value for the period of the 56kHz sampling clock
@@ -2735,12 +2755,11 @@ typedef union
 #define HW_ASRC_ASR56K_TOG(v)    (HW_ASRC_ASR56K_WR(HW_ASRC_ASR56K_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASR56K bitfields
  */
 
-/* --- Register HW_ASRC_ASR56K, field ASR56K
+/* --- Register HW_ASRC_ASR56K, field ASR56K (RW)
  *
  * Value for the period of the 56kHz sampling clock
  */
@@ -2754,30 +2773,31 @@ typedef union
 #define BF_ASRC_ASR56K_ASR56K(v)   (((v) << 0) & BM_ASRC_ASR56K_ASR56K)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASR56K field to a new value.
 #define BW_ASRC_ASR56K_ASR56K(v)   BF_CS1(ASRC_ASR56K, ASR56K, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ASRC_ASRMCRA - ASRC Misc Control Register for Pair A
+ * @brief HW_ASRC_ASRMCRA - ASRC Misc Control Register for Pair A (RW)
  *
  * The register (ASRMCRA) is used to control Pair A internal logic.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned INFIFO_THRESHOLDA : 6; //!< The threshold for Pair A's input FIFO per channel  These bits stand for the threshold for Pair A's input FIFO per channel. Possible range is [0,63].  When the value is n, it means that:  when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set;  when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
+        unsigned INFIFO_THRESHOLDA : 6; //!< The threshold for Pair A's input FIFO per channel These bits stand for the threshold for Pair A's input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
         unsigned RESERVED0 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned RSYNOFA : 1; //!< Re-sync Output FIFO Channel Counter  If bit set, force ASRCCR:ACOA=0. If bit clear, untouch ASRCCR:ACOA.
-        unsigned RSYNIFA : 1; //!< Re-sync Input FIFO Channel Counter  If bit set, force ASRCCR:ACIA=0. If bit clear, untouch ASRCCR:ACIA.
-        unsigned OUTFIFO_THRESHOLDA : 6; //!< The threshold for Pair A's output FIFO per channel  These bits stand for the threshold for Pair A's output FIFO per channel. Possible range is [0,63].  When the value is n, it means that:  when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set;  when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
+        unsigned RSYNOFA : 1; //!< Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOA=0. If bit clear, untouch ASRCCR:ACOA.
+        unsigned RSYNIFA : 1; //!< Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIA=0. If bit clear, untouch ASRCCR:ACIA.
+        unsigned OUTFIFO_THRESHOLDA : 6; //!< The threshold for Pair A's output FIFO per channel These bits stand for the threshold for Pair A's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
         unsigned RESERVED1 : 2; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned BYPASSPOLYA : 1; //!< Bypass Polyphase Filtering for Pair A  This bit will determine whether the polyphase filtering part of Pair A conversion will be bypassed.
-        unsigned BUFSTALLA : 1; //!< Stall Pair A conversion in case of Buffer Near Empty/Full Condition  This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair A. This option can only work when external ratio is used.  Near empty condition is the condition when input FIFO has less than 4 useful samples per channel.  Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
-        unsigned EXTTHRSHA : 1; //!< Use external thresholds for FIFO control of Pair A  This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair A.
-        unsigned ZEROBUFA : 1; //!< Initialize buf of Pair A when pair A is enabled. Always clear option.  This bit is used to control whether the buffer is to be zeroized when pair A is enabled.
+        unsigned BYPASSPOLYA : 1; //!< Bypass Polyphase Filtering for Pair A This bit will determine whether the polyphase filtering part of Pair A conversion will be bypassed.
+        unsigned BUFSTALLA : 1; //!< Stall Pair A conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair A. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
+        unsigned EXTTHRSHA : 1; //!< Use external thresholds for FIFO control of Pair A This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair A.
+        unsigned ZEROBUFA : 1; //!< Initialize buf of Pair A when pair A is enabled. Always clear option. This bit is used to control whether the buffer is to be zeroized when pair A is enabled.
         unsigned RESERVED2 : 8; //!< 
     } B;
 } hw_asrc_asrmcra_t;
@@ -2797,19 +2817,17 @@ typedef union
 #define HW_ASRC_ASRMCRA_TOG(v)    (HW_ASRC_ASRMCRA_WR(HW_ASRC_ASRMCRA_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRMCRA bitfields
  */
 
-/* --- Register HW_ASRC_ASRMCRA, field INFIFO_THRESHOLDA
+/* --- Register HW_ASRC_ASRMCRA, field INFIFO_THRESHOLDA (RW)
  *
- * The threshold for Pair A's input FIFO per channel  These bits stand for the threshold for Pair
- * A's input FIFO per                                 channel. Possible range is [0,63].  When the
- * value is n, it means that:  when the number of input FIFO fillings of the pair is less than n
- * samples per channel, the input data needed flag is set;  when the number of input FIFO fillings
- * of the pair is greater than or                                 equal to n samples per channel,
- * the input data needed flag is                                 automatically cleared.
+ * The threshold for Pair A's input FIFO per channel These bits stand for the threshold for Pair A's
+ * input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the
+ * number of input FIFO fillings of the pair is less than n samples per channel, the input data
+ * needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal
+ * to n samples per channel, the input data needed flag is automatically cleared.
  */
 
 #define BP_ASRC_ASRMCRA_INFIFO_THRESHOLDA      0
@@ -2821,12 +2839,13 @@ typedef union
 #define BF_ASRC_ASRMCRA_INFIFO_THRESHOLDA(v)   (((v) << 0) & BM_ASRC_ASRMCRA_INFIFO_THRESHOLDA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INFIFO_THRESHOLDA field to a new value.
 #define BW_ASRC_ASRMCRA_INFIFO_THRESHOLDA(v)   BF_CS1(ASRC_ASRMCRA, INFIFO_THRESHOLDA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRA, field RSYNOFA
+/* --- Register HW_ASRC_ASRMCRA, field RSYNOFA (RW)
  *
- * Re-sync Output FIFO Channel Counter  If bit set, force ASRCCR:ACOA=0. If bit clear, untouch
+ * Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOA=0. If bit clear, untouch
  * ASRCCR:ACOA.
  */
 
@@ -2839,12 +2858,13 @@ typedef union
 #define BF_ASRC_ASRMCRA_RSYNOFA(v)   (((v) << 10) & BM_ASRC_ASRMCRA_RSYNOFA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RSYNOFA field to a new value.
 #define BW_ASRC_ASRMCRA_RSYNOFA(v)   BF_CS1(ASRC_ASRMCRA, RSYNOFA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRA, field RSYNIFA
+/* --- Register HW_ASRC_ASRMCRA, field RSYNIFA (RW)
  *
- * Re-sync Input FIFO Channel Counter  If bit set, force ASRCCR:ACIA=0. If bit clear, untouch
+ * Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIA=0. If bit clear, untouch
  * ASRCCR:ACIA.
  */
 
@@ -2857,17 +2877,17 @@ typedef union
 #define BF_ASRC_ASRMCRA_RSYNIFA(v)   (((v) << 11) & BM_ASRC_ASRMCRA_RSYNIFA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RSYNIFA field to a new value.
 #define BW_ASRC_ASRMCRA_RSYNIFA(v)   BF_CS1(ASRC_ASRMCRA, RSYNIFA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRA, field OUTFIFO_THRESHOLDA
+/* --- Register HW_ASRC_ASRMCRA, field OUTFIFO_THRESHOLDA (RW)
  *
- * The threshold for Pair A's output FIFO per channel  These bits stand for the threshold for Pair
- * A's output FIFO per                                 channel. Possible range is [0,63].  When the
- * value is n, it means that:  when the number of output FIFO fillings of the pair is greater than n
- * samples per channel, the output data ready flag is set;  when the number of output FIFO fillings
- * of the pair is less than or                                 equal to n samples per channel, the
- * output data ready flag is                                 automatically cleared.
+ * The threshold for Pair A's output FIFO per channel These bits stand for the threshold for Pair
+ * A's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when
+ * the number of output FIFO fillings of the pair is greater than n samples per channel, the output
+ * data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal
+ * to n samples per channel, the output data ready flag is automatically cleared.
  */
 
 #define BP_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA      12
@@ -2879,13 +2899,18 @@ typedef union
 #define BF_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA(v)   (((v) << 12) & BM_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OUTFIFO_THRESHOLDA field to a new value.
 #define BW_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA(v)   BF_CS1(ASRC_ASRMCRA, OUTFIFO_THRESHOLDA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRA, field BYPASSPOLYA
+/* --- Register HW_ASRC_ASRMCRA, field BYPASSPOLYA (RW)
  *
- * Bypass Polyphase Filtering for Pair A  This bit will determine whether the polyphase filtering
- * part of Pair                                 A conversion will be bypassed.
+ * Bypass Polyphase Filtering for Pair A This bit will determine whether the polyphase filtering
+ * part of Pair A conversion will be bypassed.
+ *
+ * Values:
+ * 1 - Bypass polyphase filtering.
+ * 0 - Don't bypass polyphase filtering.
  */
 
 #define BP_ASRC_ASRMCRA_BYPASSPOLYA      20
@@ -2897,18 +2922,22 @@ typedef union
 #define BF_ASRC_ASRMCRA_BYPASSPOLYA(v)   (((v) << 20) & BM_ASRC_ASRMCRA_BYPASSPOLYA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASSPOLYA field to a new value.
 #define BW_ASRC_ASRMCRA_BYPASSPOLYA(v)   BF_CS1(ASRC_ASRMCRA, BYPASSPOLYA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRA, field BUFSTALLA
+
+/* --- Register HW_ASRC_ASRMCRA, field BUFSTALLA (RW)
  *
- * Stall Pair A conversion in case of Buffer Near Empty/Full
- * Condition  This bit will determine whether the near empty/full FIFO condition
- * will stall the rate conversion for pair A. This option can only work
- * when external ratio is used.  Near empty condition is the condition when input FIFO has less than
- * 4                                 useful samples per channel.  Near full condition is the
- * condition when the output FIFO has less                                 than 4 vacant sample
- * words to fill per channel.
+ * Stall Pair A conversion in case of Buffer Near Empty/Full Condition This bit will determine
+ * whether the near empty/full FIFO condition will stall the rate conversion for pair A. This option
+ * can only work when external ratio is used. Near empty condition is the condition when input FIFO
+ * has less than 4 useful samples per channel. Near full condition is the condition when the output
+ * FIFO has less than 4 vacant sample words to fill per channel.
+ *
+ * Values:
+ * 1 - Stall Pair A conversion in case of near empty/full FIFO conditions.
+ * 0 - Don't stall Pair A conversion even in case of near empty/full FIFO conditions.
  */
 
 #define BP_ASRC_ASRMCRA_BUFSTALLA      21
@@ -2920,14 +2949,20 @@ typedef union
 #define BF_ASRC_ASRMCRA_BUFSTALLA(v)   (((v) << 21) & BM_ASRC_ASRMCRA_BUFSTALLA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BUFSTALLA field to a new value.
 #define BW_ASRC_ASRMCRA_BUFSTALLA(v)   BF_CS1(ASRC_ASRMCRA, BUFSTALLA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRA, field EXTTHRSHA
+
+/* --- Register HW_ASRC_ASRMCRA, field EXTTHRSHA (RW)
  *
- * Use external thresholds for FIFO control of Pair A  This bit will determine whether the FIFO
- * thresholds externally                                 defined in this register is used to control
- * ASRC internal FIFO logic                                 for pair A.
+ * Use external thresholds for FIFO control of Pair A This bit will determine whether the FIFO
+ * thresholds externally defined in this register is used to control ASRC internal FIFO logic for
+ * pair A.
+ *
+ * Values:
+ * 1 - Use external defined thresholds.
+ * 0 - Use default thresholds.
  */
 
 #define BP_ASRC_ASRMCRA_EXTTHRSHA      22
@@ -2939,14 +2974,19 @@ typedef union
 #define BF_ASRC_ASRMCRA_EXTTHRSHA(v)   (((v) << 22) & BM_ASRC_ASRMCRA_EXTTHRSHA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EXTTHRSHA field to a new value.
 #define BW_ASRC_ASRMCRA_EXTTHRSHA(v)   BF_CS1(ASRC_ASRMCRA, EXTTHRSHA, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRA, field ZEROBUFA
+
+/* --- Register HW_ASRC_ASRMCRA, field ZEROBUFA (RW)
  *
- * Initialize buf of Pair A when pair A is enabled. Always clear
- * option.  This bit is used to control whether the buffer is to be zeroized when
- * pair A is enabled.
+ * Initialize buf of Pair A when pair A is enabled. Always clear option. This bit is used to control
+ * whether the buffer is to be zeroized when pair A is enabled.
+ *
+ * Values:
+ * 1 - Don't zeroize the buffer
+ * 0 - Zeroize the buffer
  */
 
 #define BP_ASRC_ASRMCRA_ZEROBUFA      23
@@ -2958,27 +2998,28 @@ typedef union
 #define BF_ASRC_ASRMCRA_ZEROBUFA(v)   (((v) << 23) & BM_ASRC_ASRMCRA_ZEROBUFA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ZEROBUFA field to a new value.
 #define BW_ASRC_ASRMCRA_ZEROBUFA(v)   BF_CS1(ASRC_ASRMCRA, ZEROBUFA, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRFSTA - ASRC FIFO Status Register for Pair A
- *
- * The register (ASRFSTA) is used to show Pair A internal FIFO
- * conditions.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRFSTA - ASRC FIFO Status Register for Pair A (RO)
+ *
+ * The register (ASRFSTA) is used to show Pair A internal FIFO conditions.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned INFIFO_FILLA : 7; //!< The fillings for Pair A's input FIFO per channel  These bits stand for the fillings for Pair A's input FIFO per channel. Possible range is [0,64].
+        unsigned INFIFO_FILLA : 7; //!< The fillings for Pair A's input FIFO per channel These bits stand for the fillings for Pair A's input FIFO per channel. Possible range is [0,64].
         unsigned RESERVED0 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned IAEA : 1; //!< Input FIFO is near Empty for Pair A  This bit is to indicate whether the input FIFO of Pair A is near empty.
-        unsigned OUTFIFO_FILLA : 7; //!< The fillings for Pair A's output FIFO per channel  These bits stand for the fillings for Pair A's output FIFO per channel. Possible range is [0,64].
+        unsigned IAEA : 1; //!< Input FIFO is near Empty for Pair A This bit is to indicate whether the input FIFO of Pair A is near empty.
+        unsigned OUTFIFO_FILLA : 7; //!< The fillings for Pair A's output FIFO per channel These bits stand for the fillings for Pair A's output FIFO per channel. Possible range is [0,64].
         unsigned RESERVED1 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned OAFA : 1; //!< Output FIFO is near Full for Pair A  This bit is to indicate whether the output FIFO of Pair A is near full.
+        unsigned OAFA : 1; //!< Output FIFO is near Full for Pair A This bit is to indicate whether the output FIFO of Pair A is near full.
         unsigned RESERVED2 : 8; //!< 
     } B;
 } hw_asrc_asrfsta_t;
@@ -2992,110 +3033,69 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_ASRC_ASRFSTA           (*(volatile hw_asrc_asrfsta_t *) HW_ASRC_ASRFSTA_ADDR)
 #define HW_ASRC_ASRFSTA_RD()      (HW_ASRC_ASRFSTA.U)
-#define HW_ASRC_ASRFSTA_WR(v)     (HW_ASRC_ASRFSTA.U = (v))
-#define HW_ASRC_ASRFSTA_SET(v)    (HW_ASRC_ASRFSTA_WR(HW_ASRC_ASRFSTA_RD() |  (v)))
-#define HW_ASRC_ASRFSTA_CLR(v)    (HW_ASRC_ASRFSTA_WR(HW_ASRC_ASRFSTA_RD() & ~(v)))
-#define HW_ASRC_ASRFSTA_TOG(v)    (HW_ASRC_ASRFSTA_WR(HW_ASRC_ASRFSTA_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual ASRC_ASRFSTA bitfields
  */
 
-/* --- Register HW_ASRC_ASRFSTA, field INFIFO_FILLA
+/* --- Register HW_ASRC_ASRFSTA, field INFIFO_FILLA (RO)
  *
- * The fillings for Pair A's input FIFO per channel  These bits stand for the fillings for Pair A's
- * input FIFO per                                 channel. Possible range is [0,64].
+ * The fillings for Pair A's input FIFO per channel These bits stand for the fillings for Pair A's
+ * input FIFO per channel. Possible range is [0,64].
  */
 
 #define BP_ASRC_ASRFSTA_INFIFO_FILLA      0
 #define BM_ASRC_ASRFSTA_INFIFO_FILLA      0x0000007f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTA_INFIFO_FILLA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRFSTA_INFIFO_FILLA)
-#else
-#define BF_ASRC_ASRFSTA_INFIFO_FILLA(v)   (((v) << 0) & BM_ASRC_ASRFSTA_INFIFO_FILLA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTA_INFIFO_FILLA(v)   BF_CS1(ASRC_ASRFSTA, INFIFO_FILLA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTA, field IAEA
+/* --- Register HW_ASRC_ASRFSTA, field IAEA (RO)
  *
- * Input FIFO is near Empty for Pair A  This bit is to indicate whether the input FIFO of Pair A is
- * near                                 empty.
+ * Input FIFO is near Empty for Pair A This bit is to indicate whether the input FIFO of Pair A is
+ * near empty.
  */
 
 #define BP_ASRC_ASRFSTA_IAEA      11
 #define BM_ASRC_ASRFSTA_IAEA      0x00000800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTA_IAEA(v)   ((((reg32_t) v) << 11) & BM_ASRC_ASRFSTA_IAEA)
-#else
-#define BF_ASRC_ASRFSTA_IAEA(v)   (((v) << 11) & BM_ASRC_ASRFSTA_IAEA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTA_IAEA(v)   BF_CS1(ASRC_ASRFSTA, IAEA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTA, field OUTFIFO_FILLA
+/* --- Register HW_ASRC_ASRFSTA, field OUTFIFO_FILLA (RO)
  *
- * The fillings for Pair A's output FIFO per channel  These bits stand for the fillings for Pair A's
- * output FIFO per                                 channel. Possible range is [0,64].
+ * The fillings for Pair A's output FIFO per channel These bits stand for the fillings for Pair A's
+ * output FIFO per channel. Possible range is [0,64].
  */
 
 #define BP_ASRC_ASRFSTA_OUTFIFO_FILLA      12
 #define BM_ASRC_ASRFSTA_OUTFIFO_FILLA      0x0007f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTA_OUTFIFO_FILLA(v)   ((((reg32_t) v) << 12) & BM_ASRC_ASRFSTA_OUTFIFO_FILLA)
-#else
-#define BF_ASRC_ASRFSTA_OUTFIFO_FILLA(v)   (((v) << 12) & BM_ASRC_ASRFSTA_OUTFIFO_FILLA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTA_OUTFIFO_FILLA(v)   BF_CS1(ASRC_ASRFSTA, OUTFIFO_FILLA, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTA, field OAFA
+/* --- Register HW_ASRC_ASRFSTA, field OAFA (RO)
  *
- * Output FIFO is near Full for Pair A  This bit is to indicate whether the output FIFO of Pair A is
- * near                                 full.
+ * Output FIFO is near Full for Pair A This bit is to indicate whether the output FIFO of Pair A is
+ * near full.
  */
 
 #define BP_ASRC_ASRFSTA_OAFA      23
 #define BM_ASRC_ASRFSTA_OAFA      0x00800000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTA_OAFA(v)   ((((reg32_t) v) << 23) & BM_ASRC_ASRFSTA_OAFA)
-#else
-#define BF_ASRC_ASRFSTA_OAFA(v)   (((v) << 23) & BM_ASRC_ASRFSTA_OAFA)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTA_OAFA(v)   BF_CS1(ASRC_ASRFSTA, OAFA, v)
-#endif
-
 /*!
- * @brief HW_ASRC_ASRMCRB - ASRC Misc Control Register for Pair B
+ * @brief HW_ASRC_ASRMCRB - ASRC Misc Control Register for Pair B (RW)
  *
  * The register (ASRMCRB) is used to control Pair B internal logic.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned INFIFO_THRESHOLDB : 6; //!< The threshold for Pair B's input FIFO per channel  These bits stand for the threshold for Pair B's input FIFO per channel. Possible range is [0,63].  When the value is n, it means that:  when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set;  when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
+        unsigned INFIFO_THRESHOLDB : 6; //!< The threshold for Pair B's input FIFO per channel These bits stand for the threshold for Pair B's input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
         unsigned RESERVED0 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned RSYNOFB : 1; //!< Re-sync Output FIFO Channel Counter  If bit set, force ASRCCR:ACOB=0. If bit clear, untouch ASRCCR:ACOB.
-        unsigned RSYNIFB : 1; //!< Re-sync Input FIFO Channel Counter  If bit set, force ASRCCR:ACIB=0. If bit clear, untouch ASRCCR:ACIB.
-        unsigned OUTFIFO_THRESHOLDB : 6; //!< The threshold for Pair B's output FIFO per channel  These bits stand for the threshold for Pair B's output FIFO per channel. Possible range is [0,63].  When the value is n, it means that:  when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set;  when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
+        unsigned RSYNOFB : 1; //!< Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOB=0. If bit clear, untouch ASRCCR:ACOB.
+        unsigned RSYNIFB : 1; //!< Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIB=0. If bit clear, untouch ASRCCR:ACIB.
+        unsigned OUTFIFO_THRESHOLDB : 6; //!< The threshold for Pair B's output FIFO per channel These bits stand for the threshold for Pair B's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
         unsigned RESERVED1 : 2; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned BYPASSPOLYB : 1; //!< Bypass Polyphase Filtering for Pair B  This bit will determine whether the polyphase filtering part of Pair B conversion will be bypassed.
-        unsigned BUFSTALLB : 1; //!< Stall Pair B conversion in case of Buffer Near Empty/Full Condition  This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair B. This option can only work when external ratio is used.  Near empty condition is the condition when input FIFO has less than 4 useful samples per channel.  Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
-        unsigned EXTTHRSHB : 1; //!< Use external thresholds for FIFO control of Pair B  This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair B.
-        unsigned ZEROBUFB : 1; //!< Initialize buf of Pair B when pair B is enabled  This bit is used to control whether the buffer is to be zeroized when pair B is enabled.
+        unsigned BYPASSPOLYB : 1; //!< Bypass Polyphase Filtering for Pair B This bit will determine whether the polyphase filtering part of Pair B conversion will be bypassed.
+        unsigned BUFSTALLB : 1; //!< Stall Pair B conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair B. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
+        unsigned EXTTHRSHB : 1; //!< Use external thresholds for FIFO control of Pair B This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair B.
+        unsigned ZEROBUFB : 1; //!< Initialize buf of Pair B when pair B is enabled This bit is used to control whether the buffer is to be zeroized when pair B is enabled.
         unsigned RESERVED2 : 8; //!< 
     } B;
 } hw_asrc_asrmcrb_t;
@@ -3115,19 +3115,17 @@ typedef union
 #define HW_ASRC_ASRMCRB_TOG(v)    (HW_ASRC_ASRMCRB_WR(HW_ASRC_ASRMCRB_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRMCRB bitfields
  */
 
-/* --- Register HW_ASRC_ASRMCRB, field INFIFO_THRESHOLDB
+/* --- Register HW_ASRC_ASRMCRB, field INFIFO_THRESHOLDB (RW)
  *
- * The threshold for Pair B's input FIFO per channel  These bits stand for the threshold for Pair
- * B's input FIFO per                                 channel. Possible range is [0,63].  When the
- * value is n, it means that:  when the number of input FIFO fillings of the pair is less than n
- * samples per channel, the input data needed flag is set;  when the number of input FIFO fillings
- * of the pair is greater than or                                 equal to n samples per channel,
- * the input data needed flag is                                 automatically cleared.
+ * The threshold for Pair B's input FIFO per channel These bits stand for the threshold for Pair B's
+ * input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the
+ * number of input FIFO fillings of the pair is less than n samples per channel, the input data
+ * needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal
+ * to n samples per channel, the input data needed flag is automatically cleared.
  */
 
 #define BP_ASRC_ASRMCRB_INFIFO_THRESHOLDB      0
@@ -3139,12 +3137,13 @@ typedef union
 #define BF_ASRC_ASRMCRB_INFIFO_THRESHOLDB(v)   (((v) << 0) & BM_ASRC_ASRMCRB_INFIFO_THRESHOLDB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INFIFO_THRESHOLDB field to a new value.
 #define BW_ASRC_ASRMCRB_INFIFO_THRESHOLDB(v)   BF_CS1(ASRC_ASRMCRB, INFIFO_THRESHOLDB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRB, field RSYNOFB
+/* --- Register HW_ASRC_ASRMCRB, field RSYNOFB (RW)
  *
- * Re-sync Output FIFO Channel Counter  If bit set, force ASRCCR:ACOB=0. If bit clear, untouch
+ * Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOB=0. If bit clear, untouch
  * ASRCCR:ACOB.
  */
 
@@ -3157,12 +3156,13 @@ typedef union
 #define BF_ASRC_ASRMCRB_RSYNOFB(v)   (((v) << 10) & BM_ASRC_ASRMCRB_RSYNOFB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RSYNOFB field to a new value.
 #define BW_ASRC_ASRMCRB_RSYNOFB(v)   BF_CS1(ASRC_ASRMCRB, RSYNOFB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRB, field RSYNIFB
+/* --- Register HW_ASRC_ASRMCRB, field RSYNIFB (RW)
  *
- * Re-sync Input FIFO Channel Counter  If bit set, force ASRCCR:ACIB=0. If bit clear, untouch
+ * Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIB=0. If bit clear, untouch
  * ASRCCR:ACIB.
  */
 
@@ -3175,17 +3175,17 @@ typedef union
 #define BF_ASRC_ASRMCRB_RSYNIFB(v)   (((v) << 11) & BM_ASRC_ASRMCRB_RSYNIFB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RSYNIFB field to a new value.
 #define BW_ASRC_ASRMCRB_RSYNIFB(v)   BF_CS1(ASRC_ASRMCRB, RSYNIFB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRB, field OUTFIFO_THRESHOLDB
+/* --- Register HW_ASRC_ASRMCRB, field OUTFIFO_THRESHOLDB (RW)
  *
- * The threshold for Pair B's output FIFO per channel  These bits stand for the threshold for Pair
- * B's output FIFO per                                 channel. Possible range is [0,63].  When the
- * value is n, it means that:  when the number of output FIFO fillings of the pair is greater than n
- * samples per channel, the output data ready flag is set;  when the number of output FIFO fillings
- * of the pair is less than or                                 equal to n samples per channel, the
- * output data ready flag is                                 automatically cleared.
+ * The threshold for Pair B's output FIFO per channel These bits stand for the threshold for Pair
+ * B's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when
+ * the number of output FIFO fillings of the pair is greater than n samples per channel, the output
+ * data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal
+ * to n samples per channel, the output data ready flag is automatically cleared.
  */
 
 #define BP_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB      12
@@ -3197,13 +3197,18 @@ typedef union
 #define BF_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB(v)   (((v) << 12) & BM_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OUTFIFO_THRESHOLDB field to a new value.
 #define BW_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB(v)   BF_CS1(ASRC_ASRMCRB, OUTFIFO_THRESHOLDB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRB, field BYPASSPOLYB
+/* --- Register HW_ASRC_ASRMCRB, field BYPASSPOLYB (RW)
  *
- * Bypass Polyphase Filtering for Pair B  This bit will determine whether the polyphase filtering
- * part of Pair                                 B conversion will be bypassed.
+ * Bypass Polyphase Filtering for Pair B This bit will determine whether the polyphase filtering
+ * part of Pair B conversion will be bypassed.
+ *
+ * Values:
+ * 1 - Bypass polyphase filtering.
+ * 0 - Don't bypass polyphase filtering.
  */
 
 #define BP_ASRC_ASRMCRB_BYPASSPOLYB      20
@@ -3215,18 +3220,22 @@ typedef union
 #define BF_ASRC_ASRMCRB_BYPASSPOLYB(v)   (((v) << 20) & BM_ASRC_ASRMCRB_BYPASSPOLYB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASSPOLYB field to a new value.
 #define BW_ASRC_ASRMCRB_BYPASSPOLYB(v)   BF_CS1(ASRC_ASRMCRB, BYPASSPOLYB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRB, field BUFSTALLB
+
+/* --- Register HW_ASRC_ASRMCRB, field BUFSTALLB (RW)
  *
- * Stall Pair B conversion in case of Buffer Near Empty/Full
- * Condition  This bit will determine whether the near empty/full FIFO condition
- * will stall the rate conversion for pair B. This option can only work
- * when external ratio is used.  Near empty condition is the condition when input FIFO has less than
- * 4                                 useful samples per channel.  Near full condition is the
- * condition when the output FIFO has less                                 than 4 vacant sample
- * words to fill per channel.
+ * Stall Pair B conversion in case of Buffer Near Empty/Full Condition This bit will determine
+ * whether the near empty/full FIFO condition will stall the rate conversion for pair B. This option
+ * can only work when external ratio is used. Near empty condition is the condition when input FIFO
+ * has less than 4 useful samples per channel. Near full condition is the condition when the output
+ * FIFO has less than 4 vacant sample words to fill per channel.
+ *
+ * Values:
+ * 1 - Stall Pair B conversion in case of near empty/full FIFO conditions.
+ * 0 - Don't stall Pair B conversion even in case of near empty/full FIFO conditions.
  */
 
 #define BP_ASRC_ASRMCRB_BUFSTALLB      21
@@ -3238,14 +3247,20 @@ typedef union
 #define BF_ASRC_ASRMCRB_BUFSTALLB(v)   (((v) << 21) & BM_ASRC_ASRMCRB_BUFSTALLB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BUFSTALLB field to a new value.
 #define BW_ASRC_ASRMCRB_BUFSTALLB(v)   BF_CS1(ASRC_ASRMCRB, BUFSTALLB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRB, field EXTTHRSHB
+
+/* --- Register HW_ASRC_ASRMCRB, field EXTTHRSHB (RW)
  *
- * Use external thresholds for FIFO control of Pair B  This bit will determine whether the FIFO
- * thresholds externally                                 defined in this register is used to control
- * ASRC internal FIFO logic                                 for pair B.
+ * Use external thresholds for FIFO control of Pair B This bit will determine whether the FIFO
+ * thresholds externally defined in this register is used to control ASRC internal FIFO logic for
+ * pair B.
+ *
+ * Values:
+ * 1 - Use external defined thresholds.
+ * 0 - Use default thresholds.
  */
 
 #define BP_ASRC_ASRMCRB_EXTTHRSHB      22
@@ -3257,13 +3272,19 @@ typedef union
 #define BF_ASRC_ASRMCRB_EXTTHRSHB(v)   (((v) << 22) & BM_ASRC_ASRMCRB_EXTTHRSHB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EXTTHRSHB field to a new value.
 #define BW_ASRC_ASRMCRB_EXTTHRSHB(v)   BF_CS1(ASRC_ASRMCRB, EXTTHRSHB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRB, field ZEROBUFB
+
+/* --- Register HW_ASRC_ASRMCRB, field ZEROBUFB (RW)
  *
- * Initialize buf of Pair B when pair B is enabled  This bit is used to control whether the buffer
- * is to be zeroized when                                 pair B is enabled.
+ * Initialize buf of Pair B when pair B is enabled This bit is used to control whether the buffer is
+ * to be zeroized when pair B is enabled.
+ *
+ * Values:
+ * 1 - Don't zeroize the buffer
+ * 0 - Zeroize the buffer
  */
 
 #define BP_ASRC_ASRMCRB_ZEROBUFB      23
@@ -3275,27 +3296,28 @@ typedef union
 #define BF_ASRC_ASRMCRB_ZEROBUFB(v)   (((v) << 23) & BM_ASRC_ASRMCRB_ZEROBUFB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ZEROBUFB field to a new value.
 #define BW_ASRC_ASRMCRB_ZEROBUFB(v)   BF_CS1(ASRC_ASRMCRB, ZEROBUFB, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRFSTB - ASRC FIFO Status Register for Pair B
- *
- * The register (ASRFSTB) is used to show Pair B internal FIFO
- * conditions.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRFSTB - ASRC FIFO Status Register for Pair B (RO)
+ *
+ * The register (ASRFSTB) is used to show Pair B internal FIFO conditions.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned INFIFO_FILLB : 7; //!< The fillings for Pair B's input FIFO per channel  These bits stand for the fillings for Pair B's input FIFO per channel. Possible range is [0,64].
+        unsigned INFIFO_FILLB : 7; //!< The fillings for Pair B's input FIFO per channel These bits stand for the fillings for Pair B's input FIFO per channel. Possible range is [0,64].
         unsigned RESERVED0 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned IAEB : 1; //!< Input FIFO is near Empty for Pair B  This bit is to indicate whether the input FIFO of Pair B is near empty.
-        unsigned OUTFIFO_FILLB : 7; //!< The fillings for Pair B's output FIFO per channel  These bits stand for the fillings for Pair B's output FIFO per channel. Possible range is [0,64].
+        unsigned IAEB : 1; //!< Input FIFO is near Empty for Pair B This bit is to indicate whether the input FIFO of Pair B is near empty.
+        unsigned OUTFIFO_FILLB : 7; //!< The fillings for Pair B's output FIFO per channel These bits stand for the fillings for Pair B's output FIFO per channel. Possible range is [0,64].
         unsigned RESERVED1 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned OAFB : 1; //!< Output FIFO is near Full for Pair B  This bit is to indicate whether the output FIFO of Pair B is near full.
+        unsigned OAFB : 1; //!< Output FIFO is near Full for Pair B This bit is to indicate whether the output FIFO of Pair B is near full.
         unsigned RESERVED2 : 8; //!< 
     } B;
 } hw_asrc_asrfstb_t;
@@ -3309,110 +3331,69 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_ASRC_ASRFSTB           (*(volatile hw_asrc_asrfstb_t *) HW_ASRC_ASRFSTB_ADDR)
 #define HW_ASRC_ASRFSTB_RD()      (HW_ASRC_ASRFSTB.U)
-#define HW_ASRC_ASRFSTB_WR(v)     (HW_ASRC_ASRFSTB.U = (v))
-#define HW_ASRC_ASRFSTB_SET(v)    (HW_ASRC_ASRFSTB_WR(HW_ASRC_ASRFSTB_RD() |  (v)))
-#define HW_ASRC_ASRFSTB_CLR(v)    (HW_ASRC_ASRFSTB_WR(HW_ASRC_ASRFSTB_RD() & ~(v)))
-#define HW_ASRC_ASRFSTB_TOG(v)    (HW_ASRC_ASRFSTB_WR(HW_ASRC_ASRFSTB_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual ASRC_ASRFSTB bitfields
  */
 
-/* --- Register HW_ASRC_ASRFSTB, field INFIFO_FILLB
+/* --- Register HW_ASRC_ASRFSTB, field INFIFO_FILLB (RO)
  *
- * The fillings for Pair B's input FIFO per channel  These bits stand for the fillings for Pair B's
- * input FIFO per                                 channel. Possible range is [0,64].
+ * The fillings for Pair B's input FIFO per channel These bits stand for the fillings for Pair B's
+ * input FIFO per channel. Possible range is [0,64].
  */
 
 #define BP_ASRC_ASRFSTB_INFIFO_FILLB      0
 #define BM_ASRC_ASRFSTB_INFIFO_FILLB      0x0000007f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTB_INFIFO_FILLB(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRFSTB_INFIFO_FILLB)
-#else
-#define BF_ASRC_ASRFSTB_INFIFO_FILLB(v)   (((v) << 0) & BM_ASRC_ASRFSTB_INFIFO_FILLB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTB_INFIFO_FILLB(v)   BF_CS1(ASRC_ASRFSTB, INFIFO_FILLB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTB, field IAEB
+/* --- Register HW_ASRC_ASRFSTB, field IAEB (RO)
  *
- * Input FIFO is near Empty for Pair B  This bit is to indicate whether the input FIFO of Pair B is
- * near                                 empty.
+ * Input FIFO is near Empty for Pair B This bit is to indicate whether the input FIFO of Pair B is
+ * near empty.
  */
 
 #define BP_ASRC_ASRFSTB_IAEB      11
 #define BM_ASRC_ASRFSTB_IAEB      0x00000800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTB_IAEB(v)   ((((reg32_t) v) << 11) & BM_ASRC_ASRFSTB_IAEB)
-#else
-#define BF_ASRC_ASRFSTB_IAEB(v)   (((v) << 11) & BM_ASRC_ASRFSTB_IAEB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTB_IAEB(v)   BF_CS1(ASRC_ASRFSTB, IAEB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTB, field OUTFIFO_FILLB
+/* --- Register HW_ASRC_ASRFSTB, field OUTFIFO_FILLB (RO)
  *
- * The fillings for Pair B's output FIFO per channel  These bits stand for the fillings for Pair B's
- * output FIFO per                                 channel. Possible range is [0,64].
+ * The fillings for Pair B's output FIFO per channel These bits stand for the fillings for Pair B's
+ * output FIFO per channel. Possible range is [0,64].
  */
 
 #define BP_ASRC_ASRFSTB_OUTFIFO_FILLB      12
 #define BM_ASRC_ASRFSTB_OUTFIFO_FILLB      0x0007f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTB_OUTFIFO_FILLB(v)   ((((reg32_t) v) << 12) & BM_ASRC_ASRFSTB_OUTFIFO_FILLB)
-#else
-#define BF_ASRC_ASRFSTB_OUTFIFO_FILLB(v)   (((v) << 12) & BM_ASRC_ASRFSTB_OUTFIFO_FILLB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTB_OUTFIFO_FILLB(v)   BF_CS1(ASRC_ASRFSTB, OUTFIFO_FILLB, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTB, field OAFB
+/* --- Register HW_ASRC_ASRFSTB, field OAFB (RO)
  *
- * Output FIFO is near Full for Pair B  This bit is to indicate whether the output FIFO of Pair B is
- * near                                 full.
+ * Output FIFO is near Full for Pair B This bit is to indicate whether the output FIFO of Pair B is
+ * near full.
  */
 
 #define BP_ASRC_ASRFSTB_OAFB      23
 #define BM_ASRC_ASRFSTB_OAFB      0x00800000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTB_OAFB(v)   ((((reg32_t) v) << 23) & BM_ASRC_ASRFSTB_OAFB)
-#else
-#define BF_ASRC_ASRFSTB_OAFB(v)   (((v) << 23) & BM_ASRC_ASRFSTB_OAFB)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTB_OAFB(v)   BF_CS1(ASRC_ASRFSTB, OAFB, v)
-#endif
-
 /*!
- * @brief HW_ASRC_ASRMCRC - ASRC Misc Control Register for Pair C
+ * @brief HW_ASRC_ASRMCRC - ASRC Misc Control Register for Pair C (RW)
  *
  * The register (ASRMCRC) is used to control Pair C internal logic.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned INFIFO_THRESHOLDC : 6; //!< The threshold for Pair C's input FIFO per channel  These bits stand for the threshold for Pair C's input FIFO per channel. Possible range is [0,63].  When the value is n, it means that:  when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set;  when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
+        unsigned INFIFO_THRESHOLDC : 6; //!< The threshold for Pair C's input FIFO per channel These bits stand for the threshold for Pair C's input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
         unsigned RESERVED0 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned RSYNOFC : 1; //!< Re-sync Output FIFO Channel Counter  If bit set, force ASRCCR:ACOC=0. If bit clear, untouch ASRCCR:ACOC.
-        unsigned RSYNIFC : 1; //!< Re-sync Input FIFO Channel Counter  If bit set, force ASRCCR:ACIC=0. If bit clear, untouch ASRCCR:ACIC.
-        unsigned OUTFIFO_THRESHOLDC : 6; //!< The threshold for Pair C's output FIFO per channel  These bits stand for the threshold for Pair C's output FIFO per channel. Possible range is [0,63].  When the value is n, it means that:  when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set;  when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
+        unsigned RSYNOFC : 1; //!< Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOC=0. If bit clear, untouch ASRCCR:ACOC.
+        unsigned RSYNIFC : 1; //!< Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIC=0. If bit clear, untouch ASRCCR:ACIC.
+        unsigned OUTFIFO_THRESHOLDC : 6; //!< The threshold for Pair C's output FIFO per channel These bits stand for the threshold for Pair C's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
         unsigned RESERVED1 : 2; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned BYPASSPOLYC : 1; //!< Bypass Polyphase Filtering for Pair C  This bit will determine whether the polyphase filtering part of Pair C conversion will be bypassed.
-        unsigned BUFSTALLC : 1; //!< Stall Pair C conversion in case of Buffer Near Empty/Full Condition  This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair C. This option can only work when external ratio is used.  Near empty condition is the condition when input FIFO has less than 4 useful samples per channel.  Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
-        unsigned EXTTHRSHC : 1; //!< Use external thresholds for FIFO control of Pair C  This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair C.
-        unsigned ZEROBUFC : 1; //!< Initialize buf of Pair C when pair C is enabled  This bit is used to control whether the buffer is to be zeroized when pair C is enabled.
+        unsigned BYPASSPOLYC : 1; //!< Bypass Polyphase Filtering for Pair C This bit will determine whether the polyphase filtering part of Pair C conversion will be bypassed.
+        unsigned BUFSTALLC : 1; //!< Stall Pair C conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair C. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
+        unsigned EXTTHRSHC : 1; //!< Use external thresholds for FIFO control of Pair C This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair C.
+        unsigned ZEROBUFC : 1; //!< Initialize buf of Pair C when pair C is enabled This bit is used to control whether the buffer is to be zeroized when pair C is enabled.
         unsigned RESERVED2 : 8; //!< 
     } B;
 } hw_asrc_asrmcrc_t;
@@ -3432,19 +3413,17 @@ typedef union
 #define HW_ASRC_ASRMCRC_TOG(v)    (HW_ASRC_ASRMCRC_WR(HW_ASRC_ASRMCRC_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRMCRC bitfields
  */
 
-/* --- Register HW_ASRC_ASRMCRC, field INFIFO_THRESHOLDC
+/* --- Register HW_ASRC_ASRMCRC, field INFIFO_THRESHOLDC (RW)
  *
- * The threshold for Pair C's input FIFO per channel  These bits stand for the threshold for Pair
- * C's input FIFO per                                 channel. Possible range is [0,63].  When the
- * value is n, it means that:  when the number of input FIFO fillings of the pair is less than n
- * samples per channel, the input data needed flag is set;  when the number of input FIFO fillings
- * of the pair is greater than or                                 equal to n samples per channel,
- * the input data needed flag is                                 automatically cleared.
+ * The threshold for Pair C's input FIFO per channel These bits stand for the threshold for Pair C's
+ * input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the
+ * number of input FIFO fillings of the pair is less than n samples per channel, the input data
+ * needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal
+ * to n samples per channel, the input data needed flag is automatically cleared.
  */
 
 #define BP_ASRC_ASRMCRC_INFIFO_THRESHOLDC      0
@@ -3456,12 +3435,13 @@ typedef union
 #define BF_ASRC_ASRMCRC_INFIFO_THRESHOLDC(v)   (((v) << 0) & BM_ASRC_ASRMCRC_INFIFO_THRESHOLDC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INFIFO_THRESHOLDC field to a new value.
 #define BW_ASRC_ASRMCRC_INFIFO_THRESHOLDC(v)   BF_CS1(ASRC_ASRMCRC, INFIFO_THRESHOLDC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRC, field RSYNOFC
+/* --- Register HW_ASRC_ASRMCRC, field RSYNOFC (RW)
  *
- * Re-sync Output FIFO Channel Counter  If bit set, force ASRCCR:ACOC=0. If bit clear, untouch
+ * Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOC=0. If bit clear, untouch
  * ASRCCR:ACOC.
  */
 
@@ -3474,12 +3454,13 @@ typedef union
 #define BF_ASRC_ASRMCRC_RSYNOFC(v)   (((v) << 10) & BM_ASRC_ASRMCRC_RSYNOFC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RSYNOFC field to a new value.
 #define BW_ASRC_ASRMCRC_RSYNOFC(v)   BF_CS1(ASRC_ASRMCRC, RSYNOFC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRC, field RSYNIFC
+/* --- Register HW_ASRC_ASRMCRC, field RSYNIFC (RW)
  *
- * Re-sync Input FIFO Channel Counter  If bit set, force ASRCCR:ACIC=0. If bit clear, untouch
+ * Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIC=0. If bit clear, untouch
  * ASRCCR:ACIC.
  */
 
@@ -3492,17 +3473,17 @@ typedef union
 #define BF_ASRC_ASRMCRC_RSYNIFC(v)   (((v) << 11) & BM_ASRC_ASRMCRC_RSYNIFC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RSYNIFC field to a new value.
 #define BW_ASRC_ASRMCRC_RSYNIFC(v)   BF_CS1(ASRC_ASRMCRC, RSYNIFC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRC, field OUTFIFO_THRESHOLDC
+/* --- Register HW_ASRC_ASRMCRC, field OUTFIFO_THRESHOLDC (RW)
  *
- * The threshold for Pair C's output FIFO per channel  These bits stand for the threshold for Pair
- * C's output FIFO per                                 channel. Possible range is [0,63].  When the
- * value is n, it means that:  when the number of output FIFO fillings of the pair is greater than n
- * samples per channel, the output data ready flag is set;  when the number of output FIFO fillings
- * of the pair is less than or                                 equal to n samples per channel, the
- * output data ready flag is                                 automatically cleared.
+ * The threshold for Pair C's output FIFO per channel These bits stand for the threshold for Pair
+ * C's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when
+ * the number of output FIFO fillings of the pair is greater than n samples per channel, the output
+ * data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal
+ * to n samples per channel, the output data ready flag is automatically cleared.
  */
 
 #define BP_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC      12
@@ -3514,13 +3495,18 @@ typedef union
 #define BF_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC(v)   (((v) << 12) & BM_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OUTFIFO_THRESHOLDC field to a new value.
 #define BW_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC(v)   BF_CS1(ASRC_ASRMCRC, OUTFIFO_THRESHOLDC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRC, field BYPASSPOLYC
+/* --- Register HW_ASRC_ASRMCRC, field BYPASSPOLYC (RW)
  *
- * Bypass Polyphase Filtering for Pair C  This bit will determine whether the polyphase filtering
- * part of Pair                                 C conversion will be bypassed.
+ * Bypass Polyphase Filtering for Pair C This bit will determine whether the polyphase filtering
+ * part of Pair C conversion will be bypassed.
+ *
+ * Values:
+ * 1 - Bypass polyphase filtering.
+ * 0 - Don't bypass polyphase filtering.
  */
 
 #define BP_ASRC_ASRMCRC_BYPASSPOLYC      20
@@ -3532,18 +3518,22 @@ typedef union
 #define BF_ASRC_ASRMCRC_BYPASSPOLYC(v)   (((v) << 20) & BM_ASRC_ASRMCRC_BYPASSPOLYC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASSPOLYC field to a new value.
 #define BW_ASRC_ASRMCRC_BYPASSPOLYC(v)   BF_CS1(ASRC_ASRMCRC, BYPASSPOLYC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRC, field BUFSTALLC
+
+/* --- Register HW_ASRC_ASRMCRC, field BUFSTALLC (RW)
  *
- * Stall Pair C conversion in case of Buffer Near Empty/Full
- * Condition  This bit will determine whether the near empty/full FIFO condition
- * will stall the rate conversion for pair C. This option can only work
- * when external ratio is used.  Near empty condition is the condition when input FIFO has less than
- * 4                                 useful samples per channel.  Near full condition is the
- * condition when the output FIFO has less                                 than 4 vacant sample
- * words to fill per channel.
+ * Stall Pair C conversion in case of Buffer Near Empty/Full Condition This bit will determine
+ * whether the near empty/full FIFO condition will stall the rate conversion for pair C. This option
+ * can only work when external ratio is used. Near empty condition is the condition when input FIFO
+ * has less than 4 useful samples per channel. Near full condition is the condition when the output
+ * FIFO has less than 4 vacant sample words to fill per channel.
+ *
+ * Values:
+ * 1 - Stall Pair C conversion in case of near empty/full FIFO conditions.
+ * 0 - Don't stall Pair C conversion even in case of near empty/full FIFO conditions.
  */
 
 #define BP_ASRC_ASRMCRC_BUFSTALLC      21
@@ -3555,14 +3545,20 @@ typedef union
 #define BF_ASRC_ASRMCRC_BUFSTALLC(v)   (((v) << 21) & BM_ASRC_ASRMCRC_BUFSTALLC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BUFSTALLC field to a new value.
 #define BW_ASRC_ASRMCRC_BUFSTALLC(v)   BF_CS1(ASRC_ASRMCRC, BUFSTALLC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRC, field EXTTHRSHC
+
+/* --- Register HW_ASRC_ASRMCRC, field EXTTHRSHC (RW)
  *
- * Use external thresholds for FIFO control of Pair C  This bit will determine whether the FIFO
- * thresholds externally                                 defined in this register is used to control
- * ASRC internal FIFO logic                                 for pair C.
+ * Use external thresholds for FIFO control of Pair C This bit will determine whether the FIFO
+ * thresholds externally defined in this register is used to control ASRC internal FIFO logic for
+ * pair C.
+ *
+ * Values:
+ * 1 - Use external defined thresholds.
+ * 0 - Use default thresholds.
  */
 
 #define BP_ASRC_ASRMCRC_EXTTHRSHC      22
@@ -3574,13 +3570,19 @@ typedef union
 #define BF_ASRC_ASRMCRC_EXTTHRSHC(v)   (((v) << 22) & BM_ASRC_ASRMCRC_EXTTHRSHC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EXTTHRSHC field to a new value.
 #define BW_ASRC_ASRMCRC_EXTTHRSHC(v)   BF_CS1(ASRC_ASRMCRC, EXTTHRSHC, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCRC, field ZEROBUFC
+
+/* --- Register HW_ASRC_ASRMCRC, field ZEROBUFC (RW)
  *
- * Initialize buf of Pair C when pair C is enabled  This bit is used to control whether the buffer
- * is to be zeroized when                                 pair C is enabled.
+ * Initialize buf of Pair C when pair C is enabled This bit is used to control whether the buffer is
+ * to be zeroized when pair C is enabled.
+ *
+ * Values:
+ * 1 - Don't zeroize the buffer
+ * 0 - Zeroize the buffer
  */
 
 #define BP_ASRC_ASRMCRC_ZEROBUFC      23
@@ -3592,27 +3594,28 @@ typedef union
 #define BF_ASRC_ASRMCRC_ZEROBUFC(v)   (((v) << 23) & BM_ASRC_ASRMCRC_ZEROBUFC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ZEROBUFC field to a new value.
 #define BW_ASRC_ASRMCRC_ZEROBUFC(v)   BF_CS1(ASRC_ASRMCRC, ZEROBUFC, v)
 #endif
 
-/*!
- * @brief HW_ASRC_ASRFSTC - ASRC FIFO Status Register for Pair C
- *
- * The register (ASRFSTC) is used to show Pair C internal FIFO
- * conditions.
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRFSTC - ASRC FIFO Status Register for Pair C (RO)
+ *
+ * The register (ASRFSTC) is used to show Pair C internal FIFO conditions.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned INFIFO_FILLC : 7; //!< The fillings for Pair C's input FIFO per channel  These bits stand for the fillings for Pair C's input FIFO per channel. Possible range is [0,64].
+        unsigned INFIFO_FILLC : 7; //!< The fillings for Pair C's input FIFO per channel These bits stand for the fillings for Pair C's input FIFO per channel. Possible range is [0,64].
         unsigned RESERVED0 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned IAEC : 1; //!< Input FIFO is near Empty for Pair C  This bit is to indicate whether the input FIFO of Pair C is near empty.
-        unsigned OUTFIFO_FILLC : 7; //!< The fillings for Pair C's output FIFO per channel  These bits stand for the fillings for Pair C's output FIFO per channel. Possible range is [0,64].
+        unsigned IAEC : 1; //!< Input FIFO is near Empty for Pair C This bit is to indicate whether the input FIFO of Pair C is near empty.
+        unsigned OUTFIFO_FILLC : 7; //!< The fillings for Pair C's output FIFO per channel These bits stand for the fillings for Pair C's output FIFO per channel. Possible range is [0,64].
         unsigned RESERVED1 : 4; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned OAFC : 1; //!< Output FIFO is near Full for Pair C  This bit is to indicate whether the output FIFO of Pair C is near full.
+        unsigned OAFC : 1; //!< Output FIFO is near Full for Pair C This bit is to indicate whether the output FIFO of Pair C is near full.
         unsigned RESERVED2 : 8; //!< 
     } B;
 } hw_asrc_asrfstc_t;
@@ -3626,108 +3629,66 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_ASRC_ASRFSTC           (*(volatile hw_asrc_asrfstc_t *) HW_ASRC_ASRFSTC_ADDR)
 #define HW_ASRC_ASRFSTC_RD()      (HW_ASRC_ASRFSTC.U)
-#define HW_ASRC_ASRFSTC_WR(v)     (HW_ASRC_ASRFSTC.U = (v))
-#define HW_ASRC_ASRFSTC_SET(v)    (HW_ASRC_ASRFSTC_WR(HW_ASRC_ASRFSTC_RD() |  (v)))
-#define HW_ASRC_ASRFSTC_CLR(v)    (HW_ASRC_ASRFSTC_WR(HW_ASRC_ASRFSTC_RD() & ~(v)))
-#define HW_ASRC_ASRFSTC_TOG(v)    (HW_ASRC_ASRFSTC_WR(HW_ASRC_ASRFSTC_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual ASRC_ASRFSTC bitfields
  */
 
-/* --- Register HW_ASRC_ASRFSTC, field INFIFO_FILLC
+/* --- Register HW_ASRC_ASRFSTC, field INFIFO_FILLC (RO)
  *
- * The fillings for Pair C's input FIFO per channel  These bits stand for the fillings for Pair C's
- * input FIFO per                                 channel. Possible range is [0,64].
+ * The fillings for Pair C's input FIFO per channel These bits stand for the fillings for Pair C's
+ * input FIFO per channel. Possible range is [0,64].
  */
 
 #define BP_ASRC_ASRFSTC_INFIFO_FILLC      0
 #define BM_ASRC_ASRFSTC_INFIFO_FILLC      0x0000007f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTC_INFIFO_FILLC(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRFSTC_INFIFO_FILLC)
-#else
-#define BF_ASRC_ASRFSTC_INFIFO_FILLC(v)   (((v) << 0) & BM_ASRC_ASRFSTC_INFIFO_FILLC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTC_INFIFO_FILLC(v)   BF_CS1(ASRC_ASRFSTC, INFIFO_FILLC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTC, field IAEC
+/* --- Register HW_ASRC_ASRFSTC, field IAEC (RO)
  *
- * Input FIFO is near Empty for Pair C  This bit is to indicate whether the input FIFO of Pair C is
- * near                                 empty.
+ * Input FIFO is near Empty for Pair C This bit is to indicate whether the input FIFO of Pair C is
+ * near empty.
  */
 
 #define BP_ASRC_ASRFSTC_IAEC      11
 #define BM_ASRC_ASRFSTC_IAEC      0x00000800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTC_IAEC(v)   ((((reg32_t) v) << 11) & BM_ASRC_ASRFSTC_IAEC)
-#else
-#define BF_ASRC_ASRFSTC_IAEC(v)   (((v) << 11) & BM_ASRC_ASRFSTC_IAEC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTC_IAEC(v)   BF_CS1(ASRC_ASRFSTC, IAEC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTC, field OUTFIFO_FILLC
+/* --- Register HW_ASRC_ASRFSTC, field OUTFIFO_FILLC (RO)
  *
- * The fillings for Pair C's output FIFO per channel  These bits stand for the fillings for Pair C's
- * output FIFO per                                 channel. Possible range is [0,64].
+ * The fillings for Pair C's output FIFO per channel These bits stand for the fillings for Pair C's
+ * output FIFO per channel. Possible range is [0,64].
  */
 
 #define BP_ASRC_ASRFSTC_OUTFIFO_FILLC      12
 #define BM_ASRC_ASRFSTC_OUTFIFO_FILLC      0x0007f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTC_OUTFIFO_FILLC(v)   ((((reg32_t) v) << 12) & BM_ASRC_ASRFSTC_OUTFIFO_FILLC)
-#else
-#define BF_ASRC_ASRFSTC_OUTFIFO_FILLC(v)   (((v) << 12) & BM_ASRC_ASRFSTC_OUTFIFO_FILLC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTC_OUTFIFO_FILLC(v)   BF_CS1(ASRC_ASRFSTC, OUTFIFO_FILLC, v)
-#endif
-
-/* --- Register HW_ASRC_ASRFSTC, field OAFC
+/* --- Register HW_ASRC_ASRFSTC, field OAFC (RO)
  *
- * Output FIFO is near Full for Pair C  This bit is to indicate whether the output FIFO of Pair C is
- * near                                 full.
+ * Output FIFO is near Full for Pair C This bit is to indicate whether the output FIFO of Pair C is
+ * near full.
  */
 
 #define BP_ASRC_ASRFSTC_OAFC      23
 #define BM_ASRC_ASRFSTC_OAFC      0x00800000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRFSTC_OAFC(v)   ((((reg32_t) v) << 23) & BM_ASRC_ASRFSTC_OAFC)
-#else
-#define BF_ASRC_ASRFSTC_OAFC(v)   (((v) << 23) & BM_ASRC_ASRFSTC_OAFC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_ASRC_ASRFSTC_OAFC(v)   BF_CS1(ASRC_ASRFSTC, OAFC, v)
-#endif
-
 /*!
- * @brief HW_ASRC_ASRMCR1 - ASRC Misc Control Register 1 for Pair X
+ * @brief HW_ASRC_ASRMCR1 - ASRC Misc Control Register 1 for Pair X (RW)
  *
- * The register (ASRMCR1A) is used to control Pair x internal logic                             (for
- * data alignment etc.).  The bit assignment for all the input data formats is the same as that
- * supported by the SSI.
+ * The register (ASRMCR1A) is used to control Pair x internal logic (for data alignment etc.).  The
+ * bit assignment for all the input data formats is the same as that supported by the SSI.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned OW16 : 1; //!< Bit Width Option of the output FIFO  This bit will determine the bit width option of the output FIFO.
-        unsigned OSGN : 1; //!< Sign Extension Option of the output FIFO  This bit will determine the sign extension option of the output FIFO.
-        unsigned OMSB : 1; //!< Data Alignment of the output FIFO  This bit will determine the data alignment of the output FIFO.
+        unsigned OW16 : 1; //!< Bit Width Option of the output FIFO This bit will determine the bit width option of the output FIFO.
+        unsigned OSGN : 1; //!< Sign Extension Option of the output FIFO This bit will determine the sign extension option of the output FIFO.
+        unsigned OMSB : 1; //!< Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
         unsigned RESERVED0 : 5; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned IMSB : 1; //!< Data Alignment of the input FIFO  This bit will determine the data alignment of the input FIFO.
-        unsigned IWD : 3; //!< Data Width of the input FIFO  These three bits will determine the bitwidth for the audio data into ASRC  All other settings not shown are reserved.  3'b000 24-bit audio data.  3'b001 16-bit audio data.  3'b010 8-bit audio data.
+        unsigned IMSB : 1; //!< Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
+        unsigned IWD : 3; //!< Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio data. 3'b010 8-bit audio data.
         unsigned RESERVED1 : 12; //!< Reserved. Should be written as zero for future compatibility.
         unsigned RESERVED2 : 8; //!< 
     } B;
@@ -3748,15 +3709,18 @@ typedef union
 #define HW_ASRC_ASRMCR1_TOG(v)    (HW_ASRC_ASRMCR1_WR(HW_ASRC_ASRMCR1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual ASRC_ASRMCR1 bitfields
  */
 
-/* --- Register HW_ASRC_ASRMCR1, field OW16
+/* --- Register HW_ASRC_ASRMCR1, field OW16 (RW)
  *
- * Bit Width Option of the output FIFO  This bit will determine the bit width option of the output
+ * Bit Width Option of the output FIFO This bit will determine the bit width option of the output
  * FIFO.
+ *
+ * Values:
+ * 1 - 16-bit output data
+ * 0 - 24-bit output data.
  */
 
 #define BP_ASRC_ASRMCR1_OW16      0
@@ -3768,13 +3732,19 @@ typedef union
 #define BF_ASRC_ASRMCR1_OW16(v)   (((v) << 0) & BM_ASRC_ASRMCR1_OW16)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OW16 field to a new value.
 #define BW_ASRC_ASRMCR1_OW16(v)   BF_CS1(ASRC_ASRMCR1, OW16, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCR1, field OSGN
+
+/* --- Register HW_ASRC_ASRMCR1, field OSGN (RW)
  *
- * Sign Extension Option of the output FIFO  This bit will determine the sign extension option of
- * the output                                 FIFO.
+ * Sign Extension Option of the output FIFO This bit will determine the sign extension option of the
+ * output FIFO.
+ *
+ * Values:
+ * 1 - Sign extension.
+ * 0 - No sign extension.
  */
 
 #define BP_ASRC_ASRMCR1_OSGN      1
@@ -3786,12 +3756,18 @@ typedef union
 #define BF_ASRC_ASRMCR1_OSGN(v)   (((v) << 1) & BM_ASRC_ASRMCR1_OSGN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OSGN field to a new value.
 #define BW_ASRC_ASRMCR1_OSGN(v)   BF_CS1(ASRC_ASRMCR1, OSGN, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCR1, field OMSB
+
+/* --- Register HW_ASRC_ASRMCR1, field OMSB (RW)
  *
- * Data Alignment of the output FIFO  This bit will determine the data alignment of the output FIFO.
+ * Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
+ *
+ * Values:
+ * 1 - MSB aligned.
+ * 0 - LSB aligned.
  */
 
 #define BP_ASRC_ASRMCR1_OMSB      2
@@ -3803,12 +3779,18 @@ typedef union
 #define BF_ASRC_ASRMCR1_OMSB(v)   (((v) << 2) & BM_ASRC_ASRMCR1_OMSB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OMSB field to a new value.
 #define BW_ASRC_ASRMCR1_OMSB(v)   BF_CS1(ASRC_ASRMCR1, OMSB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCR1, field IMSB
+
+/* --- Register HW_ASRC_ASRMCR1, field IMSB (RW)
  *
- * Data Alignment of the input FIFO  This bit will determine the data alignment of the input FIFO.
+ * Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
+ *
+ * Values:
+ * 1 - MSB aligned.
+ * 0 - LSB aligned.
  */
 
 #define BP_ASRC_ASRMCR1_IMSB      8
@@ -3820,14 +3802,16 @@ typedef union
 #define BF_ASRC_ASRMCR1_IMSB(v)   (((v) << 8) & BM_ASRC_ASRMCR1_IMSB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IMSB field to a new value.
 #define BW_ASRC_ASRMCR1_IMSB(v)   BF_CS1(ASRC_ASRMCR1, IMSB, v)
 #endif
 
-/* --- Register HW_ASRC_ASRMCR1, field IWD
+
+/* --- Register HW_ASRC_ASRMCR1, field IWD (RW)
  *
- * Data Width of the input FIFO  These three bits will determine the bitwidth for the audio data
- * into                                 ASRC  All other settings not shown are reserved.  3'b000
- * 24-bit audio data.  3'b001 16-bit audio data.  3'b010 8-bit audio data.
+ * Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into
+ * ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio
+ * data. 3'b010 8-bit audio data.
  */
 
 #define BP_ASRC_ASRMCR1_IWD      9
@@ -3839,9 +3823,9 @@ typedef union
 #define BF_ASRC_ASRMCR1_IWD(v)   (((v) << 9) & BM_ASRC_ASRMCR1_IWD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IWD field to a new value.
 #define BW_ASRC_ASRMCR1_IWD(v)   BF_CS1(ASRC_ASRMCR1, IWD, v)
 #endif
-
 
 
 /*!
@@ -3874,8 +3858,8 @@ typedef struct
     volatile hw_asrc_asridrlb_t ASRIDRLB; //!< ASRC Ideal Ratio for Pair B-Low Part
     volatile hw_asrc_asridrhc_t ASRIDRHC; //!< ASRC Ideal Ratio for Pair C-High Part
     volatile hw_asrc_asridrlc_t ASRIDRLC; //!< ASRC Ideal Ratio for Pair C-Low Part
-    volatile hw_asrc_asr76k_t ASR76K; //!< ASRC 76kHz Period in terms of ASRC processing                        clock
-    volatile hw_asrc_asr56k_t ASR56K; //!< ASRC 56kHz Period in terms of ASRC processing                        clock
+    volatile hw_asrc_asr76k_t ASR76K; //!< ASRC 76kHz Period in terms of ASRC processing clock
+    volatile hw_asrc_asr56k_t ASR56K; //!< ASRC 56kHz Period in terms of ASRC processing clock
     volatile hw_asrc_asrmcra_t ASRMCRA; //!< ASRC Misc Control Register for Pair A
     volatile hw_asrc_asrfsta_t ASRFSTA; //!< ASRC FIFO Status Register for Pair A
     volatile hw_asrc_asrmcrb_t ASRMCRB; //!< ASRC Misc Control Register for Pair B

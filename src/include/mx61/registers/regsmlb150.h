@@ -10,20 +10,61 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_MLB_MLBC0 - MediaLB Control 0 Register
+ * - HW_MLB_MLBPC0 - MediaLB 6-pin Control 0 Register
+ * - HW_MLB_MS0 - MediaLB Channel Status 0 Register
+ * - HW_MLB_MLBPC2 - MediaLB 6-pin Control 2 Register
+ * - HW_MLB_MS1 - MediaLB Channel Status1 Register
+ * - HW_MLB_MSS - MediaLB System Status Register
+ * - HW_MLB_MSD - MediaLB System Data Register
+ * - HW_MLB_MIEN - MediaLB Interrupt Enable Register
+ * - HW_MLB_MLBPC1 - MediaLB 6-pin Control 1 Register
+ * - HW_MLB_MLBC1 - MediaLB Control 1 Register
+ * - HW_MLB_HCTL - HBI Control Register
+ * - HW_MLB_HCMR0 - HBI Channel Mask 0 Register
+ * - HW_MLB_HCMR1 - HBI Channel Mask 1 Register
+ * - HW_MLB_HCER0 - HBI Channel Error 0 Register
+ * - HW_MLB_HCER1 - HBI Channel Error 1 Register
+ * - HW_MLB_HCBR0 - HBI Channel Busy 0 Register
+ * - HW_MLB_HCBR1 - HBI Channel Busy 1 Register
+ * - HW_MLB_MDAT0 - MIF Data 0 Register
+ * - HW_MLB_MDAT1 - MIF Data 1 Register
+ * - HW_MLB_MDAT2 - MIF Data 2 Register
+ * - HW_MLB_MDAT3 - MIF Data 3 Register
+ * - HW_MLB_MDWE0 - MIF Data Write Enable 0 Register
+ * - HW_MLB_MDWE1 - MIF Data Write Enable 1 Register
+ * - HW_MLB_MDWE2 - MIF Data Write Enable 2 Register
+ * - HW_MLB_MDWE3 - MIF Data Write Enable 3 Register
+ * - HW_MLB_MCTL - MIF Control Register
+ * - HW_MLB_MADR - MIF Address Register
+ * - HW_MLB_ACTL - AHB Control Register
+ * - HW_MLB_ACSR0 - AHB Channel Status 0 Register
+ * - HW_MLB_ACSR1 - AHB Channel Status 1 Register
+ * - HW_MLB_ACMR0 - AHB Channel Mask 0 Register
+ * - HW_MLB_ACMR1 - AHB Channel Mask 1 Register
+ *
+ * hw_mlb_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_MLB_BASE
-#define REGS_MLB_BASE (REGS_BASE + 0x0218c000)
+#define REGS_MLB_BASE (0x0218c000) //!< Base address for MLB.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MLBC0 - MediaLB Control 0 Register
+ * @brief HW_MLB_MLBC0 - MediaLB Control 0 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 1; //!< MediaLB enable. When set, MediaLB clock, signal, and data are received and transmitted on the appropriate MediaLB pins.
@@ -56,14 +97,23 @@ typedef union
 #define HW_MLB_MLBC0_TOG(v)    (HW_MLB_MLBC0_WR(HW_MLB_MLBC0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MLBC0 bitfields
  */
 
-/* --- Register HW_MLB_MLBC0, field FCNT
+/* --- Register HW_MLB_MLBC0, field FCNT (RW)
  *
  * The number of frames per sub-buffer for synchronous channels.
+ *
+ * Values:
+ * 000 - 1 frame per sub-buffer (Operation is the same as Standard mode.)
+ * 001 - 2 frames per sub-buffer
+ * 010 - 4 frames per sub-buffer
+ * 011 - 8 frames per sub-buffer
+ * 100 - 16 frames per sub-buffer
+ * 101 - 32 frames per sub-buffer
+ * 110 - 64 frames per sub-buffer
+ * 111 - Reserved
  */
 
 #define BP_MLB_MLBC0_FCNT      15
@@ -75,18 +125,20 @@ typedef union
 #define BF_MLB_MLBC0_FCNT(v)   (((v) << 15) & BM_MLB_MLBC0_FCNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FCNT field to a new value.
 #define BW_MLB_MLBC0_FCNT(v)   BF_CS1(MLB_MLBC0, FCNT, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MLBPC0 - MediaLB 6-pin Control 0 Register
+ * @brief HW_MLB_MLBPC0 - MediaLB 6-pin Control 0 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 11; //!< Reserved
@@ -110,20 +162,19 @@ typedef union
 #define HW_MLB_MLBPC0_TOG(v)    (HW_MLB_MLBPC0_WR(HW_MLB_MLBPC0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MLBPC0 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MS0 - MediaLB Channel Status 0 Register
+ * @brief HW_MLB_MS0 - MediaLB Channel Status 0 Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< MediaLB channel status. Indicates the channel status for MediaLB channels 31 to 0. Channel status bits are set by hardware and cleared by software. Status is only set if the appropriate bits in the MIEN register are set.
@@ -139,26 +190,21 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_MS0           (*(volatile hw_mlb_ms0_t *) HW_MLB_MS0_ADDR)
 #define HW_MLB_MS0_RD()      (HW_MLB_MS0.U)
-#define HW_MLB_MS0_WR(v)     (HW_MLB_MS0.U = (v))
-#define HW_MLB_MS0_SET(v)    (HW_MLB_MS0_WR(HW_MLB_MS0_RD() |  (v)))
-#define HW_MLB_MS0_CLR(v)    (HW_MLB_MS0_WR(HW_MLB_MS0_RD() & ~(v)))
-#define HW_MLB_MS0_TOG(v)    (HW_MLB_MS0_WR(HW_MLB_MS0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_MS0 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MLBPC2 - MediaLB 6-pin Control 2 Register
+ * @brief HW_MLB_MLBPC2 - MediaLB 6-pin Control 2 Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned SDOPC : 1; //!< MLB 3-pin interface: Signal/Data output phase control.
@@ -176,35 +222,26 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_MLBPC2           (*(volatile hw_mlb_mlbpc2_t *) HW_MLB_MLBPC2_ADDR)
 #define HW_MLB_MLBPC2_RD()      (HW_MLB_MLBPC2.U)
-#define HW_MLB_MLBPC2_WR(v)     (HW_MLB_MLBPC2.U = (v))
-#define HW_MLB_MLBPC2_SET(v)    (HW_MLB_MLBPC2_WR(HW_MLB_MLBPC2_RD() |  (v)))
-#define HW_MLB_MLBPC2_CLR(v)    (HW_MLB_MLBPC2_WR(HW_MLB_MLBPC2_RD() & ~(v)))
-#define HW_MLB_MLBPC2_TOG(v)    (HW_MLB_MLBPC2_WR(HW_MLB_MLBPC2_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_MLBPC2 bitfields
  */
 
-/* --- Register HW_MLB_MLBPC2, field SDOPC
+/* --- Register HW_MLB_MLBPC2, field SDOPC (RW)
  *
  * MLB 3-pin interface: Signal/Data output phase control.
+ *
+ * Values:
+ * 0 - MLB signal/data launch at rising edge of MLB clock(default)
+ * 1 - MLB signal/data launch at falling edge of MLB clock
  */
 
 #define BP_MLB_MLBPC2_SDOPC      0
 #define BM_MLB_MLBPC2_SDOPC      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_MLB_MLBPC2_SDOPC(v)   ((((reg32_t) v) << 0) & BM_MLB_MLBPC2_SDOPC)
-#else
-#define BF_MLB_MLBPC2_SDOPC(v)   (((v) << 0) & BM_MLB_MLBPC2_SDOPC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_MLB_MLBPC2_SDOPC(v)   BF_CS1(MLB_MLBPC2, SDOPC, v)
-#endif
 
-/* --- Register HW_MLB_MLBPC2, field SDRTO
+/* --- Register HW_MLB_MLBPC2, field SDRTO (RW)
  *
  * MLB 6-pin interface: Signal/Data receiver threshold offset control.
  */
@@ -213,23 +250,14 @@ typedef union
 #define BM_MLB_MLBPC2_SDRTO      0x00000006
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MLB_MLBPC2_SDRTO(v)   ((((reg32_t) v) << 1) & BM_MLB_MLBPC2_SDRTO)
-#else
-#define BF_MLB_MLBPC2_SDRTO(v)   (((v) << 1) & BM_MLB_MLBPC2_SDRTO)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_MLB_MLBPC2_SDRTO(v)   BF_CS1(MLB_MLBPC2, SDRTO, v)
-#endif
-
 /*!
- * @brief HW_MLB_MS1 - MediaLB Channel Status1 Register
+ * @brief HW_MLB_MS1 - MediaLB Channel Status1 Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< MediaLB channel status. Indicates the channel status for MediaLB channels 63 to 32. Channel status bits are set by hardware and cleared by software. Status is only set if the appropriate bits in the MIEN register are set.
@@ -245,26 +273,21 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_MS1           (*(volatile hw_mlb_ms1_t *) HW_MLB_MS1_ADDR)
 #define HW_MLB_MS1_RD()      (HW_MLB_MS1.U)
-#define HW_MLB_MS1_WR(v)     (HW_MLB_MS1.U = (v))
-#define HW_MLB_MS1_SET(v)    (HW_MLB_MS1_WR(HW_MLB_MS1_RD() |  (v)))
-#define HW_MLB_MS1_CLR(v)    (HW_MLB_MS1_WR(HW_MLB_MS1_RD() & ~(v)))
-#define HW_MLB_MS1_TOG(v)    (HW_MLB_MS1_WR(HW_MLB_MS1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_MS1 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MSS - MediaLB System Status Register
+ * @brief HW_MLB_MSS - MediaLB System Status Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 1; //!< Reset system command detected (in the system quadlet). Set by hardware, cleared by software.
@@ -286,26 +309,21 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_MSS           (*(volatile hw_mlb_mss_t *) HW_MLB_MSS_ADDR)
 #define HW_MLB_MSS_RD()      (HW_MLB_MSS.U)
-#define HW_MLB_MSS_WR(v)     (HW_MLB_MSS.U = (v))
-#define HW_MLB_MSS_SET(v)    (HW_MLB_MSS_WR(HW_MLB_MSS_RD() |  (v)))
-#define HW_MLB_MSS_CLR(v)    (HW_MLB_MSS_WR(HW_MLB_MSS_RD() & ~(v)))
-#define HW_MLB_MSS_TOG(v)    (HW_MLB_MSS_WR(HW_MLB_MSS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_MSS bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MSD - MediaLB System Data Register
+ * @brief HW_MLB_MSD - MediaLB System Data Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 8; //!< System data (byte 0). Updated with MediaLB Data[7:0] when a MediaLB software system command is received in the system quadlet. If MSS.SWSYSCMD is already set, then SD0 is not updated. (read-only)
@@ -324,26 +342,21 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_MSD           (*(volatile hw_mlb_msd_t *) HW_MLB_MSD_ADDR)
 #define HW_MLB_MSD_RD()      (HW_MLB_MSD.U)
-#define HW_MLB_MSD_WR(v)     (HW_MLB_MSD.U = (v))
-#define HW_MLB_MSD_SET(v)    (HW_MLB_MSD_WR(HW_MLB_MSD_RD() |  (v)))
-#define HW_MLB_MSD_CLR(v)    (HW_MLB_MSD_WR(HW_MLB_MSD_RD() & ~(v)))
-#define HW_MLB_MSD_TOG(v)    (HW_MLB_MSD_WR(HW_MLB_MSD_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_MSD bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MIEN - MediaLB Interrupt Enable Register
+ * @brief HW_MLB_MIEN - MediaLB Interrupt Enable Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 1; //!< Isochronous Rx protocol error enable. When set, a ProtocolError detected on an isochronous Rx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
@@ -382,20 +395,19 @@ typedef union
 #define HW_MLB_MIEN_TOG(v)    (HW_MLB_MIEN_WR(HW_MLB_MIEN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MIEN bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MLBPC1 - MediaLB 6-pin Control 1 Register
+ * @brief HW_MLB_MLBPC1 - MediaLB 6-pin Control 1 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 4; //!< Signal/Data receiver bias control (for MediaLB 6-pin interface). Must be written to 0xC when MediaLB 6-pin is initialized (final value needs to be determined through characterization). This value is driven on mlb_sig_data_rx_bias_ctl[3:0] output pin and has no internal function.
@@ -420,20 +432,19 @@ typedef union
 #define HW_MLB_MLBPC1_TOG(v)    (HW_MLB_MLBPC1_WR(HW_MLB_MLBPC1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MLBPC1 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MLBC1 - MediaLB Control 1 Register
+ * @brief HW_MLB_MLBC1 - MediaLB Control 1 Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 6; //!< Reserved
@@ -453,28 +464,22 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_MLBC1           (*(volatile hw_mlb_mlbc1_t *) HW_MLB_MLBC1_ADDR)
 #define HW_MLB_MLBC1_RD()      (HW_MLB_MLBC1.U)
-#define HW_MLB_MLBC1_WR(v)     (HW_MLB_MLBC1.U = (v))
-#define HW_MLB_MLBC1_SET(v)    (HW_MLB_MLBC1_WR(HW_MLB_MLBC1_RD() |  (v)))
-#define HW_MLB_MLBC1_CLR(v)    (HW_MLB_MLBC1_WR(HW_MLB_MLBC1_RD() & ~(v)))
-#define HW_MLB_MLBC1_TOG(v)    (HW_MLB_MLBC1_WR(HW_MLB_MLBC1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_MLBC1 bitfields
  */
 
-/*!
- * @brief HW_MLB_HCTL - HBI Control Register
- *
- * The HC can control and monitor general operation of the HBI block by
- * reading and writing the HBI Control Register (HCTL) through the I/O
- * interface. Each bit of HCTL is read/write.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_MLB_HCTL - HBI Control Register (RW)
+ *
+ * The HC can control and monitor general operation of the HBI block by reading and writing the HBI
+ * Control Register (HCTL) through the I/O interface. Each bit of HCTL is read/write.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 1; //!< AGU0 software reset
@@ -500,23 +505,22 @@ typedef union
 #define HW_MLB_HCTL_TOG(v)    (HW_MLB_HCTL_WR(HW_MLB_HCTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_HCTL bitfields
  */
 
-/*!
- * @brief HW_MLB_HCMR0 - HBI Channel Mask 0 Register
- *
- * The HC can control which channel(s) are able to generate an HBI interrupt
- * by writing the HBI Channel Mask Registers (HCMRn). The HCMRn registers
- * mask the channel interrupt on the hbi_hintb signal (i.e. hbi_hintb will not become active for any
- * masked channel).                             Each bit of HCMRn is read/write.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_MLB_HCMR0 - HBI Channel Mask 0 Register (RW)
+ *
+ * The HC can control which channel(s) are able to generate an HBI interrupt by writing the HBI
+ * Channel Mask Registers (HCMRn). The HCMRn registers mask the channel interrupt on the hbi_hintb
+ * signal (i.e. hbi_hintb will not become active for any masked channel). Each bit of HCMRn is
+ * read/write.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise channel mask bit
@@ -538,20 +542,19 @@ typedef union
 #define HW_MLB_HCMR0_TOG(v)    (HW_MLB_HCMR0_WR(HW_MLB_HCMR0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_HCMR0 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_HCMR1 - HBI Channel Mask 1 Register
+ * @brief HW_MLB_HCMR1 - HBI Channel Mask 1 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise channel mask bit
@@ -573,21 +576,19 @@ typedef union
 #define HW_MLB_HCMR1_TOG(v)    (HW_MLB_HCMR1_WR(HW_MLB_HCMR1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_HCMR1 bitfields
  */
 
-/*!
- * @brief HW_MLB_HCER0 - HBI Channel Error 0 Register
- *
- * The HBI Channel Error Registers (HCERn) indicate which channel(s) have
- * encountered fatal errors.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_MLB_HCER0 - HBI Channel Error 0 Register (RO)
+ *
+ * The HBI Channel Error Registers (HCERn) indicate which channel(s) have encountered fatal errors.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise channel error bit
@@ -603,28 +604,23 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_HCER0           (*(volatile hw_mlb_hcer0_t *) HW_MLB_HCER0_ADDR)
 #define HW_MLB_HCER0_RD()      (HW_MLB_HCER0.U)
-#define HW_MLB_HCER0_WR(v)     (HW_MLB_HCER0.U = (v))
-#define HW_MLB_HCER0_SET(v)    (HW_MLB_HCER0_WR(HW_MLB_HCER0_RD() |  (v)))
-#define HW_MLB_HCER0_CLR(v)    (HW_MLB_HCER0_WR(HW_MLB_HCER0_RD() & ~(v)))
-#define HW_MLB_HCER0_TOG(v)    (HW_MLB_HCER0_WR(HW_MLB_HCER0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_HCER0 bitfields
  */
 
-/*!
- * @brief HW_MLB_HCER1 - HBI Channel Error 1 Register
- *
- * HCERn status bits are set when hardware detects hardware errors on the
- * given logical channel, including:   Channel opened, but not enabled,  Channel programmed with
- * invalid channel type, or  Out-of-range PML for asynchronous or control Tx channels
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_MLB_HCER1 - HBI Channel Error 1 Register (RO)
+ *
+ * HCERn status bits are set when hardware detects hardware errors on the given logical channel,
+ * including:   Channel opened, but not enabled,  Channel programmed with invalid channel type, or
+ * Out-of-range PML for asynchronous or control Tx channels
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise channel error bit
@@ -640,32 +636,26 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_HCER1           (*(volatile hw_mlb_hcer1_t *) HW_MLB_HCER1_ADDR)
 #define HW_MLB_HCER1_RD()      (HW_MLB_HCER1.U)
-#define HW_MLB_HCER1_WR(v)     (HW_MLB_HCER1.U = (v))
-#define HW_MLB_HCER1_SET(v)    (HW_MLB_HCER1_WR(HW_MLB_HCER1_RD() |  (v)))
-#define HW_MLB_HCER1_CLR(v)    (HW_MLB_HCER1_WR(HW_MLB_HCER1_RD() & ~(v)))
-#define HW_MLB_HCER1_TOG(v)    (HW_MLB_HCER1_WR(HW_MLB_HCER1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_HCER1 bitfields
  */
 
-/*!
- * @brief HW_MLB_HCBR0 - HBI Channel Busy 0 Register
- *
- * The HC can determine which channel(s) are busy by reading the HBI Channel
- * Busy Registers (HCBRn). An HBI channel is busy if:   it is currently loaded into one of the two
- * AGUs  the channel is enabled, CE = 1 from the Channel Allocation Table ( ), and  the DMA is
- * active   When an HBI channel is busy, hardware may write back its local copy of
- * the channel descriptor at any time. System software should not write a
- * CDT descriptor for a channel that is busy. Only two HBI channels can be
- * busy at any given time. Each bit of HCBRn is read-only.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_MLB_HCBR0 - HBI Channel Busy 0 Register (RO)
+ *
+ * The HC can determine which channel(s) are busy by reading the HBI Channel Busy Registers (HCBRn).
+ * An HBI channel is busy if:   it is currently loaded into one of the two AGUs  the channel is
+ * enabled, CE = 1 from the Channel Allocation Table ( ), and  the DMA is active   When an HBI
+ * channel is busy, hardware may write back its local copy of the channel descriptor at any time.
+ * System software should not write a CDT descriptor for a channel that is busy. Only two HBI
+ * channels can be busy at any given time. Each bit of HCBRn is read-only.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise channel busy bit
@@ -681,26 +671,21 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_HCBR0           (*(volatile hw_mlb_hcbr0_t *) HW_MLB_HCBR0_ADDR)
 #define HW_MLB_HCBR0_RD()      (HW_MLB_HCBR0.U)
-#define HW_MLB_HCBR0_WR(v)     (HW_MLB_HCBR0.U = (v))
-#define HW_MLB_HCBR0_SET(v)    (HW_MLB_HCBR0_WR(HW_MLB_HCBR0_RD() |  (v)))
-#define HW_MLB_HCBR0_CLR(v)    (HW_MLB_HCBR0_WR(HW_MLB_HCBR0_RD() & ~(v)))
-#define HW_MLB_HCBR0_TOG(v)    (HW_MLB_HCBR0_WR(HW_MLB_HCBR0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_HCBR0 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_HCBR1 - HBI Channel Busy 1 Register
+ * @brief HW_MLB_HCBR1 - HBI Channel Busy 1 Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise channel busy bit
@@ -716,29 +701,24 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_HCBR1           (*(volatile hw_mlb_hcbr1_t *) HW_MLB_HCBR1_ADDR)
 #define HW_MLB_HCBR1_RD()      (HW_MLB_HCBR1.U)
-#define HW_MLB_HCBR1_WR(v)     (HW_MLB_HCBR1.U = (v))
-#define HW_MLB_HCBR1_SET(v)    (HW_MLB_HCBR1_WR(HW_MLB_HCBR1_RD() |  (v)))
-#define HW_MLB_HCBR1_CLR(v)    (HW_MLB_HCBR1_WR(HW_MLB_HCBR1_RD() & ~(v)))
-#define HW_MLB_HCBR1_TOG(v)    (HW_MLB_HCBR1_WR(HW_MLB_HCBR1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_HCBR1 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDAT0 - MIF Data 0 Register
+ * @brief HW_MLB_MDAT0 - MIF Data 0 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned RESERVED0 : 32; //!< CTR data - bits[31:0] of 128-bit entry or  DBR data - bits[7:0] of 8-bit entry
+        unsigned RESERVED0 : 32; //!< CTR data - bits[31:0] of 128-bit entry or DBR data - bits[7:0] of 8-bit entry
     } B;
 } hw_mlb_mdat0_t;
 #endif
@@ -757,20 +737,19 @@ typedef union
 #define HW_MLB_MDAT0_TOG(v)    (HW_MLB_MDAT0_WR(HW_MLB_MDAT0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDAT0 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDAT1 - MIF Data 1 Register
+ * @brief HW_MLB_MDAT1 - MIF Data 1 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< CTR data - bits[63:32] of 128-bit entry
@@ -792,20 +771,19 @@ typedef union
 #define HW_MLB_MDAT1_TOG(v)    (HW_MLB_MDAT1_WR(HW_MLB_MDAT1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDAT1 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDAT2 - MIF Data 2 Register
+ * @brief HW_MLB_MDAT2 - MIF Data 2 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< CTR data - bits[95:64] of 128-bit entry
@@ -827,20 +805,19 @@ typedef union
 #define HW_MLB_MDAT2_TOG(v)    (HW_MLB_MDAT2_WR(HW_MLB_MDAT2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDAT2 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDAT3 - MIF Data 3 Register
+ * @brief HW_MLB_MDAT3 - MIF Data 3 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< CTR data - bits[127:96] of 128-bit entry
@@ -862,20 +839,19 @@ typedef union
 #define HW_MLB_MDAT3_TOG(v)    (HW_MLB_MDAT3_WR(HW_MLB_MDAT3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDAT3 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDWE0 - MIF Data Write Enable 0 Register
+ * @brief HW_MLB_MDWE0 - MIF Data Write Enable 0 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise write enable for CTR data - bits[31:0]
@@ -897,20 +873,19 @@ typedef union
 #define HW_MLB_MDWE0_TOG(v)    (HW_MLB_MDWE0_WR(HW_MLB_MDWE0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDWE0 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDWE1 - MIF Data Write Enable 1 Register
+ * @brief HW_MLB_MDWE1 - MIF Data Write Enable 1 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise write enable for CTR data - bits[63:32]
@@ -932,20 +907,19 @@ typedef union
 #define HW_MLB_MDWE1_TOG(v)    (HW_MLB_MDWE1_WR(HW_MLB_MDWE1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDWE1 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDWE2 - MIF Data Write Enable 2 Register
+ * @brief HW_MLB_MDWE2 - MIF Data Write Enable 2 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise write enable for CTR data - bits[95:64]
@@ -967,20 +941,19 @@ typedef union
 #define HW_MLB_MDWE2_TOG(v)    (HW_MLB_MDWE2_WR(HW_MLB_MDWE2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDWE2 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MDWE3 - MIF Data Write Enable 3 Register
+ * @brief HW_MLB_MDWE3 - MIF Data Write Enable 3 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 32; //!< Bitwise write enable for CTR data - bits[127:96]
@@ -1002,20 +975,19 @@ typedef union
 #define HW_MLB_MDWE3_TOG(v)    (HW_MLB_MDWE3_WR(HW_MLB_MDWE3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MDWE3 bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MCTL - MIF Control Register
+ * @brief HW_MLB_MCTL - MIF Control Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 1; //!< Transfer complete (write 0 to clear)
@@ -1032,29 +1004,24 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_MCTL           (*(volatile hw_mlb_mctl_t *) HW_MLB_MCTL_ADDR)
 #define HW_MLB_MCTL_RD()      (HW_MLB_MCTL.U)
-#define HW_MLB_MCTL_WR(v)     (HW_MLB_MCTL.U = (v))
-#define HW_MLB_MCTL_SET(v)    (HW_MLB_MCTL_WR(HW_MLB_MCTL_RD() |  (v)))
-#define HW_MLB_MCTL_CLR(v)    (HW_MLB_MCTL_WR(HW_MLB_MCTL_RD() & ~(v)))
-#define HW_MLB_MCTL_TOG(v)    (HW_MLB_MCTL_WR(HW_MLB_MCTL_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_MCTL bitfields
  */
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_MADR - MIF Address Register
+ * @brief HW_MLB_MADR - MIF Address Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned RESERVED0 : 8; //!< CTR address of 128-bit entry or  DBR address of 8-bit entry - bits[7:0]
+        unsigned RESERVED0 : 8; //!< CTR address of 128-bit entry or DBR address of 8-bit entry - bits[7:0]
         unsigned RESERVED1 : 6; //!< DBR address of 8-bit entry - bits[13:8]
         unsigned RESERVED2 : 16; //!< Reserved
         unsigned RESERVED3 : 1; //!< Target location bit
@@ -1077,24 +1044,22 @@ typedef union
 #define HW_MLB_MADR_TOG(v)    (HW_MLB_MADR_WR(HW_MLB_MADR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_MADR bitfields
  */
 
-/*!
- * @brief HW_MLB_ACTL - AHB Control Register
- *
- * The AHB Control (ACTL) register is written by the HC to configure the
- * AMBA AHB block for channel interrupts. ACTL contains three configuration
- * fields, one is used to select the DMA mode, one is used to mux channel
- * interrupts onto a single interrupt signal, and the last selects the
- * method of clearing channel interrupts (either software or hardware).
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_MLB_ACTL - AHB Control Register (RW)
+ *
+ * The AHB Control (ACTL) register is written by the HC to configure the AMBA AHB block for channel
+ * interrupts. ACTL contains three configuration fields, one is used to select the DMA mode, one is
+ * used to mux channel interrupts onto a single interrupt signal, and the last selects the method of
+ * clearing channel interrupts (either software or hardware).
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned SCE : 1; //!< Software clear enable:
@@ -1121,14 +1086,17 @@ typedef union
 #define HW_MLB_ACTL_TOG(v)    (HW_MLB_ACTL_WR(HW_MLB_ACTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_ACTL bitfields
  */
 
-/* --- Register HW_MLB_ACTL, field SCE
+/* --- Register HW_MLB_ACTL, field SCE (RW)
  *
  * Software clear enable:
+ *
+ * Values:
+ * 0 - Hardware clears interrupt after a ACSRn register read
+ * 1 - Software clears interrupt
  */
 
 #define BP_MLB_ACTL_SCE      0
@@ -1140,12 +1108,18 @@ typedef union
 #define BF_MLB_ACTL_SCE(v)   (((v) << 0) & BM_MLB_ACTL_SCE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCE field to a new value.
 #define BW_MLB_ACTL_SCE(v)   BF_CS1(MLB_ACTL, SCE, v)
 #endif
 
-/* --- Register HW_MLB_ACTL, field SMX
+
+/* --- Register HW_MLB_ACTL, field SMX (RW)
  *
  * AHB interrupt mux enable:
+ *
+ * Values:
+ * 0 - ACSR0 generates an interrupt on ahb_int[0] ; ACSR1 generates an interrupt on ahb_int[1]
+ * 1 - ACSR0 and ACSR1 generate an interrupts on ahb_int[0] only
  */
 
 #define BP_MLB_ACTL_SMX      1
@@ -1157,12 +1131,18 @@ typedef union
 #define BF_MLB_ACTL_SMX(v)   (((v) << 1) & BM_MLB_ACTL_SMX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SMX field to a new value.
 #define BW_MLB_ACTL_SMX(v)   BF_CS1(MLB_ACTL, SMX, v)
 #endif
 
-/* --- Register HW_MLB_ACTL, field DMA_MODE
+
+/* --- Register HW_MLB_ACTL, field DMA_MODE (RW)
  *
  * DMA Mode:
+ *
+ * Values:
+ * 0 - DMA Mode 0
+ * 1 - DMA Mode 1
  */
 
 #define BP_MLB_ACTL_DMA_MODE      2
@@ -1174,12 +1154,18 @@ typedef union
 #define BF_MLB_ACTL_DMA_MODE(v)   (((v) << 2) & BM_MLB_ACTL_DMA_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DMA_MODE field to a new value.
 #define BW_MLB_ACTL_DMA_MODE(v)   BF_CS1(MLB_ACTL, DMA_MODE, v)
 #endif
 
-/* --- Register HW_MLB_ACTL, field MPB
+
+/* --- Register HW_MLB_ACTL, field MPB (RW)
  *
  * DMA Packet buffering mode.
+ *
+ * Values:
+ * 0 - Single-packet mode
+ * 1 - Multiple-packet mode
  */
 
 #define BP_MLB_ACTL_MPB      4
@@ -1191,10 +1177,12 @@ typedef union
 #define BF_MLB_ACTL_MPB(v)   (((v) << 4) & BM_MLB_ACTL_MPB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPB field to a new value.
 #define BW_MLB_ACTL_MPB(v)   BF_CS1(MLB_ACTL, MPB, v)
 #endif
 
-/* --- Register HW_MLB_ACTL, field RSVD
+
+/* --- Register HW_MLB_ACTL, field RSVD (RU)
  *
  * Reserved
  */
@@ -1203,34 +1191,23 @@ typedef union
 #define BM_MLB_ACTL_RSVD      0xffffffe0
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MLB_ACTL_RSVD(v)   ((((reg32_t) v) << 5) & BM_MLB_ACTL_RSVD)
-#else
-#define BF_MLB_ACTL_RSVD(v)   (((v) << 5) & BM_MLB_ACTL_RSVD)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_MLB_ACTL_RSVD(v)   BF_CS1(MLB_ACTL, RSVD, v)
-#endif
-
 /*!
- * @brief HW_MLB_ACSR0 - AHB Channel Status 0 Register
+ * @brief HW_MLB_ACSR0 - AHB Channel Status 0 Register (RO)
  *
- * The AHB Channel Status (ACSRn) registers contain interrupt bits for each
- * of the 64 physical channels. When an ACSRn register bit is set, it
- * indicates that the corresponding physical channel has an interrupt
- * pending.  An AHB interrupt is triggered when either DNEn or ERRn is set within the
- * AHB Channel Descriptor. The HC is notified of the channel interrupt via ahb_int[1:0] . When an
- * interrupt occurs in ACSR0 (for channels                             31 to 0) ahb_int[0] is set.
- * When an interrupt occurs in ACSR1                             (for channels 63 to 32) ahb_int[1]
- * is set.  Interrupts in ACSR0 and ACSR1 can be optionally muxed onto a single
- * interrupt signal, ahb_int[0] , if ACTL.SMX = 1. If ACTL.SCE = 0,
- * hardware automatically clears the interrupt bit(s) after the HC reads
- * the ACSRn register. Alternatively, if ACTL.SCE = 1, software must write
- * a 1 to the appropriate bit(s) of ACSRn to clear the interrupt(s).
+ * The AHB Channel Status (ACSRn) registers contain interrupt bits for each of the 64 physical
+ * channels. When an ACSRn register bit is set, it indicates that the corresponding physical channel
+ * has an interrupt pending.  An AHB interrupt is triggered when either DNEn or ERRn is set within
+ * the AHB Channel Descriptor. The HC is notified of the channel interrupt via ahb_int[1:0] . When
+ * an interrupt occurs in ACSR0 (for channels 31 to 0) ahb_int[0] is set. When an interrupt occurs
+ * in ACSR1 (for channels 63 to 32) ahb_int[1] is set.  Interrupts in ACSR0 and ACSR1 can be
+ * optionally muxed onto a single interrupt signal, ahb_int[0] , if ACTL.SMX = 1. If ACTL.SCE = 0,
+ * hardware automatically clears the interrupt bit(s) after the HC reads the ACSRn register.
+ * Alternatively, if ACTL.SCE = 1, software must write a 1 to the appropriate bit(s) of ACSRn to
+ * clear the interrupt(s).
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned V : 32; //!< Interrupt status for logical channels 31 to 0:
@@ -1246,43 +1223,34 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_ACSR0           (*(volatile hw_mlb_acsr0_t *) HW_MLB_ACSR0_ADDR)
 #define HW_MLB_ACSR0_RD()      (HW_MLB_ACSR0.U)
-#define HW_MLB_ACSR0_WR(v)     (HW_MLB_ACSR0.U = (v))
-#define HW_MLB_ACSR0_SET(v)    (HW_MLB_ACSR0_WR(HW_MLB_ACSR0_RD() |  (v)))
-#define HW_MLB_ACSR0_CLR(v)    (HW_MLB_ACSR0_WR(HW_MLB_ACSR0_RD() & ~(v)))
-#define HW_MLB_ACSR0_TOG(v)    (HW_MLB_ACSR0_WR(HW_MLB_ACSR0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_ACSR0 bitfields
  */
 
-/* --- Register HW_MLB_ACSR0, field V
+/* --- Register HW_MLB_ACSR0, field V (RO)
  *
  * Interrupt status for logical channels 31 to 0:
+ *
+ * Values:
+ * 0 - None
+ * 1 - Interrupt
  */
 
 #define BP_MLB_ACSR0_V      0
 #define BM_MLB_ACSR0_V      0xffffffff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_MLB_ACSR0_V(v)   ((((reg32_t) v) << 0) & BM_MLB_ACSR0_V)
-#else
-#define BF_MLB_ACSR0_V(v)   (((v) << 0) & BM_MLB_ACSR0_V)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_MLB_ACSR0_V(v)   BF_CS1(MLB_ACSR0, V, v)
-#endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_ACSR1 - AHB Channel Status 1 Register
+ * @brief HW_MLB_ACSR1 - AHB Channel Status 1 Register (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CHS : 32; //!< Interrupt status for logical channels 63 to 32:
@@ -1298,47 +1266,36 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_MLB_ACSR1           (*(volatile hw_mlb_acsr1_t *) HW_MLB_ACSR1_ADDR)
 #define HW_MLB_ACSR1_RD()      (HW_MLB_ACSR1.U)
-#define HW_MLB_ACSR1_WR(v)     (HW_MLB_ACSR1.U = (v))
-#define HW_MLB_ACSR1_SET(v)    (HW_MLB_ACSR1_WR(HW_MLB_ACSR1_RD() |  (v)))
-#define HW_MLB_ACSR1_CLR(v)    (HW_MLB_ACSR1_WR(HW_MLB_ACSR1_RD() & ~(v)))
-#define HW_MLB_ACSR1_TOG(v)    (HW_MLB_ACSR1_WR(HW_MLB_ACSR1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual MLB_ACSR1 bitfields
  */
 
-/* --- Register HW_MLB_ACSR1, field CHS
+/* --- Register HW_MLB_ACSR1, field CHS (RO)
  *
  * Interrupt status for logical channels 63 to 32:
+ *
+ * Values:
+ * 0 - None
+ * 1 - Interrupt
  */
 
 #define BP_MLB_ACSR1_CHS      0
 #define BM_MLB_ACSR1_CHS      0xffffffff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_MLB_ACSR1_CHS(v)   ((((reg32_t) v) << 0) & BM_MLB_ACSR1_CHS)
-#else
-#define BF_MLB_ACSR1_CHS(v)   (((v) << 0) & BM_MLB_ACSR1_CHS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_MLB_ACSR1_CHS(v)   BF_CS1(MLB_ACSR1, CHS, v)
-#endif
 
-/*!
- * @brief HW_MLB_ACMR0 - AHB Channel Mask 0 Register
- *
- * Using the AHB Channel Mask (ACMRn) register, the HC can control which
- * channel(s) generate interrupts on ahb_int[1:0] . All ACMRn                             register
- * bits default as '0' ("masked"); therefore, the HC must                             initially
- * write ACMRn to enable interrupts. Each bit of ACMRn is                             read/write
- * accessible.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_MLB_ACMR0 - AHB Channel Mask 0 Register (RW)
+ *
+ * Using the AHB Channel Mask (ACMRn) register, the HC can control which channel(s) generate
+ * interrupts on ahb_int[1:0] . All ACMRn register bits default as '0' ("masked"); therefore, the HC
+ * must initially write ACMRn to enable interrupts. Each bit of ACMRn is read/write accessible.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CHM : 32; //!< Bitwise channel mask bit:
@@ -1360,14 +1317,17 @@ typedef union
 #define HW_MLB_ACMR0_TOG(v)    (HW_MLB_ACMR0_WR(HW_MLB_ACMR0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_ACMR0 bitfields
  */
 
-/* --- Register HW_MLB_ACMR0, field CHM
+/* --- Register HW_MLB_ACMR0, field CHM (RW)
  *
  * Bitwise channel mask bit:
+ *
+ * Values:
+ * 0 - Masked
+ * 1 - Unmasked
  */
 
 #define BP_MLB_ACMR0_CHM      0
@@ -1379,18 +1339,20 @@ typedef union
 #define BF_MLB_ACMR0_CHM(v)   (((v) << 0) & BM_MLB_ACMR0_CHM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CHM field to a new value.
 #define BW_MLB_ACMR0_CHM(v)   BF_CS1(MLB_ACMR0, CHM, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MLB_ACMR1 - AHB Channel Mask 1 Register
+ * @brief HW_MLB_ACMR1 - AHB Channel Mask 1 Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned CHM : 32; //!< Bitwise channel mask bit:
@@ -1412,14 +1374,17 @@ typedef union
 #define HW_MLB_ACMR1_TOG(v)    (HW_MLB_ACMR1_WR(HW_MLB_ACMR1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual MLB_ACMR1 bitfields
  */
 
-/* --- Register HW_MLB_ACMR1, field CHM
+/* --- Register HW_MLB_ACMR1, field CHM (RW)
  *
  * Bitwise channel mask bit:
+ *
+ * Values:
+ * 0 - Masked
+ * 1 - Unmasked
  */
 
 #define BP_MLB_ACMR1_CHM      0
@@ -1431,6 +1396,7 @@ typedef union
 #define BF_MLB_ACMR1_CHM(v)   (((v) << 0) & BM_MLB_ACMR1_CHM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CHM field to a new value.
 #define BW_MLB_ACMR1_CHM(v)   BF_CS1(MLB_ACMR1, CHM, v)
 #endif
 

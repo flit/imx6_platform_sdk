@@ -10,20 +10,100 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_PCIE_PHY_IDCODE_LO - Register ID Low 16 bits
+ * - HW_PCIE_PHY_IDCODE_HI - Register ID High 16 bits
+ * - HW_PCIE_PHY_DEBUG - Debug Register
+ * - HW_PCIE_PHY_RTUNE_DEBUG - Debug Register
+ * - HW_PCIE_PHY_RTUNE_STAT - 
+ * - HW_PCIE_PHY_SS_PHASE - 
+ * - HW_PCIE_PHY_SS_FREQ - 
+ * - HW_PCIE_PHY_ATEOVRD - 
+ * - HW_PCIE_PHY_MPLL_OVRD_IN_LO - 
+ * - HW_PCIE_PHY_SSC_OVRD_IN - 
+ * - HW_PCIE_PHY_BS_OVRD_IN - 
+ * - HW_PCIE_PHY_LEVEL_OVRD_IN - 
+ * - HW_PCIE_PHY_SUP_OVRD_OUT - 
+ * - HW_PCIE_PHY_MPLL_ASIC_IN - 
+ * - HW_PCIE_PHY_BS_ASIC_IN - 
+ * - HW_PCIE_PHY_LEVEL_ASIC_IN - 
+ * - HW_PCIE_PHY_SSC_ASIC_IN - 
+ * - HW_PCIE_PHY_SUP_ASIC_OUT - 
+ * - HW_PCIE_PHY_ATEOVRD_STATUS - 
+ * - HW_PCIE_PHY_SCOPE_ENABLES - 
+ * - HW_PCIE_PHY_SCOPE_SAMPLES - 
+ * - HW_PCIE_PHY_SCOPE_COUNT - 
+ * - HW_PCIE_PHY_SCOPE_CTL - 
+ * - HW_PCIE_PHY_SCOPE_MASK - 
+ * - HW_PCIE_PHY_MPLL_LOOP_CTL - 
+ * - HW_PCIE_PHY_MPLL_ATB_MEAS1 - 
+ * - HW_PCIE_PHY_MPLL_ATB_MEAS2 - 
+ * - HW_PCIE_PHY_MPLL_OVR - 
+ * - HW_PCIE_PHY_RTUNE_RTUNE_CTRL - 
+ * - HW_PCIE_PHY_ATB_SWITCHYARD_CTRL - 
+ * - HW_PCIE_PHY_TX_OVRD_IN_LO - 
+ * - HW_PCIE_PHY_TX_OVRD_IN_HI - 
+ * - HW_PCIE_PHY_TX_OVRD_DRV_LO - 
+ * - HW_PCIE_PHY_TX_OVRD_OUT - 
+ * - HW_PCIE_PHY_RX_OVRD_IN_LO - 
+ * - HW_PCIE_PHY_RX_OVRD_IN_HI - 
+ * - HW_PCIE_PHY_RX_OVRD_OUT - 
+ * - HW_PCIE_PHY_TX_ASIC_IN - 
+ * - HW_PCIE_PHY_TX_ASIC_DRV_LO - 
+ * - HW_PCIE_PHY_TX_ASIC_DRV_HI - 
+ * - HW_PCIE_PHY_TX_ASIC_OUT - 
+ * - HW_PCIE_PHY_RX_ASIC_IN - 
+ * - HW_PCIE_PHY_RX_ASIC_OUT - 
+ * - HW_PCIE_PHY_TX_DEBUG - 
+ * - HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0 - 
+ * - HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1 - 
+ * - HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN - 
+ * - HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT - 
+ * - HW_PCIE_PHY_TX_LBERT_CTL - 
+ * - HW_PCIE_PHY_RX_LBERT_CTL - 
+ * - HW_PCIE_PHY_RX_LBERT_ERR - 
+ * - HW_PCIE_PHY_RX_SCOPE_CTL - 
+ * - HW_PCIE_PHY_RX_SCOPE_PHASE - 
+ * - HW_PCIE_PHY_RX_DPLL_FREQ - 
+ * - HW_PCIE_PHY_RX_CDR_CTL - 
+ * - HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG - 
+ * - HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD - 
+ * - HW_PCIE_PHY_RX_CDR_LOCK_VEC - 
+ * - HW_PCIE_PHY_RX_CDR_ADAP_FSM - 
+ * - HW_PCIE_PHY_RX_ATB0 - 
+ * - HW_PCIE_PHY_RX_ATB1 - 
+ * - HW_PCIE_PHY_RX_ENPWR0 - 
+ * - HW_PCIE_PHY_RX_PMIX_PHASE - 
+ * - HW_PCIE_PHY_RX_ENPWR1 - 
+ * - HW_PCIE_PHY_RX_ENPWR2 - 
+ * - HW_PCIE_PHY_RX_SCOPE - 
+ * - HW_PCIE_PHY_TX_TXDRV_CNTRL - 
+ * - HW_PCIE_PHY_TX_POWER_CTL - 
+ * - HW_PCIE_PHY_TX_ALT_BLOCK - 
+ * - HW_PCIE_PHY_TX_ALT_AND_LOOPBACK - 
+ * - HW_PCIE_PHY_TX_TX_ATB_REG - 
+ *
+ * hw_pcie_phy_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_PCIE_PHY_BASE
-#define REGS_PCIE_PHY_BASE (REGS_BASE + 0x00000000)
+#define REGS_PCIE_PHY_BASE (0x00000000) //!< Base address for PCIE_PHY.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_IDCODE_LO - Register ID Low 16 bits
+ * @brief HW_PCIE_PHY_IDCODE_LO - Register ID Low 16 bits (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short IDCODE_LO : 16; //!< Data
@@ -39,18 +119,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_IDCODE_LO           (*(volatile hw_pcie_phy_idcode_lo_t *) HW_PCIE_PHY_IDCODE_LO_ADDR)
 #define HW_PCIE_PHY_IDCODE_LO_RD()      (HW_PCIE_PHY_IDCODE_LO.U)
-#define HW_PCIE_PHY_IDCODE_LO_WR(v)     (HW_PCIE_PHY_IDCODE_LO.U = (v))
-#define HW_PCIE_PHY_IDCODE_LO_SET(v)    (HW_PCIE_PHY_IDCODE_LO_WR(HW_PCIE_PHY_IDCODE_LO_RD() |  (v)))
-#define HW_PCIE_PHY_IDCODE_LO_CLR(v)    (HW_PCIE_PHY_IDCODE_LO_WR(HW_PCIE_PHY_IDCODE_LO_RD() & ~(v)))
-#define HW_PCIE_PHY_IDCODE_LO_TOG(v)    (HW_PCIE_PHY_IDCODE_LO_WR(HW_PCIE_PHY_IDCODE_LO_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_IDCODE_LO bitfields
  */
 
-/* --- Register HW_PCIE_PHY_IDCODE_LO, field IDCODE_LO
+/* --- Register HW_PCIE_PHY_IDCODE_LO, field IDCODE_LO (RO)
  *
  * Data
  */
@@ -59,23 +134,14 @@ typedef union
 #define BM_PCIE_PHY_IDCODE_LO_IDCODE_LO      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_IDCODE_LO_IDCODE_LO(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_IDCODE_LO_IDCODE_LO)
-#else
-#define BF_PCIE_PHY_IDCODE_LO_IDCODE_LO(v)   (((v) << 0) & BM_PCIE_PHY_IDCODE_LO_IDCODE_LO)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_IDCODE_LO_IDCODE_LO(v)   BF_CS1(PCIE_PHY_IDCODE_LO, IDCODE_LO, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_IDCODE_HI - Register ID High 16 bits
+ * @brief HW_PCIE_PHY_IDCODE_HI - Register ID High 16 bits (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short IDCODE_HI : 16; //!< Data
@@ -91,18 +157,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_IDCODE_HI           (*(volatile hw_pcie_phy_idcode_hi_t *) HW_PCIE_PHY_IDCODE_HI_ADDR)
 #define HW_PCIE_PHY_IDCODE_HI_RD()      (HW_PCIE_PHY_IDCODE_HI.U)
-#define HW_PCIE_PHY_IDCODE_HI_WR(v)     (HW_PCIE_PHY_IDCODE_HI.U = (v))
-#define HW_PCIE_PHY_IDCODE_HI_SET(v)    (HW_PCIE_PHY_IDCODE_HI_WR(HW_PCIE_PHY_IDCODE_HI_RD() |  (v)))
-#define HW_PCIE_PHY_IDCODE_HI_CLR(v)    (HW_PCIE_PHY_IDCODE_HI_WR(HW_PCIE_PHY_IDCODE_HI_RD() & ~(v)))
-#define HW_PCIE_PHY_IDCODE_HI_TOG(v)    (HW_PCIE_PHY_IDCODE_HI_WR(HW_PCIE_PHY_IDCODE_HI_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_IDCODE_HI bitfields
  */
 
-/* --- Register HW_PCIE_PHY_IDCODE_HI, field IDCODE_HI
+/* --- Register HW_PCIE_PHY_IDCODE_HI, field IDCODE_HI (RO)
  *
  * Data
  */
@@ -111,23 +172,14 @@ typedef union
 #define BM_PCIE_PHY_IDCODE_HI_IDCODE_HI      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_IDCODE_HI_IDCODE_HI(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_IDCODE_HI_IDCODE_HI)
-#else
-#define BF_PCIE_PHY_IDCODE_HI_IDCODE_HI(v)   (((v) << 0) & BM_PCIE_PHY_IDCODE_HI_IDCODE_HI)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_IDCODE_HI_IDCODE_HI(v)   BF_CS1(PCIE_PHY_IDCODE_HI, IDCODE_HI, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_DEBUG - Debug Register
+ * @brief HW_PCIE_PHY_DEBUG - Debug Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short TX_VREF_SEL : 5; //!< -
@@ -151,12 +203,11 @@ typedef union
 #define HW_PCIE_PHY_DEBUG_TOG(v)    (HW_PCIE_PHY_DEBUG_WR(HW_PCIE_PHY_DEBUG_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_DEBUG bitfields
  */
 
-/* --- Register HW_PCIE_PHY_DEBUG, field TX_VREF_SEL
+/* --- Register HW_PCIE_PHY_DEBUG, field TX_VREF_SEL (RW)
  *
  * -
  */
@@ -170,13 +221,20 @@ typedef union
 #define BF_PCIE_PHY_DEBUG_TX_VREF_SEL(v)   (((v) << 0) & BM_PCIE_PHY_DEBUG_TX_VREF_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_VREF_SEL field to a new value.
 #define BW_PCIE_PHY_DEBUG_TX_VREF_SEL(v)   BF_CS1(PCIE_PHY_DEBUG, TX_VREF_SEL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_DEBUG, field DTB_SEL
+/* --- Register HW_PCIE_PHY_DEBUG, field DTB_SEL (RW)
  *
  * Description: The lane DTB's are ORed together with the support DTB signals selected with the
  * following encodings.
+ *
+ * Values:
+ * 00 - None
+ * 01 - reset_ctl DTB output
+ * 10 - Scope DTB output
+ * 11 - rtune DTB output
  */
 
 #define BP_PCIE_PHY_DEBUG_DTB_SEL      5
@@ -188,22 +246,24 @@ typedef union
 #define BF_PCIE_PHY_DEBUG_DTB_SEL(v)   (((v) << 5) & BM_PCIE_PHY_DEBUG_DTB_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DTB_SEL field to a new value.
 #define BW_PCIE_PHY_DEBUG_DTB_SEL(v)   BF_CS1(PCIE_PHY_DEBUG, DTB_SEL, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RTUNE_DEBUG - Debug Register
+ * @brief HW_PCIE_PHY_RTUNE_DEBUG - Debug Register (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short FLIP_COMP : 1; //!< Inverts Analog Comparator Output.
-        unsigned short MAN_TUNE : 1; //!< Write a 1 to perform a manual tuning specified by the TYPE field. Starting a manual tune while a tune is currently running can cause unpredictable results. For use only when you know what the part is doing (with respect to resistor tuning).  Write a 1 to perform an operation. Subsequent writes with the bit set will trigger the operation. No need to clear (0) the bit between writes.
+        unsigned short MAN_TUNE : 1; //!< Write a 1 to perform a manual tuning specified by the TYPE field. Starting a manual tune while a tune is currently running can cause unpredictable results. For use only when you know what the part is doing (with respect to resistor tuning). Write a 1 to perform an operation. Subsequent writes with the bit set will trigger the operation. No need to clear (0) the bit between writes.
         unsigned short SET_VAL : 1; //!< Sets value. Write a 1 to manually write the register specified by the TYPE field to the value in the VALUE field.
         unsigned short TYPE : 2; //!< Type of manual tuning or register read/write to execute.
         unsigned short VALUE : 10; //!< Value to use when triggering SET_VAL field. Only the 6 LSB's are used when setting Rx cal or Tx cal values.
@@ -226,12 +286,11 @@ typedef union
 #define HW_PCIE_PHY_RTUNE_DEBUG_TOG(v)    (HW_PCIE_PHY_RTUNE_DEBUG_WR(HW_PCIE_PHY_RTUNE_DEBUG_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RTUNE_DEBUG bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field FLIP_COMP
+/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field FLIP_COMP (RW)
  *
  * Inverts Analog Comparator Output.
  */
@@ -245,14 +304,15 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_DEBUG_FLIP_COMP(v)   (((v) << 0) & BM_PCIE_PHY_RTUNE_DEBUG_FLIP_COMP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FLIP_COMP field to a new value.
 #define BW_PCIE_PHY_RTUNE_DEBUG_FLIP_COMP(v)   BF_CS1(PCIE_PHY_RTUNE_DEBUG, FLIP_COMP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field MAN_TUNE
+/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field MAN_TUNE (RW)
  *
  * Write a 1 to perform a manual tuning specified by the TYPE field. Starting a manual tune while a
  * tune is currently running can cause unpredictable results. For use only when you know what the
- * part is doing (with respect to resistor tuning).  Write a 1 to perform an operation. Subsequent
+ * part is doing (with respect to resistor tuning). Write a 1 to perform an operation. Subsequent
  * writes with the bit set will trigger the operation. No need to clear (0) the bit between writes.
  */
 
@@ -265,10 +325,11 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_DEBUG_MAN_TUNE(v)   (((v) << 1) & BM_PCIE_PHY_RTUNE_DEBUG_MAN_TUNE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MAN_TUNE field to a new value.
 #define BW_PCIE_PHY_RTUNE_DEBUG_MAN_TUNE(v)   BF_CS1(PCIE_PHY_RTUNE_DEBUG, MAN_TUNE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field SET_VAL
+/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field SET_VAL (RW)
  *
  * Sets value. Write a 1 to manually write the register specified by the TYPE field to the value in
  * the VALUE field.
@@ -283,12 +344,19 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_DEBUG_SET_VAL(v)   (((v) << 2) & BM_PCIE_PHY_RTUNE_DEBUG_SET_VAL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SET_VAL field to a new value.
 #define BW_PCIE_PHY_RTUNE_DEBUG_SET_VAL(v)   BF_CS1(PCIE_PHY_RTUNE_DEBUG, SET_VAL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field TYPE
+/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field TYPE (RW)
  *
  * Type of manual tuning or register read/write to execute.
+ *
+ * Values:
+ * 00 - ADC, or read/write rt_value
+ * 01 - Rx tune, or read/write rx_cal_val (only 6 bits)
+ * 10 - Tx tune, or read/write tx_cal_val (only 6 bits)
+ * 11 - Resref detect (no affect when triggering SET_VAL fi
  */
 
 #define BP_PCIE_PHY_RTUNE_DEBUG_TYPE      3
@@ -300,10 +368,12 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_DEBUG_TYPE(v)   (((v) << 3) & BM_PCIE_PHY_RTUNE_DEBUG_TYPE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TYPE field to a new value.
 #define BW_PCIE_PHY_RTUNE_DEBUG_TYPE(v)   BF_CS1(PCIE_PHY_RTUNE_DEBUG, TYPE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field VALUE
+
+/* --- Register HW_PCIE_PHY_RTUNE_DEBUG, field VALUE (RW)
  *
  * Value to use when triggering SET_VAL field. Only the 6 LSB's are used when setting Rx cal or Tx
  * cal values.
@@ -318,18 +388,19 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_DEBUG_VALUE(v)   (((v) << 5) & BM_PCIE_PHY_RTUNE_DEBUG_VALUE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VALUE field to a new value.
 #define BW_PCIE_PHY_RTUNE_DEBUG_VALUE(v)   BF_CS1(PCIE_PHY_RTUNE_DEBUG, VALUE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RTUNE_STAT - 
+ * @brief HW_PCIE_PHY_RTUNE_STAT -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short STAT : 10; //!< Current value of the register specifed by the RTUNE_DEBUG[TYPE] field.
@@ -352,12 +423,11 @@ typedef union
 #define HW_PCIE_PHY_RTUNE_STAT_TOG(v)    (HW_PCIE_PHY_RTUNE_STAT_WR(HW_PCIE_PHY_RTUNE_STAT_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RTUNE_STAT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RTUNE_STAT, field STAT
+/* --- Register HW_PCIE_PHY_RTUNE_STAT, field STAT (RO)
  *
  * Current value of the register specifed by the RTUNE_DEBUG[TYPE] field.
  */
@@ -366,23 +436,14 @@ typedef union
 #define BM_PCIE_PHY_RTUNE_STAT_STAT      0x000003ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RTUNE_STAT_STAT(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_RTUNE_STAT_STAT)
-#else
-#define BF_PCIE_PHY_RTUNE_STAT_STAT(v)   (((v) << 0) & BM_PCIE_PHY_RTUNE_STAT_STAT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RTUNE_STAT_STAT(v)   BF_CS1(PCIE_PHY_RTUNE_STAT, STAT, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_SS_PHASE - 
+ * @brief HW_PCIE_PHY_SS_PHASE -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short DTHR : 10; //!< Current value of the register specifed by the RTUNE_DEBUG[TYPE] field.
@@ -405,12 +466,11 @@ typedef union
 #define HW_PCIE_PHY_SS_PHASE_TOG(v)    (HW_PCIE_PHY_SS_PHASE_WR(HW_PCIE_PHY_SS_PHASE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SS_PHASE bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SS_PHASE, field DTHR
+/* --- Register HW_PCIE_PHY_SS_PHASE, field DTHR (RW)
  *
  * Current value of the register specifed by the RTUNE_DEBUG[TYPE] field.
  */
@@ -424,23 +484,24 @@ typedef union
 #define BF_PCIE_PHY_SS_PHASE_DTHR(v)   (((v) << 0) & BM_PCIE_PHY_SS_PHASE_DTHR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DTHR field to a new value.
 #define BW_PCIE_PHY_SS_PHASE_DTHR(v)   BF_CS1(PCIE_PHY_SS_PHASE, DTHR, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_SS_FREQ - 
+ * @brief HW_PCIE_PHY_SS_FREQ -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short FREQ_CNT_INIT : 7; //!< Initial frequency counter value. Spread spectrum clocking must be enabled to read from or write to this register.
         unsigned short FREQ_PK : 7; //!< Peak frequency value (for changing direction). Spread spectrum clocking must be enabled to read from or write to this register.
-        unsigned short FREQ_OVRD : 1; //!< Frequency register override. Spread spectrum clocking must be enabled to read from or write to this register.  Must be set for PHASE writes to stick.
+        unsigned short FREQ_OVRD : 1; //!< Frequency register override. Spread spectrum clocking must be enabled to read from or write to this register. Must be set for PHASE writes to stick.
         unsigned short RESERVED0 : 1; //!< Reserved
     } B;
 } hw_pcie_phy_ss_freq_t;
@@ -460,12 +521,11 @@ typedef union
 #define HW_PCIE_PHY_SS_FREQ_TOG(v)    (HW_PCIE_PHY_SS_FREQ_WR(HW_PCIE_PHY_SS_FREQ_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SS_FREQ bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SS_FREQ, field FREQ_CNT_INIT
+/* --- Register HW_PCIE_PHY_SS_FREQ, field FREQ_CNT_INIT (RW)
  *
  * Initial frequency counter value. Spread spectrum clocking must be enabled to read from or write
  * to this register.
@@ -480,10 +540,11 @@ typedef union
 #define BF_PCIE_PHY_SS_FREQ_FREQ_CNT_INIT(v)   (((v) << 0) & BM_PCIE_PHY_SS_FREQ_FREQ_CNT_INIT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FREQ_CNT_INIT field to a new value.
 #define BW_PCIE_PHY_SS_FREQ_FREQ_CNT_INIT(v)   BF_CS1(PCIE_PHY_SS_FREQ, FREQ_CNT_INIT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SS_FREQ, field FREQ_PK
+/* --- Register HW_PCIE_PHY_SS_FREQ, field FREQ_PK (RW)
  *
  * Peak frequency value (for changing direction). Spread spectrum clocking must be enabled to read
  * from or write to this register.
@@ -498,13 +559,14 @@ typedef union
 #define BF_PCIE_PHY_SS_FREQ_FREQ_PK(v)   (((v) << 7) & BM_PCIE_PHY_SS_FREQ_FREQ_PK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FREQ_PK field to a new value.
 #define BW_PCIE_PHY_SS_FREQ_FREQ_PK(v)   BF_CS1(PCIE_PHY_SS_FREQ, FREQ_PK, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SS_FREQ, field FREQ_OVRD
+/* --- Register HW_PCIE_PHY_SS_FREQ, field FREQ_OVRD (RW)
  *
  * Frequency register override. Spread spectrum clocking must be enabled to read from or write to
- * this register.  Must be set for PHASE writes to stick.
+ * this register. Must be set for PHASE writes to stick.
  */
 
 #define BP_PCIE_PHY_SS_FREQ_FREQ_OVRD      14
@@ -516,18 +578,19 @@ typedef union
 #define BF_PCIE_PHY_SS_FREQ_FREQ_OVRD(v)   (((v) << 14) & BM_PCIE_PHY_SS_FREQ_FREQ_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FREQ_OVRD field to a new value.
 #define BW_PCIE_PHY_SS_FREQ_FREQ_OVRD(v)   BF_CS1(PCIE_PHY_SS_FREQ, FREQ_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_ATEOVRD - 
+ * @brief HW_PCIE_PHY_ATEOVRD -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RESERVED0 : 1; //!< Reserved
@@ -553,12 +616,11 @@ typedef union
 #define HW_PCIE_PHY_ATEOVRD_TOG(v)    (HW_PCIE_PHY_ATEOVRD_WR(HW_PCIE_PHY_ATEOVRD_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_ATEOVRD bitfields
  */
 
-/* --- Register HW_PCIE_PHY_ATEOVRD, field REF_CLKDIV2
+/* --- Register HW_PCIE_PHY_ATEOVRD, field REF_CLKDIV2 (RW)
  *
  * Override value for SSP ref_clk prescaler.
  */
@@ -572,10 +634,11 @@ typedef union
 #define BF_PCIE_PHY_ATEOVRD_REF_CLKDIV2(v)   (((v) << 1) & BM_PCIE_PHY_ATEOVRD_REF_CLKDIV2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REF_CLKDIV2 field to a new value.
 #define BW_PCIE_PHY_ATEOVRD_REF_CLKDIV2(v)   BF_CS1(PCIE_PHY_ATEOVRD, REF_CLKDIV2, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATEOVRD, field REF_USB2_EN
+/* --- Register HW_PCIE_PHY_ATEOVRD, field REF_USB2_EN (RW)
  *
  * Override value for HSPHY ref_clk enable.
  */
@@ -589,10 +652,11 @@ typedef union
 #define BF_PCIE_PHY_ATEOVRD_REF_USB2_EN(v)   (((v) << 2) & BM_PCIE_PHY_ATEOVRD_REF_USB2_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REF_USB2_EN field to a new value.
 #define BW_PCIE_PHY_ATEOVRD_REF_USB2_EN(v)   BF_CS1(PCIE_PHY_ATEOVRD, REF_USB2_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATEOVRD, field ATEOVRD_EN
+/* --- Register HW_PCIE_PHY_ATEOVRD, field ATEOVRD_EN (RW)
  *
  * Override enable for ATE signals.
  */
@@ -606,18 +670,19 @@ typedef union
 #define BF_PCIE_PHY_ATEOVRD_ATEOVRD_EN(v)   (((v) << 3) & BM_PCIE_PHY_ATEOVRD_ATEOVRD_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATEOVRD_EN field to a new value.
 #define BW_PCIE_PHY_ATEOVRD_ATEOVRD_EN(v)   BF_CS1(PCIE_PHY_ATEOVRD, ATEOVRD_EN, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_MPLL_OVRD_IN_LO - 
+ * @brief HW_PCIE_PHY_MPLL_OVRD_IN_LO -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short MPLL_EN : 1; //!< Override value for mpll_en.
@@ -648,12 +713,11 @@ typedef union
 #define HW_PCIE_PHY_MPLL_OVRD_IN_LO_TOG(v)    (HW_PCIE_PHY_MPLL_OVRD_IN_LO_WR(HW_PCIE_PHY_MPLL_OVRD_IN_LO_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_MPLL_OVRD_IN_LO bitfields
  */
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_EN
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_EN (RW)
  *
  * Override value for mpll_en.
  */
@@ -667,10 +731,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_EN(v)   (((v) << 0) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_EN field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_EN(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, MPLL_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_EN_OVRD
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_EN_OVRD (RW)
  *
  * Override enable for mpll_en.
  */
@@ -684,10 +749,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_EN_OVRD(v)   (((v) << 1) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_EN_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, MPLL_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_MULTIPLIER
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_MULTIPLIER (RW)
  *
  * Override value for mpll_multiplier.
  */
@@ -701,10 +767,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_MULTIPLIER(v)   (((v) << 2) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_MULTIPLIER)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_MULTIPLIER field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_MULTIPLIER(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, MPLL_MULTIPLIER, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_MULTIPLIER_OVRD
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field MPLL_MULTIPLIER_OVRD (RW)
  *
  * Override enable for mpll_multiplier.
  */
@@ -718,10 +785,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_MULTIPLIER_OVRD(v)   (((v) << 9) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_MULTIPLIER_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_MULTIPLIER_OVRD field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_MPLL_MULTIPLIER_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, MPLL_MULTIPLIER_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RTUNE_REQ
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RTUNE_REQ (RW)
  *
  * Override value for rtune_req.
  */
@@ -735,10 +803,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_RTUNE_REQ(v)   (((v) << 10) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_RTUNE_REQ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RTUNE_REQ field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_RTUNE_REQ(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, RTUNE_REQ, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RTUNE_REQ_OVRD
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RTUNE_REQ_OVRD (RW)
  *
  * Override enable for rtune_req.
  */
@@ -752,10 +821,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_RTUNE_REQ_OVRD(v)   (((v) << 11) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_RTUNE_REQ_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RTUNE_REQ_OVRD field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_RTUNE_REQ_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, RTUNE_REQ_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_REQ_IN
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_REQ_IN (RW)
  *
  * Override value for res_req_in.
  */
@@ -769,10 +839,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_RES_REQ_IN(v)   (((v) << 12) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_RES_REQ_IN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_REQ_IN field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_RES_REQ_IN(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, RES_REQ_IN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_REQ_IN_OVRD
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_REQ_IN_OVRD (RW)
  *
  * Override enable for res_req_in.
  */
@@ -786,10 +857,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_RES_REQ_IN_OVRD(v)   (((v) << 13) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_RES_REQ_IN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_REQ_IN_OVRD field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_RES_REQ_IN_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, RES_REQ_IN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_ACK_IN
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_ACK_IN (RW)
  *
  * Override value for res_ack_in.
  */
@@ -803,10 +875,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_RES_ACK_IN(v)   (((v) << 14) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_RES_ACK_IN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_ACK_IN field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_RES_ACK_IN(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, RES_ACK_IN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_ACK_IN_OVRD
+/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_LO, field RES_ACK_IN_OVRD (RW)
  *
  * Override enable for res_ack_in.
  */
@@ -820,216 +893,19 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVRD_IN_LO_RES_ACK_IN_OVRD(v)   (((v) << 15) & BM_PCIE_PHY_MPLL_OVRD_IN_LO_RES_ACK_IN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_ACK_IN_OVRD field to a new value.
 #define BW_PCIE_PHY_MPLL_OVRD_IN_LO_RES_ACK_IN_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_LO, RES_ACK_IN_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_MPLL_OVRD_IN_HI - 
+ * @brief HW_PCIE_PHY_SSC_OVRD_IN -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
-    struct
-    {
-        unsigned short MPLL_QWORD_CLK_EN : 1; //!< Override value for mpll_qword_clk_en.
-        unsigned short MPLL_QWORD_CLK_EN_OVRD : 1; //!< Override enable for mpll_qword_clk_en.
-        unsigned short MPLL_DWORD_CLK_EN : 1; //!< Override value for mpll_dword_clk_en.
-        unsigned short MPLL_DWORD_CLK_EN_OVRD : 1; //!< Override enable for mpll_dword_clk_en.
-        unsigned short MPLL_WORD_CLK_EN : 1; //!< Override value for mpll_word_clk_en.
-        unsigned short MPLL_WORD_CLK_EN_OVRD : 1; //!< Override enable for mpll_word_clk_en.
-        unsigned short FSEL : 3; //!< : Override value for fsel[2:0].
-        unsigned short FSEL_OVR : 1; //!< Override enable for fsel[2:0].
-        unsigned short MPLL_RST : 1; //!< Resets the MPLL state machine. Writing the register with this bit set will reset the MPLL power-up/down FSM, regardless of the current state of the register bit.
-        unsigned short RESERVED0 : 5; //!< Reserved.
-    } B;
-} hw_pcie_phy_mpll_ovrd_in_hi_t;
-#endif
-
-/*
- * constants & macros for entire PCIE_PHY_MPLL_OVRD_IN_HI register
- */
-#define HW_PCIE_PHY_MPLL_OVRD_IN_HI_ADDR      (REGS_PCIE_PHY_BASE + 0x11)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_PCIE_PHY_MPLL_OVRD_IN_HI           (*(volatile hw_pcie_phy_mpll_ovrd_in_hi_t *) HW_PCIE_PHY_MPLL_OVRD_IN_HI_ADDR)
-#define HW_PCIE_PHY_MPLL_OVRD_IN_HI_RD()      (HW_PCIE_PHY_MPLL_OVRD_IN_HI.U)
-#define HW_PCIE_PHY_MPLL_OVRD_IN_HI_WR(v)     (HW_PCIE_PHY_MPLL_OVRD_IN_HI.U = (v))
-#define HW_PCIE_PHY_MPLL_OVRD_IN_HI_SET(v)    (HW_PCIE_PHY_MPLL_OVRD_IN_HI_WR(HW_PCIE_PHY_MPLL_OVRD_IN_HI_RD() |  (v)))
-#define HW_PCIE_PHY_MPLL_OVRD_IN_HI_CLR(v)    (HW_PCIE_PHY_MPLL_OVRD_IN_HI_WR(HW_PCIE_PHY_MPLL_OVRD_IN_HI_RD() & ~(v)))
-#define HW_PCIE_PHY_MPLL_OVRD_IN_HI_TOG(v)    (HW_PCIE_PHY_MPLL_OVRD_IN_HI_WR(HW_PCIE_PHY_MPLL_OVRD_IN_HI_RD() ^  (v)))
-#endif
-
-
-/*
- * constants & macros for individual PCIE_PHY_MPLL_OVRD_IN_HI bitfields
- */
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field MPLL_QWORD_CLK_EN
- *
- * Override value for mpll_qword_clk_en.
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN      0
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN(v)   (((v) << 0) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, MPLL_QWORD_CLK_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field MPLL_QWORD_CLK_EN_OVRD
- *
- * Override enable for mpll_qword_clk_en.
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN_OVRD      1
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN_OVRD      0x00000002
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN_OVRD(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN_OVRD)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN_OVRD(v)   (((v) << 1) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN_OVRD)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_QWORD_CLK_EN_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, MPLL_QWORD_CLK_EN_OVRD, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field MPLL_DWORD_CLK_EN
- *
- * Override value for mpll_dword_clk_en.
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN      2
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN      0x00000004
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN(v)   (((v) << 2) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, MPLL_DWORD_CLK_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field MPLL_DWORD_CLK_EN_OVRD
- *
- * Override enable for mpll_dword_clk_en.
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN_OVRD      3
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN_OVRD      0x00000008
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN_OVRD(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN_OVRD)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN_OVRD(v)   (((v) << 3) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN_OVRD)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_DWORD_CLK_EN_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, MPLL_DWORD_CLK_EN_OVRD, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field MPLL_WORD_CLK_EN
- *
- * Override value for mpll_word_clk_en.
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN      4
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN      0x00000010
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN(v)   (((v) << 4) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, MPLL_WORD_CLK_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field MPLL_WORD_CLK_EN_OVRD
- *
- * Override enable for mpll_word_clk_en.
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN_OVRD      5
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN_OVRD      0x00000020
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN_OVRD(v)   ((((reg32_t) v) << 5) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN_OVRD)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN_OVRD(v)   (((v) << 5) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN_OVRD)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_WORD_CLK_EN_OVRD(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, MPLL_WORD_CLK_EN_OVRD, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field FSEL
- *
- * : Override value for fsel[2:0].
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL      6
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL      0x000001c0
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL(v)   ((((reg32_t) v) << 6) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL(v)   (((v) << 6) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, FSEL, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field FSEL_OVR
- *
- * Override enable for fsel[2:0].
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL_OVR      9
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL_OVR      0x00000200
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL_OVR(v)   ((((reg32_t) v) << 9) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL_OVR)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL_OVR(v)   (((v) << 9) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL_OVR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_FSEL_OVR(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, FSEL_OVR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_OVRD_IN_HI, field MPLL_RST
- *
- * Resets the MPLL state machine. Writing the register with this bit set will reset the MPLL power-
- * up/down FSM, regardless of the current state of the register bit.
- */
-
-#define BP_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_RST      10
-#define BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_RST      0x00000400
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_RST(v)   ((((reg32_t) v) << 10) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_RST)
-#else
-#define BF_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_RST(v)   (((v) << 10) & BM_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_RST)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_OVRD_IN_HI_MPLL_RST(v)   BF_CS1(PCIE_PHY_MPLL_OVRD_IN_HI, MPLL_RST, v)
-#endif
-
-/*!
- * @brief HW_PCIE_PHY_SSC_OVRD_IN - 
- *
-
- */
-#ifndef __LANGUAGE_ASM__
-typedef union
-{
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short SSC_REF_CLK_SEL : 8; //!< Override value for reference clock scaling.
@@ -1055,12 +931,11 @@ typedef union
 #define HW_PCIE_PHY_SSC_OVRD_IN_TOG(v)    (HW_PCIE_PHY_SSC_OVRD_IN_WR(HW_PCIE_PHY_SSC_OVRD_IN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SSC_OVRD_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_REF_CLK_SEL
+/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_REF_CLK_SEL (RW)
  *
  * Override value for reference clock scaling.
  */
@@ -1074,10 +949,11 @@ typedef union
 #define BF_PCIE_PHY_SSC_OVRD_IN_SSC_REF_CLK_SEL(v)   (((v) << 0) & BM_PCIE_PHY_SSC_OVRD_IN_SSC_REF_CLK_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSC_REF_CLK_SEL field to a new value.
 #define BW_PCIE_PHY_SSC_OVRD_IN_SSC_REF_CLK_SEL(v)   BF_CS1(PCIE_PHY_SSC_OVRD_IN, SSC_REF_CLK_SEL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_RANGE
+/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_RANGE (RW)
  *
  * Override value for SSC modulation range.
  */
@@ -1091,10 +967,11 @@ typedef union
 #define BF_PCIE_PHY_SSC_OVRD_IN_SSC_RANGE(v)   (((v) << 8) & BM_PCIE_PHY_SSC_OVRD_IN_SSC_RANGE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSC_RANGE field to a new value.
 #define BW_PCIE_PHY_SSC_OVRD_IN_SSC_RANGE(v)   BF_CS1(PCIE_PHY_SSC_OVRD_IN, SSC_RANGE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_EN
+/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_EN (RW)
  *
  * Override value for SSC enable.
  */
@@ -1108,10 +985,11 @@ typedef union
 #define BF_PCIE_PHY_SSC_OVRD_IN_SSC_EN(v)   (((v) << 10) & BM_PCIE_PHY_SSC_OVRD_IN_SSC_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSC_EN field to a new value.
 #define BW_PCIE_PHY_SSC_OVRD_IN_SSC_EN(v)   BF_CS1(PCIE_PHY_SSC_OVRD_IN, SSC_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_OVRD_IN_EN
+/* --- Register HW_PCIE_PHY_SSC_OVRD_IN, field SSC_OVRD_IN_EN (RW)
  *
  * Override enable for Spread Spectrum generator.
  */
@@ -1125,18 +1003,19 @@ typedef union
 #define BF_PCIE_PHY_SSC_OVRD_IN_SSC_OVRD_IN_EN(v)   (((v) << 11) & BM_PCIE_PHY_SSC_OVRD_IN_SSC_OVRD_IN_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSC_OVRD_IN_EN field to a new value.
 #define BW_PCIE_PHY_SSC_OVRD_IN_SSC_OVRD_IN_EN(v)   BF_CS1(PCIE_PHY_SSC_OVRD_IN, SSC_OVRD_IN_EN, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_BS_OVRD_IN - 
+ * @brief HW_PCIE_PHY_BS_OVRD_IN -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short IN : 1; //!< Override value for bs_shift_dr.
@@ -1170,12 +1049,11 @@ typedef union
 #define HW_PCIE_PHY_BS_OVRD_IN_TOG(v)    (HW_PCIE_PHY_BS_OVRD_IN_WR(HW_PCIE_PHY_BS_OVRD_IN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_BS_OVRD_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field IN
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field IN (RW)
  *
  * Override value for bs_shift_dr.
  */
@@ -1189,10 +1067,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_IN(v)   (((v) << 0) & BM_PCIE_PHY_BS_OVRD_IN_IN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IN field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_IN(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, IN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field SHIFT_DR
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field SHIFT_DR (RW)
  *
  * Override value for bs_shift_dr.
  */
@@ -1206,10 +1085,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_SHIFT_DR(v)   (((v) << 1) & BM_PCIE_PHY_BS_OVRD_IN_SHIFT_DR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SHIFT_DR field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_SHIFT_DR(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, SHIFT_DR, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field CAPTURE_DR
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field CAPTURE_DR (RW)
  *
  * Override value for bs_capture_dr
  */
@@ -1223,10 +1103,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_CAPTURE_DR(v)   (((v) << 2) & BM_PCIE_PHY_BS_OVRD_IN_CAPTURE_DR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CAPTURE_DR field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_CAPTURE_DR(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, CAPTURE_DR, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field UPDATE_DR
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field UPDATE_DR (RW)
  *
  * Override value for bs_update_dr.
  */
@@ -1240,10 +1121,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_UPDATE_DR(v)   (((v) << 3) & BM_PCIE_PHY_BS_OVRD_IN_UPDATE_DR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the UPDATE_DR field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_UPDATE_DR(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, UPDATE_DR, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field PRELOAD
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field PRELOAD (RW)
  *
  * Override value for bs_preload.
  */
@@ -1257,10 +1139,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_PRELOAD(v)   (((v) << 4) & BM_PCIE_PHY_BS_OVRD_IN_PRELOAD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PRELOAD field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_PRELOAD(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, PRELOAD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field EXTEST
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field EXTEST (RW)
  *
  * Override value for bs_extest.
  */
@@ -1274,10 +1157,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_EXTEST(v)   (((v) << 5) & BM_PCIE_PHY_BS_OVRD_IN_EXTEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EXTEST field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_EXTEST(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, EXTEST, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field EXTEST_AC
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field EXTEST_AC (RW)
  *
  * Override value for bs_extest_ac.
  */
@@ -1291,10 +1175,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_EXTEST_AC(v)   (((v) << 6) & BM_PCIE_PHY_BS_OVRD_IN_EXTEST_AC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EXTEST_AC field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_EXTEST_AC(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, EXTEST_AC, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field CLAMP
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field CLAMP (RW)
  *
  * Override value for bs_clamp.
  */
@@ -1308,10 +1193,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_CLAMP(v)   (((v) << 7) & BM_PCIE_PHY_BS_OVRD_IN_CLAMP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLAMP field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_CLAMP(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, CLAMP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field HIGHZ
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field HIGHZ (RW)
  *
  * Override value for bs_highz.
  */
@@ -1325,10 +1211,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_HIGHZ(v)   (((v) << 8) & BM_PCIE_PHY_BS_OVRD_IN_HIGHZ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HIGHZ field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_HIGHZ(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, HIGHZ, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field INIT
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field INIT (RW)
  *
  * Override value for bs_init.
  */
@@ -1342,10 +1229,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_INIT(v)   (((v) << 9) & BM_PCIE_PHY_BS_OVRD_IN_INIT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INIT field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_INIT(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, INIT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field INVERT
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field INVERT (RW)
  *
  * Override value for bs_invert.
  */
@@ -1359,10 +1247,11 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_INVERT(v)   (((v) << 10) & BM_PCIE_PHY_BS_OVRD_IN_INVERT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INVERT field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_INVERT(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, INVERT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field EN
+/* --- Register HW_PCIE_PHY_BS_OVRD_IN, field EN (RW)
  *
  * Enables override values for all inputs controlled by this register.
  */
@@ -1376,18 +1265,19 @@ typedef union
 #define BF_PCIE_PHY_BS_OVRD_IN_EN(v)   (((v) << 11) & BM_PCIE_PHY_BS_OVRD_IN_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN field to a new value.
 #define BW_PCIE_PHY_BS_OVRD_IN_EN(v)   BF_CS1(PCIE_PHY_BS_OVRD_IN, EN, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_LEVEL_OVRD_IN - 
+ * @brief HW_PCIE_PHY_LEVEL_OVRD_IN -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short LOS_LEVEL : 5; //!< Override value for los_level.
@@ -1412,12 +1302,11 @@ typedef union
 #define HW_PCIE_PHY_LEVEL_OVRD_IN_TOG(v)    (HW_PCIE_PHY_LEVEL_OVRD_IN_WR(HW_PCIE_PHY_LEVEL_OVRD_IN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_LEVEL_OVRD_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_LEVEL_OVRD_IN, field LOS_LEVEL
+/* --- Register HW_PCIE_PHY_LEVEL_OVRD_IN, field LOS_LEVEL (RW)
  *
  * Override value for los_level.
  */
@@ -1431,10 +1320,11 @@ typedef union
 #define BF_PCIE_PHY_LEVEL_OVRD_IN_LOS_LEVEL(v)   (((v) << 0) & BM_PCIE_PHY_LEVEL_OVRD_IN_LOS_LEVEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOS_LEVEL field to a new value.
 #define BW_PCIE_PHY_LEVEL_OVRD_IN_LOS_LEVEL(v)   BF_CS1(PCIE_PHY_LEVEL_OVRD_IN, LOS_LEVEL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_LEVEL_OVRD_IN, field ACJT_LEVEL
+/* --- Register HW_PCIE_PHY_LEVEL_OVRD_IN, field ACJT_LEVEL (RW)
  *
  * Override value for acjt_level.
  */
@@ -1448,10 +1338,11 @@ typedef union
 #define BF_PCIE_PHY_LEVEL_OVRD_IN_ACJT_LEVEL(v)   (((v) << 5) & BM_PCIE_PHY_LEVEL_OVRD_IN_ACJT_LEVEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ACJT_LEVEL field to a new value.
 #define BW_PCIE_PHY_LEVEL_OVRD_IN_ACJT_LEVEL(v)   BF_CS1(PCIE_PHY_LEVEL_OVRD_IN, ACJT_LEVEL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_LEVEL_OVRD_IN, field EN
+/* --- Register HW_PCIE_PHY_LEVEL_OVRD_IN, field EN (RW)
  *
  * Enables override values for all inputs controlled by this register.
  */
@@ -1465,18 +1356,19 @@ typedef union
 #define BF_PCIE_PHY_LEVEL_OVRD_IN_EN(v)   (((v) << 10) & BM_PCIE_PHY_LEVEL_OVRD_IN_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN field to a new value.
 #define BW_PCIE_PHY_LEVEL_OVRD_IN_EN(v)   BF_CS1(PCIE_PHY_LEVEL_OVRD_IN, EN, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_SUP_OVRD_OUT - 
+ * @brief HW_PCIE_PHY_SUP_OVRD_OUT -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RES_ACK_OUT : 1; //!< Override value for res_ack_out output.
@@ -1508,12 +1400,11 @@ typedef union
 #define HW_PCIE_PHY_SUP_OVRD_OUT_TOG(v)    (HW_PCIE_PHY_SUP_OVRD_OUT_WR(HW_PCIE_PHY_SUP_OVRD_OUT_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SUP_OVRD_OUT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_ACK_OUT
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_ACK_OUT (RW)
  *
  * Override value for res_ack_out output.
  */
@@ -1527,10 +1418,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_RES_ACK_OUT(v)   (((v) << 0) & BM_PCIE_PHY_SUP_OVRD_OUT_RES_ACK_OUT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_ACK_OUT field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_RES_ACK_OUT(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, RES_ACK_OUT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_ACK_OUT_OVRD
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_ACK_OUT_OVRD (RW)
  *
  * Override enable for res_ack_out output.
  */
@@ -1544,10 +1436,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_RES_ACK_OUT_OVRD(v)   (((v) << 1) & BM_PCIE_PHY_SUP_OVRD_OUT_RES_ACK_OUT_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_ACK_OUT_OVRD field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_RES_ACK_OUT_OVRD(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, RES_ACK_OUT_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_REQ_OUT
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_REQ_OUT (RW)
  *
  * Override value for res_req_out output.
  */
@@ -1561,10 +1454,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_RES_REQ_OUT(v)   (((v) << 2) & BM_PCIE_PHY_SUP_OVRD_OUT_RES_REQ_OUT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_REQ_OUT field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_RES_REQ_OUT(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, RES_REQ_OUT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_REQ_OUT_OVRD
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RES_REQ_OUT_OVRD (RW)
  *
  * Override enable for res_req_out output.
  */
@@ -1578,10 +1472,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_RES_REQ_OUT_OVRD(v)   (((v) << 3) & BM_PCIE_PHY_SUP_OVRD_OUT_RES_REQ_OUT_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RES_REQ_OUT_OVRD field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_RES_REQ_OUT_OVRD(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, RES_REQ_OUT_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RTUNE_ACK
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RTUNE_ACK (RW)
  *
  * Override value for rtune_ack output.
  */
@@ -1595,10 +1490,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_RTUNE_ACK(v)   (((v) << 4) & BM_PCIE_PHY_SUP_OVRD_OUT_RTUNE_ACK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RTUNE_ACK field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_RTUNE_ACK(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, RTUNE_ACK, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RTUNE_ACK_OVRD
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field RTUNE_ACK_OVRD (RW)
  *
  * Override enable for rtune_ack output.
  */
@@ -1612,10 +1508,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_RTUNE_ACK_OVRD(v)   (((v) << 5) & BM_PCIE_PHY_SUP_OVRD_OUT_RTUNE_ACK_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RTUNE_ACK_OVRD field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_RTUNE_ACK_OVRD(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, RTUNE_ACK_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field BS_OUT
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field BS_OUT (RW)
  *
  * Override value for bs_out output.
  */
@@ -1629,10 +1526,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_BS_OUT(v)   (((v) << 6) & BM_PCIE_PHY_SUP_OVRD_OUT_BS_OUT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BS_OUT field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_BS_OUT(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, BS_OUT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field BS_OUT_OVRD
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field BS_OUT_OVRD (RW)
  *
  * Override enable for bs_out output.
  */
@@ -1646,10 +1544,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_BS_OUT_OVRD(v)   (((v) << 7) & BM_PCIE_PHY_SUP_OVRD_OUT_BS_OUT_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BS_OUT_OVRD field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_BS_OUT_OVRD(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, BS_OUT_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field MPLL_STATE
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field MPLL_STATE (RW)
  *
  * Override value for mpll_state output.
  */
@@ -1663,10 +1562,11 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_MPLL_STATE(v)   (((v) << 8) & BM_PCIE_PHY_SUP_OVRD_OUT_MPLL_STATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_STATE field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_MPLL_STATE(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, MPLL_STATE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field MPLL_STATE_OVRD
+/* --- Register HW_PCIE_PHY_SUP_OVRD_OUT, field MPLL_STATE_OVRD (RW)
  *
  * Override enable for mpll_state output.
  */
@@ -1680,18 +1580,19 @@ typedef union
 #define BF_PCIE_PHY_SUP_OVRD_OUT_MPLL_STATE_OVRD(v)   (((v) << 9) & BM_PCIE_PHY_SUP_OVRD_OUT_MPLL_STATE_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MPLL_STATE_OVRD field to a new value.
 #define BW_PCIE_PHY_SUP_OVRD_OUT_MPLL_STATE_OVRD(v)   BF_CS1(PCIE_PHY_SUP_OVRD_OUT, MPLL_STATE_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_MPLL_ASIC_IN - 
+ * @brief HW_PCIE_PHY_MPLL_ASIC_IN -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short MPLL_EN : 1; //!< Value from ASIC for mpll_en.
@@ -1715,18 +1616,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_MPLL_ASIC_IN           (*(volatile hw_pcie_phy_mpll_asic_in_t *) HW_PCIE_PHY_MPLL_ASIC_IN_ADDR)
 #define HW_PCIE_PHY_MPLL_ASIC_IN_RD()      (HW_PCIE_PHY_MPLL_ASIC_IN.U)
-#define HW_PCIE_PHY_MPLL_ASIC_IN_WR(v)     (HW_PCIE_PHY_MPLL_ASIC_IN.U = (v))
-#define HW_PCIE_PHY_MPLL_ASIC_IN_SET(v)    (HW_PCIE_PHY_MPLL_ASIC_IN_WR(HW_PCIE_PHY_MPLL_ASIC_IN_RD() |  (v)))
-#define HW_PCIE_PHY_MPLL_ASIC_IN_CLR(v)    (HW_PCIE_PHY_MPLL_ASIC_IN_WR(HW_PCIE_PHY_MPLL_ASIC_IN_RD() & ~(v)))
-#define HW_PCIE_PHY_MPLL_ASIC_IN_TOG(v)    (HW_PCIE_PHY_MPLL_ASIC_IN_WR(HW_PCIE_PHY_MPLL_ASIC_IN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_MPLL_ASIC_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_EN
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_EN (RO)
  *
  * Value from ASIC for mpll_en.
  */
@@ -1734,16 +1630,7 @@ typedef union
 #define BP_PCIE_PHY_MPLL_ASIC_IN_MPLL_EN      0
 #define BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_EN      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_EN(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_EN)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_EN(v)   (((v) << 0) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_MPLL_EN(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, MPLL_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_MULTIPLIER
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_MULTIPLIER (RO)
  *
  * Value from ASIC for mpll_multiplier.
  */
@@ -1751,16 +1638,7 @@ typedef union
 #define BP_PCIE_PHY_MPLL_ASIC_IN_MPLL_MULTIPLIER      1
 #define BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_MULTIPLIER      0x000000fe
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_MULTIPLIER(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_MULTIPLIER)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_MULTIPLIER(v)   (((v) << 1) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_MULTIPLIER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_MPLL_MULTIPLIER(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, MPLL_MULTIPLIER, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field RTUNE_REQ
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field RTUNE_REQ (RO)
  *
  * Value from ASIC for rtune_req.
  */
@@ -1768,16 +1646,7 @@ typedef union
 #define BP_PCIE_PHY_MPLL_ASIC_IN_RTUNE_REQ      8
 #define BM_PCIE_PHY_MPLL_ASIC_IN_RTUNE_REQ      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_RTUNE_REQ(v)   ((((reg32_t) v) << 8) & BM_PCIE_PHY_MPLL_ASIC_IN_RTUNE_REQ)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_RTUNE_REQ(v)   (((v) << 8) & BM_PCIE_PHY_MPLL_ASIC_IN_RTUNE_REQ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_RTUNE_REQ(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, RTUNE_REQ, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field RES_REQ_IN
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field RES_REQ_IN (RO)
  *
  * Value from ASIC for res_req_in.
  */
@@ -1785,16 +1654,7 @@ typedef union
 #define BP_PCIE_PHY_MPLL_ASIC_IN_RES_REQ_IN      9
 #define BM_PCIE_PHY_MPLL_ASIC_IN_RES_REQ_IN      0x00000200
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_RES_REQ_IN(v)   ((((reg32_t) v) << 9) & BM_PCIE_PHY_MPLL_ASIC_IN_RES_REQ_IN)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_RES_REQ_IN(v)   (((v) << 9) & BM_PCIE_PHY_MPLL_ASIC_IN_RES_REQ_IN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_RES_REQ_IN(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, RES_REQ_IN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field RES_ACK_IN
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field RES_ACK_IN (RO)
  *
  * Value from ASIC for res_ack_in.
  */
@@ -1802,16 +1662,7 @@ typedef union
 #define BP_PCIE_PHY_MPLL_ASIC_IN_RES_ACK_IN      10
 #define BM_PCIE_PHY_MPLL_ASIC_IN_RES_ACK_IN      0x00000400
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_RES_ACK_IN(v)   ((((reg32_t) v) << 10) & BM_PCIE_PHY_MPLL_ASIC_IN_RES_ACK_IN)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_RES_ACK_IN(v)   (((v) << 10) & BM_PCIE_PHY_MPLL_ASIC_IN_RES_ACK_IN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_RES_ACK_IN(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, RES_ACK_IN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_QWORD_CLK_EN
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_QWORD_CLK_EN (RO)
  *
  * Value from ASIC for mpll_qword_clk_en.
  */
@@ -1819,16 +1670,7 @@ typedef union
 #define BP_PCIE_PHY_MPLL_ASIC_IN_MPLL_QWORD_CLK_EN      11
 #define BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_QWORD_CLK_EN      0x00000800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_QWORD_CLK_EN(v)   ((((reg32_t) v) << 11) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_QWORD_CLK_EN)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_QWORD_CLK_EN(v)   (((v) << 11) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_QWORD_CLK_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_MPLL_QWORD_CLK_EN(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, MPLL_QWORD_CLK_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_DWORD_CLK_EN
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_DWORD_CLK_EN (RO)
  *
  * Value from ASIC for mpll_dword_clk_en.
  */
@@ -1836,16 +1678,7 @@ typedef union
 #define BP_PCIE_PHY_MPLL_ASIC_IN_MPLL_DWORD_CLK_EN      12
 #define BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_DWORD_CLK_EN      0x00001000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_DWORD_CLK_EN(v)   ((((reg32_t) v) << 12) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_DWORD_CLK_EN)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_DWORD_CLK_EN(v)   (((v) << 12) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_DWORD_CLK_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_MPLL_DWORD_CLK_EN(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, MPLL_DWORD_CLK_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_WORD_CLK_EN
+/* --- Register HW_PCIE_PHY_MPLL_ASIC_IN, field MPLL_WORD_CLK_EN (RO)
  *
  * Value from ASIC for mpll_word_clk_en.
  */
@@ -1854,23 +1687,14 @@ typedef union
 #define BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_WORD_CLK_EN      0x00002000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_WORD_CLK_EN(v)   ((((reg32_t) v) << 13) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_WORD_CLK_EN)
-#else
-#define BF_PCIE_PHY_MPLL_ASIC_IN_MPLL_WORD_CLK_EN(v)   (((v) << 13) & BM_PCIE_PHY_MPLL_ASIC_IN_MPLL_WORD_CLK_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_MPLL_ASIC_IN_MPLL_WORD_CLK_EN(v)   BF_CS1(PCIE_PHY_MPLL_ASIC_IN, MPLL_WORD_CLK_EN, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_BS_ASIC_IN - 
+ * @brief HW_PCIE_PHY_BS_ASIC_IN -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short IN : 1; //!< Value from ASIC for bs_in.
@@ -1897,18 +1721,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_BS_ASIC_IN           (*(volatile hw_pcie_phy_bs_asic_in_t *) HW_PCIE_PHY_BS_ASIC_IN_ADDR)
 #define HW_PCIE_PHY_BS_ASIC_IN_RD()      (HW_PCIE_PHY_BS_ASIC_IN.U)
-#define HW_PCIE_PHY_BS_ASIC_IN_WR(v)     (HW_PCIE_PHY_BS_ASIC_IN.U = (v))
-#define HW_PCIE_PHY_BS_ASIC_IN_SET(v)    (HW_PCIE_PHY_BS_ASIC_IN_WR(HW_PCIE_PHY_BS_ASIC_IN_RD() |  (v)))
-#define HW_PCIE_PHY_BS_ASIC_IN_CLR(v)    (HW_PCIE_PHY_BS_ASIC_IN_WR(HW_PCIE_PHY_BS_ASIC_IN_RD() & ~(v)))
-#define HW_PCIE_PHY_BS_ASIC_IN_TOG(v)    (HW_PCIE_PHY_BS_ASIC_IN_WR(HW_PCIE_PHY_BS_ASIC_IN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_BS_ASIC_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field IN
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field IN (RO)
  *
  * Value from ASIC for bs_in.
  */
@@ -1916,16 +1735,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_IN      0
 #define BM_PCIE_PHY_BS_ASIC_IN_IN      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_IN(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_BS_ASIC_IN_IN)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_IN(v)   (((v) << 0) & BM_PCIE_PHY_BS_ASIC_IN_IN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_IN(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, IN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field SHIFT_DR
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field SHIFT_DR (RO)
  *
  * Value from ASIC for bs_shift_dr.
  */
@@ -1933,16 +1743,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_SHIFT_DR      1
 #define BM_PCIE_PHY_BS_ASIC_IN_SHIFT_DR      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_SHIFT_DR(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_BS_ASIC_IN_SHIFT_DR)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_SHIFT_DR(v)   (((v) << 1) & BM_PCIE_PHY_BS_ASIC_IN_SHIFT_DR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_SHIFT_DR(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, SHIFT_DR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field CAPTURE_DR
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field CAPTURE_DR (RO)
  *
  * Value from ASIC for bs_capture_dr.
  */
@@ -1950,16 +1751,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_CAPTURE_DR      2
 #define BM_PCIE_PHY_BS_ASIC_IN_CAPTURE_DR      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_CAPTURE_DR(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_BS_ASIC_IN_CAPTURE_DR)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_CAPTURE_DR(v)   (((v) << 2) & BM_PCIE_PHY_BS_ASIC_IN_CAPTURE_DR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_CAPTURE_DR(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, CAPTURE_DR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field UPDATE_DR
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field UPDATE_DR (RO)
  *
  * Value from ASIC for bs_update_dr.
  */
@@ -1967,16 +1759,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_UPDATE_DR      3
 #define BM_PCIE_PHY_BS_ASIC_IN_UPDATE_DR      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_UPDATE_DR(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_BS_ASIC_IN_UPDATE_DR)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_UPDATE_DR(v)   (((v) << 3) & BM_PCIE_PHY_BS_ASIC_IN_UPDATE_DR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_UPDATE_DR(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, UPDATE_DR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field PRELOAD
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field PRELOAD (RO)
  *
  * Value from ASIC for bs_preload.
  */
@@ -1984,16 +1767,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_PRELOAD      4
 #define BM_PCIE_PHY_BS_ASIC_IN_PRELOAD      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_PRELOAD(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_BS_ASIC_IN_PRELOAD)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_PRELOAD(v)   (((v) << 4) & BM_PCIE_PHY_BS_ASIC_IN_PRELOAD)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_PRELOAD(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, PRELOAD, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field EXTEST
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field EXTEST (RO)
  *
  * Value from ASIC for bs_extest.
  */
@@ -2001,16 +1775,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_EXTEST      5
 #define BM_PCIE_PHY_BS_ASIC_IN_EXTEST      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_EXTEST(v)   ((((reg32_t) v) << 5) & BM_PCIE_PHY_BS_ASIC_IN_EXTEST)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_EXTEST(v)   (((v) << 5) & BM_PCIE_PHY_BS_ASIC_IN_EXTEST)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_EXTEST(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, EXTEST, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field EXTEST_AC
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field EXTEST_AC (RO)
  *
  * Value from ASIC for bs_extest_ac.
  */
@@ -2018,16 +1783,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_EXTEST_AC      6
 #define BM_PCIE_PHY_BS_ASIC_IN_EXTEST_AC      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_EXTEST_AC(v)   ((((reg32_t) v) << 6) & BM_PCIE_PHY_BS_ASIC_IN_EXTEST_AC)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_EXTEST_AC(v)   (((v) << 6) & BM_PCIE_PHY_BS_ASIC_IN_EXTEST_AC)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_EXTEST_AC(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, EXTEST_AC, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field CLAMP
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field CLAMP (RO)
  *
  * Value from ASIC for bs_clamp.
  */
@@ -2035,16 +1791,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_CLAMP      7
 #define BM_PCIE_PHY_BS_ASIC_IN_CLAMP      0x00000080
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_CLAMP(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_BS_ASIC_IN_CLAMP)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_CLAMP(v)   (((v) << 7) & BM_PCIE_PHY_BS_ASIC_IN_CLAMP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_CLAMP(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, CLAMP, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field HIGHZ
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field HIGHZ (RO)
  *
  * Value from ASIC for bs_highz.
  */
@@ -2052,16 +1799,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_HIGHZ      8
 #define BM_PCIE_PHY_BS_ASIC_IN_HIGHZ      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_HIGHZ(v)   ((((reg32_t) v) << 8) & BM_PCIE_PHY_BS_ASIC_IN_HIGHZ)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_HIGHZ(v)   (((v) << 8) & BM_PCIE_PHY_BS_ASIC_IN_HIGHZ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_HIGHZ(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, HIGHZ, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field INIT
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field INIT (RO)
  *
  * Value from ASIC for bs_init.
  */
@@ -2069,16 +1807,7 @@ typedef union
 #define BP_PCIE_PHY_BS_ASIC_IN_INIT      9
 #define BM_PCIE_PHY_BS_ASIC_IN_INIT      0x00000200
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_INIT(v)   ((((reg32_t) v) << 9) & BM_PCIE_PHY_BS_ASIC_IN_INIT)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_INIT(v)   (((v) << 9) & BM_PCIE_PHY_BS_ASIC_IN_INIT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_INIT(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, INIT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field INVERT
+/* --- Register HW_PCIE_PHY_BS_ASIC_IN, field INVERT (RO)
  *
  * Value from ASIC for bs_invert.
  */
@@ -2087,23 +1816,14 @@ typedef union
 #define BM_PCIE_PHY_BS_ASIC_IN_INVERT      0x00000400
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_BS_ASIC_IN_INVERT(v)   ((((reg32_t) v) << 10) & BM_PCIE_PHY_BS_ASIC_IN_INVERT)
-#else
-#define BF_PCIE_PHY_BS_ASIC_IN_INVERT(v)   (((v) << 10) & BM_PCIE_PHY_BS_ASIC_IN_INVERT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_BS_ASIC_IN_INVERT(v)   BF_CS1(PCIE_PHY_BS_ASIC_IN, INVERT, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_LEVEL_ASIC_IN - 
+ * @brief HW_PCIE_PHY_LEVEL_ASIC_IN -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short LOS_LEVEL : 5; //!< Value from ASIC for los_level.
@@ -2121,18 +1841,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_LEVEL_ASIC_IN           (*(volatile hw_pcie_phy_level_asic_in_t *) HW_PCIE_PHY_LEVEL_ASIC_IN_ADDR)
 #define HW_PCIE_PHY_LEVEL_ASIC_IN_RD()      (HW_PCIE_PHY_LEVEL_ASIC_IN.U)
-#define HW_PCIE_PHY_LEVEL_ASIC_IN_WR(v)     (HW_PCIE_PHY_LEVEL_ASIC_IN.U = (v))
-#define HW_PCIE_PHY_LEVEL_ASIC_IN_SET(v)    (HW_PCIE_PHY_LEVEL_ASIC_IN_WR(HW_PCIE_PHY_LEVEL_ASIC_IN_RD() |  (v)))
-#define HW_PCIE_PHY_LEVEL_ASIC_IN_CLR(v)    (HW_PCIE_PHY_LEVEL_ASIC_IN_WR(HW_PCIE_PHY_LEVEL_ASIC_IN_RD() & ~(v)))
-#define HW_PCIE_PHY_LEVEL_ASIC_IN_TOG(v)    (HW_PCIE_PHY_LEVEL_ASIC_IN_WR(HW_PCIE_PHY_LEVEL_ASIC_IN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_LEVEL_ASIC_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_LEVEL_ASIC_IN, field LOS_LEVEL
+/* --- Register HW_PCIE_PHY_LEVEL_ASIC_IN, field LOS_LEVEL (RO)
  *
  * Value from ASIC for los_level.
  */
@@ -2140,16 +1855,7 @@ typedef union
 #define BP_PCIE_PHY_LEVEL_ASIC_IN_LOS_LEVEL      0
 #define BM_PCIE_PHY_LEVEL_ASIC_IN_LOS_LEVEL      0x0000001f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_LEVEL_ASIC_IN_LOS_LEVEL(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_LEVEL_ASIC_IN_LOS_LEVEL)
-#else
-#define BF_PCIE_PHY_LEVEL_ASIC_IN_LOS_LEVEL(v)   (((v) << 0) & BM_PCIE_PHY_LEVEL_ASIC_IN_LOS_LEVEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_LEVEL_ASIC_IN_LOS_LEVEL(v)   BF_CS1(PCIE_PHY_LEVEL_ASIC_IN, LOS_LEVEL, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_LEVEL_ASIC_IN, field ACJT_LEVEL
+/* --- Register HW_PCIE_PHY_LEVEL_ASIC_IN, field ACJT_LEVEL (RO)
  *
  * Value from ASIC for acjt_level.
  */
@@ -2158,23 +1864,14 @@ typedef union
 #define BM_PCIE_PHY_LEVEL_ASIC_IN_ACJT_LEVEL      0x000003e0
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_LEVEL_ASIC_IN_ACJT_LEVEL(v)   ((((reg32_t) v) << 5) & BM_PCIE_PHY_LEVEL_ASIC_IN_ACJT_LEVEL)
-#else
-#define BF_PCIE_PHY_LEVEL_ASIC_IN_ACJT_LEVEL(v)   (((v) << 5) & BM_PCIE_PHY_LEVEL_ASIC_IN_ACJT_LEVEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_LEVEL_ASIC_IN_ACJT_LEVEL(v)   BF_CS1(PCIE_PHY_LEVEL_ASIC_IN, ACJT_LEVEL, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_SSC_ASIC_IN - 
+ * @brief HW_PCIE_PHY_SSC_ASIC_IN -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short FSEL : 3; //!< Value from ASIC for fsel.
@@ -2194,18 +1891,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_SSC_ASIC_IN           (*(volatile hw_pcie_phy_ssc_asic_in_t *) HW_PCIE_PHY_SSC_ASIC_IN_ADDR)
 #define HW_PCIE_PHY_SSC_ASIC_IN_RD()      (HW_PCIE_PHY_SSC_ASIC_IN.U)
-#define HW_PCIE_PHY_SSC_ASIC_IN_WR(v)     (HW_PCIE_PHY_SSC_ASIC_IN.U = (v))
-#define HW_PCIE_PHY_SSC_ASIC_IN_SET(v)    (HW_PCIE_PHY_SSC_ASIC_IN_WR(HW_PCIE_PHY_SSC_ASIC_IN_RD() |  (v)))
-#define HW_PCIE_PHY_SSC_ASIC_IN_CLR(v)    (HW_PCIE_PHY_SSC_ASIC_IN_WR(HW_PCIE_PHY_SSC_ASIC_IN_RD() & ~(v)))
-#define HW_PCIE_PHY_SSC_ASIC_IN_TOG(v)    (HW_PCIE_PHY_SSC_ASIC_IN_WR(HW_PCIE_PHY_SSC_ASIC_IN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_SSC_ASIC_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field FSEL
+/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field FSEL (RO)
  *
  * Value from ASIC for fsel.
  */
@@ -2213,16 +1905,7 @@ typedef union
 #define BP_PCIE_PHY_SSC_ASIC_IN_FSEL      0
 #define BM_PCIE_PHY_SSC_ASIC_IN_FSEL      0x00000007
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SSC_ASIC_IN_FSEL(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SSC_ASIC_IN_FSEL)
-#else
-#define BF_PCIE_PHY_SSC_ASIC_IN_FSEL(v)   (((v) << 0) & BM_PCIE_PHY_SSC_ASIC_IN_FSEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SSC_ASIC_IN_FSEL(v)   BF_CS1(PCIE_PHY_SSC_ASIC_IN, FSEL, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field SSC_REF_CLK_SEL
+/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field SSC_REF_CLK_SEL (RO)
  *
  * Value from ASIC for ssc_ref_clk_sel
  */
@@ -2230,16 +1913,7 @@ typedef union
 #define BP_PCIE_PHY_SSC_ASIC_IN_SSC_REF_CLK_SEL      3
 #define BM_PCIE_PHY_SSC_ASIC_IN_SSC_REF_CLK_SEL      0x000007f8
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SSC_ASIC_IN_SSC_REF_CLK_SEL(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_SSC_ASIC_IN_SSC_REF_CLK_SEL)
-#else
-#define BF_PCIE_PHY_SSC_ASIC_IN_SSC_REF_CLK_SEL(v)   (((v) << 3) & BM_PCIE_PHY_SSC_ASIC_IN_SSC_REF_CLK_SEL)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SSC_ASIC_IN_SSC_REF_CLK_SEL(v)   BF_CS1(PCIE_PHY_SSC_ASIC_IN, SSC_REF_CLK_SEL, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field SSC_RANGE
+/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field SSC_RANGE (RO)
  *
  * Value from ASIC for ssc_range.
  */
@@ -2247,16 +1921,7 @@ typedef union
 #define BP_PCIE_PHY_SSC_ASIC_IN_SSC_RANGE      11
 #define BM_PCIE_PHY_SSC_ASIC_IN_SSC_RANGE      0x00001800
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SSC_ASIC_IN_SSC_RANGE(v)   ((((reg32_t) v) << 11) & BM_PCIE_PHY_SSC_ASIC_IN_SSC_RANGE)
-#else
-#define BF_PCIE_PHY_SSC_ASIC_IN_SSC_RANGE(v)   (((v) << 11) & BM_PCIE_PHY_SSC_ASIC_IN_SSC_RANGE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SSC_ASIC_IN_SSC_RANGE(v)   BF_CS1(PCIE_PHY_SSC_ASIC_IN, SSC_RANGE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field SS_EN
+/* --- Register HW_PCIE_PHY_SSC_ASIC_IN, field SS_EN (RO)
  *
  * Value from ASIC for ssc_en.
  */
@@ -2265,23 +1930,14 @@ typedef union
 #define BM_PCIE_PHY_SSC_ASIC_IN_SS_EN      0x00002000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SSC_ASIC_IN_SS_EN(v)   ((((reg32_t) v) << 13) & BM_PCIE_PHY_SSC_ASIC_IN_SS_EN)
-#else
-#define BF_PCIE_PHY_SSC_ASIC_IN_SS_EN(v)   (((v) << 13) & BM_PCIE_PHY_SSC_ASIC_IN_SS_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SSC_ASIC_IN_SS_EN(v)   BF_CS1(PCIE_PHY_SSC_ASIC_IN, SS_EN, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_SUP_ASIC_OUT - 
+ * @brief HW_PCIE_PHY_SUP_ASIC_OUT -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RES_ACK_OUT : 1; //!< Value from PHY for res_ack_out output.
@@ -2302,18 +1958,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_SUP_ASIC_OUT           (*(volatile hw_pcie_phy_sup_asic_out_t *) HW_PCIE_PHY_SUP_ASIC_OUT_ADDR)
 #define HW_PCIE_PHY_SUP_ASIC_OUT_RD()      (HW_PCIE_PHY_SUP_ASIC_OUT.U)
-#define HW_PCIE_PHY_SUP_ASIC_OUT_WR(v)     (HW_PCIE_PHY_SUP_ASIC_OUT.U = (v))
-#define HW_PCIE_PHY_SUP_ASIC_OUT_SET(v)    (HW_PCIE_PHY_SUP_ASIC_OUT_WR(HW_PCIE_PHY_SUP_ASIC_OUT_RD() |  (v)))
-#define HW_PCIE_PHY_SUP_ASIC_OUT_CLR(v)    (HW_PCIE_PHY_SUP_ASIC_OUT_WR(HW_PCIE_PHY_SUP_ASIC_OUT_RD() & ~(v)))
-#define HW_PCIE_PHY_SUP_ASIC_OUT_TOG(v)    (HW_PCIE_PHY_SUP_ASIC_OUT_WR(HW_PCIE_PHY_SUP_ASIC_OUT_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_SUP_ASIC_OUT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field RES_ACK_OUT
+/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field RES_ACK_OUT (RO)
  *
  * Value from PHY for res_ack_out output.
  */
@@ -2321,16 +1972,7 @@ typedef union
 #define BP_PCIE_PHY_SUP_ASIC_OUT_RES_ACK_OUT      0
 #define BM_PCIE_PHY_SUP_ASIC_OUT_RES_ACK_OUT      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SUP_ASIC_OUT_RES_ACK_OUT(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SUP_ASIC_OUT_RES_ACK_OUT)
-#else
-#define BF_PCIE_PHY_SUP_ASIC_OUT_RES_ACK_OUT(v)   (((v) << 0) & BM_PCIE_PHY_SUP_ASIC_OUT_RES_ACK_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SUP_ASIC_OUT_RES_ACK_OUT(v)   BF_CS1(PCIE_PHY_SUP_ASIC_OUT, RES_ACK_OUT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field RES_REQ_OUT
+/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field RES_REQ_OUT (RO)
  *
  * Value from PHY for res_req_out output.
  */
@@ -2338,16 +1980,7 @@ typedef union
 #define BP_PCIE_PHY_SUP_ASIC_OUT_RES_REQ_OUT      1
 #define BM_PCIE_PHY_SUP_ASIC_OUT_RES_REQ_OUT      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SUP_ASIC_OUT_RES_REQ_OUT(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_SUP_ASIC_OUT_RES_REQ_OUT)
-#else
-#define BF_PCIE_PHY_SUP_ASIC_OUT_RES_REQ_OUT(v)   (((v) << 1) & BM_PCIE_PHY_SUP_ASIC_OUT_RES_REQ_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SUP_ASIC_OUT_RES_REQ_OUT(v)   BF_CS1(PCIE_PHY_SUP_ASIC_OUT, RES_REQ_OUT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field RTUNE_ACK
+/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field RTUNE_ACK (RO)
  *
  * Value from PHY for rtune_ack output.
  */
@@ -2355,16 +1988,7 @@ typedef union
 #define BP_PCIE_PHY_SUP_ASIC_OUT_RTUNE_ACK      2
 #define BM_PCIE_PHY_SUP_ASIC_OUT_RTUNE_ACK      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SUP_ASIC_OUT_RTUNE_ACK(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_SUP_ASIC_OUT_RTUNE_ACK)
-#else
-#define BF_PCIE_PHY_SUP_ASIC_OUT_RTUNE_ACK(v)   (((v) << 2) & BM_PCIE_PHY_SUP_ASIC_OUT_RTUNE_ACK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SUP_ASIC_OUT_RTUNE_ACK(v)   BF_CS1(PCIE_PHY_SUP_ASIC_OUT, RTUNE_ACK, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field BS_OUT
+/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field BS_OUT (RO)
  *
  * Value from PHY for bs_out output.
  */
@@ -2372,16 +1996,7 @@ typedef union
 #define BP_PCIE_PHY_SUP_ASIC_OUT_BS_OUT      3
 #define BM_PCIE_PHY_SUP_ASIC_OUT_BS_OUT      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SUP_ASIC_OUT_BS_OUT(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_SUP_ASIC_OUT_BS_OUT)
-#else
-#define BF_PCIE_PHY_SUP_ASIC_OUT_BS_OUT(v)   (((v) << 3) & BM_PCIE_PHY_SUP_ASIC_OUT_BS_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SUP_ASIC_OUT_BS_OUT(v)   BF_CS1(PCIE_PHY_SUP_ASIC_OUT, BS_OUT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field MPLL_STATE
+/* --- Register HW_PCIE_PHY_SUP_ASIC_OUT, field MPLL_STATE (RO)
  *
  * Value from PHY for mpll_state output.
  */
@@ -2390,23 +2005,14 @@ typedef union
 #define BM_PCIE_PHY_SUP_ASIC_OUT_MPLL_STATE      0x00000010
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SUP_ASIC_OUT_MPLL_STATE(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_SUP_ASIC_OUT_MPLL_STATE)
-#else
-#define BF_PCIE_PHY_SUP_ASIC_OUT_MPLL_STATE(v)   (((v) << 4) & BM_PCIE_PHY_SUP_ASIC_OUT_MPLL_STATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_SUP_ASIC_OUT_MPLL_STATE(v)   BF_CS1(PCIE_PHY_SUP_ASIC_OUT, MPLL_STATE, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_ATEOVRD_STATUS - 
+ * @brief HW_PCIE_PHY_ATEOVRD_STATUS -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short REF_USB2_EN_OUT : 1; //!< Value from ATEOVRD for ref_usb2_en.
@@ -2431,18 +2037,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_ATEOVRD_STATUS           (*(volatile hw_pcie_phy_ateovrd_status_t *) HW_PCIE_PHY_ATEOVRD_STATUS_ADDR)
 #define HW_PCIE_PHY_ATEOVRD_STATUS_RD()      (HW_PCIE_PHY_ATEOVRD_STATUS.U)
-#define HW_PCIE_PHY_ATEOVRD_STATUS_WR(v)     (HW_PCIE_PHY_ATEOVRD_STATUS.U = (v))
-#define HW_PCIE_PHY_ATEOVRD_STATUS_SET(v)    (HW_PCIE_PHY_ATEOVRD_STATUS_WR(HW_PCIE_PHY_ATEOVRD_STATUS_RD() |  (v)))
-#define HW_PCIE_PHY_ATEOVRD_STATUS_CLR(v)    (HW_PCIE_PHY_ATEOVRD_STATUS_WR(HW_PCIE_PHY_ATEOVRD_STATUS_RD() & ~(v)))
-#define HW_PCIE_PHY_ATEOVRD_STATUS_TOG(v)    (HW_PCIE_PHY_ATEOVRD_STATUS_WR(HW_PCIE_PHY_ATEOVRD_STATUS_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_ATEOVRD_STATUS bitfields
  */
 
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_USB2_EN_OUT
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_USB2_EN_OUT (RO)
  *
  * Value from ATEOVRD for ref_usb2_en.
  */
@@ -2450,16 +2051,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_OUT      0
 #define BM_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_OUT      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_OUT(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_OUT)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_OUT(v)   (((v) << 0) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_OUT(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, REF_USB2_EN_OUT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_CLKDIV2_OUT
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_CLKDIV2_OUT (RO)
  *
  * Value from ATEOVRD for ref_clkdiv2.
  */
@@ -2467,16 +2059,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_OUT      1
 #define BM_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_OUT      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_OUT(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_OUT)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_OUT(v)   (((v) << 1) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_OUT(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, REF_CLKDIV2_OUT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field PHY_RESET_OUT
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field PHY_RESET_OUT (RO)
  *
  * Value from ATEOVRD for phy_reset.
  */
@@ -2484,16 +2067,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_OUT      2
 #define BM_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_OUT      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_OUT(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_OUT)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_OUT(v)   (((v) << 2) & BM_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_OUT(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, PHY_RESET_OUT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field ATEOVRD_EN
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field ATEOVRD_EN (RO)
  *
  * When set, values from ATEOVRD register are sent to PHY.
  */
@@ -2501,16 +2075,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_ATEOVRD_EN      3
 #define BM_PCIE_PHY_ATEOVRD_STATUS_ATEOVRD_EN      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_ATEOVRD_EN(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_ATEOVRD_STATUS_ATEOVRD_EN)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_ATEOVRD_EN(v)   (((v) << 3) & BM_PCIE_PHY_ATEOVRD_STATUS_ATEOVRD_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_ATEOVRD_EN(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, ATEOVRD_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_USB2_EN_IN
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_USB2_EN_IN (RO)
  *
  * Value from ASIC for ref_usb2_en.
  */
@@ -2518,16 +2083,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_IN      4
 #define BM_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_IN      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_IN(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_IN)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_IN(v)   (((v) << 4) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_IN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_REF_USB2_EN_IN(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, REF_USB2_EN_IN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_CLKDIV2_IN
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_CLKDIV2_IN (RO)
  *
  * Value from ASIC for ref_clkdiv2.
  */
@@ -2535,16 +2091,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_IN      5
 #define BM_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_IN      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_IN(v)   ((((reg32_t) v) << 5) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_IN)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_IN(v)   (((v) << 5) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_IN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_REF_CLKDIV2_IN(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, REF_CLKDIV2_IN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field PHY_RESET_IN
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field PHY_RESET_IN (RO)
  *
  * Value from ASIC for phy_reset
  */
@@ -2552,16 +2099,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_IN      6
 #define BM_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_IN      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_IN(v)   ((((reg32_t) v) << 6) & BM_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_IN)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_IN(v)   (((v) << 6) & BM_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_IN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_PHY_RESET_IN(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, PHY_RESET_IN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_USE_PAD
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_USE_PAD (RO)
  *
  * Value from ASIC for ref_use_pad
  */
@@ -2569,16 +2107,7 @@ typedef union
 #define BP_PCIE_PHY_ATEOVRD_STATUS_REF_USE_PAD      7
 #define BM_PCIE_PHY_ATEOVRD_STATUS_REF_USE_PAD      0x00000080
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_USE_PAD(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_USE_PAD)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_USE_PAD(v)   (((v) << 7) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_USE_PAD)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_REF_USE_PAD(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, REF_USE_PAD, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_SSP_EN
+/* --- Register HW_PCIE_PHY_ATEOVRD_STATUS, field REF_SSP_EN (RO)
  *
  * Value from ASIC for ref_ssp_en.
  */
@@ -2587,23 +2116,14 @@ typedef union
 #define BM_PCIE_PHY_ATEOVRD_STATUS_REF_SSP_EN      0x00000100
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_SSP_EN(v)   ((((reg32_t) v) << 8) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_SSP_EN)
-#else
-#define BF_PCIE_PHY_ATEOVRD_STATUS_REF_SSP_EN(v)   (((v) << 8) & BM_PCIE_PHY_ATEOVRD_STATUS_REF_SSP_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_ATEOVRD_STATUS_REF_SSP_EN(v)   BF_CS1(PCIE_PHY_ATEOVRD_STATUS, REF_SSP_EN, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_SCOPE_ENABLES - 
+ * @brief HW_PCIE_PHY_SCOPE_ENABLES -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short XOR_EN : 1; //!< Uses scope_xor input for count values.
@@ -2628,12 +2148,11 @@ typedef union
 #define HW_PCIE_PHY_SCOPE_ENABLES_TOG(v)    (HW_PCIE_PHY_SCOPE_ENABLES_WR(HW_PCIE_PHY_SCOPE_ENABLES_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SCOPE_ENABLES bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SCOPE_ENABLES, field XOR_EN
+/* --- Register HW_PCIE_PHY_SCOPE_ENABLES, field XOR_EN (RW)
  *
  * Uses scope_xor input for count values.
  */
@@ -2647,10 +2166,11 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_ENABLES_XOR_EN(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_ENABLES_XOR_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the XOR_EN field to a new value.
 #define BW_PCIE_PHY_SCOPE_ENABLES_XOR_EN(v)   BF_CS1(PCIE_PHY_SCOPE_ENABLES, XOR_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SCOPE_ENABLES, field MASK_EN
+/* --- Register HW_PCIE_PHY_SCOPE_ENABLES, field MASK_EN (RW)
  *
  * Enables scope_mask input for tracking count values. Clears registers when deasserted.
  */
@@ -2664,12 +2184,17 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_ENABLES_MASK_EN(v)   (((v) << 1) & BM_PCIE_PHY_SCOPE_ENABLES_MASK_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_EN field to a new value.
 #define BW_PCIE_PHY_SCOPE_ENABLES_MASK_EN(v)   BF_CS1(PCIE_PHY_SCOPE_ENABLES, MASK_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SCOPE_ENABLES, field MASK_SATURATION_MODE
+/* --- Register HW_PCIE_PHY_SCOPE_ENABLES, field MASK_SATURATION_MODE (RW)
  *
  * Method of mask saturation.
+ *
+ * Values:
+ * 1 - Saturates when the first mask_counter reaches sample_limit.
+ * 0 - Saturates when all mask_counters have reached sample_limit.
  */
 
 #define BP_PCIE_PHY_SCOPE_ENABLES_MASK_SATURATION_MODE      2
@@ -2681,18 +2206,20 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_ENABLES_MASK_SATURATION_MODE(v)   (((v) << 2) & BM_PCIE_PHY_SCOPE_ENABLES_MASK_SATURATION_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_SATURATION_MODE field to a new value.
 #define BW_PCIE_PHY_SCOPE_ENABLES_MASK_SATURATION_MODE(v)   BF_CS1(PCIE_PHY_SCOPE_ENABLES, MASK_SATURATION_MODE, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_SCOPE_SAMPLES - 
+ * @brief HW_PCIE_PHY_SCOPE_SAMPLES -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short SAMPLES : 16; //!< Number of samples to count.
@@ -2714,12 +2241,11 @@ typedef union
 #define HW_PCIE_PHY_SCOPE_SAMPLES_TOG(v)    (HW_PCIE_PHY_SCOPE_SAMPLES_WR(HW_PCIE_PHY_SCOPE_SAMPLES_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SCOPE_SAMPLES bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SCOPE_SAMPLES, field SAMPLES
+/* --- Register HW_PCIE_PHY_SCOPE_SAMPLES, field SAMPLES (RW)
  *
  * Number of samples to count.
  */
@@ -2733,18 +2259,19 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_SAMPLES_SAMPLES(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_SAMPLES_SAMPLES)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SAMPLES field to a new value.
 #define BW_PCIE_PHY_SCOPE_SAMPLES_SAMPLES(v)   BF_CS1(PCIE_PHY_SCOPE_SAMPLES, SAMPLES, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_SCOPE_COUNT - 
+ * @brief HW_PCIE_PHY_SCOPE_COUNT -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short COUNT : 16; //!< A write to this register starts the counting process. The value of FFFF indicates counting still in progress. If in MASK mode, asserting MASK_EN also starts the counting
@@ -2766,12 +2293,11 @@ typedef union
 #define HW_PCIE_PHY_SCOPE_COUNT_TOG(v)    (HW_PCIE_PHY_SCOPE_COUNT_WR(HW_PCIE_PHY_SCOPE_COUNT_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SCOPE_COUNT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SCOPE_COUNT, field COUNT
+/* --- Register HW_PCIE_PHY_SCOPE_COUNT, field COUNT (RW)
  *
  * A write to this register starts the counting process. The value of FFFF indicates counting still
  * in progress. If in MASK mode, asserting MASK_EN also starts the counting
@@ -2786,18 +2312,19 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_COUNT_COUNT(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_COUNT_COUNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the COUNT field to a new value.
 #define BW_PCIE_PHY_SCOPE_COUNT_COUNT(v)   BF_CS1(PCIE_PHY_SCOPE_COUNT, COUNT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_SCOPE_CTL - 
+ * @brief HW_PCIE_PHY_SCOPE_CTL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short MASK_SATURATION : 1; //!< When asserted, mask registers have saturated.
@@ -2821,12 +2348,11 @@ typedef union
 #define HW_PCIE_PHY_SCOPE_CTL_TOG(v)    (HW_PCIE_PHY_SCOPE_CTL_WR(HW_PCIE_PHY_SCOPE_CTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SCOPE_CTL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SCOPE_CTL, field MASK_SATURATION
+/* --- Register HW_PCIE_PHY_SCOPE_CTL, field MASK_SATURATION (RW)
  *
  * When asserted, mask registers have saturated.
  */
@@ -2840,10 +2366,11 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_CTL_MASK_SATURATION(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_CTL_MASK_SATURATION)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_SATURATION field to a new value.
 #define BW_PCIE_PHY_SCOPE_CTL_MASK_SATURATION(v)   BF_CS1(PCIE_PHY_SCOPE_CTL, MASK_SATURATION, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_SCOPE_CTL, field COUNT
+/* --- Register HW_PCIE_PHY_SCOPE_CTL, field COUNT (RW)
  *
  * A write to this register starts the counting process. The value of FFFF indicates counting still
  * in progress. If in MASK mode, asserting MASK_EN also starts the counting
@@ -2858,18 +2385,19 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_CTL_COUNT(v)   (((v) << 1) & BM_PCIE_PHY_SCOPE_CTL_COUNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the COUNT field to a new value.
 #define BW_PCIE_PHY_SCOPE_CTL_COUNT(v)   BF_CS1(PCIE_PHY_SCOPE_CTL, COUNT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_SCOPE_MASK - 
+ * @brief HW_PCIE_PHY_SCOPE_MASK -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
@@ -2891,12 +2419,11 @@ typedef union
 #define HW_PCIE_PHY_SCOPE_MASK_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_WR(HW_PCIE_PHY_SCOPE_MASK_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_SCOPE_MASK bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SCOPE_MASK, field MASK_VAL_N
+/* --- Register HW_PCIE_PHY_SCOPE_MASK, field MASK_VAL_N (RW)
  *
  * Starting count value of mask register. Scope must be enabled to read from or write to this
  * register.
@@ -2911,18 +2438,19 @@ typedef union
 #define BF_PCIE_PHY_SCOPE_MASK_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_MASK_VAL_N)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
 #define BW_PCIE_PHY_SCOPE_MASK_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK, MASK_VAL_N, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_MPLL_LOOP_CTL - 
+ * @brief HW_PCIE_PHY_MPLL_LOOP_CTL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short VMB : 1; //!< Measures MPLL master bias voltage.
@@ -2948,12 +2476,11 @@ typedef union
 #define HW_PCIE_PHY_MPLL_LOOP_CTL_TOG(v)    (HW_PCIE_PHY_MPLL_LOOP_CTL_WR(HW_PCIE_PHY_MPLL_LOOP_CTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_MPLL_LOOP_CTL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field VMB
+/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field VMB (RW)
  *
  * Measures MPLL master bias voltage.
  */
@@ -2967,10 +2494,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_LOOP_CTL_VMB(v)   (((v) << 0) & BM_PCIE_PHY_MPLL_LOOP_CTL_VMB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VMB field to a new value.
 #define BW_PCIE_PHY_MPLL_LOOP_CTL_VMB(v)   BF_CS1(PCIE_PHY_MPLL_LOOP_CTL, VMB, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field VBF_SF
+/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field VBF_SF (RW)
  *
  * Measures MPLL VBF_SF (RC filtered gate voltage for VPSF source follower).
  */
@@ -2984,10 +2512,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_LOOP_CTL_VBF_SF(v)   (((v) << 1) & BM_PCIE_PHY_MPLL_LOOP_CTL_VBF_SF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VBF_SF field to a new value.
 #define BW_PCIE_PHY_MPLL_LOOP_CTL_VBF_SF(v)   BF_CS1(PCIE_PHY_MPLL_LOOP_CTL, VBF_SF, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field INT_CNTRL
+/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field INT_CNTRL (RW)
  *
  * Charge pump integrating current setting.
  */
@@ -3001,10 +2530,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_LOOP_CTL_INT_CNTRL(v)   (((v) << 2) & BM_PCIE_PHY_MPLL_LOOP_CTL_INT_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the INT_CNTRL field to a new value.
 #define BW_PCIE_PHY_MPLL_LOOP_CTL_INT_CNTRL(v)   BF_CS1(PCIE_PHY_MPLL_LOOP_CTL, INT_CNTRL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field PROP_CNTRL
+/* --- Register HW_PCIE_PHY_MPLL_LOOP_CTL, field PROP_CNTRL (RW)
  *
  * Charge pump proportional current setting.
  */
@@ -3018,18 +2548,19 @@ typedef union
 #define BF_PCIE_PHY_MPLL_LOOP_CTL_PROP_CNTRL(v)   (((v) << 4) & BM_PCIE_PHY_MPLL_LOOP_CTL_PROP_CNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PROP_CNTRL field to a new value.
 #define BW_PCIE_PHY_MPLL_LOOP_CTL_PROP_CNTRL(v)   BF_CS1(PCIE_PHY_MPLL_LOOP_CTL, PROP_CNTRL, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_MPLL_ATB_MEAS1 - 
+ * @brief HW_PCIE_PHY_MPLL_ATB_MEAS1 -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short VREG_MPLL : 1; //!< Puts vreg_mpll on atb_s_p.
@@ -3059,12 +2590,11 @@ typedef union
 #define HW_PCIE_PHY_MPLL_ATB_MEAS1_TOG(v)    (HW_PCIE_PHY_MPLL_ATB_MEAS1_WR(HW_PCIE_PHY_MPLL_ATB_MEAS1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_MPLL_ATB_MEAS1 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VREG_MPLL
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VREG_MPLL (RW)
  *
  * Puts vreg_mpll on atb_s_p.
  */
@@ -3078,10 +2608,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_VREG_MPLL(v)   (((v) << 0) & BM_PCIE_PHY_MPLL_ATB_MEAS1_VREG_MPLL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VREG_MPLL field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_VREG_MPLL(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, VREG_MPLL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VP_CP
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VP_CP (RW)
  *
  * Puts vp_cp on atb_s_p.
  */
@@ -3095,10 +2626,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_VP_CP(v)   (((v) << 1) & BM_PCIE_PHY_MPLL_ATB_MEAS1_VP_CP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VP_CP field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_VP_CP(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, VP_CP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VPA
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VPA (RW)
  *
  * Puts vpa on atb_s_m.
  */
@@ -3112,10 +2644,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_VPA(v)   (((v) << 2) & BM_PCIE_PHY_MPLL_ATB_MEAS1_VPA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VPA field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_VPA(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, VPA, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field IVCO
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field IVCO (RW)
  *
  * Puts VCO current / 93 on atb_f_m.
  */
@@ -3129,10 +2662,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_IVCO(v)   (((v) << 3) & BM_PCIE_PHY_MPLL_ATB_MEAS1_IVCO)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IVCO field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_IVCO(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, IVCO, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field GD
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field GD (RW)
  *
  * Puts gd on atb_s_m.
  */
@@ -3146,10 +2680,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_GD(v)   (((v) << 4) & BM_PCIE_PHY_MPLL_ATB_MEAS1_GD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GD field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_GD(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, GD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VCNTRL
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VCNTRL (RW)
  *
  * Puts vcntrl on atb_s_m.
  */
@@ -3163,10 +2698,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_VCNTRL(v)   (((v) << 5) & BM_PCIE_PHY_MPLL_ATB_MEAS1_VCNTRL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VCNTRL field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_VCNTRL(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, VCNTRL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VREF
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VREF (RW)
  *
  * Puts vref from charge pump on atb_s_p.
  */
@@ -3180,10 +2716,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_VREF(v)   (((v) << 6) & BM_PCIE_PHY_MPLL_ATB_MEAS1_VREF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VREF field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_VREF(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, VREF, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VPSF
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS1, field VPSF (RW)
  *
  * Puts vpsf on atb_s_p.
  */
@@ -3197,18 +2734,19 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS1_VPSF(v)   (((v) << 7) & BM_PCIE_PHY_MPLL_ATB_MEAS1_VPSF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VPSF field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS1_VPSF(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS1, VPSF, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_MPLL_ATB_MEAS2 - 
+ * @brief HW_PCIE_PHY_MPLL_ATB_MEAS2 -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short EN_MPMIX_TST : 1; //!< Enables XOR gate to test linearity of MPLL phase mixer.
@@ -3238,12 +2776,11 @@ typedef union
 #define HW_PCIE_PHY_MPLL_ATB_MEAS2_TOG(v)    (HW_PCIE_PHY_MPLL_ATB_MEAS2_WR(HW_PCIE_PHY_MPLL_ATB_MEAS2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_MPLL_ATB_MEAS2 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field EN_MPMIX_TST
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field EN_MPMIX_TST (RW)
  *
  * Enables XOR gate to test linearity of MPLL phase mixer.
  */
@@ -3257,10 +2794,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_EN_MPMIX_TST(v)   (((v) << 0) & BM_PCIE_PHY_MPLL_ATB_MEAS2_EN_MPMIX_TST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_MPMIX_TST field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_EN_MPMIX_TST(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, EN_MPMIX_TST, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field EN_MPMIX_VPMIX
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field EN_MPMIX_VPMIX (RW)
  *
  * Puts vreg_pmix on atb_s_p.
  */
@@ -3274,10 +2812,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_EN_MPMIX_VPMIX(v)   (((v) << 1) & BM_PCIE_PHY_MPLL_ATB_MEAS2_EN_MPMIX_VPMIX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_MPMIX_VPMIX field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_EN_MPMIX_VPMIX(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, EN_MPMIX_VPMIX, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field FRC_PMIX_VPMIX
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field FRC_PMIX_VPMIX (RW)
  *
  * Forces mpll_pmix_vreg to use atb_s_m as its input instead of vbg.
  */
@@ -3291,10 +2830,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_FRC_PMIX_VPMIX(v)   (((v) << 2) & BM_PCIE_PHY_MPLL_ATB_MEAS2_FRC_PMIX_VPMIX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FRC_PMIX_VPMIX field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_FRC_PMIX_VPMIX(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, FRC_PMIX_VPMIX, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field MEAS_TEMP
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field MEAS_TEMP (RW)
  *
  * Instructs POR block to measure the temperature.
  */
@@ -3308,10 +2848,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_MEAS_TEMP(v)   (((v) << 3) & BM_PCIE_PHY_MPLL_ATB_MEAS2_MEAS_TEMP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MEAS_TEMP field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_MEAS_TEMP(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, MEAS_TEMP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field ATB_SENSE_SEL
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field ATB_SENSE_SEL (RW)
  *
  * connects internal atb sense bus to external bus
  */
@@ -3325,10 +2866,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_ATB_SENSE_SEL(v)   (((v) << 4) & BM_PCIE_PHY_MPLL_ATB_MEAS2_ATB_SENSE_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_SENSE_SEL field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_ATB_SENSE_SEL(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, ATB_SENSE_SEL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field VCNTRL_P
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field VCNTRL_P (RW)
  *
  * Puts dcc output vcntrl_m on atb_s_p
  */
@@ -3342,10 +2884,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_VCNTRL_P(v)   (((v) << 5) & BM_PCIE_PHY_MPLL_ATB_MEAS2_VCNTRL_P)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VCNTRL_P field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_VCNTRL_P(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, VCNTRL_P, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field VCNTRL_M
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field VCNTRL_M (RW)
  *
  * Puts dcc output vcntrl_p on atb_s_m
  */
@@ -3359,10 +2902,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_VCNTRL_M(v)   (((v) << 6) & BM_PCIE_PHY_MPLL_ATB_MEAS2_VCNTRL_M)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VCNTRL_M field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_VCNTRL_M(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, VCNTRL_M, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field IVCO_FILT
+/* --- Register HW_PCIE_PHY_MPLL_ATB_MEAS2, field IVCO_FILT (RW)
  *
  * Puts filtered version of ivco on atb_s_p
  */
@@ -3376,18 +2920,19 @@ typedef union
 #define BF_PCIE_PHY_MPLL_ATB_MEAS2_IVCO_FILT(v)   (((v) << 7) & BM_PCIE_PHY_MPLL_ATB_MEAS2_IVCO_FILT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the IVCO_FILT field to a new value.
 #define BW_PCIE_PHY_MPLL_ATB_MEAS2_IVCO_FILT(v)   BF_CS1(PCIE_PHY_MPLL_ATB_MEAS2, IVCO_FILT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_MPLL_OVR - 
+ * @brief HW_PCIE_PHY_MPLL_OVR -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short EN_PMIX_CLK_SEL_LCL : 1; //!< enable local control of pmix_clk_sel
@@ -3417,12 +2962,11 @@ typedef union
 #define HW_PCIE_PHY_MPLL_OVR_TOG(v)    (HW_PCIE_PHY_MPLL_OVR_WR(HW_PCIE_PHY_MPLL_OVR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_MPLL_OVR bitfields
  */
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_PMIX_CLK_SEL_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_PMIX_CLK_SEL_LCL (RW)
  *
  * enable local control of pmix_clk_sel
  */
@@ -3436,10 +2980,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_EN_PMIX_CLK_SEL_LCL(v)   (((v) << 0) & BM_PCIE_PHY_MPLL_OVR_EN_PMIX_CLK_SEL_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_PMIX_CLK_SEL_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_EN_PMIX_CLK_SEL_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, EN_PMIX_CLK_SEL_LCL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field PMIX_CLK_SEL_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field PMIX_CLK_SEL_LCL (RW)
  *
  * local pmix_clk_sel value
  */
@@ -3453,10 +2998,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_PMIX_CLK_SEL_LCL(v)   (((v) << 1) & BM_PCIE_PHY_MPLL_OVR_PMIX_CLK_SEL_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PMIX_CLK_SEL_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_PMIX_CLK_SEL_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, PMIX_CLK_SEL_LCL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_RST_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_RST_LCL (RW)
  *
  * enable local control of reset
  */
@@ -3470,10 +3016,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_EN_RST_LCL(v)   (((v) << 2) & BM_PCIE_PHY_MPLL_OVR_EN_RST_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_RST_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_EN_RST_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, EN_RST_LCL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field RST_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field RST_LCL (RW)
  *
  * local Reset value
  */
@@ -3487,10 +3034,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_RST_LCL(v)   (((v) << 3) & BM_PCIE_PHY_MPLL_OVR_RST_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RST_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_RST_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, RST_LCL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_GS_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_GS_LCL (RW)
  *
  * Enables local control of gear_shift
  */
@@ -3504,10 +3052,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_EN_GS_LCL(v)   (((v) << 4) & BM_PCIE_PHY_MPLL_OVR_EN_GS_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_GS_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_EN_GS_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, EN_GS_LCL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field GS_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field GS_LCL (RW)
  *
  * local gear_shift value
  */
@@ -3521,10 +3070,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_GS_LCL(v)   (((v) << 5) & BM_PCIE_PHY_MPLL_OVR_GS_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GS_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_GS_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, GS_LCL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_PWRON_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field EN_PWRON_LCL (RW)
  *
  * Enables local control of power_on
  */
@@ -3538,10 +3088,11 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_EN_PWRON_LCL(v)   (((v) << 6) & BM_PCIE_PHY_MPLL_OVR_EN_PWRON_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_PWRON_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_EN_PWRON_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, EN_PWRON_LCL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_MPLL_OVR, field PWRON_LCL
+/* --- Register HW_PCIE_PHY_MPLL_OVR, field PWRON_LCL (RW)
  *
  * local power_on value
  */
@@ -3555,18 +3106,19 @@ typedef union
 #define BF_PCIE_PHY_MPLL_OVR_PWRON_LCL(v)   (((v) << 7) & BM_PCIE_PHY_MPLL_OVR_PWRON_LCL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PWRON_LCL field to a new value.
 #define BW_PCIE_PHY_MPLL_OVR_PWRON_LCL(v)   BF_CS1(PCIE_PHY_MPLL_OVR, PWRON_LCL, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RTUNE_RTUNE_CTRL - 
+ * @brief HW_PCIE_PHY_RTUNE_RTUNE_CTRL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RT_SEL_ATBF : 1; //!< RTUNE ATB input slect bit
@@ -3595,14 +3147,17 @@ typedef union
 #define HW_PCIE_PHY_RTUNE_RTUNE_CTRL_TOG(v)    (HW_PCIE_PHY_RTUNE_RTUNE_CTRL_WR(HW_PCIE_PHY_RTUNE_RTUNE_CTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RTUNE_RTUNE_CTRL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_SEL_ATBF
+/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_SEL_ATBF (RW)
  *
  * RTUNE ATB input slect bit
+ *
+ * Values:
+ * 1 - atb_fm
+ * 0 - atb_s_p/m
  */
 
 #define BP_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBF      0
@@ -3614,12 +3169,18 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBF(v)   (((v) << 0) & BM_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RT_SEL_ATBF field to a new value.
 #define BW_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBF(v)   BF_CS1(PCIE_PHY_RTUNE_RTUNE_CTRL, RT_SEL_ATBF, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_SEL_ATBP
+
+/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_SEL_ATBP (RW)
  *
  * RTUNE ATB sense input select bit
+ *
+ * Values:
+ * 1 - atb_s_p
+ * 0 - atb_s_m
  */
 
 #define BP_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBP      1
@@ -3631,12 +3192,18 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBP(v)   (((v) << 1) & BM_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RT_SEL_ATBP field to a new value.
 #define BW_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_SEL_ATBP(v)   BF_CS1(PCIE_PHY_RTUNE_RTUNE_CTRL, RT_SEL_ATBP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_ATB
+
+/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_ATB (RW)
  *
  * RTUNE ATB mode control bit
+ *
+ * Values:
+ * 1 - RTUNE performs ADC on ATB input
+ * 0 - not accessing ATB
  */
 
 #define BP_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_ATB      2
@@ -3648,10 +3215,12 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_ATB(v)   (((v) << 2) & BM_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_ATB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RT_ATB field to a new value.
 #define BW_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_ATB(v)   BF_CS1(PCIE_PHY_RTUNE_RTUNE_CTRL, RT_ATB, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_DAC_CHOP
+
+/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_DAC_CHOP (RW)
  *
  * Margin DAC chop control bit
  */
@@ -3665,12 +3234,19 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_DAC_CHOP(v)   (((v) << 3) & BM_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_DAC_CHOP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RT_DAC_CHOP field to a new value.
 #define BW_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_DAC_CHOP(v)   BF_CS1(PCIE_PHY_RTUNE_RTUNE_CTRL, RT_DAC_CHOP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_DAC_MODE
+/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_DAC_MODE (RW)
  *
  * Margin DAC mode control bits
+ *
+ * Values:
+ * 00 - powerdown
+ * 01 - DAC drives atb_s_p/m directly
+ * 10 - DAC drives atb_s_p/m to the RX in margining mode
+ * 11 - illegal state
  */
 
 #define BP_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_DAC_MODE      4
@@ -3682,10 +3258,12 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_DAC_MODE(v)   (((v) << 4) & BM_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_DAC_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RT_DAC_MODE field to a new value.
 #define BW_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_DAC_MODE(v)   BF_CS1(PCIE_PHY_RTUNE_RTUNE_CTRL, RT_DAC_MODE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field X4_FRC_OFF
+
+/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field X4_FRC_OFF (RW)
  *
  * When set, do not multiply test current by 4
  */
@@ -3699,10 +3277,11 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_RTUNE_CTRL_X4_FRC_OFF(v)   (((v) << 6) & BM_PCIE_PHY_RTUNE_RTUNE_CTRL_X4_FRC_OFF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the X4_FRC_OFF field to a new value.
 #define BW_PCIE_PHY_RTUNE_RTUNE_CTRL_X4_FRC_OFF(v)   BF_CS1(PCIE_PHY_RTUNE_RTUNE_CTRL, X4_FRC_OFF, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_PWRON_FRC_ON
+/* --- Register HW_PCIE_PHY_RTUNE_RTUNE_CTRL, field RT_PWRON_FRC_ON (RW)
  *
  * When set, forces RTUNE block to be on
  */
@@ -3716,18 +3295,19 @@ typedef union
 #define BF_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_PWRON_FRC_ON(v)   (((v) << 7) & BM_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_PWRON_FRC_ON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RT_PWRON_FRC_ON field to a new value.
 #define BW_PCIE_PHY_RTUNE_RTUNE_CTRL_RT_PWRON_FRC_ON(v)   BF_CS1(PCIE_PHY_RTUNE_RTUNE_CTRL, RT_PWRON_FRC_ON, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_ATB_SWITCHYARD_CTRL - 
+ * @brief HW_PCIE_PHY_ATB_SWITCHYARD_CTRL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short ASM_GD : 1; //!< Connect atb_s_m to gd
@@ -3757,12 +3337,11 @@ typedef union
 #define HW_PCIE_PHY_ATB_SWITCHYARD_CTRL_TOG(v)    (HW_PCIE_PHY_ATB_SWITCHYARD_CTRL_WR(HW_PCIE_PHY_ATB_SWITCHYARD_CTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_ATB_SWITCHYARD_CTRL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASM_GD
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASM_GD (RW)
  *
  * Connect atb_s_m to gd
  */
@@ -3776,10 +3355,11 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASM_GD(v)   (((v) << 0) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASM_GD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASM_GD field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASM_GD(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ASM_GD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASP_VP
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASP_VP (RW)
  *
  * Connect atb_s_p to vp
  */
@@ -3793,10 +3373,11 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VP(v)   (((v) << 1) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASP_VP field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VP(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ASP_VP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASP_VPHREG
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASP_VPHREG (RW)
  *
  * Connect atb_s_p vphreg
  */
@@ -3810,10 +3391,11 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VPHREG(v)   (((v) << 2) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VPHREG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASP_VPHREG field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VPHREG(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ASP_VPHREG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASP_VPH
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ASP_VPH (RW)
  *
  * Connect atb_s_p to vph
  */
@@ -3827,10 +3409,11 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VPH(v)   (((v) << 3) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VPH)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ASP_VPH field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ASP_VPH(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ASP_VPH, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_AFM
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_AFM (RW)
  *
  * Connect atest to atb_f_m
  */
@@ -3844,10 +3427,11 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_AFM(v)   (((v) << 4) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_AFM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATEST_AFM field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_AFM(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ATEST_AFM, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_AFP
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_AFP (RW)
  *
  * Connect atest to atb_f_p
  */
@@ -3861,10 +3445,11 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_AFP(v)   (((v) << 5) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_AFP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATEST_AFP field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_AFP(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ATEST_AFP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_ASM
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_ASM (RW)
  *
  * Connect atest to atb_s_m
  */
@@ -3878,10 +3463,11 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_ASM(v)   (((v) << 6) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_ASM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATEST_ASM field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_ASM(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ATEST_ASM, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_ASP
+/* --- Register HW_PCIE_PHY_ATB_SWITCHYARD_CTRL, field ATEST_ASP (RW)
  *
  * Connect atest to atb_s_p
  */
@@ -3895,18 +3481,19 @@ typedef union
 #define BF_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_ASP(v)   (((v) << 7) & BM_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_ASP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATEST_ASP field to a new value.
 #define BW_PCIE_PHY_ATB_SWITCHYARD_CTRL_ATEST_ASP(v)   BF_CS1(PCIE_PHY_ATB_SWITCHYARD_CTRL, ATEST_ASP, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_OVRD_IN_LO - 
+ * @brief HW_PCIE_PHY_TX_OVRD_IN_LO -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short LOOPBK_EN : 1; //!< Override value for loopbk_en
@@ -3942,12 +3529,11 @@ typedef union
 #define HW_PCIE_PHY_TX_OVRD_IN_LO_TOG(v)    (HW_PCIE_PHY_TX_OVRD_IN_LO_WR(HW_PCIE_PHY_TX_OVRD_IN_LO_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_OVRD_IN_LO bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field LOOPBK_EN
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field LOOPBK_EN (RW)
  *
  * Override value for loopbk_en
  */
@@ -3961,10 +3547,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_LOOPBK_EN(v)   (((v) << 0) & BM_PCIE_PHY_TX_OVRD_IN_LO_LOOPBK_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOOPBK_EN field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_LOOPBK_EN(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, LOOPBK_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_LOOPBK_EN_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_LOOPBK_EN_OVRD (RW)
  *
  * Override enable for loopbk_en
  */
@@ -3978,10 +3565,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_LOOPBK_EN_OVRD(v)   (((v) << 1) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_LOOPBK_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_LOOPBK_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_LOOPBK_EN_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_LOOPBK_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_INVERT
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_INVERT (RW)
  *
  * Override value for tx_invert
  */
@@ -3995,10 +3583,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_INVERT(v)   (((v) << 2) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_INVERT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_INVERT field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_INVERT(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_INVERT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_INVERT_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_INVERT_OVRD (RW)
  *
  * Override enable for tx_invert
  */
@@ -4012,10 +3601,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_INVERT_OVRD(v)   (((v) << 3) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_INVERT_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_INVERT_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_INVERT_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_INVERT_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DATA_EN
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DATA_EN (RW)
  *
  * Override value for tx_data_en
  */
@@ -4029,10 +3619,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_DATA_EN(v)   (((v) << 4) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_DATA_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_DATA_EN field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_DATA_EN(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_DATA_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DATA_EN_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DATA_EN_OVRD (RW)
  *
  * Override enable for tx_data_en
  */
@@ -4046,10 +3637,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_DATA_EN_OVRD(v)   (((v) << 5) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_DATA_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_DATA_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_DATA_EN_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_DATA_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_EN
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_EN (RW)
  *
  * Override value for tx_en
  */
@@ -4063,10 +3655,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_EN(v)   (((v) << 6) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_EN field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_EN(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_EN_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_EN_OVRD (RW)
  *
  * Override enable for tx_en
  */
@@ -4080,10 +3673,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_EN_OVRD(v)   (((v) << 7) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_EN_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_CM_EN
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_CM_EN (RW)
  *
  * Override value for tx_cm_en
  */
@@ -4097,10 +3691,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_CM_EN(v)   (((v) << 8) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_CM_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CM_EN field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_CM_EN(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_CM_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_CM_EN_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_CM_EN_OVRD (RW)
  *
  * Override enable for tx_cm_en
  */
@@ -4114,10 +3709,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_CM_EN_OVRD(v)   (((v) << 9) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_CM_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CM_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_CM_EN_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_CM_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_BEACON_EN
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_BEACON_EN (RW)
  *
  * Override value for tx_beacon_en
  */
@@ -4131,10 +3727,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_BEACON_EN(v)   (((v) << 10) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_BEACON_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_BEACON_EN field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_BEACON_EN(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_BEACON_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_BEACON_EN_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_BEACON_EN_OVRD (RW)
  *
  * Override enable for tx_beacon_en
  */
@@ -4148,10 +3745,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_BEACON_EN_OVRD(v)   (((v) << 11) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_BEACON_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_BEACON_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_BEACON_EN_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_BEACON_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DETECT_RX_REQ
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DETECT_RX_REQ (RW)
  *
  * Override value for tx_detect_rx_req
  */
@@ -4165,10 +3763,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_DETECT_RX_REQ(v)   (((v) << 12) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_DETECT_RX_REQ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_DETECT_RX_REQ field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_DETECT_RX_REQ(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_DETECT_RX_REQ, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DETECT_RX_REQ_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_LO, field TX_DETECT_RX_REQ_OVRD (RW)
  *
  * Override enable for tx_detect_rx_req
  */
@@ -4182,18 +3781,19 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_LO_TX_DETECT_RX_REQ_OVRD(v)   (((v) << 13) & BM_PCIE_PHY_TX_OVRD_IN_LO_TX_DETECT_RX_REQ_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_DETECT_RX_REQ_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_LO_TX_DETECT_RX_REQ_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_LO, TX_DETECT_RX_REQ_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_OVRD_IN_HI - 
+ * @brief HW_PCIE_PHY_TX_OVRD_IN_HI -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short TX_RATE : 2; //!< Override incomming tx lane rate.
@@ -4222,12 +3822,11 @@ typedef union
 #define HW_PCIE_PHY_TX_OVRD_IN_HI_TOG(v)    (HW_PCIE_PHY_TX_OVRD_IN_HI_WR(HW_PCIE_PHY_TX_OVRD_IN_HI_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_OVRD_IN_HI bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RATE
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RATE (RW)
  *
  * Override incomming tx lane rate.
  */
@@ -4241,10 +3840,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_HI_TX_RATE(v)   (((v) << 0) & BM_PCIE_PHY_TX_OVRD_IN_HI_TX_RATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_RATE field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_HI_TX_RATE(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_HI, TX_RATE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RATE_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RATE_OVRD (RW)
  *
  * Override enable for tx_rate.
  */
@@ -4258,10 +3858,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_HI_TX_RATE_OVRD(v)   (((v) << 2) & BM_PCIE_PHY_TX_OVRD_IN_HI_TX_RATE_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_RATE_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_HI_TX_RATE_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_HI, TX_RATE_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_CLK_OUT_EN
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_CLK_OUT_EN (RW)
  *
  * Override incomming tx_clk_out_en.
  */
@@ -4275,10 +3876,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_HI_TX_CLK_OUT_EN(v)   (((v) << 3) & BM_PCIE_PHY_TX_OVRD_IN_HI_TX_CLK_OUT_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CLK_OUT_EN field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_HI_TX_CLK_OUT_EN(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_HI, TX_CLK_OUT_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_CLK_OUT_EN_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_CLK_OUT_EN_OVRD (RW)
  *
  * Override enable for tx_clk_out_en.
  */
@@ -4292,10 +3894,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_HI_TX_CLK_OUT_EN_OVRD(v)   (((v) << 4) & BM_PCIE_PHY_TX_OVRD_IN_HI_TX_CLK_OUT_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CLK_OUT_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_HI_TX_CLK_OUT_EN_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_HI, TX_CLK_OUT_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_NYQUIST_DATA
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_NYQUIST_DATA (RW)
  *
  * Override incoming data to nyquist
  */
@@ -4309,10 +3912,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_HI_TX_NYQUIST_DATA(v)   (((v) << 5) & BM_PCIE_PHY_TX_OVRD_IN_HI_TX_NYQUIST_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_NYQUIST_DATA field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_HI_TX_NYQUIST_DATA(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_HI, TX_NYQUIST_DATA, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RESET
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RESET (RW)
  *
  * Override value for tx_reset
  */
@@ -4326,10 +3930,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_HI_TX_RESET(v)   (((v) << 6) & BM_PCIE_PHY_TX_OVRD_IN_HI_TX_RESET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_RESET field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_HI_TX_RESET(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_HI, TX_RESET, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RESET_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_IN_HI, field TX_RESET_OVRD (RW)
  *
  * Override enable for tx_reset
  */
@@ -4343,18 +3948,19 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_IN_HI_TX_RESET_OVRD(v)   (((v) << 7) & BM_PCIE_PHY_TX_OVRD_IN_HI_TX_RESET_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_RESET_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_IN_HI_TX_RESET_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_IN_HI, TX_RESET_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_OVRD_DRV_LO - 
+ * @brief HW_PCIE_PHY_TX_OVRD_DRV_LO -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short AMPLITUDE : 7; //!< Override value for transmit amplitude.
@@ -4379,12 +3985,11 @@ typedef union
 #define HW_PCIE_PHY_TX_OVRD_DRV_LO_TOG(v)    (HW_PCIE_PHY_TX_OVRD_DRV_LO_WR(HW_PCIE_PHY_TX_OVRD_DRV_LO_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_OVRD_DRV_LO bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_DRV_LO, field AMPLITUDE
+/* --- Register HW_PCIE_PHY_TX_OVRD_DRV_LO, field AMPLITUDE (RW)
  *
  * Override value for transmit amplitude.
  */
@@ -4398,10 +4003,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_DRV_LO_AMPLITUDE(v)   (((v) << 0) & BM_PCIE_PHY_TX_OVRD_DRV_LO_AMPLITUDE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the AMPLITUDE field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_DRV_LO_AMPLITUDE(v)   BF_CS1(PCIE_PHY_TX_OVRD_DRV_LO, AMPLITUDE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_DRV_LO, field PREEMPH
+/* --- Register HW_PCIE_PHY_TX_OVRD_DRV_LO, field PREEMPH (RW)
  *
  * Override value for transmit preemphasis
  */
@@ -4415,10 +4021,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_DRV_LO_PREEMPH(v)   (((v) << 7) & BM_PCIE_PHY_TX_OVRD_DRV_LO_PREEMPH)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PREEMPH field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_DRV_LO_PREEMPH(v)   BF_CS1(PCIE_PHY_TX_OVRD_DRV_LO, PREEMPH, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_DRV_LO, field EN
+/* --- Register HW_PCIE_PHY_TX_OVRD_DRV_LO, field EN (RW)
  *
  * Enables override values for all inputs controlled by this register
  */
@@ -4432,18 +4039,19 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_DRV_LO_EN(v)   (((v) << 14) & BM_PCIE_PHY_TX_OVRD_DRV_LO_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_DRV_LO_EN(v)   BF_CS1(PCIE_PHY_TX_OVRD_DRV_LO, EN, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_OVRD_OUT - 
+ * @brief HW_PCIE_PHY_TX_OVRD_OUT -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short DETECT_RX_RES : 1; //!< Override value for tx_detect_rx_res
@@ -4473,12 +4081,11 @@ typedef union
 #define HW_PCIE_PHY_TX_OVRD_OUT_TOG(v)    (HW_PCIE_PHY_TX_OVRD_OUT_WR(HW_PCIE_PHY_TX_OVRD_OUT_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_OVRD_OUT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field DETECT_RX_RES
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field DETECT_RX_RES (RW)
  *
  * Override value for tx_detect_rx_res
  */
@@ -4492,10 +4099,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_DETECT_RX_RES(v)   (((v) << 0) & BM_PCIE_PHY_TX_OVRD_OUT_DETECT_RX_RES)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DETECT_RX_RES field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_DETECT_RX_RES(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, DETECT_RX_RES, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field DETECT_RX_RES_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field DETECT_RX_RES_OVRD (RW)
  *
  * Override enable for tx_detect_rx_res
  */
@@ -4509,10 +4117,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_DETECT_RX_RES_OVRD(v)   (((v) << 1) & BM_PCIE_PHY_TX_OVRD_OUT_DETECT_RX_RES_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DETECT_RX_RES_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_DETECT_RX_RES_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, DETECT_RX_RES_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_DETECT_RX_ACK
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_DETECT_RX_ACK (RW)
  *
  * Override value for tx_detect_rx_ack
  */
@@ -4526,10 +4135,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_TX_DETECT_RX_ACK(v)   (((v) << 2) & BM_PCIE_PHY_TX_OVRD_OUT_TX_DETECT_RX_ACK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_DETECT_RX_ACK field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_TX_DETECT_RX_ACK(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, TX_DETECT_RX_ACK, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_DETECT_RX_ACK_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_DETECT_RX_ACK_OVRD (RW)
  *
  * Override enable for tx_detect_rx_ack
  */
@@ -4543,10 +4153,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_TX_DETECT_RX_ACK_OVRD(v)   (((v) << 3) & BM_PCIE_PHY_TX_OVRD_OUT_TX_DETECT_RX_ACK_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_DETECT_RX_ACK_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_TX_DETECT_RX_ACK_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, TX_DETECT_RX_ACK_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_CM_STATE
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_CM_STATE (RW)
  *
  * Override value for tx_cm_state
  */
@@ -4560,10 +4171,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_TX_CM_STATE(v)   (((v) << 4) & BM_PCIE_PHY_TX_OVRD_OUT_TX_CM_STATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CM_STATE field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_TX_CM_STATE(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, TX_CM_STATE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_CM_STATE_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_CM_STATE_OVRD (RW)
  *
  * Override enable for tx_cm_state
  */
@@ -4577,10 +4189,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_TX_CM_STATE_OVRD(v)   (((v) << 5) & BM_PCIE_PHY_TX_OVRD_OUT_TX_CM_STATE_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_CM_STATE_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_TX_CM_STATE_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, TX_CM_STATE_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_STATE
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_STATE (RW)
  *
  * Override value for tx_state
  */
@@ -4594,10 +4207,11 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_TX_STATE(v)   (((v) << 6) & BM_PCIE_PHY_TX_OVRD_OUT_TX_STATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_STATE field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_TX_STATE(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, TX_STATE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_STATE_OVRD
+/* --- Register HW_PCIE_PHY_TX_OVRD_OUT, field TX_STATE_OVRD (RW)
  *
  * Override enable for tx_state
  */
@@ -4611,18 +4225,19 @@ typedef union
 #define BF_PCIE_PHY_TX_OVRD_OUT_TX_STATE_OVRD(v)   (((v) << 7) & BM_PCIE_PHY_TX_OVRD_OUT_TX_STATE_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_STATE_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_OVRD_OUT_TX_STATE_OVRD(v)   BF_CS1(PCIE_PHY_TX_OVRD_OUT, TX_STATE_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_OVRD_IN_LO - 
+ * @brief HW_PCIE_PHY_RX_OVRD_IN_LO -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RX_INVERT : 1; //!< Override value for rx_invert
@@ -4658,12 +4273,11 @@ typedef union
 #define HW_PCIE_PHY_RX_OVRD_IN_LO_TOG(v)    (HW_PCIE_PHY_RX_OVRD_IN_LO_WR(HW_PCIE_PHY_RX_OVRD_IN_LO_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_OVRD_IN_LO bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_INVERT
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_INVERT (RW)
  *
  * Override value for rx_invert
  */
@@ -4677,10 +4291,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_INVERT(v)   (((v) << 0) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_INVERT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_INVERT field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_INVERT(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_INVERT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_INVERT_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_INVERT_OVRD (RW)
  *
  * Override enable for rx_invert
  */
@@ -4694,10 +4309,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_INVERT_OVRD(v)   (((v) << 1) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_INVERT_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_INVERT_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_INVERT_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_INVERT_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_PLL_EN
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_PLL_EN (RW)
  *
  * Override value for rx_pll_en
  */
@@ -4711,10 +4327,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_PLL_EN(v)   (((v) << 2) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_PLL_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_PLL_EN field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_PLL_EN(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_PLL_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_PLL_EN_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_PLL_EN_OVRD (RW)
  *
  * Override enable for rx_pll_en
  */
@@ -4728,10 +4345,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_PLL_EN_OVRD(v)   (((v) << 3) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_PLL_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_PLL_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_PLL_EN_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_PLL_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_DATA_EN
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_DATA_EN (RW)
  *
  * Override value for rx_data_en
  */
@@ -4745,10 +4363,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_DATA_EN(v)   (((v) << 4) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_DATA_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_DATA_EN field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_DATA_EN(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_DATA_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_DATA_EN_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_DATA_EN_OVRD (RW)
  *
  * Override enable for rx_data_en
  */
@@ -4762,10 +4381,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_DATA_EN_OVRD(v)   (((v) << 5) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_DATA_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_DATA_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_DATA_EN_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_DATA_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_ALIGN_EN
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_ALIGN_EN (RW)
  *
  * Override value for rx_align_en
  */
@@ -4779,10 +4399,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_ALIGN_EN(v)   (((v) << 6) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_ALIGN_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_ALIGN_EN field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_ALIGN_EN(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_ALIGN_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_ALIGN_EN_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_ALIGN_EN_OVRD (RW)
  *
  * Override enable for rx_align_en
  */
@@ -4796,10 +4417,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_ALIGN_EN_OVRD(v)   (((v) << 7) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_ALIGN_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_ALIGN_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_ALIGN_EN_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_ALIGN_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_BIT_SHIFT
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_BIT_SHIFT (RW)
  *
  * Override value for rx_bit_shift
  */
@@ -4813,10 +4435,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_BIT_SHIFT(v)   (((v) << 8) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_BIT_SHIFT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_BIT_SHIFT field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_BIT_SHIFT(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_BIT_SHIFT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_BIT_SHIFT_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_BIT_SHIFT_OVRD (RW)
  *
  * Override enable for rx_bit_shift
  */
@@ -4830,10 +4453,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_BIT_SHIFT_OVRD(v)   (((v) << 9) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_BIT_SHIFT_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_BIT_SHIFT_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_BIT_SHIFT_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_BIT_SHIFT_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_TERM_EN
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_TERM_EN (RW)
  *
  * Override value for rx_term_en
  */
@@ -4847,10 +4471,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_TERM_EN(v)   (((v) << 10) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_TERM_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_TERM_EN field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_TERM_EN(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_TERM_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_TERM_EN_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_TERM_EN_OVRD (RW)
  *
  * Override enable for rx_term_en
  */
@@ -4864,10 +4489,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_TERM_EN_OVRD(v)   (((v) << 11) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_TERM_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_TERM_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_TERM_EN_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_TERM_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_LOS_EN
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_LOS_EN (RW)
  *
  * Override value for rx_los_en
  */
@@ -4881,10 +4507,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_LOS_EN(v)   (((v) << 12) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_LOS_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_LOS_EN field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_LOS_EN(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_LOS_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_LOS_EN_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_LO, field RX_LOS_EN_OVRD (RW)
  *
  * Override enable for rx_los_en
  */
@@ -4898,18 +4525,19 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_LO_RX_LOS_EN_OVRD(v)   (((v) << 13) & BM_PCIE_PHY_RX_OVRD_IN_LO_RX_LOS_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_LOS_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_LO_RX_LOS_EN_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_LO, RX_LOS_EN_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_OVRD_IN_HI - 
+ * @brief HW_PCIE_PHY_RX_OVRD_IN_HI -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RX_RATE : 2; //!< Override value for rx_rate
@@ -4941,12 +4569,11 @@ typedef union
 #define HW_PCIE_PHY_RX_OVRD_IN_HI_TOG(v)    (HW_PCIE_PHY_RX_OVRD_IN_HI_WR(HW_PCIE_PHY_RX_OVRD_IN_HI_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_OVRD_IN_HI bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RATE
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RATE (RW)
  *
  * Override value for rx_rate
  */
@@ -4960,10 +4587,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_RATE(v)   (((v) << 0) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_RATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_RATE field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_RATE(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_RATE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RATE_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RATE_OVRD (RW)
  *
  * Override enable for rx_rate
  */
@@ -4977,10 +4605,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_RATE_OVRD(v)   (((v) << 2) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_RATE_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_RATE_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_RATE_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_RATE_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_LOS_FILTER
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_LOS_FILTER (RW)
  *
  * Override value for rx_los_filter
  */
@@ -4994,10 +4623,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_LOS_FILTER(v)   (((v) << 3) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_LOS_FILTER)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_LOS_FILTER field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_LOS_FILTER(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_LOS_FILTER, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_LOS_FILTER_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_LOS_FILTER_OVRD (RW)
  *
  * Override enable for rx_los_filter
  */
@@ -5011,10 +4641,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_LOS_FILTER_OVRD(v)   (((v) << 5) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_LOS_FILTER_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_LOS_FILTER_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_LOS_FILTER_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_LOS_FILTER_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ_EN
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ_EN (RW)
  *
  * Override value for rx_eq_en
  */
@@ -5028,10 +4659,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_EN(v)   (((v) << 6) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_EQ_EN field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_EN(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_EQ_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ_EN_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ_EN_OVRD (RW)
  *
  * Override enable for rx_eq_en
  */
@@ -5045,10 +4677,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_EN_OVRD(v)   (((v) << 7) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_EN_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_EQ_EN_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_EN_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_EQ_EN_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ (RW)
  *
  * Override value for rx_eq
  */
@@ -5062,10 +4695,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ(v)   (((v) << 8) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_EQ field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_EQ, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_EQ_OVRD (RW)
  *
  * Override enable for rx_eq
  */
@@ -5079,10 +4713,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_OVRD(v)   (((v) << 11) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_EQ_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_EQ_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_EQ_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RESET
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RESET (RW)
  *
  * Override value for rx_reset
  */
@@ -5096,10 +4731,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_RESET(v)   (((v) << 12) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_RESET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_RESET field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_RESET(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_RESET, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RESET_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_IN_HI, field RX_RESET_OVRD (RW)
  *
  * Override enable for rx_reset
  */
@@ -5113,18 +4749,19 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_IN_HI_RX_RESET_OVRD(v)   (((v) << 13) & BM_PCIE_PHY_RX_OVRD_IN_HI_RX_RESET_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_RESET_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_IN_HI_RX_RESET_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_IN_HI, RX_RESET_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_OVRD_OUT - 
+ * @brief HW_PCIE_PHY_RX_OVRD_OUT -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short VALID : 1; //!< Override value for rx_valid
@@ -5153,12 +4790,11 @@ typedef union
 #define HW_PCIE_PHY_RX_OVRD_OUT_TOG(v)    (HW_PCIE_PHY_RX_OVRD_OUT_WR(HW_PCIE_PHY_RX_OVRD_OUT_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_OVRD_OUT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field VALID
+/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field VALID (RW)
  *
  * Override value for rx_valid
  */
@@ -5172,10 +4808,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_OUT_VALID(v)   (((v) << 0) & BM_PCIE_PHY_RX_OVRD_OUT_VALID)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VALID field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_OUT_VALID(v)   BF_CS1(PCIE_PHY_RX_OVRD_OUT, VALID, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field VALID_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field VALID_OVRD (RW)
  *
  * Override enable for rx_valid
  */
@@ -5189,10 +4826,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_OUT_VALID_OVRD(v)   (((v) << 1) & BM_PCIE_PHY_RX_OVRD_OUT_VALID_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VALID_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_OUT_VALID_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_OUT, VALID_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field PLL_STATE
+/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field PLL_STATE (RW)
  *
  * Override value for rx_pll_state
  */
@@ -5206,10 +4844,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_OUT_PLL_STATE(v)   (((v) << 2) & BM_PCIE_PHY_RX_OVRD_OUT_PLL_STATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_STATE field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_OUT_PLL_STATE(v)   BF_CS1(PCIE_PHY_RX_OVRD_OUT, PLL_STATE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field PLL_STATE_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field PLL_STATE_OVRD (RW)
  *
  * Override enable for rx_pll_state
  */
@@ -5223,10 +4862,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_OUT_PLL_STATE_OVRD(v)   (((v) << 3) & BM_PCIE_PHY_RX_OVRD_OUT_PLL_STATE_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PLL_STATE_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_OUT_PLL_STATE_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_OUT, PLL_STATE_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field LOS
+/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field LOS (RW)
  *
  * Override value for rx_los
  */
@@ -5240,10 +4880,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_OUT_LOS(v)   (((v) << 4) & BM_PCIE_PHY_RX_OVRD_OUT_LOS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOS field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_OUT_LOS(v)   BF_CS1(PCIE_PHY_RX_OVRD_OUT, LOS, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field LOS_OVRD
+/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field LOS_OVRD (RW)
  *
  * Override value for rx_los
  */
@@ -5257,10 +4898,11 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_OUT_LOS_OVRD(v)   (((v) << 5) & BM_PCIE_PHY_RX_OVRD_OUT_LOS_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOS_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_OUT_LOS_OVRD(v)   BF_CS1(PCIE_PHY_RX_OVRD_OUT, LOS_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field ZERO_DATA
+/* --- Register HW_PCIE_PHY_RX_OVRD_OUT, field ZERO_DATA (RW)
  *
  * Override data output to all zeros
  */
@@ -5274,18 +4916,19 @@ typedef union
 #define BF_PCIE_PHY_RX_OVRD_OUT_ZERO_DATA(v)   (((v) << 6) & BM_PCIE_PHY_RX_OVRD_OUT_ZERO_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ZERO_DATA field to a new value.
 #define BW_PCIE_PHY_RX_OVRD_OUT_ZERO_DATA(v)   BF_CS1(PCIE_PHY_RX_OVRD_OUT, ZERO_DATA, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_ASIC_IN - 
+ * @brief HW_PCIE_PHY_TX_ASIC_IN -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short TX_RATE : 2; //!< Value from ASIC for tx_rate
@@ -5311,18 +4954,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_TX_ASIC_IN           (*(volatile hw_pcie_phy_tx_asic_in_t *) HW_PCIE_PHY_TX_ASIC_IN_ADDR)
 #define HW_PCIE_PHY_TX_ASIC_IN_RD()      (HW_PCIE_PHY_TX_ASIC_IN.U)
-#define HW_PCIE_PHY_TX_ASIC_IN_WR(v)     (HW_PCIE_PHY_TX_ASIC_IN.U = (v))
-#define HW_PCIE_PHY_TX_ASIC_IN_SET(v)    (HW_PCIE_PHY_TX_ASIC_IN_WR(HW_PCIE_PHY_TX_ASIC_IN_RD() |  (v)))
-#define HW_PCIE_PHY_TX_ASIC_IN_CLR(v)    (HW_PCIE_PHY_TX_ASIC_IN_WR(HW_PCIE_PHY_TX_ASIC_IN_RD() & ~(v)))
-#define HW_PCIE_PHY_TX_ASIC_IN_TOG(v)    (HW_PCIE_PHY_TX_ASIC_IN_WR(HW_PCIE_PHY_TX_ASIC_IN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_TX_ASIC_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_RATE
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_RATE (RO)
  *
  * Value from ASIC for tx_rate
  */
@@ -5330,16 +4968,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_TX_RATE      0
 #define BM_PCIE_PHY_TX_ASIC_IN_TX_RATE      0x00000003
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_RATE(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_ASIC_IN_TX_RATE)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_RATE(v)   (((v) << 0) & BM_PCIE_PHY_TX_ASIC_IN_TX_RATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_TX_RATE(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, TX_RATE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field LOOPBK_EN
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field LOOPBK_EN (RO)
  *
  * Value from ASIC for loopbk_en
  */
@@ -5347,16 +4976,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_LOOPBK_EN      2
 #define BM_PCIE_PHY_TX_ASIC_IN_LOOPBK_EN      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_LOOPBK_EN(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_TX_ASIC_IN_LOOPBK_EN)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_LOOPBK_EN(v)   (((v) << 2) & BM_PCIE_PHY_TX_ASIC_IN_LOOPBK_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_LOOPBK_EN(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, LOOPBK_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field INVERT
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field INVERT (RO)
  *
  * Value from ASIC for tx_invert
  */
@@ -5364,16 +4984,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_INVERT      3
 #define BM_PCIE_PHY_TX_ASIC_IN_INVERT      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_INVERT(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_TX_ASIC_IN_INVERT)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_INVERT(v)   (((v) << 3) & BM_PCIE_PHY_TX_ASIC_IN_INVERT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_INVERT(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, INVERT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_RESET
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_RESET (RO)
  *
  * Value from ASIC for tx_reset
  */
@@ -5381,16 +4992,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_TX_RESET      4
 #define BM_PCIE_PHY_TX_ASIC_IN_TX_RESET      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_RESET(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_TX_ASIC_IN_TX_RESET)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_RESET(v)   (((v) << 4) & BM_PCIE_PHY_TX_ASIC_IN_TX_RESET)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_TX_RESET(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, TX_RESET, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field DATA_EN
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field DATA_EN (RO)
  *
  * Value from ASIC for tx_data_en
  */
@@ -5398,16 +5000,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_DATA_EN      5
 #define BM_PCIE_PHY_TX_ASIC_IN_DATA_EN      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_DATA_EN(v)   ((((reg32_t) v) << 5) & BM_PCIE_PHY_TX_ASIC_IN_DATA_EN)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_DATA_EN(v)   (((v) << 5) & BM_PCIE_PHY_TX_ASIC_IN_DATA_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_DATA_EN(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, DATA_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_EN
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_EN (RO)
  *
  * Value from ASIC for tx_en
  */
@@ -5415,16 +5008,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_TX_EN      6
 #define BM_PCIE_PHY_TX_ASIC_IN_TX_EN      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_EN(v)   ((((reg32_t) v) << 6) & BM_PCIE_PHY_TX_ASIC_IN_TX_EN)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_EN(v)   (((v) << 6) & BM_PCIE_PHY_TX_ASIC_IN_TX_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_TX_EN(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, TX_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field CM_EN
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field CM_EN (RO)
  *
  * Value from ASIC for tx_cm_en
  */
@@ -5432,16 +5016,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_CM_EN      7
 #define BM_PCIE_PHY_TX_ASIC_IN_CM_EN      0x00000080
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_CM_EN(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_TX_ASIC_IN_CM_EN)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_CM_EN(v)   (((v) << 7) & BM_PCIE_PHY_TX_ASIC_IN_CM_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_CM_EN(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, CM_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field BEACON_EN
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field BEACON_EN (RO)
  *
  * Value from ASIC for tx_beacon_en
  */
@@ -5449,16 +5024,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_BEACON_EN      8
 #define BM_PCIE_PHY_TX_ASIC_IN_BEACON_EN      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_BEACON_EN(v)   ((((reg32_t) v) << 8) & BM_PCIE_PHY_TX_ASIC_IN_BEACON_EN)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_BEACON_EN(v)   (((v) << 8) & BM_PCIE_PHY_TX_ASIC_IN_BEACON_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_BEACON_EN(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, BEACON_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field DETECT_RX_REQ
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field DETECT_RX_REQ (RO)
  *
  * Value from ASIC for tx_detect_rx_req
  */
@@ -5466,16 +5032,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_IN_DETECT_RX_REQ      9
 #define BM_PCIE_PHY_TX_ASIC_IN_DETECT_RX_REQ      0x00000200
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_DETECT_RX_REQ(v)   ((((reg32_t) v) << 9) & BM_PCIE_PHY_TX_ASIC_IN_DETECT_RX_REQ)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_DETECT_RX_REQ(v)   (((v) << 9) & BM_PCIE_PHY_TX_ASIC_IN_DETECT_RX_REQ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_DETECT_RX_REQ(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, DETECT_RX_REQ, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_CLK_OUT_EN
+/* --- Register HW_PCIE_PHY_TX_ASIC_IN, field TX_CLK_OUT_EN (RO)
  *
  * Value from ASIC for tx_clk_out_en
  */
@@ -5484,23 +5041,14 @@ typedef union
 #define BM_PCIE_PHY_TX_ASIC_IN_TX_CLK_OUT_EN      0x00000400
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_CLK_OUT_EN(v)   ((((reg32_t) v) << 10) & BM_PCIE_PHY_TX_ASIC_IN_TX_CLK_OUT_EN)
-#else
-#define BF_PCIE_PHY_TX_ASIC_IN_TX_CLK_OUT_EN(v)   (((v) << 10) & BM_PCIE_PHY_TX_ASIC_IN_TX_CLK_OUT_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_IN_TX_CLK_OUT_EN(v)   BF_CS1(PCIE_PHY_TX_ASIC_IN, TX_CLK_OUT_EN, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_TX_ASIC_DRV_LO - 
+ * @brief HW_PCIE_PHY_TX_ASIC_DRV_LO -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short AMPLITUDE : 7; //!< Value from ASIC for tx_amplitude
@@ -5518,18 +5066,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_TX_ASIC_DRV_LO           (*(volatile hw_pcie_phy_tx_asic_drv_lo_t *) HW_PCIE_PHY_TX_ASIC_DRV_LO_ADDR)
 #define HW_PCIE_PHY_TX_ASIC_DRV_LO_RD()      (HW_PCIE_PHY_TX_ASIC_DRV_LO.U)
-#define HW_PCIE_PHY_TX_ASIC_DRV_LO_WR(v)     (HW_PCIE_PHY_TX_ASIC_DRV_LO.U = (v))
-#define HW_PCIE_PHY_TX_ASIC_DRV_LO_SET(v)    (HW_PCIE_PHY_TX_ASIC_DRV_LO_WR(HW_PCIE_PHY_TX_ASIC_DRV_LO_RD() |  (v)))
-#define HW_PCIE_PHY_TX_ASIC_DRV_LO_CLR(v)    (HW_PCIE_PHY_TX_ASIC_DRV_LO_WR(HW_PCIE_PHY_TX_ASIC_DRV_LO_RD() & ~(v)))
-#define HW_PCIE_PHY_TX_ASIC_DRV_LO_TOG(v)    (HW_PCIE_PHY_TX_ASIC_DRV_LO_WR(HW_PCIE_PHY_TX_ASIC_DRV_LO_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_TX_ASIC_DRV_LO bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_ASIC_DRV_LO, field AMPLITUDE
+/* --- Register HW_PCIE_PHY_TX_ASIC_DRV_LO, field AMPLITUDE (RO)
  *
  * Value from ASIC for tx_amplitude
  */
@@ -5537,16 +5080,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_DRV_LO_AMPLITUDE      0
 #define BM_PCIE_PHY_TX_ASIC_DRV_LO_AMPLITUDE      0x0000007f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_DRV_LO_AMPLITUDE(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_ASIC_DRV_LO_AMPLITUDE)
-#else
-#define BF_PCIE_PHY_TX_ASIC_DRV_LO_AMPLITUDE(v)   (((v) << 0) & BM_PCIE_PHY_TX_ASIC_DRV_LO_AMPLITUDE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_DRV_LO_AMPLITUDE(v)   BF_CS1(PCIE_PHY_TX_ASIC_DRV_LO, AMPLITUDE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_DRV_LO, field PREEMPH
+/* --- Register HW_PCIE_PHY_TX_ASIC_DRV_LO, field PREEMPH (RO)
  *
  * Value from ASIC for tx_preemph
  */
@@ -5555,23 +5089,14 @@ typedef union
 #define BM_PCIE_PHY_TX_ASIC_DRV_LO_PREEMPH      0x00003f80
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_DRV_LO_PREEMPH(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_TX_ASIC_DRV_LO_PREEMPH)
-#else
-#define BF_PCIE_PHY_TX_ASIC_DRV_LO_PREEMPH(v)   (((v) << 7) & BM_PCIE_PHY_TX_ASIC_DRV_LO_PREEMPH)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_DRV_LO_PREEMPH(v)   BF_CS1(PCIE_PHY_TX_ASIC_DRV_LO, PREEMPH, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_TX_ASIC_DRV_HI - 
+ * @brief HW_PCIE_PHY_TX_ASIC_DRV_HI -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short TERM_OFFSET : 5; //!< Value from ASIC for tx_term_offset
@@ -5588,18 +5113,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_TX_ASIC_DRV_HI           (*(volatile hw_pcie_phy_tx_asic_drv_hi_t *) HW_PCIE_PHY_TX_ASIC_DRV_HI_ADDR)
 #define HW_PCIE_PHY_TX_ASIC_DRV_HI_RD()      (HW_PCIE_PHY_TX_ASIC_DRV_HI.U)
-#define HW_PCIE_PHY_TX_ASIC_DRV_HI_WR(v)     (HW_PCIE_PHY_TX_ASIC_DRV_HI.U = (v))
-#define HW_PCIE_PHY_TX_ASIC_DRV_HI_SET(v)    (HW_PCIE_PHY_TX_ASIC_DRV_HI_WR(HW_PCIE_PHY_TX_ASIC_DRV_HI_RD() |  (v)))
-#define HW_PCIE_PHY_TX_ASIC_DRV_HI_CLR(v)    (HW_PCIE_PHY_TX_ASIC_DRV_HI_WR(HW_PCIE_PHY_TX_ASIC_DRV_HI_RD() & ~(v)))
-#define HW_PCIE_PHY_TX_ASIC_DRV_HI_TOG(v)    (HW_PCIE_PHY_TX_ASIC_DRV_HI_WR(HW_PCIE_PHY_TX_ASIC_DRV_HI_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_TX_ASIC_DRV_HI bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_ASIC_DRV_HI, field TERM_OFFSET
+/* --- Register HW_PCIE_PHY_TX_ASIC_DRV_HI, field TERM_OFFSET (RO)
  *
  * Value from ASIC for tx_term_offset
  */
@@ -5608,23 +5128,14 @@ typedef union
 #define BM_PCIE_PHY_TX_ASIC_DRV_HI_TERM_OFFSET      0x0000001f
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_DRV_HI_TERM_OFFSET(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_ASIC_DRV_HI_TERM_OFFSET)
-#else
-#define BF_PCIE_PHY_TX_ASIC_DRV_HI_TERM_OFFSET(v)   (((v) << 0) & BM_PCIE_PHY_TX_ASIC_DRV_HI_TERM_OFFSET)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_DRV_HI_TERM_OFFSET(v)   BF_CS1(PCIE_PHY_TX_ASIC_DRV_HI, TERM_OFFSET, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_TX_ASIC_OUT - 
+ * @brief HW_PCIE_PHY_TX_ASIC_OUT -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short DETECT_RX_RES : 1; //!< Value from PHY for tx_detect_rx_res
@@ -5645,18 +5156,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_TX_ASIC_OUT           (*(volatile hw_pcie_phy_tx_asic_out_t *) HW_PCIE_PHY_TX_ASIC_OUT_ADDR)
 #define HW_PCIE_PHY_TX_ASIC_OUT_RD()      (HW_PCIE_PHY_TX_ASIC_OUT.U)
-#define HW_PCIE_PHY_TX_ASIC_OUT_WR(v)     (HW_PCIE_PHY_TX_ASIC_OUT.U = (v))
-#define HW_PCIE_PHY_TX_ASIC_OUT_SET(v)    (HW_PCIE_PHY_TX_ASIC_OUT_WR(HW_PCIE_PHY_TX_ASIC_OUT_RD() |  (v)))
-#define HW_PCIE_PHY_TX_ASIC_OUT_CLR(v)    (HW_PCIE_PHY_TX_ASIC_OUT_WR(HW_PCIE_PHY_TX_ASIC_OUT_RD() & ~(v)))
-#define HW_PCIE_PHY_TX_ASIC_OUT_TOG(v)    (HW_PCIE_PHY_TX_ASIC_OUT_WR(HW_PCIE_PHY_TX_ASIC_OUT_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_TX_ASIC_OUT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field DETECT_RX_RES
+/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field DETECT_RX_RES (RO)
  *
  * Value from PHY for tx_detect_rx_res
  */
@@ -5664,16 +5170,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_RES      0
 #define BM_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_RES      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_RES(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_RES)
-#else
-#define BF_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_RES(v)   (((v) << 0) & BM_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_RES)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_RES(v)   BF_CS1(PCIE_PHY_TX_ASIC_OUT, DETECT_RX_RES, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field DETECT_RX_ACK
+/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field DETECT_RX_ACK (RO)
  *
  * Value from PHY for tx_detect_rx_ack
  */
@@ -5681,16 +5178,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_ACK      2
 #define BM_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_ACK      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_ACK(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_ACK)
-#else
-#define BF_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_ACK(v)   (((v) << 2) & BM_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_ACK)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_OUT_DETECT_RX_ACK(v)   BF_CS1(PCIE_PHY_TX_ASIC_OUT, DETECT_RX_ACK, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field CM_STATE
+/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field CM_STATE (RO)
  *
  * Value from PHY for tx_cm_state
  */
@@ -5698,16 +5186,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ASIC_OUT_CM_STATE      3
 #define BM_PCIE_PHY_TX_ASIC_OUT_CM_STATE      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_OUT_CM_STATE(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_TX_ASIC_OUT_CM_STATE)
-#else
-#define BF_PCIE_PHY_TX_ASIC_OUT_CM_STATE(v)   (((v) << 3) & BM_PCIE_PHY_TX_ASIC_OUT_CM_STATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_OUT_CM_STATE(v)   BF_CS1(PCIE_PHY_TX_ASIC_OUT, CM_STATE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field STATE
+/* --- Register HW_PCIE_PHY_TX_ASIC_OUT, field STATE (RO)
  *
  * Value from PHY for tx_state
  */
@@ -5716,23 +5195,14 @@ typedef union
 #define BM_PCIE_PHY_TX_ASIC_OUT_STATE      0x00000010
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ASIC_OUT_STATE(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_TX_ASIC_OUT_STATE)
-#else
-#define BF_PCIE_PHY_TX_ASIC_OUT_STATE(v)   (((v) << 4) & BM_PCIE_PHY_TX_ASIC_OUT_STATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ASIC_OUT_STATE(v)   BF_CS1(PCIE_PHY_TX_ASIC_OUT, STATE, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_RX_ASIC_IN - 
+ * @brief HW_PCIE_PHY_RX_ASIC_IN -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RX_RATE : 2; //!< Value from ASIC for rx_rate
@@ -5759,18 +5229,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_RX_ASIC_IN           (*(volatile hw_pcie_phy_rx_asic_in_t *) HW_PCIE_PHY_RX_ASIC_IN_ADDR)
 #define HW_PCIE_PHY_RX_ASIC_IN_RD()      (HW_PCIE_PHY_RX_ASIC_IN.U)
-#define HW_PCIE_PHY_RX_ASIC_IN_WR(v)     (HW_PCIE_PHY_RX_ASIC_IN.U = (v))
-#define HW_PCIE_PHY_RX_ASIC_IN_SET(v)    (HW_PCIE_PHY_RX_ASIC_IN_WR(HW_PCIE_PHY_RX_ASIC_IN_RD() |  (v)))
-#define HW_PCIE_PHY_RX_ASIC_IN_CLR(v)    (HW_PCIE_PHY_RX_ASIC_IN_WR(HW_PCIE_PHY_RX_ASIC_IN_RD() & ~(v)))
-#define HW_PCIE_PHY_RX_ASIC_IN_TOG(v)    (HW_PCIE_PHY_RX_ASIC_IN_WR(HW_PCIE_PHY_RX_ASIC_IN_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_RX_ASIC_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_RATE
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_RATE (RO)
  *
  * Value from ASIC for rx_rate
  */
@@ -5778,16 +5243,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_RX_RATE      0
 #define BM_PCIE_PHY_RX_ASIC_IN_RX_RATE      0x00000003
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_RATE(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_RX_ASIC_IN_RX_RATE)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_RATE(v)   (((v) << 0) & BM_PCIE_PHY_RX_ASIC_IN_RX_RATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_RX_RATE(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, RX_RATE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field INVERT
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field INVERT (RO)
  *
  * Value from ASIC for rx_invert
  */
@@ -5795,16 +5251,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_INVERT      2
 #define BM_PCIE_PHY_RX_ASIC_IN_INVERT      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_INVERT(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_RX_ASIC_IN_INVERT)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_INVERT(v)   (((v) << 2) & BM_PCIE_PHY_RX_ASIC_IN_INVERT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_INVERT(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, INVERT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_RESET
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_RESET (RO)
  *
  * Value from ASIC for rx_reset
  */
@@ -5812,16 +5259,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_RX_RESET      3
 #define BM_PCIE_PHY_RX_ASIC_IN_RX_RESET      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_RESET(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_RX_ASIC_IN_RX_RESET)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_RESET(v)   (((v) << 3) & BM_PCIE_PHY_RX_ASIC_IN_RX_RESET)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_RX_RESET(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, RX_RESET, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field PLL_EN
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field PLL_EN (RO)
  *
  * Value from ASIC for rx_pll_en
  */
@@ -5829,16 +5267,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_PLL_EN      4
 #define BM_PCIE_PHY_RX_ASIC_IN_PLL_EN      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_PLL_EN(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_RX_ASIC_IN_PLL_EN)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_PLL_EN(v)   (((v) << 4) & BM_PCIE_PHY_RX_ASIC_IN_PLL_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_PLL_EN(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, PLL_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field DATA_EN
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field DATA_EN (RO)
  *
  * Value from ASIC for rx_data_en
  */
@@ -5846,16 +5275,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_DATA_EN      5
 #define BM_PCIE_PHY_RX_ASIC_IN_DATA_EN      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_DATA_EN(v)   ((((reg32_t) v) << 5) & BM_PCIE_PHY_RX_ASIC_IN_DATA_EN)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_DATA_EN(v)   (((v) << 5) & BM_PCIE_PHY_RX_ASIC_IN_DATA_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_DATA_EN(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, DATA_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field ALIGN_EN
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field ALIGN_EN (RO)
  *
  * Value from ASIC for rx_align_en
  */
@@ -5863,16 +5283,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_ALIGN_EN      6
 #define BM_PCIE_PHY_RX_ASIC_IN_ALIGN_EN      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_ALIGN_EN(v)   ((((reg32_t) v) << 6) & BM_PCIE_PHY_RX_ASIC_IN_ALIGN_EN)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_ALIGN_EN(v)   (((v) << 6) & BM_PCIE_PHY_RX_ASIC_IN_ALIGN_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_ALIGN_EN(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, ALIGN_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field CLK_SHIFT
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field CLK_SHIFT (RO)
  *
  * Value from ASIC for rx_bit_shift
  */
@@ -5880,16 +5291,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_CLK_SHIFT      7
 #define BM_PCIE_PHY_RX_ASIC_IN_CLK_SHIFT      0x00000080
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_CLK_SHIFT(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_RX_ASIC_IN_CLK_SHIFT)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_CLK_SHIFT(v)   (((v) << 7) & BM_PCIE_PHY_RX_ASIC_IN_CLK_SHIFT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_CLK_SHIFT(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, CLK_SHIFT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field TERM_EN
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field TERM_EN (RO)
  *
  * Value from ASIC for rx_term_en
  */
@@ -5897,16 +5299,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_TERM_EN      8
 #define BM_PCIE_PHY_RX_ASIC_IN_TERM_EN      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_TERM_EN(v)   ((((reg32_t) v) << 8) & BM_PCIE_PHY_RX_ASIC_IN_TERM_EN)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_TERM_EN(v)   (((v) << 8) & BM_PCIE_PHY_RX_ASIC_IN_TERM_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_TERM_EN(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, TERM_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field LOS_EN
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field LOS_EN (RO)
  *
  * Value from ASIC for rx_los_en
  */
@@ -5914,16 +5307,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_LOS_EN      9
 #define BM_PCIE_PHY_RX_ASIC_IN_LOS_EN      0x00000200
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_LOS_EN(v)   ((((reg32_t) v) << 9) & BM_PCIE_PHY_RX_ASIC_IN_LOS_EN)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_LOS_EN(v)   (((v) << 9) & BM_PCIE_PHY_RX_ASIC_IN_LOS_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_LOS_EN(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, LOS_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field LOS_FILTER
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field LOS_FILTER (RO)
  *
  * Value from ASIC for rx_los_filter
  */
@@ -5931,16 +5315,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_LOS_FILTER      10
 #define BM_PCIE_PHY_RX_ASIC_IN_LOS_FILTER      0x00000c00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_LOS_FILTER(v)   ((((reg32_t) v) << 10) & BM_PCIE_PHY_RX_ASIC_IN_LOS_FILTER)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_LOS_FILTER(v)   (((v) << 10) & BM_PCIE_PHY_RX_ASIC_IN_LOS_FILTER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_LOS_FILTER(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, LOS_FILTER, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_EQ
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_EQ (RO)
  *
  * Value from ASIC for rx_eq
  */
@@ -5948,16 +5323,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_IN_RX_EQ      12
 #define BM_PCIE_PHY_RX_ASIC_IN_RX_EQ      0x00007000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_EQ(v)   ((((reg32_t) v) << 12) & BM_PCIE_PHY_RX_ASIC_IN_RX_EQ)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_EQ(v)   (((v) << 12) & BM_PCIE_PHY_RX_ASIC_IN_RX_EQ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_RX_EQ(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, RX_EQ, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_EQ_EN
+/* --- Register HW_PCIE_PHY_RX_ASIC_IN, field RX_EQ_EN (RO)
  *
  * Value from ASIC for rx_eq_en
  */
@@ -5966,23 +5332,14 @@ typedef union
 #define BM_PCIE_PHY_RX_ASIC_IN_RX_EQ_EN      0x00008000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_EQ_EN(v)   ((((reg32_t) v) << 15) & BM_PCIE_PHY_RX_ASIC_IN_RX_EQ_EN)
-#else
-#define BF_PCIE_PHY_RX_ASIC_IN_RX_EQ_EN(v)   (((v) << 15) & BM_PCIE_PHY_RX_ASIC_IN_RX_EQ_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_IN_RX_EQ_EN(v)   BF_CS1(PCIE_PHY_RX_ASIC_IN, RX_EQ_EN, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_RX_ASIC_OUT - 
+ * @brief HW_PCIE_PHY_RX_ASIC_OUT -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short VALID : 1; //!< Value from PHY for rx_valid
@@ -6001,18 +5358,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_RX_ASIC_OUT           (*(volatile hw_pcie_phy_rx_asic_out_t *) HW_PCIE_PHY_RX_ASIC_OUT_ADDR)
 #define HW_PCIE_PHY_RX_ASIC_OUT_RD()      (HW_PCIE_PHY_RX_ASIC_OUT.U)
-#define HW_PCIE_PHY_RX_ASIC_OUT_WR(v)     (HW_PCIE_PHY_RX_ASIC_OUT.U = (v))
-#define HW_PCIE_PHY_RX_ASIC_OUT_SET(v)    (HW_PCIE_PHY_RX_ASIC_OUT_WR(HW_PCIE_PHY_RX_ASIC_OUT_RD() |  (v)))
-#define HW_PCIE_PHY_RX_ASIC_OUT_CLR(v)    (HW_PCIE_PHY_RX_ASIC_OUT_WR(HW_PCIE_PHY_RX_ASIC_OUT_RD() & ~(v)))
-#define HW_PCIE_PHY_RX_ASIC_OUT_TOG(v)    (HW_PCIE_PHY_RX_ASIC_OUT_WR(HW_PCIE_PHY_RX_ASIC_OUT_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_RX_ASIC_OUT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_ASIC_OUT, field VALID
+/* --- Register HW_PCIE_PHY_RX_ASIC_OUT, field VALID (RO)
  *
  * Value from PHY for rx_valid
  */
@@ -6020,16 +5372,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_OUT_VALID      0
 #define BM_PCIE_PHY_RX_ASIC_OUT_VALID      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_OUT_VALID(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_RX_ASIC_OUT_VALID)
-#else
-#define BF_PCIE_PHY_RX_ASIC_OUT_VALID(v)   (((v) << 0) & BM_PCIE_PHY_RX_ASIC_OUT_VALID)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_OUT_VALID(v)   BF_CS1(PCIE_PHY_RX_ASIC_OUT, VALID, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_OUT, field PLL_STATE
+/* --- Register HW_PCIE_PHY_RX_ASIC_OUT, field PLL_STATE (RO)
  *
  * Value from PHY for rx_pll_state
  */
@@ -6037,16 +5380,7 @@ typedef union
 #define BP_PCIE_PHY_RX_ASIC_OUT_PLL_STATE      1
 #define BM_PCIE_PHY_RX_ASIC_OUT_PLL_STATE      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_OUT_PLL_STATE(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_RX_ASIC_OUT_PLL_STATE)
-#else
-#define BF_PCIE_PHY_RX_ASIC_OUT_PLL_STATE(v)   (((v) << 1) & BM_PCIE_PHY_RX_ASIC_OUT_PLL_STATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_OUT_PLL_STATE(v)   BF_CS1(PCIE_PHY_RX_ASIC_OUT, PLL_STATE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_ASIC_OUT, field LOS
+/* --- Register HW_PCIE_PHY_RX_ASIC_OUT, field LOS (RO)
  *
  * Value from PHY for rx_los
  */
@@ -6055,23 +5389,14 @@ typedef union
 #define BM_PCIE_PHY_RX_ASIC_OUT_LOS      0x00000004
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ASIC_OUT_LOS(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_RX_ASIC_OUT_LOS)
-#else
-#define BF_PCIE_PHY_RX_ASIC_OUT_LOS(v)   (((v) << 2) & BM_PCIE_PHY_RX_ASIC_OUT_LOS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_ASIC_OUT_LOS(v)   BF_CS1(PCIE_PHY_RX_ASIC_OUT, LOS, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_TX_DEBUG - 
+ * @brief HW_PCIE_PHY_TX_DEBUG -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short DTB_SEL : 3; //!< Selects data to drive on DTB 0.
@@ -6097,14 +5422,23 @@ typedef union
 #define HW_PCIE_PHY_TX_DEBUG_TOG(v)    (HW_PCIE_PHY_TX_DEBUG_WR(HW_PCIE_PHY_TX_DEBUG_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_DEBUG bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_DEBUG, field DTB_SEL
+/* --- Register HW_PCIE_PHY_TX_DEBUG, field DTB_SEL (RW)
  *
  * Selects data to drive on DTB 0.
+ *
+ * Values:
+ * 0 - Disabled
+ * 1 - mag_update/sub signals
+ * 2 - mag_high/add signals
+ * 3 - Clock aligner early/shift signals
+ * 4 - Analog/ASIC clocks
+ * 5 - tx_state counter/LBERT strobe
+ * 6 - noclk_ref_rst/dig_rst
+ * 7 - tx_ana_rxdetp_high/tx_ana_rx
  */
 
 #define BP_PCIE_PHY_TX_DEBUG_DTB_SEL      0
@@ -6116,10 +5450,12 @@ typedef union
 #define BF_PCIE_PHY_TX_DEBUG_DTB_SEL(v)   (((v) << 0) & BM_PCIE_PHY_TX_DEBUG_DTB_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DTB_SEL field to a new value.
 #define BW_PCIE_PHY_TX_DEBUG_DTB_SEL(v)   BF_CS1(PCIE_PHY_TX_DEBUG, DTB_SEL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_DEBUG, field DETECT_RX_ALWAYS
+
+/* --- Register HW_PCIE_PHY_TX_DEBUG, field DETECT_RX_ALWAYS (RW)
  *
  * Always signal 1 for rx_detect ignoring analog
  */
@@ -6133,10 +5469,11 @@ typedef union
 #define BF_PCIE_PHY_TX_DEBUG_DETECT_RX_ALWAYS(v)   (((v) << 3) & BM_PCIE_PHY_TX_DEBUG_DETECT_RX_ALWAYS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DETECT_RX_ALWAYS field to a new value.
 #define BW_PCIE_PHY_TX_DEBUG_DETECT_RX_ALWAYS(v)   BF_CS1(PCIE_PHY_TX_DEBUG, DETECT_RX_ALWAYS, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_DEBUG, field RXDET_MEAS_TIME
+/* --- Register HW_PCIE_PHY_TX_DEBUG, field RXDET_MEAS_TIME (RW)
  *
  * Time to wait for rxdet measurement (* 8 refclk cycles)
  */
@@ -6150,10 +5487,11 @@ typedef union
 #define BF_PCIE_PHY_TX_DEBUG_RXDET_MEAS_TIME(v)   (((v) << 4) & BM_PCIE_PHY_TX_DEBUG_RXDET_MEAS_TIME)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RXDET_MEAS_TIME field to a new value.
 #define BW_PCIE_PHY_TX_DEBUG_RXDET_MEAS_TIME(v)   BF_CS1(PCIE_PHY_TX_DEBUG, RXDET_MEAS_TIME, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_DEBUG, field CM_LFPS_EN
+/* --- Register HW_PCIE_PHY_TX_DEBUG, field CM_LFPS_EN (RW)
  *
  * Use LFPS to reach Common Mode. Let VCMHOLD circuit drive it is cleared.
  */
@@ -6167,18 +5505,19 @@ typedef union
 #define BF_PCIE_PHY_TX_DEBUG_CM_LFPS_EN(v)   (((v) << 12) & BM_PCIE_PHY_TX_DEBUG_CM_LFPS_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CM_LFPS_EN field to a new value.
 #define BW_PCIE_PHY_TX_DEBUG_CM_LFPS_EN(v)   BF_CS1(PCIE_PHY_TX_DEBUG, CM_LFPS_EN, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0 - 
+ * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0 -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short N_TRISTATE : 7; //!< Value from VMD for number of tristate legs.
@@ -6197,18 +5536,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0           (*(volatile hw_pcie_phy_tx_vmd_fsm_tx_vcm_0_t *) HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_ADDR)
 #define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_RD()      (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0.U)
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_WR(v)     (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0.U = (v))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_SET(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_RD() |  (v)))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_CLR(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_RD() & ~(v)))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_TOG(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_TX_VMD_FSM_TX_VCM_0 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0, field N_TRISTATE
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0, field N_TRISTATE (RO)
  *
  * Value from VMD for number of tristate legs.
  */
@@ -6216,16 +5550,7 @@ typedef union
 #define BP_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_TRISTATE      0
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_TRISTATE      0x0000007f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_TRISTATE(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_TRISTATE)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_TRISTATE(v)   (((v) << 0) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_TRISTATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_TRISTATE(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_0, N_TRISTATE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0, field N_USE
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0, field N_USE (RO)
  *
  * Value from VMD for legs to use
  */
@@ -6233,16 +5558,7 @@ typedef union
 #define BP_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_USE      7
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_USE      0x00003f80
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_USE(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_USE)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_USE(v)   (((v) << 7) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_USE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_N_USE(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_0, N_USE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0, field DONE
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0, field DONE (RO)
  *
  * Configuration is done
  */
@@ -6251,23 +5567,14 @@ typedef union
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_DONE      0x00004000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_DONE(v)   ((((reg32_t) v) << 14) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_DONE)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_DONE(v)   (((v) << 14) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_DONE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0_DONE(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_0, DONE, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1 - 
+ * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1 -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short N_TRAILER : 7; //!< Value from VMD for number of trailer legs.
@@ -6286,18 +5593,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1           (*(volatile hw_pcie_phy_tx_vmd_fsm_tx_vcm_1_t *) HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_ADDR)
 #define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_RD()      (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1.U)
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_WR(v)     (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1.U = (v))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_SET(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_RD() |  (v)))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_CLR(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_RD() & ~(v)))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TOG(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_TX_VMD_FSM_TX_VCM_1 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field N_TRAILER
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field N_TRAILER (RO)
  *
  * Value from VMD for number of trailer legs.
  */
@@ -6305,16 +5607,7 @@ typedef union
 #define BP_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_TRAILER      0
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_TRAILER      0x0000007f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_TRAILER(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_TRAILER)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_TRAILER(v)   (((v) << 0) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_TRAILER)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_TRAILER(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_1, N_TRAILER, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field N_FIXED
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field N_FIXED (RO)
  *
  * Value from VMD for number of fixed driver legs.
  */
@@ -6322,16 +5615,7 @@ typedef union
 #define BP_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_FIXED      7
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_FIXED      0x00003f80
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_FIXED(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_FIXED)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_FIXED(v)   (((v) << 7) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_FIXED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_N_FIXED(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_1, N_FIXED, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field TRA_DONE
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field TRA_DONE (RO)
  *
  * N_TRAILER Multiplication has completed.
  */
@@ -6339,16 +5623,7 @@ typedef union
 #define BP_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TRA_DONE      14
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TRA_DONE      0x00004000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TRA_DONE(v)   ((((reg32_t) v) << 14) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TRA_DONE)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TRA_DONE(v)   (((v) << 14) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TRA_DONE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_TRA_DONE(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_1, TRA_DONE, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field FIXED_DONE
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1, field FIXED_DONE (RO)
  *
  * N_FIXED Multiplication has completed.
  */
@@ -6357,23 +5632,14 @@ typedef union
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_FIXED_DONE      0x00008000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_FIXED_DONE(v)   ((((reg32_t) v) << 15) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_FIXED_DONE)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_FIXED_DONE(v)   (((v) << 15) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_FIXED_DONE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1_FIXED_DONE(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_1, FIXED_DONE, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN - 
+ * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short CONFIG_DATA : 1; //!< Override value for the Voltage Mode Driver Configuration FSM's config data.
@@ -6399,12 +5665,11 @@ typedef union
 #define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_TOG(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_DATA
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_DATA (RW)
  *
  * Override value for the Voltage Mode Driver Configuration FSM's config data.
  */
@@ -6418,10 +5683,11 @@ typedef union
 #define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_DATA(v)   (((v) << 0) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CONFIG_DATA field to a new value.
 #define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_DATA(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, CONFIG_DATA, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_CLK
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_CLK (RW)
  *
  * Override value for the Voltage Mode Driver Configuration FSM's config clk.
  */
@@ -6435,10 +5701,11 @@ typedef union
 #define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_CLK(v)   (((v) << 1) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_CLK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CONFIG_CLK field to a new value.
 #define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_CLK(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, CONFIG_CLK, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_LOAD
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_LOAD (RW)
  *
  * Override value for the Voltage Mode Driver Configuration FSM's config load.
  */
@@ -6452,10 +5719,11 @@ typedef union
 #define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_LOAD(v)   (((v) << 2) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_LOAD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CONFIG_LOAD field to a new value.
 #define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_LOAD(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, CONFIG_LOAD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_OVRD
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, field CONFIG_OVRD (RW)
  *
  * Override the Voltage Mode Driver Configuration FSM and access the shift chain directly.
  */
@@ -6469,18 +5737,19 @@ typedef union
 #define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_OVRD(v)   (((v) << 3) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CONFIG_OVRD field to a new value.
 #define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN_CONFIG_OVRD(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN, CONFIG_OVRD, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT - 
+ * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short SHIFT_OUT : 1; //!< Current value from TX_ANAs configuration shift register.
@@ -6497,18 +5766,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT           (*(volatile hw_pcie_phy_tx_vmd_fsm_tx_vcm_debug_out_t *) HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_ADDR)
 #define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_RD()      (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT.U)
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_WR(v)     (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT.U = (v))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_SET(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_RD() |  (v)))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_CLR(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_RD() & ~(v)))
-#define HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_TOG(v)    (HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_WR(HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT, field SHIFT_OUT
+/* --- Register HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT, field SHIFT_OUT (RO)
  *
  * Current value from TX_ANAs configuration shift register.
  */
@@ -6517,23 +5781,14 @@ typedef union
 #define BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_SHIFT_OUT      0x00000001
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_SHIFT_OUT(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_SHIFT_OUT)
-#else
-#define BF_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_SHIFT_OUT(v)   (((v) << 0) & BM_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_SHIFT_OUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT_SHIFT_OUT(v)   BF_CS1(PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT, SHIFT_OUT, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_TX_LBERT_CTL - 
+ * @brief HW_PCIE_PHY_TX_LBERT_CTL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short MODE : 3; //!< Pattern to generate When changing modes, you must first change to disabled.
@@ -6558,14 +5813,22 @@ typedef union
 #define HW_PCIE_PHY_TX_LBERT_CTL_TOG(v)    (HW_PCIE_PHY_TX_LBERT_CTL_WR(HW_PCIE_PHY_TX_LBERT_CTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_LBERT_CTL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_LBERT_CTL, field MODE
+/* --- Register HW_PCIE_PHY_TX_LBERT_CTL, field MODE (RW)
  *
  * Pattern to generate When changing modes, you must first change to disabled.
+ *
+ * Values:
+ * 0 - Disabled
+ * 1 - lfsr31. X^31 + X^28 + 1
+ * 2 - lfsr23. X^23 + X^18 + 1
+ * 3 - lfsr15. X^15 + X^14 + 1
+ * 4 - lfsr7. X^7 + X^6 + 1
+ * 5 - Fixed word (PAT0)
+ * 6 - DC-balanced word (PAT0)
  */
 
 #define BP_PCIE_PHY_TX_LBERT_CTL_MODE      0
@@ -6577,10 +5840,12 @@ typedef union
 #define BF_PCIE_PHY_TX_LBERT_CTL_MODE(v)   (((v) << 0) & BM_PCIE_PHY_TX_LBERT_CTL_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MODE field to a new value.
 #define BW_PCIE_PHY_TX_LBERT_CTL_MODE(v)   BF_CS1(PCIE_PHY_TX_LBERT_CTL, MODE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_LBERT_CTL, field TRIGGER_ERR
+
+/* --- Register HW_PCIE_PHY_TX_LBERT_CTL, field TRIGGER_ERR (RW)
  *
  * Insert a single error into a lsb Any write of a 1 to this bit will insert an error
  */
@@ -6594,10 +5859,11 @@ typedef union
 #define BF_PCIE_PHY_TX_LBERT_CTL_TRIGGER_ERR(v)   (((v) << 3) & BM_PCIE_PHY_TX_LBERT_CTL_TRIGGER_ERR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TRIGGER_ERR field to a new value.
 #define BW_PCIE_PHY_TX_LBERT_CTL_TRIGGER_ERR(v)   BF_CS1(PCIE_PHY_TX_LBERT_CTL, TRIGGER_ERR, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_LBERT_CTL, field PAT0
+/* --- Register HW_PCIE_PHY_TX_LBERT_CTL, field PAT0 (RW)
  *
  * Pattern for modes 3-5
  */
@@ -6611,18 +5877,19 @@ typedef union
 #define BF_PCIE_PHY_TX_LBERT_CTL_PAT0(v)   (((v) << 4) & BM_PCIE_PHY_TX_LBERT_CTL_PAT0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PAT0 field to a new value.
 #define BW_PCIE_PHY_TX_LBERT_CTL_PAT0(v)   BF_CS1(PCIE_PHY_TX_LBERT_CTL, PAT0, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_LBERT_CTL - 
+ * @brief HW_PCIE_PHY_RX_LBERT_CTL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short MODE : 3; //!< Pattern to match When changing modes, you must first change to disabled.
@@ -6646,14 +5913,23 @@ typedef union
 #define HW_PCIE_PHY_RX_LBERT_CTL_TOG(v)    (HW_PCIE_PHY_RX_LBERT_CTL_WR(HW_PCIE_PHY_RX_LBERT_CTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_LBERT_CTL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_LBERT_CTL, field MODE
+/* --- Register HW_PCIE_PHY_RX_LBERT_CTL, field MODE (RW)
  *
  * Pattern to match When changing modes, you must first change to disabled.
+ *
+ * Values:
+ * 0 - Disabled
+ * 1 - lfsr31. X^31 + X^28 + 1
+ * 2 - lfsr23. X^23 + X^18 + 1
+ * 3 - lfsr15: X^15 + X^14 + 1
+ * 4 - lfsr7 : X^7 + X^6 + 1
+ * 5 - d[n] = d[n-10]
+ * 6 - d[n] = !d[n-10]
+ * 7 - d[n] =
  */
 
 #define BP_PCIE_PHY_RX_LBERT_CTL_MODE      0
@@ -6665,10 +5941,12 @@ typedef union
 #define BF_PCIE_PHY_RX_LBERT_CTL_MODE(v)   (((v) << 0) & BM_PCIE_PHY_RX_LBERT_CTL_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MODE field to a new value.
 #define BW_PCIE_PHY_RX_LBERT_CTL_MODE(v)   BF_CS1(PCIE_PHY_RX_LBERT_CTL, MODE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_LBERT_CTL, field SYNC
+
+/* --- Register HW_PCIE_PHY_RX_LBERT_CTL, field SYNC (RW)
  *
  * Synchronize pattern matcher LFSR with incoming data A write of a one to this bit will reset the
  * error counter and start a synchronization of the PM. There is no need to write this back to zero
@@ -6684,18 +5962,19 @@ typedef union
 #define BF_PCIE_PHY_RX_LBERT_CTL_SYNC(v)   (((v) << 3) & BM_PCIE_PHY_RX_LBERT_CTL_SYNC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SYNC field to a new value.
 #define BW_PCIE_PHY_RX_LBERT_CTL_SYNC(v)   BF_CS1(PCIE_PHY_RX_LBERT_CTL, SYNC, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_LBERT_ERR - 
+ * @brief HW_PCIE_PHY_RX_LBERT_ERR -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short COUNT : 15; //!< A read of this register, or a sync of the PM resets the error count. Current error count If OV14 field is active, then multiply count by 128
@@ -6718,12 +5997,11 @@ typedef union
 #define HW_PCIE_PHY_RX_LBERT_ERR_TOG(v)    (HW_PCIE_PHY_RX_LBERT_ERR_WR(HW_PCIE_PHY_RX_LBERT_ERR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_LBERT_ERR bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_LBERT_ERR, field COUNT
+/* --- Register HW_PCIE_PHY_RX_LBERT_ERR, field COUNT (RW)
  *
  * A read of this register, or a sync of the PM resets the error count. Current error count If OV14
  * field is active, then multiply count by 128
@@ -6738,10 +6016,11 @@ typedef union
 #define BF_PCIE_PHY_RX_LBERT_ERR_COUNT(v)   (((v) << 0) & BM_PCIE_PHY_RX_LBERT_ERR_COUNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the COUNT field to a new value.
 #define BW_PCIE_PHY_RX_LBERT_ERR_COUNT(v)   BF_CS1(PCIE_PHY_RX_LBERT_ERR, COUNT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_LBERT_ERR, field OV14
+/* --- Register HW_PCIE_PHY_RX_LBERT_ERR, field OV14 (RW)
  *
  * If active, multiply COUNT by 128. If OV14=1 and COUNT=2^15-1, signals overflow of counter
  */
@@ -6755,21 +6034,22 @@ typedef union
 #define BF_PCIE_PHY_RX_LBERT_ERR_OV14(v)   (((v) << 15) & BM_PCIE_PHY_RX_LBERT_ERR_OV14)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OV14 field to a new value.
 #define BW_PCIE_PHY_RX_LBERT_ERR_OV14(v)   BF_CS1(PCIE_PHY_RX_LBERT_ERR, OV14, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_SCOPE_CTL - 
+ * @brief HW_PCIE_PHY_RX_SCOPE_CTL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
-        unsigned short MODE : 3; //!< Sampling mode of counters.  WORD is 20 bits.
+        unsigned short MODE : 3; //!< Sampling mode of counters. WORD is 20 bits.
         unsigned short RESERVED0 : 13; //!< Reserved
     } B;
 } hw_pcie_phy_rx_scope_ctl_t;
@@ -6789,14 +6069,20 @@ typedef union
 #define HW_PCIE_PHY_RX_SCOPE_CTL_TOG(v)    (HW_PCIE_PHY_RX_SCOPE_CTL_WR(HW_PCIE_PHY_RX_SCOPE_CTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_SCOPE_CTL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE_CTL, field MODE
+/* --- Register HW_PCIE_PHY_RX_SCOPE_CTL, field MODE (RW)
  *
- * Sampling mode of counters.  WORD is 20 bits.
+ * Sampling mode of counters. WORD is 20 bits.
+ *
+ * Values:
+ * 0 - Off
+ * 1 - Sample data every WORD *(1 + DELAY) bits
+ * 2 - Sample data every WORD *(1 + DELAY) + 1 bits
+ * 3 - Sample data every WORD *(1 + DELAY) + 2 bits
+ * 4 - Sample data every clk and assert XOR and MASK increment
  */
 
 #define BP_PCIE_PHY_RX_SCOPE_CTL_MODE      0
@@ -6808,18 +6094,20 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_CTL_MODE(v)   (((v) << 0) & BM_PCIE_PHY_RX_SCOPE_CTL_MODE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MODE field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_CTL_MODE(v)   BF_CS1(PCIE_PHY_RX_SCOPE_CTL, MODE, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_SCOPE_PHASE - 
+ * @brief HW_PCIE_PHY_RX_SCOPE_PHASE -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short SAMPLE_PHASE : 6; //!< Sampling Phase
@@ -6846,12 +6134,11 @@ typedef union
 #define HW_PCIE_PHY_RX_SCOPE_PHASE_TOG(v)    (HW_PCIE_PHY_RX_SCOPE_PHASE_WR(HW_PCIE_PHY_RX_SCOPE_PHASE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_SCOPE_PHASE bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field SAMPLE_PHASE
+/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field SAMPLE_PHASE (RW)
  *
  * Sampling Phase
  */
@@ -6865,10 +6152,11 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_PHASE_SAMPLE_PHASE(v)   (((v) << 0) & BM_PCIE_PHY_RX_SCOPE_PHASE_SAMPLE_PHASE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SAMPLE_PHASE field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_PHASE_SAMPLE_PHASE(v)   BF_CS1(PCIE_PHY_RX_SCOPE_PHASE, SAMPLE_PHASE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field UPDATE
+/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field UPDATE (RW)
  *
  * Update Sampling phase. Write a 1.
  */
@@ -6882,12 +6170,17 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_PHASE_UPDATE(v)   (((v) << 6) & BM_PCIE_PHY_RX_SCOPE_PHASE_UPDATE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the UPDATE field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_PHASE_UPDATE(v)   BF_CS1(PCIE_PHY_RX_SCOPE_PHASE, UPDATE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field SCOPE_SEL
+/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field SCOPE_SEL (RW)
  *
  * Select sampling mode.
+ *
+ * Values:
+ * 0 - Before AFE sampling
+ * 1 - After AFE sampling
  */
 
 #define BP_PCIE_PHY_RX_SCOPE_PHASE_SCOPE_SEL      7
@@ -6899,10 +6192,12 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_PHASE_SCOPE_SEL(v)   (((v) << 7) & BM_PCIE_PHY_RX_SCOPE_PHASE_SCOPE_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_SEL field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_PHASE_SCOPE_SEL(v)   BF_CS1(PCIE_PHY_RX_SCOPE_PHASE, SCOPE_SEL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field SCOPE_DELAY
+
+/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field SCOPE_DELAY (RW)
  *
  * How many clocks to delay the analog scope_data.
  */
@@ -6916,10 +6211,11 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_PHASE_SCOPE_DELAY(v)   (((v) << 8) & BM_PCIE_PHY_RX_SCOPE_PHASE_SCOPE_DELAY)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SCOPE_DELAY field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_PHASE_SCOPE_DELAY(v)   BF_CS1(PCIE_PHY_RX_SCOPE_PHASE, SCOPE_DELAY, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field BASE
+/* --- Register HW_PCIE_PHY_RX_SCOPE_PHASE, field BASE (RW)
  *
  * which bit to sample when MODE = 1 or 4
  */
@@ -6933,18 +6229,19 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_PHASE_BASE(v)   (((v) << 10) & BM_PCIE_PHY_RX_SCOPE_PHASE_BASE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BASE field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_PHASE_BASE(v)   BF_CS1(PCIE_PHY_RX_SCOPE_PHASE, BASE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_DPLL_FREQ - 
+ * @brief HW_PCIE_PHY_RX_DPLL_FREQ -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short DTHR : 1; //!< Bits below the useful resolution
@@ -6968,12 +6265,11 @@ typedef union
 #define HW_PCIE_PHY_RX_DPLL_FREQ_TOG(v)    (HW_PCIE_PHY_RX_DPLL_FREQ_WR(HW_PCIE_PHY_RX_DPLL_FREQ_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_DPLL_FREQ bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_DPLL_FREQ, field DTHR
+/* --- Register HW_PCIE_PHY_RX_DPLL_FREQ, field DTHR (RW)
  *
  * Bits below the useful resolution
  */
@@ -6987,10 +6283,11 @@ typedef union
 #define BF_PCIE_PHY_RX_DPLL_FREQ_DTHR(v)   (((v) << 0) & BM_PCIE_PHY_RX_DPLL_FREQ_DTHR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DTHR field to a new value.
 #define BW_PCIE_PHY_RX_DPLL_FREQ_DTHR(v)   BF_CS1(PCIE_PHY_RX_DPLL_FREQ, DTHR, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_DPLL_FREQ, field VAL
+/* --- Register HW_PCIE_PHY_RX_DPLL_FREQ, field VAL (RW)
  *
  * Freq is 1.526*VAL ppm from the reference When mpll_slow is set, the ppm is half the eqn above
  */
@@ -7004,18 +6301,19 @@ typedef union
 #define BF_PCIE_PHY_RX_DPLL_FREQ_VAL(v)   (((v) << 1) & BM_PCIE_PHY_RX_DPLL_FREQ_VAL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VAL field to a new value.
 #define BW_PCIE_PHY_RX_DPLL_FREQ_VAL(v)   BF_CS1(PCIE_PHY_RX_DPLL_FREQ, VAL, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_CDR_CTL - 
+ * @brief HW_PCIE_PHY_RX_CDR_CTL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short PHDET_EN : 2; //!< Enables phase detecter. top bit is odd slicers, bottom is even
@@ -7045,12 +6343,11 @@ typedef union
 #define HW_PCIE_PHY_RX_CDR_CTL_TOG(v)    (HW_PCIE_PHY_RX_CDR_CTL_WR(HW_PCIE_PHY_RX_CDR_CTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_CDR_CTL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHDET_EN
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHDET_EN (RW)
  *
  * Enables phase detecter. top bit is odd slicers, bottom is even
  */
@@ -7064,12 +6361,19 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_PHDET_EN(v)   (((v) << 0) & BM_PCIE_PHY_RX_CDR_CTL_PHDET_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PHDET_EN field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_PHDET_EN(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, PHDET_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHDET_EDGE
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHDET_EDGE (RW)
  *
  * Edges to use for phase detection.
+ *
+ * Values:
+ * 11 - Use both edges
+ * 10 - Use rising edges only
+ * 01 - Use falling edges only
+ * 00 - Ignore all edges
  */
 
 #define BP_PCIE_PHY_RX_CDR_CTL_PHDET_EDGE      2
@@ -7081,10 +6385,12 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_PHDET_EDGE(v)   (((v) << 2) & BM_PCIE_PHY_RX_CDR_CTL_PHDET_EDGE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PHDET_EDGE field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_PHDET_EDGE(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, PHDET_EDGE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHDET_POL
+
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHDET_POL (RW)
  *
  * Reverse polarity of phase error
  */
@@ -7098,10 +6404,11 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_PHDET_POL(v)   (((v) << 4) & BM_PCIE_PHY_RX_CDR_CTL_PHDET_POL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PHDET_POL field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_PHDET_POL(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, PHDET_POL, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field OVRD_DPLL_GAIN
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field OVRD_DPLL_GAIN (RW)
  *
  * Override PHUG and FRUG values
  */
@@ -7115,10 +6422,11 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_OVRD_DPLL_GAIN(v)   (((v) << 5) & BM_PCIE_PHY_RX_CDR_CTL_OVRD_DPLL_GAIN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVRD_DPLL_GAIN field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_OVRD_DPLL_GAIN(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, OVRD_DPLL_GAIN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHUG_VALUE
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field PHUG_VALUE (RW)
  *
  * override value for PHUG
  */
@@ -7132,10 +6440,11 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_PHUG_VALUE(v)   (((v) << 6) & BM_PCIE_PHY_RX_CDR_CTL_PHUG_VALUE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PHUG_VALUE field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_PHUG_VALUE(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, PHUG_VALUE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field FRUG_VALUE
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field FRUG_VALUE (RW)
  *
  * override value for FRUG
  */
@@ -7149,10 +6458,11 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_FRUG_VALUE(v)   (((v) << 8) & BM_PCIE_PHY_RX_CDR_CTL_FRUG_VALUE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FRUG_VALUE field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_FRUG_VALUE(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, FRUG_VALUE, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field FAST_START
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field FAST_START (RW)
  *
  * decrease startup steps by 50%
  */
@@ -7166,10 +6476,11 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_FAST_START(v)   (((v) << 10) & BM_PCIE_PHY_RX_CDR_CTL_FAST_START)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FAST_START field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_FAST_START(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, FAST_START, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field ALWAYS_REALIGN
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field ALWAYS_REALIGN (RW)
  *
  * realign on any misaligned comma
  */
@@ -7183,12 +6494,21 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_ALWAYS_REALIGN(v)   (((v) << 11) & BM_PCIE_PHY_RX_CDR_CTL_ALWAYS_REALIGN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ALWAYS_REALIGN field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_ALWAYS_REALIGN(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, ALWAYS_REALIGN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field DTB_SEL
+/* --- Register HW_PCIE_PHY_RX_CDR_CTL, field DTB_SEL (RW)
  *
  * Select to drive various signals onto the DTB.
+ *
+ * Values:
+ * 0 - disabled
+ * 1 - pll_ana_rst,pll_count from rx_pwr_ctl
+ * 2 - com_good_high/low from aligner
+ * 3 - com_bad_high/low from aligner
+ * 4 - shift_in_prog,ana_odd_data from aligner
+ * 5 - Low bits of XAUI align FSM state
  */
 
 #define BP_PCIE_PHY_RX_CDR_CTL_DTB_SEL      12
@@ -7200,18 +6520,20 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_CTL_DTB_SEL(v)   (((v) << 12) & BM_PCIE_PHY_RX_CDR_CTL_DTB_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DTB_SEL field to a new value.
 #define BW_PCIE_PHY_RX_CDR_CTL_DTB_SEL(v)   BF_CS1(PCIE_PHY_RX_CDR_CTL, DTB_SEL, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG - 
+ * @brief HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short CDR_EN : 1; //!< CDR has been enabled.
@@ -7236,18 +6558,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG           (*(volatile hw_pcie_phy_rx_cdr_cdr_fsm_debug_t *) HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADDR)
 #define HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RD()      (HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG.U)
-#define HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_WR(v)     (HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG.U = (v))
-#define HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_SET(v)    (HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_WR(HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RD() |  (v)))
-#define HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CLR(v)    (HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_WR(HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RD() & ~(v)))
-#define HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_TOG(v)    (HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_WR(HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_RX_CDR_CDR_FSM_DEBUG bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_EN
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_EN (RO)
  *
  * CDR has been enabled.
  */
@@ -7255,33 +6572,15 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN      0
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN(v)   (((v) << 0) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, CDR_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_TIMEOUT
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_TIMEOUT (RO)
  *
- * CDR has not locked to datastream and has                                 timed-out.
+ * CDR has not locked to datastream and has timed-out.
  */
 
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_TIMEOUT      1
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_TIMEOUT      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_TIMEOUT(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_TIMEOUT)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_TIMEOUT(v)   (((v) << 1) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_TIMEOUT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_TIMEOUT(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, CDR_TIMEOUT, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_RX_VALID
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_RX_VALID (RO)
  *
  * CDR has locked to incoming data stream.
  */
@@ -7289,16 +6588,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_RX_VALID      2
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_RX_VALID      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_RX_VALID(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_RX_VALID)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_RX_VALID(v)   (((v) << 2) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_RX_VALID)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_RX_VALID(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, CDR_RX_VALID, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field ALIGNED
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field ALIGNED (RO)
  *
  * Datapath is bit-aligned.
  */
@@ -7306,16 +6596,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ALIGNED      3
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ALIGNED      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ALIGNED(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ALIGNED)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ALIGNED(v)   (((v) << 3) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ALIGNED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ALIGNED(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, ALIGNED, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_EN_EQ
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_EN_EQ (RO)
  *
  * Equalization loop is enabling the CDR.
  */
@@ -7323,16 +6604,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_EQ      4
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_EQ      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_EQ(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_EQ)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_EQ(v)   (((v) << 4) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_EQ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_EQ(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, CDR_EN_EQ, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_EN_ADAP
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field CDR_EN_ADAP (RO)
  *
  * Adapatation loop is enabling the CDR.
  */
@@ -7340,16 +6612,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_ADAP      5
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_ADAP      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_ADAP(v)   ((((reg32_t) v) << 5) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_ADAP)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_ADAP(v)   (((v) << 5) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_ADAP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_CDR_EN_ADAP(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, CDR_EN_ADAP, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field ADAP_RX_VALID
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field ADAP_RX_VALID (RO)
  *
  * Adaptation has completed and locked
  */
@@ -7357,16 +6620,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_VALID      6
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_VALID      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_VALID(v)   ((((reg32_t) v) << 6) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_VALID)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_VALID(v)   (((v) << 6) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_VALID)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_VALID(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, ADAP_RX_VALID, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field RX_ANA_EQ
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field RX_ANA_EQ (RO)
  *
  * Equalization setting to Analog.
  */
@@ -7374,16 +6628,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_ANA_EQ      7
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_ANA_EQ      0x00000380
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_ANA_EQ(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_ANA_EQ)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_ANA_EQ(v)   (((v) << 7) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_ANA_EQ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_ANA_EQ(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, RX_ANA_EQ, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field RX_EQ_CTR
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field RX_EQ_CTR (RO)
  *
  * Initial centre point from equalization FSM.
  */
@@ -7391,16 +6636,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_EQ_CTR      10
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_EQ_CTR      0x00001c00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_EQ_CTR(v)   ((((reg32_t) v) << 10) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_EQ_CTR)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_EQ_CTR(v)   (((v) << 10) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_EQ_CTR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_RX_EQ_CTR(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, RX_EQ_CTR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field ADAP_RX_EQ
+/* --- Register HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, field ADAP_RX_EQ (RO)
  *
  * Equalization setting from adaptation FSM.
  */
@@ -7409,23 +6645,14 @@ typedef union
 #define BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_EQ      0x0000e000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_EQ(v)   ((((reg32_t) v) << 13) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_EQ)
-#else
-#define BF_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_EQ(v)   (((v) << 13) & BM_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_EQ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG_ADAP_RX_EQ(v)   BF_CS1(PCIE_PHY_RX_CDR_CDR_FSM_DEBUG, ADAP_RX_EQ, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD - 
+ * @brief HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short LOCK_VECTOR : 8; //!< Override value for the locked_vector.
@@ -7451,12 +6678,11 @@ typedef union
 #define HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_TOG(v)    (HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_WR(HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_CDR_LOCK_VEC_OVRD bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field LOCK_VECTOR
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field LOCK_VECTOR (RW)
  *
  * Override value for the locked_vector.
  */
@@ -7470,12 +6696,13 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR(v)   (((v) << 0) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_VECTOR field to a new value.
 #define BW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, LOCK_VECTOR, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field LOCK_VECTOR_EN
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field LOCK_VECTOR_EN (RW)
  *
- * Override value for the locked_vector output                                 completion.
+ * Override value for the locked_vector output completion.
  */
 
 #define BP_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR_EN      8
@@ -7487,10 +6714,11 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR_EN(v)   (((v) << 8) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_VECTOR_EN field to a new value.
 #define BW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR_EN(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, LOCK_VECTOR_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field LOCK_VECTOR_OVRD
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field LOCK_VECTOR_OVRD (RW)
  *
  * Override enable for the rx_eq outputs.
  */
@@ -7504,14 +6732,14 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR_OVRD(v)   (((v) << 9) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR_OVRD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_VECTOR_OVRD field to a new value.
 #define BW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_LOCK_VECTOR_OVRD(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, LOCK_VECTOR_OVRD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field ADAP_POLARITY
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field ADAP_POLARITY (RW)
  *
- * If asserted invert default adaptation adjustment                                 for
- * equalization. IF early decrease equalization. Normal                                 mode is to
- * decrease.
+ * If asserted invert default adaptation adjustment for equalization. IF early decrease
+ * equalization. Normal mode is to decrease.
  */
 
 #define BP_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_POLARITY      10
@@ -7523,13 +6751,13 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_POLARITY(v)   (((v) << 10) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADAP_POLARITY field to a new value.
 #define BW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_POLARITY(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, ADAP_POLARITY, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field ADAP_CTR_LEVEL
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, field ADAP_CTR_LEVEL (RW)
  *
- * Amount of earlies that increment the adaptation                                 counter (times
- * 16).
+ * Amount of earlies that increment the adaptation counter (times 16).
  */
 
 #define BP_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_CTR_LEVEL      11
@@ -7541,18 +6769,19 @@ typedef union
 #define BF_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_CTR_LEVEL(v)   (((v) << 11) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_CTR_LEVEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ADAP_CTR_LEVEL field to a new value.
 #define BW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD_ADAP_CTR_LEVEL(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC_OVRD, ADAP_CTR_LEVEL, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_CDR_LOCK_VEC - 
+ * @brief HW_PCIE_PHY_RX_CDR_LOCK_VEC -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short EQ_LOCKED_VECTOR : 8; //!< Results of equalization loop.
@@ -7571,18 +6800,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_RX_CDR_LOCK_VEC           (*(volatile hw_pcie_phy_rx_cdr_lock_vec_t *) HW_PCIE_PHY_RX_CDR_LOCK_VEC_ADDR)
 #define HW_PCIE_PHY_RX_CDR_LOCK_VEC_RD()      (HW_PCIE_PHY_RX_CDR_LOCK_VEC.U)
-#define HW_PCIE_PHY_RX_CDR_LOCK_VEC_WR(v)     (HW_PCIE_PHY_RX_CDR_LOCK_VEC.U = (v))
-#define HW_PCIE_PHY_RX_CDR_LOCK_VEC_SET(v)    (HW_PCIE_PHY_RX_CDR_LOCK_VEC_WR(HW_PCIE_PHY_RX_CDR_LOCK_VEC_RD() |  (v)))
-#define HW_PCIE_PHY_RX_CDR_LOCK_VEC_CLR(v)    (HW_PCIE_PHY_RX_CDR_LOCK_VEC_WR(HW_PCIE_PHY_RX_CDR_LOCK_VEC_RD() & ~(v)))
-#define HW_PCIE_PHY_RX_CDR_LOCK_VEC_TOG(v)    (HW_PCIE_PHY_RX_CDR_LOCK_VEC_WR(HW_PCIE_PHY_RX_CDR_LOCK_VEC_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_RX_CDR_LOCK_VEC bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC, field EQ_LOCKED_VECTOR
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC, field EQ_LOCKED_VECTOR (RO)
  *
  * Results of equalization loop.
  */
@@ -7590,16 +6814,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR      0
 #define BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR      0x000000ff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR)
-#else
-#define BF_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR(v)   (((v) << 0) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC, EQ_LOCKED_VECTOR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC, field EQ_LOCKED_VECTOR_EN
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC, field EQ_LOCKED_VECTOR_EN (RO)
  *
  * Equalization locked vector has been filled.
  */
@@ -7607,16 +6822,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR_EN      8
 #define BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR_EN      0x00000100
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR_EN(v)   ((((reg32_t) v) << 8) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR_EN)
-#else
-#define BF_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR_EN(v)   (((v) << 8) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR_EN)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_LOCKED_VECTOR_EN(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC, EQ_LOCKED_VECTOR_EN, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC, field EQ_RX_EQ
+/* --- Register HW_PCIE_PHY_RX_CDR_LOCK_VEC, field EQ_RX_EQ (RO)
  *
  * Equalization setting from the Equalization Loop.
  */
@@ -7625,23 +6831,14 @@ typedef union
 #define BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_RX_EQ      0x00000e00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_RX_EQ(v)   ((((reg32_t) v) << 9) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_RX_EQ)
-#else
-#define BF_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_RX_EQ(v)   (((v) << 9) & BM_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_RX_EQ)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_LOCK_VEC_EQ_RX_EQ(v)   BF_CS1(PCIE_PHY_RX_CDR_LOCK_VEC, EQ_RX_EQ, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_RX_CDR_ADAP_FSM - 
+ * @brief HW_PCIE_PHY_RX_CDR_ADAP_FSM -  (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short ADAP_STATE : 3; //!< Adaptation State.
@@ -7660,35 +6857,30 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_PHY_RX_CDR_ADAP_FSM           (*(volatile hw_pcie_phy_rx_cdr_adap_fsm_t *) HW_PCIE_PHY_RX_CDR_ADAP_FSM_ADDR)
 #define HW_PCIE_PHY_RX_CDR_ADAP_FSM_RD()      (HW_PCIE_PHY_RX_CDR_ADAP_FSM.U)
-#define HW_PCIE_PHY_RX_CDR_ADAP_FSM_WR(v)     (HW_PCIE_PHY_RX_CDR_ADAP_FSM.U = (v))
-#define HW_PCIE_PHY_RX_CDR_ADAP_FSM_SET(v)    (HW_PCIE_PHY_RX_CDR_ADAP_FSM_WR(HW_PCIE_PHY_RX_CDR_ADAP_FSM_RD() |  (v)))
-#define HW_PCIE_PHY_RX_CDR_ADAP_FSM_CLR(v)    (HW_PCIE_PHY_RX_CDR_ADAP_FSM_WR(HW_PCIE_PHY_RX_CDR_ADAP_FSM_RD() & ~(v)))
-#define HW_PCIE_PHY_RX_CDR_ADAP_FSM_TOG(v)    (HW_PCIE_PHY_RX_CDR_ADAP_FSM_WR(HW_PCIE_PHY_RX_CDR_ADAP_FSM_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PCIE_PHY_RX_CDR_ADAP_FSM bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field ADAP_STATE
+/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field ADAP_STATE (RO)
  *
  * Adaptation State.
+ *
+ * Values:
+ * 000 - ADAP_RESET
+ * 001 - ADAP_LOCK
+ * 010 - ADAP_SUFF
+ * 011 - ADAP_LOOP
+ * 100 - ADAP_MSTR
+ * 101 - ADAP_DONE
  */
 
 #define BP_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_STATE      0
 #define BM_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_STATE      0x00000007
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_STATE(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_STATE)
-#else
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_STATE(v)   (((v) << 0) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_STATE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_STATE(v)   BF_CS1(PCIE_PHY_RX_CDR_ADAP_FSM, ADAP_STATE, v)
-#endif
 
-/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field ADAP_CTR
+/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field ADAP_CTR (RO)
  *
  * Adaptation count register.
  */
@@ -7696,16 +6888,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_CTR      3
 #define BM_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_CTR      0x00000078
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_CTR(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_CTR)
-#else
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_CTR(v)   (((v) << 3) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_CTR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_ADAP_FSM_ADAP_CTR(v)   BF_CS1(PCIE_PHY_RX_CDR_ADAP_FSM, ADAP_CTR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field LOOP_CTR
+/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field LOOP_CTR (RO)
  *
  * Loop count register.
  */
@@ -7713,16 +6896,7 @@ typedef union
 #define BP_PCIE_PHY_RX_CDR_ADAP_FSM_LOOP_CTR      7
 #define BM_PCIE_PHY_RX_CDR_ADAP_FSM_LOOP_CTR      0x00000780
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_LOOP_CTR(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_LOOP_CTR)
-#else
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_LOOP_CTR(v)   (((v) << 7) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_LOOP_CTR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_ADAP_FSM_LOOP_CTR(v)   BF_CS1(PCIE_PHY_RX_CDR_ADAP_FSM, LOOP_CTR, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field MSTR_CTR
+/* --- Register HW_PCIE_PHY_RX_CDR_ADAP_FSM, field MSTR_CTR (RO)
  *
  * Master count register.
  */
@@ -7731,23 +6905,14 @@ typedef union
 #define BM_PCIE_PHY_RX_CDR_ADAP_FSM_MSTR_CTR      0x0000f800
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_MSTR_CTR(v)   ((((reg32_t) v) << 11) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_MSTR_CTR)
-#else
-#define BF_PCIE_PHY_RX_CDR_ADAP_FSM_MSTR_CTR(v)   (((v) << 11) & BM_PCIE_PHY_RX_CDR_ADAP_FSM_MSTR_CTR)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_RX_CDR_ADAP_FSM_MSTR_CTR(v)   BF_CS1(PCIE_PHY_RX_CDR_ADAP_FSM, MSTR_CTR, v)
-#endif
-
 /*!
- * @brief HW_PCIE_PHY_RX_ATB0 - 
+ * @brief HW_PCIE_PHY_RX_ATB0 -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short EN_ATB_VOFF : 1; //!< Puts rxafe voff_p on atb_s_p and voff_m on atb_s_m.
@@ -7777,14 +6942,13 @@ typedef union
 #define HW_PCIE_PHY_RX_ATB0_TOG(v)    (HW_PCIE_PHY_RX_ATB0_WR(HW_PCIE_PHY_RX_ATB0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_ATB0 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_VOFF
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_VOFF (RW)
  *
- * Puts rxafe voff_p on atb_s_p and voff_m on                                 atb_s_m.
+ * Puts rxafe voff_p on atb_s_p and voff_m on atb_s_m.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_ATB_VOFF      0
@@ -7796,12 +6960,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_ATB_VOFF(v)   (((v) << 0) & BM_PCIE_PHY_RX_ATB0_EN_ATB_VOFF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB_VOFF field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB_VOFF(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB_VOFF, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RP_S
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RP_S (RW)
  *
- * Puts rxafe outputs vo_p on atb_s_p and vo_m                                 on atb_s_m.
+ * Puts rxafe outputs vo_p on atb_s_p and vo_m on atb_s_m.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_ATB_RP_S      1
@@ -7813,12 +6978,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_ATB_RP_S(v)   (((v) << 1) & BM_PCIE_PHY_RX_ATB0_EN_ATB_RP_S)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB_RP_S field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB_RP_S(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB_RP_S, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RP_F
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RP_F (RW)
  *
- * Enables atb_sense_p on positive-side                                 termination resistor.
+ * Enables atb_sense_p on positive-side termination resistor.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_ATB_RP_F      2
@@ -7830,12 +6996,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_ATB_RP_F(v)   (((v) << 2) & BM_PCIE_PHY_RX_ATB0_EN_ATB_RP_F)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB_RP_F field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB_RP_F(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB_RP_F, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RM_S
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RM_S (RW)
  *
- * Enables atb_force_p on positive-side                                 termination resistor.
+ * Enables atb_force_p on positive-side termination resistor.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_ATB_RM_S      3
@@ -7847,12 +7014,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_ATB_RM_S(v)   (((v) << 3) & BM_PCIE_PHY_RX_ATB0_EN_ATB_RM_S)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB_RM_S field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB_RM_S(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB_RM_S, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RM_F
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB_RM_F (RW)
  *
- * Enables atb_sense_m on negative-side                                 termination resistor.
+ * Enables atb_sense_m on negative-side termination resistor.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_ATB_RM_F      4
@@ -7864,12 +7032,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_ATB_RM_F(v)   (((v) << 4) & BM_PCIE_PHY_RX_ATB0_EN_ATB_RM_F)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB_RM_F field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB_RM_F(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB_RM_F, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_MARG
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_MARG (RW)
  *
- * Enables atb_force_p on negative-side                                 termination resistor.
+ * Enables atb_force_p on negative-side termination resistor.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_MARG      5
@@ -7881,13 +7050,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_MARG(v)   (((v) << 5) & BM_PCIE_PHY_RX_ATB0_EN_MARG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_MARG field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_MARG(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_MARG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB (RW)
  *
- * Enables margining mode in receiver; requires                                 atb_f_m to be
- * high-Z!.
+ * Enables margining mode in receiver; requires atb_f_m to be high-Z!.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_ATB      6
@@ -7899,12 +7068,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_ATB(v)   (((v) << 6) & BM_PCIE_PHY_RX_ATB0_EN_ATB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB (RW)
  *
- * Enables ATB sensing and forcing on internal Rx                                 nodes.
+ * Enables ATB sensing and forcing on internal Rx nodes.
  */
 
 #define BP_PCIE_PHY_RX_ATB0_EN_ATB      7
@@ -7916,18 +7086,19 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB0_EN_ATB(v)   (((v) << 7) & BM_PCIE_PHY_RX_ATB0_EN_ATB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB field to a new value.
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_ATB1 - 
+ * @brief HW_PCIE_PHY_RX_ATB1 -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short NC0 : 1; //!< Enables/disables Rx termination resistor.
@@ -7957,12 +7128,11 @@ typedef union
 #define HW_PCIE_PHY_RX_ATB1_TOG(v)    (HW_PCIE_PHY_RX_ATB1_WR(HW_PCIE_PHY_RX_ATB1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_ATB1 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field NC0
+/* --- Register HW_PCIE_PHY_RX_ATB1, field NC0 (RW)
  *
  * Enables/disables Rx termination resistor.
  */
@@ -7976,13 +7146,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_NC0(v)   (((v) << 0) & BM_PCIE_PHY_RX_ATB1_NC0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NC0 field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_NC0(v)   BF_CS1(PCIE_PHY_RX_ATB1, NC0, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field EN_VLOS_USB3
+/* --- Register HW_PCIE_PHY_RX_ATB1, field EN_VLOS_USB3 (RW)
  *
- * Enables LOS levels to be those for USB3;                                 otherwise, PCI Express
- * levels.
+ * Enables LOS levels to be those for USB3; otherwise, PCI Express levels.
  */
 
 #define BP_PCIE_PHY_RX_ATB1_EN_VLOS_USB3      1
@@ -7994,12 +7164,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_EN_VLOS_USB3(v)   (((v) << 1) & BM_PCIE_PHY_RX_ATB1_EN_VLOS_USB3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_VLOS_USB3 field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_EN_VLOS_USB3(v)   BF_CS1(PCIE_PHY_RX_ATB1, EN_VLOS_USB3, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field MEAS_VP
+/* --- Register HW_PCIE_PHY_RX_ATB1, field MEAS_VP (RW)
  *
- * Enables sensing of local vp in Rx; ties vp to                                 atb_sense_p.
+ * Enables sensing of local vp in Rx; ties vp to atb_sense_p.
  */
 
 #define BP_PCIE_PHY_RX_ATB1_MEAS_VP      2
@@ -8011,12 +7182,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_MEAS_VP(v)   (((v) << 2) & BM_PCIE_PHY_RX_ATB1_MEAS_VP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MEAS_VP field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_MEAS_VP(v)   BF_CS1(PCIE_PHY_RX_ATB1, MEAS_VP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field MEAS_GD
+/* --- Register HW_PCIE_PHY_RX_ATB1, field MEAS_GD (RW)
  *
- * Enables sensing of local gd in Rx; ties gd to                                 atb_sense_m.
+ * Enables sensing of local gd in Rx; ties gd to atb_sense_m.
  */
 
 #define BP_PCIE_PHY_RX_ATB1_MEAS_GD      3
@@ -8028,10 +7200,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_MEAS_GD(v)   (((v) << 3) & BM_PCIE_PHY_RX_ATB1_MEAS_GD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MEAS_GD field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_MEAS_GD(v)   BF_CS1(PCIE_PHY_RX_ATB1, MEAS_GD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field EN_ATB_VRF
+/* --- Register HW_PCIE_PHY_RX_ATB1, field EN_ATB_VRF (RW)
  *
  * Enables sensing of vref_rx on atb_sense_p.
  */
@@ -8045,12 +7218,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_EN_ATB_VRF(v)   (((v) << 4) & BM_PCIE_PHY_RX_ATB1_EN_ATB_VRF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB_VRF field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_EN_ATB_VRF(v)   BF_CS1(PCIE_PHY_RX_ATB1, EN_ATB_VRF, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field EN_ATB_VLOS
+/* --- Register HW_PCIE_PHY_RX_ATB1, field EN_ATB_VLOS (RW)
  *
- * Enables sensing of LOS reference voltage on                                 atb_sense_p.
+ * Enables sensing of LOS reference voltage on atb_sense_p.
  */
 
 #define BP_PCIE_PHY_RX_ATB1_EN_ATB_VLOS      5
@@ -8062,14 +7236,14 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_EN_ATB_VLOS(v)   (((v) << 5) & BM_PCIE_PHY_RX_ATB1_EN_ATB_VLOS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ATB_VLOS field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_EN_ATB_VLOS(v)   BF_CS1(PCIE_PHY_RX_ATB1, EN_ATB_VLOS, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field VLOS_MIN
+/* --- Register HW_PCIE_PHY_RX_ATB1, field VLOS_MIN (RW)
  *
- * Sets LOS reference voltage. (VLOS_MAX,                                 VLOS_MIN):
- * (1,1): None                                 (1,0): Maximum                                 (0,1):
- * Minimum                                 (0,0): Nominal
+ * Sets LOS reference voltage. (VLOS_MAX, VLOS_MIN): (1,1): None (1,0): Maximum (0,1): Minimum
+ * (0,0): Nominal
  */
 
 #define BP_PCIE_PHY_RX_ATB1_VLOS_MIN      6
@@ -8081,13 +7255,14 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_VLOS_MIN(v)   (((v) << 6) & BM_PCIE_PHY_RX_ATB1_VLOS_MIN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VLOS_MIN field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_VLOS_MIN(v)   BF_CS1(PCIE_PHY_RX_ATB1, VLOS_MIN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB1, field VLOS_MAX
+/* --- Register HW_PCIE_PHY_RX_ATB1, field VLOS_MAX (RW)
  *
- * Sets LOS reference voltage. (VLOS_MAX,                                 VLOS_MIN):
- * (1,1): None (1,0): Maximum (0,1): Minimum (0,0): Nominal
+ * Sets LOS reference voltage. (VLOS_MAX, VLOS_MIN): (1,1): None (1,0): Maximum (0,1): Minimum
+ * (0,0): Nominal
  */
 
 #define BP_PCIE_PHY_RX_ATB1_VLOS_MAX      7
@@ -8099,18 +7274,19 @@ typedef union
 #define BF_PCIE_PHY_RX_ATB1_VLOS_MAX(v)   (((v) << 7) & BM_PCIE_PHY_RX_ATB1_VLOS_MAX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VLOS_MAX field to a new value.
 #define BW_PCIE_PHY_RX_ATB1_VLOS_MAX(v)   BF_CS1(PCIE_PHY_RX_ATB1, VLOS_MAX, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_ENPWR0 - 
+ * @brief HW_PCIE_PHY_RX_ENPWR0 -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short LCL_ACJT : 1; //!< Enables/disables ACJTAG block.
@@ -8140,12 +7316,11 @@ typedef union
 #define HW_PCIE_PHY_RX_ENPWR0_TOG(v)    (HW_PCIE_PHY_RX_ENPWR0_WR(HW_PCIE_PHY_RX_ENPWR0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_ENPWR0 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_ACJT
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_ACJT (RW)
  *
  * Enables/disables ACJTAG block.
  */
@@ -8159,10 +7334,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_LCL_ACJT(v)   (((v) << 0) & BM_PCIE_PHY_RX_ENPWR0_LCL_ACJT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LCL_ACJT field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_LCL_ACJT(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, LCL_ACJT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_ACJT
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_ACJT (RW)
  *
  * Enables override of ACJTAG block state.
  */
@@ -8176,12 +7352,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_CTL_ACJT(v)   (((v) << 1) & BM_PCIE_PHY_RX_ENPWR0_CTL_ACJT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CTL_ACJT field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_CTL_ACJT(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, CTL_ACJT, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_RXCK
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_RXCK (RW)
  *
- * Enables/disables en_rx_clock (Rx clock                                 enable).
+ * Enables/disables en_rx_clock (Rx clock enable).
  */
 
 #define BP_PCIE_PHY_RX_ENPWR0_LCL_RXCK      2
@@ -8193,10 +7370,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_LCL_RXCK(v)   (((v) << 2) & BM_PCIE_PHY_RX_ENPWR0_LCL_RXCK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LCL_RXCK field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_LCL_RXCK(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, LCL_RXCK, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_RXCK
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_RXCK (RW)
  *
  * Enables override of Rx clock circuit state.
  */
@@ -8210,10 +7388,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_CTL_RXCK(v)   (((v) << 3) & BM_PCIE_PHY_RX_ENPWR0_CTL_RXCK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CTL_RXCK field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_CTL_RXCK(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, CTL_RXCK, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_EN_LOS
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_EN_LOS (RW)
  *
  * Enables/disables LOS block.
  */
@@ -8227,10 +7406,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_LCL_EN_LOS(v)   (((v) << 4) & BM_PCIE_PHY_RX_ENPWR0_LCL_EN_LOS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LCL_EN_LOS field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_LCL_EN_LOS(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, LCL_EN_LOS, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_EN_LOS
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_EN_LOS (RW)
  *
  * Enables override of LOS block state.
  */
@@ -8244,10 +7424,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_CTL_EN_LOS(v)   (((v) << 5) & BM_PCIE_PHY_RX_ENPWR0_CTL_EN_LOS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CTL_EN_LOS field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_CTL_EN_LOS(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, CTL_EN_LOS, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_RXPWRON
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field LCL_RXPWRON (RW)
  *
  * Enables/disables Rx slicers.
  */
@@ -8261,10 +7442,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_LCL_RXPWRON(v)   (((v) << 6) & BM_PCIE_PHY_RX_ENPWR0_LCL_RXPWRON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LCL_RXPWRON field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_LCL_RXPWRON(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, LCL_RXPWRON, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_RXPWRON
+/* --- Register HW_PCIE_PHY_RX_ENPWR0, field CTL_RXPWRON (RW)
  *
  * Enables override of Rx block power.
  */
@@ -8278,18 +7460,19 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR0_CTL_RXPWRON(v)   (((v) << 7) & BM_PCIE_PHY_RX_ENPWR0_CTL_RXPWRON)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CTL_RXPWRON field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR0_CTL_RXPWRON(v)   BF_CS1(PCIE_PHY_RX_ENPWR0, CTL_RXPWRON, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_PMIX_PHASE - 
+ * @brief HW_PCIE_PHY_RX_PMIX_PHASE -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short PHASE : 8; //!< Write to bits 8-1 of the Phase Select register in the phase mixer.
@@ -8312,15 +7495,13 @@ typedef union
 #define HW_PCIE_PHY_RX_PMIX_PHASE_TOG(v)    (HW_PCIE_PHY_RX_PMIX_PHASE_WR(HW_PCIE_PHY_RX_PMIX_PHASE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_PMIX_PHASE bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_PMIX_PHASE, field PHASE
+/* --- Register HW_PCIE_PHY_RX_PMIX_PHASE, field PHASE (RW)
  *
- * Write to bits 8-1 of the Phase Select register in                                 the phase
- * mixer.
+ * Write to bits 8-1 of the Phase Select register in the phase mixer.
  */
 
 #define BP_PCIE_PHY_RX_PMIX_PHASE_PHASE      0
@@ -8332,18 +7513,19 @@ typedef union
 #define BF_PCIE_PHY_RX_PMIX_PHASE_PHASE(v)   (((v) << 0) & BM_PCIE_PHY_RX_PMIX_PHASE_PHASE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PHASE field to a new value.
 #define BW_PCIE_PHY_RX_PMIX_PHASE_PHASE(v)   BF_CS1(PCIE_PHY_RX_PMIX_PHASE, PHASE, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_ENPWR1 - 
+ * @brief HW_PCIE_PHY_RX_ENPWR1 -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short CTL_PHASE_REG_RST : 1; //!< Enables override of Phase register reset.
@@ -8371,12 +7553,11 @@ typedef union
 #define HW_PCIE_PHY_RX_ENPWR1_TOG(v)    (HW_PCIE_PHY_RX_ENPWR1_WR(HW_PCIE_PHY_RX_ENPWR1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_ENPWR1 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR1, field CTL_PHASE_REG_RST
+/* --- Register HW_PCIE_PHY_RX_ENPWR1, field CTL_PHASE_REG_RST (RW)
  *
  * Enables override of Phase register reset.
  */
@@ -8390,10 +7571,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR1_CTL_PHASE_REG_RST(v)   (((v) << 0) & BM_PCIE_PHY_RX_ENPWR1_CTL_PHASE_REG_RST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CTL_PHASE_REG_RST field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR1_CTL_PHASE_REG_RST(v)   BF_CS1(PCIE_PHY_RX_ENPWR1, CTL_PHASE_REG_RST, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR1, field LCL_PHASE_REG_RST
+/* --- Register HW_PCIE_PHY_RX_ENPWR1, field LCL_PHASE_REG_RST (RW)
  *
  * Reset Phase register.
  */
@@ -8407,12 +7589,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR1_LCL_PHASE_REG_RST(v)   (((v) << 1) & BM_PCIE_PHY_RX_ENPWR1_LCL_PHASE_REG_RST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LCL_PHASE_REG_RST field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR1_LCL_PHASE_REG_RST(v)   BF_CS1(PCIE_PHY_RX_ENPWR1, LCL_PHASE_REG_RST, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR1, field CTL_BST
+/* --- Register HW_PCIE_PHY_RX_ENPWR1, field CTL_BST (RW)
  *
- * Enables override of Rx boost (equalization)                                 value.
+ * Enables override of Rx boost (equalization) value.
  */
 
 #define BP_PCIE_PHY_RX_ENPWR1_CTL_BST      2
@@ -8424,10 +7607,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR1_CTL_BST(v)   (((v) << 2) & BM_PCIE_PHY_RX_ENPWR1_CTL_BST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CTL_BST field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR1_CTL_BST(v)   BF_CS1(PCIE_PHY_RX_ENPWR1, CTL_BST, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR1, field LCL_BST
+/* --- Register HW_PCIE_PHY_RX_ENPWR1, field LCL_BST (RW)
  *
  * Rx boost (equalization) value
  */
@@ -8441,10 +7625,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR1_LCL_BST(v)   (((v) << 3) & BM_PCIE_PHY_RX_ENPWR1_LCL_BST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LCL_BST field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR1_LCL_BST(v)   BF_CS1(PCIE_PHY_RX_ENPWR1, LCL_BST, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR1, field CTL_RXTERM
+/* --- Register HW_PCIE_PHY_RX_ENPWR1, field CTL_RXTERM (RW)
  *
  * Enables override of rx_term_en.
  */
@@ -8458,10 +7643,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR1_CTL_RXTERM(v)   (((v) << 6) & BM_PCIE_PHY_RX_ENPWR1_CTL_RXTERM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CTL_RXTERM field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR1_CTL_RXTERM(v)   BF_CS1(PCIE_PHY_RX_ENPWR1, CTL_RXTERM, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR1, field LCL_RXTERM
+/* --- Register HW_PCIE_PHY_RX_ENPWR1, field LCL_RXTERM (RW)
  *
  * Enables/disables Rx termination.
  */
@@ -8475,18 +7661,19 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR1_LCL_RXTERM(v)   (((v) << 7) & BM_PCIE_PHY_RX_ENPWR1_LCL_RXTERM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LCL_RXTERM field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR1_LCL_RXTERM(v)   BF_CS1(PCIE_PHY_RX_ENPWR1, LCL_RXTERM, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_ENPWR2 - 
+ * @brief HW_PCIE_PHY_RX_ENPWR2 -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short RX_SCOPE_ATB_0 : 1; //!< Instructs Rx scope regulated VP to use atb_f_p as reference instead of VP.
@@ -8516,15 +7703,13 @@ typedef union
 #define HW_PCIE_PHY_RX_ENPWR2_TOG(v)    (HW_PCIE_PHY_RX_ENPWR2_WR(HW_PCIE_PHY_RX_ENPWR2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_ENPWR2 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field RX_SCOPE_ATB_0
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field RX_SCOPE_ATB_0 (RW)
  *
- * Instructs Rx scope regulated VP to use atb_f_p                                 as reference
- * instead of VP.
+ * Instructs Rx scope regulated VP to use atb_f_p as reference instead of VP.
  */
 
 #define BP_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_0      0
@@ -8536,10 +7721,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_0(v)   (((v) << 0) & BM_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_SCOPE_ATB_0 field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_0(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, RX_SCOPE_ATB_0, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field RX_SCOPE_ATB_1
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field RX_SCOPE_ATB_1 (RW)
  *
  * Puts Rx scope regulated VP on atb_s_p.
  */
@@ -8553,12 +7739,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_1(v)   (((v) << 1) & BM_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_SCOPE_ATB_1 field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_1(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, RX_SCOPE_ATB_1, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field RX_SCOPE_ATB_2
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field RX_SCOPE_ATB_2 (RW)
  *
- * Puts XOR of Rx scope PMIX input and output                                 on atb_s_p.
+ * Puts XOR of Rx scope PMIX input and output on atb_s_p.
  */
 
 #define BP_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_2      2
@@ -8570,13 +7757,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_2(v)   (((v) << 2) & BM_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_SCOPE_ATB_2 field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_RX_SCOPE_ATB_2(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, RX_SCOPE_ATB_2, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_FRC_VPMIX
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_FRC_VPMIX (RW)
  *
- * Instructs rx_pmix_vreg_pmix to use atb_s_m as                                 a reference instead
- * of vbg.
+ * Instructs rx_pmix_vreg_pmix to use atb_s_m as a reference instead of vbg.
  */
 
 #define BP_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_FRC_VPMIX      3
@@ -8588,10 +7775,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_FRC_VPMIX(v)   (((v) << 3) & BM_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_FRC_VPMIX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_RXPMIX_FRC_VPMIX field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_FRC_VPMIX(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, EN_RXPMIX_FRC_VPMIX, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_VOSC
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_VOSC (RW)
  *
  * Puts vreg_vosc on atb_s_p.
  */
@@ -8605,10 +7793,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VOSC(v)   (((v) << 4) & BM_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VOSC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_RXPMIX_VOSC field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VOSC(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, EN_RXPMIX_VOSC, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_VRX
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_VRX (RW)
  *
  * Puts vreg_rx on atb_s_p.
  */
@@ -8622,10 +7811,11 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VRX(v)   (((v) << 5) & BM_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VRX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_RXPMIX_VRX field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VRX(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, EN_RXPMIX_VRX, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_VPMIX
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_VPMIX (RW)
  *
  * Puts vreg_pmix on atb_s_p.
  */
@@ -8639,13 +7829,13 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VPMIX(v)   (((v) << 6) & BM_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VPMIX)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_RXPMIX_VPMIX field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_VPMIX(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, EN_RXPMIX_VPMIX, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_TST
+/* --- Register HW_PCIE_PHY_RX_ENPWR2, field EN_RXPMIX_TST (RW)
  *
- * Enables XOR gate to test linearity of Rx phase                                 mixer using
- * atb_s_p and atb_s_m.
+ * Enables XOR gate to test linearity of Rx phase mixer using atb_s_p and atb_s_m.
  */
 
 #define BP_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_TST      7
@@ -8657,18 +7847,19 @@ typedef union
 #define BF_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_TST(v)   (((v) << 7) & BM_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_TST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_RXPMIX_TST field to a new value.
 #define BW_PCIE_PHY_RX_ENPWR2_EN_RXPMIX_TST(v)   BF_CS1(PCIE_PHY_RX_ENPWR2, EN_RXPMIX_TST, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_RX_SCOPE - 
+ * @brief HW_PCIE_PHY_RX_SCOPE -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short NC_SCOPE_3 : 3; //!< NC
@@ -8694,12 +7885,11 @@ typedef union
 #define HW_PCIE_PHY_RX_SCOPE_TOG(v)    (HW_PCIE_PHY_RX_SCOPE_WR(HW_PCIE_PHY_RX_SCOPE_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_RX_SCOPE bitfields
  */
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE, field NC_SCOPE_3
+/* --- Register HW_PCIE_PHY_RX_SCOPE, field NC_SCOPE_3 (RW)
  *
  * NC
  */
@@ -8713,10 +7903,11 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_NC_SCOPE_3(v)   (((v) << 0) & BM_PCIE_PHY_RX_SCOPE_NC_SCOPE_3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NC_SCOPE_3 field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_NC_SCOPE_3(v)   BF_CS1(PCIE_PHY_RX_SCOPE, NC_SCOPE_3, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE, field RX_SCOPE_FDIV20
+/* --- Register HW_PCIE_PHY_RX_SCOPE, field RX_SCOPE_FDIV20 (RW)
  *
  * Divides scope output clock by 20 instead of 10.
  */
@@ -8730,13 +7921,13 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_RX_SCOPE_FDIV20(v)   (((v) << 3) & BM_PCIE_PHY_RX_SCOPE_RX_SCOPE_FDIV20)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_SCOPE_FDIV20 field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_RX_SCOPE_FDIV20(v)   BF_CS1(PCIE_PHY_RX_SCOPE, RX_SCOPE_FDIV20, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE, field RX_SCOPE_SLEW
+/* --- Register HW_PCIE_PHY_RX_SCOPE, field RX_SCOPE_SLEW (RW)
  *
- * Sets high for low Rx clock frqeuencies (625                                 MHz) for Rx scope to
- * work correctly.
+ * Sets high for low Rx clock frqeuencies (625 MHz) for Rx scope to work correctly.
  */
 
 #define BP_PCIE_PHY_RX_SCOPE_RX_SCOPE_SLEW      4
@@ -8748,10 +7939,11 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_RX_SCOPE_SLEW(v)   (((v) << 4) & BM_PCIE_PHY_RX_SCOPE_RX_SCOPE_SLEW)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RX_SCOPE_SLEW field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_RX_SCOPE_SLEW(v)   BF_CS1(PCIE_PHY_RX_SCOPE, RX_SCOPE_SLEW, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_SCOPE, field NC_SCOPE_2
+/* --- Register HW_PCIE_PHY_RX_SCOPE, field NC_SCOPE_2 (RW)
  *
  * NC
  */
@@ -8765,18 +7957,19 @@ typedef union
 #define BF_PCIE_PHY_RX_SCOPE_NC_SCOPE_2(v)   (((v) << 5) & BM_PCIE_PHY_RX_SCOPE_NC_SCOPE_2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NC_SCOPE_2 field to a new value.
 #define BW_PCIE_PHY_RX_SCOPE_NC_SCOPE_2(v)   BF_CS1(PCIE_PHY_RX_SCOPE, NC_SCOPE_2, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_TXDRV_CNTRL - 
+ * @brief HW_PCIE_PHY_TX_TXDRV_CNTRL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short NOCONN_6 : 1; //!< Reserved
@@ -8806,12 +7999,11 @@ typedef union
 #define HW_PCIE_PHY_TX_TXDRV_CNTRL_TOG(v)    (HW_PCIE_PHY_TX_TXDRV_CNTRL_WR(HW_PCIE_PHY_TX_TXDRV_CNTRL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_TXDRV_CNTRL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field NOCONN_6
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field NOCONN_6 (RU)
  *
  * Reserved
  */
@@ -8819,16 +8011,7 @@ typedef union
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_6      0
 #define BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_6      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_6(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_6)
-#else
-#define BF_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_6(v)   (((v) << 0) & BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_6(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, NOCONN_6, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field NOCONN_7
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field NOCONN_7 (RU)
  *
  * Reserved
  */
@@ -8836,16 +8019,7 @@ typedef union
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_7      1
 #define BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_7      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_7(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_7)
-#else
-#define BF_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_7(v)   (((v) << 1) & BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_7)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_7(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, NOCONN_7, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field NOCONN_8
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field NOCONN_8 (RU)
  *
  * Reserved
  */
@@ -8853,19 +8027,10 @@ typedef union
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_8      2
 #define BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_8      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_8(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_8)
-#else
-#define BF_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_8(v)   (((v) << 2) & BM_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_8)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_TXDRV_CNTRL_NOCONN_8(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, NOCONN_8, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field OVRD_VCM_HOLD
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field OVRD_VCM_HOLD (RW)
  *
- * Selects local value of vcm_hold_reg instead of                                 tx_vcm_hold to
- * control state of TX                                 common mode hold circuitry.
+ * Selects local value of vcm_hold_reg instead of tx_vcm_hold to control state of TX common mode
+ * hold circuitry.
  */
 
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_VCM_HOLD      3
@@ -8877,13 +8042,14 @@ typedef union
 #define BF_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_VCM_HOLD(v)   (((v) << 3) & BM_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_VCM_HOLD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVRD_VCM_HOLD field to a new value.
 #define BW_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_VCM_HOLD(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, OVRD_VCM_HOLD, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field VCM_HOLD_REG
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field VCM_HOLD_REG (RW)
  *
- * Register override for tx_vcm_hold; selected                                 when ovrd_vcm_hold is
- * high; controls the TX common mode                                 hold circuitry.
+ * Register override for tx_vcm_hold; selected when ovrd_vcm_hold is high; controls the TX common
+ * mode hold circuitry.
  */
 
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_VCM_HOLD_REG      4
@@ -8895,12 +8061,13 @@ typedef union
 #define BF_PCIE_PHY_TX_TXDRV_CNTRL_VCM_HOLD_REG(v)   (((v) << 4) & BM_PCIE_PHY_TX_TXDRV_CNTRL_VCM_HOLD_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the VCM_HOLD_REG field to a new value.
 #define BW_PCIE_PHY_TX_TXDRV_CNTRL_VCM_HOLD_REG(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, VCM_HOLD_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field OVRD_PULL_UP
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field OVRD_PULL_UP (RW)
  *
- * Selects loval value of pull_up_reg instead of                                 tx_pull_up.
+ * Selects loval value of pull_up_reg instead of tx_pull_up.
  */
 
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_PULL_UP      5
@@ -8912,14 +8079,14 @@ typedef union
 #define BF_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_PULL_UP(v)   (((v) << 5) & BM_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_PULL_UP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVRD_PULL_UP field to a new value.
 #define BW_PCIE_PHY_TX_TXDRV_CNTRL_OVRD_PULL_UP(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, OVRD_PULL_UP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field PULL_UP_REG
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field PULL_UP_REG (RW)
  *
- * Register override for tx_pull_up; selected when                                 ovrd_pull_up is
- * high; causes calibrated TX bits to pull up in                                 common mode
- * fashion, unless pull_dn_reg is high.
+ * Register override for tx_pull_up; selected when ovrd_pull_up is high; causes calibrated TX bits
+ * to pull up in common mode fashion, unless pull_dn_reg is high.
  */
 
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_PULL_UP_REG      6
@@ -8931,14 +8098,14 @@ typedef union
 #define BF_PCIE_PHY_TX_TXDRV_CNTRL_PULL_UP_REG(v)   (((v) << 6) & BM_PCIE_PHY_TX_TXDRV_CNTRL_PULL_UP_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PULL_UP_REG field to a new value.
 #define BW_PCIE_PHY_TX_TXDRV_CNTRL_PULL_UP_REG(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, PULL_UP_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field PULL_DN_REG
+/* --- Register HW_PCIE_PHY_TX_TXDRV_CNTRL, field PULL_DN_REG (RW)
  *
- * Register bit that causes the calibrated Tx bits to                                 pull down in
- * common mode                                 fashion. If pull_dn_reg and tx_pull_up are both high,
- * then                                 pull_dn_reg wins (takes precedence" ).
+ * Register bit that causes the calibrated Tx bits to pull down in common mode fashion. If
+ * pull_dn_reg and tx_pull_up are both high, then pull_dn_reg wins (takes precedence" ).
  */
 
 #define BP_PCIE_PHY_TX_TXDRV_CNTRL_PULL_DN_REG      7
@@ -8950,18 +8117,19 @@ typedef union
 #define BF_PCIE_PHY_TX_TXDRV_CNTRL_PULL_DN_REG(v)   (((v) << 7) & BM_PCIE_PHY_TX_TXDRV_CNTRL_PULL_DN_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PULL_DN_REG field to a new value.
 #define BW_PCIE_PHY_TX_TXDRV_CNTRL_PULL_DN_REG(v)   BF_CS1(PCIE_PHY_TX_TXDRV_CNTRL, PULL_DN_REG, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_POWER_CTL - 
+ * @brief HW_PCIE_PHY_TX_POWER_CTL -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short NOCONN_5 : 1; //!< Reserved
@@ -8991,12 +8159,11 @@ typedef union
 #define HW_PCIE_PHY_TX_POWER_CTL_TOG(v)    (HW_PCIE_PHY_TX_POWER_CTL_WR(HW_PCIE_PHY_TX_POWER_CTL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_POWER_CTL bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field NOCONN_5
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field NOCONN_5 (RU)
  *
  * Reserved
  */
@@ -9004,16 +8171,7 @@ typedef union
 #define BP_PCIE_PHY_TX_POWER_CTL_NOCONN_5      0
 #define BM_PCIE_PHY_TX_POWER_CTL_NOCONN_5      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_POWER_CTL_NOCONN_5(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_POWER_CTL_NOCONN_5)
-#else
-#define BF_PCIE_PHY_TX_POWER_CTL_NOCONN_5(v)   (((v) << 0) & BM_PCIE_PHY_TX_POWER_CTL_NOCONN_5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_POWER_CTL_NOCONN_5(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, NOCONN_5, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field REFGEN_PDN_REG
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field REFGEN_PDN_REG (RW)
  *
  * Value for refgen_pwdn when OVRD_EN is 1.
  */
@@ -9027,15 +8185,15 @@ typedef union
 #define BF_PCIE_PHY_TX_POWER_CTL_REFGEN_PDN_REG(v)   (((v) << 1) & BM_PCIE_PHY_TX_POWER_CTL_REFGEN_PDN_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REFGEN_PDN_REG field to a new value.
 #define BW_PCIE_PHY_TX_POWER_CTL_REFGEN_PDN_REG(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, REFGEN_PDN_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field TX_DIV_CLK_EN
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field TX_DIV_CLK_EN (RW)
  *
- * Enables the div clock that is output from the Tx                                 to the
- * undersampler, more appropriately called                                 tx_sampler_clk_en; this
- * clock is output after the optional                                 divide-by-2/ 4; tx_clk_en must
- * be high to output a clock.
+ * Enables the div clock that is output from the Tx to the undersampler, more appropriately called
+ * tx_sampler_clk_en; this clock is output after the optional divide-by-2/ 4; tx_clk_en must be high
+ * to output a clock.
  */
 
 #define BP_PCIE_PHY_TX_POWER_CTL_TX_DIV_CLK_EN      2
@@ -9047,13 +8205,14 @@ typedef union
 #define BF_PCIE_PHY_TX_POWER_CTL_TX_DIV_CLK_EN(v)   (((v) << 2) & BM_PCIE_PHY_TX_POWER_CTL_TX_DIV_CLK_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_DIV_CLK_EN field to a new value.
 #define BW_PCIE_PHY_TX_POWER_CTL_TX_DIV_CLK_EN(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, TX_DIV_CLK_EN, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field REFGEN_EN_REG
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field REFGEN_EN_REG (RW)
  *
- * Register override value for tx_refgen_en; turns                                 on the pmos_bias
- * refgen block and the rxdetect                                 comparators.
+ * Register override value for tx_refgen_en; turns on the pmos_bias refgen block and the rxdetect
+ * comparators.
  */
 
 #define BP_PCIE_PHY_TX_POWER_CTL_REFGEN_EN_REG      3
@@ -9065,10 +8224,11 @@ typedef union
 #define BF_PCIE_PHY_TX_POWER_CTL_REFGEN_EN_REG(v)   (((v) << 3) & BM_PCIE_PHY_TX_POWER_CTL_REFGEN_EN_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REFGEN_EN_REG field to a new value.
 #define BW_PCIE_PHY_TX_POWER_CTL_REFGEN_EN_REG(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, REFGEN_EN_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field DATA_EN_REG
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field DATA_EN_REG (RW)
  *
  * Value for tx_data_en when OVRD_EN is 1.
  */
@@ -9082,10 +8242,11 @@ typedef union
 #define BF_PCIE_PHY_TX_POWER_CTL_DATA_EN_REG(v)   (((v) << 4) & BM_PCIE_PHY_TX_POWER_CTL_DATA_EN_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA_EN_REG field to a new value.
 #define BW_PCIE_PHY_TX_POWER_CTL_DATA_EN_REG(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, DATA_EN_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field CLK_EN_REG
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field CLK_EN_REG (RW)
  *
  * Value for tx_clk_en when OVRD_EN is 1.
  */
@@ -9099,10 +8260,11 @@ typedef union
 #define BF_PCIE_PHY_TX_POWER_CTL_CLK_EN_REG(v)   (((v) << 5) & BM_PCIE_PHY_TX_POWER_CTL_CLK_EN_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLK_EN_REG field to a new value.
 #define BW_PCIE_PHY_TX_POWER_CTL_CLK_EN_REG(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, CLK_EN_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field SERIAL_EN_REG
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field SERIAL_EN_REG (RW)
  *
  * Value for tx_serial_en when OVRD_EN is 1.
  */
@@ -9116,12 +8278,13 @@ typedef union
 #define BF_PCIE_PHY_TX_POWER_CTL_SERIAL_EN_REG(v)   (((v) << 6) & BM_PCIE_PHY_TX_POWER_CTL_SERIAL_EN_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SERIAL_EN_REG field to a new value.
 #define BW_PCIE_PHY_TX_POWER_CTL_SERIAL_EN_REG(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, SERIAL_EN_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field OVRD_EN
+/* --- Register HW_PCIE_PHY_TX_POWER_CTL, field OVRD_EN (RW)
  *
- * Enables local overrides for all signals in this                                 register.
+ * Enables local overrides for all signals in this register.
  */
 
 #define BP_PCIE_PHY_TX_POWER_CTL_OVRD_EN      7
@@ -9133,18 +8296,19 @@ typedef union
 #define BF_PCIE_PHY_TX_POWER_CTL_OVRD_EN(v)   (((v) << 7) & BM_PCIE_PHY_TX_POWER_CTL_OVRD_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVRD_EN field to a new value.
 #define BW_PCIE_PHY_TX_POWER_CTL_OVRD_EN(v)   BF_CS1(PCIE_PHY_TX_POWER_CTL, OVRD_EN, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_ALT_BLOCK - 
+ * @brief HW_PCIE_PHY_TX_ALT_BLOCK -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short OVRD_ALT_BUS : 1; //!< Enables local overrides for alt-bus control signals.
@@ -9173,14 +8337,13 @@ typedef union
 #define HW_PCIE_PHY_TX_ALT_BLOCK_TOG(v)    (HW_PCIE_PHY_TX_ALT_BLOCK_WR(HW_PCIE_PHY_TX_ALT_BLOCK_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_ALT_BLOCK bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field OVRD_ALT_BUS
+/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field OVRD_ALT_BUS (RW)
  *
- * Enables local overrides for alt-bus control                                 signals.
+ * Enables local overrides for alt-bus control signals.
  */
 
 #define BP_PCIE_PHY_TX_ALT_BLOCK_OVRD_ALT_BUS      0
@@ -9192,13 +8355,14 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_BLOCK_OVRD_ALT_BUS(v)   (((v) << 0) & BM_PCIE_PHY_TX_ALT_BLOCK_OVRD_ALT_BUS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVRD_ALT_BUS field to a new value.
 #define BW_PCIE_PHY_TX_ALT_BLOCK_OVRD_ALT_BUS(v)   BF_CS1(PCIE_PHY_TX_ALT_BLOCK, OVRD_ALT_BUS, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field ALT_OSC_VPHREG
+/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field ALT_OSC_VPHREG (RW)
  *
- * Enables and connects the vphreg oscillator to                                 the transmit pins;
- * must set drv_source_reg bus correctly.
+ * Enables and connects the vphreg oscillator to the transmit pins; must set drv_source_reg bus
+ * correctly.
  */
 
 #define BP_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPHREG      1
@@ -9210,13 +8374,14 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPHREG(v)   (((v) << 1) & BM_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPHREG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ALT_OSC_VPHREG field to a new value.
 #define BW_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPHREG(v)   BF_CS1(PCIE_PHY_TX_ALT_BLOCK, ALT_OSC_VPHREG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field ALT_OSC_VPH
+/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field ALT_OSC_VPH (RW)
  *
- * Enables and connects the vph oscillator to the                                 transmit pins;
- * must set drv_source_reg bus correctly.
+ * Enables and connects the vph oscillator to the transmit pins; must set drv_source_reg bus
+ * correctly.
  */
 
 #define BP_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPH      2
@@ -9228,13 +8393,14 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPH(v)   (((v) << 2) & BM_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPH)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ALT_OSC_VPH field to a new value.
 #define BW_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VPH(v)   BF_CS1(PCIE_PHY_TX_ALT_BLOCK, ALT_OSC_VPH, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field ALT_OSC_VP
+/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field ALT_OSC_VP (RW)
  *
- * Enables and connects the vp oscillator to the                                 transmit pins; must
- * set drv_source_reg bus correctly.
+ * Enables and connects the vp oscillator to the transmit pins; must set drv_source_reg bus
+ * correctly.
  */
 
 #define BP_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VP      3
@@ -9246,12 +8412,13 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VP(v)   (((v) << 3) & BM_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ALT_OSC_VP field to a new value.
 #define BW_PCIE_PHY_TX_ALT_BLOCK_ALT_OSC_VP(v)   BF_CS1(PCIE_PHY_TX_ALT_BLOCK, ALT_OSC_VP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field JTAG_DATA_REG
+/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field JTAG_DATA_REG (RW)
  *
- * Value for jtag_data when OVRD_ALT_BUS is                                 1.
+ * Value for jtag_data when OVRD_ALT_BUS is 1.
  */
 
 #define BP_PCIE_PHY_TX_ALT_BLOCK_JTAG_DATA_REG      4
@@ -9263,12 +8430,19 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_BLOCK_JTAG_DATA_REG(v)   (((v) << 4) & BM_PCIE_PHY_TX_ALT_BLOCK_JTAG_DATA_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the JTAG_DATA_REG field to a new value.
 #define BW_PCIE_PHY_TX_ALT_BLOCK_JTAG_DATA_REG(v)   BF_CS1(PCIE_PHY_TX_ALT_BLOCK, JTAG_DATA_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field DRV_SOURCE_REG
+/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field DRV_SOURCE_REG (RW)
  *
- * Value for tx_data_source when                                 OVRD_ALT_BUS is 1
+ * Value for tx_data_source when OVRD_ALT_BUS is 1
+ *
+ * Values:
+ * 11 - JTAG data common mode for test
+ * 10 - LFPS oscillator differential
+ * 01 - JTAG data differential
+ * 00 - Serializer data or alt oscillator vp/vph/vphreg/vptx if selected
  */
 
 #define BP_PCIE_PHY_TX_ALT_BLOCK_DRV_SOURCE_REG      5
@@ -9280,13 +8454,15 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_BLOCK_DRV_SOURCE_REG(v)   (((v) << 5) & BM_PCIE_PHY_TX_ALT_BLOCK_DRV_SOURCE_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DRV_SOURCE_REG field to a new value.
 #define BW_PCIE_PHY_TX_ALT_BLOCK_DRV_SOURCE_REG(v)   BF_CS1(PCIE_PHY_TX_ALT_BLOCK, DRV_SOURCE_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field EN_ALT_BUS
+
+/* --- Register HW_PCIE_PHY_TX_ALT_BLOCK, field EN_ALT_BUS (RW)
  *
- * Enables the Tx for alt bus mode, powers up the                                 pmos_bias block,
- * and so on;                                 required if manually running the alt bus features.
+ * Enables the Tx for alt bus mode, powers up the pmos_bias block, and so on; required if manually
+ * running the alt bus features.
  */
 
 #define BP_PCIE_PHY_TX_ALT_BLOCK_EN_ALT_BUS      7
@@ -9298,18 +8474,19 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_BLOCK_EN_ALT_BUS(v)   (((v) << 7) & BM_PCIE_PHY_TX_ALT_BLOCK_EN_ALT_BUS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN_ALT_BUS field to a new value.
 #define BW_PCIE_PHY_TX_ALT_BLOCK_EN_ALT_BUS(v)   BF_CS1(PCIE_PHY_TX_ALT_BLOCK, EN_ALT_BUS, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_ALT_AND_LOOPBACK - 
+ * @brief HW_PCIE_PHY_TX_ALT_AND_LOOPBACK -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short NOCONN_00 : 1; //!< Reserved
@@ -9339,12 +8516,11 @@ typedef union
 #define HW_PCIE_PHY_TX_ALT_AND_LOOPBACK_TOG(v)    (HW_PCIE_PHY_TX_ALT_AND_LOOPBACK_WR(HW_PCIE_PHY_TX_ALT_AND_LOOPBACK_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_ALT_AND_LOOPBACK bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_00
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_00 (RU)
  *
  * Reserved
  */
@@ -9352,16 +8528,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_00      0
 #define BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_00      0x00000001
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_00(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_00)
-#else
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_00(v)   (((v) << 0) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_00)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_00(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, NOCONN_00, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_01
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_01 (RU)
  *
  * Reserved
  */
@@ -9369,16 +8536,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_01      1
 #define BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_01      0x00000002
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_01(v)   ((((reg32_t) v) << 1) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_01)
-#else
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_01(v)   (((v) << 1) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_01)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_01(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, NOCONN_01, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_02
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_02 (RU)
  *
  * Reserved
  */
@@ -9386,16 +8544,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_02      2
 #define BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_02      0x00000004
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_02(v)   ((((reg32_t) v) << 2) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_02)
-#else
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_02(v)   (((v) << 2) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_02)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_02(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, NOCONN_02, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_03
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_03 (RU)
  *
  * Reserved
  */
@@ -9403,16 +8552,7 @@ typedef union
 #define BP_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_03      3
 #define BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_03      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_03(v)   ((((reg32_t) v) << 3) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_03)
-#else
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_03(v)   (((v) << 3) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_03)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_03(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, NOCONN_03, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_04
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field NOCONN_04 (RU)
  *
  * Reserved
  */
@@ -9420,19 +8560,10 @@ typedef union
 #define BP_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_04      4
 #define BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_04      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_04(v)   ((((reg32_t) v) << 4) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_04)
-#else
-#define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_04(v)   (((v) << 4) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_04)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_NOCONN_04(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, NOCONN_04, v)
-#endif
-
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field ALT_VPTX_OSC
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field ALT_VPTX_OSC (RW)
  *
- * Enables and connects the vptx oscillator to the                                 transmit pins;
- * must set drv_source_reg bus correctly.
+ * Enables and connects the vptx oscillator to the transmit pins; must set drv_source_reg bus
+ * correctly.
  */
 
 #define BP_PCIE_PHY_TX_ALT_AND_LOOPBACK_ALT_VPTX_OSC      5
@@ -9444,12 +8575,13 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_ALT_VPTX_OSC(v)   (((v) << 5) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_ALT_VPTX_OSC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ALT_VPTX_OSC field to a new value.
 #define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_ALT_VPTX_OSC(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, ALT_VPTX_OSC, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field TX_LB_EN_REG
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field TX_LB_EN_REG (RW)
  *
- * Value of the tx_lb_en pin when OVRD_TX_LB                                 is enabled.
+ * Value of the tx_lb_en pin when OVRD_TX_LB is enabled.
  */
 
 #define BP_PCIE_PHY_TX_ALT_AND_LOOPBACK_TX_LB_EN_REG      6
@@ -9461,10 +8593,11 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_TX_LB_EN_REG(v)   (((v) << 6) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_TX_LB_EN_REG)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_LB_EN_REG field to a new value.
 #define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_TX_LB_EN_REG(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, TX_LB_EN_REG, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field OVRD_TX_LB
+/* --- Register HW_PCIE_PHY_TX_ALT_AND_LOOPBACK, field OVRD_TX_LB (RW)
  *
  * Enables the override of the tx_lb_en pin.
  */
@@ -9478,18 +8611,19 @@ typedef union
 #define BF_PCIE_PHY_TX_ALT_AND_LOOPBACK_OVRD_TX_LB(v)   (((v) << 7) & BM_PCIE_PHY_TX_ALT_AND_LOOPBACK_OVRD_TX_LB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the OVRD_TX_LB field to a new value.
 #define BW_PCIE_PHY_TX_ALT_AND_LOOPBACK_OVRD_TX_LB(v)   BF_CS1(PCIE_PHY_TX_ALT_AND_LOOPBACK, OVRD_TX_LB, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_TX_TX_ATB_REG - 
+ * @brief HW_PCIE_PHY_TX_TX_ATB_REG -  (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg16_t  U;
+    reg16_t U;
     struct
     {
         unsigned short ATB_VCM : 1; //!< Connects tx_p/tx_m common mode voltage onto atb_s_p and local ground onto atb_s_m.
@@ -9519,15 +8653,13 @@ typedef union
 #define HW_PCIE_PHY_TX_TX_ATB_REG_TOG(v)    (HW_PCIE_PHY_TX_TX_ATB_REG_WR(HW_PCIE_PHY_TX_TX_ATB_REG_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PCIE_PHY_TX_TX_ATB_REG bitfields
  */
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_VCM
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_VCM (RW)
  *
- * Connects tx_p/tx_m common mode voltage                                 onto atb_s_p and local
- * ground onto atb_s_m.
+ * Connects tx_p/tx_m common mode voltage onto atb_s_p and local ground onto atb_s_m.
  */
 
 #define BP_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM      0
@@ -9539,10 +8671,11 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM(v)   (((v) << 0) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_VCM field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_VCM, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXSM
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXSM (RW)
  *
  * Connects tx_m to atb_s_m.
  */
@@ -9556,10 +8689,11 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_TXSM(v)   (((v) << 1) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_TXSM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_TXSM field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_TXSM(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_TXSM, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXSP
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXSP (RW)
  *
  * Connects tx_p to atb_s_p.
  */
@@ -9573,10 +8707,11 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_TXSP(v)   (((v) << 2) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_TXSP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_TXSP field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_TXSP(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_TXSP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXFM
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXFM (RW)
  *
  * Connects tx_m to atb_f_m.
  */
@@ -9590,10 +8725,11 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_TXFM(v)   (((v) << 3) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_TXFM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_TXFM field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_TXFM(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_TXFM, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXFP
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_TXFP (RW)
  *
  * Connects tx_p to atb_f_p.
  */
@@ -9607,13 +8743,13 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_TXFP(v)   (((v) << 4) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_TXFP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_TXFP field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_TXFP(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_TXFP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_RXDETREF
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_RXDETREF (RW)
  *
- * Connects Rx detect block reference voltage to                                 atb_s_p and local
- * ground to atb_s_m.
+ * Connects Rx detect block reference voltage to atb_s_p and local ground to atb_s_m.
  */
 
 #define BP_PCIE_PHY_TX_TX_ATB_REG_ATB_RXDETREF      5
@@ -9625,13 +8761,13 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_RXDETREF(v)   (((v) << 5) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_RXDETREF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_RXDETREF field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_RXDETREF(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_RXDETREF, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_VCM_REP
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_VCM_REP (RW)
  *
- * Connects common mode replica voltage in                                 pmos_bias block to
- * atb_s_p and local ground to atb_s_m.
+ * Connects common mode replica voltage in pmos_bias block to atb_s_p and local ground to atb_s_m.
  */
 
 #define BP_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM_REP      6
@@ -9643,13 +8779,14 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM_REP(v)   (((v) << 6) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM_REP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_VCM_REP field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_VCM_REP(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_VCM_REP, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_PBIAS
+/* --- Register HW_PCIE_PHY_TX_TX_ATB_REG, field ATB_PBIAS (RW)
  *
- * Connects real pmos_bias voltage for Tx PMOS                                 driver pull-up path
- * to atb_s_p and local ground at the                                 pmos_bias block to atb_s_m.
+ * Connects real pmos_bias voltage for Tx PMOS driver pull-up path to atb_s_p and local ground at
+ * the pmos_bias block to atb_s_m.
  */
 
 #define BP_PCIE_PHY_TX_TX_ATB_REG_ATB_PBIAS      7
@@ -9661,9 +8798,9 @@ typedef union
 #define BF_PCIE_PHY_TX_TX_ATB_REG_ATB_PBIAS(v)   (((v) << 7) & BM_PCIE_PHY_TX_TX_ATB_REG_ATB_PBIAS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the ATB_PBIAS field to a new value.
 #define BW_PCIE_PHY_TX_TX_ATB_REG_ATB_PBIAS(v)   BF_CS1(PCIE_PHY_TX_TX_ATB_REG, ATB_PBIAS, v)
 #endif
-
 
 
 /*!
@@ -9682,7 +8819,6 @@ typedef struct
     reg16_t _reserved0;
     volatile hw_pcie_phy_ateovrd_t ATEOVRD; //!< 
     volatile hw_pcie_phy_mpll_ovrd_in_lo_t MPLL_OVRD_IN_LO; //!< 
-    volatile hw_pcie_phy_mpll_ovrd_in_hi_t MPLL_OVRD_IN_HI; //!< 
     volatile hw_pcie_phy_ssc_ovrd_in_t SSC_OVRD_IN; //!< 
     volatile hw_pcie_phy_bs_ovrd_in_t BS_OVRD_IN; //!< 
     volatile hw_pcie_phy_level_ovrd_in_t LEVEL_OVRD_IN; //!< 
@@ -9704,7 +8840,7 @@ typedef struct
     volatile hw_pcie_phy_mpll_ovr_t MPLL_OVR; //!< 
     volatile hw_pcie_phy_rtune_rtune_ctrl_t RTUNE_RTUNE_CTRL; //!< 
     volatile hw_pcie_phy_atb_switchyard_ctrl_t ATB_SWITCHYARD_CTRL; //!< 
-    reg32_t _reserved1[1008];
+    reg16_t _reserved1[2017];
     volatile hw_pcie_phy_tx_ovrd_in_lo_t TX_OVRD_IN_LO; //!< 
     volatile hw_pcie_phy_tx_ovrd_in_hi_t TX_OVRD_IN_HI; //!< 
     volatile hw_pcie_phy_tx_ovrd_drv_lo_t TX_OVRD_DRV_LO; //!< 

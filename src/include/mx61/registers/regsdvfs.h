@@ -10,20 +10,46 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_DVFSC_THRS - DVFSC Thresholds
+ * - HW_DVFSC_COUN - DVFSC Counters thresholds
+ * - HW_DVFSC_SIG1 - DVFSC general purpose bits weight
+ * - HW_DVFSC_SIG0 - DVFSC general purpose bits weight
+ * - HW_DVFSC_GPC0 - DVFSC general purpose bit 0 weight counter
+ * - HW_DVFSC_GPC1 - DVFSC general purpose bit 1 weight counter
+ * - HW_DVFSC_GPBT - DVFSC general purpose bits enables
+ * - HW_DVFSC_EMAC - DVFSC EMAC settings
+ * - HW_DVFSC_CNTR - DVFSC Control
+ * - HW_DVFSC_LTR0_0 - DVFSC Load Tracking Register 0, portion 0
+ * - HW_DVFSC_LTR0_1 - DVFSC Load Tracking Register 0, portion 1
+ * - HW_DVFSC_LTR1_0 - DVFSC Load Tracking Register 1, portion 0
+ * - HW_DVFSC_LTR1_1 - DVFS Load Tracking Register 3, portion 1
+ * - HW_DVFSC_PT0 - DVFSC pattern 0 length
+ * - HW_DVFSC_PT1 - DVFSC pattern 1 length
+ * - HW_DVFSC_PT2 - DVFSC pattern 2 length
+ * - HW_DVFSC_PT3 - DVFSC pattern 3 length
+ *
+ * hw_dvfsc_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_DVFSC_BASE
-#define REGS_DVFSC_BASE (REGS_BASE + 0x020dc000)
+#define REGS_DVFSC_BASE (0x020dc000) //!< Base address for DVFSC.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_THRS - DVFSC Thresholds
+ * @brief HW_DVFSC_THRS - DVFSC Thresholds (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned PNCTHR : 6; //!< Panic threshold for load tracking
@@ -49,12 +75,11 @@ typedef union
 #define HW_DVFSC_THRS_TOG(v)    (HW_DVFSC_THRS_WR(HW_DVFSC_THRS_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_THRS bitfields
  */
 
-/* --- Register HW_DVFSC_THRS, field PNCTHR
+/* --- Register HW_DVFSC_THRS, field PNCTHR (RW)
  *
  * Panic threshold for load tracking
  */
@@ -68,10 +93,11 @@ typedef union
 #define BF_DVFSC_THRS_PNCTHR(v)   (((v) << 0) & BM_DVFSC_THRS_PNCTHR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PNCTHR field to a new value.
 #define BW_DVFSC_THRS_PNCTHR(v)   BF_CS1(DVFSC_THRS, PNCTHR, v)
 #endif
 
-/* --- Register HW_DVFSC_THRS, field DWTHR
+/* --- Register HW_DVFSC_THRS, field DWTHR (RW)
  *
  * Down threshold for load tracking
  */
@@ -85,10 +111,11 @@ typedef union
 #define BF_DVFSC_THRS_DWTHR(v)   (((v) << 16) & BM_DVFSC_THRS_DWTHR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DWTHR field to a new value.
 #define BW_DVFSC_THRS_DWTHR(v)   BF_CS1(DVFSC_THRS, DWTHR, v)
 #endif
 
-/* --- Register HW_DVFSC_THRS, field UPTHR
+/* --- Register HW_DVFSC_THRS, field UPTHR (RW)
  *
  * Upper threshold for load tracking
  */
@@ -102,18 +129,19 @@ typedef union
 #define BF_DVFSC_THRS_UPTHR(v)   (((v) << 22) & BM_DVFSC_THRS_UPTHR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the UPTHR field to a new value.
 #define BW_DVFSC_THRS_UPTHR(v)   BF_CS1(DVFSC_THRS, UPTHR, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_COUN - DVFSC Counters thresholds
+ * @brief HW_DVFSC_COUN - DVFSC Counters thresholds (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned UPCNT : 8; //!< UP counter threshold value
@@ -138,12 +166,11 @@ typedef union
 #define HW_DVFSC_COUN_TOG(v)    (HW_DVFSC_COUN_WR(HW_DVFSC_COUN_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_COUN bitfields
  */
 
-/* --- Register HW_DVFSC_COUN, field UPCNT
+/* --- Register HW_DVFSC_COUN, field UPCNT (RW)
  *
  * UP counter threshold value
  */
@@ -157,10 +184,11 @@ typedef union
 #define BF_DVFSC_COUN_UPCNT(v)   (((v) << 0) & BM_DVFSC_COUN_UPCNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the UPCNT field to a new value.
 #define BW_DVFSC_COUN_UPCNT(v)   BF_CS1(DVFSC_COUN, UPCNT, v)
 #endif
 
-/* --- Register HW_DVFSC_COUN, field DN_CNT
+/* --- Register HW_DVFSC_COUN, field DN_CNT (RW)
  *
  * Down counter threshold value
  */
@@ -174,18 +202,19 @@ typedef union
 #define BF_DVFSC_COUN_DN_CNT(v)   (((v) << 16) & BM_DVFSC_COUN_DN_CNT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DN_CNT field to a new value.
 #define BW_DVFSC_COUN_DN_CNT(v)   BF_CS1(DVFSC_COUN, DN_CNT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_SIG1 - DVFSC general purpose bits weight
+ * @brief HW_DVFSC_SIG1 - DVFSC general purpose bits weight (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned RESERVED0 : 2; //!< Reserved
@@ -217,12 +246,11 @@ typedef union
 #define HW_DVFSC_SIG1_TOG(v)    (HW_DVFSC_SIG1_WR(HW_DVFSC_SIG1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_SIG1 bitfields
  */
 
-/* --- Register HW_DVFSC_SIG1, field WSW6
+/* --- Register HW_DVFSC_SIG1, field WSW6 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[6]
  */
@@ -236,10 +264,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW6(v)   (((v) << 2) & BM_DVFSC_SIG1_WSW6)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW6 field to a new value.
 #define BW_DVFSC_SIG1_WSW6(v)   BF_CS1(DVFSC_SIG1, WSW6, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW7
+/* --- Register HW_DVFSC_SIG1, field WSW7 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[7]
  */
@@ -253,10 +282,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW7(v)   (((v) << 5) & BM_DVFSC_SIG1_WSW7)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW7 field to a new value.
 #define BW_DVFSC_SIG1_WSW7(v)   BF_CS1(DVFSC_SIG1, WSW7, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW8
+/* --- Register HW_DVFSC_SIG1, field WSW8 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[8]
  */
@@ -270,10 +300,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW8(v)   (((v) << 8) & BM_DVFSC_SIG1_WSW8)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW8 field to a new value.
 #define BW_DVFSC_SIG1_WSW8(v)   BF_CS1(DVFSC_SIG1, WSW8, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW9
+/* --- Register HW_DVFSC_SIG1, field WSW9 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[9]
  */
@@ -287,10 +318,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW9(v)   (((v) << 11) & BM_DVFSC_SIG1_WSW9)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW9 field to a new value.
 #define BW_DVFSC_SIG1_WSW9(v)   BF_CS1(DVFSC_SIG1, WSW9, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW10
+/* --- Register HW_DVFSC_SIG1, field WSW10 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[10]
  */
@@ -304,10 +336,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW10(v)   (((v) << 14) & BM_DVFSC_SIG1_WSW10)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW10 field to a new value.
 #define BW_DVFSC_SIG1_WSW10(v)   BF_CS1(DVFSC_SIG1, WSW10, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW11
+/* --- Register HW_DVFSC_SIG1, field WSW11 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[11]
  */
@@ -321,10 +354,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW11(v)   (((v) << 17) & BM_DVFSC_SIG1_WSW11)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW11 field to a new value.
 #define BW_DVFSC_SIG1_WSW11(v)   BF_CS1(DVFSC_SIG1, WSW11, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW12
+/* --- Register HW_DVFSC_SIG1, field WSW12 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[12]
  */
@@ -338,10 +372,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW12(v)   (((v) << 20) & BM_DVFSC_SIG1_WSW12)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW12 field to a new value.
 #define BW_DVFSC_SIG1_WSW12(v)   BF_CS1(DVFSC_SIG1, WSW12, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW13
+/* --- Register HW_DVFSC_SIG1, field WSW13 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[13]
  */
@@ -355,10 +390,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW13(v)   (((v) << 23) & BM_DVFSC_SIG1_WSW13)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW13 field to a new value.
 #define BW_DVFSC_SIG1_WSW13(v)   BF_CS1(DVFSC_SIG1, WSW13, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW14
+/* --- Register HW_DVFSC_SIG1, field WSW14 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[14]
  */
@@ -372,10 +408,11 @@ typedef union
 #define BF_DVFSC_SIG1_WSW14(v)   (((v) << 26) & BM_DVFSC_SIG1_WSW14)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW14 field to a new value.
 #define BW_DVFSC_SIG1_WSW14(v)   BF_CS1(DVFSC_SIG1, WSW14, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG1, field WSW15
+/* --- Register HW_DVFSC_SIG1, field WSW15 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[15]
  */
@@ -389,18 +426,19 @@ typedef union
 #define BF_DVFSC_SIG1_WSW15(v)   (((v) << 29) & BM_DVFSC_SIG1_WSW15)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW15 field to a new value.
 #define BW_DVFSC_SIG1_WSW15(v)   BF_CS1(DVFSC_SIG1, WSW15, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_SIG0 - DVFSC general purpose bits weight
+ * @brief HW_DVFSC_SIG0 - DVFSC general purpose bits weight (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned WSW0 : 6; //!< General purpose load tracking signal weight dvfs_w_sig[0]. This value is relevant during GPC0 counting period or when GPB0 is set.
@@ -428,15 +466,14 @@ typedef union
 #define HW_DVFSC_SIG0_TOG(v)    (HW_DVFSC_SIG0_WR(HW_DVFSC_SIG0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_SIG0 bitfields
  */
 
-/* --- Register HW_DVFSC_SIG0, field WSW0
+/* --- Register HW_DVFSC_SIG0, field WSW0 (RW)
  *
- * General purpose load tracking signal weight dvfs_w_sig[0]. This value
- * is relevant during GPC0 counting period or when GPB0 is set.
+ * General purpose load tracking signal weight dvfs_w_sig[0]. This value is relevant during GPC0
+ * counting period or when GPB0 is set.
  */
 
 #define BP_DVFSC_SIG0_WSW0      0
@@ -448,13 +485,14 @@ typedef union
 #define BF_DVFSC_SIG0_WSW0(v)   (((v) << 0) & BM_DVFSC_SIG0_WSW0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW0 field to a new value.
 #define BW_DVFSC_SIG0_WSW0(v)   BF_CS1(DVFSC_SIG0, WSW0, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG0, field WSW1
+/* --- Register HW_DVFSC_SIG0, field WSW1 (RW)
  *
- * General purpose load tracking signal weight dvfs_w_sig[1]. This value
- * is relevant during GPC1 counting period or when GPB1 is set.
+ * General purpose load tracking signal weight dvfs_w_sig[1]. This value is relevant during GPC1
+ * counting period or when GPB1 is set.
  */
 
 #define BP_DVFSC_SIG0_WSW1      6
@@ -466,10 +504,11 @@ typedef union
 #define BF_DVFSC_SIG0_WSW1(v)   (((v) << 6) & BM_DVFSC_SIG0_WSW1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW1 field to a new value.
 #define BW_DVFSC_SIG0_WSW1(v)   BF_CS1(DVFSC_SIG0, WSW1, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG0, field WSW2
+/* --- Register HW_DVFSC_SIG0, field WSW2 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[2]
  */
@@ -483,10 +522,11 @@ typedef union
 #define BF_DVFSC_SIG0_WSW2(v)   (((v) << 20) & BM_DVFSC_SIG0_WSW2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW2 field to a new value.
 #define BW_DVFSC_SIG0_WSW2(v)   BF_CS1(DVFSC_SIG0, WSW2, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG0, field WSW3
+/* --- Register HW_DVFSC_SIG0, field WSW3 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[3]
  */
@@ -500,10 +540,11 @@ typedef union
 #define BF_DVFSC_SIG0_WSW3(v)   (((v) << 23) & BM_DVFSC_SIG0_WSW3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW3 field to a new value.
 #define BW_DVFSC_SIG0_WSW3(v)   BF_CS1(DVFSC_SIG0, WSW3, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG0, field WSW4
+/* --- Register HW_DVFSC_SIG0, field WSW4 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[4]
  */
@@ -517,10 +558,11 @@ typedef union
 #define BF_DVFSC_SIG0_WSW4(v)   (((v) << 26) & BM_DVFSC_SIG0_WSW4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW4 field to a new value.
 #define BW_DVFSC_SIG0_WSW4(v)   BF_CS1(DVFSC_SIG0, WSW4, v)
 #endif
 
-/* --- Register HW_DVFSC_SIG0, field WSW5
+/* --- Register HW_DVFSC_SIG0, field WSW5 (RW)
  *
  * General purpose load tracking signal weight dvfs_w_sig[5]
  */
@@ -534,24 +576,25 @@ typedef union
 #define BF_DVFSC_SIG0_WSW5(v)   (((v) << 29) & BM_DVFSC_SIG0_WSW5)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WSW5 field to a new value.
 #define BW_DVFSC_SIG0_WSW5(v)   BF_CS1(DVFSC_SIG0, WSW5, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_GPC0 - DVFSC general purpose bit 0 weight counter
+ * @brief HW_DVFSC_GPC0 - DVFSC general purpose bit 0 weight counter (RW)
  *
  * DVFS general purpose bits weight counter.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned GPBC0 : 17; //!< GPBC0 - General Purpose bits Counter 0  During period of this counter the GeP bit 0 will be set and WSW0 will be added to the calculations.
+        unsigned GPBC0 : 17; //!< GPBC0 - General Purpose bits Counter 0 During period of this counter the GeP bit 0 will be set and WSW0 will be added to the calculations.
         unsigned RESERVED0 : 13; //!< Reserved
         unsigned C0ACT : 1; //!< C0ACT-Counter 0 active indicator
-        unsigned C0STRT : 1; //!< C0STRT-Counter 0 start  Setting of this bit will initialize down counting of the GPC0 value.  Bit is self-cleared next cycle after setting.  Any setting of this bit will re-start GPC0 counter to the GPC0 value.  GPB0 bit disables (overrides) GPC0 counter-WSW0 weight is applicable continuously
+        unsigned C0STRT : 1; //!< C0STRT-Counter 0 start Setting of this bit will initialize down counting of the GPC0 value. Bit is self-cleared next cycle after setting. Any setting of this bit will re-start GPC0 counter to the GPC0 value. GPB0 bit disables (overrides) GPC0 counter-WSW0 weight is applicable continuously
     } B;
 } hw_dvfsc_gpc0_t;
 #endif
@@ -570,15 +613,14 @@ typedef union
 #define HW_DVFSC_GPC0_TOG(v)    (HW_DVFSC_GPC0_WR(HW_DVFSC_GPC0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_GPC0 bitfields
  */
 
-/* --- Register HW_DVFSC_GPC0, field GPBC0
+/* --- Register HW_DVFSC_GPC0, field GPBC0 (RW)
  *
- * GPBC0 - General Purpose bits Counter 0  During period of this counter the GeP bit 0 will be set
- * and WSW0 will                                 be added to the calculations.
+ * GPBC0 - General Purpose bits Counter 0 During period of this counter the GeP bit 0 will be set
+ * and WSW0 will be added to the calculations.
  */
 
 #define BP_DVFSC_GPC0_GPBC0      0
@@ -590,32 +632,29 @@ typedef union
 #define BF_DVFSC_GPC0_GPBC0(v)   (((v) << 0) & BM_DVFSC_GPC0_GPBC0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPBC0 field to a new value.
 #define BW_DVFSC_GPC0_GPBC0(v)   BF_CS1(DVFSC_GPC0, GPBC0, v)
 #endif
 
-/* --- Register HW_DVFSC_GPC0, field C0ACT
+/* --- Register HW_DVFSC_GPC0, field C0ACT (RO)
  *
  * C0ACT-Counter 0 active indicator
+ *
+ * Values:
+ * 1 - General Purpose bit0 counter didn't reach value of "0" - the WSW0 is provided to DVFS calculation
+ * 0 - General Purpose bit0 counter reached value of "0" - the instead of WSW0, "0" (zero) is provided to
+ *     DVFS calculation
  */
 
 #define BP_DVFSC_GPC0_C0ACT      30
 #define BM_DVFSC_GPC0_C0ACT      0x40000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_GPC0_C0ACT(v)   ((((reg32_t) v) << 30) & BM_DVFSC_GPC0_C0ACT)
-#else
-#define BF_DVFSC_GPC0_C0ACT(v)   (((v) << 30) & BM_DVFSC_GPC0_C0ACT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_GPC0_C0ACT(v)   BF_CS1(DVFSC_GPC0, C0ACT, v)
-#endif
 
-/* --- Register HW_DVFSC_GPC0, field C0STRT
+/* --- Register HW_DVFSC_GPC0, field C0STRT (RW)
  *
- * C0STRT-Counter 0 start  Setting of this bit will initialize down counting of the GPC0
- * value.  Bit is self-cleared next cycle after setting.  Any setting of this bit will re-start GPC0
- * counter to the GPC0                                 value.  GPB0 bit disables (overrides) GPC0
- * counter-WSW0 weight is applicable                                 continuously
+ * C0STRT-Counter 0 start Setting of this bit will initialize down counting of the GPC0 value. Bit
+ * is self-cleared next cycle after setting. Any setting of this bit will re-start GPC0 counter to
+ * the GPC0 value. GPB0 bit disables (overrides) GPC0 counter-WSW0 weight is applicable continuously
  */
 
 #define BP_DVFSC_GPC0_C0STRT      31
@@ -627,24 +666,25 @@ typedef union
 #define BF_DVFSC_GPC0_C0STRT(v)   (((v) << 31) & BM_DVFSC_GPC0_C0STRT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the C0STRT field to a new value.
 #define BW_DVFSC_GPC0_C0STRT(v)   BF_CS1(DVFSC_GPC0, C0STRT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_GPC1 - DVFSC general purpose bit 1 weight counter
+ * @brief HW_DVFSC_GPC1 - DVFSC general purpose bit 1 weight counter (RW)
  *
  * DVFS general purpose bits weight counter1.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned GPBC1 : 17; //!< GPBC1 - General Purpose bits Counter 1  During period of this counter the GeP bit 1 will be set and WSW1 will be added to the calculations.
+        unsigned GPBC1 : 17; //!< GPBC1 - General Purpose bits Counter 1 During period of this counter the GeP bit 1 will be set and WSW1 will be added to the calculations.
         unsigned RESERVED0 : 13; //!< Reserved
         unsigned C1ACT : 1; //!< C1ACT - Counter 1 active indicator
-        unsigned C1STRT : 1; //!< C1STRT - Counter 1start  Setting of this bit will initialize down counting of the GPC1 value.  Bit is self-cleared next cycle after setting.  Any setting of this bit will re-start GPC1 counter to the GPC1 value.  GPB1 bit disables (overrides) GPC1 counter - WSW1 weight is applicable continuously
+        unsigned C1STRT : 1; //!< C1STRT - Counter 1start Setting of this bit will initialize down counting of the GPC1 value. Bit is self-cleared next cycle after setting. Any setting of this bit will re-start GPC1 counter to the GPC1 value. GPB1 bit disables (overrides) GPC1 counter - WSW1 weight is applicable continuously
     } B;
 } hw_dvfsc_gpc1_t;
 #endif
@@ -663,15 +703,14 @@ typedef union
 #define HW_DVFSC_GPC1_TOG(v)    (HW_DVFSC_GPC1_WR(HW_DVFSC_GPC1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_GPC1 bitfields
  */
 
-/* --- Register HW_DVFSC_GPC1, field GPBC1
+/* --- Register HW_DVFSC_GPC1, field GPBC1 (RW)
  *
- * GPBC1 - General Purpose bits Counter 1  During period of this counter the GeP bit 1 will be set
- * and WSW1 will                                 be added to the calculations.
+ * GPBC1 - General Purpose bits Counter 1 During period of this counter the GeP bit 1 will be set
+ * and WSW1 will be added to the calculations.
  */
 
 #define BP_DVFSC_GPC1_GPBC1      0
@@ -683,32 +722,30 @@ typedef union
 #define BF_DVFSC_GPC1_GPBC1(v)   (((v) << 0) & BM_DVFSC_GPC1_GPBC1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPBC1 field to a new value.
 #define BW_DVFSC_GPC1_GPBC1(v)   BF_CS1(DVFSC_GPC1, GPBC1, v)
 #endif
 
-/* --- Register HW_DVFSC_GPC1, field C1ACT
+/* --- Register HW_DVFSC_GPC1, field C1ACT (RO)
  *
  * C1ACT - Counter 1 active indicator
+ *
+ * Values:
+ * 1 - General Purpose bit1 counter didn't reach value of "0" - the WSW1 is provided to DVFS calculation
+ * 0 - General Purpose bit1 counter reached value of "0" - the instead of WSW1, "0" (zero) is provided to
+ *     DVFS calculation
  */
 
 #define BP_DVFSC_GPC1_C1ACT      30
 #define BM_DVFSC_GPC1_C1ACT      0x40000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_GPC1_C1ACT(v)   ((((reg32_t) v) << 30) & BM_DVFSC_GPC1_C1ACT)
-#else
-#define BF_DVFSC_GPC1_C1ACT(v)   (((v) << 30) & BM_DVFSC_GPC1_C1ACT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_GPC1_C1ACT(v)   BF_CS1(DVFSC_GPC1, C1ACT, v)
-#endif
 
-/* --- Register HW_DVFSC_GPC1, field C1STRT
+/* --- Register HW_DVFSC_GPC1, field C1STRT (RW)
  *
- * C1STRT - Counter 1start  Setting of this bit will initialize down counting of the GPC1
- * value.  Bit is self-cleared next cycle after setting.  Any setting of this bit will re-start GPC1
- * counter to the GPC1                                 value.  GPB1 bit disables (overrides) GPC1
- * counter - WSW1 weight is                                 applicable continuously
+ * C1STRT - Counter 1start Setting of this bit will initialize down counting of the GPC1 value. Bit
+ * is self-cleared next cycle after setting. Any setting of this bit will re-start GPC1 counter to
+ * the GPC1 value. GPB1 bit disables (overrides) GPC1 counter - WSW1 weight is applicable
+ * continuously
  */
 
 #define BP_DVFSC_GPC1_C1STRT      31
@@ -720,18 +757,19 @@ typedef union
 #define BF_DVFSC_GPC1_C1STRT(v)   (((v) << 31) & BM_DVFSC_GPC1_C1STRT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the C1STRT field to a new value.
 #define BW_DVFSC_GPC1_C1STRT(v)   BF_CS1(DVFSC_GPC1, C1STRT, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_GPBT - DVFSC general purpose bits enables
+ * @brief HW_DVFSC_GPBT - DVFSC general purpose bits enables (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned GPB0 : 1; //!< General purpose bit 0. Its weight is set by WSW0 value. IF set (1), the GPBC0 operation is disregarded, WSW0 value is applied continuously.
@@ -769,16 +807,14 @@ typedef union
 #define HW_DVFSC_GPBT_TOG(v)    (HW_DVFSC_GPBT_WR(HW_DVFSC_GPBT_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_GPBT bitfields
  */
 
-/* --- Register HW_DVFSC_GPBT, field GPB0
+/* --- Register HW_DVFSC_GPBT, field GPB0 (RW)
  *
- * General purpose bit 0. Its weight is set by WSW0 value. IF set (1),
- * the GPBC0 operation is disregarded, WSW0 value is applied
- * continuously.
+ * General purpose bit 0. Its weight is set by WSW0 value. IF set (1), the GPBC0 operation is
+ * disregarded, WSW0 value is applied continuously.
  */
 
 #define BP_DVFSC_GPBT_GPB0      0
@@ -790,14 +826,14 @@ typedef union
 #define BF_DVFSC_GPBT_GPB0(v)   (((v) << 0) & BM_DVFSC_GPBT_GPB0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB0 field to a new value.
 #define BW_DVFSC_GPBT_GPB0(v)   BF_CS1(DVFSC_GPBT, GPB0, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB1
+/* --- Register HW_DVFSC_GPBT, field GPB1 (RW)
  *
- * General purpose bit 1. Its weight is set by WSW1 value. IF set (1),
- * the GPBC1 operation is disregarded, WSW1 value is applied
- * continuously.
+ * General purpose bit 1. Its weight is set by WSW1 value. IF set (1), the GPBC1 operation is
+ * disregarded, WSW1 value is applied continuously.
  */
 
 #define BP_DVFSC_GPBT_GPB1      1
@@ -809,10 +845,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB1(v)   (((v) << 1) & BM_DVFSC_GPBT_GPB1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB1 field to a new value.
 #define BW_DVFSC_GPBT_GPB1(v)   BF_CS1(DVFSC_GPBT, GPB1, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB2
+/* --- Register HW_DVFSC_GPBT, field GPB2 (RW)
  *
  * General purpose bit 2. Its weight is set by WSW2 value.
  */
@@ -826,10 +863,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB2(v)   (((v) << 2) & BM_DVFSC_GPBT_GPB2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB2 field to a new value.
 #define BW_DVFSC_GPBT_GPB2(v)   BF_CS1(DVFSC_GPBT, GPB2, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB3
+/* --- Register HW_DVFSC_GPBT, field GPB3 (RW)
  *
  * General purpose bit 3. Its weight is set by WSW3 value.
  */
@@ -843,10 +881,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB3(v)   (((v) << 3) & BM_DVFSC_GPBT_GPB3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB3 field to a new value.
 #define BW_DVFSC_GPBT_GPB3(v)   BF_CS1(DVFSC_GPBT, GPB3, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB4
+/* --- Register HW_DVFSC_GPBT, field GPB4 (RW)
  *
  * General purpose bit 4. Its weight is set by WSW4 value.
  */
@@ -860,10 +899,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB4(v)   (((v) << 4) & BM_DVFSC_GPBT_GPB4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB4 field to a new value.
 #define BW_DVFSC_GPBT_GPB4(v)   BF_CS1(DVFSC_GPBT, GPB4, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB5
+/* --- Register HW_DVFSC_GPBT, field GPB5 (RW)
  *
  * General purpose bit 5. Its weight is set by WSW5 value.
  */
@@ -877,10 +917,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB5(v)   (((v) << 5) & BM_DVFSC_GPBT_GPB5)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB5 field to a new value.
 #define BW_DVFSC_GPBT_GPB5(v)   BF_CS1(DVFSC_GPBT, GPB5, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB6
+/* --- Register HW_DVFSC_GPBT, field GPB6 (RW)
  *
  * General purpose bit 6. Its weight is set by WSW6 value.
  */
@@ -894,10 +935,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB6(v)   (((v) << 6) & BM_DVFSC_GPBT_GPB6)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB6 field to a new value.
 #define BW_DVFSC_GPBT_GPB6(v)   BF_CS1(DVFSC_GPBT, GPB6, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB7
+/* --- Register HW_DVFSC_GPBT, field GPB7 (RW)
  *
  * General purpose bit 7. Its weight is set by WSW7 value.
  */
@@ -911,10 +953,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB7(v)   (((v) << 7) & BM_DVFSC_GPBT_GPB7)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB7 field to a new value.
 #define BW_DVFSC_GPBT_GPB7(v)   BF_CS1(DVFSC_GPBT, GPB7, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB8
+/* --- Register HW_DVFSC_GPBT, field GPB8 (RW)
  *
  * General purpose bit 8. Its weight is set by WSW8 value.
  */
@@ -928,10 +971,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB8(v)   (((v) << 8) & BM_DVFSC_GPBT_GPB8)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB8 field to a new value.
 #define BW_DVFSC_GPBT_GPB8(v)   BF_CS1(DVFSC_GPBT, GPB8, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB9
+/* --- Register HW_DVFSC_GPBT, field GPB9 (RW)
  *
  * General purpose bit 9. Its weight is set by WSW9 value.
  */
@@ -945,10 +989,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB9(v)   (((v) << 9) & BM_DVFSC_GPBT_GPB9)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB9 field to a new value.
 #define BW_DVFSC_GPBT_GPB9(v)   BF_CS1(DVFSC_GPBT, GPB9, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB10
+/* --- Register HW_DVFSC_GPBT, field GPB10 (RW)
  *
  * General purpose bit 10. Its weight is set by WSW10 value.
  */
@@ -962,10 +1007,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB10(v)   (((v) << 10) & BM_DVFSC_GPBT_GPB10)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB10 field to a new value.
 #define BW_DVFSC_GPBT_GPB10(v)   BF_CS1(DVFSC_GPBT, GPB10, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB11
+/* --- Register HW_DVFSC_GPBT, field GPB11 (RW)
  *
  * General purpose bit 11. Its weight is set by WSW11 value.
  */
@@ -979,10 +1025,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB11(v)   (((v) << 11) & BM_DVFSC_GPBT_GPB11)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB11 field to a new value.
 #define BW_DVFSC_GPBT_GPB11(v)   BF_CS1(DVFSC_GPBT, GPB11, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB12
+/* --- Register HW_DVFSC_GPBT, field GPB12 (RW)
  *
  * General purpose bit 12. Its weight is set by WSW12 value.
  */
@@ -996,10 +1043,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB12(v)   (((v) << 12) & BM_DVFSC_GPBT_GPB12)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB12 field to a new value.
 #define BW_DVFSC_GPBT_GPB12(v)   BF_CS1(DVFSC_GPBT, GPB12, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB13
+/* --- Register HW_DVFSC_GPBT, field GPB13 (RW)
  *
  * General purpose bit 13. Its weight is set by WSW13 value.
  */
@@ -1013,10 +1061,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB13(v)   (((v) << 13) & BM_DVFSC_GPBT_GPB13)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB13 field to a new value.
 #define BW_DVFSC_GPBT_GPB13(v)   BF_CS1(DVFSC_GPBT, GPB13, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB14
+/* --- Register HW_DVFSC_GPBT, field GPB14 (RW)
  *
  * General purpose bit 14. Its weight is set by WSW14 value.
  */
@@ -1030,10 +1079,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB14(v)   (((v) << 14) & BM_DVFSC_GPBT_GPB14)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB14 field to a new value.
 #define BW_DVFSC_GPBT_GPB14(v)   BF_CS1(DVFSC_GPBT, GPB14, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field GPB15
+/* --- Register HW_DVFSC_GPBT, field GPB15 (RW)
  *
  * General purpose bit 15. Its weight is set by WSW15 value.
  */
@@ -1047,10 +1097,11 @@ typedef union
 #define BF_DVFSC_GPBT_GPB15(v)   (((v) << 15) & BM_DVFSC_GPBT_GPB15)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the GPB15 field to a new value.
 #define BW_DVFSC_GPBT_GPB15(v)   BF_CS1(DVFSC_GPBT, GPB15, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field RESERVED
+/* --- Register HW_DVFSC_GPBT, field RESERVED (RU)
  *
  * N/A
  */
@@ -1059,23 +1110,14 @@ typedef union
 #define BM_DVFSC_GPBT_RESERVED      0xffff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_GPBT_RESERVED(v)   ((((reg32_t) v) << 16) & BM_DVFSC_GPBT_RESERVED)
-#else
-#define BF_DVFSC_GPBT_RESERVED(v)   (((v) << 16) & BM_DVFSC_GPBT_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_GPBT_RESERVED(v)   BF_CS1(DVFSC_GPBT, RESERVED, v)
-#endif
-
 /*!
- * @brief HW_DVFSC_EMAC - DVFSC EMAC settings
+ * @brief HW_DVFSC_EMAC - DVFSC EMAC settings (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned EMAC : 9; //!< EMAC - EMA control value
@@ -1098,12 +1140,11 @@ typedef union
 #define HW_DVFSC_EMAC_TOG(v)    (HW_DVFSC_EMAC_WR(HW_DVFSC_EMAC_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_EMAC bitfields
  */
 
-/* --- Register HW_DVFSC_EMAC, field EMAC
+/* --- Register HW_DVFSC_EMAC, field EMAC (RW)
  *
  * EMAC - EMA control value
  */
@@ -1117,10 +1158,11 @@ typedef union
 #define BF_DVFSC_EMAC_EMAC(v)   (((v) << 0) & BM_DVFSC_EMAC_EMAC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EMAC field to a new value.
 #define BW_DVFSC_EMAC_EMAC(v)   BF_CS1(DVFSC_EMAC, EMAC, v)
 #endif
 
-/* --- Register HW_DVFSC_EMAC, field RESERVED
+/* --- Register HW_DVFSC_EMAC, field RESERVED (RU)
  *
  * Reserved
  */
@@ -1129,16 +1171,8 @@ typedef union
 #define BM_DVFSC_EMAC_RESERVED      0xfffffe00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_EMAC_RESERVED(v)   ((((reg32_t) v) << 9) & BM_DVFSC_EMAC_RESERVED)
-#else
-#define BF_DVFSC_EMAC_RESERVED(v)   (((v) << 9) & BM_DVFSC_EMAC_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_EMAC_RESERVED(v)   BF_CS1(DVFSC_EMAC, RESERVED, v)
-#endif
-
 /*!
- * @brief HW_DVFSC_CNTR - DVFSC Control
+ * @brief HW_DVFSC_CNTR - DVFSC Control (RW)
  *
  * DIV3CK division         DIV3CK setting  dividing ratio  sum_3 passing bits  div_1_clk cumulative
  * divider      00  1  4-0  1*512=512    001  4  6-2  4*512=2048    010  16  8-4  16*512=8192    011
@@ -1146,13 +1180,12 @@ typedef union
  * Preliminary Divider definition       DIV_RATIO value  ARM clk division ratio      000000  1
  * 000001  2    000010  3    ...  ...
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned DVFEN : 1; //!< DVFEN  DVFS enable. This bit enables the DVFSC.  Between disable and enable there has to be at least 3 cycles of div_3_clk.
+        unsigned DVFEN : 1; //!< DVFEN DVFS enable. This bit enables the DVFSC. Between disable and enable there has to be at least 3 cycles of div_3_clk.
         unsigned RESERVED0 : 2; //!< Reserved
         unsigned LTBRSR : 2; //!< LTBRSR - Load Tracking Buffer Register Source:
         unsigned LTBRSH : 1; //!< LTBRSH - Load Tracking Buffer Register Shift:
@@ -1163,13 +1196,13 @@ typedef union
         unsigned MINF : 1; //!< Minimum frequency reached. Interrupt will not be created in minimum frequency reached and frequency decrease required.
         unsigned MAXF : 1; //!< Maximum frequency reached. Interrupt will not be created in maximum frequency reached and frequency increase required.
         unsigned WFIM : 1; //!< DVFS Wait for Interrupt mask bit
-        unsigned FSVAI : 2; //!< FSVAI  DVFS Frequency adjustment interrupt. These status bits indicate that the system frequency should be changed.
-        unsigned FSVAIM : 1; //!< DVFS Frequency adjustment interrupt mask. This bit masks the DVFS frequency adjustment interrupt. FSVAI status bits will be still asserted in relevant cases.  interrupt is masked.
-        unsigned PIRQS : 1; //!< PIRQS - Pattern IRQ Source  * write '1' to clear. Writing '1' will clear interrupt if interrupt was from pattern
-        unsigned DVFIS : 1; //!< DVFS Interrupt select. These bits define destination of DVFS interrupts.  ARM platform interrupt will be generated for DVFS events.
-        unsigned LBFL0 : 1; //!< Load buffer 0 - full status bit. This bit indicates that log buffer registers are full. The bit is set to 1 automatically.  An interrupt will be generated if LBMI bit is set to "0"  Load buffer1 is full.  Write '1' to clear. (write '0' leaves bit unchanged)
-        unsigned LBFL1 : 1; //!< Load buffer 1 - full status bit. This bit indicates that log buffer registers are full. The bit is set to 1 automatically.  An interrupt will be generated if LBMI bit is set to '0'  Load buffer0 is full.Write '1' to clear.  (write '0' leaves bit unchanged)
-        unsigned LBMI : 1; //!< Load buffer full mask interrupt. This bit masks the generation of this interrupt.  Load buffer full interrupt is masked (LBFL0 and LBFL1 bits still will be updated, but interrupt won't be generated)
+        unsigned FSVAI : 2; //!< FSVAI DVFS Frequency adjustment interrupt. These status bits indicate that the system frequency should be changed.
+        unsigned FSVAIM : 1; //!< DVFS Frequency adjustment interrupt mask. This bit masks the DVFS frequency adjustment interrupt. FSVAI status bits will be still asserted in relevant cases. interrupt is masked.
+        unsigned PIRQS : 1; //!< PIRQS - Pattern IRQ Source * write '1' to clear. Writing '1' will clear interrupt if interrupt was from pattern
+        unsigned DVFIS : 1; //!< DVFS Interrupt select. These bits define destination of DVFS interrupts. ARM platform interrupt will be generated for DVFS events.
+        unsigned LBFL0 : 1; //!< Load buffer 0 - full status bit. This bit indicates that log buffer registers are full. The bit is set to 1 automatically. An interrupt will be generated if LBMI bit is set to "0" Load buffer1 is full. Write '1' to clear. (write '0' leaves bit unchanged)
+        unsigned LBFL1 : 1; //!< Load buffer 1 - full status bit. This bit indicates that log buffer registers are full. The bit is set to 1 automatically. An interrupt will be generated if LBMI bit is set to '0' Load buffer0 is full.Write '1' to clear. (write '0' leaves bit unchanged)
+        unsigned LBMI : 1; //!< Load buffer full mask interrupt. This bit masks the generation of this interrupt. Load buffer full interrupt is masked (LBFL0 and LBFL1 bits still will be updated, but interrupt won't be generated)
         unsigned DVFEV : 1; //!< Always give a DVFS event.
         unsigned DIV3CK : 3; //!< DIV3CK - div_3_clk division ratio inside the DVFSC. According to the
     } B;
@@ -1190,15 +1223,18 @@ typedef union
 #define HW_DVFSC_CNTR_TOG(v)    (HW_DVFSC_CNTR_WR(HW_DVFSC_CNTR_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_CNTR bitfields
  */
 
-/* --- Register HW_DVFSC_CNTR, field DVFEN
+/* --- Register HW_DVFSC_CNTR, field DVFEN (RW)
  *
- * DVFEN  DVFS enable. This bit enables the DVFSC.  Between disable and enable there has to be at
- * least 3 cycles of                                 div_3_clk.
+ * DVFEN DVFS enable. This bit enables the DVFSC. Between disable and enable there has to be at
+ * least 3 cycles of div_3_clk.
+ *
+ * Values:
+ * 1 - DVFSC enabled.
+ * 0 - DVFSC disabled.
  */
 
 #define BP_DVFSC_CNTR_DVFEN      0
@@ -1210,12 +1246,20 @@ typedef union
 #define BF_DVFSC_CNTR_DVFEN(v)   (((v) << 0) & BM_DVFSC_CNTR_DVFEN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DVFEN field to a new value.
 #define BW_DVFSC_CNTR_DVFEN(v)   BF_CS1(DVFSC_CNTR, DVFEN, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field LTBRSR
+
+/* --- Register HW_DVFSC_CNTR, field LTBRSR (RW)
  *
  * LTBRSR - Load Tracking Buffer Register Source:
+ *
+ * Values:
+ * 00 - pre_ld_add
+ * 01 - ld_add
+ * 10 - after ema
+ * 11 - reserved
  */
 
 #define BP_DVFSC_CNTR_LTBRSR      3
@@ -1227,12 +1271,18 @@ typedef union
 #define BF_DVFSC_CNTR_LTBRSR(v)   (((v) << 3) & BM_DVFSC_CNTR_LTBRSR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LTBRSR field to a new value.
 #define BW_DVFSC_CNTR_LTBRSR(v)   BF_CS1(DVFSC_CNTR, LTBRSR, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field LTBRSH
+
+/* --- Register HW_DVFSC_CNTR, field LTBRSH (RW)
  *
  * LTBRSH - Load Tracking Buffer Register Shift:
+ *
+ * Values:
+ * 0 - values of [5:2] of the selected input are saving in Load Tracking Buffer
+ * 1 - values of [4:1] of the selected input are saving in Load Tracking Buffer
  */
 
 #define BP_DVFSC_CNTR_LTBRSH      5
@@ -1244,29 +1294,34 @@ typedef union
 #define BF_DVFSC_CNTR_LTBRSH(v)   (((v) << 5) & BM_DVFSC_CNTR_LTBRSH)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LTBRSH field to a new value.
 #define BW_DVFSC_CNTR_LTBRSH(v)   BF_CS1(DVFSC_CNTR, LTBRSH, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field PFUS
+
+/* --- Register HW_DVFSC_CNTR, field PFUS (RO)
  *
  * PFUS - Periodic Frequency Update Status
+ *
+ * Values:
+ * 000 - no update
+ * 100 - DVFSPT0 period, previous finished (can be performance level decrease)
+ * 101 - DVFSPT1 period, previous finished (can be EMA-detected performance level)
+ * 110 - DVFSPT2 period, previous finished (can be performance level increase)
+ * 111 - DVFSPT3 period, previous finished (can be EMA-detected performance level)
  */
 
 #define BP_DVFSC_CNTR_PFUS      6
 #define BM_DVFSC_CNTR_PFUS      0x000001c0
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_CNTR_PFUS(v)   ((((reg32_t) v) << 6) & BM_DVFSC_CNTR_PFUS)
-#else
-#define BF_DVFSC_CNTR_PFUS(v)   (((v) << 6) & BM_DVFSC_CNTR_PFUS)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_CNTR_PFUS(v)   BF_CS1(DVFSC_CNTR, PFUS, v)
-#endif
 
-/* --- Register HW_DVFSC_CNTR, field PFUE
+/* --- Register HW_DVFSC_CNTR, field PFUE (RW)
  *
  * PFUE - Period Frequency Update Enable
+ *
+ * Values:
+ * 1 - enabled
+ * 0 - disabled
  */
 
 #define BP_DVFSC_CNTR_PFUE      9
@@ -1278,13 +1333,14 @@ typedef union
 #define BF_DVFSC_CNTR_PFUE(v)   (((v) << 9) & BM_DVFSC_CNTR_PFUE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PFUE field to a new value.
 #define BW_DVFSC_CNTR_PFUE(v)   BF_CS1(DVFSC_CNTR, PFUE, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field DIV_RATIO
+
+/* --- Register HW_DVFSC_CNTR, field DIV_RATIO (RW)
  *
- * DIV_RATIO - Divider value. Divider divides the input ARM clock,
- * following the table
+ * DIV_RATIO - Divider value. Divider divides the input ARM clock, following the table
  */
 
 #define BP_DVFSC_CNTR_DIV_RATIO      11
@@ -1296,13 +1352,18 @@ typedef union
 #define BF_DVFSC_CNTR_DIV_RATIO(v)   (((v) << 11) & BM_DVFSC_CNTR_DIV_RATIO)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DIV_RATIO field to a new value.
 #define BW_DVFSC_CNTR_DIV_RATIO(v)   BF_CS1(DVFSC_CNTR, DIV_RATIO, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field MINF
+/* --- Register HW_DVFSC_CNTR, field MINF (RW)
  *
- * Minimum frequency reached. Interrupt will not be created in minimum
- * frequency reached and frequency decrease required.
+ * Minimum frequency reached. Interrupt will not be created in minimum frequency reached and
+ * frequency decrease required.
+ *
+ * Values:
+ * 1 - min frequency reached
+ * 0 - min frequency not reached
  */
 
 #define BP_DVFSC_CNTR_MINF      17
@@ -1314,13 +1375,19 @@ typedef union
 #define BF_DVFSC_CNTR_MINF(v)   (((v) << 17) & BM_DVFSC_CNTR_MINF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MINF field to a new value.
 #define BW_DVFSC_CNTR_MINF(v)   BF_CS1(DVFSC_CNTR, MINF, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field MAXF
+
+/* --- Register HW_DVFSC_CNTR, field MAXF (RW)
  *
- * Maximum frequency reached. Interrupt will not be created in maximum
- * frequency reached and frequency increase required.
+ * Maximum frequency reached. Interrupt will not be created in maximum frequency reached and
+ * frequency increase required.
+ *
+ * Values:
+ * 1 - max frequency reached
+ * 0 - max frequency not reached
  */
 
 #define BP_DVFSC_CNTR_MAXF      18
@@ -1332,12 +1399,18 @@ typedef union
 #define BF_DVFSC_CNTR_MAXF(v)   (((v) << 18) & BM_DVFSC_CNTR_MAXF)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the MAXF field to a new value.
 #define BW_DVFSC_CNTR_MAXF(v)   BF_CS1(DVFSC_CNTR, MAXF, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field WFIM
+
+/* --- Register HW_DVFSC_CNTR, field WFIM (RW)
  *
  * DVFS Wait for Interrupt mask bit
+ *
+ * Values:
+ * 0 - Wait for interrupt not masked
+ * 1 - Wait for interrupt masked.
  */
 
 #define BP_DVFSC_CNTR_WFIM      19
@@ -1349,32 +1422,37 @@ typedef union
 #define BF_DVFSC_CNTR_WFIM(v)   (((v) << 19) & BM_DVFSC_CNTR_WFIM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WFIM field to a new value.
 #define BW_DVFSC_CNTR_WFIM(v)   BF_CS1(DVFSC_CNTR, WFIM, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field FSVAI
+
+/* --- Register HW_DVFSC_CNTR, field FSVAI (RO)
  *
- * FSVAI  DVFS Frequency adjustment interrupt. These status bits indicate that
- * the system frequency should be changed.
+ * FSVAI DVFS Frequency adjustment interrupt. These status bits indicate that the system frequency
+ * should be changed.
+ *
+ * Values:
+ * 00 - no interrupt
+ * 01 - frequency should be increased. Low priority interrupt. Interrupt is asserted, if FSVAIM=0. Interrupt
+ *     is masked if MAXF = 1 (highest frequency).
+ * 10 - frequency should be decreased. Interrupt is asserted, if FSVAIM=0. Interrupt is masked if MINF= 1
+ *     (lowest frequency).
+ * 11 - frequency should be increased immediately. High priority interrupt. Interrupt is asserted, if
+ *     FSVAIM=0. Interrupt is masked if MAXF = 1 (highest frequency).
  */
 
 #define BP_DVFSC_CNTR_FSVAI      20
 #define BM_DVFSC_CNTR_FSVAI      0x00300000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_CNTR_FSVAI(v)   ((((reg32_t) v) << 20) & BM_DVFSC_CNTR_FSVAI)
-#else
-#define BF_DVFSC_CNTR_FSVAI(v)   (((v) << 20) & BM_DVFSC_CNTR_FSVAI)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_CNTR_FSVAI(v)   BF_CS1(DVFSC_CNTR, FSVAI, v)
-#endif
 
-/* --- Register HW_DVFSC_CNTR, field FSVAIM
+/* --- Register HW_DVFSC_CNTR, field FSVAIM (RW)
  *
- * DVFS Frequency adjustment interrupt mask. This bit masks the DVFS
- * frequency adjustment interrupt. FSVAI status bits will be still
- * asserted in relevant cases.  interrupt is masked.
+ * DVFS Frequency adjustment interrupt mask. This bit masks the DVFS frequency adjustment interrupt.
+ * FSVAI status bits will be still asserted in relevant cases. interrupt is masked.
+ *
+ * Values:
+ * 0 - Interrupt is enabled.
  */
 
 #define BP_DVFSC_CNTR_FSVAIM      22
@@ -1386,13 +1464,19 @@ typedef union
 #define BF_DVFSC_CNTR_FSVAIM(v)   (((v) << 22) & BM_DVFSC_CNTR_FSVAIM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FSVAIM field to a new value.
 #define BW_DVFSC_CNTR_FSVAIM(v)   BF_CS1(DVFSC_CNTR, FSVAIM, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field PIRQS
+
+/* --- Register HW_DVFSC_CNTR, field PIRQS (RW)
  *
- * PIRQS - Pattern IRQ Source  * write '1' to clear. Writing '1' will clear interrupt if interrupt
+ * PIRQS - Pattern IRQ Source * write '1' to clear. Writing '1' will clear interrupt if interrupt
  * was from pattern
+ *
+ * Values:
+ * 1 - DVFS IRQ source was from pattern
+ * 0 - DVFS IRQ source was not from pattern
  */
 
 #define BP_DVFSC_CNTR_PIRQS      23
@@ -1404,13 +1488,18 @@ typedef union
 #define BF_DVFSC_CNTR_PIRQS(v)   (((v) << 23) & BM_DVFSC_CNTR_PIRQS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PIRQS field to a new value.
 #define BW_DVFSC_CNTR_PIRQS(v)   BF_CS1(DVFSC_CNTR, PIRQS, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field DVFIS
+
+/* --- Register HW_DVFSC_CNTR, field DVFIS (RW)
  *
- * DVFS Interrupt select. These bits define destination of DVFS
- * interrupts.  ARM platform interrupt will be generated for DVFS events.
+ * DVFS Interrupt select. These bits define destination of DVFS interrupts. ARM platform interrupt
+ * will be generated for DVFS events.
+ *
+ * Values:
+ * 0 - SDMA interrupt will be generated for DVFS events.
  */
 
 #define BP_DVFSC_CNTR_DVFIS      24
@@ -1422,14 +1511,19 @@ typedef union
 #define BF_DVFSC_CNTR_DVFIS(v)   (((v) << 24) & BM_DVFSC_CNTR_DVFIS)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DVFIS field to a new value.
 #define BW_DVFSC_CNTR_DVFIS(v)   BF_CS1(DVFSC_CNTR, DVFIS, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field LBFL0
+
+/* --- Register HW_DVFSC_CNTR, field LBFL0 (RW)
  *
- * Load buffer 0 - full status bit. This bit indicates that log buffer
- * registers are full. The bit is set to 1 automatically.  An interrupt will be generated if LBMI
- * bit is set to "0"  Load buffer1 is full.  Write '1' to clear. (write '0' leaves bit unchanged)
+ * Load buffer 0 - full status bit. This bit indicates that log buffer registers are full. The bit
+ * is set to 1 automatically. An interrupt will be generated if LBMI bit is set to "0" Load buffer1
+ * is full. Write '1' to clear. (write '0' leaves bit unchanged)
+ *
+ * Values:
+ * 0 - Load buffer1 is not full.
  */
 
 #define BP_DVFSC_CNTR_LBFL0      25
@@ -1441,14 +1535,19 @@ typedef union
 #define BF_DVFSC_CNTR_LBFL0(v)   (((v) << 25) & BM_DVFSC_CNTR_LBFL0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LBFL0 field to a new value.
 #define BW_DVFSC_CNTR_LBFL0(v)   BF_CS1(DVFSC_CNTR, LBFL0, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field LBFL1
+
+/* --- Register HW_DVFSC_CNTR, field LBFL1 (RW)
  *
- * Load buffer 1 - full status bit. This bit indicates that log buffer
- * registers are full. The bit is set to 1 automatically.  An interrupt will be generated if LBMI
- * bit is set to '0'  Load buffer0 is full.Write '1' to clear.  (write '0' leaves bit unchanged)
+ * Load buffer 1 - full status bit. This bit indicates that log buffer registers are full. The bit
+ * is set to 1 automatically. An interrupt will be generated if LBMI bit is set to '0' Load buffer0
+ * is full.Write '1' to clear. (write '0' leaves bit unchanged)
+ *
+ * Values:
+ * 0 - Load buffer0 is not full.
  */
 
 #define BP_DVFSC_CNTR_LBFL1      26
@@ -1460,14 +1559,19 @@ typedef union
 #define BF_DVFSC_CNTR_LBFL1(v)   (((v) << 26) & BM_DVFSC_CNTR_LBFL1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LBFL1 field to a new value.
 #define BW_DVFSC_CNTR_LBFL1(v)   BF_CS1(DVFSC_CNTR, LBFL1, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field LBMI
+
+/* --- Register HW_DVFSC_CNTR, field LBMI (RW)
  *
- * Load buffer full mask interrupt. This bit masks the generation of
- * this interrupt.  Load buffer full interrupt is masked (LBFL0 and LBFL1 bits still will
- * be updated, but interrupt won't be generated)
+ * Load buffer full mask interrupt. This bit masks the generation of this interrupt. Load buffer
+ * full interrupt is masked (LBFL0 and LBFL1 bits still will be updated, but interrupt won't be
+ * generated)
+ *
+ * Values:
+ * 0 - Load buffer full interrupt is enabled.
  */
 
 #define BP_DVFSC_CNTR_LBMI      27
@@ -1479,12 +1583,18 @@ typedef union
 #define BF_DVFSC_CNTR_LBMI(v)   (((v) << 27) & BM_DVFSC_CNTR_LBMI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LBMI field to a new value.
 #define BW_DVFSC_CNTR_LBMI(v)   BF_CS1(DVFSC_CNTR, LBMI, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field DVFEV
+
+/* --- Register HW_DVFSC_CNTR, field DVFEV (RW)
  *
  * Always give a DVFS event.
+ *
+ * Values:
+ * 0 - Do not give an event always.
+ * 1 - Always give event.
  */
 
 #define BP_DVFSC_CNTR_DVFEV      28
@@ -1496,10 +1606,12 @@ typedef union
 #define BF_DVFSC_CNTR_DVFEV(v)   (((v) << 28) & BM_DVFSC_CNTR_DVFEV)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DVFEV field to a new value.
 #define BW_DVFSC_CNTR_DVFEV(v)   BF_CS1(DVFSC_CNTR, DVFEV, v)
 #endif
 
-/* --- Register HW_DVFSC_CNTR, field DIV3CK
+
+/* --- Register HW_DVFSC_CNTR, field DIV3CK (RW)
  *
  * DIV3CK - div_3_clk division ratio inside the DVFSC. According to the
  */
@@ -1513,18 +1625,19 @@ typedef union
 #define BF_DVFSC_CNTR_DIV3CK(v)   (((v) << 29) & BM_DVFSC_CNTR_DIV3CK)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DIV3CK field to a new value.
 #define BW_DVFSC_CNTR_DIV3CK(v)   BF_CS1(DVFSC_CNTR, DIV3CK, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_LTR0_0 - DVFSC Load Tracking Register 0, portion 0
+ * @brief HW_DVFSC_LTR0_0 - DVFSC Load Tracking Register 0, portion 0 (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned LTS0_0 : 4; //!< Load Tracking Sample 0
@@ -1547,18 +1660,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_DVFSC_LTR0_0           (*(volatile hw_dvfsc_ltr0_0_t *) HW_DVFSC_LTR0_0_ADDR)
 #define HW_DVFSC_LTR0_0_RD()      (HW_DVFSC_LTR0_0.U)
-#define HW_DVFSC_LTR0_0_WR(v)     (HW_DVFSC_LTR0_0.U = (v))
-#define HW_DVFSC_LTR0_0_SET(v)    (HW_DVFSC_LTR0_0_WR(HW_DVFSC_LTR0_0_RD() |  (v)))
-#define HW_DVFSC_LTR0_0_CLR(v)    (HW_DVFSC_LTR0_0_WR(HW_DVFSC_LTR0_0_RD() & ~(v)))
-#define HW_DVFSC_LTR0_0_TOG(v)    (HW_DVFSC_LTR0_0_WR(HW_DVFSC_LTR0_0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual DVFSC_LTR0_0 bitfields
  */
 
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_0
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_0 (RO)
  *
  * Load Tracking Sample 0
  */
@@ -1566,16 +1674,7 @@ typedef union
 #define BP_DVFSC_LTR0_0_LTS0_0      0
 #define BM_DVFSC_LTR0_0_LTS0_0      0x0000000f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_0(v)   ((((reg32_t) v) << 0) & BM_DVFSC_LTR0_0_LTS0_0)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_0(v)   (((v) << 0) & BM_DVFSC_LTR0_0_LTS0_0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_0(v)   BF_CS1(DVFSC_LTR0_0, LTS0_0, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_1
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_1 (RO)
  *
  * Load Tracking Sample 1
  */
@@ -1583,16 +1682,7 @@ typedef union
 #define BP_DVFSC_LTR0_0_LTS0_1      4
 #define BM_DVFSC_LTR0_0_LTS0_1      0x000000f0
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_1(v)   ((((reg32_t) v) << 4) & BM_DVFSC_LTR0_0_LTS0_1)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_1(v)   (((v) << 4) & BM_DVFSC_LTR0_0_LTS0_1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_1(v)   BF_CS1(DVFSC_LTR0_0, LTS0_1, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_2
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_2 (RO)
  *
  * Load Tracking Sample 2
  */
@@ -1600,16 +1690,7 @@ typedef union
 #define BP_DVFSC_LTR0_0_LTS0_2      8
 #define BM_DVFSC_LTR0_0_LTS0_2      0x00000f00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_2(v)   ((((reg32_t) v) << 8) & BM_DVFSC_LTR0_0_LTS0_2)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_2(v)   (((v) << 8) & BM_DVFSC_LTR0_0_LTS0_2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_2(v)   BF_CS1(DVFSC_LTR0_0, LTS0_2, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_3
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_3 (RO)
  *
  * Load Tracking Sample 3
  */
@@ -1617,16 +1698,7 @@ typedef union
 #define BP_DVFSC_LTR0_0_LTS0_3      12
 #define BM_DVFSC_LTR0_0_LTS0_3      0x0000f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_3(v)   ((((reg32_t) v) << 12) & BM_DVFSC_LTR0_0_LTS0_3)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_3(v)   (((v) << 12) & BM_DVFSC_LTR0_0_LTS0_3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_3(v)   BF_CS1(DVFSC_LTR0_0, LTS0_3, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_4
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_4 (RO)
  *
  * Load Tracking Sample 4
  */
@@ -1634,16 +1706,7 @@ typedef union
 #define BP_DVFSC_LTR0_0_LTS0_4      16
 #define BM_DVFSC_LTR0_0_LTS0_4      0x000f0000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_4(v)   ((((reg32_t) v) << 16) & BM_DVFSC_LTR0_0_LTS0_4)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_4(v)   (((v) << 16) & BM_DVFSC_LTR0_0_LTS0_4)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_4(v)   BF_CS1(DVFSC_LTR0_0, LTS0_4, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_5
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_5 (RO)
  *
  * Load Tracking Sample 5
  */
@@ -1651,16 +1714,7 @@ typedef union
 #define BP_DVFSC_LTR0_0_LTS0_5      20
 #define BM_DVFSC_LTR0_0_LTS0_5      0x00f00000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_5(v)   ((((reg32_t) v) << 20) & BM_DVFSC_LTR0_0_LTS0_5)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_5(v)   (((v) << 20) & BM_DVFSC_LTR0_0_LTS0_5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_5(v)   BF_CS1(DVFSC_LTR0_0, LTS0_5, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_6
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_6 (RO)
  *
  * Load Tracking Sample 6
  */
@@ -1668,16 +1722,7 @@ typedef union
 #define BP_DVFSC_LTR0_0_LTS0_6      24
 #define BM_DVFSC_LTR0_0_LTS0_6      0x0f000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_6(v)   ((((reg32_t) v) << 24) & BM_DVFSC_LTR0_0_LTS0_6)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_6(v)   (((v) << 24) & BM_DVFSC_LTR0_0_LTS0_6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_6(v)   BF_CS1(DVFSC_LTR0_0, LTS0_6, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_0, field LTS0_7
+/* --- Register HW_DVFSC_LTR0_0, field LTS0_7 (RO)
  *
  * Load Tracking Sample 7
  */
@@ -1686,23 +1731,14 @@ typedef union
 #define BM_DVFSC_LTR0_0_LTS0_7      0xf0000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_0_LTS0_7(v)   ((((reg32_t) v) << 28) & BM_DVFSC_LTR0_0_LTS0_7)
-#else
-#define BF_DVFSC_LTR0_0_LTS0_7(v)   (((v) << 28) & BM_DVFSC_LTR0_0_LTS0_7)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_0_LTS0_7(v)   BF_CS1(DVFSC_LTR0_0, LTS0_7, v)
-#endif
-
 /*!
- * @brief HW_DVFSC_LTR0_1 - DVFSC Load Tracking Register 0, portion 1
+ * @brief HW_DVFSC_LTR0_1 - DVFSC Load Tracking Register 0, portion 1 (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned LTS0_8 : 4; //!< Load Tracking Sample 8
@@ -1725,18 +1761,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_DVFSC_LTR0_1           (*(volatile hw_dvfsc_ltr0_1_t *) HW_DVFSC_LTR0_1_ADDR)
 #define HW_DVFSC_LTR0_1_RD()      (HW_DVFSC_LTR0_1.U)
-#define HW_DVFSC_LTR0_1_WR(v)     (HW_DVFSC_LTR0_1.U = (v))
-#define HW_DVFSC_LTR0_1_SET(v)    (HW_DVFSC_LTR0_1_WR(HW_DVFSC_LTR0_1_RD() |  (v)))
-#define HW_DVFSC_LTR0_1_CLR(v)    (HW_DVFSC_LTR0_1_WR(HW_DVFSC_LTR0_1_RD() & ~(v)))
-#define HW_DVFSC_LTR0_1_TOG(v)    (HW_DVFSC_LTR0_1_WR(HW_DVFSC_LTR0_1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual DVFSC_LTR0_1 bitfields
  */
 
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_8
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_8 (RO)
  *
  * Load Tracking Sample 8
  */
@@ -1744,16 +1775,7 @@ typedef union
 #define BP_DVFSC_LTR0_1_LTS0_8      0
 #define BM_DVFSC_LTR0_1_LTS0_8      0x0000000f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_8(v)   ((((reg32_t) v) << 0) & BM_DVFSC_LTR0_1_LTS0_8)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_8(v)   (((v) << 0) & BM_DVFSC_LTR0_1_LTS0_8)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_8(v)   BF_CS1(DVFSC_LTR0_1, LTS0_8, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_9
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_9 (RO)
  *
  * Load Tracking Sample 9
  */
@@ -1761,16 +1783,7 @@ typedef union
 #define BP_DVFSC_LTR0_1_LTS0_9      4
 #define BM_DVFSC_LTR0_1_LTS0_9      0x000000f0
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_9(v)   ((((reg32_t) v) << 4) & BM_DVFSC_LTR0_1_LTS0_9)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_9(v)   (((v) << 4) & BM_DVFSC_LTR0_1_LTS0_9)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_9(v)   BF_CS1(DVFSC_LTR0_1, LTS0_9, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_10
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_10 (RO)
  *
  * Load Tracking Sample 10
  */
@@ -1778,16 +1791,7 @@ typedef union
 #define BP_DVFSC_LTR0_1_LTS0_10      8
 #define BM_DVFSC_LTR0_1_LTS0_10      0x00000f00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_10(v)   ((((reg32_t) v) << 8) & BM_DVFSC_LTR0_1_LTS0_10)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_10(v)   (((v) << 8) & BM_DVFSC_LTR0_1_LTS0_10)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_10(v)   BF_CS1(DVFSC_LTR0_1, LTS0_10, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_11
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_11 (RO)
  *
  * Load Tracking Sample 11
  */
@@ -1795,16 +1799,7 @@ typedef union
 #define BP_DVFSC_LTR0_1_LTS0_11      12
 #define BM_DVFSC_LTR0_1_LTS0_11      0x0000f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_11(v)   ((((reg32_t) v) << 12) & BM_DVFSC_LTR0_1_LTS0_11)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_11(v)   (((v) << 12) & BM_DVFSC_LTR0_1_LTS0_11)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_11(v)   BF_CS1(DVFSC_LTR0_1, LTS0_11, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_12
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_12 (RO)
  *
  * Load Tracking Sample 12
  */
@@ -1812,16 +1807,7 @@ typedef union
 #define BP_DVFSC_LTR0_1_LTS0_12      16
 #define BM_DVFSC_LTR0_1_LTS0_12      0x000f0000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_12(v)   ((((reg32_t) v) << 16) & BM_DVFSC_LTR0_1_LTS0_12)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_12(v)   (((v) << 16) & BM_DVFSC_LTR0_1_LTS0_12)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_12(v)   BF_CS1(DVFSC_LTR0_1, LTS0_12, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_13
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_13 (RO)
  *
  * Load Tracking Sample 13
  */
@@ -1829,16 +1815,7 @@ typedef union
 #define BP_DVFSC_LTR0_1_LTS0_13      20
 #define BM_DVFSC_LTR0_1_LTS0_13      0x00f00000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_13(v)   ((((reg32_t) v) << 20) & BM_DVFSC_LTR0_1_LTS0_13)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_13(v)   (((v) << 20) & BM_DVFSC_LTR0_1_LTS0_13)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_13(v)   BF_CS1(DVFSC_LTR0_1, LTS0_13, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_14
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_14 (RO)
  *
  * Load Tracking Sample 14
  */
@@ -1846,16 +1823,7 @@ typedef union
 #define BP_DVFSC_LTR0_1_LTS0_14      24
 #define BM_DVFSC_LTR0_1_LTS0_14      0x0f000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_14(v)   ((((reg32_t) v) << 24) & BM_DVFSC_LTR0_1_LTS0_14)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_14(v)   (((v) << 24) & BM_DVFSC_LTR0_1_LTS0_14)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_14(v)   BF_CS1(DVFSC_LTR0_1, LTS0_14, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR0_1, field LTS0_15
+/* --- Register HW_DVFSC_LTR0_1, field LTS0_15 (RO)
  *
  * Load Tracking Sample 15
  */
@@ -1864,23 +1832,14 @@ typedef union
 #define BM_DVFSC_LTR0_1_LTS0_15      0xf0000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR0_1_LTS0_15(v)   ((((reg32_t) v) << 28) & BM_DVFSC_LTR0_1_LTS0_15)
-#else
-#define BF_DVFSC_LTR0_1_LTS0_15(v)   (((v) << 28) & BM_DVFSC_LTR0_1_LTS0_15)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR0_1_LTS0_15(v)   BF_CS1(DVFSC_LTR0_1, LTS0_15, v)
-#endif
-
 /*!
- * @brief HW_DVFSC_LTR1_0 - DVFSC Load Tracking Register 1, portion 0
+ * @brief HW_DVFSC_LTR1_0 - DVFSC Load Tracking Register 1, portion 0 (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned LTS1_0 : 4; //!< Load Tracking Sample 0
@@ -1903,18 +1862,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_DVFSC_LTR1_0           (*(volatile hw_dvfsc_ltr1_0_t *) HW_DVFSC_LTR1_0_ADDR)
 #define HW_DVFSC_LTR1_0_RD()      (HW_DVFSC_LTR1_0.U)
-#define HW_DVFSC_LTR1_0_WR(v)     (HW_DVFSC_LTR1_0.U = (v))
-#define HW_DVFSC_LTR1_0_SET(v)    (HW_DVFSC_LTR1_0_WR(HW_DVFSC_LTR1_0_RD() |  (v)))
-#define HW_DVFSC_LTR1_0_CLR(v)    (HW_DVFSC_LTR1_0_WR(HW_DVFSC_LTR1_0_RD() & ~(v)))
-#define HW_DVFSC_LTR1_0_TOG(v)    (HW_DVFSC_LTR1_0_WR(HW_DVFSC_LTR1_0_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual DVFSC_LTR1_0 bitfields
  */
 
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_0
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_0 (RO)
  *
  * Load Tracking Sample 0
  */
@@ -1922,16 +1876,7 @@ typedef union
 #define BP_DVFSC_LTR1_0_LTS1_0      0
 #define BM_DVFSC_LTR1_0_LTS1_0      0x0000000f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_0(v)   ((((reg32_t) v) << 0) & BM_DVFSC_LTR1_0_LTS1_0)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_0(v)   (((v) << 0) & BM_DVFSC_LTR1_0_LTS1_0)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_0(v)   BF_CS1(DVFSC_LTR1_0, LTS1_0, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_1
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_1 (RO)
  *
  * Load Tracking Sample 1
  */
@@ -1939,16 +1884,7 @@ typedef union
 #define BP_DVFSC_LTR1_0_LTS1_1      4
 #define BM_DVFSC_LTR1_0_LTS1_1      0x000000f0
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_1(v)   ((((reg32_t) v) << 4) & BM_DVFSC_LTR1_0_LTS1_1)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_1(v)   (((v) << 4) & BM_DVFSC_LTR1_0_LTS1_1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_1(v)   BF_CS1(DVFSC_LTR1_0, LTS1_1, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_2
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_2 (RO)
  *
  * Load Tracking Sample 2
  */
@@ -1956,16 +1892,7 @@ typedef union
 #define BP_DVFSC_LTR1_0_LTS1_2      8
 #define BM_DVFSC_LTR1_0_LTS1_2      0x00000f00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_2(v)   ((((reg32_t) v) << 8) & BM_DVFSC_LTR1_0_LTS1_2)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_2(v)   (((v) << 8) & BM_DVFSC_LTR1_0_LTS1_2)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_2(v)   BF_CS1(DVFSC_LTR1_0, LTS1_2, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_3
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_3 (RO)
  *
  * Load Tracking Sample 3
  */
@@ -1973,16 +1900,7 @@ typedef union
 #define BP_DVFSC_LTR1_0_LTS1_3      12
 #define BM_DVFSC_LTR1_0_LTS1_3      0x0000f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_3(v)   ((((reg32_t) v) << 12) & BM_DVFSC_LTR1_0_LTS1_3)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_3(v)   (((v) << 12) & BM_DVFSC_LTR1_0_LTS1_3)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_3(v)   BF_CS1(DVFSC_LTR1_0, LTS1_3, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_4
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_4 (RO)
  *
  * Load Tracking Sample 4
  */
@@ -1990,16 +1908,7 @@ typedef union
 #define BP_DVFSC_LTR1_0_LTS1_4      16
 #define BM_DVFSC_LTR1_0_LTS1_4      0x000f0000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_4(v)   ((((reg32_t) v) << 16) & BM_DVFSC_LTR1_0_LTS1_4)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_4(v)   (((v) << 16) & BM_DVFSC_LTR1_0_LTS1_4)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_4(v)   BF_CS1(DVFSC_LTR1_0, LTS1_4, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_5
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_5 (RO)
  *
  * Load Tracking Sample 5
  */
@@ -2007,16 +1916,7 @@ typedef union
 #define BP_DVFSC_LTR1_0_LTS1_5      20
 #define BM_DVFSC_LTR1_0_LTS1_5      0x00f00000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_5(v)   ((((reg32_t) v) << 20) & BM_DVFSC_LTR1_0_LTS1_5)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_5(v)   (((v) << 20) & BM_DVFSC_LTR1_0_LTS1_5)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_5(v)   BF_CS1(DVFSC_LTR1_0, LTS1_5, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_6
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_6 (RO)
  *
  * Load Tracking Sample 6
  */
@@ -2024,16 +1924,7 @@ typedef union
 #define BP_DVFSC_LTR1_0_LTS1_6      24
 #define BM_DVFSC_LTR1_0_LTS1_6      0x0f000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_6(v)   ((((reg32_t) v) << 24) & BM_DVFSC_LTR1_0_LTS1_6)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_6(v)   (((v) << 24) & BM_DVFSC_LTR1_0_LTS1_6)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_6(v)   BF_CS1(DVFSC_LTR1_0, LTS1_6, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_0, field LTS1_7
+/* --- Register HW_DVFSC_LTR1_0, field LTS1_7 (RO)
  *
  * Load Tracking Sample 7
  */
@@ -2042,23 +1933,14 @@ typedef union
 #define BM_DVFSC_LTR1_0_LTS1_7      0xf0000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_0_LTS1_7(v)   ((((reg32_t) v) << 28) & BM_DVFSC_LTR1_0_LTS1_7)
-#else
-#define BF_DVFSC_LTR1_0_LTS1_7(v)   (((v) << 28) & BM_DVFSC_LTR1_0_LTS1_7)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_0_LTS1_7(v)   BF_CS1(DVFSC_LTR1_0, LTS1_7, v)
-#endif
-
 /*!
- * @brief HW_DVFSC_LTR1_1 - DVFS Load Tracking Register 3, portion 1
+ * @brief HW_DVFSC_LTR1_1 - DVFS Load Tracking Register 3, portion 1 (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned LTS1_8 : 4; //!< Load Tracking Sample 8
@@ -2081,18 +1963,13 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_DVFSC_LTR1_1           (*(volatile hw_dvfsc_ltr1_1_t *) HW_DVFSC_LTR1_1_ADDR)
 #define HW_DVFSC_LTR1_1_RD()      (HW_DVFSC_LTR1_1.U)
-#define HW_DVFSC_LTR1_1_WR(v)     (HW_DVFSC_LTR1_1.U = (v))
-#define HW_DVFSC_LTR1_1_SET(v)    (HW_DVFSC_LTR1_1_WR(HW_DVFSC_LTR1_1_RD() |  (v)))
-#define HW_DVFSC_LTR1_1_CLR(v)    (HW_DVFSC_LTR1_1_WR(HW_DVFSC_LTR1_1_RD() & ~(v)))
-#define HW_DVFSC_LTR1_1_TOG(v)    (HW_DVFSC_LTR1_1_WR(HW_DVFSC_LTR1_1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual DVFSC_LTR1_1 bitfields
  */
 
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_8
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_8 (RO)
  *
  * Load Tracking Sample 8
  */
@@ -2100,16 +1977,7 @@ typedef union
 #define BP_DVFSC_LTR1_1_LTS1_8      0
 #define BM_DVFSC_LTR1_1_LTS1_8      0x0000000f
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_8(v)   ((((reg32_t) v) << 0) & BM_DVFSC_LTR1_1_LTS1_8)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_8(v)   (((v) << 0) & BM_DVFSC_LTR1_1_LTS1_8)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_8(v)   BF_CS1(DVFSC_LTR1_1, LTS1_8, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_9
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_9 (RO)
  *
  * Load Tracking Sample 9
  */
@@ -2117,16 +1985,7 @@ typedef union
 #define BP_DVFSC_LTR1_1_LTS1_9      4
 #define BM_DVFSC_LTR1_1_LTS1_9      0x000000f0
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_9(v)   ((((reg32_t) v) << 4) & BM_DVFSC_LTR1_1_LTS1_9)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_9(v)   (((v) << 4) & BM_DVFSC_LTR1_1_LTS1_9)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_9(v)   BF_CS1(DVFSC_LTR1_1, LTS1_9, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_10
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_10 (RO)
  *
  * Load Tracking Sample 10
  */
@@ -2134,16 +1993,7 @@ typedef union
 #define BP_DVFSC_LTR1_1_LTS1_10      8
 #define BM_DVFSC_LTR1_1_LTS1_10      0x00000f00
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_10(v)   ((((reg32_t) v) << 8) & BM_DVFSC_LTR1_1_LTS1_10)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_10(v)   (((v) << 8) & BM_DVFSC_LTR1_1_LTS1_10)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_10(v)   BF_CS1(DVFSC_LTR1_1, LTS1_10, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_11
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_11 (RO)
  *
  * Load Tracking Sample 11
  */
@@ -2151,16 +2001,7 @@ typedef union
 #define BP_DVFSC_LTR1_1_LTS1_11      12
 #define BM_DVFSC_LTR1_1_LTS1_11      0x0000f000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_11(v)   ((((reg32_t) v) << 12) & BM_DVFSC_LTR1_1_LTS1_11)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_11(v)   (((v) << 12) & BM_DVFSC_LTR1_1_LTS1_11)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_11(v)   BF_CS1(DVFSC_LTR1_1, LTS1_11, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_12
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_12 (RO)
  *
  * Load Tracking Sample 12
  */
@@ -2168,16 +2009,7 @@ typedef union
 #define BP_DVFSC_LTR1_1_LTS1_12      16
 #define BM_DVFSC_LTR1_1_LTS1_12      0x000f0000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_12(v)   ((((reg32_t) v) << 16) & BM_DVFSC_LTR1_1_LTS1_12)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_12(v)   (((v) << 16) & BM_DVFSC_LTR1_1_LTS1_12)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_12(v)   BF_CS1(DVFSC_LTR1_1, LTS1_12, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_13
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_13 (RO)
  *
  * Load Tracking Sample 13
  */
@@ -2185,16 +2017,7 @@ typedef union
 #define BP_DVFSC_LTR1_1_LTS1_13      20
 #define BM_DVFSC_LTR1_1_LTS1_13      0x00f00000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_13(v)   ((((reg32_t) v) << 20) & BM_DVFSC_LTR1_1_LTS1_13)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_13(v)   (((v) << 20) & BM_DVFSC_LTR1_1_LTS1_13)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_13(v)   BF_CS1(DVFSC_LTR1_1, LTS1_13, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_14
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_14 (RO)
  *
  * Load Tracking Sample 14
  */
@@ -2202,16 +2025,7 @@ typedef union
 #define BP_DVFSC_LTR1_1_LTS1_14      24
 #define BM_DVFSC_LTR1_1_LTS1_14      0x0f000000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_14(v)   ((((reg32_t) v) << 24) & BM_DVFSC_LTR1_1_LTS1_14)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_14(v)   (((v) << 24) & BM_DVFSC_LTR1_1_LTS1_14)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_14(v)   BF_CS1(DVFSC_LTR1_1, LTS1_14, v)
-#endif
-
-/* --- Register HW_DVFSC_LTR1_1, field LTS1_15
+/* --- Register HW_DVFSC_LTR1_1, field LTS1_15 (RO)
  *
  * Load Tracking Sample 15
  */
@@ -2220,26 +2034,17 @@ typedef union
 #define BM_DVFSC_LTR1_1_LTS1_15      0xf0000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_LTR1_1_LTS1_15(v)   ((((reg32_t) v) << 28) & BM_DVFSC_LTR1_1_LTS1_15)
-#else
-#define BF_DVFSC_LTR1_1_LTS1_15(v)   (((v) << 28) & BM_DVFSC_LTR1_1_LTS1_15)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_LTR1_1_LTS1_15(v)   BF_CS1(DVFSC_LTR1_1, LTS1_15, v)
-#endif
-
 /*!
- * @brief HW_DVFSC_PT0 - DVFSC pattern 0 length
+ * @brief HW_DVFSC_PT0 - DVFSC pattern 0 length (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned FPTN0 : 17; //!< FPTN0 - Frequency pattern 0 counter  During period of this counter the frequency will be reduced from the EMA-detected level.
+        unsigned FPTN0 : 17; //!< FPTN0 - Frequency pattern 0 counter During period of this counter the frequency will be reduced from the EMA-detected level.
         unsigned PT0A : 1; //!< PT0A - Pattern 0 currently active (read-only)
         unsigned RESERVED0 : 14; //!< Reserved
     } B;
@@ -2260,15 +2065,14 @@ typedef union
 #define HW_DVFSC_PT0_TOG(v)    (HW_DVFSC_PT0_WR(HW_DVFSC_PT0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_PT0 bitfields
  */
 
-/* --- Register HW_DVFSC_PT0, field FPTN0
+/* --- Register HW_DVFSC_PT0, field FPTN0 (RW)
  *
- * FPTN0 - Frequency pattern 0 counter  During period of this counter the frequency will be reduced
- * from the                                 EMA-detected level.
+ * FPTN0 - Frequency pattern 0 counter During period of this counter the frequency will be reduced
+ * from the EMA-detected level.
  */
 
 #define BP_DVFSC_PT0_FPTN0      0
@@ -2280,38 +2084,35 @@ typedef union
 #define BF_DVFSC_PT0_FPTN0(v)   (((v) << 0) & BM_DVFSC_PT0_FPTN0)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FPTN0 field to a new value.
 #define BW_DVFSC_PT0_FPTN0(v)   BF_CS1(DVFSC_PT0, FPTN0, v)
 #endif
 
-/* --- Register HW_DVFSC_PT0, field PT0A
+/* --- Register HW_DVFSC_PT0, field PT0A (RO)
  *
  * PT0A - Pattern 0 currently active (read-only)
+ *
+ * Values:
+ * 1 - active
+ * 0 - non-active
  */
 
 #define BP_DVFSC_PT0_PT0A      17
 #define BM_DVFSC_PT0_PT0A      0x00020000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_PT0_PT0A(v)   ((((reg32_t) v) << 17) & BM_DVFSC_PT0_PT0A)
-#else
-#define BF_DVFSC_PT0_PT0A(v)   (((v) << 17) & BM_DVFSC_PT0_PT0A)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_PT0_PT0A(v)   BF_CS1(DVFSC_PT0, PT0A, v)
-#endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_PT1 - DVFSC pattern 1 length
+ * @brief HW_DVFSC_PT1 - DVFSC pattern 1 length (RO)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned FPTN1 : 17; //!< FPTN1 - Frequency pattern 1 counter  During period of this counter the frequency will be set to the EMA-detected level.
+        unsigned FPTN1 : 17; //!< FPTN1 - Frequency pattern 1 counter During period of this counter the frequency will be set to the EMA-detected level.
         unsigned PT1A : 1; //!< PT1A - Pattern 1 currently active (read-only)
         unsigned RESERVED0 : 14; //!< Reserved
     } B;
@@ -2326,67 +2127,49 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_DVFSC_PT1           (*(volatile hw_dvfsc_pt1_t *) HW_DVFSC_PT1_ADDR)
 #define HW_DVFSC_PT1_RD()      (HW_DVFSC_PT1.U)
-#define HW_DVFSC_PT1_WR(v)     (HW_DVFSC_PT1.U = (v))
-#define HW_DVFSC_PT1_SET(v)    (HW_DVFSC_PT1_WR(HW_DVFSC_PT1_RD() |  (v)))
-#define HW_DVFSC_PT1_CLR(v)    (HW_DVFSC_PT1_WR(HW_DVFSC_PT1_RD() & ~(v)))
-#define HW_DVFSC_PT1_TOG(v)    (HW_DVFSC_PT1_WR(HW_DVFSC_PT1_RD() ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual DVFSC_PT1 bitfields
  */
 
-/* --- Register HW_DVFSC_PT1, field FPTN1
+/* --- Register HW_DVFSC_PT1, field FPTN1 (RW)
  *
- * FPTN1 - Frequency pattern 1 counter  During period of this counter the frequency will be set to
- * the                                 EMA-detected level.
+ * FPTN1 - Frequency pattern 1 counter During period of this counter the frequency will be set to
+ * the EMA-detected level.
  */
 
 #define BP_DVFSC_PT1_FPTN1      0
 #define BM_DVFSC_PT1_FPTN1      0x0001ffff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_PT1_FPTN1(v)   ((((reg32_t) v) << 0) & BM_DVFSC_PT1_FPTN1)
-#else
-#define BF_DVFSC_PT1_FPTN1(v)   (((v) << 0) & BM_DVFSC_PT1_FPTN1)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_PT1_FPTN1(v)   BF_CS1(DVFSC_PT1, FPTN1, v)
-#endif
-
-/* --- Register HW_DVFSC_PT1, field PT1A
+/* --- Register HW_DVFSC_PT1, field PT1A (RW)
  *
  * PT1A - Pattern 1 currently active (read-only)
+ *
+ * Values:
+ * 1 - active
+ * 0 - non-active
  */
 
 #define BP_DVFSC_PT1_PT1A      17
 #define BM_DVFSC_PT1_PT1A      0x00020000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_PT1_PT1A(v)   ((((reg32_t) v) << 17) & BM_DVFSC_PT1_PT1A)
-#else
-#define BF_DVFSC_PT1_PT1A(v)   (((v) << 17) & BM_DVFSC_PT1_PT1A)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_PT1_PT1A(v)   BF_CS1(DVFSC_PT1, PT1A, v)
-#endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_PT2 - DVFSC pattern 2 length
+ * @brief HW_DVFSC_PT2 - DVFSC pattern 2 length (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned FPTN2 : 17; //!< FPTN2 - Frequency pattern 2 counter  During period of this counter the frequency will be increased to higher, than detected by the EMA-detected level.
+        unsigned FPTN2 : 17; //!< FPTN2 - Frequency pattern 2 counter During period of this counter the frequency will be increased to higher, than detected by the EMA-detected level.
         unsigned PT2A : 1; //!< PT2A - Pattern 2 currently active (read-only)
         unsigned RESERVED0 : 8; //!< Reserved
-        unsigned P2THR : 6; //!< P2THR - Pattern 2 Threshold  Threshold of current DVFS load (after EMA), for generating interrupts with PFUS indicators 110, 111. If the current performance is greater than the P2THR value, the interrupts will be generated. Otherwise, pattern delay will be counted, but without interrupt generation.
+        unsigned P2THR : 6; //!< P2THR - Pattern 2 Threshold Threshold of current DVFS load (after EMA), for generating interrupts with PFUS indicators 110, 111. If the current performance is greater than the P2THR value, the interrupts will be generated. Otherwise, pattern delay will be counted, but without interrupt generation.
     } B;
 } hw_dvfsc_pt2_t;
 #endif
@@ -2405,15 +2188,14 @@ typedef union
 #define HW_DVFSC_PT2_TOG(v)    (HW_DVFSC_PT2_WR(HW_DVFSC_PT2_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_PT2 bitfields
  */
 
-/* --- Register HW_DVFSC_PT2, field FPTN2
+/* --- Register HW_DVFSC_PT2, field FPTN2 (RW)
  *
- * FPTN2 - Frequency pattern 2 counter  During period of this counter the frequency will be
- * increased to                                 higher, than detected by the EMA-detected level.
+ * FPTN2 - Frequency pattern 2 counter During period of this counter the frequency will be increased
+ * to higher, than detected by the EMA-detected level.
  */
 
 #define BP_DVFSC_PT2_FPTN2      0
@@ -2425,33 +2207,29 @@ typedef union
 #define BF_DVFSC_PT2_FPTN2(v)   (((v) << 0) & BM_DVFSC_PT2_FPTN2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FPTN2 field to a new value.
 #define BW_DVFSC_PT2_FPTN2(v)   BF_CS1(DVFSC_PT2, FPTN2, v)
 #endif
 
-/* --- Register HW_DVFSC_PT2, field PT2A
+/* --- Register HW_DVFSC_PT2, field PT2A (RO)
  *
  * PT2A - Pattern 2 currently active (read-only)
+ *
+ * Values:
+ * 1 - active
+ * 0 - non-active
  */
 
 #define BP_DVFSC_PT2_PT2A      17
 #define BM_DVFSC_PT2_PT2A      0x00020000
 
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_PT2_PT2A(v)   ((((reg32_t) v) << 17) & BM_DVFSC_PT2_PT2A)
-#else
-#define BF_DVFSC_PT2_PT2A(v)   (((v) << 17) & BM_DVFSC_PT2_PT2A)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_PT2_PT2A(v)   BF_CS1(DVFSC_PT2, PT2A, v)
-#endif
 
-/* --- Register HW_DVFSC_PT2, field P2THR
+/* --- Register HW_DVFSC_PT2, field P2THR (RW)
  *
- * P2THR - Pattern 2 Threshold  Threshold of current DVFS load (after EMA), for generating
- * interrupts                                 with PFUS indicators 110, 111. If the current
- * performance is greater                                 than the P2THR value, the interrupts will
- * be generated. Otherwise,                                 pattern delay will be counted, but
- * without interrupt generation.
+ * P2THR - Pattern 2 Threshold Threshold of current DVFS load (after EMA), for generating interrupts
+ * with PFUS indicators 110, 111. If the current performance is greater than the P2THR value, the
+ * interrupts will be generated. Otherwise, pattern delay will be counted, but without interrupt
+ * generation.
  */
 
 #define BP_DVFSC_PT2_P2THR      26
@@ -2463,21 +2241,22 @@ typedef union
 #define BF_DVFSC_PT2_P2THR(v)   (((v) << 26) & BM_DVFSC_PT2_P2THR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the P2THR field to a new value.
 #define BW_DVFSC_PT2_P2THR(v)   BF_CS1(DVFSC_PT2, P2THR, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_DVFSC_PT3 - DVFSC pattern 3 length
+ * @brief HW_DVFSC_PT3 - DVFSC pattern 3 length (RW)
  *
 
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
-        unsigned FPTN3 : 17; //!< FPTN3 - Frequency pattern 3 counter  During period of this counter the frequency will be set to the EMA-detected level.
+        unsigned FPTN3 : 17; //!< FPTN3 - Frequency pattern 3 counter During period of this counter the frequency will be set to the EMA-detected level.
         unsigned PT3A : 1; //!< PT3A - Pattern 3 currently active (read-only)
         unsigned RESERVED0 : 15; //!< Reserved
     } B;
@@ -2498,15 +2277,14 @@ typedef union
 #define HW_DVFSC_PT3_TOG(v)    (HW_DVFSC_PT3_WR(HW_DVFSC_PT3_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual DVFSC_PT3 bitfields
  */
 
-/* --- Register HW_DVFSC_PT3, field FPTN3
+/* --- Register HW_DVFSC_PT3, field FPTN3 (RW)
  *
- * FPTN3 - Frequency pattern 3 counter  During period of this counter the frequency will be set to
- * the                                 EMA-detected level.
+ * FPTN3 - Frequency pattern 3 counter During period of this counter the frequency will be set to
+ * the EMA-detected level.
  */
 
 #define BP_DVFSC_PT3_FPTN3      0
@@ -2518,25 +2296,21 @@ typedef union
 #define BF_DVFSC_PT3_FPTN3(v)   (((v) << 0) & BM_DVFSC_PT3_FPTN3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FPTN3 field to a new value.
 #define BW_DVFSC_PT3_FPTN3(v)   BF_CS1(DVFSC_PT3, FPTN3, v)
 #endif
 
-/* --- Register HW_DVFSC_PT3, field PT3A
+/* --- Register HW_DVFSC_PT3, field PT3A (RO)
  *
  * PT3A - Pattern 3 currently active (read-only)
+ *
+ * Values:
+ * 1 - active
+ * 0 - non-active
  */
 
 #define BP_DVFSC_PT3_PT3A      17
 #define BM_DVFSC_PT3_PT3A      0x00020000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_DVFSC_PT3_PT3A(v)   ((((reg32_t) v) << 17) & BM_DVFSC_PT3_PT3A)
-#else
-#define BF_DVFSC_PT3_PT3A(v)   (((v) << 17) & BM_DVFSC_PT3_PT3A)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_DVFSC_PT3_PT3A(v)   BF_CS1(DVFSC_PT3, PT3A, v)
-#endif
 
 
 

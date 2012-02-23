@@ -10,20 +10,30 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_CSI2IPU_SW_RST - CSI 2 IPU Gasket Software Reset
+ *
+ * hw_csi2ipu_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_CSI2IPU_BASE
-#define REGS_CSI2IPU_BASE (REGS_BASE + 0x021dc000)
+#define REGS_CSI2IPU_BASE (0x021dc000) //!< Base address for CSI2IPU.
 #endif
+//@}
 
-
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_CSI2IPU_SW_RST - CSI 2 IPU Gasket Software Reset
+ * @brief HW_CSI2IPU_SW_RST - CSI 2 IPU Gasket Software Reset (RW)
  *
  * This register describes the IPU interface signals.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned SW_RST : 1; //!< Software Reset
@@ -49,14 +59,17 @@ typedef union
 #define HW_CSI2IPU_SW_RST_TOG(v)    (HW_CSI2IPU_SW_RST_WR(HW_CSI2IPU_SW_RST_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual CSI2IPU_SW_RST bitfields
  */
 
-/* --- Register HW_CSI2IPU_SW_RST, field SW_RST
+/* --- Register HW_CSI2IPU_SW_RST, field SW_RST (RW)
  *
  * Software Reset
+ *
+ * Values:
+ * 0 - Software Reset Disable
+ * 1 - Software Reset Enable
  */
 
 #define BP_CSI2IPU_SW_RST_SW_RST      0
@@ -68,12 +81,18 @@ typedef union
 #define BF_CSI2IPU_SW_RST_SW_RST(v)   (((v) << 0) & BM_CSI2IPU_SW_RST_SW_RST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SW_RST field to a new value.
 #define BW_CSI2IPU_SW_RST_SW_RST(v)   BF_CS1(CSI2IPU_SW_RST, SW_RST, v)
 #endif
 
-/* --- Register HW_CSI2IPU_SW_RST, field CLK_SEL
+
+/* --- Register HW_CSI2IPU_SW_RST, field CLK_SEL (RW)
  *
  * Clock mode selection
+ *
+ * Values:
+ * 0 - Gated Mode
+ * 1 - Non-Gated Mode
  */
 
 #define BP_CSI2IPU_SW_RST_CLK_SEL      1
@@ -85,12 +104,18 @@ typedef union
 #define BF_CSI2IPU_SW_RST_CLK_SEL(v)   (((v) << 1) & BM_CSI2IPU_SW_RST_CLK_SEL)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLK_SEL field to a new value.
 #define BW_CSI2IPU_SW_RST_CLK_SEL(v)   BF_CS1(CSI2IPU_SW_RST, CLK_SEL, v)
 #endif
 
-/* --- Register HW_CSI2IPU_SW_RST, field YUV422_8BIT_FM
+
+/* --- Register HW_CSI2IPU_SW_RST, field YUV422_8BIT_FM (RW)
  *
  * YUV422 8-bit mode selection
+ *
+ * Values:
+ * 0 - YUYV
+ * 1 - UYVY
  */
 
 #define BP_CSI2IPU_SW_RST_YUV422_8BIT_FM      2
@@ -102,12 +127,18 @@ typedef union
 #define BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   (((v) << 2) & BM_CSI2IPU_SW_RST_YUV422_8BIT_FM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the YUV422_8BIT_FM field to a new value.
 #define BW_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   BF_CS1(CSI2IPU_SW_RST, YUV422_8BIT_FM, v)
 #endif
 
-/* --- Register HW_CSI2IPU_SW_RST, field RGB444_FM
+
+/* --- Register HW_CSI2IPU_SW_RST, field RGB444_FM (RW)
  *
  * Rgb888 mode selection
+ *
+ * Values:
+ * 0 - {4’h0,r4b4g4}
+ * 1 - {r4,1’b0,g4,2’b00,b4,1’b0}
  */
 
 #define BP_CSI2IPU_SW_RST_RGB444_FM      3
@@ -119,6 +150,7 @@ typedef union
 #define BF_CSI2IPU_SW_RST_RGB444_FM(v)   (((v) << 3) & BM_CSI2IPU_SW_RST_RGB444_FM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RGB444_FM field to a new value.
 #define BW_CSI2IPU_SW_RST_RGB444_FM(v)   BF_CS1(CSI2IPU_SW_RST, RGB444_FM, v)
 #endif
 

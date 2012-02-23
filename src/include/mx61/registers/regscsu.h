@@ -10,40 +10,54 @@
 
 #include "regs.h"
 
-#ifndef REGS_CSU_BASE
-#define REGS_CSU_BASE (REGS_BASE + 0x021c0000)
-#endif
-
-
-/*!
- * @brief HW_CSU_CSL - Config security level register
+/*
+ * Registers defined in this header file.
  *
- * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each
- * CSU_CSL is comprised of two fields, each field used to determine the read and write access
- * permissions for                             a slave peripheral. These 8-bit fields for the first
- * and second slaves are in the locations b23-b16 and bits b7-b0, respectively.  Permission Access
- * Table shows security levels and csu_sec_level signal levels corresponding to
- * different values of the 8-bit CSU_CSL field for a given slave.  Memory space has been reserved
- * for 128 slaves                             since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two                             slaves. However, actual number of
- * registers inferred in a design                             would depend on the following
- * Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value - 128  Possible Values -
- * 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves are grouped together in
- * USB, Timers, PowerUp and Audio groups.  The following table shows allocation of CSL register per
- * slave or group of slave modules.   CSL Slave Modules Mapping         Slave Module
- * Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]
- * Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1
- * EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group
- * GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5
- * and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]
- * WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group
- * IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]
- * SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for i.MX6SDL only
- * CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8
- * [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]
- * USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2
- * CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port
- * IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * - HW_CSU_CSL - Config security level register
+ * - HW_CSU_HP0 - HP0 register
+ * - HW_CSU_HP1 - HP1 register
+ * - HW_CSU_SA - Secure access register
+ * - HW_CSU_HPCONTROL0 - HPCONTROL0 register
+ * - HW_CSU_HPCONTROL1 - HPCONTROL1 register
+ *
+ * hw_csu_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
+#ifndef REGS_CSU_BASE
+#define REGS_CSU_BASE (0x021c0000) //!< Base address for CSU.
+#endif
+//@}
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL - Config security level register (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -64,10 +78,9 @@
  * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
  * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
@@ -108,14 +121,17 @@ typedef union
 #define HW_CSU_CSL_TOG(v)    (HW_CSU_CSL_WR(HW_CSU_CSL_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual CSU_CSL bitfields
  */
 
-/* --- Register HW_CSU_CSL, field SUR_S2
+/* --- Register HW_CSU_CSL, field SUR_S2 (RW)
  *
  * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
  */
 
 #define BP_CSU_CSL_SUR_S2      0
@@ -127,12 +143,18 @@ typedef union
 #define BF_CSU_CSL_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL_SUR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL_SUR_S2(v)   BF_CS1(CSU_CSL, SUR_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field SSR_S2
+
+/* --- Register HW_CSU_CSL, field SSR_S2 (RW)
  *
  * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
  */
 
 #define BP_CSU_CSL_SSR_S2      1
@@ -144,12 +166,18 @@ typedef union
 #define BF_CSU_CSL_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL_SSR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL_SSR_S2(v)   BF_CS1(CSU_CSL, SSR_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NUR_S2
+
+/* --- Register HW_CSU_CSL, field NUR_S2 (RW)
  *
  * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
  */
 
 #define BP_CSU_CSL_NUR_S2      2
@@ -161,12 +189,18 @@ typedef union
 #define BF_CSU_CSL_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL_NUR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL_NUR_S2(v)   BF_CS1(CSU_CSL, NUR_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NSR_S2
+
+/* --- Register HW_CSU_CSL, field NSR_S2 (RW)
  *
  * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
  */
 
 #define BP_CSU_CSL_NSR_S2      3
@@ -178,12 +212,18 @@ typedef union
 #define BF_CSU_CSL_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL_NSR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL_NSR_S2(v)   BF_CS1(CSU_CSL, NSR_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field SUW_S2
+
+/* --- Register HW_CSU_CSL, field SUW_S2 (RW)
  *
  * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
  */
 
 #define BP_CSU_CSL_SUW_S2      4
@@ -195,12 +235,18 @@ typedef union
 #define BF_CSU_CSL_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL_SUW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL_SUW_S2(v)   BF_CS1(CSU_CSL, SUW_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field SSW_S2
+
+/* --- Register HW_CSU_CSL, field SSW_S2 (RW)
  *
  * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
  */
 
 #define BP_CSU_CSL_SSW_S2      5
@@ -212,12 +258,18 @@ typedef union
 #define BF_CSU_CSL_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL_SSW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL_SSW_S2(v)   BF_CS1(CSU_CSL, SSW_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NUW_S2
+
+/* --- Register HW_CSU_CSL, field NUW_S2 (RW)
  *
  * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
  */
 
 #define BP_CSU_CSL_NUW_S2      6
@@ -229,12 +281,18 @@ typedef union
 #define BF_CSU_CSL_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL_NUW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL_NUW_S2(v)   BF_CS1(CSU_CSL, NUW_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NSW_S2
+
+/* --- Register HW_CSU_CSL, field NSW_S2 (RW)
  *
  * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
  */
 
 #define BP_CSU_CSL_NSW_S2      7
@@ -246,12 +304,18 @@ typedef union
 #define BF_CSU_CSL_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL_NSW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL_NSW_S2(v)   BF_CS1(CSU_CSL, NSW_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field LOCK_S2
+
+/* --- Register HW_CSU_CSL, field LOCK_S2 (RW)
  *
  * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
  */
 
 #define BP_CSU_CSL_LOCK_S2      8
@@ -263,12 +327,18 @@ typedef union
 #define BF_CSU_CSL_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL_LOCK_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL_LOCK_S2(v)   BF_CS1(CSU_CSL, LOCK_S2, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field SUR_S1
+
+/* --- Register HW_CSU_CSL, field SUR_S1 (RW)
  *
  * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
  */
 
 #define BP_CSU_CSL_SUR_S1      16
@@ -280,12 +350,18 @@ typedef union
 #define BF_CSU_CSL_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL_SUR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL_SUR_S1(v)   BF_CS1(CSU_CSL, SUR_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field SSR_S1
+
+/* --- Register HW_CSU_CSL, field SSR_S1 (RW)
  *
  * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
  */
 
 #define BP_CSU_CSL_SSR_S1      17
@@ -297,12 +373,18 @@ typedef union
 #define BF_CSU_CSL_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL_SSR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL_SSR_S1(v)   BF_CS1(CSU_CSL, SSR_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NUR_S1
+
+/* --- Register HW_CSU_CSL, field NUR_S1 (RW)
  *
  * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
  */
 
 #define BP_CSU_CSL_NUR_S1      18
@@ -314,12 +396,18 @@ typedef union
 #define BF_CSU_CSL_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL_NUR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL_NUR_S1(v)   BF_CS1(CSU_CSL, NUR_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NSR_S1
+
+/* --- Register HW_CSU_CSL, field NSR_S1 (RW)
  *
  * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
  */
 
 #define BP_CSU_CSL_NSR_S1      19
@@ -331,12 +419,18 @@ typedef union
 #define BF_CSU_CSL_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL_NSR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL_NSR_S1(v)   BF_CS1(CSU_CSL, NSR_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field SUW_S1
+
+/* --- Register HW_CSU_CSL, field SUW_S1 (RW)
  *
  * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
  */
 
 #define BP_CSU_CSL_SUW_S1      20
@@ -348,12 +442,18 @@ typedef union
 #define BF_CSU_CSL_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL_SUW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL_SUW_S1(v)   BF_CS1(CSU_CSL, SUW_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field SSW_S1
+
+/* --- Register HW_CSU_CSL, field SSW_S1 (RW)
  *
  * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
  */
 
 #define BP_CSU_CSL_SSW_S1      21
@@ -365,12 +465,18 @@ typedef union
 #define BF_CSU_CSL_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL_SSW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL_SSW_S1(v)   BF_CS1(CSU_CSL, SSW_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NUW_S1
+
+/* --- Register HW_CSU_CSL, field NUW_S1 (RW)
  *
  * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
  */
 
 #define BP_CSU_CSL_NUW_S1      22
@@ -382,12 +488,18 @@ typedef union
 #define BF_CSU_CSL_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL_NUW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL_NUW_S1(v)   BF_CS1(CSU_CSL, NUW_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field NSW_S1
+
+/* --- Register HW_CSU_CSL, field NSW_S1 (RW)
  *
  * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
  */
 
 #define BP_CSU_CSL_NSW_S1      23
@@ -399,12 +511,18 @@ typedef union
 #define BF_CSU_CSL_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL_NSW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL_NSW_S1(v)   BF_CS1(CSU_CSL, NSW_S1, v)
 #endif
 
-/* --- Register HW_CSU_CSL, field LOCK_S1
+
+/* --- Register HW_CSU_CSL, field LOCK_S1 (RW)
  *
  * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
  */
 
 #define BP_CSU_CSL_LOCK_S1      24
@@ -416,30 +534,29 @@ typedef union
 #define BF_CSU_CSL_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL_LOCK_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL_LOCK_S1(v)   BF_CS1(CSU_CSL, LOCK_S1, v)
 #endif
 
-/*!
- * @brief HW_CSU_HP0 - HP0 register
- *
- * The SCU_HP0 and SCU_HP1 registers may be programmed to determine the privilege (either User
- * Mode or Supervisor Mode) for seventeen different master groups. The
- * privilege of a particular master group may be overridden by muxing it with the
- * corresponding bit in this register.  The even bit positions (CSU_HP0[30,28,...0] and CSU_HP1[0])
- * in the registers hold                             the privilege indicator bits; while the odd bit
- * positions                             (CSU_HP0[31,29,...,1] and CSU_HP1[1]) contain lock bits
- * which enable/disable writing to                             the corresponding privilege indicator
- * bits.  Memory Space has been reserved for 32 Masters.                             Since, one 32
- * bit register can accommodate HP fields corresponding to 16                             masters,
- * hence for 32 masters memory equivalent of 2 registers is
- * reserved.However, actual number of registers(flops) inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Masters  Min. Value -1  Max. Value - 32
- * Possible Values - 1 to 32
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_HP0 - HP0 register (RW)
+ *
+ * The SCU_HP0 and SCU_HP1 registers may be programmed to determine the privilege (either User Mode
+ * or Supervisor Mode) for seventeen different master groups. The privilege of a particular master
+ * group may be overridden by muxing it with the corresponding bit in this register.  The even bit
+ * positions (CSU_HP0[30,28,...0] and CSU_HP1[0]) in the registers hold the privilege indicator
+ * bits; while the odd bit positions (CSU_HP0[31,29,...,1] and CSU_HP1[1]) contain lock bits which
+ * enable/disable writing to the corresponding privilege indicator bits.  Memory Space has been
+ * reserved for 32 Masters. Since, one 32 bit register can accommodate HP fields corresponding to 16
+ * masters, hence for 32 masters memory equivalent of 2 registers is reserved.However, actual number
+ * of registers(flops) inferred in a design would depend on the following Parameter --- Name -
+ * No_Of_Masters  Min. Value -1  Max. Value - 32  Possible Values - 1 to 32
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned HP_PCIE : 1; //!< Indicate the Privilege/User Mode for PCIE.
@@ -448,7 +565,7 @@ typedef union
         unsigned RESERVED1 : 1; //!< Lock bit set by TZ software for HP_SATA.
         unsigned HP_SDMA : 1; //!< Indicate the Privilege/User Mode for SDMA.
         unsigned L_SDMA : 1; //!< Lock bit set by TZ software for HP_SDMA.
-        unsigned HP_PU : 1; //!< Indicate the Privilege/User Mode for GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA.  NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+        unsigned HP_PU : 1; //!< Indicate the Privilege/User Mode for GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
         unsigned L_PU : 1; //!< Lock bit set by TZ software for HP_PU.
         unsigned HP_USB : 1; //!< Indicate the Privilege/User Mode for USB.
         unsigned L_USB : 1; //!< Lock bit set by TZ software for HP_USB.
@@ -492,14 +609,17 @@ typedef union
 #define HW_CSU_HP0_TOG(v)    (HW_CSU_HP0_WR(HW_CSU_HP0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual CSU_HP0 bitfields
  */
 
-/* --- Register HW_CSU_HP0, field HP_PCIE
+/* --- Register HW_CSU_HP0, field HP_PCIE (RW)
  *
  * Indicate the Privilege/User Mode for PCIE.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_PCIE      0
@@ -511,12 +631,18 @@ typedef union
 #define BF_CSU_HP0_HP_PCIE(v)   (((v) << 0) & BM_CSU_HP0_HP_PCIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_PCIE field to a new value.
 #define BW_CSU_HP0_HP_PCIE(v)   BF_CS1(CSU_HP0, HP_PCIE, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_PCIE
+
+/* --- Register HW_CSU_HP0, field L_PCIE (RW)
  *
  * Lock bit set by TZ software for HP_PCIE.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_PCIE      1
@@ -528,12 +654,18 @@ typedef union
 #define BF_CSU_HP0_L_PCIE(v)   (((v) << 1) & BM_CSU_HP0_L_PCIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_PCIE field to a new value.
 #define BW_CSU_HP0_L_PCIE(v)   BF_CS1(CSU_HP0, L_PCIE, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_SDMA
+
+/* --- Register HW_CSU_HP0, field HP_SDMA (RW)
  *
  * Indicate the Privilege/User Mode for SDMA.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_SDMA      4
@@ -545,12 +677,18 @@ typedef union
 #define BF_CSU_HP0_HP_SDMA(v)   (((v) << 4) & BM_CSU_HP0_HP_SDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_SDMA field to a new value.
 #define BW_CSU_HP0_HP_SDMA(v)   BF_CS1(CSU_HP0, HP_SDMA, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_SDMA
+
+/* --- Register HW_CSU_HP0, field L_SDMA (RW)
  *
  * Lock bit set by TZ software for HP_SDMA.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_SDMA      5
@@ -562,13 +700,19 @@ typedef union
 #define BF_CSU_HP0_L_SDMA(v)   (((v) << 5) & BM_CSU_HP0_L_SDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_SDMA field to a new value.
 #define BW_CSU_HP0_L_SDMA(v)   BF_CS1(CSU_HP0, L_SDMA, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_PU
+
+/* --- Register HW_CSU_HP0, field HP_PU (RW)
  *
  * Indicate the Privilege/User Mode for GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and
- * VDOA.  NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+ * VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_PU      6
@@ -580,12 +724,18 @@ typedef union
 #define BF_CSU_HP0_HP_PU(v)   (((v) << 6) & BM_CSU_HP0_HP_PU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_PU field to a new value.
 #define BW_CSU_HP0_HP_PU(v)   BF_CS1(CSU_HP0, HP_PU, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_PU
+
+/* --- Register HW_CSU_HP0, field L_PU (RW)
  *
  * Lock bit set by TZ software for HP_PU.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_PU      7
@@ -597,12 +747,18 @@ typedef union
 #define BF_CSU_HP0_L_PU(v)   (((v) << 7) & BM_CSU_HP0_L_PU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_PU field to a new value.
 #define BW_CSU_HP0_L_PU(v)   BF_CS1(CSU_HP0, L_PU, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_USB
+
+/* --- Register HW_CSU_HP0, field HP_USB (RW)
  *
  * Indicate the Privilege/User Mode for USB.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_USB      8
@@ -614,12 +770,18 @@ typedef union
 #define BF_CSU_HP0_HP_USB(v)   (((v) << 8) & BM_CSU_HP0_HP_USB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_USB field to a new value.
 #define BW_CSU_HP0_HP_USB(v)   BF_CS1(CSU_HP0, HP_USB, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_USB
+
+/* --- Register HW_CSU_HP0, field L_USB (RW)
  *
  * Lock bit set by TZ software for HP_USB.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_USB      9
@@ -631,12 +793,18 @@ typedef union
 #define BF_CSU_HP0_L_USB(v)   (((v) << 9) & BM_CSU_HP0_L_USB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USB field to a new value.
 #define BW_CSU_HP0_L_USB(v)   BF_CS1(CSU_HP0, L_USB, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_TEST
+
+/* --- Register HW_CSU_HP0, field HP_TEST (RW)
  *
  * Indicate the Privilege/User Mode for IOMUX Test Port.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_TEST      10
@@ -648,12 +816,18 @@ typedef union
 #define BF_CSU_HP0_HP_TEST(v)   (((v) << 10) & BM_CSU_HP0_HP_TEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_TEST field to a new value.
 #define BW_CSU_HP0_HP_TEST(v)   BF_CS1(CSU_HP0, HP_TEST, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_TEST
+
+/* --- Register HW_CSU_HP0, field L_TEST (RW)
  *
  * Lock bit set by TZ software for HP_TEST.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_TEST      11
@@ -665,12 +839,18 @@ typedef union
 #define BF_CSU_HP0_L_TEST(v)   (((v) << 11) & BM_CSU_HP0_L_TEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_TEST field to a new value.
 #define BW_CSU_HP0_L_TEST(v)   BF_CS1(CSU_HP0, L_TEST, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_MLB
+
+/* --- Register HW_CSU_HP0, field HP_MLB (RW)
  *
  * Indicate the mode Privilege/User Mode for MLB.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_MLB      12
@@ -682,12 +862,18 @@ typedef union
 #define BF_CSU_HP0_HP_MLB(v)   (((v) << 12) & BM_CSU_HP0_HP_MLB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_MLB field to a new value.
 #define BW_CSU_HP0_HP_MLB(v)   BF_CS1(CSU_HP0, HP_MLB, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_MLB
+
+/* --- Register HW_CSU_HP0, field L_MLB (RW)
  *
  * Lock bit set by TZ software for HP_MLB.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_MLB      13
@@ -699,12 +885,18 @@ typedef union
 #define BF_CSU_HP0_L_MLB(v)   (((v) << 13) & BM_CSU_HP0_L_MLB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_MLB field to a new value.
 #define BW_CSU_HP0_L_MLB(v)   BF_CS1(CSU_HP0, L_MLB, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_CAAM
+
+/* --- Register HW_CSU_HP0, field HP_CAAM (RW)
  *
  * Indicate the Privilege/User Mode for CAAM.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_CAAM      14
@@ -716,12 +908,18 @@ typedef union
 #define BF_CSU_HP0_HP_CAAM(v)   (((v) << 14) & BM_CSU_HP0_HP_CAAM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_CAAM field to a new value.
 #define BW_CSU_HP0_HP_CAAM(v)   BF_CS1(CSU_HP0, HP_CAAM, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_CAAM
+
+/* --- Register HW_CSU_HP0, field L_CAAM (RW)
  *
  * Lock bit set by TZ software for HP_CAAM.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_CAAM      15
@@ -733,12 +931,18 @@ typedef union
 #define BF_CSU_HP0_L_CAAM(v)   (((v) << 15) & BM_CSU_HP0_L_CAAM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_CAAM field to a new value.
 #define BW_CSU_HP0_L_CAAM(v)   BF_CS1(CSU_HP0, L_CAAM, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_RAWNAND
+
+/* --- Register HW_CSU_HP0, field HP_RAWNAND (RW)
  *
  * Indicate the Privilege/User Mode for RawNAND.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_RAWNAND      16
@@ -750,12 +954,18 @@ typedef union
 #define BF_CSU_HP0_HP_RAWNAND(v)   (((v) << 16) & BM_CSU_HP0_HP_RAWNAND)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_RAWNAND field to a new value.
 #define BW_CSU_HP0_HP_RAWNAND(v)   BF_CS1(CSU_HP0, HP_RAWNAND, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_RAWNAND
+
+/* --- Register HW_CSU_HP0, field L_RAWNAND (RW)
  *
  * Lock bit set by TZ software for HP_RAWNAND.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_RAWNAND      17
@@ -767,12 +977,18 @@ typedef union
 #define BF_CSU_HP0_L_RAWNAND(v)   (((v) << 17) & BM_CSU_HP0_L_RAWNAND)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_RAWNAND field to a new value.
 #define BW_CSU_HP0_L_RAWNAND(v)   BF_CS1(CSU_HP0, L_RAWNAND, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_APBHDMA
+
+/* --- Register HW_CSU_HP0, field HP_APBHDMA (RW)
  *
  * Indicate the Privilege/User Mode for apbhdma.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_APBHDMA      18
@@ -784,12 +1000,18 @@ typedef union
 #define BF_CSU_HP0_HP_APBHDMA(v)   (((v) << 18) & BM_CSU_HP0_HP_APBHDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_APBHDMA field to a new value.
 #define BW_CSU_HP0_HP_APBHDMA(v)   BF_CS1(CSU_HP0, HP_APBHDMA, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_ABPHDMA
+
+/* --- Register HW_CSU_HP0, field L_ABPHDMA (RW)
  *
  * Lock bit set by TZ software for HP_APBHDMA.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_ABPHDMA      19
@@ -801,12 +1023,18 @@ typedef union
 #define BF_CSU_HP0_L_ABPHDMA(v)   (((v) << 19) & BM_CSU_HP0_L_ABPHDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_ABPHDMA field to a new value.
 #define BW_CSU_HP0_L_ABPHDMA(v)   BF_CS1(CSU_HP0, L_ABPHDMA, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_ENET
+
+/* --- Register HW_CSU_HP0, field HP_ENET (RW)
  *
  * Indicate the Privilege/User Mode for ENET.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_ENET      20
@@ -818,12 +1046,18 @@ typedef union
 #define BF_CSU_HP0_HP_ENET(v)   (((v) << 20) & BM_CSU_HP0_HP_ENET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_ENET field to a new value.
 #define BW_CSU_HP0_HP_ENET(v)   BF_CS1(CSU_HP0, HP_ENET, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_ENET
+
+/* --- Register HW_CSU_HP0, field L_ENET (RW)
  *
  * Lock bit set by TZ software for HP_ENET.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_ENET      21
@@ -835,12 +1069,18 @@ typedef union
 #define BF_CSU_HP0_L_ENET(v)   (((v) << 21) & BM_CSU_HP0_L_ENET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_ENET field to a new value.
 #define BW_CSU_HP0_L_ENET(v)   BF_CS1(CSU_HP0, L_ENET, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_DAP
+
+/* --- Register HW_CSU_HP0, field HP_DAP (RW)
  *
  * Indicate the Privilege/User Mode for DAP.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_DAP      22
@@ -852,12 +1092,18 @@ typedef union
 #define BF_CSU_HP0_HP_DAP(v)   (((v) << 22) & BM_CSU_HP0_HP_DAP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_DAP field to a new value.
 #define BW_CSU_HP0_HP_DAP(v)   BF_CS1(CSU_HP0, HP_DAP, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_DAP
+
+/* --- Register HW_CSU_HP0, field L_DAP (RW)
  *
  * Lock bit set by TZ software for HP_DAP.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_DAP      23
@@ -869,12 +1115,18 @@ typedef union
 #define BF_CSU_HP0_L_DAP(v)   (((v) << 23) & BM_CSU_HP0_L_DAP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_DAP field to a new value.
 #define BW_CSU_HP0_L_DAP(v)   BF_CS1(CSU_HP0, L_DAP, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_USDHC1
+
+/* --- Register HW_CSU_HP0, field HP_USDHC1 (RW)
  *
  * Indicate the Privilege/User Mode for USDHC1.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_USDHC1      24
@@ -886,12 +1138,18 @@ typedef union
 #define BF_CSU_HP0_HP_USDHC1(v)   (((v) << 24) & BM_CSU_HP0_HP_USDHC1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_USDHC1 field to a new value.
 #define BW_CSU_HP0_HP_USDHC1(v)   BF_CS1(CSU_HP0, HP_USDHC1, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_USDHC1
+
+/* --- Register HW_CSU_HP0, field L_USDHC1 (RW)
  *
  * Lock bit set by TZ software for HP_USDHC1.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_USDHC1      25
@@ -903,12 +1161,18 @@ typedef union
 #define BF_CSU_HP0_L_USDHC1(v)   (((v) << 25) & BM_CSU_HP0_L_USDHC1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC1 field to a new value.
 #define BW_CSU_HP0_L_USDHC1(v)   BF_CS1(CSU_HP0, L_USDHC1, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_USDHC2
+
+/* --- Register HW_CSU_HP0, field HP_USDHC2 (RW)
  *
  * Indicate the Privilege/User Mode for USDHC2.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_USDHC2      26
@@ -920,12 +1184,18 @@ typedef union
 #define BF_CSU_HP0_HP_USDHC2(v)   (((v) << 26) & BM_CSU_HP0_HP_USDHC2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_USDHC2 field to a new value.
 #define BW_CSU_HP0_HP_USDHC2(v)   BF_CS1(CSU_HP0, HP_USDHC2, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_USDHC2
+
+/* --- Register HW_CSU_HP0, field L_USDHC2 (RW)
  *
  * Lock bit set by TZ software for HP_USDHC2.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_USDHC2      27
@@ -937,12 +1207,18 @@ typedef union
 #define BF_CSU_HP0_L_USDHC2(v)   (((v) << 27) & BM_CSU_HP0_L_USDHC2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC2 field to a new value.
 #define BW_CSU_HP0_L_USDHC2(v)   BF_CS1(CSU_HP0, L_USDHC2, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_USDHC3
+
+/* --- Register HW_CSU_HP0, field HP_USDHC3 (RW)
  *
  * Indicate the Privilege/User Mode for USDHC3.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_USDHC3      28
@@ -954,12 +1230,18 @@ typedef union
 #define BF_CSU_HP0_HP_USDHC3(v)   (((v) << 28) & BM_CSU_HP0_HP_USDHC3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_USDHC3 field to a new value.
 #define BW_CSU_HP0_HP_USDHC3(v)   BF_CS1(CSU_HP0, HP_USDHC3, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_USDHC3
+
+/* --- Register HW_CSU_HP0, field L_USDHC3 (RW)
  *
  * Lock bit set by TZ software for HP_USDHC3.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_USDHC3      29
@@ -971,12 +1253,18 @@ typedef union
 #define BF_CSU_HP0_L_USDHC3(v)   (((v) << 29) & BM_CSU_HP0_L_USDHC3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC3 field to a new value.
 #define BW_CSU_HP0_L_USDHC3(v)   BF_CS1(CSU_HP0, L_USDHC3, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field HP_USDHC4
+
+/* --- Register HW_CSU_HP0, field HP_USDHC4 (RW)
  *
  * Indicate the Privilege/User Mode for USDHC4.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP0_HP_USDHC4      30
@@ -988,12 +1276,18 @@ typedef union
 #define BF_CSU_HP0_HP_USDHC4(v)   (((v) << 30) & BM_CSU_HP0_HP_USDHC4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_USDHC4 field to a new value.
 #define BW_CSU_HP0_HP_USDHC4(v)   BF_CS1(CSU_HP0, HP_USDHC4, v)
 #endif
 
-/* --- Register HW_CSU_HP0, field L_USDHC4
+
+/* --- Register HW_CSU_HP0, field L_USDHC4 (RW)
  *
  * Lock bit set by TZ software for HP_USDHC4.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP0_L_USDHC4      31
@@ -1005,18 +1299,20 @@ typedef union
 #define BF_CSU_HP0_L_USDHC4(v)   (((v) << 31) & BM_CSU_HP0_L_USDHC4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC4 field to a new value.
 #define BW_CSU_HP0_L_USDHC4(v)   BF_CS1(CSU_HP0, L_USDHC4, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_CSU_HP1 - HP1 register
+ * @brief HW_CSU_HP1 - HP1 register (RW)
  *
  * The SCU_HP1 register is an expansion of the SCU_HP0 register. See SCU_HP0 register definition.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned HP_HDMI_HSI : 1; //!< Indicate the Privilege/User Mode for HDMI Tx and HSI.
@@ -1040,14 +1336,17 @@ typedef union
 #define HW_CSU_HP1_TOG(v)    (HW_CSU_HP1_WR(HW_CSU_HP1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual CSU_HP1 bitfields
  */
 
-/* --- Register HW_CSU_HP1, field HP_HDMI_HSI
+/* --- Register HW_CSU_HP1, field HP_HDMI_HSI (RW)
  *
  * Indicate the Privilege/User Mode for HDMI Tx and HSI.
+ *
+ * Values:
+ * 0 - User Mode for the corresponding master
+ * 1 - Supervisor Mode for the corresponding master
  */
 
 #define BP_CSU_HP1_HP_HDMI_HSI      0
@@ -1059,12 +1358,18 @@ typedef union
 #define BF_CSU_HP1_HP_HDMI_HSI(v)   (((v) << 0) & BM_CSU_HP1_HP_HDMI_HSI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HP_HDMI_HSI field to a new value.
 #define BW_CSU_HP1_HP_HDMI_HSI(v)   BF_CS1(CSU_HP1, HP_HDMI_HSI, v)
 #endif
 
-/* --- Register HW_CSU_HP1, field L_HDMI_HSI
+
+/* --- Register HW_CSU_HP1, field L_HDMI_HSI (RW)
  *
  * Lock bit set by TZ software for HP_HDMI_HSI.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HP1_L_HDMI_HSI      1
@@ -1076,30 +1381,29 @@ typedef union
 #define BF_CSU_HP1_L_HDMI_HSI(v)   (((v) << 1) & BM_CSU_HP1_L_HDMI_HSI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_HDMI_HSI field to a new value.
 #define BW_CSU_HP1_L_HDMI_HSI(v)   BF_CS1(CSU_HP1, L_HDMI_HSI, v)
 #endif
 
-/*!
- * @brief HW_CSU_SA - Secure access register
- *
- * The Secure Access register may be programmed to specify the access policy
- * (either Secure or Non-secure) for up to sixteen different masters. This
- * register is used to set the access policy for Type 1 masters which are
- * incapable of setting the policy by themselves.  The sixteen even bit positions
- * (CSU_SA[30,28,...,0]) in the register hold                             the policy indicator bits;
- * while the odd bit positions                             (CSU_SA[31,29,...,1]) contain lock bits
- * which enable/disable writing to                             the corresponding policy indicator
- * bits.  Memory Space has been reserved for 32 Type 1                             Masters. Since,
- * one 32 bit register can accommodate SA fields                             corresponding to 16
- * masters, hence for 32 masters memory equivalent of 2                             registers is
- * reserved.However, actual number of registers(flops)                             inferred in a
- * design would depend on the following Parameter --- Name                                 -
- * No_Of_TP1_Masters  Min. Value -1  Max. Value - 32  Possible Values - 1 to 32
- */
+
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_SA - Secure access register (RW)
+ *
+ * The Secure Access register may be programmed to specify the access policy (either Secure or Non-
+ * secure) for up to sixteen different masters. This register is used to set the access policy for
+ * Type 1 masters which are incapable of setting the policy by themselves.  The sixteen even bit
+ * positions (CSU_SA[30,28,...,0]) in the register hold the policy indicator bits; while the odd bit
+ * positions (CSU_SA[31,29,...,1]) contain lock bits which enable/disable writing to the
+ * corresponding policy indicator bits.  Memory Space has been reserved for 32 Type 1 Masters.
+ * Since, one 32 bit register can accommodate SA fields corresponding to 16 masters, hence for 32
+ * masters memory equivalent of 2 registers is reserved.However, actual number of registers(flops)
+ * inferred in a design would depend on the following Parameter --- Name - No_Of_TP1_Masters  Min.
+ * Value -1  Max. Value - 32  Possible Values - 1 to 32
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned SA_CP15 : 1; //!< Indicate the Type (Secured/Non-Secured) Access to ARM CP15 register.
@@ -1108,7 +1412,7 @@ typedef union
         unsigned RESERVED1 : 1; //!< Lock bit set by TZ software for SA_SATA.
         unsigned SA_SDMA : 1; //!< Indicate the Type (Secured/Non-Secured) Access for SDMA.
         unsigned L_SDMA : 1; //!< Lock bit set by TZ software for SA_SDMA.
-        unsigned SA_PU : 1; //!< Indicate the Type (Secured/Non-Secured) Access for GPU3D, VDOA, GPU2D, IPU1, IPU2, OPENVG EPDC, PXP, LCDIF and VPU.  NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+        unsigned SA_PU : 1; //!< Indicate the Type (Secured/Non-Secured) Access for GPU3D, VDOA, GPU2D, IPU1, IPU2, OPENVG EPDC, PXP, LCDIF and VPU. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
         unsigned L_PU : 1; //!< Lock bit set by TZ software for SA_PU.
         unsigned SA_USB_MLB : 1; //!< Indicate the Type (Secured/Non-Secured) Access for USB and MLB.
         unsigned L_USB_MLB : 1; //!< Lock bit set by TZ software for SA_USB_MLB.
@@ -1150,14 +1454,17 @@ typedef union
 #define HW_CSU_SA_TOG(v)    (HW_CSU_SA_WR(HW_CSU_SA_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual CSU_SA bitfields
  */
 
-/* --- Register HW_CSU_SA, field SA_CP15
+/* --- Register HW_CSU_SA, field SA_CP15 (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access to ARM CP15 register.
+ *
+ * Values:
+ * 0 - ARM CP15 register is accesible
+ * 1 - ARM CP15 register is not accesible
  */
 
 #define BP_CSU_SA_SA_CP15      0
@@ -1169,12 +1476,18 @@ typedef union
 #define BF_CSU_SA_SA_CP15(v)   (((v) << 0) & BM_CSU_SA_SA_CP15)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_CP15 field to a new value.
 #define BW_CSU_SA_SA_CP15(v)   BF_CS1(CSU_SA, SA_CP15, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_CP15
+
+/* --- Register HW_CSU_SA, field L_CP15 (RW)
  *
  * Lock bit set by TZ software for SA_CP15.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_CP15      1
@@ -1186,12 +1499,18 @@ typedef union
 #define BF_CSU_SA_L_CP15(v)   (((v) << 1) & BM_CSU_SA_L_CP15)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_CP15 field to a new value.
 #define BW_CSU_SA_L_CP15(v)   BF_CS1(CSU_SA, L_CP15, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_SDMA
+
+/* --- Register HW_CSU_SA, field SA_SDMA (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for SDMA.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_SDMA      4
@@ -1203,12 +1522,18 @@ typedef union
 #define BF_CSU_SA_SA_SDMA(v)   (((v) << 4) & BM_CSU_SA_SA_SDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_SDMA field to a new value.
 #define BW_CSU_SA_SA_SDMA(v)   BF_CS1(CSU_SA, SA_SDMA, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_SDMA
+
+/* --- Register HW_CSU_SA, field L_SDMA (RW)
  *
  * Lock bit set by TZ software for SA_SDMA.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_SDMA      5
@@ -1220,13 +1545,19 @@ typedef union
 #define BF_CSU_SA_L_SDMA(v)   (((v) << 5) & BM_CSU_SA_L_SDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_SDMA field to a new value.
 #define BW_CSU_SA_L_SDMA(v)   BF_CS1(CSU_SA, L_SDMA, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_PU
+
+/* --- Register HW_CSU_SA, field SA_PU (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for GPU3D, VDOA, GPU2D, IPU1, IPU2, OPENVG EPDC,
- * PXP, LCDIF and VPU.  NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+ * PXP, LCDIF and VPU. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_PU      6
@@ -1238,12 +1569,18 @@ typedef union
 #define BF_CSU_SA_SA_PU(v)   (((v) << 6) & BM_CSU_SA_SA_PU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_PU field to a new value.
 #define BW_CSU_SA_SA_PU(v)   BF_CS1(CSU_SA, SA_PU, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_PU
+
+/* --- Register HW_CSU_SA, field L_PU (RW)
  *
  * Lock bit set by TZ software for SA_PU.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_PU      7
@@ -1255,12 +1592,18 @@ typedef union
 #define BF_CSU_SA_L_PU(v)   (((v) << 7) & BM_CSU_SA_L_PU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_PU field to a new value.
 #define BW_CSU_SA_L_PU(v)   BF_CS1(CSU_SA, L_PU, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_USB_MLB
+
+/* --- Register HW_CSU_SA, field SA_USB_MLB (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for USB and MLB.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_USB_MLB      8
@@ -1272,12 +1615,18 @@ typedef union
 #define BF_CSU_SA_SA_USB_MLB(v)   (((v) << 8) & BM_CSU_SA_SA_USB_MLB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_USB_MLB field to a new value.
 #define BW_CSU_SA_SA_USB_MLB(v)   BF_CS1(CSU_SA, SA_USB_MLB, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_USB_MLB
+
+/* --- Register HW_CSU_SA, field L_USB_MLB (RW)
  *
  * Lock bit set by TZ software for SA_USB_MLB.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_USB_MLB      9
@@ -1289,12 +1638,18 @@ typedef union
 #define BF_CSU_SA_L_USB_MLB(v)   (((v) << 9) & BM_CSU_SA_L_USB_MLB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USB_MLB field to a new value.
 #define BW_CSU_SA_L_USB_MLB(v)   BF_CS1(CSU_SA, L_USB_MLB, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_PCIE_TEST
+
+/* --- Register HW_CSU_SA, field SA_PCIE_TEST (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for PCIe and IOMUX Test Port.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_PCIE_TEST      10
@@ -1306,12 +1661,18 @@ typedef union
 #define BF_CSU_SA_SA_PCIE_TEST(v)   (((v) << 10) & BM_CSU_SA_SA_PCIE_TEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_PCIE_TEST field to a new value.
 #define BW_CSU_SA_SA_PCIE_TEST(v)   BF_CS1(CSU_SA, SA_PCIE_TEST, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_PCIE_TEST
+
+/* --- Register HW_CSU_SA, field L_PCIE_TEST (RW)
  *
  * Lock bit set by TZ software for SA_PCIE_TEST.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_PCIE_TEST      11
@@ -1323,12 +1684,18 @@ typedef union
 #define BF_CSU_SA_L_PCIE_TEST(v)   (((v) << 11) & BM_CSU_SA_L_PCIE_TEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_PCIE_TEST field to a new value.
 #define BW_CSU_SA_L_PCIE_TEST(v)   BF_CS1(CSU_SA, L_PCIE_TEST, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_RAWNAND_APBHDMA
+
+/* --- Register HW_CSU_SA, field SA_RAWNAND_APBHDMA (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for RawNAND and apbhdmat.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_RAWNAND_APBHDMA      14
@@ -1340,12 +1707,18 @@ typedef union
 #define BF_CSU_SA_SA_RAWNAND_APBHDMA(v)   (((v) << 14) & BM_CSU_SA_SA_RAWNAND_APBHDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_RAWNAND_APBHDMA field to a new value.
 #define BW_CSU_SA_SA_RAWNAND_APBHDMA(v)   BF_CS1(CSU_SA, SA_RAWNAND_APBHDMA, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_RAWNAND_APBHDMA
+
+/* --- Register HW_CSU_SA, field L_RAWNAND_APBHDMA (RW)
  *
  * Lock bit set by TZ software for SA_RAWNAND_APBHDMA.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_RAWNAND_APBHDMA      15
@@ -1357,12 +1730,18 @@ typedef union
 #define BF_CSU_SA_L_RAWNAND_APBHDMA(v)   (((v) << 15) & BM_CSU_SA_L_RAWNAND_APBHDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_RAWNAND_APBHDMA field to a new value.
 #define BW_CSU_SA_L_RAWNAND_APBHDMA(v)   BF_CS1(CSU_SA, L_RAWNAND_APBHDMA, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_ENET
+
+/* --- Register HW_CSU_SA, field SA_ENET (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for ENET.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_ENET      16
@@ -1374,12 +1753,18 @@ typedef union
 #define BF_CSU_SA_SA_ENET(v)   (((v) << 16) & BM_CSU_SA_SA_ENET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_ENET field to a new value.
 #define BW_CSU_SA_SA_ENET(v)   BF_CS1(CSU_SA, SA_ENET, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_ENET
+
+/* --- Register HW_CSU_SA, field L_ENET (RW)
  *
  * Lock bit set by TZ software for SA_ENET.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_ENET      17
@@ -1391,12 +1776,18 @@ typedef union
 #define BF_CSU_SA_L_ENET(v)   (((v) << 17) & BM_CSU_SA_L_ENET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_ENET field to a new value.
 #define BW_CSU_SA_L_ENET(v)   BF_CS1(CSU_SA, L_ENET, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_DAP
+
+/* --- Register HW_CSU_SA, field SA_DAP (RW)
  *
  * Access Policy indicator bits
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_DAP      18
@@ -1408,12 +1799,18 @@ typedef union
 #define BF_CSU_SA_SA_DAP(v)   (((v) << 18) & BM_CSU_SA_SA_DAP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_DAP field to a new value.
 #define BW_CSU_SA_SA_DAP(v)   BF_CS1(CSU_SA, SA_DAP, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_DAP
+
+/* --- Register HW_CSU_SA, field L_DAP (RW)
  *
  * Lock bit set by TZ software for SA_DAP.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_DAP      19
@@ -1425,12 +1822,18 @@ typedef union
 #define BF_CSU_SA_L_DAP(v)   (((v) << 19) & BM_CSU_SA_L_DAP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_DAP field to a new value.
 #define BW_CSU_SA_L_DAP(v)   BF_CS1(CSU_SA, L_DAP, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_USDHC1
+
+/* --- Register HW_CSU_SA, field SA_USDHC1 (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for USDHC1.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_USDHC1      20
@@ -1442,12 +1845,18 @@ typedef union
 #define BF_CSU_SA_SA_USDHC1(v)   (((v) << 20) & BM_CSU_SA_SA_USDHC1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_USDHC1 field to a new value.
 #define BW_CSU_SA_SA_USDHC1(v)   BF_CS1(CSU_SA, SA_USDHC1, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_USDHC1
+
+/* --- Register HW_CSU_SA, field L_USDHC1 (RW)
  *
  * Lock bit set by TZ software for SA_.USDHC1
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_USDHC1      21
@@ -1459,12 +1868,18 @@ typedef union
 #define BF_CSU_SA_L_USDHC1(v)   (((v) << 21) & BM_CSU_SA_L_USDHC1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC1 field to a new value.
 #define BW_CSU_SA_L_USDHC1(v)   BF_CS1(CSU_SA, L_USDHC1, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_USDHC2
+
+/* --- Register HW_CSU_SA, field SA_USDHC2 (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for USDHC2.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_USDHC2      22
@@ -1476,12 +1891,18 @@ typedef union
 #define BF_CSU_SA_SA_USDHC2(v)   (((v) << 22) & BM_CSU_SA_SA_USDHC2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_USDHC2 field to a new value.
 #define BW_CSU_SA_SA_USDHC2(v)   BF_CS1(CSU_SA, SA_USDHC2, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_USDHC2
+
+/* --- Register HW_CSU_SA, field L_USDHC2 (RW)
  *
  * Lock bit set by TZ software for SA_.USDHC2
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_USDHC2      23
@@ -1493,12 +1914,18 @@ typedef union
 #define BF_CSU_SA_L_USDHC2(v)   (((v) << 23) & BM_CSU_SA_L_USDHC2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC2 field to a new value.
 #define BW_CSU_SA_L_USDHC2(v)   BF_CS1(CSU_SA, L_USDHC2, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_USDHC3
+
+/* --- Register HW_CSU_SA, field SA_USDHC3 (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for USDHC3.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_USDHC3      24
@@ -1510,12 +1937,18 @@ typedef union
 #define BF_CSU_SA_SA_USDHC3(v)   (((v) << 24) & BM_CSU_SA_SA_USDHC3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_USDHC3 field to a new value.
 #define BW_CSU_SA_SA_USDHC3(v)   BF_CS1(CSU_SA, SA_USDHC3, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_USDHC3
+
+/* --- Register HW_CSU_SA, field L_USDHC3 (RW)
  *
  * Lock bit set by TZ software for SA_.USDHC3
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_USDHC3      25
@@ -1527,12 +1960,18 @@ typedef union
 #define BF_CSU_SA_L_USDHC3(v)   (((v) << 25) & BM_CSU_SA_L_USDHC3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC3 field to a new value.
 #define BW_CSU_SA_L_USDHC3(v)   BF_CS1(CSU_SA, L_USDHC3, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_USDHC4
+
+/* --- Register HW_CSU_SA, field SA_USDHC4 (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for USDHC4.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_USDHC4      26
@@ -1544,12 +1983,18 @@ typedef union
 #define BF_CSU_SA_SA_USDHC4(v)   (((v) << 26) & BM_CSU_SA_SA_USDHC4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_USDHC4 field to a new value.
 #define BW_CSU_SA_SA_USDHC4(v)   BF_CS1(CSU_SA, SA_USDHC4, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_USDHC4
+
+/* --- Register HW_CSU_SA, field L_USDHC4 (RW)
  *
  * Lock bit set by TZ software for SA_.USDHC14
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_USDHC4      27
@@ -1561,12 +2006,18 @@ typedef union
 #define BF_CSU_SA_L_USDHC4(v)   (((v) << 27) & BM_CSU_SA_L_USDHC4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC4 field to a new value.
 #define BW_CSU_SA_L_USDHC4(v)   BF_CS1(CSU_SA, L_USDHC4, v)
 #endif
 
-/* --- Register HW_CSU_SA, field SA_HDMI_HSI
+
+/* --- Register HW_CSU_SA, field SA_HDMI_HSI (RW)
  *
  * Indicate the Type (Secured/Non-Secured) Access for HDMI Tx and HSI.
+ *
+ * Values:
+ * 0 - Secure access for the corresponding Type 1 master
+ * 1 - Non-secure access for the corresponding Type 1 master
  */
 
 #define BP_CSU_SA_SA_HDMI_HSI      28
@@ -1578,12 +2029,18 @@ typedef union
 #define BF_CSU_SA_SA_HDMI_HSI(v)   (((v) << 28) & BM_CSU_SA_SA_HDMI_HSI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SA_HDMI_HSI field to a new value.
 #define BW_CSU_SA_SA_HDMI_HSI(v)   BF_CS1(CSU_SA, SA_HDMI_HSI, v)
 #endif
 
-/* --- Register HW_CSU_SA, field L_HDMI_HSI
+
+/* --- Register HW_CSU_SA, field L_HDMI_HSI (RW)
  *
  * Lock bit set by TZ software for SA_.HDMI_HSI
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_SA_L_HDMI_HSI      29
@@ -1595,11 +2052,14 @@ typedef union
 #define BF_CSU_SA_L_HDMI_HSI(v)   (((v) << 29) & BM_CSU_SA_L_HDMI_HSI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_HDMI_HSI field to a new value.
 #define BW_CSU_SA_L_HDMI_HSI(v)   BF_CS1(CSU_SA, L_HDMI_HSI, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_CSU_HPCONTROL0 - HPCONTROL0 register
+ * @brief HW_CSU_HPCONTROL0 - HPCONTROL0 register (RW)
  *
  * The HP Control registers CSU_HPCONTROL0 and CSU_HPCONTROL1 enable CSU to control the
  * USER/SUPERVISOR mode state for the specified masters. The register toggles the output signal
@@ -1607,10 +2067,9 @@ typedef union
  * hprot1 input signal, or  the corresponding bit in the HP register.   The even bits in the
  * registers are used for locking the control bit values.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned HPC_PCIE : 1; //!< Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of PCIE.
@@ -1619,7 +2078,7 @@ typedef union
         unsigned RESERVED1 : 1; //!< Lock bit set by TZ software for HPC_SATA.
         unsigned HPC_SDMA : 1; //!< Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of SDMA.
         unsigned L_SDMA : 1; //!< Lock bit set by TZ software for HPC_SDMA.
-        unsigned HPC_PU : 1; //!< Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA.  NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+        unsigned HPC_PU : 1; //!< Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
         unsigned L_PU : 1; //!< Lock bit set by TZ software for HPC_PU.
         unsigned HPC_USB : 1; //!< Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of USB.
         unsigned L_USB : 1; //!< Lock bit set by TZ software for HPC_USB.
@@ -1663,15 +2122,18 @@ typedef union
 #define HW_CSU_HPCONTROL0_TOG(v)    (HW_CSU_HPCONTROL0_WR(HW_CSU_HPCONTROL0_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual CSU_HPCONTROL0 bitfields
  */
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_PCIE
+/* --- Register HW_CSU_HPCONTROL0, field HPC_PCIE (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * PCIE.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_PCIE      0
@@ -1683,12 +2145,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_PCIE(v)   (((v) << 0) & BM_CSU_HPCONTROL0_HPC_PCIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_PCIE field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_PCIE(v)   BF_CS1(CSU_HPCONTROL0, HPC_PCIE, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_PCIE
+
+/* --- Register HW_CSU_HPCONTROL0, field L_PCIE (RW)
  *
  * Lock bit set by TZ software for HPC_PCIE.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_PCIE      1
@@ -1700,13 +2168,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_PCIE(v)   (((v) << 1) & BM_CSU_HPCONTROL0_L_PCIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_PCIE field to a new value.
 #define BW_CSU_HPCONTROL0_L_PCIE(v)   BF_CS1(CSU_HPCONTROL0, L_PCIE, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_SDMA
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_SDMA (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * SDMA.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_SDMA      4
@@ -1718,12 +2192,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_SDMA(v)   (((v) << 4) & BM_CSU_HPCONTROL0_HPC_SDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_SDMA field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_SDMA(v)   BF_CS1(CSU_HPCONTROL0, HPC_SDMA, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_SDMA
+
+/* --- Register HW_CSU_HPCONTROL0, field L_SDMA (RW)
  *
  * Lock bit set by TZ software for HPC_SDMA.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_SDMA      5
@@ -1735,14 +2215,20 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_SDMA(v)   (((v) << 5) & BM_CSU_HPCONTROL0_L_SDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_SDMA field to a new value.
 #define BW_CSU_HPCONTROL0_L_SDMA(v)   BF_CS1(CSU_HPCONTROL0, L_SDMA, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_PU
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_PU (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
- * GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA.  NOTE: IPU2 and OpenVG on
- * i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+ * GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ
+ * only; EPDC, PXP and LCDIF on i.MX6SDL only
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_PU      6
@@ -1754,12 +2240,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_PU(v)   (((v) << 6) & BM_CSU_HPCONTROL0_HPC_PU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_PU field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_PU(v)   BF_CS1(CSU_HPCONTROL0, HPC_PU, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_PU
+
+/* --- Register HW_CSU_HPCONTROL0, field L_PU (RW)
  *
  * Lock bit set by TZ software for HPC_PU.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_PU      7
@@ -1771,13 +2263,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_PU(v)   (((v) << 7) & BM_CSU_HPCONTROL0_L_PU)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_PU field to a new value.
 #define BW_CSU_HPCONTROL0_L_PU(v)   BF_CS1(CSU_HPCONTROL0, L_PU, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_USB
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_USB (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * USB.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_USB      8
@@ -1789,12 +2287,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_USB(v)   (((v) << 8) & BM_CSU_HPCONTROL0_HPC_USB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_USB field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_USB(v)   BF_CS1(CSU_HPCONTROL0, HPC_USB, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_USB
+
+/* --- Register HW_CSU_HPCONTROL0, field L_USB (RW)
  *
  * Lock bit set by TZ software for HPC_USB.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_USB      9
@@ -1806,13 +2310,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_USB(v)   (((v) << 9) & BM_CSU_HPCONTROL0_L_USB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USB field to a new value.
 #define BW_CSU_HPCONTROL0_L_USB(v)   BF_CS1(CSU_HPCONTROL0, L_USB, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_TEST
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_TEST (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * IOMUX Test Port.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_TEST      10
@@ -1824,12 +2334,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_TEST(v)   (((v) << 10) & BM_CSU_HPCONTROL0_HPC_TEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_TEST field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_TEST(v)   BF_CS1(CSU_HPCONTROL0, HPC_TEST, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_TEST
+
+/* --- Register HW_CSU_HPCONTROL0, field L_TEST (RW)
  *
  * Lock bit set by TZ software for HPC_TEST.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_TEST      11
@@ -1841,13 +2357,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_TEST(v)   (((v) << 11) & BM_CSU_HPCONTROL0_L_TEST)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_TEST field to a new value.
 #define BW_CSU_HPCONTROL0_L_TEST(v)   BF_CS1(CSU_HPCONTROL0, L_TEST, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_MLB
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_MLB (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * MLB.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_MLB      12
@@ -1859,12 +2381,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_MLB(v)   (((v) << 12) & BM_CSU_HPCONTROL0_HPC_MLB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_MLB field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_MLB(v)   BF_CS1(CSU_HPCONTROL0, HPC_MLB, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_MLB
+
+/* --- Register HW_CSU_HPCONTROL0, field L_MLB (RW)
  *
  * Lock bit set by TZ software for HPC_MLB.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_MLB      13
@@ -1876,13 +2404,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_MLB(v)   (((v) << 13) & BM_CSU_HPCONTROL0_L_MLB)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_MLB field to a new value.
 #define BW_CSU_HPCONTROL0_L_MLB(v)   BF_CS1(CSU_HPCONTROL0, L_MLB, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_CAAM
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_CAAM (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * CAAM.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_CAAM      14
@@ -1894,12 +2428,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_CAAM(v)   (((v) << 14) & BM_CSU_HPCONTROL0_HPC_CAAM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_CAAM field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_CAAM(v)   BF_CS1(CSU_HPCONTROL0, HPC_CAAM, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_CAAM
+
+/* --- Register HW_CSU_HPCONTROL0, field L_CAAM (RW)
  *
  * Lock bit set by TZ software for HPC_CAAM.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_CAAM      15
@@ -1911,13 +2451,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_CAAM(v)   (((v) << 15) & BM_CSU_HPCONTROL0_L_CAAM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_CAAM field to a new value.
 #define BW_CSU_HPCONTROL0_L_CAAM(v)   BF_CS1(CSU_HPCONTROL0, L_CAAM, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_RAWNAND
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_RAWNAND (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * RawNAND.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_RAWNAND      16
@@ -1929,12 +2475,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_RAWNAND(v)   (((v) << 16) & BM_CSU_HPCONTROL0_HPC_RAWNAND)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_RAWNAND field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_RAWNAND(v)   BF_CS1(CSU_HPCONTROL0, HPC_RAWNAND, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_RAWNAND
+
+/* --- Register HW_CSU_HPCONTROL0, field L_RAWNAND (RW)
  *
  * Lock bit set by TZ software for HPC_RAWNAND.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_RAWNAND      17
@@ -1946,13 +2498,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_RAWNAND(v)   (((v) << 17) & BM_CSU_HPCONTROL0_L_RAWNAND)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_RAWNAND field to a new value.
 #define BW_CSU_HPCONTROL0_L_RAWNAND(v)   BF_CS1(CSU_HPCONTROL0, L_RAWNAND, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_APBHDMA
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_APBHDMA (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * apbhdma.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_APBHDMA      18
@@ -1964,12 +2522,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_APBHDMA(v)   (((v) << 18) & BM_CSU_HPCONTROL0_HPC_APBHDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_APBHDMA field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_APBHDMA(v)   BF_CS1(CSU_HPCONTROL0, HPC_APBHDMA, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_ABPHDMA
+
+/* --- Register HW_CSU_HPCONTROL0, field L_ABPHDMA (RW)
  *
  * Lock bit set by TZ software for HPC_APBHDMA.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_ABPHDMA      19
@@ -1981,13 +2545,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_ABPHDMA(v)   (((v) << 19) & BM_CSU_HPCONTROL0_L_ABPHDMA)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_ABPHDMA field to a new value.
 #define BW_CSU_HPCONTROL0_L_ABPHDMA(v)   BF_CS1(CSU_HPCONTROL0, L_ABPHDMA, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_ENET
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_ENET (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * ENET.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_ENET      20
@@ -1999,12 +2569,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_ENET(v)   (((v) << 20) & BM_CSU_HPCONTROL0_HPC_ENET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_ENET field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_ENET(v)   BF_CS1(CSU_HPCONTROL0, HPC_ENET, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_ENET
+
+/* --- Register HW_CSU_HPCONTROL0, field L_ENET (RW)
  *
  * Lock bit set by TZ software for HPC_ENET.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_ENET      21
@@ -2016,13 +2592,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_ENET(v)   (((v) << 21) & BM_CSU_HPCONTROL0_L_ENET)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_ENET field to a new value.
 #define BW_CSU_HPCONTROL0_L_ENET(v)   BF_CS1(CSU_HPCONTROL0, L_ENET, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_DAP
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_DAP (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * DAP.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_DAP      22
@@ -2034,12 +2616,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_DAP(v)   (((v) << 22) & BM_CSU_HPCONTROL0_HPC_DAP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_DAP field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_DAP(v)   BF_CS1(CSU_HPCONTROL0, HPC_DAP, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_DAP
+
+/* --- Register HW_CSU_HPCONTROL0, field L_DAP (RW)
  *
  * Lock bit set by TZ software for HPC_DAP.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_DAP      23
@@ -2051,13 +2639,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_DAP(v)   (((v) << 23) & BM_CSU_HPCONTROL0_L_DAP)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_DAP field to a new value.
 #define BW_CSU_HPCONTROL0_L_DAP(v)   BF_CS1(CSU_HPCONTROL0, L_DAP, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC1
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC1 (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * USDHC1.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_USDHC1      24
@@ -2069,12 +2663,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_USDHC1(v)   (((v) << 24) & BM_CSU_HPCONTROL0_HPC_USDHC1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_USDHC1 field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_USDHC1(v)   BF_CS1(CSU_HPCONTROL0, HPC_USDHC1, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_USDHC1
+
+/* --- Register HW_CSU_HPCONTROL0, field L_USDHC1 (RW)
  *
  * Lock bit set by TZ software for HPC_USDHC1.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_USDHC1      25
@@ -2086,13 +2686,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_USDHC1(v)   (((v) << 25) & BM_CSU_HPCONTROL0_L_USDHC1)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC1 field to a new value.
 #define BW_CSU_HPCONTROL0_L_USDHC1(v)   BF_CS1(CSU_HPCONTROL0, L_USDHC1, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC2
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC2 (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * USDHC2.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_USDHC2      26
@@ -2104,12 +2710,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_USDHC2(v)   (((v) << 26) & BM_CSU_HPCONTROL0_HPC_USDHC2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_USDHC2 field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_USDHC2(v)   BF_CS1(CSU_HPCONTROL0, HPC_USDHC2, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_USDHC2
+
+/* --- Register HW_CSU_HPCONTROL0, field L_USDHC2 (RW)
  *
  * Lock bit set by TZ software for HPC_USDHC2.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_USDHC2      27
@@ -2121,13 +2733,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_USDHC2(v)   (((v) << 27) & BM_CSU_HPCONTROL0_L_USDHC2)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC2 field to a new value.
 #define BW_CSU_HPCONTROL0_L_USDHC2(v)   BF_CS1(CSU_HPCONTROL0, L_USDHC2, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC3
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC3 (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * USDHC3.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_USDHC3      28
@@ -2139,12 +2757,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_USDHC3(v)   (((v) << 28) & BM_CSU_HPCONTROL0_HPC_USDHC3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_USDHC3 field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_USDHC3(v)   BF_CS1(CSU_HPCONTROL0, HPC_USDHC3, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_USDHC3
+
+/* --- Register HW_CSU_HPCONTROL0, field L_USDHC3 (RW)
  *
  * Lock bit set by TZ software for HPC_USDHC3.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_USDHC3      29
@@ -2156,13 +2780,19 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_USDHC3(v)   (((v) << 29) & BM_CSU_HPCONTROL0_L_USDHC3)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC3 field to a new value.
 #define BW_CSU_HPCONTROL0_L_USDHC3(v)   BF_CS1(CSU_HPCONTROL0, L_USDHC3, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC4
+
+/* --- Register HW_CSU_HPCONTROL0, field HPC_USDHC4 (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * USDHC4.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL0_HPC_USDHC4      30
@@ -2174,12 +2804,18 @@ typedef union
 #define BF_CSU_HPCONTROL0_HPC_USDHC4(v)   (((v) << 30) & BM_CSU_HPCONTROL0_HPC_USDHC4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_USDHC4 field to a new value.
 #define BW_CSU_HPCONTROL0_HPC_USDHC4(v)   BF_CS1(CSU_HPCONTROL0, HPC_USDHC4, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL0, field L_USDHC4
+
+/* --- Register HW_CSU_HPCONTROL0, field L_USDHC4 (RW)
  *
  * Lock bit set by TZ software for HPC_USDHC4.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL0_L_USDHC4      31
@@ -2191,19 +2827,21 @@ typedef union
 #define BF_CSU_HPCONTROL0_L_USDHC4(v)   (((v) << 31) & BM_CSU_HPCONTROL0_L_USDHC4)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_USDHC4 field to a new value.
 #define BW_CSU_HPCONTROL0_L_USDHC4(v)   BF_CS1(CSU_HPCONTROL0, L_USDHC4, v)
 #endif
 
+
+#ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_CSU_HPCONTROL1 - HPCONTROL1 register
+ * @brief HW_CSU_HPCONTROL1 - HPCONTROL1 register (RW)
  *
  * The SCU_HPCONTROL1 register is expansion of SCU_HPCONTROL0 register. See SCU_HPCONTROL0 register
  * definition.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned HPC_HDMI_HSI : 1; //!< Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of HDMI Tx and HSI.
@@ -2227,15 +2865,18 @@ typedef union
 #define HW_CSU_HPCONTROL1_TOG(v)    (HW_CSU_HPCONTROL1_WR(HW_CSU_HPCONTROL1_RD() ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual CSU_HPCONTROL1 bitfields
  */
 
-/* --- Register HW_CSU_HPCONTROL1, field HPC_HDMI_HSI
+/* --- Register HW_CSU_HPCONTROL1, field HPC_HDMI_HSI (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
  * HDMI Tx and HSI.
+ *
+ * Values:
+ * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master
+ * 1 - HP register bit is routed to csu_hprot1 output for the corresponding master
  */
 
 #define BP_CSU_HPCONTROL1_HPC_HDMI_HSI      0
@@ -2247,12 +2888,18 @@ typedef union
 #define BF_CSU_HPCONTROL1_HPC_HDMI_HSI(v)   (((v) << 0) & BM_CSU_HPCONTROL1_HPC_HDMI_HSI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HPC_HDMI_HSI field to a new value.
 #define BW_CSU_HPCONTROL1_HPC_HDMI_HSI(v)   BF_CS1(CSU_HPCONTROL1, HPC_HDMI_HSI, v)
 #endif
 
-/* --- Register HW_CSU_HPCONTROL1, field L_HDMI_HSI
+
+/* --- Register HW_CSU_HPCONTROL1, field L_HDMI_HSI (RW)
  *
  * Lock bit set by TZ software for HPC_HDMI_HSI.
+ *
+ * Values:
+ * 0 - No lock -- adjacent (next lower) bit can be written by software
+ * 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 
 #define BP_CSU_HPCONTROL1_L_HDMI_HSI      1
@@ -2264,6 +2911,7 @@ typedef union
 #define BF_CSU_HPCONTROL1_L_HDMI_HSI(v)   (((v) << 1) & BM_CSU_HPCONTROL1_L_HDMI_HSI)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the L_HDMI_HSI field to a new value.
 #define BW_CSU_HPCONTROL1_L_HDMI_HSI(v)   BF_CS1(CSU_HPCONTROL1, L_HDMI_HSI, v)
 #endif
 

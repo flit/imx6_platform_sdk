@@ -10,26 +10,43 @@
 
 #include "regs.h"
 
+/*
+ * Registers defined in this header file.
+ *
+ * - HW_PWM_PWMCR - PWM Control Register
+ * - HW_PWM_PWMSR - PWM Status Register
+ * - HW_PWM_PWMIR - PWM Interrupt Register
+ * - HW_PWM_PWMSAR - PWM Sample Register
+ * - HW_PWM_PWMPR - PWM Period Register
+ * - HW_PWM_PWMCNR - PWM Counter Register
+ *
+ * hw_pwm_t - Struct containing all module registers.
+ */
+
+//! @name Module base addresses
+//@{
 #ifndef REGS_PWM_BASE
-#define REGS_PWM0_BASE (REGS_BASE + 0x02080000)
-#define REGS_PWM1_BASE (REGS_BASE + 0x02084000)
-#define REGS_PWM2_BASE (REGS_BASE + 0x02088000)
-#define REGS_PWM3_BASE (REGS_BASE + 0x0208c000)
+#define REGS_PWM0_BASE (0x02080000) //!< Base address for PWM instance number 0.
+#define REGS_PWM1_BASE (0x02084000) //!< Base address for PWM instance number 1.
+#define REGS_PWM2_BASE (0x02088000) //!< Base address for PWM instance number 2.
+#define REGS_PWM3_BASE (0x0208c000) //!< Base address for PWM instance number 3.
+
+//! @brief Get the base address of PWM by instance number.
+//! @param x PWM instance number, from 0 through 4.
 #define REGS_PWM_BASE(x) ( x == 0 ? REGS_PWM0_BASE : x == 1 ? REGS_PWM1_BASE : x == 2 ? REGS_PWM2_BASE : x == 3 ? REGS_PWM3_BASE : 0xffff0000)
 #endif
+//@}
 
-
-/*!
- * @brief HW_PWM_PWMCR - PWM Control Register
- *
- * The PWM control register (PWM_PWMCR) is used to configure the operating
- * settings of the PWM. It contains the prescaler for the clock
- * division.
- */
 #ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PWM_PWMCR - PWM Control Register (RW)
+ *
+ * The PWM control register (PWM_PWMCR) is used to configure the operating settings of the PWM. It
+ * contains the prescaler for the clock division.
+ */
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned EN : 1; //!< PWM Enable. This bit enables the PWM. If this bit is not enabled, the clock prescaler and the counter is reset. When the PWM is enabled, it begins a new period, the output pin is set to start a new period while the prescaler and counter are released and counting begins.
@@ -64,17 +81,19 @@ typedef union
 #define HW_PWM_PWMCR_TOG(x, v)    (HW_PWM_PWMCR_WR(x, HW_PWM_PWMCR_RD(x) ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PWM_PWMCR bitfields
  */
 
-/* --- Register HW_PWM_PWMCR, field EN
+/* --- Register HW_PWM_PWMCR, field EN (RW)
  *
- * PWM Enable. This bit enables the PWM. If this bit is not enabled, the
- * clock prescaler and the counter is reset. When the PWM is enabled,
- * it begins a new period, the output pin is set to start a new period
- * while the prescaler and counter are released and counting                                 begins.
+ * PWM Enable. This bit enables the PWM. If this bit is not enabled, the clock prescaler and the
+ * counter is reset. When the PWM is enabled, it begins a new period, the output pin is set to start
+ * a new period while the prescaler and counter are released and counting begins.
+ *
+ * Values:
+ * 0 - PWM disabled
+ * 1 - PWM enabled
  */
 
 #define BP_PWM_PWMCR_EN      0
@@ -86,13 +105,21 @@ typedef union
 #define BF_PWM_PWMCR_EN(v)   (((v) << 0) & BM_PWM_PWMCR_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the EN field to a new value.
 #define BW_PWM_PWMCR_EN(v)   BF_CS1(PWM_PWMCR, EN, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field REPEAT
+
+/* --- Register HW_PWM_PWMCR, field REPEAT (RW)
  *
- * Sample Repeat. This bit field determines the number of times each
- * sample from the FIFO is to be used.
+ * Sample Repeat. This bit field determines the number of times each sample from the FIFO is to be
+ * used.
+ *
+ * Values:
+ * 00 - Use each sample once
+ * 01 - Use each sample twice
+ * 10 - Use each sample four times
+ * 11 - Use each sample eight times
  */
 
 #define BP_PWM_PWMCR_REPEAT      1
@@ -104,18 +131,23 @@ typedef union
 #define BF_PWM_PWMCR_REPEAT(v)   (((v) << 1) & BM_PWM_PWMCR_REPEAT)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the REPEAT field to a new value.
 #define BW_PWM_PWMCR_REPEAT(v)   BF_CS1(PWM_PWMCR, REPEAT, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field SWR
+
+/* --- Register HW_PWM_PWMCR, field SWR (RW)
  *
- * Software Reset. PWM is reset when this bit is set to 1. It is a self
- * clearing bit. A write 1 to this bit is a single wait state write
- * cycle. When the block is in reset state this bit is set and is
- * cleared when the reset procedure is over. Setting this bit resets
- * all the registers to their reset values except for the STOPEN,
- * DOZEN, WAITEN, and DBGEN bits in this control register Technically, the previous tagging isn't
- * correct as "DBGEN" should be tagged as feature="pwm_debug_yes".-JC .
+ * Software Reset. PWM is reset when this bit is set to 1. It is a self clearing bit. A write 1 to
+ * this bit is a single wait state write cycle. When the block is in reset state this bit is set and
+ * is cleared when the reset procedure is over. Setting this bit resets all the registers to their
+ * reset values except for the STOPEN, DOZEN, WAITEN, and DBGEN bits in this control register
+ * Technically, the previous tagging isn't correct as "DBGEN" should be tagged as
+ * feature="pwm_debug_yes".-JC .
+ *
+ * Values:
+ * 0 - PWM is out of reset
+ * 1 - PWM is undergoing reset
  */
 
 #define BP_PWM_PWMCR_SWR      3
@@ -127,13 +159,20 @@ typedef union
 #define BF_PWM_PWMCR_SWR(v)   (((v) << 3) & BM_PWM_PWMCR_SWR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SWR field to a new value.
 #define BW_PWM_PWMCR_SWR(v)   BF_CS1(PWM_PWMCR, SWR, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field PRESCALER
+
+/* --- Register HW_PWM_PWMCR, field PRESCALER (RW)
  *
- * Counter Clock Prescaler Value. This bit field determines the value by
- * which the clock will be divided before it goes to the counter.
+ * Counter Clock Prescaler Value. This bit field determines the value by which the clock will be
+ * divided before it goes to the counter.
+ *
+ * Values:
+ * 0x000 - Divide by 1
+ * 0x001 - Divide by 2
+ * 0xfff - Divide by 4096
  */
 
 #define BP_PWM_PWMCR_PRESCALER      4
@@ -145,16 +184,22 @@ typedef union
 #define BF_PWM_PWMCR_PRESCALER(v)   (((v) << 4) & BM_PWM_PWMCR_PRESCALER)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PRESCALER field to a new value.
 #define BW_PWM_PWMCR_PRESCALER(v)   BF_CS1(PWM_PWMCR, PRESCALER, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field CLKSRC
+
+/* --- Register HW_PWM_PWMCR, field CLKSRC (RW)
  *
- * Select Clock Source. These bits determine which clock input will be
- * selected for running the counter. After reset the system functional
- * clock is selected. The input clock can also be turned off if these
- * bits are set to 00. This field value should only be changed when the
- * PWM is disabled
+ * Select Clock Source. These bits determine which clock input will be selected for running the
+ * counter. After reset the system functional clock is selected. The input clock can also be turned
+ * off if these bits are set to 00. This field value should only be changed when the PWM is disabled
+ *
+ * Values:
+ * 00 - Clock is off
+ * 01 - ipg_clk
+ * 10 - ipg_clk_highfreq Clock is off
+ * 11 - ipg_clk_32k Clock is off
  */
 
 #define BP_PWM_PWMCR_CLKSRC      16
@@ -166,13 +211,20 @@ typedef union
 #define BF_PWM_PWMCR_CLKSRC(v)   (((v) << 16) & BM_PWM_PWMCR_CLKSRC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CLKSRC field to a new value.
 #define BW_PWM_PWMCR_CLKSRC(v)   BF_CS1(PWM_PWMCR, CLKSRC, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field POUTC
+
+/* --- Register HW_PWM_PWMCR, field POUTC (RW)
  *
- * PWM Output Configuration. This bit field determines the mode of PWM
- * output on the output pin.
+ * PWM Output Configuration. This bit field determines the mode of PWM output on the output pin.
+ *
+ * Values:
+ * 00 - Output pin is set at rollover and cleared at comparison
+ * 01 - Output pin is cleared at rollover and set at comparison
+ * 10 - PWM output is disconnected
+ * 11 - PWM output is disconnected
  */
 
 #define BP_PWM_PWMCR_POUTC      18
@@ -184,14 +236,19 @@ typedef union
 #define BF_PWM_PWMCR_POUTC(v)   (((v) << 18) & BM_PWM_PWMCR_POUTC)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the POUTC field to a new value.
 #define BW_PWM_PWMCR_POUTC(v)   BF_CS1(PWM_PWMCR, POUTC, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field HCTR
+
+/* --- Register HW_PWM_PWMCR, field HCTR (RW)
  *
- * Half-word Data Swap Control. This bit determines which half word data
- * from the 32-bit IP Bus interface is written into the lower 16 bits
- * of the sample register.
+ * Half-word Data Swap Control. This bit determines which half word data from the 32-bit IP Bus
+ * interface is written into the lower 16 bits of the sample register.
+ *
+ * Values:
+ * 0 - Half word swapping does not take place
+ * 1 - Half words from write data bus are swapped
  */
 
 #define BP_PWM_PWMCR_HCTR      20
@@ -203,13 +260,19 @@ typedef union
 #define BF_PWM_PWMCR_HCTR(v)   (((v) << 20) & BM_PWM_PWMCR_HCTR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the HCTR field to a new value.
 #define BW_PWM_PWMCR_HCTR(v)   BF_CS1(PWM_PWMCR, HCTR, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field BCTR
+
+/* --- Register HW_PWM_PWMCR, field BCTR (RW)
  *
- * Byte Data Swap Control. This bit determines the byte ordering of the
- * 16-bit data when it goes into the FIFO from the sample register.
+ * Byte Data Swap Control. This bit determines the byte ordering of the 16-bit data when it goes
+ * into the FIFO from the sample register.
+ *
+ * Values:
+ * 0 - byte ordering remains the same
+ * 1 - byte ordering is reversed
  */
 
 #define BP_PWM_PWMCR_BCTR      21
@@ -221,15 +284,20 @@ typedef union
 #define BF_PWM_PWMCR_BCTR(v)   (((v) << 21) & BM_PWM_PWMCR_BCTR)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the BCTR field to a new value.
 #define BW_PWM_PWMCR_BCTR(v)   BF_CS1(PWM_PWMCR, BCTR, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field DBGEN
+
+/* --- Register HW_PWM_PWMCR, field DBGEN (RW)
  *
- * Debug Mode Enable. This bit keeps the PWM functional in debug mode.
- * When this bit is cleared, the input clock is gated off in debug
- * mode. This bit is not affected by software reset. It is cleared by
- * hardware reset.
+ * Debug Mode Enable. This bit keeps the PWM functional in debug mode. When this bit is cleared, the
+ * input clock is gated off in debug mode. This bit is not affected by software reset. It is cleared
+ * by hardware reset.
+ *
+ * Values:
+ * 0 - Inactive in debug mode
+ * 1 - Active in debug mode
  */
 
 #define BP_PWM_PWMCR_DBGEN      22
@@ -241,15 +309,20 @@ typedef union
 #define BF_PWM_PWMCR_DBGEN(v)   (((v) << 22) & BM_PWM_PWMCR_DBGEN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DBGEN field to a new value.
 #define BW_PWM_PWMCR_DBGEN(v)   BF_CS1(PWM_PWMCR, DBGEN, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field WAITEN
+
+/* --- Register HW_PWM_PWMCR, field WAITEN (RW)
  *
- * Wait Mode Enable. This bit keeps the PWM functional in wait mode.
- * When this bit is cleared, the input clock is gated off in wait mode.
- * This bit is not affected by software reset. It is cleared by
- * hardware reset.
+ * Wait Mode Enable. This bit keeps the PWM functional in wait mode. When this bit is cleared, the
+ * input clock is gated off in wait mode. This bit is not affected by software reset. It is cleared
+ * by hardware reset.
+ *
+ * Values:
+ * 0 - Inactive in wait mode
+ * 1 - Active in wait mode
  */
 
 #define BP_PWM_PWMCR_WAITEN      23
@@ -261,15 +334,20 @@ typedef union
 #define BF_PWM_PWMCR_WAITEN(v)   (((v) << 23) & BM_PWM_PWMCR_WAITEN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the WAITEN field to a new value.
 #define BW_PWM_PWMCR_WAITEN(v)   BF_CS1(PWM_PWMCR, WAITEN, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field DOZEN
+
+/* --- Register HW_PWM_PWMCR, field DOZEN (RW)
  *
- * Doze Mode Enable. This bit keeps the PWM functional in doze mode.
- * When this bit is cleared, the input clock is gated off in doze mode.
- * This bit is not affected by software reset. It is cleared by
- * hardware reset.
+ * Doze Mode Enable. This bit keeps the PWM functional in doze mode. When this bit is cleared, the
+ * input clock is gated off in doze mode. This bit is not affected by software reset. It is cleared
+ * by hardware reset.
+ *
+ * Values:
+ * 0 - Inactive in doze mode
+ * 1 - Active in doze mode
  */
 
 #define BP_PWM_PWMCR_DOZEN      24
@@ -281,15 +359,20 @@ typedef union
 #define BF_PWM_PWMCR_DOZEN(v)   (((v) << 24) & BM_PWM_PWMCR_DOZEN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the DOZEN field to a new value.
 #define BW_PWM_PWMCR_DOZEN(v)   BF_CS1(PWM_PWMCR, DOZEN, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field STOPEN
+
+/* --- Register HW_PWM_PWMCR, field STOPEN (RW)
  *
- * Stop Mode Enable. This bit keeps the PWM functional while in stop
- * mode. When this bit is cleared, the input clock is gated off in stop
- * mode. This bit is not affected by software reset. It is cleared by
- * hardware reset.
+ * Stop Mode Enable. This bit keeps the PWM functional while in stop mode. When this bit is cleared,
+ * the input clock is gated off in stop mode. This bit is not affected by software reset. It is
+ * cleared by hardware reset.
+ *
+ * Values:
+ * 0 - Inactive in stop mode
+ * 1 - Active in stop mode
  */
 
 #define BP_PWM_PWMCR_STOPEN      25
@@ -301,14 +384,21 @@ typedef union
 #define BF_PWM_PWMCR_STOPEN(v)   (((v) << 25) & BM_PWM_PWMCR_STOPEN)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the STOPEN field to a new value.
 #define BW_PWM_PWMCR_STOPEN(v)   BF_CS1(PWM_PWMCR, STOPEN, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field FWM
+
+/* --- Register HW_PWM_PWMCR, field FWM (RW)
  *
- * FIFO Water Mark. These bits are used to set the data level at which
- * the FIFO empty flag will be set and the corresponding interrupt
- * generated
+ * FIFO Water Mark. These bits are used to set the data level at which the FIFO empty flag will be
+ * set and the corresponding interrupt generated
+ *
+ * Values:
+ * 00 - FIFO empty flag is set when there are more than or equal to 1 empty slots in FIFO
+ * 01 - FIFO empty flag is set when there are more than or equal to 2 empty slots in FIFO
+ * 10 - FIFO empty flag is set when there are more than or equal to 3 empty slots in FIFO
+ * 11 - FIFO empty flag is set when there are more than or equal to 4 empty slots in FIFO
  */
 
 #define BP_PWM_PWMCR_FWM      26
@@ -320,10 +410,12 @@ typedef union
 #define BF_PWM_PWMCR_FWM(v)   (((v) << 26) & BM_PWM_PWMCR_FWM)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FWM field to a new value.
 #define BW_PWM_PWMCR_FWM(v)   BF_CS1(PWM_PWMCR, FWM, v)
 #endif
 
-/* --- Register HW_PWM_PWMCR, field RESERVED
+
+/* --- Register HW_PWM_PWMCR, field RESERVED (ROZ)
  *
  * Reserved. These reserved bits are always read as zero.
  */
@@ -332,27 +424,17 @@ typedef union
 #define BM_PWM_PWMCR_RESERVED      0xf0000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMCR_RESERVED(v)   ((((reg32_t) v) << 28) & BM_PWM_PWMCR_RESERVED)
-#else
-#define BF_PWM_PWMCR_RESERVED(v)   (((v) << 28) & BM_PWM_PWMCR_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMCR_RESERVED(v)   BF_CS1(PWM_PWMCR, RESERVED, v)
-#endif
-
 /*!
- * @brief HW_PWM_PWMSR - PWM Status Register
+ * @brief HW_PWM_PWMSR - PWM Status Register (W1C)
  *
- * The PWM status register (PWM_PWMSR) contains seven bits which display the
- * state of the FIFO and the occurrence of rollover and compare events. The
- * FIFOAV bit is read-only but the other four bits can be cleared by
- * writing 1 to them. The FE, ROV, and CMP bits are associated with
- * FIFO-Empty, Roll-over, and Compare interrupts, respectively.
+ * The PWM status register (PWM_PWMSR) contains seven bits which display the state of the FIFO and
+ * the occurrence of rollover and compare events. The FIFOAV bit is read-only but the other four
+ * bits can be cleared by writing 1 to them. The FE, ROV, and CMP bits are associated with FIFO-
+ * Empty, Roll-over, and Compare interrupts, respectively.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned FIFOAV : 3; //!< FIFO Available. These read-only bits indicate the data level remaining in the FIFO. An attempted write to these bits will not affect their value and no transfer error is generated.
@@ -373,108 +455,87 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PWM_PWMSR(x)           (*(volatile hw_pwm_pwmsr_t *) HW_PWM_PWMSR_ADDR(x))
 #define HW_PWM_PWMSR_RD(x)        (HW_PWM_PWMSR(x).U)
-#define HW_PWM_PWMSR_WR(x, v)     (HW_PWM_PWMSR(x).U = (v))
-#define HW_PWM_PWMSR_SET(x, v)    (HW_PWM_PWMSR_WR(x, HW_PWM_PWMSR_RD(x) |  (v)))
-#define HW_PWM_PWMSR_CLR(x, v)    (HW_PWM_PWMSR_WR(x, HW_PWM_PWMSR_RD(x) & ~(v)))
-#define HW_PWM_PWMSR_TOG(x, v)    (HW_PWM_PWMSR_WR(x, HW_PWM_PWMSR_RD(x) ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PWM_PWMSR bitfields
  */
 
-/* --- Register HW_PWM_PWMSR, field FIFOAV
+/* --- Register HW_PWM_PWMSR, field FIFOAV (RO)
  *
- * FIFO Available. These read-only bits indicate the data level
- * remaining in the FIFO. An attempted write to these bits will not
- * affect their value and no transfer error is generated.
+ * FIFO Available. These read-only bits indicate the data level remaining in the FIFO. An attempted
+ * write to these bits will not affect their value and no transfer error is generated.
+ *
+ * Values:
+ * 000 - No data available
+ * 001 - 1 word of data in FIFO
+ * 010 - 2 words of data in FIFO
+ * 011 - 3 words of data in FIFO
+ * 100 - 4 words of data in FIFO
+ * 101 - unused
+ * 110 - unused
+ * 111 - unused
  */
 
 #define BP_PWM_PWMSR_FIFOAV      0
 #define BM_PWM_PWMSR_FIFOAV      0x00000007
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMSR_FIFOAV(v)   ((((reg32_t) v) << 0) & BM_PWM_PWMSR_FIFOAV)
-#else
-#define BF_PWM_PWMSR_FIFOAV(v)   (((v) << 0) & BM_PWM_PWMSR_FIFOAV)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMSR_FIFOAV(v)   BF_CS1(PWM_PWMSR, FIFOAV, v)
-#endif
 
-/* --- Register HW_PWM_PWMSR, field FE
+/* --- Register HW_PWM_PWMSR, field FE (W1C)
  *
- * FIFO Empty Status Bit. This bit indicates the FIFO data level in
- * comparison to the water level set by FWM field in the control
- * register.
+ * FIFO Empty Status Bit. This bit indicates the FIFO data level in comparison to the water level
+ * set by FWM field in the control register.
+ *
+ * Values:
+ * 0 - Data level is above water mark
+ * 1 - When the data level falls below the mark set by FWM field
  */
 
 #define BP_PWM_PWMSR_FE      3
 #define BM_PWM_PWMSR_FE      0x00000008
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMSR_FE(v)   ((((reg32_t) v) << 3) & BM_PWM_PWMSR_FE)
-#else
-#define BF_PWM_PWMSR_FE(v)   (((v) << 3) & BM_PWM_PWMSR_FE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMSR_FE(v)   BF_CS1(PWM_PWMSR, FE, v)
-#endif
 
-/* --- Register HW_PWM_PWMSR, field ROV
+/* --- Register HW_PWM_PWMSR, field ROV (W1C)
  *
  * Roll-over Status. This bit shows that a roll-over event has occurred.
+ *
+ * Values:
+ * 0 - Roll-over event not occurred
+ * 1 - Roll-over event occurred
  */
 
 #define BP_PWM_PWMSR_ROV      4
 #define BM_PWM_PWMSR_ROV      0x00000010
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMSR_ROV(v)   ((((reg32_t) v) << 4) & BM_PWM_PWMSR_ROV)
-#else
-#define BF_PWM_PWMSR_ROV(v)   (((v) << 4) & BM_PWM_PWMSR_ROV)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMSR_ROV(v)   BF_CS1(PWM_PWMSR, ROV, v)
-#endif
 
-/* --- Register HW_PWM_PWMSR, field CMP
+/* --- Register HW_PWM_PWMSR, field CMP (W1C)
  *
  * Compare Status. This bit shows that a compare event has occurred.
+ *
+ * Values:
+ * 0 - Compare event not occurred
+ * 1 - Compare event occurred
  */
 
 #define BP_PWM_PWMSR_CMP      5
 #define BM_PWM_PWMSR_CMP      0x00000020
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMSR_CMP(v)   ((((reg32_t) v) << 5) & BM_PWM_PWMSR_CMP)
-#else
-#define BF_PWM_PWMSR_CMP(v)   (((v) << 5) & BM_PWM_PWMSR_CMP)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMSR_CMP(v)   BF_CS1(PWM_PWMSR, CMP, v)
-#endif
 
-/* --- Register HW_PWM_PWMSR, field FWE
+/* --- Register HW_PWM_PWMSR, field FWE (W1C)
  *
- * FIFO Write Error Status. This bit shows that an attempt has been made
- * to write FIFO when it is full.
+ * FIFO Write Error Status. This bit shows that an attempt has been made to write FIFO when it is
+ * full.
+ *
+ * Values:
+ * 0 - FIFO write error not occurred
+ * 1 - FIFO write error occurred
  */
 
 #define BP_PWM_PWMSR_FWE      6
 #define BM_PWM_PWMSR_FWE      0x00000040
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMSR_FWE(v)   ((((reg32_t) v) << 6) & BM_PWM_PWMSR_FWE)
-#else
-#define BF_PWM_PWMSR_FWE(v)   (((v) << 6) & BM_PWM_PWMSR_FWE)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMSR_FWE(v)   BF_CS1(PWM_PWMSR, FWE, v)
-#endif
 
-/* --- Register HW_PWM_PWMSR, field RESERVED
+/* --- Register HW_PWM_PWMSR, field RESERVED (ROZ)
  *
  * Reserved. These reserved bits are always read as zero.
  */
@@ -483,24 +544,15 @@ typedef union
 #define BM_PWM_PWMSR_RESERVED      0xffffff80
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMSR_RESERVED(v)   ((((reg32_t) v) << 7) & BM_PWM_PWMSR_RESERVED)
-#else
-#define BF_PWM_PWMSR_RESERVED(v)   (((v) << 7) & BM_PWM_PWMSR_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMSR_RESERVED(v)   BF_CS1(PWM_PWMSR, RESERVED, v)
-#endif
-
 /*!
- * @brief HW_PWM_PWMIR - PWM Interrupt Register
+ * @brief HW_PWM_PWMIR - PWM Interrupt Register (RW)
  *
- * The PWM Interrupt register (PWM_PWMIR) contains three bits which control
- * the generation of the compare, rollover and FIFO empty interrupts.
+ * The PWM Interrupt register (PWM_PWMIR) contains three bits which control the generation of the
+ * compare, rollover and FIFO empty interrupts.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned FIE : 1; //!< FIFO Empty Interrupt Enable. This bit controls the generation of the FIFO Empty interrupt.
@@ -525,15 +577,17 @@ typedef union
 #define HW_PWM_PWMIR_TOG(x, v)    (HW_PWM_PWMIR_WR(x, HW_PWM_PWMIR_RD(x) ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PWM_PWMIR bitfields
  */
 
-/* --- Register HW_PWM_PWMIR, field FIE
+/* --- Register HW_PWM_PWMIR, field FIE (RW)
  *
- * FIFO Empty Interrupt Enable. This bit controls the generation of the
- * FIFO Empty interrupt.
+ * FIFO Empty Interrupt Enable. This bit controls the generation of the FIFO Empty interrupt.
+ *
+ * Values:
+ * 0 - FIFO Empty interrupt disabled
+ * 1 - FIFO Empty interrupt enabled
  */
 
 #define BP_PWM_PWMIR_FIE      0
@@ -545,13 +599,18 @@ typedef union
 #define BF_PWM_PWMIR_FIE(v)   (((v) << 0) & BM_PWM_PWMIR_FIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the FIE field to a new value.
 #define BW_PWM_PWMIR_FIE(v)   BF_CS1(PWM_PWMIR, FIE, v)
 #endif
 
-/* --- Register HW_PWM_PWMIR, field RIE
+
+/* --- Register HW_PWM_PWMIR, field RIE (RW)
  *
- * Roll-over Interrupt Enable. This bit controls the generation of the
- * Rollover interrupt.
+ * Roll-over Interrupt Enable. This bit controls the generation of the Rollover interrupt.
+ *
+ * Values:
+ * 0 - Roll-over interrupt not enabled
+ * 1 - Roll-over Interrupt enabled
  */
 
 #define BP_PWM_PWMIR_RIE      1
@@ -563,13 +622,18 @@ typedef union
 #define BF_PWM_PWMIR_RIE(v)   (((v) << 1) & BM_PWM_PWMIR_RIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the RIE field to a new value.
 #define BW_PWM_PWMIR_RIE(v)   BF_CS1(PWM_PWMIR, RIE, v)
 #endif
 
-/* --- Register HW_PWM_PWMIR, field CIE
+
+/* --- Register HW_PWM_PWMIR, field CIE (RW)
  *
- * Compare Interrupt Enable. This bit controls the generation of the
- * Compare interrupt.
+ * Compare Interrupt Enable. This bit controls the generation of the Compare interrupt.
+ *
+ * Values:
+ * 0 - Compare Interrupt not enabled
+ * 1 - Compare Interrupt enabled
  */
 
 #define BP_PWM_PWMIR_CIE      2
@@ -581,10 +645,12 @@ typedef union
 #define BF_PWM_PWMIR_CIE(v)   (((v) << 2) & BM_PWM_PWMIR_CIE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the CIE field to a new value.
 #define BW_PWM_PWMIR_CIE(v)   BF_CS1(PWM_PWMIR, CIE, v)
 #endif
 
-/* --- Register HW_PWM_PWMIR, field RESERVED
+
+/* --- Register HW_PWM_PWMIR, field RESERVED (ROZ)
  *
  * Reserved. These reserved bits are always read as zero.
  */
@@ -593,34 +659,22 @@ typedef union
 #define BM_PWM_PWMIR_RESERVED      0xfffffff8
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMIR_RESERVED(v)   ((((reg32_t) v) << 3) & BM_PWM_PWMIR_RESERVED)
-#else
-#define BF_PWM_PWMIR_RESERVED(v)   (((v) << 3) & BM_PWM_PWMIR_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMIR_RESERVED(v)   BF_CS1(PWM_PWMIR, RESERVED, v)
-#endif
-
 /*!
- * @brief HW_PWM_PWMSAR - PWM Sample Register
+ * @brief HW_PWM_PWMSAR - PWM Sample Register (RW)
  *
- * The PWM sample register (PWM_PWMSAR) is the input to the FIFO. 16-bit
- * words are loaded into the FIFO. The FIFO can be written and read when
- * the PWM is disabled The FIFO can be written at any time, but can be read only when the PWM is
- * enabled.   The PWM will run at the last set duty-cycle setting                             if all
- * the values of the FIFO has been utilized, until the FIFO is                             reloaded
- * or the PWM is disabled. When a new value is written, the duty                             cycle
- * changes after the current period is over.  A value of zero in the sample register will result in
- * the ipp_pwm_pwmo                             output signal always being low/high (POUTC = 00 it
- * will be low and POUTC                             = 01 it will be high), and no output waveform
- * will be produced. If the                             value in this register is higher than the
- * PERIOD + 1, the output will                             never be set/reset depending on POUTC
- * value.
+ * The PWM sample register (PWM_PWMSAR) is the input to the FIFO. 16-bit words are loaded into the
+ * FIFO. The FIFO can be written and read when the PWM is disabled The FIFO can be written at any
+ * time, but can be read only when the PWM is enabled. The PWM will run at the last set duty-cycle
+ * setting if all the values of the FIFO has been utilized, until the FIFO is reloaded or the PWM is
+ * disabled. When a new value is written, the duty cycle changes after the current period is over.
+ * A value of zero in the sample register will result in the ipp_pwm_pwmo output signal always being
+ * low/high (POUTC = 00 it will be low and POUTC = 01 it will be high), and no output waveform will
+ * be produced. If the value in this register is higher than the PERIOD + 1, the output will never
+ * be set/reset depending on POUTC value.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned SAMPLE : 16; //!< Sample Value. This is the input to the 4x16 FIFO. The value in this register denotes the value of the sample being currently used.
@@ -643,15 +697,14 @@ typedef union
 #define HW_PWM_PWMSAR_TOG(x, v)    (HW_PWM_PWMSAR_WR(x, HW_PWM_PWMSAR_RD(x) ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PWM_PWMSAR bitfields
  */
 
-/* --- Register HW_PWM_PWMSAR, field SAMPLE
+/* --- Register HW_PWM_PWMSAR, field SAMPLE (RW)
  *
- * Sample Value. This is the input to the 4x16 FIFO. The value in this
- * register denotes the value of the sample being currently used.
+ * Sample Value. This is the input to the 4x16 FIFO. The value in this register denotes the value of
+ * the sample being currently used.
  */
 
 #define BP_PWM_PWMSAR_SAMPLE      0
@@ -663,43 +716,34 @@ typedef union
 #define BF_PWM_PWMSAR_SAMPLE(v)   (((v) << 0) & BM_PWM_PWMSAR_SAMPLE)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the SAMPLE field to a new value.
 #define BW_PWM_PWMSAR_SAMPLE(v)   BF_CS1(PWM_PWMSAR, SAMPLE, v)
 #endif
 
-/* --- Register HW_PWM_PWMSAR, field RESERVED
+/* --- Register HW_PWM_PWMSAR, field RESERVED (ROZ)
  *
- * These are reserved bits and writing a value will not affect the
- * functionality of PWM and are always read as zero.
+ * These are reserved bits and writing a value will not affect the functionality of PWM and are
+ * always read as zero.
  */
 
 #define BP_PWM_PWMSAR_RESERVED      16
 #define BM_PWM_PWMSAR_RESERVED      0xffff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMSAR_RESERVED(v)   ((((reg32_t) v) << 16) & BM_PWM_PWMSAR_RESERVED)
-#else
-#define BF_PWM_PWMSAR_RESERVED(v)   (((v) << 16) & BM_PWM_PWMSAR_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMSAR_RESERVED(v)   BF_CS1(PWM_PWMSAR, RESERVED, v)
-#endif
-
 /*!
- * @brief HW_PWM_PWMPR - PWM Period Register
+ * @brief HW_PWM_PWMPR - PWM Period Register (RW)
  *
- * The PWM period register (PWM_PWMPR) determines the period of the PWM
- * output signal. After the counter value matches PERIOD + 1, the counter
- * is reset to start another period.  PWMO (Hz) = PCLK(Hz) / (period +2)  A value of zero in the
- * PWM_PWMPR will result in a period of two clock                             cycles for the output
- * signal. Writing 0xFFFF to this register will                             achieve the same result
- * as writing 0xFFFE.  A change in the period value due to a write in PWM_PWMPR results in the
- * counter being reset to zero and the start of a new count period.  Settings PWM_PWMPR to 0xFFFF
- * when PWMx_PWMCR REPEAT bits are set to non-zero values is not allowed.
+ * The PWM period register (PWM_PWMPR) determines the period of the PWM output signal. After the
+ * counter value matches PERIOD + 1, the counter is reset to start another period.  PWMO (Hz) =
+ * PCLK(Hz) / (period +2)  A value of zero in the PWM_PWMPR will result in a period of two clock
+ * cycles for the output signal. Writing 0xFFFF to this register will achieve the same result as
+ * writing 0xFFFE.  A change in the period value due to a write in PWM_PWMPR results in the counter
+ * being reset to zero and the start of a new count period.  Settings PWM_PWMPR to 0xFFFF when
+ * PWMx_PWMCR REPEAT bits are set to non-zero values is not allowed.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned PERIOD : 16; //!< Period Value. These bits determine the Period of the count cycle. The counter counts up to [Period Value] +1 and is then reset to 0x0000.
@@ -722,16 +766,14 @@ typedef union
 #define HW_PWM_PWMPR_TOG(x, v)    (HW_PWM_PWMPR_WR(x, HW_PWM_PWMPR_RD(x) ^  (v)))
 #endif
 
-
 /*
  * constants & macros for individual PWM_PWMPR bitfields
  */
 
-/* --- Register HW_PWM_PWMPR, field PERIOD
+/* --- Register HW_PWM_PWMPR, field PERIOD (RW)
  *
- * Period Value. These bits determine the Period of the count cycle. The
- * counter counts up to [Period Value] +1 and is then reset to
- * 0x0000.
+ * Period Value. These bits determine the Period of the count cycle. The counter counts up to
+ * [Period Value] +1 and is then reset to 0x0000.
  */
 
 #define BP_PWM_PWMPR_PERIOD      0
@@ -743,38 +785,29 @@ typedef union
 #define BF_PWM_PWMPR_PERIOD(v)   (((v) << 0) & BM_PWM_PWMPR_PERIOD)
 #endif
 #ifndef __LANGUAGE_ASM__
+//! @brief Set the PERIOD field to a new value.
 #define BW_PWM_PWMPR_PERIOD(v)   BF_CS1(PWM_PWMPR, PERIOD, v)
 #endif
 
-/* --- Register HW_PWM_PWMPR, field RESERVED
+/* --- Register HW_PWM_PWMPR, field RESERVED (ROZ)
  *
- * These are reserved bits and writing a value will not affect the
- * functionality of PWM and are always read as zero.
+ * These are reserved bits and writing a value will not affect the functionality of PWM and are
+ * always read as zero.
  */
 
 #define BP_PWM_PWMPR_RESERVED      16
 #define BM_PWM_PWMPR_RESERVED      0xffff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMPR_RESERVED(v)   ((((reg32_t) v) << 16) & BM_PWM_PWMPR_RESERVED)
-#else
-#define BF_PWM_PWMPR_RESERVED(v)   (((v) << 16) & BM_PWM_PWMPR_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMPR_RESERVED(v)   BF_CS1(PWM_PWMPR, RESERVED, v)
-#endif
-
 /*!
- * @brief HW_PWM_PWMCNR - PWM Counter Register
+ * @brief HW_PWM_PWMCNR - PWM Counter Register (RO)
  *
- * The read-only pulse-width modulator counter register (PWM_PWMCNR)
- * contains the current count value and can be read at any time without
- * disturbing the counter.
+ * The read-only pulse-width modulator counter register (PWM_PWMCNR) contains the current count
+ * value and can be read at any time without disturbing the counter.
  */
-#ifndef __LANGUAGE_ASM__
 typedef union
 {
-    reg32_t  U;
+    reg32_t U;
     struct
     {
         unsigned COUNT : 16; //!< Counter Value. These bits are the counter register value and denotes the current count state the counter register is in.
@@ -791,53 +824,29 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PWM_PWMCNR(x)           (*(volatile hw_pwm_pwmcnr_t *) HW_PWM_PWMCNR_ADDR(x))
 #define HW_PWM_PWMCNR_RD(x)        (HW_PWM_PWMCNR(x).U)
-#define HW_PWM_PWMCNR_WR(x, v)     (HW_PWM_PWMCNR(x).U = (v))
-#define HW_PWM_PWMCNR_SET(x, v)    (HW_PWM_PWMCNR_WR(x, HW_PWM_PWMCNR_RD(x) |  (v)))
-#define HW_PWM_PWMCNR_CLR(x, v)    (HW_PWM_PWMCNR_WR(x, HW_PWM_PWMCNR_RD(x) & ~(v)))
-#define HW_PWM_PWMCNR_TOG(x, v)    (HW_PWM_PWMCNR_WR(x, HW_PWM_PWMCNR_RD(x) ^  (v)))
 #endif
-
 
 /*
  * constants & macros for individual PWM_PWMCNR bitfields
  */
 
-/* --- Register HW_PWM_PWMCNR, field COUNT
+/* --- Register HW_PWM_PWMCNR, field COUNT (RO)
  *
- * Counter Value. These bits are the counter register value and denotes
- * the current count state the counter register is in.
+ * Counter Value. These bits are the counter register value and denotes the current count state the
+ * counter register is in.
  */
 
 #define BP_PWM_PWMCNR_COUNT      0
 #define BM_PWM_PWMCNR_COUNT      0x0000ffff
 
-#ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMCNR_COUNT(v)   ((((reg32_t) v) << 0) & BM_PWM_PWMCNR_COUNT)
-#else
-#define BF_PWM_PWMCNR_COUNT(v)   (((v) << 0) & BM_PWM_PWMCNR_COUNT)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMCNR_COUNT(v)   BF_CS1(PWM_PWMCNR, COUNT, v)
-#endif
-
-/* --- Register HW_PWM_PWMCNR, field RESERVED
+/* --- Register HW_PWM_PWMCNR, field RESERVED (ROZ)
  *
- * These are reserved bits and writing a value will not affect the
- * functionality of PWM and are always read as zero.
+ * These are reserved bits and writing a value will not affect the functionality of PWM and are
+ * always read as zero.
  */
 
 #define BP_PWM_PWMCNR_RESERVED      16
 #define BM_PWM_PWMCNR_RESERVED      0xffff0000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PWM_PWMCNR_RESERVED(v)   ((((reg32_t) v) << 16) & BM_PWM_PWMCNR_RESERVED)
-#else
-#define BF_PWM_PWMCNR_RESERVED(v)   (((v) << 16) & BM_PWM_PWMCNR_RESERVED)
-#endif
-#ifndef __LANGUAGE_ASM__
-#define BW_PWM_PWMCNR_RESERVED(v)   BF_CS1(PWM_PWMCNR, RESERVED, v)
-#endif
-
 
 
 /*!

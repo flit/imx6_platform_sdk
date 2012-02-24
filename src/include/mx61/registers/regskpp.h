@@ -137,7 +137,7 @@ typedef union
         unsigned short KPKD : 1; //!< Keypad Key Depress. The keypad key depress (KPKD) status bit is set when one or more enabled rows are detected low after synchronization. The KPKD status bit remains set until cleared by the software. The KPKD bit may be used to generate a maskable key depress interrupt. If desired, the software may clear the key press synchronizer chain to allow a repeated interrupt to be generated while a key remains pressed. In this case, a new interrupt will be generated after the synchronizer delay (4 cycles of the low frequency reference clock (ipg_clk_32k) elapses if a key remains pressed. This functionality can be used to detect a long key press. This allows detection of additional key presses of the same key or other keys. Due to the logic function of the release and depress synchronizer chains, it is possible to see the re-assertion of a status flag (KPKD or KPKR) if it is cleared by the software prior to the system exiting the state it represents.
         unsigned short KPKR : 1; //!< Keypad Key Release. The keypad key release (KPKR) status bit is set when all enabled rows are detected high after synchronization (the KPKR status bit will be set when cleared by a reset). The KPKR bit may be used to generate a maskable key release interrupt. The key release synchronizer may be set high by software after scanning the keypad to ensure a known state. Due to the logic function of the release and depress synchronizer chains, it is possible to see the re-assertion of a status flag (KPKD or KPKR) if it is cleared by software prior to the system exiting the state it represents. Reset value of register is "0" as long as reset is asserted. However when reset is de-asserted, the value of the register depends upon the external row pins and can become "1".
         unsigned short KDSC : 1; //!< Key Depress Synchronizer Clear. Self-clear bit. The Key depress synchronizer is cleared by writing a logic "1" into this bit. Reads return a value of "0".
-        unsigned short KPP : 1; //!< Key Release Synchronizer Set. Self-clear bit. The Key release synchronizer is set by writing a logic one into this bit. Reads return a value of "0".
+        unsigned short KPP_KRSS : 1; //!< Key Release Synchronizer Set. Self-clear bit. The Key release synchronizer is set by writing a logic one into this bit. Reads return a value of "0".
         unsigned short RESERVED0 : 4; //!< Reserved, should be cleared
         unsigned short KDIE : 1; //!< Keypad Key Depress Interrupt Enable. Software should ensure that the interrupt for a Key Release event is masked until it has entered the key pressed state, and vice-versa, unless this activity is desired (as might be the case when a repeated interrupt is to be generated). The synchronizer chains are capable of being initialized to detect repeated key presses or releases. If they are not initialized when the corresponding event flag is cleared, false interrupts may be generated for depress (or release) events shorter than the length of the corresponding chain.
         unsigned short KRIE : 1; //!< Keypad Release Interrupt Enable. The software should ensure that the interrupt for a Key Release event is masked until it has entered the key pressed state, and vice versa, unless this activity is desired (as might be the case when a repeated interrupt is to be generated). The synchronizer chains are capable of being initialized to detect repeated key presses or releases. If they are not initialized when the corresponding event flag is cleared, false interrupts may be generated for depress (or release) events shorter than the length of the corresponding chain.
@@ -185,6 +185,16 @@ typedef union
 #define BP_KPP_KPSR_KPKD      0
 #define BM_KPP_KPSR_KPKD      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_KPP_KPSR_KPKD(v)   ((((reg32_t) v) << 0) & BM_KPP_KPSR_KPKD)
+#else
+#define BF_KPP_KPSR_KPKD(v)   (((v) << 0) & BM_KPP_KPSR_KPKD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the KPKD field to a new value.
+#define BW_KPP_KPSR_KPKD(v)   BF_CS1(KPP_KPSR, KPKD, v)
+#endif
+
 
 /* --- Register HW_KPP_KPSR, field KPKR (W1C)
  *
@@ -206,6 +216,16 @@ typedef union
 #define BP_KPP_KPSR_KPKR      1
 #define BM_KPP_KPSR_KPKR      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_KPP_KPSR_KPKR(v)   ((((reg32_t) v) << 1) & BM_KPP_KPSR_KPKR)
+#else
+#define BF_KPP_KPSR_KPKR(v)   (((v) << 1) & BM_KPP_KPSR_KPKR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the KPKR field to a new value.
+#define BW_KPP_KPSR_KPKR(v)   BF_CS1(KPP_KPSR, KPKR, v)
+#endif
+
 
 /* --- Register HW_KPP_KPSR, field KDSC (WORZ)
  *
@@ -220,8 +240,18 @@ typedef union
 #define BP_KPP_KPSR_KDSC      2
 #define BM_KPP_KPSR_KDSC      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_KPP_KPSR_KDSC(v)   ((((reg32_t) v) << 2) & BM_KPP_KPSR_KDSC)
+#else
+#define BF_KPP_KPSR_KDSC(v)   (((v) << 2) & BM_KPP_KPSR_KDSC)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the KDSC field to a new value.
+#define BW_KPP_KPSR_KDSC(v)   BF_CS1(KPP_KPSR, KDSC, v)
+#endif
 
-/* --- Register HW_KPP_KPSR, field KPP (WORZ)
+
+/* --- Register HW_KPP_KPSR, field KPP_KRSS (WORZ)
  *
  * Key Release Synchronizer Set. Self-clear bit. The Key release synchronizer is set by writing a
  * logic one into this bit. Reads return a value of "0".
@@ -231,8 +261,18 @@ typedef union
  * 1 - Set bits which sets keypad release synchronizer chain
  */
 
-#define BP_KPP_KPSR_KPP      3
-#define BM_KPP_KPSR_KPP      0x00000008
+#define BP_KPP_KPSR_KPP_KRSS      3
+#define BM_KPP_KPSR_KPP_KRSS      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_KPP_KPSR_KPP_KRSS(v)   ((((reg32_t) v) << 3) & BM_KPP_KPSR_KPP_KRSS)
+#else
+#define BF_KPP_KPSR_KPP_KRSS(v)   (((v) << 3) & BM_KPP_KPSR_KPP_KRSS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the KPP_KRSS field to a new value.
+#define BW_KPP_KPSR_KPP_KRSS(v)   BF_CS1(KPP_KPSR, KPP_KRSS, v)
+#endif
 
 
 /* --- Register HW_KPP_KPSR, field KDIE (RW)
@@ -472,7 +512,7 @@ typedef struct
     volatile hw_kpp_kpsr_t KPSR; //!< Keypad Status Register
     volatile hw_kpp_kddr_t KDDR; //!< Keypad Data Direction Register
     volatile hw_kpp_kpdr_t KPDR; //!< Keypad Data Register
-} hw_kpp_t
+} hw_kpp_t;
 #endif
 
 //! @brief Macro to access all KPP registers.

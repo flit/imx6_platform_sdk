@@ -3826,6 +3826,16 @@ typedef union
 #define BP_MMDC1_MADPCR0_CYC_OVF      3
 #define BM_MMDC1_MADPCR0_CYC_OVF      0x00000008
 
+#ifndef __LANGUAGE_ASM__
+#define BF_MMDC1_MADPCR0_CYC_OVF(v)   ((((reg32_t) v) << 3) & BM_MMDC1_MADPCR0_CYC_OVF)
+#else
+#define BF_MMDC1_MADPCR0_CYC_OVF(v)   (((v) << 3) & BM_MMDC1_MADPCR0_CYC_OVF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CYC_OVF field to a new value.
+#define BW_MMDC1_MADPCR0_CYC_OVF(v)   BF_CS1(MMDC1_MADPCR0, CYC_OVF, v)
+#endif
+
 
 /* --- Register HW_MMDC1_MADPCR0, field SBS_EN (RW)
  *
@@ -4398,7 +4408,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned GP31 : 32; //!< General purpose read/write bits.
+        unsigned GP31_GP0 : 32; //!< General purpose read/write bits.
     } B;
 } hw_mmdc1_magenp_t;
 #endif
@@ -4421,22 +4431,22 @@ typedef union
  * constants & macros for individual MMDC1_MAGENP bitfields
  */
 
-/* --- Register HW_MMDC1_MAGENP, field GP31 (RW)
+/* --- Register HW_MMDC1_MAGENP, field GP31_GP0 (RW)
  *
  * General purpose read/write bits.
  */
 
-#define BP_MMDC1_MAGENP_GP31      0
-#define BM_MMDC1_MAGENP_GP31      0xffffffff
+#define BP_MMDC1_MAGENP_GP31_GP0      0
+#define BM_MMDC1_MAGENP_GP31_GP0      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MMDC1_MAGENP_GP31(v)   ((((reg32_t) v) << 0) & BM_MMDC1_MAGENP_GP31)
+#define BF_MMDC1_MAGENP_GP31_GP0(v)   ((((reg32_t) v) << 0) & BM_MMDC1_MAGENP_GP31_GP0)
 #else
-#define BF_MMDC1_MAGENP_GP31(v)   (((v) << 0) & BM_MMDC1_MAGENP_GP31)
+#define BF_MMDC1_MAGENP_GP31_GP0(v)   (((v) << 0) & BM_MMDC1_MAGENP_GP31_GP0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the GP31 field to a new value.
-#define BW_MMDC1_MAGENP_GP31(v)   BF_CS1(MMDC1_MAGENP, GP31, v)
+//! @brief Set the GP31_GP0 field to a new value.
+#define BW_MMDC1_MAGENP_GP31_GP0(v)   BF_CS1(MMDC1_MAGENP, GP31_GP0, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -11637,7 +11647,7 @@ typedef struct
     volatile hw_mmdc1_mpmur0_t MPMUR0; //!< MMDC PHY Measure Unit Register
     volatile hw_mmdc1_mpwrcadl_t MPWRCADL; //!< MMDC Write CA delay-line controller
     volatile hw_mmdc1_mpdccr_t MPDCCR; //!< MMDC Duty Cycle Control Register
-} hw_mmdc1_t
+} hw_mmdc1_t;
 #endif
 
 //! @brief Macro to access all MMDC1 registers.

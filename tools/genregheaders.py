@@ -36,18 +36,25 @@ from UserDict import UserDict
 # @main
 #
 # The purpose of this tool is to automatically generate register definition header files from the
-# XML that is used to create the register sections of Freescale reference manuals.
+# sidsc-component XML that is used to create the register sections of Freescale reference manuals.
 #
 # @par Remaining tasks:
-# - Support SCT variants of registers, and registers that dont have them.
+# - Support true SCT variants of registers, and registers that dont have them.
 # - Print warning for registers with too many bits.
-# - Allow a base address, instances, and instance offsets to be specified if a design file is not
-#   available. (/)
-# - Support creating multi-instance registers.
 # - Do HTML entities need to be converted?
-# - Do a better job cleaning up register and bitfield names.
+# - Need to process and filter all elements to build text. Even <bitFieldName> sometimes has more
+#   than one <ph> node within, each with different filter attribtues.
+# - Handle uniqueing of register and bitfield names in those classes, not in HeaderGenerator.
+# - Don't generate BW_ macros for bitfields that belong to a register without SCT macros, such
+#   as write-only registers.
 #
 # @par Version history:
+#
+# 1.0b4:
+# - Better parsing of access modes.
+# - Support creating multi-instance registers.
+# - Do a better job cleaning up register and bitfield names.
+# - Make a reasonable attempt to identify reserved bitfields whose name is not '-'.
 #
 # 1.0b3:
 # - Improve formatting of long description comments.
@@ -64,11 +71,21 @@ from UserDict import UserDict
 #
 
 # Tool version number and copyright string.
-kToolVersion = "1.0b3"
+kToolVersion = "1.0b4"
 kToolCopyright = "Copyright (c) 2012 Freescale Semiconductor, Inc. All rights reserved."
 
 # Possible access modes for registers and bitfields.
-kAccessModes = ['RW', 'RO', 'WO', 'ROZ', 'ROO', 'RU']
+kAccessModes = ['R', 'W', 'RW', 'RO', 'WO', 'WORZ', 'ROZ', 'RORZ', 'ROO', 'RU', 'W1C', 'RC1']
+
+##
+# @brief Returns true if the access mode allows for reading.
+def isAccessModeReadable(mode):
+    return ('R' in mode or mode == 'W1C') and mode != 'WORZ'
+
+##
+# @brief Returns true if the access mode allows for writing.
+def isAccessModeWriteable(mode):
+    return 'W' in mode
 
 ##
 # @brief Replace runs of whitespace with single space characters.
@@ -94,7 +111,17 @@ def formatText(rootElem):
 def formatIdentifier(text):
     if text is None:
         return "_"
-    return text.strip().replace('\n', '').replace(' ', '_').upper()
+    # Find all "words". Allow a few other chars so words like "FOO.BAR" will be matched and
+    # converted to "FOO_BAR".
+    matches = [m for m in re.findall('([a-zA-Z0-9_]+[a-zA-Z0-9_ \.\-]*)', cleanWhitespace(text.upper())) if len(m)]
+    if len(matches) == 0:   # Bail if we didn't get any matches.
+        return "_"
+    result = re.sub('[ \t\n\.\-]+', '_', matches[0].strip())    # Convert some chars to underscores.
+    if result[0] in "0123456789":   # Add underscore prefix if the first char is a digit.
+        result = '_' + result
+    result = re.sub('_+$', '', result) # Remove trailing underscores.
+#     print >> sys.stderr, "ID: %s -> %s" % (text, result)
+    return result
 
 ##
 # @brief Converts a hex address string to an integer value.
@@ -173,12 +200,46 @@ def filterAttributes(elem, attribs):
 
 ##
 # @brief Get the text of an element path, or an empty string.
-def getElementText(rootElem, path):
-    elem = rootElem.find(path)
+# @param rootElem The Element instance from which to find @a path. If @a path is not provided, then
+#   the return value will be the text of this element itself.
+# @param path Element path from the root to the child node whose text to get. This parameter is
+#   optional, and if not provided the text of @a rootElem will be returned.
+# @param default The default value to provide if the desired element does not exist or has no text.
+# @return A string containing the text contained directly in the desired element. If no matching
+#   element is found or there is no text then @a default is returned. The returned string
+#   is stripped of whitespace at the beginning and end, all newlines are removed, and runs of
+#   multiple spaces and/or tabs are compressed to a single space character (@ref cleanWhitespace()).
+def getElementText(rootElem, path=None, default=''):
+    if rootElem is None:
+        return default
+    
+    if path is None:
+        elem = rootElem
+    else:
+        elem = rootElem.find(path)
+    
     if elem is None or elem.text is None:
-        return ''
+        return default
     else:
         return cleanWhitespace(elem.text)
+
+##
+# @brief Test whether a bitfield name indicates the bitfield is reserved.
+def isReservedName(ident):
+    if ident == '-':
+        return True
+    elif ident == '_':
+        return True
+    elif ident.startswith("RESERVED"):
+        return True
+    elif ident.startswith("RSVD"):
+        return True
+    elif ident.startswith("UNDEFINED"):
+        return True
+    elif ident.startswith("RSRVD"):
+        return True
+    else:
+        return False
 
 ##
 # @brief Exception thrown to indicate a mismatched product.
@@ -235,34 +296,130 @@ class Component:
 ##
 # @brief Register definition.
 class Register:
+    
     ##
-    # @exception ExcludedByFilterException Raised when the XML element has an attribute that specifies
-    #   that it belongs to a product other than the one passed on @a productName.
-    def __init__(self, component, elem, filterAttribs):
-        self.memoryMap = component.memoryMap
-        self.component = component
-        self.element = elem
+    # @brief Factory for registers.
+    #
+    # @return A list of zero or more Register instances. 
+    @staticmethod
+    def buildFromXml(component, elem, filterAttribs):
+#         self.memoryMap = component.memoryMap
+#         self.component = component
+#         self.element = elem
         
         # Filter based on attributes.
         if not filterAttributes(elem, filterAttribs):
-            raise ExcludedByFilterException()
+            return []
         
-        self.name = formatIdentifier(getElementText(elem, 'registerName'))
-        self.fullName = getElementText(elem, 'registerNameMore/registerNameFull')
-        self.description = formatText(elem.find('registerBody/registerDescription'))
+        # Get the base name and description.
+        name = formatIdentifier(getElementText(elem, 'registerName'))
+        fullName = getElementText(elem, 'registerNameMore/registerNameFull')
+        description = formatText(elem.find('registerBody/registerDescription'))
+        
+        # Get register properties element.
+        props = elem.find('registerBody/registerProperties/registerPropset')
+        
+#         self.addressOffset = convertHexValue(getElementText(props, 'addressOffset'))
+#         self.sizeInBits = int(getElementText(props, 'registerSize'), 0)
+#         self.sizeInBytes = self.sizeInBits / 8
+#         self.access = getElementText(props, 'registerAccess').upper()
+#         if len(self.access) == 0:
+#             self.access = 'RO'
+#         self.isReadable = isAccessModeReadable(self.access)
+#         self.isWritable = isAccessModeWriteable(self.access)
+#         self.resetValue = convertHexValue(getElementText(props, 'registerResetValue'))
+#         
+#         if self.sizeInBits == 32:
+#             self.bitFieldType = "unsigned"
+#         elif self.sizeInBits == 16:
+#             self.bitFieldType = "unsigned short"
+#         elif self.sizeInBits == 8:
+#             self.bitFieldType = "unsigned char"
+#         else:
+#             raise Exception("invalid register size: " + str(self.sizeInBits))
+        
+        # Determine how many related registers there are. Start off with a count and list that will
+        # produce a single register.
+        registersList = []
+        registerCount = 1
+        registerSuffixes = ['']
+        offsetIncrement = 0
+        dims = props.find('dimension')
+        if dims is not None:
+            dimValue = dims.find('dimensionValue')
+            if dimValue is not None and dimValue.text is not None:
+                registerCount = int(getElementText(dimValue, default='1'))
+                offsetIncrement = int(getElementText(dims, 'dimensionIncrement', default='0'))
+                registerSuffixes = getElementText(dims, 'unitQualifier').split(',')
+        
+        # Create the new registers.
+        offsetDelta = 0
+        for suffixIndex in range(registerCount):
+            suffix = cleanWhitespace(registerSuffixes[suffixIndex])
+            thisName = name + suffix
+            thisFullName = fullName
+            if len(suffix) > 0:
+                thisFullName += ' ' + suffix
+            newRegister = Register(thisName, thisFullName, description, offsetDelta, component, props, filterAttribs)
+            newRegister.buildBitfields(elem, filterAttribs)
+            registersList.append(newRegister)
+            offsetDelta += offsetIncrement
+        
+        return registersList
+        
+        # Create the BitField objects.
+#         self.bitFields = []
+#         for e in elem.findall('bitField'):
+#             try:
+#                 self.bitFields.append(BitField(self, e, filterAttribs))
+#             except ExcludedByFilterException:
+#                 # Just ignore this exception
+#                 pass
+#         
+#         # Make sure all bits have a bitfield.
+#         self._createMissingBitFields()
+#         
+#         # Now sort the bitfields by bit number.
+#         self.bitFields.sort(key=lambda field:field.offset)
+    
+    ##
+    # @brief Constructor.
+    # @param self
+    # @param name
+    # @param fullName
+    # @param desc
+    # @param offsetDelta
+    # @param component
+    # @param props
+    # @param filterAttribs
+    def __init__(self, name, fullName, desc, offsetDelta, component, props, filterAttribs):
+        self.memoryMap = component.memoryMap
+        self.component = component
+#         self.element = elem
+        
+        # Filter based on attributes.
+#         if not filterAttributes(elem, filterAttribs):
+#             raise ExcludedByFilterException()
+        
+        self.name = name #formatIdentifier(getElementText(elem, 'registerName'))
+        self.fullName = fullName #getElementText(elem, 'registerNameMore/registerNameFull')
+        self.description = desc #formatText(elem.find('registerBody/registerDescription'))
         
         self.formattedName = "%s_%s" % (self.component.name, self.name)
         self.structName = "hw_%s_t" % (self.formattedName.lower())
         
         # Extract register details.
-        props = elem.find('registerBody/registerProperties/registerPropset')
-        self.addressOffset = convertHexValue(getElementText(props, 'addressOffset'))
+#         props = elem.find('registerBody/registerProperties/registerPropset')
+        self.addressOffset = convertHexValue(getElementText(props, 'addressOffset')) + offsetDelta
         self.sizeInBits = int(getElementText(props, 'registerSize'), 0)
         self.sizeInBytes = self.sizeInBits / 8
-        self.access = getElementText(props, 'registerAccess')
-        self.isReadable = (self.access != 'WO')
-        self.isWritable = (self.access in ['RW', 'WO'])
+        self.access = getElementText(props, 'registerAccess').upper()
+        if len(self.access) == 0:
+            self.access = 'RO'
+        self.isReadable = isAccessModeReadable(self.access)
+        self.isWritable = isAccessModeWriteable(self.access)
         self.resetValue = convertHexValue(getElementText(props, 'registerResetValue'))
+        self.bitFields = []
         
         if self.sizeInBits == 32:
             self.bitFieldType = "unsigned"
@@ -274,16 +431,20 @@ class Register:
             raise Exception("invalid register size: " + str(self.sizeInBits))
         
         # Determine how many related registers there are.
-        self.relatedRegisterSuffixes = []
-        dims = props.find('dimension')
-        if dims is not None:
-            dimValue = dims.find('dimensionValue').text
-            if dimValue is not None:
-                self.relatedRegisterSuffixes = getElementText(dims, 'unitQualifier').split(',')
+#         self.relatedRegisterSuffixes = []
+#         dims = props.find('dimension')
+#         if dims is not None:
+#             dimValue = dims.find('dimensionValue').text
+#             if dimValue is not None:
+#                 self.relatedRegisterSuffixes = getElementText(dims, 'unitQualifier').split(',')
         
+    
+    ##
+    # @brief Create the BitField objects from the register XML node.
+    def buildBitfields(self, registerElem, filterAttribs):
         # Create the BitField objects.
-        self.bitFields = []
-        for e in elem.findall('bitField'):
+#         self.bitFields = []
+        for e in registerElem.findall('bitField'):
             try:
                 self.bitFields.append(BitField(self, e, filterAttribs))
             except ExcludedByFilterException:
@@ -346,6 +507,14 @@ class BitField:
     nameFilter = re.compile(r'^([a-zA-Z_]+[a-zA-Z0-9_]*)')
     
     ##
+    # @brief Factory for bitfields.
+    #
+    # @return A list of zero or more BitField objects. 
+    @staticmethod
+    def buildFromXml(component, elem, filterAttribs):
+        return None
+    
+    ##
     # @exception ExcludedByFilterException Raised when the XML element has an attribute that specifies
     #   that it belongs to a product other than the one passed on @a productName.
     def __init__(self, reg, elem, filterAttribs):
@@ -355,11 +524,17 @@ class BitField:
         
         self.register = reg
         self.element = elem
-        self.name = formatIdentifier(getElementText(elem, 'bitFieldName'))
+        self.name = getElementText(elem, 'bitFieldName')
         self.description = formatText(elem.find('bitFieldBody/bitFieldDescription'))
         
-        # Check for the special reserved bitfield name.
-        self.isReserved = (self.name == '-')
+        identName = formatIdentifier(self.name)
+        
+        # Try to figure out if the bitfield is reserved.
+        self.isReserved = isReservedName(self.name) or isReservedName(identName)
+        
+        # If it's not reserved, turn the name into a C identifier.
+        if not self.isReserved:
+            self.name = identName
         
         # Filter up the bitfield name and uppercase it. Some of the bitfield names has the bit
         # range appended to them, so we have to get rid of that.
@@ -380,9 +555,11 @@ class BitField:
         props = elem.find('bitFieldBody/bitFieldProperties/bitFieldPropset')
         self.width = int(getElementText(props, 'bitWidth'))
         self.offset = int(getElementText(props, 'bitOffset'))
-        self.access = getElementText(props, 'bitFieldAccess')
-        self.isReadable = (self.access != 'WO')
-        self.isWritable = (self.access in ['RW', 'WO'])
+        self.access = getElementText(props, 'bitFieldAccess').upper()
+        if len(self.access) == 0:
+            self.access = 'RO'
+        self.isReadable = isAccessModeReadable(self.access)
+        self.isWritable = isAccessModeWriteable(self.access)
         
         # Build mask.
         self._buildMask()
@@ -390,6 +567,10 @@ class BitField:
         # Build values list.
         self._buildValuesList(elem.findall('bitFieldBody/bitFieldValues/bitFieldValueGroup'), filterAttribs)
         
+    def setName(self, newName):
+        self.name = newName
+        self.formattedName = "%s_%s" % (self.register.formattedName, self.name)
+    
     def _buildValuesList(self, allValueElems, filterAttribs):
         self.values = []
         for valueElem in allValueElems:
@@ -712,7 +893,7 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 typedef struct
 {{
-{structMembers}}} {component.structName}
+{structMembers}}} {component.structName};
 #endif
 """
 
@@ -864,8 +1045,13 @@ class HeaderGenerator:
                 fieldName = origFieldName + str(uniqueCount)
                 uniqueCount += 1
             
-            # Print a warning if there was a duplicate name.
+            # Handle a duplicate name.
             if hadDuplicateName:
+                # Now, if the field is not reserved, go update the field's name to the uniqued value.
+                if not f.isReserved:
+                    f.setName(fieldName)
+                
+                # Print a warning.
                 print >> sys.stderr, "Warning: register %s of %s has duplicate field %s, renamed to %s!" % (reg.name, self.component.name, origFieldName, fieldName)
             
             # Add to the list of used member names.
@@ -1026,10 +1212,14 @@ class HeaderGeneratorTool:
             addrBlock = tree.find('memoryMap/addressBlock')
             registerElements = addrBlock.findall('register')
             
-            for r in registerElements:
+            for regElem in registerElements:
                 try:
-                    newReg = Register(component, r, self.filterAttribs)
-                    component.addRegister(newReg)
+#                     newReg = Register(component, regElem, self.filterAttribs)
+#                     component.addRegister(newReg)
+                    
+                    newRegs = Register.buildFromXml(component, regElem, self.filterAttribs)
+                    for r in newRegs:
+                        component.addRegister(r)
                 except ExcludedByFilterException:
                     # Ignore this exception. It simply means that this register doesn't belong to the
                     # product we're working with.

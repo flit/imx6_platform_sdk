@@ -448,6 +448,16 @@ typedef union
 #define BM_SATA_IS_IPS      0x00000003
 
 #ifndef __LANGUAGE_ASM__
+#define BF_SATA_IS_IPS(v)   ((((reg32_t) v) << 0) & BM_SATA_IS_IPS)
+#else
+#define BF_SATA_IS_IPS(v)   (((v) << 0) & BM_SATA_IS_IPS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IPS field to a new value.
+#define BW_SATA_IS_IPS(v)   BF_CS1(SATA_IS, IPS, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SATA_PI - Ports Implemented Register (RO)
  *
@@ -1964,7 +1974,7 @@ typedef union
 #define BM_SATA_PPARAMR_TX_MEM_M      0x00000200
 
 
-/* --- Register HW_SATA_PPARAMR, field TX_MEM_S (RU)
+/* --- Register HW_SATA_PPARAMR, field TX_MEM_S1 (RU)
  *
  * TX FIFO Memory This value is derived from the P0_TX_MEM_SELECT parameter. The options for this
  * field are:
@@ -1974,11 +1984,11 @@ typedef union
  * 1 - Internal
  */
 
-#define BP_SATA_PPARAMR_TX_MEM_S      10
-#define BM_SATA_PPARAMR_TX_MEM_S      0x00000400
+#define BP_SATA_PPARAMR_TX_MEM_S1      10
+#define BM_SATA_PPARAMR_TX_MEM_S1      0x00000400
 
 
-/* --- Register HW_SATA_PPARAMR, field TX_MEM_M (RU)
+/* --- Register HW_SATA_PPARAMR, field TX_MEM_M1 (RU)
  *
  * TX FIFO Memory Read Port Type This value is derived from the P0_TX_MEM_MODE parameter. The
  * options for this field are:
@@ -1988,8 +1998,8 @@ typedef union
  * 1 - Sync
  */
 
-#define BP_SATA_PPARAMR_TX_MEM_M      11
-#define BM_SATA_PPARAMR_TX_MEM_M      0x00000800
+#define BP_SATA_PPARAMR_TX_MEM_M1      11
+#define BM_SATA_PPARAMR_TX_MEM_M1      0x00000800
 
 
 #ifndef __LANGUAGE_ASM__
@@ -4018,6 +4028,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_SATA_P0SNTF           (*(volatile hw_sata_p0sntf_t *) HW_SATA_P0SNTF_ADDR)
 #define HW_SATA_P0SNTF_RD()      (HW_SATA_P0SNTF.U)
+#define HW_SATA_P0SNTF_WR(v)     (HW_SATA_P0SNTF.U = (v))
+#define HW_SATA_P0SNTF_SET(v)    (HW_SATA_P0SNTF_WR(HW_SATA_P0SNTF_RD() |  (v)))
+#define HW_SATA_P0SNTF_CLR(v)    (HW_SATA_P0SNTF_WR(HW_SATA_P0SNTF_RD() & ~(v)))
+#define HW_SATA_P0SNTF_TOG(v)    (HW_SATA_P0SNTF_WR(HW_SATA_P0SNTF_RD() ^  (v)))
 #endif
 
 /*
@@ -4035,6 +4049,16 @@ typedef union
 
 #define BP_SATA_P0SNTF_PMN      0
 #define BM_SATA_P0SNTF_PMN      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SATA_P0SNTF_PMN(v)   ((((reg32_t) v) << 0) & BM_SATA_P0SNTF_PMN)
+#else
+#define BF_SATA_P0SNTF_PMN(v)   (((v) << 0) & BM_SATA_P0SNTF_PMN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PMN field to a new value.
+#define BW_SATA_P0SNTF_PMN(v)   BF_CS1(SATA_P0SNTF, PMN, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4424,7 +4448,7 @@ typedef struct
     reg32_t _reserved11;
     volatile hw_sata_p0phycr_t P0PHYCR; //!< Port0 PHY Control Register
     volatile hw_sata_p0physr_t P0PHYSR; //!< Port0 PHY Status Register
-} hw_sata_t
+} hw_sata_t;
 #endif
 
 //! @brief Macro to access all SATA registers.

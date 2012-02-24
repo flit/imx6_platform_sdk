@@ -14,12 +14,18 @@
  * Registers defined in this header file.
  *
  * - HW_OCOTP_CTRL - OTP Controller Control Register
+ * - HW_OCOTP_CTRL_SET - OTP Controller Control Register _SET
+ * - HW_OCOTP_CTRL_CLR - OTP Controller Control Register _CLR
+ * - HW_OCOTP_CTRL_TOG - OTP Controller Control Register _TOG
  * - HW_OCOTP_TIMING - OTP Controller Timing Register
  * - HW_OCOTP_DATA - OTP Controller Write Data Register
  * - HW_OCOTP_READ_CTRL - OTP Controller Write Data Register
  * - HW_OCOTP_READ_FUSE_DATA - OTP Controller Read Data Register
  * - HW_OCOTP_SW_STICKY - Sticky bit Register
  * - HW_OCOTP_SCS - Software Controllable Signals Register
+ * - HW_OCOTP_SCS_SET - Software Controllable Signals Register _SET
+ * - HW_OCOTP_SCS_CLR - Software Controllable Signals Register _CLR
+ * - HW_OCOTP_SCS_TOG - Software Controllable Signals Register _TOG
  * - HW_OCOTP_CRC_ADDR - OTP Controller CRC test address
  * - HW_OCOTP_CRC_VALUE - OTP Controller CRC Value Register
  * - HW_OCOTP_VERSION - OTP Controller Version Register
@@ -348,6 +354,567 @@ typedef union
 #endif
 
 #define BV_OCOTP_CTRL_WR_UNLOCK__KEY    0x3e77
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CTRL_SET - OTP Controller Control Register _SET (RW)
+ *
+ * The OCOTP Control and Status Register specifies the copy state, as well as the control required
+ * for random access of the OTP memory  OCOTP_CTRL: 0x000  The OCOTP Control and Status Register
+ * provides the necessary software interface for performing read and write operations to the On-Chip
+ * OTP (One-Time Programmable ROM). The control fields such as WR_UNLOCK, ADDR and BUSY/ERROR may be
+ * used in conjuction with the HW_OCOTP_DATA register to perform write operations. Read operations
+ * to the On-Chip OTP are involving ADDR, BUSY/ERROR bit field and HW_OCOTP_READ_CTRL register. Read
+ * value is saved in HW_OCOTP_READ_FUSE_DATA register.   EXAMPLE   Empty Example.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned ADDR : 7; //!< OTP write and read access address register. Specifies one of 128 word address locations (0x00 - 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of this value. This internal copy will not update until the access is complete.
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned BUSY : 1; //!< OTP controller status bit. When active, no new write access or read access to OTP(including RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK registers are successfully copied, after which time it is automatically cleared by the controller.
+        unsigned ERROR : 1; //!< Set by the controller when an access to a locked region(OTP or shadow register) is requested. Must be cleared before any further access can be performed. This bit can only be set by the controller. This bit is also set if the Pin interface is active and software requests an access to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has completed. Reset this bit by writing a one to the SCT clear address space and not by a general write.
+        unsigned RELOAD_SHADOWS : 1; //!< Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS are automatically cleared by the controller.
+        unsigned CRC_TEST : 1; //!< Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
+        unsigned CRC_FAIL : 1; //!< Set by controller when calculated CRC value is not equal to appointed CRC fuse word
+        unsigned RESERVED1 : 3; //!< Reserved
+        unsigned WR_UNLOCK : 16; //!< Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be initiated. This field is automatically cleared after a successful write completion (clearing of BUSY).
+    } B;
+} hw_ocotp_ctrl_set_t;
+#endif
+
+/*
+ * constants & macros for entire OCOTP_CTRL_SET register
+ */
+#define HW_OCOTP_CTRL_SET_ADDR      (REGS_OCOTP_BASE + 0x4)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_OCOTP_CTRL_SET           (*(volatile hw_ocotp_ctrl_set_t *) HW_OCOTP_CTRL_SET_ADDR)
+#define HW_OCOTP_CTRL_SET_RD()      (HW_OCOTP_CTRL_SET.U)
+#define HW_OCOTP_CTRL_SET_WR(v)     (HW_OCOTP_CTRL_SET.U = (v))
+#define HW_OCOTP_CTRL_SET_SET(v)    (HW_OCOTP_CTRL_SET_WR(HW_OCOTP_CTRL_SET_RD() |  (v)))
+#define HW_OCOTP_CTRL_SET_CLR(v)    (HW_OCOTP_CTRL_SET_WR(HW_OCOTP_CTRL_SET_RD() & ~(v)))
+#define HW_OCOTP_CTRL_SET_TOG(v)    (HW_OCOTP_CTRL_SET_WR(HW_OCOTP_CTRL_SET_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual OCOTP_CTRL_SET bitfields
+ */
+
+/* --- Register HW_OCOTP_CTRL_SET, field ADDR (RW)
+ *
+ * OTP write and read access address register. Specifies one of 128 word address locations (0x00 -
+ * 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of
+ * this value. This internal copy will not update until the access is complete.
+ */
+
+#define BP_OCOTP_CTRL_SET_ADDR      0
+#define BM_OCOTP_CTRL_SET_ADDR      0x0000007f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_SET_ADDR(v)   ((((reg32_t) v) << 0) & BM_OCOTP_CTRL_SET_ADDR)
+#else
+#define BF_OCOTP_CTRL_SET_ADDR(v)   (((v) << 0) & BM_OCOTP_CTRL_SET_ADDR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ADDR field to a new value.
+#define BW_OCOTP_CTRL_SET_ADDR(v)   BF_CS1(OCOTP_CTRL_SET, ADDR, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_SET, field BUSY (RO)
+ *
+ * OTP controller status bit. When active, no new write access or read access to OTP(including
+ * RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or
+ * after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK
+ * registers are successfully copied, after which time it is automatically cleared by the
+ * controller.
+ */
+
+#define BP_OCOTP_CTRL_SET_BUSY      8
+#define BM_OCOTP_CTRL_SET_BUSY      0x00000100
+
+/* --- Register HW_OCOTP_CTRL_SET, field ERROR (RW)
+ *
+ * Set by the controller when an access to a locked region(OTP or shadow register) is requested.
+ * Must be cleared before any further access can be performed. This bit can only be set by the
+ * controller. This bit is also set if the Pin interface is active and software requests an access
+ * to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has
+ * completed. Reset this bit by writing a one to the SCT clear address space and not by a general
+ * write.
+ */
+
+#define BP_OCOTP_CTRL_SET_ERROR      9
+#define BM_OCOTP_CTRL_SET_ERROR      0x00000200
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_SET_ERROR(v)   ((((reg32_t) v) << 9) & BM_OCOTP_CTRL_SET_ERROR)
+#else
+#define BF_OCOTP_CTRL_SET_ERROR(v)   (((v) << 9) & BM_OCOTP_CTRL_SET_ERROR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ERROR field to a new value.
+#define BW_OCOTP_CTRL_SET_ERROR(v)   BF_CS1(OCOTP_CTRL_SET, ERROR, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_SET, field RELOAD_SHADOWS (RW)
+ *
+ * Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will
+ * automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS
+ * are automatically cleared by the controller.
+ */
+
+#define BP_OCOTP_CTRL_SET_RELOAD_SHADOWS      10
+#define BM_OCOTP_CTRL_SET_RELOAD_SHADOWS      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_SET_RELOAD_SHADOWS(v)   ((((reg32_t) v) << 10) & BM_OCOTP_CTRL_SET_RELOAD_SHADOWS)
+#else
+#define BF_OCOTP_CTRL_SET_RELOAD_SHADOWS(v)   (((v) << 10) & BM_OCOTP_CTRL_SET_RELOAD_SHADOWS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RELOAD_SHADOWS field to a new value.
+#define BW_OCOTP_CTRL_SET_RELOAD_SHADOWS(v)   BF_CS1(OCOTP_CTRL_SET, RELOAD_SHADOWS, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_SET, field CRC_TEST (RW)
+ *
+ * Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare
+ * with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
+ */
+
+#define BP_OCOTP_CTRL_SET_CRC_TEST      11
+#define BM_OCOTP_CTRL_SET_CRC_TEST      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_SET_CRC_TEST(v)   ((((reg32_t) v) << 11) & BM_OCOTP_CTRL_SET_CRC_TEST)
+#else
+#define BF_OCOTP_CTRL_SET_CRC_TEST(v)   (((v) << 11) & BM_OCOTP_CTRL_SET_CRC_TEST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_TEST field to a new value.
+#define BW_OCOTP_CTRL_SET_CRC_TEST(v)   BF_CS1(OCOTP_CTRL_SET, CRC_TEST, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_SET, field CRC_FAIL (RW)
+ *
+ * Set by controller when calculated CRC value is not equal to appointed CRC fuse word
+ */
+
+#define BP_OCOTP_CTRL_SET_CRC_FAIL      12
+#define BM_OCOTP_CTRL_SET_CRC_FAIL      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_SET_CRC_FAIL(v)   ((((reg32_t) v) << 12) & BM_OCOTP_CTRL_SET_CRC_FAIL)
+#else
+#define BF_OCOTP_CTRL_SET_CRC_FAIL(v)   (((v) << 12) & BM_OCOTP_CTRL_SET_CRC_FAIL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_FAIL field to a new value.
+#define BW_OCOTP_CTRL_SET_CRC_FAIL(v)   BF_CS1(OCOTP_CTRL_SET, CRC_FAIL, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_SET, field WR_UNLOCK (RW)
+ *
+ * Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-
+ * write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must
+ * contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be
+ * initiated. This field is automatically cleared after a successful write completion (clearing of
+ * BUSY).
+ *
+ * Values:
+ * KEY = 0x3E77 - Key needed to unlock HW_OCOTP_DATA register.
+ */
+
+#define BP_OCOTP_CTRL_SET_WR_UNLOCK      16
+#define BM_OCOTP_CTRL_SET_WR_UNLOCK      0xffff0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_SET_WR_UNLOCK(v)   ((((reg32_t) v) << 16) & BM_OCOTP_CTRL_SET_WR_UNLOCK)
+#else
+#define BF_OCOTP_CTRL_SET_WR_UNLOCK(v)   (((v) << 16) & BM_OCOTP_CTRL_SET_WR_UNLOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the WR_UNLOCK field to a new value.
+#define BW_OCOTP_CTRL_SET_WR_UNLOCK(v)   BF_CS1(OCOTP_CTRL_SET, WR_UNLOCK, v)
+#endif
+
+#define BV_OCOTP_CTRL_SET_WR_UNLOCK__KEY    0x3e77
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CTRL_CLR - OTP Controller Control Register _CLR (RW)
+ *
+ * The OCOTP Control and Status Register specifies the copy state, as well as the control required
+ * for random access of the OTP memory  OCOTP_CTRL: 0x000  The OCOTP Control and Status Register
+ * provides the necessary software interface for performing read and write operations to the On-Chip
+ * OTP (One-Time Programmable ROM). The control fields such as WR_UNLOCK, ADDR and BUSY/ERROR may be
+ * used in conjuction with the HW_OCOTP_DATA register to perform write operations. Read operations
+ * to the On-Chip OTP are involving ADDR, BUSY/ERROR bit field and HW_OCOTP_READ_CTRL register. Read
+ * value is saved in HW_OCOTP_READ_FUSE_DATA register.   EXAMPLE   Empty Example.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned ADDR : 7; //!< OTP write and read access address register. Specifies one of 128 word address locations (0x00 - 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of this value. This internal copy will not update until the access is complete.
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned BUSY : 1; //!< OTP controller status bit. When active, no new write access or read access to OTP(including RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK registers are successfully copied, after which time it is automatically cleared by the controller.
+        unsigned ERROR : 1; //!< Set by the controller when an access to a locked region(OTP or shadow register) is requested. Must be cleared before any further access can be performed. This bit can only be set by the controller. This bit is also set if the Pin interface is active and software requests an access to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has completed. Reset this bit by writing a one to the SCT clear address space and not by a general write.
+        unsigned RELOAD_SHADOWS : 1; //!< Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS are automatically cleared by the controller.
+        unsigned CRC_TEST : 1; //!< Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
+        unsigned CRC_FAIL : 1; //!< Set by controller when calculated CRC value is not equal to appointed CRC fuse word
+        unsigned RESERVED1 : 3; //!< Reserved
+        unsigned WR_UNLOCK : 16; //!< Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be initiated. This field is automatically cleared after a successful write completion (clearing of BUSY).
+    } B;
+} hw_ocotp_ctrl_clr_t;
+#endif
+
+/*
+ * constants & macros for entire OCOTP_CTRL_CLR register
+ */
+#define HW_OCOTP_CTRL_CLR_ADDR      (REGS_OCOTP_BASE + 0x8)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_OCOTP_CTRL_CLR           (*(volatile hw_ocotp_ctrl_clr_t *) HW_OCOTP_CTRL_CLR_ADDR)
+#define HW_OCOTP_CTRL_CLR_RD()      (HW_OCOTP_CTRL_CLR.U)
+#define HW_OCOTP_CTRL_CLR_WR(v)     (HW_OCOTP_CTRL_CLR.U = (v))
+#define HW_OCOTP_CTRL_CLR_SET(v)    (HW_OCOTP_CTRL_CLR_WR(HW_OCOTP_CTRL_CLR_RD() |  (v)))
+#define HW_OCOTP_CTRL_CLR_CLR(v)    (HW_OCOTP_CTRL_CLR_WR(HW_OCOTP_CTRL_CLR_RD() & ~(v)))
+#define HW_OCOTP_CTRL_CLR_TOG(v)    (HW_OCOTP_CTRL_CLR_WR(HW_OCOTP_CTRL_CLR_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual OCOTP_CTRL_CLR bitfields
+ */
+
+/* --- Register HW_OCOTP_CTRL_CLR, field ADDR (RW)
+ *
+ * OTP write and read access address register. Specifies one of 128 word address locations (0x00 -
+ * 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of
+ * this value. This internal copy will not update until the access is complete.
+ */
+
+#define BP_OCOTP_CTRL_CLR_ADDR      0
+#define BM_OCOTP_CTRL_CLR_ADDR      0x0000007f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_CLR_ADDR(v)   ((((reg32_t) v) << 0) & BM_OCOTP_CTRL_CLR_ADDR)
+#else
+#define BF_OCOTP_CTRL_CLR_ADDR(v)   (((v) << 0) & BM_OCOTP_CTRL_CLR_ADDR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ADDR field to a new value.
+#define BW_OCOTP_CTRL_CLR_ADDR(v)   BF_CS1(OCOTP_CTRL_CLR, ADDR, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_CLR, field BUSY (RO)
+ *
+ * OTP controller status bit. When active, no new write access or read access to OTP(including
+ * RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or
+ * after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK
+ * registers are successfully copied, after which time it is automatically cleared by the
+ * controller.
+ */
+
+#define BP_OCOTP_CTRL_CLR_BUSY      8
+#define BM_OCOTP_CTRL_CLR_BUSY      0x00000100
+
+/* --- Register HW_OCOTP_CTRL_CLR, field ERROR (RW)
+ *
+ * Set by the controller when an access to a locked region(OTP or shadow register) is requested.
+ * Must be cleared before any further access can be performed. This bit can only be set by the
+ * controller. This bit is also set if the Pin interface is active and software requests an access
+ * to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has
+ * completed. Reset this bit by writing a one to the SCT clear address space and not by a general
+ * write.
+ */
+
+#define BP_OCOTP_CTRL_CLR_ERROR      9
+#define BM_OCOTP_CTRL_CLR_ERROR      0x00000200
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_CLR_ERROR(v)   ((((reg32_t) v) << 9) & BM_OCOTP_CTRL_CLR_ERROR)
+#else
+#define BF_OCOTP_CTRL_CLR_ERROR(v)   (((v) << 9) & BM_OCOTP_CTRL_CLR_ERROR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ERROR field to a new value.
+#define BW_OCOTP_CTRL_CLR_ERROR(v)   BF_CS1(OCOTP_CTRL_CLR, ERROR, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_CLR, field RELOAD_SHADOWS (RW)
+ *
+ * Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will
+ * automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS
+ * are automatically cleared by the controller.
+ */
+
+#define BP_OCOTP_CTRL_CLR_RELOAD_SHADOWS      10
+#define BM_OCOTP_CTRL_CLR_RELOAD_SHADOWS      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_CLR_RELOAD_SHADOWS(v)   ((((reg32_t) v) << 10) & BM_OCOTP_CTRL_CLR_RELOAD_SHADOWS)
+#else
+#define BF_OCOTP_CTRL_CLR_RELOAD_SHADOWS(v)   (((v) << 10) & BM_OCOTP_CTRL_CLR_RELOAD_SHADOWS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RELOAD_SHADOWS field to a new value.
+#define BW_OCOTP_CTRL_CLR_RELOAD_SHADOWS(v)   BF_CS1(OCOTP_CTRL_CLR, RELOAD_SHADOWS, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_CLR, field CRC_TEST (RW)
+ *
+ * Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare
+ * with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
+ */
+
+#define BP_OCOTP_CTRL_CLR_CRC_TEST      11
+#define BM_OCOTP_CTRL_CLR_CRC_TEST      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_CLR_CRC_TEST(v)   ((((reg32_t) v) << 11) & BM_OCOTP_CTRL_CLR_CRC_TEST)
+#else
+#define BF_OCOTP_CTRL_CLR_CRC_TEST(v)   (((v) << 11) & BM_OCOTP_CTRL_CLR_CRC_TEST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_TEST field to a new value.
+#define BW_OCOTP_CTRL_CLR_CRC_TEST(v)   BF_CS1(OCOTP_CTRL_CLR, CRC_TEST, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_CLR, field CRC_FAIL (RW)
+ *
+ * Set by controller when calculated CRC value is not equal to appointed CRC fuse word
+ */
+
+#define BP_OCOTP_CTRL_CLR_CRC_FAIL      12
+#define BM_OCOTP_CTRL_CLR_CRC_FAIL      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_CLR_CRC_FAIL(v)   ((((reg32_t) v) << 12) & BM_OCOTP_CTRL_CLR_CRC_FAIL)
+#else
+#define BF_OCOTP_CTRL_CLR_CRC_FAIL(v)   (((v) << 12) & BM_OCOTP_CTRL_CLR_CRC_FAIL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_FAIL field to a new value.
+#define BW_OCOTP_CTRL_CLR_CRC_FAIL(v)   BF_CS1(OCOTP_CTRL_CLR, CRC_FAIL, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_CLR, field WR_UNLOCK (RW)
+ *
+ * Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-
+ * write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must
+ * contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be
+ * initiated. This field is automatically cleared after a successful write completion (clearing of
+ * BUSY).
+ *
+ * Values:
+ * KEY = 0x3E77 - Key needed to unlock HW_OCOTP_DATA register.
+ */
+
+#define BP_OCOTP_CTRL_CLR_WR_UNLOCK      16
+#define BM_OCOTP_CTRL_CLR_WR_UNLOCK      0xffff0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_CLR_WR_UNLOCK(v)   ((((reg32_t) v) << 16) & BM_OCOTP_CTRL_CLR_WR_UNLOCK)
+#else
+#define BF_OCOTP_CTRL_CLR_WR_UNLOCK(v)   (((v) << 16) & BM_OCOTP_CTRL_CLR_WR_UNLOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the WR_UNLOCK field to a new value.
+#define BW_OCOTP_CTRL_CLR_WR_UNLOCK(v)   BF_CS1(OCOTP_CTRL_CLR, WR_UNLOCK, v)
+#endif
+
+#define BV_OCOTP_CTRL_CLR_WR_UNLOCK__KEY    0x3e77
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_CTRL_TOG - OTP Controller Control Register _TOG (RW)
+ *
+ * The OCOTP Control and Status Register specifies the copy state, as well as the control required
+ * for random access of the OTP memory  OCOTP_CTRL: 0x000  The OCOTP Control and Status Register
+ * provides the necessary software interface for performing read and write operations to the On-Chip
+ * OTP (One-Time Programmable ROM). The control fields such as WR_UNLOCK, ADDR and BUSY/ERROR may be
+ * used in conjuction with the HW_OCOTP_DATA register to perform write operations. Read operations
+ * to the On-Chip OTP are involving ADDR, BUSY/ERROR bit field and HW_OCOTP_READ_CTRL register. Read
+ * value is saved in HW_OCOTP_READ_FUSE_DATA register.   EXAMPLE   Empty Example.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned ADDR : 7; //!< OTP write and read access address register. Specifies one of 128 word address locations (0x00 - 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of this value. This internal copy will not update until the access is complete.
+        unsigned RESERVED0 : 1; //!< Reserved
+        unsigned BUSY : 1; //!< OTP controller status bit. When active, no new write access or read access to OTP(including RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK registers are successfully copied, after which time it is automatically cleared by the controller.
+        unsigned ERROR : 1; //!< Set by the controller when an access to a locked region(OTP or shadow register) is requested. Must be cleared before any further access can be performed. This bit can only be set by the controller. This bit is also set if the Pin interface is active and software requests an access to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has completed. Reset this bit by writing a one to the SCT clear address space and not by a general write.
+        unsigned RELOAD_SHADOWS : 1; //!< Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS are automatically cleared by the controller.
+        unsigned CRC_TEST : 1; //!< Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
+        unsigned CRC_FAIL : 1; //!< Set by controller when calculated CRC value is not equal to appointed CRC fuse word
+        unsigned RESERVED1 : 3; //!< Reserved
+        unsigned WR_UNLOCK : 16; //!< Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be initiated. This field is automatically cleared after a successful write completion (clearing of BUSY).
+    } B;
+} hw_ocotp_ctrl_tog_t;
+#endif
+
+/*
+ * constants & macros for entire OCOTP_CTRL_TOG register
+ */
+#define HW_OCOTP_CTRL_TOG_ADDR      (REGS_OCOTP_BASE + 0xc)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_OCOTP_CTRL_TOG           (*(volatile hw_ocotp_ctrl_tog_t *) HW_OCOTP_CTRL_TOG_ADDR)
+#define HW_OCOTP_CTRL_TOG_RD()      (HW_OCOTP_CTRL_TOG.U)
+#define HW_OCOTP_CTRL_TOG_WR(v)     (HW_OCOTP_CTRL_TOG.U = (v))
+#define HW_OCOTP_CTRL_TOG_SET(v)    (HW_OCOTP_CTRL_TOG_WR(HW_OCOTP_CTRL_TOG_RD() |  (v)))
+#define HW_OCOTP_CTRL_TOG_CLR(v)    (HW_OCOTP_CTRL_TOG_WR(HW_OCOTP_CTRL_TOG_RD() & ~(v)))
+#define HW_OCOTP_CTRL_TOG_TOG(v)    (HW_OCOTP_CTRL_TOG_WR(HW_OCOTP_CTRL_TOG_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual OCOTP_CTRL_TOG bitfields
+ */
+
+/* --- Register HW_OCOTP_CTRL_TOG, field ADDR (RW)
+ *
+ * OTP write and read access address register. Specifies one of 128 word address locations (0x00 -
+ * 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of
+ * this value. This internal copy will not update until the access is complete.
+ */
+
+#define BP_OCOTP_CTRL_TOG_ADDR      0
+#define BM_OCOTP_CTRL_TOG_ADDR      0x0000007f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_TOG_ADDR(v)   ((((reg32_t) v) << 0) & BM_OCOTP_CTRL_TOG_ADDR)
+#else
+#define BF_OCOTP_CTRL_TOG_ADDR(v)   (((v) << 0) & BM_OCOTP_CTRL_TOG_ADDR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ADDR field to a new value.
+#define BW_OCOTP_CTRL_TOG_ADDR(v)   BF_CS1(OCOTP_CTRL_TOG, ADDR, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_TOG, field BUSY (RO)
+ *
+ * OTP controller status bit. When active, no new write access or read access to OTP(including
+ * RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or
+ * after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK
+ * registers are successfully copied, after which time it is automatically cleared by the
+ * controller.
+ */
+
+#define BP_OCOTP_CTRL_TOG_BUSY      8
+#define BM_OCOTP_CTRL_TOG_BUSY      0x00000100
+
+/* --- Register HW_OCOTP_CTRL_TOG, field ERROR (RW)
+ *
+ * Set by the controller when an access to a locked region(OTP or shadow register) is requested.
+ * Must be cleared before any further access can be performed. This bit can only be set by the
+ * controller. This bit is also set if the Pin interface is active and software requests an access
+ * to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has
+ * completed. Reset this bit by writing a one to the SCT clear address space and not by a general
+ * write.
+ */
+
+#define BP_OCOTP_CTRL_TOG_ERROR      9
+#define BM_OCOTP_CTRL_TOG_ERROR      0x00000200
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_TOG_ERROR(v)   ((((reg32_t) v) << 9) & BM_OCOTP_CTRL_TOG_ERROR)
+#else
+#define BF_OCOTP_CTRL_TOG_ERROR(v)   (((v) << 9) & BM_OCOTP_CTRL_TOG_ERROR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ERROR field to a new value.
+#define BW_OCOTP_CTRL_TOG_ERROR(v)   BF_CS1(OCOTP_CTRL_TOG, ERROR, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_TOG, field RELOAD_SHADOWS (RW)
+ *
+ * Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will
+ * automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS
+ * are automatically cleared by the controller.
+ */
+
+#define BP_OCOTP_CTRL_TOG_RELOAD_SHADOWS      10
+#define BM_OCOTP_CTRL_TOG_RELOAD_SHADOWS      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_TOG_RELOAD_SHADOWS(v)   ((((reg32_t) v) << 10) & BM_OCOTP_CTRL_TOG_RELOAD_SHADOWS)
+#else
+#define BF_OCOTP_CTRL_TOG_RELOAD_SHADOWS(v)   (((v) << 10) & BM_OCOTP_CTRL_TOG_RELOAD_SHADOWS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RELOAD_SHADOWS field to a new value.
+#define BW_OCOTP_CTRL_TOG_RELOAD_SHADOWS(v)   BF_CS1(OCOTP_CTRL_TOG, RELOAD_SHADOWS, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_TOG, field CRC_TEST (RW)
+ *
+ * Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare
+ * with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
+ */
+
+#define BP_OCOTP_CTRL_TOG_CRC_TEST      11
+#define BM_OCOTP_CTRL_TOG_CRC_TEST      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_TOG_CRC_TEST(v)   ((((reg32_t) v) << 11) & BM_OCOTP_CTRL_TOG_CRC_TEST)
+#else
+#define BF_OCOTP_CTRL_TOG_CRC_TEST(v)   (((v) << 11) & BM_OCOTP_CTRL_TOG_CRC_TEST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_TEST field to a new value.
+#define BW_OCOTP_CTRL_TOG_CRC_TEST(v)   BF_CS1(OCOTP_CTRL_TOG, CRC_TEST, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_TOG, field CRC_FAIL (RW)
+ *
+ * Set by controller when calculated CRC value is not equal to appointed CRC fuse word
+ */
+
+#define BP_OCOTP_CTRL_TOG_CRC_FAIL      12
+#define BM_OCOTP_CTRL_TOG_CRC_FAIL      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_TOG_CRC_FAIL(v)   ((((reg32_t) v) << 12) & BM_OCOTP_CTRL_TOG_CRC_FAIL)
+#else
+#define BF_OCOTP_CTRL_TOG_CRC_FAIL(v)   (((v) << 12) & BM_OCOTP_CTRL_TOG_CRC_FAIL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CRC_FAIL field to a new value.
+#define BW_OCOTP_CTRL_TOG_CRC_FAIL(v)   BF_CS1(OCOTP_CTRL_TOG, CRC_FAIL, v)
+#endif
+
+/* --- Register HW_OCOTP_CTRL_TOG, field WR_UNLOCK (RW)
+ *
+ * Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-
+ * write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must
+ * contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be
+ * initiated. This field is automatically cleared after a successful write completion (clearing of
+ * BUSY).
+ *
+ * Values:
+ * KEY = 0x3E77 - Key needed to unlock HW_OCOTP_DATA register.
+ */
+
+#define BP_OCOTP_CTRL_TOG_WR_UNLOCK      16
+#define BM_OCOTP_CTRL_TOG_WR_UNLOCK      0xffff0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_CTRL_TOG_WR_UNLOCK(v)   ((((reg32_t) v) << 16) & BM_OCOTP_CTRL_TOG_WR_UNLOCK)
+#else
+#define BF_OCOTP_CTRL_TOG_WR_UNLOCK(v)   (((v) << 16) & BM_OCOTP_CTRL_TOG_WR_UNLOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the WR_UNLOCK field to a new value.
+#define BW_OCOTP_CTRL_TOG_WR_UNLOCK(v)   BF_CS1(OCOTP_CTRL_TOG, WR_UNLOCK, v)
+#endif
+
+#define BV_OCOTP_CTRL_TOG_WR_UNLOCK__KEY    0x3e77
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -805,6 +1372,312 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK field to a new value.
 #define BW_OCOTP_SCS_LOCK(v)   BF_CS1(OCOTP_SCS, LOCK, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SCS_SET - Software Controllable Signals Register _SET (RW)
+ *
+ * HW_OCOTP_SCS: 0x060  This register holds volatile configuration values that can be set and locked
+ * by trusted software. All values are returned to their defualt values after POR.   EXAMPLE   Empty
+ * Example.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned HAB_JDE : 1; //!< HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a properlay signed command to do so is found and validated by the HAB. The HAB must lock the register before passing control to the OS whether or not JTAG debugging has been enabled. Once JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG debugging is enabled by the HAB (though this signal may be gated off).
+        unsigned SPARE : 30; //!< Unallocated read/write bits for implementation specific software use.
+        unsigned LOCK : 1; //!< When set, all of the bits in this register are locked and can not be changed through SW programming. This bit is only reset after a POR is issued.
+    } B;
+} hw_ocotp_scs_set_t;
+#endif
+
+/*
+ * constants & macros for entire OCOTP_SCS_SET register
+ */
+#define HW_OCOTP_SCS_SET_ADDR      (REGS_OCOTP_BASE + 0x64)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_OCOTP_SCS_SET           (*(volatile hw_ocotp_scs_set_t *) HW_OCOTP_SCS_SET_ADDR)
+#define HW_OCOTP_SCS_SET_RD()      (HW_OCOTP_SCS_SET.U)
+#define HW_OCOTP_SCS_SET_WR(v)     (HW_OCOTP_SCS_SET.U = (v))
+#define HW_OCOTP_SCS_SET_SET(v)    (HW_OCOTP_SCS_SET_WR(HW_OCOTP_SCS_SET_RD() |  (v)))
+#define HW_OCOTP_SCS_SET_CLR(v)    (HW_OCOTP_SCS_SET_WR(HW_OCOTP_SCS_SET_RD() & ~(v)))
+#define HW_OCOTP_SCS_SET_TOG(v)    (HW_OCOTP_SCS_SET_WR(HW_OCOTP_SCS_SET_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual OCOTP_SCS_SET bitfields
+ */
+
+/* --- Register HW_OCOTP_SCS_SET, field HAB_JDE (RW)
+ *
+ * HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a
+ * properlay signed command to do so is found and validated by the HAB. The HAB must lock the
+ * register before passing control to the OS whether or not JTAG debugging has been enabled. Once
+ * JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG
+ * debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG
+ * debugging is enabled by the HAB (though this signal may be gated off).
+ *
+ * Values:
+ * 1 - JTAG debugging is enabled by the HAB (though this signal may be gated off)
+ */
+
+#define BP_OCOTP_SCS_SET_HAB_JDE      0
+#define BM_OCOTP_SCS_SET_HAB_JDE      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_SET_HAB_JDE(v)   ((((reg32_t) v) << 0) & BM_OCOTP_SCS_SET_HAB_JDE)
+#else
+#define BF_OCOTP_SCS_SET_HAB_JDE(v)   (((v) << 0) & BM_OCOTP_SCS_SET_HAB_JDE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the HAB_JDE field to a new value.
+#define BW_OCOTP_SCS_SET_HAB_JDE(v)   BF_CS1(OCOTP_SCS_SET, HAB_JDE, v)
+#endif
+
+
+/* --- Register HW_OCOTP_SCS_SET, field SPARE (RW)
+ *
+ * Unallocated read/write bits for implementation specific software use.
+ */
+
+#define BP_OCOTP_SCS_SET_SPARE      1
+#define BM_OCOTP_SCS_SET_SPARE      0x7ffffffe
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_SET_SPARE(v)   ((((reg32_t) v) << 1) & BM_OCOTP_SCS_SET_SPARE)
+#else
+#define BF_OCOTP_SCS_SET_SPARE(v)   (((v) << 1) & BM_OCOTP_SCS_SET_SPARE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SPARE field to a new value.
+#define BW_OCOTP_SCS_SET_SPARE(v)   BF_CS1(OCOTP_SCS_SET, SPARE, v)
+#endif
+
+/* --- Register HW_OCOTP_SCS_SET, field LOCK (RW)
+ *
+ * When set, all of the bits in this register are locked and can not be changed through SW
+ * programming. This bit is only reset after a POR is issued.
+ */
+
+#define BP_OCOTP_SCS_SET_LOCK      31
+#define BM_OCOTP_SCS_SET_LOCK      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_SET_LOCK(v)   ((((reg32_t) v) << 31) & BM_OCOTP_SCS_SET_LOCK)
+#else
+#define BF_OCOTP_SCS_SET_LOCK(v)   (((v) << 31) & BM_OCOTP_SCS_SET_LOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK field to a new value.
+#define BW_OCOTP_SCS_SET_LOCK(v)   BF_CS1(OCOTP_SCS_SET, LOCK, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SCS_CLR - Software Controllable Signals Register _CLR (RW)
+ *
+ * HW_OCOTP_SCS: 0x060  This register holds volatile configuration values that can be set and locked
+ * by trusted software. All values are returned to their defualt values after POR.   EXAMPLE   Empty
+ * Example.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned HAB_JDE : 1; //!< HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a properlay signed command to do so is found and validated by the HAB. The HAB must lock the register before passing control to the OS whether or not JTAG debugging has been enabled. Once JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG debugging is enabled by the HAB (though this signal may be gated off).
+        unsigned SPARE : 30; //!< Unallocated read/write bits for implementation specific software use.
+        unsigned LOCK : 1; //!< When set, all of the bits in this register are locked and can not be changed through SW programming. This bit is only reset after a POR is issued.
+    } B;
+} hw_ocotp_scs_clr_t;
+#endif
+
+/*
+ * constants & macros for entire OCOTP_SCS_CLR register
+ */
+#define HW_OCOTP_SCS_CLR_ADDR      (REGS_OCOTP_BASE + 0x68)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_OCOTP_SCS_CLR           (*(volatile hw_ocotp_scs_clr_t *) HW_OCOTP_SCS_CLR_ADDR)
+#define HW_OCOTP_SCS_CLR_RD()      (HW_OCOTP_SCS_CLR.U)
+#define HW_OCOTP_SCS_CLR_WR(v)     (HW_OCOTP_SCS_CLR.U = (v))
+#define HW_OCOTP_SCS_CLR_SET(v)    (HW_OCOTP_SCS_CLR_WR(HW_OCOTP_SCS_CLR_RD() |  (v)))
+#define HW_OCOTP_SCS_CLR_CLR(v)    (HW_OCOTP_SCS_CLR_WR(HW_OCOTP_SCS_CLR_RD() & ~(v)))
+#define HW_OCOTP_SCS_CLR_TOG(v)    (HW_OCOTP_SCS_CLR_WR(HW_OCOTP_SCS_CLR_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual OCOTP_SCS_CLR bitfields
+ */
+
+/* --- Register HW_OCOTP_SCS_CLR, field HAB_JDE (RW)
+ *
+ * HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a
+ * properlay signed command to do so is found and validated by the HAB. The HAB must lock the
+ * register before passing control to the OS whether or not JTAG debugging has been enabled. Once
+ * JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG
+ * debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG
+ * debugging is enabled by the HAB (though this signal may be gated off).
+ *
+ * Values:
+ * 1 - JTAG debugging is enabled by the HAB (though this signal may be gated off)
+ */
+
+#define BP_OCOTP_SCS_CLR_HAB_JDE      0
+#define BM_OCOTP_SCS_CLR_HAB_JDE      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_CLR_HAB_JDE(v)   ((((reg32_t) v) << 0) & BM_OCOTP_SCS_CLR_HAB_JDE)
+#else
+#define BF_OCOTP_SCS_CLR_HAB_JDE(v)   (((v) << 0) & BM_OCOTP_SCS_CLR_HAB_JDE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the HAB_JDE field to a new value.
+#define BW_OCOTP_SCS_CLR_HAB_JDE(v)   BF_CS1(OCOTP_SCS_CLR, HAB_JDE, v)
+#endif
+
+
+/* --- Register HW_OCOTP_SCS_CLR, field SPARE (RW)
+ *
+ * Unallocated read/write bits for implementation specific software use.
+ */
+
+#define BP_OCOTP_SCS_CLR_SPARE      1
+#define BM_OCOTP_SCS_CLR_SPARE      0x7ffffffe
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_CLR_SPARE(v)   ((((reg32_t) v) << 1) & BM_OCOTP_SCS_CLR_SPARE)
+#else
+#define BF_OCOTP_SCS_CLR_SPARE(v)   (((v) << 1) & BM_OCOTP_SCS_CLR_SPARE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SPARE field to a new value.
+#define BW_OCOTP_SCS_CLR_SPARE(v)   BF_CS1(OCOTP_SCS_CLR, SPARE, v)
+#endif
+
+/* --- Register HW_OCOTP_SCS_CLR, field LOCK (RW)
+ *
+ * When set, all of the bits in this register are locked and can not be changed through SW
+ * programming. This bit is only reset after a POR is issued.
+ */
+
+#define BP_OCOTP_SCS_CLR_LOCK      31
+#define BM_OCOTP_SCS_CLR_LOCK      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_CLR_LOCK(v)   ((((reg32_t) v) << 31) & BM_OCOTP_SCS_CLR_LOCK)
+#else
+#define BF_OCOTP_SCS_CLR_LOCK(v)   (((v) << 31) & BM_OCOTP_SCS_CLR_LOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK field to a new value.
+#define BW_OCOTP_SCS_CLR_LOCK(v)   BF_CS1(OCOTP_SCS_CLR, LOCK, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_OCOTP_SCS_TOG - Software Controllable Signals Register _TOG (RW)
+ *
+ * HW_OCOTP_SCS: 0x060  This register holds volatile configuration values that can be set and locked
+ * by trusted software. All values are returned to their defualt values after POR.   EXAMPLE   Empty
+ * Example.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned HAB_JDE : 1; //!< HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a properlay signed command to do so is found and validated by the HAB. The HAB must lock the register before passing control to the OS whether or not JTAG debugging has been enabled. Once JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG debugging is enabled by the HAB (though this signal may be gated off).
+        unsigned SPARE : 30; //!< Unallocated read/write bits for implementation specific software use.
+        unsigned LOCK : 1; //!< When set, all of the bits in this register are locked and can not be changed through SW programming. This bit is only reset after a POR is issued.
+    } B;
+} hw_ocotp_scs_tog_t;
+#endif
+
+/*
+ * constants & macros for entire OCOTP_SCS_TOG register
+ */
+#define HW_OCOTP_SCS_TOG_ADDR      (REGS_OCOTP_BASE + 0x6c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_OCOTP_SCS_TOG           (*(volatile hw_ocotp_scs_tog_t *) HW_OCOTP_SCS_TOG_ADDR)
+#define HW_OCOTP_SCS_TOG_RD()      (HW_OCOTP_SCS_TOG.U)
+#define HW_OCOTP_SCS_TOG_WR(v)     (HW_OCOTP_SCS_TOG.U = (v))
+#define HW_OCOTP_SCS_TOG_SET(v)    (HW_OCOTP_SCS_TOG_WR(HW_OCOTP_SCS_TOG_RD() |  (v)))
+#define HW_OCOTP_SCS_TOG_CLR(v)    (HW_OCOTP_SCS_TOG_WR(HW_OCOTP_SCS_TOG_RD() & ~(v)))
+#define HW_OCOTP_SCS_TOG_TOG(v)    (HW_OCOTP_SCS_TOG_WR(HW_OCOTP_SCS_TOG_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual OCOTP_SCS_TOG bitfields
+ */
+
+/* --- Register HW_OCOTP_SCS_TOG, field HAB_JDE (RW)
+ *
+ * HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a
+ * properlay signed command to do so is found and validated by the HAB. The HAB must lock the
+ * register before passing control to the OS whether or not JTAG debugging has been enabled. Once
+ * JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG
+ * debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG
+ * debugging is enabled by the HAB (though this signal may be gated off).
+ *
+ * Values:
+ * 1 - JTAG debugging is enabled by the HAB (though this signal may be gated off)
+ */
+
+#define BP_OCOTP_SCS_TOG_HAB_JDE      0
+#define BM_OCOTP_SCS_TOG_HAB_JDE      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_TOG_HAB_JDE(v)   ((((reg32_t) v) << 0) & BM_OCOTP_SCS_TOG_HAB_JDE)
+#else
+#define BF_OCOTP_SCS_TOG_HAB_JDE(v)   (((v) << 0) & BM_OCOTP_SCS_TOG_HAB_JDE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the HAB_JDE field to a new value.
+#define BW_OCOTP_SCS_TOG_HAB_JDE(v)   BF_CS1(OCOTP_SCS_TOG, HAB_JDE, v)
+#endif
+
+
+/* --- Register HW_OCOTP_SCS_TOG, field SPARE (RW)
+ *
+ * Unallocated read/write bits for implementation specific software use.
+ */
+
+#define BP_OCOTP_SCS_TOG_SPARE      1
+#define BM_OCOTP_SCS_TOG_SPARE      0x7ffffffe
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_TOG_SPARE(v)   ((((reg32_t) v) << 1) & BM_OCOTP_SCS_TOG_SPARE)
+#else
+#define BF_OCOTP_SCS_TOG_SPARE(v)   (((v) << 1) & BM_OCOTP_SCS_TOG_SPARE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SPARE field to a new value.
+#define BW_OCOTP_SCS_TOG_SPARE(v)   BF_CS1(OCOTP_SCS_TOG, SPARE, v)
+#endif
+
+/* --- Register HW_OCOTP_SCS_TOG, field LOCK (RW)
+ *
+ * When set, all of the bits in this register are locked and can not be changed through SW
+ * programming. This bit is only reset after a POR is issued.
+ */
+
+#define BP_OCOTP_SCS_TOG_LOCK      31
+#define BM_OCOTP_SCS_TOG_LOCK      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_OCOTP_SCS_TOG_LOCK(v)   ((((reg32_t) v) << 31) & BM_OCOTP_SCS_TOG_LOCK)
+#else
+#define BF_OCOTP_SCS_TOG_LOCK(v)   (((v) << 31) & BM_OCOTP_SCS_TOG_LOCK)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK field to a new value.
+#define BW_OCOTP_SCS_TOG_LOCK(v)   BF_CS1(OCOTP_SCS_TOG, LOCK, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -8157,281 +9030,285 @@ typedef union
 typedef struct
 {
     volatile hw_ocotp_ctrl_t CTRL; //!< OTP Controller Control Register
-    reg32_t _reserved0[3];
+    volatile hw_ocotp_ctrl_set_t CTRL_SET; //!< OTP Controller Control Register _SET
+    volatile hw_ocotp_ctrl_clr_t CTRL_CLR; //!< OTP Controller Control Register _CLR
+    volatile hw_ocotp_ctrl_tog_t CTRL_TOG; //!< OTP Controller Control Register _TOG
     volatile hw_ocotp_timing_t TIMING; //!< OTP Controller Timing Register
-    reg32_t _reserved1[3];
+    reg32_t _reserved0[3];
     volatile hw_ocotp_data_t DATA; //!< OTP Controller Write Data Register
-    reg32_t _reserved2[3];
+    reg32_t _reserved1[3];
     volatile hw_ocotp_read_ctrl_t READ_CTRL; //!< OTP Controller Write Data Register
-    reg32_t _reserved3[3];
+    reg32_t _reserved2[3];
     volatile hw_ocotp_read_fuse_data_t READ_FUSE_DATA; //!< OTP Controller Read Data Register
-    reg32_t _reserved4[3];
+    reg32_t _reserved3[3];
     volatile hw_ocotp_sw_sticky_t SW_STICKY; //!< Sticky bit Register
-    reg32_t _reserved5[3];
+    reg32_t _reserved4[3];
     volatile hw_ocotp_scs_t SCS; //!< Software Controllable Signals Register
-    reg32_t _reserved6[3];
+    volatile hw_ocotp_scs_set_t SCS_SET; //!< Software Controllable Signals Register _SET
+    volatile hw_ocotp_scs_clr_t SCS_CLR; //!< Software Controllable Signals Register _CLR
+    volatile hw_ocotp_scs_tog_t SCS_TOG; //!< Software Controllable Signals Register _TOG
     volatile hw_ocotp_crc_addr_t CRC_ADDR; //!< OTP Controller CRC test address
-    reg32_t _reserved7[3];
+    reg32_t _reserved5[3];
     volatile hw_ocotp_crc_value_t CRC_VALUE; //!< OTP Controller CRC Value Register
-    reg32_t _reserved8[3];
+    reg32_t _reserved6[3];
     volatile hw_ocotp_version_t VERSION; //!< OTP Controller Version Register
-    reg32_t _reserved9[219];
+    reg32_t _reserved7[219];
     volatile hw_ocotp_lock_t LOCK; //!< Value of OTP Bank0 Word0 (Lock controls)
-    reg32_t _reserved10[3];
+    reg32_t _reserved8[3];
     volatile hw_ocotp_cfg0_t CFG0; //!< Value of OTP Bank0 Word1 (Configuration and Manufacturing Info.)
-    reg32_t _reserved11[3];
+    reg32_t _reserved9[3];
     volatile hw_ocotp_cfg1_t CFG1; //!< Value of OTP Bank0 Word2 (Configuration and Manufacturing Info.)
-    reg32_t _reserved12[3];
+    reg32_t _reserved10[3];
     volatile hw_ocotp_cfg2_t CFG2; //!< Value of OTP Bank0 Word3 (Configuration and Manufacturing Info.)
-    reg32_t _reserved13[3];
+    reg32_t _reserved11[3];
     volatile hw_ocotp_cfg3_t CFG3; //!< Value of OTP Bank0 Word4 (Configuration and Manufacturing Info.)
-    reg32_t _reserved14[3];
+    reg32_t _reserved12[3];
     volatile hw_ocotp_cfg4_t CFG4; //!< Value of OTP Bank0 Word5 (Configuration and Manufacturing Info.)
-    reg32_t _reserved15[3];
+    reg32_t _reserved13[3];
     volatile hw_ocotp_cfg5_t CFG5; //!< Value of OTP Bank0 Word6 (Configuration and Manufacturing Info.)
-    reg32_t _reserved16[3];
+    reg32_t _reserved14[3];
     volatile hw_ocotp_cfg6_t CFG6; //!< Value of OTP Bank0 Word7 (Configuration and Manufacturing Info.)
-    reg32_t _reserved17[3];
+    reg32_t _reserved15[3];
     volatile hw_ocotp_mem0_t MEM0; //!< Value of OTP Bank1 Word0 (Memory Related Info.)
-    reg32_t _reserved18[3];
+    reg32_t _reserved16[3];
     volatile hw_ocotp_mem1_t MEM1; //!< Value of OTP Bank1 Word1 (Memory Related Info.)
-    reg32_t _reserved19[3];
+    reg32_t _reserved17[3];
     volatile hw_ocotp_mem2_t MEM2; //!< Value of OTP Bank1 Word2 (Memory Related Info.)
-    reg32_t _reserved20[3];
+    reg32_t _reserved18[3];
     volatile hw_ocotp_mem3_t MEM3; //!< Value of OTP Bank1 Word3 (Memory Related Info.)
-    reg32_t _reserved21[3];
+    reg32_t _reserved19[3];
     volatile hw_ocotp_mem4_t MEM4; //!< Value of OTP Bank1 Word4 (Memory Related Info.)
-    reg32_t _reserved22[3];
+    reg32_t _reserved20[3];
     volatile hw_ocotp_ana0_t ANA0; //!< Value of OTP Bank1 Word5 (Memory Related Info.)
-    reg32_t _reserved23[3];
+    reg32_t _reserved21[3];
     volatile hw_ocotp_ana1_t ANA1; //!< Value of OTP Bank1 Word6 (General Purpose Customer Defined Info.)
-    reg32_t _reserved24[3];
+    reg32_t _reserved22[3];
     volatile hw_ocotp_ana2_t ANA2; //!< Value of OTP Bank1 Word7 (General Purpose Customer Defined Info.)
-    reg32_t _reserved25[3];
+    reg32_t _reserved23[3];
     volatile hw_ocotp_otpmk0_t OTPMK0; //!< Shadow Register for OTP Bank2 Word0 (OTPMK and CRYPTO Key)
-    reg32_t _reserved26[3];
+    reg32_t _reserved24[3];
     volatile hw_ocotp_otpmk1_t OTPMK1; //!< Shadow Register for OTP Bank2 Word1 (OTPMK and CRYPTO Key)
-    reg32_t _reserved27[3];
+    reg32_t _reserved25[3];
     volatile hw_ocotp_otpmk2_t OTPMK2; //!< Shadow Register for OTP Bank2 Word2 (OTPMK and CRYPTO Key)
-    reg32_t _reserved28[3];
+    reg32_t _reserved26[3];
     volatile hw_ocotp_otpmk3_t OTPMK3; //!< Shadow Register for OTP Bank2 Word3 (OTPMK and CRYPTO Key)
-    reg32_t _reserved29[3];
+    reg32_t _reserved27[3];
     volatile hw_ocotp_otpmk4_t OTPMK4; //!< Shadow Register for OTP Bank2 Word4 (OTPMK Key)
-    reg32_t _reserved30[3];
+    reg32_t _reserved28[3];
     volatile hw_ocotp_otpmk5_t OTPMK5; //!< Shadow Register for OTP Bank2 Word5 (OTPMK Key)
-    reg32_t _reserved31[3];
+    reg32_t _reserved29[3];
     volatile hw_ocotp_otpmk6_t OTPMK6; //!< Shadow Register for OTP Bank2 Word6 (OTPMK Key)
-    reg32_t _reserved32[3];
+    reg32_t _reserved30[3];
     volatile hw_ocotp_otpmk7_t OTPMK7; //!< Shadow Register for OTP Bank2 Word7 (OTPMK Key)
-    reg32_t _reserved33[3];
+    reg32_t _reserved31[3];
     volatile hw_ocotp_srk0_t SRK0; //!< Shadow Register for OTP Bank3 Word0 (SRK Hash)
-    reg32_t _reserved34[3];
+    reg32_t _reserved32[3];
     volatile hw_ocotp_srk1_t SRK1; //!< Shadow Register for OTP Bank3 Word1 (SRK Hash)
-    reg32_t _reserved35[3];
+    reg32_t _reserved33[3];
     volatile hw_ocotp_srk2_t SRK2; //!< Shadow Register for OTP Bank3 Word2 (SRK Hash)
-    reg32_t _reserved36[3];
+    reg32_t _reserved34[3];
     volatile hw_ocotp_srk3_t SRK3; //!< Shadow Register for OTP Bank3 Word3 (SRK Hash)
-    reg32_t _reserved37[3];
+    reg32_t _reserved35[3];
     volatile hw_ocotp_srk4_t SRK4; //!< Shadow Register for OTP Bank3 Word4 (SRK Hash)
-    reg32_t _reserved38[3];
+    reg32_t _reserved36[3];
     volatile hw_ocotp_srk5_t SRK5; //!< Shadow Register for OTP Bank3 Word5 (SRK Hash)
-    reg32_t _reserved39[3];
+    reg32_t _reserved37[3];
     volatile hw_ocotp_srk6_t SRK6; //!< Shadow Register for OTP Bank3 Word6 (SRK Hash)
-    reg32_t _reserved40[3];
+    reg32_t _reserved38[3];
     volatile hw_ocotp_srk7_t SRK7; //!< Shadow Register for OTP Bank3 Word7 (SRK Hash)
-    reg32_t _reserved41[3];
+    reg32_t _reserved39[3];
     volatile hw_ocotp_resp0_t RESP0; //!< Value of OTP Bank4 Word0 (Secure JTAG Response Field)
-    reg32_t _reserved42[3];
+    reg32_t _reserved40[3];
     volatile hw_ocotp_hsjc_resp1_t HSJC_RESP1; //!< Value of OTP Bank4 Word1 (Secure JTAG Response Field)
-    reg32_t _reserved43[3];
+    reg32_t _reserved41[3];
     volatile hw_ocotp_mac0_t MAC0; //!< Value of OTP Bank4 Word2 (MAC Address)
-    reg32_t _reserved44[3];
+    reg32_t _reserved42[3];
     volatile hw_ocotp_mac1_t MAC1; //!< Value of OTP Bank4 Word3 (MAC Address)
-    reg32_t _reserved45[3];
+    reg32_t _reserved43[3];
     volatile hw_ocotp_hdcp_ksv0_t HDCP_KSV0; //!< Value of OTP Bank4 Word4 (HW Capabilities)
-    reg32_t _reserved46[3];
+    reg32_t _reserved44[3];
     volatile hw_ocotp_hdcp_ksv1_t HDCP_KSV1; //!< Value of OTP Bank4 Word5 (HW Capabilities)
-    reg32_t _reserved47[3];
+    reg32_t _reserved45[3];
     volatile hw_ocotp_gp1_t GP1; //!< Value of OTP Bank4 Word6 (HW Capabilities)
-    reg32_t _reserved48[3];
+    reg32_t _reserved46[3];
     volatile hw_ocotp_gp2_t GP2; //!< Value of OTP Bank4 Word7 (HW Capabilities)
-    reg32_t _reserved49[3];
+    reg32_t _reserved47[3];
     volatile hw_ocotp_dtcp_key0_t DTCP_KEY0; //!< Value of OTP Bank5 Word0 (HW Capabilities)
-    reg32_t _reserved50[3];
+    reg32_t _reserved48[3];
     volatile hw_ocotp_dtcp_key1_t DTCP_KEY1; //!< Value of OTP Bank5 Word1 (HW Capabilities)
-    reg32_t _reserved51[3];
+    reg32_t _reserved49[3];
     volatile hw_ocotp_dtcp_key2_t DTCP_KEY2; //!< Value of OTP Bank5 Word2 (HW Capabilities)
-    reg32_t _reserved52[3];
+    reg32_t _reserved50[3];
     volatile hw_ocotp_dtcp_key3_t DTCP_KEY3; //!< Value of OTP Bank5 Word3 (HW Capabilities)
-    reg32_t _reserved53[3];
+    reg32_t _reserved51[3];
     volatile hw_ocotp_dtcp_key4_t DTCP_KEY4; //!< Value of OTP Bank5 Word4 (HW Capabilities)
-    reg32_t _reserved54[3];
+    reg32_t _reserved52[3];
     volatile hw_ocotp_misc_conf_t MISC_CONF; //!< Value of OTP Bank5 Word5 (HW Capabilities)
-    reg32_t _reserved55[3];
+    reg32_t _reserved53[3];
     volatile hw_ocotp_field_return_t FIELD_RETURN; //!< Value of OTP Bank5 Word6 (HW Capabilities)
-    reg32_t _reserved56[3];
+    reg32_t _reserved54[3];
     volatile hw_ocotp_srk_revoke_t SRK_REVOKE; //!< Value of OTP Bank5 Word7 (HW Capabilities)
-    reg32_t _reserved57[67];
+    reg32_t _reserved55[67];
     volatile hw_ocotp_hdcp_key0_t HDCP_KEY0; //!< Value of OTP Bank6 Word0 (HW Capabilities)
-    reg32_t _reserved58[3];
+    reg32_t _reserved56[3];
     volatile hw_ocotp_hdcp_key1_t HDCP_KEY1; //!< Value of OTP Bank6 Word1 (HW Capabilities)
-    reg32_t _reserved59[3];
+    reg32_t _reserved57[3];
     volatile hw_ocotp_hdcp_key2_t HDCP_KEY2; //!< Value of OTP Bank6 Word2 (HW Capabilities)
-    reg32_t _reserved60[3];
+    reg32_t _reserved58[3];
     volatile hw_ocotp_hdcp_key3_t HDCP_KEY3; //!< Value of OTP Bank6 Word3 (HW Capabilities)
-    reg32_t _reserved61[3];
+    reg32_t _reserved59[3];
     volatile hw_ocotp_hdcp_key4_t HDCP_KEY4; //!< Value of OTP Bank6 Word4 (HW Capabilities)
-    reg32_t _reserved62[3];
+    reg32_t _reserved60[3];
     volatile hw_ocotp_hdcp_key5_t HDCP_KEY5; //!< Value of OTP Bank6 Word5 (HW Capabilities)
-    reg32_t _reserved63[3];
+    reg32_t _reserved61[3];
     volatile hw_ocotp_hdcp_key6_t HDCP_KEY6; //!< Value of OTP Bank6 Word6 (HW Capabilities)
-    reg32_t _reserved64[3];
+    reg32_t _reserved62[3];
     volatile hw_ocotp_hdcp_key7_t HDCP_KEY7; //!< Value of OTP Bank6 Word7 (HW Capabilities)
-    reg32_t _reserved65[3];
+    reg32_t _reserved63[3];
     volatile hw_ocotp_hdcp_key8_t HDCP_KEY8; //!< Value of OTP Bank7 Word0 (HW Capabilities)
-    reg32_t _reserved66[3];
+    reg32_t _reserved64[3];
     volatile hw_ocotp_hdcp_key9_t HDCP_KEY9; //!< Value of OTP Bank7 Word1 (HW Capabilities)
-    reg32_t _reserved67[3];
+    reg32_t _reserved65[3];
     volatile hw_ocotp_hdcp_key10_t HDCP_KEY10; //!< Value of OTP Bank7 Word2 (HW Capabilities)
-    reg32_t _reserved68[3];
+    reg32_t _reserved66[3];
     volatile hw_ocotp_hdcp_key11_t HDCP_KEY11; //!< Value of OTP Bank7 Word3 (HW Capabilities)
-    reg32_t _reserved69[3];
+    reg32_t _reserved67[3];
     volatile hw_ocotp_hdcp_key12_t HDCP_KEY12; //!< Value of OTP Bank7 Word4 (HW Capabilities)
-    reg32_t _reserved70[3];
+    reg32_t _reserved68[3];
     volatile hw_ocotp_hdcp_key13_t HDCP_KEY13; //!< Value of OTP Bank7 Word5 (HW Capabilities)
-    reg32_t _reserved71[3];
+    reg32_t _reserved69[3];
     volatile hw_ocotp_hdcp_key14_t HDCP_KEY14; //!< Value of OTP Bank7 Word6 (HW Capabilities)
-    reg32_t _reserved72[3];
+    reg32_t _reserved70[3];
     volatile hw_ocotp_hdcp_key15_t HDCP_KEY15; //!< Value of OTP Bank7 Word7 (HW Capabilities)
-    reg32_t _reserved73[3];
+    reg32_t _reserved71[3];
     volatile hw_ocotp_hdcp_key16_t HDCP_KEY16; //!< Value of OTP Bank8 Word0 (HW Capabilities)
-    reg32_t _reserved74[3];
+    reg32_t _reserved72[3];
     volatile hw_ocotp_hdcp_key17_t HDCP_KEY17; //!< Value of OTP Bank8 Word1 (HW Capabilities)
-    reg32_t _reserved75[3];
+    reg32_t _reserved73[3];
     volatile hw_ocotp_hdcp_key18_t HDCP_KEY18; //!< Value of OTP Bank8 Word2 (HW Capabilities)
-    reg32_t _reserved76[3];
+    reg32_t _reserved74[3];
     volatile hw_ocotp_hdcp_key19_t HDCP_KEY19; //!< Value of OTP Bank8 Word3 (HW Capabilities)
-    reg32_t _reserved77[3];
+    reg32_t _reserved75[3];
     volatile hw_ocotp_hdcp_key20_t HDCP_KEY20; //!< Value of OTP Bank8 Word4 (HW Capabilities)
-    reg32_t _reserved78[3];
+    reg32_t _reserved76[3];
     volatile hw_ocotp_hdcp_key21_t HDCP_KEY21; //!< Value of OTP Bank8 Word5 (HW Capabilities)
-    reg32_t _reserved79[3];
+    reg32_t _reserved77[3];
     volatile hw_ocotp_hdcp_key22_t HDCP_KEY22; //!< Value of OTP Bank8 Word6 (HW Capabilities)
-    reg32_t _reserved80[3];
+    reg32_t _reserved78[3];
     volatile hw_ocotp_hdcp_key23_t HDCP_KEY23; //!< Value of OTP Bank8 Word7 (HW Capabilities)
-    reg32_t _reserved81[3];
+    reg32_t _reserved79[3];
     volatile hw_ocotp_hdcp_key24_t HDCP_KEY24; //!< Value of OTP Bank9 Word0 (HW Capabilities)
-    reg32_t _reserved82[3];
+    reg32_t _reserved80[3];
     volatile hw_ocotp_hdcp_key25_t HDCP_KEY25; //!< Value of OTP Bank9 Word1 (HW Capabilities)
-    reg32_t _reserved83[3];
+    reg32_t _reserved81[3];
     volatile hw_ocotp_hdcp_key26_t HDCP_KEY26; //!< Value of OTP Bank9 Word2 (HW Capabilities)
-    reg32_t _reserved84[3];
+    reg32_t _reserved82[3];
     volatile hw_ocotp_hdcp_key27_t HDCP_KEY27; //!< Value of OTP Bank9 Word3 (HW Capabilities)
-    reg32_t _reserved85[3];
+    reg32_t _reserved83[3];
     volatile hw_ocotp_hdcp_key28_t HDCP_KEY28; //!< Value of OTP Bank9 Word4 (HW Capabilities)
-    reg32_t _reserved86[3];
+    reg32_t _reserved84[3];
     volatile hw_ocotp_hdcp_key29_t HDCP_KEY29; //!< Value of OTP Bank9 Word5 (HW Capabilities)
-    reg32_t _reserved87[3];
+    reg32_t _reserved85[3];
     volatile hw_ocotp_hdcp_key30_t HDCP_KEY30; //!< Value of OTP Bank9 Word6 (HW Capabilities)
-    reg32_t _reserved88[3];
+    reg32_t _reserved86[3];
     volatile hw_ocotp_hdcp_key31_t HDCP_KEY31; //!< Value of OTP Bank9 Word7 (HW Capabilities)
-    reg32_t _reserved89[3];
+    reg32_t _reserved87[3];
     volatile hw_ocotp_hdcp_key32_t HDCP_KEY32; //!< Value of OTP Bank10 Word0 (HW Capabilities)
-    reg32_t _reserved90[3];
+    reg32_t _reserved88[3];
     volatile hw_ocotp_hdcp_key33_t HDCP_KEY33; //!< Value of OTP Bank10 Word1 (HW Capabilities)
-    reg32_t _reserved91[3];
+    reg32_t _reserved89[3];
     volatile hw_ocotp_hdcp_key34_t HDCP_KEY34; //!< Value of OTP Bank10 Word2 (HW Capabilities)
-    reg32_t _reserved92[3];
+    reg32_t _reserved90[3];
     volatile hw_ocotp_hdcp_key35_t HDCP_KEY35; //!< Value of OTP Bank10 Word3 (HW Capabilities)
-    reg32_t _reserved93[3];
+    reg32_t _reserved91[3];
     volatile hw_ocotp_hdcp_key36_t HDCP_KEY36; //!< Value of OTP Bank10 Word4 (HW Capabilities)
-    reg32_t _reserved94[3];
+    reg32_t _reserved92[3];
     volatile hw_ocotp_hdcp_key37_t HDCP_KEY37; //!< Value of OTP Bank10 Word5 (HW Capabilities)
-    reg32_t _reserved95[3];
+    reg32_t _reserved93[3];
     volatile hw_ocotp_hdcp_key38_t HDCP_KEY38; //!< Value of OTP Bank10 Word6 (HW Capabilities)
-    reg32_t _reserved96[3];
+    reg32_t _reserved94[3];
     volatile hw_ocotp_hdcp_key39_t HDCP_KEY39; //!< Value of OTP Bank10 Word7 (HW Capabilities)
-    reg32_t _reserved97[3];
+    reg32_t _reserved95[3];
     volatile hw_ocotp_hdcp_key40_t HDCP_KEY40; //!< Value of OTP Bank11 Word0 (HW Capabilities)
-    reg32_t _reserved98[3];
+    reg32_t _reserved96[3];
     volatile hw_ocotp_hdcp_key41_t HDCP_KEY41; //!< Value of OTP Bank11 Word1 (HW Capabilities)
-    reg32_t _reserved99[3];
+    reg32_t _reserved97[3];
     volatile hw_ocotp_hdcp_key42_t HDCP_KEY42; //!< Value of OTP Bank11 Word2 (HW Capabilities)
-    reg32_t _reserved100[3];
+    reg32_t _reserved98[3];
     volatile hw_ocotp_hdcp_key43_t HDCP_KEY43; //!< Value of OTP Bank11 Word3 (HW Capabilities)
-    reg32_t _reserved101[3];
+    reg32_t _reserved99[3];
     volatile hw_ocotp_hdcp_key44_t HDCP_KEY44; //!< Value of OTP Bank11 Word4 (HW Capabilities)
-    reg32_t _reserved102[3];
+    reg32_t _reserved100[3];
     volatile hw_ocotp_hdcp_key45_t HDCP_KEY45; //!< Value of OTP Bank11 Word5 (HW Capabilities)
-    reg32_t _reserved103[3];
+    reg32_t _reserved101[3];
     volatile hw_ocotp_hdcp_key46_t HDCP_KEY46; //!< Value of OTP Bank11 Word6 (HW Capabilities)
-    reg32_t _reserved104[3];
+    reg32_t _reserved102[3];
     volatile hw_ocotp_hdcp_key47_t HDCP_KEY47; //!< Value of OTP Bank11 Word7 (HW Capabilities)
-    reg32_t _reserved105[3];
+    reg32_t _reserved103[3];
     volatile hw_ocotp_hdcp_key48_t HDCP_KEY48; //!< Value of OTP Bank12 Word0 (HW Capabilities)
-    reg32_t _reserved106[3];
+    reg32_t _reserved104[3];
     volatile hw_ocotp_hdcp_key49_t HDCP_KEY49; //!< Value of OTP Bank12 Word1 (HW Capabilities)
-    reg32_t _reserved107[3];
+    reg32_t _reserved105[3];
     volatile hw_ocotp_hdcp_key50_t HDCP_KEY50; //!< Value of OTP Bank12 Word2 (HW Capabilities)
-    reg32_t _reserved108[3];
+    reg32_t _reserved106[3];
     volatile hw_ocotp_hdcp_key51_t HDCP_KEY51; //!< Value of OTP Bank12 Word3 (HW Capabilities)
-    reg32_t _reserved109[3];
+    reg32_t _reserved107[3];
     volatile hw_ocotp_hdcp_key52_t HDCP_KEY52; //!< Value of OTP Bank12 Word4 (HW Capabilities)
-    reg32_t _reserved110[3];
+    reg32_t _reserved108[3];
     volatile hw_ocotp_hdcp_key53_t HDCP_KEY53; //!< Value of OTP Bank12 Word5 (HW Capabilities)
-    reg32_t _reserved111[3];
+    reg32_t _reserved109[3];
     volatile hw_ocotp_hdcp_key54_t HDCP_KEY54; //!< Value of OTP Bank12 Word6 (HW Capabilities)
-    reg32_t _reserved112[3];
+    reg32_t _reserved110[3];
     volatile hw_ocotp_hdcp_key55_t HDCP_KEY55; //!< Value of OTP Bank12 Word7 (HW Capabilities)
-    reg32_t _reserved113[3];
+    reg32_t _reserved111[3];
     volatile hw_ocotp_hdcp_key56_t HDCP_KEY56; //!< Value of OTP Bank13 Word0 (HW Capabilities)
-    reg32_t _reserved114[3];
+    reg32_t _reserved112[3];
     volatile hw_ocotp_hdcp_key57_t HDCP_KEY57; //!< Value of OTP Bank13 Word1 (HW Capabilities)
-    reg32_t _reserved115[3];
+    reg32_t _reserved113[3];
     volatile hw_ocotp_hdcp_key58_t HDCP_KEY58; //!< Value of OTP Bank13 Word2 (HW Capabilities)
-    reg32_t _reserved116[3];
+    reg32_t _reserved114[3];
     volatile hw_ocotp_hdcp_key59_t HDCP_KEY59; //!< Value of OTP Bank13 Word3 (HW Capabilities)
-    reg32_t _reserved117[3];
+    reg32_t _reserved115[3];
     volatile hw_ocotp_hdcp_key60_t HDCP_KEY60; //!< Value of OTP Bank13 Word4 (HW Capabilities)
-    reg32_t _reserved118[3];
+    reg32_t _reserved116[3];
     volatile hw_ocotp_hdcp_key61_t HDCP_KEY61; //!< Value of OTP Bank13 Word5 (HW Capabilities)
-    reg32_t _reserved119[3];
+    reg32_t _reserved117[3];
     volatile hw_ocotp_hdcp_key62_t HDCP_KEY62; //!< Value of OTP Bank13 Word6 (HW Capabilities)
-    reg32_t _reserved120[3];
+    reg32_t _reserved118[3];
     volatile hw_ocotp_hdcp_key63_t HDCP_KEY63; //!< Value of OTP Bank13 Word7 (HW Capabilities)
-    reg32_t _reserved121[3];
+    reg32_t _reserved119[3];
     volatile hw_ocotp_hdcp_key64_t HDCP_KEY64; //!< Value of OTP Bank14 Word0 (HW Capabilities)
-    reg32_t _reserved122[3];
+    reg32_t _reserved120[3];
     volatile hw_ocotp_hdcp_key65_t HDCP_KEY65; //!< Value of OTP Bank14 Word1 (HW Capabilities)
-    reg32_t _reserved123[3];
+    reg32_t _reserved121[3];
     volatile hw_ocotp_hdcp_key66_t HDCP_KEY66; //!< Value of OTP Bank14 Word2 (HW Capabilities)
-    reg32_t _reserved124[3];
+    reg32_t _reserved122[3];
     volatile hw_ocotp_hdcp_key67_t HDCP_KEY67; //!< Value of OTP Bank14 Word3 (HW Capabilities)
-    reg32_t _reserved125[3];
+    reg32_t _reserved123[3];
     volatile hw_ocotp_hdcp_key68_t HDCP_KEY68; //!< Value of OTP Bank14 Word4 (HW Capabilities)
-    reg32_t _reserved126[3];
+    reg32_t _reserved124[3];
     volatile hw_ocotp_hdcp_key69_t HDCP_KEY69; //!< Value of OTP Bank14 Word5 (HW Capabilities)
-    reg32_t _reserved127[3];
+    reg32_t _reserved125[3];
     volatile hw_ocotp_hdcp_key70_t HDCP_KEY70; //!< Value of OTP Bank14 Word6 (HW Capabilities)
-    reg32_t _reserved128[3];
+    reg32_t _reserved126[3];
     volatile hw_ocotp_hdcp_key71_t HDCP_KEY71; //!< Value of OTP Bank14 Word7 (HW Capabilities)
-    reg32_t _reserved129[35];
+    reg32_t _reserved127[35];
     volatile hw_ocotp_crc0_t CRC0; //!< Value of OTP Bank15 Word0 (HW Capabilities)
-    reg32_t _reserved130[3];
+    reg32_t _reserved128[3];
     volatile hw_ocotp_crc1_t CRC1; //!< Value of OTP Bank15 Word1 (HW Capabilities)
-    reg32_t _reserved131[3];
+    reg32_t _reserved129[3];
     volatile hw_ocotp_crc2_t CRC2; //!< Value of OTP Bank15 Word2 (HW Capabilities)
-    reg32_t _reserved132[3];
+    reg32_t _reserved130[3];
     volatile hw_ocotp_crc3_t CRC3; //!< Value of OTP Bank15 Word3 (HW Capabilities)
-    reg32_t _reserved133[3];
+    reg32_t _reserved131[3];
     volatile hw_ocotp_crc4_t CRC4; //!< Value of OTP Bank15 Word4 (HW Capabilities)
-    reg32_t _reserved134[3];
+    reg32_t _reserved132[3];
     volatile hw_ocotp_crc5_t CRC5; //!< Value of OTP Bank15 Word5 (HW Capabilities)
-    reg32_t _reserved135[3];
+    reg32_t _reserved133[3];
     volatile hw_ocotp_crc6_t CRC6; //!< Value of OTP Bank15 Word6 (HW Capabilities)
-    reg32_t _reserved136[3];
+    reg32_t _reserved134[3];
     volatile hw_ocotp_crc7_t CRC7; //!< Value of OTP Bank15 Word5 (HW Capabilities)
-} hw_ocotp_t
+} hw_ocotp_t;
 #endif
 
 //! @brief Macro to access all OCOTP registers.

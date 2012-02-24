@@ -1875,7 +1875,7 @@ typedef union
         unsigned RESERVED0 : 1; //!< Reserved Undefined since PCI Express 1.1 (Was Attention Button Present for PCI Express 1.0a)
         unsigned RESERVED1 : 1; //!< Reserved Undefined since PCI Express 1.1 (Was Attention Indicator Present for PCI Express 1.0a)
         unsigned RESERVED2 : 1; //!< Reserved Undefined since PCI Express 1.1 (Was Power Indicator Present for PCI Express 1.0a)
-        unsigned ROLE : 1; //!< Role-Based Error Reporting, writable through the DBI. Required to be set for device compliant to 1.1 spec and later.
+        unsigned ROLE_BASED_ERROR_REPORTING : 1; //!< Role-Based Error Reporting, writable through the DBI. Required to be set for device compliant to 1.1 spec and later.
         unsigned RESERVED3 : 2; //!< Reserved
         unsigned CAPTURED_SLOT_POWER_LIMIT_VALUE : 8; //!< Captured Slot Power Limit Value Upstream port only.
         unsigned CAPTURED_SLOT_POWER_LIMIT_SCALE : 2; //!< Captured Slot Power Limit Scale Upstream port only.
@@ -1995,23 +1995,23 @@ typedef union
 #define BW_PCIE_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY(v)   BF_CS1(PCIE_DCR, ENDPOINT_L1_ACCEPTABLE_LATENCY, v)
 #endif
 
-/* --- Register HW_PCIE_DCR, field ROLE (RW)
+/* --- Register HW_PCIE_DCR, field ROLE_BASED_ERROR_REPORTING (RW)
  *
  * Role-Based Error Reporting, writable through the DBI. Required to be set for device compliant to
  * 1.1 spec and later.
  */
 
-#define BP_PCIE_DCR_ROLE      15
-#define BM_PCIE_DCR_ROLE      0x00008000
+#define BP_PCIE_DCR_ROLE_BASED_ERROR_REPORTING      15
+#define BM_PCIE_DCR_ROLE_BASED_ERROR_REPORTING      0x00008000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_DCR_ROLE(v)   ((((reg32_t) v) << 15) & BM_PCIE_DCR_ROLE)
+#define BF_PCIE_DCR_ROLE_BASED_ERROR_REPORTING(v)   ((((reg32_t) v) << 15) & BM_PCIE_DCR_ROLE_BASED_ERROR_REPORTING)
 #else
-#define BF_PCIE_DCR_ROLE(v)   (((v) << 15) & BM_PCIE_DCR_ROLE)
+#define BF_PCIE_DCR_ROLE_BASED_ERROR_REPORTING(v)   (((v) << 15) & BM_PCIE_DCR_ROLE_BASED_ERROR_REPORTING)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the ROLE field to a new value.
-#define BW_PCIE_DCR_ROLE(v)   BF_CS1(PCIE_DCR, ROLE, v)
+//! @brief Set the ROLE_BASED_ERROR_REPORTING field to a new value.
+#define BW_PCIE_DCR_ROLE_BASED_ERROR_REPORTING(v)   BF_CS1(PCIE_DCR, ROLE_BASED_ERROR_REPORTING, v)
 #endif
 
 /* --- Register HW_PCIE_DCR, field CAPTURED_SLOT_POWER_LIMIT_VALUE (RW)
@@ -2994,13 +2994,13 @@ typedef union
 #define BP_PCIE_SCR_MRL_SENSOR_PRESENT      2
 #define BM_PCIE_SCR_MRL_SENSOR_PRESENT      0x00000004
 
-/* --- Register HW_PCIE_SCR, field ATTENTION_INDICATOR_PRESENT (RO)
+/* --- Register HW_PCIE_SCR, field ATTENTION_INDICATOR_PRESENT1 (RO)
  *
  * Attention Indicator Present, writable through the DBI
  */
 
-#define BP_PCIE_SCR_ATTENTION_INDICATOR_PRESENT      3
-#define BM_PCIE_SCR_ATTENTION_INDICATOR_PRESENT      0x00000008
+#define BP_PCIE_SCR_ATTENTION_INDICATOR_PRESENT1      3
+#define BM_PCIE_SCR_ATTENTION_INDICATOR_PRESENT1      0x00000008
 
 /* --- Register HW_PCIE_SCR, field POWER_INDICATOR_PRESENT (RO)
  *
@@ -3657,6 +3657,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_PCIE_RSR           (*(volatile hw_pcie_rsr_t *) HW_PCIE_RSR_ADDR)
 #define HW_PCIE_RSR_RD()      (HW_PCIE_RSR.U)
+#define HW_PCIE_RSR_WR(v)     (HW_PCIE_RSR.U = (v))
+#define HW_PCIE_RSR_SET(v)    (HW_PCIE_RSR_WR(HW_PCIE_RSR_RD() |  (v)))
+#define HW_PCIE_RSR_CLR(v)    (HW_PCIE_RSR_WR(HW_PCIE_RSR_RD() & ~(v)))
+#define HW_PCIE_RSR_TOG(v)    (HW_PCIE_RSR_WR(HW_PCIE_RSR_RD() ^  (v)))
 #endif
 
 /*
@@ -3671,6 +3675,16 @@ typedef union
 #define BP_PCIE_RSR_PME_REQUESTER_ID      0
 #define BM_PCIE_RSR_PME_REQUESTER_ID      0x0000ffff
 
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_RSR_PME_REQUESTER_ID(v)   ((((reg32_t) v) << 0) & BM_PCIE_RSR_PME_REQUESTER_ID)
+#else
+#define BF_PCIE_RSR_PME_REQUESTER_ID(v)   (((v) << 0) & BM_PCIE_RSR_PME_REQUESTER_ID)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PME_REQUESTER_ID field to a new value.
+#define BW_PCIE_RSR_PME_REQUESTER_ID(v)   BF_CS1(PCIE_RSR, PME_REQUESTER_ID, v)
+#endif
+
 /* --- Register HW_PCIE_RSR, field PME_STATUS (W1C)
  *
  * PME Status
@@ -3679,6 +3693,16 @@ typedef union
 #define BP_PCIE_RSR_PME_STATUS      16
 #define BM_PCIE_RSR_PME_STATUS      0x00010000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_RSR_PME_STATUS(v)   ((((reg32_t) v) << 16) & BM_PCIE_RSR_PME_STATUS)
+#else
+#define BF_PCIE_RSR_PME_STATUS(v)   (((v) << 16) & BM_PCIE_RSR_PME_STATUS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PME_STATUS field to a new value.
+#define BW_PCIE_RSR_PME_STATUS(v)   BF_CS1(PCIE_RSR, PME_STATUS, v)
+#endif
+
 /* --- Register HW_PCIE_RSR, field PME_PENDING (W1C)
  *
  * PME Pending
@@ -3686,6 +3710,16 @@ typedef union
 
 #define BP_PCIE_RSR_PME_PENDING      17
 #define BM_PCIE_RSR_PME_PENDING      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_RSR_PME_PENDING(v)   ((((reg32_t) v) << 17) & BM_PCIE_RSR_PME_PENDING)
+#else
+#define BF_PCIE_RSR_PME_PENDING(v)   (((v) << 17) & BM_PCIE_RSR_PME_PENDING)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PME_PENDING field to a new value.
+#define BW_PCIE_RSR_PME_PENDING(v)   BF_CS1(PCIE_RSR, PME_PENDING, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4327,11 +4361,11 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned UNDEFINED : 1; //!< Undefined for PCI Express 1.1 (Was Training Error Status for PCI Express 1.0a)
-        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned RESERVED0 : 1; //!< Undefined for PCI Express 1.1 (Was Training Error Status for PCI Express 1.0a)
+        unsigned RESERVED1 : 3; //!< Reserved
         unsigned DATA_LINK_PROTOCOL_ERROR_STATUS : 1; //!< Data Link Protocol Error Status
-        unsigned SURPRISE_DOWN_ERROR_STATUS_ : 1; //!< Surprise Down Error Status (not supported)
-        unsigned RESERVED1 : 6; //!< Reserved
+        unsigned SURPRISE_DOWN_ERROR_STATUS : 1; //!< Surprise Down Error Status (not supported)
+        unsigned RESERVED2 : 6; //!< Reserved
         unsigned POISONED_TLP_STATUS : 1; //!< Poisoned TLP Status
         unsigned FLOW_CONTROL_PROTOCOL_ERROR_STATUS : 1; //!< Flow Control Protocol Error Status
         unsigned COMPLETION_TIMEOUT_STATUS : 1; //!< Completion Timeout Status
@@ -4341,7 +4375,7 @@ typedef union
         unsigned MALFORMED_TLP_STATUS : 1; //!< Malformed TLP Status
         unsigned ECRC_ERROR_STATUS : 1; //!< ECRC Error Status
         unsigned UNSUPPORTED_REQUEST_ERROR_STATUS : 1; //!< Unsupported Request Error Status
-        unsigned RESERVED2 : 11; //!< Reserved
+        unsigned RESERVED3 : 11; //!< Reserved
     } B;
 } hw_pcie_uesr_t;
 #endif
@@ -4364,24 +4398,6 @@ typedef union
  * constants & macros for individual PCIE_UESR bitfields
  */
 
-/* --- Register HW_PCIE_UESR, field UNDEFINED (RW)
- *
- * Undefined for PCI Express 1.1 (Was Training Error Status for PCI Express 1.0a)
- */
-
-#define BP_PCIE_UESR_UNDEFINED      0
-#define BM_PCIE_UESR_UNDEFINED      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_UESR_UNDEFINED(v)   ((((reg32_t) v) << 0) & BM_PCIE_UESR_UNDEFINED)
-#else
-#define BF_PCIE_UESR_UNDEFINED(v)   (((v) << 0) & BM_PCIE_UESR_UNDEFINED)
-#endif
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the UNDEFINED field to a new value.
-#define BW_PCIE_UESR_UNDEFINED(v)   BF_CS1(PCIE_UESR, UNDEFINED, v)
-#endif
-
 /* --- Register HW_PCIE_UESR, field DATA_LINK_PROTOCOL_ERROR_STATUS (RW)
  *
  * Data Link Protocol Error Status
@@ -4400,22 +4416,22 @@ typedef union
 #define BW_PCIE_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS(v)   BF_CS1(PCIE_UESR, DATA_LINK_PROTOCOL_ERROR_STATUS, v)
 #endif
 
-/* --- Register HW_PCIE_UESR, field SURPRISE_DOWN_ERROR_STATUS_ (RW)
+/* --- Register HW_PCIE_UESR, field SURPRISE_DOWN_ERROR_STATUS (RW)
  *
  * Surprise Down Error Status (not supported)
  */
 
-#define BP_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS_      5
-#define BM_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS_      0x00000020
+#define BP_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS      5
+#define BM_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS      0x00000020
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS_(v)   ((((reg32_t) v) << 5) & BM_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS_)
+#define BF_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS(v)   ((((reg32_t) v) << 5) & BM_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS)
 #else
-#define BF_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS_(v)   (((v) << 5) & BM_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS_)
+#define BF_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS(v)   (((v) << 5) & BM_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the SURPRISE_DOWN_ERROR_STATUS_ field to a new value.
-#define BW_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS_(v)   BF_CS1(PCIE_UESR, SURPRISE_DOWN_ERROR_STATUS_, v)
+//! @brief Set the SURPRISE_DOWN_ERROR_STATUS field to a new value.
+#define BW_PCIE_UESR_SURPRISE_DOWN_ERROR_STATUS(v)   BF_CS1(PCIE_UESR, SURPRISE_DOWN_ERROR_STATUS, v)
 #endif
 
 /* --- Register HW_PCIE_UESR, field POISONED_TLP_STATUS (RW)
@@ -4591,11 +4607,11 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned UNDEFINED : 1; //!< Undefined for PCI Express 1.1 (Was Training Error Mask for PCI Express 1.0a)
-        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned RESERVED0 : 1; //!< Undefined for PCI Express 1.1 (Was Training Error Mask for PCI Express 1.0a)
+        unsigned RESERVED1 : 3; //!< Reserved
         unsigned DATA_LINK_PROTOCOL_ERROR_MASK : 1; //!< Data Link Protocol Error Mask
         unsigned SURPRISE_DOWN_ERROR_MASK : 1; //!< Surprise Down Error Mask (not supported)
-        unsigned RESERVED1 : 6; //!< Reserved
+        unsigned RESERVED2 : 6; //!< Reserved
         unsigned POISONED_TLP_MASK : 1; //!< Poisoned TLP Mask
         unsigned FLOW_CONTROL_PROTOCOL_ERROR_MASK : 1; //!< Flow Control Protocol Error Mask
         unsigned COMPLETION_TIMEOUT_MASK : 1; //!< Completion Timeout Mask
@@ -4605,7 +4621,7 @@ typedef union
         unsigned MALFORMED_TLP_MASK : 1; //!< Malformed TLP Mask
         unsigned ECRC_ERROR_MASK : 1; //!< ECRC Error Mask
         unsigned UNSUPPORTED_REQUEST_ERROR_MASK : 1; //!< Unsupported Request Error Mask
-        unsigned RESERVED2 : 11; //!< Reserved
+        unsigned RESERVED3 : 11; //!< Reserved
     } B;
 } hw_pcie_uemr_t;
 #endif
@@ -4627,24 +4643,6 @@ typedef union
 /*
  * constants & macros for individual PCIE_UEMR bitfields
  */
-
-/* --- Register HW_PCIE_UEMR, field UNDEFINED (RW)
- *
- * Undefined for PCI Express 1.1 (Was Training Error Mask for PCI Express 1.0a)
- */
-
-#define BP_PCIE_UEMR_UNDEFINED      0
-#define BM_PCIE_UEMR_UNDEFINED      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_UEMR_UNDEFINED(v)   ((((reg32_t) v) << 0) & BM_PCIE_UEMR_UNDEFINED)
-#else
-#define BF_PCIE_UEMR_UNDEFINED(v)   (((v) << 0) & BM_PCIE_UEMR_UNDEFINED)
-#endif
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the UNDEFINED field to a new value.
-#define BW_PCIE_UEMR_UNDEFINED(v)   BF_CS1(PCIE_UEMR, UNDEFINED, v)
-#endif
 
 /* --- Register HW_PCIE_UEMR, field DATA_LINK_PROTOCOL_ERROR_MASK (RW)
  *
@@ -4855,11 +4853,11 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned UNDEFINED : 1; //!< Undefined for PCI Express 1.1 (Was Training Error Severity for PCI Express 1.0a)
-        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned RESERVED0 : 1; //!< Undefined for PCI Express 1.1 (Was Training Error Severity for PCI Express 1.0a)
+        unsigned RESERVED1 : 3; //!< Reserved
         unsigned DATA_LINK_PROTOCOL_ERROR_SEVERITY : 1; //!< Data Link Protocol Error Severity
         unsigned SURPRISE_DOWN_ERROR_SEVERITY : 1; //!< Surprise Down Error Severity (not supported)
-        unsigned RESERVED1 : 6; //!< Reserved
+        unsigned RESERVED2 : 6; //!< Reserved
         unsigned POISONED_TLP_SEVERITY : 1; //!< Poisoned TLP Severity
         unsigned FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY : 1; //!< Flow Control Protocol Error Severity
         unsigned COMPLETION_TIMEOUT_SEVERITY : 1; //!< Completion Timeout Severity
@@ -4869,7 +4867,7 @@ typedef union
         unsigned MALFORMED_TLP_SEVERITY : 1; //!< Malformed TLP Severity
         unsigned ECRC_ERROR_SEVERITY : 1; //!< ECRC Error Severity
         unsigned UNSUPPORTED_REQUEST_ERROR_SEVERITY : 1; //!< Unsupported Request Error Severity
-        unsigned RESERVED2 : 11; //!< Reserved
+        unsigned RESERVED3 : 11; //!< Reserved
     } B;
 } hw_pcie_uesevr_t;
 #endif
@@ -4891,24 +4889,6 @@ typedef union
 /*
  * constants & macros for individual PCIE_UESEVR bitfields
  */
-
-/* --- Register HW_PCIE_UESEVR, field UNDEFINED (RW)
- *
- * Undefined for PCI Express 1.1 (Was Training Error Severity for PCI Express 1.0a)
- */
-
-#define BP_PCIE_UESEVR_UNDEFINED      0
-#define BM_PCIE_UESEVR_UNDEFINED      0x00000001
-
-#ifndef __LANGUAGE_ASM__
-#define BF_PCIE_UESEVR_UNDEFINED(v)   ((((reg32_t) v) << 0) & BM_PCIE_UESEVR_UNDEFINED)
-#else
-#define BF_PCIE_UESEVR_UNDEFINED(v)   (((v) << 0) & BM_PCIE_UESEVR_UNDEFINED)
-#endif
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the UNDEFINED field to a new value.
-#define BW_PCIE_UESEVR_UNDEFINED(v)   BF_CS1(PCIE_UESEVR, UNDEFINED, v)
-#endif
 
 /* --- Register HW_PCIE_UESEVR, field DATA_LINK_PROTOCOL_ERROR_SEVERITY (RW)
  *
@@ -6175,10 +6155,10 @@ typedef union
     {
         unsigned PORT_ARBITRATION_CAPABILITY : 8; //!< Port Arbitration Capability
         unsigned RESERVED0 : 6; //!< Reserved
-        unsigned UNDEFINED : 1; //!< Undefined for PCI Express 1.1 (Was Advanced Packet Switching for PCI Express 1.0a)
+        unsigned RESERVED1 : 1; //!< Undefined for PCI Express 1.1 (Was Advanced Packet Switching for PCI Express 1.0a)
         unsigned REJECT_SNOOP_TRANSACTIONS : 1; //!< Reject Snoop Transactions
         unsigned MAXIMUM_TIME_SLOTS : 7; //!< Maximum Time Slots
-        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned RESERVED2 : 1; //!< Reserved
         unsigned PORT_ARBITRATION_TABLE_OFFSET : 8; //!< Port Arbitration Table Offset
     } B;
 } hw_pcie_vcrcr_t;
@@ -6205,14 +6185,6 @@ typedef union
 
 #define BP_PCIE_VCRCR_PORT_ARBITRATION_CAPABILITY      0
 #define BM_PCIE_VCRCR_PORT_ARBITRATION_CAPABILITY      0x000000ff
-
-/* --- Register HW_PCIE_VCRCR, field UNDEFINED (RO)
- *
- * Undefined for PCI Express 1.1 (Was Advanced Packet Switching for PCI Express 1.0a)
- */
-
-#define BP_PCIE_VCRCR_UNDEFINED      14
-#define BM_PCIE_VCRCR_UNDEFINED      0x00004000
 
 /* --- Register HW_PCIE_VCRCR, field REJECT_SNOOP_TRANSACTIONS (RO)
  *
@@ -6478,7 +6450,7 @@ typedef struct
     volatile hw_pcie_vcrcr_t VCRCR; //!< VC Resource Capability Register n
     volatile hw_pcie_vcrconr_t VCRCONR; //!< VC Resource Control Register n
     volatile hw_pcie_vcrsr_t VCRSR; //!< VC Resource Status Register n
-} hw_pcie_t
+} hw_pcie_t;
 #endif
 
 //! @brief Macro to access all PCIE registers.

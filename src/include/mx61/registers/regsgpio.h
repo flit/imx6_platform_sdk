@@ -1264,6 +1264,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_GPIO_ISR(x)           (*(volatile hw_gpio_isr_t *) HW_GPIO_ISR_ADDR(x))
 #define HW_GPIO_ISR_RD(x)        (HW_GPIO_ISR(x).U)
+#define HW_GPIO_ISR_WR(x, v)     (HW_GPIO_ISR(x).U = (v))
+#define HW_GPIO_ISR_SET(x, v)    (HW_GPIO_ISR_WR(x, HW_GPIO_ISR_RD(x) |  (v)))
+#define HW_GPIO_ISR_CLR(x, v)    (HW_GPIO_ISR_WR(x, HW_GPIO_ISR_RD(x) & ~(v)))
+#define HW_GPIO_ISR_TOG(x, v)    (HW_GPIO_ISR_WR(x, HW_GPIO_ISR_RD(x) ^  (v)))
 #endif
 
 /*
@@ -1281,6 +1285,16 @@ typedef union
 
 #define BP_GPIO_ISR_ISR      0
 #define BM_GPIO_ISR_ISR      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_GPIO_ISR_ISR(v)   ((((reg32_t) v) << 0) & BM_GPIO_ISR_ISR)
+#else
+#define BF_GPIO_ISR_ISR(v)   (((v) << 0) & BM_GPIO_ISR_ISR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ISR field to a new value.
+#define BW_GPIO_ISR_ISR(v)   BF_CS1(GPIO_ISR, ISR, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1354,7 +1368,7 @@ typedef struct
     volatile hw_gpio_imr_t IMR; //!< GPIO interrupt mask register
     volatile hw_gpio_isr_t ISR; //!< GPIO interrupt status register
     volatile hw_gpio_edge_sel_t EDGE_SEL; //!< GPIO edge select register
-} hw_gpio_t
+} hw_gpio_t;
 #endif
 
 //! @brief Macro to access all GPIO registers.

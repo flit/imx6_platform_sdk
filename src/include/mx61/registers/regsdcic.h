@@ -350,6 +350,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_DCIC_DCICS(x)           (*(volatile hw_dcic_dcics_t *) HW_DCIC_DCICS_ADDR(x))
 #define HW_DCIC_DCICS_RD(x)        (HW_DCIC_DCICS(x).U)
+#define HW_DCIC_DCICS_WR(x, v)     (HW_DCIC_DCICS(x).U = (v))
+#define HW_DCIC_DCICS_SET(x, v)    (HW_DCIC_DCICS_WR(x, HW_DCIC_DCICS_RD(x) |  (v)))
+#define HW_DCIC_DCICS_CLR(x, v)    (HW_DCIC_DCICS_WR(x, HW_DCIC_DCICS_RD(x) & ~(v)))
+#define HW_DCIC_DCICS_TOG(x, v)    (HW_DCIC_DCICS_WR(x, HW_DCIC_DCICS_RD(x) ^  (v)))
 #endif
 
 /*
@@ -368,6 +372,16 @@ typedef union
 
 #define BP_DCIC_DCICS_ROI_MATCH_STAT      0
 #define BM_DCIC_DCICS_ROI_MATCH_STAT      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICS_ROI_MATCH_STAT(v)   ((((reg32_t) v) << 0) & BM_DCIC_DCICS_ROI_MATCH_STAT)
+#else
+#define BF_DCIC_DCICS_ROI_MATCH_STAT(v)   (((v) << 0) & BM_DCIC_DCICS_ROI_MATCH_STAT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ROI_MATCH_STAT field to a new value.
+#define BW_DCIC_DCICS_ROI_MATCH_STAT(v)   BF_CS1(DCIC_DCICS, ROI_MATCH_STAT, v)
+#endif
 
 
 /* --- Register HW_DCIC_DCICS, field EI_STAT (RO)
@@ -395,6 +409,16 @@ typedef union
 
 #define BP_DCIC_DCICS_FI_STAT      17
 #define BM_DCIC_DCICS_FI_STAT      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_DCIC_DCICS_FI_STAT(v)   ((((reg32_t) v) << 17) & BM_DCIC_DCICS_FI_STAT)
+#else
+#define BF_DCIC_DCICS_FI_STAT(v)   (((v) << 17) & BM_DCIC_DCICS_FI_STAT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FI_STAT field to a new value.
+#define BW_DCIC_DCICS_FI_STAT(v)   BF_CS1(DCIC_DCICS, FI_STAT, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -698,7 +722,7 @@ typedef struct
     volatile hw_dcic_dcicrs_t DCICRS; //!< DCIC ROI Size Register m
     volatile hw_dcic_dcicrrs_t DCICRRS; //!< DCIC ROI Reference Signature Register m
     volatile hw_dcic_dcicrcs_t DCICRCS; //!< DCIC ROI Calculated Signature m
-} hw_dcic_t
+} hw_dcic_t;
 #endif
 
 //! @brief Macro to access all DCIC registers.

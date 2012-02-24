@@ -13,8 +13,10 @@
 /*
  * Registers defined in this header file.
  *
- * - HW_SSI_SSI_STX - SSI Transmit Data Register n
- * - HW_SSI_SSI_SRX - SSI Receive Data Register n
+ * - HW_SSI_SSI_STX0 - SSI Transmit Data Register n 0
+ * - HW_SSI_SSI_STX1 - SSI Transmit Data Register n 1
+ * - HW_SSI_SSI_SRX0 - SSI Receive Data Register n 0
+ * - HW_SSI_SSI_SRX1 - SSI Receive Data Register n 1
  * - HW_SSI_SSI_SCR - SSI Control Register
  * - HW_SSI_SSI_SISR - SSI Interrupt Status Register
  * - HW_SSI_SIER - SSI Interrupt Enable Register
@@ -51,7 +53,7 @@
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SSI_SSI_STX - SSI Transmit Data Register n (RW)
+ * @brief HW_SSI_SSI_STX0 - SSI Transmit Data Register n 0 (RW)
  *
  * Enable SSI (SSIEN=1) before writing to SSI Transmit Data Registers.
  */
@@ -62,28 +64,28 @@ typedef union
     {
         unsigned STXN : 32; //!< SSI Transmit Data. These bits store the data to be transmitted by the These are implemented as the first word of their respective Tx FIFOs. Data written to these registers is transferred to the Transmit Shift Register (TXSR), when shifting of the previous data is complete. If both FIFOs are in use, data is alternately transferred from STX0 and STX1, to TXSR. Multiple writes to the STX registers will not result in the previous data being over-written by the subsequent data. STX1 can only be used in Two-Channel mode of operation. Protection from over-writing is present irrespective of whether the transmitter is enabled or not. Example 1: If Tx FIFO0 is in use and user writes Data1... Data9 Data16 to STX0, Data9 Data16 will not over-write Data1. Data1... Data8 Data15 are stored in the FIFO while Data9 Data16 is discarded. Example 2: If Tx FIFO0 is not in use and user writes Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
     } B;
-} hw_ssi_ssi_stx_t;
+} hw_ssi_ssi_stx0_t;
 #endif
 
 /*
- * constants & macros for entire multi-block SSI_SSI_STX register
+ * constants & macros for entire multi-block SSI_SSI_STX0 register
  */
-#define HW_SSI_SSI_STX_ADDR(x)      (REGS_SSI_BASE(x) + 0x0)
+#define HW_SSI_SSI_STX0_ADDR(x)      (REGS_SSI_BASE(x) + 0x0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_SSI_SSI_STX(x)           (*(volatile hw_ssi_ssi_stx_t *) HW_SSI_SSI_STX_ADDR(x))
-#define HW_SSI_SSI_STX_RD(x)        (HW_SSI_SSI_STX(x).U)
-#define HW_SSI_SSI_STX_WR(x, v)     (HW_SSI_SSI_STX(x).U = (v))
-#define HW_SSI_SSI_STX_SET(x, v)    (HW_SSI_SSI_STX_WR(x, HW_SSI_SSI_STX_RD(x) |  (v)))
-#define HW_SSI_SSI_STX_CLR(x, v)    (HW_SSI_SSI_STX_WR(x, HW_SSI_SSI_STX_RD(x) & ~(v)))
-#define HW_SSI_SSI_STX_TOG(x, v)    (HW_SSI_SSI_STX_WR(x, HW_SSI_SSI_STX_RD(x) ^  (v)))
+#define HW_SSI_SSI_STX0(x)           (*(volatile hw_ssi_ssi_stx0_t *) HW_SSI_SSI_STX0_ADDR(x))
+#define HW_SSI_SSI_STX0_RD(x)        (HW_SSI_SSI_STX0(x).U)
+#define HW_SSI_SSI_STX0_WR(x, v)     (HW_SSI_SSI_STX0(x).U = (v))
+#define HW_SSI_SSI_STX0_SET(x, v)    (HW_SSI_SSI_STX0_WR(x, HW_SSI_SSI_STX0_RD(x) |  (v)))
+#define HW_SSI_SSI_STX0_CLR(x, v)    (HW_SSI_SSI_STX0_WR(x, HW_SSI_SSI_STX0_RD(x) & ~(v)))
+#define HW_SSI_SSI_STX0_TOG(x, v)    (HW_SSI_SSI_STX0_WR(x, HW_SSI_SSI_STX0_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual SSI_SSI_STX bitfields
+ * constants & macros for individual SSI_SSI_STX0 bitfields
  */
 
-/* --- Register HW_SSI_SSI_STX, field STXN (RW)
+/* --- Register HW_SSI_SSI_STX0, field STXN (RW)
  *
  * SSI Transmit Data. These bits store the data to be transmitted by the These are implemented as
  * the first word of their respective Tx FIFOs. Data written to these registers is transferred to
@@ -98,22 +100,84 @@ typedef union
  * discarded.
  */
 
-#define BP_SSI_SSI_STX_STXN      0
-#define BM_SSI_SSI_STX_STXN      0xffffffff
+#define BP_SSI_SSI_STX0_STXN      0
+#define BM_SSI_SSI_STX0_STXN      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SSI_STX_STXN(v)   ((((reg32_t) v) << 0) & BM_SSI_SSI_STX_STXN)
+#define BF_SSI_SSI_STX0_STXN(v)   ((((reg32_t) v) << 0) & BM_SSI_SSI_STX0_STXN)
 #else
-#define BF_SSI_SSI_STX_STXN(v)   (((v) << 0) & BM_SSI_SSI_STX_STXN)
+#define BF_SSI_SSI_STX0_STXN(v)   (((v) << 0) & BM_SSI_SSI_STX0_STXN)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STXN field to a new value.
-#define BW_SSI_SSI_STX_STXN(v)   BF_CS1(SSI_SSI_STX, STXN, v)
+#define BW_SSI_SSI_STX0_STXN(v)   BF_CS1(SSI_SSI_STX0, STXN, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SSI_SSI_SRX - SSI Receive Data Register n (RO)
+ * @brief HW_SSI_SSI_STX1 - SSI Transmit Data Register n 1 (RW)
+ *
+ * Enable SSI (SSIEN=1) before writing to SSI Transmit Data Registers.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned STXN : 32; //!< SSI Transmit Data. These bits store the data to be transmitted by the These are implemented as the first word of their respective Tx FIFOs. Data written to these registers is transferred to the Transmit Shift Register (TXSR), when shifting of the previous data is complete. If both FIFOs are in use, data is alternately transferred from STX0 and STX1, to TXSR. Multiple writes to the STX registers will not result in the previous data being over-written by the subsequent data. STX1 can only be used in Two-Channel mode of operation. Protection from over-writing is present irrespective of whether the transmitter is enabled or not. Example 1: If Tx FIFO0 is in use and user writes Data1... Data9 Data16 to STX0, Data9 Data16 will not over-write Data1. Data1... Data8 Data15 are stored in the FIFO while Data9 Data16 is discarded. Example 2: If Tx FIFO0 is not in use and user writes Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
+    } B;
+} hw_ssi_ssi_stx1_t;
+#endif
+
+/*
+ * constants & macros for entire multi-block SSI_SSI_STX1 register
+ */
+#define HW_SSI_SSI_STX1_ADDR(x)      (REGS_SSI_BASE(x) + 0x4)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SSI_SSI_STX1(x)           (*(volatile hw_ssi_ssi_stx1_t *) HW_SSI_SSI_STX1_ADDR(x))
+#define HW_SSI_SSI_STX1_RD(x)        (HW_SSI_SSI_STX1(x).U)
+#define HW_SSI_SSI_STX1_WR(x, v)     (HW_SSI_SSI_STX1(x).U = (v))
+#define HW_SSI_SSI_STX1_SET(x, v)    (HW_SSI_SSI_STX1_WR(x, HW_SSI_SSI_STX1_RD(x) |  (v)))
+#define HW_SSI_SSI_STX1_CLR(x, v)    (HW_SSI_SSI_STX1_WR(x, HW_SSI_SSI_STX1_RD(x) & ~(v)))
+#define HW_SSI_SSI_STX1_TOG(x, v)    (HW_SSI_SSI_STX1_WR(x, HW_SSI_SSI_STX1_RD(x) ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual SSI_SSI_STX1 bitfields
+ */
+
+/* --- Register HW_SSI_SSI_STX1, field STXN (RW)
+ *
+ * SSI Transmit Data. These bits store the data to be transmitted by the These are implemented as
+ * the first word of their respective Tx FIFOs. Data written to these registers is transferred to
+ * the Transmit Shift Register (TXSR), when shifting of the previous data is complete. If both FIFOs
+ * are in use, data is alternately transferred from STX0 and STX1, to TXSR. Multiple writes to the
+ * STX registers will not result in the previous data being over-written by the subsequent data.
+ * STX1 can only be used in Two-Channel mode of operation. Protection from over-writing is present
+ * irrespective of whether the transmitter is enabled or not. Example 1: If Tx FIFO0 is in use and
+ * user writes Data1... Data9 Data16 to STX0, Data9 Data16 will not over-write Data1. Data1... Data8
+ * Data15 are stored in the FIFO while Data9 Data16 is discarded. Example 2: If Tx FIFO0 is not in
+ * use and user writes Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be
+ * discarded.
+ */
+
+#define BP_SSI_SSI_STX1_STXN      0
+#define BM_SSI_SSI_STX1_STXN      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SSI_SSI_STX1_STXN(v)   ((((reg32_t) v) << 0) & BM_SSI_SSI_STX1_STXN)
+#else
+#define BF_SSI_SSI_STX1_STXN(v)   (((v) << 0) & BM_SSI_SSI_STX1_STXN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the STXN field to a new value.
+#define BW_SSI_SSI_STX1_STXN(v)   BF_CS1(SSI_SSI_STX1, STXN, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_SSI_SSI_SRX0 - SSI Receive Data Register n 0 (RO)
  *
 
  */
@@ -124,24 +188,24 @@ typedef union
     {
         unsigned SRXN : 32; //!< SSI Receive Data. These bits store the data received by the These are implemented as the first word of their respective Rx FIFOs. These bits receive data from the RXSR depending on the mode of operation. In case both FIFOs are in use, data is transferred to each data register alternately. SRX1 can only be used in Two-Channel mode of operation.
     } B;
-} hw_ssi_ssi_srx_t;
+} hw_ssi_ssi_srx0_t;
 #endif
 
 /*
- * constants & macros for entire multi-block SSI_SSI_SRX register
+ * constants & macros for entire multi-block SSI_SSI_SRX0 register
  */
-#define HW_SSI_SSI_SRX_ADDR(x)      (REGS_SSI_BASE(x) + 0x8)
+#define HW_SSI_SSI_SRX0_ADDR(x)      (REGS_SSI_BASE(x) + 0x8)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_SSI_SSI_SRX(x)           (*(volatile hw_ssi_ssi_srx_t *) HW_SSI_SSI_SRX_ADDR(x))
-#define HW_SSI_SSI_SRX_RD(x)        (HW_SSI_SSI_SRX(x).U)
+#define HW_SSI_SSI_SRX0(x)           (*(volatile hw_ssi_ssi_srx0_t *) HW_SSI_SSI_SRX0_ADDR(x))
+#define HW_SSI_SSI_SRX0_RD(x)        (HW_SSI_SSI_SRX0(x).U)
 #endif
 
 /*
- * constants & macros for individual SSI_SSI_SRX bitfields
+ * constants & macros for individual SSI_SSI_SRX0 bitfields
  */
 
-/* --- Register HW_SSI_SSI_SRX, field SRXN (RO)
+/* --- Register HW_SSI_SSI_SRX0, field SRXN (RO)
  *
  * SSI Receive Data. These bits store the data received by the These are implemented as the first
  * word of their respective Rx FIFOs. These bits receive data from the RXSR depending on the mode of
@@ -149,8 +213,49 @@ typedef union
  * SRX1 can only be used in Two-Channel mode of operation.
  */
 
-#define BP_SSI_SSI_SRX_SRXN      0
-#define BM_SSI_SSI_SRX_SRXN      0xffffffff
+#define BP_SSI_SSI_SRX0_SRXN      0
+#define BM_SSI_SSI_SRX0_SRXN      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_SSI_SSI_SRX1 - SSI Receive Data Register n 1 (RO)
+ *
+
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SRXN : 32; //!< SSI Receive Data. These bits store the data received by the These are implemented as the first word of their respective Rx FIFOs. These bits receive data from the RXSR depending on the mode of operation. In case both FIFOs are in use, data is transferred to each data register alternately. SRX1 can only be used in Two-Channel mode of operation.
+    } B;
+} hw_ssi_ssi_srx1_t;
+#endif
+
+/*
+ * constants & macros for entire multi-block SSI_SSI_SRX1 register
+ */
+#define HW_SSI_SSI_SRX1_ADDR(x)      (REGS_SSI_BASE(x) + 0xc)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SSI_SSI_SRX1(x)           (*(volatile hw_ssi_ssi_srx1_t *) HW_SSI_SSI_SRX1_ADDR(x))
+#define HW_SSI_SSI_SRX1_RD(x)        (HW_SSI_SSI_SRX1(x).U)
+#endif
+
+/*
+ * constants & macros for individual SSI_SSI_SRX1 bitfields
+ */
+
+/* --- Register HW_SSI_SSI_SRX1, field SRXN (RO)
+ *
+ * SSI Receive Data. These bits store the data received by the These are implemented as the first
+ * word of their respective Rx FIFOs. These bits receive data from the RXSR depending on the mode of
+ * operation. In case both FIFOs are in use, data is transferred to each data register alternately.
+ * SRX1 can only be used in Two-Channel mode of operation.
+ */
+
+#define BP_SSI_SSI_SRX1_SRXN      0
+#define BM_SSI_SSI_SRX1_SRXN      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -578,6 +683,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_SSI_SSI_SISR(x)           (*(volatile hw_ssi_ssi_sisr_t *) HW_SSI_SSI_SISR_ADDR(x))
 #define HW_SSI_SSI_SISR_RD(x)        (HW_SSI_SSI_SISR(x).U)
+#define HW_SSI_SSI_SISR_WR(x, v)     (HW_SSI_SSI_SISR(x).U = (v))
+#define HW_SSI_SSI_SISR_SET(x, v)    (HW_SSI_SSI_SISR_WR(x, HW_SSI_SSI_SISR_RD(x) |  (v)))
+#define HW_SSI_SSI_SISR_CLR(x, v)    (HW_SSI_SSI_SISR_WR(x, HW_SSI_SSI_SISR_RD(x) & ~(v)))
+#define HW_SSI_SSI_SISR_TOG(x, v)    (HW_SSI_SSI_SISR_WR(x, HW_SSI_SSI_SISR_RD(x) ^  (v)))
 #endif
 
 /*
@@ -741,6 +850,16 @@ typedef union
 #define BP_SSI_SSI_SISR_TUE0      8
 #define BM_SSI_SSI_SISR_TUE0      0x00000100
 
+#ifndef __LANGUAGE_ASM__
+#define BF_SSI_SSI_SISR_TUE0(v)   ((((reg32_t) v) << 8) & BM_SSI_SSI_SISR_TUE0)
+#else
+#define BF_SSI_SSI_SISR_TUE0(v)   (((v) << 8) & BM_SSI_SSI_SISR_TUE0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TUE0 field to a new value.
+#define BW_SSI_SSI_SISR_TUE0(v)   BF_CS1(SSI_SSI_SISR, TUE0, v)
+#endif
+
 
 /* --- Register HW_SSI_SSI_SISR, field TUE1 (W1C)
  *
@@ -758,6 +877,16 @@ typedef union
 
 #define BP_SSI_SSI_SISR_TUE1      9
 #define BM_SSI_SSI_SISR_TUE1      0x00000200
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SSI_SSI_SISR_TUE1(v)   ((((reg32_t) v) << 9) & BM_SSI_SSI_SISR_TUE1)
+#else
+#define BF_SSI_SSI_SISR_TUE1(v)   (((v) << 9) & BM_SSI_SSI_SISR_TUE1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TUE1 field to a new value.
+#define BW_SSI_SSI_SISR_TUE1(v)   BF_CS1(SSI_SSI_SISR, TUE1, v)
+#endif
 
 
 /* --- Register HW_SSI_SSI_SISR, field ROE0 (W1C)
@@ -777,6 +906,16 @@ typedef union
 #define BP_SSI_SSI_SISR_ROE0      10
 #define BM_SSI_SSI_SISR_ROE0      0x00000400
 
+#ifndef __LANGUAGE_ASM__
+#define BF_SSI_SSI_SISR_ROE0(v)   ((((reg32_t) v) << 10) & BM_SSI_SSI_SISR_ROE0)
+#else
+#define BF_SSI_SSI_SISR_ROE0(v)   (((v) << 10) & BM_SSI_SSI_SISR_ROE0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ROE0 field to a new value.
+#define BW_SSI_SSI_SISR_ROE0(v)   BF_CS1(SSI_SSI_SISR, ROE0, v)
+#endif
+
 
 /* --- Register HW_SSI_SSI_SISR, field ROE1 (W1C)
  *
@@ -794,6 +933,16 @@ typedef union
 
 #define BP_SSI_SSI_SISR_ROE1      11
 #define BM_SSI_SSI_SISR_ROE1      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SSI_SSI_SISR_ROE1(v)   ((((reg32_t) v) << 11) & BM_SSI_SSI_SISR_ROE1)
+#else
+#define BF_SSI_SSI_SISR_ROE1(v)   (((v) << 11) & BM_SSI_SSI_SISR_ROE1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ROE1 field to a new value.
+#define BW_SSI_SSI_SISR_ROE1(v)   BF_CS1(SSI_SSI_SISR, ROE1, v)
+#endif
 
 
 /* --- Register HW_SSI_SSI_SISR, field TDE0 (RO)
@@ -1112,7 +1261,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SSI_SIER, field ENABLE_BITS (RW)
+/* --- Register HW_SSI_SIER, field ENABLE_BITS1 (RW)
  *
  * Enable Bit. Each bit controls whether the corresponding status bit in SISR can issue an interrupt
  * to the Core or not.
@@ -1122,17 +1271,17 @@ typedef union
  * 1 - Corresponding status bit can issue interrupt.
  */
 
-#define BP_SSI_SIER_ENABLE_BITS      23
-#define BM_SSI_SIER_ENABLE_BITS      0x01800000
+#define BP_SSI_SIER_ENABLE_BITS1      23
+#define BM_SSI_SIER_ENABLE_BITS1      0x01800000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SIER_ENABLE_BITS(v)   ((((reg32_t) v) << 23) & BM_SSI_SIER_ENABLE_BITS)
+#define BF_SSI_SIER_ENABLE_BITS1(v)   ((((reg32_t) v) << 23) & BM_SSI_SIER_ENABLE_BITS1)
 #else
-#define BF_SSI_SIER_ENABLE_BITS(v)   (((v) << 23) & BM_SSI_SIER_ENABLE_BITS)
+#define BF_SSI_SIER_ENABLE_BITS1(v)   (((v) << 23) & BM_SSI_SIER_ENABLE_BITS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE_BITS field to a new value.
-#define BW_SSI_SIER_ENABLE_BITS(v)   BF_CS1(SSI_SIER, ENABLE_BITS, v)
+//! @brief Set the ENABLE_BITS1 field to a new value.
+#define BW_SSI_SIER_ENABLE_BITS1(v)   BF_CS1(SSI_SIER, ENABLE_BITS1, v)
 #endif
 
 
@@ -1795,9 +1944,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned PM7 : 8; //!< Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be selected. Refer to for details regarding settings.
-        unsigned DC4 : 5; //!< Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio determines the word transfer rate. In Network mode, this ratio sets the number of words per frame. The divide ratio ranges from 1 to 32 in Normal mode and from 2 to 32 in Network mode. In Normal mode, a divide ratio of 1 (DC=00000) provides continuous periodic data word transfer. A bit-length frame sync must be used in this case. These bits can be programmed with values ranging from "00000" to "11111" to control the number of words in a frame.
-        unsigned WL3 : 4; //!< Word Length Control. These bits are used to control the length of the data words being transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI works with a fixed word length of 32, and the WL bits are used to control the amount of valid data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than 16 bits, it will result in a word length of 20 bits. [table]
+        unsigned PM7_PM0 : 8; //!< Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be selected. Refer to for details regarding settings.
+        unsigned DC4_DC0 : 5; //!< Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio determines the word transfer rate. In Network mode, this ratio sets the number of words per frame. The divide ratio ranges from 1 to 32 in Normal mode and from 2 to 32 in Network mode. In Normal mode, a divide ratio of 1 (DC=00000) provides continuous periodic data word transfer. A bit-length frame sync must be used in this case. These bits can be programmed with values ranging from "00000" to "11111" to control the number of words in a frame.
+        unsigned WL3_WL0 : 4; //!< Word Length Control. These bits are used to control the length of the data words being transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI works with a fixed word length of 32, and the WL bits are used to control the amount of valid data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than 16 bits, it will result in a word length of 20 bits. [table]
         unsigned PSR : 1; //!< Prescaler Range. This bit controls a fixed divide-by-eight prescaler in series with the variable prescaler. It extends the range of the prescaler for those cases where a slower bit clock is required. 0 Prescaler bypassed. 1 Prescaler used to divide clock by 8.
         unsigned DIV2 : 1; //!< Divide By 2. This bit controls a divide-by-two divider in series with the rest of the prescalers. 0 Divider bypassed. 1 Divider used to divide clock by 2.
         unsigned RESERVED0 : 13; //!< Reserved
@@ -1823,7 +1972,7 @@ typedef union
  * constants & macros for individual SSI_SSI_STCCR bitfields
  */
 
-/* --- Register HW_SSI_SSI_STCCR, field PM7 (RW)
+/* --- Register HW_SSI_SSI_STCCR, field PM7_PM0 (RW)
  *
  * Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This
  * prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The
@@ -1831,20 +1980,20 @@ typedef union
  * 0xFF) can be selected. Refer to for details regarding settings.
  */
 
-#define BP_SSI_SSI_STCCR_PM7      0
-#define BM_SSI_SSI_STCCR_PM7      0x000000ff
+#define BP_SSI_SSI_STCCR_PM7_PM0      0
+#define BM_SSI_SSI_STCCR_PM7_PM0      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SSI_STCCR_PM7(v)   ((((reg32_t) v) << 0) & BM_SSI_SSI_STCCR_PM7)
+#define BF_SSI_SSI_STCCR_PM7_PM0(v)   ((((reg32_t) v) << 0) & BM_SSI_SSI_STCCR_PM7_PM0)
 #else
-#define BF_SSI_SSI_STCCR_PM7(v)   (((v) << 0) & BM_SSI_SSI_STCCR_PM7)
+#define BF_SSI_SSI_STCCR_PM7_PM0(v)   (((v) << 0) & BM_SSI_SSI_STCCR_PM7_PM0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PM7 field to a new value.
-#define BW_SSI_SSI_STCCR_PM7(v)   BF_CS1(SSI_SSI_STCCR, PM7, v)
+//! @brief Set the PM7_PM0 field to a new value.
+#define BW_SSI_SSI_STCCR_PM7_PM0(v)   BF_CS1(SSI_SSI_STCCR, PM7_PM0, v)
 #endif
 
-/* --- Register HW_SSI_SSI_STCCR, field DC4 (RW)
+/* --- Register HW_SSI_SSI_STCCR, field DC4_DC0 (RW)
  *
  * Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable
  * frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio
@@ -1855,20 +2004,20 @@ typedef union
  * from "00000" to "11111" to control the number of words in a frame.
  */
 
-#define BP_SSI_SSI_STCCR_DC4      8
-#define BM_SSI_SSI_STCCR_DC4      0x00001f00
+#define BP_SSI_SSI_STCCR_DC4_DC0      8
+#define BM_SSI_SSI_STCCR_DC4_DC0      0x00001f00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SSI_STCCR_DC4(v)   ((((reg32_t) v) << 8) & BM_SSI_SSI_STCCR_DC4)
+#define BF_SSI_SSI_STCCR_DC4_DC0(v)   ((((reg32_t) v) << 8) & BM_SSI_SSI_STCCR_DC4_DC0)
 #else
-#define BF_SSI_SSI_STCCR_DC4(v)   (((v) << 8) & BM_SSI_SSI_STCCR_DC4)
+#define BF_SSI_SSI_STCCR_DC4_DC0(v)   (((v) << 8) & BM_SSI_SSI_STCCR_DC4_DC0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DC4 field to a new value.
-#define BW_SSI_SSI_STCCR_DC4(v)   BF_CS1(SSI_SSI_STCCR, DC4, v)
+//! @brief Set the DC4_DC0 field to a new value.
+#define BW_SSI_SSI_STCCR_DC4_DC0(v)   BF_CS1(SSI_SSI_STCCR, DC4_DC0, v)
 #endif
 
-/* --- Register HW_SSI_SSI_STCCR, field WL3 (RW)
+/* --- Register HW_SSI_SSI_STCCR, field WL3_WL0 (RW)
  *
  * Word Length Control. These bits are used to control the length of the data words being
  * transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They
@@ -1878,17 +2027,17 @@ typedef union
  * 16 bits, it will result in a word length of 20 bits. [table]
  */
 
-#define BP_SSI_SSI_STCCR_WL3      13
-#define BM_SSI_SSI_STCCR_WL3      0x0001e000
+#define BP_SSI_SSI_STCCR_WL3_WL0      13
+#define BM_SSI_SSI_STCCR_WL3_WL0      0x0001e000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SSI_STCCR_WL3(v)   ((((reg32_t) v) << 13) & BM_SSI_SSI_STCCR_WL3)
+#define BF_SSI_SSI_STCCR_WL3_WL0(v)   ((((reg32_t) v) << 13) & BM_SSI_SSI_STCCR_WL3_WL0)
 #else
-#define BF_SSI_SSI_STCCR_WL3(v)   (((v) << 13) & BM_SSI_SSI_STCCR_WL3)
+#define BF_SSI_SSI_STCCR_WL3_WL0(v)   (((v) << 13) & BM_SSI_SSI_STCCR_WL3_WL0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the WL3 field to a new value.
-#define BW_SSI_SSI_STCCR_WL3(v)   BF_CS1(SSI_SSI_STCCR, WL3, v)
+//! @brief Set the WL3_WL0 field to a new value.
+#define BW_SSI_SSI_STCCR_WL3_WL0(v)   BF_CS1(SSI_SSI_STCCR, WL3_WL0, v)
 #endif
 
 /* --- Register HW_SSI_SSI_STCCR, field PSR (RW)
@@ -1960,9 +2109,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned PM7 : 8; //!< Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be selected. Refer to for details regarding settings.
-        unsigned DC4 : 5; //!< Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio determines the word transfer rate. In Network mode, this ratio sets the number of words per frame. The divide ratio ranges from 1 to 32 in Normal mode and from 2 to 32 in Network mode. In Normal mode, a divide ratio of 1 (DC=00000) provides continuous periodic data word transfer. A bit-length frame sync must be used in this case. These bits can be programmed with values ranging from "00000" to "11111" to control the number of words in a frame.
-        unsigned WL3 : 4; //!< Word Length Control. These bits are used to control the length of the data words being transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI works with a fixed word length of 32, and the WL bits are used to control the amount of valid data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than 16 bits, it will result in a word length of 20 bits. [table]
+        unsigned PM7_PM0 : 8; //!< Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be selected. Refer to for details regarding settings.
+        unsigned DC4_DC0 : 5; //!< Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio determines the word transfer rate. In Network mode, this ratio sets the number of words per frame. The divide ratio ranges from 1 to 32 in Normal mode and from 2 to 32 in Network mode. In Normal mode, a divide ratio of 1 (DC=00000) provides continuous periodic data word transfer. A bit-length frame sync must be used in this case. These bits can be programmed with values ranging from "00000" to "11111" to control the number of words in a frame.
+        unsigned WL3_WL0 : 4; //!< Word Length Control. These bits are used to control the length of the data words being transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI works with a fixed word length of 32, and the WL bits are used to control the amount of valid data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than 16 bits, it will result in a word length of 20 bits. [table]
         unsigned PSR : 1; //!< Prescaler Range. This bit controls a fixed divide-by-eight prescaler in series with the variable prescaler. It extends the range of the prescaler for those cases where a slower bit clock is required. 0 Prescaler bypassed. 1 Prescaler used to divide clock by 8.
         unsigned DIV2 : 1; //!< Divide By 2. This bit controls a divide-by-two divider in series with the rest of the prescalers. 0 Divider bypassed. 1 Divider used to divide clock by 2.
         unsigned RESERVED0 : 13; //!< Reserved
@@ -1988,7 +2137,7 @@ typedef union
  * constants & macros for individual SSI_SRCCR bitfields
  */
 
-/* --- Register HW_SSI_SRCCR, field PM7 (RW)
+/* --- Register HW_SSI_SRCCR, field PM7_PM0 (RW)
  *
  * Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This
  * prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The
@@ -1996,20 +2145,20 @@ typedef union
  * 0xFF) can be selected. Refer to for details regarding settings.
  */
 
-#define BP_SSI_SRCCR_PM7      0
-#define BM_SSI_SRCCR_PM7      0x000000ff
+#define BP_SSI_SRCCR_PM7_PM0      0
+#define BM_SSI_SRCCR_PM7_PM0      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SRCCR_PM7(v)   ((((reg32_t) v) << 0) & BM_SSI_SRCCR_PM7)
+#define BF_SSI_SRCCR_PM7_PM0(v)   ((((reg32_t) v) << 0) & BM_SSI_SRCCR_PM7_PM0)
 #else
-#define BF_SSI_SRCCR_PM7(v)   (((v) << 0) & BM_SSI_SRCCR_PM7)
+#define BF_SSI_SRCCR_PM7_PM0(v)   (((v) << 0) & BM_SSI_SRCCR_PM7_PM0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PM7 field to a new value.
-#define BW_SSI_SRCCR_PM7(v)   BF_CS1(SSI_SRCCR, PM7, v)
+//! @brief Set the PM7_PM0 field to a new value.
+#define BW_SSI_SRCCR_PM7_PM0(v)   BF_CS1(SSI_SRCCR, PM7_PM0, v)
 #endif
 
-/* --- Register HW_SSI_SRCCR, field DC4 (RW)
+/* --- Register HW_SSI_SRCCR, field DC4_DC0 (RW)
  *
  * Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable
  * frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio
@@ -2020,20 +2169,20 @@ typedef union
  * from "00000" to "11111" to control the number of words in a frame.
  */
 
-#define BP_SSI_SRCCR_DC4      8
-#define BM_SSI_SRCCR_DC4      0x00001f00
+#define BP_SSI_SRCCR_DC4_DC0      8
+#define BM_SSI_SRCCR_DC4_DC0      0x00001f00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SRCCR_DC4(v)   ((((reg32_t) v) << 8) & BM_SSI_SRCCR_DC4)
+#define BF_SSI_SRCCR_DC4_DC0(v)   ((((reg32_t) v) << 8) & BM_SSI_SRCCR_DC4_DC0)
 #else
-#define BF_SSI_SRCCR_DC4(v)   (((v) << 8) & BM_SSI_SRCCR_DC4)
+#define BF_SSI_SRCCR_DC4_DC0(v)   (((v) << 8) & BM_SSI_SRCCR_DC4_DC0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DC4 field to a new value.
-#define BW_SSI_SRCCR_DC4(v)   BF_CS1(SSI_SRCCR, DC4, v)
+//! @brief Set the DC4_DC0 field to a new value.
+#define BW_SSI_SRCCR_DC4_DC0(v)   BF_CS1(SSI_SRCCR, DC4_DC0, v)
 #endif
 
-/* --- Register HW_SSI_SRCCR, field WL3 (RW)
+/* --- Register HW_SSI_SRCCR, field WL3_WL0 (RW)
  *
  * Word Length Control. These bits are used to control the length of the data words being
  * transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They
@@ -2043,17 +2192,17 @@ typedef union
  * 16 bits, it will result in a word length of 20 bits. [table]
  */
 
-#define BP_SSI_SRCCR_WL3      13
-#define BM_SSI_SRCCR_WL3      0x0001e000
+#define BP_SSI_SRCCR_WL3_WL0      13
+#define BM_SSI_SRCCR_WL3_WL0      0x0001e000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SSI_SRCCR_WL3(v)   ((((reg32_t) v) << 13) & BM_SSI_SRCCR_WL3)
+#define BF_SSI_SRCCR_WL3_WL0(v)   ((((reg32_t) v) << 13) & BM_SSI_SRCCR_WL3_WL0)
 #else
-#define BF_SSI_SRCCR_WL3(v)   (((v) << 13) & BM_SSI_SRCCR_WL3)
+#define BF_SSI_SRCCR_WL3_WL0(v)   (((v) << 13) & BM_SSI_SRCCR_WL3_WL0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the WL3 field to a new value.
-#define BW_SSI_SRCCR_WL3(v)   BF_CS1(SSI_SRCCR, WL3, v)
+//! @brief Set the WL3_WL0 field to a new value.
+#define BW_SSI_SRCCR_WL3_WL0(v)   BF_CS1(SSI_SRCCR, WL3_WL0, v)
 #endif
 
 /* --- Register HW_SSI_SRCCR, field PSR (RW)
@@ -3068,10 +3217,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 typedef struct
 {
-    volatile hw_ssi_ssi_stx_t SSI_STX; //!< SSI Transmit Data Register n
-    reg32_t _reserved0;
-    volatile hw_ssi_ssi_srx_t SSI_SRX; //!< SSI Receive Data Register n
-    reg32_t _reserved1;
+    volatile hw_ssi_ssi_stx0_t SSI_STX0; //!< SSI Transmit Data Register n 0
+    volatile hw_ssi_ssi_stx1_t SSI_STX1; //!< SSI Transmit Data Register n 1
+    volatile hw_ssi_ssi_srx0_t SSI_SRX0; //!< SSI Receive Data Register n 0
+    volatile hw_ssi_ssi_srx1_t SSI_SRX1; //!< SSI Receive Data Register n 1
     volatile hw_ssi_ssi_scr_t SSI_SCR; //!< SSI Control Register
     volatile hw_ssi_ssi_sisr_t SSI_SISR; //!< SSI Interrupt Status Register
     volatile hw_ssi_sier_t SIER; //!< SSI Interrupt Enable Register
@@ -3080,7 +3229,7 @@ typedef struct
     volatile hw_ssi_ssi_stccr_t SSI_STCCR; //!< SSI Transmit Clock Control Register
     volatile hw_ssi_srccr_t SRCCR; //!< SSI Receive Clock Control Register
     volatile hw_ssi_ssi_sfcsr_t SSI_SFCSR; //!< SSI FIFO Control/Status Register
-    reg32_t _reserved2[2];
+    reg32_t _reserved0[2];
     volatile hw_ssi_ssi_sacnt_t SSI_SACNT; //!< SSI AC97 Control Register
     volatile hw_ssi_ssi_sacadd_t SSI_SACADD; //!< SSI AC97 Command Address Register
     volatile hw_ssi_ssi_sacdat_t SSI_SACDAT; //!< SSI AC97 Command Data Register
@@ -3090,7 +3239,7 @@ typedef struct
     volatile hw_ssi_ssi_saccst_t SSI_SACCST; //!< SSI AC97 Channel Status Register
     volatile hw_ssi_ssi_saccen_t SSI_SACCEN; //!< SSI AC97 Channel Enable Register
     volatile hw_ssi_ssi_saccdis_t SSI_SACCDIS; //!< SSI AC97 Channel Disable Register
-} hw_ssi_t
+} hw_ssi_t;
 #endif
 
 //! @brief Macro to access all SSI registers.

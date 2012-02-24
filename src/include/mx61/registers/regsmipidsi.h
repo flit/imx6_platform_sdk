@@ -35,7 +35,7 @@
  * - HW_MIPI_DSI_ERROR_MSK0 - Masks Interrupt generation trigged by ERROR_ST0 register
  * - HW_MIPI_DSI_ERROR_MSK1 - Masks Interrupt generation trigged by ERROR_ST1 register
  * - HW_MIPI_DSI_PHY_RSTZ - D-PHY reset control
- * - HW_MIPI_DSI_PHY_IF_CFG_ - D-PHY interface configuration
+ * - HW_MIPI_DSI_PHY_IF_CFG - D-PHY interface configuration
  * - HW_MIPI_DSI_PHY_IF_CTRL - D-PHY PPI interface control
  * - HW_MIPI_DSI_PHY_STATUS - D-PHY PPI status interface
  * - HW_MIPI_DSI_PHY_TST_CTRL0 - D-PHY Test interface control 0
@@ -1962,7 +1962,7 @@ typedef union
         unsigned GEN_PLD_R_EMPTY : 1; //!< Reports the empty status of the generic read payload FIFO
         unsigned GEN_PLD_R_FULL : 1; //!< Reports the full status of the generic read payload FIFO
         unsigned GEN_RD_CMD_BUSY : 1; //!< Set when a read command is issued and cleared once the entire response is stored in the FIFO
-        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned RESERVED0 : 1; //!< Reserved
         unsigned DBI_CMD_EMPTY : 1; //!< Reports the empty status of the DBI command FIFO
         unsigned DBI_CMD_FULL : 1; //!< Reports the full status of the DBI command FIFO
         unsigned DBI_PLD_W_EMPTY : 1; //!< Reports the empty status of the DBI write payload FIFO
@@ -1970,8 +1970,8 @@ typedef union
         unsigned DBI_PLD_R_EMPTY : 1; //!< Reports the empty status of the DBI read payload FIFO
         unsigned DBI_PLD_R_FULL : 1; //!< Reports the full status of the DBI read payload FIFO
         unsigned DBI_RD_CMD_BUSY : 1; //!< Set when a read command is issued and cleared once the entire response is stored in the FIFO
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned RESERVED0 : 16; //!< Reserved
+        unsigned RESERVED1 : 1; //!< Reserved
+        unsigned RESERVED2 : 16; //!< Reserved
     } B;
 } hw_mipi_dsi_cmd_pkt_status_t;
 #endif
@@ -2120,24 +2120,6 @@ typedef union
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY(v)   BF_CS1(MIPI_DSI_CMD_PKT_STATUS, GEN_RD_CMD_BUSY, v)
 #endif
 
-/* --- Register HW_MIPI_DSI_CMD_PKT_STATUS, field RESERVED1 (RW)
- *
- * Reserved
- */
-
-#define BP_MIPI_DSI_CMD_PKT_STATUS_RESERVED1      7
-#define BM_MIPI_DSI_CMD_PKT_STATUS_RESERVED1      0x00000080
-
-#ifndef __LANGUAGE_ASM__
-#define BF_MIPI_DSI_CMD_PKT_STATUS_RESERVED1(v)   ((((reg32_t) v) << 7) & BM_MIPI_DSI_CMD_PKT_STATUS_RESERVED1)
-#else
-#define BF_MIPI_DSI_CMD_PKT_STATUS_RESERVED1(v)   (((v) << 7) & BM_MIPI_DSI_CMD_PKT_STATUS_RESERVED1)
-#endif
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RESERVED1 field to a new value.
-#define BW_MIPI_DSI_CMD_PKT_STATUS_RESERVED1(v)   BF_CS1(MIPI_DSI_CMD_PKT_STATUS, RESERVED1, v)
-#endif
-
 /* --- Register HW_MIPI_DSI_CMD_PKT_STATUS, field DBI_CMD_EMPTY (RW)
  *
  * Reports the empty status of the DBI command FIFO
@@ -2262,24 +2244,6 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBI_RD_CMD_BUSY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY(v)   BF_CS1(MIPI_DSI_CMD_PKT_STATUS, DBI_RD_CMD_BUSY, v)
-#endif
-
-/* --- Register HW_MIPI_DSI_CMD_PKT_STATUS, field RESERVED2 (RW)
- *
- * Reserved
- */
-
-#define BP_MIPI_DSI_CMD_PKT_STATUS_RESERVED2      15
-#define BM_MIPI_DSI_CMD_PKT_STATUS_RESERVED2      0x00008000
-
-#ifndef __LANGUAGE_ASM__
-#define BF_MIPI_DSI_CMD_PKT_STATUS_RESERVED2(v)   ((((reg32_t) v) << 15) & BM_MIPI_DSI_CMD_PKT_STATUS_RESERVED2)
-#else
-#define BF_MIPI_DSI_CMD_PKT_STATUS_RESERVED2(v)   (((v) << 15) & BM_MIPI_DSI_CMD_PKT_STATUS_RESERVED2)
-#endif
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RESERVED2 field to a new value.
-#define BW_MIPI_DSI_CMD_PKT_STATUS_RESERVED2(v)   BF_CS1(MIPI_DSI_CMD_PKT_STATUS, RESERVED2, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -4072,7 +4036,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MIPI_DSI_PHY_IF_CFG_ - D-PHY interface configuration (RW)
+ * @brief HW_MIPI_DSI_PHY_IF_CFG - D-PHY interface configuration (RW)
  *
  * Size: 32 bits  Offset: 0x58  Memory Access: R/W
  */
@@ -4085,28 +4049,28 @@ typedef union
         unsigned PHY_STOP_WAIT_TIME : 8; //!< Configures minimum wait period to request an HS transmission after the stop state accounted in clock lane cycles
         unsigned RESERVED0 : 22; //!< Reserved
     } B;
-} hw_mipi_dsi_phy_if_cfg__t;
+} hw_mipi_dsi_phy_if_cfg_t;
 #endif
 
 /*
- * constants & macros for entire MIPI_DSI_PHY_IF_CFG_ register
+ * constants & macros for entire MIPI_DSI_PHY_IF_CFG register
  */
-#define HW_MIPI_DSI_PHY_IF_CFG__ADDR      (REGS_MIPI_DSI_BASE + 0x58)
+#define HW_MIPI_DSI_PHY_IF_CFG_ADDR      (REGS_MIPI_DSI_BASE + 0x58)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MIPI_DSI_PHY_IF_CFG_           (*(volatile hw_mipi_dsi_phy_if_cfg__t *) HW_MIPI_DSI_PHY_IF_CFG__ADDR)
-#define HW_MIPI_DSI_PHY_IF_CFG__RD()      (HW_MIPI_DSI_PHY_IF_CFG_.U)
-#define HW_MIPI_DSI_PHY_IF_CFG__WR(v)     (HW_MIPI_DSI_PHY_IF_CFG_.U = (v))
-#define HW_MIPI_DSI_PHY_IF_CFG__SET(v)    (HW_MIPI_DSI_PHY_IF_CFG__WR(HW_MIPI_DSI_PHY_IF_CFG__RD() |  (v)))
-#define HW_MIPI_DSI_PHY_IF_CFG__CLR(v)    (HW_MIPI_DSI_PHY_IF_CFG__WR(HW_MIPI_DSI_PHY_IF_CFG__RD() & ~(v)))
-#define HW_MIPI_DSI_PHY_IF_CFG__TOG(v)    (HW_MIPI_DSI_PHY_IF_CFG__WR(HW_MIPI_DSI_PHY_IF_CFG__RD() ^  (v)))
+#define HW_MIPI_DSI_PHY_IF_CFG           (*(volatile hw_mipi_dsi_phy_if_cfg_t *) HW_MIPI_DSI_PHY_IF_CFG_ADDR)
+#define HW_MIPI_DSI_PHY_IF_CFG_RD()      (HW_MIPI_DSI_PHY_IF_CFG.U)
+#define HW_MIPI_DSI_PHY_IF_CFG_WR(v)     (HW_MIPI_DSI_PHY_IF_CFG.U = (v))
+#define HW_MIPI_DSI_PHY_IF_CFG_SET(v)    (HW_MIPI_DSI_PHY_IF_CFG_WR(HW_MIPI_DSI_PHY_IF_CFG_RD() |  (v)))
+#define HW_MIPI_DSI_PHY_IF_CFG_CLR(v)    (HW_MIPI_DSI_PHY_IF_CFG_WR(HW_MIPI_DSI_PHY_IF_CFG_RD() & ~(v)))
+#define HW_MIPI_DSI_PHY_IF_CFG_TOG(v)    (HW_MIPI_DSI_PHY_IF_CFG_WR(HW_MIPI_DSI_PHY_IF_CFG_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual MIPI_DSI_PHY_IF_CFG_ bitfields
+ * constants & macros for individual MIPI_DSI_PHY_IF_CFG bitfields
  */
 
-/* --- Register HW_MIPI_DSI_PHY_IF_CFG_, field N_LANES (RW)
+/* --- Register HW_MIPI_DSI_PHY_IF_CFG, field N_LANES (RW)
  *
  * Number of active data lanes.
  *
@@ -4117,37 +4081,37 @@ typedef union
  * 11 - 4 Data Lanes (All)
  */
 
-#define BP_MIPI_DSI_PHY_IF_CFG__N_LANES      0
-#define BM_MIPI_DSI_PHY_IF_CFG__N_LANES      0x00000003
+#define BP_MIPI_DSI_PHY_IF_CFG_N_LANES      0
+#define BM_MIPI_DSI_PHY_IF_CFG_N_LANES      0x00000003
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_DSI_PHY_IF_CFG__N_LANES(v)   ((((reg32_t) v) << 0) & BM_MIPI_DSI_PHY_IF_CFG__N_LANES)
+#define BF_MIPI_DSI_PHY_IF_CFG_N_LANES(v)   ((((reg32_t) v) << 0) & BM_MIPI_DSI_PHY_IF_CFG_N_LANES)
 #else
-#define BF_MIPI_DSI_PHY_IF_CFG__N_LANES(v)   (((v) << 0) & BM_MIPI_DSI_PHY_IF_CFG__N_LANES)
+#define BF_MIPI_DSI_PHY_IF_CFG_N_LANES(v)   (((v) << 0) & BM_MIPI_DSI_PHY_IF_CFG_N_LANES)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the N_LANES field to a new value.
-#define BW_MIPI_DSI_PHY_IF_CFG__N_LANES(v)   BF_CS1(MIPI_DSI_PHY_IF_CFG_, N_LANES, v)
+#define BW_MIPI_DSI_PHY_IF_CFG_N_LANES(v)   BF_CS1(MIPI_DSI_PHY_IF_CFG, N_LANES, v)
 #endif
 
 
-/* --- Register HW_MIPI_DSI_PHY_IF_CFG_, field PHY_STOP_WAIT_TIME (RW)
+/* --- Register HW_MIPI_DSI_PHY_IF_CFG, field PHY_STOP_WAIT_TIME (RW)
  *
  * Configures minimum wait period to request an HS transmission after the stop state accounted in
  * clock lane cycles
  */
 
-#define BP_MIPI_DSI_PHY_IF_CFG__PHY_STOP_WAIT_TIME      2
-#define BM_MIPI_DSI_PHY_IF_CFG__PHY_STOP_WAIT_TIME      0x000003fc
+#define BP_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME      2
+#define BM_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME      0x000003fc
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_DSI_PHY_IF_CFG__PHY_STOP_WAIT_TIME(v)   ((((reg32_t) v) << 2) & BM_MIPI_DSI_PHY_IF_CFG__PHY_STOP_WAIT_TIME)
+#define BF_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME(v)   ((((reg32_t) v) << 2) & BM_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME)
 #else
-#define BF_MIPI_DSI_PHY_IF_CFG__PHY_STOP_WAIT_TIME(v)   (((v) << 2) & BM_MIPI_DSI_PHY_IF_CFG__PHY_STOP_WAIT_TIME)
+#define BF_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME(v)   (((v) << 2) & BM_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PHY_STOP_WAIT_TIME field to a new value.
-#define BW_MIPI_DSI_PHY_IF_CFG__PHY_STOP_WAIT_TIME(v)   BF_CS1(MIPI_DSI_PHY_IF_CFG_, PHY_STOP_WAIT_TIME, v)
+#define BW_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME(v)   BF_CS1(MIPI_DSI_PHY_IF_CFG, PHY_STOP_WAIT_TIME, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -4775,12 +4739,12 @@ typedef struct
     volatile hw_mipi_dsi_error_msk0_t ERROR_MSK0; //!< Masks Interrupt generation trigged by ERROR_ST0 register
     volatile hw_mipi_dsi_error_msk1_t ERROR_MSK1; //!< Masks Interrupt generation trigged by ERROR_ST1 register
     volatile hw_mipi_dsi_phy_rstz_t PHY_RSTZ; //!< D-PHY reset control
-    volatile hw_mipi_dsi_phy_if_cfg__t PHY_IF_CFG_; //!< D-PHY interface configuration
+    volatile hw_mipi_dsi_phy_if_cfg_t PHY_IF_CFG; //!< D-PHY interface configuration
     volatile hw_mipi_dsi_phy_if_ctrl_t PHY_IF_CTRL; //!< D-PHY PPI interface control
     volatile hw_mipi_dsi_phy_status_t PHY_STATUS; //!< D-PHY PPI status interface
     volatile hw_mipi_dsi_phy_tst_ctrl0_t PHY_TST_CTRL0; //!< D-PHY Test interface control 0
     volatile hw_mipi_dsi_phy_tst_ctrl1_t PHY_TST_CTRL1; //!< D-PHY Test interface control 1
-} hw_mipi_dsi_t
+} hw_mipi_dsi_t;
 #endif
 
 //! @brief Macro to access all MIPI_DSI registers.

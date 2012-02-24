@@ -770,6 +770,16 @@ typedef union
 #define BP_SRC_SRSR_IPP_RESET_B      0
 #define BM_SRC_SRSR_IPP_RESET_B      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_SRC_SRSR_IPP_RESET_B(v)   ((((reg32_t) v) << 0) & BM_SRC_SRSR_IPP_RESET_B)
+#else
+#define BF_SRC_SRSR_IPP_RESET_B(v)   (((v) << 0) & BM_SRC_SRSR_IPP_RESET_B)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IPP_RESET_B field to a new value.
+#define BW_SRC_SRSR_IPP_RESET_B(v)   BF_CS1(SRC_SRSR, IPP_RESET_B, v)
+#endif
+
 
 /* --- Register HW_SRC_SRSR, field CSU_RESET_B (W1C)
  *
@@ -785,6 +795,16 @@ typedef union
 #define BP_SRC_SRSR_CSU_RESET_B      2
 #define BM_SRC_SRSR_CSU_RESET_B      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_SRC_SRSR_CSU_RESET_B(v)   ((((reg32_t) v) << 2) & BM_SRC_SRSR_CSU_RESET_B)
+#else
+#define BF_SRC_SRSR_CSU_RESET_B(v)   (((v) << 2) & BM_SRC_SRSR_CSU_RESET_B)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CSU_RESET_B field to a new value.
+#define BW_SRC_SRSR_CSU_RESET_B(v)   BF_CS1(SRC_SRSR, CSU_RESET_B, v)
+#endif
+
 
 /* --- Register HW_SRC_SRSR, field IPP_USER_RESET_B (W1C)
  *
@@ -797,6 +817,16 @@ typedef union
 
 #define BP_SRC_SRSR_IPP_USER_RESET_B      3
 #define BM_SRC_SRSR_IPP_USER_RESET_B      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SRC_SRSR_IPP_USER_RESET_B(v)   ((((reg32_t) v) << 3) & BM_SRC_SRSR_IPP_USER_RESET_B)
+#else
+#define BF_SRC_SRSR_IPP_USER_RESET_B(v)   (((v) << 3) & BM_SRC_SRSR_IPP_USER_RESET_B)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IPP_USER_RESET_B field to a new value.
+#define BW_SRC_SRSR_IPP_USER_RESET_B(v)   BF_CS1(SRC_SRSR, IPP_USER_RESET_B, v)
+#endif
 
 
 /* --- Register HW_SRC_SRSR, field WDOG_RST_B (W1C)
@@ -812,6 +842,16 @@ typedef union
 #define BP_SRC_SRSR_WDOG_RST_B      4
 #define BM_SRC_SRSR_WDOG_RST_B      0x00000010
 
+#ifndef __LANGUAGE_ASM__
+#define BF_SRC_SRSR_WDOG_RST_B(v)   ((((reg32_t) v) << 4) & BM_SRC_SRSR_WDOG_RST_B)
+#else
+#define BF_SRC_SRSR_WDOG_RST_B(v)   (((v) << 4) & BM_SRC_SRSR_WDOG_RST_B)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the WDOG_RST_B field to a new value.
+#define BW_SRC_SRSR_WDOG_RST_B(v)   BF_CS1(SRC_SRSR, WDOG_RST_B, v)
+#endif
+
 
 /* --- Register HW_SRC_SRSR, field JTAG_RST_B (W1C)
  *
@@ -826,6 +866,16 @@ typedef union
 #define BP_SRC_SRSR_JTAG_RST_B      5
 #define BM_SRC_SRSR_JTAG_RST_B      0x00000020
 
+#ifndef __LANGUAGE_ASM__
+#define BF_SRC_SRSR_JTAG_RST_B(v)   ((((reg32_t) v) << 5) & BM_SRC_SRSR_JTAG_RST_B)
+#else
+#define BF_SRC_SRSR_JTAG_RST_B(v)   (((v) << 5) & BM_SRC_SRSR_JTAG_RST_B)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the JTAG_RST_B field to a new value.
+#define BW_SRC_SRSR_JTAG_RST_B(v)   BF_CS1(SRC_SRSR, JTAG_RST_B, v)
+#endif
+
 
 /* --- Register HW_SRC_SRSR, field JTAG_SW_RST (W1C)
  *
@@ -839,6 +889,16 @@ typedef union
 
 #define BP_SRC_SRSR_JTAG_SW_RST      6
 #define BM_SRC_SRSR_JTAG_SW_RST      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SRC_SRSR_JTAG_SW_RST(v)   ((((reg32_t) v) << 6) & BM_SRC_SRSR_JTAG_SW_RST)
+#else
+#define BF_SRC_SRSR_JTAG_SW_RST(v)   (((v) << 6) & BM_SRC_SRSR_JTAG_SW_RST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the JTAG_SW_RST field to a new value.
+#define BW_SRC_SRSR_JTAG_SW_RST(v)   BF_CS1(SRC_SRSR, JTAG_SW_RST, v)
+#endif
 
 
 /* --- Register HW_SRC_SRSR, field WARM_BOOT (RW)
@@ -1176,12 +1236,12 @@ typedef union
         unsigned RESERVED0 : 1; //!< Reserved
         unsigned DIR_BT_DIS : 1; //!< Please refer to fuse map.
         unsigned BT_FUSE_SEL : 1; //!< BT_FUSE_SEL (connected to gpio bt_fuse_sel)
-        unsigned RESERVED_FUSES : 3; //!< Please refer to fuse map (connected to hwv_fuse[199:197])
-        unsigned RESERVED1 : 16; //!< Reserved
+        unsigned RESERVED1 : 3; //!< Please refer to fuse map (connected to hwv_fuse[199:197])
+        unsigned RESERVED2 : 16; //!< Reserved
         unsigned BMOD : 2; //!< Please refer to fuse map.
-        unsigned RESERVED2 : 1; //!< Reserved
+        unsigned RESERVED3 : 1; //!< Reserved
         unsigned TEST_MODE : 3; //!< Please refer to fuse map.
-        unsigned RESERVED3 : 2; //!< Reserved
+        unsigned RESERVED4 : 2; //!< Reserved
     } B;
 } hw_src_sbmr2_t;
 #endif
@@ -1223,14 +1283,6 @@ typedef union
 
 #define BP_SRC_SBMR2_BT_FUSE_SEL      4
 #define BM_SRC_SBMR2_BT_FUSE_SEL      0x00000010
-
-/* --- Register HW_SRC_SBMR2, field RESERVED_FUSES (RO)
- *
- * Please refer to fuse map (connected to hwv_fuse[199:197])
- */
-
-#define BP_SRC_SBMR2_RESERVED_FUSES      5
-#define BM_SRC_SBMR2_RESERVED_FUSES      0x000000e0
 
 /* --- Register HW_SRC_SBMR2, field BMOD (RO)
  *
@@ -1613,7 +1665,7 @@ typedef struct
     volatile hw_src_gpr8_t GPR8; //!< SRC General Purpose Register 8
     volatile hw_src_gpr9_t GPR9; //!< SRC General Purpose Register 9
     volatile hw_src_gpr10_t GPR10; //!< SRC General Purpose Register 10
-} hw_src_t
+} hw_src_t;
 #endif
 
 //! @brief Macro to access all SRC registers.

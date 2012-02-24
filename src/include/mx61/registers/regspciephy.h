@@ -36,7 +36,14 @@
  * - HW_PCIE_PHY_SCOPE_SAMPLES - 
  * - HW_PCIE_PHY_SCOPE_COUNT - 
  * - HW_PCIE_PHY_SCOPE_CTL - 
- * - HW_PCIE_PHY_SCOPE_MASK - 
+ * - HW_PCIE_PHY_SCOPE_MASK_000 -  _000
+ * - HW_PCIE_PHY_SCOPE_MASK_001 -  _001
+ * - HW_PCIE_PHY_SCOPE_MASK_010 -  _010
+ * - HW_PCIE_PHY_SCOPE_MASK_011 -  _011
+ * - HW_PCIE_PHY_SCOPE_MASK_100 -  _100
+ * - HW_PCIE_PHY_SCOPE_MASK_101 -  _101
+ * - HW_PCIE_PHY_SCOPE_MASK_110 -  _110
+ * - HW_PCIE_PHY_SCOPE_MASK_111 -  _111
  * - HW_PCIE_PHY_MPLL_LOOP_CTL - 
  * - HW_PCIE_PHY_MPLL_ATB_MEAS1 - 
  * - HW_PCIE_PHY_MPLL_ATB_MEAS2 - 
@@ -2391,7 +2398,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_PCIE_PHY_SCOPE_MASK -  (RW)
+ * @brief HW_PCIE_PHY_SCOPE_MASK_000 -  _000 (RW)
  *
 
  */
@@ -2402,44 +2409,415 @@ typedef union
     {
         unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
     } B;
-} hw_pcie_phy_scope_mask_t;
+} hw_pcie_phy_scope_mask_000_t;
 #endif
 
 /*
- * constants & macros for entire PCIE_PHY_SCOPE_MASK register
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_000 register
  */
-#define HW_PCIE_PHY_SCOPE_MASK_ADDR      (REGS_PCIE_PHY_BASE + 0x24)
+#define HW_PCIE_PHY_SCOPE_MASK_000_ADDR      (REGS_PCIE_PHY_BASE + 0x24)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_PCIE_PHY_SCOPE_MASK           (*(volatile hw_pcie_phy_scope_mask_t *) HW_PCIE_PHY_SCOPE_MASK_ADDR)
-#define HW_PCIE_PHY_SCOPE_MASK_RD()      (HW_PCIE_PHY_SCOPE_MASK.U)
-#define HW_PCIE_PHY_SCOPE_MASK_WR(v)     (HW_PCIE_PHY_SCOPE_MASK.U = (v))
-#define HW_PCIE_PHY_SCOPE_MASK_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_WR(HW_PCIE_PHY_SCOPE_MASK_RD() |  (v)))
-#define HW_PCIE_PHY_SCOPE_MASK_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_WR(HW_PCIE_PHY_SCOPE_MASK_RD() & ~(v)))
-#define HW_PCIE_PHY_SCOPE_MASK_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_WR(HW_PCIE_PHY_SCOPE_MASK_RD() ^  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_000           (*(volatile hw_pcie_phy_scope_mask_000_t *) HW_PCIE_PHY_SCOPE_MASK_000_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_000_RD()      (HW_PCIE_PHY_SCOPE_MASK_000.U)
+#define HW_PCIE_PHY_SCOPE_MASK_000_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_000.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_000_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_000_WR(HW_PCIE_PHY_SCOPE_MASK_000_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_000_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_000_WR(HW_PCIE_PHY_SCOPE_MASK_000_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_000_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_000_WR(HW_PCIE_PHY_SCOPE_MASK_000_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual PCIE_PHY_SCOPE_MASK bitfields
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_000 bitfields
  */
 
-/* --- Register HW_PCIE_PHY_SCOPE_MASK, field MASK_VAL_N (RW)
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_000, field MASK_VAL_N (RW)
  *
  * Starting count value of mask register. Scope must be enabled to read from or write to this
  * register.
  */
 
-#define BP_PCIE_PHY_SCOPE_MASK_MASK_VAL_N      0
-#define BM_PCIE_PHY_SCOPE_MASK_MASK_VAL_N      0x0000ffff
+#define BP_PCIE_PHY_SCOPE_MASK_000_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_000_MASK_VAL_N      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_SCOPE_MASK_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_MASK_VAL_N)
+#define BF_PCIE_PHY_SCOPE_MASK_000_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_000_MASK_VAL_N)
 #else
-#define BF_PCIE_PHY_SCOPE_MASK_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_MASK_VAL_N)
+#define BF_PCIE_PHY_SCOPE_MASK_000_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_000_MASK_VAL_N)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VAL_N field to a new value.
-#define BW_PCIE_PHY_SCOPE_MASK_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK, MASK_VAL_N, v)
+#define BW_PCIE_PHY_SCOPE_MASK_000_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_000, MASK_VAL_N, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PCIE_PHY_SCOPE_MASK_001 -  _001 (RW)
+ *
+
+ */
+typedef union
+{
+    reg16_t U;
+    struct
+    {
+        unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
+    } B;
+} hw_pcie_phy_scope_mask_001_t;
+#endif
+
+/*
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_001 register
+ */
+#define HW_PCIE_PHY_SCOPE_MASK_001_ADDR      (REGS_PCIE_PHY_BASE + 0x25)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PCIE_PHY_SCOPE_MASK_001           (*(volatile hw_pcie_phy_scope_mask_001_t *) HW_PCIE_PHY_SCOPE_MASK_001_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_001_RD()      (HW_PCIE_PHY_SCOPE_MASK_001.U)
+#define HW_PCIE_PHY_SCOPE_MASK_001_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_001.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_001_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_001_WR(HW_PCIE_PHY_SCOPE_MASK_001_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_001_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_001_WR(HW_PCIE_PHY_SCOPE_MASK_001_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_001_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_001_WR(HW_PCIE_PHY_SCOPE_MASK_001_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_001 bitfields
+ */
+
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_001, field MASK_VAL_N (RW)
+ *
+ * Starting count value of mask register. Scope must be enabled to read from or write to this
+ * register.
+ */
+
+#define BP_PCIE_PHY_SCOPE_MASK_001_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_001_MASK_VAL_N      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_PHY_SCOPE_MASK_001_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_001_MASK_VAL_N)
+#else
+#define BF_PCIE_PHY_SCOPE_MASK_001_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_001_MASK_VAL_N)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
+#define BW_PCIE_PHY_SCOPE_MASK_001_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_001, MASK_VAL_N, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PCIE_PHY_SCOPE_MASK_010 -  _010 (RW)
+ *
+
+ */
+typedef union
+{
+    reg16_t U;
+    struct
+    {
+        unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
+    } B;
+} hw_pcie_phy_scope_mask_010_t;
+#endif
+
+/*
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_010 register
+ */
+#define HW_PCIE_PHY_SCOPE_MASK_010_ADDR      (REGS_PCIE_PHY_BASE + 0x26)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PCIE_PHY_SCOPE_MASK_010           (*(volatile hw_pcie_phy_scope_mask_010_t *) HW_PCIE_PHY_SCOPE_MASK_010_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_010_RD()      (HW_PCIE_PHY_SCOPE_MASK_010.U)
+#define HW_PCIE_PHY_SCOPE_MASK_010_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_010.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_010_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_010_WR(HW_PCIE_PHY_SCOPE_MASK_010_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_010_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_010_WR(HW_PCIE_PHY_SCOPE_MASK_010_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_010_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_010_WR(HW_PCIE_PHY_SCOPE_MASK_010_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_010 bitfields
+ */
+
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_010, field MASK_VAL_N (RW)
+ *
+ * Starting count value of mask register. Scope must be enabled to read from or write to this
+ * register.
+ */
+
+#define BP_PCIE_PHY_SCOPE_MASK_010_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_010_MASK_VAL_N      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_PHY_SCOPE_MASK_010_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_010_MASK_VAL_N)
+#else
+#define BF_PCIE_PHY_SCOPE_MASK_010_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_010_MASK_VAL_N)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
+#define BW_PCIE_PHY_SCOPE_MASK_010_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_010, MASK_VAL_N, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PCIE_PHY_SCOPE_MASK_011 -  _011 (RW)
+ *
+
+ */
+typedef union
+{
+    reg16_t U;
+    struct
+    {
+        unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
+    } B;
+} hw_pcie_phy_scope_mask_011_t;
+#endif
+
+/*
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_011 register
+ */
+#define HW_PCIE_PHY_SCOPE_MASK_011_ADDR      (REGS_PCIE_PHY_BASE + 0x27)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PCIE_PHY_SCOPE_MASK_011           (*(volatile hw_pcie_phy_scope_mask_011_t *) HW_PCIE_PHY_SCOPE_MASK_011_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_011_RD()      (HW_PCIE_PHY_SCOPE_MASK_011.U)
+#define HW_PCIE_PHY_SCOPE_MASK_011_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_011.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_011_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_011_WR(HW_PCIE_PHY_SCOPE_MASK_011_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_011_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_011_WR(HW_PCIE_PHY_SCOPE_MASK_011_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_011_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_011_WR(HW_PCIE_PHY_SCOPE_MASK_011_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_011 bitfields
+ */
+
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_011, field MASK_VAL_N (RW)
+ *
+ * Starting count value of mask register. Scope must be enabled to read from or write to this
+ * register.
+ */
+
+#define BP_PCIE_PHY_SCOPE_MASK_011_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_011_MASK_VAL_N      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_PHY_SCOPE_MASK_011_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_011_MASK_VAL_N)
+#else
+#define BF_PCIE_PHY_SCOPE_MASK_011_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_011_MASK_VAL_N)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
+#define BW_PCIE_PHY_SCOPE_MASK_011_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_011, MASK_VAL_N, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PCIE_PHY_SCOPE_MASK_100 -  _100 (RW)
+ *
+
+ */
+typedef union
+{
+    reg16_t U;
+    struct
+    {
+        unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
+    } B;
+} hw_pcie_phy_scope_mask_100_t;
+#endif
+
+/*
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_100 register
+ */
+#define HW_PCIE_PHY_SCOPE_MASK_100_ADDR      (REGS_PCIE_PHY_BASE + 0x28)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PCIE_PHY_SCOPE_MASK_100           (*(volatile hw_pcie_phy_scope_mask_100_t *) HW_PCIE_PHY_SCOPE_MASK_100_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_100_RD()      (HW_PCIE_PHY_SCOPE_MASK_100.U)
+#define HW_PCIE_PHY_SCOPE_MASK_100_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_100.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_100_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_100_WR(HW_PCIE_PHY_SCOPE_MASK_100_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_100_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_100_WR(HW_PCIE_PHY_SCOPE_MASK_100_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_100_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_100_WR(HW_PCIE_PHY_SCOPE_MASK_100_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_100 bitfields
+ */
+
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_100, field MASK_VAL_N (RW)
+ *
+ * Starting count value of mask register. Scope must be enabled to read from or write to this
+ * register.
+ */
+
+#define BP_PCIE_PHY_SCOPE_MASK_100_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_100_MASK_VAL_N      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_PHY_SCOPE_MASK_100_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_100_MASK_VAL_N)
+#else
+#define BF_PCIE_PHY_SCOPE_MASK_100_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_100_MASK_VAL_N)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
+#define BW_PCIE_PHY_SCOPE_MASK_100_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_100, MASK_VAL_N, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PCIE_PHY_SCOPE_MASK_101 -  _101 (RW)
+ *
+
+ */
+typedef union
+{
+    reg16_t U;
+    struct
+    {
+        unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
+    } B;
+} hw_pcie_phy_scope_mask_101_t;
+#endif
+
+/*
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_101 register
+ */
+#define HW_PCIE_PHY_SCOPE_MASK_101_ADDR      (REGS_PCIE_PHY_BASE + 0x29)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PCIE_PHY_SCOPE_MASK_101           (*(volatile hw_pcie_phy_scope_mask_101_t *) HW_PCIE_PHY_SCOPE_MASK_101_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_101_RD()      (HW_PCIE_PHY_SCOPE_MASK_101.U)
+#define HW_PCIE_PHY_SCOPE_MASK_101_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_101.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_101_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_101_WR(HW_PCIE_PHY_SCOPE_MASK_101_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_101_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_101_WR(HW_PCIE_PHY_SCOPE_MASK_101_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_101_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_101_WR(HW_PCIE_PHY_SCOPE_MASK_101_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_101 bitfields
+ */
+
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_101, field MASK_VAL_N (RW)
+ *
+ * Starting count value of mask register. Scope must be enabled to read from or write to this
+ * register.
+ */
+
+#define BP_PCIE_PHY_SCOPE_MASK_101_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_101_MASK_VAL_N      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_PHY_SCOPE_MASK_101_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_101_MASK_VAL_N)
+#else
+#define BF_PCIE_PHY_SCOPE_MASK_101_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_101_MASK_VAL_N)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
+#define BW_PCIE_PHY_SCOPE_MASK_101_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_101, MASK_VAL_N, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PCIE_PHY_SCOPE_MASK_110 -  _110 (RW)
+ *
+
+ */
+typedef union
+{
+    reg16_t U;
+    struct
+    {
+        unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
+    } B;
+} hw_pcie_phy_scope_mask_110_t;
+#endif
+
+/*
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_110 register
+ */
+#define HW_PCIE_PHY_SCOPE_MASK_110_ADDR      (REGS_PCIE_PHY_BASE + 0x2a)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PCIE_PHY_SCOPE_MASK_110           (*(volatile hw_pcie_phy_scope_mask_110_t *) HW_PCIE_PHY_SCOPE_MASK_110_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_110_RD()      (HW_PCIE_PHY_SCOPE_MASK_110.U)
+#define HW_PCIE_PHY_SCOPE_MASK_110_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_110.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_110_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_110_WR(HW_PCIE_PHY_SCOPE_MASK_110_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_110_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_110_WR(HW_PCIE_PHY_SCOPE_MASK_110_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_110_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_110_WR(HW_PCIE_PHY_SCOPE_MASK_110_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_110 bitfields
+ */
+
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_110, field MASK_VAL_N (RW)
+ *
+ * Starting count value of mask register. Scope must be enabled to read from or write to this
+ * register.
+ */
+
+#define BP_PCIE_PHY_SCOPE_MASK_110_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_110_MASK_VAL_N      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_PHY_SCOPE_MASK_110_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_110_MASK_VAL_N)
+#else
+#define BF_PCIE_PHY_SCOPE_MASK_110_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_110_MASK_VAL_N)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
+#define BW_PCIE_PHY_SCOPE_MASK_110_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_110, MASK_VAL_N, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PCIE_PHY_SCOPE_MASK_111 -  _111 (RW)
+ *
+
+ */
+typedef union
+{
+    reg16_t U;
+    struct
+    {
+        unsigned short MASK_VAL_N : 16; //!< Starting count value of mask register. Scope must be enabled to read from or write to this register.
+    } B;
+} hw_pcie_phy_scope_mask_111_t;
+#endif
+
+/*
+ * constants & macros for entire PCIE_PHY_SCOPE_MASK_111 register
+ */
+#define HW_PCIE_PHY_SCOPE_MASK_111_ADDR      (REGS_PCIE_PHY_BASE + 0x2b)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PCIE_PHY_SCOPE_MASK_111           (*(volatile hw_pcie_phy_scope_mask_111_t *) HW_PCIE_PHY_SCOPE_MASK_111_ADDR)
+#define HW_PCIE_PHY_SCOPE_MASK_111_RD()      (HW_PCIE_PHY_SCOPE_MASK_111.U)
+#define HW_PCIE_PHY_SCOPE_MASK_111_WR(v)     (HW_PCIE_PHY_SCOPE_MASK_111.U = (v))
+#define HW_PCIE_PHY_SCOPE_MASK_111_SET(v)    (HW_PCIE_PHY_SCOPE_MASK_111_WR(HW_PCIE_PHY_SCOPE_MASK_111_RD() |  (v)))
+#define HW_PCIE_PHY_SCOPE_MASK_111_CLR(v)    (HW_PCIE_PHY_SCOPE_MASK_111_WR(HW_PCIE_PHY_SCOPE_MASK_111_RD() & ~(v)))
+#define HW_PCIE_PHY_SCOPE_MASK_111_TOG(v)    (HW_PCIE_PHY_SCOPE_MASK_111_WR(HW_PCIE_PHY_SCOPE_MASK_111_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PCIE_PHY_SCOPE_MASK_111 bitfields
+ */
+
+/* --- Register HW_PCIE_PHY_SCOPE_MASK_111, field MASK_VAL_N (RW)
+ *
+ * Starting count value of mask register. Scope must be enabled to read from or write to this
+ * register.
+ */
+
+#define BP_PCIE_PHY_SCOPE_MASK_111_MASK_VAL_N      0
+#define BM_PCIE_PHY_SCOPE_MASK_111_MASK_VAL_N      0x0000ffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PCIE_PHY_SCOPE_MASK_111_MASK_VAL_N(v)   ((((reg32_t) v) << 0) & BM_PCIE_PHY_SCOPE_MASK_111_MASK_VAL_N)
+#else
+#define BF_PCIE_PHY_SCOPE_MASK_111_MASK_VAL_N(v)   (((v) << 0) & BM_PCIE_PHY_SCOPE_MASK_111_MASK_VAL_N)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the MASK_VAL_N field to a new value.
+#define BW_PCIE_PHY_SCOPE_MASK_111_MASK_VAL_N(v)   BF_CS1(PCIE_PHY_SCOPE_MASK_111, MASK_VAL_N, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -7072,22 +7450,22 @@ typedef union
 #define BW_PCIE_PHY_RX_ATB0_EN_ATB(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB, v)
 #endif
 
-/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB (RW)
+/* --- Register HW_PCIE_PHY_RX_ATB0, field EN_ATB1 (RW)
  *
  * Enables ATB sensing and forcing on internal Rx nodes.
  */
 
-#define BP_PCIE_PHY_RX_ATB0_EN_ATB      7
-#define BM_PCIE_PHY_RX_ATB0_EN_ATB      0x00000080
+#define BP_PCIE_PHY_RX_ATB0_EN_ATB1      7
+#define BM_PCIE_PHY_RX_ATB0_EN_ATB1      0x00000080
 
 #ifndef __LANGUAGE_ASM__
-#define BF_PCIE_PHY_RX_ATB0_EN_ATB(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_RX_ATB0_EN_ATB)
+#define BF_PCIE_PHY_RX_ATB0_EN_ATB1(v)   ((((reg32_t) v) << 7) & BM_PCIE_PHY_RX_ATB0_EN_ATB1)
 #else
-#define BF_PCIE_PHY_RX_ATB0_EN_ATB(v)   (((v) << 7) & BM_PCIE_PHY_RX_ATB0_EN_ATB)
+#define BF_PCIE_PHY_RX_ATB0_EN_ATB1(v)   (((v) << 7) & BM_PCIE_PHY_RX_ATB0_EN_ATB1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the EN_ATB field to a new value.
-#define BW_PCIE_PHY_RX_ATB0_EN_ATB(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB, v)
+//! @brief Set the EN_ATB1 field to a new value.
+#define BW_PCIE_PHY_RX_ATB0_EN_ATB1(v)   BF_CS1(PCIE_PHY_RX_ATB0, EN_ATB1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -8833,14 +9211,21 @@ typedef struct
     volatile hw_pcie_phy_scope_samples_t SCOPE_SAMPLES; //!< 
     volatile hw_pcie_phy_scope_count_t SCOPE_COUNT; //!< 
     volatile hw_pcie_phy_scope_ctl_t SCOPE_CTL; //!< 
-    volatile hw_pcie_phy_scope_mask_t SCOPE_MASK; //!< 
+    volatile hw_pcie_phy_scope_mask_000_t SCOPE_MASK_000; //!<  _000
+    volatile hw_pcie_phy_scope_mask_001_t SCOPE_MASK_001; //!<  _001
+    volatile hw_pcie_phy_scope_mask_010_t SCOPE_MASK_010; //!<  _010
+    volatile hw_pcie_phy_scope_mask_011_t SCOPE_MASK_011; //!<  _011
+    volatile hw_pcie_phy_scope_mask_100_t SCOPE_MASK_100; //!<  _100
+    volatile hw_pcie_phy_scope_mask_101_t SCOPE_MASK_101; //!<  _101
+    volatile hw_pcie_phy_scope_mask_110_t SCOPE_MASK_110; //!<  _110
+    volatile hw_pcie_phy_scope_mask_111_t SCOPE_MASK_111; //!<  _111
     volatile hw_pcie_phy_mpll_loop_ctl_t MPLL_LOOP_CTL; //!< 
     volatile hw_pcie_phy_mpll_atb_meas1_t MPLL_ATB_MEAS1; //!< 
     volatile hw_pcie_phy_mpll_atb_meas2_t MPLL_ATB_MEAS2; //!< 
     volatile hw_pcie_phy_mpll_ovr_t MPLL_OVR; //!< 
     volatile hw_pcie_phy_rtune_rtune_ctrl_t RTUNE_RTUNE_CTRL; //!< 
     volatile hw_pcie_phy_atb_switchyard_ctrl_t ATB_SWITCHYARD_CTRL; //!< 
-    reg16_t _reserved1[2017];
+    reg32_t _reserved1[1005];
     volatile hw_pcie_phy_tx_ovrd_in_lo_t TX_OVRD_IN_LO; //!< 
     volatile hw_pcie_phy_tx_ovrd_in_hi_t TX_OVRD_IN_HI; //!< 
     volatile hw_pcie_phy_tx_ovrd_drv_lo_t TX_OVRD_DRV_LO; //!< 
@@ -8882,7 +9267,7 @@ typedef struct
     volatile hw_pcie_phy_tx_alt_block_t TX_ALT_BLOCK; //!< 
     volatile hw_pcie_phy_tx_alt_and_loopback_t TX_ALT_AND_LOOPBACK; //!< 
     volatile hw_pcie_phy_tx_tx_atb_reg_t TX_TX_ATB_REG; //!< 
-} hw_pcie_phy_t
+} hw_pcie_phy_t;
 #endif
 
 //! @brief Macro to access all PCIE_PHY registers.

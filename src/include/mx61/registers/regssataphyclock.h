@@ -28,7 +28,7 @@
  * - HW_SATAPHY_CLOCK_CHIP_ID_LOW - JTAG Chip ID (Low Bits) Register
  * - HW_SATAPHY_CLOCK_FREQ_STAT - Frequency Status Register
  * - HW_SATAPHY_CLOCK_CTL_STAT - Control Status Register
- * - HW_SATAPHY_CLOCK_LVL-STAT - Level Status Register
+ * - HW_SATAPHY_CLOCK_LVL_STAT - Level Status Register
  * - HW_SATAPHY_CLOCK_CREG_STAT - Creg Status Register
  * - HW_SATAPHY_CLOCK_FREW_OVRD - Frequency Override Register
  * - HW_SATAPHY_CLOCK_CTL_OVRD - Control Override Register
@@ -1051,7 +1051,7 @@ typedef union
         unsigned short NCY5 : 2; //!< Divide-by-5 control
         unsigned short NCY : 5; //!< Divide-by-4 cycle control
         unsigned short PRESCALE : 2; //!< Prescaler control
-        unsigned short RESERVED : 1; //!< Always reads as 1
+        unsigned short RESERVED0 : 1; //!< Always reads as 1
     } B;
 } hw_sataphy_clock_freq_stat_t;
 #endif
@@ -1109,14 +1109,6 @@ typedef union
 
 #define BP_SATAPHY_CLOCK_FREQ_STAT_PRESCALE      13
 #define BM_SATAPHY_CLOCK_FREQ_STAT_PRESCALE      0x00006000
-
-/* --- Register HW_SATAPHY_CLOCK_FREQ_STAT, field RESERVED (RO)
- *
- * Always reads as 1
- */
-
-#define BP_SATAPHY_CLOCK_FREQ_STAT_RESERVED      15
-#define BM_SATAPHY_CLOCK_FREQ_STAT_RESERVED      0x00008000
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1251,7 +1243,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SATAPHY_CLOCK_LVL-STAT - Level Status Register (RO)
+ * @brief HW_SATAPHY_CLOCK_LVL_STAT - Level Status Register (RO)
  *
  * Reset value: 16'b xxxx xxxx xxxx xxxx (depends on inputs)  This register indicates the status of
  * level control inputs.
@@ -1266,46 +1258,46 @@ typedef union
         unsigned short TX_LVL : 5; //!< Transmit level
         unsigned short RESERVED0 : 1; //!< Reserved
     } B;
-} hw_sataphy_clock_lvl-stat_t;
+} hw_sataphy_clock_lvl_stat_t;
 #endif
 
 /*
- * constants & macros for entire SATAPHY_CLOCK_LVL-STAT register
+ * constants & macros for entire SATAPHY_CLOCK_LVL_STAT register
  */
-#define HW_SATAPHY_CLOCK_LVL-STAT_ADDR      (REGS_SATAPHY_CLOCK_BASE + 0x10)
+#define HW_SATAPHY_CLOCK_LVL_STAT_ADDR      (REGS_SATAPHY_CLOCK_BASE + 0x10)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_SATAPHY_CLOCK_LVL-STAT           (*(volatile hw_sataphy_clock_lvl-stat_t *) HW_SATAPHY_CLOCK_LVL-STAT_ADDR)
-#define HW_SATAPHY_CLOCK_LVL-STAT_RD()      (HW_SATAPHY_CLOCK_LVL-STAT.U)
+#define HW_SATAPHY_CLOCK_LVL_STAT           (*(volatile hw_sataphy_clock_lvl_stat_t *) HW_SATAPHY_CLOCK_LVL_STAT_ADDR)
+#define HW_SATAPHY_CLOCK_LVL_STAT_RD()      (HW_SATAPHY_CLOCK_LVL_STAT.U)
 #endif
 
 /*
- * constants & macros for individual SATAPHY_CLOCK_LVL-STAT bitfields
+ * constants & macros for individual SATAPHY_CLOCK_LVL_STAT bitfields
  */
 
-/* --- Register HW_SATAPHY_CLOCK_LVL-STAT, field ACJT_LVL (RO)
+/* --- Register HW_SATAPHY_CLOCK_LVL_STAT, field ACJT_LVL (RO)
  *
  * ACJTAG comparator level
  */
 
-#define BP_SATAPHY_CLOCK_LVL-STAT_ACJT_LVL      0
-#define BM_SATAPHY_CLOCK_LVL-STAT_ACJT_LVL      0x0000001f
+#define BP_SATAPHY_CLOCK_LVL_STAT_ACJT_LVL      0
+#define BM_SATAPHY_CLOCK_LVL_STAT_ACJT_LVL      0x0000001f
 
-/* --- Register HW_SATAPHY_CLOCK_LVL-STAT, field LOS_LVL (RO)
+/* --- Register HW_SATAPHY_CLOCK_LVL_STAT, field LOS_LVL (RO)
  *
  * Loss of Signal Detector level
  */
 
-#define BP_SATAPHY_CLOCK_LVL-STAT_LOS_LVL      5
-#define BM_SATAPHY_CLOCK_LVL-STAT_LOS_LVL      0x000003e0
+#define BP_SATAPHY_CLOCK_LVL_STAT_LOS_LVL      5
+#define BM_SATAPHY_CLOCK_LVL_STAT_LOS_LVL      0x000003e0
 
-/* --- Register HW_SATAPHY_CLOCK_LVL-STAT, field TX_LVL (RO)
+/* --- Register HW_SATAPHY_CLOCK_LVL_STAT, field TX_LVL (RO)
  *
  * Transmit level
  */
 
-#define BP_SATAPHY_CLOCK_LVL-STAT_TX_LVL      10
-#define BM_SATAPHY_CLOCK_LVL-STAT_TX_LVL      0x00007c00
+#define BP_SATAPHY_CLOCK_LVL_STAT_TX_LVL      10
+#define BM_SATAPHY_CLOCK_LVL_STAT_TX_LVL      0x00007c00
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2836,7 +2828,7 @@ typedef struct
     volatile hw_sataphy_clock_chip_id_low_t CHIP_ID_LOW; //!< JTAG Chip ID (Low Bits) Register
     volatile hw_sataphy_clock_freq_stat_t FREQ_STAT; //!< Frequency Status Register
     volatile hw_sataphy_clock_ctl_stat_t CTL_STAT; //!< Control Status Register
-    volatile hw_sataphy_clock_lvl-stat_t LVL-STAT; //!< Level Status Register
+    volatile hw_sataphy_clock_lvl_stat_t LVL_STAT; //!< Level Status Register
     volatile hw_sataphy_clock_creg_stat_t CREG_STAT; //!< Creg Status Register
     volatile hw_sataphy_clock_frew_ovrd_t FREW_OVRD; //!< Frequency Override Register
     volatile hw_sataphy_clock_ctl_ovrd_t CTL_OVRD; //!< Control Override Register
@@ -2849,7 +2841,7 @@ typedef struct
     volatile hw_sataphy_clock_sel_ovrd_t SEL_OVRD; //!< Clock Select Override Register
     reg16_t _reserved1[16261];
     volatile hw_sataphy_clock_reset_t RESET; //!< Reset Register
-} hw_sataphy_clock_t
+} hw_sataphy_clock_t;
 #endif
 
 //! @brief Macro to access all SATAPHY_CLOCK registers.

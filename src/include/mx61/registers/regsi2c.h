@@ -216,6 +216,16 @@ typedef union
 #define BP_I2C_I2CR_RSTA      2
 #define BM_I2C_I2CR_RSTA      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_I2C_I2CR_RSTA(v)   ((((reg32_t) v) << 2) & BM_I2C_I2CR_RSTA)
+#else
+#define BF_I2C_I2CR_RSTA(v)   (((v) << 2) & BM_I2C_I2CR_RSTA)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RSTA field to a new value.
+#define BW_I2C_I2CR_RSTA(v)   BF_CS1(I2C_I2CR, RSTA, v)
+#endif
+
 
 /* --- Register HW_I2C_I2CR, field TXAK (RW)
  *
@@ -595,7 +605,7 @@ typedef struct
     volatile hw_i2c_i2sr_t I2SR; //!< I2C Status Register
     reg16_t _reserved3;
     volatile hw_i2c_i2dr_t I2DR; //!< I2C Data I/O Register
-} hw_i2c_t
+} hw_i2c_t;
 #endif
 
 //! @brief Macro to access all I2C registers.

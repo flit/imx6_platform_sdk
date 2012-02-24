@@ -1230,6 +1230,16 @@ typedef union
 #define BP_ECSPI_STATREG_RO      6
 #define BM_ECSPI_STATREG_RO      0x00000040
 
+#ifndef __LANGUAGE_ASM__
+#define BF_ECSPI_STATREG_RO(v)   ((((reg32_t) v) << 6) & BM_ECSPI_STATREG_RO)
+#else
+#define BF_ECSPI_STATREG_RO(v)   (((v) << 6) & BM_ECSPI_STATREG_RO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RO field to a new value.
+#define BW_ECSPI_STATREG_RO(v)   BF_CS1(ECSPI_STATREG, RO, v)
+#endif
+
 
 /* --- Register HW_ECSPI_STATREG, field TC (W1C)
  *
@@ -1242,6 +1252,16 @@ typedef union
 
 #define BP_ECSPI_STATREG_TC      7
 #define BM_ECSPI_STATREG_TC      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ECSPI_STATREG_TC(v)   ((((reg32_t) v) << 7) & BM_ECSPI_STATREG_TC)
+#else
+#define BF_ECSPI_STATREG_TC(v)   (((v) << 7) & BM_ECSPI_STATREG_TC)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TC field to a new value.
+#define BW_ECSPI_STATREG_TC(v)   BF_CS1(ECSPI_STATREG, TC, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -1532,7 +1552,7 @@ typedef struct
     volatile hw_ecspi_testreg_t TESTREG; //!< Test Control Register
     reg32_t _reserved0[7];
     volatile hw_ecspi_msgdata_t MSGDATA; //!< Message Data Register
-} hw_ecspi_t
+} hw_ecspi_t;
 #endif
 
 //! @brief Macro to access all ECSPI registers.

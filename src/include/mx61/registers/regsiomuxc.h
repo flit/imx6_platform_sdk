@@ -88414,7 +88414,7 @@ typedef struct
     volatile hw_iomuxc_iomuxc_usboh3_ipp_ind_otg_oc_select_input_t IOMUXC_USBOH3_IPP_IND_OTG_OC_SELECT_INPUT; //!< DAISY
     volatile hw_iomuxc_iomuxc_usboh3_ipp_ind_uh1_oc_select_input_t IOMUXC_USBOH3_IPP_IND_UH1_OC_SELECT_INPUT; //!< DAISY
     volatile hw_iomuxc_iomuxc_usdhc1_ipp_wp_on_select_input_t IOMUXC_USDHC1_IPP_WP_ON_SELECT_INPUT; //!< DAISY
-} hw_iomuxc_t
+} hw_iomuxc_t;
 #endif
 
 //! @brief Macro to access all IOMUXC registers.

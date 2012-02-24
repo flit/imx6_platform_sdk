@@ -19,6 +19,9 @@
  * - HW_PMU_REG_CORE - Digital Regulator Core Register
  * - HW_PMU_MISC0 - Miscellaneous Register 0
  * - HW_PMU_REG_MISC1 - Miscellaneous Register 1
+ * - HW_PMU_REG_MISC1_SET - Miscellaneous Register 1 _SET
+ * - HW_PMU_REG_MISC1_CLR - Miscellaneous Register 1 _CLR
+ * - HW_PMU_REG_MISC1_TOG - Miscellaneous Register 1 _TOG
  * - HW_PMU_REG_MISC2 - Miscellaneous Register 2
  *
  * hw_pmu_t - Struct containing all module registers.
@@ -1394,6 +1397,16 @@ typedef union
 #define BP_PMU_REG_MISC1_IRQ_TEMPSENSE      29
 #define BM_PMU_REG_MISC1_IRQ_TEMPSENSE      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_IRQ_TEMPSENSE(v)   ((((reg32_t) v) << 29) & BM_PMU_REG_MISC1_IRQ_TEMPSENSE)
+#else
+#define BF_PMU_REG_MISC1_IRQ_TEMPSENSE(v)   (((v) << 29) & BM_PMU_REG_MISC1_IRQ_TEMPSENSE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_TEMPSENSE field to a new value.
+#define BW_PMU_REG_MISC1_IRQ_TEMPSENSE(v)   BF_CS1(PMU_REG_MISC1, IRQ_TEMPSENSE, v)
+#endif
+
 /* --- Register HW_PMU_REG_MISC1, field IRQ_ANA_BO (W1C)
  *
  * This status bit is set to one when when any of the analog regulator brownout interrupts assert.
@@ -1403,6 +1416,16 @@ typedef union
 #define BP_PMU_REG_MISC1_IRQ_ANA_BO      30
 #define BM_PMU_REG_MISC1_IRQ_ANA_BO      0x40000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_IRQ_ANA_BO(v)   ((((reg32_t) v) << 30) & BM_PMU_REG_MISC1_IRQ_ANA_BO)
+#else
+#define BF_PMU_REG_MISC1_IRQ_ANA_BO(v)   (((v) << 30) & BM_PMU_REG_MISC1_IRQ_ANA_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_ANA_BO field to a new value.
+#define BW_PMU_REG_MISC1_IRQ_ANA_BO(v)   BF_CS1(PMU_REG_MISC1, IRQ_ANA_BO, v)
+#endif
+
 /* --- Register HW_PMU_REG_MISC1, field IRQ_DIG_BO (W1C)
  *
  * This status bit is set to one when when any of the digital regulator brownout interrupts assert.
@@ -1411,6 +1434,805 @@ typedef union
 
 #define BP_PMU_REG_MISC1_IRQ_DIG_BO      31
 #define BM_PMU_REG_MISC1_IRQ_DIG_BO      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_IRQ_DIG_BO(v)   ((((reg32_t) v) << 31) & BM_PMU_REG_MISC1_IRQ_DIG_BO)
+#else
+#define BF_PMU_REG_MISC1_IRQ_DIG_BO(v)   (((v) << 31) & BM_PMU_REG_MISC1_IRQ_DIG_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_DIG_BO field to a new value.
+#define BW_PMU_REG_MISC1_IRQ_DIG_BO(v)   BF_CS1(PMU_REG_MISC1, IRQ_DIG_BO, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PMU_REG_MISC1_SET - Miscellaneous Register 1 _SET (RW)
+ *
+ * This register defines the control and status bits for miscellaneous analog blocks. The lvds1 and
+ * lvds2 controls below control the behavior of the anaclk1/1b and anaclk2/2b lvds IO's.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned LVDS1_CLK_SEL : 5; //!< This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+        unsigned LVDS2_CLK_SEL : 5; //!< This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+        unsigned LVDSCLK1_OBEN : 1; //!< This enables the lvds output buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK2_OBEN : 1; //!< This enables the lvds output buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK1_IBEN : 1; //!< This enables the lvds input buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK2_IBEN : 1; //!< This enables the lvds input buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned RESERVED0 : 15; //!< Reserved
+        unsigned IRQ_TEMPSENSE : 1; //!< This status bit is set to one when when the temperature sensor interrupt asserts. Not related to PMU.
+        unsigned IRQ_ANA_BO : 1; //!< This status bit is set to one when when any of the analog regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
+        unsigned IRQ_DIG_BO : 1; //!< This status bit is set to one when when any of the digital regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
+    } B;
+} hw_pmu_reg_misc1_set_t;
+#endif
+
+/*
+ * constants & macros for entire PMU_REG_MISC1_SET register
+ */
+#define HW_PMU_REG_MISC1_SET_ADDR      (REGS_PMU_BASE + 0x164)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PMU_REG_MISC1_SET           (*(volatile hw_pmu_reg_misc1_set_t *) HW_PMU_REG_MISC1_SET_ADDR)
+#define HW_PMU_REG_MISC1_SET_RD()      (HW_PMU_REG_MISC1_SET.U)
+#define HW_PMU_REG_MISC1_SET_WR(v)     (HW_PMU_REG_MISC1_SET.U = (v))
+#define HW_PMU_REG_MISC1_SET_SET(v)    (HW_PMU_REG_MISC1_SET_WR(HW_PMU_REG_MISC1_SET_RD() |  (v)))
+#define HW_PMU_REG_MISC1_SET_CLR(v)    (HW_PMU_REG_MISC1_SET_WR(HW_PMU_REG_MISC1_SET_RD() & ~(v)))
+#define HW_PMU_REG_MISC1_SET_TOG(v)    (HW_PMU_REG_MISC1_SET_WR(HW_PMU_REG_MISC1_SET_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PMU_REG_MISC1_SET bitfields
+ */
+
+/* --- Register HW_PMU_REG_MISC1_SET, field LVDS1_CLK_SEL (RW)
+ *
+ * This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+ *
+ * Values:
+ * 00000 - Arm PLL
+ * 00001 - 528 PLL
+ * 00010 - pfd4
+ * 00011 - pfd5
+ * 00100 - pfd6
+ * 00101 - pfd7
+ * 00110 - Audio PLL
+ * 00111 - Video PLL
+ * 01000 - MLB PLL
+ * 01001 - ethernet ref clock
+ * 01010 - PCIe ref clock
+ * 01011 - SATA ref clock
+ * 01100 - USB1 PLL clock
+ * 01101 - USB2 PLL clock
+ * 01110 - pfd0
+ * 01111 - pfd1
+ * 10000 - pfd2
+ * 10001 - pfd3
+ * 10010 - xtal
+ * 10011 - lvds1 (not useful)
+ * 10100 - lvds2 (loopback)
+ * 10101 to 11111 - pfd7
+ */
+
+#define BP_PMU_REG_MISC1_SET_LVDS1_CLK_SEL      0
+#define BM_PMU_REG_MISC1_SET_LVDS1_CLK_SEL      0x0000001f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_LVDS1_CLK_SEL(v)   ((((reg32_t) v) << 0) & BM_PMU_REG_MISC1_SET_LVDS1_CLK_SEL)
+#else
+#define BF_PMU_REG_MISC1_SET_LVDS1_CLK_SEL(v)   (((v) << 0) & BM_PMU_REG_MISC1_SET_LVDS1_CLK_SEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDS1_CLK_SEL field to a new value.
+#define BW_PMU_REG_MISC1_SET_LVDS1_CLK_SEL(v)   BF_CS1(PMU_REG_MISC1_SET, LVDS1_CLK_SEL, v)
+#endif
+
+
+/* --- Register HW_PMU_REG_MISC1_SET, field LVDS2_CLK_SEL (RW)
+ *
+ * This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+ *
+ * Values:
+ * 00000 - Arm PLL
+ * 00001 - 528 PLL
+ * 00010 - pfd4
+ * 00011 - pfd5
+ * 00100 - pfd6
+ * 00101 - pfd7
+ * 00110 - Audio PLL
+ * 00111 - Video PLL
+ * 01000 - MLB PLL
+ * 01001 - ethernet ref clock
+ * 01010 - PCIe ref clock
+ * 01011 - SATA ref clock
+ * 01100 - USB1 PLL clock
+ * 01101 - USB2 PLL clock
+ * 01110 - pfd0
+ * 01111 - pfd1
+ * 10000 - pfd2
+ * 10001 - pfd3
+ * 10010 - xtal
+ * 10011 - lvds1 (loopback)
+ * 10100 - lvds2 (not useful)
+ * 10101 to 11111 - pfd7
+ */
+
+#define BP_PMU_REG_MISC1_SET_LVDS2_CLK_SEL      5
+#define BM_PMU_REG_MISC1_SET_LVDS2_CLK_SEL      0x000003e0
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_LVDS2_CLK_SEL(v)   ((((reg32_t) v) << 5) & BM_PMU_REG_MISC1_SET_LVDS2_CLK_SEL)
+#else
+#define BF_PMU_REG_MISC1_SET_LVDS2_CLK_SEL(v)   (((v) << 5) & BM_PMU_REG_MISC1_SET_LVDS2_CLK_SEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDS2_CLK_SEL field to a new value.
+#define BW_PMU_REG_MISC1_SET_LVDS2_CLK_SEL(v)   BF_CS1(PMU_REG_MISC1_SET, LVDS2_CLK_SEL, v)
+#endif
+
+
+/* --- Register HW_PMU_REG_MISC1_SET, field LVDSCLK1_OBEN (RW)
+ *
+ * This enables the lvds output buffer for anaclk1/1b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_SET_LVDSCLK1_OBEN      10
+#define BM_PMU_REG_MISC1_SET_LVDSCLK1_OBEN      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_LVDSCLK1_OBEN(v)   ((((reg32_t) v) << 10) & BM_PMU_REG_MISC1_SET_LVDSCLK1_OBEN)
+#else
+#define BF_PMU_REG_MISC1_SET_LVDSCLK1_OBEN(v)   (((v) << 10) & BM_PMU_REG_MISC1_SET_LVDSCLK1_OBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK1_OBEN field to a new value.
+#define BW_PMU_REG_MISC1_SET_LVDSCLK1_OBEN(v)   BF_CS1(PMU_REG_MISC1_SET, LVDSCLK1_OBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_SET, field LVDSCLK2_OBEN (RW)
+ *
+ * This enables the lvds output buffer for anaclk2/2b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_SET_LVDSCLK2_OBEN      11
+#define BM_PMU_REG_MISC1_SET_LVDSCLK2_OBEN      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_LVDSCLK2_OBEN(v)   ((((reg32_t) v) << 11) & BM_PMU_REG_MISC1_SET_LVDSCLK2_OBEN)
+#else
+#define BF_PMU_REG_MISC1_SET_LVDSCLK2_OBEN(v)   (((v) << 11) & BM_PMU_REG_MISC1_SET_LVDSCLK2_OBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK2_OBEN field to a new value.
+#define BW_PMU_REG_MISC1_SET_LVDSCLK2_OBEN(v)   BF_CS1(PMU_REG_MISC1_SET, LVDSCLK2_OBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_SET, field LVDSCLK1_IBEN (RW)
+ *
+ * This enables the lvds input buffer for anaclk1/1b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_SET_LVDSCLK1_IBEN      12
+#define BM_PMU_REG_MISC1_SET_LVDSCLK1_IBEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_LVDSCLK1_IBEN(v)   ((((reg32_t) v) << 12) & BM_PMU_REG_MISC1_SET_LVDSCLK1_IBEN)
+#else
+#define BF_PMU_REG_MISC1_SET_LVDSCLK1_IBEN(v)   (((v) << 12) & BM_PMU_REG_MISC1_SET_LVDSCLK1_IBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK1_IBEN field to a new value.
+#define BW_PMU_REG_MISC1_SET_LVDSCLK1_IBEN(v)   BF_CS1(PMU_REG_MISC1_SET, LVDSCLK1_IBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_SET, field LVDSCLK2_IBEN (RW)
+ *
+ * This enables the lvds input buffer for anaclk2/2b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_SET_LVDSCLK2_IBEN      13
+#define BM_PMU_REG_MISC1_SET_LVDSCLK2_IBEN      0x00002000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_LVDSCLK2_IBEN(v)   ((((reg32_t) v) << 13) & BM_PMU_REG_MISC1_SET_LVDSCLK2_IBEN)
+#else
+#define BF_PMU_REG_MISC1_SET_LVDSCLK2_IBEN(v)   (((v) << 13) & BM_PMU_REG_MISC1_SET_LVDSCLK2_IBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK2_IBEN field to a new value.
+#define BW_PMU_REG_MISC1_SET_LVDSCLK2_IBEN(v)   BF_CS1(PMU_REG_MISC1_SET, LVDSCLK2_IBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_SET, field IRQ_TEMPSENSE (W1C)
+ *
+ * This status bit is set to one when when the temperature sensor interrupt asserts. Not related to
+ * PMU.
+ */
+
+#define BP_PMU_REG_MISC1_SET_IRQ_TEMPSENSE      29
+#define BM_PMU_REG_MISC1_SET_IRQ_TEMPSENSE      0x20000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_IRQ_TEMPSENSE(v)   ((((reg32_t) v) << 29) & BM_PMU_REG_MISC1_SET_IRQ_TEMPSENSE)
+#else
+#define BF_PMU_REG_MISC1_SET_IRQ_TEMPSENSE(v)   (((v) << 29) & BM_PMU_REG_MISC1_SET_IRQ_TEMPSENSE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_TEMPSENSE field to a new value.
+#define BW_PMU_REG_MISC1_SET_IRQ_TEMPSENSE(v)   BF_CS1(PMU_REG_MISC1_SET, IRQ_TEMPSENSE, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_SET, field IRQ_ANA_BO (W1C)
+ *
+ * This status bit is set to one when when any of the analog regulator brownout interrupts assert.
+ * Check the regulator status bits to discover which regulator interrupt asserted.
+ */
+
+#define BP_PMU_REG_MISC1_SET_IRQ_ANA_BO      30
+#define BM_PMU_REG_MISC1_SET_IRQ_ANA_BO      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_IRQ_ANA_BO(v)   ((((reg32_t) v) << 30) & BM_PMU_REG_MISC1_SET_IRQ_ANA_BO)
+#else
+#define BF_PMU_REG_MISC1_SET_IRQ_ANA_BO(v)   (((v) << 30) & BM_PMU_REG_MISC1_SET_IRQ_ANA_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_ANA_BO field to a new value.
+#define BW_PMU_REG_MISC1_SET_IRQ_ANA_BO(v)   BF_CS1(PMU_REG_MISC1_SET, IRQ_ANA_BO, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_SET, field IRQ_DIG_BO (W1C)
+ *
+ * This status bit is set to one when when any of the digital regulator brownout interrupts assert.
+ * Check the regulator status bits to discover which regulator interrupt asserted.
+ */
+
+#define BP_PMU_REG_MISC1_SET_IRQ_DIG_BO      31
+#define BM_PMU_REG_MISC1_SET_IRQ_DIG_BO      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_SET_IRQ_DIG_BO(v)   ((((reg32_t) v) << 31) & BM_PMU_REG_MISC1_SET_IRQ_DIG_BO)
+#else
+#define BF_PMU_REG_MISC1_SET_IRQ_DIG_BO(v)   (((v) << 31) & BM_PMU_REG_MISC1_SET_IRQ_DIG_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_DIG_BO field to a new value.
+#define BW_PMU_REG_MISC1_SET_IRQ_DIG_BO(v)   BF_CS1(PMU_REG_MISC1_SET, IRQ_DIG_BO, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PMU_REG_MISC1_CLR - Miscellaneous Register 1 _CLR (RW)
+ *
+ * This register defines the control and status bits for miscellaneous analog blocks. The lvds1 and
+ * lvds2 controls below control the behavior of the anaclk1/1b and anaclk2/2b lvds IO's.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned LVDS1_CLK_SEL : 5; //!< This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+        unsigned LVDS2_CLK_SEL : 5; //!< This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+        unsigned LVDSCLK1_OBEN : 1; //!< This enables the lvds output buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK2_OBEN : 1; //!< This enables the lvds output buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK1_IBEN : 1; //!< This enables the lvds input buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK2_IBEN : 1; //!< This enables the lvds input buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned RESERVED0 : 15; //!< Reserved
+        unsigned IRQ_TEMPSENSE : 1; //!< This status bit is set to one when when the temperature sensor interrupt asserts. Not related to PMU.
+        unsigned IRQ_ANA_BO : 1; //!< This status bit is set to one when when any of the analog regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
+        unsigned IRQ_DIG_BO : 1; //!< This status bit is set to one when when any of the digital regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
+    } B;
+} hw_pmu_reg_misc1_clr_t;
+#endif
+
+/*
+ * constants & macros for entire PMU_REG_MISC1_CLR register
+ */
+#define HW_PMU_REG_MISC1_CLR_ADDR      (REGS_PMU_BASE + 0x168)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PMU_REG_MISC1_CLR           (*(volatile hw_pmu_reg_misc1_clr_t *) HW_PMU_REG_MISC1_CLR_ADDR)
+#define HW_PMU_REG_MISC1_CLR_RD()      (HW_PMU_REG_MISC1_CLR.U)
+#define HW_PMU_REG_MISC1_CLR_WR(v)     (HW_PMU_REG_MISC1_CLR.U = (v))
+#define HW_PMU_REG_MISC1_CLR_SET(v)    (HW_PMU_REG_MISC1_CLR_WR(HW_PMU_REG_MISC1_CLR_RD() |  (v)))
+#define HW_PMU_REG_MISC1_CLR_CLR(v)    (HW_PMU_REG_MISC1_CLR_WR(HW_PMU_REG_MISC1_CLR_RD() & ~(v)))
+#define HW_PMU_REG_MISC1_CLR_TOG(v)    (HW_PMU_REG_MISC1_CLR_WR(HW_PMU_REG_MISC1_CLR_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PMU_REG_MISC1_CLR bitfields
+ */
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field LVDS1_CLK_SEL (RW)
+ *
+ * This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+ *
+ * Values:
+ * 00000 - Arm PLL
+ * 00001 - 528 PLL
+ * 00010 - pfd4
+ * 00011 - pfd5
+ * 00100 - pfd6
+ * 00101 - pfd7
+ * 00110 - Audio PLL
+ * 00111 - Video PLL
+ * 01000 - MLB PLL
+ * 01001 - ethernet ref clock
+ * 01010 - PCIe ref clock
+ * 01011 - SATA ref clock
+ * 01100 - USB1 PLL clock
+ * 01101 - USB2 PLL clock
+ * 01110 - pfd0
+ * 01111 - pfd1
+ * 10000 - pfd2
+ * 10001 - pfd3
+ * 10010 - xtal
+ * 10011 - lvds1 (not useful)
+ * 10100 - lvds2 (loopback)
+ * 10101 to 11111 - pfd7
+ */
+
+#define BP_PMU_REG_MISC1_CLR_LVDS1_CLK_SEL      0
+#define BM_PMU_REG_MISC1_CLR_LVDS1_CLK_SEL      0x0000001f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_LVDS1_CLK_SEL(v)   ((((reg32_t) v) << 0) & BM_PMU_REG_MISC1_CLR_LVDS1_CLK_SEL)
+#else
+#define BF_PMU_REG_MISC1_CLR_LVDS1_CLK_SEL(v)   (((v) << 0) & BM_PMU_REG_MISC1_CLR_LVDS1_CLK_SEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDS1_CLK_SEL field to a new value.
+#define BW_PMU_REG_MISC1_CLR_LVDS1_CLK_SEL(v)   BF_CS1(PMU_REG_MISC1_CLR, LVDS1_CLK_SEL, v)
+#endif
+
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field LVDS2_CLK_SEL (RW)
+ *
+ * This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+ *
+ * Values:
+ * 00000 - Arm PLL
+ * 00001 - 528 PLL
+ * 00010 - pfd4
+ * 00011 - pfd5
+ * 00100 - pfd6
+ * 00101 - pfd7
+ * 00110 - Audio PLL
+ * 00111 - Video PLL
+ * 01000 - MLB PLL
+ * 01001 - ethernet ref clock
+ * 01010 - PCIe ref clock
+ * 01011 - SATA ref clock
+ * 01100 - USB1 PLL clock
+ * 01101 - USB2 PLL clock
+ * 01110 - pfd0
+ * 01111 - pfd1
+ * 10000 - pfd2
+ * 10001 - pfd3
+ * 10010 - xtal
+ * 10011 - lvds1 (loopback)
+ * 10100 - lvds2 (not useful)
+ * 10101 to 11111 - pfd7
+ */
+
+#define BP_PMU_REG_MISC1_CLR_LVDS2_CLK_SEL      5
+#define BM_PMU_REG_MISC1_CLR_LVDS2_CLK_SEL      0x000003e0
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_LVDS2_CLK_SEL(v)   ((((reg32_t) v) << 5) & BM_PMU_REG_MISC1_CLR_LVDS2_CLK_SEL)
+#else
+#define BF_PMU_REG_MISC1_CLR_LVDS2_CLK_SEL(v)   (((v) << 5) & BM_PMU_REG_MISC1_CLR_LVDS2_CLK_SEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDS2_CLK_SEL field to a new value.
+#define BW_PMU_REG_MISC1_CLR_LVDS2_CLK_SEL(v)   BF_CS1(PMU_REG_MISC1_CLR, LVDS2_CLK_SEL, v)
+#endif
+
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field LVDSCLK1_OBEN (RW)
+ *
+ * This enables the lvds output buffer for anaclk1/1b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_CLR_LVDSCLK1_OBEN      10
+#define BM_PMU_REG_MISC1_CLR_LVDSCLK1_OBEN      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK1_OBEN(v)   ((((reg32_t) v) << 10) & BM_PMU_REG_MISC1_CLR_LVDSCLK1_OBEN)
+#else
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK1_OBEN(v)   (((v) << 10) & BM_PMU_REG_MISC1_CLR_LVDSCLK1_OBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK1_OBEN field to a new value.
+#define BW_PMU_REG_MISC1_CLR_LVDSCLK1_OBEN(v)   BF_CS1(PMU_REG_MISC1_CLR, LVDSCLK1_OBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field LVDSCLK2_OBEN (RW)
+ *
+ * This enables the lvds output buffer for anaclk2/2b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_CLR_LVDSCLK2_OBEN      11
+#define BM_PMU_REG_MISC1_CLR_LVDSCLK2_OBEN      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK2_OBEN(v)   ((((reg32_t) v) << 11) & BM_PMU_REG_MISC1_CLR_LVDSCLK2_OBEN)
+#else
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK2_OBEN(v)   (((v) << 11) & BM_PMU_REG_MISC1_CLR_LVDSCLK2_OBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK2_OBEN field to a new value.
+#define BW_PMU_REG_MISC1_CLR_LVDSCLK2_OBEN(v)   BF_CS1(PMU_REG_MISC1_CLR, LVDSCLK2_OBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field LVDSCLK1_IBEN (RW)
+ *
+ * This enables the lvds input buffer for anaclk1/1b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_CLR_LVDSCLK1_IBEN      12
+#define BM_PMU_REG_MISC1_CLR_LVDSCLK1_IBEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK1_IBEN(v)   ((((reg32_t) v) << 12) & BM_PMU_REG_MISC1_CLR_LVDSCLK1_IBEN)
+#else
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK1_IBEN(v)   (((v) << 12) & BM_PMU_REG_MISC1_CLR_LVDSCLK1_IBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK1_IBEN field to a new value.
+#define BW_PMU_REG_MISC1_CLR_LVDSCLK1_IBEN(v)   BF_CS1(PMU_REG_MISC1_CLR, LVDSCLK1_IBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field LVDSCLK2_IBEN (RW)
+ *
+ * This enables the lvds input buffer for anaclk2/2b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_CLR_LVDSCLK2_IBEN      13
+#define BM_PMU_REG_MISC1_CLR_LVDSCLK2_IBEN      0x00002000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK2_IBEN(v)   ((((reg32_t) v) << 13) & BM_PMU_REG_MISC1_CLR_LVDSCLK2_IBEN)
+#else
+#define BF_PMU_REG_MISC1_CLR_LVDSCLK2_IBEN(v)   (((v) << 13) & BM_PMU_REG_MISC1_CLR_LVDSCLK2_IBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK2_IBEN field to a new value.
+#define BW_PMU_REG_MISC1_CLR_LVDSCLK2_IBEN(v)   BF_CS1(PMU_REG_MISC1_CLR, LVDSCLK2_IBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field IRQ_TEMPSENSE (W1C)
+ *
+ * This status bit is set to one when when the temperature sensor interrupt asserts. Not related to
+ * PMU.
+ */
+
+#define BP_PMU_REG_MISC1_CLR_IRQ_TEMPSENSE      29
+#define BM_PMU_REG_MISC1_CLR_IRQ_TEMPSENSE      0x20000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_IRQ_TEMPSENSE(v)   ((((reg32_t) v) << 29) & BM_PMU_REG_MISC1_CLR_IRQ_TEMPSENSE)
+#else
+#define BF_PMU_REG_MISC1_CLR_IRQ_TEMPSENSE(v)   (((v) << 29) & BM_PMU_REG_MISC1_CLR_IRQ_TEMPSENSE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_TEMPSENSE field to a new value.
+#define BW_PMU_REG_MISC1_CLR_IRQ_TEMPSENSE(v)   BF_CS1(PMU_REG_MISC1_CLR, IRQ_TEMPSENSE, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field IRQ_ANA_BO (W1C)
+ *
+ * This status bit is set to one when when any of the analog regulator brownout interrupts assert.
+ * Check the regulator status bits to discover which regulator interrupt asserted.
+ */
+
+#define BP_PMU_REG_MISC1_CLR_IRQ_ANA_BO      30
+#define BM_PMU_REG_MISC1_CLR_IRQ_ANA_BO      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_IRQ_ANA_BO(v)   ((((reg32_t) v) << 30) & BM_PMU_REG_MISC1_CLR_IRQ_ANA_BO)
+#else
+#define BF_PMU_REG_MISC1_CLR_IRQ_ANA_BO(v)   (((v) << 30) & BM_PMU_REG_MISC1_CLR_IRQ_ANA_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_ANA_BO field to a new value.
+#define BW_PMU_REG_MISC1_CLR_IRQ_ANA_BO(v)   BF_CS1(PMU_REG_MISC1_CLR, IRQ_ANA_BO, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_CLR, field IRQ_DIG_BO (W1C)
+ *
+ * This status bit is set to one when when any of the digital regulator brownout interrupts assert.
+ * Check the regulator status bits to discover which regulator interrupt asserted.
+ */
+
+#define BP_PMU_REG_MISC1_CLR_IRQ_DIG_BO      31
+#define BM_PMU_REG_MISC1_CLR_IRQ_DIG_BO      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_CLR_IRQ_DIG_BO(v)   ((((reg32_t) v) << 31) & BM_PMU_REG_MISC1_CLR_IRQ_DIG_BO)
+#else
+#define BF_PMU_REG_MISC1_CLR_IRQ_DIG_BO(v)   (((v) << 31) & BM_PMU_REG_MISC1_CLR_IRQ_DIG_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_DIG_BO field to a new value.
+#define BW_PMU_REG_MISC1_CLR_IRQ_DIG_BO(v)   BF_CS1(PMU_REG_MISC1_CLR, IRQ_DIG_BO, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_PMU_REG_MISC1_TOG - Miscellaneous Register 1 _TOG (RW)
+ *
+ * This register defines the control and status bits for miscellaneous analog blocks. The lvds1 and
+ * lvds2 controls below control the behavior of the anaclk1/1b and anaclk2/2b lvds IO's.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned LVDS1_CLK_SEL : 5; //!< This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+        unsigned LVDS2_CLK_SEL : 5; //!< This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+        unsigned LVDSCLK1_OBEN : 1; //!< This enables the lvds output buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK2_OBEN : 1; //!< This enables the lvds output buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK1_IBEN : 1; //!< This enables the lvds input buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDSCLK2_IBEN : 1; //!< This enables the lvds input buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned RESERVED0 : 15; //!< Reserved
+        unsigned IRQ_TEMPSENSE : 1; //!< This status bit is set to one when when the temperature sensor interrupt asserts. Not related to PMU.
+        unsigned IRQ_ANA_BO : 1; //!< This status bit is set to one when when any of the analog regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
+        unsigned IRQ_DIG_BO : 1; //!< This status bit is set to one when when any of the digital regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
+    } B;
+} hw_pmu_reg_misc1_tog_t;
+#endif
+
+/*
+ * constants & macros for entire PMU_REG_MISC1_TOG register
+ */
+#define HW_PMU_REG_MISC1_TOG_ADDR      (REGS_PMU_BASE + 0x16c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_PMU_REG_MISC1_TOG           (*(volatile hw_pmu_reg_misc1_tog_t *) HW_PMU_REG_MISC1_TOG_ADDR)
+#define HW_PMU_REG_MISC1_TOG_RD()      (HW_PMU_REG_MISC1_TOG.U)
+#define HW_PMU_REG_MISC1_TOG_WR(v)     (HW_PMU_REG_MISC1_TOG.U = (v))
+#define HW_PMU_REG_MISC1_TOG_SET(v)    (HW_PMU_REG_MISC1_TOG_WR(HW_PMU_REG_MISC1_TOG_RD() |  (v)))
+#define HW_PMU_REG_MISC1_TOG_CLR(v)    (HW_PMU_REG_MISC1_TOG_WR(HW_PMU_REG_MISC1_TOG_RD() & ~(v)))
+#define HW_PMU_REG_MISC1_TOG_TOG(v)    (HW_PMU_REG_MISC1_TOG_WR(HW_PMU_REG_MISC1_TOG_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual PMU_REG_MISC1_TOG bitfields
+ */
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field LVDS1_CLK_SEL (RW)
+ *
+ * This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+ *
+ * Values:
+ * 00000 - Arm PLL
+ * 00001 - 528 PLL
+ * 00010 - pfd4
+ * 00011 - pfd5
+ * 00100 - pfd6
+ * 00101 - pfd7
+ * 00110 - Audio PLL
+ * 00111 - Video PLL
+ * 01000 - MLB PLL
+ * 01001 - ethernet ref clock
+ * 01010 - PCIe ref clock
+ * 01011 - SATA ref clock
+ * 01100 - USB1 PLL clock
+ * 01101 - USB2 PLL clock
+ * 01110 - pfd0
+ * 01111 - pfd1
+ * 10000 - pfd2
+ * 10001 - pfd3
+ * 10010 - xtal
+ * 10011 - lvds1 (not useful)
+ * 10100 - lvds2 (loopback)
+ * 10101 to 11111 - pfd7
+ */
+
+#define BP_PMU_REG_MISC1_TOG_LVDS1_CLK_SEL      0
+#define BM_PMU_REG_MISC1_TOG_LVDS1_CLK_SEL      0x0000001f
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_LVDS1_CLK_SEL(v)   ((((reg32_t) v) << 0) & BM_PMU_REG_MISC1_TOG_LVDS1_CLK_SEL)
+#else
+#define BF_PMU_REG_MISC1_TOG_LVDS1_CLK_SEL(v)   (((v) << 0) & BM_PMU_REG_MISC1_TOG_LVDS1_CLK_SEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDS1_CLK_SEL field to a new value.
+#define BW_PMU_REG_MISC1_TOG_LVDS1_CLK_SEL(v)   BF_CS1(PMU_REG_MISC1_TOG, LVDS1_CLK_SEL, v)
+#endif
+
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field LVDS2_CLK_SEL (RW)
+ *
+ * This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
+ *
+ * Values:
+ * 00000 - Arm PLL
+ * 00001 - 528 PLL
+ * 00010 - pfd4
+ * 00011 - pfd5
+ * 00100 - pfd6
+ * 00101 - pfd7
+ * 00110 - Audio PLL
+ * 00111 - Video PLL
+ * 01000 - MLB PLL
+ * 01001 - ethernet ref clock
+ * 01010 - PCIe ref clock
+ * 01011 - SATA ref clock
+ * 01100 - USB1 PLL clock
+ * 01101 - USB2 PLL clock
+ * 01110 - pfd0
+ * 01111 - pfd1
+ * 10000 - pfd2
+ * 10001 - pfd3
+ * 10010 - xtal
+ * 10011 - lvds1 (loopback)
+ * 10100 - lvds2 (not useful)
+ * 10101 to 11111 - pfd7
+ */
+
+#define BP_PMU_REG_MISC1_TOG_LVDS2_CLK_SEL      5
+#define BM_PMU_REG_MISC1_TOG_LVDS2_CLK_SEL      0x000003e0
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_LVDS2_CLK_SEL(v)   ((((reg32_t) v) << 5) & BM_PMU_REG_MISC1_TOG_LVDS2_CLK_SEL)
+#else
+#define BF_PMU_REG_MISC1_TOG_LVDS2_CLK_SEL(v)   (((v) << 5) & BM_PMU_REG_MISC1_TOG_LVDS2_CLK_SEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDS2_CLK_SEL field to a new value.
+#define BW_PMU_REG_MISC1_TOG_LVDS2_CLK_SEL(v)   BF_CS1(PMU_REG_MISC1_TOG, LVDS2_CLK_SEL, v)
+#endif
+
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field LVDSCLK1_OBEN (RW)
+ *
+ * This enables the lvds output buffer for anaclk1/1b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_TOG_LVDSCLK1_OBEN      10
+#define BM_PMU_REG_MISC1_TOG_LVDSCLK1_OBEN      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK1_OBEN(v)   ((((reg32_t) v) << 10) & BM_PMU_REG_MISC1_TOG_LVDSCLK1_OBEN)
+#else
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK1_OBEN(v)   (((v) << 10) & BM_PMU_REG_MISC1_TOG_LVDSCLK1_OBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK1_OBEN field to a new value.
+#define BW_PMU_REG_MISC1_TOG_LVDSCLK1_OBEN(v)   BF_CS1(PMU_REG_MISC1_TOG, LVDSCLK1_OBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field LVDSCLK2_OBEN (RW)
+ *
+ * This enables the lvds output buffer for anaclk2/2b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_TOG_LVDSCLK2_OBEN      11
+#define BM_PMU_REG_MISC1_TOG_LVDSCLK2_OBEN      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK2_OBEN(v)   ((((reg32_t) v) << 11) & BM_PMU_REG_MISC1_TOG_LVDSCLK2_OBEN)
+#else
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK2_OBEN(v)   (((v) << 11) & BM_PMU_REG_MISC1_TOG_LVDSCLK2_OBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK2_OBEN field to a new value.
+#define BW_PMU_REG_MISC1_TOG_LVDSCLK2_OBEN(v)   BF_CS1(PMU_REG_MISC1_TOG, LVDSCLK2_OBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field LVDSCLK1_IBEN (RW)
+ *
+ * This enables the lvds input buffer for anaclk1/1b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_TOG_LVDSCLK1_IBEN      12
+#define BM_PMU_REG_MISC1_TOG_LVDSCLK1_IBEN      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK1_IBEN(v)   ((((reg32_t) v) << 12) & BM_PMU_REG_MISC1_TOG_LVDSCLK1_IBEN)
+#else
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK1_IBEN(v)   (((v) << 12) & BM_PMU_REG_MISC1_TOG_LVDSCLK1_IBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK1_IBEN field to a new value.
+#define BW_PMU_REG_MISC1_TOG_LVDSCLK1_IBEN(v)   BF_CS1(PMU_REG_MISC1_TOG, LVDSCLK1_IBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field LVDSCLK2_IBEN (RW)
+ *
+ * This enables the lvds input buffer for anaclk2/2b. Do not enable input and output buffers
+ * simutaneously. Not related to PMU.
+ */
+
+#define BP_PMU_REG_MISC1_TOG_LVDSCLK2_IBEN      13
+#define BM_PMU_REG_MISC1_TOG_LVDSCLK2_IBEN      0x00002000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK2_IBEN(v)   ((((reg32_t) v) << 13) & BM_PMU_REG_MISC1_TOG_LVDSCLK2_IBEN)
+#else
+#define BF_PMU_REG_MISC1_TOG_LVDSCLK2_IBEN(v)   (((v) << 13) & BM_PMU_REG_MISC1_TOG_LVDSCLK2_IBEN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LVDSCLK2_IBEN field to a new value.
+#define BW_PMU_REG_MISC1_TOG_LVDSCLK2_IBEN(v)   BF_CS1(PMU_REG_MISC1_TOG, LVDSCLK2_IBEN, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field IRQ_TEMPSENSE (W1C)
+ *
+ * This status bit is set to one when when the temperature sensor interrupt asserts. Not related to
+ * PMU.
+ */
+
+#define BP_PMU_REG_MISC1_TOG_IRQ_TEMPSENSE      29
+#define BM_PMU_REG_MISC1_TOG_IRQ_TEMPSENSE      0x20000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_IRQ_TEMPSENSE(v)   ((((reg32_t) v) << 29) & BM_PMU_REG_MISC1_TOG_IRQ_TEMPSENSE)
+#else
+#define BF_PMU_REG_MISC1_TOG_IRQ_TEMPSENSE(v)   (((v) << 29) & BM_PMU_REG_MISC1_TOG_IRQ_TEMPSENSE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_TEMPSENSE field to a new value.
+#define BW_PMU_REG_MISC1_TOG_IRQ_TEMPSENSE(v)   BF_CS1(PMU_REG_MISC1_TOG, IRQ_TEMPSENSE, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field IRQ_ANA_BO (W1C)
+ *
+ * This status bit is set to one when when any of the analog regulator brownout interrupts assert.
+ * Check the regulator status bits to discover which regulator interrupt asserted.
+ */
+
+#define BP_PMU_REG_MISC1_TOG_IRQ_ANA_BO      30
+#define BM_PMU_REG_MISC1_TOG_IRQ_ANA_BO      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_IRQ_ANA_BO(v)   ((((reg32_t) v) << 30) & BM_PMU_REG_MISC1_TOG_IRQ_ANA_BO)
+#else
+#define BF_PMU_REG_MISC1_TOG_IRQ_ANA_BO(v)   (((v) << 30) & BM_PMU_REG_MISC1_TOG_IRQ_ANA_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_ANA_BO field to a new value.
+#define BW_PMU_REG_MISC1_TOG_IRQ_ANA_BO(v)   BF_CS1(PMU_REG_MISC1_TOG, IRQ_ANA_BO, v)
+#endif
+
+/* --- Register HW_PMU_REG_MISC1_TOG, field IRQ_DIG_BO (W1C)
+ *
+ * This status bit is set to one when when any of the digital regulator brownout interrupts assert.
+ * Check the regulator status bits to discover which regulator interrupt asserted.
+ */
+
+#define BP_PMU_REG_MISC1_TOG_IRQ_DIG_BO      31
+#define BM_PMU_REG_MISC1_TOG_IRQ_DIG_BO      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_PMU_REG_MISC1_TOG_IRQ_DIG_BO(v)   ((((reg32_t) v) << 31) & BM_PMU_REG_MISC1_TOG_IRQ_DIG_BO)
+#else
+#define BF_PMU_REG_MISC1_TOG_IRQ_DIG_BO(v)   (((v) << 31) & BM_PMU_REG_MISC1_TOG_IRQ_DIG_BO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRQ_DIG_BO field to a new value.
+#define BW_PMU_REG_MISC1_TOG_IRQ_DIG_BO(v)   BF_CS1(PMU_REG_MISC1_TOG, IRQ_DIG_BO, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1546,7 +2368,7 @@ typedef union
 #define BM_PMU_REG_MISC2_REG1_BO_OFFSET      0x00000700
 
 
-/* --- Register HW_PMU_REG_MISC2, field REG1_BO_STATUS (RO)
+/* --- Register HW_PMU_REG_MISC2, field REG1_BO_STATUS1 (RO)
  *
  * Reg1 brownout status bit.
  *
@@ -1554,8 +2376,8 @@ typedef union
  * 1 - Brownout, supply is below target minus brownout offset.
  */
 
-#define BP_PMU_REG_MISC2_REG1_BO_STATUS      11
-#define BM_PMU_REG_MISC2_REG1_BO_STATUS      0x00000800
+#define BP_PMU_REG_MISC2_REG1_BO_STATUS1      11
+#define BM_PMU_REG_MISC2_REG1_BO_STATUS1      0x00000800
 
 
 /* --- Register HW_PMU_REG_MISC2, field REG1_ENABLE_BO (RW)
@@ -1745,9 +2567,11 @@ typedef struct
     volatile hw_pmu_misc0_t MISC0; //!< Miscellaneous Register 0
     reg32_t _reserved5[3];
     volatile hw_pmu_reg_misc1_t REG_MISC1; //!< Miscellaneous Register 1
-    reg32_t _reserved6[3];
+    volatile hw_pmu_reg_misc1_set_t REG_MISC1_SET; //!< Miscellaneous Register 1 _SET
+    volatile hw_pmu_reg_misc1_clr_t REG_MISC1_CLR; //!< Miscellaneous Register 1 _CLR
+    volatile hw_pmu_reg_misc1_tog_t REG_MISC1_TOG; //!< Miscellaneous Register 1 _TOG
     volatile hw_pmu_reg_misc2_t REG_MISC2; //!< Miscellaneous Register 2
-} hw_pmu_t
+} hw_pmu_t;
 #endif
 
 //! @brief Macro to access all PMU registers.

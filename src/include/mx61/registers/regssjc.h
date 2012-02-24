@@ -20,7 +20,9 @@
  * - HW_SJC_DCR - Debug Control Register
  * - HW_SJC_SSR - Security Status Register
  * - HW_SJC_GPCCR - General Purpose Clocks Control Register
- * - HW_SJC_GPUCR - General Purpose Unsecured Control Register n
+ * - HW_SJC_GPUCR1 - General Purpose Unsecured Control Register n 1
+ * - HW_SJC_GPUCR2 - General Purpose Unsecured Control Register n 2
+ * - HW_SJC_GPUCR3 - General Purpose Unsecured Control Register n 3
  * - HW_SJC_GPSCR - General Purpose Secured Control Register
  *
  * hw_sjc_t - Struct containing all module registers.
@@ -676,7 +678,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SJC_GPUCR - General Purpose Unsecured Control Register n (RW)
+ * @brief HW_SJC_GPUCR1 - General Purpose Unsecured Control Register n 1 (RW)
  *
 
  */
@@ -687,25 +689,93 @@ typedef union
     {
         unsigned RESERVED0 : 32; //!< Reserved.
     } B;
-} hw_sjc_gpucr_t;
+} hw_sjc_gpucr1_t;
 #endif
 
 /*
- * constants & macros for entire SJC_GPUCR register
+ * constants & macros for entire SJC_GPUCR1 register
  */
-#define HW_SJC_GPUCR_ADDR      (REGS_SJC_BASE + 0x9)
+#define HW_SJC_GPUCR1_ADDR      (REGS_SJC_BASE + 0x9)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_SJC_GPUCR           (*(volatile hw_sjc_gpucr_t *) HW_SJC_GPUCR_ADDR)
-#define HW_SJC_GPUCR_RD()      (HW_SJC_GPUCR.U)
-#define HW_SJC_GPUCR_WR(v)     (HW_SJC_GPUCR.U = (v))
-#define HW_SJC_GPUCR_SET(v)    (HW_SJC_GPUCR_WR(HW_SJC_GPUCR_RD() |  (v)))
-#define HW_SJC_GPUCR_CLR(v)    (HW_SJC_GPUCR_WR(HW_SJC_GPUCR_RD() & ~(v)))
-#define HW_SJC_GPUCR_TOG(v)    (HW_SJC_GPUCR_WR(HW_SJC_GPUCR_RD() ^  (v)))
+#define HW_SJC_GPUCR1           (*(volatile hw_sjc_gpucr1_t *) HW_SJC_GPUCR1_ADDR)
+#define HW_SJC_GPUCR1_RD()      (HW_SJC_GPUCR1.U)
+#define HW_SJC_GPUCR1_WR(v)     (HW_SJC_GPUCR1.U = (v))
+#define HW_SJC_GPUCR1_SET(v)    (HW_SJC_GPUCR1_WR(HW_SJC_GPUCR1_RD() |  (v)))
+#define HW_SJC_GPUCR1_CLR(v)    (HW_SJC_GPUCR1_WR(HW_SJC_GPUCR1_RD() & ~(v)))
+#define HW_SJC_GPUCR1_TOG(v)    (HW_SJC_GPUCR1_WR(HW_SJC_GPUCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual SJC_GPUCR bitfields
+ * constants & macros for individual SJC_GPUCR1 bitfields
+ */
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_SJC_GPUCR2 - General Purpose Unsecured Control Register n 2 (RW)
+ *
+
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RESERVED0 : 32; //!< Reserved.
+    } B;
+} hw_sjc_gpucr2_t;
+#endif
+
+/*
+ * constants & macros for entire SJC_GPUCR2 register
+ */
+#define HW_SJC_GPUCR2_ADDR      (REGS_SJC_BASE + 0xa)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SJC_GPUCR2           (*(volatile hw_sjc_gpucr2_t *) HW_SJC_GPUCR2_ADDR)
+#define HW_SJC_GPUCR2_RD()      (HW_SJC_GPUCR2.U)
+#define HW_SJC_GPUCR2_WR(v)     (HW_SJC_GPUCR2.U = (v))
+#define HW_SJC_GPUCR2_SET(v)    (HW_SJC_GPUCR2_WR(HW_SJC_GPUCR2_RD() |  (v)))
+#define HW_SJC_GPUCR2_CLR(v)    (HW_SJC_GPUCR2_WR(HW_SJC_GPUCR2_RD() & ~(v)))
+#define HW_SJC_GPUCR2_TOG(v)    (HW_SJC_GPUCR2_WR(HW_SJC_GPUCR2_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual SJC_GPUCR2 bitfields
+ */
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_SJC_GPUCR3 - General Purpose Unsecured Control Register n 3 (RW)
+ *
+
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RESERVED0 : 32; //!< Reserved.
+    } B;
+} hw_sjc_gpucr3_t;
+#endif
+
+/*
+ * constants & macros for entire SJC_GPUCR3 register
+ */
+#define HW_SJC_GPUCR3_ADDR      (REGS_SJC_BASE + 0xb)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_SJC_GPUCR3           (*(volatile hw_sjc_gpucr3_t *) HW_SJC_GPUCR3_ADDR)
+#define HW_SJC_GPUCR3_RD()      (HW_SJC_GPUCR3.U)
+#define HW_SJC_GPUCR3_WR(v)     (HW_SJC_GPUCR3.U = (v))
+#define HW_SJC_GPUCR3_SET(v)    (HW_SJC_GPUCR3_WR(HW_SJC_GPUCR3_RD() |  (v)))
+#define HW_SJC_GPUCR3_CLR(v)    (HW_SJC_GPUCR3_WR(HW_SJC_GPUCR3_RD() & ~(v)))
+#define HW_SJC_GPUCR3_TOG(v)    (HW_SJC_GPUCR3_WR(HW_SJC_GPUCR3_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual SJC_GPUCR3 bitfields
  */
 
 #ifndef __LANGUAGE_ASM__
@@ -758,9 +828,11 @@ typedef struct
     volatile hw_sjc_dcr_t DCR; //!< Debug Control Register
     volatile hw_sjc_ssr_t SSR; //!< Security Status Register
     volatile hw_sjc_gpccr_t GPCCR; //!< General Purpose Clocks Control Register
-    volatile hw_sjc_gpucr_t GPUCR; //!< General Purpose Unsecured Control Register n
+    volatile hw_sjc_gpucr1_t GPUCR1; //!< General Purpose Unsecured Control Register n 1
+    volatile hw_sjc_gpucr2_t GPUCR2; //!< General Purpose Unsecured Control Register n 2
+    volatile hw_sjc_gpucr3_t GPUCR3; //!< General Purpose Unsecured Control Register n 3
     volatile hw_sjc_gpscr_t GPSCR; //!< General Purpose Secured Control Register
-} hw_sjc_t
+} hw_sjc_t;
 #endif
 
 //! @brief Macro to access all SJC registers.

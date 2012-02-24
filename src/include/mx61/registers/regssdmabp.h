@@ -89,7 +89,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMABP_INTR - Channel Interrupts (w1c)
+ * @brief HW_SDMABP_INTR - Channel Interrupts (W1C)
  *
 
  */
@@ -111,6 +111,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_SDMABP_INTR           (*(volatile hw_sdmabp_intr_t *) HW_SDMABP_INTR_ADDR)
 #define HW_SDMABP_INTR_RD()      (HW_SDMABP_INTR.U)
+#define HW_SDMABP_INTR_WR(v)     (HW_SDMABP_INTR.U = (v))
+#define HW_SDMABP_INTR_SET(v)    (HW_SDMABP_INTR_WR(HW_SDMABP_INTR_RD() |  (v)))
+#define HW_SDMABP_INTR_CLR(v)    (HW_SDMABP_INTR_WR(HW_SDMABP_INTR_RD() & ~(v)))
+#define HW_SDMABP_INTR_TOG(v)    (HW_SDMABP_INTR_WR(HW_SDMABP_INTR_RD() ^  (v)))
 #endif
 
 /*
@@ -129,6 +133,16 @@ typedef union
 
 #define BP_SDMABP_INTR_DI      0
 #define BM_SDMABP_INTR_DI      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMABP_INTR_DI(v)   ((((reg32_t) v) << 0) & BM_SDMABP_INTR_DI)
+#else
+#define BF_SDMABP_INTR_DI(v)   (((v) << 0) & BM_SDMABP_INTR_DI)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI field to a new value.
+#define BW_SDMABP_INTR_DI(v)   BF_CS1(SDMABP_INTR, DI, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -174,6 +188,16 @@ typedef union
 
 #define BP_SDMABP_STOP_STAT_DE      0
 #define BM_SDMABP_STOP_STAT_DE      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_SDMABP_STOP_STAT_DE(v)   ((((reg32_t) v) << 0) & BM_SDMABP_STOP_STAT_DE)
+#else
+#define BF_SDMABP_STOP_STAT_DE(v)   (((v) << 0) & BM_SDMABP_STOP_STAT_DE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DE field to a new value.
+#define BW_SDMABP_STOP_STAT_DE(v)   BF_CS1(SDMABP_STOP_STAT, DE, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -378,7 +402,7 @@ typedef struct
     volatile hw_sdmabp_intrmask_t INTRMASK; //!< Channel DSP Interrupt Mask
     reg32_t _reserved1;
     volatile hw_sdmabp_evterrdbg_t EVTERRDBG; //!< DMA Request Error Register
-} hw_sdmabp_t
+} hw_sdmabp_t;
 #endif
 
 //! @brief Macro to access all SDMABP registers.

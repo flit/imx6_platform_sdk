@@ -443,6 +443,16 @@ typedef union
 #define BP_EPIT_EPITSR_OCIF      0
 #define BM_EPIT_EPITSR_OCIF      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_EPIT_EPITSR_OCIF(v)   ((((reg32_t) v) << 0) & BM_EPIT_EPITSR_OCIF)
+#else
+#define BF_EPIT_EPITSR_OCIF(v)   (((v) << 0) & BM_EPIT_EPITSR_OCIF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OCIF field to a new value.
+#define BW_EPIT_EPITSR_OCIF(v)   BF_CS1(EPIT_EPITSR, OCIF, v)
+#endif
+
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -609,7 +619,7 @@ typedef struct
     volatile hw_epit_epitlr_t EPITLR; //!< Load register
     volatile hw_epit_epitcmpr_t EPITCMPR; //!< Compare register
     volatile hw_epit_epitcnr_t EPITCNR; //!< Counter register
-} hw_epit_t
+} hw_epit_t;
 #endif
 
 //! @brief Macro to access all EPIT registers.

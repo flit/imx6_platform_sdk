@@ -30,7 +30,7 @@
  * - HW_FLEXCAN_CRCR - CRC Register
  * - HW_FLEXCAN_RXFGMASK - Rx FIFO Global Mask Register
  * - HW_FLEXCAN_RXFIR - Rx FIFO Information Register
- * - HW_FLEXCAN_RXIMR0-RXIMR63 - Rx Individual Mask Registers
+ * - HW_FLEXCAN_RXIMR0_RXIMR63 - Rx Individual Mask Registers
  * - HW_FLEXCAN_GFWR - Glitch Filter Width Registers
  *
  * hw_flexcan_t - Struct containing all module registers.
@@ -1157,7 +1157,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned MG31 : 32; //!< These bits mask the Mailbox filter bits as shown in the figure above {Statement} . Note that the alignment with the ID word of the Mailbox is not perfect as the two most significant MG bits affect the fields RTR and IDE which are located in the Control and Status word of the Mailbox {FlexCAN3RxMaskStim,FlexCAN3RegAccessStim,FlexCAN3MemAccessStim,FlexCAN3RxRpsCkr} . shows in detail which MG bits mask each Mailbox filter field.
+        unsigned MG31_MG0 : 32; //!< These bits mask the Mailbox filter bits as shown in the figure above {Statement} . Note that the alignment with the ID word of the Mailbox is not perfect as the two most significant MG bits affect the fields RTR and IDE which are located in the Control and Status word of the Mailbox {FlexCAN3RxMaskStim,FlexCAN3RegAccessStim,FlexCAN3MemAccessStim,FlexCAN3RxRpsCkr} . shows in detail which MG bits mask each Mailbox filter field.
     } B;
 } hw_flexcan_rxmgmask_t;
 #endif
@@ -1180,7 +1180,7 @@ typedef union
  * constants & macros for individual FLEXCAN_RXMGMASK bitfields
  */
 
-/* --- Register HW_FLEXCAN_RXMGMASK, field MG31 (RW)
+/* --- Register HW_FLEXCAN_RXMGMASK, field MG31_MG0 (RW)
  *
  * These bits mask the Mailbox filter bits as shown in the figure above {Statement} . Note that the
  * alignment with the ID word of the Mailbox is not perfect as the two most significant MG bits
@@ -1193,17 +1193,17 @@ typedef union
  * 1 - The corresponding bit in the filter is checked against the one received
  */
 
-#define BP_FLEXCAN_RXMGMASK_MG31      0
-#define BM_FLEXCAN_RXMGMASK_MG31      0xffffffff
+#define BP_FLEXCAN_RXMGMASK_MG31_MG0      0
+#define BM_FLEXCAN_RXMGMASK_MG31_MG0      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_RXMGMASK_MG31(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RXMGMASK_MG31)
+#define BF_FLEXCAN_RXMGMASK_MG31_MG0(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RXMGMASK_MG31_MG0)
 #else
-#define BF_FLEXCAN_RXMGMASK_MG31(v)   (((v) << 0) & BM_FLEXCAN_RXMGMASK_MG31)
+#define BF_FLEXCAN_RXMGMASK_MG31_MG0(v)   (((v) << 0) & BM_FLEXCAN_RXMGMASK_MG31_MG0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the MG31 field to a new value.
-#define BW_FLEXCAN_RXMGMASK_MG31(v)   BF_CS1(FLEXCAN_RXMGMASK, MG31, v)
+//! @brief Set the MG31_MG0 field to a new value.
+#define BW_FLEXCAN_RXMGMASK_MG31_MG0(v)   BF_CS1(FLEXCAN_RXMGMASK, MG31_MG0, v)
 #endif
 
 
@@ -1224,7 +1224,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned RX14M31 : 32; //!< These bits mask Mailbox 14 filter bits in the same fashion as RXMGMASK masks other Mailboxes filters (see )
+        unsigned RX14M31_RX14M0 : 32; //!< These bits mask Mailbox 14 filter bits in the same fashion as RXMGMASK masks other Mailboxes filters (see )
     } B;
 } hw_flexcan_rx14mask_t;
 #endif
@@ -1247,7 +1247,7 @@ typedef union
  * constants & macros for individual FLEXCAN_RX14MASK bitfields
  */
 
-/* --- Register HW_FLEXCAN_RX14MASK, field RX14M31 (RW)
+/* --- Register HW_FLEXCAN_RX14MASK, field RX14M31_RX14M0 (RW)
  *
  * These bits mask Mailbox 14 filter bits in the same fashion as RXMGMASK masks other Mailboxes
  * filters (see )
@@ -1257,17 +1257,17 @@ typedef union
  * 1 - The corresponding bit in the filter is checked
  */
 
-#define BP_FLEXCAN_RX14MASK_RX14M31      0
-#define BM_FLEXCAN_RX14MASK_RX14M31      0xffffffff
+#define BP_FLEXCAN_RX14MASK_RX14M31_RX14M0      0
+#define BM_FLEXCAN_RX14MASK_RX14M31_RX14M0      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_RX14MASK_RX14M31(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RX14MASK_RX14M31)
+#define BF_FLEXCAN_RX14MASK_RX14M31_RX14M0(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RX14MASK_RX14M31_RX14M0)
 #else
-#define BF_FLEXCAN_RX14MASK_RX14M31(v)   (((v) << 0) & BM_FLEXCAN_RX14MASK_RX14M31)
+#define BF_FLEXCAN_RX14MASK_RX14M31_RX14M0(v)   (((v) << 0) & BM_FLEXCAN_RX14MASK_RX14M31_RX14M0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RX14M31 field to a new value.
-#define BW_FLEXCAN_RX14MASK_RX14M31(v)   BF_CS1(FLEXCAN_RX14MASK, RX14M31, v)
+//! @brief Set the RX14M31_RX14M0 field to a new value.
+#define BW_FLEXCAN_RX14MASK_RX14M31_RX14M0(v)   BF_CS1(FLEXCAN_RX14MASK, RX14M31_RX14M0, v)
 #endif
 
 
@@ -1287,7 +1287,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned RX15M31 : 32; //!< These bits mask Mailbox 15 filter bits in the same fashion as RXMGMASK masks other Mailboxes filters (see ).
+        unsigned RX15M31_RX15M0 : 32; //!< These bits mask Mailbox 15 filter bits in the same fashion as RXMGMASK masks other Mailboxes filters (see ).
     } B;
 } hw_flexcan_rx15mask_t;
 #endif
@@ -1310,7 +1310,7 @@ typedef union
  * constants & macros for individual FLEXCAN_RX15MASK bitfields
  */
 
-/* --- Register HW_FLEXCAN_RX15MASK, field RX15M31 (RW)
+/* --- Register HW_FLEXCAN_RX15MASK, field RX15M31_RX15M0 (RW)
  *
  * These bits mask Mailbox 15 filter bits in the same fashion as RXMGMASK masks other Mailboxes
  * filters (see ).
@@ -1320,17 +1320,17 @@ typedef union
  * 1 - The corresponding bit in the filter is checked
  */
 
-#define BP_FLEXCAN_RX15MASK_RX15M31      0
-#define BM_FLEXCAN_RX15MASK_RX15M31      0xffffffff
+#define BP_FLEXCAN_RX15MASK_RX15M31_RX15M0      0
+#define BM_FLEXCAN_RX15MASK_RX15M31_RX15M0      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_RX15MASK_RX15M31(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RX15MASK_RX15M31)
+#define BF_FLEXCAN_RX15MASK_RX15M31_RX15M0(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RX15MASK_RX15M31_RX15M0)
 #else
-#define BF_FLEXCAN_RX15MASK_RX15M31(v)   (((v) << 0) & BM_FLEXCAN_RX15MASK_RX15M31)
+#define BF_FLEXCAN_RX15MASK_RX15M31_RX15M0(v)   (((v) << 0) & BM_FLEXCAN_RX15MASK_RX15M31_RX15M0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RX15M31 field to a new value.
-#define BW_FLEXCAN_RX15MASK_RX15M31(v)   BF_CS1(FLEXCAN_RX15MASK, RX15M31, v)
+//! @brief Set the RX15M31_RX15M0 field to a new value.
+#define BW_FLEXCAN_RX15MASK_RX15M31_RX15M0(v)   BF_CS1(FLEXCAN_RX15MASK, RX15M31_RX15M0, v)
 #endif
 
 
@@ -1848,7 +1848,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned BUF63M : 32; //!< Each bit enables or disables the respective FLEXCAN Message Buffer (MB32 to MB63) Interrupt. {flexcan2_ipi_slv_flex_mbuffer_int} Setting or clearing a bit in the IMASK2 Register can assert or negate an interrupt request, if the corresponding IFLAG2 bit is set. {flexcan2_ipi_slv_flex_mbuffer_int}
+        unsigned BUF63M_BUF32M : 32; //!< Each bit enables or disables the respective FLEXCAN Message Buffer (MB32 to MB63) Interrupt. {flexcan2_ipi_slv_flex_mbuffer_int} Setting or clearing a bit in the IMASK2 Register can assert or negate an interrupt request, if the corresponding IFLAG2 bit is set. {flexcan2_ipi_slv_flex_mbuffer_int}
     } B;
 } hw_flexcan_imask2_t;
 #endif
@@ -1871,7 +1871,7 @@ typedef union
  * constants & macros for individual FLEXCAN_IMASK2 bitfields
  */
 
-/* --- Register HW_FLEXCAN_IMASK2, field BUF63M (RW)
+/* --- Register HW_FLEXCAN_IMASK2, field BUF63M_BUF32M (RW)
  *
  * Each bit enables or disables the respective FLEXCAN Message Buffer (MB32 to MB63) Interrupt.
  * {flexcan2_ipi_slv_flex_mbuffer_int} Setting or clearing a bit in the IMASK2 Register can assert
@@ -1883,17 +1883,17 @@ typedef union
  * 1 - The corresponding buffer Interrupt is enabled {flexcan2_ipi_slv_flex_mbuffer_int}
  */
 
-#define BP_FLEXCAN_IMASK2_BUF63M      0
-#define BM_FLEXCAN_IMASK2_BUF63M      0xffffffff
+#define BP_FLEXCAN_IMASK2_BUF63M_BUF32M      0
+#define BM_FLEXCAN_IMASK2_BUF63M_BUF32M      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_IMASK2_BUF63M(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IMASK2_BUF63M)
+#define BF_FLEXCAN_IMASK2_BUF63M_BUF32M(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IMASK2_BUF63M_BUF32M)
 #else
-#define BF_FLEXCAN_IMASK2_BUF63M(v)   (((v) << 0) & BM_FLEXCAN_IMASK2_BUF63M)
+#define BF_FLEXCAN_IMASK2_BUF63M_BUF32M(v)   (((v) << 0) & BM_FLEXCAN_IMASK2_BUF63M_BUF32M)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the BUF63M field to a new value.
-#define BW_FLEXCAN_IMASK2_BUF63M(v)   BF_CS1(FLEXCAN_IMASK2, BUF63M, v)
+//! @brief Set the BUF63M_BUF32M field to a new value.
+#define BW_FLEXCAN_IMASK2_BUF63M_BUF32M(v)   BF_CS1(FLEXCAN_IMASK2, BUF63M_BUF32M, v)
 #endif
 
 
@@ -1912,7 +1912,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned BUF31M : 32; //!< Each bit enables or disables the respective FLEXCAN Message Buffer (MB0 to MB31) Interrupt. {flexcan2_ipi_slv_flex_mbuffer_int} Setting or clearing a bit in the IMASK1 Register can assert or negate an interrupt request, if the corresponding IFLAG1 bit is set
+        unsigned BUF31M_BUF0M : 32; //!< Each bit enables or disables the respective FLEXCAN Message Buffer (MB0 to MB31) Interrupt. {flexcan2_ipi_slv_flex_mbuffer_int} Setting or clearing a bit in the IMASK1 Register can assert or negate an interrupt request, if the corresponding IFLAG1 bit is set
     } B;
 } hw_flexcan_imask1_t;
 #endif
@@ -1935,7 +1935,7 @@ typedef union
  * constants & macros for individual FLEXCAN_IMASK1 bitfields
  */
 
-/* --- Register HW_FLEXCAN_IMASK1, field BUF31M (RW)
+/* --- Register HW_FLEXCAN_IMASK1, field BUF31M_BUF0M (RW)
  *
  * Each bit enables or disables the respective FLEXCAN Message Buffer (MB0 to MB31) Interrupt.
  * {flexcan2_ipi_slv_flex_mbuffer_int} Setting or clearing a bit in the IMASK1 Register can assert
@@ -1946,17 +1946,17 @@ typedef union
  * 1 - The corresponding buffer Interrupt is enabled {flexcan2_ipi_slv_flex_mbuffer_int}
  */
 
-#define BP_FLEXCAN_IMASK1_BUF31M      0
-#define BM_FLEXCAN_IMASK1_BUF31M      0xffffffff
+#define BP_FLEXCAN_IMASK1_BUF31M_BUF0M      0
+#define BM_FLEXCAN_IMASK1_BUF31M_BUF0M      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_IMASK1_BUF31M(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IMASK1_BUF31M)
+#define BF_FLEXCAN_IMASK1_BUF31M_BUF0M(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IMASK1_BUF31M_BUF0M)
 #else
-#define BF_FLEXCAN_IMASK1_BUF31M(v)   (((v) << 0) & BM_FLEXCAN_IMASK1_BUF31M)
+#define BF_FLEXCAN_IMASK1_BUF31M_BUF0M(v)   (((v) << 0) & BM_FLEXCAN_IMASK1_BUF31M_BUF0M)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the BUF31M field to a new value.
-#define BW_FLEXCAN_IMASK1_BUF31M(v)   BF_CS1(FLEXCAN_IMASK1, BUF31M, v)
+//! @brief Set the BUF31M_BUF0M field to a new value.
+#define BW_FLEXCAN_IMASK1_BUF31M_BUF0M(v)   BF_CS1(FLEXCAN_IMASK1, BUF31M_BUF0M, v)
 #endif
 
 
@@ -1979,7 +1979,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned BUF63I : 32; //!< Each bit flags the respective FLEXCAN Message Buffer (MB32 to MB63) interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
+        unsigned BUF63I_BUF32I : 32; //!< Each bit flags the respective FLEXCAN Message Buffer (MB32 to MB63) interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
     } B;
 } hw_flexcan_iflag2_t;
 #endif
@@ -2002,7 +2002,7 @@ typedef union
  * constants & macros for individual FLEXCAN_IFLAG2 bitfields
  */
 
-/* --- Register HW_FLEXCAN_IFLAG2, field BUF63I (RW)
+/* --- Register HW_FLEXCAN_IFLAG2, field BUF63I_BUF32I (RW)
  *
  * Each bit flags the respective FLEXCAN Message Buffer (MB32 to MB63) interrupt.
  * {flexcan2_ipi_slv_flex_mbuffer_int}
@@ -2013,17 +2013,17 @@ typedef union
  *     {flexcan2_ipi_slv_flex_mbuffer_int}
  */
 
-#define BP_FLEXCAN_IFLAG2_BUF63I      0
-#define BM_FLEXCAN_IFLAG2_BUF63I      0xffffffff
+#define BP_FLEXCAN_IFLAG2_BUF63I_BUF32I      0
+#define BM_FLEXCAN_IFLAG2_BUF63I_BUF32I      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_IFLAG2_BUF63I(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IFLAG2_BUF63I)
+#define BF_FLEXCAN_IFLAG2_BUF63I_BUF32I(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IFLAG2_BUF63I_BUF32I)
 #else
-#define BF_FLEXCAN_IFLAG2_BUF63I(v)   (((v) << 0) & BM_FLEXCAN_IFLAG2_BUF63I)
+#define BF_FLEXCAN_IFLAG2_BUF63I_BUF32I(v)   (((v) << 0) & BM_FLEXCAN_IFLAG2_BUF63I_BUF32I)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the BUF63I field to a new value.
-#define BW_FLEXCAN_IFLAG2_BUF63I(v)   BF_CS1(FLEXCAN_IFLAG2, BUF63I, v)
+//! @brief Set the BUF63I_BUF32I field to a new value.
+#define BW_FLEXCAN_IFLAG2_BUF63I_BUF32I(v)   BF_CS1(FLEXCAN_IFLAG2, BUF63I_BUF32I, v)
 #endif
 
 
@@ -2056,11 +2056,11 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned BUF4I : 5; //!< If the Rx FIFO is not enabled, these bits flag the interrupts for MB0 to MB4 {Statement} . If the Rx FIFO is enabled, these flags are not used and must be considered as reserved locations {FlexCAN3RxRpsCkr} . These flags are cleared by the FlexCAN whenever the bit MCR[RFEN] is changed by ARM writes. {FlexCAN3IflagStim_todo}
+        unsigned BUF4I_BUF0I : 5; //!< If the Rx FIFO is not enabled, these bits flag the interrupts for MB0 to MB4 {Statement} . If the Rx FIFO is enabled, these flags are not used and must be considered as reserved locations {FlexCAN3RxRpsCkr} . These flags are cleared by the FlexCAN whenever the bit MCR[RFEN] is changed by ARM writes. {FlexCAN3IflagStim_todo}
         unsigned BUF5I : 1; //!< If the Rx FIFO is not enabled, this bit flags the interrupt for MB5 {Statement} . If the Rx FIFO is enabled, this flag indicates that at least one frame is available to be read from the Rx FIFO {FlexCAN3RxRpsCkr,FlexCAN3Rpd} . This flag is cleared by the FlexCAN whenever the bit MCR[RFEN] is changed by ARM writes.
         unsigned BUF6I : 1; //!< If the Rx FIFO is not enabled, this bit flags the interrupt for MB6 {Statement} . If the MCR[RFEN] bit is asserted, this flag indicates when the number of unread messages within the Rx FIFO is increased to 5 from 4 due to the reception of a new one, meaning that the Rx FIFO is almost full {FlexCAN3RxRpsCkr,FlexCAN3Rpd} . Note that if the flag is cleared while the number of unread messages is greater than 4 it will not assert again until the number of unread messages within the Rx FIFO is decreased to equal or less than 4. This flag is cleared by the FlexCAN whenever the bit MCR[RFEN] is changed by ARM writes.
         unsigned BUF7I : 1; //!< If the Rx FIFO is not enabled, this bit flags the interrupt for MB7 {FlexCAN3RxRpsCkr,FlexCAN3Rpd} . If the MCR[RFEN] bit is asserted, this flag indicates that a message was lost because Rx FIFO is full {Functional Test} . Note that the flag will not be asserted when the Rx FIFO is full and the message was captured by a Mailbox. This flag is cleared by the FlexCAN whenever the bit MCR[RFEN] is changed by ARM writes.
-        unsigned BUF31I : 24; //!< Each bit flags the respective FLEXCAN Message Buffer (MB8 to MB31) interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
+        unsigned BUF31I_BUF8I : 24; //!< Each bit flags the respective FLEXCAN Message Buffer (MB8 to MB31) interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
     } B;
 } hw_flexcan_iflag1_t;
 #endif
@@ -2083,7 +2083,7 @@ typedef union
  * constants & macros for individual FLEXCAN_IFLAG1 bitfields
  */
 
-/* --- Register HW_FLEXCAN_IFLAG1, field BUF4I (RW)
+/* --- Register HW_FLEXCAN_IFLAG1, field BUF4I_BUF0I (RW)
  *
  * If the Rx FIFO is not enabled, these bits flag the interrupts for MB0 to MB4 {Statement} . If the
  * Rx FIFO is enabled, these flags are not used and must be considered as reserved locations
@@ -2095,17 +2095,17 @@ typedef union
  * 1 - Corresponding MB completed transmission/reception
  */
 
-#define BP_FLEXCAN_IFLAG1_BUF4I      0
-#define BM_FLEXCAN_IFLAG1_BUF4I      0x0000001f
+#define BP_FLEXCAN_IFLAG1_BUF4I_BUF0I      0
+#define BM_FLEXCAN_IFLAG1_BUF4I_BUF0I      0x0000001f
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_IFLAG1_BUF4I(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IFLAG1_BUF4I)
+#define BF_FLEXCAN_IFLAG1_BUF4I_BUF0I(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_IFLAG1_BUF4I_BUF0I)
 #else
-#define BF_FLEXCAN_IFLAG1_BUF4I(v)   (((v) << 0) & BM_FLEXCAN_IFLAG1_BUF4I)
+#define BF_FLEXCAN_IFLAG1_BUF4I_BUF0I(v)   (((v) << 0) & BM_FLEXCAN_IFLAG1_BUF4I_BUF0I)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the BUF4I field to a new value.
-#define BW_FLEXCAN_IFLAG1_BUF4I(v)   BF_CS1(FLEXCAN_IFLAG1, BUF4I, v)
+//! @brief Set the BUF4I_BUF0I field to a new value.
+#define BW_FLEXCAN_IFLAG1_BUF4I_BUF0I(v)   BF_CS1(FLEXCAN_IFLAG1, BUF4I_BUF0I, v)
 #endif
 
 
@@ -2191,7 +2191,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_FLEXCAN_IFLAG1, field BUF31I (RW)
+/* --- Register HW_FLEXCAN_IFLAG1, field BUF31I_BUF8I (RW)
  *
  * Each bit flags the respective FLEXCAN Message Buffer (MB8 to MB31) interrupt.
  * {flexcan2_ipi_slv_flex_mbuffer_int}
@@ -2202,17 +2202,17 @@ typedef union
  *     {flexcan2_ipi_slv_flex_mbuffer_int}
  */
 
-#define BP_FLEXCAN_IFLAG1_BUF31I      8
-#define BM_FLEXCAN_IFLAG1_BUF31I      0xffffff00
+#define BP_FLEXCAN_IFLAG1_BUF31I_BUF8I      8
+#define BM_FLEXCAN_IFLAG1_BUF31I_BUF8I      0xffffff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_IFLAG1_BUF31I(v)   ((((reg32_t) v) << 8) & BM_FLEXCAN_IFLAG1_BUF31I)
+#define BF_FLEXCAN_IFLAG1_BUF31I_BUF8I(v)   ((((reg32_t) v) << 8) & BM_FLEXCAN_IFLAG1_BUF31I_BUF8I)
 #else
-#define BF_FLEXCAN_IFLAG1_BUF31I(v)   (((v) << 8) & BM_FLEXCAN_IFLAG1_BUF31I)
+#define BF_FLEXCAN_IFLAG1_BUF31I_BUF8I(v)   (((v) << 8) & BM_FLEXCAN_IFLAG1_BUF31I_BUF8I)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the BUF31I field to a new value.
-#define BW_FLEXCAN_IFLAG1_BUF31I(v)   BF_CS1(FLEXCAN_IFLAG1, BUF31I, v)
+//! @brief Set the BUF31I_BUF8I field to a new value.
+#define BW_FLEXCAN_IFLAG1_BUF31I_BUF8I(v)   BF_CS1(FLEXCAN_IFLAG1, BUF31I_BUF8I, v)
 #endif
 
 
@@ -2662,7 +2662,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned FGM31 : 32; //!< These bits mask the ID Filter Table elements bits in a perfect alignment. shows in detail which FGM bits mask each IDAF field {FlexCAN3RxRpsCkr} .
+        unsigned FGM31_FGM0 : 32; //!< These bits mask the ID Filter Table elements bits in a perfect alignment. shows in detail which FGM bits mask each IDAF field {FlexCAN3RxRpsCkr} .
     } B;
 } hw_flexcan_rxfgmask_t;
 #endif
@@ -2685,7 +2685,7 @@ typedef union
  * constants & macros for individual FLEXCAN_RXFGMASK bitfields
  */
 
-/* --- Register HW_FLEXCAN_RXFGMASK, field FGM31 (RW)
+/* --- Register HW_FLEXCAN_RXFGMASK, field FGM31_FGM0 (RW)
  *
  * These bits mask the ID Filter Table elements bits in a perfect alignment. shows in detail which
  * FGM bits mask each IDAF field {FlexCAN3RxRpsCkr} .
@@ -2697,17 +2697,17 @@ typedef union
  *     {FlexCAN3MemAccessStim,FlexCAN3IPSRpsCkr,FlexCAN3RxRpsCkr}
  */
 
-#define BP_FLEXCAN_RXFGMASK_FGM31      0
-#define BM_FLEXCAN_RXFGMASK_FGM31      0xffffffff
+#define BP_FLEXCAN_RXFGMASK_FGM31_FGM0      0
+#define BM_FLEXCAN_RXFGMASK_FGM31_FGM0      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_RXFGMASK_FGM31(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RXFGMASK_FGM31)
+#define BF_FLEXCAN_RXFGMASK_FGM31_FGM0(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RXFGMASK_FGM31_FGM0)
 #else
-#define BF_FLEXCAN_RXFGMASK_FGM31(v)   (((v) << 0) & BM_FLEXCAN_RXFGMASK_FGM31)
+#define BF_FLEXCAN_RXFGMASK_FGM31_FGM0(v)   (((v) << 0) & BM_FLEXCAN_RXFGMASK_FGM31_FGM0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FGM31 field to a new value.
-#define BW_FLEXCAN_RXFGMASK_FGM31(v)   BF_CS1(FLEXCAN_RXFGMASK, FGM31, v)
+//! @brief Set the FGM31_FGM0 field to a new value.
+#define BW_FLEXCAN_RXFGMASK_FGM31_FGM0(v)   BF_CS1(FLEXCAN_RXFGMASK, FGM31_FGM0, v)
 #endif
 
 
@@ -2761,7 +2761,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_FLEXCAN_RXIMR0-RXIMR63 - Rx Individual Mask Registers (RW)
+ * @brief HW_FLEXCAN_RXIMR0_RXIMR63 - Rx Individual Mask Registers (RW)
  *
  * RXIMR are used as acceptance masks for ID filtering in Rx MBs and the Rx FIFO {Statement} . If
  * the Rx FIFO is not enabled, one mask register is provided for each available Mailbox, providing
@@ -2780,30 +2780,30 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned MI31 : 32; //!< These bits mask both Mailbox filter and Rx FIFO ID Filter Table element in distinct ways. {Statement} For Mailbox filter refer to {Statement} . For Rx FIFO ID Filter Table element refer to {Statement} .
+        unsigned MI31_MI0 : 32; //!< These bits mask both Mailbox filter and Rx FIFO ID Filter Table element in distinct ways. {Statement} For Mailbox filter refer to {Statement} . For Rx FIFO ID Filter Table element refer to {Statement} .
     } B;
-} hw_flexcan_rximr0-rximr63_t;
+} hw_flexcan_rximr0_rximr63_t;
 #endif
 
 /*
- * constants & macros for entire multi-block FLEXCAN_RXIMR0-RXIMR63 register
+ * constants & macros for entire multi-block FLEXCAN_RXIMR0_RXIMR63 register
  */
-#define HW_FLEXCAN_RXIMR0-RXIMR63_ADDR(x)      (REGS_FLEXCAN_BASE(x) + 0x880)
+#define HW_FLEXCAN_RXIMR0_RXIMR63_ADDR(x)      (REGS_FLEXCAN_BASE(x) + 0x880)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_FLEXCAN_RXIMR0-RXIMR63(x)           (*(volatile hw_flexcan_rximr0-rximr63_t *) HW_FLEXCAN_RXIMR0-RXIMR63_ADDR(x))
-#define HW_FLEXCAN_RXIMR0-RXIMR63_RD(x)        (HW_FLEXCAN_RXIMR0-RXIMR63(x).U)
-#define HW_FLEXCAN_RXIMR0-RXIMR63_WR(x, v)     (HW_FLEXCAN_RXIMR0-RXIMR63(x).U = (v))
-#define HW_FLEXCAN_RXIMR0-RXIMR63_SET(x, v)    (HW_FLEXCAN_RXIMR0-RXIMR63_WR(x, HW_FLEXCAN_RXIMR0-RXIMR63_RD(x) |  (v)))
-#define HW_FLEXCAN_RXIMR0-RXIMR63_CLR(x, v)    (HW_FLEXCAN_RXIMR0-RXIMR63_WR(x, HW_FLEXCAN_RXIMR0-RXIMR63_RD(x) & ~(v)))
-#define HW_FLEXCAN_RXIMR0-RXIMR63_TOG(x, v)    (HW_FLEXCAN_RXIMR0-RXIMR63_WR(x, HW_FLEXCAN_RXIMR0-RXIMR63_RD(x) ^  (v)))
+#define HW_FLEXCAN_RXIMR0_RXIMR63(x)           (*(volatile hw_flexcan_rximr0_rximr63_t *) HW_FLEXCAN_RXIMR0_RXIMR63_ADDR(x))
+#define HW_FLEXCAN_RXIMR0_RXIMR63_RD(x)        (HW_FLEXCAN_RXIMR0_RXIMR63(x).U)
+#define HW_FLEXCAN_RXIMR0_RXIMR63_WR(x, v)     (HW_FLEXCAN_RXIMR0_RXIMR63(x).U = (v))
+#define HW_FLEXCAN_RXIMR0_RXIMR63_SET(x, v)    (HW_FLEXCAN_RXIMR0_RXIMR63_WR(x, HW_FLEXCAN_RXIMR0_RXIMR63_RD(x) |  (v)))
+#define HW_FLEXCAN_RXIMR0_RXIMR63_CLR(x, v)    (HW_FLEXCAN_RXIMR0_RXIMR63_WR(x, HW_FLEXCAN_RXIMR0_RXIMR63_RD(x) & ~(v)))
+#define HW_FLEXCAN_RXIMR0_RXIMR63_TOG(x, v)    (HW_FLEXCAN_RXIMR0_RXIMR63_WR(x, HW_FLEXCAN_RXIMR0_RXIMR63_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual FLEXCAN_RXIMR0-RXIMR63 bitfields
+ * constants & macros for individual FLEXCAN_RXIMR0_RXIMR63 bitfields
  */
 
-/* --- Register HW_FLEXCAN_RXIMR0-RXIMR63, field MI31 (RW)
+/* --- Register HW_FLEXCAN_RXIMR0_RXIMR63, field MI31_MI0 (RW)
  *
  * These bits mask both Mailbox filter and Rx FIFO ID Filter Table element in distinct ways.
  * {Statement} For Mailbox filter refer to {Statement} . For Rx FIFO ID Filter Table element refer
@@ -2814,17 +2814,17 @@ typedef union
  * 1 - The corresponding bit in the filter is checked
  */
 
-#define BP_FLEXCAN_RXIMR0-RXIMR63_MI31      0
-#define BM_FLEXCAN_RXIMR0-RXIMR63_MI31      0xffffffff
+#define BP_FLEXCAN_RXIMR0_RXIMR63_MI31_MI0      0
+#define BM_FLEXCAN_RXIMR0_RXIMR63_MI31_MI0      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_FLEXCAN_RXIMR0-RXIMR63_MI31(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RXIMR0-RXIMR63_MI31)
+#define BF_FLEXCAN_RXIMR0_RXIMR63_MI31_MI0(v)   ((((reg32_t) v) << 0) & BM_FLEXCAN_RXIMR0_RXIMR63_MI31_MI0)
 #else
-#define BF_FLEXCAN_RXIMR0-RXIMR63_MI31(v)   (((v) << 0) & BM_FLEXCAN_RXIMR0-RXIMR63_MI31)
+#define BF_FLEXCAN_RXIMR0_RXIMR63_MI31_MI0(v)   (((v) << 0) & BM_FLEXCAN_RXIMR0_RXIMR63_MI31_MI0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the MI31 field to a new value.
-#define BW_FLEXCAN_RXIMR0-RXIMR63_MI31(v)   BF_CS1(FLEXCAN_RXIMR0-RXIMR63, MI31, v)
+//! @brief Set the MI31_MI0 field to a new value.
+#define BW_FLEXCAN_RXIMR0_RXIMR63_MI31_MI0(v)   BF_CS1(FLEXCAN_RXIMR0_RXIMR63, MI31_MI0, v)
 #endif
 
 
@@ -2909,10 +2909,10 @@ typedef struct
     volatile hw_flexcan_rxfgmask_t RXFGMASK; //!< Rx FIFO Global Mask Register
     volatile hw_flexcan_rxfir_t RXFIR; //!< Rx FIFO Information Register
     reg32_t _reserved2[524];
-    volatile hw_flexcan_rximr0-rximr63_t RXIMR0-RXIMR63; //!< Rx Individual Mask Registers
+    volatile hw_flexcan_rximr0_rximr63_t RXIMR0_RXIMR63; //!< Rx Individual Mask Registers
     reg32_t _reserved3[87];
     volatile hw_flexcan_gfwr_t GFWR; //!< Glitch Filter Width Registers
-} hw_flexcan_t
+} hw_flexcan_t;
 #endif
 
 //! @brief Macro to access all FLEXCAN registers.

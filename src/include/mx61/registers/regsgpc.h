@@ -601,7 +601,7 @@ typedef struct
     volatile hw_gpc_isr2_t ISR2; //!< IRQ status resister 2
     volatile hw_gpc_isr3_t ISR3; //!< IRQ status resister 3
     volatile hw_gpc_isr4_t ISR4; //!< IRQ status resister 4
-} hw_gpc_t
+} hw_gpc_t;
 #endif
 
 //! @brief Macro to access all GPC registers.

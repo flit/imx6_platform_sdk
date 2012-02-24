@@ -449,6 +449,16 @@ typedef union
 #define BP_GPT_CR_FO1      29
 #define BM_GPT_CR_FO1      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_CR_FO1(v)   ((((reg32_t) v) << 29) & BM_GPT_CR_FO1)
+#else
+#define BF_GPT_CR_FO1(v)   (((v) << 29) & BM_GPT_CR_FO1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FO1 field to a new value.
+#define BW_GPT_CR_FO1(v)   BF_CS1(GPT_CR, FO1, v)
+#endif
+
 /* --- Register HW_GPT_CR, field FO2 (WORZ)
  *
  * See F03
@@ -456,6 +466,16 @@ typedef union
 
 #define BP_GPT_CR_FO2      30
 #define BM_GPT_CR_FO2      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_CR_FO2(v)   ((((reg32_t) v) << 30) & BM_GPT_CR_FO2)
+#else
+#define BF_GPT_CR_FO2(v)   (((v) << 30) & BM_GPT_CR_FO2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FO2 field to a new value.
+#define BW_GPT_CR_FO2(v)   BF_CS1(GPT_CR, FO2, v)
+#endif
 
 /* --- Register HW_GPT_CR, field FO3 (WORZ)
  *
@@ -471,6 +491,16 @@ typedef union
 
 #define BP_GPT_CR_FO3      31
 #define BM_GPT_CR_FO3      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_CR_FO3(v)   ((((reg32_t) v) << 31) & BM_GPT_CR_FO3)
+#else
+#define BF_GPT_CR_FO3(v)   (((v) << 31) & BM_GPT_CR_FO3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FO3 field to a new value.
+#define BW_GPT_CR_FO3(v)   BF_CS1(GPT_CR, FO3, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -586,6 +616,16 @@ typedef union
 #define BP_GPT_SR_OF1      0
 #define BM_GPT_SR_OF1      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_SR_OF1(v)   ((((reg32_t) v) << 0) & BM_GPT_SR_OF1)
+#else
+#define BF_GPT_SR_OF1(v)   (((v) << 0) & BM_GPT_SR_OF1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OF1 field to a new value.
+#define BW_GPT_SR_OF1(v)   BF_CS1(GPT_SR, OF1, v)
+#endif
+
 /* --- Register HW_GPT_SR, field OF2 (W1C)
  *
  * See OF3
@@ -593,6 +633,16 @@ typedef union
 
 #define BP_GPT_SR_OF2      1
 #define BM_GPT_SR_OF2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_SR_OF2(v)   ((((reg32_t) v) << 1) & BM_GPT_SR_OF2)
+#else
+#define BF_GPT_SR_OF2(v)   (((v) << 1) & BM_GPT_SR_OF2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OF2 field to a new value.
+#define BW_GPT_SR_OF2(v)   BF_CS1(GPT_SR, OF2, v)
+#endif
 
 /* --- Register HW_GPT_SR, field OF3 (W1C)
  *
@@ -607,6 +657,16 @@ typedef union
 #define BP_GPT_SR_OF3      2
 #define BM_GPT_SR_OF3      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_SR_OF3(v)   ((((reg32_t) v) << 2) & BM_GPT_SR_OF3)
+#else
+#define BF_GPT_SR_OF3(v)   (((v) << 2) & BM_GPT_SR_OF3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OF3 field to a new value.
+#define BW_GPT_SR_OF3(v)   BF_CS1(GPT_SR, OF3, v)
+#endif
+
 
 /* --- Register HW_GPT_SR, field IF1 (W1C)
  *
@@ -615,6 +675,16 @@ typedef union
 
 #define BP_GPT_SR_IF1      3
 #define BM_GPT_SR_IF1      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_SR_IF1(v)   ((((reg32_t) v) << 3) & BM_GPT_SR_IF1)
+#else
+#define BF_GPT_SR_IF1(v)   (((v) << 3) & BM_GPT_SR_IF1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IF1 field to a new value.
+#define BW_GPT_SR_IF1(v)   BF_CS1(GPT_SR, IF1, v)
+#endif
 
 /* --- Register HW_GPT_SR, field IF2 (W1C)
  *
@@ -628,6 +698,16 @@ typedef union
 
 #define BP_GPT_SR_IF2      4
 #define BM_GPT_SR_IF2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_SR_IF2(v)   ((((reg32_t) v) << 4) & BM_GPT_SR_IF2)
+#else
+#define BF_GPT_SR_IF2(v)   (((v) << 4) & BM_GPT_SR_IF2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IF2 field to a new value.
+#define BW_GPT_SR_IF2(v)   BF_CS1(GPT_SR, IF2, v)
+#endif
 
 
 /* --- Register HW_GPT_SR, field ROV (W1C)
@@ -643,6 +723,16 @@ typedef union
 
 #define BP_GPT_SR_ROV      5
 #define BM_GPT_SR_ROV      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_GPT_SR_ROV(v)   ((((reg32_t) v) << 5) & BM_GPT_SR_ROV)
+#else
+#define BF_GPT_SR_ROV(v)   (((v) << 5) & BM_GPT_SR_ROV)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ROV field to a new value.
+#define BW_GPT_SR_ROV(v)   BF_CS1(GPT_SR, ROV, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -1112,7 +1202,7 @@ typedef struct
     volatile hw_gpt_icr1_t ICR1; //!< GPT Input Capture Register 1
     volatile hw_gpt_icr2_t ICR2; //!< GPT Input Capture Register 2
     volatile hw_gpt_cnt_t CNT; //!< GPT Counter Register
-} hw_gpt_t
+} hw_gpt_t;
 #endif
 
 //! @brief Macro to access all GPT registers.

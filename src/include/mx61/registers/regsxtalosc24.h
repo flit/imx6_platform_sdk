@@ -332,7 +332,7 @@ typedef struct
 {
     reg32_t _reserved0[84];
     volatile hw_xtalosc24m_misc0_t MISC0; //!< Miscellaneous Register 0
-} hw_xtalosc24m_t
+} hw_xtalosc24m_t;
 #endif
 
 //! @brief Macro to access all XTALOSC24M registers.

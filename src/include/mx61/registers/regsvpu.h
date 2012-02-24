@@ -43,7 +43,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned VPU : 1; //!< VPU_CodeRun. BIT processor run start bit.
+        unsigned VPU_CODERUN : 1; //!< VPU_CodeRun. BIT processor run start bit.
         unsigned RESERVED0 : 31; //!< Reserved
     } B;
 } hw_vpu_coderun_t;
@@ -63,7 +63,7 @@ typedef union
  * constants & macros for individual VPU_CODERUN bitfields
  */
 
-/* --- Register HW_VPU_CODERUN, field VPU (WO)
+/* --- Register HW_VPU_CODERUN, field VPU_CODERUN (WO)
  *
  * VPU_CodeRun. BIT processor run start bit.
  *
@@ -72,17 +72,17 @@ typedef union
  * 1 - BIT Processor start execution.
  */
 
-#define BP_VPU_CODERUN_VPU      0
-#define BM_VPU_CODERUN_VPU      0x00000001
+#define BP_VPU_CODERUN_VPU_CODERUN      0
+#define BM_VPU_CODERUN_VPU_CODERUN      0x00000001
 
 #ifndef __LANGUAGE_ASM__
-#define BF_VPU_CODERUN_VPU(v)   ((((reg32_t) v) << 0) & BM_VPU_CODERUN_VPU)
+#define BF_VPU_CODERUN_VPU_CODERUN(v)   ((((reg32_t) v) << 0) & BM_VPU_CODERUN_VPU_CODERUN)
 #else
-#define BF_VPU_CODERUN_VPU(v)   (((v) << 0) & BM_VPU_CODERUN_VPU)
+#define BF_VPU_CODERUN_VPU_CODERUN(v)   (((v) << 0) & BM_VPU_CODERUN_VPU_CODERUN)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the VPU field to a new value.
-#define BW_VPU_CODERUN_VPU(v)   BF_CS1(VPU_CODERUN, VPU, v)
+//! @brief Set the VPU_CODERUN field to a new value.
+#define BW_VPU_CODERUN_VPU_CODERUN(v)   BF_CS1(VPU_CODERUN, VPU_CODERUN, v)
 #endif
 
 
@@ -410,7 +410,7 @@ typedef struct
     volatile hw_vpu_bitcurpc_t BITCURPC; //!< BIT Current PC
     reg32_t _reserved1;
     volatile hw_vpu_bitcodecbusy_t BITCODECBUSY; //!< BIT CODEC Busy
-} hw_vpu_t
+} hw_vpu_t;
 #endif
 
 //! @brief Macro to access all VPU registers.

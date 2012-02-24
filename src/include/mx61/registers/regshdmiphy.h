@@ -4676,7 +4676,7 @@ typedef struct
     volatile hw_hdmi_phy_scopesample_t SCOPESAMPLE; //!< Scope Sample Count MSB, Scope Sample Repetition
     volatile hw_hdmi_phy_scopecntmsb01_t SCOPECNTMSB01; //!< Scope Counter MSB Channel 0 and Channel 1
     volatile hw_hdmi_phy_scopecntmsb2ck_t SCOPECNTMSB2CK; //!< Scope Counter MSB Channel 2 and Clock Channel
-} hw_hdmi_phy_t
+} hw_hdmi_phy_t;
 #endif
 
 //! @brief Macro to access all HDMI_PHY registers.

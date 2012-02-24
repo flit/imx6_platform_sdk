@@ -1413,7 +1413,7 @@ typedef struct
     volatile hw_sdmacore_endianness_t ENDIANNESS; //!< ENDIAN Status Register
     volatile hw_sdmacore_sdma_lock_t SDMA_LOCK; //!< Lock Status Register
     volatile hw_sdmacore_events2_t EVENTS2; //!< External DMA Requests Mirror #2
-} hw_sdmacore_t
+} hw_sdmacore_t;
 #endif
 
 //! @brief Macro to access all SDMACORE registers.

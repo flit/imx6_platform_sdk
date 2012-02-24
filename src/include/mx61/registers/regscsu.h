@@ -13,7 +13,46 @@
 /*
  * Registers defined in this header file.
  *
- * - HW_CSU_CSL - Config security level register
+ * - HW_CSU_CSL0 - Config security level register 0
+ * - HW_CSU_CSL1 - Config security level register 1
+ * - HW_CSU_CSL2 - Config security level register 2
+ * - HW_CSU_CSL3 - Config security level register 3
+ * - HW_CSU_CSL4 - Config security level register 4
+ * - HW_CSU_CSL5 - Config security level register 5
+ * - HW_CSU_CSL6 - Config security level register 6
+ * - HW_CSU_CSL7 - Config security level register 7
+ * - HW_CSU_CSL8 - Config security level register 8
+ * - HW_CSU_CSL9 - Config security level register 9
+ * - HW_CSU_CSL10 - Config security level register 10
+ * - HW_CSU_CSL11 - Config security level register 11
+ * - HW_CSU_CSL12 - Config security level register 12
+ * - HW_CSU_CSL13 - Config security level register 13
+ * - HW_CSU_CSL14 - Config security level register 14
+ * - HW_CSU_CSL15 - Config security level register 15
+ * - HW_CSU_CSL16 - Config security level register 16
+ * - HW_CSU_CSL17 - Config security level register 17
+ * - HW_CSU_CSL18 - Config security level register 18
+ * - HW_CSU_CSL19 - Config security level register 19
+ * - HW_CSU_CSL20 - Config security level register 20
+ * - HW_CSU_CSL21 - Config security level register 21
+ * - HW_CSU_CSL22 - Config security level register 22
+ * - HW_CSU_CSL23 - Config security level register 23
+ * - HW_CSU_CSL24 - Config security level register 24
+ * - HW_CSU_CSL25 - Config security level register 25
+ * - HW_CSU_CSL26 - Config security level register 26
+ * - HW_CSU_CSL27 - Config security level register 27
+ * - HW_CSU_CSL28 - Config security level register 28
+ * - HW_CSU_CSL29 - Config security level register 29
+ * - HW_CSU_CSL30 - Config security level register 30
+ * - HW_CSU_CSL31 - Config security level register 31
+ * - HW_CSU_CSL32 - Config security level register 32
+ * - HW_CSU_CSL33 - Config security level register 33
+ * - HW_CSU_CSL34 - Config security level register 34
+ * - HW_CSU_CSL35 - Config security level register 35
+ * - HW_CSU_CSL36 - Config security level register 36
+ * - HW_CSU_CSL37 - Config security level register 37
+ * - HW_CSU_CSL38 - Config security level register 38
+ * - HW_CSU_CSL39 - Config security level register 39
  * - HW_CSU_HP0 - HP0 register
  * - HW_CSU_HP1 - HP1 register
  * - HW_CSU_SA - Secure access register
@@ -32,7 +71,7 @@
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_CSU_CSL - Config security level register (RW)
+ * @brief HW_CSU_CSL0 - Config security level register 0 (RW)
  *
  * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
  * two fields, each field used to determine the read and write access permissions for a slave
@@ -104,28 +143,28 @@ typedef union
         unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
         unsigned RESERVED1 : 7; //!< Reserved
     } B;
-} hw_csu_csl_t;
+} hw_csu_csl0_t;
 #endif
 
 /*
- * constants & macros for entire CSU_CSL register
+ * constants & macros for entire CSU_CSL0 register
  */
-#define HW_CSU_CSL_ADDR      (REGS_CSU_BASE + 0x0)
+#define HW_CSU_CSL0_ADDR      (REGS_CSU_BASE + 0x0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_CSU_CSL           (*(volatile hw_csu_csl_t *) HW_CSU_CSL_ADDR)
-#define HW_CSU_CSL_RD()      (HW_CSU_CSL.U)
-#define HW_CSU_CSL_WR(v)     (HW_CSU_CSL.U = (v))
-#define HW_CSU_CSL_SET(v)    (HW_CSU_CSL_WR(HW_CSU_CSL_RD() |  (v)))
-#define HW_CSU_CSL_CLR(v)    (HW_CSU_CSL_WR(HW_CSU_CSL_RD() & ~(v)))
-#define HW_CSU_CSL_TOG(v)    (HW_CSU_CSL_WR(HW_CSU_CSL_RD() ^  (v)))
+#define HW_CSU_CSL0           (*(volatile hw_csu_csl0_t *) HW_CSU_CSL0_ADDR)
+#define HW_CSU_CSL0_RD()      (HW_CSU_CSL0.U)
+#define HW_CSU_CSL0_WR(v)     (HW_CSU_CSL0.U = (v))
+#define HW_CSU_CSL0_SET(v)    (HW_CSU_CSL0_WR(HW_CSU_CSL0_RD() |  (v)))
+#define HW_CSU_CSL0_CLR(v)    (HW_CSU_CSL0_WR(HW_CSU_CSL0_RD() & ~(v)))
+#define HW_CSU_CSL0_TOG(v)    (HW_CSU_CSL0_WR(HW_CSU_CSL0_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual CSU_CSL bitfields
+ * constants & macros for individual CSU_CSL0 bitfields
  */
 
-/* --- Register HW_CSU_CSL, field SUR_S2 (RW)
+/* --- Register HW_CSU_CSL0, field SUR_S2 (RW)
  *
  * Secure user read access control for the second slave
  *
@@ -134,21 +173,21 @@ typedef union
  * 1 - Secure user read access enabled for the second slave
  */
 
-#define BP_CSU_CSL_SUR_S2      0
-#define BM_CSU_CSL_SUR_S2      0x00000001
+#define BP_CSU_CSL0_SUR_S2      0
+#define BM_CSU_CSL0_SUR_S2      0x00000001
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL_SUR_S2)
+#define BF_CSU_CSL0_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL0_SUR_S2)
 #else
-#define BF_CSU_CSL_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL_SUR_S2)
+#define BF_CSU_CSL0_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL0_SUR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
-#define BW_CSU_CSL_SUR_S2(v)   BF_CS1(CSU_CSL, SUR_S2, v)
+#define BW_CSU_CSL0_SUR_S2(v)   BF_CS1(CSU_CSL0, SUR_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field SSR_S2 (RW)
+/* --- Register HW_CSU_CSL0, field SSR_S2 (RW)
  *
  * Secure supervisor read access control for the second slave
  *
@@ -157,21 +196,21 @@ typedef union
  * 1 - Secure supervisor read access enabled for the second slave.
  */
 
-#define BP_CSU_CSL_SSR_S2      1
-#define BM_CSU_CSL_SSR_S2      0x00000002
+#define BP_CSU_CSL0_SSR_S2      1
+#define BM_CSU_CSL0_SSR_S2      0x00000002
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL_SSR_S2)
+#define BF_CSU_CSL0_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL0_SSR_S2)
 #else
-#define BF_CSU_CSL_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL_SSR_S2)
+#define BF_CSU_CSL0_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL0_SSR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
-#define BW_CSU_CSL_SSR_S2(v)   BF_CS1(CSU_CSL, SSR_S2, v)
+#define BW_CSU_CSL0_SSR_S2(v)   BF_CS1(CSU_CSL0, SSR_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NUR_S2 (RW)
+/* --- Register HW_CSU_CSL0, field NUR_S2 (RW)
  *
  * Non-secure user read access control for the second slave
  *
@@ -180,21 +219,21 @@ typedef union
  * 1 - Non-secure user read access enabled for the second slave.
  */
 
-#define BP_CSU_CSL_NUR_S2      2
-#define BM_CSU_CSL_NUR_S2      0x00000004
+#define BP_CSU_CSL0_NUR_S2      2
+#define BM_CSU_CSL0_NUR_S2      0x00000004
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL_NUR_S2)
+#define BF_CSU_CSL0_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL0_NUR_S2)
 #else
-#define BF_CSU_CSL_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL_NUR_S2)
+#define BF_CSU_CSL0_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL0_NUR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
-#define BW_CSU_CSL_NUR_S2(v)   BF_CS1(CSU_CSL, NUR_S2, v)
+#define BW_CSU_CSL0_NUR_S2(v)   BF_CS1(CSU_CSL0, NUR_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NSR_S2 (RW)
+/* --- Register HW_CSU_CSL0, field NSR_S2 (RW)
  *
  * Non-secure supervisor read access control for the second slave
  *
@@ -203,21 +242,21 @@ typedef union
  * 1 - Non-secure supervisor read access enabled for the second slave.
  */
 
-#define BP_CSU_CSL_NSR_S2      3
-#define BM_CSU_CSL_NSR_S2      0x00000008
+#define BP_CSU_CSL0_NSR_S2      3
+#define BM_CSU_CSL0_NSR_S2      0x00000008
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL_NSR_S2)
+#define BF_CSU_CSL0_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL0_NSR_S2)
 #else
-#define BF_CSU_CSL_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL_NSR_S2)
+#define BF_CSU_CSL0_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL0_NSR_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
-#define BW_CSU_CSL_NSR_S2(v)   BF_CS1(CSU_CSL, NSR_S2, v)
+#define BW_CSU_CSL0_NSR_S2(v)   BF_CS1(CSU_CSL0, NSR_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field SUW_S2 (RW)
+/* --- Register HW_CSU_CSL0, field SUW_S2 (RW)
  *
  * Secure user write access control for the second slave
  *
@@ -226,21 +265,21 @@ typedef union
  * 1 - Secure user write access enabled for the second slave.
  */
 
-#define BP_CSU_CSL_SUW_S2      4
-#define BM_CSU_CSL_SUW_S2      0x00000010
+#define BP_CSU_CSL0_SUW_S2      4
+#define BM_CSU_CSL0_SUW_S2      0x00000010
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL_SUW_S2)
+#define BF_CSU_CSL0_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL0_SUW_S2)
 #else
-#define BF_CSU_CSL_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL_SUW_S2)
+#define BF_CSU_CSL0_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL0_SUW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
-#define BW_CSU_CSL_SUW_S2(v)   BF_CS1(CSU_CSL, SUW_S2, v)
+#define BW_CSU_CSL0_SUW_S2(v)   BF_CS1(CSU_CSL0, SUW_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field SSW_S2 (RW)
+/* --- Register HW_CSU_CSL0, field SSW_S2 (RW)
  *
  * Secure supervisor write access control for the second slave
  *
@@ -249,21 +288,21 @@ typedef union
  * 1 - Secure supervisor write access enabled for the second slave.
  */
 
-#define BP_CSU_CSL_SSW_S2      5
-#define BM_CSU_CSL_SSW_S2      0x00000020
+#define BP_CSU_CSL0_SSW_S2      5
+#define BM_CSU_CSL0_SSW_S2      0x00000020
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL_SSW_S2)
+#define BF_CSU_CSL0_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL0_SSW_S2)
 #else
-#define BF_CSU_CSL_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL_SSW_S2)
+#define BF_CSU_CSL0_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL0_SSW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
-#define BW_CSU_CSL_SSW_S2(v)   BF_CS1(CSU_CSL, SSW_S2, v)
+#define BW_CSU_CSL0_SSW_S2(v)   BF_CS1(CSU_CSL0, SSW_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NUW_S2 (RW)
+/* --- Register HW_CSU_CSL0, field NUW_S2 (RW)
  *
  * Non-secure user write access control for the second slave
  *
@@ -272,21 +311,21 @@ typedef union
  * 1 - Non-secure user write access enabled for the second slave.
  */
 
-#define BP_CSU_CSL_NUW_S2      6
-#define BM_CSU_CSL_NUW_S2      0x00000040
+#define BP_CSU_CSL0_NUW_S2      6
+#define BM_CSU_CSL0_NUW_S2      0x00000040
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL_NUW_S2)
+#define BF_CSU_CSL0_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL0_NUW_S2)
 #else
-#define BF_CSU_CSL_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL_NUW_S2)
+#define BF_CSU_CSL0_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL0_NUW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
-#define BW_CSU_CSL_NUW_S2(v)   BF_CS1(CSU_CSL, NUW_S2, v)
+#define BW_CSU_CSL0_NUW_S2(v)   BF_CS1(CSU_CSL0, NUW_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NSW_S2 (RW)
+/* --- Register HW_CSU_CSL0, field NSW_S2 (RW)
  *
  * Non-secure supervisor write access control for the second slave
  *
@@ -295,21 +334,21 @@ typedef union
  * 1 - Non-secure supervisor write access enabled for the second slave
  */
 
-#define BP_CSU_CSL_NSW_S2      7
-#define BM_CSU_CSL_NSW_S2      0x00000080
+#define BP_CSU_CSL0_NSW_S2      7
+#define BM_CSU_CSL0_NSW_S2      0x00000080
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL_NSW_S2)
+#define BF_CSU_CSL0_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL0_NSW_S2)
 #else
-#define BF_CSU_CSL_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL_NSW_S2)
+#define BF_CSU_CSL0_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL0_NSW_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
-#define BW_CSU_CSL_NSW_S2(v)   BF_CS1(CSU_CSL, NSW_S2, v)
+#define BW_CSU_CSL0_NSW_S2(v)   BF_CS1(CSU_CSL0, NSW_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field LOCK_S2 (RW)
+/* --- Register HW_CSU_CSL0, field LOCK_S2 (RW)
  *
  * Lock bit corresponding to the second slave. Written by secure software.
  *
@@ -318,21 +357,21 @@ typedef union
  * 1 - Bits 7-0 locked and cannot be written by software
  */
 
-#define BP_CSU_CSL_LOCK_S2      8
-#define BM_CSU_CSL_LOCK_S2      0x00000100
+#define BP_CSU_CSL0_LOCK_S2      8
+#define BM_CSU_CSL0_LOCK_S2      0x00000100
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL_LOCK_S2)
+#define BF_CSU_CSL0_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL0_LOCK_S2)
 #else
-#define BF_CSU_CSL_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL_LOCK_S2)
+#define BF_CSU_CSL0_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL0_LOCK_S2)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
-#define BW_CSU_CSL_LOCK_S2(v)   BF_CS1(CSU_CSL, LOCK_S2, v)
+#define BW_CSU_CSL0_LOCK_S2(v)   BF_CS1(CSU_CSL0, LOCK_S2, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field SUR_S1 (RW)
+/* --- Register HW_CSU_CSL0, field SUR_S1 (RW)
  *
  * Secure user read access control for the first slave
  *
@@ -341,21 +380,21 @@ typedef union
  * 1 - Secure user read access enabled for the first slave
  */
 
-#define BP_CSU_CSL_SUR_S1      16
-#define BM_CSU_CSL_SUR_S1      0x00010000
+#define BP_CSU_CSL0_SUR_S1      16
+#define BM_CSU_CSL0_SUR_S1      0x00010000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL_SUR_S1)
+#define BF_CSU_CSL0_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL0_SUR_S1)
 #else
-#define BF_CSU_CSL_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL_SUR_S1)
+#define BF_CSU_CSL0_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL0_SUR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
-#define BW_CSU_CSL_SUR_S1(v)   BF_CS1(CSU_CSL, SUR_S1, v)
+#define BW_CSU_CSL0_SUR_S1(v)   BF_CS1(CSU_CSL0, SUR_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field SSR_S1 (RW)
+/* --- Register HW_CSU_CSL0, field SSR_S1 (RW)
  *
  * Secure supervisor read access control for the first slave
  *
@@ -364,21 +403,21 @@ typedef union
  * 1 - Secure supervisor read access enabled for the first slave.
  */
 
-#define BP_CSU_CSL_SSR_S1      17
-#define BM_CSU_CSL_SSR_S1      0x00020000
+#define BP_CSU_CSL0_SSR_S1      17
+#define BM_CSU_CSL0_SSR_S1      0x00020000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL_SSR_S1)
+#define BF_CSU_CSL0_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL0_SSR_S1)
 #else
-#define BF_CSU_CSL_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL_SSR_S1)
+#define BF_CSU_CSL0_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL0_SSR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
-#define BW_CSU_CSL_SSR_S1(v)   BF_CS1(CSU_CSL, SSR_S1, v)
+#define BW_CSU_CSL0_SSR_S1(v)   BF_CS1(CSU_CSL0, SSR_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NUR_S1 (RW)
+/* --- Register HW_CSU_CSL0, field NUR_S1 (RW)
  *
  * Non-secure user read access control for the first slave
  *
@@ -387,21 +426,21 @@ typedef union
  * 1 - Non-secure user read access enabled for the first slave.
  */
 
-#define BP_CSU_CSL_NUR_S1      18
-#define BM_CSU_CSL_NUR_S1      0x00040000
+#define BP_CSU_CSL0_NUR_S1      18
+#define BM_CSU_CSL0_NUR_S1      0x00040000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL_NUR_S1)
+#define BF_CSU_CSL0_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL0_NUR_S1)
 #else
-#define BF_CSU_CSL_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL_NUR_S1)
+#define BF_CSU_CSL0_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL0_NUR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
-#define BW_CSU_CSL_NUR_S1(v)   BF_CS1(CSU_CSL, NUR_S1, v)
+#define BW_CSU_CSL0_NUR_S1(v)   BF_CS1(CSU_CSL0, NUR_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NSR_S1 (RW)
+/* --- Register HW_CSU_CSL0, field NSR_S1 (RW)
  *
  * Non-secure supervisor read access control for the first slave
  *
@@ -410,21 +449,21 @@ typedef union
  * 1 - Non-secure supervisor read access enabled for the first slave.
  */
 
-#define BP_CSU_CSL_NSR_S1      19
-#define BM_CSU_CSL_NSR_S1      0x00080000
+#define BP_CSU_CSL0_NSR_S1      19
+#define BM_CSU_CSL0_NSR_S1      0x00080000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL_NSR_S1)
+#define BF_CSU_CSL0_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL0_NSR_S1)
 #else
-#define BF_CSU_CSL_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL_NSR_S1)
+#define BF_CSU_CSL0_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL0_NSR_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
-#define BW_CSU_CSL_NSR_S1(v)   BF_CS1(CSU_CSL, NSR_S1, v)
+#define BW_CSU_CSL0_NSR_S1(v)   BF_CS1(CSU_CSL0, NSR_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field SUW_S1 (RW)
+/* --- Register HW_CSU_CSL0, field SUW_S1 (RW)
  *
  * Secure user write access control for the first slave
  *
@@ -433,21 +472,21 @@ typedef union
  * 1 - Secure user write access enabled for the first slave.
  */
 
-#define BP_CSU_CSL_SUW_S1      20
-#define BM_CSU_CSL_SUW_S1      0x00100000
+#define BP_CSU_CSL0_SUW_S1      20
+#define BM_CSU_CSL0_SUW_S1      0x00100000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL_SUW_S1)
+#define BF_CSU_CSL0_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL0_SUW_S1)
 #else
-#define BF_CSU_CSL_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL_SUW_S1)
+#define BF_CSU_CSL0_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL0_SUW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
-#define BW_CSU_CSL_SUW_S1(v)   BF_CS1(CSU_CSL, SUW_S1, v)
+#define BW_CSU_CSL0_SUW_S1(v)   BF_CS1(CSU_CSL0, SUW_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field SSW_S1 (RW)
+/* --- Register HW_CSU_CSL0, field SSW_S1 (RW)
  *
  * Secure supervisor write access control for the first slave
  *
@@ -456,21 +495,21 @@ typedef union
  * 1 - Secure supervisor write access enabled for the first slave.
  */
 
-#define BP_CSU_CSL_SSW_S1      21
-#define BM_CSU_CSL_SSW_S1      0x00200000
+#define BP_CSU_CSL0_SSW_S1      21
+#define BM_CSU_CSL0_SSW_S1      0x00200000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL_SSW_S1)
+#define BF_CSU_CSL0_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL0_SSW_S1)
 #else
-#define BF_CSU_CSL_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL_SSW_S1)
+#define BF_CSU_CSL0_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL0_SSW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
-#define BW_CSU_CSL_SSW_S1(v)   BF_CS1(CSU_CSL, SSW_S1, v)
+#define BW_CSU_CSL0_SSW_S1(v)   BF_CS1(CSU_CSL0, SSW_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NUW_S1 (RW)
+/* --- Register HW_CSU_CSL0, field NUW_S1 (RW)
  *
  * Non-secure user write access control for the first slave
  *
@@ -479,21 +518,21 @@ typedef union
  * 1 - Non-secure user write access enabled for the first slave.
  */
 
-#define BP_CSU_CSL_NUW_S1      22
-#define BM_CSU_CSL_NUW_S1      0x00400000
+#define BP_CSU_CSL0_NUW_S1      22
+#define BM_CSU_CSL0_NUW_S1      0x00400000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL_NUW_S1)
+#define BF_CSU_CSL0_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL0_NUW_S1)
 #else
-#define BF_CSU_CSL_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL_NUW_S1)
+#define BF_CSU_CSL0_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL0_NUW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
-#define BW_CSU_CSL_NUW_S1(v)   BF_CS1(CSU_CSL, NUW_S1, v)
+#define BW_CSU_CSL0_NUW_S1(v)   BF_CS1(CSU_CSL0, NUW_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field NSW_S1 (RW)
+/* --- Register HW_CSU_CSL0, field NSW_S1 (RW)
  *
  * Non-secure supervisor write access control for the first slave
  *
@@ -502,21 +541,21 @@ typedef union
  * 1 - Non-secure supervisor write access enabled for the first slave
  */
 
-#define BP_CSU_CSL_NSW_S1      23
-#define BM_CSU_CSL_NSW_S1      0x00800000
+#define BP_CSU_CSL0_NSW_S1      23
+#define BM_CSU_CSL0_NSW_S1      0x00800000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL_NSW_S1)
+#define BF_CSU_CSL0_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL0_NSW_S1)
 #else
-#define BF_CSU_CSL_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL_NSW_S1)
+#define BF_CSU_CSL0_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL0_NSW_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
-#define BW_CSU_CSL_NSW_S1(v)   BF_CS1(CSU_CSL, NSW_S1, v)
+#define BW_CSU_CSL0_NSW_S1(v)   BF_CS1(CSU_CSL0, NSW_S1, v)
 #endif
 
 
-/* --- Register HW_CSU_CSL, field LOCK_S1 (RW)
+/* --- Register HW_CSU_CSL0, field LOCK_S1 (RW)
  *
  * Lock bit corresponding to the first slave. Written by secure software.
  *
@@ -525,17 +564,19868 @@ typedef union
  * 1 - Bits 16-23 locked and cannot be written by software
  */
 
-#define BP_CSU_CSL_LOCK_S1      24
-#define BM_CSU_CSL_LOCK_S1      0x01000000
+#define BP_CSU_CSL0_LOCK_S1      24
+#define BM_CSU_CSL0_LOCK_S1      0x01000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSU_CSL_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL_LOCK_S1)
+#define BF_CSU_CSL0_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL0_LOCK_S1)
 #else
-#define BF_CSU_CSL_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL_LOCK_S1)
+#define BF_CSU_CSL0_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL0_LOCK_S1)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
-#define BW_CSU_CSL_LOCK_S1(v)   BF_CS1(CSU_CSL, LOCK_S1, v)
+#define BW_CSU_CSL0_LOCK_S1(v)   BF_CS1(CSU_CSL0, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL1 - Config security level register 1 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl1_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL1 register
+ */
+#define HW_CSU_CSL1_ADDR      (REGS_CSU_BASE + 0x4)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL1           (*(volatile hw_csu_csl1_t *) HW_CSU_CSL1_ADDR)
+#define HW_CSU_CSL1_RD()      (HW_CSU_CSL1.U)
+#define HW_CSU_CSL1_WR(v)     (HW_CSU_CSL1.U = (v))
+#define HW_CSU_CSL1_SET(v)    (HW_CSU_CSL1_WR(HW_CSU_CSL1_RD() |  (v)))
+#define HW_CSU_CSL1_CLR(v)    (HW_CSU_CSL1_WR(HW_CSU_CSL1_RD() & ~(v)))
+#define HW_CSU_CSL1_TOG(v)    (HW_CSU_CSL1_WR(HW_CSU_CSL1_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL1 bitfields
+ */
+
+/* --- Register HW_CSU_CSL1, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL1_SUR_S2      0
+#define BM_CSU_CSL1_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL1_SUR_S2)
+#else
+#define BF_CSU_CSL1_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL1_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL1_SUR_S2(v)   BF_CS1(CSU_CSL1, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL1_SSR_S2      1
+#define BM_CSU_CSL1_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL1_SSR_S2)
+#else
+#define BF_CSU_CSL1_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL1_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL1_SSR_S2(v)   BF_CS1(CSU_CSL1, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL1_NUR_S2      2
+#define BM_CSU_CSL1_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL1_NUR_S2)
+#else
+#define BF_CSU_CSL1_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL1_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL1_NUR_S2(v)   BF_CS1(CSU_CSL1, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL1_NSR_S2      3
+#define BM_CSU_CSL1_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL1_NSR_S2)
+#else
+#define BF_CSU_CSL1_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL1_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL1_NSR_S2(v)   BF_CS1(CSU_CSL1, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL1_SUW_S2      4
+#define BM_CSU_CSL1_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL1_SUW_S2)
+#else
+#define BF_CSU_CSL1_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL1_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL1_SUW_S2(v)   BF_CS1(CSU_CSL1, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL1_SSW_S2      5
+#define BM_CSU_CSL1_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL1_SSW_S2)
+#else
+#define BF_CSU_CSL1_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL1_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL1_SSW_S2(v)   BF_CS1(CSU_CSL1, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL1_NUW_S2      6
+#define BM_CSU_CSL1_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL1_NUW_S2)
+#else
+#define BF_CSU_CSL1_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL1_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL1_NUW_S2(v)   BF_CS1(CSU_CSL1, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL1_NSW_S2      7
+#define BM_CSU_CSL1_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL1_NSW_S2)
+#else
+#define BF_CSU_CSL1_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL1_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL1_NSW_S2(v)   BF_CS1(CSU_CSL1, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL1_LOCK_S2      8
+#define BM_CSU_CSL1_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL1_LOCK_S2)
+#else
+#define BF_CSU_CSL1_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL1_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL1_LOCK_S2(v)   BF_CS1(CSU_CSL1, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL1_SUR_S1      16
+#define BM_CSU_CSL1_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL1_SUR_S1)
+#else
+#define BF_CSU_CSL1_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL1_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL1_SUR_S1(v)   BF_CS1(CSU_CSL1, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL1_SSR_S1      17
+#define BM_CSU_CSL1_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL1_SSR_S1)
+#else
+#define BF_CSU_CSL1_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL1_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL1_SSR_S1(v)   BF_CS1(CSU_CSL1, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL1_NUR_S1      18
+#define BM_CSU_CSL1_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL1_NUR_S1)
+#else
+#define BF_CSU_CSL1_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL1_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL1_NUR_S1(v)   BF_CS1(CSU_CSL1, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL1_NSR_S1      19
+#define BM_CSU_CSL1_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL1_NSR_S1)
+#else
+#define BF_CSU_CSL1_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL1_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL1_NSR_S1(v)   BF_CS1(CSU_CSL1, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL1_SUW_S1      20
+#define BM_CSU_CSL1_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL1_SUW_S1)
+#else
+#define BF_CSU_CSL1_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL1_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL1_SUW_S1(v)   BF_CS1(CSU_CSL1, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL1_SSW_S1      21
+#define BM_CSU_CSL1_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL1_SSW_S1)
+#else
+#define BF_CSU_CSL1_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL1_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL1_SSW_S1(v)   BF_CS1(CSU_CSL1, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL1_NUW_S1      22
+#define BM_CSU_CSL1_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL1_NUW_S1)
+#else
+#define BF_CSU_CSL1_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL1_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL1_NUW_S1(v)   BF_CS1(CSU_CSL1, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL1_NSW_S1      23
+#define BM_CSU_CSL1_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL1_NSW_S1)
+#else
+#define BF_CSU_CSL1_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL1_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL1_NSW_S1(v)   BF_CS1(CSU_CSL1, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL1, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL1_LOCK_S1      24
+#define BM_CSU_CSL1_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL1_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL1_LOCK_S1)
+#else
+#define BF_CSU_CSL1_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL1_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL1_LOCK_S1(v)   BF_CS1(CSU_CSL1, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL2 - Config security level register 2 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl2_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL2 register
+ */
+#define HW_CSU_CSL2_ADDR      (REGS_CSU_BASE + 0x8)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL2           (*(volatile hw_csu_csl2_t *) HW_CSU_CSL2_ADDR)
+#define HW_CSU_CSL2_RD()      (HW_CSU_CSL2.U)
+#define HW_CSU_CSL2_WR(v)     (HW_CSU_CSL2.U = (v))
+#define HW_CSU_CSL2_SET(v)    (HW_CSU_CSL2_WR(HW_CSU_CSL2_RD() |  (v)))
+#define HW_CSU_CSL2_CLR(v)    (HW_CSU_CSL2_WR(HW_CSU_CSL2_RD() & ~(v)))
+#define HW_CSU_CSL2_TOG(v)    (HW_CSU_CSL2_WR(HW_CSU_CSL2_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL2 bitfields
+ */
+
+/* --- Register HW_CSU_CSL2, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL2_SUR_S2      0
+#define BM_CSU_CSL2_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL2_SUR_S2)
+#else
+#define BF_CSU_CSL2_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL2_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL2_SUR_S2(v)   BF_CS1(CSU_CSL2, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL2_SSR_S2      1
+#define BM_CSU_CSL2_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL2_SSR_S2)
+#else
+#define BF_CSU_CSL2_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL2_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL2_SSR_S2(v)   BF_CS1(CSU_CSL2, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL2_NUR_S2      2
+#define BM_CSU_CSL2_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL2_NUR_S2)
+#else
+#define BF_CSU_CSL2_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL2_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL2_NUR_S2(v)   BF_CS1(CSU_CSL2, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL2_NSR_S2      3
+#define BM_CSU_CSL2_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL2_NSR_S2)
+#else
+#define BF_CSU_CSL2_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL2_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL2_NSR_S2(v)   BF_CS1(CSU_CSL2, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL2_SUW_S2      4
+#define BM_CSU_CSL2_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL2_SUW_S2)
+#else
+#define BF_CSU_CSL2_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL2_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL2_SUW_S2(v)   BF_CS1(CSU_CSL2, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL2_SSW_S2      5
+#define BM_CSU_CSL2_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL2_SSW_S2)
+#else
+#define BF_CSU_CSL2_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL2_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL2_SSW_S2(v)   BF_CS1(CSU_CSL2, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL2_NUW_S2      6
+#define BM_CSU_CSL2_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL2_NUW_S2)
+#else
+#define BF_CSU_CSL2_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL2_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL2_NUW_S2(v)   BF_CS1(CSU_CSL2, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL2_NSW_S2      7
+#define BM_CSU_CSL2_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL2_NSW_S2)
+#else
+#define BF_CSU_CSL2_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL2_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL2_NSW_S2(v)   BF_CS1(CSU_CSL2, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL2_LOCK_S2      8
+#define BM_CSU_CSL2_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL2_LOCK_S2)
+#else
+#define BF_CSU_CSL2_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL2_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL2_LOCK_S2(v)   BF_CS1(CSU_CSL2, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL2_SUR_S1      16
+#define BM_CSU_CSL2_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL2_SUR_S1)
+#else
+#define BF_CSU_CSL2_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL2_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL2_SUR_S1(v)   BF_CS1(CSU_CSL2, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL2_SSR_S1      17
+#define BM_CSU_CSL2_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL2_SSR_S1)
+#else
+#define BF_CSU_CSL2_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL2_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL2_SSR_S1(v)   BF_CS1(CSU_CSL2, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL2_NUR_S1      18
+#define BM_CSU_CSL2_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL2_NUR_S1)
+#else
+#define BF_CSU_CSL2_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL2_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL2_NUR_S1(v)   BF_CS1(CSU_CSL2, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL2_NSR_S1      19
+#define BM_CSU_CSL2_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL2_NSR_S1)
+#else
+#define BF_CSU_CSL2_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL2_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL2_NSR_S1(v)   BF_CS1(CSU_CSL2, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL2_SUW_S1      20
+#define BM_CSU_CSL2_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL2_SUW_S1)
+#else
+#define BF_CSU_CSL2_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL2_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL2_SUW_S1(v)   BF_CS1(CSU_CSL2, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL2_SSW_S1      21
+#define BM_CSU_CSL2_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL2_SSW_S1)
+#else
+#define BF_CSU_CSL2_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL2_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL2_SSW_S1(v)   BF_CS1(CSU_CSL2, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL2_NUW_S1      22
+#define BM_CSU_CSL2_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL2_NUW_S1)
+#else
+#define BF_CSU_CSL2_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL2_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL2_NUW_S1(v)   BF_CS1(CSU_CSL2, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL2_NSW_S1      23
+#define BM_CSU_CSL2_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL2_NSW_S1)
+#else
+#define BF_CSU_CSL2_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL2_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL2_NSW_S1(v)   BF_CS1(CSU_CSL2, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL2, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL2_LOCK_S1      24
+#define BM_CSU_CSL2_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL2_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL2_LOCK_S1)
+#else
+#define BF_CSU_CSL2_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL2_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL2_LOCK_S1(v)   BF_CS1(CSU_CSL2, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL3 - Config security level register 3 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl3_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL3 register
+ */
+#define HW_CSU_CSL3_ADDR      (REGS_CSU_BASE + 0xc)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL3           (*(volatile hw_csu_csl3_t *) HW_CSU_CSL3_ADDR)
+#define HW_CSU_CSL3_RD()      (HW_CSU_CSL3.U)
+#define HW_CSU_CSL3_WR(v)     (HW_CSU_CSL3.U = (v))
+#define HW_CSU_CSL3_SET(v)    (HW_CSU_CSL3_WR(HW_CSU_CSL3_RD() |  (v)))
+#define HW_CSU_CSL3_CLR(v)    (HW_CSU_CSL3_WR(HW_CSU_CSL3_RD() & ~(v)))
+#define HW_CSU_CSL3_TOG(v)    (HW_CSU_CSL3_WR(HW_CSU_CSL3_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL3 bitfields
+ */
+
+/* --- Register HW_CSU_CSL3, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL3_SUR_S2      0
+#define BM_CSU_CSL3_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL3_SUR_S2)
+#else
+#define BF_CSU_CSL3_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL3_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL3_SUR_S2(v)   BF_CS1(CSU_CSL3, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL3_SSR_S2      1
+#define BM_CSU_CSL3_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL3_SSR_S2)
+#else
+#define BF_CSU_CSL3_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL3_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL3_SSR_S2(v)   BF_CS1(CSU_CSL3, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL3_NUR_S2      2
+#define BM_CSU_CSL3_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL3_NUR_S2)
+#else
+#define BF_CSU_CSL3_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL3_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL3_NUR_S2(v)   BF_CS1(CSU_CSL3, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL3_NSR_S2      3
+#define BM_CSU_CSL3_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL3_NSR_S2)
+#else
+#define BF_CSU_CSL3_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL3_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL3_NSR_S2(v)   BF_CS1(CSU_CSL3, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL3_SUW_S2      4
+#define BM_CSU_CSL3_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL3_SUW_S2)
+#else
+#define BF_CSU_CSL3_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL3_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL3_SUW_S2(v)   BF_CS1(CSU_CSL3, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL3_SSW_S2      5
+#define BM_CSU_CSL3_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL3_SSW_S2)
+#else
+#define BF_CSU_CSL3_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL3_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL3_SSW_S2(v)   BF_CS1(CSU_CSL3, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL3_NUW_S2      6
+#define BM_CSU_CSL3_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL3_NUW_S2)
+#else
+#define BF_CSU_CSL3_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL3_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL3_NUW_S2(v)   BF_CS1(CSU_CSL3, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL3_NSW_S2      7
+#define BM_CSU_CSL3_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL3_NSW_S2)
+#else
+#define BF_CSU_CSL3_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL3_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL3_NSW_S2(v)   BF_CS1(CSU_CSL3, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL3_LOCK_S2      8
+#define BM_CSU_CSL3_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL3_LOCK_S2)
+#else
+#define BF_CSU_CSL3_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL3_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL3_LOCK_S2(v)   BF_CS1(CSU_CSL3, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL3_SUR_S1      16
+#define BM_CSU_CSL3_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL3_SUR_S1)
+#else
+#define BF_CSU_CSL3_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL3_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL3_SUR_S1(v)   BF_CS1(CSU_CSL3, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL3_SSR_S1      17
+#define BM_CSU_CSL3_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL3_SSR_S1)
+#else
+#define BF_CSU_CSL3_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL3_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL3_SSR_S1(v)   BF_CS1(CSU_CSL3, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL3_NUR_S1      18
+#define BM_CSU_CSL3_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL3_NUR_S1)
+#else
+#define BF_CSU_CSL3_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL3_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL3_NUR_S1(v)   BF_CS1(CSU_CSL3, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL3_NSR_S1      19
+#define BM_CSU_CSL3_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL3_NSR_S1)
+#else
+#define BF_CSU_CSL3_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL3_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL3_NSR_S1(v)   BF_CS1(CSU_CSL3, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL3_SUW_S1      20
+#define BM_CSU_CSL3_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL3_SUW_S1)
+#else
+#define BF_CSU_CSL3_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL3_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL3_SUW_S1(v)   BF_CS1(CSU_CSL3, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL3_SSW_S1      21
+#define BM_CSU_CSL3_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL3_SSW_S1)
+#else
+#define BF_CSU_CSL3_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL3_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL3_SSW_S1(v)   BF_CS1(CSU_CSL3, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL3_NUW_S1      22
+#define BM_CSU_CSL3_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL3_NUW_S1)
+#else
+#define BF_CSU_CSL3_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL3_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL3_NUW_S1(v)   BF_CS1(CSU_CSL3, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL3_NSW_S1      23
+#define BM_CSU_CSL3_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL3_NSW_S1)
+#else
+#define BF_CSU_CSL3_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL3_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL3_NSW_S1(v)   BF_CS1(CSU_CSL3, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL3, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL3_LOCK_S1      24
+#define BM_CSU_CSL3_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL3_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL3_LOCK_S1)
+#else
+#define BF_CSU_CSL3_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL3_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL3_LOCK_S1(v)   BF_CS1(CSU_CSL3, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL4 - Config security level register 4 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl4_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL4 register
+ */
+#define HW_CSU_CSL4_ADDR      (REGS_CSU_BASE + 0x10)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL4           (*(volatile hw_csu_csl4_t *) HW_CSU_CSL4_ADDR)
+#define HW_CSU_CSL4_RD()      (HW_CSU_CSL4.U)
+#define HW_CSU_CSL4_WR(v)     (HW_CSU_CSL4.U = (v))
+#define HW_CSU_CSL4_SET(v)    (HW_CSU_CSL4_WR(HW_CSU_CSL4_RD() |  (v)))
+#define HW_CSU_CSL4_CLR(v)    (HW_CSU_CSL4_WR(HW_CSU_CSL4_RD() & ~(v)))
+#define HW_CSU_CSL4_TOG(v)    (HW_CSU_CSL4_WR(HW_CSU_CSL4_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL4 bitfields
+ */
+
+/* --- Register HW_CSU_CSL4, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL4_SUR_S2      0
+#define BM_CSU_CSL4_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL4_SUR_S2)
+#else
+#define BF_CSU_CSL4_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL4_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL4_SUR_S2(v)   BF_CS1(CSU_CSL4, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL4_SSR_S2      1
+#define BM_CSU_CSL4_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL4_SSR_S2)
+#else
+#define BF_CSU_CSL4_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL4_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL4_SSR_S2(v)   BF_CS1(CSU_CSL4, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL4_NUR_S2      2
+#define BM_CSU_CSL4_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL4_NUR_S2)
+#else
+#define BF_CSU_CSL4_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL4_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL4_NUR_S2(v)   BF_CS1(CSU_CSL4, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL4_NSR_S2      3
+#define BM_CSU_CSL4_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL4_NSR_S2)
+#else
+#define BF_CSU_CSL4_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL4_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL4_NSR_S2(v)   BF_CS1(CSU_CSL4, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL4_SUW_S2      4
+#define BM_CSU_CSL4_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL4_SUW_S2)
+#else
+#define BF_CSU_CSL4_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL4_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL4_SUW_S2(v)   BF_CS1(CSU_CSL4, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL4_SSW_S2      5
+#define BM_CSU_CSL4_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL4_SSW_S2)
+#else
+#define BF_CSU_CSL4_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL4_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL4_SSW_S2(v)   BF_CS1(CSU_CSL4, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL4_NUW_S2      6
+#define BM_CSU_CSL4_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL4_NUW_S2)
+#else
+#define BF_CSU_CSL4_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL4_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL4_NUW_S2(v)   BF_CS1(CSU_CSL4, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL4_NSW_S2      7
+#define BM_CSU_CSL4_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL4_NSW_S2)
+#else
+#define BF_CSU_CSL4_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL4_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL4_NSW_S2(v)   BF_CS1(CSU_CSL4, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL4_LOCK_S2      8
+#define BM_CSU_CSL4_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL4_LOCK_S2)
+#else
+#define BF_CSU_CSL4_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL4_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL4_LOCK_S2(v)   BF_CS1(CSU_CSL4, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL4_SUR_S1      16
+#define BM_CSU_CSL4_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL4_SUR_S1)
+#else
+#define BF_CSU_CSL4_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL4_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL4_SUR_S1(v)   BF_CS1(CSU_CSL4, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL4_SSR_S1      17
+#define BM_CSU_CSL4_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL4_SSR_S1)
+#else
+#define BF_CSU_CSL4_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL4_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL4_SSR_S1(v)   BF_CS1(CSU_CSL4, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL4_NUR_S1      18
+#define BM_CSU_CSL4_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL4_NUR_S1)
+#else
+#define BF_CSU_CSL4_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL4_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL4_NUR_S1(v)   BF_CS1(CSU_CSL4, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL4_NSR_S1      19
+#define BM_CSU_CSL4_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL4_NSR_S1)
+#else
+#define BF_CSU_CSL4_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL4_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL4_NSR_S1(v)   BF_CS1(CSU_CSL4, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL4_SUW_S1      20
+#define BM_CSU_CSL4_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL4_SUW_S1)
+#else
+#define BF_CSU_CSL4_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL4_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL4_SUW_S1(v)   BF_CS1(CSU_CSL4, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL4_SSW_S1      21
+#define BM_CSU_CSL4_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL4_SSW_S1)
+#else
+#define BF_CSU_CSL4_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL4_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL4_SSW_S1(v)   BF_CS1(CSU_CSL4, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL4_NUW_S1      22
+#define BM_CSU_CSL4_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL4_NUW_S1)
+#else
+#define BF_CSU_CSL4_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL4_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL4_NUW_S1(v)   BF_CS1(CSU_CSL4, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL4_NSW_S1      23
+#define BM_CSU_CSL4_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL4_NSW_S1)
+#else
+#define BF_CSU_CSL4_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL4_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL4_NSW_S1(v)   BF_CS1(CSU_CSL4, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL4, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL4_LOCK_S1      24
+#define BM_CSU_CSL4_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL4_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL4_LOCK_S1)
+#else
+#define BF_CSU_CSL4_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL4_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL4_LOCK_S1(v)   BF_CS1(CSU_CSL4, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL5 - Config security level register 5 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl5_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL5 register
+ */
+#define HW_CSU_CSL5_ADDR      (REGS_CSU_BASE + 0x14)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL5           (*(volatile hw_csu_csl5_t *) HW_CSU_CSL5_ADDR)
+#define HW_CSU_CSL5_RD()      (HW_CSU_CSL5.U)
+#define HW_CSU_CSL5_WR(v)     (HW_CSU_CSL5.U = (v))
+#define HW_CSU_CSL5_SET(v)    (HW_CSU_CSL5_WR(HW_CSU_CSL5_RD() |  (v)))
+#define HW_CSU_CSL5_CLR(v)    (HW_CSU_CSL5_WR(HW_CSU_CSL5_RD() & ~(v)))
+#define HW_CSU_CSL5_TOG(v)    (HW_CSU_CSL5_WR(HW_CSU_CSL5_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL5 bitfields
+ */
+
+/* --- Register HW_CSU_CSL5, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL5_SUR_S2      0
+#define BM_CSU_CSL5_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL5_SUR_S2)
+#else
+#define BF_CSU_CSL5_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL5_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL5_SUR_S2(v)   BF_CS1(CSU_CSL5, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL5_SSR_S2      1
+#define BM_CSU_CSL5_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL5_SSR_S2)
+#else
+#define BF_CSU_CSL5_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL5_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL5_SSR_S2(v)   BF_CS1(CSU_CSL5, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL5_NUR_S2      2
+#define BM_CSU_CSL5_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL5_NUR_S2)
+#else
+#define BF_CSU_CSL5_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL5_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL5_NUR_S2(v)   BF_CS1(CSU_CSL5, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL5_NSR_S2      3
+#define BM_CSU_CSL5_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL5_NSR_S2)
+#else
+#define BF_CSU_CSL5_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL5_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL5_NSR_S2(v)   BF_CS1(CSU_CSL5, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL5_SUW_S2      4
+#define BM_CSU_CSL5_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL5_SUW_S2)
+#else
+#define BF_CSU_CSL5_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL5_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL5_SUW_S2(v)   BF_CS1(CSU_CSL5, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL5_SSW_S2      5
+#define BM_CSU_CSL5_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL5_SSW_S2)
+#else
+#define BF_CSU_CSL5_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL5_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL5_SSW_S2(v)   BF_CS1(CSU_CSL5, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL5_NUW_S2      6
+#define BM_CSU_CSL5_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL5_NUW_S2)
+#else
+#define BF_CSU_CSL5_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL5_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL5_NUW_S2(v)   BF_CS1(CSU_CSL5, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL5_NSW_S2      7
+#define BM_CSU_CSL5_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL5_NSW_S2)
+#else
+#define BF_CSU_CSL5_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL5_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL5_NSW_S2(v)   BF_CS1(CSU_CSL5, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL5_LOCK_S2      8
+#define BM_CSU_CSL5_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL5_LOCK_S2)
+#else
+#define BF_CSU_CSL5_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL5_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL5_LOCK_S2(v)   BF_CS1(CSU_CSL5, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL5_SUR_S1      16
+#define BM_CSU_CSL5_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL5_SUR_S1)
+#else
+#define BF_CSU_CSL5_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL5_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL5_SUR_S1(v)   BF_CS1(CSU_CSL5, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL5_SSR_S1      17
+#define BM_CSU_CSL5_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL5_SSR_S1)
+#else
+#define BF_CSU_CSL5_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL5_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL5_SSR_S1(v)   BF_CS1(CSU_CSL5, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL5_NUR_S1      18
+#define BM_CSU_CSL5_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL5_NUR_S1)
+#else
+#define BF_CSU_CSL5_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL5_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL5_NUR_S1(v)   BF_CS1(CSU_CSL5, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL5_NSR_S1      19
+#define BM_CSU_CSL5_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL5_NSR_S1)
+#else
+#define BF_CSU_CSL5_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL5_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL5_NSR_S1(v)   BF_CS1(CSU_CSL5, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL5_SUW_S1      20
+#define BM_CSU_CSL5_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL5_SUW_S1)
+#else
+#define BF_CSU_CSL5_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL5_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL5_SUW_S1(v)   BF_CS1(CSU_CSL5, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL5_SSW_S1      21
+#define BM_CSU_CSL5_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL5_SSW_S1)
+#else
+#define BF_CSU_CSL5_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL5_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL5_SSW_S1(v)   BF_CS1(CSU_CSL5, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL5_NUW_S1      22
+#define BM_CSU_CSL5_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL5_NUW_S1)
+#else
+#define BF_CSU_CSL5_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL5_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL5_NUW_S1(v)   BF_CS1(CSU_CSL5, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL5_NSW_S1      23
+#define BM_CSU_CSL5_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL5_NSW_S1)
+#else
+#define BF_CSU_CSL5_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL5_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL5_NSW_S1(v)   BF_CS1(CSU_CSL5, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL5, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL5_LOCK_S1      24
+#define BM_CSU_CSL5_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL5_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL5_LOCK_S1)
+#else
+#define BF_CSU_CSL5_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL5_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL5_LOCK_S1(v)   BF_CS1(CSU_CSL5, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL6 - Config security level register 6 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl6_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL6 register
+ */
+#define HW_CSU_CSL6_ADDR      (REGS_CSU_BASE + 0x18)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL6           (*(volatile hw_csu_csl6_t *) HW_CSU_CSL6_ADDR)
+#define HW_CSU_CSL6_RD()      (HW_CSU_CSL6.U)
+#define HW_CSU_CSL6_WR(v)     (HW_CSU_CSL6.U = (v))
+#define HW_CSU_CSL6_SET(v)    (HW_CSU_CSL6_WR(HW_CSU_CSL6_RD() |  (v)))
+#define HW_CSU_CSL6_CLR(v)    (HW_CSU_CSL6_WR(HW_CSU_CSL6_RD() & ~(v)))
+#define HW_CSU_CSL6_TOG(v)    (HW_CSU_CSL6_WR(HW_CSU_CSL6_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL6 bitfields
+ */
+
+/* --- Register HW_CSU_CSL6, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL6_SUR_S2      0
+#define BM_CSU_CSL6_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL6_SUR_S2)
+#else
+#define BF_CSU_CSL6_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL6_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL6_SUR_S2(v)   BF_CS1(CSU_CSL6, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL6_SSR_S2      1
+#define BM_CSU_CSL6_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL6_SSR_S2)
+#else
+#define BF_CSU_CSL6_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL6_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL6_SSR_S2(v)   BF_CS1(CSU_CSL6, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL6_NUR_S2      2
+#define BM_CSU_CSL6_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL6_NUR_S2)
+#else
+#define BF_CSU_CSL6_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL6_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL6_NUR_S2(v)   BF_CS1(CSU_CSL6, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL6_NSR_S2      3
+#define BM_CSU_CSL6_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL6_NSR_S2)
+#else
+#define BF_CSU_CSL6_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL6_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL6_NSR_S2(v)   BF_CS1(CSU_CSL6, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL6_SUW_S2      4
+#define BM_CSU_CSL6_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL6_SUW_S2)
+#else
+#define BF_CSU_CSL6_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL6_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL6_SUW_S2(v)   BF_CS1(CSU_CSL6, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL6_SSW_S2      5
+#define BM_CSU_CSL6_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL6_SSW_S2)
+#else
+#define BF_CSU_CSL6_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL6_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL6_SSW_S2(v)   BF_CS1(CSU_CSL6, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL6_NUW_S2      6
+#define BM_CSU_CSL6_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL6_NUW_S2)
+#else
+#define BF_CSU_CSL6_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL6_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL6_NUW_S2(v)   BF_CS1(CSU_CSL6, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL6_NSW_S2      7
+#define BM_CSU_CSL6_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL6_NSW_S2)
+#else
+#define BF_CSU_CSL6_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL6_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL6_NSW_S2(v)   BF_CS1(CSU_CSL6, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL6_LOCK_S2      8
+#define BM_CSU_CSL6_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL6_LOCK_S2)
+#else
+#define BF_CSU_CSL6_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL6_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL6_LOCK_S2(v)   BF_CS1(CSU_CSL6, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL6_SUR_S1      16
+#define BM_CSU_CSL6_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL6_SUR_S1)
+#else
+#define BF_CSU_CSL6_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL6_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL6_SUR_S1(v)   BF_CS1(CSU_CSL6, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL6_SSR_S1      17
+#define BM_CSU_CSL6_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL6_SSR_S1)
+#else
+#define BF_CSU_CSL6_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL6_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL6_SSR_S1(v)   BF_CS1(CSU_CSL6, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL6_NUR_S1      18
+#define BM_CSU_CSL6_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL6_NUR_S1)
+#else
+#define BF_CSU_CSL6_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL6_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL6_NUR_S1(v)   BF_CS1(CSU_CSL6, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL6_NSR_S1      19
+#define BM_CSU_CSL6_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL6_NSR_S1)
+#else
+#define BF_CSU_CSL6_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL6_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL6_NSR_S1(v)   BF_CS1(CSU_CSL6, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL6_SUW_S1      20
+#define BM_CSU_CSL6_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL6_SUW_S1)
+#else
+#define BF_CSU_CSL6_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL6_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL6_SUW_S1(v)   BF_CS1(CSU_CSL6, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL6_SSW_S1      21
+#define BM_CSU_CSL6_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL6_SSW_S1)
+#else
+#define BF_CSU_CSL6_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL6_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL6_SSW_S1(v)   BF_CS1(CSU_CSL6, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL6_NUW_S1      22
+#define BM_CSU_CSL6_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL6_NUW_S1)
+#else
+#define BF_CSU_CSL6_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL6_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL6_NUW_S1(v)   BF_CS1(CSU_CSL6, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL6_NSW_S1      23
+#define BM_CSU_CSL6_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL6_NSW_S1)
+#else
+#define BF_CSU_CSL6_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL6_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL6_NSW_S1(v)   BF_CS1(CSU_CSL6, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL6, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL6_LOCK_S1      24
+#define BM_CSU_CSL6_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL6_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL6_LOCK_S1)
+#else
+#define BF_CSU_CSL6_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL6_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL6_LOCK_S1(v)   BF_CS1(CSU_CSL6, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL7 - Config security level register 7 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl7_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL7 register
+ */
+#define HW_CSU_CSL7_ADDR      (REGS_CSU_BASE + 0x1c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL7           (*(volatile hw_csu_csl7_t *) HW_CSU_CSL7_ADDR)
+#define HW_CSU_CSL7_RD()      (HW_CSU_CSL7.U)
+#define HW_CSU_CSL7_WR(v)     (HW_CSU_CSL7.U = (v))
+#define HW_CSU_CSL7_SET(v)    (HW_CSU_CSL7_WR(HW_CSU_CSL7_RD() |  (v)))
+#define HW_CSU_CSL7_CLR(v)    (HW_CSU_CSL7_WR(HW_CSU_CSL7_RD() & ~(v)))
+#define HW_CSU_CSL7_TOG(v)    (HW_CSU_CSL7_WR(HW_CSU_CSL7_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL7 bitfields
+ */
+
+/* --- Register HW_CSU_CSL7, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL7_SUR_S2      0
+#define BM_CSU_CSL7_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL7_SUR_S2)
+#else
+#define BF_CSU_CSL7_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL7_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL7_SUR_S2(v)   BF_CS1(CSU_CSL7, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL7_SSR_S2      1
+#define BM_CSU_CSL7_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL7_SSR_S2)
+#else
+#define BF_CSU_CSL7_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL7_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL7_SSR_S2(v)   BF_CS1(CSU_CSL7, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL7_NUR_S2      2
+#define BM_CSU_CSL7_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL7_NUR_S2)
+#else
+#define BF_CSU_CSL7_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL7_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL7_NUR_S2(v)   BF_CS1(CSU_CSL7, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL7_NSR_S2      3
+#define BM_CSU_CSL7_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL7_NSR_S2)
+#else
+#define BF_CSU_CSL7_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL7_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL7_NSR_S2(v)   BF_CS1(CSU_CSL7, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL7_SUW_S2      4
+#define BM_CSU_CSL7_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL7_SUW_S2)
+#else
+#define BF_CSU_CSL7_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL7_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL7_SUW_S2(v)   BF_CS1(CSU_CSL7, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL7_SSW_S2      5
+#define BM_CSU_CSL7_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL7_SSW_S2)
+#else
+#define BF_CSU_CSL7_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL7_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL7_SSW_S2(v)   BF_CS1(CSU_CSL7, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL7_NUW_S2      6
+#define BM_CSU_CSL7_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL7_NUW_S2)
+#else
+#define BF_CSU_CSL7_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL7_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL7_NUW_S2(v)   BF_CS1(CSU_CSL7, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL7_NSW_S2      7
+#define BM_CSU_CSL7_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL7_NSW_S2)
+#else
+#define BF_CSU_CSL7_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL7_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL7_NSW_S2(v)   BF_CS1(CSU_CSL7, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL7_LOCK_S2      8
+#define BM_CSU_CSL7_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL7_LOCK_S2)
+#else
+#define BF_CSU_CSL7_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL7_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL7_LOCK_S2(v)   BF_CS1(CSU_CSL7, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL7_SUR_S1      16
+#define BM_CSU_CSL7_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL7_SUR_S1)
+#else
+#define BF_CSU_CSL7_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL7_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL7_SUR_S1(v)   BF_CS1(CSU_CSL7, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL7_SSR_S1      17
+#define BM_CSU_CSL7_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL7_SSR_S1)
+#else
+#define BF_CSU_CSL7_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL7_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL7_SSR_S1(v)   BF_CS1(CSU_CSL7, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL7_NUR_S1      18
+#define BM_CSU_CSL7_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL7_NUR_S1)
+#else
+#define BF_CSU_CSL7_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL7_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL7_NUR_S1(v)   BF_CS1(CSU_CSL7, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL7_NSR_S1      19
+#define BM_CSU_CSL7_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL7_NSR_S1)
+#else
+#define BF_CSU_CSL7_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL7_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL7_NSR_S1(v)   BF_CS1(CSU_CSL7, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL7_SUW_S1      20
+#define BM_CSU_CSL7_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL7_SUW_S1)
+#else
+#define BF_CSU_CSL7_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL7_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL7_SUW_S1(v)   BF_CS1(CSU_CSL7, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL7_SSW_S1      21
+#define BM_CSU_CSL7_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL7_SSW_S1)
+#else
+#define BF_CSU_CSL7_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL7_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL7_SSW_S1(v)   BF_CS1(CSU_CSL7, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL7_NUW_S1      22
+#define BM_CSU_CSL7_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL7_NUW_S1)
+#else
+#define BF_CSU_CSL7_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL7_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL7_NUW_S1(v)   BF_CS1(CSU_CSL7, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL7_NSW_S1      23
+#define BM_CSU_CSL7_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL7_NSW_S1)
+#else
+#define BF_CSU_CSL7_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL7_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL7_NSW_S1(v)   BF_CS1(CSU_CSL7, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL7, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL7_LOCK_S1      24
+#define BM_CSU_CSL7_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL7_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL7_LOCK_S1)
+#else
+#define BF_CSU_CSL7_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL7_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL7_LOCK_S1(v)   BF_CS1(CSU_CSL7, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL8 - Config security level register 8 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl8_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL8 register
+ */
+#define HW_CSU_CSL8_ADDR      (REGS_CSU_BASE + 0x20)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL8           (*(volatile hw_csu_csl8_t *) HW_CSU_CSL8_ADDR)
+#define HW_CSU_CSL8_RD()      (HW_CSU_CSL8.U)
+#define HW_CSU_CSL8_WR(v)     (HW_CSU_CSL8.U = (v))
+#define HW_CSU_CSL8_SET(v)    (HW_CSU_CSL8_WR(HW_CSU_CSL8_RD() |  (v)))
+#define HW_CSU_CSL8_CLR(v)    (HW_CSU_CSL8_WR(HW_CSU_CSL8_RD() & ~(v)))
+#define HW_CSU_CSL8_TOG(v)    (HW_CSU_CSL8_WR(HW_CSU_CSL8_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL8 bitfields
+ */
+
+/* --- Register HW_CSU_CSL8, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL8_SUR_S2      0
+#define BM_CSU_CSL8_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL8_SUR_S2)
+#else
+#define BF_CSU_CSL8_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL8_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL8_SUR_S2(v)   BF_CS1(CSU_CSL8, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL8_SSR_S2      1
+#define BM_CSU_CSL8_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL8_SSR_S2)
+#else
+#define BF_CSU_CSL8_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL8_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL8_SSR_S2(v)   BF_CS1(CSU_CSL8, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL8_NUR_S2      2
+#define BM_CSU_CSL8_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL8_NUR_S2)
+#else
+#define BF_CSU_CSL8_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL8_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL8_NUR_S2(v)   BF_CS1(CSU_CSL8, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL8_NSR_S2      3
+#define BM_CSU_CSL8_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL8_NSR_S2)
+#else
+#define BF_CSU_CSL8_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL8_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL8_NSR_S2(v)   BF_CS1(CSU_CSL8, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL8_SUW_S2      4
+#define BM_CSU_CSL8_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL8_SUW_S2)
+#else
+#define BF_CSU_CSL8_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL8_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL8_SUW_S2(v)   BF_CS1(CSU_CSL8, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL8_SSW_S2      5
+#define BM_CSU_CSL8_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL8_SSW_S2)
+#else
+#define BF_CSU_CSL8_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL8_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL8_SSW_S2(v)   BF_CS1(CSU_CSL8, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL8_NUW_S2      6
+#define BM_CSU_CSL8_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL8_NUW_S2)
+#else
+#define BF_CSU_CSL8_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL8_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL8_NUW_S2(v)   BF_CS1(CSU_CSL8, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL8_NSW_S2      7
+#define BM_CSU_CSL8_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL8_NSW_S2)
+#else
+#define BF_CSU_CSL8_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL8_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL8_NSW_S2(v)   BF_CS1(CSU_CSL8, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL8_LOCK_S2      8
+#define BM_CSU_CSL8_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL8_LOCK_S2)
+#else
+#define BF_CSU_CSL8_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL8_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL8_LOCK_S2(v)   BF_CS1(CSU_CSL8, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL8_SUR_S1      16
+#define BM_CSU_CSL8_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL8_SUR_S1)
+#else
+#define BF_CSU_CSL8_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL8_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL8_SUR_S1(v)   BF_CS1(CSU_CSL8, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL8_SSR_S1      17
+#define BM_CSU_CSL8_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL8_SSR_S1)
+#else
+#define BF_CSU_CSL8_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL8_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL8_SSR_S1(v)   BF_CS1(CSU_CSL8, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL8_NUR_S1      18
+#define BM_CSU_CSL8_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL8_NUR_S1)
+#else
+#define BF_CSU_CSL8_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL8_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL8_NUR_S1(v)   BF_CS1(CSU_CSL8, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL8_NSR_S1      19
+#define BM_CSU_CSL8_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL8_NSR_S1)
+#else
+#define BF_CSU_CSL8_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL8_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL8_NSR_S1(v)   BF_CS1(CSU_CSL8, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL8_SUW_S1      20
+#define BM_CSU_CSL8_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL8_SUW_S1)
+#else
+#define BF_CSU_CSL8_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL8_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL8_SUW_S1(v)   BF_CS1(CSU_CSL8, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL8_SSW_S1      21
+#define BM_CSU_CSL8_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL8_SSW_S1)
+#else
+#define BF_CSU_CSL8_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL8_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL8_SSW_S1(v)   BF_CS1(CSU_CSL8, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL8_NUW_S1      22
+#define BM_CSU_CSL8_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL8_NUW_S1)
+#else
+#define BF_CSU_CSL8_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL8_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL8_NUW_S1(v)   BF_CS1(CSU_CSL8, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL8_NSW_S1      23
+#define BM_CSU_CSL8_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL8_NSW_S1)
+#else
+#define BF_CSU_CSL8_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL8_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL8_NSW_S1(v)   BF_CS1(CSU_CSL8, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL8, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL8_LOCK_S1      24
+#define BM_CSU_CSL8_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL8_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL8_LOCK_S1)
+#else
+#define BF_CSU_CSL8_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL8_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL8_LOCK_S1(v)   BF_CS1(CSU_CSL8, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL9 - Config security level register 9 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl9_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL9 register
+ */
+#define HW_CSU_CSL9_ADDR      (REGS_CSU_BASE + 0x24)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL9           (*(volatile hw_csu_csl9_t *) HW_CSU_CSL9_ADDR)
+#define HW_CSU_CSL9_RD()      (HW_CSU_CSL9.U)
+#define HW_CSU_CSL9_WR(v)     (HW_CSU_CSL9.U = (v))
+#define HW_CSU_CSL9_SET(v)    (HW_CSU_CSL9_WR(HW_CSU_CSL9_RD() |  (v)))
+#define HW_CSU_CSL9_CLR(v)    (HW_CSU_CSL9_WR(HW_CSU_CSL9_RD() & ~(v)))
+#define HW_CSU_CSL9_TOG(v)    (HW_CSU_CSL9_WR(HW_CSU_CSL9_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL9 bitfields
+ */
+
+/* --- Register HW_CSU_CSL9, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL9_SUR_S2      0
+#define BM_CSU_CSL9_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL9_SUR_S2)
+#else
+#define BF_CSU_CSL9_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL9_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL9_SUR_S2(v)   BF_CS1(CSU_CSL9, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL9_SSR_S2      1
+#define BM_CSU_CSL9_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL9_SSR_S2)
+#else
+#define BF_CSU_CSL9_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL9_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL9_SSR_S2(v)   BF_CS1(CSU_CSL9, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL9_NUR_S2      2
+#define BM_CSU_CSL9_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL9_NUR_S2)
+#else
+#define BF_CSU_CSL9_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL9_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL9_NUR_S2(v)   BF_CS1(CSU_CSL9, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL9_NSR_S2      3
+#define BM_CSU_CSL9_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL9_NSR_S2)
+#else
+#define BF_CSU_CSL9_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL9_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL9_NSR_S2(v)   BF_CS1(CSU_CSL9, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL9_SUW_S2      4
+#define BM_CSU_CSL9_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL9_SUW_S2)
+#else
+#define BF_CSU_CSL9_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL9_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL9_SUW_S2(v)   BF_CS1(CSU_CSL9, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL9_SSW_S2      5
+#define BM_CSU_CSL9_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL9_SSW_S2)
+#else
+#define BF_CSU_CSL9_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL9_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL9_SSW_S2(v)   BF_CS1(CSU_CSL9, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL9_NUW_S2      6
+#define BM_CSU_CSL9_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL9_NUW_S2)
+#else
+#define BF_CSU_CSL9_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL9_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL9_NUW_S2(v)   BF_CS1(CSU_CSL9, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL9_NSW_S2      7
+#define BM_CSU_CSL9_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL9_NSW_S2)
+#else
+#define BF_CSU_CSL9_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL9_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL9_NSW_S2(v)   BF_CS1(CSU_CSL9, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL9_LOCK_S2      8
+#define BM_CSU_CSL9_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL9_LOCK_S2)
+#else
+#define BF_CSU_CSL9_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL9_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL9_LOCK_S2(v)   BF_CS1(CSU_CSL9, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL9_SUR_S1      16
+#define BM_CSU_CSL9_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL9_SUR_S1)
+#else
+#define BF_CSU_CSL9_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL9_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL9_SUR_S1(v)   BF_CS1(CSU_CSL9, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL9_SSR_S1      17
+#define BM_CSU_CSL9_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL9_SSR_S1)
+#else
+#define BF_CSU_CSL9_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL9_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL9_SSR_S1(v)   BF_CS1(CSU_CSL9, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL9_NUR_S1      18
+#define BM_CSU_CSL9_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL9_NUR_S1)
+#else
+#define BF_CSU_CSL9_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL9_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL9_NUR_S1(v)   BF_CS1(CSU_CSL9, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL9_NSR_S1      19
+#define BM_CSU_CSL9_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL9_NSR_S1)
+#else
+#define BF_CSU_CSL9_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL9_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL9_NSR_S1(v)   BF_CS1(CSU_CSL9, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL9_SUW_S1      20
+#define BM_CSU_CSL9_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL9_SUW_S1)
+#else
+#define BF_CSU_CSL9_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL9_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL9_SUW_S1(v)   BF_CS1(CSU_CSL9, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL9_SSW_S1      21
+#define BM_CSU_CSL9_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL9_SSW_S1)
+#else
+#define BF_CSU_CSL9_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL9_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL9_SSW_S1(v)   BF_CS1(CSU_CSL9, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL9_NUW_S1      22
+#define BM_CSU_CSL9_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL9_NUW_S1)
+#else
+#define BF_CSU_CSL9_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL9_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL9_NUW_S1(v)   BF_CS1(CSU_CSL9, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL9_NSW_S1      23
+#define BM_CSU_CSL9_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL9_NSW_S1)
+#else
+#define BF_CSU_CSL9_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL9_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL9_NSW_S1(v)   BF_CS1(CSU_CSL9, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL9, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL9_LOCK_S1      24
+#define BM_CSU_CSL9_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL9_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL9_LOCK_S1)
+#else
+#define BF_CSU_CSL9_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL9_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL9_LOCK_S1(v)   BF_CS1(CSU_CSL9, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL10 - Config security level register 10 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl10_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL10 register
+ */
+#define HW_CSU_CSL10_ADDR      (REGS_CSU_BASE + 0x28)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL10           (*(volatile hw_csu_csl10_t *) HW_CSU_CSL10_ADDR)
+#define HW_CSU_CSL10_RD()      (HW_CSU_CSL10.U)
+#define HW_CSU_CSL10_WR(v)     (HW_CSU_CSL10.U = (v))
+#define HW_CSU_CSL10_SET(v)    (HW_CSU_CSL10_WR(HW_CSU_CSL10_RD() |  (v)))
+#define HW_CSU_CSL10_CLR(v)    (HW_CSU_CSL10_WR(HW_CSU_CSL10_RD() & ~(v)))
+#define HW_CSU_CSL10_TOG(v)    (HW_CSU_CSL10_WR(HW_CSU_CSL10_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL10 bitfields
+ */
+
+/* --- Register HW_CSU_CSL10, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL10_SUR_S2      0
+#define BM_CSU_CSL10_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL10_SUR_S2)
+#else
+#define BF_CSU_CSL10_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL10_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL10_SUR_S2(v)   BF_CS1(CSU_CSL10, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL10_SSR_S2      1
+#define BM_CSU_CSL10_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL10_SSR_S2)
+#else
+#define BF_CSU_CSL10_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL10_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL10_SSR_S2(v)   BF_CS1(CSU_CSL10, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL10_NUR_S2      2
+#define BM_CSU_CSL10_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL10_NUR_S2)
+#else
+#define BF_CSU_CSL10_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL10_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL10_NUR_S2(v)   BF_CS1(CSU_CSL10, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL10_NSR_S2      3
+#define BM_CSU_CSL10_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL10_NSR_S2)
+#else
+#define BF_CSU_CSL10_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL10_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL10_NSR_S2(v)   BF_CS1(CSU_CSL10, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL10_SUW_S2      4
+#define BM_CSU_CSL10_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL10_SUW_S2)
+#else
+#define BF_CSU_CSL10_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL10_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL10_SUW_S2(v)   BF_CS1(CSU_CSL10, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL10_SSW_S2      5
+#define BM_CSU_CSL10_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL10_SSW_S2)
+#else
+#define BF_CSU_CSL10_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL10_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL10_SSW_S2(v)   BF_CS1(CSU_CSL10, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL10_NUW_S2      6
+#define BM_CSU_CSL10_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL10_NUW_S2)
+#else
+#define BF_CSU_CSL10_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL10_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL10_NUW_S2(v)   BF_CS1(CSU_CSL10, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL10_NSW_S2      7
+#define BM_CSU_CSL10_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL10_NSW_S2)
+#else
+#define BF_CSU_CSL10_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL10_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL10_NSW_S2(v)   BF_CS1(CSU_CSL10, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL10_LOCK_S2      8
+#define BM_CSU_CSL10_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL10_LOCK_S2)
+#else
+#define BF_CSU_CSL10_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL10_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL10_LOCK_S2(v)   BF_CS1(CSU_CSL10, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL10_SUR_S1      16
+#define BM_CSU_CSL10_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL10_SUR_S1)
+#else
+#define BF_CSU_CSL10_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL10_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL10_SUR_S1(v)   BF_CS1(CSU_CSL10, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL10_SSR_S1      17
+#define BM_CSU_CSL10_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL10_SSR_S1)
+#else
+#define BF_CSU_CSL10_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL10_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL10_SSR_S1(v)   BF_CS1(CSU_CSL10, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL10_NUR_S1      18
+#define BM_CSU_CSL10_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL10_NUR_S1)
+#else
+#define BF_CSU_CSL10_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL10_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL10_NUR_S1(v)   BF_CS1(CSU_CSL10, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL10_NSR_S1      19
+#define BM_CSU_CSL10_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL10_NSR_S1)
+#else
+#define BF_CSU_CSL10_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL10_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL10_NSR_S1(v)   BF_CS1(CSU_CSL10, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL10_SUW_S1      20
+#define BM_CSU_CSL10_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL10_SUW_S1)
+#else
+#define BF_CSU_CSL10_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL10_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL10_SUW_S1(v)   BF_CS1(CSU_CSL10, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL10_SSW_S1      21
+#define BM_CSU_CSL10_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL10_SSW_S1)
+#else
+#define BF_CSU_CSL10_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL10_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL10_SSW_S1(v)   BF_CS1(CSU_CSL10, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL10_NUW_S1      22
+#define BM_CSU_CSL10_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL10_NUW_S1)
+#else
+#define BF_CSU_CSL10_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL10_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL10_NUW_S1(v)   BF_CS1(CSU_CSL10, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL10_NSW_S1      23
+#define BM_CSU_CSL10_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL10_NSW_S1)
+#else
+#define BF_CSU_CSL10_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL10_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL10_NSW_S1(v)   BF_CS1(CSU_CSL10, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL10, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL10_LOCK_S1      24
+#define BM_CSU_CSL10_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL10_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL10_LOCK_S1)
+#else
+#define BF_CSU_CSL10_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL10_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL10_LOCK_S1(v)   BF_CS1(CSU_CSL10, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL11 - Config security level register 11 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl11_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL11 register
+ */
+#define HW_CSU_CSL11_ADDR      (REGS_CSU_BASE + 0x2c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL11           (*(volatile hw_csu_csl11_t *) HW_CSU_CSL11_ADDR)
+#define HW_CSU_CSL11_RD()      (HW_CSU_CSL11.U)
+#define HW_CSU_CSL11_WR(v)     (HW_CSU_CSL11.U = (v))
+#define HW_CSU_CSL11_SET(v)    (HW_CSU_CSL11_WR(HW_CSU_CSL11_RD() |  (v)))
+#define HW_CSU_CSL11_CLR(v)    (HW_CSU_CSL11_WR(HW_CSU_CSL11_RD() & ~(v)))
+#define HW_CSU_CSL11_TOG(v)    (HW_CSU_CSL11_WR(HW_CSU_CSL11_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL11 bitfields
+ */
+
+/* --- Register HW_CSU_CSL11, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL11_SUR_S2      0
+#define BM_CSU_CSL11_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL11_SUR_S2)
+#else
+#define BF_CSU_CSL11_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL11_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL11_SUR_S2(v)   BF_CS1(CSU_CSL11, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL11_SSR_S2      1
+#define BM_CSU_CSL11_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL11_SSR_S2)
+#else
+#define BF_CSU_CSL11_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL11_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL11_SSR_S2(v)   BF_CS1(CSU_CSL11, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL11_NUR_S2      2
+#define BM_CSU_CSL11_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL11_NUR_S2)
+#else
+#define BF_CSU_CSL11_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL11_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL11_NUR_S2(v)   BF_CS1(CSU_CSL11, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL11_NSR_S2      3
+#define BM_CSU_CSL11_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL11_NSR_S2)
+#else
+#define BF_CSU_CSL11_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL11_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL11_NSR_S2(v)   BF_CS1(CSU_CSL11, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL11_SUW_S2      4
+#define BM_CSU_CSL11_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL11_SUW_S2)
+#else
+#define BF_CSU_CSL11_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL11_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL11_SUW_S2(v)   BF_CS1(CSU_CSL11, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL11_SSW_S2      5
+#define BM_CSU_CSL11_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL11_SSW_S2)
+#else
+#define BF_CSU_CSL11_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL11_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL11_SSW_S2(v)   BF_CS1(CSU_CSL11, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL11_NUW_S2      6
+#define BM_CSU_CSL11_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL11_NUW_S2)
+#else
+#define BF_CSU_CSL11_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL11_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL11_NUW_S2(v)   BF_CS1(CSU_CSL11, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL11_NSW_S2      7
+#define BM_CSU_CSL11_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL11_NSW_S2)
+#else
+#define BF_CSU_CSL11_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL11_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL11_NSW_S2(v)   BF_CS1(CSU_CSL11, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL11_LOCK_S2      8
+#define BM_CSU_CSL11_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL11_LOCK_S2)
+#else
+#define BF_CSU_CSL11_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL11_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL11_LOCK_S2(v)   BF_CS1(CSU_CSL11, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL11_SUR_S1      16
+#define BM_CSU_CSL11_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL11_SUR_S1)
+#else
+#define BF_CSU_CSL11_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL11_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL11_SUR_S1(v)   BF_CS1(CSU_CSL11, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL11_SSR_S1      17
+#define BM_CSU_CSL11_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL11_SSR_S1)
+#else
+#define BF_CSU_CSL11_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL11_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL11_SSR_S1(v)   BF_CS1(CSU_CSL11, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL11_NUR_S1      18
+#define BM_CSU_CSL11_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL11_NUR_S1)
+#else
+#define BF_CSU_CSL11_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL11_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL11_NUR_S1(v)   BF_CS1(CSU_CSL11, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL11_NSR_S1      19
+#define BM_CSU_CSL11_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL11_NSR_S1)
+#else
+#define BF_CSU_CSL11_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL11_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL11_NSR_S1(v)   BF_CS1(CSU_CSL11, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL11_SUW_S1      20
+#define BM_CSU_CSL11_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL11_SUW_S1)
+#else
+#define BF_CSU_CSL11_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL11_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL11_SUW_S1(v)   BF_CS1(CSU_CSL11, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL11_SSW_S1      21
+#define BM_CSU_CSL11_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL11_SSW_S1)
+#else
+#define BF_CSU_CSL11_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL11_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL11_SSW_S1(v)   BF_CS1(CSU_CSL11, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL11_NUW_S1      22
+#define BM_CSU_CSL11_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL11_NUW_S1)
+#else
+#define BF_CSU_CSL11_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL11_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL11_NUW_S1(v)   BF_CS1(CSU_CSL11, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL11_NSW_S1      23
+#define BM_CSU_CSL11_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL11_NSW_S1)
+#else
+#define BF_CSU_CSL11_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL11_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL11_NSW_S1(v)   BF_CS1(CSU_CSL11, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL11, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL11_LOCK_S1      24
+#define BM_CSU_CSL11_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL11_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL11_LOCK_S1)
+#else
+#define BF_CSU_CSL11_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL11_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL11_LOCK_S1(v)   BF_CS1(CSU_CSL11, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL12 - Config security level register 12 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl12_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL12 register
+ */
+#define HW_CSU_CSL12_ADDR      (REGS_CSU_BASE + 0x30)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL12           (*(volatile hw_csu_csl12_t *) HW_CSU_CSL12_ADDR)
+#define HW_CSU_CSL12_RD()      (HW_CSU_CSL12.U)
+#define HW_CSU_CSL12_WR(v)     (HW_CSU_CSL12.U = (v))
+#define HW_CSU_CSL12_SET(v)    (HW_CSU_CSL12_WR(HW_CSU_CSL12_RD() |  (v)))
+#define HW_CSU_CSL12_CLR(v)    (HW_CSU_CSL12_WR(HW_CSU_CSL12_RD() & ~(v)))
+#define HW_CSU_CSL12_TOG(v)    (HW_CSU_CSL12_WR(HW_CSU_CSL12_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL12 bitfields
+ */
+
+/* --- Register HW_CSU_CSL12, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL12_SUR_S2      0
+#define BM_CSU_CSL12_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL12_SUR_S2)
+#else
+#define BF_CSU_CSL12_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL12_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL12_SUR_S2(v)   BF_CS1(CSU_CSL12, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL12_SSR_S2      1
+#define BM_CSU_CSL12_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL12_SSR_S2)
+#else
+#define BF_CSU_CSL12_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL12_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL12_SSR_S2(v)   BF_CS1(CSU_CSL12, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL12_NUR_S2      2
+#define BM_CSU_CSL12_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL12_NUR_S2)
+#else
+#define BF_CSU_CSL12_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL12_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL12_NUR_S2(v)   BF_CS1(CSU_CSL12, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL12_NSR_S2      3
+#define BM_CSU_CSL12_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL12_NSR_S2)
+#else
+#define BF_CSU_CSL12_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL12_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL12_NSR_S2(v)   BF_CS1(CSU_CSL12, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL12_SUW_S2      4
+#define BM_CSU_CSL12_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL12_SUW_S2)
+#else
+#define BF_CSU_CSL12_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL12_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL12_SUW_S2(v)   BF_CS1(CSU_CSL12, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL12_SSW_S2      5
+#define BM_CSU_CSL12_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL12_SSW_S2)
+#else
+#define BF_CSU_CSL12_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL12_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL12_SSW_S2(v)   BF_CS1(CSU_CSL12, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL12_NUW_S2      6
+#define BM_CSU_CSL12_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL12_NUW_S2)
+#else
+#define BF_CSU_CSL12_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL12_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL12_NUW_S2(v)   BF_CS1(CSU_CSL12, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL12_NSW_S2      7
+#define BM_CSU_CSL12_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL12_NSW_S2)
+#else
+#define BF_CSU_CSL12_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL12_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL12_NSW_S2(v)   BF_CS1(CSU_CSL12, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL12_LOCK_S2      8
+#define BM_CSU_CSL12_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL12_LOCK_S2)
+#else
+#define BF_CSU_CSL12_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL12_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL12_LOCK_S2(v)   BF_CS1(CSU_CSL12, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL12_SUR_S1      16
+#define BM_CSU_CSL12_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL12_SUR_S1)
+#else
+#define BF_CSU_CSL12_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL12_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL12_SUR_S1(v)   BF_CS1(CSU_CSL12, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL12_SSR_S1      17
+#define BM_CSU_CSL12_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL12_SSR_S1)
+#else
+#define BF_CSU_CSL12_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL12_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL12_SSR_S1(v)   BF_CS1(CSU_CSL12, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL12_NUR_S1      18
+#define BM_CSU_CSL12_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL12_NUR_S1)
+#else
+#define BF_CSU_CSL12_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL12_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL12_NUR_S1(v)   BF_CS1(CSU_CSL12, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL12_NSR_S1      19
+#define BM_CSU_CSL12_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL12_NSR_S1)
+#else
+#define BF_CSU_CSL12_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL12_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL12_NSR_S1(v)   BF_CS1(CSU_CSL12, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL12_SUW_S1      20
+#define BM_CSU_CSL12_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL12_SUW_S1)
+#else
+#define BF_CSU_CSL12_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL12_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL12_SUW_S1(v)   BF_CS1(CSU_CSL12, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL12_SSW_S1      21
+#define BM_CSU_CSL12_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL12_SSW_S1)
+#else
+#define BF_CSU_CSL12_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL12_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL12_SSW_S1(v)   BF_CS1(CSU_CSL12, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL12_NUW_S1      22
+#define BM_CSU_CSL12_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL12_NUW_S1)
+#else
+#define BF_CSU_CSL12_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL12_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL12_NUW_S1(v)   BF_CS1(CSU_CSL12, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL12_NSW_S1      23
+#define BM_CSU_CSL12_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL12_NSW_S1)
+#else
+#define BF_CSU_CSL12_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL12_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL12_NSW_S1(v)   BF_CS1(CSU_CSL12, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL12, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL12_LOCK_S1      24
+#define BM_CSU_CSL12_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL12_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL12_LOCK_S1)
+#else
+#define BF_CSU_CSL12_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL12_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL12_LOCK_S1(v)   BF_CS1(CSU_CSL12, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL13 - Config security level register 13 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl13_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL13 register
+ */
+#define HW_CSU_CSL13_ADDR      (REGS_CSU_BASE + 0x34)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL13           (*(volatile hw_csu_csl13_t *) HW_CSU_CSL13_ADDR)
+#define HW_CSU_CSL13_RD()      (HW_CSU_CSL13.U)
+#define HW_CSU_CSL13_WR(v)     (HW_CSU_CSL13.U = (v))
+#define HW_CSU_CSL13_SET(v)    (HW_CSU_CSL13_WR(HW_CSU_CSL13_RD() |  (v)))
+#define HW_CSU_CSL13_CLR(v)    (HW_CSU_CSL13_WR(HW_CSU_CSL13_RD() & ~(v)))
+#define HW_CSU_CSL13_TOG(v)    (HW_CSU_CSL13_WR(HW_CSU_CSL13_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL13 bitfields
+ */
+
+/* --- Register HW_CSU_CSL13, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL13_SUR_S2      0
+#define BM_CSU_CSL13_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL13_SUR_S2)
+#else
+#define BF_CSU_CSL13_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL13_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL13_SUR_S2(v)   BF_CS1(CSU_CSL13, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL13_SSR_S2      1
+#define BM_CSU_CSL13_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL13_SSR_S2)
+#else
+#define BF_CSU_CSL13_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL13_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL13_SSR_S2(v)   BF_CS1(CSU_CSL13, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL13_NUR_S2      2
+#define BM_CSU_CSL13_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL13_NUR_S2)
+#else
+#define BF_CSU_CSL13_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL13_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL13_NUR_S2(v)   BF_CS1(CSU_CSL13, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL13_NSR_S2      3
+#define BM_CSU_CSL13_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL13_NSR_S2)
+#else
+#define BF_CSU_CSL13_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL13_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL13_NSR_S2(v)   BF_CS1(CSU_CSL13, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL13_SUW_S2      4
+#define BM_CSU_CSL13_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL13_SUW_S2)
+#else
+#define BF_CSU_CSL13_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL13_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL13_SUW_S2(v)   BF_CS1(CSU_CSL13, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL13_SSW_S2      5
+#define BM_CSU_CSL13_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL13_SSW_S2)
+#else
+#define BF_CSU_CSL13_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL13_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL13_SSW_S2(v)   BF_CS1(CSU_CSL13, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL13_NUW_S2      6
+#define BM_CSU_CSL13_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL13_NUW_S2)
+#else
+#define BF_CSU_CSL13_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL13_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL13_NUW_S2(v)   BF_CS1(CSU_CSL13, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL13_NSW_S2      7
+#define BM_CSU_CSL13_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL13_NSW_S2)
+#else
+#define BF_CSU_CSL13_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL13_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL13_NSW_S2(v)   BF_CS1(CSU_CSL13, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL13_LOCK_S2      8
+#define BM_CSU_CSL13_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL13_LOCK_S2)
+#else
+#define BF_CSU_CSL13_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL13_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL13_LOCK_S2(v)   BF_CS1(CSU_CSL13, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL13_SUR_S1      16
+#define BM_CSU_CSL13_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL13_SUR_S1)
+#else
+#define BF_CSU_CSL13_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL13_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL13_SUR_S1(v)   BF_CS1(CSU_CSL13, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL13_SSR_S1      17
+#define BM_CSU_CSL13_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL13_SSR_S1)
+#else
+#define BF_CSU_CSL13_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL13_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL13_SSR_S1(v)   BF_CS1(CSU_CSL13, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL13_NUR_S1      18
+#define BM_CSU_CSL13_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL13_NUR_S1)
+#else
+#define BF_CSU_CSL13_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL13_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL13_NUR_S1(v)   BF_CS1(CSU_CSL13, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL13_NSR_S1      19
+#define BM_CSU_CSL13_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL13_NSR_S1)
+#else
+#define BF_CSU_CSL13_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL13_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL13_NSR_S1(v)   BF_CS1(CSU_CSL13, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL13_SUW_S1      20
+#define BM_CSU_CSL13_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL13_SUW_S1)
+#else
+#define BF_CSU_CSL13_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL13_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL13_SUW_S1(v)   BF_CS1(CSU_CSL13, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL13_SSW_S1      21
+#define BM_CSU_CSL13_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL13_SSW_S1)
+#else
+#define BF_CSU_CSL13_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL13_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL13_SSW_S1(v)   BF_CS1(CSU_CSL13, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL13_NUW_S1      22
+#define BM_CSU_CSL13_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL13_NUW_S1)
+#else
+#define BF_CSU_CSL13_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL13_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL13_NUW_S1(v)   BF_CS1(CSU_CSL13, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL13_NSW_S1      23
+#define BM_CSU_CSL13_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL13_NSW_S1)
+#else
+#define BF_CSU_CSL13_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL13_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL13_NSW_S1(v)   BF_CS1(CSU_CSL13, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL13, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL13_LOCK_S1      24
+#define BM_CSU_CSL13_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL13_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL13_LOCK_S1)
+#else
+#define BF_CSU_CSL13_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL13_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL13_LOCK_S1(v)   BF_CS1(CSU_CSL13, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL14 - Config security level register 14 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl14_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL14 register
+ */
+#define HW_CSU_CSL14_ADDR      (REGS_CSU_BASE + 0x38)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL14           (*(volatile hw_csu_csl14_t *) HW_CSU_CSL14_ADDR)
+#define HW_CSU_CSL14_RD()      (HW_CSU_CSL14.U)
+#define HW_CSU_CSL14_WR(v)     (HW_CSU_CSL14.U = (v))
+#define HW_CSU_CSL14_SET(v)    (HW_CSU_CSL14_WR(HW_CSU_CSL14_RD() |  (v)))
+#define HW_CSU_CSL14_CLR(v)    (HW_CSU_CSL14_WR(HW_CSU_CSL14_RD() & ~(v)))
+#define HW_CSU_CSL14_TOG(v)    (HW_CSU_CSL14_WR(HW_CSU_CSL14_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL14 bitfields
+ */
+
+/* --- Register HW_CSU_CSL14, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL14_SUR_S2      0
+#define BM_CSU_CSL14_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL14_SUR_S2)
+#else
+#define BF_CSU_CSL14_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL14_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL14_SUR_S2(v)   BF_CS1(CSU_CSL14, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL14_SSR_S2      1
+#define BM_CSU_CSL14_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL14_SSR_S2)
+#else
+#define BF_CSU_CSL14_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL14_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL14_SSR_S2(v)   BF_CS1(CSU_CSL14, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL14_NUR_S2      2
+#define BM_CSU_CSL14_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL14_NUR_S2)
+#else
+#define BF_CSU_CSL14_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL14_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL14_NUR_S2(v)   BF_CS1(CSU_CSL14, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL14_NSR_S2      3
+#define BM_CSU_CSL14_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL14_NSR_S2)
+#else
+#define BF_CSU_CSL14_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL14_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL14_NSR_S2(v)   BF_CS1(CSU_CSL14, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL14_SUW_S2      4
+#define BM_CSU_CSL14_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL14_SUW_S2)
+#else
+#define BF_CSU_CSL14_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL14_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL14_SUW_S2(v)   BF_CS1(CSU_CSL14, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL14_SSW_S2      5
+#define BM_CSU_CSL14_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL14_SSW_S2)
+#else
+#define BF_CSU_CSL14_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL14_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL14_SSW_S2(v)   BF_CS1(CSU_CSL14, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL14_NUW_S2      6
+#define BM_CSU_CSL14_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL14_NUW_S2)
+#else
+#define BF_CSU_CSL14_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL14_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL14_NUW_S2(v)   BF_CS1(CSU_CSL14, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL14_NSW_S2      7
+#define BM_CSU_CSL14_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL14_NSW_S2)
+#else
+#define BF_CSU_CSL14_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL14_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL14_NSW_S2(v)   BF_CS1(CSU_CSL14, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL14_LOCK_S2      8
+#define BM_CSU_CSL14_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL14_LOCK_S2)
+#else
+#define BF_CSU_CSL14_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL14_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL14_LOCK_S2(v)   BF_CS1(CSU_CSL14, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL14_SUR_S1      16
+#define BM_CSU_CSL14_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL14_SUR_S1)
+#else
+#define BF_CSU_CSL14_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL14_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL14_SUR_S1(v)   BF_CS1(CSU_CSL14, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL14_SSR_S1      17
+#define BM_CSU_CSL14_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL14_SSR_S1)
+#else
+#define BF_CSU_CSL14_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL14_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL14_SSR_S1(v)   BF_CS1(CSU_CSL14, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL14_NUR_S1      18
+#define BM_CSU_CSL14_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL14_NUR_S1)
+#else
+#define BF_CSU_CSL14_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL14_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL14_NUR_S1(v)   BF_CS1(CSU_CSL14, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL14_NSR_S1      19
+#define BM_CSU_CSL14_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL14_NSR_S1)
+#else
+#define BF_CSU_CSL14_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL14_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL14_NSR_S1(v)   BF_CS1(CSU_CSL14, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL14_SUW_S1      20
+#define BM_CSU_CSL14_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL14_SUW_S1)
+#else
+#define BF_CSU_CSL14_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL14_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL14_SUW_S1(v)   BF_CS1(CSU_CSL14, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL14_SSW_S1      21
+#define BM_CSU_CSL14_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL14_SSW_S1)
+#else
+#define BF_CSU_CSL14_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL14_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL14_SSW_S1(v)   BF_CS1(CSU_CSL14, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL14_NUW_S1      22
+#define BM_CSU_CSL14_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL14_NUW_S1)
+#else
+#define BF_CSU_CSL14_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL14_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL14_NUW_S1(v)   BF_CS1(CSU_CSL14, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL14_NSW_S1      23
+#define BM_CSU_CSL14_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL14_NSW_S1)
+#else
+#define BF_CSU_CSL14_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL14_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL14_NSW_S1(v)   BF_CS1(CSU_CSL14, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL14, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL14_LOCK_S1      24
+#define BM_CSU_CSL14_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL14_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL14_LOCK_S1)
+#else
+#define BF_CSU_CSL14_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL14_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL14_LOCK_S1(v)   BF_CS1(CSU_CSL14, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL15 - Config security level register 15 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl15_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL15 register
+ */
+#define HW_CSU_CSL15_ADDR      (REGS_CSU_BASE + 0x3c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL15           (*(volatile hw_csu_csl15_t *) HW_CSU_CSL15_ADDR)
+#define HW_CSU_CSL15_RD()      (HW_CSU_CSL15.U)
+#define HW_CSU_CSL15_WR(v)     (HW_CSU_CSL15.U = (v))
+#define HW_CSU_CSL15_SET(v)    (HW_CSU_CSL15_WR(HW_CSU_CSL15_RD() |  (v)))
+#define HW_CSU_CSL15_CLR(v)    (HW_CSU_CSL15_WR(HW_CSU_CSL15_RD() & ~(v)))
+#define HW_CSU_CSL15_TOG(v)    (HW_CSU_CSL15_WR(HW_CSU_CSL15_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL15 bitfields
+ */
+
+/* --- Register HW_CSU_CSL15, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL15_SUR_S2      0
+#define BM_CSU_CSL15_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL15_SUR_S2)
+#else
+#define BF_CSU_CSL15_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL15_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL15_SUR_S2(v)   BF_CS1(CSU_CSL15, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL15_SSR_S2      1
+#define BM_CSU_CSL15_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL15_SSR_S2)
+#else
+#define BF_CSU_CSL15_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL15_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL15_SSR_S2(v)   BF_CS1(CSU_CSL15, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL15_NUR_S2      2
+#define BM_CSU_CSL15_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL15_NUR_S2)
+#else
+#define BF_CSU_CSL15_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL15_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL15_NUR_S2(v)   BF_CS1(CSU_CSL15, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL15_NSR_S2      3
+#define BM_CSU_CSL15_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL15_NSR_S2)
+#else
+#define BF_CSU_CSL15_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL15_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL15_NSR_S2(v)   BF_CS1(CSU_CSL15, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL15_SUW_S2      4
+#define BM_CSU_CSL15_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL15_SUW_S2)
+#else
+#define BF_CSU_CSL15_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL15_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL15_SUW_S2(v)   BF_CS1(CSU_CSL15, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL15_SSW_S2      5
+#define BM_CSU_CSL15_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL15_SSW_S2)
+#else
+#define BF_CSU_CSL15_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL15_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL15_SSW_S2(v)   BF_CS1(CSU_CSL15, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL15_NUW_S2      6
+#define BM_CSU_CSL15_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL15_NUW_S2)
+#else
+#define BF_CSU_CSL15_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL15_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL15_NUW_S2(v)   BF_CS1(CSU_CSL15, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL15_NSW_S2      7
+#define BM_CSU_CSL15_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL15_NSW_S2)
+#else
+#define BF_CSU_CSL15_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL15_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL15_NSW_S2(v)   BF_CS1(CSU_CSL15, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL15_LOCK_S2      8
+#define BM_CSU_CSL15_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL15_LOCK_S2)
+#else
+#define BF_CSU_CSL15_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL15_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL15_LOCK_S2(v)   BF_CS1(CSU_CSL15, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL15_SUR_S1      16
+#define BM_CSU_CSL15_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL15_SUR_S1)
+#else
+#define BF_CSU_CSL15_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL15_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL15_SUR_S1(v)   BF_CS1(CSU_CSL15, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL15_SSR_S1      17
+#define BM_CSU_CSL15_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL15_SSR_S1)
+#else
+#define BF_CSU_CSL15_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL15_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL15_SSR_S1(v)   BF_CS1(CSU_CSL15, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL15_NUR_S1      18
+#define BM_CSU_CSL15_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL15_NUR_S1)
+#else
+#define BF_CSU_CSL15_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL15_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL15_NUR_S1(v)   BF_CS1(CSU_CSL15, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL15_NSR_S1      19
+#define BM_CSU_CSL15_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL15_NSR_S1)
+#else
+#define BF_CSU_CSL15_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL15_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL15_NSR_S1(v)   BF_CS1(CSU_CSL15, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL15_SUW_S1      20
+#define BM_CSU_CSL15_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL15_SUW_S1)
+#else
+#define BF_CSU_CSL15_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL15_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL15_SUW_S1(v)   BF_CS1(CSU_CSL15, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL15_SSW_S1      21
+#define BM_CSU_CSL15_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL15_SSW_S1)
+#else
+#define BF_CSU_CSL15_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL15_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL15_SSW_S1(v)   BF_CS1(CSU_CSL15, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL15_NUW_S1      22
+#define BM_CSU_CSL15_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL15_NUW_S1)
+#else
+#define BF_CSU_CSL15_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL15_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL15_NUW_S1(v)   BF_CS1(CSU_CSL15, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL15_NSW_S1      23
+#define BM_CSU_CSL15_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL15_NSW_S1)
+#else
+#define BF_CSU_CSL15_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL15_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL15_NSW_S1(v)   BF_CS1(CSU_CSL15, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL15, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL15_LOCK_S1      24
+#define BM_CSU_CSL15_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL15_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL15_LOCK_S1)
+#else
+#define BF_CSU_CSL15_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL15_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL15_LOCK_S1(v)   BF_CS1(CSU_CSL15, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL16 - Config security level register 16 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl16_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL16 register
+ */
+#define HW_CSU_CSL16_ADDR      (REGS_CSU_BASE + 0x40)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL16           (*(volatile hw_csu_csl16_t *) HW_CSU_CSL16_ADDR)
+#define HW_CSU_CSL16_RD()      (HW_CSU_CSL16.U)
+#define HW_CSU_CSL16_WR(v)     (HW_CSU_CSL16.U = (v))
+#define HW_CSU_CSL16_SET(v)    (HW_CSU_CSL16_WR(HW_CSU_CSL16_RD() |  (v)))
+#define HW_CSU_CSL16_CLR(v)    (HW_CSU_CSL16_WR(HW_CSU_CSL16_RD() & ~(v)))
+#define HW_CSU_CSL16_TOG(v)    (HW_CSU_CSL16_WR(HW_CSU_CSL16_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL16 bitfields
+ */
+
+/* --- Register HW_CSU_CSL16, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL16_SUR_S2      0
+#define BM_CSU_CSL16_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL16_SUR_S2)
+#else
+#define BF_CSU_CSL16_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL16_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL16_SUR_S2(v)   BF_CS1(CSU_CSL16, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL16_SSR_S2      1
+#define BM_CSU_CSL16_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL16_SSR_S2)
+#else
+#define BF_CSU_CSL16_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL16_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL16_SSR_S2(v)   BF_CS1(CSU_CSL16, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL16_NUR_S2      2
+#define BM_CSU_CSL16_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL16_NUR_S2)
+#else
+#define BF_CSU_CSL16_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL16_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL16_NUR_S2(v)   BF_CS1(CSU_CSL16, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL16_NSR_S2      3
+#define BM_CSU_CSL16_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL16_NSR_S2)
+#else
+#define BF_CSU_CSL16_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL16_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL16_NSR_S2(v)   BF_CS1(CSU_CSL16, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL16_SUW_S2      4
+#define BM_CSU_CSL16_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL16_SUW_S2)
+#else
+#define BF_CSU_CSL16_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL16_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL16_SUW_S2(v)   BF_CS1(CSU_CSL16, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL16_SSW_S2      5
+#define BM_CSU_CSL16_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL16_SSW_S2)
+#else
+#define BF_CSU_CSL16_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL16_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL16_SSW_S2(v)   BF_CS1(CSU_CSL16, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL16_NUW_S2      6
+#define BM_CSU_CSL16_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL16_NUW_S2)
+#else
+#define BF_CSU_CSL16_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL16_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL16_NUW_S2(v)   BF_CS1(CSU_CSL16, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL16_NSW_S2      7
+#define BM_CSU_CSL16_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL16_NSW_S2)
+#else
+#define BF_CSU_CSL16_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL16_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL16_NSW_S2(v)   BF_CS1(CSU_CSL16, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL16_LOCK_S2      8
+#define BM_CSU_CSL16_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL16_LOCK_S2)
+#else
+#define BF_CSU_CSL16_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL16_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL16_LOCK_S2(v)   BF_CS1(CSU_CSL16, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL16_SUR_S1      16
+#define BM_CSU_CSL16_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL16_SUR_S1)
+#else
+#define BF_CSU_CSL16_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL16_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL16_SUR_S1(v)   BF_CS1(CSU_CSL16, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL16_SSR_S1      17
+#define BM_CSU_CSL16_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL16_SSR_S1)
+#else
+#define BF_CSU_CSL16_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL16_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL16_SSR_S1(v)   BF_CS1(CSU_CSL16, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL16_NUR_S1      18
+#define BM_CSU_CSL16_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL16_NUR_S1)
+#else
+#define BF_CSU_CSL16_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL16_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL16_NUR_S1(v)   BF_CS1(CSU_CSL16, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL16_NSR_S1      19
+#define BM_CSU_CSL16_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL16_NSR_S1)
+#else
+#define BF_CSU_CSL16_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL16_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL16_NSR_S1(v)   BF_CS1(CSU_CSL16, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL16_SUW_S1      20
+#define BM_CSU_CSL16_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL16_SUW_S1)
+#else
+#define BF_CSU_CSL16_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL16_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL16_SUW_S1(v)   BF_CS1(CSU_CSL16, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL16_SSW_S1      21
+#define BM_CSU_CSL16_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL16_SSW_S1)
+#else
+#define BF_CSU_CSL16_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL16_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL16_SSW_S1(v)   BF_CS1(CSU_CSL16, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL16_NUW_S1      22
+#define BM_CSU_CSL16_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL16_NUW_S1)
+#else
+#define BF_CSU_CSL16_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL16_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL16_NUW_S1(v)   BF_CS1(CSU_CSL16, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL16_NSW_S1      23
+#define BM_CSU_CSL16_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL16_NSW_S1)
+#else
+#define BF_CSU_CSL16_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL16_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL16_NSW_S1(v)   BF_CS1(CSU_CSL16, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL16, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL16_LOCK_S1      24
+#define BM_CSU_CSL16_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL16_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL16_LOCK_S1)
+#else
+#define BF_CSU_CSL16_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL16_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL16_LOCK_S1(v)   BF_CS1(CSU_CSL16, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL17 - Config security level register 17 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl17_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL17 register
+ */
+#define HW_CSU_CSL17_ADDR      (REGS_CSU_BASE + 0x44)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL17           (*(volatile hw_csu_csl17_t *) HW_CSU_CSL17_ADDR)
+#define HW_CSU_CSL17_RD()      (HW_CSU_CSL17.U)
+#define HW_CSU_CSL17_WR(v)     (HW_CSU_CSL17.U = (v))
+#define HW_CSU_CSL17_SET(v)    (HW_CSU_CSL17_WR(HW_CSU_CSL17_RD() |  (v)))
+#define HW_CSU_CSL17_CLR(v)    (HW_CSU_CSL17_WR(HW_CSU_CSL17_RD() & ~(v)))
+#define HW_CSU_CSL17_TOG(v)    (HW_CSU_CSL17_WR(HW_CSU_CSL17_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL17 bitfields
+ */
+
+/* --- Register HW_CSU_CSL17, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL17_SUR_S2      0
+#define BM_CSU_CSL17_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL17_SUR_S2)
+#else
+#define BF_CSU_CSL17_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL17_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL17_SUR_S2(v)   BF_CS1(CSU_CSL17, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL17_SSR_S2      1
+#define BM_CSU_CSL17_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL17_SSR_S2)
+#else
+#define BF_CSU_CSL17_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL17_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL17_SSR_S2(v)   BF_CS1(CSU_CSL17, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL17_NUR_S2      2
+#define BM_CSU_CSL17_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL17_NUR_S2)
+#else
+#define BF_CSU_CSL17_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL17_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL17_NUR_S2(v)   BF_CS1(CSU_CSL17, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL17_NSR_S2      3
+#define BM_CSU_CSL17_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL17_NSR_S2)
+#else
+#define BF_CSU_CSL17_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL17_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL17_NSR_S2(v)   BF_CS1(CSU_CSL17, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL17_SUW_S2      4
+#define BM_CSU_CSL17_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL17_SUW_S2)
+#else
+#define BF_CSU_CSL17_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL17_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL17_SUW_S2(v)   BF_CS1(CSU_CSL17, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL17_SSW_S2      5
+#define BM_CSU_CSL17_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL17_SSW_S2)
+#else
+#define BF_CSU_CSL17_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL17_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL17_SSW_S2(v)   BF_CS1(CSU_CSL17, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL17_NUW_S2      6
+#define BM_CSU_CSL17_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL17_NUW_S2)
+#else
+#define BF_CSU_CSL17_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL17_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL17_NUW_S2(v)   BF_CS1(CSU_CSL17, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL17_NSW_S2      7
+#define BM_CSU_CSL17_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL17_NSW_S2)
+#else
+#define BF_CSU_CSL17_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL17_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL17_NSW_S2(v)   BF_CS1(CSU_CSL17, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL17_LOCK_S2      8
+#define BM_CSU_CSL17_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL17_LOCK_S2)
+#else
+#define BF_CSU_CSL17_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL17_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL17_LOCK_S2(v)   BF_CS1(CSU_CSL17, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL17_SUR_S1      16
+#define BM_CSU_CSL17_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL17_SUR_S1)
+#else
+#define BF_CSU_CSL17_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL17_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL17_SUR_S1(v)   BF_CS1(CSU_CSL17, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL17_SSR_S1      17
+#define BM_CSU_CSL17_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL17_SSR_S1)
+#else
+#define BF_CSU_CSL17_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL17_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL17_SSR_S1(v)   BF_CS1(CSU_CSL17, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL17_NUR_S1      18
+#define BM_CSU_CSL17_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL17_NUR_S1)
+#else
+#define BF_CSU_CSL17_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL17_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL17_NUR_S1(v)   BF_CS1(CSU_CSL17, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL17_NSR_S1      19
+#define BM_CSU_CSL17_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL17_NSR_S1)
+#else
+#define BF_CSU_CSL17_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL17_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL17_NSR_S1(v)   BF_CS1(CSU_CSL17, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL17_SUW_S1      20
+#define BM_CSU_CSL17_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL17_SUW_S1)
+#else
+#define BF_CSU_CSL17_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL17_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL17_SUW_S1(v)   BF_CS1(CSU_CSL17, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL17_SSW_S1      21
+#define BM_CSU_CSL17_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL17_SSW_S1)
+#else
+#define BF_CSU_CSL17_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL17_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL17_SSW_S1(v)   BF_CS1(CSU_CSL17, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL17_NUW_S1      22
+#define BM_CSU_CSL17_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL17_NUW_S1)
+#else
+#define BF_CSU_CSL17_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL17_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL17_NUW_S1(v)   BF_CS1(CSU_CSL17, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL17_NSW_S1      23
+#define BM_CSU_CSL17_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL17_NSW_S1)
+#else
+#define BF_CSU_CSL17_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL17_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL17_NSW_S1(v)   BF_CS1(CSU_CSL17, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL17, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL17_LOCK_S1      24
+#define BM_CSU_CSL17_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL17_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL17_LOCK_S1)
+#else
+#define BF_CSU_CSL17_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL17_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL17_LOCK_S1(v)   BF_CS1(CSU_CSL17, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL18 - Config security level register 18 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl18_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL18 register
+ */
+#define HW_CSU_CSL18_ADDR      (REGS_CSU_BASE + 0x48)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL18           (*(volatile hw_csu_csl18_t *) HW_CSU_CSL18_ADDR)
+#define HW_CSU_CSL18_RD()      (HW_CSU_CSL18.U)
+#define HW_CSU_CSL18_WR(v)     (HW_CSU_CSL18.U = (v))
+#define HW_CSU_CSL18_SET(v)    (HW_CSU_CSL18_WR(HW_CSU_CSL18_RD() |  (v)))
+#define HW_CSU_CSL18_CLR(v)    (HW_CSU_CSL18_WR(HW_CSU_CSL18_RD() & ~(v)))
+#define HW_CSU_CSL18_TOG(v)    (HW_CSU_CSL18_WR(HW_CSU_CSL18_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL18 bitfields
+ */
+
+/* --- Register HW_CSU_CSL18, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL18_SUR_S2      0
+#define BM_CSU_CSL18_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL18_SUR_S2)
+#else
+#define BF_CSU_CSL18_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL18_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL18_SUR_S2(v)   BF_CS1(CSU_CSL18, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL18_SSR_S2      1
+#define BM_CSU_CSL18_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL18_SSR_S2)
+#else
+#define BF_CSU_CSL18_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL18_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL18_SSR_S2(v)   BF_CS1(CSU_CSL18, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL18_NUR_S2      2
+#define BM_CSU_CSL18_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL18_NUR_S2)
+#else
+#define BF_CSU_CSL18_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL18_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL18_NUR_S2(v)   BF_CS1(CSU_CSL18, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL18_NSR_S2      3
+#define BM_CSU_CSL18_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL18_NSR_S2)
+#else
+#define BF_CSU_CSL18_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL18_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL18_NSR_S2(v)   BF_CS1(CSU_CSL18, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL18_SUW_S2      4
+#define BM_CSU_CSL18_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL18_SUW_S2)
+#else
+#define BF_CSU_CSL18_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL18_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL18_SUW_S2(v)   BF_CS1(CSU_CSL18, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL18_SSW_S2      5
+#define BM_CSU_CSL18_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL18_SSW_S2)
+#else
+#define BF_CSU_CSL18_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL18_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL18_SSW_S2(v)   BF_CS1(CSU_CSL18, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL18_NUW_S2      6
+#define BM_CSU_CSL18_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL18_NUW_S2)
+#else
+#define BF_CSU_CSL18_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL18_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL18_NUW_S2(v)   BF_CS1(CSU_CSL18, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL18_NSW_S2      7
+#define BM_CSU_CSL18_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL18_NSW_S2)
+#else
+#define BF_CSU_CSL18_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL18_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL18_NSW_S2(v)   BF_CS1(CSU_CSL18, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL18_LOCK_S2      8
+#define BM_CSU_CSL18_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL18_LOCK_S2)
+#else
+#define BF_CSU_CSL18_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL18_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL18_LOCK_S2(v)   BF_CS1(CSU_CSL18, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL18_SUR_S1      16
+#define BM_CSU_CSL18_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL18_SUR_S1)
+#else
+#define BF_CSU_CSL18_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL18_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL18_SUR_S1(v)   BF_CS1(CSU_CSL18, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL18_SSR_S1      17
+#define BM_CSU_CSL18_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL18_SSR_S1)
+#else
+#define BF_CSU_CSL18_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL18_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL18_SSR_S1(v)   BF_CS1(CSU_CSL18, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL18_NUR_S1      18
+#define BM_CSU_CSL18_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL18_NUR_S1)
+#else
+#define BF_CSU_CSL18_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL18_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL18_NUR_S1(v)   BF_CS1(CSU_CSL18, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL18_NSR_S1      19
+#define BM_CSU_CSL18_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL18_NSR_S1)
+#else
+#define BF_CSU_CSL18_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL18_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL18_NSR_S1(v)   BF_CS1(CSU_CSL18, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL18_SUW_S1      20
+#define BM_CSU_CSL18_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL18_SUW_S1)
+#else
+#define BF_CSU_CSL18_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL18_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL18_SUW_S1(v)   BF_CS1(CSU_CSL18, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL18_SSW_S1      21
+#define BM_CSU_CSL18_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL18_SSW_S1)
+#else
+#define BF_CSU_CSL18_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL18_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL18_SSW_S1(v)   BF_CS1(CSU_CSL18, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL18_NUW_S1      22
+#define BM_CSU_CSL18_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL18_NUW_S1)
+#else
+#define BF_CSU_CSL18_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL18_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL18_NUW_S1(v)   BF_CS1(CSU_CSL18, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL18_NSW_S1      23
+#define BM_CSU_CSL18_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL18_NSW_S1)
+#else
+#define BF_CSU_CSL18_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL18_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL18_NSW_S1(v)   BF_CS1(CSU_CSL18, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL18, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL18_LOCK_S1      24
+#define BM_CSU_CSL18_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL18_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL18_LOCK_S1)
+#else
+#define BF_CSU_CSL18_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL18_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL18_LOCK_S1(v)   BF_CS1(CSU_CSL18, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL19 - Config security level register 19 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl19_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL19 register
+ */
+#define HW_CSU_CSL19_ADDR      (REGS_CSU_BASE + 0x4c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL19           (*(volatile hw_csu_csl19_t *) HW_CSU_CSL19_ADDR)
+#define HW_CSU_CSL19_RD()      (HW_CSU_CSL19.U)
+#define HW_CSU_CSL19_WR(v)     (HW_CSU_CSL19.U = (v))
+#define HW_CSU_CSL19_SET(v)    (HW_CSU_CSL19_WR(HW_CSU_CSL19_RD() |  (v)))
+#define HW_CSU_CSL19_CLR(v)    (HW_CSU_CSL19_WR(HW_CSU_CSL19_RD() & ~(v)))
+#define HW_CSU_CSL19_TOG(v)    (HW_CSU_CSL19_WR(HW_CSU_CSL19_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL19 bitfields
+ */
+
+/* --- Register HW_CSU_CSL19, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL19_SUR_S2      0
+#define BM_CSU_CSL19_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL19_SUR_S2)
+#else
+#define BF_CSU_CSL19_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL19_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL19_SUR_S2(v)   BF_CS1(CSU_CSL19, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL19_SSR_S2      1
+#define BM_CSU_CSL19_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL19_SSR_S2)
+#else
+#define BF_CSU_CSL19_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL19_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL19_SSR_S2(v)   BF_CS1(CSU_CSL19, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL19_NUR_S2      2
+#define BM_CSU_CSL19_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL19_NUR_S2)
+#else
+#define BF_CSU_CSL19_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL19_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL19_NUR_S2(v)   BF_CS1(CSU_CSL19, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL19_NSR_S2      3
+#define BM_CSU_CSL19_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL19_NSR_S2)
+#else
+#define BF_CSU_CSL19_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL19_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL19_NSR_S2(v)   BF_CS1(CSU_CSL19, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL19_SUW_S2      4
+#define BM_CSU_CSL19_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL19_SUW_S2)
+#else
+#define BF_CSU_CSL19_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL19_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL19_SUW_S2(v)   BF_CS1(CSU_CSL19, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL19_SSW_S2      5
+#define BM_CSU_CSL19_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL19_SSW_S2)
+#else
+#define BF_CSU_CSL19_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL19_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL19_SSW_S2(v)   BF_CS1(CSU_CSL19, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL19_NUW_S2      6
+#define BM_CSU_CSL19_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL19_NUW_S2)
+#else
+#define BF_CSU_CSL19_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL19_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL19_NUW_S2(v)   BF_CS1(CSU_CSL19, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL19_NSW_S2      7
+#define BM_CSU_CSL19_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL19_NSW_S2)
+#else
+#define BF_CSU_CSL19_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL19_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL19_NSW_S2(v)   BF_CS1(CSU_CSL19, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL19_LOCK_S2      8
+#define BM_CSU_CSL19_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL19_LOCK_S2)
+#else
+#define BF_CSU_CSL19_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL19_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL19_LOCK_S2(v)   BF_CS1(CSU_CSL19, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL19_SUR_S1      16
+#define BM_CSU_CSL19_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL19_SUR_S1)
+#else
+#define BF_CSU_CSL19_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL19_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL19_SUR_S1(v)   BF_CS1(CSU_CSL19, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL19_SSR_S1      17
+#define BM_CSU_CSL19_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL19_SSR_S1)
+#else
+#define BF_CSU_CSL19_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL19_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL19_SSR_S1(v)   BF_CS1(CSU_CSL19, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL19_NUR_S1      18
+#define BM_CSU_CSL19_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL19_NUR_S1)
+#else
+#define BF_CSU_CSL19_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL19_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL19_NUR_S1(v)   BF_CS1(CSU_CSL19, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL19_NSR_S1      19
+#define BM_CSU_CSL19_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL19_NSR_S1)
+#else
+#define BF_CSU_CSL19_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL19_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL19_NSR_S1(v)   BF_CS1(CSU_CSL19, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL19_SUW_S1      20
+#define BM_CSU_CSL19_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL19_SUW_S1)
+#else
+#define BF_CSU_CSL19_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL19_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL19_SUW_S1(v)   BF_CS1(CSU_CSL19, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL19_SSW_S1      21
+#define BM_CSU_CSL19_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL19_SSW_S1)
+#else
+#define BF_CSU_CSL19_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL19_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL19_SSW_S1(v)   BF_CS1(CSU_CSL19, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL19_NUW_S1      22
+#define BM_CSU_CSL19_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL19_NUW_S1)
+#else
+#define BF_CSU_CSL19_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL19_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL19_NUW_S1(v)   BF_CS1(CSU_CSL19, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL19_NSW_S1      23
+#define BM_CSU_CSL19_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL19_NSW_S1)
+#else
+#define BF_CSU_CSL19_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL19_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL19_NSW_S1(v)   BF_CS1(CSU_CSL19, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL19, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL19_LOCK_S1      24
+#define BM_CSU_CSL19_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL19_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL19_LOCK_S1)
+#else
+#define BF_CSU_CSL19_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL19_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL19_LOCK_S1(v)   BF_CS1(CSU_CSL19, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL20 - Config security level register 20 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl20_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL20 register
+ */
+#define HW_CSU_CSL20_ADDR      (REGS_CSU_BASE + 0x50)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL20           (*(volatile hw_csu_csl20_t *) HW_CSU_CSL20_ADDR)
+#define HW_CSU_CSL20_RD()      (HW_CSU_CSL20.U)
+#define HW_CSU_CSL20_WR(v)     (HW_CSU_CSL20.U = (v))
+#define HW_CSU_CSL20_SET(v)    (HW_CSU_CSL20_WR(HW_CSU_CSL20_RD() |  (v)))
+#define HW_CSU_CSL20_CLR(v)    (HW_CSU_CSL20_WR(HW_CSU_CSL20_RD() & ~(v)))
+#define HW_CSU_CSL20_TOG(v)    (HW_CSU_CSL20_WR(HW_CSU_CSL20_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL20 bitfields
+ */
+
+/* --- Register HW_CSU_CSL20, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL20_SUR_S2      0
+#define BM_CSU_CSL20_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL20_SUR_S2)
+#else
+#define BF_CSU_CSL20_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL20_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL20_SUR_S2(v)   BF_CS1(CSU_CSL20, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL20_SSR_S2      1
+#define BM_CSU_CSL20_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL20_SSR_S2)
+#else
+#define BF_CSU_CSL20_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL20_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL20_SSR_S2(v)   BF_CS1(CSU_CSL20, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL20_NUR_S2      2
+#define BM_CSU_CSL20_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL20_NUR_S2)
+#else
+#define BF_CSU_CSL20_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL20_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL20_NUR_S2(v)   BF_CS1(CSU_CSL20, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL20_NSR_S2      3
+#define BM_CSU_CSL20_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL20_NSR_S2)
+#else
+#define BF_CSU_CSL20_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL20_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL20_NSR_S2(v)   BF_CS1(CSU_CSL20, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL20_SUW_S2      4
+#define BM_CSU_CSL20_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL20_SUW_S2)
+#else
+#define BF_CSU_CSL20_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL20_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL20_SUW_S2(v)   BF_CS1(CSU_CSL20, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL20_SSW_S2      5
+#define BM_CSU_CSL20_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL20_SSW_S2)
+#else
+#define BF_CSU_CSL20_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL20_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL20_SSW_S2(v)   BF_CS1(CSU_CSL20, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL20_NUW_S2      6
+#define BM_CSU_CSL20_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL20_NUW_S2)
+#else
+#define BF_CSU_CSL20_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL20_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL20_NUW_S2(v)   BF_CS1(CSU_CSL20, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL20_NSW_S2      7
+#define BM_CSU_CSL20_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL20_NSW_S2)
+#else
+#define BF_CSU_CSL20_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL20_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL20_NSW_S2(v)   BF_CS1(CSU_CSL20, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL20_LOCK_S2      8
+#define BM_CSU_CSL20_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL20_LOCK_S2)
+#else
+#define BF_CSU_CSL20_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL20_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL20_LOCK_S2(v)   BF_CS1(CSU_CSL20, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL20_SUR_S1      16
+#define BM_CSU_CSL20_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL20_SUR_S1)
+#else
+#define BF_CSU_CSL20_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL20_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL20_SUR_S1(v)   BF_CS1(CSU_CSL20, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL20_SSR_S1      17
+#define BM_CSU_CSL20_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL20_SSR_S1)
+#else
+#define BF_CSU_CSL20_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL20_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL20_SSR_S1(v)   BF_CS1(CSU_CSL20, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL20_NUR_S1      18
+#define BM_CSU_CSL20_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL20_NUR_S1)
+#else
+#define BF_CSU_CSL20_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL20_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL20_NUR_S1(v)   BF_CS1(CSU_CSL20, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL20_NSR_S1      19
+#define BM_CSU_CSL20_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL20_NSR_S1)
+#else
+#define BF_CSU_CSL20_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL20_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL20_NSR_S1(v)   BF_CS1(CSU_CSL20, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL20_SUW_S1      20
+#define BM_CSU_CSL20_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL20_SUW_S1)
+#else
+#define BF_CSU_CSL20_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL20_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL20_SUW_S1(v)   BF_CS1(CSU_CSL20, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL20_SSW_S1      21
+#define BM_CSU_CSL20_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL20_SSW_S1)
+#else
+#define BF_CSU_CSL20_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL20_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL20_SSW_S1(v)   BF_CS1(CSU_CSL20, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL20_NUW_S1      22
+#define BM_CSU_CSL20_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL20_NUW_S1)
+#else
+#define BF_CSU_CSL20_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL20_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL20_NUW_S1(v)   BF_CS1(CSU_CSL20, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL20_NSW_S1      23
+#define BM_CSU_CSL20_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL20_NSW_S1)
+#else
+#define BF_CSU_CSL20_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL20_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL20_NSW_S1(v)   BF_CS1(CSU_CSL20, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL20, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL20_LOCK_S1      24
+#define BM_CSU_CSL20_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL20_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL20_LOCK_S1)
+#else
+#define BF_CSU_CSL20_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL20_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL20_LOCK_S1(v)   BF_CS1(CSU_CSL20, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL21 - Config security level register 21 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl21_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL21 register
+ */
+#define HW_CSU_CSL21_ADDR      (REGS_CSU_BASE + 0x54)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL21           (*(volatile hw_csu_csl21_t *) HW_CSU_CSL21_ADDR)
+#define HW_CSU_CSL21_RD()      (HW_CSU_CSL21.U)
+#define HW_CSU_CSL21_WR(v)     (HW_CSU_CSL21.U = (v))
+#define HW_CSU_CSL21_SET(v)    (HW_CSU_CSL21_WR(HW_CSU_CSL21_RD() |  (v)))
+#define HW_CSU_CSL21_CLR(v)    (HW_CSU_CSL21_WR(HW_CSU_CSL21_RD() & ~(v)))
+#define HW_CSU_CSL21_TOG(v)    (HW_CSU_CSL21_WR(HW_CSU_CSL21_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL21 bitfields
+ */
+
+/* --- Register HW_CSU_CSL21, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL21_SUR_S2      0
+#define BM_CSU_CSL21_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL21_SUR_S2)
+#else
+#define BF_CSU_CSL21_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL21_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL21_SUR_S2(v)   BF_CS1(CSU_CSL21, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL21_SSR_S2      1
+#define BM_CSU_CSL21_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL21_SSR_S2)
+#else
+#define BF_CSU_CSL21_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL21_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL21_SSR_S2(v)   BF_CS1(CSU_CSL21, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL21_NUR_S2      2
+#define BM_CSU_CSL21_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL21_NUR_S2)
+#else
+#define BF_CSU_CSL21_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL21_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL21_NUR_S2(v)   BF_CS1(CSU_CSL21, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL21_NSR_S2      3
+#define BM_CSU_CSL21_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL21_NSR_S2)
+#else
+#define BF_CSU_CSL21_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL21_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL21_NSR_S2(v)   BF_CS1(CSU_CSL21, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL21_SUW_S2      4
+#define BM_CSU_CSL21_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL21_SUW_S2)
+#else
+#define BF_CSU_CSL21_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL21_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL21_SUW_S2(v)   BF_CS1(CSU_CSL21, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL21_SSW_S2      5
+#define BM_CSU_CSL21_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL21_SSW_S2)
+#else
+#define BF_CSU_CSL21_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL21_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL21_SSW_S2(v)   BF_CS1(CSU_CSL21, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL21_NUW_S2      6
+#define BM_CSU_CSL21_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL21_NUW_S2)
+#else
+#define BF_CSU_CSL21_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL21_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL21_NUW_S2(v)   BF_CS1(CSU_CSL21, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL21_NSW_S2      7
+#define BM_CSU_CSL21_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL21_NSW_S2)
+#else
+#define BF_CSU_CSL21_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL21_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL21_NSW_S2(v)   BF_CS1(CSU_CSL21, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL21_LOCK_S2      8
+#define BM_CSU_CSL21_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL21_LOCK_S2)
+#else
+#define BF_CSU_CSL21_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL21_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL21_LOCK_S2(v)   BF_CS1(CSU_CSL21, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL21_SUR_S1      16
+#define BM_CSU_CSL21_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL21_SUR_S1)
+#else
+#define BF_CSU_CSL21_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL21_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL21_SUR_S1(v)   BF_CS1(CSU_CSL21, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL21_SSR_S1      17
+#define BM_CSU_CSL21_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL21_SSR_S1)
+#else
+#define BF_CSU_CSL21_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL21_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL21_SSR_S1(v)   BF_CS1(CSU_CSL21, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL21_NUR_S1      18
+#define BM_CSU_CSL21_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL21_NUR_S1)
+#else
+#define BF_CSU_CSL21_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL21_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL21_NUR_S1(v)   BF_CS1(CSU_CSL21, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL21_NSR_S1      19
+#define BM_CSU_CSL21_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL21_NSR_S1)
+#else
+#define BF_CSU_CSL21_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL21_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL21_NSR_S1(v)   BF_CS1(CSU_CSL21, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL21_SUW_S1      20
+#define BM_CSU_CSL21_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL21_SUW_S1)
+#else
+#define BF_CSU_CSL21_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL21_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL21_SUW_S1(v)   BF_CS1(CSU_CSL21, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL21_SSW_S1      21
+#define BM_CSU_CSL21_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL21_SSW_S1)
+#else
+#define BF_CSU_CSL21_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL21_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL21_SSW_S1(v)   BF_CS1(CSU_CSL21, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL21_NUW_S1      22
+#define BM_CSU_CSL21_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL21_NUW_S1)
+#else
+#define BF_CSU_CSL21_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL21_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL21_NUW_S1(v)   BF_CS1(CSU_CSL21, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL21_NSW_S1      23
+#define BM_CSU_CSL21_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL21_NSW_S1)
+#else
+#define BF_CSU_CSL21_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL21_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL21_NSW_S1(v)   BF_CS1(CSU_CSL21, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL21, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL21_LOCK_S1      24
+#define BM_CSU_CSL21_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL21_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL21_LOCK_S1)
+#else
+#define BF_CSU_CSL21_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL21_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL21_LOCK_S1(v)   BF_CS1(CSU_CSL21, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL22 - Config security level register 22 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl22_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL22 register
+ */
+#define HW_CSU_CSL22_ADDR      (REGS_CSU_BASE + 0x58)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL22           (*(volatile hw_csu_csl22_t *) HW_CSU_CSL22_ADDR)
+#define HW_CSU_CSL22_RD()      (HW_CSU_CSL22.U)
+#define HW_CSU_CSL22_WR(v)     (HW_CSU_CSL22.U = (v))
+#define HW_CSU_CSL22_SET(v)    (HW_CSU_CSL22_WR(HW_CSU_CSL22_RD() |  (v)))
+#define HW_CSU_CSL22_CLR(v)    (HW_CSU_CSL22_WR(HW_CSU_CSL22_RD() & ~(v)))
+#define HW_CSU_CSL22_TOG(v)    (HW_CSU_CSL22_WR(HW_CSU_CSL22_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL22 bitfields
+ */
+
+/* --- Register HW_CSU_CSL22, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL22_SUR_S2      0
+#define BM_CSU_CSL22_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL22_SUR_S2)
+#else
+#define BF_CSU_CSL22_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL22_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL22_SUR_S2(v)   BF_CS1(CSU_CSL22, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL22_SSR_S2      1
+#define BM_CSU_CSL22_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL22_SSR_S2)
+#else
+#define BF_CSU_CSL22_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL22_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL22_SSR_S2(v)   BF_CS1(CSU_CSL22, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL22_NUR_S2      2
+#define BM_CSU_CSL22_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL22_NUR_S2)
+#else
+#define BF_CSU_CSL22_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL22_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL22_NUR_S2(v)   BF_CS1(CSU_CSL22, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL22_NSR_S2      3
+#define BM_CSU_CSL22_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL22_NSR_S2)
+#else
+#define BF_CSU_CSL22_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL22_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL22_NSR_S2(v)   BF_CS1(CSU_CSL22, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL22_SUW_S2      4
+#define BM_CSU_CSL22_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL22_SUW_S2)
+#else
+#define BF_CSU_CSL22_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL22_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL22_SUW_S2(v)   BF_CS1(CSU_CSL22, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL22_SSW_S2      5
+#define BM_CSU_CSL22_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL22_SSW_S2)
+#else
+#define BF_CSU_CSL22_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL22_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL22_SSW_S2(v)   BF_CS1(CSU_CSL22, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL22_NUW_S2      6
+#define BM_CSU_CSL22_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL22_NUW_S2)
+#else
+#define BF_CSU_CSL22_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL22_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL22_NUW_S2(v)   BF_CS1(CSU_CSL22, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL22_NSW_S2      7
+#define BM_CSU_CSL22_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL22_NSW_S2)
+#else
+#define BF_CSU_CSL22_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL22_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL22_NSW_S2(v)   BF_CS1(CSU_CSL22, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL22_LOCK_S2      8
+#define BM_CSU_CSL22_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL22_LOCK_S2)
+#else
+#define BF_CSU_CSL22_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL22_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL22_LOCK_S2(v)   BF_CS1(CSU_CSL22, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL22_SUR_S1      16
+#define BM_CSU_CSL22_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL22_SUR_S1)
+#else
+#define BF_CSU_CSL22_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL22_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL22_SUR_S1(v)   BF_CS1(CSU_CSL22, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL22_SSR_S1      17
+#define BM_CSU_CSL22_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL22_SSR_S1)
+#else
+#define BF_CSU_CSL22_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL22_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL22_SSR_S1(v)   BF_CS1(CSU_CSL22, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL22_NUR_S1      18
+#define BM_CSU_CSL22_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL22_NUR_S1)
+#else
+#define BF_CSU_CSL22_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL22_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL22_NUR_S1(v)   BF_CS1(CSU_CSL22, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL22_NSR_S1      19
+#define BM_CSU_CSL22_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL22_NSR_S1)
+#else
+#define BF_CSU_CSL22_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL22_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL22_NSR_S1(v)   BF_CS1(CSU_CSL22, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL22_SUW_S1      20
+#define BM_CSU_CSL22_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL22_SUW_S1)
+#else
+#define BF_CSU_CSL22_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL22_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL22_SUW_S1(v)   BF_CS1(CSU_CSL22, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL22_SSW_S1      21
+#define BM_CSU_CSL22_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL22_SSW_S1)
+#else
+#define BF_CSU_CSL22_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL22_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL22_SSW_S1(v)   BF_CS1(CSU_CSL22, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL22_NUW_S1      22
+#define BM_CSU_CSL22_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL22_NUW_S1)
+#else
+#define BF_CSU_CSL22_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL22_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL22_NUW_S1(v)   BF_CS1(CSU_CSL22, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL22_NSW_S1      23
+#define BM_CSU_CSL22_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL22_NSW_S1)
+#else
+#define BF_CSU_CSL22_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL22_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL22_NSW_S1(v)   BF_CS1(CSU_CSL22, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL22, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL22_LOCK_S1      24
+#define BM_CSU_CSL22_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL22_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL22_LOCK_S1)
+#else
+#define BF_CSU_CSL22_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL22_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL22_LOCK_S1(v)   BF_CS1(CSU_CSL22, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL23 - Config security level register 23 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl23_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL23 register
+ */
+#define HW_CSU_CSL23_ADDR      (REGS_CSU_BASE + 0x5c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL23           (*(volatile hw_csu_csl23_t *) HW_CSU_CSL23_ADDR)
+#define HW_CSU_CSL23_RD()      (HW_CSU_CSL23.U)
+#define HW_CSU_CSL23_WR(v)     (HW_CSU_CSL23.U = (v))
+#define HW_CSU_CSL23_SET(v)    (HW_CSU_CSL23_WR(HW_CSU_CSL23_RD() |  (v)))
+#define HW_CSU_CSL23_CLR(v)    (HW_CSU_CSL23_WR(HW_CSU_CSL23_RD() & ~(v)))
+#define HW_CSU_CSL23_TOG(v)    (HW_CSU_CSL23_WR(HW_CSU_CSL23_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL23 bitfields
+ */
+
+/* --- Register HW_CSU_CSL23, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL23_SUR_S2      0
+#define BM_CSU_CSL23_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL23_SUR_S2)
+#else
+#define BF_CSU_CSL23_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL23_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL23_SUR_S2(v)   BF_CS1(CSU_CSL23, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL23_SSR_S2      1
+#define BM_CSU_CSL23_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL23_SSR_S2)
+#else
+#define BF_CSU_CSL23_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL23_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL23_SSR_S2(v)   BF_CS1(CSU_CSL23, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL23_NUR_S2      2
+#define BM_CSU_CSL23_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL23_NUR_S2)
+#else
+#define BF_CSU_CSL23_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL23_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL23_NUR_S2(v)   BF_CS1(CSU_CSL23, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL23_NSR_S2      3
+#define BM_CSU_CSL23_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL23_NSR_S2)
+#else
+#define BF_CSU_CSL23_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL23_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL23_NSR_S2(v)   BF_CS1(CSU_CSL23, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL23_SUW_S2      4
+#define BM_CSU_CSL23_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL23_SUW_S2)
+#else
+#define BF_CSU_CSL23_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL23_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL23_SUW_S2(v)   BF_CS1(CSU_CSL23, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL23_SSW_S2      5
+#define BM_CSU_CSL23_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL23_SSW_S2)
+#else
+#define BF_CSU_CSL23_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL23_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL23_SSW_S2(v)   BF_CS1(CSU_CSL23, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL23_NUW_S2      6
+#define BM_CSU_CSL23_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL23_NUW_S2)
+#else
+#define BF_CSU_CSL23_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL23_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL23_NUW_S2(v)   BF_CS1(CSU_CSL23, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL23_NSW_S2      7
+#define BM_CSU_CSL23_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL23_NSW_S2)
+#else
+#define BF_CSU_CSL23_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL23_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL23_NSW_S2(v)   BF_CS1(CSU_CSL23, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL23_LOCK_S2      8
+#define BM_CSU_CSL23_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL23_LOCK_S2)
+#else
+#define BF_CSU_CSL23_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL23_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL23_LOCK_S2(v)   BF_CS1(CSU_CSL23, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL23_SUR_S1      16
+#define BM_CSU_CSL23_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL23_SUR_S1)
+#else
+#define BF_CSU_CSL23_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL23_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL23_SUR_S1(v)   BF_CS1(CSU_CSL23, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL23_SSR_S1      17
+#define BM_CSU_CSL23_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL23_SSR_S1)
+#else
+#define BF_CSU_CSL23_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL23_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL23_SSR_S1(v)   BF_CS1(CSU_CSL23, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL23_NUR_S1      18
+#define BM_CSU_CSL23_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL23_NUR_S1)
+#else
+#define BF_CSU_CSL23_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL23_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL23_NUR_S1(v)   BF_CS1(CSU_CSL23, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL23_NSR_S1      19
+#define BM_CSU_CSL23_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL23_NSR_S1)
+#else
+#define BF_CSU_CSL23_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL23_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL23_NSR_S1(v)   BF_CS1(CSU_CSL23, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL23_SUW_S1      20
+#define BM_CSU_CSL23_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL23_SUW_S1)
+#else
+#define BF_CSU_CSL23_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL23_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL23_SUW_S1(v)   BF_CS1(CSU_CSL23, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL23_SSW_S1      21
+#define BM_CSU_CSL23_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL23_SSW_S1)
+#else
+#define BF_CSU_CSL23_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL23_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL23_SSW_S1(v)   BF_CS1(CSU_CSL23, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL23_NUW_S1      22
+#define BM_CSU_CSL23_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL23_NUW_S1)
+#else
+#define BF_CSU_CSL23_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL23_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL23_NUW_S1(v)   BF_CS1(CSU_CSL23, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL23_NSW_S1      23
+#define BM_CSU_CSL23_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL23_NSW_S1)
+#else
+#define BF_CSU_CSL23_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL23_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL23_NSW_S1(v)   BF_CS1(CSU_CSL23, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL23, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL23_LOCK_S1      24
+#define BM_CSU_CSL23_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL23_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL23_LOCK_S1)
+#else
+#define BF_CSU_CSL23_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL23_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL23_LOCK_S1(v)   BF_CS1(CSU_CSL23, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL24 - Config security level register 24 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl24_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL24 register
+ */
+#define HW_CSU_CSL24_ADDR      (REGS_CSU_BASE + 0x60)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL24           (*(volatile hw_csu_csl24_t *) HW_CSU_CSL24_ADDR)
+#define HW_CSU_CSL24_RD()      (HW_CSU_CSL24.U)
+#define HW_CSU_CSL24_WR(v)     (HW_CSU_CSL24.U = (v))
+#define HW_CSU_CSL24_SET(v)    (HW_CSU_CSL24_WR(HW_CSU_CSL24_RD() |  (v)))
+#define HW_CSU_CSL24_CLR(v)    (HW_CSU_CSL24_WR(HW_CSU_CSL24_RD() & ~(v)))
+#define HW_CSU_CSL24_TOG(v)    (HW_CSU_CSL24_WR(HW_CSU_CSL24_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL24 bitfields
+ */
+
+/* --- Register HW_CSU_CSL24, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL24_SUR_S2      0
+#define BM_CSU_CSL24_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL24_SUR_S2)
+#else
+#define BF_CSU_CSL24_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL24_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL24_SUR_S2(v)   BF_CS1(CSU_CSL24, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL24_SSR_S2      1
+#define BM_CSU_CSL24_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL24_SSR_S2)
+#else
+#define BF_CSU_CSL24_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL24_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL24_SSR_S2(v)   BF_CS1(CSU_CSL24, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL24_NUR_S2      2
+#define BM_CSU_CSL24_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL24_NUR_S2)
+#else
+#define BF_CSU_CSL24_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL24_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL24_NUR_S2(v)   BF_CS1(CSU_CSL24, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL24_NSR_S2      3
+#define BM_CSU_CSL24_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL24_NSR_S2)
+#else
+#define BF_CSU_CSL24_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL24_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL24_NSR_S2(v)   BF_CS1(CSU_CSL24, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL24_SUW_S2      4
+#define BM_CSU_CSL24_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL24_SUW_S2)
+#else
+#define BF_CSU_CSL24_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL24_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL24_SUW_S2(v)   BF_CS1(CSU_CSL24, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL24_SSW_S2      5
+#define BM_CSU_CSL24_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL24_SSW_S2)
+#else
+#define BF_CSU_CSL24_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL24_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL24_SSW_S2(v)   BF_CS1(CSU_CSL24, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL24_NUW_S2      6
+#define BM_CSU_CSL24_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL24_NUW_S2)
+#else
+#define BF_CSU_CSL24_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL24_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL24_NUW_S2(v)   BF_CS1(CSU_CSL24, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL24_NSW_S2      7
+#define BM_CSU_CSL24_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL24_NSW_S2)
+#else
+#define BF_CSU_CSL24_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL24_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL24_NSW_S2(v)   BF_CS1(CSU_CSL24, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL24_LOCK_S2      8
+#define BM_CSU_CSL24_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL24_LOCK_S2)
+#else
+#define BF_CSU_CSL24_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL24_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL24_LOCK_S2(v)   BF_CS1(CSU_CSL24, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL24_SUR_S1      16
+#define BM_CSU_CSL24_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL24_SUR_S1)
+#else
+#define BF_CSU_CSL24_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL24_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL24_SUR_S1(v)   BF_CS1(CSU_CSL24, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL24_SSR_S1      17
+#define BM_CSU_CSL24_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL24_SSR_S1)
+#else
+#define BF_CSU_CSL24_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL24_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL24_SSR_S1(v)   BF_CS1(CSU_CSL24, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL24_NUR_S1      18
+#define BM_CSU_CSL24_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL24_NUR_S1)
+#else
+#define BF_CSU_CSL24_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL24_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL24_NUR_S1(v)   BF_CS1(CSU_CSL24, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL24_NSR_S1      19
+#define BM_CSU_CSL24_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL24_NSR_S1)
+#else
+#define BF_CSU_CSL24_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL24_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL24_NSR_S1(v)   BF_CS1(CSU_CSL24, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL24_SUW_S1      20
+#define BM_CSU_CSL24_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL24_SUW_S1)
+#else
+#define BF_CSU_CSL24_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL24_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL24_SUW_S1(v)   BF_CS1(CSU_CSL24, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL24_SSW_S1      21
+#define BM_CSU_CSL24_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL24_SSW_S1)
+#else
+#define BF_CSU_CSL24_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL24_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL24_SSW_S1(v)   BF_CS1(CSU_CSL24, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL24_NUW_S1      22
+#define BM_CSU_CSL24_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL24_NUW_S1)
+#else
+#define BF_CSU_CSL24_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL24_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL24_NUW_S1(v)   BF_CS1(CSU_CSL24, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL24_NSW_S1      23
+#define BM_CSU_CSL24_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL24_NSW_S1)
+#else
+#define BF_CSU_CSL24_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL24_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL24_NSW_S1(v)   BF_CS1(CSU_CSL24, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL24, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL24_LOCK_S1      24
+#define BM_CSU_CSL24_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL24_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL24_LOCK_S1)
+#else
+#define BF_CSU_CSL24_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL24_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL24_LOCK_S1(v)   BF_CS1(CSU_CSL24, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL25 - Config security level register 25 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl25_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL25 register
+ */
+#define HW_CSU_CSL25_ADDR      (REGS_CSU_BASE + 0x64)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL25           (*(volatile hw_csu_csl25_t *) HW_CSU_CSL25_ADDR)
+#define HW_CSU_CSL25_RD()      (HW_CSU_CSL25.U)
+#define HW_CSU_CSL25_WR(v)     (HW_CSU_CSL25.U = (v))
+#define HW_CSU_CSL25_SET(v)    (HW_CSU_CSL25_WR(HW_CSU_CSL25_RD() |  (v)))
+#define HW_CSU_CSL25_CLR(v)    (HW_CSU_CSL25_WR(HW_CSU_CSL25_RD() & ~(v)))
+#define HW_CSU_CSL25_TOG(v)    (HW_CSU_CSL25_WR(HW_CSU_CSL25_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL25 bitfields
+ */
+
+/* --- Register HW_CSU_CSL25, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL25_SUR_S2      0
+#define BM_CSU_CSL25_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL25_SUR_S2)
+#else
+#define BF_CSU_CSL25_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL25_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL25_SUR_S2(v)   BF_CS1(CSU_CSL25, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL25_SSR_S2      1
+#define BM_CSU_CSL25_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL25_SSR_S2)
+#else
+#define BF_CSU_CSL25_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL25_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL25_SSR_S2(v)   BF_CS1(CSU_CSL25, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL25_NUR_S2      2
+#define BM_CSU_CSL25_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL25_NUR_S2)
+#else
+#define BF_CSU_CSL25_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL25_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL25_NUR_S2(v)   BF_CS1(CSU_CSL25, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL25_NSR_S2      3
+#define BM_CSU_CSL25_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL25_NSR_S2)
+#else
+#define BF_CSU_CSL25_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL25_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL25_NSR_S2(v)   BF_CS1(CSU_CSL25, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL25_SUW_S2      4
+#define BM_CSU_CSL25_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL25_SUW_S2)
+#else
+#define BF_CSU_CSL25_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL25_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL25_SUW_S2(v)   BF_CS1(CSU_CSL25, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL25_SSW_S2      5
+#define BM_CSU_CSL25_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL25_SSW_S2)
+#else
+#define BF_CSU_CSL25_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL25_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL25_SSW_S2(v)   BF_CS1(CSU_CSL25, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL25_NUW_S2      6
+#define BM_CSU_CSL25_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL25_NUW_S2)
+#else
+#define BF_CSU_CSL25_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL25_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL25_NUW_S2(v)   BF_CS1(CSU_CSL25, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL25_NSW_S2      7
+#define BM_CSU_CSL25_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL25_NSW_S2)
+#else
+#define BF_CSU_CSL25_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL25_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL25_NSW_S2(v)   BF_CS1(CSU_CSL25, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL25_LOCK_S2      8
+#define BM_CSU_CSL25_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL25_LOCK_S2)
+#else
+#define BF_CSU_CSL25_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL25_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL25_LOCK_S2(v)   BF_CS1(CSU_CSL25, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL25_SUR_S1      16
+#define BM_CSU_CSL25_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL25_SUR_S1)
+#else
+#define BF_CSU_CSL25_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL25_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL25_SUR_S1(v)   BF_CS1(CSU_CSL25, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL25_SSR_S1      17
+#define BM_CSU_CSL25_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL25_SSR_S1)
+#else
+#define BF_CSU_CSL25_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL25_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL25_SSR_S1(v)   BF_CS1(CSU_CSL25, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL25_NUR_S1      18
+#define BM_CSU_CSL25_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL25_NUR_S1)
+#else
+#define BF_CSU_CSL25_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL25_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL25_NUR_S1(v)   BF_CS1(CSU_CSL25, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL25_NSR_S1      19
+#define BM_CSU_CSL25_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL25_NSR_S1)
+#else
+#define BF_CSU_CSL25_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL25_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL25_NSR_S1(v)   BF_CS1(CSU_CSL25, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL25_SUW_S1      20
+#define BM_CSU_CSL25_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL25_SUW_S1)
+#else
+#define BF_CSU_CSL25_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL25_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL25_SUW_S1(v)   BF_CS1(CSU_CSL25, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL25_SSW_S1      21
+#define BM_CSU_CSL25_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL25_SSW_S1)
+#else
+#define BF_CSU_CSL25_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL25_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL25_SSW_S1(v)   BF_CS1(CSU_CSL25, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL25_NUW_S1      22
+#define BM_CSU_CSL25_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL25_NUW_S1)
+#else
+#define BF_CSU_CSL25_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL25_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL25_NUW_S1(v)   BF_CS1(CSU_CSL25, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL25_NSW_S1      23
+#define BM_CSU_CSL25_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL25_NSW_S1)
+#else
+#define BF_CSU_CSL25_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL25_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL25_NSW_S1(v)   BF_CS1(CSU_CSL25, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL25, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL25_LOCK_S1      24
+#define BM_CSU_CSL25_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL25_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL25_LOCK_S1)
+#else
+#define BF_CSU_CSL25_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL25_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL25_LOCK_S1(v)   BF_CS1(CSU_CSL25, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL26 - Config security level register 26 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl26_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL26 register
+ */
+#define HW_CSU_CSL26_ADDR      (REGS_CSU_BASE + 0x68)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL26           (*(volatile hw_csu_csl26_t *) HW_CSU_CSL26_ADDR)
+#define HW_CSU_CSL26_RD()      (HW_CSU_CSL26.U)
+#define HW_CSU_CSL26_WR(v)     (HW_CSU_CSL26.U = (v))
+#define HW_CSU_CSL26_SET(v)    (HW_CSU_CSL26_WR(HW_CSU_CSL26_RD() |  (v)))
+#define HW_CSU_CSL26_CLR(v)    (HW_CSU_CSL26_WR(HW_CSU_CSL26_RD() & ~(v)))
+#define HW_CSU_CSL26_TOG(v)    (HW_CSU_CSL26_WR(HW_CSU_CSL26_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL26 bitfields
+ */
+
+/* --- Register HW_CSU_CSL26, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL26_SUR_S2      0
+#define BM_CSU_CSL26_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL26_SUR_S2)
+#else
+#define BF_CSU_CSL26_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL26_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL26_SUR_S2(v)   BF_CS1(CSU_CSL26, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL26_SSR_S2      1
+#define BM_CSU_CSL26_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL26_SSR_S2)
+#else
+#define BF_CSU_CSL26_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL26_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL26_SSR_S2(v)   BF_CS1(CSU_CSL26, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL26_NUR_S2      2
+#define BM_CSU_CSL26_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL26_NUR_S2)
+#else
+#define BF_CSU_CSL26_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL26_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL26_NUR_S2(v)   BF_CS1(CSU_CSL26, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL26_NSR_S2      3
+#define BM_CSU_CSL26_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL26_NSR_S2)
+#else
+#define BF_CSU_CSL26_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL26_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL26_NSR_S2(v)   BF_CS1(CSU_CSL26, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL26_SUW_S2      4
+#define BM_CSU_CSL26_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL26_SUW_S2)
+#else
+#define BF_CSU_CSL26_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL26_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL26_SUW_S2(v)   BF_CS1(CSU_CSL26, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL26_SSW_S2      5
+#define BM_CSU_CSL26_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL26_SSW_S2)
+#else
+#define BF_CSU_CSL26_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL26_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL26_SSW_S2(v)   BF_CS1(CSU_CSL26, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL26_NUW_S2      6
+#define BM_CSU_CSL26_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL26_NUW_S2)
+#else
+#define BF_CSU_CSL26_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL26_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL26_NUW_S2(v)   BF_CS1(CSU_CSL26, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL26_NSW_S2      7
+#define BM_CSU_CSL26_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL26_NSW_S2)
+#else
+#define BF_CSU_CSL26_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL26_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL26_NSW_S2(v)   BF_CS1(CSU_CSL26, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL26_LOCK_S2      8
+#define BM_CSU_CSL26_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL26_LOCK_S2)
+#else
+#define BF_CSU_CSL26_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL26_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL26_LOCK_S2(v)   BF_CS1(CSU_CSL26, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL26_SUR_S1      16
+#define BM_CSU_CSL26_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL26_SUR_S1)
+#else
+#define BF_CSU_CSL26_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL26_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL26_SUR_S1(v)   BF_CS1(CSU_CSL26, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL26_SSR_S1      17
+#define BM_CSU_CSL26_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL26_SSR_S1)
+#else
+#define BF_CSU_CSL26_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL26_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL26_SSR_S1(v)   BF_CS1(CSU_CSL26, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL26_NUR_S1      18
+#define BM_CSU_CSL26_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL26_NUR_S1)
+#else
+#define BF_CSU_CSL26_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL26_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL26_NUR_S1(v)   BF_CS1(CSU_CSL26, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL26_NSR_S1      19
+#define BM_CSU_CSL26_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL26_NSR_S1)
+#else
+#define BF_CSU_CSL26_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL26_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL26_NSR_S1(v)   BF_CS1(CSU_CSL26, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL26_SUW_S1      20
+#define BM_CSU_CSL26_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL26_SUW_S1)
+#else
+#define BF_CSU_CSL26_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL26_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL26_SUW_S1(v)   BF_CS1(CSU_CSL26, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL26_SSW_S1      21
+#define BM_CSU_CSL26_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL26_SSW_S1)
+#else
+#define BF_CSU_CSL26_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL26_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL26_SSW_S1(v)   BF_CS1(CSU_CSL26, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL26_NUW_S1      22
+#define BM_CSU_CSL26_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL26_NUW_S1)
+#else
+#define BF_CSU_CSL26_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL26_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL26_NUW_S1(v)   BF_CS1(CSU_CSL26, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL26_NSW_S1      23
+#define BM_CSU_CSL26_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL26_NSW_S1)
+#else
+#define BF_CSU_CSL26_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL26_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL26_NSW_S1(v)   BF_CS1(CSU_CSL26, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL26, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL26_LOCK_S1      24
+#define BM_CSU_CSL26_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL26_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL26_LOCK_S1)
+#else
+#define BF_CSU_CSL26_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL26_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL26_LOCK_S1(v)   BF_CS1(CSU_CSL26, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL27 - Config security level register 27 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl27_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL27 register
+ */
+#define HW_CSU_CSL27_ADDR      (REGS_CSU_BASE + 0x6c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL27           (*(volatile hw_csu_csl27_t *) HW_CSU_CSL27_ADDR)
+#define HW_CSU_CSL27_RD()      (HW_CSU_CSL27.U)
+#define HW_CSU_CSL27_WR(v)     (HW_CSU_CSL27.U = (v))
+#define HW_CSU_CSL27_SET(v)    (HW_CSU_CSL27_WR(HW_CSU_CSL27_RD() |  (v)))
+#define HW_CSU_CSL27_CLR(v)    (HW_CSU_CSL27_WR(HW_CSU_CSL27_RD() & ~(v)))
+#define HW_CSU_CSL27_TOG(v)    (HW_CSU_CSL27_WR(HW_CSU_CSL27_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL27 bitfields
+ */
+
+/* --- Register HW_CSU_CSL27, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL27_SUR_S2      0
+#define BM_CSU_CSL27_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL27_SUR_S2)
+#else
+#define BF_CSU_CSL27_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL27_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL27_SUR_S2(v)   BF_CS1(CSU_CSL27, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL27_SSR_S2      1
+#define BM_CSU_CSL27_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL27_SSR_S2)
+#else
+#define BF_CSU_CSL27_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL27_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL27_SSR_S2(v)   BF_CS1(CSU_CSL27, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL27_NUR_S2      2
+#define BM_CSU_CSL27_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL27_NUR_S2)
+#else
+#define BF_CSU_CSL27_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL27_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL27_NUR_S2(v)   BF_CS1(CSU_CSL27, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL27_NSR_S2      3
+#define BM_CSU_CSL27_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL27_NSR_S2)
+#else
+#define BF_CSU_CSL27_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL27_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL27_NSR_S2(v)   BF_CS1(CSU_CSL27, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL27_SUW_S2      4
+#define BM_CSU_CSL27_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL27_SUW_S2)
+#else
+#define BF_CSU_CSL27_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL27_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL27_SUW_S2(v)   BF_CS1(CSU_CSL27, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL27_SSW_S2      5
+#define BM_CSU_CSL27_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL27_SSW_S2)
+#else
+#define BF_CSU_CSL27_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL27_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL27_SSW_S2(v)   BF_CS1(CSU_CSL27, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL27_NUW_S2      6
+#define BM_CSU_CSL27_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL27_NUW_S2)
+#else
+#define BF_CSU_CSL27_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL27_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL27_NUW_S2(v)   BF_CS1(CSU_CSL27, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL27_NSW_S2      7
+#define BM_CSU_CSL27_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL27_NSW_S2)
+#else
+#define BF_CSU_CSL27_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL27_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL27_NSW_S2(v)   BF_CS1(CSU_CSL27, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL27_LOCK_S2      8
+#define BM_CSU_CSL27_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL27_LOCK_S2)
+#else
+#define BF_CSU_CSL27_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL27_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL27_LOCK_S2(v)   BF_CS1(CSU_CSL27, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL27_SUR_S1      16
+#define BM_CSU_CSL27_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL27_SUR_S1)
+#else
+#define BF_CSU_CSL27_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL27_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL27_SUR_S1(v)   BF_CS1(CSU_CSL27, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL27_SSR_S1      17
+#define BM_CSU_CSL27_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL27_SSR_S1)
+#else
+#define BF_CSU_CSL27_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL27_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL27_SSR_S1(v)   BF_CS1(CSU_CSL27, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL27_NUR_S1      18
+#define BM_CSU_CSL27_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL27_NUR_S1)
+#else
+#define BF_CSU_CSL27_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL27_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL27_NUR_S1(v)   BF_CS1(CSU_CSL27, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL27_NSR_S1      19
+#define BM_CSU_CSL27_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL27_NSR_S1)
+#else
+#define BF_CSU_CSL27_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL27_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL27_NSR_S1(v)   BF_CS1(CSU_CSL27, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL27_SUW_S1      20
+#define BM_CSU_CSL27_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL27_SUW_S1)
+#else
+#define BF_CSU_CSL27_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL27_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL27_SUW_S1(v)   BF_CS1(CSU_CSL27, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL27_SSW_S1      21
+#define BM_CSU_CSL27_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL27_SSW_S1)
+#else
+#define BF_CSU_CSL27_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL27_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL27_SSW_S1(v)   BF_CS1(CSU_CSL27, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL27_NUW_S1      22
+#define BM_CSU_CSL27_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL27_NUW_S1)
+#else
+#define BF_CSU_CSL27_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL27_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL27_NUW_S1(v)   BF_CS1(CSU_CSL27, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL27_NSW_S1      23
+#define BM_CSU_CSL27_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL27_NSW_S1)
+#else
+#define BF_CSU_CSL27_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL27_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL27_NSW_S1(v)   BF_CS1(CSU_CSL27, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL27, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL27_LOCK_S1      24
+#define BM_CSU_CSL27_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL27_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL27_LOCK_S1)
+#else
+#define BF_CSU_CSL27_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL27_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL27_LOCK_S1(v)   BF_CS1(CSU_CSL27, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL28 - Config security level register 28 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl28_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL28 register
+ */
+#define HW_CSU_CSL28_ADDR      (REGS_CSU_BASE + 0x70)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL28           (*(volatile hw_csu_csl28_t *) HW_CSU_CSL28_ADDR)
+#define HW_CSU_CSL28_RD()      (HW_CSU_CSL28.U)
+#define HW_CSU_CSL28_WR(v)     (HW_CSU_CSL28.U = (v))
+#define HW_CSU_CSL28_SET(v)    (HW_CSU_CSL28_WR(HW_CSU_CSL28_RD() |  (v)))
+#define HW_CSU_CSL28_CLR(v)    (HW_CSU_CSL28_WR(HW_CSU_CSL28_RD() & ~(v)))
+#define HW_CSU_CSL28_TOG(v)    (HW_CSU_CSL28_WR(HW_CSU_CSL28_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL28 bitfields
+ */
+
+/* --- Register HW_CSU_CSL28, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL28_SUR_S2      0
+#define BM_CSU_CSL28_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL28_SUR_S2)
+#else
+#define BF_CSU_CSL28_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL28_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL28_SUR_S2(v)   BF_CS1(CSU_CSL28, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL28_SSR_S2      1
+#define BM_CSU_CSL28_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL28_SSR_S2)
+#else
+#define BF_CSU_CSL28_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL28_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL28_SSR_S2(v)   BF_CS1(CSU_CSL28, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL28_NUR_S2      2
+#define BM_CSU_CSL28_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL28_NUR_S2)
+#else
+#define BF_CSU_CSL28_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL28_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL28_NUR_S2(v)   BF_CS1(CSU_CSL28, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL28_NSR_S2      3
+#define BM_CSU_CSL28_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL28_NSR_S2)
+#else
+#define BF_CSU_CSL28_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL28_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL28_NSR_S2(v)   BF_CS1(CSU_CSL28, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL28_SUW_S2      4
+#define BM_CSU_CSL28_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL28_SUW_S2)
+#else
+#define BF_CSU_CSL28_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL28_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL28_SUW_S2(v)   BF_CS1(CSU_CSL28, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL28_SSW_S2      5
+#define BM_CSU_CSL28_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL28_SSW_S2)
+#else
+#define BF_CSU_CSL28_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL28_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL28_SSW_S2(v)   BF_CS1(CSU_CSL28, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL28_NUW_S2      6
+#define BM_CSU_CSL28_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL28_NUW_S2)
+#else
+#define BF_CSU_CSL28_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL28_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL28_NUW_S2(v)   BF_CS1(CSU_CSL28, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL28_NSW_S2      7
+#define BM_CSU_CSL28_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL28_NSW_S2)
+#else
+#define BF_CSU_CSL28_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL28_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL28_NSW_S2(v)   BF_CS1(CSU_CSL28, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL28_LOCK_S2      8
+#define BM_CSU_CSL28_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL28_LOCK_S2)
+#else
+#define BF_CSU_CSL28_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL28_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL28_LOCK_S2(v)   BF_CS1(CSU_CSL28, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL28_SUR_S1      16
+#define BM_CSU_CSL28_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL28_SUR_S1)
+#else
+#define BF_CSU_CSL28_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL28_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL28_SUR_S1(v)   BF_CS1(CSU_CSL28, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL28_SSR_S1      17
+#define BM_CSU_CSL28_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL28_SSR_S1)
+#else
+#define BF_CSU_CSL28_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL28_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL28_SSR_S1(v)   BF_CS1(CSU_CSL28, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL28_NUR_S1      18
+#define BM_CSU_CSL28_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL28_NUR_S1)
+#else
+#define BF_CSU_CSL28_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL28_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL28_NUR_S1(v)   BF_CS1(CSU_CSL28, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL28_NSR_S1      19
+#define BM_CSU_CSL28_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL28_NSR_S1)
+#else
+#define BF_CSU_CSL28_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL28_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL28_NSR_S1(v)   BF_CS1(CSU_CSL28, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL28_SUW_S1      20
+#define BM_CSU_CSL28_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL28_SUW_S1)
+#else
+#define BF_CSU_CSL28_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL28_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL28_SUW_S1(v)   BF_CS1(CSU_CSL28, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL28_SSW_S1      21
+#define BM_CSU_CSL28_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL28_SSW_S1)
+#else
+#define BF_CSU_CSL28_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL28_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL28_SSW_S1(v)   BF_CS1(CSU_CSL28, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL28_NUW_S1      22
+#define BM_CSU_CSL28_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL28_NUW_S1)
+#else
+#define BF_CSU_CSL28_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL28_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL28_NUW_S1(v)   BF_CS1(CSU_CSL28, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL28_NSW_S1      23
+#define BM_CSU_CSL28_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL28_NSW_S1)
+#else
+#define BF_CSU_CSL28_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL28_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL28_NSW_S1(v)   BF_CS1(CSU_CSL28, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL28, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL28_LOCK_S1      24
+#define BM_CSU_CSL28_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL28_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL28_LOCK_S1)
+#else
+#define BF_CSU_CSL28_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL28_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL28_LOCK_S1(v)   BF_CS1(CSU_CSL28, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL29 - Config security level register 29 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl29_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL29 register
+ */
+#define HW_CSU_CSL29_ADDR      (REGS_CSU_BASE + 0x74)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL29           (*(volatile hw_csu_csl29_t *) HW_CSU_CSL29_ADDR)
+#define HW_CSU_CSL29_RD()      (HW_CSU_CSL29.U)
+#define HW_CSU_CSL29_WR(v)     (HW_CSU_CSL29.U = (v))
+#define HW_CSU_CSL29_SET(v)    (HW_CSU_CSL29_WR(HW_CSU_CSL29_RD() |  (v)))
+#define HW_CSU_CSL29_CLR(v)    (HW_CSU_CSL29_WR(HW_CSU_CSL29_RD() & ~(v)))
+#define HW_CSU_CSL29_TOG(v)    (HW_CSU_CSL29_WR(HW_CSU_CSL29_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL29 bitfields
+ */
+
+/* --- Register HW_CSU_CSL29, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL29_SUR_S2      0
+#define BM_CSU_CSL29_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL29_SUR_S2)
+#else
+#define BF_CSU_CSL29_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL29_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL29_SUR_S2(v)   BF_CS1(CSU_CSL29, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL29_SSR_S2      1
+#define BM_CSU_CSL29_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL29_SSR_S2)
+#else
+#define BF_CSU_CSL29_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL29_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL29_SSR_S2(v)   BF_CS1(CSU_CSL29, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL29_NUR_S2      2
+#define BM_CSU_CSL29_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL29_NUR_S2)
+#else
+#define BF_CSU_CSL29_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL29_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL29_NUR_S2(v)   BF_CS1(CSU_CSL29, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL29_NSR_S2      3
+#define BM_CSU_CSL29_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL29_NSR_S2)
+#else
+#define BF_CSU_CSL29_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL29_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL29_NSR_S2(v)   BF_CS1(CSU_CSL29, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL29_SUW_S2      4
+#define BM_CSU_CSL29_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL29_SUW_S2)
+#else
+#define BF_CSU_CSL29_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL29_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL29_SUW_S2(v)   BF_CS1(CSU_CSL29, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL29_SSW_S2      5
+#define BM_CSU_CSL29_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL29_SSW_S2)
+#else
+#define BF_CSU_CSL29_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL29_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL29_SSW_S2(v)   BF_CS1(CSU_CSL29, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL29_NUW_S2      6
+#define BM_CSU_CSL29_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL29_NUW_S2)
+#else
+#define BF_CSU_CSL29_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL29_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL29_NUW_S2(v)   BF_CS1(CSU_CSL29, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL29_NSW_S2      7
+#define BM_CSU_CSL29_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL29_NSW_S2)
+#else
+#define BF_CSU_CSL29_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL29_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL29_NSW_S2(v)   BF_CS1(CSU_CSL29, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL29_LOCK_S2      8
+#define BM_CSU_CSL29_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL29_LOCK_S2)
+#else
+#define BF_CSU_CSL29_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL29_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL29_LOCK_S2(v)   BF_CS1(CSU_CSL29, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL29_SUR_S1      16
+#define BM_CSU_CSL29_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL29_SUR_S1)
+#else
+#define BF_CSU_CSL29_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL29_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL29_SUR_S1(v)   BF_CS1(CSU_CSL29, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL29_SSR_S1      17
+#define BM_CSU_CSL29_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL29_SSR_S1)
+#else
+#define BF_CSU_CSL29_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL29_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL29_SSR_S1(v)   BF_CS1(CSU_CSL29, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL29_NUR_S1      18
+#define BM_CSU_CSL29_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL29_NUR_S1)
+#else
+#define BF_CSU_CSL29_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL29_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL29_NUR_S1(v)   BF_CS1(CSU_CSL29, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL29_NSR_S1      19
+#define BM_CSU_CSL29_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL29_NSR_S1)
+#else
+#define BF_CSU_CSL29_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL29_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL29_NSR_S1(v)   BF_CS1(CSU_CSL29, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL29_SUW_S1      20
+#define BM_CSU_CSL29_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL29_SUW_S1)
+#else
+#define BF_CSU_CSL29_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL29_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL29_SUW_S1(v)   BF_CS1(CSU_CSL29, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL29_SSW_S1      21
+#define BM_CSU_CSL29_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL29_SSW_S1)
+#else
+#define BF_CSU_CSL29_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL29_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL29_SSW_S1(v)   BF_CS1(CSU_CSL29, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL29_NUW_S1      22
+#define BM_CSU_CSL29_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL29_NUW_S1)
+#else
+#define BF_CSU_CSL29_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL29_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL29_NUW_S1(v)   BF_CS1(CSU_CSL29, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL29_NSW_S1      23
+#define BM_CSU_CSL29_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL29_NSW_S1)
+#else
+#define BF_CSU_CSL29_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL29_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL29_NSW_S1(v)   BF_CS1(CSU_CSL29, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL29, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL29_LOCK_S1      24
+#define BM_CSU_CSL29_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL29_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL29_LOCK_S1)
+#else
+#define BF_CSU_CSL29_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL29_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL29_LOCK_S1(v)   BF_CS1(CSU_CSL29, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL30 - Config security level register 30 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl30_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL30 register
+ */
+#define HW_CSU_CSL30_ADDR      (REGS_CSU_BASE + 0x78)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL30           (*(volatile hw_csu_csl30_t *) HW_CSU_CSL30_ADDR)
+#define HW_CSU_CSL30_RD()      (HW_CSU_CSL30.U)
+#define HW_CSU_CSL30_WR(v)     (HW_CSU_CSL30.U = (v))
+#define HW_CSU_CSL30_SET(v)    (HW_CSU_CSL30_WR(HW_CSU_CSL30_RD() |  (v)))
+#define HW_CSU_CSL30_CLR(v)    (HW_CSU_CSL30_WR(HW_CSU_CSL30_RD() & ~(v)))
+#define HW_CSU_CSL30_TOG(v)    (HW_CSU_CSL30_WR(HW_CSU_CSL30_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL30 bitfields
+ */
+
+/* --- Register HW_CSU_CSL30, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL30_SUR_S2      0
+#define BM_CSU_CSL30_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL30_SUR_S2)
+#else
+#define BF_CSU_CSL30_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL30_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL30_SUR_S2(v)   BF_CS1(CSU_CSL30, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL30_SSR_S2      1
+#define BM_CSU_CSL30_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL30_SSR_S2)
+#else
+#define BF_CSU_CSL30_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL30_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL30_SSR_S2(v)   BF_CS1(CSU_CSL30, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL30_NUR_S2      2
+#define BM_CSU_CSL30_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL30_NUR_S2)
+#else
+#define BF_CSU_CSL30_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL30_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL30_NUR_S2(v)   BF_CS1(CSU_CSL30, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL30_NSR_S2      3
+#define BM_CSU_CSL30_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL30_NSR_S2)
+#else
+#define BF_CSU_CSL30_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL30_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL30_NSR_S2(v)   BF_CS1(CSU_CSL30, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL30_SUW_S2      4
+#define BM_CSU_CSL30_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL30_SUW_S2)
+#else
+#define BF_CSU_CSL30_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL30_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL30_SUW_S2(v)   BF_CS1(CSU_CSL30, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL30_SSW_S2      5
+#define BM_CSU_CSL30_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL30_SSW_S2)
+#else
+#define BF_CSU_CSL30_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL30_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL30_SSW_S2(v)   BF_CS1(CSU_CSL30, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL30_NUW_S2      6
+#define BM_CSU_CSL30_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL30_NUW_S2)
+#else
+#define BF_CSU_CSL30_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL30_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL30_NUW_S2(v)   BF_CS1(CSU_CSL30, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL30_NSW_S2      7
+#define BM_CSU_CSL30_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL30_NSW_S2)
+#else
+#define BF_CSU_CSL30_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL30_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL30_NSW_S2(v)   BF_CS1(CSU_CSL30, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL30_LOCK_S2      8
+#define BM_CSU_CSL30_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL30_LOCK_S2)
+#else
+#define BF_CSU_CSL30_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL30_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL30_LOCK_S2(v)   BF_CS1(CSU_CSL30, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL30_SUR_S1      16
+#define BM_CSU_CSL30_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL30_SUR_S1)
+#else
+#define BF_CSU_CSL30_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL30_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL30_SUR_S1(v)   BF_CS1(CSU_CSL30, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL30_SSR_S1      17
+#define BM_CSU_CSL30_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL30_SSR_S1)
+#else
+#define BF_CSU_CSL30_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL30_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL30_SSR_S1(v)   BF_CS1(CSU_CSL30, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL30_NUR_S1      18
+#define BM_CSU_CSL30_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL30_NUR_S1)
+#else
+#define BF_CSU_CSL30_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL30_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL30_NUR_S1(v)   BF_CS1(CSU_CSL30, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL30_NSR_S1      19
+#define BM_CSU_CSL30_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL30_NSR_S1)
+#else
+#define BF_CSU_CSL30_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL30_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL30_NSR_S1(v)   BF_CS1(CSU_CSL30, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL30_SUW_S1      20
+#define BM_CSU_CSL30_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL30_SUW_S1)
+#else
+#define BF_CSU_CSL30_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL30_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL30_SUW_S1(v)   BF_CS1(CSU_CSL30, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL30_SSW_S1      21
+#define BM_CSU_CSL30_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL30_SSW_S1)
+#else
+#define BF_CSU_CSL30_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL30_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL30_SSW_S1(v)   BF_CS1(CSU_CSL30, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL30_NUW_S1      22
+#define BM_CSU_CSL30_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL30_NUW_S1)
+#else
+#define BF_CSU_CSL30_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL30_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL30_NUW_S1(v)   BF_CS1(CSU_CSL30, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL30_NSW_S1      23
+#define BM_CSU_CSL30_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL30_NSW_S1)
+#else
+#define BF_CSU_CSL30_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL30_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL30_NSW_S1(v)   BF_CS1(CSU_CSL30, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL30, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL30_LOCK_S1      24
+#define BM_CSU_CSL30_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL30_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL30_LOCK_S1)
+#else
+#define BF_CSU_CSL30_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL30_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL30_LOCK_S1(v)   BF_CS1(CSU_CSL30, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL31 - Config security level register 31 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl31_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL31 register
+ */
+#define HW_CSU_CSL31_ADDR      (REGS_CSU_BASE + 0x7c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL31           (*(volatile hw_csu_csl31_t *) HW_CSU_CSL31_ADDR)
+#define HW_CSU_CSL31_RD()      (HW_CSU_CSL31.U)
+#define HW_CSU_CSL31_WR(v)     (HW_CSU_CSL31.U = (v))
+#define HW_CSU_CSL31_SET(v)    (HW_CSU_CSL31_WR(HW_CSU_CSL31_RD() |  (v)))
+#define HW_CSU_CSL31_CLR(v)    (HW_CSU_CSL31_WR(HW_CSU_CSL31_RD() & ~(v)))
+#define HW_CSU_CSL31_TOG(v)    (HW_CSU_CSL31_WR(HW_CSU_CSL31_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL31 bitfields
+ */
+
+/* --- Register HW_CSU_CSL31, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL31_SUR_S2      0
+#define BM_CSU_CSL31_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL31_SUR_S2)
+#else
+#define BF_CSU_CSL31_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL31_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL31_SUR_S2(v)   BF_CS1(CSU_CSL31, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL31_SSR_S2      1
+#define BM_CSU_CSL31_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL31_SSR_S2)
+#else
+#define BF_CSU_CSL31_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL31_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL31_SSR_S2(v)   BF_CS1(CSU_CSL31, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL31_NUR_S2      2
+#define BM_CSU_CSL31_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL31_NUR_S2)
+#else
+#define BF_CSU_CSL31_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL31_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL31_NUR_S2(v)   BF_CS1(CSU_CSL31, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL31_NSR_S2      3
+#define BM_CSU_CSL31_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL31_NSR_S2)
+#else
+#define BF_CSU_CSL31_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL31_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL31_NSR_S2(v)   BF_CS1(CSU_CSL31, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL31_SUW_S2      4
+#define BM_CSU_CSL31_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL31_SUW_S2)
+#else
+#define BF_CSU_CSL31_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL31_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL31_SUW_S2(v)   BF_CS1(CSU_CSL31, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL31_SSW_S2      5
+#define BM_CSU_CSL31_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL31_SSW_S2)
+#else
+#define BF_CSU_CSL31_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL31_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL31_SSW_S2(v)   BF_CS1(CSU_CSL31, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL31_NUW_S2      6
+#define BM_CSU_CSL31_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL31_NUW_S2)
+#else
+#define BF_CSU_CSL31_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL31_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL31_NUW_S2(v)   BF_CS1(CSU_CSL31, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL31_NSW_S2      7
+#define BM_CSU_CSL31_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL31_NSW_S2)
+#else
+#define BF_CSU_CSL31_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL31_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL31_NSW_S2(v)   BF_CS1(CSU_CSL31, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL31_LOCK_S2      8
+#define BM_CSU_CSL31_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL31_LOCK_S2)
+#else
+#define BF_CSU_CSL31_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL31_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL31_LOCK_S2(v)   BF_CS1(CSU_CSL31, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL31_SUR_S1      16
+#define BM_CSU_CSL31_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL31_SUR_S1)
+#else
+#define BF_CSU_CSL31_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL31_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL31_SUR_S1(v)   BF_CS1(CSU_CSL31, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL31_SSR_S1      17
+#define BM_CSU_CSL31_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL31_SSR_S1)
+#else
+#define BF_CSU_CSL31_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL31_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL31_SSR_S1(v)   BF_CS1(CSU_CSL31, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL31_NUR_S1      18
+#define BM_CSU_CSL31_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL31_NUR_S1)
+#else
+#define BF_CSU_CSL31_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL31_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL31_NUR_S1(v)   BF_CS1(CSU_CSL31, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL31_NSR_S1      19
+#define BM_CSU_CSL31_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL31_NSR_S1)
+#else
+#define BF_CSU_CSL31_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL31_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL31_NSR_S1(v)   BF_CS1(CSU_CSL31, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL31_SUW_S1      20
+#define BM_CSU_CSL31_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL31_SUW_S1)
+#else
+#define BF_CSU_CSL31_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL31_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL31_SUW_S1(v)   BF_CS1(CSU_CSL31, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL31_SSW_S1      21
+#define BM_CSU_CSL31_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL31_SSW_S1)
+#else
+#define BF_CSU_CSL31_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL31_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL31_SSW_S1(v)   BF_CS1(CSU_CSL31, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL31_NUW_S1      22
+#define BM_CSU_CSL31_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL31_NUW_S1)
+#else
+#define BF_CSU_CSL31_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL31_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL31_NUW_S1(v)   BF_CS1(CSU_CSL31, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL31_NSW_S1      23
+#define BM_CSU_CSL31_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL31_NSW_S1)
+#else
+#define BF_CSU_CSL31_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL31_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL31_NSW_S1(v)   BF_CS1(CSU_CSL31, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL31, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL31_LOCK_S1      24
+#define BM_CSU_CSL31_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL31_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL31_LOCK_S1)
+#else
+#define BF_CSU_CSL31_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL31_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL31_LOCK_S1(v)   BF_CS1(CSU_CSL31, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL32 - Config security level register 32 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl32_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL32 register
+ */
+#define HW_CSU_CSL32_ADDR      (REGS_CSU_BASE + 0x80)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL32           (*(volatile hw_csu_csl32_t *) HW_CSU_CSL32_ADDR)
+#define HW_CSU_CSL32_RD()      (HW_CSU_CSL32.U)
+#define HW_CSU_CSL32_WR(v)     (HW_CSU_CSL32.U = (v))
+#define HW_CSU_CSL32_SET(v)    (HW_CSU_CSL32_WR(HW_CSU_CSL32_RD() |  (v)))
+#define HW_CSU_CSL32_CLR(v)    (HW_CSU_CSL32_WR(HW_CSU_CSL32_RD() & ~(v)))
+#define HW_CSU_CSL32_TOG(v)    (HW_CSU_CSL32_WR(HW_CSU_CSL32_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL32 bitfields
+ */
+
+/* --- Register HW_CSU_CSL32, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL32_SUR_S2      0
+#define BM_CSU_CSL32_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL32_SUR_S2)
+#else
+#define BF_CSU_CSL32_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL32_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL32_SUR_S2(v)   BF_CS1(CSU_CSL32, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL32_SSR_S2      1
+#define BM_CSU_CSL32_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL32_SSR_S2)
+#else
+#define BF_CSU_CSL32_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL32_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL32_SSR_S2(v)   BF_CS1(CSU_CSL32, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL32_NUR_S2      2
+#define BM_CSU_CSL32_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL32_NUR_S2)
+#else
+#define BF_CSU_CSL32_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL32_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL32_NUR_S2(v)   BF_CS1(CSU_CSL32, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL32_NSR_S2      3
+#define BM_CSU_CSL32_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL32_NSR_S2)
+#else
+#define BF_CSU_CSL32_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL32_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL32_NSR_S2(v)   BF_CS1(CSU_CSL32, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL32_SUW_S2      4
+#define BM_CSU_CSL32_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL32_SUW_S2)
+#else
+#define BF_CSU_CSL32_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL32_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL32_SUW_S2(v)   BF_CS1(CSU_CSL32, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL32_SSW_S2      5
+#define BM_CSU_CSL32_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL32_SSW_S2)
+#else
+#define BF_CSU_CSL32_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL32_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL32_SSW_S2(v)   BF_CS1(CSU_CSL32, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL32_NUW_S2      6
+#define BM_CSU_CSL32_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL32_NUW_S2)
+#else
+#define BF_CSU_CSL32_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL32_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL32_NUW_S2(v)   BF_CS1(CSU_CSL32, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL32_NSW_S2      7
+#define BM_CSU_CSL32_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL32_NSW_S2)
+#else
+#define BF_CSU_CSL32_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL32_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL32_NSW_S2(v)   BF_CS1(CSU_CSL32, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL32_LOCK_S2      8
+#define BM_CSU_CSL32_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL32_LOCK_S2)
+#else
+#define BF_CSU_CSL32_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL32_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL32_LOCK_S2(v)   BF_CS1(CSU_CSL32, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL32_SUR_S1      16
+#define BM_CSU_CSL32_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL32_SUR_S1)
+#else
+#define BF_CSU_CSL32_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL32_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL32_SUR_S1(v)   BF_CS1(CSU_CSL32, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL32_SSR_S1      17
+#define BM_CSU_CSL32_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL32_SSR_S1)
+#else
+#define BF_CSU_CSL32_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL32_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL32_SSR_S1(v)   BF_CS1(CSU_CSL32, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL32_NUR_S1      18
+#define BM_CSU_CSL32_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL32_NUR_S1)
+#else
+#define BF_CSU_CSL32_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL32_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL32_NUR_S1(v)   BF_CS1(CSU_CSL32, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL32_NSR_S1      19
+#define BM_CSU_CSL32_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL32_NSR_S1)
+#else
+#define BF_CSU_CSL32_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL32_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL32_NSR_S1(v)   BF_CS1(CSU_CSL32, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL32_SUW_S1      20
+#define BM_CSU_CSL32_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL32_SUW_S1)
+#else
+#define BF_CSU_CSL32_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL32_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL32_SUW_S1(v)   BF_CS1(CSU_CSL32, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL32_SSW_S1      21
+#define BM_CSU_CSL32_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL32_SSW_S1)
+#else
+#define BF_CSU_CSL32_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL32_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL32_SSW_S1(v)   BF_CS1(CSU_CSL32, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL32_NUW_S1      22
+#define BM_CSU_CSL32_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL32_NUW_S1)
+#else
+#define BF_CSU_CSL32_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL32_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL32_NUW_S1(v)   BF_CS1(CSU_CSL32, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL32_NSW_S1      23
+#define BM_CSU_CSL32_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL32_NSW_S1)
+#else
+#define BF_CSU_CSL32_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL32_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL32_NSW_S1(v)   BF_CS1(CSU_CSL32, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL32, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL32_LOCK_S1      24
+#define BM_CSU_CSL32_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL32_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL32_LOCK_S1)
+#else
+#define BF_CSU_CSL32_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL32_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL32_LOCK_S1(v)   BF_CS1(CSU_CSL32, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL33 - Config security level register 33 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl33_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL33 register
+ */
+#define HW_CSU_CSL33_ADDR      (REGS_CSU_BASE + 0x84)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL33           (*(volatile hw_csu_csl33_t *) HW_CSU_CSL33_ADDR)
+#define HW_CSU_CSL33_RD()      (HW_CSU_CSL33.U)
+#define HW_CSU_CSL33_WR(v)     (HW_CSU_CSL33.U = (v))
+#define HW_CSU_CSL33_SET(v)    (HW_CSU_CSL33_WR(HW_CSU_CSL33_RD() |  (v)))
+#define HW_CSU_CSL33_CLR(v)    (HW_CSU_CSL33_WR(HW_CSU_CSL33_RD() & ~(v)))
+#define HW_CSU_CSL33_TOG(v)    (HW_CSU_CSL33_WR(HW_CSU_CSL33_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL33 bitfields
+ */
+
+/* --- Register HW_CSU_CSL33, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL33_SUR_S2      0
+#define BM_CSU_CSL33_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL33_SUR_S2)
+#else
+#define BF_CSU_CSL33_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL33_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL33_SUR_S2(v)   BF_CS1(CSU_CSL33, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL33_SSR_S2      1
+#define BM_CSU_CSL33_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL33_SSR_S2)
+#else
+#define BF_CSU_CSL33_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL33_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL33_SSR_S2(v)   BF_CS1(CSU_CSL33, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL33_NUR_S2      2
+#define BM_CSU_CSL33_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL33_NUR_S2)
+#else
+#define BF_CSU_CSL33_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL33_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL33_NUR_S2(v)   BF_CS1(CSU_CSL33, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL33_NSR_S2      3
+#define BM_CSU_CSL33_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL33_NSR_S2)
+#else
+#define BF_CSU_CSL33_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL33_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL33_NSR_S2(v)   BF_CS1(CSU_CSL33, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL33_SUW_S2      4
+#define BM_CSU_CSL33_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL33_SUW_S2)
+#else
+#define BF_CSU_CSL33_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL33_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL33_SUW_S2(v)   BF_CS1(CSU_CSL33, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL33_SSW_S2      5
+#define BM_CSU_CSL33_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL33_SSW_S2)
+#else
+#define BF_CSU_CSL33_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL33_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL33_SSW_S2(v)   BF_CS1(CSU_CSL33, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL33_NUW_S2      6
+#define BM_CSU_CSL33_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL33_NUW_S2)
+#else
+#define BF_CSU_CSL33_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL33_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL33_NUW_S2(v)   BF_CS1(CSU_CSL33, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL33_NSW_S2      7
+#define BM_CSU_CSL33_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL33_NSW_S2)
+#else
+#define BF_CSU_CSL33_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL33_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL33_NSW_S2(v)   BF_CS1(CSU_CSL33, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL33_LOCK_S2      8
+#define BM_CSU_CSL33_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL33_LOCK_S2)
+#else
+#define BF_CSU_CSL33_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL33_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL33_LOCK_S2(v)   BF_CS1(CSU_CSL33, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL33_SUR_S1      16
+#define BM_CSU_CSL33_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL33_SUR_S1)
+#else
+#define BF_CSU_CSL33_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL33_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL33_SUR_S1(v)   BF_CS1(CSU_CSL33, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL33_SSR_S1      17
+#define BM_CSU_CSL33_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL33_SSR_S1)
+#else
+#define BF_CSU_CSL33_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL33_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL33_SSR_S1(v)   BF_CS1(CSU_CSL33, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL33_NUR_S1      18
+#define BM_CSU_CSL33_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL33_NUR_S1)
+#else
+#define BF_CSU_CSL33_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL33_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL33_NUR_S1(v)   BF_CS1(CSU_CSL33, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL33_NSR_S1      19
+#define BM_CSU_CSL33_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL33_NSR_S1)
+#else
+#define BF_CSU_CSL33_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL33_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL33_NSR_S1(v)   BF_CS1(CSU_CSL33, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL33_SUW_S1      20
+#define BM_CSU_CSL33_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL33_SUW_S1)
+#else
+#define BF_CSU_CSL33_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL33_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL33_SUW_S1(v)   BF_CS1(CSU_CSL33, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL33_SSW_S1      21
+#define BM_CSU_CSL33_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL33_SSW_S1)
+#else
+#define BF_CSU_CSL33_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL33_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL33_SSW_S1(v)   BF_CS1(CSU_CSL33, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL33_NUW_S1      22
+#define BM_CSU_CSL33_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL33_NUW_S1)
+#else
+#define BF_CSU_CSL33_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL33_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL33_NUW_S1(v)   BF_CS1(CSU_CSL33, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL33_NSW_S1      23
+#define BM_CSU_CSL33_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL33_NSW_S1)
+#else
+#define BF_CSU_CSL33_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL33_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL33_NSW_S1(v)   BF_CS1(CSU_CSL33, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL33, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL33_LOCK_S1      24
+#define BM_CSU_CSL33_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL33_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL33_LOCK_S1)
+#else
+#define BF_CSU_CSL33_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL33_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL33_LOCK_S1(v)   BF_CS1(CSU_CSL33, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL34 - Config security level register 34 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl34_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL34 register
+ */
+#define HW_CSU_CSL34_ADDR      (REGS_CSU_BASE + 0x88)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL34           (*(volatile hw_csu_csl34_t *) HW_CSU_CSL34_ADDR)
+#define HW_CSU_CSL34_RD()      (HW_CSU_CSL34.U)
+#define HW_CSU_CSL34_WR(v)     (HW_CSU_CSL34.U = (v))
+#define HW_CSU_CSL34_SET(v)    (HW_CSU_CSL34_WR(HW_CSU_CSL34_RD() |  (v)))
+#define HW_CSU_CSL34_CLR(v)    (HW_CSU_CSL34_WR(HW_CSU_CSL34_RD() & ~(v)))
+#define HW_CSU_CSL34_TOG(v)    (HW_CSU_CSL34_WR(HW_CSU_CSL34_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL34 bitfields
+ */
+
+/* --- Register HW_CSU_CSL34, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL34_SUR_S2      0
+#define BM_CSU_CSL34_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL34_SUR_S2)
+#else
+#define BF_CSU_CSL34_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL34_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL34_SUR_S2(v)   BF_CS1(CSU_CSL34, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL34_SSR_S2      1
+#define BM_CSU_CSL34_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL34_SSR_S2)
+#else
+#define BF_CSU_CSL34_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL34_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL34_SSR_S2(v)   BF_CS1(CSU_CSL34, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL34_NUR_S2      2
+#define BM_CSU_CSL34_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL34_NUR_S2)
+#else
+#define BF_CSU_CSL34_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL34_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL34_NUR_S2(v)   BF_CS1(CSU_CSL34, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL34_NSR_S2      3
+#define BM_CSU_CSL34_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL34_NSR_S2)
+#else
+#define BF_CSU_CSL34_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL34_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL34_NSR_S2(v)   BF_CS1(CSU_CSL34, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL34_SUW_S2      4
+#define BM_CSU_CSL34_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL34_SUW_S2)
+#else
+#define BF_CSU_CSL34_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL34_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL34_SUW_S2(v)   BF_CS1(CSU_CSL34, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL34_SSW_S2      5
+#define BM_CSU_CSL34_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL34_SSW_S2)
+#else
+#define BF_CSU_CSL34_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL34_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL34_SSW_S2(v)   BF_CS1(CSU_CSL34, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL34_NUW_S2      6
+#define BM_CSU_CSL34_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL34_NUW_S2)
+#else
+#define BF_CSU_CSL34_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL34_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL34_NUW_S2(v)   BF_CS1(CSU_CSL34, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL34_NSW_S2      7
+#define BM_CSU_CSL34_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL34_NSW_S2)
+#else
+#define BF_CSU_CSL34_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL34_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL34_NSW_S2(v)   BF_CS1(CSU_CSL34, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL34_LOCK_S2      8
+#define BM_CSU_CSL34_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL34_LOCK_S2)
+#else
+#define BF_CSU_CSL34_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL34_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL34_LOCK_S2(v)   BF_CS1(CSU_CSL34, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL34_SUR_S1      16
+#define BM_CSU_CSL34_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL34_SUR_S1)
+#else
+#define BF_CSU_CSL34_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL34_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL34_SUR_S1(v)   BF_CS1(CSU_CSL34, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL34_SSR_S1      17
+#define BM_CSU_CSL34_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL34_SSR_S1)
+#else
+#define BF_CSU_CSL34_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL34_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL34_SSR_S1(v)   BF_CS1(CSU_CSL34, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL34_NUR_S1      18
+#define BM_CSU_CSL34_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL34_NUR_S1)
+#else
+#define BF_CSU_CSL34_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL34_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL34_NUR_S1(v)   BF_CS1(CSU_CSL34, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL34_NSR_S1      19
+#define BM_CSU_CSL34_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL34_NSR_S1)
+#else
+#define BF_CSU_CSL34_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL34_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL34_NSR_S1(v)   BF_CS1(CSU_CSL34, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL34_SUW_S1      20
+#define BM_CSU_CSL34_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL34_SUW_S1)
+#else
+#define BF_CSU_CSL34_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL34_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL34_SUW_S1(v)   BF_CS1(CSU_CSL34, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL34_SSW_S1      21
+#define BM_CSU_CSL34_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL34_SSW_S1)
+#else
+#define BF_CSU_CSL34_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL34_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL34_SSW_S1(v)   BF_CS1(CSU_CSL34, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL34_NUW_S1      22
+#define BM_CSU_CSL34_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL34_NUW_S1)
+#else
+#define BF_CSU_CSL34_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL34_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL34_NUW_S1(v)   BF_CS1(CSU_CSL34, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL34_NSW_S1      23
+#define BM_CSU_CSL34_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL34_NSW_S1)
+#else
+#define BF_CSU_CSL34_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL34_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL34_NSW_S1(v)   BF_CS1(CSU_CSL34, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL34, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL34_LOCK_S1      24
+#define BM_CSU_CSL34_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL34_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL34_LOCK_S1)
+#else
+#define BF_CSU_CSL34_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL34_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL34_LOCK_S1(v)   BF_CS1(CSU_CSL34, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL35 - Config security level register 35 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl35_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL35 register
+ */
+#define HW_CSU_CSL35_ADDR      (REGS_CSU_BASE + 0x8c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL35           (*(volatile hw_csu_csl35_t *) HW_CSU_CSL35_ADDR)
+#define HW_CSU_CSL35_RD()      (HW_CSU_CSL35.U)
+#define HW_CSU_CSL35_WR(v)     (HW_CSU_CSL35.U = (v))
+#define HW_CSU_CSL35_SET(v)    (HW_CSU_CSL35_WR(HW_CSU_CSL35_RD() |  (v)))
+#define HW_CSU_CSL35_CLR(v)    (HW_CSU_CSL35_WR(HW_CSU_CSL35_RD() & ~(v)))
+#define HW_CSU_CSL35_TOG(v)    (HW_CSU_CSL35_WR(HW_CSU_CSL35_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL35 bitfields
+ */
+
+/* --- Register HW_CSU_CSL35, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL35_SUR_S2      0
+#define BM_CSU_CSL35_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL35_SUR_S2)
+#else
+#define BF_CSU_CSL35_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL35_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL35_SUR_S2(v)   BF_CS1(CSU_CSL35, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL35_SSR_S2      1
+#define BM_CSU_CSL35_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL35_SSR_S2)
+#else
+#define BF_CSU_CSL35_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL35_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL35_SSR_S2(v)   BF_CS1(CSU_CSL35, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL35_NUR_S2      2
+#define BM_CSU_CSL35_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL35_NUR_S2)
+#else
+#define BF_CSU_CSL35_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL35_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL35_NUR_S2(v)   BF_CS1(CSU_CSL35, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL35_NSR_S2      3
+#define BM_CSU_CSL35_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL35_NSR_S2)
+#else
+#define BF_CSU_CSL35_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL35_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL35_NSR_S2(v)   BF_CS1(CSU_CSL35, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL35_SUW_S2      4
+#define BM_CSU_CSL35_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL35_SUW_S2)
+#else
+#define BF_CSU_CSL35_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL35_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL35_SUW_S2(v)   BF_CS1(CSU_CSL35, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL35_SSW_S2      5
+#define BM_CSU_CSL35_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL35_SSW_S2)
+#else
+#define BF_CSU_CSL35_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL35_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL35_SSW_S2(v)   BF_CS1(CSU_CSL35, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL35_NUW_S2      6
+#define BM_CSU_CSL35_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL35_NUW_S2)
+#else
+#define BF_CSU_CSL35_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL35_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL35_NUW_S2(v)   BF_CS1(CSU_CSL35, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL35_NSW_S2      7
+#define BM_CSU_CSL35_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL35_NSW_S2)
+#else
+#define BF_CSU_CSL35_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL35_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL35_NSW_S2(v)   BF_CS1(CSU_CSL35, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL35_LOCK_S2      8
+#define BM_CSU_CSL35_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL35_LOCK_S2)
+#else
+#define BF_CSU_CSL35_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL35_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL35_LOCK_S2(v)   BF_CS1(CSU_CSL35, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL35_SUR_S1      16
+#define BM_CSU_CSL35_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL35_SUR_S1)
+#else
+#define BF_CSU_CSL35_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL35_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL35_SUR_S1(v)   BF_CS1(CSU_CSL35, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL35_SSR_S1      17
+#define BM_CSU_CSL35_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL35_SSR_S1)
+#else
+#define BF_CSU_CSL35_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL35_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL35_SSR_S1(v)   BF_CS1(CSU_CSL35, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL35_NUR_S1      18
+#define BM_CSU_CSL35_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL35_NUR_S1)
+#else
+#define BF_CSU_CSL35_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL35_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL35_NUR_S1(v)   BF_CS1(CSU_CSL35, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL35_NSR_S1      19
+#define BM_CSU_CSL35_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL35_NSR_S1)
+#else
+#define BF_CSU_CSL35_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL35_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL35_NSR_S1(v)   BF_CS1(CSU_CSL35, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL35_SUW_S1      20
+#define BM_CSU_CSL35_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL35_SUW_S1)
+#else
+#define BF_CSU_CSL35_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL35_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL35_SUW_S1(v)   BF_CS1(CSU_CSL35, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL35_SSW_S1      21
+#define BM_CSU_CSL35_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL35_SSW_S1)
+#else
+#define BF_CSU_CSL35_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL35_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL35_SSW_S1(v)   BF_CS1(CSU_CSL35, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL35_NUW_S1      22
+#define BM_CSU_CSL35_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL35_NUW_S1)
+#else
+#define BF_CSU_CSL35_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL35_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL35_NUW_S1(v)   BF_CS1(CSU_CSL35, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL35_NSW_S1      23
+#define BM_CSU_CSL35_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL35_NSW_S1)
+#else
+#define BF_CSU_CSL35_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL35_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL35_NSW_S1(v)   BF_CS1(CSU_CSL35, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL35, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL35_LOCK_S1      24
+#define BM_CSU_CSL35_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL35_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL35_LOCK_S1)
+#else
+#define BF_CSU_CSL35_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL35_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL35_LOCK_S1(v)   BF_CS1(CSU_CSL35, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL36 - Config security level register 36 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl36_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL36 register
+ */
+#define HW_CSU_CSL36_ADDR      (REGS_CSU_BASE + 0x90)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL36           (*(volatile hw_csu_csl36_t *) HW_CSU_CSL36_ADDR)
+#define HW_CSU_CSL36_RD()      (HW_CSU_CSL36.U)
+#define HW_CSU_CSL36_WR(v)     (HW_CSU_CSL36.U = (v))
+#define HW_CSU_CSL36_SET(v)    (HW_CSU_CSL36_WR(HW_CSU_CSL36_RD() |  (v)))
+#define HW_CSU_CSL36_CLR(v)    (HW_CSU_CSL36_WR(HW_CSU_CSL36_RD() & ~(v)))
+#define HW_CSU_CSL36_TOG(v)    (HW_CSU_CSL36_WR(HW_CSU_CSL36_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL36 bitfields
+ */
+
+/* --- Register HW_CSU_CSL36, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL36_SUR_S2      0
+#define BM_CSU_CSL36_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL36_SUR_S2)
+#else
+#define BF_CSU_CSL36_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL36_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL36_SUR_S2(v)   BF_CS1(CSU_CSL36, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL36_SSR_S2      1
+#define BM_CSU_CSL36_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL36_SSR_S2)
+#else
+#define BF_CSU_CSL36_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL36_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL36_SSR_S2(v)   BF_CS1(CSU_CSL36, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL36_NUR_S2      2
+#define BM_CSU_CSL36_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL36_NUR_S2)
+#else
+#define BF_CSU_CSL36_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL36_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL36_NUR_S2(v)   BF_CS1(CSU_CSL36, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL36_NSR_S2      3
+#define BM_CSU_CSL36_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL36_NSR_S2)
+#else
+#define BF_CSU_CSL36_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL36_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL36_NSR_S2(v)   BF_CS1(CSU_CSL36, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL36_SUW_S2      4
+#define BM_CSU_CSL36_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL36_SUW_S2)
+#else
+#define BF_CSU_CSL36_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL36_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL36_SUW_S2(v)   BF_CS1(CSU_CSL36, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL36_SSW_S2      5
+#define BM_CSU_CSL36_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL36_SSW_S2)
+#else
+#define BF_CSU_CSL36_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL36_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL36_SSW_S2(v)   BF_CS1(CSU_CSL36, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL36_NUW_S2      6
+#define BM_CSU_CSL36_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL36_NUW_S2)
+#else
+#define BF_CSU_CSL36_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL36_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL36_NUW_S2(v)   BF_CS1(CSU_CSL36, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL36_NSW_S2      7
+#define BM_CSU_CSL36_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL36_NSW_S2)
+#else
+#define BF_CSU_CSL36_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL36_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL36_NSW_S2(v)   BF_CS1(CSU_CSL36, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL36_LOCK_S2      8
+#define BM_CSU_CSL36_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL36_LOCK_S2)
+#else
+#define BF_CSU_CSL36_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL36_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL36_LOCK_S2(v)   BF_CS1(CSU_CSL36, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL36_SUR_S1      16
+#define BM_CSU_CSL36_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL36_SUR_S1)
+#else
+#define BF_CSU_CSL36_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL36_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL36_SUR_S1(v)   BF_CS1(CSU_CSL36, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL36_SSR_S1      17
+#define BM_CSU_CSL36_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL36_SSR_S1)
+#else
+#define BF_CSU_CSL36_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL36_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL36_SSR_S1(v)   BF_CS1(CSU_CSL36, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL36_NUR_S1      18
+#define BM_CSU_CSL36_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL36_NUR_S1)
+#else
+#define BF_CSU_CSL36_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL36_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL36_NUR_S1(v)   BF_CS1(CSU_CSL36, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL36_NSR_S1      19
+#define BM_CSU_CSL36_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL36_NSR_S1)
+#else
+#define BF_CSU_CSL36_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL36_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL36_NSR_S1(v)   BF_CS1(CSU_CSL36, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL36_SUW_S1      20
+#define BM_CSU_CSL36_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL36_SUW_S1)
+#else
+#define BF_CSU_CSL36_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL36_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL36_SUW_S1(v)   BF_CS1(CSU_CSL36, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL36_SSW_S1      21
+#define BM_CSU_CSL36_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL36_SSW_S1)
+#else
+#define BF_CSU_CSL36_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL36_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL36_SSW_S1(v)   BF_CS1(CSU_CSL36, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL36_NUW_S1      22
+#define BM_CSU_CSL36_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL36_NUW_S1)
+#else
+#define BF_CSU_CSL36_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL36_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL36_NUW_S1(v)   BF_CS1(CSU_CSL36, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL36_NSW_S1      23
+#define BM_CSU_CSL36_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL36_NSW_S1)
+#else
+#define BF_CSU_CSL36_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL36_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL36_NSW_S1(v)   BF_CS1(CSU_CSL36, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL36, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL36_LOCK_S1      24
+#define BM_CSU_CSL36_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL36_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL36_LOCK_S1)
+#else
+#define BF_CSU_CSL36_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL36_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL36_LOCK_S1(v)   BF_CS1(CSU_CSL36, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL37 - Config security level register 37 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl37_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL37 register
+ */
+#define HW_CSU_CSL37_ADDR      (REGS_CSU_BASE + 0x94)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL37           (*(volatile hw_csu_csl37_t *) HW_CSU_CSL37_ADDR)
+#define HW_CSU_CSL37_RD()      (HW_CSU_CSL37.U)
+#define HW_CSU_CSL37_WR(v)     (HW_CSU_CSL37.U = (v))
+#define HW_CSU_CSL37_SET(v)    (HW_CSU_CSL37_WR(HW_CSU_CSL37_RD() |  (v)))
+#define HW_CSU_CSL37_CLR(v)    (HW_CSU_CSL37_WR(HW_CSU_CSL37_RD() & ~(v)))
+#define HW_CSU_CSL37_TOG(v)    (HW_CSU_CSL37_WR(HW_CSU_CSL37_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL37 bitfields
+ */
+
+/* --- Register HW_CSU_CSL37, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL37_SUR_S2      0
+#define BM_CSU_CSL37_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL37_SUR_S2)
+#else
+#define BF_CSU_CSL37_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL37_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL37_SUR_S2(v)   BF_CS1(CSU_CSL37, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL37_SSR_S2      1
+#define BM_CSU_CSL37_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL37_SSR_S2)
+#else
+#define BF_CSU_CSL37_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL37_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL37_SSR_S2(v)   BF_CS1(CSU_CSL37, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL37_NUR_S2      2
+#define BM_CSU_CSL37_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL37_NUR_S2)
+#else
+#define BF_CSU_CSL37_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL37_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL37_NUR_S2(v)   BF_CS1(CSU_CSL37, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL37_NSR_S2      3
+#define BM_CSU_CSL37_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL37_NSR_S2)
+#else
+#define BF_CSU_CSL37_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL37_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL37_NSR_S2(v)   BF_CS1(CSU_CSL37, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL37_SUW_S2      4
+#define BM_CSU_CSL37_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL37_SUW_S2)
+#else
+#define BF_CSU_CSL37_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL37_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL37_SUW_S2(v)   BF_CS1(CSU_CSL37, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL37_SSW_S2      5
+#define BM_CSU_CSL37_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL37_SSW_S2)
+#else
+#define BF_CSU_CSL37_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL37_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL37_SSW_S2(v)   BF_CS1(CSU_CSL37, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL37_NUW_S2      6
+#define BM_CSU_CSL37_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL37_NUW_S2)
+#else
+#define BF_CSU_CSL37_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL37_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL37_NUW_S2(v)   BF_CS1(CSU_CSL37, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL37_NSW_S2      7
+#define BM_CSU_CSL37_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL37_NSW_S2)
+#else
+#define BF_CSU_CSL37_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL37_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL37_NSW_S2(v)   BF_CS1(CSU_CSL37, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL37_LOCK_S2      8
+#define BM_CSU_CSL37_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL37_LOCK_S2)
+#else
+#define BF_CSU_CSL37_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL37_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL37_LOCK_S2(v)   BF_CS1(CSU_CSL37, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL37_SUR_S1      16
+#define BM_CSU_CSL37_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL37_SUR_S1)
+#else
+#define BF_CSU_CSL37_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL37_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL37_SUR_S1(v)   BF_CS1(CSU_CSL37, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL37_SSR_S1      17
+#define BM_CSU_CSL37_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL37_SSR_S1)
+#else
+#define BF_CSU_CSL37_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL37_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL37_SSR_S1(v)   BF_CS1(CSU_CSL37, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL37_NUR_S1      18
+#define BM_CSU_CSL37_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL37_NUR_S1)
+#else
+#define BF_CSU_CSL37_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL37_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL37_NUR_S1(v)   BF_CS1(CSU_CSL37, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL37_NSR_S1      19
+#define BM_CSU_CSL37_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL37_NSR_S1)
+#else
+#define BF_CSU_CSL37_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL37_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL37_NSR_S1(v)   BF_CS1(CSU_CSL37, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL37_SUW_S1      20
+#define BM_CSU_CSL37_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL37_SUW_S1)
+#else
+#define BF_CSU_CSL37_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL37_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL37_SUW_S1(v)   BF_CS1(CSU_CSL37, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL37_SSW_S1      21
+#define BM_CSU_CSL37_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL37_SSW_S1)
+#else
+#define BF_CSU_CSL37_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL37_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL37_SSW_S1(v)   BF_CS1(CSU_CSL37, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL37_NUW_S1      22
+#define BM_CSU_CSL37_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL37_NUW_S1)
+#else
+#define BF_CSU_CSL37_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL37_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL37_NUW_S1(v)   BF_CS1(CSU_CSL37, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL37_NSW_S1      23
+#define BM_CSU_CSL37_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL37_NSW_S1)
+#else
+#define BF_CSU_CSL37_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL37_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL37_NSW_S1(v)   BF_CS1(CSU_CSL37, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL37, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL37_LOCK_S1      24
+#define BM_CSU_CSL37_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL37_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL37_LOCK_S1)
+#else
+#define BF_CSU_CSL37_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL37_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL37_LOCK_S1(v)   BF_CS1(CSU_CSL37, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL38 - Config security level register 38 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl38_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL38 register
+ */
+#define HW_CSU_CSL38_ADDR      (REGS_CSU_BASE + 0x98)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL38           (*(volatile hw_csu_csl38_t *) HW_CSU_CSL38_ADDR)
+#define HW_CSU_CSL38_RD()      (HW_CSU_CSL38.U)
+#define HW_CSU_CSL38_WR(v)     (HW_CSU_CSL38.U = (v))
+#define HW_CSU_CSL38_SET(v)    (HW_CSU_CSL38_WR(HW_CSU_CSL38_RD() |  (v)))
+#define HW_CSU_CSL38_CLR(v)    (HW_CSU_CSL38_WR(HW_CSU_CSL38_RD() & ~(v)))
+#define HW_CSU_CSL38_TOG(v)    (HW_CSU_CSL38_WR(HW_CSU_CSL38_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL38 bitfields
+ */
+
+/* --- Register HW_CSU_CSL38, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL38_SUR_S2      0
+#define BM_CSU_CSL38_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL38_SUR_S2)
+#else
+#define BF_CSU_CSL38_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL38_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL38_SUR_S2(v)   BF_CS1(CSU_CSL38, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL38_SSR_S2      1
+#define BM_CSU_CSL38_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL38_SSR_S2)
+#else
+#define BF_CSU_CSL38_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL38_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL38_SSR_S2(v)   BF_CS1(CSU_CSL38, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL38_NUR_S2      2
+#define BM_CSU_CSL38_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL38_NUR_S2)
+#else
+#define BF_CSU_CSL38_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL38_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL38_NUR_S2(v)   BF_CS1(CSU_CSL38, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL38_NSR_S2      3
+#define BM_CSU_CSL38_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL38_NSR_S2)
+#else
+#define BF_CSU_CSL38_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL38_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL38_NSR_S2(v)   BF_CS1(CSU_CSL38, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL38_SUW_S2      4
+#define BM_CSU_CSL38_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL38_SUW_S2)
+#else
+#define BF_CSU_CSL38_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL38_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL38_SUW_S2(v)   BF_CS1(CSU_CSL38, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL38_SSW_S2      5
+#define BM_CSU_CSL38_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL38_SSW_S2)
+#else
+#define BF_CSU_CSL38_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL38_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL38_SSW_S2(v)   BF_CS1(CSU_CSL38, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL38_NUW_S2      6
+#define BM_CSU_CSL38_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL38_NUW_S2)
+#else
+#define BF_CSU_CSL38_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL38_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL38_NUW_S2(v)   BF_CS1(CSU_CSL38, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL38_NSW_S2      7
+#define BM_CSU_CSL38_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL38_NSW_S2)
+#else
+#define BF_CSU_CSL38_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL38_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL38_NSW_S2(v)   BF_CS1(CSU_CSL38, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL38_LOCK_S2      8
+#define BM_CSU_CSL38_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL38_LOCK_S2)
+#else
+#define BF_CSU_CSL38_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL38_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL38_LOCK_S2(v)   BF_CS1(CSU_CSL38, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL38_SUR_S1      16
+#define BM_CSU_CSL38_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL38_SUR_S1)
+#else
+#define BF_CSU_CSL38_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL38_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL38_SUR_S1(v)   BF_CS1(CSU_CSL38, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL38_SSR_S1      17
+#define BM_CSU_CSL38_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL38_SSR_S1)
+#else
+#define BF_CSU_CSL38_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL38_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL38_SSR_S1(v)   BF_CS1(CSU_CSL38, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL38_NUR_S1      18
+#define BM_CSU_CSL38_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL38_NUR_S1)
+#else
+#define BF_CSU_CSL38_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL38_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL38_NUR_S1(v)   BF_CS1(CSU_CSL38, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL38_NSR_S1      19
+#define BM_CSU_CSL38_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL38_NSR_S1)
+#else
+#define BF_CSU_CSL38_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL38_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL38_NSR_S1(v)   BF_CS1(CSU_CSL38, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL38_SUW_S1      20
+#define BM_CSU_CSL38_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL38_SUW_S1)
+#else
+#define BF_CSU_CSL38_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL38_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL38_SUW_S1(v)   BF_CS1(CSU_CSL38, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL38_SSW_S1      21
+#define BM_CSU_CSL38_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL38_SSW_S1)
+#else
+#define BF_CSU_CSL38_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL38_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL38_SSW_S1(v)   BF_CS1(CSU_CSL38, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL38_NUW_S1      22
+#define BM_CSU_CSL38_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL38_NUW_S1)
+#else
+#define BF_CSU_CSL38_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL38_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL38_NUW_S1(v)   BF_CS1(CSU_CSL38, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL38_NSW_S1      23
+#define BM_CSU_CSL38_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL38_NSW_S1)
+#else
+#define BF_CSU_CSL38_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL38_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL38_NSW_S1(v)   BF_CS1(CSU_CSL38, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL38, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL38_LOCK_S1      24
+#define BM_CSU_CSL38_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL38_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL38_LOCK_S1)
+#else
+#define BF_CSU_CSL38_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL38_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL38_LOCK_S1(v)   BF_CS1(CSU_CSL38, LOCK_S1, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_CSU_CSL39 - Config security level register 39 (RW)
+ *
+ * There are 40 Config Security Level (CSU_CSL0-CSU_CSL39) registers. Each CSU_CSL is comprised of
+ * two fields, each field used to determine the read and write access permissions for a slave
+ * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
+ * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
+ * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
+ * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
+ * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
+ * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
+ * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
+ * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
+ * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
+ * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
+ * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
+ * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
+ * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
+ * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
+ * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
+ * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
+ * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
+ * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
+ * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
+ * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
+ * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
+ * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
+ * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
+ * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
+ * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
+ * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
+ * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
+ * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
+ * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
+ * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
+ * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned SUR_S2 : 1; //!< Secure user read access control for the second slave
+        unsigned SSR_S2 : 1; //!< Secure supervisor read access control for the second slave
+        unsigned NUR_S2 : 1; //!< Non-secure user read access control for the second slave
+        unsigned NSR_S2 : 1; //!< Non-secure supervisor read access control for the second slave
+        unsigned SUW_S2 : 1; //!< Secure user write access control for the second slave
+        unsigned SSW_S2 : 1; //!< Secure supervisor write access control for the second slave
+        unsigned NUW_S2 : 1; //!< Non-secure user write access control for the second slave
+        unsigned NSW_S2 : 1; //!< Non-secure supervisor write access control for the second slave
+        unsigned LOCK_S2 : 1; //!< Lock bit corresponding to the second slave. Written by secure software.
+        unsigned RESERVED0 : 7; //!< Reserved
+        unsigned SUR_S1 : 1; //!< Secure user read access control for the first slave
+        unsigned SSR_S1 : 1; //!< Secure supervisor read access control for the first slave
+        unsigned NUR_S1 : 1; //!< Non-secure user read access control for the first slave
+        unsigned NSR_S1 : 1; //!< Non-secure supervisor read access control for the first slave
+        unsigned SUW_S1 : 1; //!< Secure user write access control for the first slave
+        unsigned SSW_S1 : 1; //!< Secure supervisor write access control for the first slave
+        unsigned NUW_S1 : 1; //!< Non-secure user write access control for the first slave
+        unsigned NSW_S1 : 1; //!< Non-secure supervisor write access control for the first slave
+        unsigned LOCK_S1 : 1; //!< Lock bit corresponding to the first slave. Written by secure software.
+        unsigned RESERVED1 : 7; //!< Reserved
+    } B;
+} hw_csu_csl39_t;
+#endif
+
+/*
+ * constants & macros for entire CSU_CSL39 register
+ */
+#define HW_CSU_CSL39_ADDR      (REGS_CSU_BASE + 0x9c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_CSU_CSL39           (*(volatile hw_csu_csl39_t *) HW_CSU_CSL39_ADDR)
+#define HW_CSU_CSL39_RD()      (HW_CSU_CSL39.U)
+#define HW_CSU_CSL39_WR(v)     (HW_CSU_CSL39.U = (v))
+#define HW_CSU_CSL39_SET(v)    (HW_CSU_CSL39_WR(HW_CSU_CSL39_RD() |  (v)))
+#define HW_CSU_CSL39_CLR(v)    (HW_CSU_CSL39_WR(HW_CSU_CSL39_RD() & ~(v)))
+#define HW_CSU_CSL39_TOG(v)    (HW_CSU_CSL39_WR(HW_CSU_CSL39_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual CSU_CSL39 bitfields
+ */
+
+/* --- Register HW_CSU_CSL39, field SUR_S2 (RW)
+ *
+ * Secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the second slave.
+ * 1 - Secure user read access enabled for the second slave
+ */
+
+#define BP_CSU_CSL39_SUR_S2      0
+#define BM_CSU_CSL39_SUR_S2      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SUR_S2(v)   ((((reg32_t) v) << 0) & BM_CSU_CSL39_SUR_S2)
+#else
+#define BF_CSU_CSL39_SUR_S2(v)   (((v) << 0) & BM_CSU_CSL39_SUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S2 field to a new value.
+#define BW_CSU_CSL39_SUR_S2(v)   BF_CS1(CSU_CSL39, SUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field SSR_S2 (RW)
+ *
+ * Secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the second slave.
+ * 1 - Secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL39_SSR_S2      1
+#define BM_CSU_CSL39_SSR_S2      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SSR_S2(v)   ((((reg32_t) v) << 1) & BM_CSU_CSL39_SSR_S2)
+#else
+#define BF_CSU_CSL39_SSR_S2(v)   (((v) << 1) & BM_CSU_CSL39_SSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S2 field to a new value.
+#define BW_CSU_CSL39_SSR_S2(v)   BF_CS1(CSU_CSL39, SSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NUR_S2 (RW)
+ *
+ * Non-secure user read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the second slave.
+ * 1 - Non-secure user read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL39_NUR_S2      2
+#define BM_CSU_CSL39_NUR_S2      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NUR_S2(v)   ((((reg32_t) v) << 2) & BM_CSU_CSL39_NUR_S2)
+#else
+#define BF_CSU_CSL39_NUR_S2(v)   (((v) << 2) & BM_CSU_CSL39_NUR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S2 field to a new value.
+#define BW_CSU_CSL39_NUR_S2(v)   BF_CS1(CSU_CSL39, NUR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NSR_S2 (RW)
+ *
+ * Non-secure supervisor read access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the second slave.
+ * 1 - Non-secure supervisor read access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL39_NSR_S2      3
+#define BM_CSU_CSL39_NSR_S2      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NSR_S2(v)   ((((reg32_t) v) << 3) & BM_CSU_CSL39_NSR_S2)
+#else
+#define BF_CSU_CSL39_NSR_S2(v)   (((v) << 3) & BM_CSU_CSL39_NSR_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S2 field to a new value.
+#define BW_CSU_CSL39_NSR_S2(v)   BF_CS1(CSU_CSL39, NSR_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field SUW_S2 (RW)
+ *
+ * Secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the second slave.
+ * 1 - Secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL39_SUW_S2      4
+#define BM_CSU_CSL39_SUW_S2      0x00000010
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SUW_S2(v)   ((((reg32_t) v) << 4) & BM_CSU_CSL39_SUW_S2)
+#else
+#define BF_CSU_CSL39_SUW_S2(v)   (((v) << 4) & BM_CSU_CSL39_SUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S2 field to a new value.
+#define BW_CSU_CSL39_SUW_S2(v)   BF_CS1(CSU_CSL39, SUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field SSW_S2 (RW)
+ *
+ * Secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the second slave.
+ * 1 - Secure supervisor write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL39_SSW_S2      5
+#define BM_CSU_CSL39_SSW_S2      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SSW_S2(v)   ((((reg32_t) v) << 5) & BM_CSU_CSL39_SSW_S2)
+#else
+#define BF_CSU_CSL39_SSW_S2(v)   (((v) << 5) & BM_CSU_CSL39_SSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S2 field to a new value.
+#define BW_CSU_CSL39_SSW_S2(v)   BF_CS1(CSU_CSL39, SSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NUW_S2 (RW)
+ *
+ * Non-secure user write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the second slave.
+ * 1 - Non-secure user write access enabled for the second slave.
+ */
+
+#define BP_CSU_CSL39_NUW_S2      6
+#define BM_CSU_CSL39_NUW_S2      0x00000040
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NUW_S2(v)   ((((reg32_t) v) << 6) & BM_CSU_CSL39_NUW_S2)
+#else
+#define BF_CSU_CSL39_NUW_S2(v)   (((v) << 6) & BM_CSU_CSL39_NUW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S2 field to a new value.
+#define BW_CSU_CSL39_NUW_S2(v)   BF_CS1(CSU_CSL39, NUW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NSW_S2 (RW)
+ *
+ * Non-secure supervisor write access control for the second slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the second slave.
+ * 1 - Non-secure supervisor write access enabled for the second slave
+ */
+
+#define BP_CSU_CSL39_NSW_S2      7
+#define BM_CSU_CSL39_NSW_S2      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NSW_S2(v)   ((((reg32_t) v) << 7) & BM_CSU_CSL39_NSW_S2)
+#else
+#define BF_CSU_CSL39_NSW_S2(v)   (((v) << 7) & BM_CSU_CSL39_NSW_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S2 field to a new value.
+#define BW_CSU_CSL39_NSW_S2(v)   BF_CS1(CSU_CSL39, NSW_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field LOCK_S2 (RW)
+ *
+ * Lock bit corresponding to the second slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 7-0 may be written by software
+ * 1 - Bits 7-0 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL39_LOCK_S2      8
+#define BM_CSU_CSL39_LOCK_S2      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_LOCK_S2(v)   ((((reg32_t) v) << 8) & BM_CSU_CSL39_LOCK_S2)
+#else
+#define BF_CSU_CSL39_LOCK_S2(v)   (((v) << 8) & BM_CSU_CSL39_LOCK_S2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S2 field to a new value.
+#define BW_CSU_CSL39_LOCK_S2(v)   BF_CS1(CSU_CSL39, LOCK_S2, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field SUR_S1 (RW)
+ *
+ * Secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user read access disabled for the first slave.
+ * 1 - Secure user read access enabled for the first slave
+ */
+
+#define BP_CSU_CSL39_SUR_S1      16
+#define BM_CSU_CSL39_SUR_S1      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SUR_S1(v)   ((((reg32_t) v) << 16) & BM_CSU_CSL39_SUR_S1)
+#else
+#define BF_CSU_CSL39_SUR_S1(v)   (((v) << 16) & BM_CSU_CSL39_SUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUR_S1 field to a new value.
+#define BW_CSU_CSL39_SUR_S1(v)   BF_CS1(CSU_CSL39, SUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field SSR_S1 (RW)
+ *
+ * Secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor read access disabled for the first slave.
+ * 1 - Secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL39_SSR_S1      17
+#define BM_CSU_CSL39_SSR_S1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SSR_S1(v)   ((((reg32_t) v) << 17) & BM_CSU_CSL39_SSR_S1)
+#else
+#define BF_CSU_CSL39_SSR_S1(v)   (((v) << 17) & BM_CSU_CSL39_SSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSR_S1 field to a new value.
+#define BW_CSU_CSL39_SSR_S1(v)   BF_CS1(CSU_CSL39, SSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NUR_S1 (RW)
+ *
+ * Non-secure user read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user read access disabled for the first slave.
+ * 1 - Non-secure user read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL39_NUR_S1      18
+#define BM_CSU_CSL39_NUR_S1      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NUR_S1(v)   ((((reg32_t) v) << 18) & BM_CSU_CSL39_NUR_S1)
+#else
+#define BF_CSU_CSL39_NUR_S1(v)   (((v) << 18) & BM_CSU_CSL39_NUR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUR_S1 field to a new value.
+#define BW_CSU_CSL39_NUR_S1(v)   BF_CS1(CSU_CSL39, NUR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NSR_S1 (RW)
+ *
+ * Non-secure supervisor read access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor read access disabled for the first slave.
+ * 1 - Non-secure supervisor read access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL39_NSR_S1      19
+#define BM_CSU_CSL39_NSR_S1      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NSR_S1(v)   ((((reg32_t) v) << 19) & BM_CSU_CSL39_NSR_S1)
+#else
+#define BF_CSU_CSL39_NSR_S1(v)   (((v) << 19) & BM_CSU_CSL39_NSR_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSR_S1 field to a new value.
+#define BW_CSU_CSL39_NSR_S1(v)   BF_CS1(CSU_CSL39, NSR_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field SUW_S1 (RW)
+ *
+ * Secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure user write access disabled for the first slave.
+ * 1 - Secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL39_SUW_S1      20
+#define BM_CSU_CSL39_SUW_S1      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SUW_S1(v)   ((((reg32_t) v) << 20) & BM_CSU_CSL39_SUW_S1)
+#else
+#define BF_CSU_CSL39_SUW_S1(v)   (((v) << 20) & BM_CSU_CSL39_SUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SUW_S1 field to a new value.
+#define BW_CSU_CSL39_SUW_S1(v)   BF_CS1(CSU_CSL39, SUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field SSW_S1 (RW)
+ *
+ * Secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Secure supervisor write access disabled for the first slave.
+ * 1 - Secure supervisor write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL39_SSW_S1      21
+#define BM_CSU_CSL39_SSW_S1      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_SSW_S1(v)   ((((reg32_t) v) << 21) & BM_CSU_CSL39_SSW_S1)
+#else
+#define BF_CSU_CSL39_SSW_S1(v)   (((v) << 21) & BM_CSU_CSL39_SSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SSW_S1 field to a new value.
+#define BW_CSU_CSL39_SSW_S1(v)   BF_CS1(CSU_CSL39, SSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NUW_S1 (RW)
+ *
+ * Non-secure user write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure user write access disabled for the first slave.
+ * 1 - Non-secure user write access enabled for the first slave.
+ */
+
+#define BP_CSU_CSL39_NUW_S1      22
+#define BM_CSU_CSL39_NUW_S1      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NUW_S1(v)   ((((reg32_t) v) << 22) & BM_CSU_CSL39_NUW_S1)
+#else
+#define BF_CSU_CSL39_NUW_S1(v)   (((v) << 22) & BM_CSU_CSL39_NUW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NUW_S1 field to a new value.
+#define BW_CSU_CSL39_NUW_S1(v)   BF_CS1(CSU_CSL39, NUW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field NSW_S1 (RW)
+ *
+ * Non-secure supervisor write access control for the first slave
+ *
+ * Values:
+ * 0 - Non-secure supervisor write access disabled for the first slave.
+ * 1 - Non-secure supervisor write access enabled for the first slave
+ */
+
+#define BP_CSU_CSL39_NSW_S1      23
+#define BM_CSU_CSL39_NSW_S1      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_NSW_S1(v)   ((((reg32_t) v) << 23) & BM_CSU_CSL39_NSW_S1)
+#else
+#define BF_CSU_CSL39_NSW_S1(v)   (((v) << 23) & BM_CSU_CSL39_NSW_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NSW_S1 field to a new value.
+#define BW_CSU_CSL39_NSW_S1(v)   BF_CS1(CSU_CSL39, NSW_S1, v)
+#endif
+
+
+/* --- Register HW_CSU_CSL39, field LOCK_S1 (RW)
+ *
+ * Lock bit corresponding to the first slave. Written by secure software.
+ *
+ * Values:
+ * 0 - Not locked. Bits 16-23 may be written by software
+ * 1 - Bits 16-23 locked and cannot be written by software
+ */
+
+#define BP_CSU_CSL39_LOCK_S1      24
+#define BM_CSU_CSL39_LOCK_S1      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_CSU_CSL39_LOCK_S1(v)   ((((reg32_t) v) << 24) & BM_CSU_CSL39_LOCK_S1)
+#else
+#define BF_CSU_CSL39_LOCK_S1(v)   (((v) << 24) & BM_CSU_CSL39_LOCK_S1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LOCK_S1 field to a new value.
+#define BW_CSU_CSL39_LOCK_S1(v)   BF_CS1(CSU_CSL39, LOCK_S1, v)
 #endif
 
 
@@ -2923,8 +22813,47 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 typedef struct
 {
-    volatile hw_csu_csl_t CSL; //!< Config security level register
-    reg32_t _reserved0[127];
+    volatile hw_csu_csl0_t CSL0; //!< Config security level register 0
+    volatile hw_csu_csl1_t CSL1; //!< Config security level register 1
+    volatile hw_csu_csl2_t CSL2; //!< Config security level register 2
+    volatile hw_csu_csl3_t CSL3; //!< Config security level register 3
+    volatile hw_csu_csl4_t CSL4; //!< Config security level register 4
+    volatile hw_csu_csl5_t CSL5; //!< Config security level register 5
+    volatile hw_csu_csl6_t CSL6; //!< Config security level register 6
+    volatile hw_csu_csl7_t CSL7; //!< Config security level register 7
+    volatile hw_csu_csl8_t CSL8; //!< Config security level register 8
+    volatile hw_csu_csl9_t CSL9; //!< Config security level register 9
+    volatile hw_csu_csl10_t CSL10; //!< Config security level register 10
+    volatile hw_csu_csl11_t CSL11; //!< Config security level register 11
+    volatile hw_csu_csl12_t CSL12; //!< Config security level register 12
+    volatile hw_csu_csl13_t CSL13; //!< Config security level register 13
+    volatile hw_csu_csl14_t CSL14; //!< Config security level register 14
+    volatile hw_csu_csl15_t CSL15; //!< Config security level register 15
+    volatile hw_csu_csl16_t CSL16; //!< Config security level register 16
+    volatile hw_csu_csl17_t CSL17; //!< Config security level register 17
+    volatile hw_csu_csl18_t CSL18; //!< Config security level register 18
+    volatile hw_csu_csl19_t CSL19; //!< Config security level register 19
+    volatile hw_csu_csl20_t CSL20; //!< Config security level register 20
+    volatile hw_csu_csl21_t CSL21; //!< Config security level register 21
+    volatile hw_csu_csl22_t CSL22; //!< Config security level register 22
+    volatile hw_csu_csl23_t CSL23; //!< Config security level register 23
+    volatile hw_csu_csl24_t CSL24; //!< Config security level register 24
+    volatile hw_csu_csl25_t CSL25; //!< Config security level register 25
+    volatile hw_csu_csl26_t CSL26; //!< Config security level register 26
+    volatile hw_csu_csl27_t CSL27; //!< Config security level register 27
+    volatile hw_csu_csl28_t CSL28; //!< Config security level register 28
+    volatile hw_csu_csl29_t CSL29; //!< Config security level register 29
+    volatile hw_csu_csl30_t CSL30; //!< Config security level register 30
+    volatile hw_csu_csl31_t CSL31; //!< Config security level register 31
+    volatile hw_csu_csl32_t CSL32; //!< Config security level register 32
+    volatile hw_csu_csl33_t CSL33; //!< Config security level register 33
+    volatile hw_csu_csl34_t CSL34; //!< Config security level register 34
+    volatile hw_csu_csl35_t CSL35; //!< Config security level register 35
+    volatile hw_csu_csl36_t CSL36; //!< Config security level register 36
+    volatile hw_csu_csl37_t CSL37; //!< Config security level register 37
+    volatile hw_csu_csl38_t CSL38; //!< Config security level register 38
+    volatile hw_csu_csl39_t CSL39; //!< Config security level register 39
+    reg32_t _reserved0[88];
     volatile hw_csu_hp0_t HP0; //!< HP0 register
     volatile hw_csu_hp1_t HP1; //!< HP1 register
     reg32_t _reserved1[4];
@@ -2932,7 +22861,7 @@ typedef struct
     reg32_t _reserved2[79];
     volatile hw_csu_hpcontrol0_t HPCONTROL0; //!< HPCONTROL0 register
     volatile hw_csu_hpcontrol1_t HPCONTROL1; //!< HPCONTROL1 register
-} hw_csu_t
+} hw_csu_t;
 #endif
 
 //! @brief Macro to access all CSU registers.

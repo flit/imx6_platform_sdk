@@ -2626,7 +2626,7 @@ typedef struct
     volatile hw_mipi_csi_mask2_t MASK2; //!< Masks for errors 2
     volatile hw_mipi_csi_phy_tst_crtl0_t PHY_TST_CRTL0; //!< D-PHY Test interface control 0
     volatile hw_mipi_csi_phy_tst_ctrl1_t PHY_TST_CTRL1; //!< D-PHY Test interface control 1
-} hw_mipi_csi_t
+} hw_mipi_csi_t;
 #endif
 
 //! @brief Macro to access all MIPI_CSI registers.

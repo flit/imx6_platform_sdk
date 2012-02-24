@@ -2066,6 +2066,16 @@ typedef union
 #define BP_UARTV2_USR1_SAD      3
 #define BM_UARTV2_USR1_SAD      0x00000008
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_SAD(v)   ((((reg32_t) v) << 3) & BM_UARTV2_USR1_SAD)
+#else
+#define BF_UARTV2_USR1_SAD(v)   (((v) << 3) & BM_UARTV2_USR1_SAD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SAD field to a new value.
+#define BW_UARTV2_USR1_SAD(v)   BF_CS1(UARTV2_USR1, SAD, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR1, field AWAKE (W1C)
  *
@@ -2082,6 +2092,16 @@ typedef union
 #define BP_UARTV2_USR1_AWAKE      4
 #define BM_UARTV2_USR1_AWAKE      0x00000010
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_AWAKE(v)   ((((reg32_t) v) << 4) & BM_UARTV2_USR1_AWAKE)
+#else
+#define BF_UARTV2_USR1_AWAKE(v)   (((v) << 4) & BM_UARTV2_USR1_AWAKE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AWAKE field to a new value.
+#define BW_UARTV2_USR1_AWAKE(v)   BF_CS1(UARTV2_USR1, AWAKE, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR1, field AIRINT (W1C)
  *
@@ -2097,6 +2117,16 @@ typedef union
 
 #define BP_UARTV2_USR1_AIRINT      5
 #define BM_UARTV2_USR1_AIRINT      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_AIRINT(v)   ((((reg32_t) v) << 5) & BM_UARTV2_USR1_AIRINT)
+#else
+#define BF_UARTV2_USR1_AIRINT(v)   (((v) << 5) & BM_UARTV2_USR1_AIRINT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AIRINT field to a new value.
+#define BW_UARTV2_USR1_AIRINT(v)   BF_CS1(UARTV2_USR1, AIRINT, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR1, field RXDS (RO)
@@ -2128,6 +2158,16 @@ typedef union
 #define BP_UARTV2_USR1_DTRD      7
 #define BM_UARTV2_USR1_DTRD      0x00000080
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_DTRD(v)   ((((reg32_t) v) << 7) & BM_UARTV2_USR1_DTRD)
+#else
+#define BF_UARTV2_USR1_DTRD(v)   (((v) << 7) & BM_UARTV2_USR1_DTRD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DTRD field to a new value.
+#define BW_UARTV2_USR1_DTRD(v)   BF_CS1(UARTV2_USR1, DTRD, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR1, field AGTIM (W1C)
  *
@@ -2143,6 +2183,16 @@ typedef union
 
 #define BP_UARTV2_USR1_AGTIM      8
 #define BM_UARTV2_USR1_AGTIM      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_AGTIM(v)   ((((reg32_t) v) << 8) & BM_UARTV2_USR1_AGTIM)
+#else
+#define BF_UARTV2_USR1_AGTIM(v)   (((v) << 8) & BM_UARTV2_USR1_AGTIM)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AGTIM field to a new value.
+#define BW_UARTV2_USR1_AGTIM(v)   BF_CS1(UARTV2_USR1, AGTIM, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR1, field RRDY (RO)
@@ -2175,6 +2225,16 @@ typedef union
 #define BP_UARTV2_USR1_FRAMERR      10
 #define BM_UARTV2_USR1_FRAMERR      0x00000400
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_FRAMERR(v)   ((((reg32_t) v) << 10) & BM_UARTV2_USR1_FRAMERR)
+#else
+#define BF_UARTV2_USR1_FRAMERR(v)   (((v) << 10) & BM_UARTV2_USR1_FRAMERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FRAMERR field to a new value.
+#define BW_UARTV2_USR1_FRAMERR(v)   BF_CS1(UARTV2_USR1, FRAMERR, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR1, field ESCF (W1C)
  *
@@ -2189,6 +2249,16 @@ typedef union
 
 #define BP_UARTV2_USR1_ESCF      11
 #define BM_UARTV2_USR1_ESCF      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_ESCF(v)   ((((reg32_t) v) << 11) & BM_UARTV2_USR1_ESCF)
+#else
+#define BF_UARTV2_USR1_ESCF(v)   (((v) << 11) & BM_UARTV2_USR1_ESCF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ESCF field to a new value.
+#define BW_UARTV2_USR1_ESCF(v)   BF_CS1(UARTV2_USR1, ESCF, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR1, field RTSD (W1C)
@@ -2205,6 +2275,16 @@ typedef union
 
 #define BP_UARTV2_USR1_RTSD      12
 #define BM_UARTV2_USR1_RTSD      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_RTSD(v)   ((((reg32_t) v) << 12) & BM_UARTV2_USR1_RTSD)
+#else
+#define BF_UARTV2_USR1_RTSD(v)   (((v) << 12) & BM_UARTV2_USR1_RTSD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RTSD field to a new value.
+#define BW_UARTV2_USR1_RTSD(v)   BF_CS1(UARTV2_USR1, RTSD, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR1, field TRDY (RO)
@@ -2250,6 +2330,16 @@ typedef union
 
 #define BP_UARTV2_USR1_PARITYERR      15
 #define BM_UARTV2_USR1_PARITYERR      0x00008000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR1_PARITYERR(v)   ((((reg32_t) v) << 15) & BM_UARTV2_USR1_PARITYERR)
+#else
+#define BF_UARTV2_USR1_PARITYERR(v)   (((v) << 15) & BM_UARTV2_USR1_PARITYERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PARITYERR field to a new value.
+#define BW_UARTV2_USR1_PARITYERR(v)   BF_CS1(UARTV2_USR1, PARITYERR, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -2331,6 +2421,16 @@ typedef union
 #define BP_UARTV2_USR2_ORE      1
 #define BM_UARTV2_USR2_ORE      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_ORE(v)   ((((reg32_t) v) << 1) & BM_UARTV2_USR2_ORE)
+#else
+#define BF_UARTV2_USR2_ORE(v)   (((v) << 1) & BM_UARTV2_USR2_ORE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ORE field to a new value.
+#define BW_UARTV2_USR2_ORE(v)   BF_CS1(UARTV2_USR2, ORE, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR2, field BRCD (W1C)
  *
@@ -2344,6 +2444,16 @@ typedef union
 
 #define BP_UARTV2_USR2_BRCD      2
 #define BM_UARTV2_USR2_BRCD      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_BRCD(v)   ((((reg32_t) v) << 2) & BM_UARTV2_USR2_BRCD)
+#else
+#define BF_UARTV2_USR2_BRCD(v)   (((v) << 2) & BM_UARTV2_USR2_BRCD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BRCD field to a new value.
+#define BW_UARTV2_USR2_BRCD(v)   BF_CS1(UARTV2_USR2, BRCD, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR2, field TXDC (RO)
@@ -2376,6 +2486,16 @@ typedef union
 #define BP_UARTV2_USR2_RTSF      4
 #define BM_UARTV2_USR2_RTSF      0x00000010
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_RTSF(v)   ((((reg32_t) v) << 4) & BM_UARTV2_USR2_RTSF)
+#else
+#define BF_UARTV2_USR2_RTSF(v)   (((v) << 4) & BM_UARTV2_USR2_RTSF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RTSF field to a new value.
+#define BW_UARTV2_USR2_RTSF(v)   BF_CS1(UARTV2_USR2, RTSF, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR2, field DCDIN (RO)
  *
@@ -2407,6 +2527,16 @@ typedef union
 #define BP_UARTV2_USR2_DCDDELT      6
 #define BM_UARTV2_USR2_DCDDELT      0x00000040
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_DCDDELT(v)   ((((reg32_t) v) << 6) & BM_UARTV2_USR2_DCDDELT)
+#else
+#define BF_UARTV2_USR2_DCDDELT(v)   (((v) << 6) & BM_UARTV2_USR2_DCDDELT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DCDDELT field to a new value.
+#define BW_UARTV2_USR2_DCDDELT(v)   BF_CS1(UARTV2_USR2, DCDDELT, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR2, field WAKE (W1C)
  *
@@ -2420,6 +2550,16 @@ typedef union
 
 #define BP_UARTV2_USR2_WAKE      7
 #define BM_UARTV2_USR2_WAKE      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_WAKE(v)   ((((reg32_t) v) << 7) & BM_UARTV2_USR2_WAKE)
+#else
+#define BF_UARTV2_USR2_WAKE(v)   (((v) << 7) & BM_UARTV2_USR2_WAKE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the WAKE field to a new value.
+#define BW_UARTV2_USR2_WAKE(v)   BF_CS1(UARTV2_USR2, WAKE, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR2, field IRINT (W1C)
@@ -2435,6 +2575,16 @@ typedef union
 
 #define BP_UARTV2_USR2_IRINT      8
 #define BM_UARTV2_USR2_IRINT      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_IRINT(v)   ((((reg32_t) v) << 8) & BM_UARTV2_USR2_IRINT)
+#else
+#define BF_UARTV2_USR2_IRINT(v)   (((v) << 8) & BM_UARTV2_USR2_IRINT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IRINT field to a new value.
+#define BW_UARTV2_USR2_IRINT(v)   BF_CS1(UARTV2_USR2, IRINT, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR2, field RIIN (RO)
@@ -2467,6 +2617,16 @@ typedef union
 #define BP_UARTV2_USR2_RIDELT      10
 #define BM_UARTV2_USR2_RIDELT      0x00000400
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_RIDELT(v)   ((((reg32_t) v) << 10) & BM_UARTV2_USR2_RIDELT)
+#else
+#define BF_UARTV2_USR2_RIDELT(v)   (((v) << 10) & BM_UARTV2_USR2_RIDELT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RIDELT field to a new value.
+#define BW_UARTV2_USR2_RIDELT(v)   BF_CS1(UARTV2_USR2, RIDELT, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR2, field ACST (W1C)
  *
@@ -2483,6 +2643,16 @@ typedef union
 #define BP_UARTV2_USR2_ACST      11
 #define BM_UARTV2_USR2_ACST      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_ACST(v)   ((((reg32_t) v) << 11) & BM_UARTV2_USR2_ACST)
+#else
+#define BF_UARTV2_USR2_ACST(v)   (((v) << 11) & BM_UARTV2_USR2_ACST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ACST field to a new value.
+#define BW_UARTV2_USR2_ACST(v)   BF_CS1(UARTV2_USR2, ACST, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR2, field IDLE (W1C)
  *
@@ -2498,6 +2668,16 @@ typedef union
 #define BP_UARTV2_USR2_IDLE      12
 #define BM_UARTV2_USR2_IDLE      0x00001000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_IDLE(v)   ((((reg32_t) v) << 12) & BM_UARTV2_USR2_IDLE)
+#else
+#define BF_UARTV2_USR2_IDLE(v)   (((v) << 12) & BM_UARTV2_USR2_IDLE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDLE field to a new value.
+#define BW_UARTV2_USR2_IDLE(v)   BF_CS1(UARTV2_USR2, IDLE, v)
+#endif
+
 
 /* --- Register HW_UARTV2_USR2, field DTRF (W1C)
  *
@@ -2512,6 +2692,16 @@ typedef union
 
 #define BP_UARTV2_USR2_DTRF      13
 #define BM_UARTV2_USR2_DTRF      0x00002000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_DTRF(v)   ((((reg32_t) v) << 13) & BM_UARTV2_USR2_DTRF)
+#else
+#define BF_UARTV2_USR2_DTRF(v)   (((v) << 13) & BM_UARTV2_USR2_DTRF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DTRF field to a new value.
+#define BW_UARTV2_USR2_DTRF(v)   BF_CS1(UARTV2_USR2, DTRF, v)
+#endif
 
 
 /* --- Register HW_UARTV2_USR2, field TXFE (RO)
@@ -2542,6 +2732,16 @@ typedef union
 
 #define BP_UARTV2_USR2_ADET      15
 #define BM_UARTV2_USR2_ADET      0x00008000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_UARTV2_USR2_ADET(v)   ((((reg32_t) v) << 15) & BM_UARTV2_USR2_ADET)
+#else
+#define BF_UARTV2_USR2_ADET(v)   (((v) << 15) & BM_UARTV2_USR2_ADET)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ADET field to a new value.
+#define BW_UARTV2_USR2_ADET(v)   BF_CS1(UARTV2_USR2, ADET, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -3350,7 +3550,7 @@ typedef struct
     volatile hw_uartv2_onems_t ONEMS; //!< UART One Millisecond Register
     volatile hw_uartv2_uts_t UTS; //!< UART Test Register
     volatile hw_uartv2_umcr_t UMCR; //!< UART RS-485 Mode Control Register
-} hw_uartv2_t
+} hw_uartv2_t;
 #endif
 
 //! @brief Macro to access all UARTV2 registers.

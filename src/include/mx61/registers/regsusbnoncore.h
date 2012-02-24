@@ -691,10 +691,10 @@ typedef union
         unsigned WIE : 1; //!< Host 2 Wake-up Interrupt Enable This bit enables or disables the Host 2 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
         unsigned RESET : 1; //!< Force Host 2 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
         unsigned SUSPENDM : 1; //!< Force Host 2 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode. For Freescale test only.
-        unsigned RESERVED1 : 1; //!< Force OTG UTMI PHY 480M clock output on when Host 2 is not in suspend mode.
+        unsigned _480M_CLK_ON : 1; //!< Force OTG UTMI PHY 480M clock output on when Host 2 is not in suspend mode.
         unsigned WKUP_SW_EN : 1; //!< Host 2 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< Host 2 Software Wake-up
-        unsigned RESERVED2 : 15; //!< Reserved
+        unsigned RESERVED1 : 15; //!< Reserved
         unsigned WIR : 1; //!< Host 2 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the Host 2 port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_uh2_ctrl_t;
@@ -792,6 +792,29 @@ typedef union
 #endif
 
 
+/* --- Register HW_USBNC_USB_UH2_CTRL, field _480M_CLK_ON (RW)
+ *
+ * Force OTG UTMI PHY 480M clock output on when Host 2 is not in suspend mode.
+ *
+ * Values:
+ * 1 - Force OTG UTMI PHY 480M clock output on
+ * 0 - Inactive
+ */
+
+#define BP_USBNC_USB_UH2_CTRL__480M_CLK_ON      13
+#define BM_USBNC_USB_UH2_CTRL__480M_CLK_ON      0x00002000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USBNC_USB_UH2_CTRL__480M_CLK_ON(v)   ((((reg32_t) v) << 13) & BM_USBNC_USB_UH2_CTRL__480M_CLK_ON)
+#else
+#define BF_USBNC_USB_UH2_CTRL__480M_CLK_ON(v)   (((v) << 13) & BM_USBNC_USB_UH2_CTRL__480M_CLK_ON)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the _480M_CLK_ON field to a new value.
+#define BW_USBNC_USB_UH2_CTRL__480M_CLK_ON(v)   BF_CS1(USBNC_USB_UH2_CTRL, _480M_CLK_ON, v)
+#endif
+
+
 /* --- Register HW_USBNC_USB_UH2_CTRL, field WKUP_SW_EN (RW)
  *
  * Host 2 Software Wake-up Enable
@@ -869,10 +892,10 @@ typedef union
         unsigned WIE : 1; //!< Host 3 Wake-up Interrupt Enable This bit enables or disables the Host 3 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
         unsigned RESET : 1; //!< Force Host 3 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
         unsigned SUSPENDM : 1; //!< Force Host 3 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode. For Freescale test only.
-        unsigned RESERVED1 : 1; //!< Force OTG UTMI PHY 480M clock output on when Host 3 is not in suspend mode.
+        unsigned _480M_CLK_ON : 1; //!< Force OTG UTMI PHY 480M clock output on when Host 3 is not in suspend mode.
         unsigned WKUP_SW_EN : 1; //!< Host 3 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< Host 3 Software Wake-up
-        unsigned RESERVED2 : 15; //!< Reserved
+        unsigned RESERVED1 : 15; //!< Reserved
         unsigned WIR : 1; //!< Host 3 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_uh3_ctrl_t;
@@ -967,6 +990,29 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUSPENDM field to a new value.
 #define BW_USBNC_USB_UH3_CTRL_SUSPENDM(v)   BF_CS1(USBNC_USB_UH3_CTRL, SUSPENDM, v)
+#endif
+
+
+/* --- Register HW_USBNC_USB_UH3_CTRL, field _480M_CLK_ON (RW)
+ *
+ * Force OTG UTMI PHY 480M clock output on when Host 3 is not in suspend mode.
+ *
+ * Values:
+ * 1 - Force OTG UTMI PHY 480M clock output on
+ * 0 - Inactive
+ */
+
+#define BP_USBNC_USB_UH3_CTRL__480M_CLK_ON      13
+#define BM_USBNC_USB_UH3_CTRL__480M_CLK_ON      0x00002000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USBNC_USB_UH3_CTRL__480M_CLK_ON(v)   ((((reg32_t) v) << 13) & BM_USBNC_USB_UH3_CTRL__480M_CLK_ON)
+#else
+#define BF_USBNC_USB_UH3_CTRL__480M_CLK_ON(v)   (((v) << 13) & BM_USBNC_USB_UH3_CTRL__480M_CLK_ON)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the _480M_CLK_ON field to a new value.
+#define BW_USBNC_USB_UH3_CTRL__480M_CLK_ON(v)   BF_CS1(USBNC_USB_UH3_CTRL, _480M_CLK_ON, v)
 #endif
 
 
@@ -1342,7 +1388,7 @@ typedef struct
     volatile hw_usbnc_usb_uh3_hsic_ctrl_t USB_UH3_HSIC_CTRL; //!< USB Host3 HSIC Control Register
     volatile hw_usbnc_usb_otg_phy_ctrl_0_t USB_OTG_PHY_CTRL_0; //!< OTG UTMI PHY Control 0 Register
     volatile hw_usbnc_usb_uh1_phy_ctrl_0_t USB_UH1_PHY_CTRL_0; //!< Host1 UTMI PHY Control 0 Register
-} hw_usbnc_t
+} hw_usbnc_t;
 #endif
 
 //! @brief Macro to access all USBNC registers.

@@ -788,7 +788,7 @@ typedef union
         unsigned GPB13 : 1; //!< General purpose bit 13. Its weight is set by WSW13 value.
         unsigned GPB14 : 1; //!< General purpose bit 14. Its weight is set by WSW14 value.
         unsigned GPB15 : 1; //!< General purpose bit 15. Its weight is set by WSW15 value.
-        unsigned RESERVED : 16; //!< N/A
+        unsigned RESERVED0 : 16; //!< N/A
     } B;
 } hw_dvfsc_gpbt_t;
 #endif
@@ -1101,14 +1101,6 @@ typedef union
 #define BW_DVFSC_GPBT_GPB15(v)   BF_CS1(DVFSC_GPBT, GPB15, v)
 #endif
 
-/* --- Register HW_DVFSC_GPBT, field RESERVED (RU)
- *
- * N/A
- */
-
-#define BP_DVFSC_GPBT_RESERVED      16
-#define BM_DVFSC_GPBT_RESERVED      0xffff0000
-
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_DVFSC_EMAC - DVFSC EMAC settings (RW)
@@ -1121,7 +1113,7 @@ typedef union
     struct
     {
         unsigned EMAC : 9; //!< EMAC - EMA control value
-        unsigned RESERVED : 23; //!< Reserved
+        unsigned RESERVED0 : 23; //!< Reserved
     } B;
 } hw_dvfsc_emac_t;
 #endif
@@ -1161,14 +1153,6 @@ typedef union
 //! @brief Set the EMAC field to a new value.
 #define BW_DVFSC_EMAC_EMAC(v)   BF_CS1(DVFSC_EMAC, EMAC, v)
 #endif
-
-/* --- Register HW_DVFSC_EMAC, field RESERVED (RU)
- *
- * Reserved
- */
-
-#define BP_DVFSC_EMAC_RESERVED      9
-#define BM_DVFSC_EMAC_RESERVED      0xfffffe00
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2337,7 +2321,7 @@ typedef struct
     volatile hw_dvfsc_pt1_t PT1; //!< DVFSC pattern 1 length
     volatile hw_dvfsc_pt2_t PT2; //!< DVFSC pattern 2 length
     volatile hw_dvfsc_pt3_t PT3; //!< DVFSC pattern 3 length
-} hw_dvfsc_t
+} hw_dvfsc_t;
 #endif
 
 //! @brief Macro to access all DVFSC registers.

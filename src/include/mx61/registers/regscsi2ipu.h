@@ -164,7 +164,7 @@ typedef struct
 {
     reg32_t _reserved0[960];
     volatile hw_csi2ipu_sw_rst_t SW_RST; //!< CSI 2 IPU Gasket Software Reset
-} hw_csi2ipu_t
+} hw_csi2ipu_t;
 #endif
 
 //! @brief Macro to access all CSI2IPU registers.

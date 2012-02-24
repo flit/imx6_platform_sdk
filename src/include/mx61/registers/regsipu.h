@@ -377,7 +377,7 @@
  * - HW_IPU_DMFC_STAT - DMFC Status Register
  * - HW_IPU_VDI_FSIZE - VDI Field Size Register
  * - HW_IPU_VDI_C - VDI Control Register
- * - HW_IPU_VDI_C2_ - VDI Control Register 2
+ * - HW_IPU_VDI_C2 - VDI Control Register 2
  * - HW_IPU_VDI_CMDP_1 - VDI Combining Parameters Register 1
  * - HW_IPU_VDI_CMDP_2 - VDI Combining Parameters Register 2
  * - HW_IPU_VDI_PS_1 - VDI Plane Size Register 1
@@ -14321,6 +14321,16 @@ typedef union
 #define BP_IPU_DISP_GEN_DP_PIPE_CLR      6
 #define BM_IPU_DISP_GEN_DP_PIPE_CLR      0x00000040
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_DISP_GEN_DP_PIPE_CLR(v)   ((((reg32_t) v) << 6) & BM_IPU_DISP_GEN_DP_PIPE_CLR)
+#else
+#define BF_IPU_DISP_GEN_DP_PIPE_CLR(v)   (((v) << 6) & BM_IPU_DISP_GEN_DP_PIPE_CLR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DP_PIPE_CLR field to a new value.
+#define BW_IPU_DISP_GEN_DP_PIPE_CLR(v)   BF_CS1(IPU_DISP_GEN, DP_PIPE_CLR, v)
+#endif
+
 
 /* --- Register HW_IPU_DISP_GEN, field MCU_DI_ID_8 (RW)
  *
@@ -17450,6 +17460,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_1(x)           (*(volatile hw_ipu_int_stat_1_t *) HW_IPU_INT_STAT_1_ADDR(x))
 #define HW_IPU_INT_STAT_1_RD(x)        (HW_IPU_INT_STAT_1(x).U)
+#define HW_IPU_INT_STAT_1_WR(x, v)     (HW_IPU_INT_STAT_1(x).U = (v))
+#define HW_IPU_INT_STAT_1_SET(x, v)    (HW_IPU_INT_STAT_1_WR(x, HW_IPU_INT_STAT_1_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_1_CLR(x, v)    (HW_IPU_INT_STAT_1_WR(x, HW_IPU_INT_STAT_1_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_1_TOG(x, v)    (HW_IPU_INT_STAT_1_WR(x, HW_IPU_INT_STAT_1_RD(x) ^  (v)))
 #endif
 
 /*
@@ -17469,6 +17483,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_0      0
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_0      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_0(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_1_IDMAC_EOF_0)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_0(v)   (((v) << 0) & BM_IPU_INT_STAT_1_IDMAC_EOF_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_0 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_0(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_0, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_1 (W1C)
  *
@@ -17482,6 +17506,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_1      1
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_1      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_1(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_1_IDMAC_EOF_1)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_1(v)   (((v) << 1) & BM_IPU_INT_STAT_1_IDMAC_EOF_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_1 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_1(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_1, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_2 (W1C)
@@ -17497,6 +17531,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_2      2
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_2      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_2(v)   ((((reg32_t) v) << 2) & BM_IPU_INT_STAT_1_IDMAC_EOF_2)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_2(v)   (((v) << 2) & BM_IPU_INT_STAT_1_IDMAC_EOF_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_2 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_2(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_2, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_3 (W1C)
  *
@@ -17510,6 +17554,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_3      3
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_3      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_3(v)   ((((reg32_t) v) << 3) & BM_IPU_INT_STAT_1_IDMAC_EOF_3)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_3(v)   (((v) << 3) & BM_IPU_INT_STAT_1_IDMAC_EOF_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_3 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_3(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_3, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_5 (W1C)
@@ -17525,6 +17579,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_5      5
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_5      0x00000020
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_5(v)   ((((reg32_t) v) << 5) & BM_IPU_INT_STAT_1_IDMAC_EOF_5)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_5(v)   (((v) << 5) & BM_IPU_INT_STAT_1_IDMAC_EOF_5)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_5 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_5(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_5, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_8 (W1C)
  *
@@ -17538,6 +17602,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_8      8
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_8      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_8(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_1_IDMAC_EOF_8)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_8(v)   (((v) << 8) & BM_IPU_INT_STAT_1_IDMAC_EOF_8)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_8 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_8(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_8, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_9 (W1C)
@@ -17553,6 +17627,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_9      9
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_9      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_9(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_1_IDMAC_EOF_9)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_9(v)   (((v) << 9) & BM_IPU_INT_STAT_1_IDMAC_EOF_9)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_9 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_9(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_9, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_10 (W1C)
  *
@@ -17566,6 +17650,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_10      10
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_10      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_10(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_1_IDMAC_EOF_10)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_10(v)   (((v) << 10) & BM_IPU_INT_STAT_1_IDMAC_EOF_10)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_10 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_10(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_10, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_11 (W1C)
@@ -17581,6 +17675,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_11      11
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_11      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_11(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_1_IDMAC_EOF_11)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_11(v)   (((v) << 11) & BM_IPU_INT_STAT_1_IDMAC_EOF_11)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_11 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_11(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_11, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_12 (W1C)
  *
@@ -17594,6 +17698,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_12      12
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_12      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_12(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_1_IDMAC_EOF_12)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_12(v)   (((v) << 12) & BM_IPU_INT_STAT_1_IDMAC_EOF_12)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_12 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_12(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_12, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_13 (W1C)
@@ -17609,6 +17723,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_13      13
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_13      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_13(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_1_IDMAC_EOF_13)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_13(v)   (((v) << 13) & BM_IPU_INT_STAT_1_IDMAC_EOF_13)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_13 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_13(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_13, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_14 (W1C)
  *
@@ -17622,6 +17746,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_14      14
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_14      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_14(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_1_IDMAC_EOF_14)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_14(v)   (((v) << 14) & BM_IPU_INT_STAT_1_IDMAC_EOF_14)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_14 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_14(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_14, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_15 (W1C)
@@ -17637,6 +17771,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_15      15
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_15      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_15(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_1_IDMAC_EOF_15)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_15(v)   (((v) << 15) & BM_IPU_INT_STAT_1_IDMAC_EOF_15)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_15 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_15(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_15, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_17 (W1C)
  *
@@ -17650,6 +17794,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_17      17
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_17      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_17(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_1_IDMAC_EOF_17)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_17(v)   (((v) << 17) & BM_IPU_INT_STAT_1_IDMAC_EOF_17)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_17 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_17(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_17, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_18 (W1C)
@@ -17665,6 +17819,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_18      18
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_18      0x00040000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_18(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_1_IDMAC_EOF_18)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_18(v)   (((v) << 18) & BM_IPU_INT_STAT_1_IDMAC_EOF_18)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_18 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_18(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_18, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_19 (W1C)
  *
@@ -17678,6 +17842,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_19      19
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_19      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_19(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_1_IDMAC_EOF_19)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_19(v)   (((v) << 19) & BM_IPU_INT_STAT_1_IDMAC_EOF_19)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_19 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_19(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_19, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_20 (W1C)
@@ -17693,6 +17867,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_20      20
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_20      0x00100000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_20(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_1_IDMAC_EOF_20)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_20(v)   (((v) << 20) & BM_IPU_INT_STAT_1_IDMAC_EOF_20)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_20 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_20(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_20, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_21 (W1C)
  *
@@ -17706,6 +17890,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_21      21
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_21      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_21(v)   ((((reg32_t) v) << 21) & BM_IPU_INT_STAT_1_IDMAC_EOF_21)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_21(v)   (((v) << 21) & BM_IPU_INT_STAT_1_IDMAC_EOF_21)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_21 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_21(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_21, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_22 (W1C)
@@ -17721,6 +17915,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_22      22
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_22      0x00400000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_22(v)   ((((reg32_t) v) << 22) & BM_IPU_INT_STAT_1_IDMAC_EOF_22)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_22(v)   (((v) << 22) & BM_IPU_INT_STAT_1_IDMAC_EOF_22)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_22 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_22(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_22, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_23 (W1C)
  *
@@ -17734,6 +17938,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_23      23
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_23      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_23(v)   ((((reg32_t) v) << 23) & BM_IPU_INT_STAT_1_IDMAC_EOF_23)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_23(v)   (((v) << 23) & BM_IPU_INT_STAT_1_IDMAC_EOF_23)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_23 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_23(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_23, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_24 (W1C)
@@ -17749,6 +17963,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_24      24
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_24      0x01000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_24(v)   ((((reg32_t) v) << 24) & BM_IPU_INT_STAT_1_IDMAC_EOF_24)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_24(v)   (((v) << 24) & BM_IPU_INT_STAT_1_IDMAC_EOF_24)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_24 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_24(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_24, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_25 (W1C)
  *
@@ -17762,6 +17986,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_25      25
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_25      0x02000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_25(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_1_IDMAC_EOF_25)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_25(v)   (((v) << 25) & BM_IPU_INT_STAT_1_IDMAC_EOF_25)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_25 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_25(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_25, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_26 (W1C)
@@ -17777,6 +18011,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_26      26
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_26      0x04000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_26(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_1_IDMAC_EOF_26)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_26(v)   (((v) << 26) & BM_IPU_INT_STAT_1_IDMAC_EOF_26)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_26 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_26(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_26, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_27 (W1C)
  *
@@ -17790,6 +18034,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_27      27
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_27      0x08000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_27(v)   ((((reg32_t) v) << 27) & BM_IPU_INT_STAT_1_IDMAC_EOF_27)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_27(v)   (((v) << 27) & BM_IPU_INT_STAT_1_IDMAC_EOF_27)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_27 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_27(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_27, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_28 (W1C)
@@ -17805,6 +18059,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_28      28
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_28      0x10000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_28(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_1_IDMAC_EOF_28)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_28(v)   (((v) << 28) & BM_IPU_INT_STAT_1_IDMAC_EOF_28)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_28 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_28(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_28, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_29 (W1C)
  *
@@ -17819,6 +18083,16 @@ typedef union
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_29      29
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_29      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_29(v)   ((((reg32_t) v) << 29) & BM_IPU_INT_STAT_1_IDMAC_EOF_29)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_29(v)   (((v) << 29) & BM_IPU_INT_STAT_1_IDMAC_EOF_29)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_29 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_29(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_29, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_1, field IDMAC_EOF_31 (W1C)
  *
@@ -17832,6 +18106,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_1_IDMAC_EOF_31      31
 #define BM_IPU_INT_STAT_1_IDMAC_EOF_31      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_31(v)   ((((reg32_t) v) << 31) & BM_IPU_INT_STAT_1_IDMAC_EOF_31)
+#else
+#define BF_IPU_INT_STAT_1_IDMAC_EOF_31(v)   (((v) << 31) & BM_IPU_INT_STAT_1_IDMAC_EOF_31)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_31 field to a new value.
+#define BW_IPU_INT_STAT_1_IDMAC_EOF_31(v)   BF_CS1(IPU_INT_STAT_1, IDMAC_EOF_31, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -17876,6 +18160,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_2(x)           (*(volatile hw_ipu_int_stat_2_t *) HW_IPU_INT_STAT_2_ADDR(x))
 #define HW_IPU_INT_STAT_2_RD(x)        (HW_IPU_INT_STAT_2(x).U)
+#define HW_IPU_INT_STAT_2_WR(x, v)     (HW_IPU_INT_STAT_2(x).U = (v))
+#define HW_IPU_INT_STAT_2_SET(x, v)    (HW_IPU_INT_STAT_2_WR(x, HW_IPU_INT_STAT_2_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_2_CLR(x, v)    (HW_IPU_INT_STAT_2_WR(x, HW_IPU_INT_STAT_2_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_2_TOG(x, v)    (HW_IPU_INT_STAT_2_WR(x, HW_IPU_INT_STAT_2_RD(x) ^  (v)))
 #endif
 
 /*
@@ -17895,6 +18183,16 @@ typedef union
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_33      1
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_33      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_33(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_2_IDMAC_EOF_33)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_33(v)   (((v) << 1) & BM_IPU_INT_STAT_2_IDMAC_EOF_33)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_33 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_33(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_33, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_40 (W1C)
  *
@@ -17908,6 +18206,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_40      8
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_40      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_40(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_2_IDMAC_EOF_40)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_40(v)   (((v) << 8) & BM_IPU_INT_STAT_2_IDMAC_EOF_40)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_40 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_40(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_40, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_41 (W1C)
@@ -17923,6 +18231,16 @@ typedef union
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_41      9
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_41      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_41(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_2_IDMAC_EOF_41)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_41(v)   (((v) << 9) & BM_IPU_INT_STAT_2_IDMAC_EOF_41)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_41 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_41(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_41, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_42 (W1C)
  *
@@ -17936,6 +18254,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_42      10
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_42      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_42(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_2_IDMAC_EOF_42)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_42(v)   (((v) << 10) & BM_IPU_INT_STAT_2_IDMAC_EOF_42)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_42 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_42(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_42, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_43 (W1C)
@@ -17951,6 +18279,16 @@ typedef union
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_43      11
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_43      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_43(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_2_IDMAC_EOF_43)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_43(v)   (((v) << 11) & BM_IPU_INT_STAT_2_IDMAC_EOF_43)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_43 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_43(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_43, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_44 (W1C)
  *
@@ -17964,6 +18302,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_44      12
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_44      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_44(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_2_IDMAC_EOF_44)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_44(v)   (((v) << 12) & BM_IPU_INT_STAT_2_IDMAC_EOF_44)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_44 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_44(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_44, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_45 (W1C)
@@ -17979,6 +18327,16 @@ typedef union
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_45      13
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_45      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_45(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_2_IDMAC_EOF_45)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_45(v)   (((v) << 13) & BM_IPU_INT_STAT_2_IDMAC_EOF_45)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_45 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_45(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_45, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_46 (W1C)
  *
@@ -17992,6 +18350,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_46      14
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_46      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_46(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_2_IDMAC_EOF_46)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_46(v)   (((v) << 14) & BM_IPU_INT_STAT_2_IDMAC_EOF_46)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_46 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_46(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_46, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_47 (W1C)
@@ -18007,6 +18375,16 @@ typedef union
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_47      15
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_47      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_47(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_2_IDMAC_EOF_47)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_47(v)   (((v) << 15) & BM_IPU_INT_STAT_2_IDMAC_EOF_47)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_47 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_47(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_47, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_48 (W1C)
  *
@@ -18020,6 +18398,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_48      16
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_48      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_48(v)   ((((reg32_t) v) << 16) & BM_IPU_INT_STAT_2_IDMAC_EOF_48)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_48(v)   (((v) << 16) & BM_IPU_INT_STAT_2_IDMAC_EOF_48)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_48 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_48(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_48, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_49 (W1C)
@@ -18035,6 +18423,16 @@ typedef union
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_49      17
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_49      0x00020000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_49(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_2_IDMAC_EOF_49)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_49(v)   (((v) << 17) & BM_IPU_INT_STAT_2_IDMAC_EOF_49)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_49 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_49(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_49, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_50 (W1C)
  *
@@ -18048,6 +18446,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_50      18
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_50      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_50(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_2_IDMAC_EOF_50)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_50(v)   (((v) << 18) & BM_IPU_INT_STAT_2_IDMAC_EOF_50)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_50 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_50(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_50, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_51 (W1C)
@@ -18063,6 +18471,16 @@ typedef union
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_51      19
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_51      0x00080000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_51(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_2_IDMAC_EOF_51)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_51(v)   (((v) << 19) & BM_IPU_INT_STAT_2_IDMAC_EOF_51)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_51 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_51(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_51, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_2, field IDMAC_EOF_52 (W1C)
  *
@@ -18076,6 +18494,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_2_IDMAC_EOF_52      20
 #define BM_IPU_INT_STAT_2_IDMAC_EOF_52      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_52(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_2_IDMAC_EOF_52)
+#else
+#define BF_IPU_INT_STAT_2_IDMAC_EOF_52(v)   (((v) << 20) & BM_IPU_INT_STAT_2_IDMAC_EOF_52)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOF_52 field to a new value.
+#define BW_IPU_INT_STAT_2_IDMAC_EOF_52(v)   BF_CS1(IPU_INT_STAT_2, IDMAC_EOF_52, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -18134,6 +18562,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_3(x)           (*(volatile hw_ipu_int_stat_3_t *) HW_IPU_INT_STAT_3_ADDR(x))
 #define HW_IPU_INT_STAT_3_RD(x)        (HW_IPU_INT_STAT_3(x).U)
+#define HW_IPU_INT_STAT_3_WR(x, v)     (HW_IPU_INT_STAT_3(x).U = (v))
+#define HW_IPU_INT_STAT_3_SET(x, v)    (HW_IPU_INT_STAT_3_WR(x, HW_IPU_INT_STAT_3_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_3_CLR(x, v)    (HW_IPU_INT_STAT_3_WR(x, HW_IPU_INT_STAT_3_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_3_TOG(x, v)    (HW_IPU_INT_STAT_3_WR(x, HW_IPU_INT_STAT_3_RD(x) ^  (v)))
 #endif
 
 /*
@@ -18153,6 +18585,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_0      0
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_0      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_0(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_3_IDMAC_NFACK_0)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_0(v)   (((v) << 0) & BM_IPU_INT_STAT_3_IDMAC_NFACK_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_0 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_0(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_0, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_1 (W1C)
  *
@@ -18166,6 +18608,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_1      1
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_1      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_1(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_3_IDMAC_NFACK_1)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_1(v)   (((v) << 1) & BM_IPU_INT_STAT_3_IDMAC_NFACK_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_1 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_1(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_1, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_2 (W1C)
@@ -18181,6 +18633,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_2      2
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_2      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_2(v)   ((((reg32_t) v) << 2) & BM_IPU_INT_STAT_3_IDMAC_NFACK_2)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_2(v)   (((v) << 2) & BM_IPU_INT_STAT_3_IDMAC_NFACK_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_2 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_2(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_2, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_3 (W1C)
  *
@@ -18194,6 +18656,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_3      3
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_3      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_3(v)   ((((reg32_t) v) << 3) & BM_IPU_INT_STAT_3_IDMAC_NFACK_3)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_3(v)   (((v) << 3) & BM_IPU_INT_STAT_3_IDMAC_NFACK_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_3 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_3(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_3, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_5 (W1C)
@@ -18209,6 +18681,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_5      5
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_5      0x00000020
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_5(v)   ((((reg32_t) v) << 5) & BM_IPU_INT_STAT_3_IDMAC_NFACK_5)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_5(v)   (((v) << 5) & BM_IPU_INT_STAT_3_IDMAC_NFACK_5)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_5 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_5(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_5, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_8 (W1C)
  *
@@ -18222,6 +18704,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_8      8
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_8      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_8(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_3_IDMAC_NFACK_8)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_8(v)   (((v) << 8) & BM_IPU_INT_STAT_3_IDMAC_NFACK_8)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_8 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_8(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_8, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_9 (W1C)
@@ -18237,6 +18729,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_9      9
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_9      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_9(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_3_IDMAC_NFACK_9)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_9(v)   (((v) << 9) & BM_IPU_INT_STAT_3_IDMAC_NFACK_9)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_9 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_9(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_9, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_10 (W1C)
  *
@@ -18250,6 +18752,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_10      10
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_10      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_10(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_3_IDMAC_NFACK_10)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_10(v)   (((v) << 10) & BM_IPU_INT_STAT_3_IDMAC_NFACK_10)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_10 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_10(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_10, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_11 (W1C)
@@ -18265,6 +18777,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_11      11
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_11      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_11(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_3_IDMAC_NFACK_11)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_11(v)   (((v) << 11) & BM_IPU_INT_STAT_3_IDMAC_NFACK_11)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_11 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_11(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_11, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_12 (W1C)
  *
@@ -18278,6 +18800,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_12      12
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_12      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_12(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_3_IDMAC_NFACK_12)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_12(v)   (((v) << 12) & BM_IPU_INT_STAT_3_IDMAC_NFACK_12)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_12 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_12(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_12, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_13 (W1C)
@@ -18293,6 +18825,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_13      13
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_13      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_13(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_3_IDMAC_NFACK_13)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_13(v)   (((v) << 13) & BM_IPU_INT_STAT_3_IDMAC_NFACK_13)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_13 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_13(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_13, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_14 (W1C)
  *
@@ -18306,6 +18848,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_14      14
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_14      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_14(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_3_IDMAC_NFACK_14)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_14(v)   (((v) << 14) & BM_IPU_INT_STAT_3_IDMAC_NFACK_14)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_14 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_14(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_14, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_15 (W1C)
@@ -18321,6 +18873,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_15      15
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_15      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_15(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_3_IDMAC_NFACK_15)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_15(v)   (((v) << 15) & BM_IPU_INT_STAT_3_IDMAC_NFACK_15)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_15 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_15(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_15, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_17 (W1C)
  *
@@ -18334,6 +18896,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_17      17
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_17      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_17(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_3_IDMAC_NFACK_17)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_17(v)   (((v) << 17) & BM_IPU_INT_STAT_3_IDMAC_NFACK_17)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_17 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_17(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_17, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_18 (W1C)
@@ -18349,6 +18921,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_18      18
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_18      0x00040000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_18(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_3_IDMAC_NFACK_18)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_18(v)   (((v) << 18) & BM_IPU_INT_STAT_3_IDMAC_NFACK_18)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_18 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_18(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_18, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_19 (W1C)
  *
@@ -18362,6 +18944,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_19      19
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_19      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_19(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_3_IDMAC_NFACK_19)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_19(v)   (((v) << 19) & BM_IPU_INT_STAT_3_IDMAC_NFACK_19)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_19 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_19(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_19, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_20 (W1C)
@@ -18377,6 +18969,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_20      20
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_20      0x00100000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_20(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_3_IDMAC_NFACK_20)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_20(v)   (((v) << 20) & BM_IPU_INT_STAT_3_IDMAC_NFACK_20)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_20 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_20(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_20, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_21 (W1C)
  *
@@ -18390,6 +18992,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_21      21
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_21      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_21(v)   ((((reg32_t) v) << 21) & BM_IPU_INT_STAT_3_IDMAC_NFACK_21)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_21(v)   (((v) << 21) & BM_IPU_INT_STAT_3_IDMAC_NFACK_21)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_21 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_21(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_21, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_22 (W1C)
@@ -18405,6 +19017,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_22      22
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_22      0x00400000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_22(v)   ((((reg32_t) v) << 22) & BM_IPU_INT_STAT_3_IDMAC_NFACK_22)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_22(v)   (((v) << 22) & BM_IPU_INT_STAT_3_IDMAC_NFACK_22)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_22 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_22(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_22, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_23 (W1C)
  *
@@ -18418,6 +19040,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_23      23
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_23      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_23(v)   ((((reg32_t) v) << 23) & BM_IPU_INT_STAT_3_IDMAC_NFACK_23)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_23(v)   (((v) << 23) & BM_IPU_INT_STAT_3_IDMAC_NFACK_23)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_23 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_23(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_23, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_24 (W1C)
@@ -18433,6 +19065,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_24      24
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_24      0x01000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_24(v)   ((((reg32_t) v) << 24) & BM_IPU_INT_STAT_3_IDMAC_NFACK_24)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_24(v)   (((v) << 24) & BM_IPU_INT_STAT_3_IDMAC_NFACK_24)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_24 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_24(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_24, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_25 (W1C)
  *
@@ -18446,6 +19088,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_25      25
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_25      0x02000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_25(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_3_IDMAC_NFACK_25)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_25(v)   (((v) << 25) & BM_IPU_INT_STAT_3_IDMAC_NFACK_25)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_25 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_25(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_25, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_26 (W1C)
@@ -18461,6 +19113,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_26      26
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_26      0x04000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_26(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_3_IDMAC_NFACK_26)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_26(v)   (((v) << 26) & BM_IPU_INT_STAT_3_IDMAC_NFACK_26)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_26 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_26(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_26, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_27 (W1C)
  *
@@ -18474,6 +19136,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_27      27
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_27      0x08000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_27(v)   ((((reg32_t) v) << 27) & BM_IPU_INT_STAT_3_IDMAC_NFACK_27)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_27(v)   (((v) << 27) & BM_IPU_INT_STAT_3_IDMAC_NFACK_27)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_27 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_27(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_27, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_28 (W1C)
@@ -18489,6 +19161,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_28      28
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_28      0x10000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_28(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_3_IDMAC_NFACK_28)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_28(v)   (((v) << 28) & BM_IPU_INT_STAT_3_IDMAC_NFACK_28)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_28 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_28(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_28, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_29 (W1C)
  *
@@ -18503,6 +19185,16 @@ typedef union
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_29      29
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_29      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_29(v)   ((((reg32_t) v) << 29) & BM_IPU_INT_STAT_3_IDMAC_NFACK_29)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_29(v)   (((v) << 29) & BM_IPU_INT_STAT_3_IDMAC_NFACK_29)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_29 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_29(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_29, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_3, field IDMAC_NFACK_31 (W1C)
  *
@@ -18516,6 +19208,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_3_IDMAC_NFACK_31      31
 #define BM_IPU_INT_STAT_3_IDMAC_NFACK_31      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_31(v)   ((((reg32_t) v) << 31) & BM_IPU_INT_STAT_3_IDMAC_NFACK_31)
+#else
+#define BF_IPU_INT_STAT_3_IDMAC_NFACK_31(v)   (((v) << 31) & BM_IPU_INT_STAT_3_IDMAC_NFACK_31)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_31 field to a new value.
+#define BW_IPU_INT_STAT_3_IDMAC_NFACK_31(v)   BF_CS1(IPU_INT_STAT_3, IDMAC_NFACK_31, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -18574,6 +19276,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_5(x)           (*(volatile hw_ipu_int_stat_5_t *) HW_IPU_INT_STAT_5_ADDR(x))
 #define HW_IPU_INT_STAT_5_RD(x)        (HW_IPU_INT_STAT_5(x).U)
+#define HW_IPU_INT_STAT_5_WR(x, v)     (HW_IPU_INT_STAT_5(x).U = (v))
+#define HW_IPU_INT_STAT_5_SET(x, v)    (HW_IPU_INT_STAT_5_WR(x, HW_IPU_INT_STAT_5_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_5_CLR(x, v)    (HW_IPU_INT_STAT_5_WR(x, HW_IPU_INT_STAT_5_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_5_TOG(x, v)    (HW_IPU_INT_STAT_5_WR(x, HW_IPU_INT_STAT_5_RD(x) ^  (v)))
 #endif
 
 /*
@@ -18594,6 +19300,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_0      0
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_0      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_0(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_0)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_0(v)   (((v) << 0) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_0 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_0(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_0, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_1 (W1C)
  *
@@ -18608,6 +19324,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_1      1
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_1      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_1(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_1)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_1(v)   (((v) << 1) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_1 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_1(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_1, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_2 (W1C)
@@ -18624,6 +19350,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_2      2
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_2      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_2(v)   ((((reg32_t) v) << 2) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_2)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_2(v)   (((v) << 2) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_2 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_2(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_2, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_3 (W1C)
  *
@@ -18638,6 +19374,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_3      3
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_3      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_3(v)   ((((reg32_t) v) << 3) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_3)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_3(v)   (((v) << 3) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_3 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_3(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_3, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_5 (W1C)
@@ -18654,6 +19400,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_5      5
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_5      0x00000020
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_5(v)   ((((reg32_t) v) << 5) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_5)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_5(v)   (((v) << 5) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_5)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_5 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_5(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_5, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_8 (W1C)
  *
@@ -18668,6 +19424,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_8      8
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_8      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_8(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_8)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_8(v)   (((v) << 8) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_8)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_8 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_8(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_8, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_9 (W1C)
@@ -18684,6 +19450,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_9      9
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_9      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_9(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_9)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_9(v)   (((v) << 9) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_9)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_9 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_9(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_9, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_10 (W1C)
  *
@@ -18698,6 +19474,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_10      10
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_10      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_10(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_10)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_10(v)   (((v) << 10) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_10)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_10 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_10(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_10, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_11 (W1C)
@@ -18714,6 +19500,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_11      11
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_11      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_11(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_11)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_11(v)   (((v) << 11) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_11)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_11 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_11(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_11, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_12 (W1C)
  *
@@ -18728,6 +19524,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_12      12
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_12      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_12(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_12)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_12(v)   (((v) << 12) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_12)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_12 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_12(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_12, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_13 (W1C)
@@ -18744,6 +19550,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_13      13
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_13      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_13(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_13)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_13(v)   (((v) << 13) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_13)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_13 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_13(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_13, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_14 (W1C)
  *
@@ -18758,6 +19574,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_14      14
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_14      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_14(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_14)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_14(v)   (((v) << 14) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_14)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_14 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_14(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_14, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_15 (W1C)
@@ -18774,6 +19600,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_15      15
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_15      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_15(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_15)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_15(v)   (((v) << 15) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_15)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_15 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_15(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_15, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_17 (W1C)
  *
@@ -18788,6 +19624,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_17      17
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_17      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_17(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_17)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_17(v)   (((v) << 17) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_17)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_17 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_17(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_17, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_18 (W1C)
@@ -18804,6 +19650,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_18      18
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_18      0x00040000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_18(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_18)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_18(v)   (((v) << 18) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_18)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_18 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_18(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_18, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_19 (W1C)
  *
@@ -18818,6 +19674,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_19      19
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_19      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_19(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_19)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_19(v)   (((v) << 19) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_19)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_19 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_19(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_19, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_20 (W1C)
@@ -18834,6 +19700,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_20      20
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_20      0x00100000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_20(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_20)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_20(v)   (((v) << 20) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_20)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_20 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_20(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_20, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_21 (W1C)
  *
@@ -18848,6 +19724,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_21      21
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_21      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_21(v)   ((((reg32_t) v) << 21) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_21)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_21(v)   (((v) << 21) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_21)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_21 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_21(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_21, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_22 (W1C)
@@ -18864,6 +19750,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_22      22
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_22      0x00400000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_22(v)   ((((reg32_t) v) << 22) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_22)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_22(v)   (((v) << 22) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_22)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_22 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_22(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_22, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_23 (W1C)
  *
@@ -18878,6 +19774,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_23      23
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_23      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_23(v)   ((((reg32_t) v) << 23) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_23)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_23(v)   (((v) << 23) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_23)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_23 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_23(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_23, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_24 (W1C)
@@ -18894,6 +19800,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_24      24
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_24      0x01000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_24(v)   ((((reg32_t) v) << 24) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_24)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_24(v)   (((v) << 24) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_24)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_24 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_24(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_24, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_25 (W1C)
  *
@@ -18908,6 +19824,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_25      25
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_25      0x02000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_25(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_25)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_25(v)   (((v) << 25) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_25)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_25 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_25(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_25, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_26 (W1C)
@@ -18924,6 +19850,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_26      26
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_26      0x04000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_26(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_26)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_26(v)   (((v) << 26) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_26)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_26 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_26(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_26, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_27 (W1C)
  *
@@ -18938,6 +19874,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_27      27
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_27      0x08000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_27(v)   ((((reg32_t) v) << 27) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_27)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_27(v)   (((v) << 27) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_27)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_27 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_27(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_27, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_28 (W1C)
@@ -18954,6 +19900,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_28      28
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_28      0x10000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_28(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_28)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_28(v)   (((v) << 28) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_28)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_28 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_28(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_28, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_29 (W1C)
  *
@@ -18969,6 +19925,16 @@ typedef union
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_29      29
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_29      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_29(v)   ((((reg32_t) v) << 29) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_29)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_29(v)   (((v) << 29) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_29)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_29 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_29(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_29, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_5, field IDMAC_NFB4EOF_ERR_31 (W1C)
  *
@@ -18983,6 +19949,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_31      31
 #define BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_31      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_31(v)   ((((reg32_t) v) << 31) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_31)
+#else
+#define BF_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_31(v)   (((v) << 31) & BM_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_31)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_31 field to a new value.
+#define BW_IPU_INT_STAT_5_IDMAC_NFB4EOF_ERR_31(v)   BF_CS1(IPU_INT_STAT_5, IDMAC_NFB4EOF_ERR_31, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -19027,6 +20003,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_6(x)           (*(volatile hw_ipu_int_stat_6_t *) HW_IPU_INT_STAT_6_ADDR(x))
 #define HW_IPU_INT_STAT_6_RD(x)        (HW_IPU_INT_STAT_6(x).U)
+#define HW_IPU_INT_STAT_6_WR(x, v)     (HW_IPU_INT_STAT_6(x).U = (v))
+#define HW_IPU_INT_STAT_6_SET(x, v)    (HW_IPU_INT_STAT_6_WR(x, HW_IPU_INT_STAT_6_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_6_CLR(x, v)    (HW_IPU_INT_STAT_6_WR(x, HW_IPU_INT_STAT_6_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_6_TOG(x, v)    (HW_IPU_INT_STAT_6_WR(x, HW_IPU_INT_STAT_6_RD(x) ^  (v)))
 #endif
 
 /*
@@ -19047,6 +20027,16 @@ typedef union
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_33      1
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_33      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_33(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_33)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_33(v)   (((v) << 1) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_33)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_33 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_33(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_33, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_40 (W1C)
  *
@@ -19061,6 +20051,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_40      8
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_40      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_40(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_40)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_40(v)   (((v) << 8) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_40)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_40 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_40(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_40, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_41 (W1C)
@@ -19077,6 +20077,16 @@ typedef union
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_41      9
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_41      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_41(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_41)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_41(v)   (((v) << 9) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_41)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_41 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_41(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_41, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_42 (W1C)
  *
@@ -19091,6 +20101,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_42      10
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_42      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_42(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_42)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_42(v)   (((v) << 10) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_42)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_42 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_42(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_42, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_43 (W1C)
@@ -19107,6 +20127,16 @@ typedef union
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_43      11
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_43      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_43(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_43)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_43(v)   (((v) << 11) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_43)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_43 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_43(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_43, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_44 (W1C)
  *
@@ -19121,6 +20151,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_44      12
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_44      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_44(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_44)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_44(v)   (((v) << 12) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_44)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_44 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_44(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_44, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_45 (W1C)
@@ -19137,6 +20177,16 @@ typedef union
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_45      13
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_45      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_45(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_45)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_45(v)   (((v) << 13) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_45)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_45 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_45(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_45, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_46 (W1C)
  *
@@ -19151,6 +20201,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_46      14
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_46      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_46(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_46)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_46(v)   (((v) << 14) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_46)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_46 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_46(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_46, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_47 (W1C)
@@ -19167,6 +20227,16 @@ typedef union
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_47      15
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_47      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_47(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_47)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_47(v)   (((v) << 15) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_47)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_47 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_47(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_47, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_48 (W1C)
  *
@@ -19181,6 +20251,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_48      16
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_48      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_48(v)   ((((reg32_t) v) << 16) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_48)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_48(v)   (((v) << 16) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_48)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_48 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_48(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_48, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_49 (W1C)
@@ -19197,6 +20277,16 @@ typedef union
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_49      17
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_49      0x00020000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_49(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_49)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_49(v)   (((v) << 17) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_49)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_49 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_49(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_49, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_50 (W1C)
  *
@@ -19211,6 +20301,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_50      18
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_50      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_50(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_50)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_50(v)   (((v) << 18) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_50)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_50 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_50(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_50, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_51 (W1C)
@@ -19227,6 +20327,16 @@ typedef union
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_51      19
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_51      0x00080000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_51(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_51)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_51(v)   (((v) << 19) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_51)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_51 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_51(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_51, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_6, field IDMAC_NFB4EOF_ERR_52 (W1C)
  *
@@ -19241,6 +20351,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_52      20
 #define BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_52      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_52(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_52)
+#else
+#define BF_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_52(v)   (((v) << 20) & BM_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_52)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFB4EOF_ERR_52 field to a new value.
+#define BW_IPU_INT_STAT_6_IDMAC_NFB4EOF_ERR_52(v)   BF_CS1(IPU_INT_STAT_6, IDMAC_NFB4EOF_ERR_52, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -19280,6 +20400,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_7(x)           (*(volatile hw_ipu_int_stat_7_t *) HW_IPU_INT_STAT_7_ADDR(x))
 #define HW_IPU_INT_STAT_7_RD(x)        (HW_IPU_INT_STAT_7(x).U)
+#define HW_IPU_INT_STAT_7_WR(x, v)     (HW_IPU_INT_STAT_7(x).U = (v))
+#define HW_IPU_INT_STAT_7_SET(x, v)    (HW_IPU_INT_STAT_7_WR(x, HW_IPU_INT_STAT_7_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_7_CLR(x, v)    (HW_IPU_INT_STAT_7_WR(x, HW_IPU_INT_STAT_7_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_7_TOG(x, v)    (HW_IPU_INT_STAT_7_WR(x, HW_IPU_INT_STAT_7_RD(x) ^  (v)))
 #endif
 
 /*
@@ -19299,6 +20423,16 @@ typedef union
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_19      19
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_19      0x00080000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_19(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_19)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_19(v)   (((v) << 19) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_19)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_19 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_19(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_19, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_23 (W1C)
  *
@@ -19312,6 +20446,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_23      23
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_23      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_23(v)   ((((reg32_t) v) << 23) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_23)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_23(v)   (((v) << 23) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_23)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_23 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_23(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_23, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_24 (W1C)
@@ -19327,6 +20471,16 @@ typedef union
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_24      24
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_24      0x01000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_24(v)   ((((reg32_t) v) << 24) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_24)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_24(v)   (((v) << 24) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_24)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_24 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_24(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_24, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_25 (W1C)
  *
@@ -19340,6 +20494,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_25      25
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_25      0x02000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_25(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_25)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_25(v)   (((v) << 25) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_25)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_25 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_25(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_25, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_26 (W1C)
@@ -19355,6 +20519,16 @@ typedef union
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_26      26
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_26      0x04000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_26(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_26)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_26(v)   (((v) << 26) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_26)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_26 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_26(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_26, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_27 (W1C)
  *
@@ -19368,6 +20542,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_27      27
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_27      0x08000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_27(v)   ((((reg32_t) v) << 27) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_27)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_27(v)   (((v) << 27) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_27)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_27 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_27(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_27, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_28 (W1C)
@@ -19383,6 +20567,16 @@ typedef union
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_28      28
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_28      0x10000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_28(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_28)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_28(v)   (((v) << 28) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_28)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_28 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_28(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_28, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_29 (W1C)
  *
@@ -19397,6 +20591,16 @@ typedef union
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_29      29
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_29      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_29(v)   ((((reg32_t) v) << 29) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_29)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_29(v)   (((v) << 29) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_29)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_29 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_29(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_29, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_7, field IDMAC_EOS_EN_31 (W1C)
  *
@@ -19410,6 +20614,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_7_IDMAC_EOS_EN_31      31
 #define BM_IPU_INT_STAT_7_IDMAC_EOS_EN_31      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_31(v)   ((((reg32_t) v) << 31) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_31)
+#else
+#define BF_IPU_INT_STAT_7_IDMAC_EOS_EN_31(v)   (((v) << 31) & BM_IPU_INT_STAT_7_IDMAC_EOS_EN_31)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_31 field to a new value.
+#define BW_IPU_INT_STAT_7_IDMAC_EOS_EN_31(v)   BF_CS1(IPU_INT_STAT_7, IDMAC_EOS_EN_31, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -19448,6 +20662,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_8(x)           (*(volatile hw_ipu_int_stat_8_t *) HW_IPU_INT_STAT_8_ADDR(x))
 #define HW_IPU_INT_STAT_8_RD(x)        (HW_IPU_INT_STAT_8(x).U)
+#define HW_IPU_INT_STAT_8_WR(x, v)     (HW_IPU_INT_STAT_8(x).U = (v))
+#define HW_IPU_INT_STAT_8_SET(x, v)    (HW_IPU_INT_STAT_8_WR(x, HW_IPU_INT_STAT_8_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_8_CLR(x, v)    (HW_IPU_INT_STAT_8_WR(x, HW_IPU_INT_STAT_8_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_8_TOG(x, v)    (HW_IPU_INT_STAT_8_WR(x, HW_IPU_INT_STAT_8_RD(x) ^  (v)))
 #endif
 
 /*
@@ -19467,6 +20685,16 @@ typedef union
 #define BP_IPU_INT_STAT_8_IDMAC_EOS_EN_33      1
 #define BM_IPU_INT_STAT_8_IDMAC_EOS_EN_33      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_33(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_33)
+#else
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_33(v)   (((v) << 1) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_33)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_33 field to a new value.
+#define BW_IPU_INT_STAT_8_IDMAC_EOS_EN_33(v)   BF_CS1(IPU_INT_STAT_8, IDMAC_EOS_EN_33, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_8, field IDMAC_EOS_EN_41 (W1C)
  *
@@ -19480,6 +20708,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_8_IDMAC_EOS_EN_41      9
 #define BM_IPU_INT_STAT_8_IDMAC_EOS_EN_41      0x00000200
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_41(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_41)
+#else
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_41(v)   (((v) << 9) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_41)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_41 field to a new value.
+#define BW_IPU_INT_STAT_8_IDMAC_EOS_EN_41(v)   BF_CS1(IPU_INT_STAT_8, IDMAC_EOS_EN_41, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_8, field IDMAC_EOS_EN_42 (W1C)
@@ -19495,6 +20733,16 @@ typedef union
 #define BP_IPU_INT_STAT_8_IDMAC_EOS_EN_42      10
 #define BM_IPU_INT_STAT_8_IDMAC_EOS_EN_42      0x00000400
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_42(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_42)
+#else
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_42(v)   (((v) << 10) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_42)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_42 field to a new value.
+#define BW_IPU_INT_STAT_8_IDMAC_EOS_EN_42(v)   BF_CS1(IPU_INT_STAT_8, IDMAC_EOS_EN_42, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_8, field IDMAC_EOS_EN_43 (W1C)
  *
@@ -19508,6 +20756,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_8_IDMAC_EOS_EN_43      11
 #define BM_IPU_INT_STAT_8_IDMAC_EOS_EN_43      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_43(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_43)
+#else
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_43(v)   (((v) << 11) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_43)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_43 field to a new value.
+#define BW_IPU_INT_STAT_8_IDMAC_EOS_EN_43(v)   BF_CS1(IPU_INT_STAT_8, IDMAC_EOS_EN_43, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_8, field IDMAC_EOS_EN_44 (W1C)
@@ -19523,6 +20781,16 @@ typedef union
 #define BP_IPU_INT_STAT_8_IDMAC_EOS_EN_44      12
 #define BM_IPU_INT_STAT_8_IDMAC_EOS_EN_44      0x00001000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_44(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_44)
+#else
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_44(v)   (((v) << 12) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_44)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_44 field to a new value.
+#define BW_IPU_INT_STAT_8_IDMAC_EOS_EN_44(v)   BF_CS1(IPU_INT_STAT_8, IDMAC_EOS_EN_44, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_8, field IDMAC_EOS_EN_51 (W1C)
  *
@@ -19537,6 +20805,16 @@ typedef union
 #define BP_IPU_INT_STAT_8_IDMAC_EOS_EN_51      19
 #define BM_IPU_INT_STAT_8_IDMAC_EOS_EN_51      0x00080000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_51(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_51)
+#else
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_51(v)   (((v) << 19) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_51)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_51 field to a new value.
+#define BW_IPU_INT_STAT_8_IDMAC_EOS_EN_51(v)   BF_CS1(IPU_INT_STAT_8, IDMAC_EOS_EN_51, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_8, field IDMAC_EOS_EN_52 (W1C)
  *
@@ -19550,6 +20828,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_8_IDMAC_EOS_EN_52      20
 #define BM_IPU_INT_STAT_8_IDMAC_EOS_EN_52      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_52(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_52)
+#else
+#define BF_IPU_INT_STAT_8_IDMAC_EOS_EN_52(v)   (((v) << 20) & BM_IPU_INT_STAT_8_IDMAC_EOS_EN_52)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOS_EN_52 field to a new value.
+#define BW_IPU_INT_STAT_8_IDMAC_EOS_EN_52(v)   BF_CS1(IPU_INT_STAT_8, IDMAC_EOS_EN_52, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -19585,6 +20873,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_9(x)           (*(volatile hw_ipu_int_stat_9_t *) HW_IPU_INT_STAT_9_ADDR(x))
 #define HW_IPU_INT_STAT_9_RD(x)        (HW_IPU_INT_STAT_9(x).U)
+#define HW_IPU_INT_STAT_9_WR(x, v)     (HW_IPU_INT_STAT_9(x).U = (v))
+#define HW_IPU_INT_STAT_9_SET(x, v)    (HW_IPU_INT_STAT_9_WR(x, HW_IPU_INT_STAT_9_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_9_CLR(x, v)    (HW_IPU_INT_STAT_9_WR(x, HW_IPU_INT_STAT_9_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_9_TOG(x, v)    (HW_IPU_INT_STAT_9_WR(x, HW_IPU_INT_STAT_9_RD(x) ^  (v)))
 #endif
 
 /*
@@ -19604,6 +20896,16 @@ typedef union
 #define BP_IPU_INT_STAT_9_VDI_FIFO1_OVF      0
 #define BM_IPU_INT_STAT_9_VDI_FIFO1_OVF      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_9_VDI_FIFO1_OVF(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_9_VDI_FIFO1_OVF)
+#else
+#define BF_IPU_INT_STAT_9_VDI_FIFO1_OVF(v)   (((v) << 0) & BM_IPU_INT_STAT_9_VDI_FIFO1_OVF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the VDI_FIFO1_OVF field to a new value.
+#define BW_IPU_INT_STAT_9_VDI_FIFO1_OVF(v)   BF_CS1(IPU_INT_STAT_9, VDI_FIFO1_OVF, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_9, field IC_BAYER_BUF_OVF (W1C)
  *
@@ -19617,6 +20919,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_9_IC_BAYER_BUF_OVF      26
 #define BM_IPU_INT_STAT_9_IC_BAYER_BUF_OVF      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_9_IC_BAYER_BUF_OVF(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_9_IC_BAYER_BUF_OVF)
+#else
+#define BF_IPU_INT_STAT_9_IC_BAYER_BUF_OVF(v)   (((v) << 26) & BM_IPU_INT_STAT_9_IC_BAYER_BUF_OVF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IC_BAYER_BUF_OVF field to a new value.
+#define BW_IPU_INT_STAT_9_IC_BAYER_BUF_OVF(v)   BF_CS1(IPU_INT_STAT_9, IC_BAYER_BUF_OVF, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_9, field IC_ENC_BUF_OVF (W1C)
@@ -19632,6 +20944,16 @@ typedef union
 #define BP_IPU_INT_STAT_9_IC_ENC_BUF_OVF      27
 #define BM_IPU_INT_STAT_9_IC_ENC_BUF_OVF      0x08000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_9_IC_ENC_BUF_OVF(v)   ((((reg32_t) v) << 27) & BM_IPU_INT_STAT_9_IC_ENC_BUF_OVF)
+#else
+#define BF_IPU_INT_STAT_9_IC_ENC_BUF_OVF(v)   (((v) << 27) & BM_IPU_INT_STAT_9_IC_ENC_BUF_OVF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IC_ENC_BUF_OVF field to a new value.
+#define BW_IPU_INT_STAT_9_IC_ENC_BUF_OVF(v)   BF_CS1(IPU_INT_STAT_9, IC_ENC_BUF_OVF, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_9, field IC_VF_BUF_OVF (W1C)
  *
@@ -19645,6 +20967,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_9_IC_VF_BUF_OVF      28
 #define BM_IPU_INT_STAT_9_IC_VF_BUF_OVF      0x10000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_9_IC_VF_BUF_OVF(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_9_IC_VF_BUF_OVF)
+#else
+#define BF_IPU_INT_STAT_9_IC_VF_BUF_OVF(v)   (((v) << 28) & BM_IPU_INT_STAT_9_IC_VF_BUF_OVF)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IC_VF_BUF_OVF field to a new value.
+#define BW_IPU_INT_STAT_9_IC_VF_BUF_OVF(v)   BF_CS1(IPU_INT_STAT_9, IC_VF_BUF_OVF, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_9, field CSI0_PUPE (W1C)
@@ -19661,6 +20993,16 @@ typedef union
 #define BP_IPU_INT_STAT_9_CSI0_PUPE      30
 #define BM_IPU_INT_STAT_9_CSI0_PUPE      0x40000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_9_CSI0_PUPE(v)   ((((reg32_t) v) << 30) & BM_IPU_INT_STAT_9_CSI0_PUPE)
+#else
+#define BF_IPU_INT_STAT_9_CSI0_PUPE(v)   (((v) << 30) & BM_IPU_INT_STAT_9_CSI0_PUPE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CSI0_PUPE field to a new value.
+#define BW_IPU_INT_STAT_9_CSI0_PUPE(v)   BF_CS1(IPU_INT_STAT_9, CSI0_PUPE, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_9, field CSI1_PUPE (W1C)
  *
@@ -19675,6 +21017,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_9_CSI1_PUPE      31
 #define BM_IPU_INT_STAT_9_CSI1_PUPE      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_9_CSI1_PUPE(v)   ((((reg32_t) v) << 31) & BM_IPU_INT_STAT_9_CSI1_PUPE)
+#else
+#define BF_IPU_INT_STAT_9_CSI1_PUPE(v)   (((v) << 31) & BM_IPU_INT_STAT_9_CSI1_PUPE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CSI1_PUPE field to a new value.
+#define BW_IPU_INT_STAT_9_CSI1_PUPE(v)   BF_CS1(IPU_INT_STAT_9, CSI1_PUPE, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -19723,6 +21075,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_10(x)           (*(volatile hw_ipu_int_stat_10_t *) HW_IPU_INT_STAT_10_ADDR(x))
 #define HW_IPU_INT_STAT_10_RD(x)        (HW_IPU_INT_STAT_10(x).U)
+#define HW_IPU_INT_STAT_10_WR(x, v)     (HW_IPU_INT_STAT_10(x).U = (v))
+#define HW_IPU_INT_STAT_10_SET(x, v)    (HW_IPU_INT_STAT_10_WR(x, HW_IPU_INT_STAT_10_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_10_CLR(x, v)    (HW_IPU_INT_STAT_10_WR(x, HW_IPU_INT_STAT_10_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_10_TOG(x, v)    (HW_IPU_INT_STAT_10_WR(x, HW_IPU_INT_STAT_10_RD(x) ^  (v)))
 #endif
 
 /*
@@ -19742,6 +21098,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_SMFC0_FRM_LOST      0
 #define BM_IPU_INT_STAT_10_SMFC0_FRM_LOST      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_SMFC0_FRM_LOST(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_10_SMFC0_FRM_LOST)
+#else
+#define BF_IPU_INT_STAT_10_SMFC0_FRM_LOST(v)   (((v) << 0) & BM_IPU_INT_STAT_10_SMFC0_FRM_LOST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SMFC0_FRM_LOST field to a new value.
+#define BW_IPU_INT_STAT_10_SMFC0_FRM_LOST(v)   BF_CS1(IPU_INT_STAT_10, SMFC0_FRM_LOST, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_10, field SMFC1_FRM_LOST (W1C)
  *
@@ -19755,6 +21121,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_10_SMFC1_FRM_LOST      1
 #define BM_IPU_INT_STAT_10_SMFC1_FRM_LOST      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_SMFC1_FRM_LOST(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_10_SMFC1_FRM_LOST)
+#else
+#define BF_IPU_INT_STAT_10_SMFC1_FRM_LOST(v)   (((v) << 1) & BM_IPU_INT_STAT_10_SMFC1_FRM_LOST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SMFC1_FRM_LOST field to a new value.
+#define BW_IPU_INT_STAT_10_SMFC1_FRM_LOST(v)   BF_CS1(IPU_INT_STAT_10, SMFC1_FRM_LOST, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_10, field SMFC2_FRM_LOST (W1C)
@@ -19770,6 +21146,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_SMFC2_FRM_LOST      2
 #define BM_IPU_INT_STAT_10_SMFC2_FRM_LOST      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_SMFC2_FRM_LOST(v)   ((((reg32_t) v) << 2) & BM_IPU_INT_STAT_10_SMFC2_FRM_LOST)
+#else
+#define BF_IPU_INT_STAT_10_SMFC2_FRM_LOST(v)   (((v) << 2) & BM_IPU_INT_STAT_10_SMFC2_FRM_LOST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SMFC2_FRM_LOST field to a new value.
+#define BW_IPU_INT_STAT_10_SMFC2_FRM_LOST(v)   BF_CS1(IPU_INT_STAT_10, SMFC2_FRM_LOST, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_10, field SMFC3_FRM_LOST (W1C)
  *
@@ -19784,6 +21170,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_SMFC3_FRM_LOST      3
 #define BM_IPU_INT_STAT_10_SMFC3_FRM_LOST      0x00000008
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_SMFC3_FRM_LOST(v)   ((((reg32_t) v) << 3) & BM_IPU_INT_STAT_10_SMFC3_FRM_LOST)
+#else
+#define BF_IPU_INT_STAT_10_SMFC3_FRM_LOST(v)   (((v) << 3) & BM_IPU_INT_STAT_10_SMFC3_FRM_LOST)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SMFC3_FRM_LOST field to a new value.
+#define BW_IPU_INT_STAT_10_SMFC3_FRM_LOST(v)   BF_CS1(IPU_INT_STAT_10, SMFC3_FRM_LOST, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_10, field DC_TEARING_ERR_1 (W1C)
  *
@@ -19794,6 +21190,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_DC_TEARING_ERR_1      16
 #define BM_IPU_INT_STAT_10_DC_TEARING_ERR_1      0x00010000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_DC_TEARING_ERR_1(v)   ((((reg32_t) v) << 16) & BM_IPU_INT_STAT_10_DC_TEARING_ERR_1)
+#else
+#define BF_IPU_INT_STAT_10_DC_TEARING_ERR_1(v)   (((v) << 16) & BM_IPU_INT_STAT_10_DC_TEARING_ERR_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_TEARING_ERR_1 field to a new value.
+#define BW_IPU_INT_STAT_10_DC_TEARING_ERR_1(v)   BF_CS1(IPU_INT_STAT_10, DC_TEARING_ERR_1, v)
+#endif
+
 /* --- Register HW_IPU_INT_STAT_10, field DC_TEARING_ERR_2 (W1C)
  *
  * Tearing Error #2 interrupt This bit indicates on the interrupt that is a result of tearing error
@@ -19802,6 +21208,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_10_DC_TEARING_ERR_2      17
 #define BM_IPU_INT_STAT_10_DC_TEARING_ERR_2      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_DC_TEARING_ERR_2(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_10_DC_TEARING_ERR_2)
+#else
+#define BF_IPU_INT_STAT_10_DC_TEARING_ERR_2(v)   (((v) << 17) & BM_IPU_INT_STAT_10_DC_TEARING_ERR_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_TEARING_ERR_2 field to a new value.
+#define BW_IPU_INT_STAT_10_DC_TEARING_ERR_2(v)   BF_CS1(IPU_INT_STAT_10, DC_TEARING_ERR_2, v)
+#endif
 
 /* --- Register HW_IPU_INT_STAT_10, field DC_TEARING_ERR_6 (W1C)
  *
@@ -19812,6 +21228,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_DC_TEARING_ERR_6      18
 #define BM_IPU_INT_STAT_10_DC_TEARING_ERR_6      0x00040000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_DC_TEARING_ERR_6(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_10_DC_TEARING_ERR_6)
+#else
+#define BF_IPU_INT_STAT_10_DC_TEARING_ERR_6(v)   (((v) << 18) & BM_IPU_INT_STAT_10_DC_TEARING_ERR_6)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_TEARING_ERR_6 field to a new value.
+#define BW_IPU_INT_STAT_10_DC_TEARING_ERR_6(v)   BF_CS1(IPU_INT_STAT_10, DC_TEARING_ERR_6, v)
+#endif
+
 /* --- Register HW_IPU_INT_STAT_10, field DI0_SYNC_DISP_ERR (W1C)
  *
  * DI0 Synchronous display error interrupt This bit indicates on the interrupt that is a result of
@@ -19820,6 +21246,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_10_DI0_SYNC_DISP_ERR      19
 #define BM_IPU_INT_STAT_10_DI0_SYNC_DISP_ERR      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_DI0_SYNC_DISP_ERR(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_10_DI0_SYNC_DISP_ERR)
+#else
+#define BF_IPU_INT_STAT_10_DI0_SYNC_DISP_ERR(v)   (((v) << 19) & BM_IPU_INT_STAT_10_DI0_SYNC_DISP_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_SYNC_DISP_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_DI0_SYNC_DISP_ERR(v)   BF_CS1(IPU_INT_STAT_10, DI0_SYNC_DISP_ERR, v)
+#endif
 
 /* --- Register HW_IPU_INT_STAT_10, field DI1_SYNC_DISP_ERR (W1C)
  *
@@ -19830,6 +21266,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_DI1_SYNC_DISP_ERR      20
 #define BM_IPU_INT_STAT_10_DI1_SYNC_DISP_ERR      0x00100000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_DI1_SYNC_DISP_ERR(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_10_DI1_SYNC_DISP_ERR)
+#else
+#define BF_IPU_INT_STAT_10_DI1_SYNC_DISP_ERR(v)   (((v) << 20) & BM_IPU_INT_STAT_10_DI1_SYNC_DISP_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI1_SYNC_DISP_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_DI1_SYNC_DISP_ERR(v)   BF_CS1(IPU_INT_STAT_10, DI1_SYNC_DISP_ERR, v)
+#endif
+
 /* --- Register HW_IPU_INT_STAT_10, field DI0_TIME_OUT_ERR (W1C)
  *
  * DI0 time out error interrupt This bit indicates on the interrupt that is a result of a time out
@@ -19839,6 +21285,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_DI0_TIME_OUT_ERR      21
 #define BM_IPU_INT_STAT_10_DI0_TIME_OUT_ERR      0x00200000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_DI0_TIME_OUT_ERR(v)   ((((reg32_t) v) << 21) & BM_IPU_INT_STAT_10_DI0_TIME_OUT_ERR)
+#else
+#define BF_IPU_INT_STAT_10_DI0_TIME_OUT_ERR(v)   (((v) << 21) & BM_IPU_INT_STAT_10_DI0_TIME_OUT_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_TIME_OUT_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_DI0_TIME_OUT_ERR(v)   BF_CS1(IPU_INT_STAT_10, DI0_TIME_OUT_ERR, v)
+#endif
+
 /* --- Register HW_IPU_INT_STAT_10, field DI1_TIME_OUT_ERR (W1C)
  *
  * DI1 time out error interrupt This bit indicates on the interrupt that is a result of a time out
@@ -19847,6 +21303,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_10_DI1_TIME_OUT_ERR      22
 #define BM_IPU_INT_STAT_10_DI1_TIME_OUT_ERR      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_DI1_TIME_OUT_ERR(v)   ((((reg32_t) v) << 22) & BM_IPU_INT_STAT_10_DI1_TIME_OUT_ERR)
+#else
+#define BF_IPU_INT_STAT_10_DI1_TIME_OUT_ERR(v)   (((v) << 22) & BM_IPU_INT_STAT_10_DI1_TIME_OUT_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI1_TIME_OUT_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_DI1_TIME_OUT_ERR(v)   BF_CS1(IPU_INT_STAT_10, DI1_TIME_OUT_ERR, v)
+#endif
 
 /* --- Register HW_IPU_INT_STAT_10, field IC_VF_FRM_LOST_ERR (W1C)
  *
@@ -19859,6 +21325,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_10_IC_VF_FRM_LOST_ERR      24
 #define BM_IPU_INT_STAT_10_IC_VF_FRM_LOST_ERR      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_IC_VF_FRM_LOST_ERR(v)   ((((reg32_t) v) << 24) & BM_IPU_INT_STAT_10_IC_VF_FRM_LOST_ERR)
+#else
+#define BF_IPU_INT_STAT_10_IC_VF_FRM_LOST_ERR(v)   (((v) << 24) & BM_IPU_INT_STAT_10_IC_VF_FRM_LOST_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IC_VF_FRM_LOST_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_IC_VF_FRM_LOST_ERR(v)   BF_CS1(IPU_INT_STAT_10, IC_VF_FRM_LOST_ERR, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_10, field IC_ENC_FRM_LOST_ERR (W1C)
@@ -19873,6 +21349,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_IC_ENC_FRM_LOST_ERR      25
 #define BM_IPU_INT_STAT_10_IC_ENC_FRM_LOST_ERR      0x02000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_IC_ENC_FRM_LOST_ERR(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_10_IC_ENC_FRM_LOST_ERR)
+#else
+#define BF_IPU_INT_STAT_10_IC_ENC_FRM_LOST_ERR(v)   (((v) << 25) & BM_IPU_INT_STAT_10_IC_ENC_FRM_LOST_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IC_ENC_FRM_LOST_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_IC_ENC_FRM_LOST_ERR(v)   BF_CS1(IPU_INT_STAT_10, IC_ENC_FRM_LOST_ERR, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_10, field IC_BAYER_FRM_LOST_ERR (W1C)
  *
@@ -19885,6 +21371,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_10_IC_BAYER_FRM_LOST_ERR      26
 #define BM_IPU_INT_STAT_10_IC_BAYER_FRM_LOST_ERR      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_IC_BAYER_FRM_LOST_ERR(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_10_IC_BAYER_FRM_LOST_ERR)
+#else
+#define BF_IPU_INT_STAT_10_IC_BAYER_FRM_LOST_ERR(v)   (((v) << 26) & BM_IPU_INT_STAT_10_IC_BAYER_FRM_LOST_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IC_BAYER_FRM_LOST_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_IC_BAYER_FRM_LOST_ERR(v)   BF_CS1(IPU_INT_STAT_10, IC_BAYER_FRM_LOST_ERR, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_10, field NON_PRIVILEGED_ACC_ERR (W1C)
@@ -19900,6 +21396,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_NON_PRIVILEGED_ACC_ERR      28
 #define BM_IPU_INT_STAT_10_NON_PRIVILEGED_ACC_ERR      0x10000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_NON_PRIVILEGED_ACC_ERR(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_10_NON_PRIVILEGED_ACC_ERR)
+#else
+#define BF_IPU_INT_STAT_10_NON_PRIVILEGED_ACC_ERR(v)   (((v) << 28) & BM_IPU_INT_STAT_10_NON_PRIVILEGED_ACC_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the NON_PRIVILEGED_ACC_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_NON_PRIVILEGED_ACC_ERR(v)   BF_CS1(IPU_INT_STAT_10, NON_PRIVILEGED_ACC_ERR, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_10, field AXIW_ERR (W1C)
  *
@@ -19914,6 +21420,16 @@ typedef union
 #define BP_IPU_INT_STAT_10_AXIW_ERR      29
 #define BM_IPU_INT_STAT_10_AXIW_ERR      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_AXIW_ERR(v)   ((((reg32_t) v) << 29) & BM_IPU_INT_STAT_10_AXIW_ERR)
+#else
+#define BF_IPU_INT_STAT_10_AXIW_ERR(v)   (((v) << 29) & BM_IPU_INT_STAT_10_AXIW_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AXIW_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_AXIW_ERR(v)   BF_CS1(IPU_INT_STAT_10, AXIW_ERR, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_10, field AXIR_ERR (W1C)
  *
@@ -19927,6 +21443,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_10_AXIR_ERR      30
 #define BM_IPU_INT_STAT_10_AXIR_ERR      0x40000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_10_AXIR_ERR(v)   ((((reg32_t) v) << 30) & BM_IPU_INT_STAT_10_AXIR_ERR)
+#else
+#define BF_IPU_INT_STAT_10_AXIR_ERR(v)   (((v) << 30) & BM_IPU_INT_STAT_10_AXIR_ERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AXIR_ERR field to a new value.
+#define BW_IPU_INT_STAT_10_AXIR_ERR(v)   BF_CS1(IPU_INT_STAT_10, AXIR_ERR, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -19974,6 +21500,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_11(x)           (*(volatile hw_ipu_int_stat_11_t *) HW_IPU_INT_STAT_11_ADDR(x))
 #define HW_IPU_INT_STAT_11_RD(x)        (HW_IPU_INT_STAT_11(x).U)
+#define HW_IPU_INT_STAT_11_WR(x, v)     (HW_IPU_INT_STAT_11(x).U = (v))
+#define HW_IPU_INT_STAT_11_SET(x, v)    (HW_IPU_INT_STAT_11_WR(x, HW_IPU_INT_STAT_11_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_11_CLR(x, v)    (HW_IPU_INT_STAT_11_WR(x, HW_IPU_INT_STAT_11_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_11_TOG(x, v)    (HW_IPU_INT_STAT_11_WR(x, HW_IPU_INT_STAT_11_RD(x) ^  (v)))
 #endif
 
 /*
@@ -19993,6 +21523,16 @@ typedef union
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_0      0
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_0      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_0(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_0)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_0(v)   (((v) << 0) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_0 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_0(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_0, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_1 (W1C)
  *
@@ -20006,6 +21546,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_1      1
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_1      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_1(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_1)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_1(v)   (((v) << 1) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_1 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_1(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_1, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_2 (W1C)
@@ -20021,6 +21571,16 @@ typedef union
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_2      2
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_2      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_2(v)   ((((reg32_t) v) << 2) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_2)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_2(v)   (((v) << 2) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_2 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_2(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_2, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_3 (W1C)
  *
@@ -20034,6 +21594,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_3      3
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_3      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_3(v)   ((((reg32_t) v) << 3) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_3)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_3(v)   (((v) << 3) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_3 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_3(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_3, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_5 (W1C)
@@ -20049,6 +21619,16 @@ typedef union
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_5      5
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_5      0x00000020
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_5(v)   ((((reg32_t) v) << 5) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_5)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_5(v)   (((v) << 5) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_5)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_5 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_5(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_5, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_11 (W1C)
  *
@@ -20062,6 +21642,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_11      11
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_11      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_11(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_11)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_11(v)   (((v) << 11) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_11)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_11 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_11(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_11, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_12 (W1C)
@@ -20077,6 +21667,16 @@ typedef union
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_12      12
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_12      0x00001000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_12(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_12)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_12(v)   (((v) << 12) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_12)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_12 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_12(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_12, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_20 (W1C)
  *
@@ -20090,6 +21690,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_20      20
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_20      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_20(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_20)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_20(v)   (((v) << 20) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_20)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_20 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_20(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_20, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_21 (W1C)
@@ -20105,6 +21715,16 @@ typedef union
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_21      21
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_21      0x00200000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_21(v)   ((((reg32_t) v) << 21) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_21)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_21(v)   (((v) << 21) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_21)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_21 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_21(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_21, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_22 (W1C)
  *
@@ -20118,6 +21738,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_22      22
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_22      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_22(v)   ((((reg32_t) v) << 22) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_22)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_22(v)   (((v) << 22) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_22)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_22 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_22(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_22, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_25 (W1C)
@@ -20133,6 +21763,16 @@ typedef union
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_25      25
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_25      0x02000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_25(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_25)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_25(v)   (((v) << 25) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_25)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_25 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_25(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_25, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_11, field IDMAC_EOBND_EN_26 (W1C)
  *
@@ -20146,6 +21786,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_11_IDMAC_EOBND_EN_26      26
 #define BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_26      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_26(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_26)
+#else
+#define BF_IPU_INT_STAT_11_IDMAC_EOBND_EN_26(v)   (((v) << 26) & BM_IPU_INT_STAT_11_IDMAC_EOBND_EN_26)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_26 field to a new value.
+#define BW_IPU_INT_STAT_11_IDMAC_EOBND_EN_26(v)   BF_CS1(IPU_INT_STAT_11, IDMAC_EOBND_EN_26, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -20181,6 +21831,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_12(x)           (*(volatile hw_ipu_int_stat_12_t *) HW_IPU_INT_STAT_12_ADDR(x))
 #define HW_IPU_INT_STAT_12_RD(x)        (HW_IPU_INT_STAT_12(x).U)
+#define HW_IPU_INT_STAT_12_WR(x, v)     (HW_IPU_INT_STAT_12(x).U = (v))
+#define HW_IPU_INT_STAT_12_SET(x, v)    (HW_IPU_INT_STAT_12_WR(x, HW_IPU_INT_STAT_12_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_12_CLR(x, v)    (HW_IPU_INT_STAT_12_WR(x, HW_IPU_INT_STAT_12_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_12_TOG(x, v)    (HW_IPU_INT_STAT_12_WR(x, HW_IPU_INT_STAT_12_RD(x) ^  (v)))
 #endif
 
 /*
@@ -20200,6 +21854,16 @@ typedef union
 #define BP_IPU_INT_STAT_12_IDMAC_EOBND_EN_45      13
 #define BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_45      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_45(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_45)
+#else
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_45(v)   (((v) << 13) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_45)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_45 field to a new value.
+#define BW_IPU_INT_STAT_12_IDMAC_EOBND_EN_45(v)   BF_CS1(IPU_INT_STAT_12, IDMAC_EOBND_EN_45, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_12, field IDMAC_EOBND_EN_46 (W1C)
  *
@@ -20213,6 +21877,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_12_IDMAC_EOBND_EN_46      14
 #define BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_46      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_46(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_46)
+#else
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_46(v)   (((v) << 14) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_46)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_46 field to a new value.
+#define BW_IPU_INT_STAT_12_IDMAC_EOBND_EN_46(v)   BF_CS1(IPU_INT_STAT_12, IDMAC_EOBND_EN_46, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_12, field IDMAC_EOBND_EN_47 (W1C)
@@ -20228,6 +21902,16 @@ typedef union
 #define BP_IPU_INT_STAT_12_IDMAC_EOBND_EN_47      15
 #define BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_47      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_47(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_47)
+#else
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_47(v)   (((v) << 15) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_47)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_47 field to a new value.
+#define BW_IPU_INT_STAT_12_IDMAC_EOBND_EN_47(v)   BF_CS1(IPU_INT_STAT_12, IDMAC_EOBND_EN_47, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_12, field IDMAC_EOBND_EN_48 (W1C)
  *
@@ -20241,6 +21925,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_12_IDMAC_EOBND_EN_48      16
 #define BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_48      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_48(v)   ((((reg32_t) v) << 16) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_48)
+#else
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_48(v)   (((v) << 16) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_48)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_48 field to a new value.
+#define BW_IPU_INT_STAT_12_IDMAC_EOBND_EN_48(v)   BF_CS1(IPU_INT_STAT_12, IDMAC_EOBND_EN_48, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_12, field IDMAC_EOBND_EN_49 (W1C)
@@ -20256,6 +21950,16 @@ typedef union
 #define BP_IPU_INT_STAT_12_IDMAC_EOBND_EN_49      17
 #define BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_49      0x00020000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_49(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_49)
+#else
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_49(v)   (((v) << 17) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_49)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_49 field to a new value.
+#define BW_IPU_INT_STAT_12_IDMAC_EOBND_EN_49(v)   BF_CS1(IPU_INT_STAT_12, IDMAC_EOBND_EN_49, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_12, field IDMAC_EOBND_EN_50 (W1C)
  *
@@ -20269,6 +21973,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_12_IDMAC_EOBND_EN_50      18
 #define BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_50      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_50(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_50)
+#else
+#define BF_IPU_INT_STAT_12_IDMAC_EOBND_EN_50(v)   (((v) << 18) & BM_IPU_INT_STAT_12_IDMAC_EOBND_EN_50)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_EOBND_EN_50 field to a new value.
+#define BW_IPU_INT_STAT_12_IDMAC_EOBND_EN_50(v)   BF_CS1(IPU_INT_STAT_12, IDMAC_EOBND_EN_50, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -20327,6 +22041,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_13(x)           (*(volatile hw_ipu_int_stat_13_t *) HW_IPU_INT_STAT_13_ADDR(x))
 #define HW_IPU_INT_STAT_13_RD(x)        (HW_IPU_INT_STAT_13(x).U)
+#define HW_IPU_INT_STAT_13_WR(x, v)     (HW_IPU_INT_STAT_13(x).U = (v))
+#define HW_IPU_INT_STAT_13_SET(x, v)    (HW_IPU_INT_STAT_13_WR(x, HW_IPU_INT_STAT_13_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_13_CLR(x, v)    (HW_IPU_INT_STAT_13_WR(x, HW_IPU_INT_STAT_13_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_13_TOG(x, v)    (HW_IPU_INT_STAT_13_WR(x, HW_IPU_INT_STAT_13_RD(x) ^  (v)))
 #endif
 
 /*
@@ -20346,6 +22064,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_0      0
 #define BM_IPU_INT_STAT_13_IDMAC_TH_0      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_0(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_13_IDMAC_TH_0)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_0(v)   (((v) << 0) & BM_IPU_INT_STAT_13_IDMAC_TH_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_0 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_0(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_0, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_1 (W1C)
  *
@@ -20359,6 +22087,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_1      1
 #define BM_IPU_INT_STAT_13_IDMAC_TH_1      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_1(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_13_IDMAC_TH_1)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_1(v)   (((v) << 1) & BM_IPU_INT_STAT_13_IDMAC_TH_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_1 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_1(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_1, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_2 (W1C)
@@ -20374,6 +22112,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_2      2
 #define BM_IPU_INT_STAT_13_IDMAC_TH_2      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_2(v)   ((((reg32_t) v) << 2) & BM_IPU_INT_STAT_13_IDMAC_TH_2)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_2(v)   (((v) << 2) & BM_IPU_INT_STAT_13_IDMAC_TH_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_2 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_2(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_2, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_3 (W1C)
  *
@@ -20387,6 +22135,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_3      3
 #define BM_IPU_INT_STAT_13_IDMAC_TH_3      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_3(v)   ((((reg32_t) v) << 3) & BM_IPU_INT_STAT_13_IDMAC_TH_3)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_3(v)   (((v) << 3) & BM_IPU_INT_STAT_13_IDMAC_TH_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_3 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_3(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_3, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_5 (W1C)
@@ -20402,6 +22160,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_5      5
 #define BM_IPU_INT_STAT_13_IDMAC_TH_5      0x00000020
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_5(v)   ((((reg32_t) v) << 5) & BM_IPU_INT_STAT_13_IDMAC_TH_5)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_5(v)   (((v) << 5) & BM_IPU_INT_STAT_13_IDMAC_TH_5)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_5 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_5(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_5, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_8 (W1C)
  *
@@ -20415,6 +22183,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_8      8
 #define BM_IPU_INT_STAT_13_IDMAC_TH_8      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_8(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_13_IDMAC_TH_8)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_8(v)   (((v) << 8) & BM_IPU_INT_STAT_13_IDMAC_TH_8)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_8 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_8(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_8, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_9 (W1C)
@@ -20430,6 +22208,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_9      9
 #define BM_IPU_INT_STAT_13_IDMAC_TH_9      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_9(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_13_IDMAC_TH_9)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_9(v)   (((v) << 9) & BM_IPU_INT_STAT_13_IDMAC_TH_9)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_9 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_9(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_9, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_10 (W1C)
  *
@@ -20443,6 +22231,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_10      10
 #define BM_IPU_INT_STAT_13_IDMAC_TH_10      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_10(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_13_IDMAC_TH_10)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_10(v)   (((v) << 10) & BM_IPU_INT_STAT_13_IDMAC_TH_10)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_10 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_10(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_10, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_11 (W1C)
@@ -20458,6 +22256,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_11      11
 #define BM_IPU_INT_STAT_13_IDMAC_TH_11      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_11(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_13_IDMAC_TH_11)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_11(v)   (((v) << 11) & BM_IPU_INT_STAT_13_IDMAC_TH_11)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_11 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_11(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_11, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_12 (W1C)
  *
@@ -20471,6 +22279,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_12      12
 #define BM_IPU_INT_STAT_13_IDMAC_TH_12      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_12(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_13_IDMAC_TH_12)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_12(v)   (((v) << 12) & BM_IPU_INT_STAT_13_IDMAC_TH_12)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_12 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_12(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_12, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_13 (W1C)
@@ -20486,6 +22304,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_13      13
 #define BM_IPU_INT_STAT_13_IDMAC_TH_13      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_13(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_13_IDMAC_TH_13)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_13(v)   (((v) << 13) & BM_IPU_INT_STAT_13_IDMAC_TH_13)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_13 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_13(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_13, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_14 (W1C)
  *
@@ -20499,6 +22327,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_14      14
 #define BM_IPU_INT_STAT_13_IDMAC_TH_14      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_14(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_13_IDMAC_TH_14)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_14(v)   (((v) << 14) & BM_IPU_INT_STAT_13_IDMAC_TH_14)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_14 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_14(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_14, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_15 (W1C)
@@ -20514,6 +22352,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_15      15
 #define BM_IPU_INT_STAT_13_IDMAC_TH_15      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_15(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_13_IDMAC_TH_15)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_15(v)   (((v) << 15) & BM_IPU_INT_STAT_13_IDMAC_TH_15)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_15 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_15(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_15, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_17 (W1C)
  *
@@ -20527,6 +22375,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_17      17
 #define BM_IPU_INT_STAT_13_IDMAC_TH_17      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_17(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_13_IDMAC_TH_17)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_17(v)   (((v) << 17) & BM_IPU_INT_STAT_13_IDMAC_TH_17)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_17 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_17(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_17, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_18 (W1C)
@@ -20542,6 +22400,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_18      18
 #define BM_IPU_INT_STAT_13_IDMAC_TH_18      0x00040000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_18(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_13_IDMAC_TH_18)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_18(v)   (((v) << 18) & BM_IPU_INT_STAT_13_IDMAC_TH_18)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_18 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_18(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_18, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_19 (W1C)
  *
@@ -20555,6 +22423,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_19      19
 #define BM_IPU_INT_STAT_13_IDMAC_TH_19      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_19(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_13_IDMAC_TH_19)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_19(v)   (((v) << 19) & BM_IPU_INT_STAT_13_IDMAC_TH_19)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_19 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_19(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_19, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_20 (W1C)
@@ -20570,6 +22448,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_20      20
 #define BM_IPU_INT_STAT_13_IDMAC_TH_20      0x00100000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_20(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_13_IDMAC_TH_20)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_20(v)   (((v) << 20) & BM_IPU_INT_STAT_13_IDMAC_TH_20)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_20 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_20(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_20, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_21 (W1C)
  *
@@ -20583,6 +22471,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_21      21
 #define BM_IPU_INT_STAT_13_IDMAC_TH_21      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_21(v)   ((((reg32_t) v) << 21) & BM_IPU_INT_STAT_13_IDMAC_TH_21)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_21(v)   (((v) << 21) & BM_IPU_INT_STAT_13_IDMAC_TH_21)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_21 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_21(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_21, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_22 (W1C)
@@ -20598,6 +22496,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_22      22
 #define BM_IPU_INT_STAT_13_IDMAC_TH_22      0x00400000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_22(v)   ((((reg32_t) v) << 22) & BM_IPU_INT_STAT_13_IDMAC_TH_22)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_22(v)   (((v) << 22) & BM_IPU_INT_STAT_13_IDMAC_TH_22)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_22 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_22(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_22, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_23 (W1C)
  *
@@ -20611,6 +22519,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_23      23
 #define BM_IPU_INT_STAT_13_IDMAC_TH_23      0x00800000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_23(v)   ((((reg32_t) v) << 23) & BM_IPU_INT_STAT_13_IDMAC_TH_23)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_23(v)   (((v) << 23) & BM_IPU_INT_STAT_13_IDMAC_TH_23)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_23 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_23(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_23, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_24 (W1C)
@@ -20626,6 +22544,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_24      24
 #define BM_IPU_INT_STAT_13_IDMAC_TH_24      0x01000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_24(v)   ((((reg32_t) v) << 24) & BM_IPU_INT_STAT_13_IDMAC_TH_24)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_24(v)   (((v) << 24) & BM_IPU_INT_STAT_13_IDMAC_TH_24)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_24 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_24(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_24, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_25 (W1C)
  *
@@ -20639,6 +22567,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_25      25
 #define BM_IPU_INT_STAT_13_IDMAC_TH_25      0x02000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_25(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_13_IDMAC_TH_25)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_25(v)   (((v) << 25) & BM_IPU_INT_STAT_13_IDMAC_TH_25)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_25 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_25(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_25, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_26 (W1C)
@@ -20654,6 +22592,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_26      26
 #define BM_IPU_INT_STAT_13_IDMAC_TH_26      0x04000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_26(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_13_IDMAC_TH_26)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_26(v)   (((v) << 26) & BM_IPU_INT_STAT_13_IDMAC_TH_26)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_26 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_26(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_26, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_27 (W1C)
  *
@@ -20667,6 +22615,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_27      27
 #define BM_IPU_INT_STAT_13_IDMAC_TH_27      0x08000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_27(v)   ((((reg32_t) v) << 27) & BM_IPU_INT_STAT_13_IDMAC_TH_27)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_27(v)   (((v) << 27) & BM_IPU_INT_STAT_13_IDMAC_TH_27)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_27 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_27(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_27, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_28 (W1C)
@@ -20682,6 +22640,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_28      28
 #define BM_IPU_INT_STAT_13_IDMAC_TH_28      0x10000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_28(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_13_IDMAC_TH_28)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_28(v)   (((v) << 28) & BM_IPU_INT_STAT_13_IDMAC_TH_28)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_28 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_28(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_28, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_29 (W1C)
  *
@@ -20696,6 +22664,16 @@ typedef union
 #define BP_IPU_INT_STAT_13_IDMAC_TH_29      29
 #define BM_IPU_INT_STAT_13_IDMAC_TH_29      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_29(v)   ((((reg32_t) v) << 29) & BM_IPU_INT_STAT_13_IDMAC_TH_29)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_29(v)   (((v) << 29) & BM_IPU_INT_STAT_13_IDMAC_TH_29)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_29 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_29(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_29, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_13, field IDMAC_TH_31 (W1C)
  *
@@ -20709,6 +22687,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_13_IDMAC_TH_31      31
 #define BM_IPU_INT_STAT_13_IDMAC_TH_31      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_13_IDMAC_TH_31(v)   ((((reg32_t) v) << 31) & BM_IPU_INT_STAT_13_IDMAC_TH_31)
+#else
+#define BF_IPU_INT_STAT_13_IDMAC_TH_31(v)   (((v) << 31) & BM_IPU_INT_STAT_13_IDMAC_TH_31)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_31 field to a new value.
+#define BW_IPU_INT_STAT_13_IDMAC_TH_31(v)   BF_CS1(IPU_INT_STAT_13, IDMAC_TH_31, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -20753,6 +22741,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_14(x)           (*(volatile hw_ipu_int_stat_14_t *) HW_IPU_INT_STAT_14_ADDR(x))
 #define HW_IPU_INT_STAT_14_RD(x)        (HW_IPU_INT_STAT_14(x).U)
+#define HW_IPU_INT_STAT_14_WR(x, v)     (HW_IPU_INT_STAT_14(x).U = (v))
+#define HW_IPU_INT_STAT_14_SET(x, v)    (HW_IPU_INT_STAT_14_WR(x, HW_IPU_INT_STAT_14_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_14_CLR(x, v)    (HW_IPU_INT_STAT_14_WR(x, HW_IPU_INT_STAT_14_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_14_TOG(x, v)    (HW_IPU_INT_STAT_14_WR(x, HW_IPU_INT_STAT_14_RD(x) ^  (v)))
 #endif
 
 /*
@@ -20772,6 +22764,16 @@ typedef union
 #define BP_IPU_INT_STAT_14_IDMAC_TH_33      1
 #define BM_IPU_INT_STAT_14_IDMAC_TH_33      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_33(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_14_IDMAC_TH_33)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_33(v)   (((v) << 1) & BM_IPU_INT_STAT_14_IDMAC_TH_33)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_33 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_33(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_33, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_40 (W1C)
  *
@@ -20785,6 +22787,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_14_IDMAC_TH_40      8
 #define BM_IPU_INT_STAT_14_IDMAC_TH_40      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_40(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_14_IDMAC_TH_40)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_40(v)   (((v) << 8) & BM_IPU_INT_STAT_14_IDMAC_TH_40)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_40 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_40(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_40, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_41 (W1C)
@@ -20800,6 +22812,16 @@ typedef union
 #define BP_IPU_INT_STAT_14_IDMAC_TH_41      9
 #define BM_IPU_INT_STAT_14_IDMAC_TH_41      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_41(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_14_IDMAC_TH_41)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_41(v)   (((v) << 9) & BM_IPU_INT_STAT_14_IDMAC_TH_41)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_41 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_41(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_41, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_42 (W1C)
  *
@@ -20813,6 +22835,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_14_IDMAC_TH_42      10
 #define BM_IPU_INT_STAT_14_IDMAC_TH_42      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_42(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_14_IDMAC_TH_42)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_42(v)   (((v) << 10) & BM_IPU_INT_STAT_14_IDMAC_TH_42)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_42 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_42(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_42, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_43 (W1C)
@@ -20828,6 +22860,16 @@ typedef union
 #define BP_IPU_INT_STAT_14_IDMAC_TH_43      11
 #define BM_IPU_INT_STAT_14_IDMAC_TH_43      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_43(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_14_IDMAC_TH_43)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_43(v)   (((v) << 11) & BM_IPU_INT_STAT_14_IDMAC_TH_43)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_43 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_43(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_43, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_44 (W1C)
  *
@@ -20841,6 +22883,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_14_IDMAC_TH_44      12
 #define BM_IPU_INT_STAT_14_IDMAC_TH_44      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_44(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_14_IDMAC_TH_44)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_44(v)   (((v) << 12) & BM_IPU_INT_STAT_14_IDMAC_TH_44)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_44 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_44(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_44, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_45 (W1C)
@@ -20856,6 +22908,16 @@ typedef union
 #define BP_IPU_INT_STAT_14_IDMAC_TH_45      13
 #define BM_IPU_INT_STAT_14_IDMAC_TH_45      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_45(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_14_IDMAC_TH_45)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_45(v)   (((v) << 13) & BM_IPU_INT_STAT_14_IDMAC_TH_45)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_45 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_45(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_45, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_46 (W1C)
  *
@@ -20869,6 +22931,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_14_IDMAC_TH_46      14
 #define BM_IPU_INT_STAT_14_IDMAC_TH_46      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_46(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_14_IDMAC_TH_46)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_46(v)   (((v) << 14) & BM_IPU_INT_STAT_14_IDMAC_TH_46)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_46 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_46(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_46, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_47 (W1C)
@@ -20884,6 +22956,16 @@ typedef union
 #define BP_IPU_INT_STAT_14_IDMAC_TH_47      15
 #define BM_IPU_INT_STAT_14_IDMAC_TH_47      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_47(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_14_IDMAC_TH_47)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_47(v)   (((v) << 15) & BM_IPU_INT_STAT_14_IDMAC_TH_47)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_47 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_47(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_47, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_48 (W1C)
  *
@@ -20897,6 +22979,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_14_IDMAC_TH_48      16
 #define BM_IPU_INT_STAT_14_IDMAC_TH_48      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_48(v)   ((((reg32_t) v) << 16) & BM_IPU_INT_STAT_14_IDMAC_TH_48)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_48(v)   (((v) << 16) & BM_IPU_INT_STAT_14_IDMAC_TH_48)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_48 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_48(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_48, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_49 (W1C)
@@ -20912,6 +23004,16 @@ typedef union
 #define BP_IPU_INT_STAT_14_IDMAC_TH_49      17
 #define BM_IPU_INT_STAT_14_IDMAC_TH_49      0x00020000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_49(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_14_IDMAC_TH_49)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_49(v)   (((v) << 17) & BM_IPU_INT_STAT_14_IDMAC_TH_49)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_49 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_49(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_49, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_50 (W1C)
  *
@@ -20925,6 +23027,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_14_IDMAC_TH_50      18
 #define BM_IPU_INT_STAT_14_IDMAC_TH_50      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_50(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_14_IDMAC_TH_50)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_50(v)   (((v) << 18) & BM_IPU_INT_STAT_14_IDMAC_TH_50)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_50 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_50(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_50, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_51 (W1C)
@@ -20940,6 +23052,16 @@ typedef union
 #define BP_IPU_INT_STAT_14_IDMAC_TH_51      19
 #define BM_IPU_INT_STAT_14_IDMAC_TH_51      0x00080000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_51(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_14_IDMAC_TH_51)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_51(v)   (((v) << 19) & BM_IPU_INT_STAT_14_IDMAC_TH_51)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_51 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_51(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_51, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_14, field IDMAC_TH_52 (W1C)
  *
@@ -20953,6 +23075,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_14_IDMAC_TH_52      20
 #define BM_IPU_INT_STAT_14_IDMAC_TH_52      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_14_IDMAC_TH_52(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_14_IDMAC_TH_52)
+#else
+#define BF_IPU_INT_STAT_14_IDMAC_TH_52(v)   (((v) << 20) & BM_IPU_INT_STAT_14_IDMAC_TH_52)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_TH_52 field to a new value.
+#define BW_IPU_INT_STAT_14_IDMAC_TH_52(v)   BF_CS1(IPU_INT_STAT_14, IDMAC_TH_52, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -21012,6 +23144,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_15(x)           (*(volatile hw_ipu_int_stat_15_t *) HW_IPU_INT_STAT_15_ADDR(x))
 #define HW_IPU_INT_STAT_15_RD(x)        (HW_IPU_INT_STAT_15(x).U)
+#define HW_IPU_INT_STAT_15_WR(x, v)     (HW_IPU_INT_STAT_15(x).U = (v))
+#define HW_IPU_INT_STAT_15_SET(x, v)    (HW_IPU_INT_STAT_15_WR(x, HW_IPU_INT_STAT_15_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_15_CLR(x, v)    (HW_IPU_INT_STAT_15_WR(x, HW_IPU_INT_STAT_15_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_15_TOG(x, v)    (HW_IPU_INT_STAT_15_WR(x, HW_IPU_INT_STAT_15_RD(x) ^  (v)))
 #endif
 
 /*
@@ -21031,6 +23167,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_SNOOPING1_INT      0
 #define BM_IPU_INT_STAT_15_SNOOPING1_INT      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_SNOOPING1_INT(v)   ((((reg32_t) v) << 0) & BM_IPU_INT_STAT_15_SNOOPING1_INT)
+#else
+#define BF_IPU_INT_STAT_15_SNOOPING1_INT(v)   (((v) << 0) & BM_IPU_INT_STAT_15_SNOOPING1_INT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SNOOPING1_INT field to a new value.
+#define BW_IPU_INT_STAT_15_SNOOPING1_INT(v)   BF_CS1(IPU_INT_STAT_15, SNOOPING1_INT, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field SNOOPING2_INT (W1C)
  *
@@ -21044,6 +23190,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_SNOOPING2_INT      1
 #define BM_IPU_INT_STAT_15_SNOOPING2_INT      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_SNOOPING2_INT(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_15_SNOOPING2_INT)
+#else
+#define BF_IPU_INT_STAT_15_SNOOPING2_INT(v)   (((v) << 1) & BM_IPU_INT_STAT_15_SNOOPING2_INT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SNOOPING2_INT field to a new value.
+#define BW_IPU_INT_STAT_15_SNOOPING2_INT(v)   BF_CS1(IPU_INT_STAT_15, SNOOPING2_INT, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DP_SF_START (W1C)
@@ -21059,6 +23215,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DP_SF_START      2
 #define BM_IPU_INT_STAT_15_DP_SF_START      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DP_SF_START(v)   ((((reg32_t) v) << 2) & BM_IPU_INT_STAT_15_DP_SF_START)
+#else
+#define BF_IPU_INT_STAT_15_DP_SF_START(v)   (((v) << 2) & BM_IPU_INT_STAT_15_DP_SF_START)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DP_SF_START field to a new value.
+#define BW_IPU_INT_STAT_15_DP_SF_START(v)   BF_CS1(IPU_INT_STAT_15, DP_SF_START, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DP_SF_END (W1C)
  *
@@ -21072,6 +23238,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DP_SF_END      3
 #define BM_IPU_INT_STAT_15_DP_SF_END      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DP_SF_END(v)   ((((reg32_t) v) << 3) & BM_IPU_INT_STAT_15_DP_SF_END)
+#else
+#define BF_IPU_INT_STAT_15_DP_SF_END(v)   (((v) << 3) & BM_IPU_INT_STAT_15_DP_SF_END)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DP_SF_END field to a new value.
+#define BW_IPU_INT_STAT_15_DP_SF_END(v)   BF_CS1(IPU_INT_STAT_15, DP_SF_END, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DP_ASF_START (W1C)
@@ -21087,6 +23263,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DP_ASF_START      4
 #define BM_IPU_INT_STAT_15_DP_ASF_START      0x00000010
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DP_ASF_START(v)   ((((reg32_t) v) << 4) & BM_IPU_INT_STAT_15_DP_ASF_START)
+#else
+#define BF_IPU_INT_STAT_15_DP_ASF_START(v)   (((v) << 4) & BM_IPU_INT_STAT_15_DP_ASF_START)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DP_ASF_START field to a new value.
+#define BW_IPU_INT_STAT_15_DP_ASF_START(v)   BF_CS1(IPU_INT_STAT_15, DP_ASF_START, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DP_ASF_END (W1C)
  *
@@ -21100,6 +23286,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DP_ASF_END      5
 #define BM_IPU_INT_STAT_15_DP_ASF_END      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DP_ASF_END(v)   ((((reg32_t) v) << 5) & BM_IPU_INT_STAT_15_DP_ASF_END)
+#else
+#define BF_IPU_INT_STAT_15_DP_ASF_END(v)   (((v) << 5) & BM_IPU_INT_STAT_15_DP_ASF_END)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DP_ASF_END field to a new value.
+#define BW_IPU_INT_STAT_15_DP_ASF_END(v)   BF_CS1(IPU_INT_STAT_15, DP_ASF_END, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DP_SF_BRAKE (W1C)
@@ -21115,6 +23311,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DP_SF_BRAKE      6
 #define BM_IPU_INT_STAT_15_DP_SF_BRAKE      0x00000040
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DP_SF_BRAKE(v)   ((((reg32_t) v) << 6) & BM_IPU_INT_STAT_15_DP_SF_BRAKE)
+#else
+#define BF_IPU_INT_STAT_15_DP_SF_BRAKE(v)   (((v) << 6) & BM_IPU_INT_STAT_15_DP_SF_BRAKE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DP_SF_BRAKE field to a new value.
+#define BW_IPU_INT_STAT_15_DP_SF_BRAKE(v)   BF_CS1(IPU_INT_STAT_15, DP_SF_BRAKE, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DP_ASF_BRAKE (W1C)
  *
@@ -21129,6 +23335,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DP_ASF_BRAKE      7
 #define BM_IPU_INT_STAT_15_DP_ASF_BRAKE      0x00000080
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DP_ASF_BRAKE(v)   ((((reg32_t) v) << 7) & BM_IPU_INT_STAT_15_DP_ASF_BRAKE)
+#else
+#define BF_IPU_INT_STAT_15_DP_ASF_BRAKE(v)   (((v) << 7) & BM_IPU_INT_STAT_15_DP_ASF_BRAKE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DP_ASF_BRAKE field to a new value.
+#define BW_IPU_INT_STAT_15_DP_ASF_BRAKE(v)   BF_CS1(IPU_INT_STAT_15, DP_ASF_BRAKE, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_FC_0 (W1C)
  *
@@ -21141,6 +23357,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DC_FC_0      8
 #define BM_IPU_INT_STAT_15_DC_FC_0      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_FC_0(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_15_DC_FC_0)
+#else
+#define BF_IPU_INT_STAT_15_DC_FC_0(v)   (((v) << 8) & BM_IPU_INT_STAT_15_DC_FC_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_FC_0 field to a new value.
+#define BW_IPU_INT_STAT_15_DC_FC_0(v)   BF_CS1(IPU_INT_STAT_15, DC_FC_0, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_FC_1 (W1C)
@@ -21155,6 +23381,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DC_FC_1      9
 #define BM_IPU_INT_STAT_15_DC_FC_1      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_FC_1(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_15_DC_FC_1)
+#else
+#define BF_IPU_INT_STAT_15_DC_FC_1(v)   (((v) << 9) & BM_IPU_INT_STAT_15_DC_FC_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_FC_1 field to a new value.
+#define BW_IPU_INT_STAT_15_DC_FC_1(v)   BF_CS1(IPU_INT_STAT_15, DC_FC_1, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_FC_2 (W1C)
  *
@@ -21167,6 +23403,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DC_FC_2      10
 #define BM_IPU_INT_STAT_15_DC_FC_2      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_FC_2(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_15_DC_FC_2)
+#else
+#define BF_IPU_INT_STAT_15_DC_FC_2(v)   (((v) << 10) & BM_IPU_INT_STAT_15_DC_FC_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_FC_2 field to a new value.
+#define BW_IPU_INT_STAT_15_DC_FC_2(v)   BF_CS1(IPU_INT_STAT_15, DC_FC_2, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_FC_3 (W1C)
@@ -21181,6 +23427,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DC_FC_3      11
 #define BM_IPU_INT_STAT_15_DC_FC_3      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_FC_3(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_15_DC_FC_3)
+#else
+#define BF_IPU_INT_STAT_15_DC_FC_3(v)   (((v) << 11) & BM_IPU_INT_STAT_15_DC_FC_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_FC_3 field to a new value.
+#define BW_IPU_INT_STAT_15_DC_FC_3(v)   BF_CS1(IPU_INT_STAT_15, DC_FC_3, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_FC_4 (W1C)
  *
@@ -21193,6 +23449,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DC_FC_4      12
 #define BM_IPU_INT_STAT_15_DC_FC_4      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_FC_4(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_15_DC_FC_4)
+#else
+#define BF_IPU_INT_STAT_15_DC_FC_4(v)   (((v) << 12) & BM_IPU_INT_STAT_15_DC_FC_4)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_FC_4 field to a new value.
+#define BW_IPU_INT_STAT_15_DC_FC_4(v)   BF_CS1(IPU_INT_STAT_15, DC_FC_4, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_FC_6 (W1C)
@@ -21207,6 +23473,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DC_FC_6      13
 #define BM_IPU_INT_STAT_15_DC_FC_6      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_FC_6(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_15_DC_FC_6)
+#else
+#define BF_IPU_INT_STAT_15_DC_FC_6(v)   (((v) << 13) & BM_IPU_INT_STAT_15_DC_FC_6)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_FC_6 field to a new value.
+#define BW_IPU_INT_STAT_15_DC_FC_6(v)   BF_CS1(IPU_INT_STAT_15, DC_FC_6, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI_VSYNC_PRE_0 (W1C)
  *
@@ -21220,6 +23496,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI_VSYNC_PRE_0      14
 #define BM_IPU_INT_STAT_15_DI_VSYNC_PRE_0      0x00004000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI_VSYNC_PRE_0(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_15_DI_VSYNC_PRE_0)
+#else
+#define BF_IPU_INT_STAT_15_DI_VSYNC_PRE_0(v)   (((v) << 14) & BM_IPU_INT_STAT_15_DI_VSYNC_PRE_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI_VSYNC_PRE_0 field to a new value.
+#define BW_IPU_INT_STAT_15_DI_VSYNC_PRE_0(v)   BF_CS1(IPU_INT_STAT_15, DI_VSYNC_PRE_0, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI_VSYNC_PRE_1 (W1C)
  *
@@ -21232,6 +23518,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI_VSYNC_PRE_1      15
 #define BM_IPU_INT_STAT_15_DI_VSYNC_PRE_1      0x00008000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI_VSYNC_PRE_1(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_15_DI_VSYNC_PRE_1)
+#else
+#define BF_IPU_INT_STAT_15_DI_VSYNC_PRE_1(v)   (((v) << 15) & BM_IPU_INT_STAT_15_DI_VSYNC_PRE_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI_VSYNC_PRE_1 field to a new value.
+#define BW_IPU_INT_STAT_15_DI_VSYNC_PRE_1(v)   BF_CS1(IPU_INT_STAT_15, DI_VSYNC_PRE_1, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_DP_START (W1C)
@@ -21247,6 +23543,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DC_DP_START      16
 #define BM_IPU_INT_STAT_15_DC_DP_START      0x00010000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_DP_START(v)   ((((reg32_t) v) << 16) & BM_IPU_INT_STAT_15_DC_DP_START)
+#else
+#define BF_IPU_INT_STAT_15_DC_DP_START(v)   (((v) << 16) & BM_IPU_INT_STAT_15_DC_DP_START)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_DP_START field to a new value.
+#define BW_IPU_INT_STAT_15_DC_DP_START(v)   BF_CS1(IPU_INT_STAT_15, DC_DP_START, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DC_ASYNC_STOP (W1C)
  *
@@ -21261,6 +23567,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DC_ASYNC_STOP      17
 #define BM_IPU_INT_STAT_15_DC_ASYNC_STOP      0x00020000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DC_ASYNC_STOP(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_15_DC_ASYNC_STOP)
+#else
+#define BF_IPU_INT_STAT_15_DC_ASYNC_STOP(v)   (((v) << 17) & BM_IPU_INT_STAT_15_DC_ASYNC_STOP)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DC_ASYNC_STOP field to a new value.
+#define BW_IPU_INT_STAT_15_DC_ASYNC_STOP(v)   BF_CS1(IPU_INT_STAT_15, DC_ASYNC_STOP, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_0 (W1C)
  *
@@ -21273,6 +23589,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_0      18
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_0      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_0(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_0)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_0(v)   (((v) << 18) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_0)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_0 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_0(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_0, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_1 (W1C)
@@ -21287,6 +23613,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_1      19
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_1      0x00080000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_1(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_1)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_1(v)   (((v) << 19) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_1 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_1(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_1, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_2 (W1C)
  *
@@ -21299,6 +23635,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_2      20
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_2      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_2(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_2)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_2(v)   (((v) << 20) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_2)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_2 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_2(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_2, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_3 (W1C)
@@ -21313,6 +23659,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_3      21
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_3      0x00200000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_3(v)   ((((reg32_t) v) << 21) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_3)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_3(v)   (((v) << 21) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_3 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_3(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_3, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_4 (W1C)
  *
@@ -21325,6 +23681,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_4      22
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_4      0x00400000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_4(v)   ((((reg32_t) v) << 22) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_4)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_4(v)   (((v) << 22) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_4)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_4 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_4(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_4, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_5 (W1C)
@@ -21339,6 +23705,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_5      23
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_5      0x00800000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_5(v)   ((((reg32_t) v) << 23) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_5)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_5(v)   (((v) << 23) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_5)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_5 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_5(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_5, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_6 (W1C)
  *
@@ -21351,6 +23727,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_6      24
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_6      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_6(v)   ((((reg32_t) v) << 24) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_6)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_6(v)   (((v) << 24) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_6)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_6 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_6(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_6, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_7 (W1C)
@@ -21365,6 +23751,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_7      25
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_7      0x02000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_7(v)   ((((reg32_t) v) << 25) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_7)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_7(v)   (((v) << 25) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_7)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_7 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_7(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_7, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_8 (W1C)
  *
@@ -21377,6 +23773,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_8      26
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_8      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_8(v)   ((((reg32_t) v) << 26) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_8)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_8(v)   (((v) << 26) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_8)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_8 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_8(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_8, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_9 (W1C)
@@ -21391,6 +23797,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_9      27
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_9      0x08000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_9(v)   ((((reg32_t) v) << 27) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_9)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_9(v)   (((v) << 27) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_9)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_9 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_9(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_9, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI0_CNT_EN_PRE_10 (W1C)
  *
@@ -21403,6 +23819,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI0_CNT_EN_PRE_10      28
 #define BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_10      0x10000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_10(v)   ((((reg32_t) v) << 28) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_10)
+#else
+#define BF_IPU_INT_STAT_15_DI0_CNT_EN_PRE_10(v)   (((v) << 28) & BM_IPU_INT_STAT_15_DI0_CNT_EN_PRE_10)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI0_CNT_EN_PRE_10 field to a new value.
+#define BW_IPU_INT_STAT_15_DI0_CNT_EN_PRE_10(v)   BF_CS1(IPU_INT_STAT_15, DI0_CNT_EN_PRE_10, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_15, field DI1_DISP_CLK_EN_PRE (W1C)
@@ -21417,6 +23843,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI1_DISP_CLK_EN_PRE      29
 #define BM_IPU_INT_STAT_15_DI1_DISP_CLK_EN_PRE      0x20000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI1_DISP_CLK_EN_PRE(v)   ((((reg32_t) v) << 29) & BM_IPU_INT_STAT_15_DI1_DISP_CLK_EN_PRE)
+#else
+#define BF_IPU_INT_STAT_15_DI1_DISP_CLK_EN_PRE(v)   (((v) << 29) & BM_IPU_INT_STAT_15_DI1_DISP_CLK_EN_PRE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI1_DISP_CLK_EN_PRE field to a new value.
+#define BW_IPU_INT_STAT_15_DI1_DISP_CLK_EN_PRE(v)   BF_CS1(IPU_INT_STAT_15, DI1_DISP_CLK_EN_PRE, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI1_CNT_EN_PRE_3 (W1C)
  *
@@ -21430,6 +23866,16 @@ typedef union
 #define BP_IPU_INT_STAT_15_DI1_CNT_EN_PRE_3      30
 #define BM_IPU_INT_STAT_15_DI1_CNT_EN_PRE_3      0x40000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI1_CNT_EN_PRE_3(v)   ((((reg32_t) v) << 30) & BM_IPU_INT_STAT_15_DI1_CNT_EN_PRE_3)
+#else
+#define BF_IPU_INT_STAT_15_DI1_CNT_EN_PRE_3(v)   (((v) << 30) & BM_IPU_INT_STAT_15_DI1_CNT_EN_PRE_3)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI1_CNT_EN_PRE_3 field to a new value.
+#define BW_IPU_INT_STAT_15_DI1_CNT_EN_PRE_3(v)   BF_CS1(IPU_INT_STAT_15, DI1_CNT_EN_PRE_3, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_15, field DI1_CNT_EN_PRE_8 (W1C)
  *
@@ -21442,6 +23888,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_15_DI1_CNT_EN_PRE_8      31
 #define BM_IPU_INT_STAT_15_DI1_CNT_EN_PRE_8      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_15_DI1_CNT_EN_PRE_8(v)   ((((reg32_t) v) << 31) & BM_IPU_INT_STAT_15_DI1_CNT_EN_PRE_8)
+#else
+#define BF_IPU_INT_STAT_15_DI1_CNT_EN_PRE_8(v)   (((v) << 31) & BM_IPU_INT_STAT_15_DI1_CNT_EN_PRE_8)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DI1_CNT_EN_PRE_8 field to a new value.
+#define BW_IPU_INT_STAT_15_DI1_CNT_EN_PRE_8(v)   BF_CS1(IPU_INT_STAT_15, DI1_CNT_EN_PRE_8, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -22238,7 +24694,7 @@ typedef union
 #define BM_IPU_ALT_CUR_1_DMA_CH_ALT_CUR_BUF_N      0x00000002
 
 
-/* --- Register HW_IPU_ALT_CUR_1, field DMA_CH_ALT_CUR_BUF_N (RO)
+/* --- Register HW_IPU_ALT_CUR_1, field DMA_CH_ALT_CUR_BUF_N1 (RO)
  *
  * Current Buffer. This bit indicates which buffer is in use by DMA when double buffer mode is
  * selected. n Indicates the corresponding DMA channel number.
@@ -22248,8 +24704,8 @@ typedef union
  * 1 - Current buffer used by DMA is buffer 1.
  */
 
-#define BP_IPU_ALT_CUR_1_DMA_CH_ALT_CUR_BUF_N      9
-#define BM_IPU_ALT_CUR_1_DMA_CH_ALT_CUR_BUF_N      0x00000200
+#define BP_IPU_ALT_CUR_1_DMA_CH_ALT_CUR_BUF_N1      9
+#define BM_IPU_ALT_CUR_1_DMA_CH_ALT_CUR_BUF_N1      0x00000200
 
 
 /* --- Register HW_IPU_ALT_CUR_1, field DMA_CH_ALT_CUR_BUF_52 (RO)
@@ -24109,7 +26565,7 @@ typedef union
         unsigned DMA_CH_BUF1_RDY_8 : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
         unsigned DMA_CH_BUF1_RDY_9 : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
         unsigned DMA_CH_BUF1_RDY_10 : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
-        unsigned DMA_CH_BUF1_RDY_ : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
+        unsigned DMA_CH_BUF1_RDY : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
         unsigned DMA_CH_BUF1_RDY_12 : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
         unsigned DMA_CH_BUF1_RDY_13 : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
         unsigned DMA_CH_BUF1_RDY_14 : 1; //!< Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in memory.
@@ -24344,7 +26800,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_IPU_CH_BUF1_RDY0, field DMA_CH_BUF1_RDY_ (RW)
+/* --- Register HW_IPU_CH_BUF1_RDY0, field DMA_CH_BUF1_RDY (RW)
  *
  * Buffer 1 is ready. This bit indicates that ARM platform finished/writing reading buffer 0 in
  * memory.
@@ -24354,17 +26810,17 @@ typedef union
  * 1 - Buffer 0 is ready.
  */
 
-#define BP_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY_      11
-#define BM_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY_      0x00000800
+#define BP_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY      11
+#define BM_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY      0x00000800
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY_(v)   ((((reg32_t) v) << 11) & BM_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY_)
+#define BF_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY(v)   ((((reg32_t) v) << 11) & BM_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY)
 #else
-#define BF_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY_(v)   (((v) << 11) & BM_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY_)
+#define BF_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY(v)   (((v) << 11) & BM_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DMA_CH_BUF1_RDY_ field to a new value.
-#define BW_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY_(v)   BF_CS1(IPU_CH_BUF1_RDY0, DMA_CH_BUF1_RDY_, v)
+//! @brief Set the DMA_CH_BUF1_RDY field to a new value.
+#define BW_IPU_CH_BUF1_RDY0_DMA_CH_BUF1_RDY(v)   BF_CS1(IPU_CH_BUF1_RDY0, DMA_CH_BUF1_RDY, v)
 #endif
 
 
@@ -25897,7 +28353,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DMA_CH_BUF2_RDY_ : 32; //!< Buffer 2 is ready. This bit indicates that ARM platform finished/writing reading buffer 2 in memory.
+        unsigned DMA_CH_BUF2_RDY : 32; //!< Buffer 2 is ready. This bit indicates that ARM platform finished/writing reading buffer 2 in memory.
     } B;
 } hw_ipu_ch_buf2_rdy1_t;
 #endif
@@ -25920,7 +28376,7 @@ typedef union
  * constants & macros for individual IPU_CH_BUF2_RDY1 bitfields
  */
 
-/* --- Register HW_IPU_CH_BUF2_RDY1, field DMA_CH_BUF2_RDY_ (RW)
+/* --- Register HW_IPU_CH_BUF2_RDY1, field DMA_CH_BUF2_RDY (RW)
  *
  * Buffer 2 is ready. This bit indicates that ARM platform finished/writing reading buffer 2 in
  * memory.
@@ -25930,17 +28386,17 @@ typedef union
  * 1 - Buffer 2 is ready.
  */
 
-#define BP_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY_      0
-#define BM_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY_      0xffffffff
+#define BP_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY      0
+#define BM_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY      0xffffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY_(v)   ((((reg32_t) v) << 0) & BM_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY_)
+#define BF_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY(v)   ((((reg32_t) v) << 0) & BM_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY)
 #else
-#define BF_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY_(v)   (((v) << 0) & BM_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY_)
+#define BF_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY(v)   (((v) << 0) & BM_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DMA_CH_BUF2_RDY_ field to a new value.
-#define BW_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY_(v)   BF_CS1(IPU_CH_BUF2_RDY1, DMA_CH_BUF2_RDY_, v)
+//! @brief Set the DMA_CH_BUF2_RDY field to a new value.
+#define BW_IPU_CH_BUF2_RDY1_DMA_CH_BUF2_RDY(v)   BF_CS1(IPU_CH_BUF2_RDY1, DMA_CH_BUF2_RDY, v)
 #endif
 
 
@@ -25986,6 +28442,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_IPU_INT_STAT_4(x)           (*(volatile hw_ipu_int_stat_4_t *) HW_IPU_INT_STAT_4_ADDR(x))
 #define HW_IPU_INT_STAT_4_RD(x)        (HW_IPU_INT_STAT_4(x).U)
+#define HW_IPU_INT_STAT_4_WR(x, v)     (HW_IPU_INT_STAT_4(x).U = (v))
+#define HW_IPU_INT_STAT_4_SET(x, v)    (HW_IPU_INT_STAT_4_WR(x, HW_IPU_INT_STAT_4_RD(x) |  (v)))
+#define HW_IPU_INT_STAT_4_CLR(x, v)    (HW_IPU_INT_STAT_4_WR(x, HW_IPU_INT_STAT_4_RD(x) & ~(v)))
+#define HW_IPU_INT_STAT_4_TOG(x, v)    (HW_IPU_INT_STAT_4_WR(x, HW_IPU_INT_STAT_4_RD(x) ^  (v)))
 #endif
 
 /*
@@ -26005,6 +28465,16 @@ typedef union
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_33      1
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_33      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_33(v)   ((((reg32_t) v) << 1) & BM_IPU_INT_STAT_4_IDMAC_NFACK_33)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_33(v)   (((v) << 1) & BM_IPU_INT_STAT_4_IDMAC_NFACK_33)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_33 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_33(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_33, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_40 (W1C)
  *
@@ -26018,6 +28488,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_40      8
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_40      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_40(v)   ((((reg32_t) v) << 8) & BM_IPU_INT_STAT_4_IDMAC_NFACK_40)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_40(v)   (((v) << 8) & BM_IPU_INT_STAT_4_IDMAC_NFACK_40)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_40 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_40(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_40, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_41 (W1C)
@@ -26033,6 +28513,16 @@ typedef union
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_41      9
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_41      0x00000200
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_41(v)   ((((reg32_t) v) << 9) & BM_IPU_INT_STAT_4_IDMAC_NFACK_41)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_41(v)   (((v) << 9) & BM_IPU_INT_STAT_4_IDMAC_NFACK_41)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_41 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_41(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_41, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_42 (W1C)
  *
@@ -26046,6 +28536,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_42      10
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_42      0x00000400
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_42(v)   ((((reg32_t) v) << 10) & BM_IPU_INT_STAT_4_IDMAC_NFACK_42)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_42(v)   (((v) << 10) & BM_IPU_INT_STAT_4_IDMAC_NFACK_42)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_42 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_42(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_42, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_43 (W1C)
@@ -26061,6 +28561,16 @@ typedef union
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_43      11
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_43      0x00000800
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_43(v)   ((((reg32_t) v) << 11) & BM_IPU_INT_STAT_4_IDMAC_NFACK_43)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_43(v)   (((v) << 11) & BM_IPU_INT_STAT_4_IDMAC_NFACK_43)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_43 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_43(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_43, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_44 (W1C)
  *
@@ -26074,6 +28584,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_44      12
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_44      0x00001000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_44(v)   ((((reg32_t) v) << 12) & BM_IPU_INT_STAT_4_IDMAC_NFACK_44)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_44(v)   (((v) << 12) & BM_IPU_INT_STAT_4_IDMAC_NFACK_44)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_44 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_44(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_44, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_45 (W1C)
@@ -26089,6 +28609,16 @@ typedef union
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_45      13
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_45      0x00002000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_45(v)   ((((reg32_t) v) << 13) & BM_IPU_INT_STAT_4_IDMAC_NFACK_45)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_45(v)   (((v) << 13) & BM_IPU_INT_STAT_4_IDMAC_NFACK_45)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_45 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_45(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_45, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_46 (W1C)
  *
@@ -26102,6 +28632,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_46      14
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_46      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_46(v)   ((((reg32_t) v) << 14) & BM_IPU_INT_STAT_4_IDMAC_NFACK_46)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_46(v)   (((v) << 14) & BM_IPU_INT_STAT_4_IDMAC_NFACK_46)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_46 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_46(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_46, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_47 (W1C)
@@ -26117,6 +28657,16 @@ typedef union
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_47      15
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_47      0x00008000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_47(v)   ((((reg32_t) v) << 15) & BM_IPU_INT_STAT_4_IDMAC_NFACK_47)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_47(v)   (((v) << 15) & BM_IPU_INT_STAT_4_IDMAC_NFACK_47)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_47 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_47(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_47, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_48 (W1C)
  *
@@ -26130,6 +28680,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_48      16
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_48      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_48(v)   ((((reg32_t) v) << 16) & BM_IPU_INT_STAT_4_IDMAC_NFACK_48)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_48(v)   (((v) << 16) & BM_IPU_INT_STAT_4_IDMAC_NFACK_48)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_48 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_48(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_48, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_49 (W1C)
@@ -26145,6 +28705,16 @@ typedef union
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_49      17
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_49      0x00020000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_49(v)   ((((reg32_t) v) << 17) & BM_IPU_INT_STAT_4_IDMAC_NFACK_49)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_49(v)   (((v) << 17) & BM_IPU_INT_STAT_4_IDMAC_NFACK_49)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_49 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_49(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_49, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_50 (W1C)
  *
@@ -26158,6 +28728,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_50      18
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_50      0x00040000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_50(v)   ((((reg32_t) v) << 18) & BM_IPU_INT_STAT_4_IDMAC_NFACK_50)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_50(v)   (((v) << 18) & BM_IPU_INT_STAT_4_IDMAC_NFACK_50)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_50 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_50(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_50, v)
+#endif
 
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_51 (W1C)
@@ -26173,6 +28753,16 @@ typedef union
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_51      19
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_51      0x00080000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_51(v)   ((((reg32_t) v) << 19) & BM_IPU_INT_STAT_4_IDMAC_NFACK_51)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_51(v)   (((v) << 19) & BM_IPU_INT_STAT_4_IDMAC_NFACK_51)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_51 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_51(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_51, v)
+#endif
+
 
 /* --- Register HW_IPU_INT_STAT_4, field IDMAC_NFACK_52 (W1C)
  *
@@ -26186,6 +28776,16 @@ typedef union
 
 #define BP_IPU_INT_STAT_4_IDMAC_NFACK_52      20
 #define BM_IPU_INT_STAT_4_IDMAC_NFACK_52      0x00100000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_52(v)   ((((reg32_t) v) << 20) & BM_IPU_INT_STAT_4_IDMAC_NFACK_52)
+#else
+#define BF_IPU_INT_STAT_4_IDMAC_NFACK_52(v)   (((v) << 20) & BM_IPU_INT_STAT_4_IDMAC_NFACK_52)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IDMAC_NFACK_52 field to a new value.
+#define BW_IPU_INT_STAT_4_IDMAC_NFACK_52(v)   BF_CS1(IPU_INT_STAT_4, IDMAC_NFACK_52, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -28611,7 +31211,7 @@ typedef union
         unsigned IDMAC_CH_BUSY_28 : 1; //!< IDMAC Channel busy bit [i] This bit indicates if the channel is currently served by the IDMAC. This bit is self cleared by the IDMAC.
         unsigned IDMAC_CH_BUSY_29 : 1; //!< IDMAC Channel busy bit [i] This bit indicates if the channel is currently served by the IDMAC. This bit is self cleared by the IDMAC.
         unsigned RESERVED4 : 1; //!< Reserved.
-        unsigned IDMAC_CH_BUSY_ : 1; //!< IDMAC Channel busy bit [i] This bit indicates if the channel is currently served by the IDMAC. This bit is self cleared by the IDMAC.
+        unsigned IDMAC_CH_BUSY : 1; //!< IDMAC Channel busy bit [i] This bit indicates if the channel is currently served by the IDMAC. This bit is self cleared by the IDMAC.
     } B;
 } hw_ipu_idmac_ch_busy_1_t;
 #endif
@@ -28980,7 +31580,7 @@ typedef union
 #define BM_IPU_IDMAC_CH_BUSY_1_IDMAC_CH_BUSY_29      0x20000000
 
 
-/* --- Register HW_IPU_IDMAC_CH_BUSY_1, field IDMAC_CH_BUSY_ (RO)
+/* --- Register HW_IPU_IDMAC_CH_BUSY_1, field IDMAC_CH_BUSY (RO)
  *
  * IDMAC Channel busy bit [i] This bit indicates if the channel is currently served by the IDMAC.
  * This bit is self cleared by the IDMAC.
@@ -28990,8 +31590,8 @@ typedef union
  * 1 - IDMAC channel [i] is busy
  */
 
-#define BP_IPU_IDMAC_CH_BUSY_1_IDMAC_CH_BUSY_      31
-#define BM_IPU_IDMAC_CH_BUSY_1_IDMAC_CH_BUSY_      0x80000000
+#define BP_IPU_IDMAC_CH_BUSY_1_IDMAC_CH_BUSY      31
+#define BM_IPU_IDMAC_CH_BUSY_1_IDMAC_CH_BUSY      0x80000000
 
 
 #ifndef __LANGUAGE_ASM__
@@ -34806,9 +37406,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned CSI0_CPD_RC_ : 9; //!< CONSTANT <2*i> parameter of Compander, Red component. Reserved
+        unsigned CSI0_CPD_RC : 9; //!< CONSTANT <2*i> parameter of Compander, Red component. Reserved
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned CSI0_CPD_RC_1 : 9; //!< CONSTANT <2*i+1> parameter of Compander, Red component. Reserved
+        unsigned CSI0_CPD_RC1 : 9; //!< CONSTANT <2*i+1> parameter of Compander, Red component. Reserved
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_csio_cpd_rc_i_t;
@@ -34832,40 +37432,40 @@ typedef union
  * constants & macros for individual IPU_CSIO_CPD_RC_I bitfields
  */
 
-/* --- Register HW_IPU_CSIO_CPD_RC_I, field CSI0_CPD_RC_ (RW)
+/* --- Register HW_IPU_CSIO_CPD_RC_I, field CSI0_CPD_RC (RW)
  *
  * CONSTANT <2*i> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_      0
-#define BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_      0x000001ff
+#define BP_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC      0
+#define BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_(v)   ((((reg32_t) v) << 0) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_)
+#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC(v)   ((((reg32_t) v) << 0) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC)
 #else
-#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_(v)   (((v) << 0) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_)
+#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC(v)   (((v) << 0) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_RC_ field to a new value.
-#define BW_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_(v)   BF_CS1(IPU_CSIO_CPD_RC_I, CSI0_CPD_RC_, v)
+//! @brief Set the CSI0_CPD_RC field to a new value.
+#define BW_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC(v)   BF_CS1(IPU_CSIO_CPD_RC_I, CSI0_CPD_RC, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_RC_I, field CSI0_CPD_RC_ (RW)
+/* --- Register HW_IPU_CSIO_CPD_RC_I, field CSI0_CPD_RC1 (RW)
  *
  * CONSTANT <2*i+1> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_      16
-#define BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_      0x01ff0000
+#define BP_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC1      16
+#define BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_)
+#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC1)
 #else
-#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_(v)   (((v) << 16) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_)
+#define BF_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC1(v)   (((v) << 16) & BM_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_RC_ field to a new value.
-#define BW_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC_(v)   BF_CS1(IPU_CSIO_CPD_RC_I, CSI0_CPD_RC_, v)
+//! @brief Set the CSI0_CPD_RC1 field to a new value.
+#define BW_IPU_CSIO_CPD_RC_I_CSI0_CPD_RC1(v)   BF_CS1(IPU_CSIO_CPD_RC_I, CSI0_CPD_RC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -34923,58 +37523,58 @@ typedef union
 #define BW_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   BF_CS1(IPU_CSIO_CPD_RS_I, CSI0_CPD_RS, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_RS_I, field CSI0_CPD_RS (RW)
+/* --- Register HW_IPU_CSIO_CPD_RS_I, field CSI0_CPD_RS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS      8
-#define BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS      0x0000ff00
+#define BP_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS1      8
+#define BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS)
+#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS1)
 #else
-#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   (((v) << 8) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS)
+#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS1(v)   (((v) << 8) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_RS field to a new value.
-#define BW_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   BF_CS1(IPU_CSIO_CPD_RS_I, CSI0_CPD_RS, v)
+//! @brief Set the CSI0_CPD_RS1 field to a new value.
+#define BW_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS1(v)   BF_CS1(IPU_CSIO_CPD_RS_I, CSI0_CPD_RS1, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_RS_I, field CSI0_CPD_RS (RW)
+/* --- Register HW_IPU_CSIO_CPD_RS_I, field CSI0_CPD_RS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS      16
-#define BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS      0x00ff0000
+#define BP_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS2      16
+#define BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS)
+#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS2)
 #else
-#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   (((v) << 16) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS)
+#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS2(v)   (((v) << 16) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_RS field to a new value.
-#define BW_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   BF_CS1(IPU_CSIO_CPD_RS_I, CSI0_CPD_RS, v)
+//! @brief Set the CSI0_CPD_RS2 field to a new value.
+#define BW_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS2(v)   BF_CS1(IPU_CSIO_CPD_RS_I, CSI0_CPD_RS2, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_RS_I, field CSI0_CPD_RS (RW)
+/* --- Register HW_IPU_CSIO_CPD_RS_I, field CSI0_CPD_RS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS      24
-#define BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS      0xff000000
+#define BP_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS3      24
+#define BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS)
+#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS3)
 #else
-#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   (((v) << 24) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS)
+#define BF_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS3(v)   (((v) << 24) & BM_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_RS field to a new value.
-#define BW_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS(v)   BF_CS1(IPU_CSIO_CPD_RS_I, CSI0_CPD_RS, v)
+//! @brief Set the CSI0_CPD_RS3 field to a new value.
+#define BW_IPU_CSIO_CPD_RS_I_CSI0_CPD_RS3(v)   BF_CS1(IPU_CSIO_CPD_RS_I, CSI0_CPD_RS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -35034,23 +37634,23 @@ typedef union
 #define BW_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC(v)   BF_CS1(IPU_CSIO_CPD_GRC_I, CSI0_CPD_GRC, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GRC_I, field CSI0_CPD_GRC (RW)
+/* --- Register HW_IPU_CSIO_CPD_GRC_I, field CSI0_CPD_GRC1 (RW)
  *
  * CONST<2*i+1> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI0_CPD_GRC should be equal to CSI0_CPD_GBC Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC      16
-#define BM_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC      0x01ff0000
+#define BP_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC1      16
+#define BM_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC)
+#define BF_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC1)
 #else
-#define BF_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC)
+#define BF_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC1(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GRC field to a new value.
-#define BW_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC(v)   BF_CS1(IPU_CSIO_CPD_GRC_I, CSI0_CPD_GRC, v)
+//! @brief Set the CSI0_CPD_GRC1 field to a new value.
+#define BW_IPU_CSIO_CPD_GRC_I_CSI0_CPD_GRC1(v)   BF_CS1(IPU_CSIO_CPD_GRC_I, CSI0_CPD_GRC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -35109,61 +37709,61 @@ typedef union
 #define BW_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   BF_CS1(IPU_CSIO_CPD_GRS_I, CSI0_CPD_GRS, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GRS_I, field CSI0_CPD_GRS (RW)
+/* --- Register HW_IPU_CSIO_CPD_GRS_I, field CSI0_CPD_GRS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI0_CPD_GRS should be equal to CSI0_CPD_GBS Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS      8
-#define BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS      0x0000ff00
+#define BP_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS1      8
+#define BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS)
+#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS1)
 #else
-#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   (((v) << 8) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS)
+#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS1(v)   (((v) << 8) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GRS field to a new value.
-#define BW_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   BF_CS1(IPU_CSIO_CPD_GRS_I, CSI0_CPD_GRS, v)
+//! @brief Set the CSI0_CPD_GRS1 field to a new value.
+#define BW_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS1(v)   BF_CS1(IPU_CSIO_CPD_GRS_I, CSI0_CPD_GRS1, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GRS_I, field CSI0_CPD_GRS (RW)
+/* --- Register HW_IPU_CSIO_CPD_GRS_I, field CSI0_CPD_GRS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI0_CPD_GRS should be equal to CSI0_CPD_GBS Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS      16
-#define BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS      0x00ff0000
+#define BP_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS2      16
+#define BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS)
+#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS2)
 #else
-#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS)
+#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS2(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GRS field to a new value.
-#define BW_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   BF_CS1(IPU_CSIO_CPD_GRS_I, CSI0_CPD_GRS, v)
+//! @brief Set the CSI0_CPD_GRS2 field to a new value.
+#define BW_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS2(v)   BF_CS1(IPU_CSIO_CPD_GRS_I, CSI0_CPD_GRS2, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GRS_I, field CSI0_CPD_GRS (RW)
+/* --- Register HW_IPU_CSIO_CPD_GRS_I, field CSI0_CPD_GRS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI0_CPD_GRS should be equal to CSI0_CPD_GBS Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS      24
-#define BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS      0xff000000
+#define BP_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS3      24
+#define BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS)
+#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS3)
 #else
-#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   (((v) << 24) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS)
+#define BF_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS3(v)   (((v) << 24) & BM_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GRS field to a new value.
-#define BW_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS(v)   BF_CS1(IPU_CSIO_CPD_GRS_I, CSI0_CPD_GRS, v)
+//! @brief Set the CSI0_CPD_GRS3 field to a new value.
+#define BW_IPU_CSIO_CPD_GRS_I_CSI0_CPD_GRS3(v)   BF_CS1(IPU_CSIO_CPD_GRS_I, CSI0_CPD_GRS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -35223,23 +37823,23 @@ typedef union
 #define BW_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC(v)   BF_CS1(IPU_CSIO_CPD_GBC_I, CSI0_CPD_GBC, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GBC_I, field CSI0_CPD_GBC (RW)
+/* --- Register HW_IPU_CSIO_CPD_GBC_I, field CSI0_CPD_GBC1 (RW)
  *
  * CONSTi+1 parameter of Compander, GB component. If the input format is RGB/YUV then CSI0_CPD_GBC
  * should be equal to CSI0_CPD_GRC Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC      16
-#define BM_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC      0x01ff0000
+#define BP_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC1      16
+#define BM_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC)
+#define BF_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC1)
 #else
-#define BF_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC)
+#define BF_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC1(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GBC field to a new value.
-#define BW_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC(v)   BF_CS1(IPU_CSIO_CPD_GBC_I, CSI0_CPD_GBC, v)
+//! @brief Set the CSI0_CPD_GBC1 field to a new value.
+#define BW_IPU_CSIO_CPD_GBC_I_CSI0_CPD_GBC1(v)   BF_CS1(IPU_CSIO_CPD_GBC_I, CSI0_CPD_GBC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -35298,61 +37898,61 @@ typedef union
 #define BW_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   BF_CS1(IPU_CSIO_CPD_GBS_I, CSI0_CPD_GBS, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GBS_I, field CSI0_CPD_GBS (RW)
+/* --- Register HW_IPU_CSIO_CPD_GBS_I, field CSI0_CPD_GBS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, GB component. If the input format is RGB/YUV then
  * CSI0_CPD_GBS should be equal to CSI0_CPD_GRS Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS      8
-#define BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS      0x0000ff00
+#define BP_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS1      8
+#define BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS)
+#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS1)
 #else
-#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   (((v) << 8) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS)
+#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS1(v)   (((v) << 8) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GBS field to a new value.
-#define BW_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   BF_CS1(IPU_CSIO_CPD_GBS_I, CSI0_CPD_GBS, v)
+//! @brief Set the CSI0_CPD_GBS1 field to a new value.
+#define BW_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS1(v)   BF_CS1(IPU_CSIO_CPD_GBS_I, CSI0_CPD_GBS1, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GBS_I, field CSI0_CPD_GBS (RW)
+/* --- Register HW_IPU_CSIO_CPD_GBS_I, field CSI0_CPD_GBS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, GB component. If the input format is RGB/YUV then
  * CSI0_CPD_GBS should be equal to CSI0_CPD_GRS Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS      16
-#define BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS      0x00ff0000
+#define BP_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS2      16
+#define BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS)
+#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS2)
 #else
-#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS)
+#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS2(v)   (((v) << 16) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GBS field to a new value.
-#define BW_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   BF_CS1(IPU_CSIO_CPD_GBS_I, CSI0_CPD_GBS, v)
+//! @brief Set the CSI0_CPD_GBS2 field to a new value.
+#define BW_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS2(v)   BF_CS1(IPU_CSIO_CPD_GBS_I, CSI0_CPD_GBS2, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_GBS_I, field CSI0_CPD_GBS (RW)
+/* --- Register HW_IPU_CSIO_CPD_GBS_I, field CSI0_CPD_GBS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, GB component. If the input format is RGB/YUV then
  * CSI0_CPD_GBS should be equal to CSI0_CPD_GRS Reserved
  */
 
-#define BP_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS      24
-#define BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS      0xff000000
+#define BP_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS3      24
+#define BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS)
+#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS3)
 #else
-#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   (((v) << 24) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS)
+#define BF_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS3(v)   (((v) << 24) & BM_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_GBS field to a new value.
-#define BW_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS(v)   BF_CS1(IPU_CSIO_CPD_GBS_I, CSI0_CPD_GBS, v)
+//! @brief Set the CSI0_CPD_GBS3 field to a new value.
+#define BW_IPU_CSIO_CPD_GBS_I_CSI0_CPD_GBS3(v)   BF_CS1(IPU_CSIO_CPD_GBS_I, CSI0_CPD_GBS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -35410,22 +38010,22 @@ typedef union
 #define BW_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC(v)   BF_CS1(IPU_CSIO_CPD_BC_I, CSI0_CPD_BC, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_BC_I, field CSI0_CPD_BC (RW)
+/* --- Register HW_IPU_CSIO_CPD_BC_I, field CSI0_CPD_BC1 (RW)
  *
  * CONSTANT<2*i+1> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC      16
-#define BM_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC      0x01ff0000
+#define BP_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC1      16
+#define BM_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC)
+#define BF_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC1)
 #else
-#define BF_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC(v)   (((v) << 16) & BM_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC)
+#define BF_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC1(v)   (((v) << 16) & BM_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_BC field to a new value.
-#define BW_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC(v)   BF_CS1(IPU_CSIO_CPD_BC_I, CSI0_CPD_BC, v)
+//! @brief Set the CSI0_CPD_BC1 field to a new value.
+#define BW_IPU_CSIO_CPD_BC_I_CSI0_CPD_BC1(v)   BF_CS1(IPU_CSIO_CPD_BC_I, CSI0_CPD_BC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -35483,58 +38083,58 @@ typedef union
 #define BW_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   BF_CS1(IPU_CSIO_CPD_BS_I, CSI0_CPD_BS, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_BS_I, field CSI0_CPD_BS (RW)
+/* --- Register HW_IPU_CSIO_CPD_BS_I, field CSI0_CPD_BS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS      8
-#define BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS      0x0000ff00
+#define BP_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS1      8
+#define BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS)
+#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS1)
 #else
-#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   (((v) << 8) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS)
+#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS1(v)   (((v) << 8) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_BS field to a new value.
-#define BW_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   BF_CS1(IPU_CSIO_CPD_BS_I, CSI0_CPD_BS, v)
+//! @brief Set the CSI0_CPD_BS1 field to a new value.
+#define BW_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS1(v)   BF_CS1(IPU_CSIO_CPD_BS_I, CSI0_CPD_BS1, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_BS_I, field CSI0_CPD_BS (RW)
+/* --- Register HW_IPU_CSIO_CPD_BS_I, field CSI0_CPD_BS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS      16
-#define BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS      0x00ff0000
+#define BP_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS2      16
+#define BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS)
+#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS2)
 #else
-#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   (((v) << 16) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS)
+#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS2(v)   (((v) << 16) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_BS field to a new value.
-#define BW_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   BF_CS1(IPU_CSIO_CPD_BS_I, CSI0_CPD_BS, v)
+//! @brief Set the CSI0_CPD_BS2 field to a new value.
+#define BW_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS2(v)   BF_CS1(IPU_CSIO_CPD_BS_I, CSI0_CPD_BS2, v)
 #endif
 
-/* --- Register HW_IPU_CSIO_CPD_BS_I, field CSI0_CPD_BS (RW)
+/* --- Register HW_IPU_CSIO_CPD_BS_I, field CSI0_CPD_BS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS      24
-#define BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS      0xff000000
+#define BP_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS3      24
+#define BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS)
+#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS3)
 #else
-#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   (((v) << 24) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS)
+#define BF_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS3(v)   (((v) << 24) & BM_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI0_CPD_BS field to a new value.
-#define BW_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS(v)   BF_CS1(IPU_CSIO_CPD_BS_I, CSI0_CPD_BS, v)
+//! @brief Set the CSI0_CPD_BS3 field to a new value.
+#define BW_IPU_CSIO_CPD_BS_I_CSI0_CPD_BS3(v)   BF_CS1(IPU_CSIO_CPD_BS_I, CSI0_CPD_BS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37212,9 +39812,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned CSI1_CPD_RC_ : 9; //!< CONSTANT <2*i> parameter of Compander, Red component. Reserved
+        unsigned CSI1_CPD_RC : 9; //!< CONSTANT <2*i> parameter of Compander, Red component. Reserved
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned CSI1_CPD_RC_1 : 9; //!< CONSTANT <2*i+1> parameter of Compander, Red component. Reserved
+        unsigned CSI1_CPD_RC1 : 9; //!< CONSTANT <2*i+1> parameter of Compander, Red component. Reserved
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_csi1_cpd_rc_i_t;
@@ -37238,40 +39838,40 @@ typedef union
  * constants & macros for individual IPU_CSI1_CPD_RC_I bitfields
  */
 
-/* --- Register HW_IPU_CSI1_CPD_RC_I, field CSI1_CPD_RC_ (RW)
+/* --- Register HW_IPU_CSI1_CPD_RC_I, field CSI1_CPD_RC (RW)
  *
  * CONSTANT <2*i> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_      0
-#define BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_      0x000001ff
+#define BP_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC      0
+#define BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_(v)   ((((reg32_t) v) << 0) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_)
+#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC(v)   ((((reg32_t) v) << 0) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC)
 #else
-#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_(v)   (((v) << 0) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_)
+#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC(v)   (((v) << 0) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_RC_ field to a new value.
-#define BW_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_(v)   BF_CS1(IPU_CSI1_CPD_RC_I, CSI1_CPD_RC_, v)
+//! @brief Set the CSI1_CPD_RC field to a new value.
+#define BW_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC(v)   BF_CS1(IPU_CSI1_CPD_RC_I, CSI1_CPD_RC, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_RC_I, field CSI1_CPD_RC_ (RW)
+/* --- Register HW_IPU_CSI1_CPD_RC_I, field CSI1_CPD_RC1 (RW)
  *
  * CONSTANT <2*i+1> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_      16
-#define BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_      0x01ff0000
+#define BP_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC1      16
+#define BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_)
+#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC1)
 #else
-#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_(v)   (((v) << 16) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_)
+#define BF_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC1(v)   (((v) << 16) & BM_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_RC_ field to a new value.
-#define BW_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC_(v)   BF_CS1(IPU_CSI1_CPD_RC_I, CSI1_CPD_RC_, v)
+//! @brief Set the CSI1_CPD_RC1 field to a new value.
+#define BW_IPU_CSI1_CPD_RC_I_CSI1_CPD_RC1(v)   BF_CS1(IPU_CSI1_CPD_RC_I, CSI1_CPD_RC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37329,58 +39929,58 @@ typedef union
 #define BW_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   BF_CS1(IPU_CSI1_CPD_RS_I, CSI1_CPD_RS, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_RS_I, field CSI1_CPD_RS (RW)
+/* --- Register HW_IPU_CSI1_CPD_RS_I, field CSI1_CPD_RS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS      8
-#define BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS      0x0000ff00
+#define BP_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS1      8
+#define BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS)
+#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS1)
 #else
-#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   (((v) << 8) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS)
+#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS1(v)   (((v) << 8) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_RS field to a new value.
-#define BW_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   BF_CS1(IPU_CSI1_CPD_RS_I, CSI1_CPD_RS, v)
+//! @brief Set the CSI1_CPD_RS1 field to a new value.
+#define BW_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS1(v)   BF_CS1(IPU_CSI1_CPD_RS_I, CSI1_CPD_RS1, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_RS_I, field CSI1_CPD_RS (RW)
+/* --- Register HW_IPU_CSI1_CPD_RS_I, field CSI1_CPD_RS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS      16
-#define BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS      0x00ff0000
+#define BP_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS2      16
+#define BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS)
+#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS2)
 #else
-#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   (((v) << 16) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS)
+#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS2(v)   (((v) << 16) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_RS field to a new value.
-#define BW_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   BF_CS1(IPU_CSI1_CPD_RS_I, CSI1_CPD_RS, v)
+//! @brief Set the CSI1_CPD_RS2 field to a new value.
+#define BW_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS2(v)   BF_CS1(IPU_CSI1_CPD_RS_I, CSI1_CPD_RS2, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_RS_I, field CSI1_CPD_RS (RW)
+/* --- Register HW_IPU_CSI1_CPD_RS_I, field CSI1_CPD_RS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, Red component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS      24
-#define BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS      0xff000000
+#define BP_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS3      24
+#define BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS)
+#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS3)
 #else
-#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   (((v) << 24) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS)
+#define BF_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS3(v)   (((v) << 24) & BM_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_RS field to a new value.
-#define BW_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS(v)   BF_CS1(IPU_CSI1_CPD_RS_I, CSI1_CPD_RS, v)
+//! @brief Set the CSI1_CPD_RS3 field to a new value.
+#define BW_IPU_CSI1_CPD_RS_I_CSI1_CPD_RS3(v)   BF_CS1(IPU_CSI1_CPD_RS_I, CSI1_CPD_RS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37440,23 +40040,23 @@ typedef union
 #define BW_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC(v)   BF_CS1(IPU_CSI1_CPD_GRC_I, CSI1_CPD_GRC, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GRC_I, field CSI1_CPD_GRC (RW)
+/* --- Register HW_IPU_CSI1_CPD_GRC_I, field CSI1_CPD_GRC1 (RW)
  *
  * CONST<2*i+1> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI1_CPD_GRC should be equal to CSI1_CPD_GBC Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC      16
-#define BM_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC      0x01ff0000
+#define BP_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC1      16
+#define BM_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC)
+#define BF_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC1)
 #else
-#define BF_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC)
+#define BF_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC1(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GRC field to a new value.
-#define BW_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC(v)   BF_CS1(IPU_CSI1_CPD_GRC_I, CSI1_CPD_GRC, v)
+//! @brief Set the CSI1_CPD_GRC1 field to a new value.
+#define BW_IPU_CSI1_CPD_GRC_I_CSI1_CPD_GRC1(v)   BF_CS1(IPU_CSI1_CPD_GRC_I, CSI1_CPD_GRC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37515,61 +40115,61 @@ typedef union
 #define BW_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   BF_CS1(IPU_CSI1_CPD_GRS_I, CSI1_CPD_GRS, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GRS_I, field CSI1_CPD_GRS (RW)
+/* --- Register HW_IPU_CSI1_CPD_GRS_I, field CSI1_CPD_GRS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI1_CPD_GRS should be equal to CSI1_CPD_GBS Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS      8
-#define BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS      0x0000ff00
+#define BP_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS1      8
+#define BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS)
+#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS1)
 #else
-#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   (((v) << 8) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS)
+#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS1(v)   (((v) << 8) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GRS field to a new value.
-#define BW_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   BF_CS1(IPU_CSI1_CPD_GRS_I, CSI1_CPD_GRS, v)
+//! @brief Set the CSI1_CPD_GRS1 field to a new value.
+#define BW_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS1(v)   BF_CS1(IPU_CSI1_CPD_GRS_I, CSI1_CPD_GRS1, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GRS_I, field CSI1_CPD_GRS (RW)
+/* --- Register HW_IPU_CSI1_CPD_GRS_I, field CSI1_CPD_GRS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI1_CPD_GRS should be equal to CSI1_CPD_GBS Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS      16
-#define BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS      0x00ff0000
+#define BP_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS2      16
+#define BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS)
+#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS2)
 #else
-#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS)
+#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS2(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GRS field to a new value.
-#define BW_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   BF_CS1(IPU_CSI1_CPD_GRS_I, CSI1_CPD_GRS, v)
+//! @brief Set the CSI1_CPD_GRS2 field to a new value.
+#define BW_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS2(v)   BF_CS1(IPU_CSI1_CPD_GRS_I, CSI1_CPD_GRS2, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GRS_I, field CSI1_CPD_GRS (RW)
+/* --- Register HW_IPU_CSI1_CPD_GRS_I, field CSI1_CPD_GRS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, GR component. If the input format is RGB/YUV then
  * CSI1_CPD_GRS should be equal to CSI1_CPD_GBS Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS      24
-#define BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS      0xff000000
+#define BP_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS3      24
+#define BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS)
+#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS3)
 #else
-#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   (((v) << 24) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS)
+#define BF_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS3(v)   (((v) << 24) & BM_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GRS field to a new value.
-#define BW_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS(v)   BF_CS1(IPU_CSI1_CPD_GRS_I, CSI1_CPD_GRS, v)
+//! @brief Set the CSI1_CPD_GRS3 field to a new value.
+#define BW_IPU_CSI1_CPD_GRS_I_CSI1_CPD_GRS3(v)   BF_CS1(IPU_CSI1_CPD_GRS_I, CSI1_CPD_GRS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37629,23 +40229,23 @@ typedef union
 #define BW_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC(v)   BF_CS1(IPU_CSI1_CPD_GBC_I, CSI1_CPD_GBC, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GBC_I, field CSI1_CPD_GBC (RW)
+/* --- Register HW_IPU_CSI1_CPD_GBC_I, field CSI1_CPD_GBC1 (RW)
  *
  * CONSTi+1 parameter of Compander, GB component. If the input format is RGB/YUV then CSI1_CPD_GBC
  * should be equal to CSI1_CPD_GRC Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC      16
-#define BM_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC      0x01ff0000
+#define BP_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC1      16
+#define BM_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC)
+#define BF_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC1)
 #else
-#define BF_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC)
+#define BF_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC1(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GBC field to a new value.
-#define BW_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC(v)   BF_CS1(IPU_CSI1_CPD_GBC_I, CSI1_CPD_GBC, v)
+//! @brief Set the CSI1_CPD_GBC1 field to a new value.
+#define BW_IPU_CSI1_CPD_GBC_I_CSI1_CPD_GBC1(v)   BF_CS1(IPU_CSI1_CPD_GBC_I, CSI1_CPD_GBC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37704,61 +40304,61 @@ typedef union
 #define BW_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   BF_CS1(IPU_CSI1_CPD_GBS_I, CSI1_CPD_GBS, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GBS_I, field CSI1_CPD_GBS (RW)
+/* --- Register HW_IPU_CSI1_CPD_GBS_I, field CSI1_CPD_GBS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, GB component. If the input format is RGB/YUV then
  * CSI1_CPD_GBS should be equal to CSI1_CPD_GRS Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS      8
-#define BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS      0x0000ff00
+#define BP_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS1      8
+#define BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS)
+#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS1)
 #else
-#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   (((v) << 8) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS)
+#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS1(v)   (((v) << 8) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GBS field to a new value.
-#define BW_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   BF_CS1(IPU_CSI1_CPD_GBS_I, CSI1_CPD_GBS, v)
+//! @brief Set the CSI1_CPD_GBS1 field to a new value.
+#define BW_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS1(v)   BF_CS1(IPU_CSI1_CPD_GBS_I, CSI1_CPD_GBS1, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GBS_I, field CSI1_CPD_GBS (RW)
+/* --- Register HW_IPU_CSI1_CPD_GBS_I, field CSI1_CPD_GBS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, GB component. If the input format is RGB/YUV then
  * CSI1_CPD_GBS should be equal to CSI1_CPD_GRS Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS      16
-#define BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS      0x00ff0000
+#define BP_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS2      16
+#define BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS)
+#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS2)
 #else
-#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS)
+#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS2(v)   (((v) << 16) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GBS field to a new value.
-#define BW_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   BF_CS1(IPU_CSI1_CPD_GBS_I, CSI1_CPD_GBS, v)
+//! @brief Set the CSI1_CPD_GBS2 field to a new value.
+#define BW_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS2(v)   BF_CS1(IPU_CSI1_CPD_GBS_I, CSI1_CPD_GBS2, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_GBS_I, field CSI1_CPD_GBS (RW)
+/* --- Register HW_IPU_CSI1_CPD_GBS_I, field CSI1_CPD_GBS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, GB component. If the input format is RGB/YUV then
  * CSI1_CPD_GBS should be equal to CSI1_CPD_GRS Reserved
  */
 
-#define BP_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS      24
-#define BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS      0xff000000
+#define BP_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS3      24
+#define BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS)
+#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS3)
 #else
-#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   (((v) << 24) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS)
+#define BF_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS3(v)   (((v) << 24) & BM_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_GBS field to a new value.
-#define BW_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS(v)   BF_CS1(IPU_CSI1_CPD_GBS_I, CSI1_CPD_GBS, v)
+//! @brief Set the CSI1_CPD_GBS3 field to a new value.
+#define BW_IPU_CSI1_CPD_GBS_I_CSI1_CPD_GBS3(v)   BF_CS1(IPU_CSI1_CPD_GBS_I, CSI1_CPD_GBS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37816,22 +40416,22 @@ typedef union
 #define BW_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC(v)   BF_CS1(IPU_CSI1_CPD_BC_I, CSI1_CPD_BC, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_BC_I, field CSI1_CPD_BC (RW)
+/* --- Register HW_IPU_CSI1_CPD_BC_I, field CSI1_CPD_BC1 (RW)
  *
  * CONSTANT<2*i+1> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC      16
-#define BM_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC      0x01ff0000
+#define BP_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC1      16
+#define BM_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC)
+#define BF_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC1(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC1)
 #else
-#define BF_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC(v)   (((v) << 16) & BM_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC)
+#define BF_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC1(v)   (((v) << 16) & BM_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_BC field to a new value.
-#define BW_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC(v)   BF_CS1(IPU_CSI1_CPD_BC_I, CSI1_CPD_BC, v)
+//! @brief Set the CSI1_CPD_BC1 field to a new value.
+#define BW_IPU_CSI1_CPD_BC_I_CSI1_CPD_BC1(v)   BF_CS1(IPU_CSI1_CPD_BC_I, CSI1_CPD_BC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -37889,58 +40489,58 @@ typedef union
 #define BW_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   BF_CS1(IPU_CSI1_CPD_BS_I, CSI1_CPD_BS, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_BS_I, field CSI1_CPD_BS (RW)
+/* --- Register HW_IPU_CSI1_CPD_BS_I, field CSI1_CPD_BS1 (RW)
  *
  * SLOPE<4*i+1> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS      8
-#define BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS      0x0000ff00
+#define BP_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS1      8
+#define BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS)
+#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS1(v)   ((((reg32_t) v) << 8) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS1)
 #else
-#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   (((v) << 8) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS)
+#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS1(v)   (((v) << 8) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_BS field to a new value.
-#define BW_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   BF_CS1(IPU_CSI1_CPD_BS_I, CSI1_CPD_BS, v)
+//! @brief Set the CSI1_CPD_BS1 field to a new value.
+#define BW_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS1(v)   BF_CS1(IPU_CSI1_CPD_BS_I, CSI1_CPD_BS1, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_BS_I, field CSI1_CPD_BS (RW)
+/* --- Register HW_IPU_CSI1_CPD_BS_I, field CSI1_CPD_BS2 (RW)
  *
  * SLOPE<4*i+2> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS      16
-#define BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS      0x00ff0000
+#define BP_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS2      16
+#define BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS)
+#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS2(v)   ((((reg32_t) v) << 16) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS2)
 #else
-#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   (((v) << 16) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS)
+#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS2(v)   (((v) << 16) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_BS field to a new value.
-#define BW_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   BF_CS1(IPU_CSI1_CPD_BS_I, CSI1_CPD_BS, v)
+//! @brief Set the CSI1_CPD_BS2 field to a new value.
+#define BW_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS2(v)   BF_CS1(IPU_CSI1_CPD_BS_I, CSI1_CPD_BS2, v)
 #endif
 
-/* --- Register HW_IPU_CSI1_CPD_BS_I, field CSI1_CPD_BS (RW)
+/* --- Register HW_IPU_CSI1_CPD_BS_I, field CSI1_CPD_BS3 (RW)
  *
  * SLOPE<4*i+3> parameter of Compander, Blue component. Reserved
  */
 
-#define BP_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS      24
-#define BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS      0xff000000
+#define BP_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS3      24
+#define BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS)
+#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS3(v)   ((((reg32_t) v) << 24) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS3)
 #else
-#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   (((v) << 24) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS)
+#define BF_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS3(v)   (((v) << 24) & BM_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CSI1_CPD_BS field to a new value.
-#define BW_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS(v)   BF_CS1(IPU_CSI1_CPD_BS_I, CSI1_CPD_BS, v)
+//! @brief Set the CSI1_CPD_BS3 field to a new value.
+#define BW_IPU_CSI1_CPD_BS_I_CSI1_CPD_BS3(v)   BF_CS1(IPU_CSI1_CPD_BS_I, CSI1_CPD_BS3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -38111,7 +40711,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_POLARITY_ : 8; //!< DI0 output pin's polarity This bits define the polarity of each of the DI's outputs.
+        unsigned DI0_POLARITY : 8; //!< DI0 output pin's polarity This bits define the polarity of each of the DI's outputs.
         unsigned DI0_POLARITY_CS0 : 1; //!< DI0 Chip Select's 0 polarity This bits define the polarity of the DI's CS0.
         unsigned DI0_POLARITY_CS1 : 1; //!< DI0 Chip Select's 1 polarity This bits define the polarity of the DI's CS1.
         unsigned DI0_ERM_VSYNC_SEL : 1; //!< DI0 error recovery block's VSYNC source select The error recovery block detect a case where the DI's VSYNC is asserted before the EOF. This bit selects the source of the VSYNC signal monitored by this mechanism.
@@ -38149,7 +40749,7 @@ typedef union
  * constants & macros for individual IPU_DI0_GENERAL bitfields
  */
 
-/* --- Register HW_IPU_DI0_GENERAL, field DI0_POLARITY_ (RW)
+/* --- Register HW_IPU_DI0_GENERAL, field DI0_POLARITY (RW)
  *
  * DI0 output pin's polarity This bits define the polarity of each of the DI's outputs.
  *
@@ -38158,17 +40758,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI0_GENERAL_DI0_POLARITY_      0
-#define BM_IPU_DI0_GENERAL_DI0_POLARITY_      0x000000ff
+#define BP_IPU_DI0_GENERAL_DI0_POLARITY      0
+#define BM_IPU_DI0_GENERAL_DI0_POLARITY      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_GENERAL_DI0_POLARITY_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_GENERAL_DI0_POLARITY_)
+#define BF_IPU_DI0_GENERAL_DI0_POLARITY(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_GENERAL_DI0_POLARITY)
 #else
-#define BF_IPU_DI0_GENERAL_DI0_POLARITY_(v)   (((v) << 0) & BM_IPU_DI0_GENERAL_DI0_POLARITY_)
+#define BF_IPU_DI0_GENERAL_DI0_POLARITY(v)   (((v) << 0) & BM_IPU_DI0_GENERAL_DI0_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_POLARITY_ field to a new value.
-#define BW_IPU_DI0_GENERAL_DI0_POLARITY_(v)   BF_CS1(IPU_DI0_GENERAL, DI0_POLARITY_, v)
+//! @brief Set the DI0_POLARITY field to a new value.
+#define BW_IPU_DI0_GENERAL_DI0_POLARITY(v)   BF_CS1(IPU_DI0_GENERAL, DI0_POLARITY, v)
 #endif
 
 
@@ -42014,16 +44614,16 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_PT_0_ : 2; //!< DI0 PIN_11 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_11 pin.
-        unsigned DI0_PT_1_ : 2; //!< DI0 PIN_12 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_12 pin.
-        unsigned DI0_PT_2_ : 2; //!< DI0 PIN_13 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_13 pin.
-        unsigned DI0_PT_3_ : 2; //!< DI0 PIN_14 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_14 pin.
-        unsigned DI0_PT_4_ : 2; //!< DI0 PIN_15 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_15 pin.
-        unsigned DI0_PT_5_ : 2; //!< DI0 PIN_16 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_16 pin.
-        unsigned DI0_PT_6_ : 2; //!< DI0 PIN_17 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_17 pin.
-        unsigned DI0_CST_ : 2; //!< DI0 Chip Select pointer for waveform <i> This field points to a register that defines the waveform of the CS pin. The CS is automatically mapped to a specific display
-        unsigned DI0_COMPONNENT_SIZE_ : 8; //!< DI0 component Size This field defines the amount of IPU cycles between any 2 components
-        unsigned DI0_ACCESS_SIZE_ : 8; //!< DI0 Access Size <i> This field defines the amount of IPU cycles between any 2 accesses (an access may be a pixel or generic data that may have more one component)
+        unsigned DI0_PT_0 : 2; //!< DI0 PIN_11 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_11 pin.
+        unsigned DI0_PT_1 : 2; //!< DI0 PIN_12 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_12 pin.
+        unsigned DI0_PT_2 : 2; //!< DI0 PIN_13 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_13 pin.
+        unsigned DI0_PT_3 : 2; //!< DI0 PIN_14 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_14 pin.
+        unsigned DI0_PT_4 : 2; //!< DI0 PIN_15 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_15 pin.
+        unsigned DI0_PT_5 : 2; //!< DI0 PIN_16 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_16 pin.
+        unsigned DI0_PT_6 : 2; //!< DI0 PIN_17 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_17 pin.
+        unsigned DI0_CST : 2; //!< DI0 Chip Select pointer for waveform <i> This field points to a register that defines the waveform of the CS pin. The CS is automatically mapped to a specific display
+        unsigned DI0_COMPONNENT_SIZE : 8; //!< DI0 component Size This field defines the amount of IPU cycles between any 2 components
+        unsigned DI0_ACCESS_SIZE : 8; //!< DI0 Access Size <i> This field defines the amount of IPU cycles between any 2 accesses (an access may be a pixel or generic data that may have more one component)
     } B;
 } hw_ipu_di0_dw_gen_i_t;
 #endif
@@ -42046,7 +44646,7 @@ typedef union
  * constants & macros for individual IPU_DI0_DW_GEN_I bitfields
  */
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_0_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_0 (RW)
  *
  * DI0 PIN_11 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_11 pin.
@@ -42058,21 +44658,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_PT_0_      0
-#define BM_IPU_DI0_DW_GEN_I_DI0_PT_0_      0x00000003
+#define BP_IPU_DI0_DW_GEN_I_DI0_PT_0      0
+#define BM_IPU_DI0_DW_GEN_I_DI0_PT_0      0x00000003
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_0_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_GEN_I_DI0_PT_0_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_0(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_GEN_I_DI0_PT_0)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_0_(v)   (((v) << 0) & BM_IPU_DI0_DW_GEN_I_DI0_PT_0_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_0(v)   (((v) << 0) & BM_IPU_DI0_DW_GEN_I_DI0_PT_0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_PT_0_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_PT_0_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_0_, v)
+//! @brief Set the DI0_PT_0 field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_PT_0(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_0, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_1_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_1 (RW)
  *
  * DI0 PIN_12 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_12 pin.
@@ -42084,21 +44684,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_PT_1_      2
-#define BM_IPU_DI0_DW_GEN_I_DI0_PT_1_      0x0000000c
+#define BP_IPU_DI0_DW_GEN_I_DI0_PT_1      2
+#define BM_IPU_DI0_DW_GEN_I_DI0_PT_1      0x0000000c
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_1_(v)   ((((reg32_t) v) << 2) & BM_IPU_DI0_DW_GEN_I_DI0_PT_1_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_1(v)   ((((reg32_t) v) << 2) & BM_IPU_DI0_DW_GEN_I_DI0_PT_1)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_1_(v)   (((v) << 2) & BM_IPU_DI0_DW_GEN_I_DI0_PT_1_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_1(v)   (((v) << 2) & BM_IPU_DI0_DW_GEN_I_DI0_PT_1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_PT_1_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_PT_1_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_1_, v)
+//! @brief Set the DI0_PT_1 field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_PT_1(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_1, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_2_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_2 (RW)
  *
  * DI0 PIN_13 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_13 pin.
@@ -42110,21 +44710,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_PT_2_      4
-#define BM_IPU_DI0_DW_GEN_I_DI0_PT_2_      0x00000030
+#define BP_IPU_DI0_DW_GEN_I_DI0_PT_2      4
+#define BM_IPU_DI0_DW_GEN_I_DI0_PT_2      0x00000030
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_2_(v)   ((((reg32_t) v) << 4) & BM_IPU_DI0_DW_GEN_I_DI0_PT_2_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_2(v)   ((((reg32_t) v) << 4) & BM_IPU_DI0_DW_GEN_I_DI0_PT_2)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_2_(v)   (((v) << 4) & BM_IPU_DI0_DW_GEN_I_DI0_PT_2_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_2(v)   (((v) << 4) & BM_IPU_DI0_DW_GEN_I_DI0_PT_2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_PT_2_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_PT_2_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_2_, v)
+//! @brief Set the DI0_PT_2 field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_PT_2(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_2, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_3_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_3 (RW)
  *
  * DI0 PIN_14 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_14 pin.
@@ -42136,21 +44736,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_PT_3_      6
-#define BM_IPU_DI0_DW_GEN_I_DI0_PT_3_      0x000000c0
+#define BP_IPU_DI0_DW_GEN_I_DI0_PT_3      6
+#define BM_IPU_DI0_DW_GEN_I_DI0_PT_3      0x000000c0
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_3_(v)   ((((reg32_t) v) << 6) & BM_IPU_DI0_DW_GEN_I_DI0_PT_3_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_3(v)   ((((reg32_t) v) << 6) & BM_IPU_DI0_DW_GEN_I_DI0_PT_3)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_3_(v)   (((v) << 6) & BM_IPU_DI0_DW_GEN_I_DI0_PT_3_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_3(v)   (((v) << 6) & BM_IPU_DI0_DW_GEN_I_DI0_PT_3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_PT_3_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_PT_3_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_3_, v)
+//! @brief Set the DI0_PT_3 field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_PT_3(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_3, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_4_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_4 (RW)
  *
  * DI0 PIN_15 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_15 pin.
@@ -42162,21 +44762,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_PT_4_      8
-#define BM_IPU_DI0_DW_GEN_I_DI0_PT_4_      0x00000300
+#define BP_IPU_DI0_DW_GEN_I_DI0_PT_4      8
+#define BM_IPU_DI0_DW_GEN_I_DI0_PT_4      0x00000300
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_4_(v)   ((((reg32_t) v) << 8) & BM_IPU_DI0_DW_GEN_I_DI0_PT_4_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_4(v)   ((((reg32_t) v) << 8) & BM_IPU_DI0_DW_GEN_I_DI0_PT_4)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_4_(v)   (((v) << 8) & BM_IPU_DI0_DW_GEN_I_DI0_PT_4_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_4(v)   (((v) << 8) & BM_IPU_DI0_DW_GEN_I_DI0_PT_4)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_PT_4_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_PT_4_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_4_, v)
+//! @brief Set the DI0_PT_4 field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_PT_4(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_4, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_5_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_5 (RW)
  *
  * DI0 PIN_16 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_16 pin.
@@ -42188,21 +44788,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_PT_5_      10
-#define BM_IPU_DI0_DW_GEN_I_DI0_PT_5_      0x00000c00
+#define BP_IPU_DI0_DW_GEN_I_DI0_PT_5      10
+#define BM_IPU_DI0_DW_GEN_I_DI0_PT_5      0x00000c00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_5_(v)   ((((reg32_t) v) << 10) & BM_IPU_DI0_DW_GEN_I_DI0_PT_5_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_5(v)   ((((reg32_t) v) << 10) & BM_IPU_DI0_DW_GEN_I_DI0_PT_5)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_5_(v)   (((v) << 10) & BM_IPU_DI0_DW_GEN_I_DI0_PT_5_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_5(v)   (((v) << 10) & BM_IPU_DI0_DW_GEN_I_DI0_PT_5)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_PT_5_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_PT_5_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_5_, v)
+//! @brief Set the DI0_PT_5 field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_PT_5(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_5, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_6_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_PT_6 (RW)
  *
  * DI0 PIN_17 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_17 pin.
@@ -42214,21 +44814,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_PT_6_      12
-#define BM_IPU_DI0_DW_GEN_I_DI0_PT_6_      0x00003000
+#define BP_IPU_DI0_DW_GEN_I_DI0_PT_6      12
+#define BM_IPU_DI0_DW_GEN_I_DI0_PT_6      0x00003000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_6_(v)   ((((reg32_t) v) << 12) & BM_IPU_DI0_DW_GEN_I_DI0_PT_6_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_6(v)   ((((reg32_t) v) << 12) & BM_IPU_DI0_DW_GEN_I_DI0_PT_6)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_PT_6_(v)   (((v) << 12) & BM_IPU_DI0_DW_GEN_I_DI0_PT_6_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_PT_6(v)   (((v) << 12) & BM_IPU_DI0_DW_GEN_I_DI0_PT_6)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_PT_6_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_PT_6_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_6_, v)
+//! @brief Set the DI0_PT_6 field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_PT_6(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_PT_6, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_CST_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_CST (RW)
  *
  * DI0 Chip Select pointer for waveform <i> This field points to a register that defines the
  * waveform of the CS pin. The CS is automatically mapped to a specific display
@@ -42240,55 +44840,55 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI0_DW_SET3_<i>
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_CST_      14
-#define BM_IPU_DI0_DW_GEN_I_DI0_CST_      0x0000c000
+#define BP_IPU_DI0_DW_GEN_I_DI0_CST      14
+#define BM_IPU_DI0_DW_GEN_I_DI0_CST      0x0000c000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_CST_(v)   ((((reg32_t) v) << 14) & BM_IPU_DI0_DW_GEN_I_DI0_CST_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_CST(v)   ((((reg32_t) v) << 14) & BM_IPU_DI0_DW_GEN_I_DI0_CST)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_CST_(v)   (((v) << 14) & BM_IPU_DI0_DW_GEN_I_DI0_CST_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_CST(v)   (((v) << 14) & BM_IPU_DI0_DW_GEN_I_DI0_CST)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_CST_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_CST_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_CST_, v)
+//! @brief Set the DI0_CST field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_CST(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_CST, v)
 #endif
 
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_COMPONNENT_SIZE_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_COMPONNENT_SIZE (RW)
  *
  * DI0 component Size This field defines the amount of IPU cycles between any 2 components
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE_      16
-#define BM_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE_      0x00ff0000
+#define BP_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE      16
+#define BM_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE_(v)   (((v) << 16) & BM_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE(v)   (((v) << 16) & BM_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_COMPONNENT_SIZE_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_COMPONNENT_SIZE_, v)
+//! @brief Set the DI0_COMPONNENT_SIZE field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_COMPONNENT_SIZE(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_COMPONNENT_SIZE, v)
 #endif
 
-/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_ACCESS_SIZE_ (RW)
+/* --- Register HW_IPU_DI0_DW_GEN_I, field DI0_ACCESS_SIZE (RW)
  *
  * DI0 Access Size <i> This field defines the amount of IPU cycles between any 2 accesses (an access
  * may be a pixel or generic data that may have more one component)
  */
 
-#define BP_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE_      24
-#define BM_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE_      0xff000000
+#define BP_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE      24
+#define BM_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE_(v)   ((((reg32_t) v) << 24) & BM_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE(v)   ((((reg32_t) v) << 24) & BM_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE)
 #else
-#define BF_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE_(v)   (((v) << 24) & BM_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE_)
+#define BF_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE(v)   (((v) << 24) & BM_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_ACCESS_SIZE_ field to a new value.
-#define BW_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE_(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_ACCESS_SIZE_, v)
+//! @brief Set the DI0_ACCESS_SIZE field to a new value.
+#define BW_IPU_DI0_DW_GEN_I_DI0_ACCESS_SIZE(v)   BF_CS1(IPU_DI0_DW_GEN_I, DI0_ACCESS_SIZE, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -42302,9 +44902,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_DATA_CNT_UP0_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a point according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_UP0 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a point according to the corresponding di0_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI0_DATA_CNT_DOWN0_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a point according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_DOWN0 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a point according to the corresponding di0_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di0_dw_set0_i_t;
@@ -42328,42 +44928,42 @@ typedef union
  * constants & macros for individual IPU_DI0_DW_SET0_I bitfields
  */
 
-/* --- Register HW_IPU_DI0_DW_SET0_I, field DI0_DATA_CNT_UP0_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET0_I, field DI0_DATA_CNT_UP0 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a point according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0_      0
-#define BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0_      0x000001ff
+#define BP_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0      0
+#define BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0_)
+#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0)
 #else
-#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0_(v)   (((v) << 0) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0_)
+#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0(v)   (((v) << 0) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_UP0_ field to a new value.
-#define BW_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0_(v)   BF_CS1(IPU_DI0_DW_SET0_I, DI0_DATA_CNT_UP0_, v)
+//! @brief Set the DI0_DATA_CNT_UP0 field to a new value.
+#define BW_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_UP0(v)   BF_CS1(IPU_DI0_DW_SET0_I, DI0_DATA_CNT_UP0, v)
 #endif
 
-/* --- Register HW_IPU_DI0_DW_SET0_I, field DI0_DATA_CNT_DOWN0_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET0_I, field DI0_DATA_CNT_DOWN0 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a point according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0_      16
-#define BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0_      0x01ff0000
+#define BP_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0      16
+#define BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0_)
+#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0)
 #else
-#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0_(v)   (((v) << 16) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0_)
+#define BF_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0(v)   (((v) << 16) & BM_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_DOWN0_ field to a new value.
-#define BW_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0_(v)   BF_CS1(IPU_DI0_DW_SET0_I, DI0_DATA_CNT_DOWN0_, v)
+//! @brief Set the DI0_DATA_CNT_DOWN0 field to a new value.
+#define BW_IPU_DI0_DW_SET0_I_DI0_DATA_CNT_DOWN0(v)   BF_CS1(IPU_DI0_DW_SET0_I, DI0_DATA_CNT_DOWN0, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -42377,9 +44977,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_DATA_CNT_UP1_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_UP1 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI0_DATA_CNT_DOWN1_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_DOWN1 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di0_dw_set1_i_t;
@@ -42403,42 +45003,42 @@ typedef union
  * constants & macros for individual IPU_DI0_DW_SET1_I bitfields
  */
 
-/* --- Register HW_IPU_DI0_DW_SET1_I, field DI0_DATA_CNT_UP1_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET1_I, field DI0_DATA_CNT_UP1 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1_      0
-#define BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1_      0x000001ff
+#define BP_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1      0
+#define BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1_)
+#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1)
 #else
-#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1_(v)   (((v) << 0) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1_)
+#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1(v)   (((v) << 0) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_UP1_ field to a new value.
-#define BW_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1_(v)   BF_CS1(IPU_DI0_DW_SET1_I, DI0_DATA_CNT_UP1_, v)
+//! @brief Set the DI0_DATA_CNT_UP1 field to a new value.
+#define BW_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_UP1(v)   BF_CS1(IPU_DI0_DW_SET1_I, DI0_DATA_CNT_UP1, v)
 #endif
 
-/* --- Register HW_IPU_DI0_DW_SET1_I, field DI0_DATA_CNT_DOWN1_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET1_I, field DI0_DATA_CNT_DOWN1 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1_      16
-#define BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1_      0x01ff0000
+#define BP_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1      16
+#define BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1_)
+#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1)
 #else
-#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1_(v)   (((v) << 16) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1_)
+#define BF_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1(v)   (((v) << 16) & BM_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_DOWN1_ field to a new value.
-#define BW_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1_(v)   BF_CS1(IPU_DI0_DW_SET1_I, DI0_DATA_CNT_DOWN1_, v)
+//! @brief Set the DI0_DATA_CNT_DOWN1 field to a new value.
+#define BW_IPU_DI0_DW_SET1_I_DI0_DATA_CNT_DOWN1(v)   BF_CS1(IPU_DI0_DW_SET1_I, DI0_DATA_CNT_DOWN1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -42452,9 +45052,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_DATA_CNT_UP2_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_UP2 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI0_DATA_CNT_DOWN2_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_DOWN2 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di0_dw_set2_i_t;
@@ -42478,42 +45078,42 @@ typedef union
  * constants & macros for individual IPU_DI0_DW_SET2_I bitfields
  */
 
-/* --- Register HW_IPU_DI0_DW_SET2_I, field DI0_DATA_CNT_UP2_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET2_I, field DI0_DATA_CNT_UP2 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2_      0
-#define BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2_      0x000001ff
+#define BP_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2      0
+#define BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2_)
+#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2)
 #else
-#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2_(v)   (((v) << 0) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2_)
+#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2(v)   (((v) << 0) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_UP2_ field to a new value.
-#define BW_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2_(v)   BF_CS1(IPU_DI0_DW_SET2_I, DI0_DATA_CNT_UP2_, v)
+//! @brief Set the DI0_DATA_CNT_UP2 field to a new value.
+#define BW_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_UP2(v)   BF_CS1(IPU_DI0_DW_SET2_I, DI0_DATA_CNT_UP2, v)
 #endif
 
-/* --- Register HW_IPU_DI0_DW_SET2_I, field DI0_DATA_CNT_DOWN2_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET2_I, field DI0_DATA_CNT_DOWN2 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2_      16
-#define BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2_      0x01ff0000
+#define BP_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2      16
+#define BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2_)
+#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2)
 #else
-#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2_(v)   (((v) << 16) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2_)
+#define BF_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2(v)   (((v) << 16) & BM_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_DOWN2_ field to a new value.
-#define BW_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2_(v)   BF_CS1(IPU_DI0_DW_SET2_I, DI0_DATA_CNT_DOWN2_, v)
+//! @brief Set the DI0_DATA_CNT_DOWN2 field to a new value.
+#define BW_IPU_DI0_DW_SET2_I_DI0_DATA_CNT_DOWN2(v)   BF_CS1(IPU_DI0_DW_SET2_I, DI0_DATA_CNT_DOWN2, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -42527,9 +45127,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_DATA_CNT_UP3_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_UP3 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI0_DATA_CNT_DOWN3_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
+        unsigned DI0_DATA_CNT_DOWN3 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di0_dw_set3_i_t;
@@ -42553,42 +45153,42 @@ typedef union
  * constants & macros for individual IPU_DI0_DW_SET3_I bitfields
  */
 
-/* --- Register HW_IPU_DI0_DW_SET3_I, field DI0_DATA_CNT_UP3_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET3_I, field DI0_DATA_CNT_UP3 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3_      0
-#define BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3_      0x000001ff
+#define BP_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3      0
+#define BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3_)
+#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3)
 #else
-#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3_(v)   (((v) << 0) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3_)
+#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3(v)   (((v) << 0) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_UP3_ field to a new value.
-#define BW_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3_(v)   BF_CS1(IPU_DI0_DW_SET3_I, DI0_DATA_CNT_UP3_, v)
+//! @brief Set the DI0_DATA_CNT_UP3 field to a new value.
+#define BW_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_UP3(v)   BF_CS1(IPU_DI0_DW_SET3_I, DI0_DATA_CNT_UP3, v)
 #endif
 
-/* --- Register HW_IPU_DI0_DW_SET3_I, field DI0_DATA_CNT_DOWN3_ (RW)
+/* --- Register HW_IPU_DI0_DW_SET3_I, field DI0_DATA_CNT_DOWN3 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a pint according to the corresponding di0_pt_*_<i>
  */
 
-#define BP_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3_      16
-#define BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3_      0x01ff0000
+#define BP_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3      16
+#define BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3_)
+#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3)
 #else
-#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3_(v)   (((v) << 16) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3_)
+#define BF_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3(v)   (((v) << 16) & BM_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DATA_CNT_DOWN3_ field to a new value.
-#define BW_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3_(v)   BF_CS1(IPU_DI0_DW_SET3_I, DI0_DATA_CNT_DOWN3_, v)
+//! @brief Set the DI0_DATA_CNT_DOWN3 field to a new value.
+#define BW_IPU_DI0_DW_SET3_I_DI0_DATA_CNT_DOWN3(v)   BF_CS1(IPU_DI0_DW_SET3_I, DI0_DATA_CNT_DOWN3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -42602,9 +45202,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_STEP_REPEAT_ : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
+        unsigned DI0_STEP_REPEAT : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
         unsigned RESERVED0 : 4; //!< Reserved
-        unsigned DI0_STEP_REPEAT_1 : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
+        unsigned DI0_STEP_REPEAT1 : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
         unsigned RESERVED1 : 4; //!< Reserved
     } B;
 } hw_ipu_di0_stp_rep_i_t;
@@ -42628,42 +45228,42 @@ typedef union
  * constants & macros for individual IPU_DI0_STP_REP_I bitfields
  */
 
-/* --- Register HW_IPU_DI0_STP_REP_I, field DI0_STEP_REPEAT_ (RW)
+/* --- Register HW_IPU_DI0_STP_REP_I, field DI0_STEP_REPEAT (RW)
  *
  * Step Repeat <i> This fields defines the amount of repetitions that will be performed by the
  * counter <i>
  */
 
-#define BP_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_      0
-#define BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_      0x00000fff
+#define BP_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT      0
+#define BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT      0x00000fff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_)
+#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT)
 #else
-#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_(v)   (((v) << 0) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_)
+#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT(v)   (((v) << 0) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_STEP_REPEAT_ field to a new value.
-#define BW_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_(v)   BF_CS1(IPU_DI0_STP_REP_I, DI0_STEP_REPEAT_, v)
+//! @brief Set the DI0_STEP_REPEAT field to a new value.
+#define BW_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT(v)   BF_CS1(IPU_DI0_STP_REP_I, DI0_STEP_REPEAT, v)
 #endif
 
-/* --- Register HW_IPU_DI0_STP_REP_I, field DI0_STEP_REPEAT_ (RW)
+/* --- Register HW_IPU_DI0_STP_REP_I, field DI0_STEP_REPEAT1 (RW)
  *
  * Step Repeat <i> This fields defines the amount of repetitions that will be performed by the
  * counter <i>
  */
 
-#define BP_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_      16
-#define BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_      0x0fff0000
+#define BP_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT1      16
+#define BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT1      0x0fff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_)
+#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT1(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT1)
 #else
-#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_(v)   (((v) << 16) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_)
+#define BF_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT1(v)   (((v) << 16) & BM_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_STEP_REPEAT_ field to a new value.
-#define BW_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT_(v)   BF_CS1(IPU_DI0_STP_REP_I, DI0_STEP_REPEAT_, v)
+//! @brief Set the DI0_STEP_REPEAT1 field to a new value.
+#define BW_IPU_DI0_STP_REP_I_DI0_STEP_REPEAT1(v)   BF_CS1(IPU_DI0_STP_REP_I, DI0_STEP_REPEAT1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -43358,11 +45958,11 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI0_DRDY_POLARITY_ : 7; //!< DI0 output dynamic pin's polarity for synchronous access This bits define the polarity of each of the DI's outputs when synchronous display access is asserted The pins' default polarity is the same as defined in the di0_drdy_polarity_[17:11] bits
+        unsigned DI0_DRDY_POLARITY : 7; //!< DI0 output dynamic pin's polarity for synchronous access This bits define the polarity of each of the DI's outputs when synchronous display access is asserted The pins' default polarity is the same as defined in the di0_drdy_polarity_[17:11] bits
         unsigned DI0_DRDY_DATA_POLARITY : 1; //!< Data Polarity associated with DRDY
-        unsigned DI0_CS0_POLARITY_ : 7; //!< DI0 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
+        unsigned DI0_CS0_POLARITY : 7; //!< DI0 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
         unsigned DI0_CS0_DATA_POLARITY : 1; //!< Data Polarity associated with CS0
-        unsigned DI0_CS1_POLARITY_ : 7; //!< DI0 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
+        unsigned DI0_CS1_POLARITY : 7; //!< DI0 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
         unsigned DI0_CS1_DATA_POLARITY : 1; //!< Data Polarity associated with CS1
         unsigned DI0_CS0_BYTE_EN_POLARITY : 1; //!< Byte Enable associated with CS0 polarity This bit defines the polarity of the byte enable signals to the display
         unsigned DI0_CS1_BYTE_EN_POLARITY : 1; //!< Byte Enable associated with CS1 polarity This bit defines the polarity of the byte enable signals to the display
@@ -43390,7 +45990,7 @@ typedef union
  * constants & macros for individual IPU_DI0_POL bitfields
  */
 
-/* --- Register HW_IPU_DI0_POL, field DI0_DRDY_POLARITY_ (RW)
+/* --- Register HW_IPU_DI0_POL, field DI0_DRDY_POLARITY (RW)
  *
  * DI0 output dynamic pin's polarity for synchronous access This bits define the polarity of each of
  * the DI's outputs when synchronous display access is asserted The pins' default polarity is the
@@ -43401,17 +46001,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI0_POL_DI0_DRDY_POLARITY_      0
-#define BM_IPU_DI0_POL_DI0_DRDY_POLARITY_      0x0000007f
+#define BP_IPU_DI0_POL_DI0_DRDY_POLARITY      0
+#define BM_IPU_DI0_POL_DI0_DRDY_POLARITY      0x0000007f
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_POL_DI0_DRDY_POLARITY_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_POL_DI0_DRDY_POLARITY_)
+#define BF_IPU_DI0_POL_DI0_DRDY_POLARITY(v)   ((((reg32_t) v) << 0) & BM_IPU_DI0_POL_DI0_DRDY_POLARITY)
 #else
-#define BF_IPU_DI0_POL_DI0_DRDY_POLARITY_(v)   (((v) << 0) & BM_IPU_DI0_POL_DI0_DRDY_POLARITY_)
+#define BF_IPU_DI0_POL_DI0_DRDY_POLARITY(v)   (((v) << 0) & BM_IPU_DI0_POL_DI0_DRDY_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_DRDY_POLARITY_ field to a new value.
-#define BW_IPU_DI0_POL_DI0_DRDY_POLARITY_(v)   BF_CS1(IPU_DI0_POL, DI0_DRDY_POLARITY_, v)
+//! @brief Set the DI0_DRDY_POLARITY field to a new value.
+#define BW_IPU_DI0_POL_DI0_DRDY_POLARITY(v)   BF_CS1(IPU_DI0_POL, DI0_DRDY_POLARITY, v)
 #endif
 
 
@@ -43433,7 +46033,7 @@ typedef union
 #define BW_IPU_DI0_POL_DI0_DRDY_DATA_POLARITY(v)   BF_CS1(IPU_DI0_POL, DI0_DRDY_DATA_POLARITY, v)
 #endif
 
-/* --- Register HW_IPU_DI0_POL, field DI0_CS0_POLARITY_ (RW)
+/* --- Register HW_IPU_DI0_POL, field DI0_CS0_POLARITY (RW)
  *
  * DI0 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when
  * CS1 is asserted
@@ -43443,17 +46043,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI0_POL_DI0_CS0_POLARITY_      8
-#define BM_IPU_DI0_POL_DI0_CS0_POLARITY_      0x00007f00
+#define BP_IPU_DI0_POL_DI0_CS0_POLARITY      8
+#define BM_IPU_DI0_POL_DI0_CS0_POLARITY      0x00007f00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_POL_DI0_CS0_POLARITY_(v)   ((((reg32_t) v) << 8) & BM_IPU_DI0_POL_DI0_CS0_POLARITY_)
+#define BF_IPU_DI0_POL_DI0_CS0_POLARITY(v)   ((((reg32_t) v) << 8) & BM_IPU_DI0_POL_DI0_CS0_POLARITY)
 #else
-#define BF_IPU_DI0_POL_DI0_CS0_POLARITY_(v)   (((v) << 8) & BM_IPU_DI0_POL_DI0_CS0_POLARITY_)
+#define BF_IPU_DI0_POL_DI0_CS0_POLARITY(v)   (((v) << 8) & BM_IPU_DI0_POL_DI0_CS0_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_CS0_POLARITY_ field to a new value.
-#define BW_IPU_DI0_POL_DI0_CS0_POLARITY_(v)   BF_CS1(IPU_DI0_POL, DI0_CS0_POLARITY_, v)
+//! @brief Set the DI0_CS0_POLARITY field to a new value.
+#define BW_IPU_DI0_POL_DI0_CS0_POLARITY(v)   BF_CS1(IPU_DI0_POL, DI0_CS0_POLARITY, v)
 #endif
 
 
@@ -43475,7 +46075,7 @@ typedef union
 #define BW_IPU_DI0_POL_DI0_CS0_DATA_POLARITY(v)   BF_CS1(IPU_DI0_POL, DI0_CS0_DATA_POLARITY, v)
 #endif
 
-/* --- Register HW_IPU_DI0_POL, field DI0_CS1_POLARITY_ (RW)
+/* --- Register HW_IPU_DI0_POL, field DI0_CS1_POLARITY (RW)
  *
  * DI0 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when
  * CS1 is asserted
@@ -43485,17 +46085,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI0_POL_DI0_CS1_POLARITY_      16
-#define BM_IPU_DI0_POL_DI0_CS1_POLARITY_      0x007f0000
+#define BP_IPU_DI0_POL_DI0_CS1_POLARITY      16
+#define BM_IPU_DI0_POL_DI0_CS1_POLARITY      0x007f0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI0_POL_DI0_CS1_POLARITY_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_POL_DI0_CS1_POLARITY_)
+#define BF_IPU_DI0_POL_DI0_CS1_POLARITY(v)   ((((reg32_t) v) << 16) & BM_IPU_DI0_POL_DI0_CS1_POLARITY)
 #else
-#define BF_IPU_DI0_POL_DI0_CS1_POLARITY_(v)   (((v) << 16) & BM_IPU_DI0_POL_DI0_CS1_POLARITY_)
+#define BF_IPU_DI0_POL_DI0_CS1_POLARITY(v)   (((v) << 16) & BM_IPU_DI0_POL_DI0_CS1_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI0_CS1_POLARITY_ field to a new value.
-#define BW_IPU_DI0_POL_DI0_CS1_POLARITY_(v)   BF_CS1(IPU_DI0_POL, DI0_CS1_POLARITY_, v)
+//! @brief Set the DI0_CS1_POLARITY field to a new value.
+#define BW_IPU_DI0_POL_DI0_CS1_POLARITY(v)   BF_CS1(IPU_DI0_POL, DI0_CS1_POLARITY, v)
 #endif
 
 
@@ -43955,7 +46555,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_POLARITY_ : 8; //!< DI1 output pin's polarity This bits define the polarity of each of the DI's outputs.
+        unsigned DI1_POLARITY : 8; //!< DI1 output pin's polarity This bits define the polarity of each of the DI's outputs.
         unsigned DI1_POLARITY_CS0 : 1; //!< DI1 Chip Select's 0 polarity This bits define the polarity of the DI's CS0.
         unsigned DI1_POLARITY_CS1 : 1; //!< DI1 Chip Select's 1 polarity This bits define the polarity of the DI's CS1.
         unsigned DI1_ERM_VSYNC_SEL : 1; //!< DI1 error recovery module's VSYNC source select The error recovery block detect a case where the DI's VSYNC is asserted before the EOF. This bit selects the source of the VSYNC signal monitored by this mechanism.
@@ -43993,7 +46593,7 @@ typedef union
  * constants & macros for individual IPU_DI1_GENERAL bitfields
  */
 
-/* --- Register HW_IPU_DI1_GENERAL, field DI1_POLARITY_ (RW)
+/* --- Register HW_IPU_DI1_GENERAL, field DI1_POLARITY (RW)
  *
  * DI1 output pin's polarity This bits define the polarity of each of the DI's outputs.
  *
@@ -44002,17 +46602,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI1_GENERAL_DI1_POLARITY_      0
-#define BM_IPU_DI1_GENERAL_DI1_POLARITY_      0x000000ff
+#define BP_IPU_DI1_GENERAL_DI1_POLARITY      0
+#define BM_IPU_DI1_GENERAL_DI1_POLARITY      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_GENERAL_DI1_POLARITY_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_GENERAL_DI1_POLARITY_)
+#define BF_IPU_DI1_GENERAL_DI1_POLARITY(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_GENERAL_DI1_POLARITY)
 #else
-#define BF_IPU_DI1_GENERAL_DI1_POLARITY_(v)   (((v) << 0) & BM_IPU_DI1_GENERAL_DI1_POLARITY_)
+#define BF_IPU_DI1_GENERAL_DI1_POLARITY(v)   (((v) << 0) & BM_IPU_DI1_GENERAL_DI1_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_POLARITY_ field to a new value.
-#define BW_IPU_DI1_GENERAL_DI1_POLARITY_(v)   BF_CS1(IPU_DI1_GENERAL, DI1_POLARITY_, v)
+//! @brief Set the DI1_POLARITY field to a new value.
+#define BW_IPU_DI1_GENERAL_DI1_POLARITY(v)   BF_CS1(IPU_DI1_GENERAL, DI1_POLARITY, v)
 #endif
 
 
@@ -47854,16 +50454,16 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_PT_0_ : 2; //!< DI1 PIN_11 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_11 pin.
-        unsigned DI1_PT_1_ : 2; //!< DI1 PIN_12 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_12 pin.
-        unsigned DI1_PT_2_ : 2; //!< DI1 PIN_13 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_13 pin.
-        unsigned DI1_PT_3_ : 2; //!< DI1 PIN_14 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_14 pin.
-        unsigned DI1_PT_4_ : 2; //!< DI1 PIN_15 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_15 pin.
-        unsigned DI1_PT_5_ : 2; //!< DI1 PIN_16 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_16 pin.
-        unsigned DI1_PT_6_ : 2; //!< DI1 PIN_17 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_17 pin.
-        unsigned DI1_CST_ : 2; //!< DI1 Chip Select pointer for waveform <i> This field points to a register that defines the waveform of the CS pin. The CS is automatically mapped to a specific display
-        unsigned DI1_COMPONNENT_SIZE_ : 8; //!< DI1 component Size This field defines the amount of IPU cycles between any 2 components
-        unsigned DI1_ACCESS_SIZE_ : 8; //!< DI1 Access Size <i> This field defines the amount of IPU cycles between any 2 accesses (an access may be a pixel or generic data that may have more one component)
+        unsigned DI1_PT_0 : 2; //!< DI1 PIN_11 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_11 pin.
+        unsigned DI1_PT_1 : 2; //!< DI1 PIN_12 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_12 pin.
+        unsigned DI1_PT_2 : 2; //!< DI1 PIN_13 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_13 pin.
+        unsigned DI1_PT_3 : 2; //!< DI1 PIN_14 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_14 pin.
+        unsigned DI1_PT_4 : 2; //!< DI1 PIN_15 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_15 pin.
+        unsigned DI1_PT_5 : 2; //!< DI1 PIN_16 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_16 pin.
+        unsigned DI1_PT_6 : 2; //!< DI1 PIN_17 pointer for waveform <i> This field points to a register that defines the waveform of the PIN_17 pin.
+        unsigned DI1_CST : 2; //!< DI1 Chip Select pointer for waveform <i> This field points to a register that defines the waveform of the CS pin. The CS is automatically mapped to a specific display
+        unsigned DI1_COMPONNENT_SIZE : 8; //!< DI1 component Size This field defines the amount of IPU cycles between any 2 components
+        unsigned DI1_ACCESS_SIZE : 8; //!< DI1 Access Size <i> This field defines the amount of IPU cycles between any 2 accesses (an access may be a pixel or generic data that may have more one component)
     } B;
 } hw_ipu_di1_dw_gen_i_t;
 #endif
@@ -47886,7 +50486,7 @@ typedef union
  * constants & macros for individual IPU_DI1_DW_GEN_I bitfields
  */
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_0_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_0 (RW)
  *
  * DI1 PIN_11 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_11 pin.
@@ -47898,21 +50498,21 @@ typedef union
  * 11 - - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_PT_0_      0
-#define BM_IPU_DI1_DW_GEN_I_DI1_PT_0_      0x00000003
+#define BP_IPU_DI1_DW_GEN_I_DI1_PT_0      0
+#define BM_IPU_DI1_DW_GEN_I_DI1_PT_0      0x00000003
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_0_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_GEN_I_DI1_PT_0_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_0(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_GEN_I_DI1_PT_0)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_0_(v)   (((v) << 0) & BM_IPU_DI1_DW_GEN_I_DI1_PT_0_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_0(v)   (((v) << 0) & BM_IPU_DI1_DW_GEN_I_DI1_PT_0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_PT_0_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_PT_0_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_0_, v)
+//! @brief Set the DI1_PT_0 field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_PT_0(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_0, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_1_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_1 (RW)
  *
  * DI1 PIN_12 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_12 pin.
@@ -47924,21 +50524,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_PT_1_      2
-#define BM_IPU_DI1_DW_GEN_I_DI1_PT_1_      0x0000000c
+#define BP_IPU_DI1_DW_GEN_I_DI1_PT_1      2
+#define BM_IPU_DI1_DW_GEN_I_DI1_PT_1      0x0000000c
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_1_(v)   ((((reg32_t) v) << 2) & BM_IPU_DI1_DW_GEN_I_DI1_PT_1_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_1(v)   ((((reg32_t) v) << 2) & BM_IPU_DI1_DW_GEN_I_DI1_PT_1)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_1_(v)   (((v) << 2) & BM_IPU_DI1_DW_GEN_I_DI1_PT_1_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_1(v)   (((v) << 2) & BM_IPU_DI1_DW_GEN_I_DI1_PT_1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_PT_1_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_PT_1_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_1_, v)
+//! @brief Set the DI1_PT_1 field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_PT_1(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_1, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_2_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_2 (RW)
  *
  * DI1 PIN_13 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_13 pin.
@@ -47950,21 +50550,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_PT_2_      4
-#define BM_IPU_DI1_DW_GEN_I_DI1_PT_2_      0x00000030
+#define BP_IPU_DI1_DW_GEN_I_DI1_PT_2      4
+#define BM_IPU_DI1_DW_GEN_I_DI1_PT_2      0x00000030
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_2_(v)   ((((reg32_t) v) << 4) & BM_IPU_DI1_DW_GEN_I_DI1_PT_2_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_2(v)   ((((reg32_t) v) << 4) & BM_IPU_DI1_DW_GEN_I_DI1_PT_2)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_2_(v)   (((v) << 4) & BM_IPU_DI1_DW_GEN_I_DI1_PT_2_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_2(v)   (((v) << 4) & BM_IPU_DI1_DW_GEN_I_DI1_PT_2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_PT_2_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_PT_2_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_2_, v)
+//! @brief Set the DI1_PT_2 field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_PT_2(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_2, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_3_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_3 (RW)
  *
  * DI1 PIN_14 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_14 pin.
@@ -47976,21 +50576,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_PT_3_      6
-#define BM_IPU_DI1_DW_GEN_I_DI1_PT_3_      0x000000c0
+#define BP_IPU_DI1_DW_GEN_I_DI1_PT_3      6
+#define BM_IPU_DI1_DW_GEN_I_DI1_PT_3      0x000000c0
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_3_(v)   ((((reg32_t) v) << 6) & BM_IPU_DI1_DW_GEN_I_DI1_PT_3_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_3(v)   ((((reg32_t) v) << 6) & BM_IPU_DI1_DW_GEN_I_DI1_PT_3)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_3_(v)   (((v) << 6) & BM_IPU_DI1_DW_GEN_I_DI1_PT_3_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_3(v)   (((v) << 6) & BM_IPU_DI1_DW_GEN_I_DI1_PT_3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_PT_3_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_PT_3_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_3_, v)
+//! @brief Set the DI1_PT_3 field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_PT_3(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_3, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_4_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_4 (RW)
  *
  * DI1 PIN_15 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_15 pin.
@@ -48002,21 +50602,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_PT_4_      8
-#define BM_IPU_DI1_DW_GEN_I_DI1_PT_4_      0x00000300
+#define BP_IPU_DI1_DW_GEN_I_DI1_PT_4      8
+#define BM_IPU_DI1_DW_GEN_I_DI1_PT_4      0x00000300
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_4_(v)   ((((reg32_t) v) << 8) & BM_IPU_DI1_DW_GEN_I_DI1_PT_4_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_4(v)   ((((reg32_t) v) << 8) & BM_IPU_DI1_DW_GEN_I_DI1_PT_4)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_4_(v)   (((v) << 8) & BM_IPU_DI1_DW_GEN_I_DI1_PT_4_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_4(v)   (((v) << 8) & BM_IPU_DI1_DW_GEN_I_DI1_PT_4)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_PT_4_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_PT_4_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_4_, v)
+//! @brief Set the DI1_PT_4 field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_PT_4(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_4, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_5_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_5 (RW)
  *
  * DI1 PIN_16 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_16 pin.
@@ -48028,21 +50628,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_PT_5_      10
-#define BM_IPU_DI1_DW_GEN_I_DI1_PT_5_      0x00000c00
+#define BP_IPU_DI1_DW_GEN_I_DI1_PT_5      10
+#define BM_IPU_DI1_DW_GEN_I_DI1_PT_5      0x00000c00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_5_(v)   ((((reg32_t) v) << 10) & BM_IPU_DI1_DW_GEN_I_DI1_PT_5_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_5(v)   ((((reg32_t) v) << 10) & BM_IPU_DI1_DW_GEN_I_DI1_PT_5)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_5_(v)   (((v) << 10) & BM_IPU_DI1_DW_GEN_I_DI1_PT_5_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_5(v)   (((v) << 10) & BM_IPU_DI1_DW_GEN_I_DI1_PT_5)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_PT_5_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_PT_5_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_5_, v)
+//! @brief Set the DI1_PT_5 field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_PT_5(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_5, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_6_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_PT_6 (RW)
  *
  * DI1 PIN_17 pointer for waveform <i> This field points to a register that defines the waveform of
  * the PIN_17 pin.
@@ -48054,21 +50654,21 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_PT_6_      12
-#define BM_IPU_DI1_DW_GEN_I_DI1_PT_6_      0x00003000
+#define BP_IPU_DI1_DW_GEN_I_DI1_PT_6      12
+#define BM_IPU_DI1_DW_GEN_I_DI1_PT_6      0x00003000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_6_(v)   ((((reg32_t) v) << 12) & BM_IPU_DI1_DW_GEN_I_DI1_PT_6_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_6(v)   ((((reg32_t) v) << 12) & BM_IPU_DI1_DW_GEN_I_DI1_PT_6)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_PT_6_(v)   (((v) << 12) & BM_IPU_DI1_DW_GEN_I_DI1_PT_6_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_PT_6(v)   (((v) << 12) & BM_IPU_DI1_DW_GEN_I_DI1_PT_6)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_PT_6_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_PT_6_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_6_, v)
+//! @brief Set the DI1_PT_6 field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_PT_6(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_PT_6, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_CST_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_CST (RW)
  *
  * DI1 Chip Select pointer for waveform <i> This field points to a register that defines the
  * waveform of the CS pin. The CS is automatically mapped to a specific display
@@ -48080,55 +50680,55 @@ typedef union
  * 11 - The waveform is defined according to the settings on DI1_DW_SET3_<i>
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_CST_      14
-#define BM_IPU_DI1_DW_GEN_I_DI1_CST_      0x0000c000
+#define BP_IPU_DI1_DW_GEN_I_DI1_CST      14
+#define BM_IPU_DI1_DW_GEN_I_DI1_CST      0x0000c000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_CST_(v)   ((((reg32_t) v) << 14) & BM_IPU_DI1_DW_GEN_I_DI1_CST_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_CST(v)   ((((reg32_t) v) << 14) & BM_IPU_DI1_DW_GEN_I_DI1_CST)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_CST_(v)   (((v) << 14) & BM_IPU_DI1_DW_GEN_I_DI1_CST_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_CST(v)   (((v) << 14) & BM_IPU_DI1_DW_GEN_I_DI1_CST)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_CST_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_CST_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_CST_, v)
+//! @brief Set the DI1_CST field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_CST(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_CST, v)
 #endif
 
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_COMPONNENT_SIZE_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_COMPONNENT_SIZE (RW)
  *
  * DI1 component Size This field defines the amount of IPU cycles between any 2 components
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE_      16
-#define BM_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE_      0x00ff0000
+#define BP_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE      16
+#define BM_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE_(v)   (((v) << 16) & BM_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE(v)   (((v) << 16) & BM_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_COMPONNENT_SIZE_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_COMPONNENT_SIZE_, v)
+//! @brief Set the DI1_COMPONNENT_SIZE field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_COMPONNENT_SIZE(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_COMPONNENT_SIZE, v)
 #endif
 
-/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_ACCESS_SIZE_ (RW)
+/* --- Register HW_IPU_DI1_DW_GEN_I, field DI1_ACCESS_SIZE (RW)
  *
  * DI1 Access Size <i> This field defines the amount of IPU cycles between any 2 accesses (an access
  * may be a pixel or generic data that may have more one component)
  */
 
-#define BP_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE_      24
-#define BM_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE_      0xff000000
+#define BP_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE      24
+#define BM_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE_(v)   ((((reg32_t) v) << 24) & BM_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE(v)   ((((reg32_t) v) << 24) & BM_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE)
 #else
-#define BF_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE_(v)   (((v) << 24) & BM_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE_)
+#define BF_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE(v)   (((v) << 24) & BM_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_ACCESS_SIZE_ field to a new value.
-#define BW_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE_(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_ACCESS_SIZE_, v)
+//! @brief Set the DI1_ACCESS_SIZE field to a new value.
+#define BW_IPU_DI1_DW_GEN_I_DI1_ACCESS_SIZE(v)   BF_CS1(IPU_DI1_DW_GEN_I, DI1_ACCESS_SIZE, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -48142,9 +50742,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_DATA_CNT_UP0_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_UP0 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI1_DATA_CNT_DOWN0_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_DOWN0 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di1_dw_set0_i_t;
@@ -48168,42 +50768,42 @@ typedef union
  * constants & macros for individual IPU_DI1_DW_SET0_I bitfields
  */
 
-/* --- Register HW_IPU_DI1_DW_SET0_I, field DI1_DATA_CNT_UP0_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET0_I, field DI1_DATA_CNT_UP0 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0_      0
-#define BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0_      0x000001ff
+#define BP_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0      0
+#define BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0_)
+#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0)
 #else
-#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0_(v)   (((v) << 0) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0_)
+#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0(v)   (((v) << 0) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_UP0_ field to a new value.
-#define BW_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0_(v)   BF_CS1(IPU_DI1_DW_SET0_I, DI1_DATA_CNT_UP0_, v)
+//! @brief Set the DI1_DATA_CNT_UP0 field to a new value.
+#define BW_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_UP0(v)   BF_CS1(IPU_DI1_DW_SET0_I, DI1_DATA_CNT_UP0, v)
 #endif
 
-/* --- Register HW_IPU_DI1_DW_SET0_I, field DI1_DATA_CNT_DOWN0_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET0_I, field DI1_DATA_CNT_DOWN0 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0_      16
-#define BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0_      0x01ff0000
+#define BP_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0      16
+#define BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0_)
+#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0)
 #else
-#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0_(v)   (((v) << 16) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0_)
+#define BF_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0(v)   (((v) << 16) & BM_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_DOWN0_ field to a new value.
-#define BW_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0_(v)   BF_CS1(IPU_DI1_DW_SET0_I, DI1_DATA_CNT_DOWN0_, v)
+//! @brief Set the DI1_DATA_CNT_DOWN0 field to a new value.
+#define BW_IPU_DI1_DW_SET0_I_DI1_DATA_CNT_DOWN0(v)   BF_CS1(IPU_DI1_DW_SET0_I, DI1_DATA_CNT_DOWN0, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -48217,9 +50817,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_DATA_CNT_UP1_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_UP1 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI1_DATA_CNT_DOWN1_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_DOWN1 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di1_dw_set1_i_t;
@@ -48243,42 +50843,42 @@ typedef union
  * constants & macros for individual IPU_DI1_DW_SET1_I bitfields
  */
 
-/* --- Register HW_IPU_DI1_DW_SET1_I, field DI1_DATA_CNT_UP1_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET1_I, field DI1_DATA_CNT_UP1 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1_      0
-#define BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1_      0x000001ff
+#define BP_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1      0
+#define BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1_)
+#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1)
 #else
-#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1_(v)   (((v) << 0) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1_)
+#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1(v)   (((v) << 0) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_UP1_ field to a new value.
-#define BW_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1_(v)   BF_CS1(IPU_DI1_DW_SET1_I, DI1_DATA_CNT_UP1_, v)
+//! @brief Set the DI1_DATA_CNT_UP1 field to a new value.
+#define BW_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_UP1(v)   BF_CS1(IPU_DI1_DW_SET1_I, DI1_DATA_CNT_UP1, v)
 #endif
 
-/* --- Register HW_IPU_DI1_DW_SET1_I, field DI1_DATA_CNT_DOWN1_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET1_I, field DI1_DATA_CNT_DOWN1 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1_      16
-#define BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1_      0x01ff0000
+#define BP_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1      16
+#define BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1_)
+#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1)
 #else
-#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1_(v)   (((v) << 16) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1_)
+#define BF_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1(v)   (((v) << 16) & BM_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_DOWN1_ field to a new value.
-#define BW_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1_(v)   BF_CS1(IPU_DI1_DW_SET1_I, DI1_DATA_CNT_DOWN1_, v)
+//! @brief Set the DI1_DATA_CNT_DOWN1 field to a new value.
+#define BW_IPU_DI1_DW_SET1_I_DI1_DATA_CNT_DOWN1(v)   BF_CS1(IPU_DI1_DW_SET1_I, DI1_DATA_CNT_DOWN1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -48292,9 +50892,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_DATA_CNT_UP2_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_UP2 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI1_DATA_CNT_DOWN2_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_DOWN2 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di1_dw_set2_i_t;
@@ -48318,42 +50918,42 @@ typedef union
  * constants & macros for individual IPU_DI1_DW_SET2_I bitfields
  */
 
-/* --- Register HW_IPU_DI1_DW_SET2_I, field DI1_DATA_CNT_UP2_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET2_I, field DI1_DATA_CNT_UP2 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2_      0
-#define BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2_      0x000001ff
+#define BP_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2      0
+#define BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2_)
+#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2)
 #else
-#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2_(v)   (((v) << 0) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2_)
+#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2(v)   (((v) << 0) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_UP2_ field to a new value.
-#define BW_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2_(v)   BF_CS1(IPU_DI1_DW_SET2_I, DI1_DATA_CNT_UP2_, v)
+//! @brief Set the DI1_DATA_CNT_UP2 field to a new value.
+#define BW_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_UP2(v)   BF_CS1(IPU_DI1_DW_SET2_I, DI1_DATA_CNT_UP2, v)
 #endif
 
-/* --- Register HW_IPU_DI1_DW_SET2_I, field DI1_DATA_CNT_DOWN2_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET2_I, field DI1_DATA_CNT_DOWN2 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2_      16
-#define BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2_      0x01ff0000
+#define BP_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2      16
+#define BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2_)
+#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2)
 #else
-#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2_(v)   (((v) << 16) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2_)
+#define BF_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2(v)   (((v) << 16) & BM_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_DOWN2_ field to a new value.
-#define BW_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2_(v)   BF_CS1(IPU_DI1_DW_SET2_I, DI1_DATA_CNT_DOWN2_, v)
+//! @brief Set the DI1_DATA_CNT_DOWN2 field to a new value.
+#define BW_IPU_DI1_DW_SET2_I_DI1_DATA_CNT_DOWN2(v)   BF_CS1(IPU_DI1_DW_SET2_I, DI1_DATA_CNT_DOWN2, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -48367,9 +50967,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_DATA_CNT_UP3_ : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_UP3 : 9; //!< Waveform's rising edge position. This field defines the Waveform's rising edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DI1_DATA_CNT_DOWN3_ : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
+        unsigned DI1_DATA_CNT_DOWN3 : 9; //!< Waveform's falling edge position. This field defines the Waveform's falling edge position. The Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_di1_dw_set3_i_t;
@@ -48393,42 +50993,42 @@ typedef union
  * constants & macros for individual IPU_DI1_DW_SET3_I bitfields
  */
 
-/* --- Register HW_IPU_DI1_DW_SET3_I, field DI1_DATA_CNT_UP3_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET3_I, field DI1_DATA_CNT_UP3 (RW)
  *
  * Waveform's rising edge position. This field defines the Waveform's rising edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3_      0
-#define BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3_      0x000001ff
+#define BP_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3      0
+#define BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3_)
+#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3)
 #else
-#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3_(v)   (((v) << 0) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3_)
+#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3(v)   (((v) << 0) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_UP3_ field to a new value.
-#define BW_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3_(v)   BF_CS1(IPU_DI1_DW_SET3_I, DI1_DATA_CNT_UP3_, v)
+//! @brief Set the DI1_DATA_CNT_UP3 field to a new value.
+#define BW_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_UP3(v)   BF_CS1(IPU_DI1_DW_SET3_I, DI1_DATA_CNT_UP3, v)
 #endif
 
-/* --- Register HW_IPU_DI1_DW_SET3_I, field DI1_DATA_CNT_DOWN3_ (RW)
+/* --- Register HW_IPU_DI1_DW_SET3_I, field DI1_DATA_CNT_DOWN3 (RW)
  *
  * Waveform's falling edge position. This field defines the Waveform's falling edge position. The
  * Waveform is mapped to a pint according to the corresponding di1_pt_*_<i>
  */
 
-#define BP_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3_      16
-#define BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3_      0x01ff0000
+#define BP_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3      16
+#define BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3_)
+#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3)
 #else
-#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3_(v)   (((v) << 16) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3_)
+#define BF_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3(v)   (((v) << 16) & BM_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DATA_CNT_DOWN3_ field to a new value.
-#define BW_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3_(v)   BF_CS1(IPU_DI1_DW_SET3_I, DI1_DATA_CNT_DOWN3_, v)
+//! @brief Set the DI1_DATA_CNT_DOWN3 field to a new value.
+#define BW_IPU_DI1_DW_SET3_I_DI1_DATA_CNT_DOWN3(v)   BF_CS1(IPU_DI1_DW_SET3_I, DI1_DATA_CNT_DOWN3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -48442,9 +51042,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_STEP_REPEAT_ : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
+        unsigned DI1_STEP_REPEAT : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
         unsigned RESERVED0 : 4; //!< Reserved
-        unsigned DI1_STEP_REPEAT_1 : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
+        unsigned DI1_STEP_REPEAT1 : 12; //!< Step Repeat <i> This fields defines the amount of repetitions that will be performed by the counter <i>
         unsigned RESERVED1 : 4; //!< Reserved
     } B;
 } hw_ipu_d1_stp_rep_i_t;
@@ -48468,42 +51068,42 @@ typedef union
  * constants & macros for individual IPU_D1_STP_REP_I bitfields
  */
 
-/* --- Register HW_IPU_D1_STP_REP_I, field DI1_STEP_REPEAT_ (RW)
+/* --- Register HW_IPU_D1_STP_REP_I, field DI1_STEP_REPEAT (RW)
  *
  * Step Repeat <i> This fields defines the amount of repetitions that will be performed by the
  * counter <i>
  */
 
-#define BP_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_      0
-#define BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_      0x00000fff
+#define BP_IPU_D1_STP_REP_I_DI1_STEP_REPEAT      0
+#define BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT      0x00000fff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_(v)   ((((reg32_t) v) << 0) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_)
+#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT(v)   ((((reg32_t) v) << 0) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT)
 #else
-#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_(v)   (((v) << 0) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_)
+#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT(v)   (((v) << 0) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_STEP_REPEAT_ field to a new value.
-#define BW_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_(v)   BF_CS1(IPU_D1_STP_REP_I, DI1_STEP_REPEAT_, v)
+//! @brief Set the DI1_STEP_REPEAT field to a new value.
+#define BW_IPU_D1_STP_REP_I_DI1_STEP_REPEAT(v)   BF_CS1(IPU_D1_STP_REP_I, DI1_STEP_REPEAT, v)
 #endif
 
-/* --- Register HW_IPU_D1_STP_REP_I, field DI1_STEP_REPEAT_ (RW)
+/* --- Register HW_IPU_D1_STP_REP_I, field DI1_STEP_REPEAT1 (RW)
  *
  * Step Repeat <i> This fields defines the amount of repetitions that will be performed by the
  * counter <i>
  */
 
-#define BP_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_      16
-#define BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_      0x0fff0000
+#define BP_IPU_D1_STP_REP_I_DI1_STEP_REPEAT1      16
+#define BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT1      0x0fff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_(v)   ((((reg32_t) v) << 16) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_)
+#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT1(v)   ((((reg32_t) v) << 16) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT1)
 #else
-#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_(v)   (((v) << 16) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_)
+#define BF_IPU_D1_STP_REP_I_DI1_STEP_REPEAT1(v)   (((v) << 16) & BM_IPU_D1_STP_REP_I_DI1_STEP_REPEAT1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_STEP_REPEAT_ field to a new value.
-#define BW_IPU_D1_STP_REP_I_DI1_STEP_REPEAT_(v)   BF_CS1(IPU_D1_STP_REP_I, DI1_STEP_REPEAT_, v)
+//! @brief Set the DI1_STEP_REPEAT1 field to a new value.
+#define BW_IPU_D1_STP_REP_I_DI1_STEP_REPEAT1(v)   BF_CS1(IPU_D1_STP_REP_I, DI1_STEP_REPEAT1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -49221,11 +51821,11 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DI1_DRDY_POLARITY_ : 7; //!< DI1 output dynamic pin's polarity for synchronous access This bits define the polarity of each of the DI's outputs when synchronous display access is asserted The pins' default polarity is the same as defined in the di0_drdy_polarity_[17:11] bits
+        unsigned DI1_DRDY_POLARITY : 7; //!< DI1 output dynamic pin's polarity for synchronous access This bits define the polarity of each of the DI's outputs when synchronous display access is asserted The pins' default polarity is the same as defined in the di0_drdy_polarity_[17:11] bits
         unsigned DI1_DRDY_DATA_POLARITY : 1; //!< Data Polarity associated with DRDY
-        unsigned DI1_CS0_POLARITY_ : 7; //!< DI1 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
+        unsigned DI1_CS0_POLARITY : 7; //!< DI1 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
         unsigned DI1_CS0_DATA_POLARITY : 1; //!< Data Polarity associated with CS0
-        unsigned DI1_CS1_POLARITY_ : 7; //!< DI1 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
+        unsigned DI1_CS1_POLARITY : 7; //!< DI1 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when CS1 is asserted
         unsigned DI1_CS1_DATA_POLARITY : 1; //!< Data Polarity associated with CS1
         unsigned DI1_CS0_BYTE_EN_POLARITY : 1; //!< Byte Enable associated with CS0 polarity This bit defines the polarity of the byte enable signals to the display
         unsigned DI1_CS1_BYTE_EN_POLARITY : 1; //!< Byte Enable associated with CS1 polarity This bit defines the polarity of the byte enable signals to the display
@@ -49253,7 +51853,7 @@ typedef union
  * constants & macros for individual IPU_DI1_POL bitfields
  */
 
-/* --- Register HW_IPU_DI1_POL, field DI1_DRDY_POLARITY_ (RW)
+/* --- Register HW_IPU_DI1_POL, field DI1_DRDY_POLARITY (RW)
  *
  * DI1 output dynamic pin's polarity for synchronous access This bits define the polarity of each of
  * the DI's outputs when synchronous display access is asserted The pins' default polarity is the
@@ -49264,17 +51864,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI1_POL_DI1_DRDY_POLARITY_      0
-#define BM_IPU_DI1_POL_DI1_DRDY_POLARITY_      0x0000007f
+#define BP_IPU_DI1_POL_DI1_DRDY_POLARITY      0
+#define BM_IPU_DI1_POL_DI1_DRDY_POLARITY      0x0000007f
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_POL_DI1_DRDY_POLARITY_(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_POL_DI1_DRDY_POLARITY_)
+#define BF_IPU_DI1_POL_DI1_DRDY_POLARITY(v)   ((((reg32_t) v) << 0) & BM_IPU_DI1_POL_DI1_DRDY_POLARITY)
 #else
-#define BF_IPU_DI1_POL_DI1_DRDY_POLARITY_(v)   (((v) << 0) & BM_IPU_DI1_POL_DI1_DRDY_POLARITY_)
+#define BF_IPU_DI1_POL_DI1_DRDY_POLARITY(v)   (((v) << 0) & BM_IPU_DI1_POL_DI1_DRDY_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_DRDY_POLARITY_ field to a new value.
-#define BW_IPU_DI1_POL_DI1_DRDY_POLARITY_(v)   BF_CS1(IPU_DI1_POL, DI1_DRDY_POLARITY_, v)
+//! @brief Set the DI1_DRDY_POLARITY field to a new value.
+#define BW_IPU_DI1_POL_DI1_DRDY_POLARITY(v)   BF_CS1(IPU_DI1_POL, DI1_DRDY_POLARITY, v)
 #endif
 
 
@@ -49296,7 +51896,7 @@ typedef union
 #define BW_IPU_DI1_POL_DI1_DRDY_DATA_POLARITY(v)   BF_CS1(IPU_DI1_POL, DI1_DRDY_DATA_POLARITY, v)
 #endif
 
-/* --- Register HW_IPU_DI1_POL, field DI1_CS0_POLARITY_ (RW)
+/* --- Register HW_IPU_DI1_POL, field DI1_CS0_POLARITY (RW)
  *
  * DI1 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when
  * CS1 is asserted
@@ -49306,17 +51906,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI1_POL_DI1_CS0_POLARITY_      8
-#define BM_IPU_DI1_POL_DI1_CS0_POLARITY_      0x00007f00
+#define BP_IPU_DI1_POL_DI1_CS0_POLARITY      8
+#define BM_IPU_DI1_POL_DI1_CS0_POLARITY      0x00007f00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_POL_DI1_CS0_POLARITY_(v)   ((((reg32_t) v) << 8) & BM_IPU_DI1_POL_DI1_CS0_POLARITY_)
+#define BF_IPU_DI1_POL_DI1_CS0_POLARITY(v)   ((((reg32_t) v) << 8) & BM_IPU_DI1_POL_DI1_CS0_POLARITY)
 #else
-#define BF_IPU_DI1_POL_DI1_CS0_POLARITY_(v)   (((v) << 8) & BM_IPU_DI1_POL_DI1_CS0_POLARITY_)
+#define BF_IPU_DI1_POL_DI1_CS0_POLARITY(v)   (((v) << 8) & BM_IPU_DI1_POL_DI1_CS0_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_CS0_POLARITY_ field to a new value.
-#define BW_IPU_DI1_POL_DI1_CS0_POLARITY_(v)   BF_CS1(IPU_DI1_POL, DI1_CS0_POLARITY_, v)
+//! @brief Set the DI1_CS0_POLARITY field to a new value.
+#define BW_IPU_DI1_POL_DI1_CS0_POLARITY(v)   BF_CS1(IPU_DI1_POL, DI1_CS0_POLARITY, v)
 #endif
 
 
@@ -49338,7 +51938,7 @@ typedef union
 #define BW_IPU_DI1_POL_DI1_CS0_DATA_POLARITY(v)   BF_CS1(IPU_DI1_POL, DI1_CS0_DATA_POLARITY, v)
 #endif
 
-/* --- Register HW_IPU_DI1_POL, field DI1_CS1_POLARITY_ (RW)
+/* --- Register HW_IPU_DI1_POL, field DI1_CS1_POLARITY (RW)
  *
  * DI1 output pin's polarity for CS1 This bits define the polarity of each of the DI's outputs when
  * CS1 is asserted
@@ -49348,17 +51948,17 @@ typedef union
  * 1 - The output pin is active high
  */
 
-#define BP_IPU_DI1_POL_DI1_CS1_POLARITY_      16
-#define BM_IPU_DI1_POL_DI1_CS1_POLARITY_      0x007f0000
+#define BP_IPU_DI1_POL_DI1_CS1_POLARITY      16
+#define BM_IPU_DI1_POL_DI1_CS1_POLARITY      0x007f0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DI1_POL_DI1_CS1_POLARITY_(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_POL_DI1_CS1_POLARITY_)
+#define BF_IPU_DI1_POL_DI1_CS1_POLARITY(v)   ((((reg32_t) v) << 16) & BM_IPU_DI1_POL_DI1_CS1_POLARITY)
 #else
-#define BF_IPU_DI1_POL_DI1_CS1_POLARITY_(v)   (((v) << 16) & BM_IPU_DI1_POL_DI1_CS1_POLARITY_)
+#define BF_IPU_DI1_POL_DI1_CS1_POLARITY(v)   (((v) << 16) & BM_IPU_DI1_POL_DI1_CS1_POLARITY)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DI1_CS1_POLARITY_ field to a new value.
-#define BW_IPU_DI1_POL_DI1_CS1_POLARITY_(v)   BF_CS1(IPU_DI1_POL, DI1_CS1_POLARITY_, v)
+//! @brief Set the DI1_CS1_POLARITY field to a new value.
+#define BW_IPU_DI1_POL_DI1_CS1_POLARITY(v)   BF_CS1(IPU_DI1_POL, DI1_CS1_POLARITY, v)
 #endif
 
 
@@ -66410,8 +69010,8 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DMFC_FIFO_FULL_ : 12; //!< This bit indicates on a DMFC FIFO#<i> full condition. Mapping of these bit to an actual FIFO number is as follows: bit 0 => 0 bit 1=> 1 bit 2 => 2 bit 3 =>1c bit 4 => 2c bit 5 => 5b bit 6 => 5f bit 7 => 6b bit 8 => 6f bit 9 => 9 bit 10 => 10 (ARM platform access) bit 11 => 11 (ARM platform access)
-        unsigned DMFC_FIFO_EMPTY_ : 12; //!< This bit indicates on a DMFC FIFO#<i> empty condition. Mapping of these bit to an actual FIFO number is as follows: bit 0 => 0 bit 1=> 1 bit 2 => 2 bit 3 =>1c bit 4 => 2c bit 5 => 5b bit 6 => 5f bit 7 => 6b bit 8 => 6f bit 9 => 9 bit 10 => 10 (ARM platform access) bit 11 => 11 (ARM platform access)
+        unsigned DMFC_FIFO_FULL : 12; //!< This bit indicates on a DMFC FIFO#<i> full condition. Mapping of these bit to an actual FIFO number is as follows: bit 0 => 0 bit 1=> 1 bit 2 => 2 bit 3 =>1c bit 4 => 2c bit 5 => 5b bit 6 => 5f bit 7 => 6b bit 8 => 6f bit 9 => 9 bit 10 => 10 (ARM platform access) bit 11 => 11 (ARM platform access)
+        unsigned DMFC_FIFO_EMPTY : 12; //!< This bit indicates on a DMFC FIFO#<i> empty condition. Mapping of these bit to an actual FIFO number is as follows: bit 0 => 0 bit 1=> 1 bit 2 => 2 bit 3 =>1c bit 4 => 2c bit 5 => 5b bit 6 => 5f bit 7 => 6b bit 8 => 6f bit 9 => 9 bit 10 => 10 (ARM platform access) bit 11 => 11 (ARM platform access)
         unsigned DMFC_IC_BUFFER_FULL : 1; //!< This bit indicates on a IC FIFO, inside the DMFC, full condition.
         unsigned DMFC_IC_BUFFER_EMPTY : 1; //!< This bit indicates on a IC FIFO, inside the DMFC, empty condition.
         unsigned RESERVED0 : 6; //!< Reserved
@@ -66433,7 +69033,7 @@ typedef union
  * constants & macros for individual IPU_DMFC_STAT bitfields
  */
 
-/* --- Register HW_IPU_DMFC_STAT, field DMFC_FIFO_FULL_ (RO)
+/* --- Register HW_IPU_DMFC_STAT, field DMFC_FIFO_FULL (RO)
  *
  * This bit indicates on a DMFC FIFO#<i> full condition. Mapping of these bit to an actual FIFO
  * number is as follows: bit 0 => 0 bit 1=> 1 bit 2 => 2 bit 3 =>1c bit 4 => 2c bit 5 => 5b bit 6 =>
@@ -66445,11 +69045,11 @@ typedef union
  * 1 - FIFO #<i> is full
  */
 
-#define BP_IPU_DMFC_STAT_DMFC_FIFO_FULL_      0
-#define BM_IPU_DMFC_STAT_DMFC_FIFO_FULL_      0x00000fff
+#define BP_IPU_DMFC_STAT_DMFC_FIFO_FULL      0
+#define BM_IPU_DMFC_STAT_DMFC_FIFO_FULL      0x00000fff
 
 
-/* --- Register HW_IPU_DMFC_STAT, field DMFC_FIFO_EMPTY_ (RO)
+/* --- Register HW_IPU_DMFC_STAT, field DMFC_FIFO_EMPTY (RO)
  *
  * This bit indicates on a DMFC FIFO#<i> empty condition. Mapping of these bit to an actual FIFO
  * number is as follows: bit 0 => 0 bit 1=> 1 bit 2 => 2 bit 3 =>1c bit 4 => 2c bit 5 => 5b bit 6 =>
@@ -66461,8 +69061,8 @@ typedef union
  * 1 - FIFO #<i> is empty
  */
 
-#define BP_IPU_DMFC_STAT_DMFC_FIFO_EMPTY_      12
-#define BM_IPU_DMFC_STAT_DMFC_FIFO_EMPTY_      0x00fff000
+#define BP_IPU_DMFC_STAT_DMFC_FIFO_EMPTY      12
+#define BM_IPU_DMFC_STAT_DMFC_FIFO_EMPTY      0x00fff000
 
 
 /* --- Register HW_IPU_DMFC_STAT, field DMFC_IC_BUFFER_FULL (RO)
@@ -66842,7 +69442,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_IPU_VDI_C2_ - VDI Control Register 2 (RW)
+ * @brief HW_IPU_VDI_C2 - VDI Control Register 2 (RW)
  *
  * The register used to control modes of operations of VDIC module.
  */
@@ -66857,28 +69457,28 @@ typedef union
         unsigned VDI_PLANE_1_EN : 1; //!< Plane 1 enable
         unsigned RESERVED0 : 28; //!< Reserved
     } B;
-} hw_ipu_vdi_c2__t;
+} hw_ipu_vdi_c2_t;
 #endif
 
 /*
- * constants & macros for entire multi-block IPU_VDI_C2_ register
+ * constants & macros for entire multi-block IPU_VDI_C2 register
  */
-#define HW_IPU_VDI_C2__ADDR(x)      (REGS_IPU_BASE(x) + 0x68008)
+#define HW_IPU_VDI_C2_ADDR(x)      (REGS_IPU_BASE(x) + 0x68008)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_IPU_VDI_C2_(x)           (*(volatile hw_ipu_vdi_c2__t *) HW_IPU_VDI_C2__ADDR(x))
-#define HW_IPU_VDI_C2__RD(x)        (HW_IPU_VDI_C2_(x).U)
-#define HW_IPU_VDI_C2__WR(x, v)     (HW_IPU_VDI_C2_(x).U = (v))
-#define HW_IPU_VDI_C2__SET(x, v)    (HW_IPU_VDI_C2__WR(x, HW_IPU_VDI_C2__RD(x) |  (v)))
-#define HW_IPU_VDI_C2__CLR(x, v)    (HW_IPU_VDI_C2__WR(x, HW_IPU_VDI_C2__RD(x) & ~(v)))
-#define HW_IPU_VDI_C2__TOG(x, v)    (HW_IPU_VDI_C2__WR(x, HW_IPU_VDI_C2__RD(x) ^  (v)))
+#define HW_IPU_VDI_C2(x)           (*(volatile hw_ipu_vdi_c2_t *) HW_IPU_VDI_C2_ADDR(x))
+#define HW_IPU_VDI_C2_RD(x)        (HW_IPU_VDI_C2(x).U)
+#define HW_IPU_VDI_C2_WR(x, v)     (HW_IPU_VDI_C2(x).U = (v))
+#define HW_IPU_VDI_C2_SET(x, v)    (HW_IPU_VDI_C2_WR(x, HW_IPU_VDI_C2_RD(x) |  (v)))
+#define HW_IPU_VDI_C2_CLR(x, v)    (HW_IPU_VDI_C2_WR(x, HW_IPU_VDI_C2_RD(x) & ~(v)))
+#define HW_IPU_VDI_C2_TOG(x, v)    (HW_IPU_VDI_C2_WR(x, HW_IPU_VDI_C2_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual IPU_VDI_C2_ bitfields
+ * constants & macros for individual IPU_VDI_C2 bitfields
  */
 
-/* --- Register HW_IPU_VDI_C2_, field VDI_CMB_EN (RW)
+/* --- Register HW_IPU_VDI_C2, field VDI_CMB_EN (RW)
  *
  * Combining enable
  *
@@ -66887,21 +69487,21 @@ typedef union
  * 1 - Combining enabled. The de-interlacing mode is not functional
  */
 
-#define BP_IPU_VDI_C2__VDI_CMB_EN      0
-#define BM_IPU_VDI_C2__VDI_CMB_EN      0x00000001
+#define BP_IPU_VDI_C2_VDI_CMB_EN      0
+#define BM_IPU_VDI_C2_VDI_CMB_EN      0x00000001
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_VDI_C2__VDI_CMB_EN(v)   ((((reg32_t) v) << 0) & BM_IPU_VDI_C2__VDI_CMB_EN)
+#define BF_IPU_VDI_C2_VDI_CMB_EN(v)   ((((reg32_t) v) << 0) & BM_IPU_VDI_C2_VDI_CMB_EN)
 #else
-#define BF_IPU_VDI_C2__VDI_CMB_EN(v)   (((v) << 0) & BM_IPU_VDI_C2__VDI_CMB_EN)
+#define BF_IPU_VDI_C2_VDI_CMB_EN(v)   (((v) << 0) & BM_IPU_VDI_C2_VDI_CMB_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VDI_CMB_EN field to a new value.
-#define BW_IPU_VDI_C2__VDI_CMB_EN(v)   BF_CS1(IPU_VDI_C2_, VDI_CMB_EN, v)
+#define BW_IPU_VDI_C2_VDI_CMB_EN(v)   BF_CS1(IPU_VDI_C2, VDI_CMB_EN, v)
 #endif
 
 
-/* --- Register HW_IPU_VDI_C2_, field VDI_KEY_COLOR_EN (RW)
+/* --- Register HW_IPU_VDI_C2, field VDI_KEY_COLOR_EN (RW)
  *
  * Key Color Enable
  *
@@ -66910,21 +69510,21 @@ typedef union
  * 1 - Key color enabled
  */
 
-#define BP_IPU_VDI_C2__VDI_KEY_COLOR_EN      1
-#define BM_IPU_VDI_C2__VDI_KEY_COLOR_EN      0x00000002
+#define BP_IPU_VDI_C2_VDI_KEY_COLOR_EN      1
+#define BM_IPU_VDI_C2_VDI_KEY_COLOR_EN      0x00000002
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_VDI_C2__VDI_KEY_COLOR_EN(v)   ((((reg32_t) v) << 1) & BM_IPU_VDI_C2__VDI_KEY_COLOR_EN)
+#define BF_IPU_VDI_C2_VDI_KEY_COLOR_EN(v)   ((((reg32_t) v) << 1) & BM_IPU_VDI_C2_VDI_KEY_COLOR_EN)
 #else
-#define BF_IPU_VDI_C2__VDI_KEY_COLOR_EN(v)   (((v) << 1) & BM_IPU_VDI_C2__VDI_KEY_COLOR_EN)
+#define BF_IPU_VDI_C2_VDI_KEY_COLOR_EN(v)   (((v) << 1) & BM_IPU_VDI_C2_VDI_KEY_COLOR_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VDI_KEY_COLOR_EN field to a new value.
-#define BW_IPU_VDI_C2__VDI_KEY_COLOR_EN(v)   BF_CS1(IPU_VDI_C2_, VDI_KEY_COLOR_EN, v)
+#define BW_IPU_VDI_C2_VDI_KEY_COLOR_EN(v)   BF_CS1(IPU_VDI_C2, VDI_KEY_COLOR_EN, v)
 #endif
 
 
-/* --- Register HW_IPU_VDI_C2_, field VDI_GLB_A_EN (RW)
+/* --- Register HW_IPU_VDI_C2, field VDI_GLB_A_EN (RW)
  *
  * Global alpha enable
  *
@@ -66933,21 +69533,21 @@ typedef union
  * 1 - Alpha is global
  */
 
-#define BP_IPU_VDI_C2__VDI_GLB_A_EN      2
-#define BM_IPU_VDI_C2__VDI_GLB_A_EN      0x00000004
+#define BP_IPU_VDI_C2_VDI_GLB_A_EN      2
+#define BM_IPU_VDI_C2_VDI_GLB_A_EN      0x00000004
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_VDI_C2__VDI_GLB_A_EN(v)   ((((reg32_t) v) << 2) & BM_IPU_VDI_C2__VDI_GLB_A_EN)
+#define BF_IPU_VDI_C2_VDI_GLB_A_EN(v)   ((((reg32_t) v) << 2) & BM_IPU_VDI_C2_VDI_GLB_A_EN)
 #else
-#define BF_IPU_VDI_C2__VDI_GLB_A_EN(v)   (((v) << 2) & BM_IPU_VDI_C2__VDI_GLB_A_EN)
+#define BF_IPU_VDI_C2_VDI_GLB_A_EN(v)   (((v) << 2) & BM_IPU_VDI_C2_VDI_GLB_A_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VDI_GLB_A_EN field to a new value.
-#define BW_IPU_VDI_C2__VDI_GLB_A_EN(v)   BF_CS1(IPU_VDI_C2_, VDI_GLB_A_EN, v)
+#define BW_IPU_VDI_C2_VDI_GLB_A_EN(v)   BF_CS1(IPU_VDI_C2, VDI_GLB_A_EN, v)
 #endif
 
 
-/* --- Register HW_IPU_VDI_C2_, field VDI_PLANE_1_EN (RW)
+/* --- Register HW_IPU_VDI_C2, field VDI_PLANE_1_EN (RW)
  *
  * Plane 1 enable
  *
@@ -66956,17 +69556,17 @@ typedef union
  * 1 - plane #1 is enabled
  */
 
-#define BP_IPU_VDI_C2__VDI_PLANE_1_EN      3
-#define BM_IPU_VDI_C2__VDI_PLANE_1_EN      0x00000008
+#define BP_IPU_VDI_C2_VDI_PLANE_1_EN      3
+#define BM_IPU_VDI_C2_VDI_PLANE_1_EN      0x00000008
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_VDI_C2__VDI_PLANE_1_EN(v)   ((((reg32_t) v) << 3) & BM_IPU_VDI_C2__VDI_PLANE_1_EN)
+#define BF_IPU_VDI_C2_VDI_PLANE_1_EN(v)   ((((reg32_t) v) << 3) & BM_IPU_VDI_C2_VDI_PLANE_1_EN)
 #else
-#define BF_IPU_VDI_C2__VDI_PLANE_1_EN(v)   (((v) << 3) & BM_IPU_VDI_C2__VDI_PLANE_1_EN)
+#define BF_IPU_VDI_C2_VDI_PLANE_1_EN(v)   (((v) << 3) & BM_IPU_VDI_C2_VDI_PLANE_1_EN)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VDI_PLANE_1_EN field to a new value.
-#define BW_IPU_VDI_C2__VDI_PLANE_1_EN(v)   BF_CS1(IPU_VDI_C2_, VDI_PLANE_1_EN, v)
+#define BW_IPU_VDI_C2_VDI_PLANE_1_EN(v)   BF_CS1(IPU_VDI_C2, VDI_PLANE_1_EN, v)
 #endif
 
 
@@ -67684,64 +70284,64 @@ typedef union
 #define BW_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   BF_CS1(IPU_IDMAC_SUB_ADDR_1, IDMAC_SUB_ADDR, v)
 #endif
 
-/* --- Register HW_IPU_IDMAC_SUB_ADDR_1, field IDMAC_SUB_ADDR (RW)
+/* --- Register HW_IPU_IDMAC_SUB_ADDR_1, field IDMAC_SUB_ADDR1 (RW)
  *
  * The CPMEM alternative entry [i] holds the parameters of the channel that is number appears in
  * IDMAC_SUB_ADDR[i]. The user must set each IDMAC_SUB_ADDR[i] field to a unique channel.
  * Alternative CPMEM entry is relevant only for channels supporting alternate flows.
  */
 
-#define BP_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR      8
-#define BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR      0x00007f00
+#define BP_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR1      8
+#define BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR1      0x00007f00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   ((((reg32_t) v) << 8) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR)
+#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR1(v)   ((((reg32_t) v) << 8) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR1)
 #else
-#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   (((v) << 8) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR)
+#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR1(v)   (((v) << 8) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the IDMAC_SUB_ADDR field to a new value.
-#define BW_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   BF_CS1(IPU_IDMAC_SUB_ADDR_1, IDMAC_SUB_ADDR, v)
+//! @brief Set the IDMAC_SUB_ADDR1 field to a new value.
+#define BW_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR1(v)   BF_CS1(IPU_IDMAC_SUB_ADDR_1, IDMAC_SUB_ADDR1, v)
 #endif
 
-/* --- Register HW_IPU_IDMAC_SUB_ADDR_1, field IDMAC_SUB_ADDR (RW)
+/* --- Register HW_IPU_IDMAC_SUB_ADDR_1, field IDMAC_SUB_ADDR2 (RW)
  *
  * The CPMEM alternative entry [i] holds the parameters of the channel that is number appears in
  * IDMAC_SUB_ADDR[i]. The user must set each IDMAC_SUB_ADDR[i] field to a unique channel.
  * Alternative CPMEM entry is relevant only for channels supporting alternate flows.
  */
 
-#define BP_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR      16
-#define BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR      0x007f0000
+#define BP_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR2      16
+#define BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR2      0x007f0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   ((((reg32_t) v) << 16) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR)
+#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR2(v)   ((((reg32_t) v) << 16) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR2)
 #else
-#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   (((v) << 16) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR)
+#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR2(v)   (((v) << 16) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the IDMAC_SUB_ADDR field to a new value.
-#define BW_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   BF_CS1(IPU_IDMAC_SUB_ADDR_1, IDMAC_SUB_ADDR, v)
+//! @brief Set the IDMAC_SUB_ADDR2 field to a new value.
+#define BW_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR2(v)   BF_CS1(IPU_IDMAC_SUB_ADDR_1, IDMAC_SUB_ADDR2, v)
 #endif
 
-/* --- Register HW_IPU_IDMAC_SUB_ADDR_1, field IDMAC_SUB_ADDR (RW)
+/* --- Register HW_IPU_IDMAC_SUB_ADDR_1, field IDMAC_SUB_ADDR3 (RW)
  *
  * The CPMEM alternative entry [i] holds the parameters of the channel that is number appears in
  * IDMAC_SUB_ADDR[i]. The user must set each IDMAC_SUB_ADDR[i] field to a unique channel.
  * Alternative CPMEM entry is relevant only for channels supporting alternate flows.
  */
 
-#define BP_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR      24
-#define BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR      0x7f000000
+#define BP_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR3      24
+#define BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR3      0x7f000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   ((((reg32_t) v) << 24) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR)
+#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR3(v)   ((((reg32_t) v) << 24) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR3)
 #else
-#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   (((v) << 24) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR)
+#define BF_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR3(v)   (((v) << 24) & BM_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the IDMAC_SUB_ADDR field to a new value.
-#define BW_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR(v)   BF_CS1(IPU_IDMAC_SUB_ADDR_1, IDMAC_SUB_ADDR, v)
+//! @brief Set the IDMAC_SUB_ADDR3 field to a new value.
+#define BW_IPU_IDMAC_SUB_ADDR_1_IDMAC_SUB_ADDR3(v)   BF_CS1(IPU_IDMAC_SUB_ADDR_1, IDMAC_SUB_ADDR3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -68477,9 +71077,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DP_GAMMA_C_SYNC_ : 9; //!< CONSTANTi parameter of Gamma Correction.
+        unsigned DP_GAMMA_C_SYNC : 9; //!< CONSTANTi parameter of Gamma Correction.
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DP_GAMMA_C_SYNC_1 : 9; //!< CONSTANTi+1 parameter of Gamma Correction.
+        unsigned DP_GAMMA_C_SYNC1 : 9; //!< CONSTANTi+1 parameter of Gamma Correction.
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_dp_gamma_c_sync_i_t;
@@ -68503,40 +71103,40 @@ typedef union
  * constants & macros for individual IPU_DP_GAMMA_C_SYNC_I bitfields
  */
 
-/* --- Register HW_IPU_DP_GAMMA_C_SYNC_I, field DP_GAMMA_C_SYNC_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_C_SYNC_I, field DP_GAMMA_C_SYNC (RW)
  *
  * CONSTANTi parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_      0
-#define BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_      0x000001ff
+#define BP_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC      0
+#define BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_)
+#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC)
 #else
-#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_(v)   (((v) << 0) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_)
+#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC(v)   (((v) << 0) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_C_SYNC_ field to a new value.
-#define BW_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_(v)   BF_CS1(IPU_DP_GAMMA_C_SYNC_I, DP_GAMMA_C_SYNC_, v)
+//! @brief Set the DP_GAMMA_C_SYNC field to a new value.
+#define BW_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC(v)   BF_CS1(IPU_DP_GAMMA_C_SYNC_I, DP_GAMMA_C_SYNC, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_C_SYNC_I, field DP_GAMMA_C_SYNC_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_C_SYNC_I, field DP_GAMMA_C_SYNC1 (RW)
  *
  * CONSTANTi+1 parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_      16
-#define BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_      0x01ff0000
+#define BP_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC1      16
+#define BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC1      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_)
+#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC1(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC1)
 #else
-#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_(v)   (((v) << 16) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_)
+#define BF_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC1(v)   (((v) << 16) & BM_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_C_SYNC_ field to a new value.
-#define BW_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC_(v)   BF_CS1(IPU_DP_GAMMA_C_SYNC_I, DP_GAMMA_C_SYNC_, v)
+//! @brief Set the DP_GAMMA_C_SYNC1 field to a new value.
+#define BW_IPU_DP_GAMMA_C_SYNC_I_DP_GAMMA_C_SYNC1(v)   BF_CS1(IPU_DP_GAMMA_C_SYNC_I, DP_GAMMA_C_SYNC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -68551,10 +71151,10 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DP_GAMMA_S_SYNC_ : 8; //!< SLOPE<4*i> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_SYNC_1 : 8; //!< SLOPE<4*i+1> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_SYNC_2 : 8; //!< SLOPE<4*i+2> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_SYNC_3 : 8; //!< SLOPE<4*i+3> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_SYNC : 8; //!< SLOPE<4*i> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_SYNC1 : 8; //!< SLOPE<4*i+1> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_SYNC2 : 8; //!< SLOPE<4*i+2> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_SYNC3 : 8; //!< SLOPE<4*i+3> parameter of Gamma Correction.
     } B;
 } hw_ipu_dp_gamma_s_sync_i_t;
 #endif
@@ -68577,76 +71177,76 @@ typedef union
  * constants & macros for individual IPU_DP_GAMMA_S_SYNC_I bitfields
  */
 
-/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC (RW)
  *
  * SLOPE<4*i> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      0
-#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      0x000000ff
+#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC      0
+#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC)
 #else
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   (((v) << 0) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC(v)   (((v) << 0) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_SYNC_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC_, v)
+//! @brief Set the DP_GAMMA_S_SYNC field to a new value.
+#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC1 (RW)
  *
  * SLOPE<4*i+1> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      8
-#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      0x0000ff00
+#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC1      8
+#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC1      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   ((((reg32_t) v) << 8) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC1(v)   ((((reg32_t) v) << 8) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC1)
 #else
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   (((v) << 8) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC1(v)   (((v) << 8) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_SYNC_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC_, v)
+//! @brief Set the DP_GAMMA_S_SYNC1 field to a new value.
+#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC1(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC1, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC2 (RW)
  *
  * SLOPE<4*i+2> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      16
-#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      0x00ff0000
+#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC2      16
+#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC2      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC2(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC2)
 #else
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   (((v) << 16) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC2(v)   (((v) << 16) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC2)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_SYNC_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC_, v)
+//! @brief Set the DP_GAMMA_S_SYNC2 field to a new value.
+#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC2(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC2, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_SYNC_I, field DP_GAMMA_S_SYNC3 (RW)
  *
  * SLOPE<4*i+3> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      24
-#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_      0xff000000
+#define BP_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC3      24
+#define BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC3      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   ((((reg32_t) v) << 24) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC3(v)   ((((reg32_t) v) << 24) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC3)
 #else
-#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   (((v) << 24) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_)
+#define BF_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC3(v)   (((v) << 24) & BM_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC3)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_SYNC_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC_(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC_, v)
+//! @brief Set the DP_GAMMA_S_SYNC3 field to a new value.
+#define BW_IPU_DP_GAMMA_S_SYNC_I_DP_GAMMA_S_SYNC3(v)   BF_CS1(IPU_DP_GAMMA_S_SYNC_I, DP_GAMMA_S_SYNC3, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -68704,22 +71304,22 @@ typedef union
 #define BW_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC(v)   BF_CS1(IPU_DP_CSCA_SYNC_I, DP_CSC_A_SYNC, v)
 #endif
 
-/* --- Register HW_IPU_DP_CSCA_SYNC_I, field DP_CSC_A_SYNC (RW)
+/* --- Register HW_IPU_DP_CSCA_SYNC_I, field DP_CSC_A_SYNC1 (RW)
  *
  * A<2*i+1> parameter of color conversion
  */
 
-#define BP_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC      16
-#define BM_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC      0x03ff0000
+#define BP_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC1      16
+#define BM_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC1      0x03ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC)
+#define BF_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC1(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC1)
 #else
-#define BF_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC(v)   (((v) << 16) & BM_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC)
+#define BF_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC1(v)   (((v) << 16) & BM_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_CSC_A_SYNC field to a new value.
-#define BW_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC(v)   BF_CS1(IPU_DP_CSCA_SYNC_I, DP_CSC_A_SYNC, v)
+//! @brief Set the DP_CSC_A_SYNC1 field to a new value.
+#define BW_IPU_DP_CSCA_SYNC_I_DP_CSC_A_SYNC1(v)   BF_CS1(IPU_DP_CSCA_SYNC_I, DP_CSC_A_SYNC1, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -69764,9 +72364,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DP_GAMMA_C_ASYNC0_ : 9; //!< CONSTANTi parameter of Gamma Correction.
+        unsigned DP_GAMMA_C_ASYNC0 : 9; //!< CONSTANTi parameter of Gamma Correction.
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DP_GAMMA_C_ASYNC0_1 : 12; //!< CONSTANTi+1 parameter of Gamma Correction.
+        unsigned DP_GAMMA_C_ASYNC01 : 12; //!< CONSTANTi+1 parameter of Gamma Correction.
         unsigned RESERVED1 : 4; //!< Reserved.
     } B;
 } hw_ipu_dp_gamma_c_async0_i_t;
@@ -69790,40 +72390,40 @@ typedef union
  * constants & macros for individual IPU_DP_GAMMA_C_ASYNC0_I bitfields
  */
 
-/* --- Register HW_IPU_DP_GAMMA_C_ASYNC0_I, field DP_GAMMA_C_ASYNC0_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_C_ASYNC0_I, field DP_GAMMA_C_ASYNC0 (RW)
  *
  * CONSTANTi parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_      0
-#define BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_      0x000001ff
+#define BP_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0      0
+#define BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_)
+#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0)
 #else
-#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_(v)   (((v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_)
+#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0(v)   (((v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_C_ASYNC0_ field to a new value.
-#define BW_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC0_I, DP_GAMMA_C_ASYNC0_, v)
+//! @brief Set the DP_GAMMA_C_ASYNC0 field to a new value.
+#define BW_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC0_I, DP_GAMMA_C_ASYNC0, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_C_ASYNC0_I, field DP_GAMMA_C_ASYNC0_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_C_ASYNC0_I, field DP_GAMMA_C_ASYNC01 (RW)
  *
  * CONSTANTi+1 parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_      16
-#define BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_      0x0fff0000
+#define BP_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC01      16
+#define BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC01      0x0fff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_)
+#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC01(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC01)
 #else
-#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_(v)   (((v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_)
+#define BF_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC01(v)   (((v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC01)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_C_ASYNC0_ field to a new value.
-#define BW_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC0_(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC0_I, DP_GAMMA_C_ASYNC0_, v)
+//! @brief Set the DP_GAMMA_C_ASYNC01 field to a new value.
+#define BW_IPU_DP_GAMMA_C_ASYNC0_I_DP_GAMMA_C_ASYNC01(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC0_I, DP_GAMMA_C_ASYNC01, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -69838,10 +72438,10 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DP_GAMMA_S_ASYNC0_ : 8; //!< SLOPE<4*i> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_ASYNC0_1 : 8; //!< SLOPE<4*i+1> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_ASYNC0_2 : 8; //!< SLOPE<4*i+2> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_ASYNC0_3 : 8; //!< SLOPE<4*i+3> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC0 : 8; //!< SLOPE<4*i> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC01 : 8; //!< SLOPE<4*i+1> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC02 : 8; //!< SLOPE<4*i+2> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC03 : 8; //!< SLOPE<4*i+3> parameter of Gamma Correction.
     } B;
 } hw_ipu_dp_gamma_s_async0_i_t;
 #endif
@@ -69864,76 +72464,76 @@ typedef union
  * constants & macros for individual IPU_DP_GAMMA_S_ASYNC0_I bitfields
  */
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC0_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC0 (RW)
  *
  * SLOPE<4*i> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      0
-#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      0x000000ff
+#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0      0
+#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   (((v) << 0) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0(v)   (((v) << 0) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC0_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC0_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC0 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC0, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC0_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC01 (RW)
  *
  * SLOPE<4*i+1> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      8
-#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      0x0000ff00
+#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC01      8
+#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC01      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   ((((reg32_t) v) << 8) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC01(v)   ((((reg32_t) v) << 8) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC01)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   (((v) << 8) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC01(v)   (((v) << 8) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC01)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC0_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC0_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC01 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC01(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC01, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC0_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC02 (RW)
  *
  * SLOPE<4*i+2> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      16
-#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      0x00ff0000
+#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC02      16
+#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC02      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC02(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC02)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   (((v) << 16) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC02(v)   (((v) << 16) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC02)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC0_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC0_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC02 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC02(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC02, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC0_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYNC0_I, field DP_GAMMA_S_ASYNC03 (RW)
  *
  * SLOPE<4*i+3> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      24
-#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_      0xff000000
+#define BP_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC03      24
+#define BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC03      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   ((((reg32_t) v) << 24) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC03(v)   ((((reg32_t) v) << 24) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC03)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   (((v) << 24) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_)
+#define BF_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC03(v)   (((v) << 24) & BM_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC03)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC0_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC0_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC0_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC03 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYNC0_I_DP_GAMMA_S_ASYNC03(v)   BF_CS1(IPU_DP_GAMMA_S_ASYNC0_I, DP_GAMMA_S_ASYNC03, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -69991,22 +72591,22 @@ typedef union
 #define BW_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0(v)   BF_CS1(IPU_DP_CSCA_ASYNC0_I, DP_CSC_A_ASYNC0, v)
 #endif
 
-/* --- Register HW_IPU_DP_CSCA_ASYNC0_I, field DP_CSC_A_ASYNC0 (RW)
+/* --- Register HW_IPU_DP_CSCA_ASYNC0_I, field DP_CSC_A_ASYNC01 (RW)
  *
  * A<2*i+1> parameter of color conversion
  */
 
-#define BP_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0      16
-#define BM_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0      0x03ff0000
+#define BP_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC01      16
+#define BM_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC01      0x03ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0)
+#define BF_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC01(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC01)
 #else
-#define BF_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0(v)   (((v) << 16) & BM_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0)
+#define BF_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC01(v)   (((v) << 16) & BM_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC01)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_CSC_A_ASYNC0 field to a new value.
-#define BW_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC0(v)   BF_CS1(IPU_DP_CSCA_ASYNC0_I, DP_CSC_A_ASYNC0, v)
+//! @brief Set the DP_CSC_A_ASYNC01 field to a new value.
+#define BW_IPU_DP_CSCA_ASYNC0_I_DP_CSC_A_ASYNC01(v)   BF_CS1(IPU_DP_CSCA_ASYNC0_I, DP_CSC_A_ASYNC01, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -70938,9 +73538,9 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DP_GAMMA_C_ASYNC1_ : 9; //!< CONSTANTi parameter of Gamma Correction.
+        unsigned DP_GAMMA_C_ASYNC1 : 9; //!< CONSTANTi parameter of Gamma Correction.
         unsigned RESERVED0 : 7; //!< Reserved.
-        unsigned DP_GAMMA_C_ASYNC1_1 : 9; //!< CONSTANTi+1 parameter of Gamma Correction.
+        unsigned DP_GAMMA_C_ASYNC11 : 9; //!< CONSTANTi+1 parameter of Gamma Correction.
         unsigned RESERVED1 : 7; //!< Reserved.
     } B;
 } hw_ipu_dp_gamma_c_async1_i_t;
@@ -70964,40 +73564,40 @@ typedef union
  * constants & macros for individual IPU_DP_GAMMA_C_ASYNC1_I bitfields
  */
 
-/* --- Register HW_IPU_DP_GAMMA_C_ASYNC1_I, field DP_GAMMA_C_ASYNC1_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_C_ASYNC1_I, field DP_GAMMA_C_ASYNC1 (RW)
  *
  * CONSTANTi parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_      0
-#define BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_      0x000001ff
+#define BP_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1      0
+#define BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1      0x000001ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_)
+#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1)
 #else
-#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_(v)   (((v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_)
+#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1(v)   (((v) << 0) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_C_ASYNC1_ field to a new value.
-#define BW_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC1_I, DP_GAMMA_C_ASYNC1_, v)
+//! @brief Set the DP_GAMMA_C_ASYNC1 field to a new value.
+#define BW_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC1_I, DP_GAMMA_C_ASYNC1, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_C_ASYNC1_I, field DP_GAMMA_C_ASYNC1_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_C_ASYNC1_I, field DP_GAMMA_C_ASYNC11 (RW)
  *
  * CONSTANTi+1 parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_      16
-#define BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_      0x01ff0000
+#define BP_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC11      16
+#define BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC11      0x01ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_)
+#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC11(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC11)
 #else
-#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_(v)   (((v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_)
+#define BF_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC11(v)   (((v) << 16) & BM_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC11)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_C_ASYNC1_ field to a new value.
-#define BW_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC1_(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC1_I, DP_GAMMA_C_ASYNC1_, v)
+//! @brief Set the DP_GAMMA_C_ASYNC11 field to a new value.
+#define BW_IPU_DP_GAMMA_C_ASYNC1_I_DP_GAMMA_C_ASYNC11(v)   BF_CS1(IPU_DP_GAMMA_C_ASYNC1_I, DP_GAMMA_C_ASYNC11, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -71012,10 +73612,10 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned DP_GAMMA_S_ASYNC1_ : 8; //!< SLOPE<4*i> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_ASYNC1_1 : 8; //!< SLOPE<4*i+1> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_ASYNC1_2 : 8; //!< SLOPE<4*i+2> parameter of Gamma Correction.
-        unsigned DP_GAMMA_S_ASYNC1_3 : 8; //!< SLOPE<4*i+3> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC1 : 8; //!< SLOPE<4*i> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC11 : 8; //!< SLOPE<4*i+1> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC12 : 8; //!< SLOPE<4*i+2> parameter of Gamma Correction.
+        unsigned DP_GAMMA_S_ASYNC13 : 8; //!< SLOPE<4*i+3> parameter of Gamma Correction.
     } B;
 } hw_ipu_dp_gamma_s_asyn1_i_t;
 #endif
@@ -71038,76 +73638,76 @@ typedef union
  * constants & macros for individual IPU_DP_GAMMA_S_ASYN1_I bitfields
  */
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC1_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC1 (RW)
  *
  * SLOPE<4*i> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      0
-#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      0x000000ff
+#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1      0
+#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1(v)   ((((reg32_t) v) << 0) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   (((v) << 0) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1(v)   (((v) << 0) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC1_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC1_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC1 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC1, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC1_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC11 (RW)
  *
  * SLOPE<4*i+1> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      8
-#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      0x0000ff00
+#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC11      8
+#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC11      0x0000ff00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   ((((reg32_t) v) << 8) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC11(v)   ((((reg32_t) v) << 8) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC11)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   (((v) << 8) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC11(v)   (((v) << 8) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC11)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC1_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC1_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC11 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC11(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC11, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC1_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC12 (RW)
  *
  * SLOPE<4*i+2> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      16
-#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      0x00ff0000
+#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC12      16
+#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC12      0x00ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC12(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC12)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   (((v) << 16) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC12(v)   (((v) << 16) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC12)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC1_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC1_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC12 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC12(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC12, v)
 #endif
 
-/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC1_ (RW)
+/* --- Register HW_IPU_DP_GAMMA_S_ASYN1_I, field DP_GAMMA_S_ASYNC13 (RW)
  *
  * SLOPE<4*i+3> parameter of Gamma Correction.
  */
 
-#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      24
-#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_      0xff000000
+#define BP_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC13      24
+#define BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC13      0xff000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   ((((reg32_t) v) << 24) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC13(v)   ((((reg32_t) v) << 24) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC13)
 #else
-#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   (((v) << 24) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_)
+#define BF_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC13(v)   (((v) << 24) & BM_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC13)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_GAMMA_S_ASYNC1_ field to a new value.
-#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC1_(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC1_, v)
+//! @brief Set the DP_GAMMA_S_ASYNC13 field to a new value.
+#define BW_IPU_DP_GAMMA_S_ASYN1_I_DP_GAMMA_S_ASYNC13(v)   BF_CS1(IPU_DP_GAMMA_S_ASYN1_I, DP_GAMMA_S_ASYNC13, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -71165,22 +73765,22 @@ typedef union
 #define BW_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1(v)   BF_CS1(IPU_DP_CSCA_ASYNC1_I, DP_CSC_A_ASYNC1, v)
 #endif
 
-/* --- Register HW_IPU_DP_CSCA_ASYNC1_I, field DP_CSC_A_ASYNC1 (RW)
+/* --- Register HW_IPU_DP_CSCA_ASYNC1_I, field DP_CSC_A_ASYNC11 (RW)
  *
  * A<2*i+1> parameter of color conversion.
  */
 
-#define BP_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1      16
-#define BM_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1      0x03ff0000
+#define BP_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC11      16
+#define BM_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC11      0x03ff0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1)
+#define BF_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC11(v)   ((((reg32_t) v) << 16) & BM_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC11)
 #else
-#define BF_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1(v)   (((v) << 16) & BM_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1)
+#define BF_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC11(v)   (((v) << 16) & BM_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC11)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DP_CSC_A_ASYNC1 field to a new value.
-#define BW_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC1(v)   BF_CS1(IPU_DP_CSCA_ASYNC1_I, DP_CSC_A_ASYNC1, v)
+//! @brief Set the DP_CSC_A_ASYNC11 field to a new value.
+#define BW_IPU_DP_CSCA_ASYNC1_I_DP_CSC_A_ASYNC11(v)   BF_CS1(IPU_DP_CSCA_ASYNC1_I, DP_CSC_A_ASYNC11, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -72102,7 +74702,7 @@ typedef struct
     reg32_t _reserved60[8178];
     volatile hw_ipu_vdi_fsize_t VDI_FSIZE; //!< VDI Field Size Register
     volatile hw_ipu_vdi_c_t VDI_C; //!< VDI Control Register
-    volatile hw_ipu_vdi_c2__t VDI_C2_; //!< VDI Control Register 2
+    volatile hw_ipu_vdi_c2_t VDI_C2; //!< VDI Control Register 2
     volatile hw_ipu_vdi_cmdp_1_t VDI_CMDP_1; //!< VDI Combining Parameters Register 1
     volatile hw_ipu_vdi_cmdp_2_t VDI_CMDP_2; //!< VDI Combining Parameters Register 2
     volatile hw_ipu_vdi_ps_1_t VDI_PS_1; //!< VDI Plane Size Register 1
@@ -72160,7 +74760,7 @@ typedef struct
     volatile hw_ipu_idmac_bndm_en_2_t IDMAC_BNDM_EN_2; //!< IDMAC Band Mode Enable 2 Register
     reg32_t _reserved75[517762466];
     volatile hw_ipu_idmac_sc_cord_t IDMAC_SC_CORD; //!< IDMAC Scroll Coordinations Register
-} hw_ipu_t
+} hw_ipu_t;
 #endif
 
 //! @brief Macro to access all IPU registers.

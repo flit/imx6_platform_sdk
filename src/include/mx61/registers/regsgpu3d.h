@@ -1532,7 +1532,7 @@ typedef union
         unsigned CORRECT_TEXTURE_CONVERTER : 1; //!< Driver hack is not needed.
         unsigned SPECIAL_MSAA_LOD : 1; //!< Special LOD calculation when MSAA is on.
         unsigned FAST_CLEAR_FLUSH : 1; //!< Proper flush is done in fast clear cache.
-        unsigned RESERVED0 : 1; //!< 2D PE 2.0 is present.
+        unsigned _2DPE20 : 1; //!< 2D PE 2.0 is present.
         unsigned CORRECT_AUTO_DISABLE : 1; //!< Auto disable in FC is correct.
         unsigned RENDER_8K : 1; //!< Supports 8K render target.
         unsigned TILE_STATUS_2BITS : 1; //!< 2 bits are used instead of 4 bits for tile status.
@@ -1664,6 +1664,19 @@ typedef union
 
 #define BP_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH      6
 #define BM_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH      0x00000040
+
+
+/* --- Register HW_GPU3D_GCM_FEAT_0, field _2DPE20 (RO)
+ *
+ * 2D PE 2.0 is present.
+ *
+ * Values:
+ * 0 - =>NONE
+ * 1 - =>AVAILABLE
+ */
+
+#define BP_GPU3D_GCM_FEAT_0__2DPE20      7
+#define BM_GPU3D_GCM_FEAT_0__2DPE20      0x00000080
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field CORRECT_AUTO_DISABLE (RO)
@@ -2955,7 +2968,7 @@ typedef struct
     volatile hw_gpu3d_gcm_feat_1_t GCM_FEAT_1; //!< GCMinorFeatures1
     volatile hw_gpu3d_gct_cycles_t GCT_CYCLES; //!< gcTotalCycles
     volatile hw_gpu3d_gct_idle_cycles_t GCT_IDLE_CYCLES; //!< gcTotalIdleCycles
-} hw_gpu3d_t
+} hw_gpu3d_t;
 #endif
 
 //! @brief Macro to access all GPU3D registers.

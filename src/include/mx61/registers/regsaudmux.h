@@ -19,10 +19,13 @@
  * - HW_AUDMUX_PDCR2 - Port Data Control Register 2
  * - HW_AUDMUX_PTCR3 - Port Timing Control Register 3
  * - HW_AUDMUX_PDCR3 - Port Data Control Register 3
- * - HW_AUDMUX_PTCR - Port Timing Control Register n
+ * - HW_AUDMUX_PTCR4 - Port Timing Control Register n 4
  * - HW_AUDMUX_PDCR4 - Port Data Control Register 4
+ * - HW_AUDMUX_PTCR5 - Port Timing Control Register n 5
  * - HW_AUDMUX_PDCR5 - Port Data Control Register 5
+ * - HW_AUDMUX_PTCR6 - Port Timing Control Register n 6
  * - HW_AUDMUX_PDCR6 - Port Data Control Register 6
+ * - HW_AUDMUX_PTCR7 - Port Timing Control Register n 7
  * - HW_AUDMUX_PDCR7 - Port Data Control Register 7
  *
  * hw_audmux_t - Struct containing all module registers.
@@ -1282,7 +1285,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_AUDMUX_PTCR - Port Timing Control Register n (RW)
+ * @brief HW_AUDMUX_PTCR4 - Port Timing Control Register n 4 (RW)
  *
  * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
  */
@@ -1302,28 +1305,28 @@ typedef union
         unsigned TFSEL : 4; //!< Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
         unsigned TFS_DIR : 1; //!< Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
     } B;
-} hw_audmux_ptcr_t;
+} hw_audmux_ptcr4_t;
 #endif
 
 /*
- * constants & macros for entire AUDMUX_PTCR register
+ * constants & macros for entire AUDMUX_PTCR4 register
  */
-#define HW_AUDMUX_PTCR_ADDR      (REGS_AUDMUX_BASE + 0x18)
+#define HW_AUDMUX_PTCR4_ADDR      (REGS_AUDMUX_BASE + 0x18)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_AUDMUX_PTCR           (*(volatile hw_audmux_ptcr_t *) HW_AUDMUX_PTCR_ADDR)
-#define HW_AUDMUX_PTCR_RD()      (HW_AUDMUX_PTCR.U)
-#define HW_AUDMUX_PTCR_WR(v)     (HW_AUDMUX_PTCR.U = (v))
-#define HW_AUDMUX_PTCR_SET(v)    (HW_AUDMUX_PTCR_WR(HW_AUDMUX_PTCR_RD() |  (v)))
-#define HW_AUDMUX_PTCR_CLR(v)    (HW_AUDMUX_PTCR_WR(HW_AUDMUX_PTCR_RD() & ~(v)))
-#define HW_AUDMUX_PTCR_TOG(v)    (HW_AUDMUX_PTCR_WR(HW_AUDMUX_PTCR_RD() ^  (v)))
+#define HW_AUDMUX_PTCR4           (*(volatile hw_audmux_ptcr4_t *) HW_AUDMUX_PTCR4_ADDR)
+#define HW_AUDMUX_PTCR4_RD()      (HW_AUDMUX_PTCR4.U)
+#define HW_AUDMUX_PTCR4_WR(v)     (HW_AUDMUX_PTCR4.U = (v))
+#define HW_AUDMUX_PTCR4_SET(v)    (HW_AUDMUX_PTCR4_WR(HW_AUDMUX_PTCR4_RD() |  (v)))
+#define HW_AUDMUX_PTCR4_CLR(v)    (HW_AUDMUX_PTCR4_WR(HW_AUDMUX_PTCR4_RD() & ~(v)))
+#define HW_AUDMUX_PTCR4_TOG(v)    (HW_AUDMUX_PTCR4_WR(HW_AUDMUX_PTCR4_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual AUDMUX_PTCR bitfields
+ * constants & macros for individual AUDMUX_PTCR4 bitfields
  */
 
-/* --- Register HW_AUDMUX_PTCR, field SYN (RW)
+/* --- Register HW_AUDMUX_PTCR4, field SYN (RW)
  *
  * Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and
  * receive sections use common clock and frame sync signals (that is, the port is a 4-wire
@@ -1336,21 +1339,21 @@ typedef union
  * 1 - Synchronous mode (default)
  */
 
-#define BP_AUDMUX_PTCR_SYN      11
-#define BM_AUDMUX_PTCR_SYN      0x00000800
+#define BP_AUDMUX_PTCR4_SYN      11
+#define BM_AUDMUX_PTCR4_SYN      0x00000800
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_SYN(v)   ((((reg32_t) v) << 11) & BM_AUDMUX_PTCR_SYN)
+#define BF_AUDMUX_PTCR4_SYN(v)   ((((reg32_t) v) << 11) & BM_AUDMUX_PTCR4_SYN)
 #else
-#define BF_AUDMUX_PTCR_SYN(v)   (((v) << 11) & BM_AUDMUX_PTCR_SYN)
+#define BF_AUDMUX_PTCR4_SYN(v)   (((v) << 11) & BM_AUDMUX_PTCR4_SYN)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
-#define BW_AUDMUX_PTCR_SYN(v)   BF_CS1(AUDMUX_PTCR, SYN, v)
+#define BW_AUDMUX_PTCR4_SYN(v)   BF_CS1(AUDMUX_PTCR4, SYN, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field RCSEL (RW)
+/* --- Register HW_AUDMUX_PTCR4, field RCSEL (RW)
  *
  * Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced
  * from TxClk and RxClk from other ports.
@@ -1363,21 +1366,21 @@ typedef union
  * x111 - Reserved
  */
 
-#define BP_AUDMUX_PTCR_RCSEL      12
-#define BM_AUDMUX_PTCR_RCSEL      0x0000f000
+#define BP_AUDMUX_PTCR4_RCSEL      12
+#define BM_AUDMUX_PTCR4_RCSEL      0x0000f000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_RCSEL(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PTCR_RCSEL)
+#define BF_AUDMUX_PTCR4_RCSEL(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PTCR4_RCSEL)
 #else
-#define BF_AUDMUX_PTCR_RCSEL(v)   (((v) << 12) & BM_AUDMUX_PTCR_RCSEL)
+#define BF_AUDMUX_PTCR4_RCSEL(v)   (((v) << 12) & BM_AUDMUX_PTCR4_RCSEL)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
-#define BW_AUDMUX_PTCR_RCSEL(v)   BF_CS1(AUDMUX_PTCR, RCSEL, v)
+#define BW_AUDMUX_PTCR4_RCSEL(v)   BF_CS1(AUDMUX_PTCR4, RCSEL, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field RCLKDIR (RW)
+/* --- Register HW_AUDMUX_PTCR4, field RCLKDIR (RW)
  *
  * Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as
  * an output or input. When set as an input, the RCSEL settings are ignored. When set as an output,
@@ -1388,21 +1391,21 @@ typedef union
  * 0 - RxClk is an input. 1 RxClk is an output.
  */
 
-#define BP_AUDMUX_PTCR_RCLKDIR      16
-#define BM_AUDMUX_PTCR_RCLKDIR      0x00010000
+#define BP_AUDMUX_PTCR4_RCLKDIR      16
+#define BM_AUDMUX_PTCR4_RCLKDIR      0x00010000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_RCLKDIR(v)   ((((reg32_t) v) << 16) & BM_AUDMUX_PTCR_RCLKDIR)
+#define BF_AUDMUX_PTCR4_RCLKDIR(v)   ((((reg32_t) v) << 16) & BM_AUDMUX_PTCR4_RCLKDIR)
 #else
-#define BF_AUDMUX_PTCR_RCLKDIR(v)   (((v) << 16) & BM_AUDMUX_PTCR_RCLKDIR)
+#define BF_AUDMUX_PTCR4_RCLKDIR(v)   (((v) << 16) & BM_AUDMUX_PTCR4_RCLKDIR)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
-#define BW_AUDMUX_PTCR_RCLKDIR(v)   BF_CS1(AUDMUX_PTCR, RCLKDIR, v)
+#define BW_AUDMUX_PTCR4_RCLKDIR(v)   BF_CS1(AUDMUX_PTCR4, RCLKDIR, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field RFSEL (RW)
+/* --- Register HW_AUDMUX_PTCR4, field RFSEL (RW)
  *
  * Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be
  * sourced from TxFS and RxFS from other ports.
@@ -1415,21 +1418,21 @@ typedef union
  * x111 - Reserved
  */
 
-#define BP_AUDMUX_PTCR_RFSEL      17
-#define BM_AUDMUX_PTCR_RFSEL      0x001e0000
+#define BP_AUDMUX_PTCR4_RFSEL      17
+#define BM_AUDMUX_PTCR4_RFSEL      0x001e0000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_RFSEL(v)   ((((reg32_t) v) << 17) & BM_AUDMUX_PTCR_RFSEL)
+#define BF_AUDMUX_PTCR4_RFSEL(v)   ((((reg32_t) v) << 17) & BM_AUDMUX_PTCR4_RFSEL)
 #else
-#define BF_AUDMUX_PTCR_RFSEL(v)   (((v) << 17) & BM_AUDMUX_PTCR_RFSEL)
+#define BF_AUDMUX_PTCR4_RFSEL(v)   (((v) << 17) & BM_AUDMUX_PTCR4_RFSEL)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
-#define BW_AUDMUX_PTCR_RFSEL(v)   BF_CS1(AUDMUX_PTCR, RFSEL, v)
+#define BW_AUDMUX_PTCR4_RFSEL(v)   BF_CS1(AUDMUX_PTCR4, RFSEL, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field RFS_DIR (RW)
+/* --- Register HW_AUDMUX_PTCR4, field RFS_DIR (RW)
  *
  * Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the
  * interface as an output or input. When set as an input, the RFSEL settings are ignored. When set
@@ -1440,21 +1443,21 @@ typedef union
  * 1 - RxFS is an output.
  */
 
-#define BP_AUDMUX_PTCR_RFS_DIR      21
-#define BM_AUDMUX_PTCR_RFS_DIR      0x00200000
+#define BP_AUDMUX_PTCR4_RFS_DIR      21
+#define BM_AUDMUX_PTCR4_RFS_DIR      0x00200000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_RFS_DIR(v)   ((((reg32_t) v) << 21) & BM_AUDMUX_PTCR_RFS_DIR)
+#define BF_AUDMUX_PTCR4_RFS_DIR(v)   ((((reg32_t) v) << 21) & BM_AUDMUX_PTCR4_RFS_DIR)
 #else
-#define BF_AUDMUX_PTCR_RFS_DIR(v)   (((v) << 21) & BM_AUDMUX_PTCR_RFS_DIR)
+#define BF_AUDMUX_PTCR4_RFS_DIR(v)   (((v) << 21) & BM_AUDMUX_PTCR4_RFS_DIR)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
-#define BW_AUDMUX_PTCR_RFS_DIR(v)   BF_CS1(AUDMUX_PTCR, RFS_DIR, v)
+#define BW_AUDMUX_PTCR4_RFS_DIR(v)   BF_CS1(AUDMUX_PTCR4, RFS_DIR, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field TCSEL (RW)
+/* --- Register HW_AUDMUX_PTCR4, field TCSEL (RW)
  *
  * Transmit Clock Select. Selects the source port from which TxClk is sourced.
  *
@@ -1466,21 +1469,21 @@ typedef union
  * x111 - Reserved
  */
 
-#define BP_AUDMUX_PTCR_TCSEL      22
-#define BM_AUDMUX_PTCR_TCSEL      0x03c00000
+#define BP_AUDMUX_PTCR4_TCSEL      22
+#define BM_AUDMUX_PTCR4_TCSEL      0x03c00000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_TCSEL(v)   ((((reg32_t) v) << 22) & BM_AUDMUX_PTCR_TCSEL)
+#define BF_AUDMUX_PTCR4_TCSEL(v)   ((((reg32_t) v) << 22) & BM_AUDMUX_PTCR4_TCSEL)
 #else
-#define BF_AUDMUX_PTCR_TCSEL(v)   (((v) << 22) & BM_AUDMUX_PTCR_TCSEL)
+#define BF_AUDMUX_PTCR4_TCSEL(v)   (((v) << 22) & BM_AUDMUX_PTCR4_TCSEL)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
-#define BW_AUDMUX_PTCR_TCSEL(v)   BF_CS1(AUDMUX_PTCR, TCSEL, v)
+#define BW_AUDMUX_PTCR4_TCSEL(v)   BF_CS1(AUDMUX_PTCR4, TCSEL, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field TCLKDIR (RW)
+/* --- Register HW_AUDMUX_PTCR4, field TCLKDIR (RW)
  *
  * Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface
  * as an output or input. When set as an input, the TCSEL settings are ignored. When set as an
@@ -1491,21 +1494,21 @@ typedef union
  * 1 - TxClk is an output.
  */
 
-#define BP_AUDMUX_PTCR_TCLKDIR      26
-#define BM_AUDMUX_PTCR_TCLKDIR      0x04000000
+#define BP_AUDMUX_PTCR4_TCLKDIR      26
+#define BM_AUDMUX_PTCR4_TCLKDIR      0x04000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_TCLKDIR(v)   ((((reg32_t) v) << 26) & BM_AUDMUX_PTCR_TCLKDIR)
+#define BF_AUDMUX_PTCR4_TCLKDIR(v)   ((((reg32_t) v) << 26) & BM_AUDMUX_PTCR4_TCLKDIR)
 #else
-#define BF_AUDMUX_PTCR_TCLKDIR(v)   (((v) << 26) & BM_AUDMUX_PTCR_TCLKDIR)
+#define BF_AUDMUX_PTCR4_TCLKDIR(v)   (((v) << 26) & BM_AUDMUX_PTCR4_TCLKDIR)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
-#define BW_AUDMUX_PTCR_TCLKDIR(v)   BF_CS1(AUDMUX_PTCR, TCLKDIR, v)
+#define BW_AUDMUX_PTCR4_TCLKDIR(v)   BF_CS1(AUDMUX_PTCR4, TCLKDIR, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field TFSEL (RW)
+/* --- Register HW_AUDMUX_PTCR4, field TFSEL (RW)
  *
  * Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
  *
@@ -1517,21 +1520,21 @@ typedef union
  * x111 - Reserved
  */
 
-#define BP_AUDMUX_PTCR_TFSEL      27
-#define BM_AUDMUX_PTCR_TFSEL      0x78000000
+#define BP_AUDMUX_PTCR4_TFSEL      27
+#define BM_AUDMUX_PTCR4_TFSEL      0x78000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_TFSEL(v)   ((((reg32_t) v) << 27) & BM_AUDMUX_PTCR_TFSEL)
+#define BF_AUDMUX_PTCR4_TFSEL(v)   ((((reg32_t) v) << 27) & BM_AUDMUX_PTCR4_TFSEL)
 #else
-#define BF_AUDMUX_PTCR_TFSEL(v)   (((v) << 27) & BM_AUDMUX_PTCR_TFSEL)
+#define BF_AUDMUX_PTCR4_TFSEL(v)   (((v) << 27) & BM_AUDMUX_PTCR4_TFSEL)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
-#define BW_AUDMUX_PTCR_TFSEL(v)   BF_CS1(AUDMUX_PTCR, TFSEL, v)
+#define BW_AUDMUX_PTCR4_TFSEL(v)   BF_CS1(AUDMUX_PTCR4, TFSEL, v)
 #endif
 
 
-/* --- Register HW_AUDMUX_PTCR, field TFS_DIR (RW)
+/* --- Register HW_AUDMUX_PTCR4, field TFS_DIR (RW)
  *
  * Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the
  * interface as an output or input. When set as an input, the TFSEL settings are ignored. When set
@@ -1542,17 +1545,17 @@ typedef union
  * 1 - TxFS is an output.
  */
 
-#define BP_AUDMUX_PTCR_TFS_DIR      31
-#define BM_AUDMUX_PTCR_TFS_DIR      0x80000000
+#define BP_AUDMUX_PTCR4_TFS_DIR      31
+#define BM_AUDMUX_PTCR4_TFS_DIR      0x80000000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_AUDMUX_PTCR_TFS_DIR(v)   ((((reg32_t) v) << 31) & BM_AUDMUX_PTCR_TFS_DIR)
+#define BF_AUDMUX_PTCR4_TFS_DIR(v)   ((((reg32_t) v) << 31) & BM_AUDMUX_PTCR4_TFS_DIR)
 #else
-#define BF_AUDMUX_PTCR_TFS_DIR(v)   (((v) << 31) & BM_AUDMUX_PTCR_TFS_DIR)
+#define BF_AUDMUX_PTCR4_TFS_DIR(v)   (((v) << 31) & BM_AUDMUX_PTCR4_TFS_DIR)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
-#define BW_AUDMUX_PTCR_TFS_DIR(v)   BF_CS1(AUDMUX_PTCR, TFS_DIR, v)
+#define BW_AUDMUX_PTCR4_TFS_DIR(v)   BF_CS1(AUDMUX_PTCR4, TFS_DIR, v)
 #endif
 
 
@@ -1697,6 +1700,282 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
+ * @brief HW_AUDMUX_PTCR5 - Port Timing Control Register n 5 (RW)
+ *
+ * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RESERVED0 : 11; //!< Reserved
+        unsigned SYN : 1; //!< Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
+        unsigned RCSEL : 4; //!< Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
+        unsigned RCLKDIR : 1; //!< Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
+        unsigned RFSEL : 4; //!< Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
+        unsigned RFS_DIR : 1; //!< Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
+        unsigned TCSEL : 4; //!< Transmit Clock Select. Selects the source port from which TxClk is sourced.
+        unsigned TCLKDIR : 1; //!< Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
+        unsigned TFSEL : 4; //!< Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
+        unsigned TFS_DIR : 1; //!< Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+    } B;
+} hw_audmux_ptcr5_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PTCR5 register
+ */
+#define HW_AUDMUX_PTCR5_ADDR      (REGS_AUDMUX_BASE + 0x20)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PTCR5           (*(volatile hw_audmux_ptcr5_t *) HW_AUDMUX_PTCR5_ADDR)
+#define HW_AUDMUX_PTCR5_RD()      (HW_AUDMUX_PTCR5.U)
+#define HW_AUDMUX_PTCR5_WR(v)     (HW_AUDMUX_PTCR5.U = (v))
+#define HW_AUDMUX_PTCR5_SET(v)    (HW_AUDMUX_PTCR5_WR(HW_AUDMUX_PTCR5_RD() |  (v)))
+#define HW_AUDMUX_PTCR5_CLR(v)    (HW_AUDMUX_PTCR5_WR(HW_AUDMUX_PTCR5_RD() & ~(v)))
+#define HW_AUDMUX_PTCR5_TOG(v)    (HW_AUDMUX_PTCR5_WR(HW_AUDMUX_PTCR5_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual AUDMUX_PTCR5 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PTCR5, field SYN (RW)
+ *
+ * Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and
+ * receive sections use common clock and frame sync signals (that is, the port is a 4-wire
+ * interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync
+ * signals are used for the transmit and receive sections (that is, the port is a 6-wire interface).
+ * RCLKDIR and SYN should not be changed at the same time.
+ *
+ * Values:
+ * 0 - Asynchronous mode
+ * 1 - Synchronous mode (default)
+ */
+
+#define BP_AUDMUX_PTCR5_SYN      11
+#define BM_AUDMUX_PTCR5_SYN      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_SYN(v)   ((((reg32_t) v) << 11) & BM_AUDMUX_PTCR5_SYN)
+#else
+#define BF_AUDMUX_PTCR5_SYN(v)   (((v) << 11) & BM_AUDMUX_PTCR5_SYN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SYN field to a new value.
+#define BW_AUDMUX_PTCR5_SYN(v)   BF_CS1(AUDMUX_PTCR5, SYN, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field RCSEL (RW)
+ *
+ * Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced
+ * from TxClk and RxClk from other ports.
+ *
+ * Values:
+ * 0xxx - Selects TxClk from port.
+ * 1xxx - Selects RxClk from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR5_RCSEL      12
+#define BM_AUDMUX_PTCR5_RCSEL      0x0000f000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_RCSEL(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PTCR5_RCSEL)
+#else
+#define BF_AUDMUX_PTCR5_RCSEL(v)   (((v) << 12) & BM_AUDMUX_PTCR5_RCSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RCSEL field to a new value.
+#define BW_AUDMUX_PTCR5_RCSEL(v)   BF_CS1(AUDMUX_PTCR5, RCSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field RCLKDIR (RW)
+ *
+ * Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as
+ * an output or input. When set as an input, the RCSEL settings are ignored. When set as an output,
+ * the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed
+ * at the same time.
+ *
+ * Values:
+ * 0 - RxClk is an input. 1 RxClk is an output.
+ */
+
+#define BP_AUDMUX_PTCR5_RCLKDIR      16
+#define BM_AUDMUX_PTCR5_RCLKDIR      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_RCLKDIR(v)   ((((reg32_t) v) << 16) & BM_AUDMUX_PTCR5_RCLKDIR)
+#else
+#define BF_AUDMUX_PTCR5_RCLKDIR(v)   (((v) << 16) & BM_AUDMUX_PTCR5_RCLKDIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RCLKDIR field to a new value.
+#define BW_AUDMUX_PTCR5_RCLKDIR(v)   BF_CS1(AUDMUX_PTCR5, RCLKDIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field RFSEL (RW)
+ *
+ * Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be
+ * sourced from TxFS and RxFS from other ports.
+ *
+ * Values:
+ * 0xxx - Selects TxFS from port.
+ * 1xxx - Selects RxFS from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR5_RFSEL      17
+#define BM_AUDMUX_PTCR5_RFSEL      0x001e0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_RFSEL(v)   ((((reg32_t) v) << 17) & BM_AUDMUX_PTCR5_RFSEL)
+#else
+#define BF_AUDMUX_PTCR5_RFSEL(v)   (((v) << 17) & BM_AUDMUX_PTCR5_RFSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RFSEL field to a new value.
+#define BW_AUDMUX_PTCR5_RFSEL(v)   BF_CS1(AUDMUX_PTCR5, RFSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field RFS_DIR (RW)
+ *
+ * Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the
+ * interface as an output or input. When set as an input, the RFSEL settings are ignored. When set
+ * as an output, the RFSEL settings determine the source port of the frame sync.
+ *
+ * Values:
+ * 0 - RxFS is an input.
+ * 1 - RxFS is an output.
+ */
+
+#define BP_AUDMUX_PTCR5_RFS_DIR      21
+#define BM_AUDMUX_PTCR5_RFS_DIR      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_RFS_DIR(v)   ((((reg32_t) v) << 21) & BM_AUDMUX_PTCR5_RFS_DIR)
+#else
+#define BF_AUDMUX_PTCR5_RFS_DIR(v)   (((v) << 21) & BM_AUDMUX_PTCR5_RFS_DIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RFS_DIR field to a new value.
+#define BW_AUDMUX_PTCR5_RFS_DIR(v)   BF_CS1(AUDMUX_PTCR5, RFS_DIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field TCSEL (RW)
+ *
+ * Transmit Clock Select. Selects the source port from which TxClk is sourced.
+ *
+ * Values:
+ * 0xxx - Selects TxClk from port.
+ * 1xxx - Selects RxClk from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR5_TCSEL      22
+#define BM_AUDMUX_PTCR5_TCSEL      0x03c00000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_TCSEL(v)   ((((reg32_t) v) << 22) & BM_AUDMUX_PTCR5_TCSEL)
+#else
+#define BF_AUDMUX_PTCR5_TCSEL(v)   (((v) << 22) & BM_AUDMUX_PTCR5_TCSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TCSEL field to a new value.
+#define BW_AUDMUX_PTCR5_TCSEL(v)   BF_CS1(AUDMUX_PTCR5, TCSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field TCLKDIR (RW)
+ *
+ * Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface
+ * as an output or input. When set as an input, the TCSEL settings are ignored. When set as an
+ * output, the TCSEL settings determine the source port of the clock.
+ *
+ * Values:
+ * 0 - TxClk is an input.
+ * 1 - TxClk is an output.
+ */
+
+#define BP_AUDMUX_PTCR5_TCLKDIR      26
+#define BM_AUDMUX_PTCR5_TCLKDIR      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_TCLKDIR(v)   ((((reg32_t) v) << 26) & BM_AUDMUX_PTCR5_TCLKDIR)
+#else
+#define BF_AUDMUX_PTCR5_TCLKDIR(v)   (((v) << 26) & BM_AUDMUX_PTCR5_TCLKDIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TCLKDIR field to a new value.
+#define BW_AUDMUX_PTCR5_TCLKDIR(v)   BF_CS1(AUDMUX_PTCR5, TCLKDIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field TFSEL (RW)
+ *
+ * Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
+ *
+ * Values:
+ * 0xxx - Selects TxFS from port.
+ * 1xxx - Selects RxFS from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR5_TFSEL      27
+#define BM_AUDMUX_PTCR5_TFSEL      0x78000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_TFSEL(v)   ((((reg32_t) v) << 27) & BM_AUDMUX_PTCR5_TFSEL)
+#else
+#define BF_AUDMUX_PTCR5_TFSEL(v)   (((v) << 27) & BM_AUDMUX_PTCR5_TFSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TFSEL field to a new value.
+#define BW_AUDMUX_PTCR5_TFSEL(v)   BF_CS1(AUDMUX_PTCR5, TFSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR5, field TFS_DIR (RW)
+ *
+ * Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the
+ * interface as an output or input. When set as an input, the TFSEL settings are ignored. When set
+ * as an output, the TFSEL settings determine the source port of the frame sync.
+ *
+ * Values:
+ * 0 - TxFS is an input.
+ * 1 - TxFS is an output.
+ */
+
+#define BP_AUDMUX_PTCR5_TFS_DIR      31
+#define BM_AUDMUX_PTCR5_TFS_DIR      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR5_TFS_DIR(v)   ((((reg32_t) v) << 31) & BM_AUDMUX_PTCR5_TFS_DIR)
+#else
+#define BF_AUDMUX_PTCR5_TFS_DIR(v)   (((v) << 31) & BM_AUDMUX_PTCR5_TFS_DIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TFS_DIR field to a new value.
+#define BW_AUDMUX_PTCR5_TFS_DIR(v)   BF_CS1(AUDMUX_PTCR5, TFS_DIR, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
  * @brief HW_AUDMUX_PDCR5 - Port Data Control Register 5 (RW)
  *
  * PDCR5 is the Port Data Control Register for Port 5.
@@ -1836,6 +2115,282 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 /*!
+ * @brief HW_AUDMUX_PTCR6 - Port Timing Control Register n 6 (RW)
+ *
+ * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RESERVED0 : 11; //!< Reserved
+        unsigned SYN : 1; //!< Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
+        unsigned RCSEL : 4; //!< Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
+        unsigned RCLKDIR : 1; //!< Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
+        unsigned RFSEL : 4; //!< Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
+        unsigned RFS_DIR : 1; //!< Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
+        unsigned TCSEL : 4; //!< Transmit Clock Select. Selects the source port from which TxClk is sourced.
+        unsigned TCLKDIR : 1; //!< Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
+        unsigned TFSEL : 4; //!< Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
+        unsigned TFS_DIR : 1; //!< Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+    } B;
+} hw_audmux_ptcr6_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PTCR6 register
+ */
+#define HW_AUDMUX_PTCR6_ADDR      (REGS_AUDMUX_BASE + 0x28)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PTCR6           (*(volatile hw_audmux_ptcr6_t *) HW_AUDMUX_PTCR6_ADDR)
+#define HW_AUDMUX_PTCR6_RD()      (HW_AUDMUX_PTCR6.U)
+#define HW_AUDMUX_PTCR6_WR(v)     (HW_AUDMUX_PTCR6.U = (v))
+#define HW_AUDMUX_PTCR6_SET(v)    (HW_AUDMUX_PTCR6_WR(HW_AUDMUX_PTCR6_RD() |  (v)))
+#define HW_AUDMUX_PTCR6_CLR(v)    (HW_AUDMUX_PTCR6_WR(HW_AUDMUX_PTCR6_RD() & ~(v)))
+#define HW_AUDMUX_PTCR6_TOG(v)    (HW_AUDMUX_PTCR6_WR(HW_AUDMUX_PTCR6_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual AUDMUX_PTCR6 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PTCR6, field SYN (RW)
+ *
+ * Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and
+ * receive sections use common clock and frame sync signals (that is, the port is a 4-wire
+ * interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync
+ * signals are used for the transmit and receive sections (that is, the port is a 6-wire interface).
+ * RCLKDIR and SYN should not be changed at the same time.
+ *
+ * Values:
+ * 0 - Asynchronous mode
+ * 1 - Synchronous mode (default)
+ */
+
+#define BP_AUDMUX_PTCR6_SYN      11
+#define BM_AUDMUX_PTCR6_SYN      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_SYN(v)   ((((reg32_t) v) << 11) & BM_AUDMUX_PTCR6_SYN)
+#else
+#define BF_AUDMUX_PTCR6_SYN(v)   (((v) << 11) & BM_AUDMUX_PTCR6_SYN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SYN field to a new value.
+#define BW_AUDMUX_PTCR6_SYN(v)   BF_CS1(AUDMUX_PTCR6, SYN, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field RCSEL (RW)
+ *
+ * Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced
+ * from TxClk and RxClk from other ports.
+ *
+ * Values:
+ * 0xxx - Selects TxClk from port.
+ * 1xxx - Selects RxClk from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR6_RCSEL      12
+#define BM_AUDMUX_PTCR6_RCSEL      0x0000f000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_RCSEL(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PTCR6_RCSEL)
+#else
+#define BF_AUDMUX_PTCR6_RCSEL(v)   (((v) << 12) & BM_AUDMUX_PTCR6_RCSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RCSEL field to a new value.
+#define BW_AUDMUX_PTCR6_RCSEL(v)   BF_CS1(AUDMUX_PTCR6, RCSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field RCLKDIR (RW)
+ *
+ * Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as
+ * an output or input. When set as an input, the RCSEL settings are ignored. When set as an output,
+ * the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed
+ * at the same time.
+ *
+ * Values:
+ * 0 - RxClk is an input. 1 RxClk is an output.
+ */
+
+#define BP_AUDMUX_PTCR6_RCLKDIR      16
+#define BM_AUDMUX_PTCR6_RCLKDIR      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_RCLKDIR(v)   ((((reg32_t) v) << 16) & BM_AUDMUX_PTCR6_RCLKDIR)
+#else
+#define BF_AUDMUX_PTCR6_RCLKDIR(v)   (((v) << 16) & BM_AUDMUX_PTCR6_RCLKDIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RCLKDIR field to a new value.
+#define BW_AUDMUX_PTCR6_RCLKDIR(v)   BF_CS1(AUDMUX_PTCR6, RCLKDIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field RFSEL (RW)
+ *
+ * Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be
+ * sourced from TxFS and RxFS from other ports.
+ *
+ * Values:
+ * 0xxx - Selects TxFS from port.
+ * 1xxx - Selects RxFS from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR6_RFSEL      17
+#define BM_AUDMUX_PTCR6_RFSEL      0x001e0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_RFSEL(v)   ((((reg32_t) v) << 17) & BM_AUDMUX_PTCR6_RFSEL)
+#else
+#define BF_AUDMUX_PTCR6_RFSEL(v)   (((v) << 17) & BM_AUDMUX_PTCR6_RFSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RFSEL field to a new value.
+#define BW_AUDMUX_PTCR6_RFSEL(v)   BF_CS1(AUDMUX_PTCR6, RFSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field RFS_DIR (RW)
+ *
+ * Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the
+ * interface as an output or input. When set as an input, the RFSEL settings are ignored. When set
+ * as an output, the RFSEL settings determine the source port of the frame sync.
+ *
+ * Values:
+ * 0 - RxFS is an input.
+ * 1 - RxFS is an output.
+ */
+
+#define BP_AUDMUX_PTCR6_RFS_DIR      21
+#define BM_AUDMUX_PTCR6_RFS_DIR      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_RFS_DIR(v)   ((((reg32_t) v) << 21) & BM_AUDMUX_PTCR6_RFS_DIR)
+#else
+#define BF_AUDMUX_PTCR6_RFS_DIR(v)   (((v) << 21) & BM_AUDMUX_PTCR6_RFS_DIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RFS_DIR field to a new value.
+#define BW_AUDMUX_PTCR6_RFS_DIR(v)   BF_CS1(AUDMUX_PTCR6, RFS_DIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field TCSEL (RW)
+ *
+ * Transmit Clock Select. Selects the source port from which TxClk is sourced.
+ *
+ * Values:
+ * 0xxx - Selects TxClk from port.
+ * 1xxx - Selects RxClk from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR6_TCSEL      22
+#define BM_AUDMUX_PTCR6_TCSEL      0x03c00000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_TCSEL(v)   ((((reg32_t) v) << 22) & BM_AUDMUX_PTCR6_TCSEL)
+#else
+#define BF_AUDMUX_PTCR6_TCSEL(v)   (((v) << 22) & BM_AUDMUX_PTCR6_TCSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TCSEL field to a new value.
+#define BW_AUDMUX_PTCR6_TCSEL(v)   BF_CS1(AUDMUX_PTCR6, TCSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field TCLKDIR (RW)
+ *
+ * Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface
+ * as an output or input. When set as an input, the TCSEL settings are ignored. When set as an
+ * output, the TCSEL settings determine the source port of the clock.
+ *
+ * Values:
+ * 0 - TxClk is an input.
+ * 1 - TxClk is an output.
+ */
+
+#define BP_AUDMUX_PTCR6_TCLKDIR      26
+#define BM_AUDMUX_PTCR6_TCLKDIR      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_TCLKDIR(v)   ((((reg32_t) v) << 26) & BM_AUDMUX_PTCR6_TCLKDIR)
+#else
+#define BF_AUDMUX_PTCR6_TCLKDIR(v)   (((v) << 26) & BM_AUDMUX_PTCR6_TCLKDIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TCLKDIR field to a new value.
+#define BW_AUDMUX_PTCR6_TCLKDIR(v)   BF_CS1(AUDMUX_PTCR6, TCLKDIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field TFSEL (RW)
+ *
+ * Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
+ *
+ * Values:
+ * 0xxx - Selects TxFS from port.
+ * 1xxx - Selects RxFS from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR6_TFSEL      27
+#define BM_AUDMUX_PTCR6_TFSEL      0x78000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_TFSEL(v)   ((((reg32_t) v) << 27) & BM_AUDMUX_PTCR6_TFSEL)
+#else
+#define BF_AUDMUX_PTCR6_TFSEL(v)   (((v) << 27) & BM_AUDMUX_PTCR6_TFSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TFSEL field to a new value.
+#define BW_AUDMUX_PTCR6_TFSEL(v)   BF_CS1(AUDMUX_PTCR6, TFSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR6, field TFS_DIR (RW)
+ *
+ * Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the
+ * interface as an output or input. When set as an input, the TFSEL settings are ignored. When set
+ * as an output, the TFSEL settings determine the source port of the frame sync.
+ *
+ * Values:
+ * 0 - TxFS is an input.
+ * 1 - TxFS is an output.
+ */
+
+#define BP_AUDMUX_PTCR6_TFS_DIR      31
+#define BM_AUDMUX_PTCR6_TFS_DIR      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR6_TFS_DIR(v)   ((((reg32_t) v) << 31) & BM_AUDMUX_PTCR6_TFS_DIR)
+#else
+#define BF_AUDMUX_PTCR6_TFS_DIR(v)   (((v) << 31) & BM_AUDMUX_PTCR6_TFS_DIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TFS_DIR field to a new value.
+#define BW_AUDMUX_PTCR6_TFS_DIR(v)   BF_CS1(AUDMUX_PTCR6, TFS_DIR, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
  * @brief HW_AUDMUX_PDCR6 - Port Data Control Register 6 (RW)
  *
  * PDCR6 is the Port Data Control Register for Port 6.
@@ -1970,6 +2525,282 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR6_RXDSEL(v)   BF_CS1(AUDMUX_PDCR6, RXDSEL, v)
+#endif
+
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_AUDMUX_PTCR7 - Port Timing Control Register n 7 (RW)
+ *
+ * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RESERVED0 : 11; //!< Reserved
+        unsigned SYN : 1; //!< Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
+        unsigned RCSEL : 4; //!< Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
+        unsigned RCLKDIR : 1; //!< Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
+        unsigned RFSEL : 4; //!< Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
+        unsigned RFS_DIR : 1; //!< Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
+        unsigned TCSEL : 4; //!< Transmit Clock Select. Selects the source port from which TxClk is sourced.
+        unsigned TCLKDIR : 1; //!< Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
+        unsigned TFSEL : 4; //!< Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
+        unsigned TFS_DIR : 1; //!< Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+    } B;
+} hw_audmux_ptcr7_t;
+#endif
+
+/*
+ * constants & macros for entire AUDMUX_PTCR7 register
+ */
+#define HW_AUDMUX_PTCR7_ADDR      (REGS_AUDMUX_BASE + 0x30)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_AUDMUX_PTCR7           (*(volatile hw_audmux_ptcr7_t *) HW_AUDMUX_PTCR7_ADDR)
+#define HW_AUDMUX_PTCR7_RD()      (HW_AUDMUX_PTCR7.U)
+#define HW_AUDMUX_PTCR7_WR(v)     (HW_AUDMUX_PTCR7.U = (v))
+#define HW_AUDMUX_PTCR7_SET(v)    (HW_AUDMUX_PTCR7_WR(HW_AUDMUX_PTCR7_RD() |  (v)))
+#define HW_AUDMUX_PTCR7_CLR(v)    (HW_AUDMUX_PTCR7_WR(HW_AUDMUX_PTCR7_RD() & ~(v)))
+#define HW_AUDMUX_PTCR7_TOG(v)    (HW_AUDMUX_PTCR7_WR(HW_AUDMUX_PTCR7_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual AUDMUX_PTCR7 bitfields
+ */
+
+/* --- Register HW_AUDMUX_PTCR7, field SYN (RW)
+ *
+ * Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and
+ * receive sections use common clock and frame sync signals (that is, the port is a 4-wire
+ * interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync
+ * signals are used for the transmit and receive sections (that is, the port is a 6-wire interface).
+ * RCLKDIR and SYN should not be changed at the same time.
+ *
+ * Values:
+ * 0 - Asynchronous mode
+ * 1 - Synchronous mode (default)
+ */
+
+#define BP_AUDMUX_PTCR7_SYN      11
+#define BM_AUDMUX_PTCR7_SYN      0x00000800
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_SYN(v)   ((((reg32_t) v) << 11) & BM_AUDMUX_PTCR7_SYN)
+#else
+#define BF_AUDMUX_PTCR7_SYN(v)   (((v) << 11) & BM_AUDMUX_PTCR7_SYN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SYN field to a new value.
+#define BW_AUDMUX_PTCR7_SYN(v)   BF_CS1(AUDMUX_PTCR7, SYN, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field RCSEL (RW)
+ *
+ * Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced
+ * from TxClk and RxClk from other ports.
+ *
+ * Values:
+ * 0xxx - Selects TxClk from port.
+ * 1xxx - Selects RxClk from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR7_RCSEL      12
+#define BM_AUDMUX_PTCR7_RCSEL      0x0000f000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_RCSEL(v)   ((((reg32_t) v) << 12) & BM_AUDMUX_PTCR7_RCSEL)
+#else
+#define BF_AUDMUX_PTCR7_RCSEL(v)   (((v) << 12) & BM_AUDMUX_PTCR7_RCSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RCSEL field to a new value.
+#define BW_AUDMUX_PTCR7_RCSEL(v)   BF_CS1(AUDMUX_PTCR7, RCSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field RCLKDIR (RW)
+ *
+ * Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as
+ * an output or input. When set as an input, the RCSEL settings are ignored. When set as an output,
+ * the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed
+ * at the same time.
+ *
+ * Values:
+ * 0 - RxClk is an input. 1 RxClk is an output.
+ */
+
+#define BP_AUDMUX_PTCR7_RCLKDIR      16
+#define BM_AUDMUX_PTCR7_RCLKDIR      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_RCLKDIR(v)   ((((reg32_t) v) << 16) & BM_AUDMUX_PTCR7_RCLKDIR)
+#else
+#define BF_AUDMUX_PTCR7_RCLKDIR(v)   (((v) << 16) & BM_AUDMUX_PTCR7_RCLKDIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RCLKDIR field to a new value.
+#define BW_AUDMUX_PTCR7_RCLKDIR(v)   BF_CS1(AUDMUX_PTCR7, RCLKDIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field RFSEL (RW)
+ *
+ * Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be
+ * sourced from TxFS and RxFS from other ports.
+ *
+ * Values:
+ * 0xxx - Selects TxFS from port.
+ * 1xxx - Selects RxFS from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR7_RFSEL      17
+#define BM_AUDMUX_PTCR7_RFSEL      0x001e0000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_RFSEL(v)   ((((reg32_t) v) << 17) & BM_AUDMUX_PTCR7_RFSEL)
+#else
+#define BF_AUDMUX_PTCR7_RFSEL(v)   (((v) << 17) & BM_AUDMUX_PTCR7_RFSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RFSEL field to a new value.
+#define BW_AUDMUX_PTCR7_RFSEL(v)   BF_CS1(AUDMUX_PTCR7, RFSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field RFS_DIR (RW)
+ *
+ * Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the
+ * interface as an output or input. When set as an input, the RFSEL settings are ignored. When set
+ * as an output, the RFSEL settings determine the source port of the frame sync.
+ *
+ * Values:
+ * 0 - RxFS is an input.
+ * 1 - RxFS is an output.
+ */
+
+#define BP_AUDMUX_PTCR7_RFS_DIR      21
+#define BM_AUDMUX_PTCR7_RFS_DIR      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_RFS_DIR(v)   ((((reg32_t) v) << 21) & BM_AUDMUX_PTCR7_RFS_DIR)
+#else
+#define BF_AUDMUX_PTCR7_RFS_DIR(v)   (((v) << 21) & BM_AUDMUX_PTCR7_RFS_DIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RFS_DIR field to a new value.
+#define BW_AUDMUX_PTCR7_RFS_DIR(v)   BF_CS1(AUDMUX_PTCR7, RFS_DIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field TCSEL (RW)
+ *
+ * Transmit Clock Select. Selects the source port from which TxClk is sourced.
+ *
+ * Values:
+ * 0xxx - Selects TxClk from port.
+ * 1xxx - Selects RxClk from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR7_TCSEL      22
+#define BM_AUDMUX_PTCR7_TCSEL      0x03c00000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_TCSEL(v)   ((((reg32_t) v) << 22) & BM_AUDMUX_PTCR7_TCSEL)
+#else
+#define BF_AUDMUX_PTCR7_TCSEL(v)   (((v) << 22) & BM_AUDMUX_PTCR7_TCSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TCSEL field to a new value.
+#define BW_AUDMUX_PTCR7_TCSEL(v)   BF_CS1(AUDMUX_PTCR7, TCSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field TCLKDIR (RW)
+ *
+ * Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface
+ * as an output or input. When set as an input, the TCSEL settings are ignored. When set as an
+ * output, the TCSEL settings determine the source port of the clock.
+ *
+ * Values:
+ * 0 - TxClk is an input.
+ * 1 - TxClk is an output.
+ */
+
+#define BP_AUDMUX_PTCR7_TCLKDIR      26
+#define BM_AUDMUX_PTCR7_TCLKDIR      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_TCLKDIR(v)   ((((reg32_t) v) << 26) & BM_AUDMUX_PTCR7_TCLKDIR)
+#else
+#define BF_AUDMUX_PTCR7_TCLKDIR(v)   (((v) << 26) & BM_AUDMUX_PTCR7_TCLKDIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TCLKDIR field to a new value.
+#define BW_AUDMUX_PTCR7_TCLKDIR(v)   BF_CS1(AUDMUX_PTCR7, TCLKDIR, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field TFSEL (RW)
+ *
+ * Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
+ *
+ * Values:
+ * 0xxx - Selects TxFS from port.
+ * 1xxx - Selects RxFS from port.
+ * x000 - Port 1
+ * x110 - Port 7
+ * x111 - Reserved
+ */
+
+#define BP_AUDMUX_PTCR7_TFSEL      27
+#define BM_AUDMUX_PTCR7_TFSEL      0x78000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_TFSEL(v)   ((((reg32_t) v) << 27) & BM_AUDMUX_PTCR7_TFSEL)
+#else
+#define BF_AUDMUX_PTCR7_TFSEL(v)   (((v) << 27) & BM_AUDMUX_PTCR7_TFSEL)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TFSEL field to a new value.
+#define BW_AUDMUX_PTCR7_TFSEL(v)   BF_CS1(AUDMUX_PTCR7, TFSEL, v)
+#endif
+
+
+/* --- Register HW_AUDMUX_PTCR7, field TFS_DIR (RW)
+ *
+ * Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the
+ * interface as an output or input. When set as an input, the TFSEL settings are ignored. When set
+ * as an output, the TFSEL settings determine the source port of the frame sync.
+ *
+ * Values:
+ * 0 - TxFS is an input.
+ * 1 - TxFS is an output.
+ */
+
+#define BP_AUDMUX_PTCR7_TFS_DIR      31
+#define BM_AUDMUX_PTCR7_TFS_DIR      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_AUDMUX_PTCR7_TFS_DIR(v)   ((((reg32_t) v) << 31) & BM_AUDMUX_PTCR7_TFS_DIR)
+#else
+#define BF_AUDMUX_PTCR7_TFS_DIR(v)   (((v) << 31) & BM_AUDMUX_PTCR7_TFS_DIR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TFS_DIR field to a new value.
+#define BW_AUDMUX_PTCR7_TFS_DIR(v)   BF_CS1(AUDMUX_PTCR7, TFS_DIR, v)
 #endif
 
 
@@ -2125,15 +2956,15 @@ typedef struct
     volatile hw_audmux_pdcr2_t PDCR2; //!< Port Data Control Register 2
     volatile hw_audmux_ptcr3_t PTCR3; //!< Port Timing Control Register 3
     volatile hw_audmux_pdcr3_t PDCR3; //!< Port Data Control Register 3
-    volatile hw_audmux_ptcr_t PTCR; //!< Port Timing Control Register n
+    volatile hw_audmux_ptcr4_t PTCR4; //!< Port Timing Control Register n 4
     volatile hw_audmux_pdcr4_t PDCR4; //!< Port Data Control Register 4
-    reg32_t _reserved0;
+    volatile hw_audmux_ptcr5_t PTCR5; //!< Port Timing Control Register n 5
     volatile hw_audmux_pdcr5_t PDCR5; //!< Port Data Control Register 5
-    reg32_t _reserved1;
+    volatile hw_audmux_ptcr6_t PTCR6; //!< Port Timing Control Register n 6
     volatile hw_audmux_pdcr6_t PDCR6; //!< Port Data Control Register 6
-    reg32_t _reserved2;
+    volatile hw_audmux_ptcr7_t PTCR7; //!< Port Timing Control Register n 7
     volatile hw_audmux_pdcr7_t PDCR7; //!< Port Data Control Register 7
-} hw_audmux_t
+} hw_audmux_t;
 #endif
 
 //! @brief Macro to access all AUDMUX registers.

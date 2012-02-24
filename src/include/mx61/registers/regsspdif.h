@@ -60,7 +60,7 @@ typedef union
         unsigned DMA_RX_EN : 1; //!< DMA Receive Request Enable (RX FIFO full)
         unsigned TXFIFO_CTRL : 2; //!< 
         unsigned SOFT_RESET : 1; //!< When write 1 to this bit, it will cause SPDIF software reset. The software reset will last 8 cycles. When in the reset process, return 1 when read. else return 0 when read.
-        unsigned LOW : 1; //!< When write 1 to this bit, it will cause SPDIF enter low-power mode. return 1 when SPDIF in Low-Power mode.
+        unsigned LOW_POWER : 1; //!< When write 1 to this bit, it will cause SPDIF enter low-power mode. return 1 when SPDIF in Low-Power mode.
         unsigned RESERVED1 : 1; //!< Reserved
         unsigned TXFIFOEMPTY_SEL : 2; //!< 
         unsigned TXAUTOSYNC : 1; //!< 
@@ -69,7 +69,7 @@ typedef union
         unsigned RXFIFO_RST : 1; //!< 
         unsigned RXFIFO_OFF : 1; //!< 
         unsigned RXFIFO_CTRL : 1; //!< 
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_scr_t;
 #endif
@@ -244,23 +244,23 @@ typedef union
 #define BW_SPDIF_SCR_SOFT_RESET(v)   BF_CS1(SPDIF_SCR, SOFT_RESET, v)
 #endif
 
-/* --- Register HW_SPDIF_SCR, field LOW (RW)
+/* --- Register HW_SPDIF_SCR, field LOW_POWER (RW)
  *
  * When write 1 to this bit, it will cause SPDIF enter low-power mode. return 1 when SPDIF in Low-
  * Power mode.
  */
 
-#define BP_SPDIF_SCR_LOW      13
-#define BM_SPDIF_SCR_LOW      0x00002000
+#define BP_SPDIF_SCR_LOW_POWER      13
+#define BM_SPDIF_SCR_LOW_POWER      0x00002000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SPDIF_SCR_LOW(v)   ((((reg32_t) v) << 13) & BM_SPDIF_SCR_LOW)
+#define BF_SPDIF_SCR_LOW_POWER(v)   ((((reg32_t) v) << 13) & BM_SPDIF_SCR_LOW_POWER)
 #else
-#define BF_SPDIF_SCR_LOW(v)   (((v) << 13) & BM_SPDIF_SCR_LOW)
+#define BF_SPDIF_SCR_LOW_POWER(v)   (((v) << 13) & BM_SPDIF_SCR_LOW_POWER)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the LOW field to a new value.
-#define BW_SPDIF_SCR_LOW(v)   BF_CS1(SPDIF_SCR, LOW, v)
+//! @brief Set the LOW_POWER field to a new value.
+#define BW_SPDIF_SCR_LOW_POWER(v)   BF_CS1(SPDIF_SCR, LOW_POWER, v)
 #endif
 
 /* --- Register HW_SPDIF_SCR, field TXFIFOEMPTY_SEL (RW)
@@ -428,6 +428,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_SPDIF_SCR, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SCR_UNIMPLEMENTED      24
+#define BM_SPDIF_SCR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRCD - CDText Control Register (RW)
@@ -445,7 +453,7 @@ typedef union
         unsigned RESERVED2 : 5; //!< Return zeros when read
         unsigned RESERVED3 : 7; //!< Reserved
         unsigned RESERVED4 : 9; //!< Return zeros when read
-        unsigned RESERVED5 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srcd_t;
 #endif
@@ -491,6 +499,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_SPDIF_SRCD, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRCD_UNIMPLEMENTED      24
+#define BM_SPDIF_SRCD_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRPC - PhaseConfig Register (RW)
@@ -507,7 +523,7 @@ typedef union
         unsigned LOCK : 1; //!< LOCK bit to show that the internal DPLL is locked, read only
         unsigned CLKSRC_SEL : 4; //!< Clock source selection, all other settings not shown are reserved:
         unsigned RESERVED1 : 13; //!< Reserved, return zeros when read
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srpc_t;
 #endif
@@ -601,6 +617,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_SPDIF_SRPC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRPC_UNIMPLEMENTED      24
+#define BM_SPDIF_SRPC_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SIE - InterruptEn Register (RW)
@@ -633,7 +657,7 @@ typedef union
         unsigned LOCK : 1; //!< SPDIF receiver's DPLL is locked
         unsigned RESERVED1 : 2; //!< Reserved, for InterruptStat/Clear return zeros when read, for InterruptEn, bit 23 also read zero
         unsigned RESERVED2 : 1; //!< Reserved, for InterruptStat/Clear return zeros when read, for InterruptEn, bit 23 also read zero
-        unsigned RESERVED3 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_sie_t;
 #endif
@@ -982,6 +1006,14 @@ typedef union
 #define BW_SPDIF_SIE_LOCK(v)   BF_CS1(SPDIF_SIE, LOCK, v)
 #endif
 
+/* --- Register HW_SPDIF_SIE, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SIE_UNIMPLEMENTED      24
+#define BM_SPDIF_SIE_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SIS - InterruptStat Register (RO)
@@ -1014,7 +1046,7 @@ typedef union
         unsigned TXUNOV : 1; //!< SPDIF Tx FIFO under/overrun
         unsigned LOCK : 1; //!< SPDIF receiver's DPLL is locked
         unsigned RESERVED1 : 3; //!< Reserved, for InterruptStat/Clear return zeros when read.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_sis_t;
 #endif
@@ -1179,6 +1211,14 @@ typedef union
 #define BP_SPDIF_SIS_LOCK      20
 #define BM_SPDIF_SIS_LOCK      0x00100000
 
+/* --- Register HW_SPDIF_SIS, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SIS_UNIMPLEMENTED      24
+#define BM_SPDIF_SIS_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRL - SPDIFRxLeft Register (RO)
@@ -1191,7 +1231,7 @@ typedef union
     struct
     {
         unsigned RXDATALEFT : 24; //!< Processor receive SPDIF data left
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srl_t;
 #endif
@@ -1218,6 +1258,14 @@ typedef union
 #define BP_SPDIF_SRL_RXDATALEFT      0
 #define BM_SPDIF_SRL_RXDATALEFT      0x00ffffff
 
+/* --- Register HW_SPDIF_SRL, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRL_UNIMPLEMENTED      24
+#define BM_SPDIF_SRL_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRR - SPDIFRxRight Register (RO)
@@ -1230,7 +1278,7 @@ typedef union
     struct
     {
         unsigned RXDATARIGHT : 24; //!< Processor receive SPDIF data right
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srr_t;
 #endif
@@ -1257,6 +1305,14 @@ typedef union
 #define BP_SPDIF_SRR_RXDATARIGHT      0
 #define BM_SPDIF_SRR_RXDATARIGHT      0x00ffffff
 
+/* --- Register HW_SPDIF_SRR, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRR_UNIMPLEMENTED      24
+#define BM_SPDIF_SRR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRCSH - SPDIFRxCChannel_h Register (RO)
@@ -1269,7 +1325,7 @@ typedef union
     struct
     {
         unsigned RXCCHANNEL_H : 24; //!< SPDIF receive C channel register, contains first 24 bits of C channel without interpretation
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srcsh_t;
 #endif
@@ -1296,6 +1352,14 @@ typedef union
 #define BP_SPDIF_SRCSH_RXCCHANNEL_H      0
 #define BM_SPDIF_SRCSH_RXCCHANNEL_H      0x00ffffff
 
+/* --- Register HW_SPDIF_SRCSH, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRCSH_UNIMPLEMENTED      24
+#define BM_SPDIF_SRCSH_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRCSL - SPDIFRxCChannel_l Register (RO)
@@ -1308,7 +1372,7 @@ typedef union
     struct
     {
         unsigned RXCCHANNEL_L : 24; //!< SPDIF receive C channel register, contains next 24 bits of C channel without interpretation
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srcsl_t;
 #endif
@@ -1335,6 +1399,14 @@ typedef union
 #define BP_SPDIF_SRCSL_RXCCHANNEL_L      0
 #define BM_SPDIF_SRCSL_RXCCHANNEL_L      0x00ffffff
 
+/* --- Register HW_SPDIF_SRCSL, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRCSL_UNIMPLEMENTED      24
+#define BM_SPDIF_SRCSL_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRU - UchannelRx Register (RO)
@@ -1347,7 +1419,7 @@ typedef union
     struct
     {
         unsigned RXUCHANNEL : 24; //!< SPDIF receive U channel register, contains next 3 U channel bytes
-        unsigned RESERVED0 : 8; //!< This is a 24-bit register the upper byte is unimplemented.
+        unsigned UNIMPLEMENTED : 8; //!< This is a 24-bit register the upper byte is unimplemented.
     } B;
 } hw_spdif_sru_t;
 #endif
@@ -1374,6 +1446,14 @@ typedef union
 #define BP_SPDIF_SRU_RXUCHANNEL      0
 #define BM_SPDIF_SRU_RXUCHANNEL      0x00ffffff
 
+/* --- Register HW_SPDIF_SRU, field UNIMPLEMENTED (RU)
+ *
+ * This is a 24-bit register the upper byte is unimplemented.
+ */
+
+#define BP_SPDIF_SRU_UNIMPLEMENTED      24
+#define BM_SPDIF_SRU_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRQ - QchannelRx Register (RO)
@@ -1386,7 +1466,7 @@ typedef union
     struct
     {
         unsigned RXQCHANNEL : 24; //!< SPDIF receive Q channel register, contains next 3 Q channel bytes
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srq_t;
 #endif
@@ -1413,6 +1493,14 @@ typedef union
 #define BP_SPDIF_SRQ_RXQCHANNEL      0
 #define BM_SPDIF_SRQ_RXQCHANNEL      0x00ffffff
 
+/* --- Register HW_SPDIF_SRQ, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRQ_UNIMPLEMENTED      24
+#define BM_SPDIF_SRQ_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_STL - SPDIFTxLeft Register (WO)
@@ -1425,7 +1513,7 @@ typedef union
     struct
     {
         unsigned TXDATALEFT : 24; //!< SPDIF transmit left channel data. It is write-only, and always returns zeros when read
-        unsigned RESERVED0 : 8; //!< This is a 24-bit register the upper byte is unimplemented.
+        unsigned UNIMPLEMENTED : 8; //!< This is a 24-bit register the upper byte is unimplemented.
     } B;
 } hw_spdif_stl_t;
 #endif
@@ -1462,6 +1550,14 @@ typedef union
 #define BW_SPDIF_STL_TXDATALEFT(v)   BF_CS1(SPDIF_STL, TXDATALEFT, v)
 #endif
 
+/* --- Register HW_SPDIF_STL, field UNIMPLEMENTED (RU)
+ *
+ * This is a 24-bit register the upper byte is unimplemented.
+ */
+
+#define BP_SPDIF_STL_UNIMPLEMENTED      24
+#define BM_SPDIF_STL_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_STR - SPDIFTxRight Register (WO)
@@ -1474,7 +1570,7 @@ typedef union
     struct
     {
         unsigned TXDATARIGHT : 24; //!< SPDIF transmit right channel data. It is write-only, and always returns zeros when read
-        unsigned RESERVED0 : 8; //!< This is a 24-bit register the upper byte is unimplemented.
+        unsigned UNIMPLEMENTED : 8; //!< This is a 24-bit register the upper byte is unimplemented.
     } B;
 } hw_spdif_str_t;
 #endif
@@ -1511,6 +1607,14 @@ typedef union
 #define BW_SPDIF_STR_TXDATARIGHT(v)   BF_CS1(SPDIF_STR, TXDATARIGHT, v)
 #endif
 
+/* --- Register HW_SPDIF_STR, field UNIMPLEMENTED (RU)
+ *
+ * This is a 24-bit register the upper byte is unimplemented.
+ */
+
+#define BP_SPDIF_STR_UNIMPLEMENTED      24
+#define BM_SPDIF_STR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_STCSCH - SPDIFTxCChannelCons_h Register (RW)
@@ -1523,7 +1627,7 @@ typedef union
     struct
     {
         unsigned TXCCHANNELCONS_H : 24; //!< SPDIF transmit Cons. C channel data, contains first 24 bits without interpretation. When read, it returns the latest data written by the processor
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_stcsch_t;
 #endif
@@ -1565,6 +1669,14 @@ typedef union
 #define BW_SPDIF_STCSCH_TXCCHANNELCONS_H(v)   BF_CS1(SPDIF_STCSCH, TXCCHANNELCONS_H, v)
 #endif
 
+/* --- Register HW_SPDIF_STCSCH, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_STCSCH_UNIMPLEMENTED      24
+#define BM_SPDIF_STCSCH_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_STCSCL - SPDIFTxCChannelCons_l Register (RW)
@@ -1577,7 +1689,7 @@ typedef union
     struct
     {
         unsigned TXCCHANNELCONS_L : 24; //!< SPDIF transmit Cons. C channel data, contains next 24 bits without interpretation. When read, it returns the latest data written by the processor
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_stcscl_t;
 #endif
@@ -1619,6 +1731,14 @@ typedef union
 #define BW_SPDIF_STCSCL_TXCCHANNELCONS_L(v)   BF_CS1(SPDIF_STCSCL, TXCCHANNELCONS_L, v)
 #endif
 
+/* --- Register HW_SPDIF_STCSCL, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_STCSCL_UNIMPLEMENTED      24
+#define BM_SPDIF_STCSCL_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_SRFM - FreqMeas Register (RO)
@@ -1631,7 +1751,7 @@ typedef union
     struct
     {
         unsigned FREQMEAS : 24; //!< Frequency measurement data
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_srfm_t;
 #endif
@@ -1658,6 +1778,14 @@ typedef union
 #define BP_SPDIF_SRFM_FREQMEAS      0
 #define BM_SPDIF_SRFM_FREQMEAS      0x00ffffff
 
+/* --- Register HW_SPDIF_SRFM, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_SRFM_UNIMPLEMENTED      24
+#define BM_SPDIF_SRFM_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDIF_STC - SPDIFTxClk Register (RW)
@@ -1675,7 +1803,7 @@ typedef union
         unsigned TXCLK_SOURCE : 3; //!< 
         unsigned SYSCLK_DF : 9; //!< system clock divider factor, 2~512.
         unsigned RESERVED0 : 4; //!< Reserved, return zeros when read
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_spdif_stc_t;
 #endif
@@ -1798,6 +1926,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_SPDIF_STC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_SPDIF_STC_UNIMPLEMENTED      24
+#define BM_SPDIF_STC_UNIMPLEMENTED      0xff000000
+
 
 /*!
  * @brief All SPDIF module registers.
@@ -1824,7 +1960,7 @@ typedef struct
     volatile hw_spdif_srfm_t SRFM; //!< FreqMeas Register
     reg32_t _reserved1[2];
     volatile hw_spdif_stc_t STC; //!< SPDIFTxClk Register
-} hw_spdif_t
+} hw_spdif_t;
 #endif
 
 //! @brief Macro to access all SPDIF registers.

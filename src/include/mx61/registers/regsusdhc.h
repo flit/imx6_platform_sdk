@@ -1958,6 +1958,16 @@ typedef union
 #define BP_USDHC_SYS_CTRL_RST_FIFO      22
 #define BM_USDHC_SYS_CTRL_RST_FIFO      0x00400000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_SYS_CTRL_RST_FIFO(v)   ((((reg32_t) v) << 22) & BM_USDHC_SYS_CTRL_RST_FIFO)
+#else
+#define BF_USDHC_SYS_CTRL_RST_FIFO(v)   (((v) << 22) & BM_USDHC_SYS_CTRL_RST_FIFO)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RST_FIFO field to a new value.
+#define BW_USDHC_SYS_CTRL_RST_FIFO(v)   BF_CS1(USDHC_SYS_CTRL, RST_FIFO, v)
+#endif
+
 /* --- Register HW_USDHC_SYS_CTRL, field IPP_RST_N (RW)
  *
  * This register's value will be output to CARD from pad directly for hardware reset of the card if
@@ -1996,6 +2006,16 @@ typedef union
 #define BP_USDHC_SYS_CTRL_RSTA      24
 #define BM_USDHC_SYS_CTRL_RSTA      0x01000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_SYS_CTRL_RSTA(v)   ((((reg32_t) v) << 24) & BM_USDHC_SYS_CTRL_RSTA)
+#else
+#define BF_USDHC_SYS_CTRL_RSTA(v)   (((v) << 24) & BM_USDHC_SYS_CTRL_RSTA)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RSTA field to a new value.
+#define BW_USDHC_SYS_CTRL_RSTA(v)   BF_CS1(USDHC_SYS_CTRL, RSTA, v)
+#endif
+
 
 /* --- Register HW_USDHC_SYS_CTRL, field RSTC (WORZ)
  *
@@ -2010,6 +2030,16 @@ typedef union
 
 #define BP_USDHC_SYS_CTRL_RSTC      25
 #define BM_USDHC_SYS_CTRL_RSTC      0x02000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_SYS_CTRL_RSTC(v)   ((((reg32_t) v) << 25) & BM_USDHC_SYS_CTRL_RSTC)
+#else
+#define BF_USDHC_SYS_CTRL_RSTC(v)   (((v) << 25) & BM_USDHC_SYS_CTRL_RSTC)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RSTC field to a new value.
+#define BW_USDHC_SYS_CTRL_RSTC(v)   BF_CS1(USDHC_SYS_CTRL, RSTC, v)
+#endif
 
 
 /* --- Register HW_USDHC_SYS_CTRL, field RSTD (WORZ)
@@ -2028,6 +2058,16 @@ typedef union
 
 #define BP_USDHC_SYS_CTRL_RSTD      26
 #define BM_USDHC_SYS_CTRL_RSTD      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_SYS_CTRL_RSTD(v)   ((((reg32_t) v) << 26) & BM_USDHC_SYS_CTRL_RSTD)
+#else
+#define BF_USDHC_SYS_CTRL_RSTD(v)   (((v) << 26) & BM_USDHC_SYS_CTRL_RSTD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RSTD field to a new value.
+#define BW_USDHC_SYS_CTRL_RSTD(v)   BF_CS1(USDHC_SYS_CTRL, RSTD, v)
+#endif
 
 
 /* --- Register HW_USDHC_SYS_CTRL, field INITA (RW)
@@ -2125,6 +2165,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_USDHC_INT_STATUS(x)           (*(volatile hw_usdhc_int_status_t *) HW_USDHC_INT_STATUS_ADDR(x))
 #define HW_USDHC_INT_STATUS_RD(x)        (HW_USDHC_INT_STATUS(x).U)
+#define HW_USDHC_INT_STATUS_WR(x, v)     (HW_USDHC_INT_STATUS(x).U = (v))
+#define HW_USDHC_INT_STATUS_SET(x, v)    (HW_USDHC_INT_STATUS_WR(x, HW_USDHC_INT_STATUS_RD(x) |  (v)))
+#define HW_USDHC_INT_STATUS_CLR(x, v)    (HW_USDHC_INT_STATUS_WR(x, HW_USDHC_INT_STATUS_RD(x) & ~(v)))
+#define HW_USDHC_INT_STATUS_TOG(x, v)    (HW_USDHC_INT_STATUS_WR(x, HW_USDHC_INT_STATUS_RD(x) ^  (v)))
 #endif
 
 /*
@@ -2144,6 +2188,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_CC      0
 #define BM_USDHC_INT_STATUS_CC      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CC(v)   ((((reg32_t) v) << 0) & BM_USDHC_INT_STATUS_CC)
+#else
+#define BF_USDHC_INT_STATUS_CC(v)   (((v) << 0) & BM_USDHC_INT_STATUS_CC)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CC field to a new value.
+#define BW_USDHC_INT_STATUS_CC(v)   BF_CS1(USDHC_INT_STATUS, CC, v)
+#endif
 
 
 /* --- Register HW_USDHC_INT_STATUS, field TC (W1C)
@@ -2170,6 +2224,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_TC      1
 #define BM_USDHC_INT_STATUS_TC      0x00000002
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_TC(v)   ((((reg32_t) v) << 1) & BM_USDHC_INT_STATUS_TC)
+#else
+#define BF_USDHC_INT_STATUS_TC(v)   (((v) << 1) & BM_USDHC_INT_STATUS_TC)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TC field to a new value.
+#define BW_USDHC_INT_STATUS_TC(v)   BF_CS1(USDHC_INT_STATUS, TC, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field BGE (W1C)
  *
@@ -2189,6 +2253,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_BGE      2
 #define BM_USDHC_INT_STATUS_BGE      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_BGE(v)   ((((reg32_t) v) << 2) & BM_USDHC_INT_STATUS_BGE)
+#else
+#define BF_USDHC_INT_STATUS_BGE(v)   (((v) << 2) & BM_USDHC_INT_STATUS_BGE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BGE field to a new value.
+#define BW_USDHC_INT_STATUS_BGE(v)   BF_CS1(USDHC_INT_STATUS, BGE, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field DINT (W1C)
  *
@@ -2203,6 +2277,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_DINT      3
 #define BM_USDHC_INT_STATUS_DINT      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_DINT(v)   ((((reg32_t) v) << 3) & BM_USDHC_INT_STATUS_DINT)
+#else
+#define BF_USDHC_INT_STATUS_DINT(v)   (((v) << 3) & BM_USDHC_INT_STATUS_DINT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DINT field to a new value.
+#define BW_USDHC_INT_STATUS_DINT(v)   BF_CS1(USDHC_INT_STATUS, DINT, v)
+#endif
 
 
 /* --- Register HW_USDHC_INT_STATUS, field BWR (W1C)
@@ -2219,6 +2303,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_BWR      4
 #define BM_USDHC_INT_STATUS_BWR      0x00000010
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_BWR(v)   ((((reg32_t) v) << 4) & BM_USDHC_INT_STATUS_BWR)
+#else
+#define BF_USDHC_INT_STATUS_BWR(v)   (((v) << 4) & BM_USDHC_INT_STATUS_BWR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BWR field to a new value.
+#define BW_USDHC_INT_STATUS_BWR(v)   BF_CS1(USDHC_INT_STATUS, BWR, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field BRR (W1C)
  *
@@ -2233,6 +2327,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_BRR      5
 #define BM_USDHC_INT_STATUS_BRR      0x00000020
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_BRR(v)   ((((reg32_t) v) << 5) & BM_USDHC_INT_STATUS_BRR)
+#else
+#define BF_USDHC_INT_STATUS_BRR(v)   (((v) << 5) & BM_USDHC_INT_STATUS_BRR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BRR field to a new value.
+#define BW_USDHC_INT_STATUS_BRR(v)   BF_CS1(USDHC_INT_STATUS, BRR, v)
+#endif
 
 
 /* --- Register HW_USDHC_INT_STATUS, field CINS (W1C)
@@ -2252,6 +2356,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_CINS      6
 #define BM_USDHC_INT_STATUS_CINS      0x00000040
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CINS(v)   ((((reg32_t) v) << 6) & BM_USDHC_INT_STATUS_CINS)
+#else
+#define BF_USDHC_INT_STATUS_CINS(v)   (((v) << 6) & BM_USDHC_INT_STATUS_CINS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CINS field to a new value.
+#define BW_USDHC_INT_STATUS_CINS(v)   BF_CS1(USDHC_INT_STATUS, CINS, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field CRM (W1C)
  *
@@ -2269,6 +2383,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_CRM      7
 #define BM_USDHC_INT_STATUS_CRM      0x00000080
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CRM(v)   ((((reg32_t) v) << 7) & BM_USDHC_INT_STATUS_CRM)
+#else
+#define BF_USDHC_INT_STATUS_CRM(v)   (((v) << 7) & BM_USDHC_INT_STATUS_CRM)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CRM field to a new value.
+#define BW_USDHC_INT_STATUS_CRM(v)   BF_CS1(USDHC_INT_STATUS, CRM, v)
+#endif
 
 
 /* --- Register HW_USDHC_INT_STATUS, field CINT (W1C)
@@ -2295,6 +2419,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_CINT      8
 #define BM_USDHC_INT_STATUS_CINT      0x00000100
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CINT(v)   ((((reg32_t) v) << 8) & BM_USDHC_INT_STATUS_CINT)
+#else
+#define BF_USDHC_INT_STATUS_CINT(v)   (((v) << 8) & BM_USDHC_INT_STATUS_CINT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CINT field to a new value.
+#define BW_USDHC_INT_STATUS_CINT(v)   BF_CS1(USDHC_INT_STATUS, CINT, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field RTE (W1C)
  *
@@ -2311,6 +2445,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_RTE      12
 #define BM_USDHC_INT_STATUS_RTE      0x00001000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_RTE(v)   ((((reg32_t) v) << 12) & BM_USDHC_INT_STATUS_RTE)
+#else
+#define BF_USDHC_INT_STATUS_RTE(v)   (((v) << 12) & BM_USDHC_INT_STATUS_RTE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the RTE field to a new value.
+#define BW_USDHC_INT_STATUS_RTE(v)   BF_CS1(USDHC_INT_STATUS, RTE, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field TP (W1C)
  *
@@ -2320,6 +2464,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_TP      14
 #define BM_USDHC_INT_STATUS_TP      0x00004000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_TP(v)   ((((reg32_t) v) << 14) & BM_USDHC_INT_STATUS_TP)
+#else
+#define BF_USDHC_INT_STATUS_TP(v)   (((v) << 14) & BM_USDHC_INT_STATUS_TP)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TP field to a new value.
+#define BW_USDHC_INT_STATUS_TP(v)   BF_CS1(USDHC_INT_STATUS, TP, v)
+#endif
 
 /* --- Register HW_USDHC_INT_STATUS, field CTOE (W1C)
  *
@@ -2336,6 +2490,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_CTOE      16
 #define BM_USDHC_INT_STATUS_CTOE      0x00010000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CTOE(v)   ((((reg32_t) v) << 16) & BM_USDHC_INT_STATUS_CTOE)
+#else
+#define BF_USDHC_INT_STATUS_CTOE(v)   (((v) << 16) & BM_USDHC_INT_STATUS_CTOE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CTOE field to a new value.
+#define BW_USDHC_INT_STATUS_CTOE(v)   BF_CS1(USDHC_INT_STATUS, CTOE, v)
+#endif
 
 
 /* --- Register HW_USDHC_INT_STATUS, field CCE (W1C)
@@ -2356,6 +2520,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_CCE      17
 #define BM_USDHC_INT_STATUS_CCE      0x00020000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CCE(v)   ((((reg32_t) v) << 17) & BM_USDHC_INT_STATUS_CCE)
+#else
+#define BF_USDHC_INT_STATUS_CCE(v)   (((v) << 17) & BM_USDHC_INT_STATUS_CCE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CCE field to a new value.
+#define BW_USDHC_INT_STATUS_CCE(v)   BF_CS1(USDHC_INT_STATUS, CCE, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field CEBE (W1C)
  *
@@ -2370,6 +2544,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_CEBE      18
 #define BM_USDHC_INT_STATUS_CEBE      0x00040000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CEBE(v)   ((((reg32_t) v) << 18) & BM_USDHC_INT_STATUS_CEBE)
+#else
+#define BF_USDHC_INT_STATUS_CEBE(v)   (((v) << 18) & BM_USDHC_INT_STATUS_CEBE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CEBE field to a new value.
+#define BW_USDHC_INT_STATUS_CEBE(v)   BF_CS1(USDHC_INT_STATUS, CEBE, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field CIE (W1C)
  *
@@ -2383,6 +2567,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_CIE      19
 #define BM_USDHC_INT_STATUS_CIE      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_CIE(v)   ((((reg32_t) v) << 19) & BM_USDHC_INT_STATUS_CIE)
+#else
+#define BF_USDHC_INT_STATUS_CIE(v)   (((v) << 19) & BM_USDHC_INT_STATUS_CIE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CIE field to a new value.
+#define BW_USDHC_INT_STATUS_CIE(v)   BF_CS1(USDHC_INT_STATUS, CIE, v)
+#endif
 
 
 /* --- Register HW_USDHC_INT_STATUS, field DTOE (W1C)
@@ -2399,6 +2593,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_DTOE      20
 #define BM_USDHC_INT_STATUS_DTOE      0x00100000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_DTOE(v)   ((((reg32_t) v) << 20) & BM_USDHC_INT_STATUS_DTOE)
+#else
+#define BF_USDHC_INT_STATUS_DTOE(v)   (((v) << 20) & BM_USDHC_INT_STATUS_DTOE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DTOE field to a new value.
+#define BW_USDHC_INT_STATUS_DTOE(v)   BF_CS1(USDHC_INT_STATUS, DTOE, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field DCE (W1C)
  *
@@ -2413,6 +2617,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_DCE      21
 #define BM_USDHC_INT_STATUS_DCE      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_DCE(v)   ((((reg32_t) v) << 21) & BM_USDHC_INT_STATUS_DCE)
+#else
+#define BF_USDHC_INT_STATUS_DCE(v)   (((v) << 21) & BM_USDHC_INT_STATUS_DCE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DCE field to a new value.
+#define BW_USDHC_INT_STATUS_DCE(v)   BF_CS1(USDHC_INT_STATUS, DCE, v)
+#endif
 
 
 /* --- Register HW_USDHC_INT_STATUS, field DEBE (W1C)
@@ -2429,6 +2643,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_DEBE      22
 #define BM_USDHC_INT_STATUS_DEBE      0x00400000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_DEBE(v)   ((((reg32_t) v) << 22) & BM_USDHC_INT_STATUS_DEBE)
+#else
+#define BF_USDHC_INT_STATUS_DEBE(v)   (((v) << 22) & BM_USDHC_INT_STATUS_DEBE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DEBE field to a new value.
+#define BW_USDHC_INT_STATUS_DEBE(v)   BF_CS1(USDHC_INT_STATUS, DEBE, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field AC12E (W1C)
  *
@@ -2444,6 +2668,16 @@ typedef union
 #define BP_USDHC_INT_STATUS_AC12E      24
 #define BM_USDHC_INT_STATUS_AC12E      0x01000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_AC12E(v)   ((((reg32_t) v) << 24) & BM_USDHC_INT_STATUS_AC12E)
+#else
+#define BF_USDHC_INT_STATUS_AC12E(v)   (((v) << 24) & BM_USDHC_INT_STATUS_AC12E)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AC12E field to a new value.
+#define BW_USDHC_INT_STATUS_AC12E(v)   BF_CS1(USDHC_INT_STATUS, AC12E, v)
+#endif
+
 
 /* --- Register HW_USDHC_INT_STATUS, field TNE (W1C)
  *
@@ -2454,6 +2688,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_TNE      26
 #define BM_USDHC_INT_STATUS_TNE      0x04000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_TNE(v)   ((((reg32_t) v) << 26) & BM_USDHC_INT_STATUS_TNE)
+#else
+#define BF_USDHC_INT_STATUS_TNE(v)   (((v) << 26) & BM_USDHC_INT_STATUS_TNE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TNE field to a new value.
+#define BW_USDHC_INT_STATUS_TNE(v)   BF_CS1(USDHC_INT_STATUS, TNE, v)
+#endif
 
 /* --- Register HW_USDHC_INT_STATUS, field DMAE (W1C)
  *
@@ -2471,6 +2715,16 @@ typedef union
 
 #define BP_USDHC_INT_STATUS_DMAE      28
 #define BM_USDHC_INT_STATUS_DMAE      0x10000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_INT_STATUS_DMAE(v)   ((((reg32_t) v) << 28) & BM_USDHC_INT_STATUS_DMAE)
+#else
+#define BF_USDHC_INT_STATUS_DMAE(v)   (((v) << 28) & BM_USDHC_INT_STATUS_DMAE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DMAE field to a new value.
+#define BW_USDHC_INT_STATUS_DMAE(v)   BF_CS1(USDHC_INT_STATUS, DMAE, v)
+#endif
 
 
 #ifndef __LANGUAGE_ASM__
@@ -4436,7 +4690,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_USDHC_FORCE_EVENT(x)           (*(volatile hw_usdhc_force_event_t *) HW_USDHC_FORCE_EVENT_ADDR(x))
-#define HW_USDHC_FORCE_EVENT_RD(x)        (HW_USDHC_FORCE_EVENT(x).U)
+#define HW_USDHC_FORCE_EVENT_WR(x, v)     (HW_USDHC_FORCE_EVENT(x).U = (v))
 #endif
 
 /*
@@ -4452,6 +4706,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTAC12NE      0
 #define BM_USDHC_FORCE_EVENT_FEVTAC12NE      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTAC12NE(v)   ((((reg32_t) v) << 0) & BM_USDHC_FORCE_EVENT_FEVTAC12NE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTAC12NE(v)   (((v) << 0) & BM_USDHC_FORCE_EVENT_FEVTAC12NE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTAC12NE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTAC12NE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTAC12NE, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12TOE (WORZ)
  *
  * Force Event Auto Command 12 Time Out Error: Forces the AC12TOE bit in the Auto Command12 Error
@@ -4460,6 +4724,16 @@ typedef union
 
 #define BP_USDHC_FORCE_EVENT_FEVTAC12TOE      1
 #define BM_USDHC_FORCE_EVENT_FEVTAC12TOE      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTAC12TOE(v)   ((((reg32_t) v) << 1) & BM_USDHC_FORCE_EVENT_FEVTAC12TOE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTAC12TOE(v)   (((v) << 1) & BM_USDHC_FORCE_EVENT_FEVTAC12TOE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTAC12TOE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTAC12TOE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTAC12TOE, v)
+#endif
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12CE (WORZ)
  *
@@ -4470,6 +4744,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTAC12CE      2
 #define BM_USDHC_FORCE_EVENT_FEVTAC12CE      0x00000004
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTAC12CE(v)   ((((reg32_t) v) << 2) & BM_USDHC_FORCE_EVENT_FEVTAC12CE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTAC12CE(v)   (((v) << 2) & BM_USDHC_FORCE_EVENT_FEVTAC12CE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTAC12CE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTAC12CE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTAC12CE, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12EBE (WORZ)
  *
  * Force Event Auto Command 12 End Bit Error: Forces the AC12EBE bit in the Auto Command12 Error
@@ -4478,6 +4762,16 @@ typedef union
 
 #define BP_USDHC_FORCE_EVENT_FEVTAC12EBE      3
 #define BM_USDHC_FORCE_EVENT_FEVTAC12EBE      0x00000008
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTAC12EBE(v)   ((((reg32_t) v) << 3) & BM_USDHC_FORCE_EVENT_FEVTAC12EBE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTAC12EBE(v)   (((v) << 3) & BM_USDHC_FORCE_EVENT_FEVTAC12EBE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTAC12EBE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTAC12EBE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTAC12EBE, v)
+#endif
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12IE (WORZ)
  *
@@ -4488,6 +4782,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTAC12IE      4
 #define BM_USDHC_FORCE_EVENT_FEVTAC12IE      0x00000010
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTAC12IE(v)   ((((reg32_t) v) << 4) & BM_USDHC_FORCE_EVENT_FEVTAC12IE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTAC12IE(v)   (((v) << 4) & BM_USDHC_FORCE_EVENT_FEVTAC12IE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTAC12IE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTAC12IE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTAC12IE, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCNIBAC12E (WORZ)
  *
  * Force Event Command Not Executed By Auto Command 12 Error: Forces the CNIBAC12E bit in the Auto
@@ -4497,6 +4801,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTCNIBAC12E      7
 #define BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E      0x00000080
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTCNIBAC12E(v)   ((((reg32_t) v) << 7) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTCNIBAC12E(v)   (((v) << 7) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTCNIBAC12E field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTCNIBAC12E(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTCNIBAC12E, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCCE (WORZ)
  *
  * Force Event Command Time Out Error: Forces the CTOE bit of Interrupt Status Register to be set
@@ -4505,13 +4819,33 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTCCE      16
 #define BM_USDHC_FORCE_EVENT_FEVTCCE      0x00010000
 
-/* --- Register HW_USDHC_FORCE_EVENT, field FEVTCCE (WORZ)
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTCCE(v)   ((((reg32_t) v) << 16) & BM_USDHC_FORCE_EVENT_FEVTCCE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTCCE(v)   (((v) << 16) & BM_USDHC_FORCE_EVENT_FEVTCCE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTCCE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTCCE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTCCE, v)
+#endif
+
+/* --- Register HW_USDHC_FORCE_EVENT, field FEVTCCE1 (WORZ)
  *
  * Force Event Command CRC Error: Forces the CCE bit of Interrupt Status Register to be set
  */
 
-#define BP_USDHC_FORCE_EVENT_FEVTCCE      17
-#define BM_USDHC_FORCE_EVENT_FEVTCCE      0x00020000
+#define BP_USDHC_FORCE_EVENT_FEVTCCE1      17
+#define BM_USDHC_FORCE_EVENT_FEVTCCE1      0x00020000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTCCE1(v)   ((((reg32_t) v) << 17) & BM_USDHC_FORCE_EVENT_FEVTCCE1)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTCCE1(v)   (((v) << 17) & BM_USDHC_FORCE_EVENT_FEVTCCE1)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTCCE1 field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTCCE1(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTCCE1, v)
+#endif
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCEBE (WORZ)
  *
@@ -4521,6 +4855,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTCEBE      18
 #define BM_USDHC_FORCE_EVENT_FEVTCEBE      0x00040000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTCEBE(v)   ((((reg32_t) v) << 18) & BM_USDHC_FORCE_EVENT_FEVTCEBE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTCEBE(v)   (((v) << 18) & BM_USDHC_FORCE_EVENT_FEVTCEBE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTCEBE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTCEBE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTCEBE, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCIE (WORZ)
  *
  * Force Event Command Index Error: Forces the CCE bit of Interrupt Status Register to be set
@@ -4528,6 +4872,16 @@ typedef union
 
 #define BP_USDHC_FORCE_EVENT_FEVTCIE      19
 #define BM_USDHC_FORCE_EVENT_FEVTCIE      0x00080000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTCIE(v)   ((((reg32_t) v) << 19) & BM_USDHC_FORCE_EVENT_FEVTCIE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTCIE(v)   (((v) << 19) & BM_USDHC_FORCE_EVENT_FEVTCIE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTCIE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTCIE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTCIE, v)
+#endif
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDTOE (WORZ)
  *
@@ -4537,6 +4891,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTDTOE      20
 #define BM_USDHC_FORCE_EVENT_FEVTDTOE      0x00100000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTDTOE(v)   ((((reg32_t) v) << 20) & BM_USDHC_FORCE_EVENT_FEVTDTOE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTDTOE(v)   (((v) << 20) & BM_USDHC_FORCE_EVENT_FEVTDTOE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTDTOE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTDTOE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTDTOE, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDCE (WORZ)
  *
  * Force Event Data CRC Error: Forces the DCE bit of Interrupt Status Register to be set
@@ -4544,6 +4908,16 @@ typedef union
 
 #define BP_USDHC_FORCE_EVENT_FEVTDCE      21
 #define BM_USDHC_FORCE_EVENT_FEVTDCE      0x00200000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTDCE(v)   ((((reg32_t) v) << 21) & BM_USDHC_FORCE_EVENT_FEVTDCE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTDCE(v)   (((v) << 21) & BM_USDHC_FORCE_EVENT_FEVTDCE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTDCE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTDCE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTDCE, v)
+#endif
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDEBE (WORZ)
  *
@@ -4553,6 +4927,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTDEBE      22
 #define BM_USDHC_FORCE_EVENT_FEVTDEBE      0x00400000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTDEBE(v)   ((((reg32_t) v) << 22) & BM_USDHC_FORCE_EVENT_FEVTDEBE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTDEBE(v)   (((v) << 22) & BM_USDHC_FORCE_EVENT_FEVTDEBE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTDEBE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTDEBE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTDEBE, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12E (WORZ)
  *
  * Force Event Auto Command 12 Error: Forces the AC12E bit of Interrupt Status Register to be set
@@ -4560,6 +4944,16 @@ typedef union
 
 #define BP_USDHC_FORCE_EVENT_FEVTAC12E      24
 #define BM_USDHC_FORCE_EVENT_FEVTAC12E      0x01000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTAC12E(v)   ((((reg32_t) v) << 24) & BM_USDHC_FORCE_EVENT_FEVTAC12E)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTAC12E(v)   (((v) << 24) & BM_USDHC_FORCE_EVENT_FEVTAC12E)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTAC12E field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTAC12E(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTAC12E, v)
+#endif
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTTNE (WORZ)
  *
@@ -4569,6 +4963,16 @@ typedef union
 #define BP_USDHC_FORCE_EVENT_FEVTTNE      26
 #define BM_USDHC_FORCE_EVENT_FEVTTNE      0x04000000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTTNE(v)   ((((reg32_t) v) << 26) & BM_USDHC_FORCE_EVENT_FEVTTNE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTTNE(v)   (((v) << 26) & BM_USDHC_FORCE_EVENT_FEVTTNE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTTNE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTTNE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTTNE, v)
+#endif
+
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDMAE (WORZ)
  *
  * Force Event DMA Error: Forces the DMAE bit of Interrupt Status Register to be set
@@ -4576,6 +4980,16 @@ typedef union
 
 #define BP_USDHC_FORCE_EVENT_FEVTDMAE      28
 #define BM_USDHC_FORCE_EVENT_FEVTDMAE      0x10000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTDMAE(v)   ((((reg32_t) v) << 28) & BM_USDHC_FORCE_EVENT_FEVTDMAE)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTDMAE(v)   (((v) << 28) & BM_USDHC_FORCE_EVENT_FEVTDMAE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTDMAE field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTDMAE(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTDMAE, v)
+#endif
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCINT (WORZ)
  *
@@ -4587,6 +5001,16 @@ typedef union
 
 #define BP_USDHC_FORCE_EVENT_FEVTCINT      31
 #define BM_USDHC_FORCE_EVENT_FEVTCINT      0x80000000
+
+#ifndef __LANGUAGE_ASM__
+#define BF_USDHC_FORCE_EVENT_FEVTCINT(v)   ((((reg32_t) v) << 31) & BM_USDHC_FORCE_EVENT_FEVTCINT)
+#else
+#define BF_USDHC_FORCE_EVENT_FEVTCINT(v)   (((v) << 31) & BM_USDHC_FORCE_EVENT_FEVTCINT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the FEVTCINT field to a new value.
+#define BW_USDHC_FORCE_EVENT_FEVTCINT(v)   BF_CS1(USDHC_FORCE_EVENT, FEVTCINT, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4924,22 +5348,22 @@ typedef union
 #define BW_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL(v)   BF_CS1(USDHC_DLL_CTRL, DLL_CTRL_SLV_OVERRIDE_VAL, v)
 #endif
 
-/* --- Register HW_USDHC_DLL_CTRL, field DLL_CTRL_SLV_DLY_TARGET (RW)
+/* --- Register HW_USDHC_DLL_CTRL, field DLL_CTRL_SLV_DLY_TARGET1 (RW)
  *
  * Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below.
  */
 
-#define BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET      16
-#define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET      0x00070000
+#define BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1      16
+#define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1      0x00070000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)   ((((reg32_t) v) << 16) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(v)   ((((reg32_t) v) << 16) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1)
 #else
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)   (((v) << 16) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(v)   (((v) << 16) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DLL_CTRL_SLV_DLY_TARGET field to a new value.
-#define BW_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)   BF_CS1(USDHC_DLL_CTRL, DLL_CTRL_SLV_DLY_TARGET, v)
+//! @brief Set the DLL_CTRL_SLV_DLY_TARGET1 field to a new value.
+#define BW_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(v)   BF_CS1(USDHC_DLL_CTRL, DLL_CTRL_SLV_DLY_TARGET1, v)
 #endif
 
 /* --- Register HW_USDHC_DLL_CTRL, field DLL_CTRL_SLV_UPDATE_INT (RW)
@@ -6208,7 +6632,7 @@ typedef struct
     volatile hw_usdhc_vend_spec2_t VEND_SPEC2; //!< Vendor Specific 2 Register
     reg32_t _reserved3[12];
     volatile hw_usdhc_host_ctrl_ver_t HOST_CTRL_VER; //!< Host Controller Version
-} hw_usdhc_t
+} hw_usdhc_t;
 #endif
 
 //! @brief Macro to access all USDHC registers.

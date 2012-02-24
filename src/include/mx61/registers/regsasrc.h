@@ -21,11 +21,19 @@
  * - HW_ASRC_ASRCDR1 - ASRC Clock Divider Register 1
  * - HW_ASRC_ASRCDR2 - ASRC Clock Divider Register 2
  * - HW_ASRC_ASRSTR - ASRC Status Register
- * - HW_ASRC_ASRPMN - ASRC Parameter Register n
+ * - HW_ASRC_ASRPMN1 - ASRC Parameter Register n 1
+ * - HW_ASRC_ASRPMN2 - ASRC Parameter Register n 2
+ * - HW_ASRC_ASRPMN3 - ASRC Parameter Register n 3
+ * - HW_ASRC_ASRPMN4 - ASRC Parameter Register n 4
+ * - HW_ASRC_ASRPMN5 - ASRC Parameter Register n 5
  * - HW_ASRC_ASRTFR1 - ASRC ASRC Task Queue FIFO Register 1
  * - HW_ASRC_ASRCCR - ASRC Channel Counter Register
- * - HW_ASRC_ASRDI - ASRC Data Input Register for Pair
- * - HW_ASRC_ASRDO - ASRC Data Output Register for Pair
+ * - HW_ASRC_ASRDIA - ASRC Data Input Register for Pair A
+ * - HW_ASRC_ASRDOA - ASRC Data Output Register for Pair A
+ * - HW_ASRC_ASRDIB - ASRC Data Input Register for Pair B
+ * - HW_ASRC_ASRDOB - ASRC Data Output Register for Pair B
+ * - HW_ASRC_ASRDIC - ASRC Data Input Register for Pair C
+ * - HW_ASRC_ASRDOC - ASRC Data Output Register for Pair C
  * - HW_ASRC_ASRIDRHA - ASRC Ideal Ratio for Pair A-High Part
  * - HW_ASRC_ASRIDRLA - ASRC Ideal Ratio for Pair A -Low Part
  * - HW_ASRC_ASRIDRHB - ASRC Ideal Ratio for Pair B-High Part
@@ -40,7 +48,9 @@
  * - HW_ASRC_ASRFSTB - ASRC FIFO Status Register for Pair B
  * - HW_ASRC_ASRMCRC - ASRC Misc Control Register for Pair C
  * - HW_ASRC_ASRFSTC - ASRC FIFO Status Register for Pair C
- * - HW_ASRC_ASRMCR1 - ASRC Misc Control Register 1 for Pair X
+ * - HW_ASRC_ASRMCR1A - ASRC Misc Control Register 1 for Pair X A
+ * - HW_ASRC_ASRMCR1B - ASRC Misc Control Register 1 for Pair X B
+ * - HW_ASRC_ASRMCR1C - ASRC Misc Control Register 1 for Pair X C
  *
  * hw_asrc_t - Struct containing all module registers.
  */
@@ -81,7 +91,7 @@ typedef union
         unsigned ATSB : 1; //!< ASRC Pair B Automatic Selection For Processing Options When this bit is 1, pair B will automatic update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB , ASRCFG:HFB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair B. This bit should be disabled when {USRB, IDRB}={1,1}.
         unsigned ATSC : 1; //!< ASRC Pair C Automatic Selection For Processing Options When this bit is 1, pair C will automatic update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC , ASRCFG:HFC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair C. This bit should be disabled when {USRC, IDRC}={1,1}.
         unsigned RESERVED2 : 1; //!< Reserved. Should be written as zero for compatibility.
-        unsigned RESERVED3 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrctr_t;
 #endif
@@ -391,6 +401,14 @@ typedef union
 #define BW_ASRC_ASRCTR_ATSC(v)   BF_CS1(ASRC_ASRCTR, ATSC, v)
 #endif
 
+/* --- Register HW_ASRC_ASRCTR, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRCTR_UNIMPLEMENTED      24
+#define BM_ASRC_ASRCTR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRIER - ASRC Interrupt Enable Register (RW)
@@ -412,7 +430,7 @@ typedef union
         unsigned AOLIE : 1; //!< Overload Interrupt Enable Enables the overload interrupt.
         unsigned AFPWE : 1; //!< FP in Wait State Interrupt Enable Enables the FP in wait state interrupt.
         unsigned RESERVED0 : 16; //!< Reserved. Should be written as zero for compatibility.
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrier_t;
 #endif
@@ -619,6 +637,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_ASRC_ASRIER, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRIER_UNIMPLEMENTED      24
+#define BM_ASRC_ASRIER_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRCNCR - ASRC Channel Number Configuration Register (RW)
@@ -639,7 +665,7 @@ typedef union
         unsigned ANCB : 3; //!< Number of B Channels
         unsigned ANCC : 3; //!< Number of C Channels ANCC+ANCB+ANCA<=10. Hardware is not checking the constraint. Programmer should take the responsibility to ensure the constraint is satisfied.
         unsigned RESERVED0 : 15; //!< Reserved. Should be written as zero for compatibility.
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrcncr_t;
 #endif
@@ -762,6 +788,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_ASRC_ASRCNCR, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRCNCR_UNIMPLEMENTED      24
+#define BM_ASRC_ASRCNCR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRCFG - ASRC Filter Configuration Status Register (RW)
@@ -787,7 +821,7 @@ typedef union
         unsigned INIRQA : 1; //!< Initialization for Conversion Pair A is served When this bit is 1, it means the initialization for conversion pair A is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREA=0 or ASRCTR:ASRCEN=0).
         unsigned INIRQB : 1; //!< Initialization for Conversion Pair B is served When this bit is 1, it means the initialization for conversion pair B is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREB=0 or ASRCTR:ASRCEN=0).
         unsigned INIRQC : 1; //!< Initialization for Conversion Pair C is served When this bit is 1, it means the initialization for conversion pair C is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREC=0 or ASRCTR:ASRCEN=0).
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrcfg_t;
 #endif
@@ -1074,6 +1108,14 @@ typedef union
 #define BP_ASRC_ASRCFG_INIRQC      23
 #define BM_ASRC_ASRCFG_INIRQC      0x00800000
 
+/* --- Register HW_ASRC_ASRCFG, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRCFG_UNIMPLEMENTED      24
+#define BM_ASRC_ASRCFG_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRCSR - ASRC Clock Source Register (RW)
@@ -1100,7 +1142,7 @@ typedef union
         unsigned AOCSA : 4; //!< Output Clock Source A
         unsigned AOCSB : 4; //!< Output Clock Source B
         unsigned AOCSC : 4; //!< Output Clock Source C
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrcsr_t;
 #endif
@@ -1345,6 +1387,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_ASRC_ASRCSR, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRCSR_UNIMPLEMENTED      24
+#define BM_ASRC_ASRCSR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRCDR1 - ASRC Clock Divider Register 1 (RW)
@@ -1365,7 +1415,7 @@ typedef union
         unsigned AOCDA : 3; //!< Output Clock Divider A Specify the divide ratio of the output clock divider A. The divide ratio may range from 1 to 8 (AOCDA[2:0] = 000 to 111).
         unsigned AOCPB : 3; //!< Output Clock Prescaler B Specify the prescaling factor of the output prescaler B. The prescaling ratio may be any power of 2 from 1 to 128.
         unsigned AOCDB : 3; //!< Output Clock Divider B Specify the divide ratio of the output clock divider B. The divide ratio may range from 1 to 8 (AOCDB[2:0] = 000 to 111).
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrcdr1_t;
 #endif
@@ -1540,6 +1590,14 @@ typedef union
 #define BW_ASRC_ASRCDR1_AOCDB(v)   BF_CS1(ASRC_ASRCDR1, AOCDB, v)
 #endif
 
+/* --- Register HW_ASRC_ASRCDR1, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRCDR1_UNIMPLEMENTED      24
+#define BM_ASRC_ASRCDR1_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRCDR2 - ASRC Clock Divider Register 2 (RW)
@@ -1557,7 +1615,7 @@ typedef union
         unsigned AOCPC : 3; //!< Output Clock Prescaler C Specify the prescaling factor of the output prescaler C. The prescaling ratio may be any power of 2 from 1 to 128.
         unsigned AOCDC : 3; //!< Output Clock Divider C Specify the divide ratio of the output clock divider C. The divide ratio may range from 1 to 8 (AOCDC[2:0] = 000 to 111).
         unsigned RESERVED0 : 12; //!< Reserved. Should be written as zero for compatibility.
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrcdr2_t;
 #endif
@@ -1656,6 +1714,14 @@ typedef union
 #define BW_ASRC_ASRCDR2_AOCDC(v)   BF_CS1(ASRC_ASRCDR2, AOCDC, v)
 #endif
 
+/* --- Register HW_ASRC_ASRCDR2, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRCDR2_UNIMPLEMENTED      24
+#define BM_ASRC_ASRCDR2_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRSTR - ASRC Status Register (RO)
@@ -1692,7 +1758,7 @@ typedef union
         unsigned ATQOL : 1; //!< Task Queue FIFO overload When set, this bit indicates that task queue FIFO logic is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
         unsigned DSLCNT : 1; //!< DSL Counter Input to FIFO ready When set, this bit indicates that new DSL counter information is stored in the internal ASRC FIFO. When clear, this bit indicates that new DSL counter information is in the process of storage into the internal ASRC FIFO. When ASRIER:AFPWE=1, the rising edge of this signal will propose an interrupt request. Writing any value with this bit set will clear the interrupt request proposed by the rising edge of this bit.
         unsigned RESERVED0 : 2; //!< Reserved. Should be written as zero for compatibility.
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrstr_t;
 #endif
@@ -1950,9 +2016,17 @@ typedef union
 #define BP_ASRC_ASRSTR_DSLCNT      21
 #define BM_ASRC_ASRSTR_DSLCNT      0x00200000
 
+/* --- Register HW_ASRC_ASRSTR, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRSTR_UNIMPLEMENTED      24
+#define BM_ASRC_ASRSTR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ASRC_ASRPMN - ASRC Parameter Register n (RW)
+ * @brief HW_ASRC_ASRPMN1 - ASRC Parameter Register n 1 (RW)
  *
  * Parameter registers determine the performance of ASRC.  The parameter registers must be
  * initialized by software before ASRC is enabled. Recommended values are given in ASRC Misc Control
@@ -1967,46 +2041,318 @@ typedef union
     struct
     {
         unsigned PARAMETER_VALUE : 24; //!< See recommended values table.
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
-} hw_asrc_asrpmn_t;
+} hw_asrc_asrpmn1_t;
 #endif
 
 /*
- * constants & macros for entire ASRC_ASRPMN register
+ * constants & macros for entire ASRC_ASRPMN1 register
  */
-#define HW_ASRC_ASRPMN_ADDR      (REGS_ASRC_BASE + 0x40)
+#define HW_ASRC_ASRPMN1_ADDR      (REGS_ASRC_BASE + 0x40)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ASRC_ASRPMN           (*(volatile hw_asrc_asrpmn_t *) HW_ASRC_ASRPMN_ADDR)
-#define HW_ASRC_ASRPMN_RD()      (HW_ASRC_ASRPMN.U)
-#define HW_ASRC_ASRPMN_WR(v)     (HW_ASRC_ASRPMN.U = (v))
-#define HW_ASRC_ASRPMN_SET(v)    (HW_ASRC_ASRPMN_WR(HW_ASRC_ASRPMN_RD() |  (v)))
-#define HW_ASRC_ASRPMN_CLR(v)    (HW_ASRC_ASRPMN_WR(HW_ASRC_ASRPMN_RD() & ~(v)))
-#define HW_ASRC_ASRPMN_TOG(v)    (HW_ASRC_ASRPMN_WR(HW_ASRC_ASRPMN_RD() ^  (v)))
+#define HW_ASRC_ASRPMN1           (*(volatile hw_asrc_asrpmn1_t *) HW_ASRC_ASRPMN1_ADDR)
+#define HW_ASRC_ASRPMN1_RD()      (HW_ASRC_ASRPMN1.U)
+#define HW_ASRC_ASRPMN1_WR(v)     (HW_ASRC_ASRPMN1.U = (v))
+#define HW_ASRC_ASRPMN1_SET(v)    (HW_ASRC_ASRPMN1_WR(HW_ASRC_ASRPMN1_RD() |  (v)))
+#define HW_ASRC_ASRPMN1_CLR(v)    (HW_ASRC_ASRPMN1_WR(HW_ASRC_ASRPMN1_RD() & ~(v)))
+#define HW_ASRC_ASRPMN1_TOG(v)    (HW_ASRC_ASRPMN1_WR(HW_ASRC_ASRPMN1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual ASRC_ASRPMN bitfields
+ * constants & macros for individual ASRC_ASRPMN1 bitfields
  */
 
-/* --- Register HW_ASRC_ASRPMN, field PARAMETER_VALUE (RW)
+/* --- Register HW_ASRC_ASRPMN1, field PARAMETER_VALUE (RW)
  *
  * See recommended values table.
  */
 
-#define BP_ASRC_ASRPMN_PARAMETER_VALUE      0
-#define BM_ASRC_ASRPMN_PARAMETER_VALUE      0x00ffffff
+#define BP_ASRC_ASRPMN1_PARAMETER_VALUE      0
+#define BM_ASRC_ASRPMN1_PARAMETER_VALUE      0x00ffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRPMN_PARAMETER_VALUE(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRPMN_PARAMETER_VALUE)
+#define BF_ASRC_ASRPMN1_PARAMETER_VALUE(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRPMN1_PARAMETER_VALUE)
 #else
-#define BF_ASRC_ASRPMN_PARAMETER_VALUE(v)   (((v) << 0) & BM_ASRC_ASRPMN_PARAMETER_VALUE)
+#define BF_ASRC_ASRPMN1_PARAMETER_VALUE(v)   (((v) << 0) & BM_ASRC_ASRPMN1_PARAMETER_VALUE)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARAMETER_VALUE field to a new value.
-#define BW_ASRC_ASRPMN_PARAMETER_VALUE(v)   BF_CS1(ASRC_ASRPMN, PARAMETER_VALUE, v)
+#define BW_ASRC_ASRPMN1_PARAMETER_VALUE(v)   BF_CS1(ASRC_ASRPMN1, PARAMETER_VALUE, v)
 #endif
+
+/* --- Register HW_ASRC_ASRPMN1, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRPMN1_UNIMPLEMENTED      24
+#define BM_ASRC_ASRPMN1_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRPMN2 - ASRC Parameter Register n 2 (RW)
+ *
+ * Parameter registers determine the performance of ASRC.  The parameter registers must be
+ * initialized by software before ASRC is enabled. Recommended values are given in ASRC Misc Control
+ * Register 1 for Pair C below,   ASRC Parameter Registers (ASRPM1~ASRPM5)          Register  Offset
+ * Access  Reset Value  Recommend Value      asrcpm1  0x40  R/W  0x00_0000  0x7fffff    asrcpm2
+ * 0x44  R/W  0x00_0000  0x255555    asrcpm3  0x48  R/W  0x00_0000  0xff7280    asrcpm4  0x4C  R/W
+ * 0x00_0000  0xff7280    asrcpm5  0x50  R/W  0x00_0000  0xff7280
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned PARAMETER_VALUE : 24; //!< See recommended values table.
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrpmn2_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRPMN2 register
+ */
+#define HW_ASRC_ASRPMN2_ADDR      (REGS_ASRC_BASE + 0x44)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRPMN2           (*(volatile hw_asrc_asrpmn2_t *) HW_ASRC_ASRPMN2_ADDR)
+#define HW_ASRC_ASRPMN2_RD()      (HW_ASRC_ASRPMN2.U)
+#define HW_ASRC_ASRPMN2_WR(v)     (HW_ASRC_ASRPMN2.U = (v))
+#define HW_ASRC_ASRPMN2_SET(v)    (HW_ASRC_ASRPMN2_WR(HW_ASRC_ASRPMN2_RD() |  (v)))
+#define HW_ASRC_ASRPMN2_CLR(v)    (HW_ASRC_ASRPMN2_WR(HW_ASRC_ASRPMN2_RD() & ~(v)))
+#define HW_ASRC_ASRPMN2_TOG(v)    (HW_ASRC_ASRPMN2_WR(HW_ASRC_ASRPMN2_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRPMN2 bitfields
+ */
+
+/* --- Register HW_ASRC_ASRPMN2, field PARAMETER_VALUE (RW)
+ *
+ * See recommended values table.
+ */
+
+#define BP_ASRC_ASRPMN2_PARAMETER_VALUE      0
+#define BM_ASRC_ASRPMN2_PARAMETER_VALUE      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRPMN2_PARAMETER_VALUE(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRPMN2_PARAMETER_VALUE)
+#else
+#define BF_ASRC_ASRPMN2_PARAMETER_VALUE(v)   (((v) << 0) & BM_ASRC_ASRPMN2_PARAMETER_VALUE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PARAMETER_VALUE field to a new value.
+#define BW_ASRC_ASRPMN2_PARAMETER_VALUE(v)   BF_CS1(ASRC_ASRPMN2, PARAMETER_VALUE, v)
+#endif
+
+/* --- Register HW_ASRC_ASRPMN2, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRPMN2_UNIMPLEMENTED      24
+#define BM_ASRC_ASRPMN2_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRPMN3 - ASRC Parameter Register n 3 (RW)
+ *
+ * Parameter registers determine the performance of ASRC.  The parameter registers must be
+ * initialized by software before ASRC is enabled. Recommended values are given in ASRC Misc Control
+ * Register 1 for Pair C below,   ASRC Parameter Registers (ASRPM1~ASRPM5)          Register  Offset
+ * Access  Reset Value  Recommend Value      asrcpm1  0x40  R/W  0x00_0000  0x7fffff    asrcpm2
+ * 0x44  R/W  0x00_0000  0x255555    asrcpm3  0x48  R/W  0x00_0000  0xff7280    asrcpm4  0x4C  R/W
+ * 0x00_0000  0xff7280    asrcpm5  0x50  R/W  0x00_0000  0xff7280
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned PARAMETER_VALUE : 24; //!< See recommended values table.
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrpmn3_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRPMN3 register
+ */
+#define HW_ASRC_ASRPMN3_ADDR      (REGS_ASRC_BASE + 0x48)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRPMN3           (*(volatile hw_asrc_asrpmn3_t *) HW_ASRC_ASRPMN3_ADDR)
+#define HW_ASRC_ASRPMN3_RD()      (HW_ASRC_ASRPMN3.U)
+#define HW_ASRC_ASRPMN3_WR(v)     (HW_ASRC_ASRPMN3.U = (v))
+#define HW_ASRC_ASRPMN3_SET(v)    (HW_ASRC_ASRPMN3_WR(HW_ASRC_ASRPMN3_RD() |  (v)))
+#define HW_ASRC_ASRPMN3_CLR(v)    (HW_ASRC_ASRPMN3_WR(HW_ASRC_ASRPMN3_RD() & ~(v)))
+#define HW_ASRC_ASRPMN3_TOG(v)    (HW_ASRC_ASRPMN3_WR(HW_ASRC_ASRPMN3_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRPMN3 bitfields
+ */
+
+/* --- Register HW_ASRC_ASRPMN3, field PARAMETER_VALUE (RW)
+ *
+ * See recommended values table.
+ */
+
+#define BP_ASRC_ASRPMN3_PARAMETER_VALUE      0
+#define BM_ASRC_ASRPMN3_PARAMETER_VALUE      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRPMN3_PARAMETER_VALUE(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRPMN3_PARAMETER_VALUE)
+#else
+#define BF_ASRC_ASRPMN3_PARAMETER_VALUE(v)   (((v) << 0) & BM_ASRC_ASRPMN3_PARAMETER_VALUE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PARAMETER_VALUE field to a new value.
+#define BW_ASRC_ASRPMN3_PARAMETER_VALUE(v)   BF_CS1(ASRC_ASRPMN3, PARAMETER_VALUE, v)
+#endif
+
+/* --- Register HW_ASRC_ASRPMN3, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRPMN3_UNIMPLEMENTED      24
+#define BM_ASRC_ASRPMN3_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRPMN4 - ASRC Parameter Register n 4 (RW)
+ *
+ * Parameter registers determine the performance of ASRC.  The parameter registers must be
+ * initialized by software before ASRC is enabled. Recommended values are given in ASRC Misc Control
+ * Register 1 for Pair C below,   ASRC Parameter Registers (ASRPM1~ASRPM5)          Register  Offset
+ * Access  Reset Value  Recommend Value      asrcpm1  0x40  R/W  0x00_0000  0x7fffff    asrcpm2
+ * 0x44  R/W  0x00_0000  0x255555    asrcpm3  0x48  R/W  0x00_0000  0xff7280    asrcpm4  0x4C  R/W
+ * 0x00_0000  0xff7280    asrcpm5  0x50  R/W  0x00_0000  0xff7280
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned PARAMETER_VALUE : 24; //!< See recommended values table.
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrpmn4_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRPMN4 register
+ */
+#define HW_ASRC_ASRPMN4_ADDR      (REGS_ASRC_BASE + 0x4c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRPMN4           (*(volatile hw_asrc_asrpmn4_t *) HW_ASRC_ASRPMN4_ADDR)
+#define HW_ASRC_ASRPMN4_RD()      (HW_ASRC_ASRPMN4.U)
+#define HW_ASRC_ASRPMN4_WR(v)     (HW_ASRC_ASRPMN4.U = (v))
+#define HW_ASRC_ASRPMN4_SET(v)    (HW_ASRC_ASRPMN4_WR(HW_ASRC_ASRPMN4_RD() |  (v)))
+#define HW_ASRC_ASRPMN4_CLR(v)    (HW_ASRC_ASRPMN4_WR(HW_ASRC_ASRPMN4_RD() & ~(v)))
+#define HW_ASRC_ASRPMN4_TOG(v)    (HW_ASRC_ASRPMN4_WR(HW_ASRC_ASRPMN4_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRPMN4 bitfields
+ */
+
+/* --- Register HW_ASRC_ASRPMN4, field PARAMETER_VALUE (RW)
+ *
+ * See recommended values table.
+ */
+
+#define BP_ASRC_ASRPMN4_PARAMETER_VALUE      0
+#define BM_ASRC_ASRPMN4_PARAMETER_VALUE      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRPMN4_PARAMETER_VALUE(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRPMN4_PARAMETER_VALUE)
+#else
+#define BF_ASRC_ASRPMN4_PARAMETER_VALUE(v)   (((v) << 0) & BM_ASRC_ASRPMN4_PARAMETER_VALUE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PARAMETER_VALUE field to a new value.
+#define BW_ASRC_ASRPMN4_PARAMETER_VALUE(v)   BF_CS1(ASRC_ASRPMN4, PARAMETER_VALUE, v)
+#endif
+
+/* --- Register HW_ASRC_ASRPMN4, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRPMN4_UNIMPLEMENTED      24
+#define BM_ASRC_ASRPMN4_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRPMN5 - ASRC Parameter Register n 5 (RW)
+ *
+ * Parameter registers determine the performance of ASRC.  The parameter registers must be
+ * initialized by software before ASRC is enabled. Recommended values are given in ASRC Misc Control
+ * Register 1 for Pair C below,   ASRC Parameter Registers (ASRPM1~ASRPM5)          Register  Offset
+ * Access  Reset Value  Recommend Value      asrcpm1  0x40  R/W  0x00_0000  0x7fffff    asrcpm2
+ * 0x44  R/W  0x00_0000  0x255555    asrcpm3  0x48  R/W  0x00_0000  0xff7280    asrcpm4  0x4C  R/W
+ * 0x00_0000  0xff7280    asrcpm5  0x50  R/W  0x00_0000  0xff7280
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned PARAMETER_VALUE : 24; //!< See recommended values table.
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrpmn5_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRPMN5 register
+ */
+#define HW_ASRC_ASRPMN5_ADDR      (REGS_ASRC_BASE + 0x50)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRPMN5           (*(volatile hw_asrc_asrpmn5_t *) HW_ASRC_ASRPMN5_ADDR)
+#define HW_ASRC_ASRPMN5_RD()      (HW_ASRC_ASRPMN5.U)
+#define HW_ASRC_ASRPMN5_WR(v)     (HW_ASRC_ASRPMN5.U = (v))
+#define HW_ASRC_ASRPMN5_SET(v)    (HW_ASRC_ASRPMN5_WR(HW_ASRC_ASRPMN5_RD() |  (v)))
+#define HW_ASRC_ASRPMN5_CLR(v)    (HW_ASRC_ASRPMN5_WR(HW_ASRC_ASRPMN5_RD() & ~(v)))
+#define HW_ASRC_ASRPMN5_TOG(v)    (HW_ASRC_ASRPMN5_WR(HW_ASRC_ASRPMN5_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRPMN5 bitfields
+ */
+
+/* --- Register HW_ASRC_ASRPMN5, field PARAMETER_VALUE (RW)
+ *
+ * See recommended values table.
+ */
+
+#define BP_ASRC_ASRPMN5_PARAMETER_VALUE      0
+#define BM_ASRC_ASRPMN5_PARAMETER_VALUE      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRPMN5_PARAMETER_VALUE(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRPMN5_PARAMETER_VALUE)
+#else
+#define BF_ASRC_ASRPMN5_PARAMETER_VALUE(v)   (((v) << 0) & BM_ASRC_ASRPMN5_PARAMETER_VALUE)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PARAMETER_VALUE field to a new value.
+#define BW_ASRC_ASRPMN5_PARAMETER_VALUE(v)   BF_CS1(ASRC_ASRPMN5, PARAMETER_VALUE, v)
+#endif
+
+/* --- Register HW_ASRC_ASRPMN5, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRPMN5_UNIMPLEMENTED      24
+#define BM_ASRC_ASRPMN5_UNIMPLEMENTED      0xff000000
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2024,7 +2370,7 @@ typedef union
         unsigned TF_BASE : 7; //!< Base address for task queue FIFO. Set to 0x7C.
         unsigned TF_FILL : 7; //!< Current number of entries in task queue FIFO.
         unsigned RESERVED1 : 4; //!< Reserved. Should be written as zero for compatibility.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrtfr1_t;
 #endif
@@ -2073,6 +2419,14 @@ typedef union
 #define BP_ASRC_ASRTFR1_TF_FILL      13
 #define BM_ASRC_ASRTFR1_TF_FILL      0x000fe000
 
+/* --- Register HW_ASRC_ASRTFR1, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRTFR1_UNIMPLEMENTED      24
+#define BM_ASRC_ASRTFR1_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRCCR - ASRC Channel Counter Register (RW)
@@ -2092,7 +2446,7 @@ typedef union
         unsigned ACOA : 4; //!< The channel counter for Pair A's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair A's output FIFO's usage. The value can be any value between [0, ANCA-1]
         unsigned ACOB : 4; //!< The channel counter for Pair B's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair B's output FIFO's usage. The value can be any value between [0, ANCB-1]
         unsigned ACOC : 4; //!< The channel counter for Pair C's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair C's output FIFO's usage. The value can be any value between [0, ANCC-1]
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrccr_t;
 #endif
@@ -2235,9 +2589,17 @@ typedef union
 #define BW_ASRC_ASRCCR_ACOC(v)   BF_CS1(ASRC_ASRCCR, ACOC, v)
 #endif
 
+/* --- Register HW_ASRC_ASRCCR, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRCCR_UNIMPLEMENTED      24
+#define BM_ASRC_ASRCCR_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ASRC_ASRDI - ASRC Data Input Register for Pair (WO)
+ * @brief HW_ASRC_ASRDIA - ASRC Data Input Register for Pair A (WO)
  *
  * These registers are the interface registers for the audio data input of pair A,B,C respectively.
  * They are backed by FIFOs.  The usage of these registers is shown in "xref to 56898: Heading5:
@@ -2249,46 +2611,54 @@ typedef union
     struct
     {
         unsigned DATA : 24; //!< Audio data input
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
-} hw_asrc_asrdi_t;
+} hw_asrc_asrdia_t;
 #endif
 
 /*
- * constants & macros for entire ASRC_ASRDI register
+ * constants & macros for entire ASRC_ASRDIA register
  */
-#define HW_ASRC_ASRDI_ADDR      (REGS_ASRC_BASE + 0x60)
+#define HW_ASRC_ASRDIA_ADDR      (REGS_ASRC_BASE + 0x60)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ASRC_ASRDI           (*(volatile hw_asrc_asrdi_t *) HW_ASRC_ASRDI_ADDR)
-#define HW_ASRC_ASRDI_WR(v)     (HW_ASRC_ASRDI.U = (v))
+#define HW_ASRC_ASRDIA           (*(volatile hw_asrc_asrdia_t *) HW_ASRC_ASRDIA_ADDR)
+#define HW_ASRC_ASRDIA_WR(v)     (HW_ASRC_ASRDIA.U = (v))
 #endif
 
 /*
- * constants & macros for individual ASRC_ASRDI bitfields
+ * constants & macros for individual ASRC_ASRDIA bitfields
  */
 
-/* --- Register HW_ASRC_ASRDI, field DATA (WO)
+/* --- Register HW_ASRC_ASRDIA, field DATA (WO)
  *
  * Audio data input
  */
 
-#define BP_ASRC_ASRDI_DATA      0
-#define BM_ASRC_ASRDI_DATA      0x00ffffff
+#define BP_ASRC_ASRDIA_DATA      0
+#define BM_ASRC_ASRDIA_DATA      0x00ffffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRDI_DATA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRDI_DATA)
+#define BF_ASRC_ASRDIA_DATA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRDIA_DATA)
 #else
-#define BF_ASRC_ASRDI_DATA(v)   (((v) << 0) & BM_ASRC_ASRDI_DATA)
+#define BF_ASRC_ASRDIA_DATA(v)   (((v) << 0) & BM_ASRC_ASRDIA_DATA)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
-#define BW_ASRC_ASRDI_DATA(v)   BF_CS1(ASRC_ASRDI, DATA, v)
+#define BW_ASRC_ASRDIA_DATA(v)   BF_CS1(ASRC_ASRDIA, DATA, v)
 #endif
+
+/* --- Register HW_ASRC_ASRDIA, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRDIA_UNIMPLEMENTED      24
+#define BM_ASRC_ASRDIA_UNIMPLEMENTED      0xff000000
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ASRC_ASRDO - ASRC Data Output Register for Pair (RO)
+ * @brief HW_ASRC_ASRDOA - ASRC Data Output Register for Pair A (RO)
  *
  * These registers are the interface registers for the audio data output of pair A,B,C respectively.
  * They are backed by FIFOs.  The usage of these registers is shown in xref to "Data Output modes."
@@ -2299,32 +2669,254 @@ typedef union
     struct
     {
         unsigned DATA : 24; //!< Audio data output
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
-} hw_asrc_asrdo_t;
+} hw_asrc_asrdoa_t;
 #endif
 
 /*
- * constants & macros for entire ASRC_ASRDO register
+ * constants & macros for entire ASRC_ASRDOA register
  */
-#define HW_ASRC_ASRDO_ADDR      (REGS_ASRC_BASE + 0x64)
+#define HW_ASRC_ASRDOA_ADDR      (REGS_ASRC_BASE + 0x64)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ASRC_ASRDO           (*(volatile hw_asrc_asrdo_t *) HW_ASRC_ASRDO_ADDR)
-#define HW_ASRC_ASRDO_RD()      (HW_ASRC_ASRDO.U)
+#define HW_ASRC_ASRDOA           (*(volatile hw_asrc_asrdoa_t *) HW_ASRC_ASRDOA_ADDR)
+#define HW_ASRC_ASRDOA_RD()      (HW_ASRC_ASRDOA.U)
 #endif
 
 /*
- * constants & macros for individual ASRC_ASRDO bitfields
+ * constants & macros for individual ASRC_ASRDOA bitfields
  */
 
-/* --- Register HW_ASRC_ASRDO, field DATA (RO)
+/* --- Register HW_ASRC_ASRDOA, field DATA (RO)
  *
  * Audio data output
  */
 
-#define BP_ASRC_ASRDO_DATA      0
-#define BM_ASRC_ASRDO_DATA      0x00ffffff
+#define BP_ASRC_ASRDOA_DATA      0
+#define BM_ASRC_ASRDOA_DATA      0x00ffffff
+
+/* --- Register HW_ASRC_ASRDOA, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRDOA_UNIMPLEMENTED      24
+#define BM_ASRC_ASRDOA_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRDIB - ASRC Data Input Register for Pair B (WO)
+ *
+ * These registers are the interface registers for the audio data input of pair A,B,C respectively.
+ * They are backed by FIFOs.  The usage of these registers is shown in "xref to 56898: Heading5:
+ * 1.2.3.2.1 Data Input Modes"
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned DATA : 24; //!< Audio data input
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrdib_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRDIB register
+ */
+#define HW_ASRC_ASRDIB_ADDR      (REGS_ASRC_BASE + 0x68)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRDIB           (*(volatile hw_asrc_asrdib_t *) HW_ASRC_ASRDIB_ADDR)
+#define HW_ASRC_ASRDIB_WR(v)     (HW_ASRC_ASRDIB.U = (v))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRDIB bitfields
+ */
+
+/* --- Register HW_ASRC_ASRDIB, field DATA (WO)
+ *
+ * Audio data input
+ */
+
+#define BP_ASRC_ASRDIB_DATA      0
+#define BM_ASRC_ASRDIB_DATA      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRDIB_DATA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRDIB_DATA)
+#else
+#define BF_ASRC_ASRDIB_DATA(v)   (((v) << 0) & BM_ASRC_ASRDIB_DATA)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA field to a new value.
+#define BW_ASRC_ASRDIB_DATA(v)   BF_CS1(ASRC_ASRDIB, DATA, v)
+#endif
+
+/* --- Register HW_ASRC_ASRDIB, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRDIB_UNIMPLEMENTED      24
+#define BM_ASRC_ASRDIB_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRDOB - ASRC Data Output Register for Pair B (RO)
+ *
+ * These registers are the interface registers for the audio data output of pair A,B,C respectively.
+ * They are backed by FIFOs.  The usage of these registers is shown in xref to "Data Output modes."
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned DATA : 24; //!< Audio data output
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrdob_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRDOB register
+ */
+#define HW_ASRC_ASRDOB_ADDR      (REGS_ASRC_BASE + 0x6c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRDOB           (*(volatile hw_asrc_asrdob_t *) HW_ASRC_ASRDOB_ADDR)
+#define HW_ASRC_ASRDOB_RD()      (HW_ASRC_ASRDOB.U)
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRDOB bitfields
+ */
+
+/* --- Register HW_ASRC_ASRDOB, field DATA (RO)
+ *
+ * Audio data output
+ */
+
+#define BP_ASRC_ASRDOB_DATA      0
+#define BM_ASRC_ASRDOB_DATA      0x00ffffff
+
+/* --- Register HW_ASRC_ASRDOB, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRDOB_UNIMPLEMENTED      24
+#define BM_ASRC_ASRDOB_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRDIC - ASRC Data Input Register for Pair C (WO)
+ *
+ * These registers are the interface registers for the audio data input of pair A,B,C respectively.
+ * They are backed by FIFOs.  The usage of these registers is shown in "xref to 56898: Heading5:
+ * 1.2.3.2.1 Data Input Modes"
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned DATA : 24; //!< Audio data input
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrdic_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRDIC register
+ */
+#define HW_ASRC_ASRDIC_ADDR      (REGS_ASRC_BASE + 0x70)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRDIC           (*(volatile hw_asrc_asrdic_t *) HW_ASRC_ASRDIC_ADDR)
+#define HW_ASRC_ASRDIC_WR(v)     (HW_ASRC_ASRDIC.U = (v))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRDIC bitfields
+ */
+
+/* --- Register HW_ASRC_ASRDIC, field DATA (WO)
+ *
+ * Audio data input
+ */
+
+#define BP_ASRC_ASRDIC_DATA      0
+#define BM_ASRC_ASRDIC_DATA      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRDIC_DATA(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRDIC_DATA)
+#else
+#define BF_ASRC_ASRDIC_DATA(v)   (((v) << 0) & BM_ASRC_ASRDIC_DATA)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the DATA field to a new value.
+#define BW_ASRC_ASRDIC_DATA(v)   BF_CS1(ASRC_ASRDIC, DATA, v)
+#endif
+
+/* --- Register HW_ASRC_ASRDIC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRDIC_UNIMPLEMENTED      24
+#define BM_ASRC_ASRDIC_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRDOC - ASRC Data Output Register for Pair C (RO)
+ *
+ * These registers are the interface registers for the audio data output of pair A,B,C respectively.
+ * They are backed by FIFOs.  The usage of these registers is shown in xref to "Data Output modes."
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned DATA : 24; //!< Audio data output
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrdoc_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRDOC register
+ */
+#define HW_ASRC_ASRDOC_ADDR      (REGS_ASRC_BASE + 0x74)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRDOC           (*(volatile hw_asrc_asrdoc_t *) HW_ASRC_ASRDOC_ADDR)
+#define HW_ASRC_ASRDOC_RD()      (HW_ASRC_ASRDOC.U)
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRDOC bitfields
+ */
+
+/* --- Register HW_ASRC_ASRDOC, field DATA (RO)
+ *
+ * Audio data output
+ */
+
+#define BP_ASRC_ASRDOC_DATA      0
+#define BM_ASRC_ASRDOC_DATA      0x00ffffff
+
+/* --- Register HW_ASRC_ASRDOC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRDOC_UNIMPLEMENTED      24
+#define BM_ASRC_ASRDOC_UNIMPLEMENTED      0xff000000
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2341,7 +2933,7 @@ typedef union
     {
         unsigned IDRATIOA : 8; //!< IDRATIOA[31:24]. High part of ideal ratio value for pair A
         unsigned RESERVED0 : 16; //!< Reserved
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asridrha_t;
 #endif
@@ -2382,6 +2974,14 @@ typedef union
 #define BW_ASRC_ASRIDRHA_IDRATIOA(v)   BF_CS1(ASRC_ASRIDRHA, IDRATIOA, v)
 #endif
 
+/* --- Register HW_ASRC_ASRIDRHA, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRIDRHA_UNIMPLEMENTED      24
+#define BM_ASRC_ASRIDRHA_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRIDRLA - ASRC Ideal Ratio for Pair A -Low Part (RW)
@@ -2396,7 +2996,7 @@ typedef union
     struct
     {
         unsigned IDRATIOA : 24; //!< IDRATIOA[23:0]. Low part of ideal ratio value for pair A
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asridrla_t;
 #endif
@@ -2437,6 +3037,14 @@ typedef union
 #define BW_ASRC_ASRIDRLA_IDRATIOA(v)   BF_CS1(ASRC_ASRIDRLA, IDRATIOA, v)
 #endif
 
+/* --- Register HW_ASRC_ASRIDRLA, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRIDRLA_UNIMPLEMENTED      24
+#define BM_ASRC_ASRIDRLA_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRIDRHB - ASRC Ideal Ratio for Pair B-High Part (RW)
@@ -2452,7 +3060,7 @@ typedef union
     {
         unsigned IDRATIOB : 8; //!< IDRATIOB[31:24]. High part of ideal ratio value for pair B.
         unsigned RESERVED0 : 16; //!< Reserved
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asridrhb_t;
 #endif
@@ -2493,6 +3101,14 @@ typedef union
 #define BW_ASRC_ASRIDRHB_IDRATIOB(v)   BF_CS1(ASRC_ASRIDRHB, IDRATIOB, v)
 #endif
 
+/* --- Register HW_ASRC_ASRIDRHB, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRIDRHB_UNIMPLEMENTED      24
+#define BM_ASRC_ASRIDRHB_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRIDRLB - ASRC Ideal Ratio for Pair B-Low Part (RW)
@@ -2507,7 +3123,7 @@ typedef union
     struct
     {
         unsigned IDRATIOB : 24; //!< IDRATIOB[23:0]. Low part of ideal ratio value for pair B.
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asridrlb_t;
 #endif
@@ -2548,6 +3164,14 @@ typedef union
 #define BW_ASRC_ASRIDRLB_IDRATIOB(v)   BF_CS1(ASRC_ASRIDRLB, IDRATIOB, v)
 #endif
 
+/* --- Register HW_ASRC_ASRIDRLB, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRIDRLB_UNIMPLEMENTED      24
+#define BM_ASRC_ASRIDRLB_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRIDRHC - ASRC Ideal Ratio for Pair C-High Part (RW)
@@ -2563,7 +3187,7 @@ typedef union
     {
         unsigned IDRATIOC : 8; //!< IDRATIOC[31:24]. High part of ideal ratio value for pair C.
         unsigned RESERVED0 : 16; //!< Reserved
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asridrhc_t;
 #endif
@@ -2604,6 +3228,14 @@ typedef union
 #define BW_ASRC_ASRIDRHC_IDRATIOC(v)   BF_CS1(ASRC_ASRIDRHC, IDRATIOC, v)
 #endif
 
+/* --- Register HW_ASRC_ASRIDRHC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRIDRHC_UNIMPLEMENTED      24
+#define BM_ASRC_ASRIDRHC_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRIDRLC - ASRC Ideal Ratio for Pair C-Low Part (RW)
@@ -2618,7 +3250,7 @@ typedef union
     struct
     {
         unsigned IDRATIOC : 24; //!< IDRATIOC[23:0]. Low part of ideal ratio value for pair C.
-        unsigned RESERVED0 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asridrlc_t;
 #endif
@@ -2659,6 +3291,14 @@ typedef union
 #define BW_ASRC_ASRIDRLC_IDRATIOC(v)   BF_CS1(ASRC_ASRIDRLC, IDRATIOC, v)
 #endif
 
+/* --- Register HW_ASRC_ASRIDRLC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRIDRLC_UNIMPLEMENTED      24
+#define BM_ASRC_ASRIDRLC_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASR76K - ASRC 76kHz Period in terms of ASRC processing clock (RW)
@@ -2677,7 +3317,7 @@ typedef union
     {
         unsigned ASR76K : 17; //!< Value for the period of the 76kHz sampling clock.
         unsigned RESERVED0 : 7; //!< Reserved
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asr76k_t;
 #endif
@@ -2718,6 +3358,14 @@ typedef union
 #define BW_ASRC_ASR76K_ASR76K(v)   BF_CS1(ASRC_ASR76K, ASR76K, v)
 #endif
 
+/* --- Register HW_ASRC_ASR76K, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASR76K_UNIMPLEMENTED      24
+#define BM_ASRC_ASR76K_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASR56K - ASRC 56kHz Period in terms of ASRC processing clock (RW)
@@ -2736,7 +3384,7 @@ typedef union
     {
         unsigned ASR56K : 17; //!< Value for the period of the 56kHz sampling clock
         unsigned RESERVED0 : 7; //!< Reserved
-        unsigned RESERVED1 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asr56k_t;
 #endif
@@ -2777,6 +3425,14 @@ typedef union
 #define BW_ASRC_ASR56K_ASR56K(v)   BF_CS1(ASRC_ASR56K, ASR56K, v)
 #endif
 
+/* --- Register HW_ASRC_ASR56K, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASR56K_UNIMPLEMENTED      24
+#define BM_ASRC_ASR56K_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRMCRA - ASRC Misc Control Register for Pair A (RW)
@@ -2798,7 +3454,7 @@ typedef union
         unsigned BUFSTALLA : 1; //!< Stall Pair A conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair A. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
         unsigned EXTTHRSHA : 1; //!< Use external thresholds for FIFO control of Pair A This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair A.
         unsigned ZEROBUFA : 1; //!< Initialize buf of Pair A when pair A is enabled. Always clear option. This bit is used to control whether the buffer is to be zeroized when pair A is enabled.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrmcra_t;
 #endif
@@ -3003,6 +3659,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_ASRC_ASRMCRA, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRMCRA_UNIMPLEMENTED      24
+#define BM_ASRC_ASRMCRA_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRFSTA - ASRC FIFO Status Register for Pair A (RO)
@@ -3020,7 +3684,7 @@ typedef union
         unsigned OUTFIFO_FILLA : 7; //!< The fillings for Pair A's output FIFO per channel These bits stand for the fillings for Pair A's output FIFO per channel. Possible range is [0,64].
         unsigned RESERVED1 : 4; //!< Reserved. Should be written as zero for future compatibility.
         unsigned OAFA : 1; //!< Output FIFO is near Full for Pair A This bit is to indicate whether the output FIFO of Pair A is near full.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrfsta_t;
 #endif
@@ -3075,6 +3739,14 @@ typedef union
 #define BP_ASRC_ASRFSTA_OAFA      23
 #define BM_ASRC_ASRFSTA_OAFA      0x00800000
 
+/* --- Register HW_ASRC_ASRFSTA, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRFSTA_UNIMPLEMENTED      24
+#define BM_ASRC_ASRFSTA_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRMCRB - ASRC Misc Control Register for Pair B (RW)
@@ -3096,7 +3768,7 @@ typedef union
         unsigned BUFSTALLB : 1; //!< Stall Pair B conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair B. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
         unsigned EXTTHRSHB : 1; //!< Use external thresholds for FIFO control of Pair B This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair B.
         unsigned ZEROBUFB : 1; //!< Initialize buf of Pair B when pair B is enabled This bit is used to control whether the buffer is to be zeroized when pair B is enabled.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrmcrb_t;
 #endif
@@ -3301,6 +3973,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_ASRC_ASRMCRB, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRMCRB_UNIMPLEMENTED      24
+#define BM_ASRC_ASRMCRB_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRFSTB - ASRC FIFO Status Register for Pair B (RO)
@@ -3318,7 +3998,7 @@ typedef union
         unsigned OUTFIFO_FILLB : 7; //!< The fillings for Pair B's output FIFO per channel These bits stand for the fillings for Pair B's output FIFO per channel. Possible range is [0,64].
         unsigned RESERVED1 : 4; //!< Reserved. Should be written as zero for future compatibility.
         unsigned OAFB : 1; //!< Output FIFO is near Full for Pair B This bit is to indicate whether the output FIFO of Pair B is near full.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrfstb_t;
 #endif
@@ -3373,6 +4053,14 @@ typedef union
 #define BP_ASRC_ASRFSTB_OAFB      23
 #define BM_ASRC_ASRFSTB_OAFB      0x00800000
 
+/* --- Register HW_ASRC_ASRFSTB, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRFSTB_UNIMPLEMENTED      24
+#define BM_ASRC_ASRFSTB_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRMCRC - ASRC Misc Control Register for Pair C (RW)
@@ -3394,7 +4082,7 @@ typedef union
         unsigned BUFSTALLC : 1; //!< Stall Pair C conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair C. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
         unsigned EXTTHRSHC : 1; //!< Use external thresholds for FIFO control of Pair C This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair C.
         unsigned ZEROBUFC : 1; //!< Initialize buf of Pair C when pair C is enabled This bit is used to control whether the buffer is to be zeroized when pair C is enabled.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrmcrc_t;
 #endif
@@ -3599,6 +4287,14 @@ typedef union
 #endif
 
 
+/* --- Register HW_ASRC_ASRMCRC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRMCRC_UNIMPLEMENTED      24
+#define BM_ASRC_ASRMCRC_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRFSTC - ASRC FIFO Status Register for Pair C (RO)
@@ -3616,7 +4312,7 @@ typedef union
         unsigned OUTFIFO_FILLC : 7; //!< The fillings for Pair C's output FIFO per channel These bits stand for the fillings for Pair C's output FIFO per channel. Possible range is [0,64].
         unsigned RESERVED1 : 4; //!< Reserved. Should be written as zero for future compatibility.
         unsigned OAFC : 1; //!< Output FIFO is near Full for Pair C This bit is to indicate whether the output FIFO of Pair C is near full.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
 } hw_asrc_asrfstc_t;
 #endif
@@ -3671,9 +4367,17 @@ typedef union
 #define BP_ASRC_ASRFSTC_OAFC      23
 #define BM_ASRC_ASRFSTC_OAFC      0x00800000
 
+/* --- Register HW_ASRC_ASRFSTC, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRFSTC_UNIMPLEMENTED      24
+#define BM_ASRC_ASRFSTC_UNIMPLEMENTED      0xff000000
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ASRC_ASRMCR1 - ASRC Misc Control Register 1 for Pair X (RW)
+ * @brief HW_ASRC_ASRMCR1A - ASRC Misc Control Register 1 for Pair X A (RW)
  *
  * The register (ASRMCR1A) is used to control Pair x internal logic (for data alignment etc.).  The
  * bit assignment for all the input data formats is the same as that supported by the SSI.
@@ -3690,30 +4394,30 @@ typedef union
         unsigned IMSB : 1; //!< Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
         unsigned IWD : 3; //!< Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio data. 3'b010 8-bit audio data.
         unsigned RESERVED1 : 12; //!< Reserved. Should be written as zero for future compatibility.
-        unsigned RESERVED2 : 8; //!< 
+        unsigned UNIMPLEMENTED : 8; //!< 
     } B;
-} hw_asrc_asrmcr1_t;
+} hw_asrc_asrmcr1a_t;
 #endif
 
 /*
- * constants & macros for entire ASRC_ASRMCR1 register
+ * constants & macros for entire ASRC_ASRMCR1A register
  */
-#define HW_ASRC_ASRMCR1_ADDR      (REGS_ASRC_BASE + 0xc0)
+#define HW_ASRC_ASRMCR1A_ADDR      (REGS_ASRC_BASE + 0xc0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ASRC_ASRMCR1           (*(volatile hw_asrc_asrmcr1_t *) HW_ASRC_ASRMCR1_ADDR)
-#define HW_ASRC_ASRMCR1_RD()      (HW_ASRC_ASRMCR1.U)
-#define HW_ASRC_ASRMCR1_WR(v)     (HW_ASRC_ASRMCR1.U = (v))
-#define HW_ASRC_ASRMCR1_SET(v)    (HW_ASRC_ASRMCR1_WR(HW_ASRC_ASRMCR1_RD() |  (v)))
-#define HW_ASRC_ASRMCR1_CLR(v)    (HW_ASRC_ASRMCR1_WR(HW_ASRC_ASRMCR1_RD() & ~(v)))
-#define HW_ASRC_ASRMCR1_TOG(v)    (HW_ASRC_ASRMCR1_WR(HW_ASRC_ASRMCR1_RD() ^  (v)))
+#define HW_ASRC_ASRMCR1A           (*(volatile hw_asrc_asrmcr1a_t *) HW_ASRC_ASRMCR1A_ADDR)
+#define HW_ASRC_ASRMCR1A_RD()      (HW_ASRC_ASRMCR1A.U)
+#define HW_ASRC_ASRMCR1A_WR(v)     (HW_ASRC_ASRMCR1A.U = (v))
+#define HW_ASRC_ASRMCR1A_SET(v)    (HW_ASRC_ASRMCR1A_WR(HW_ASRC_ASRMCR1A_RD() |  (v)))
+#define HW_ASRC_ASRMCR1A_CLR(v)    (HW_ASRC_ASRMCR1A_WR(HW_ASRC_ASRMCR1A_RD() & ~(v)))
+#define HW_ASRC_ASRMCR1A_TOG(v)    (HW_ASRC_ASRMCR1A_WR(HW_ASRC_ASRMCR1A_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual ASRC_ASRMCR1 bitfields
+ * constants & macros for individual ASRC_ASRMCR1A bitfields
  */
 
-/* --- Register HW_ASRC_ASRMCR1, field OW16 (RW)
+/* --- Register HW_ASRC_ASRMCR1A, field OW16 (RW)
  *
  * Bit Width Option of the output FIFO This bit will determine the bit width option of the output
  * FIFO.
@@ -3723,21 +4427,21 @@ typedef union
  * 0 - 24-bit output data.
  */
 
-#define BP_ASRC_ASRMCR1_OW16      0
-#define BM_ASRC_ASRMCR1_OW16      0x00000001
+#define BP_ASRC_ASRMCR1A_OW16      0
+#define BM_ASRC_ASRMCR1A_OW16      0x00000001
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRMCR1_OW16(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRMCR1_OW16)
+#define BF_ASRC_ASRMCR1A_OW16(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRMCR1A_OW16)
 #else
-#define BF_ASRC_ASRMCR1_OW16(v)   (((v) << 0) & BM_ASRC_ASRMCR1_OW16)
+#define BF_ASRC_ASRMCR1A_OW16(v)   (((v) << 0) & BM_ASRC_ASRMCR1A_OW16)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OW16 field to a new value.
-#define BW_ASRC_ASRMCR1_OW16(v)   BF_CS1(ASRC_ASRMCR1, OW16, v)
+#define BW_ASRC_ASRMCR1A_OW16(v)   BF_CS1(ASRC_ASRMCR1A, OW16, v)
 #endif
 
 
-/* --- Register HW_ASRC_ASRMCR1, field OSGN (RW)
+/* --- Register HW_ASRC_ASRMCR1A, field OSGN (RW)
  *
  * Sign Extension Option of the output FIFO This bit will determine the sign extension option of the
  * output FIFO.
@@ -3747,21 +4451,21 @@ typedef union
  * 0 - No sign extension.
  */
 
-#define BP_ASRC_ASRMCR1_OSGN      1
-#define BM_ASRC_ASRMCR1_OSGN      0x00000002
+#define BP_ASRC_ASRMCR1A_OSGN      1
+#define BM_ASRC_ASRMCR1A_OSGN      0x00000002
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRMCR1_OSGN(v)   ((((reg32_t) v) << 1) & BM_ASRC_ASRMCR1_OSGN)
+#define BF_ASRC_ASRMCR1A_OSGN(v)   ((((reg32_t) v) << 1) & BM_ASRC_ASRMCR1A_OSGN)
 #else
-#define BF_ASRC_ASRMCR1_OSGN(v)   (((v) << 1) & BM_ASRC_ASRMCR1_OSGN)
+#define BF_ASRC_ASRMCR1A_OSGN(v)   (((v) << 1) & BM_ASRC_ASRMCR1A_OSGN)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OSGN field to a new value.
-#define BW_ASRC_ASRMCR1_OSGN(v)   BF_CS1(ASRC_ASRMCR1, OSGN, v)
+#define BW_ASRC_ASRMCR1A_OSGN(v)   BF_CS1(ASRC_ASRMCR1A, OSGN, v)
 #endif
 
 
-/* --- Register HW_ASRC_ASRMCR1, field OMSB (RW)
+/* --- Register HW_ASRC_ASRMCR1A, field OMSB (RW)
  *
  * Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
  *
@@ -3770,21 +4474,21 @@ typedef union
  * 0 - LSB aligned.
  */
 
-#define BP_ASRC_ASRMCR1_OMSB      2
-#define BM_ASRC_ASRMCR1_OMSB      0x00000004
+#define BP_ASRC_ASRMCR1A_OMSB      2
+#define BM_ASRC_ASRMCR1A_OMSB      0x00000004
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRMCR1_OMSB(v)   ((((reg32_t) v) << 2) & BM_ASRC_ASRMCR1_OMSB)
+#define BF_ASRC_ASRMCR1A_OMSB(v)   ((((reg32_t) v) << 2) & BM_ASRC_ASRMCR1A_OMSB)
 #else
-#define BF_ASRC_ASRMCR1_OMSB(v)   (((v) << 2) & BM_ASRC_ASRMCR1_OMSB)
+#define BF_ASRC_ASRMCR1A_OMSB(v)   (((v) << 2) & BM_ASRC_ASRMCR1A_OMSB)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OMSB field to a new value.
-#define BW_ASRC_ASRMCR1_OMSB(v)   BF_CS1(ASRC_ASRMCR1, OMSB, v)
+#define BW_ASRC_ASRMCR1A_OMSB(v)   BF_CS1(ASRC_ASRMCR1A, OMSB, v)
 #endif
 
 
-/* --- Register HW_ASRC_ASRMCR1, field IMSB (RW)
+/* --- Register HW_ASRC_ASRMCR1A, field IMSB (RW)
  *
  * Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
  *
@@ -3793,39 +4497,375 @@ typedef union
  * 0 - LSB aligned.
  */
 
-#define BP_ASRC_ASRMCR1_IMSB      8
-#define BM_ASRC_ASRMCR1_IMSB      0x00000100
+#define BP_ASRC_ASRMCR1A_IMSB      8
+#define BM_ASRC_ASRMCR1A_IMSB      0x00000100
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRMCR1_IMSB(v)   ((((reg32_t) v) << 8) & BM_ASRC_ASRMCR1_IMSB)
+#define BF_ASRC_ASRMCR1A_IMSB(v)   ((((reg32_t) v) << 8) & BM_ASRC_ASRMCR1A_IMSB)
 #else
-#define BF_ASRC_ASRMCR1_IMSB(v)   (((v) << 8) & BM_ASRC_ASRMCR1_IMSB)
+#define BF_ASRC_ASRMCR1A_IMSB(v)   (((v) << 8) & BM_ASRC_ASRMCR1A_IMSB)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMSB field to a new value.
-#define BW_ASRC_ASRMCR1_IMSB(v)   BF_CS1(ASRC_ASRMCR1, IMSB, v)
+#define BW_ASRC_ASRMCR1A_IMSB(v)   BF_CS1(ASRC_ASRMCR1A, IMSB, v)
 #endif
 
 
-/* --- Register HW_ASRC_ASRMCR1, field IWD (RW)
+/* --- Register HW_ASRC_ASRMCR1A, field IWD (RW)
  *
  * Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into
  * ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio
  * data. 3'b010 8-bit audio data.
  */
 
-#define BP_ASRC_ASRMCR1_IWD      9
-#define BM_ASRC_ASRMCR1_IWD      0x00000e00
+#define BP_ASRC_ASRMCR1A_IWD      9
+#define BM_ASRC_ASRMCR1A_IWD      0x00000e00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ASRC_ASRMCR1_IWD(v)   ((((reg32_t) v) << 9) & BM_ASRC_ASRMCR1_IWD)
+#define BF_ASRC_ASRMCR1A_IWD(v)   ((((reg32_t) v) << 9) & BM_ASRC_ASRMCR1A_IWD)
 #else
-#define BF_ASRC_ASRMCR1_IWD(v)   (((v) << 9) & BM_ASRC_ASRMCR1_IWD)
+#define BF_ASRC_ASRMCR1A_IWD(v)   (((v) << 9) & BM_ASRC_ASRMCR1A_IWD)
 #endif
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IWD field to a new value.
-#define BW_ASRC_ASRMCR1_IWD(v)   BF_CS1(ASRC_ASRMCR1, IWD, v)
+#define BW_ASRC_ASRMCR1A_IWD(v)   BF_CS1(ASRC_ASRMCR1A, IWD, v)
 #endif
+
+/* --- Register HW_ASRC_ASRMCR1A, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRMCR1A_UNIMPLEMENTED      24
+#define BM_ASRC_ASRMCR1A_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRMCR1B - ASRC Misc Control Register 1 for Pair X B (RW)
+ *
+ * The register (ASRMCR1A) is used to control Pair x internal logic (for data alignment etc.).  The
+ * bit assignment for all the input data formats is the same as that supported by the SSI.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned OW16 : 1; //!< Bit Width Option of the output FIFO This bit will determine the bit width option of the output FIFO.
+        unsigned OSGN : 1; //!< Sign Extension Option of the output FIFO This bit will determine the sign extension option of the output FIFO.
+        unsigned OMSB : 1; //!< Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
+        unsigned RESERVED0 : 5; //!< Reserved. Should be written as zero for future compatibility.
+        unsigned IMSB : 1; //!< Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
+        unsigned IWD : 3; //!< Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio data. 3'b010 8-bit audio data.
+        unsigned RESERVED1 : 12; //!< Reserved. Should be written as zero for future compatibility.
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrmcr1b_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRMCR1B register
+ */
+#define HW_ASRC_ASRMCR1B_ADDR      (REGS_ASRC_BASE + 0xc4)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRMCR1B           (*(volatile hw_asrc_asrmcr1b_t *) HW_ASRC_ASRMCR1B_ADDR)
+#define HW_ASRC_ASRMCR1B_RD()      (HW_ASRC_ASRMCR1B.U)
+#define HW_ASRC_ASRMCR1B_WR(v)     (HW_ASRC_ASRMCR1B.U = (v))
+#define HW_ASRC_ASRMCR1B_SET(v)    (HW_ASRC_ASRMCR1B_WR(HW_ASRC_ASRMCR1B_RD() |  (v)))
+#define HW_ASRC_ASRMCR1B_CLR(v)    (HW_ASRC_ASRMCR1B_WR(HW_ASRC_ASRMCR1B_RD() & ~(v)))
+#define HW_ASRC_ASRMCR1B_TOG(v)    (HW_ASRC_ASRMCR1B_WR(HW_ASRC_ASRMCR1B_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRMCR1B bitfields
+ */
+
+/* --- Register HW_ASRC_ASRMCR1B, field OW16 (RW)
+ *
+ * Bit Width Option of the output FIFO This bit will determine the bit width option of the output
+ * FIFO.
+ *
+ * Values:
+ * 1 - 16-bit output data
+ * 0 - 24-bit output data.
+ */
+
+#define BP_ASRC_ASRMCR1B_OW16      0
+#define BM_ASRC_ASRMCR1B_OW16      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1B_OW16(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRMCR1B_OW16)
+#else
+#define BF_ASRC_ASRMCR1B_OW16(v)   (((v) << 0) & BM_ASRC_ASRMCR1B_OW16)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OW16 field to a new value.
+#define BW_ASRC_ASRMCR1B_OW16(v)   BF_CS1(ASRC_ASRMCR1B, OW16, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1B, field OSGN (RW)
+ *
+ * Sign Extension Option of the output FIFO This bit will determine the sign extension option of the
+ * output FIFO.
+ *
+ * Values:
+ * 1 - Sign extension.
+ * 0 - No sign extension.
+ */
+
+#define BP_ASRC_ASRMCR1B_OSGN      1
+#define BM_ASRC_ASRMCR1B_OSGN      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1B_OSGN(v)   ((((reg32_t) v) << 1) & BM_ASRC_ASRMCR1B_OSGN)
+#else
+#define BF_ASRC_ASRMCR1B_OSGN(v)   (((v) << 1) & BM_ASRC_ASRMCR1B_OSGN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OSGN field to a new value.
+#define BW_ASRC_ASRMCR1B_OSGN(v)   BF_CS1(ASRC_ASRMCR1B, OSGN, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1B, field OMSB (RW)
+ *
+ * Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
+ *
+ * Values:
+ * 1 - MSB aligned.
+ * 0 - LSB aligned.
+ */
+
+#define BP_ASRC_ASRMCR1B_OMSB      2
+#define BM_ASRC_ASRMCR1B_OMSB      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1B_OMSB(v)   ((((reg32_t) v) << 2) & BM_ASRC_ASRMCR1B_OMSB)
+#else
+#define BF_ASRC_ASRMCR1B_OMSB(v)   (((v) << 2) & BM_ASRC_ASRMCR1B_OMSB)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OMSB field to a new value.
+#define BW_ASRC_ASRMCR1B_OMSB(v)   BF_CS1(ASRC_ASRMCR1B, OMSB, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1B, field IMSB (RW)
+ *
+ * Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
+ *
+ * Values:
+ * 1 - MSB aligned.
+ * 0 - LSB aligned.
+ */
+
+#define BP_ASRC_ASRMCR1B_IMSB      8
+#define BM_ASRC_ASRMCR1B_IMSB      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1B_IMSB(v)   ((((reg32_t) v) << 8) & BM_ASRC_ASRMCR1B_IMSB)
+#else
+#define BF_ASRC_ASRMCR1B_IMSB(v)   (((v) << 8) & BM_ASRC_ASRMCR1B_IMSB)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IMSB field to a new value.
+#define BW_ASRC_ASRMCR1B_IMSB(v)   BF_CS1(ASRC_ASRMCR1B, IMSB, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1B, field IWD (RW)
+ *
+ * Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into
+ * ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio
+ * data. 3'b010 8-bit audio data.
+ */
+
+#define BP_ASRC_ASRMCR1B_IWD      9
+#define BM_ASRC_ASRMCR1B_IWD      0x00000e00
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1B_IWD(v)   ((((reg32_t) v) << 9) & BM_ASRC_ASRMCR1B_IWD)
+#else
+#define BF_ASRC_ASRMCR1B_IWD(v)   (((v) << 9) & BM_ASRC_ASRMCR1B_IWD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IWD field to a new value.
+#define BW_ASRC_ASRMCR1B_IWD(v)   BF_CS1(ASRC_ASRMCR1B, IWD, v)
+#endif
+
+/* --- Register HW_ASRC_ASRMCR1B, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRMCR1B_UNIMPLEMENTED      24
+#define BM_ASRC_ASRMCR1B_UNIMPLEMENTED      0xff000000
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ASRC_ASRMCR1C - ASRC Misc Control Register 1 for Pair X C (RW)
+ *
+ * The register (ASRMCR1A) is used to control Pair x internal logic (for data alignment etc.).  The
+ * bit assignment for all the input data formats is the same as that supported by the SSI.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned OW16 : 1; //!< Bit Width Option of the output FIFO This bit will determine the bit width option of the output FIFO.
+        unsigned OSGN : 1; //!< Sign Extension Option of the output FIFO This bit will determine the sign extension option of the output FIFO.
+        unsigned OMSB : 1; //!< Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
+        unsigned RESERVED0 : 5; //!< Reserved. Should be written as zero for future compatibility.
+        unsigned IMSB : 1; //!< Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
+        unsigned IWD : 3; //!< Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio data. 3'b010 8-bit audio data.
+        unsigned RESERVED1 : 12; //!< Reserved. Should be written as zero for future compatibility.
+        unsigned UNIMPLEMENTED : 8; //!< 
+    } B;
+} hw_asrc_asrmcr1c_t;
+#endif
+
+/*
+ * constants & macros for entire ASRC_ASRMCR1C register
+ */
+#define HW_ASRC_ASRMCR1C_ADDR      (REGS_ASRC_BASE + 0xc8)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ASRC_ASRMCR1C           (*(volatile hw_asrc_asrmcr1c_t *) HW_ASRC_ASRMCR1C_ADDR)
+#define HW_ASRC_ASRMCR1C_RD()      (HW_ASRC_ASRMCR1C.U)
+#define HW_ASRC_ASRMCR1C_WR(v)     (HW_ASRC_ASRMCR1C.U = (v))
+#define HW_ASRC_ASRMCR1C_SET(v)    (HW_ASRC_ASRMCR1C_WR(HW_ASRC_ASRMCR1C_RD() |  (v)))
+#define HW_ASRC_ASRMCR1C_CLR(v)    (HW_ASRC_ASRMCR1C_WR(HW_ASRC_ASRMCR1C_RD() & ~(v)))
+#define HW_ASRC_ASRMCR1C_TOG(v)    (HW_ASRC_ASRMCR1C_WR(HW_ASRC_ASRMCR1C_RD() ^  (v)))
+#endif
+
+/*
+ * constants & macros for individual ASRC_ASRMCR1C bitfields
+ */
+
+/* --- Register HW_ASRC_ASRMCR1C, field OW16 (RW)
+ *
+ * Bit Width Option of the output FIFO This bit will determine the bit width option of the output
+ * FIFO.
+ *
+ * Values:
+ * 1 - 16-bit output data
+ * 0 - 24-bit output data.
+ */
+
+#define BP_ASRC_ASRMCR1C_OW16      0
+#define BM_ASRC_ASRMCR1C_OW16      0x00000001
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1C_OW16(v)   ((((reg32_t) v) << 0) & BM_ASRC_ASRMCR1C_OW16)
+#else
+#define BF_ASRC_ASRMCR1C_OW16(v)   (((v) << 0) & BM_ASRC_ASRMCR1C_OW16)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OW16 field to a new value.
+#define BW_ASRC_ASRMCR1C_OW16(v)   BF_CS1(ASRC_ASRMCR1C, OW16, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1C, field OSGN (RW)
+ *
+ * Sign Extension Option of the output FIFO This bit will determine the sign extension option of the
+ * output FIFO.
+ *
+ * Values:
+ * 1 - Sign extension.
+ * 0 - No sign extension.
+ */
+
+#define BP_ASRC_ASRMCR1C_OSGN      1
+#define BM_ASRC_ASRMCR1C_OSGN      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1C_OSGN(v)   ((((reg32_t) v) << 1) & BM_ASRC_ASRMCR1C_OSGN)
+#else
+#define BF_ASRC_ASRMCR1C_OSGN(v)   (((v) << 1) & BM_ASRC_ASRMCR1C_OSGN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OSGN field to a new value.
+#define BW_ASRC_ASRMCR1C_OSGN(v)   BF_CS1(ASRC_ASRMCR1C, OSGN, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1C, field OMSB (RW)
+ *
+ * Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
+ *
+ * Values:
+ * 1 - MSB aligned.
+ * 0 - LSB aligned.
+ */
+
+#define BP_ASRC_ASRMCR1C_OMSB      2
+#define BM_ASRC_ASRMCR1C_OMSB      0x00000004
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1C_OMSB(v)   ((((reg32_t) v) << 2) & BM_ASRC_ASRMCR1C_OMSB)
+#else
+#define BF_ASRC_ASRMCR1C_OMSB(v)   (((v) << 2) & BM_ASRC_ASRMCR1C_OMSB)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OMSB field to a new value.
+#define BW_ASRC_ASRMCR1C_OMSB(v)   BF_CS1(ASRC_ASRMCR1C, OMSB, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1C, field IMSB (RW)
+ *
+ * Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
+ *
+ * Values:
+ * 1 - MSB aligned.
+ * 0 - LSB aligned.
+ */
+
+#define BP_ASRC_ASRMCR1C_IMSB      8
+#define BM_ASRC_ASRMCR1C_IMSB      0x00000100
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1C_IMSB(v)   ((((reg32_t) v) << 8) & BM_ASRC_ASRMCR1C_IMSB)
+#else
+#define BF_ASRC_ASRMCR1C_IMSB(v)   (((v) << 8) & BM_ASRC_ASRMCR1C_IMSB)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IMSB field to a new value.
+#define BW_ASRC_ASRMCR1C_IMSB(v)   BF_CS1(ASRC_ASRMCR1C, IMSB, v)
+#endif
+
+
+/* --- Register HW_ASRC_ASRMCR1C, field IWD (RW)
+ *
+ * Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into
+ * ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio
+ * data. 3'b010 8-bit audio data.
+ */
+
+#define BP_ASRC_ASRMCR1C_IWD      9
+#define BM_ASRC_ASRMCR1C_IWD      0x00000e00
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ASRC_ASRMCR1C_IWD(v)   ((((reg32_t) v) << 9) & BM_ASRC_ASRMCR1C_IWD)
+#else
+#define BF_ASRC_ASRMCR1C_IWD(v)   (((v) << 9) & BM_ASRC_ASRMCR1C_IWD)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the IWD field to a new value.
+#define BW_ASRC_ASRMCR1C_IWD(v)   BF_CS1(ASRC_ASRMCR1C, IWD, v)
+#endif
+
+/* --- Register HW_ASRC_ASRMCR1C, field UNIMPLEMENTED (RU)
+ *
+
+ */
+
+#define BP_ASRC_ASRMCR1C_UNIMPLEMENTED      24
+#define BM_ASRC_ASRMCR1C_UNIMPLEMENTED      0xff000000
 
 
 /*!
@@ -3844,14 +4884,21 @@ typedef struct
     volatile hw_asrc_asrcdr2_t ASRCDR2; //!< ASRC Clock Divider Register 2
     volatile hw_asrc_asrstr_t ASRSTR; //!< ASRC Status Register
     reg32_t _reserved1[7];
-    volatile hw_asrc_asrpmn_t ASRPMN; //!< ASRC Parameter Register n
-    reg32_t _reserved2[4];
+    volatile hw_asrc_asrpmn1_t ASRPMN1; //!< ASRC Parameter Register n 1
+    volatile hw_asrc_asrpmn2_t ASRPMN2; //!< ASRC Parameter Register n 2
+    volatile hw_asrc_asrpmn3_t ASRPMN3; //!< ASRC Parameter Register n 3
+    volatile hw_asrc_asrpmn4_t ASRPMN4; //!< ASRC Parameter Register n 4
+    volatile hw_asrc_asrpmn5_t ASRPMN5; //!< ASRC Parameter Register n 5
     volatile hw_asrc_asrtfr1_t ASRTFR1; //!< ASRC ASRC Task Queue FIFO Register 1
-    reg32_t _reserved3;
+    reg32_t _reserved2;
     volatile hw_asrc_asrccr_t ASRCCR; //!< ASRC Channel Counter Register
-    volatile hw_asrc_asrdi_t ASRDI; //!< ASRC Data Input Register for Pair
-    volatile hw_asrc_asrdo_t ASRDO; //!< ASRC Data Output Register for Pair
-    reg32_t _reserved4[6];
+    volatile hw_asrc_asrdia_t ASRDIA; //!< ASRC Data Input Register for Pair A
+    volatile hw_asrc_asrdoa_t ASRDOA; //!< ASRC Data Output Register for Pair A
+    volatile hw_asrc_asrdib_t ASRDIB; //!< ASRC Data Input Register for Pair B
+    volatile hw_asrc_asrdob_t ASRDOB; //!< ASRC Data Output Register for Pair B
+    volatile hw_asrc_asrdic_t ASRDIC; //!< ASRC Data Input Register for Pair C
+    volatile hw_asrc_asrdoc_t ASRDOC; //!< ASRC Data Output Register for Pair C
+    reg32_t _reserved3[2];
     volatile hw_asrc_asridrha_t ASRIDRHA; //!< ASRC Ideal Ratio for Pair A-High Part
     volatile hw_asrc_asridrla_t ASRIDRLA; //!< ASRC Ideal Ratio for Pair A -Low Part
     volatile hw_asrc_asridrhb_t ASRIDRHB; //!< ASRC Ideal Ratio for Pair B-High Part
@@ -3866,9 +4913,11 @@ typedef struct
     volatile hw_asrc_asrfstb_t ASRFSTB; //!< ASRC FIFO Status Register for Pair B
     volatile hw_asrc_asrmcrc_t ASRMCRC; //!< ASRC Misc Control Register for Pair C
     volatile hw_asrc_asrfstc_t ASRFSTC; //!< ASRC FIFO Status Register for Pair C
-    reg32_t _reserved5[2];
-    volatile hw_asrc_asrmcr1_t ASRMCR1; //!< ASRC Misc Control Register 1 for Pair X
-} hw_asrc_t
+    reg32_t _reserved4[2];
+    volatile hw_asrc_asrmcr1a_t ASRMCR1A; //!< ASRC Misc Control Register 1 for Pair X A
+    volatile hw_asrc_asrmcr1b_t ASRMCR1B; //!< ASRC Misc Control Register 1 for Pair X B
+    volatile hw_asrc_asrmcr1c_t ASRMCR1C; //!< ASRC Misc Control Register 1 for Pair X C
+} hw_asrc_t;
 #endif
 
 //! @brief Macro to access all ASRC registers.

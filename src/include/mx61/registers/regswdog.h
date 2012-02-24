@@ -510,6 +510,16 @@ typedef union
 #define BP_WDOG_WICR_WTIS      14
 #define BM_WDOG_WICR_WTIS      0x00004000
 
+#ifndef __LANGUAGE_ASM__
+#define BF_WDOG_WICR_WTIS(v)   ((((reg32_t) v) << 14) & BM_WDOG_WICR_WTIS)
+#else
+#define BF_WDOG_WICR_WTIS(v)   (((v) << 14) & BM_WDOG_WICR_WTIS)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the WTIS field to a new value.
+#define BW_WDOG_WICR_WTIS(v)   BF_CS1(WDOG_WICR, WTIS, v)
+#endif
+
 
 /* --- Register HW_WDOG_WICR, field WIE (RW)
  *
@@ -610,7 +620,7 @@ typedef struct
     volatile hw_wdog_wrsr_t WRSR; //!< Watchdog Reset Status Register
     volatile hw_wdog_wicr_t WICR; //!< Watchdog Interrupt Control Register
     volatile hw_wdog_wmcr_t WMCR; //!< Watchdog Miscellaneous Control Register
-} hw_wdog_t
+} hw_wdog_t;
 #endif
 
 //! @brief Macro to access all WDOG registers.

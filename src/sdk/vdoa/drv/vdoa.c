@@ -11,86 +11,101 @@
 
 #include "vdoa.h"
 #include "hardware.h"
+#include "registers/regsvdoa.h"
 
 void vdoa_setup(int width, int height, int vpu_sl, int ipu_sl, int interlaced,
                 int ipu_sel, int bandLines, int pfs)
 {
-    uint32_t data;
+    // Set control register
+    uint32_t value = BF_VDOA_VDOAC_PFS(pfs)
+                        | BF_VDOA_VDOAC_ISEL(ipu_sel);
+    
+    switch (bandLines)
+    {
+        case 32:
+            value |= BF_VDOA_VDOAC_BNDM(2);
+            break;
+        case 16:
+            value |= BF_VDOA_VDOAC_BNDM(1);
+            break;
+        default:
+            value |= BF_VDOA_VDOAC_BNDM(0);
+            break;
+    }
+    
+    if (interlaced)
+    {
+        value |= BM_VDOA_VDOAC_NF | BM_VDOA_VDOAC_SO;
+    }
+    
+    HW_VDOA_VDOAC_WR(value);
 
-    /* set BNDM - number of lines in a band */
-    data = (bandLines == 32) ? 2 : ((bandLines == 16) ? 1 : 0);
-    /* set bits NF (number of frames) and SO (scan order) if interlaced */
-    data |= interlaced ? 0x14 : 0;
-    /* set bit SYNC */
-    data |= 0;
-    /* pixel format: 0 - 4:2:0 partial interleaved, 1 - 4:2:2 interleaved */
-    data |= pfs << 5;
-    /* select IPU */
-    data |= ipu_sel << 6;
-    writel(data, VDOA_VDOAC);
+    // VDOA frame parameters register
+    HW_VDOA_VDOAFP_WR(  BF_VDOA_VDOAFP_FW(width)
+                        | BF_VDOA_VDOAFP_FH(height));
 
-    /* VDOA frame parameters register */
-    writel((height << 16) | width, VDOA_VDOAFP);
-
-    /* VDOA stride line register */
-    writel((vpu_sl << 16) | ipu_sl, VDOA_VDOASL);
+    // VDOA stride line register
+    HW_VDOA_VDOASL_WR(  BF_VDOA_VDOASL_ISLY(ipu_sl)
+                        | BF_VDOA_VDOASL_VSLY(vpu_sl));
 }
 
 void vdoa_start(uint32_t src, uint32_t vubo, uint32_t dst, uint32_t iubo)
 {
-    /*set the source */
+    // set the source
     vdoa_set_vpu_buffer(src);
     vdoa_set_vpu_ubo(vubo);
 
     vdoa_set_ipu_buffer(dst);
     vdoa_set_ipu_ubo(iubo);
 
-    /*start transfer */
+    // start transfer
     vdoa_start_transfer();
 }
 
 void vdoa_set_vpu_buffer(uint32_t vbuf)
 {
-    if (!(readl(VDOA_VDOAC) & 0x8))
-        writel(vbuf, VDOA_VDOAVEBA0);
+    if (!HW_VDOA_VDOAC.B.SYNC)
+    {
+        HW_VDOA_VDOAVEBA0_WR(vbuf);
+    }
 }
 
 void vdoa_set_ipu_buffer(uint32_t ibuf)
 {
-    writel(ibuf, VDOA_VDOAIEBA0_0);
+    HW_VDOA_VDOAIEBA00_WR(ibuf);
 }
 
 void vdoa_set_vpu_ubo(uint32_t vubo)
 {
-    writel(vubo, VDOA_VDOAVUBO);
+    HW_VDOA_VDOAVUBO_WR(vubo);
 }
 
 void vdoa_set_ipu_ubo(uint32_t iubo)
 {
-    writel(iubo, VDOA_VDOAIUBO);
+    HW_VDOA_VDOAIUBO_WR(iubo);
 }
 
 void vdoa_start_transfer(void)
 {
-    writel(0x2, VDOA_VDOASRR);
+    HW_VDOA_VDOASRR.B.START = 1;
 }
 
 void vdoa_enable_interrupt(void)
 {
-    writel(0x1, VDOA_VDOAIE);
+    HW_VDOA_VDOAIE.B.EIEOT = 1;
 }
 
 void vdoa_disable_interrupt(void)
 {
-    writel(0x0, VDOA_VDOAIE);
+    HW_VDOA_VDOAIE.B.EIEOT = 0;
 }
 
 void vdoa_clear_interrupt(void)
 {
-    writel(0x1, VDOA_VDOAIST);
+    HW_VDOA_VDOAIST.B.EOT = 1;
 }
 
-uint32_t vdoa_check_tx_eot(void)
+bool vdoa_check_tx_eot(void)
 {
-    return readl(VDOA_VDOAIST) & 0x01;
+    return (HW_VDOA_VDOAIST.B.EOT == 1);
 }

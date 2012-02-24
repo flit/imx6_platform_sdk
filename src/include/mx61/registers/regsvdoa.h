@@ -412,6 +412,10 @@ typedef union
 #ifndef __LANGUAGE_ASM__
 #define HW_VDOA_VDOAIST           (*(volatile hw_vdoa_vdoaist_t *) HW_VDOA_VDOAIST_ADDR)
 #define HW_VDOA_VDOAIST_RD()      (HW_VDOA_VDOAIST.U)
+#define HW_VDOA_VDOAIST_WR(v)     (HW_VDOA_VDOAIST.U = (v))
+#define HW_VDOA_VDOAIST_SET(v)    (HW_VDOA_VDOAIST_WR(HW_VDOA_VDOAIST_RD() |  (v)))
+#define HW_VDOA_VDOAIST_CLR(v)    (HW_VDOA_VDOAIST_WR(HW_VDOA_VDOAIST_RD() & ~(v)))
+#define HW_VDOA_VDOAIST_TOG(v)    (HW_VDOA_VDOAIST_WR(HW_VDOA_VDOAIST_RD() ^  (v)))
 #endif
 
 /*
@@ -426,6 +430,16 @@ typedef union
 #define BP_VDOA_VDOAIST_EOT      0
 #define BM_VDOA_VDOAIST_EOT      0x00000001
 
+#ifndef __LANGUAGE_ASM__
+#define BF_VDOA_VDOAIST_EOT(v)   ((((reg32_t) v) << 0) & BM_VDOA_VDOAIST_EOT)
+#else
+#define BF_VDOA_VDOAIST_EOT(v)   (((v) << 0) & BM_VDOA_VDOAIST_EOT)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the EOT field to a new value.
+#define BW_VDOA_VDOAIST_EOT(v)   BF_CS1(VDOA_VDOAIST, EOT, v)
+#endif
+
 /* --- Register HW_VDOA_VDOAIST, field TERR (W1C)
  *
  * Axi Access had an access error see ERRW bit in 0XBASE_0044 (VDOASR) for type of access (read
@@ -434,6 +448,16 @@ typedef union
 
 #define BP_VDOA_VDOAIST_TERR      1
 #define BM_VDOA_VDOAIST_TERR      0x00000002
+
+#ifndef __LANGUAGE_ASM__
+#define BF_VDOA_VDOAIST_TERR(v)   ((((reg32_t) v) << 1) & BM_VDOA_VDOAIST_TERR)
+#else
+#define BF_VDOA_VDOAIST_TERR(v)   (((v) << 1) & BM_VDOA_VDOAIST_TERR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TERR field to a new value.
+#define BW_VDOA_VDOAIST_TERR(v)   BF_CS1(VDOA_VDOAIST, TERR, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1270,7 +1294,7 @@ typedef struct
     volatile hw_vdoa_vdoaveba2_t VDOAVEBA2; //!< VDOA VPU External Buffer 2 Address Register
     volatile hw_vdoa_vdoavubo_t VDOAVUBO; //!< VDOA VPU U (Chroma) Buffer Offset Register
     volatile hw_vdoa_vdoasr_t VDOASR; //!< VDOA Status Register
-} hw_vdoa_t
+} hw_vdoa_t;
 #endif
 
 //! @brief Macro to access all VDOA registers.

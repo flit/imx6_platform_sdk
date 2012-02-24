@@ -3302,7 +3302,7 @@ typedef struct
     volatile hw_sataphy_lane0_tx_ana_atbsel1_t TX_ANA_ATBSEL1; //!< Transmit ATB 1 Control Register
     volatile hw_sataphy_lane0_tx_ana_atbsel2_t TX_ANA_ATBSEL2; //!< Transmit ATB 2 Control Register
     volatile hw_sataphy_lane0_tx_ana_control_t TX_ANA_CONTROL; //!< Transmit Analog Control Register
-} hw_sataphy_lane0_t
+} hw_sataphy_lane0_t;
 #endif
 
 //! @brief Macro to access all SATAPHY_LANE0 registers.

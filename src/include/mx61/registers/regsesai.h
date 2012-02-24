@@ -21,9 +21,17 @@
  * - HW_ESAI_TFSR - Transmit FIFO Status Register
  * - HW_ESAI_RFCR - Receive FIFO Configuration Register
  * - HW_ESAI_RFSR - Receive FIFO Status Register
- * - HW_ESAI_TX - Transmit Data Register n
+ * - HW_ESAI_TX0 - Transmit Data Register n 0
+ * - HW_ESAI_TX1 - Transmit Data Register n 1
+ * - HW_ESAI_TX2 - Transmit Data Register n 2
+ * - HW_ESAI_TX3 - Transmit Data Register n 3
+ * - HW_ESAI_TX4 - Transmit Data Register n 4
+ * - HW_ESAI_TX5 - Transmit Data Register n 5
  * - HW_ESAI_TSR - ESAI Transmit Slot Register
- * - HW_ESAI_RX - Receive Data Register n
+ * - HW_ESAI_RX0 - Receive Data Register n 0
+ * - HW_ESAI_RX1 - Receive Data Register n 1
+ * - HW_ESAI_RX2 - Receive Data Register n 2
+ * - HW_ESAI_RX3 - Receive Data Register n 3
  * - HW_ESAI_SAISR - Serial Audio Interface Status Register
  * - HW_ESAI_SAICR - Serial Audio Interface Control Register
  * - HW_ESAI_TCR - Transmit Control Register
@@ -70,7 +78,7 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_ESAI_ETDR           (*(volatile hw_esai_etdr_t *) HW_ESAI_ETDR_ADDR)
-#define HW_ESAI_ETDR_RD()      (HW_ESAI_ETDR.U)
+#define HW_ESAI_ETDR_WR(v)     (HW_ESAI_ETDR.U = (v))
 #endif
 
 /*
@@ -91,6 +99,16 @@ typedef union
 
 #define BP_ESAI_ETDR_ETDR      0
 #define BM_ESAI_ETDR_ETDR      0xffffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_ETDR_ETDR(v)   ((((reg32_t) v) << 0) & BM_ESAI_ETDR_ETDR)
+#else
+#define BF_ESAI_ETDR_ETDR(v)   (((v) << 0) & BM_ESAI_ETDR_ETDR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the ETDR field to a new value.
+#define BW_ESAI_ETDR_ETDR(v)   BF_CS1(ESAI_ETDR, ETDR, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1177,10 +1195,10 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned RFCNT_ : 8; //!< Receive FIFO Counter. These bits indicate the number of data words stored in the Receive FIFO.
-        unsigned NRFO_ : 2; //!< Next Receiver FIFO Out. Indicates which receiver returns the top word of the Receive FIFO.
+        unsigned RFCNT : 8; //!< Receive FIFO Counter. These bits indicate the number of data words stored in the Receive FIFO.
+        unsigned NRFO : 2; //!< Next Receiver FIFO Out. Indicates which receiver returns the top word of the Receive FIFO.
         unsigned RESERVED0 : 2; //!< Reserved
-        unsigned NRFI_ : 2; //!< Next Receiver FIFO In. Indicates which Receiver Data Register the Receive FIFO will load next. This will usually equal the lowest enabled receiver, unless the receive FIFO is full.
+        unsigned NRFI : 2; //!< Next Receiver FIFO In. Indicates which Receiver Data Register the Receive FIFO will load next. This will usually equal the lowest enabled receiver, unless the receive FIFO is full.
         unsigned RESERVED1 : 18; //!< Reserved
     } B;
 } hw_esai_rfsr_t;
@@ -1200,15 +1218,15 @@ typedef union
  * constants & macros for individual ESAI_RFSR bitfields
  */
 
-/* --- Register HW_ESAI_RFSR, field RFCNT_ (RO)
+/* --- Register HW_ESAI_RFSR, field RFCNT (RO)
  *
  * Receive FIFO Counter. These bits indicate the number of data words stored in the Receive FIFO.
  */
 
-#define BP_ESAI_RFSR_RFCNT_      0
-#define BM_ESAI_RFSR_RFCNT_      0x000000ff
+#define BP_ESAI_RFSR_RFCNT      0
+#define BM_ESAI_RFSR_RFCNT      0x000000ff
 
-/* --- Register HW_ESAI_RFSR, field NRFO_ (RO)
+/* --- Register HW_ESAI_RFSR, field NRFO (RO)
  *
  * Next Receiver FIFO Out. Indicates which receiver returns the top word of the Receive FIFO.
  *
@@ -1219,11 +1237,11 @@ typedef union
  * 11 - Receiver #3 returns next word from the Receive FIFO.
  */
 
-#define BP_ESAI_RFSR_NRFO_      8
-#define BM_ESAI_RFSR_NRFO_      0x00000300
+#define BP_ESAI_RFSR_NRFO      8
+#define BM_ESAI_RFSR_NRFO      0x00000300
 
 
-/* --- Register HW_ESAI_RFSR, field NRFI_ (RO)
+/* --- Register HW_ESAI_RFSR, field NRFI (RO)
  *
  * Next Receiver FIFO In. Indicates which Receiver Data Register the Receive FIFO will load next.
  * This will usually equal the lowest enabled receiver, unless the receive FIFO is full.
@@ -1235,13 +1253,13 @@ typedef union
  * 11 - Receiver #3 returns next word to the Receive FIFO.
  */
 
-#define BP_ESAI_RFSR_NRFI_      12
-#define BM_ESAI_RFSR_NRFI_      0x00003000
+#define BP_ESAI_RFSR_NRFI      12
+#define BM_ESAI_RFSR_NRFI      0x00003000
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ESAI_TX - Transmit Data Register n (WORZ)
+ * @brief HW_ESAI_TX0 - Transmit Data Register n 0 (WORZ)
  *
  * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
  * Data to be transmitted is written into these registers and is automatically transferred to the
@@ -1256,34 +1274,324 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned TXN_ : 24; //!< Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
         unsigned RESERVED0 : 8; //!< Reserved
     } B;
-} hw_esai_tx_t;
+} hw_esai_tx0_t;
 #endif
 
 /*
- * constants & macros for entire ESAI_TX register
+ * constants & macros for entire ESAI_TX0 register
  */
-#define HW_ESAI_TX_ADDR      (REGS_ESAI_BASE + 0x80)
+#define HW_ESAI_TX0_ADDR      (REGS_ESAI_BASE + 0x80)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ESAI_TX           (*(volatile hw_esai_tx_t *) HW_ESAI_TX_ADDR)
-#define HW_ESAI_TX_RD()      (HW_ESAI_TX.U)
+#define HW_ESAI_TX0           (*(volatile hw_esai_tx0_t *) HW_ESAI_TX0_ADDR)
+#define HW_ESAI_TX0_WR(v)     (HW_ESAI_TX0.U = (v))
 #endif
 
 /*
- * constants & macros for individual ESAI_TX bitfields
+ * constants & macros for individual ESAI_TX0 bitfields
  */
 
-/* --- Register HW_ESAI_TX, field TXN_ (WORZ)
+/* --- Register HW_ESAI_TX0, field TXN (WORZ)
  *
  * Stores the data to be transmitted and is automatically transferred to the transmit shift
  * registers. See .
  */
 
-#define BP_ESAI_TX_TXN_      0
-#define BM_ESAI_TX_TXN_      0x00ffffff
+#define BP_ESAI_TX0_TXN      0
+#define BM_ESAI_TX0_TXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_TX0_TXN(v)   ((((reg32_t) v) << 0) & BM_ESAI_TX0_TXN)
+#else
+#define BF_ESAI_TX0_TXN(v)   (((v) << 0) & BM_ESAI_TX0_TXN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TXN field to a new value.
+#define BW_ESAI_TX0_TXN(v)   BF_CS1(ESAI_TX0, TXN, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_TX1 - Transmit Data Register n 1 (WORZ)
+ *
+ * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
+ * Data to be transmitted is written into these registers and is automatically transferred to the
+ * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
+ * most significant portion of the TXn according to the ALC control bit setting. The unused bits
+ * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
+ * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
+ * interrupt has been enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned TXN : 24; //!< Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_tx1_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_TX1 register
+ */
+#define HW_ESAI_TX1_ADDR      (REGS_ESAI_BASE + 0x84)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_TX1           (*(volatile hw_esai_tx1_t *) HW_ESAI_TX1_ADDR)
+#define HW_ESAI_TX1_WR(v)     (HW_ESAI_TX1.U = (v))
+#endif
+
+/*
+ * constants & macros for individual ESAI_TX1 bitfields
+ */
+
+/* --- Register HW_ESAI_TX1, field TXN (WORZ)
+ *
+ * Stores the data to be transmitted and is automatically transferred to the transmit shift
+ * registers. See .
+ */
+
+#define BP_ESAI_TX1_TXN      0
+#define BM_ESAI_TX1_TXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_TX1_TXN(v)   ((((reg32_t) v) << 0) & BM_ESAI_TX1_TXN)
+#else
+#define BF_ESAI_TX1_TXN(v)   (((v) << 0) & BM_ESAI_TX1_TXN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TXN field to a new value.
+#define BW_ESAI_TX1_TXN(v)   BF_CS1(ESAI_TX1, TXN, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_TX2 - Transmit Data Register n 2 (WORZ)
+ *
+ * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
+ * Data to be transmitted is written into these registers and is automatically transferred to the
+ * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
+ * most significant portion of the TXn according to the ALC control bit setting. The unused bits
+ * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
+ * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
+ * interrupt has been enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned TXN : 24; //!< Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_tx2_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_TX2 register
+ */
+#define HW_ESAI_TX2_ADDR      (REGS_ESAI_BASE + 0x88)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_TX2           (*(volatile hw_esai_tx2_t *) HW_ESAI_TX2_ADDR)
+#define HW_ESAI_TX2_WR(v)     (HW_ESAI_TX2.U = (v))
+#endif
+
+/*
+ * constants & macros for individual ESAI_TX2 bitfields
+ */
+
+/* --- Register HW_ESAI_TX2, field TXN (WORZ)
+ *
+ * Stores the data to be transmitted and is automatically transferred to the transmit shift
+ * registers. See .
+ */
+
+#define BP_ESAI_TX2_TXN      0
+#define BM_ESAI_TX2_TXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_TX2_TXN(v)   ((((reg32_t) v) << 0) & BM_ESAI_TX2_TXN)
+#else
+#define BF_ESAI_TX2_TXN(v)   (((v) << 0) & BM_ESAI_TX2_TXN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TXN field to a new value.
+#define BW_ESAI_TX2_TXN(v)   BF_CS1(ESAI_TX2, TXN, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_TX3 - Transmit Data Register n 3 (WORZ)
+ *
+ * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
+ * Data to be transmitted is written into these registers and is automatically transferred to the
+ * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
+ * most significant portion of the TXn according to the ALC control bit setting. The unused bits
+ * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
+ * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
+ * interrupt has been enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned TXN : 24; //!< Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_tx3_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_TX3 register
+ */
+#define HW_ESAI_TX3_ADDR      (REGS_ESAI_BASE + 0x8c)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_TX3           (*(volatile hw_esai_tx3_t *) HW_ESAI_TX3_ADDR)
+#define HW_ESAI_TX3_WR(v)     (HW_ESAI_TX3.U = (v))
+#endif
+
+/*
+ * constants & macros for individual ESAI_TX3 bitfields
+ */
+
+/* --- Register HW_ESAI_TX3, field TXN (WORZ)
+ *
+ * Stores the data to be transmitted and is automatically transferred to the transmit shift
+ * registers. See .
+ */
+
+#define BP_ESAI_TX3_TXN      0
+#define BM_ESAI_TX3_TXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_TX3_TXN(v)   ((((reg32_t) v) << 0) & BM_ESAI_TX3_TXN)
+#else
+#define BF_ESAI_TX3_TXN(v)   (((v) << 0) & BM_ESAI_TX3_TXN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TXN field to a new value.
+#define BW_ESAI_TX3_TXN(v)   BF_CS1(ESAI_TX3, TXN, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_TX4 - Transmit Data Register n 4 (WORZ)
+ *
+ * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
+ * Data to be transmitted is written into these registers and is automatically transferred to the
+ * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
+ * most significant portion of the TXn according to the ALC control bit setting. The unused bits
+ * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
+ * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
+ * interrupt has been enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned TXN : 24; //!< Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_tx4_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_TX4 register
+ */
+#define HW_ESAI_TX4_ADDR      (REGS_ESAI_BASE + 0x90)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_TX4           (*(volatile hw_esai_tx4_t *) HW_ESAI_TX4_ADDR)
+#define HW_ESAI_TX4_WR(v)     (HW_ESAI_TX4.U = (v))
+#endif
+
+/*
+ * constants & macros for individual ESAI_TX4 bitfields
+ */
+
+/* --- Register HW_ESAI_TX4, field TXN (WORZ)
+ *
+ * Stores the data to be transmitted and is automatically transferred to the transmit shift
+ * registers. See .
+ */
+
+#define BP_ESAI_TX4_TXN      0
+#define BM_ESAI_TX4_TXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_TX4_TXN(v)   ((((reg32_t) v) << 0) & BM_ESAI_TX4_TXN)
+#else
+#define BF_ESAI_TX4_TXN(v)   (((v) << 0) & BM_ESAI_TX4_TXN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TXN field to a new value.
+#define BW_ESAI_TX4_TXN(v)   BF_CS1(ESAI_TX4, TXN, v)
+#endif
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_TX5 - Transmit Data Register n 5 (WORZ)
+ *
+ * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
+ * Data to be transmitted is written into these registers and is automatically transferred to the
+ * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
+ * most significant portion of the TXn according to the ALC control bit setting. The unused bits
+ * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
+ * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
+ * interrupt has been enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned TXN : 24; //!< Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_tx5_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_TX5 register
+ */
+#define HW_ESAI_TX5_ADDR      (REGS_ESAI_BASE + 0x94)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_TX5           (*(volatile hw_esai_tx5_t *) HW_ESAI_TX5_ADDR)
+#define HW_ESAI_TX5_WR(v)     (HW_ESAI_TX5.U = (v))
+#endif
+
+/*
+ * constants & macros for individual ESAI_TX5 bitfields
+ */
+
+/* --- Register HW_ESAI_TX5, field TXN (WORZ)
+ *
+ * Stores the data to be transmitted and is automatically transferred to the transmit shift
+ * registers. See .
+ */
+
+#define BP_ESAI_TX5_TXN      0
+#define BM_ESAI_TX5_TXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_TX5_TXN(v)   ((((reg32_t) v) << 0) & BM_ESAI_TX5_TXN)
+#else
+#define BF_ESAI_TX5_TXN(v)   (((v) << 0) & BM_ESAI_TX5_TXN)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TXN field to a new value.
+#define BW_ESAI_TX5_TXN(v)   BF_CS1(ESAI_TX5, TXN, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1296,7 +1604,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned TSR_ : 24; //!< The write-only Transmit Slot Register (ESAI_TSR) is effectively a null data register that is used when the data is not to be transmitted in the available transmit time slot. The transmit data pins of all the enabled transmitters are in the high-impedance state for the respective time slot where TSR has been written. The Transmitter External Buffer Enable pin (FSR pin when SYN=1, TEBE=1, RFSD=1) disables the external buffers during the slot when the ESAI_TSR register has been written.
+        unsigned TSR : 24; //!< The write-only Transmit Slot Register (ESAI_TSR) is effectively a null data register that is used when the data is not to be transmitted in the available transmit time slot. The transmit data pins of all the enabled transmitters are in the high-impedance state for the respective time slot where TSR has been written. The Transmitter External Buffer Enable pin (FSR pin when SYN=1, TEBE=1, RFSD=1) disables the external buffers during the slot when the ESAI_TSR register has been written.
         unsigned RESERVED0 : 8; //!< Reserved
     } B;
 } hw_esai_tsr_t;
@@ -1309,14 +1617,14 @@ typedef union
 
 #ifndef __LANGUAGE_ASM__
 #define HW_ESAI_TSR           (*(volatile hw_esai_tsr_t *) HW_ESAI_TSR_ADDR)
-#define HW_ESAI_TSR_RD()      (HW_ESAI_TSR.U)
+#define HW_ESAI_TSR_WR(v)     (HW_ESAI_TSR.U = (v))
 #endif
 
 /*
  * constants & macros for individual ESAI_TSR bitfields
  */
 
-/* --- Register HW_ESAI_TSR, field TSR_ (WORZ)
+/* --- Register HW_ESAI_TSR, field TSR (WORZ)
  *
  * The write-only Transmit Slot Register (ESAI_TSR) is effectively a null data register that is used
  * when the data is not to be transmitted in the available transmit time slot. The transmit data
@@ -1326,12 +1634,22 @@ typedef union
  * written.
  */
 
-#define BP_ESAI_TSR_TSR_      0
-#define BM_ESAI_TSR_TSR_      0x00ffffff
+#define BP_ESAI_TSR_TSR      0
+#define BM_ESAI_TSR_TSR      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+#define BF_ESAI_TSR_TSR(v)   ((((reg32_t) v) << 0) & BM_ESAI_TSR_TSR)
+#else
+#define BF_ESAI_TSR_TSR(v)   (((v) << 0) & BM_ESAI_TSR_TSR)
+#endif
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TSR field to a new value.
+#define BW_ESAI_TSR_TSR(v)   BF_CS1(ESAI_TSR, TSR, v)
+#endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ESAI_RX - Receive Data Register n (RO)
+ * @brief HW_ESAI_RX0 - Receive Data Register n 0 (RO)
  *
  * ESAI_RX3, ESAI_RX2, ESAI_RX1, and ESAI_RX0 are 32-bit read-only registers that accept data from
  * the receive shift registers when they become full ( and ). The data occupies the most significant
@@ -1344,33 +1662,162 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned RXN_ : 24; //!< Accept data from the receive shift registers when they become full See
+        unsigned RXN : 24; //!< Accept data from the receive shift registers when they become full See
         unsigned RESERVED0 : 8; //!< Reserved
     } B;
-} hw_esai_rx_t;
+} hw_esai_rx0_t;
 #endif
 
 /*
- * constants & macros for entire ESAI_RX register
+ * constants & macros for entire ESAI_RX0 register
  */
-#define HW_ESAI_RX_ADDR      (REGS_ESAI_BASE + 0xa0)
+#define HW_ESAI_RX0_ADDR      (REGS_ESAI_BASE + 0xa0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ESAI_RX           (*(volatile hw_esai_rx_t *) HW_ESAI_RX_ADDR)
-#define HW_ESAI_RX_RD()      (HW_ESAI_RX.U)
+#define HW_ESAI_RX0           (*(volatile hw_esai_rx0_t *) HW_ESAI_RX0_ADDR)
+#define HW_ESAI_RX0_RD()      (HW_ESAI_RX0.U)
 #endif
 
 /*
- * constants & macros for individual ESAI_RX bitfields
+ * constants & macros for individual ESAI_RX0 bitfields
  */
 
-/* --- Register HW_ESAI_RX, field RXN_ (RO)
+/* --- Register HW_ESAI_RX0, field RXN (RO)
  *
  * Accept data from the receive shift registers when they become full See
  */
 
-#define BP_ESAI_RX_RXN_      0
-#define BM_ESAI_RX_RXN_      0x00ffffff
+#define BP_ESAI_RX0_RXN      0
+#define BM_ESAI_RX0_RXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_RX1 - Receive Data Register n 1 (RO)
+ *
+ * ESAI_RX3, ESAI_RX2, ESAI_RX1, and ESAI_RX0 are 32-bit read-only registers that accept data from
+ * the receive shift registers when they become full ( and ). The data occupies the most significant
+ * portion of the receive data registers, according to the ALC control bit setting. The unused bits
+ * (least significant portion and 8 most significant bits when ALC=1) read as zeros. The Core is
+ * interrupted whenever RXn becomes full if the associated interrupt is enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RXN : 24; //!< Accept data from the receive shift registers when they become full See
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_rx1_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_RX1 register
+ */
+#define HW_ESAI_RX1_ADDR      (REGS_ESAI_BASE + 0xa4)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_RX1           (*(volatile hw_esai_rx1_t *) HW_ESAI_RX1_ADDR)
+#define HW_ESAI_RX1_RD()      (HW_ESAI_RX1.U)
+#endif
+
+/*
+ * constants & macros for individual ESAI_RX1 bitfields
+ */
+
+/* --- Register HW_ESAI_RX1, field RXN (RO)
+ *
+ * Accept data from the receive shift registers when they become full See
+ */
+
+#define BP_ESAI_RX1_RXN      0
+#define BM_ESAI_RX1_RXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_RX2 - Receive Data Register n 2 (RO)
+ *
+ * ESAI_RX3, ESAI_RX2, ESAI_RX1, and ESAI_RX0 are 32-bit read-only registers that accept data from
+ * the receive shift registers when they become full ( and ). The data occupies the most significant
+ * portion of the receive data registers, according to the ALC control bit setting. The unused bits
+ * (least significant portion and 8 most significant bits when ALC=1) read as zeros. The Core is
+ * interrupted whenever RXn becomes full if the associated interrupt is enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RXN : 24; //!< Accept data from the receive shift registers when they become full See
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_rx2_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_RX2 register
+ */
+#define HW_ESAI_RX2_ADDR      (REGS_ESAI_BASE + 0xa8)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_RX2           (*(volatile hw_esai_rx2_t *) HW_ESAI_RX2_ADDR)
+#define HW_ESAI_RX2_RD()      (HW_ESAI_RX2.U)
+#endif
+
+/*
+ * constants & macros for individual ESAI_RX2 bitfields
+ */
+
+/* --- Register HW_ESAI_RX2, field RXN (RO)
+ *
+ * Accept data from the receive shift registers when they become full See
+ */
+
+#define BP_ESAI_RX2_RXN      0
+#define BM_ESAI_RX2_RXN      0x00ffffff
+
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_ESAI_RX3 - Receive Data Register n 3 (RO)
+ *
+ * ESAI_RX3, ESAI_RX2, ESAI_RX1, and ESAI_RX0 are 32-bit read-only registers that accept data from
+ * the receive shift registers when they become full ( and ). The data occupies the most significant
+ * portion of the receive data registers, according to the ALC control bit setting. The unused bits
+ * (least significant portion and 8 most significant bits when ALC=1) read as zeros. The Core is
+ * interrupted whenever RXn becomes full if the associated interrupt is enabled.
+ */
+typedef union
+{
+    reg32_t U;
+    struct
+    {
+        unsigned RXN : 24; //!< Accept data from the receive shift registers when they become full See
+        unsigned RESERVED0 : 8; //!< Reserved
+    } B;
+} hw_esai_rx3_t;
+#endif
+
+/*
+ * constants & macros for entire ESAI_RX3 register
+ */
+#define HW_ESAI_RX3_ADDR      (REGS_ESAI_BASE + 0xac)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_ESAI_RX3           (*(volatile hw_esai_rx3_t *) HW_ESAI_RX3_ADDR)
+#define HW_ESAI_RX3_RD()      (HW_ESAI_RX3.U)
+#endif
+
+/*
+ * constants & macros for individual ESAI_RX3 bitfields
+ */
+
+/* --- Register HW_ESAI_RX3, field RXN (RO)
+ *
+ * Accept data from the receive shift registers when they become full See
+ */
+
+#define BP_ESAI_RX3_RXN      0
+#define BM_ESAI_RX3_RXN      0x00ffffff
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1826,8 +2273,8 @@ typedef union
         unsigned TE5 : 1; //!< ESAI_TCR ESAI Transmit 5 Enable. TE5 enables the transfer of data from ESAI_TX5 to the transmit shift register #5. When TE5 is set and a frame sync is detected, the transmit #5 portion of the ESAI is enabled for that frame. When TE5 is cleared, the transmitter #5 is disabled after completing transmission of data currently in the ESAI transmit shift register. Data can be written to ESAI_TX5 when TE5 is cleared but the data is not transferred to the transmit shift register #5. The SDO5/SDI0 pin is the data input pin for ESAI_RX0 if TE5 is cleared and RE0 in the ESAI_RCR register is set. If both RE0 and TE5 are cleared, the transmitter and receiver are disabled, and the pin is tri-stated. Both RE0 and TE5 should not be set at the same time. The normal mode transmit enable sequence is to write data to one or more transmit data registers before setting TEx. The normal transmit disable sequence is to clear TEx, TIE and TEIE after TDE equals one. In the network mode, the operation of clearing TE5 and setting it again disables the transmitter #5 after completing transmission of the current data word until the beginning of the next frame. During that time period, the SDO5/SDI0 pin remains in the high-impedance state. The on-demand mode transmit enable sequence can be the same as the normal mode, or TE5 can be left enabled.
         unsigned TSHFD : 1; //!< ESAI_TCR Transmit Shift Direction. The TSHFD bit causes the transmit shift registers to shift data out MSB first when TSHFD equals zero or LSB first when TSHFD equals one (see and .
         unsigned TWA : 1; //!< ESAI_TCR Transmit Word Alignment Control. The Transmitter Word Alignment Control (TWA) bit defines the alignment of the data word in relation to the slot. This is relevant for the cases where the word length is shorter than the slot length. If TWA is cleared, the data word is left-aligned in the slot frame during transmission. If TWA is set, the data word is right-aligned in the slot frame during transmission. Because the data word is shorter than the slot length, the data word is extended until achieving the slot length, according to the following rule: If the data word is left-aligned (TWA=0), and zero padding is disabled (PADC=0), the last data bit is repeated after the data word has been transmitted. If zero padding is enabled (PADC=1), zeroes are transmitted after the data word has been transmitted. If the data word is right-aligned (TWA=1), and zero padding is disabled (PADC=0), the first data bit is repeated before the transmission of the data word. If zero padding is enabled (PADC=1), zeroes are transmitted before the transmission of the data word.
-        unsigned TMOD_ : 2; //!< ESAI_TCR Transmit Network Mode Control (TMOD1-TMOD0). The TMOD1 and TMOD0 bits are used to define the network mode of ESAI transmitters, as shown in Port C Control Register . In the normal mode, the frame rate divider determines the word transfer rate - one word is transferred per frame sync during the frame sync time slot, as shown in . In network mode, it is possible to transfer a word for every time slot, as shown in . For further details, refer to In order to comply with AC-97 specifications, TSWS4-TSWS0 should be set to 00011 (20-bit slot, 20-bit word length), TFSL and TFSR should be cleared, and TDC4-TDC0 should be set to 0x0C (13 words in frame). If TMOD[1:0]=0b11 and the above recommendations are followed, the first slot and word will be 16 bits long, and the next 12 slots and words will be 20 bits long, as required by the AC97 protocol.
-        unsigned TSWS_ : 5; //!< ESAI_TCR Tx Slot and Word Length Select (TSWS4-TSWS0). The TSWS4-TSWS0 bits are used to select the length of the slot and the length of the data words being transferred through the ESAI. The word length must be equal to or shorter than the slot length. The possible combinations are shown in . See also the ESAI data path programming model in and .
+        unsigned TMOD : 2; //!< ESAI_TCR Transmit Network Mode Control (TMOD1-TMOD0). The TMOD1 and TMOD0 bits are used to define the network mode of ESAI transmitters, as shown in Port C Control Register . In the normal mode, the frame rate divider determines the word transfer rate - one word is transferred per frame sync during the frame sync time slot, as shown in . In network mode, it is possible to transfer a word for every time slot, as shown in . For further details, refer to In order to comply with AC-97 specifications, TSWS4-TSWS0 should be set to 00011 (20-bit slot, 20-bit word length), TFSL and TFSR should be cleared, and TDC4-TDC0 should be set to 0x0C (13 words in frame). If TMOD[1:0]=0b11 and the above recommendations are followed, the first slot and word will be 16 bits long, and the next 12 slots and words will be 20 bits long, as required by the AC97 protocol.
+        unsigned TSWS : 5; //!< ESAI_TCR Tx Slot and Word Length Select (TSWS4-TSWS0). The TSWS4-TSWS0 bits are used to select the length of the slot and the length of the data words being transferred through the ESAI. The word length must be equal to or shorter than the slot length. The possible combinations are shown in . See also the ESAI data path programming model in and .
         unsigned TFSL : 1; //!< ESAI_TCR Transmit Frame Sync Length. The TFSL bit selects the length of frame sync to be generated or recognized. If TFSL is cleared, a word-length frame sync is selected. If TFSL is set, a 1-bit clock period frame sync is selected. See Figure 1-21 for examples of frame length selection.
         unsigned TFSR : 1; //!< ESAI_TCR Transmit Frame Sync Relative Timing. TFSR determines the relative timing of the transmit frame sync signal as referred to the serial data lines, for a word length frame sync only (TFSL=0). When TFSR is cleared the word length frame sync occurs together with the first bit of the data word of the first slot. When TFSR is set the word length frame sync starts one serial clock cycle earlier, that is, together with the last bit of the previous data word.
         unsigned PADC : 1; //!< ESAI_TCR Transmit Zero Padding Control. When PADC is cleared, zero padding is disabled. When PADC is set, zero padding is enabled. PADC, in conjunction with the TWA control bit, determines the way that padding is done for operating modes where the word length is less than the slot length. See the TWA bit description in bit 7 for more details. Because the data word is shorter than the slot length, the data word is extended until achieving the slot length, according to the following rule: If the data word is left-aligned (TWA=0), and zero padding is disabled (PADC=0), the last data bit is repeated after the data word has been transmitted. If zero padding is enabled (PADC=1), zeroes are transmitted after the data word has been transmitted. If the data word is right-aligned (TWA=1), and zero padding is disabled (PADC=0), the first data bit is repeated before the transmission of the data word. If zero padding is enabled (PADC=1), zeroes are transmitted before the transmission of the data word.
@@ -2095,7 +2542,7 @@ typedef union
 #define BW_ESAI_TCR_TWA(v)   BF_CS1(ESAI_TCR, TWA, v)
 #endif
 
-/* --- Register HW_ESAI_TCR, field TMOD_ (RW)
+/* --- Register HW_ESAI_TCR, field TMOD (RW)
  *
  * ESAI_TCR Transmit Network Mode Control (TMOD1-TMOD0). The TMOD1 and TMOD0 bits are used to define
  * the network mode of ESAI transmitters, as shown in Port C Control Register . In the normal mode,
@@ -2109,20 +2556,20 @@ typedef union
  * protocol.
  */
 
-#define BP_ESAI_TCR_TMOD_      8
-#define BM_ESAI_TCR_TMOD_      0x00000300
+#define BP_ESAI_TCR_TMOD      8
+#define BM_ESAI_TCR_TMOD      0x00000300
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_TCR_TMOD_(v)   ((((reg32_t) v) << 8) & BM_ESAI_TCR_TMOD_)
+#define BF_ESAI_TCR_TMOD(v)   ((((reg32_t) v) << 8) & BM_ESAI_TCR_TMOD)
 #else
-#define BF_ESAI_TCR_TMOD_(v)   (((v) << 8) & BM_ESAI_TCR_TMOD_)
+#define BF_ESAI_TCR_TMOD(v)   (((v) << 8) & BM_ESAI_TCR_TMOD)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the TMOD_ field to a new value.
-#define BW_ESAI_TCR_TMOD_(v)   BF_CS1(ESAI_TCR, TMOD_, v)
+//! @brief Set the TMOD field to a new value.
+#define BW_ESAI_TCR_TMOD(v)   BF_CS1(ESAI_TCR, TMOD, v)
 #endif
 
-/* --- Register HW_ESAI_TCR, field TSWS_ (RW)
+/* --- Register HW_ESAI_TCR, field TSWS (RW)
  *
  * ESAI_TCR Tx Slot and Word Length Select (TSWS4-TSWS0). The TSWS4-TSWS0 bits are used to select
  * the length of the slot and the length of the data words being transferred through the ESAI. The
@@ -2130,17 +2577,17 @@ typedef union
  * in . See also the ESAI data path programming model in and .
  */
 
-#define BP_ESAI_TCR_TSWS_      10
-#define BM_ESAI_TCR_TSWS_      0x00007c00
+#define BP_ESAI_TCR_TSWS      10
+#define BM_ESAI_TCR_TSWS      0x00007c00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_TCR_TSWS_(v)   ((((reg32_t) v) << 10) & BM_ESAI_TCR_TSWS_)
+#define BF_ESAI_TCR_TSWS(v)   ((((reg32_t) v) << 10) & BM_ESAI_TCR_TSWS)
 #else
-#define BF_ESAI_TCR_TSWS_(v)   (((v) << 10) & BM_ESAI_TCR_TSWS_)
+#define BF_ESAI_TCR_TSWS(v)   (((v) << 10) & BM_ESAI_TCR_TSWS)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the TSWS_ field to a new value.
-#define BW_ESAI_TCR_TSWS_(v)   BF_CS1(ESAI_TCR, TSWS_, v)
+//! @brief Set the TSWS field to a new value.
+#define BW_ESAI_TCR_TSWS(v)   BF_CS1(ESAI_TCR, TSWS, v)
 #endif
 
 /* --- Register HW_ESAI_TCR, field TFSL (RW)
@@ -2359,10 +2806,10 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned TPM_ : 8; //!< ESAI_TCCR Transmit Prescale Modulus Select. The TPM7-TPM0 bits specify the divide ratio of the prescale divider in the ESAI transmitter clock generator. A divide ratio from 1 to 256 (TPM[7:0]=0x00 to 0xFF) may be selected. The bit clock output is available at the transmit serial bit clock (SCKT) pin. The bit clock output is also available internally for use as the bit clock to shift the transmit and receive shift registers. The ESAI transmit clock generator functional diagram is shown in .
+        unsigned TPM : 8; //!< ESAI_TCCR Transmit Prescale Modulus Select. The TPM7-TPM0 bits specify the divide ratio of the prescale divider in the ESAI transmitter clock generator. A divide ratio from 1 to 256 (TPM[7:0]=0x00 to 0xFF) may be selected. The bit clock output is available at the transmit serial bit clock (SCKT) pin. The bit clock output is also available internally for use as the bit clock to shift the transmit and receive shift registers. The ESAI transmit clock generator functional diagram is shown in .
         unsigned TPSR : 1; //!< ESAI_TCCR Transmit Prescaler Range. The TPSR bit controls a fixed divide-by-eight prescaler in series with the variable prescaler. This bit is used to extend the range of the prescaler for those cases where a slower bit clock is desired. When TPSR is set, the fixed prescaler is bypassed. When TPSR is cleared, the fixed divide-by-eight prescaler is operational (see ). The maximum internally generated bit clock frequency is Fsys/4; the minimum internally generated bit clock frequency is Fsys/(2 x 8 x 256 x 16)=Fsys/65536. (Do not use the combination TPSR=1, TPM7-TPM0=0x00, and TFP3-TFP0=0x0 which causes synchronization problems when using the internal ARM Core clock as source (TCKD=1 or THCKD=1))
-        unsigned TDC_ : 5; //!< ESAI_TCCR Tx Frame Rate Divider Control. The TDC4-TDC0 bits control the divide ratio for the programmable frame rate dividers used to generate the transmitter frame clocks. In network mode, this ratio may be interpreted as the number of words per frame minus one. The divide ratio may range from 2 to 32 (TDC[4:0]=0x00001 to 0x11111) for network mode. A divide ratio of one (TDC[4:0]=0x00000) in network mode is a special case (on-demand mode). In normal mode, this ratio determines the word transfer rate. The divide ratio may range from 1 to 32 (TDC[4:0]=0x00000 to 0x11111) for normal mode. In normal mode, a divide ratio of 1 (TDC[4:0]=0x00000) provides continuous periodic data word transfers. A bit-length frame sync (TFSL=1) must be used in this case. The ESAI frame sync generator functional diagram is shown in
-        unsigned TFP_ : 4; //!< ESAI_TCCR Tx High Frequency Clock Divider. The TFP3-TFP0 bits control the divide ratio of the transmitter high frequency clock to the transmitter serial bit clock when the source of the high frequency clock and the bit clock is the internal ARM Core clock. When the HCKT input is being driven from an external high frequency clock, the TFP3-TFP0 bits specify an additional division ratio in the clock divider chain. shows the specification for the divide ratio. shows the ESAI high frequency clock generator functional diagram.
+        unsigned TDC : 5; //!< ESAI_TCCR Tx Frame Rate Divider Control. The TDC4-TDC0 bits control the divide ratio for the programmable frame rate dividers used to generate the transmitter frame clocks. In network mode, this ratio may be interpreted as the number of words per frame minus one. The divide ratio may range from 2 to 32 (TDC[4:0]=0x00001 to 0x11111) for network mode. A divide ratio of one (TDC[4:0]=0x00000) in network mode is a special case (on-demand mode). In normal mode, this ratio determines the word transfer rate. The divide ratio may range from 1 to 32 (TDC[4:0]=0x00000 to 0x11111) for normal mode. In normal mode, a divide ratio of 1 (TDC[4:0]=0x00000) provides continuous periodic data word transfers. A bit-length frame sync (TFSL=1) must be used in this case. The ESAI frame sync generator functional diagram is shown in
+        unsigned TFP : 4; //!< ESAI_TCCR Tx High Frequency Clock Divider. The TFP3-TFP0 bits control the divide ratio of the transmitter high frequency clock to the transmitter serial bit clock when the source of the high frequency clock and the bit clock is the internal ARM Core clock. When the HCKT input is being driven from an external high frequency clock, the TFP3-TFP0 bits specify an additional division ratio in the clock divider chain. shows the specification for the divide ratio. shows the ESAI high frequency clock generator functional diagram.
         unsigned TCKP : 1; //!< ESAI_TCCR Transmit Clock Polarity. The Transmitter Clock Polarity (TCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If TCKP is cleared the data and the frame sync are clocked out on the rising edge of the transmit bit clock and latched in on the falling edge of the transmit bit clock. If TCKP is set the falling edge of the transmit clock is used to clock the data out and frame sync and the rising edge of the transmit clock is used to latch the data and frame sync in.
         unsigned TFSP : 1; //!< ESAI_TCCR Transmit Frame Sync Polarity. The Transmitter Frame Sync Polarity (TFSP) bit determines the polarity of the transmit frame sync signal. When TFSP is cleared, the frame sync signal polarity is positive, that is, the frame start is indicated by a high level on the frame sync pin. When TFSP is set, the frame sync signal polarity is negative, that is, the frame start is indicated by a low level on the frame sync pin.
         unsigned THCKP : 1; //!< ESAI_TCCR Transmit High Frequency Clock Polarity. The Transmitter High Frequency Clock Polarity (THCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If THCKP is cleared the data and the frame sync are clocked out on the rising edge of the transmit high frequency bit clock and latched in on the falling edge of the transmit bit clock. If THCKP is set the falling edge of the transmit clock is used to clock the data out and frame sync and the rising edge of the transmit clock is used to latch the data and frame sync in.
@@ -2392,7 +2839,7 @@ typedef union
  * constants & macros for individual ESAI_TCCR bitfields
  */
 
-/* --- Register HW_ESAI_TCCR, field TPM_ (RW)
+/* --- Register HW_ESAI_TCCR, field TPM (RW)
  *
  * ESAI_TCCR Transmit Prescale Modulus Select. The TPM7-TPM0 bits specify the divide ratio of the
  * prescale divider in the ESAI transmitter clock generator. A divide ratio from 1 to 256
@@ -2402,17 +2849,17 @@ typedef union
  * diagram is shown in .
  */
 
-#define BP_ESAI_TCCR_TPM_      0
-#define BM_ESAI_TCCR_TPM_      0x000000ff
+#define BP_ESAI_TCCR_TPM      0
+#define BM_ESAI_TCCR_TPM      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_TCCR_TPM_(v)   ((((reg32_t) v) << 0) & BM_ESAI_TCCR_TPM_)
+#define BF_ESAI_TCCR_TPM(v)   ((((reg32_t) v) << 0) & BM_ESAI_TCCR_TPM)
 #else
-#define BF_ESAI_TCCR_TPM_(v)   (((v) << 0) & BM_ESAI_TCCR_TPM_)
+#define BF_ESAI_TCCR_TPM(v)   (((v) << 0) & BM_ESAI_TCCR_TPM)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the TPM_ field to a new value.
-#define BW_ESAI_TCCR_TPM_(v)   BF_CS1(ESAI_TCCR, TPM_, v)
+//! @brief Set the TPM field to a new value.
+#define BW_ESAI_TCCR_TPM(v)   BF_CS1(ESAI_TCCR, TPM, v)
 #endif
 
 /* --- Register HW_ESAI_TCCR, field TPSR (RW)
@@ -2440,7 +2887,7 @@ typedef union
 #define BW_ESAI_TCCR_TPSR(v)   BF_CS1(ESAI_TCCR, TPSR, v)
 #endif
 
-/* --- Register HW_ESAI_TCCR, field TDC_ (RW)
+/* --- Register HW_ESAI_TCCR, field TDC (RW)
  *
  * ESAI_TCCR Tx Frame Rate Divider Control. The TDC4-TDC0 bits control the divide ratio for the
  * programmable frame rate dividers used to generate the transmitter frame clocks. In network mode,
@@ -2453,20 +2900,20 @@ typedef union
  * case. The ESAI frame sync generator functional diagram is shown in
  */
 
-#define BP_ESAI_TCCR_TDC_      9
-#define BM_ESAI_TCCR_TDC_      0x00003e00
+#define BP_ESAI_TCCR_TDC      9
+#define BM_ESAI_TCCR_TDC      0x00003e00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_TCCR_TDC_(v)   ((((reg32_t) v) << 9) & BM_ESAI_TCCR_TDC_)
+#define BF_ESAI_TCCR_TDC(v)   ((((reg32_t) v) << 9) & BM_ESAI_TCCR_TDC)
 #else
-#define BF_ESAI_TCCR_TDC_(v)   (((v) << 9) & BM_ESAI_TCCR_TDC_)
+#define BF_ESAI_TCCR_TDC(v)   (((v) << 9) & BM_ESAI_TCCR_TDC)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the TDC_ field to a new value.
-#define BW_ESAI_TCCR_TDC_(v)   BF_CS1(ESAI_TCCR, TDC_, v)
+//! @brief Set the TDC field to a new value.
+#define BW_ESAI_TCCR_TDC(v)   BF_CS1(ESAI_TCCR, TDC, v)
 #endif
 
-/* --- Register HW_ESAI_TCCR, field TFP_ (RW)
+/* --- Register HW_ESAI_TCCR, field TFP (RW)
  *
  * ESAI_TCCR Tx High Frequency Clock Divider. The TFP3-TFP0 bits control the divide ratio of the
  * transmitter high frequency clock to the transmitter serial bit clock when the source of the high
@@ -2476,17 +2923,17 @@ typedef union
  * high frequency clock generator functional diagram.
  */
 
-#define BP_ESAI_TCCR_TFP_      14
-#define BM_ESAI_TCCR_TFP_      0x0003c000
+#define BP_ESAI_TCCR_TFP      14
+#define BM_ESAI_TCCR_TFP      0x0003c000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_TCCR_TFP_(v)   ((((reg32_t) v) << 14) & BM_ESAI_TCCR_TFP_)
+#define BF_ESAI_TCCR_TFP(v)   ((((reg32_t) v) << 14) & BM_ESAI_TCCR_TFP)
 #else
-#define BF_ESAI_TCCR_TFP_(v)   (((v) << 14) & BM_ESAI_TCCR_TFP_)
+#define BF_ESAI_TCCR_TFP(v)   (((v) << 14) & BM_ESAI_TCCR_TFP)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the TFP_ field to a new value.
-#define BW_ESAI_TCCR_TFP_(v)   BF_CS1(ESAI_TCCR, TFP_, v)
+//! @brief Set the TFP field to a new value.
+#define BW_ESAI_TCCR_TFP(v)   BF_CS1(ESAI_TCCR, TFP, v)
 #endif
 
 /* --- Register HW_ESAI_TCCR, field TCKP (RW)
@@ -2651,8 +3098,8 @@ typedef union
         unsigned RESERVED0 : 2; //!< Reserved.
         unsigned RSHFD : 1; //!< ESAI_RCR Receiver Shift Direction. The RSHFD bit causes the receiver shift registers to shift data in MSB first when RSHFD is cleared or LSB first when RSHFD is set (see and ).
         unsigned RWA : 1; //!< ESAI_RCR Receiver Word Alignment Control. The Receiver Word Alignment Control (RWA) bit defines the alignment of the data word in relation to the slot. This is relevant for the cases where the word length is shorter than the slot length. If RWA is cleared, the data word is assumed to be left-aligned in the slot frame. If RWA is set, the data word is assumed to be right-aligned in the slot frame. If the data word is shorter than the slot length, the data bits which are not in the data word field are ignored. For data word lengths of less than 24 bits, the data word is right-extended with zeroes before being stored in the receive data registers.
-        unsigned RMOD_ : 2; //!< ESAI_RCR Receiver Network Mode Control. The RMOD1 and RMOD0 bits are used to define the network mode of the ESAI receivers, as shown in . In the normal mode, the frame rate divider determines the word transfer rate - one word is transferred per frame sync during the frame sync time slot, as shown in . In network mode, it is possible to transfer a word for every time slot, as shown in . For more details, see . In order to comply with AC-97 specifications, RSWS4-RSWS0 should be set to 0x00011 (20-bit slot, 20-bit word); RFSL and RFSR should be cleared, and RDC4-RDC0 should be set to 0x0C (13 words in frame).
-        unsigned RSWS_ : 5; //!< ESAI_RCR Receiver Slot and Word Select. The RSWS4-RSWS0 bits are used to select the length of the slot and the length of the data words being received through the ESAI. The word length must be equal to or shorter than the slot length. The possible combinations are shown in . See also the ESAI data path programming model in and .
+        unsigned RMOD : 2; //!< ESAI_RCR Receiver Network Mode Control. The RMOD1 and RMOD0 bits are used to define the network mode of the ESAI receivers, as shown in . In the normal mode, the frame rate divider determines the word transfer rate - one word is transferred per frame sync during the frame sync time slot, as shown in . In network mode, it is possible to transfer a word for every time slot, as shown in . For more details, see . In order to comply with AC-97 specifications, RSWS4-RSWS0 should be set to 0x00011 (20-bit slot, 20-bit word); RFSL and RFSR should be cleared, and RDC4-RDC0 should be set to 0x0C (13 words in frame).
+        unsigned RSWS : 5; //!< ESAI_RCR Receiver Slot and Word Select. The RSWS4-RSWS0 bits are used to select the length of the slot and the length of the data words being received through the ESAI. The word length must be equal to or shorter than the slot length. The possible combinations are shown in . See also the ESAI data path programming model in and .
         unsigned RFSL : 1; //!< ESAI_RCR Receiver Frame Sync Length. The RFSL bit selects the length of the receive frame sync to be generated or recognized. If RFSL is cleared, a word-length frame sync is selected. If RFSL is set, a 1-bit clock period frame sync is selected. Refer to for examples of frame length selection.
         unsigned RFSR : 1; //!< ESAI_RCR Receiver Frame Sync Relative Timing. RFSR determines the relative timing of the receive frame sync signal as referred to the serial data lines, for a word length frame sync only. When RFSR is cleared the word length frame sync occurs together with the first bit of the data word of the first slot. When RFSR is set the word length frame sync starts one serial clock cycle earlier, that is, together with the last bit of the previous data word.
         unsigned RESERVED1 : 2; //!< Reserved.
@@ -2823,7 +3270,7 @@ typedef union
 #define BW_ESAI_RCR_RWA(v)   BF_CS1(ESAI_RCR, RWA, v)
 #endif
 
-/* --- Register HW_ESAI_RCR, field RMOD_ (RW)
+/* --- Register HW_ESAI_RCR, field RMOD (RW)
  *
  * ESAI_RCR Receiver Network Mode Control. The RMOD1 and RMOD0 bits are used to define the network
  * mode of the ESAI receivers, as shown in . In the normal mode, the frame rate divider determines
@@ -2834,20 +3281,20 @@ typedef union
  * set to 0x0C (13 words in frame).
  */
 
-#define BP_ESAI_RCR_RMOD_      8
-#define BM_ESAI_RCR_RMOD_      0x00000300
+#define BP_ESAI_RCR_RMOD      8
+#define BM_ESAI_RCR_RMOD      0x00000300
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_RCR_RMOD_(v)   ((((reg32_t) v) << 8) & BM_ESAI_RCR_RMOD_)
+#define BF_ESAI_RCR_RMOD(v)   ((((reg32_t) v) << 8) & BM_ESAI_RCR_RMOD)
 #else
-#define BF_ESAI_RCR_RMOD_(v)   (((v) << 8) & BM_ESAI_RCR_RMOD_)
+#define BF_ESAI_RCR_RMOD(v)   (((v) << 8) & BM_ESAI_RCR_RMOD)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RMOD_ field to a new value.
-#define BW_ESAI_RCR_RMOD_(v)   BF_CS1(ESAI_RCR, RMOD_, v)
+//! @brief Set the RMOD field to a new value.
+#define BW_ESAI_RCR_RMOD(v)   BF_CS1(ESAI_RCR, RMOD, v)
 #endif
 
-/* --- Register HW_ESAI_RCR, field RSWS_ (RW)
+/* --- Register HW_ESAI_RCR, field RSWS (RW)
  *
  * ESAI_RCR Receiver Slot and Word Select. The RSWS4-RSWS0 bits are used to select the length of the
  * slot and the length of the data words being received through the ESAI. The word length must be
@@ -2855,17 +3302,17 @@ typedef union
  * ESAI data path programming model in and .
  */
 
-#define BP_ESAI_RCR_RSWS_      10
-#define BM_ESAI_RCR_RSWS_      0x00007c00
+#define BP_ESAI_RCR_RSWS      10
+#define BM_ESAI_RCR_RSWS      0x00007c00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_RCR_RSWS_(v)   ((((reg32_t) v) << 10) & BM_ESAI_RCR_RSWS_)
+#define BF_ESAI_RCR_RSWS(v)   ((((reg32_t) v) << 10) & BM_ESAI_RCR_RSWS)
 #else
-#define BF_ESAI_RCR_RSWS_(v)   (((v) << 10) & BM_ESAI_RCR_RSWS_)
+#define BF_ESAI_RCR_RSWS(v)   (((v) << 10) & BM_ESAI_RCR_RSWS)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RSWS_ field to a new value.
-#define BW_ESAI_RCR_RSWS_(v)   BF_CS1(ESAI_RCR, RSWS_, v)
+//! @brief Set the RSWS field to a new value.
+#define BW_ESAI_RCR_RSWS(v)   BF_CS1(ESAI_RCR, RSWS, v)
 #endif
 
 /* --- Register HW_ESAI_RCR, field RFSL (RW)
@@ -3049,10 +3496,10 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned RPM_ : 8; //!< ESAI_RCCR Receiver Prescale Modulus Select. The RPM7-RPM0 bits specify the divide ratio of the prescale divider in the ESAI receiver clock generator. A divide ratio from 1 to 256 (RPM[7:0]=0x00 to 0xFF) may be selected. The bit clock output is available at the receiver serial bit clock (SCKR) pin. The bit clock output is also available internally for use as the bit clock to shift the receive shift registers. The ESAI receive clock generator functional diagram is shown in .
+        unsigned RPM : 8; //!< ESAI_RCCR Receiver Prescale Modulus Select. The RPM7-RPM0 bits specify the divide ratio of the prescale divider in the ESAI receiver clock generator. A divide ratio from 1 to 256 (RPM[7:0]=0x00 to 0xFF) may be selected. The bit clock output is available at the receiver serial bit clock (SCKR) pin. The bit clock output is also available internally for use as the bit clock to shift the receive shift registers. The ESAI receive clock generator functional diagram is shown in .
         unsigned RPSP : 1; //!< ESAI_RCCR Receiver Prescaler Range. The RPSR controls a fixed divide-by-eight prescaler in series with the variable prescaler. This bit is used to extend the range of the prescaler for those cases where a slower bit clock is desired. When RPSR is set, the fixed prescaler is bypassed. When RPSR is cleared, the fixed divide-by-eight prescaler is operational (see ). The maximum internally generated bit clock frequency is Fsys/4, the minimum internally generated bit clock frequency is Fsys/(2 x 8 x 256 x 16)=Fsys/65536. (Do not use the combination RPSR=1 and RPM7-RPM0 =0x00, which causes synchronization problems when using the internal Core clock as source (RHCKD=1 or RCKD=1))
-        unsigned RDC_ : 5; //!< ESAI_RCCR Rx Frame Rate Divider Control. The RDC4-RDC0 bits control the divide ratio for the programmable frame rate dividers used to generate the receiver frame clocks. In network mode, this ratio may be interpreted as the number of words per frame minus one. The divide ratio may range from 2 to 32 (RDC[4:0]=0x00001 to 0x11111) for network mode. A divide ratio of one (RDC[4:0]=0x00000) in network mode is a special case (on-demand mode). In normal mode, this ratio determines the word transfer rate. The divide ratio may range from 1 to 32 (RDC[4:0]=0x00000 to 0x11111) for normal mode. In normal mode, a divide ratio of one (RDC[4:0]=0x00000) provides continuous periodic data word transfers. A bit-length frame sync (RFSL=1) must be used in this case. The ESAI frame sync generator functional diagram is shown in .
-        unsigned RFP_ : 4; //!< ESAI_RCCR Rx High Frequency Clock Divider. The RFP3-RFP0 bits control the divide ratio of the receiver high frequency clock to the receiver serial bit clock when the source of the receiver high frequency clock and the bit clock is the internal Arm Core clock. When the HCKR input is being driven from an external high frequency clock, the RFP3-RFP0 bits specify an additional division ration in the clock divider chain. provides the specification of the divide ratio. shows the ESAI high frequency generator functional diagram.
+        unsigned RDC : 5; //!< ESAI_RCCR Rx Frame Rate Divider Control. The RDC4-RDC0 bits control the divide ratio for the programmable frame rate dividers used to generate the receiver frame clocks. In network mode, this ratio may be interpreted as the number of words per frame minus one. The divide ratio may range from 2 to 32 (RDC[4:0]=0x00001 to 0x11111) for network mode. A divide ratio of one (RDC[4:0]=0x00000) in network mode is a special case (on-demand mode). In normal mode, this ratio determines the word transfer rate. The divide ratio may range from 1 to 32 (RDC[4:0]=0x00000 to 0x11111) for normal mode. In normal mode, a divide ratio of one (RDC[4:0]=0x00000) provides continuous periodic data word transfers. A bit-length frame sync (RFSL=1) must be used in this case. The ESAI frame sync generator functional diagram is shown in .
+        unsigned RFP : 4; //!< ESAI_RCCR Rx High Frequency Clock Divider. The RFP3-RFP0 bits control the divide ratio of the receiver high frequency clock to the receiver serial bit clock when the source of the receiver high frequency clock and the bit clock is the internal Arm Core clock. When the HCKR input is being driven from an external high frequency clock, the RFP3-RFP0 bits specify an additional division ration in the clock divider chain. provides the specification of the divide ratio. shows the ESAI high frequency generator functional diagram.
         unsigned RCKP : 1; //!< The Receiver Clock Polarity (RCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If RCKP is cleared the data and the frame sync are clocked out on the rising edge of the receive bit clock and the frame sync is latched in on the falling edge of the receive bit clock. If RCKP is set the falling edge of the receive clock is used to clock the data and frame sync out and the rising edge of the receive clock is used to latch the frame sync in.
         unsigned RFSP : 1; //!< ESAI_RCCR Receiver Frame Sync Polarity. The Receiver Frame Sync Polarity (RFSP) determines the polarity of the receive frame sync signal. When RFSP is cleared the frame sync signal polarity is positive, that is, the frame start is indicated by a high level on the frame sync pin. When RFSP is set the frame sync signal polarity is negative, that is, the frame start is indicated by a low level on the frame sync pin.
         unsigned RHCKP : 1; //!< ESAI_RCCR Receiver High Frequency Clock Polarity. The Receiver High Frequency Clock Polarity (RHCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If RHCKP is cleared the data and the frame sync are clocked out on the rising edge of the receive high frequency bit clock and the frame sync is latched in on the falling edge of the receive bit clock. If RHCKP is set the falling edge of the receive clock is used to clock the data and frame sync out and the rising edge of the receive clock is used to latch the frame sync in.
@@ -3082,7 +3529,7 @@ typedef union
  * constants & macros for individual ESAI_RCCR bitfields
  */
 
-/* --- Register HW_ESAI_RCCR, field RPM_ (RW)
+/* --- Register HW_ESAI_RCCR, field RPM (RW)
  *
  * ESAI_RCCR Receiver Prescale Modulus Select. The RPM7-RPM0 bits specify the divide ratio of the
  * prescale divider in the ESAI receiver clock generator. A divide ratio from 1 to 256
@@ -3092,17 +3539,17 @@ typedef union
  * shown in .
  */
 
-#define BP_ESAI_RCCR_RPM_      0
-#define BM_ESAI_RCCR_RPM_      0x000000ff
+#define BP_ESAI_RCCR_RPM      0
+#define BM_ESAI_RCCR_RPM      0x000000ff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_RCCR_RPM_(v)   ((((reg32_t) v) << 0) & BM_ESAI_RCCR_RPM_)
+#define BF_ESAI_RCCR_RPM(v)   ((((reg32_t) v) << 0) & BM_ESAI_RCCR_RPM)
 #else
-#define BF_ESAI_RCCR_RPM_(v)   (((v) << 0) & BM_ESAI_RCCR_RPM_)
+#define BF_ESAI_RCCR_RPM(v)   (((v) << 0) & BM_ESAI_RCCR_RPM)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RPM_ field to a new value.
-#define BW_ESAI_RCCR_RPM_(v)   BF_CS1(ESAI_RCCR, RPM_, v)
+//! @brief Set the RPM field to a new value.
+#define BW_ESAI_RCCR_RPM(v)   BF_CS1(ESAI_RCCR, RPM, v)
 #endif
 
 /* --- Register HW_ESAI_RCCR, field RPSP (RW)
@@ -3130,7 +3577,7 @@ typedef union
 #define BW_ESAI_RCCR_RPSP(v)   BF_CS1(ESAI_RCCR, RPSP, v)
 #endif
 
-/* --- Register HW_ESAI_RCCR, field RDC_ (RW)
+/* --- Register HW_ESAI_RCCR, field RDC (RW)
  *
  * ESAI_RCCR Rx Frame Rate Divider Control. The RDC4-RDC0 bits control the divide ratio for the
  * programmable frame rate dividers used to generate the receiver frame clocks. In network mode,
@@ -3143,20 +3590,20 @@ typedef union
  * case. The ESAI frame sync generator functional diagram is shown in .
  */
 
-#define BP_ESAI_RCCR_RDC_      9
-#define BM_ESAI_RCCR_RDC_      0x00003e00
+#define BP_ESAI_RCCR_RDC      9
+#define BM_ESAI_RCCR_RDC      0x00003e00
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_RCCR_RDC_(v)   ((((reg32_t) v) << 9) & BM_ESAI_RCCR_RDC_)
+#define BF_ESAI_RCCR_RDC(v)   ((((reg32_t) v) << 9) & BM_ESAI_RCCR_RDC)
 #else
-#define BF_ESAI_RCCR_RDC_(v)   (((v) << 9) & BM_ESAI_RCCR_RDC_)
+#define BF_ESAI_RCCR_RDC(v)   (((v) << 9) & BM_ESAI_RCCR_RDC)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RDC_ field to a new value.
-#define BW_ESAI_RCCR_RDC_(v)   BF_CS1(ESAI_RCCR, RDC_, v)
+//! @brief Set the RDC field to a new value.
+#define BW_ESAI_RCCR_RDC(v)   BF_CS1(ESAI_RCCR, RDC, v)
 #endif
 
-/* --- Register HW_ESAI_RCCR, field RFP_ (RW)
+/* --- Register HW_ESAI_RCCR, field RFP (RW)
  *
  * ESAI_RCCR Rx High Frequency Clock Divider. The RFP3-RFP0 bits control the divide ratio of the
  * receiver high frequency clock to the receiver serial bit clock when the source of the receiver
@@ -3166,17 +3613,17 @@ typedef union
  * the ESAI high frequency generator functional diagram.
  */
 
-#define BP_ESAI_RCCR_RFP_      14
-#define BM_ESAI_RCCR_RFP_      0x0003c000
+#define BP_ESAI_RCCR_RFP      14
+#define BM_ESAI_RCCR_RFP      0x0003c000
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_RCCR_RFP_(v)   ((((reg32_t) v) << 14) & BM_ESAI_RCCR_RFP_)
+#define BF_ESAI_RCCR_RFP(v)   ((((reg32_t) v) << 14) & BM_ESAI_RCCR_RFP)
 #else
-#define BF_ESAI_RCCR_RFP_(v)   (((v) << 14) & BM_ESAI_RCCR_RFP_)
+#define BF_ESAI_RCCR_RFP(v)   (((v) << 14) & BM_ESAI_RCCR_RFP)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RFP_ field to a new value.
-#define BW_ESAI_RCCR_RFP_(v)   BF_CS1(ESAI_RCCR, RFP_, v)
+//! @brief Set the RFP field to a new value.
+#define BW_ESAI_RCCR_RFP(v)   BF_CS1(ESAI_RCCR, RFP, v)
 #endif
 
 /* --- Register HW_ESAI_RCCR, field RCKP (RW)
@@ -3342,7 +3789,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned TS_ : 16; //!< When bit number N in ESAI_TSMA is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N. The data is still transferred from the transmit data registers to the transmit shift registers but neither the TDE nor the TUE flags are set. This means that during a disabled slot, no transmitter empty interrupt is generated. The Core is interrupted only for enabled slots. Data that is written to the transmit data registers when servicing this request is transmitted in the next enabled transmit time slot. When bit number N in ESAI_TSMA register is set, the transmit sequence is as usual: data is transferred from the TX registers to the shift registers and transmitted during slot number N, and the TDE flag is set. Using the slot mask in ESAI_TSMA does not conflict with using TSR. Even if a slot is enabled in ESAI_TSMA, the user may choose to write to TSR instead of writing to the transmit data registers TXn. This causes all the transmit data pins of the enabled transmitters to be tri-stated during the next slot. Data written to the ESAI_TSMA affects the next frame transmission. The frame being transmitted is not affected by this data and would comply to the last ESAI_TSMA setting. Data read from ESAI_TSMA returns the last written data. After hardware or software reset, the ESAI_TSMA register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data transmission. When operating in normal mode, bit 0 of the ESAI_TSMA register must be set, otherwise no output is generated.
+        unsigned TS : 16; //!< When bit number N in ESAI_TSMA is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N. The data is still transferred from the transmit data registers to the transmit shift registers but neither the TDE nor the TUE flags are set. This means that during a disabled slot, no transmitter empty interrupt is generated. The Core is interrupted only for enabled slots. Data that is written to the transmit data registers when servicing this request is transmitted in the next enabled transmit time slot. When bit number N in ESAI_TSMA register is set, the transmit sequence is as usual: data is transferred from the TX registers to the shift registers and transmitted during slot number N, and the TDE flag is set. Using the slot mask in ESAI_TSMA does not conflict with using TSR. Even if a slot is enabled in ESAI_TSMA, the user may choose to write to TSR instead of writing to the transmit data registers TXn. This causes all the transmit data pins of the enabled transmitters to be tri-stated during the next slot. Data written to the ESAI_TSMA affects the next frame transmission. The frame being transmitted is not affected by this data and would comply to the last ESAI_TSMA setting. Data read from ESAI_TSMA returns the last written data. After hardware or software reset, the ESAI_TSMA register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data transmission. When operating in normal mode, bit 0 of the ESAI_TSMA register must be set, otherwise no output is generated.
         unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_esai_tsma_t;
@@ -3366,7 +3813,7 @@ typedef union
  * constants & macros for individual ESAI_TSMA bitfields
  */
 
-/* --- Register HW_ESAI_TSMA, field TS_ (RW)
+/* --- Register HW_ESAI_TSMA, field TS (RW)
  *
  * When bit number N in ESAI_TSMA is cleared, all the transmit data pins of the enabled transmitters
  * are tri-stated during transmit time slot number N. The data is still transferred from the
@@ -3387,17 +3834,17 @@ typedef union
  * must be set, otherwise no output is generated.
  */
 
-#define BP_ESAI_TSMA_TS_      0
-#define BM_ESAI_TSMA_TS_      0x0000ffff
+#define BP_ESAI_TSMA_TS      0
+#define BM_ESAI_TSMA_TS      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_TSMA_TS_(v)   ((((reg32_t) v) << 0) & BM_ESAI_TSMA_TS_)
+#define BF_ESAI_TSMA_TS(v)   ((((reg32_t) v) << 0) & BM_ESAI_TSMA_TS)
 #else
-#define BF_ESAI_TSMA_TS_(v)   (((v) << 0) & BM_ESAI_TSMA_TS_)
+#define BF_ESAI_TSMA_TS(v)   (((v) << 0) & BM_ESAI_TSMA_TS)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the TS_ field to a new value.
-#define BW_ESAI_TSMA_TS_(v)   BF_CS1(ESAI_TSMA, TS_, v)
+//! @brief Set the TS field to a new value.
+#define BW_ESAI_TSMA_TS(v)   BF_CS1(ESAI_TSMA, TS, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -3416,7 +3863,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned TS_ : 16; //!< When bit number N in ESAI_TSMB is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N. The data is still transferred from the transmit data registers to the transmit shift registers but neither the TDE nor the TUE flags are set. This means that during a disabled slot, no transmitter empty interrupt is generated. The Core is interrupted only for enabled slots. Data that is written to the transmit data registers when servicing this request is transmitted in the next enabled transmit time slot. When bit number N in ESAI_TSMB register is set, the transmit sequence is as usual: data is transferred from the TX registers to the shift registers and transmitted during slot number N, and the TDE flag is set. Using the slot mask in ESAI_TSMB does not conflict with using TSR. Even if a slot is enabled in TSMB, the user may chose to write to TSR instead of writing to the transmit data registers TXn. This causes all the transmit data pins of the enabled transmitters to be tri-stated during the next slot. Data written to the ESAI_TSMB affects the next frame transmission. The frame being transmitted is not affected by this data and would comply to the last ESAI_TSMB setting. Data read from ESAI_TSMB returns the last written data. After hardware or software reset, the ESAI_TSMB register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data transmission.
+        unsigned TS : 16; //!< When bit number N in ESAI_TSMB is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N. The data is still transferred from the transmit data registers to the transmit shift registers but neither the TDE nor the TUE flags are set. This means that during a disabled slot, no transmitter empty interrupt is generated. The Core is interrupted only for enabled slots. Data that is written to the transmit data registers when servicing this request is transmitted in the next enabled transmit time slot. When bit number N in ESAI_TSMB register is set, the transmit sequence is as usual: data is transferred from the TX registers to the shift registers and transmitted during slot number N, and the TDE flag is set. Using the slot mask in ESAI_TSMB does not conflict with using TSR. Even if a slot is enabled in TSMB, the user may chose to write to TSR instead of writing to the transmit data registers TXn. This causes all the transmit data pins of the enabled transmitters to be tri-stated during the next slot. Data written to the ESAI_TSMB affects the next frame transmission. The frame being transmitted is not affected by this data and would comply to the last ESAI_TSMB setting. Data read from ESAI_TSMB returns the last written data. After hardware or software reset, the ESAI_TSMB register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data transmission.
         unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_esai_tsmb_t;
@@ -3440,7 +3887,7 @@ typedef union
  * constants & macros for individual ESAI_TSMB bitfields
  */
 
-/* --- Register HW_ESAI_TSMB, field TS_ (RW)
+/* --- Register HW_ESAI_TSMB, field TS (RW)
  *
  * When bit number N in ESAI_TSMB is cleared, all the transmit data pins of the enabled transmitters
  * are tri-stated during transmit time slot number N. The data is still transferred from the
@@ -3460,17 +3907,17 @@ typedef union
  * enabled for data transmission.
  */
 
-#define BP_ESAI_TSMB_TS_      0
-#define BM_ESAI_TSMB_TS_      0x0000ffff
+#define BP_ESAI_TSMB_TS      0
+#define BM_ESAI_TSMB_TS      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_TSMB_TS_(v)   ((((reg32_t) v) << 0) & BM_ESAI_TSMB_TS_)
+#define BF_ESAI_TSMB_TS(v)   ((((reg32_t) v) << 0) & BM_ESAI_TSMB_TS)
 #else
-#define BF_ESAI_TSMB_TS_(v)   (((v) << 0) & BM_ESAI_TSMB_TS_)
+#define BF_ESAI_TSMB_TS(v)   (((v) << 0) & BM_ESAI_TSMB_TS)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the TS_ field to a new value.
-#define BW_ESAI_TSMB_TS_(v)   BF_CS1(ESAI_TSMB, TS_, v)
+//! @brief Set the TS field to a new value.
+#define BW_ESAI_TSMB_TS(v)   BF_CS1(ESAI_TSMB, TS, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -3489,7 +3936,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned RS_ : 16; //!< When bit number N in the ESAI_RSMA register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N. The data is not transferred from the receive shift registers to the receive data registers, and neither the RDF nor the ROE flag is set. This means that during a disabled slot, no receiver full interrupt is generated. The Core is interrupted only for enabled slots. When bit number N in the ESAI_RSMA is set, the receive sequence is as usual: data which is shifted into the enabled receivers shift registers is transferred to the receive data registers and the RDF flag is set. Data written to the ESAI_RSMA affects the next received frame. The frame being received is not affected by this data and would comply to the last ESAI_RSMA setting. Data read from ESAI_RSMA returns the last written data. After hardware or software reset, the ESAI_RSMA register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data reception. When operating in normal mode, bit 0 of the ESAI_RSMA register must be set to one, otherwise no input is received.
+        unsigned RS : 16; //!< When bit number N in the ESAI_RSMA register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N. The data is not transferred from the receive shift registers to the receive data registers, and neither the RDF nor the ROE flag is set. This means that during a disabled slot, no receiver full interrupt is generated. The Core is interrupted only for enabled slots. When bit number N in the ESAI_RSMA is set, the receive sequence is as usual: data which is shifted into the enabled receivers shift registers is transferred to the receive data registers and the RDF flag is set. Data written to the ESAI_RSMA affects the next received frame. The frame being received is not affected by this data and would comply to the last ESAI_RSMA setting. Data read from ESAI_RSMA returns the last written data. After hardware or software reset, the ESAI_RSMA register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data reception. When operating in normal mode, bit 0 of the ESAI_RSMA register must be set to one, otherwise no input is received.
         unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_esai_rsma_t;
@@ -3513,7 +3960,7 @@ typedef union
  * constants & macros for individual ESAI_RSMA bitfields
  */
 
-/* --- Register HW_ESAI_RSMA, field RS_ (RW)
+/* --- Register HW_ESAI_RSMA, field RS (RW)
  *
  * When bit number N in the ESAI_RSMA register is cleared, the data from the enabled receivers input
  * pins are shifted into their receive shift registers during slot number N. The data is not
@@ -3529,17 +3976,17 @@ typedef union
  * mode, bit 0 of the ESAI_RSMA register must be set to one, otherwise no input is received.
  */
 
-#define BP_ESAI_RSMA_RS_      0
-#define BM_ESAI_RSMA_RS_      0x0000ffff
+#define BP_ESAI_RSMA_RS      0
+#define BM_ESAI_RSMA_RS      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_RSMA_RS_(v)   ((((reg32_t) v) << 0) & BM_ESAI_RSMA_RS_)
+#define BF_ESAI_RSMA_RS(v)   ((((reg32_t) v) << 0) & BM_ESAI_RSMA_RS)
 #else
-#define BF_ESAI_RSMA_RS_(v)   (((v) << 0) & BM_ESAI_RSMA_RS_)
+#define BF_ESAI_RSMA_RS(v)   (((v) << 0) & BM_ESAI_RSMA_RS)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RS_ field to a new value.
-#define BW_ESAI_RSMA_RS_(v)   BF_CS1(ESAI_RSMA, RS_, v)
+//! @brief Set the RS field to a new value.
+#define BW_ESAI_RSMA_RS(v)   BF_CS1(ESAI_RSMA, RS, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -3558,7 +4005,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned RS_ : 16; //!< When bit number N in the ESAI_RSMB register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N. The data is not transferred from the receive shift registers to the receive data registers, and neither the RDF nor the ROE flag is set. This means that during a disabled slot, no receiver full interrupt is generated. The Core is interrupted only for enabled slots. When bit number N in the ESAI_RSMB is set, the receive sequence is as usual: data which is shifted into the enabled receivers shift registers is transferred to the receive data registers and the RDF flag is set. Data written to the ESAI_RSMB affects the next received frame. The frame being received is not affected by this data and would comply to the last ESAI_RSMB setting. Data read from ESAI_RSMB returns the last written data. After hardware or software reset, the ESAI_RSMB register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data reception.
+        unsigned RS : 16; //!< When bit number N in the ESAI_RSMB register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N. The data is not transferred from the receive shift registers to the receive data registers, and neither the RDF nor the ROE flag is set. This means that during a disabled slot, no receiver full interrupt is generated. The Core is interrupted only for enabled slots. When bit number N in the ESAI_RSMB is set, the receive sequence is as usual: data which is shifted into the enabled receivers shift registers is transferred to the receive data registers and the RDF flag is set. Data written to the ESAI_RSMB affects the next received frame. The frame being received is not affected by this data and would comply to the last ESAI_RSMB setting. Data read from ESAI_RSMB returns the last written data. After hardware or software reset, the ESAI_RSMB register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data reception.
         unsigned RESERVED0 : 16; //!< Reserved
     } B;
 } hw_esai_rsmb_t;
@@ -3582,7 +4029,7 @@ typedef union
  * constants & macros for individual ESAI_RSMB bitfields
  */
 
-/* --- Register HW_ESAI_RSMB, field RS_ (RW)
+/* --- Register HW_ESAI_RSMB, field RS (RW)
  *
  * When bit number N in the ESAI_RSMB register is cleared, the data from the enabled receivers input
  * pins are shifted into their receive shift registers during slot number N. The data is not
@@ -3597,17 +4044,17 @@ typedef union
  * which means that all 16 possible slots are enabled for data reception.
  */
 
-#define BP_ESAI_RSMB_RS_      0
-#define BM_ESAI_RSMB_RS_      0x0000ffff
+#define BP_ESAI_RSMB_RS      0
+#define BM_ESAI_RSMB_RS      0x0000ffff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_RSMB_RS_(v)   ((((reg32_t) v) << 0) & BM_ESAI_RSMB_RS_)
+#define BF_ESAI_RSMB_RS(v)   ((((reg32_t) v) << 0) & BM_ESAI_RSMB_RS)
 #else
-#define BF_ESAI_RSMB_RS_(v)   (((v) << 0) & BM_ESAI_RSMB_RS_)
+#define BF_ESAI_RSMB_RS(v)   (((v) << 0) & BM_ESAI_RSMB_RS)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RS_ field to a new value.
-#define BW_ESAI_RSMB_RS_(v)   BF_CS1(ESAI_RSMB, RS_, v)
+//! @brief Set the RS field to a new value.
+#define BW_ESAI_RSMB_RS(v)   BF_CS1(ESAI_RSMB, RS, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -3625,7 +4072,7 @@ typedef union
     reg32_t U;
     struct
     {
-        unsigned PDC_ : 12; //!< See .
+        unsigned PDC : 12; //!< See .
         unsigned RESERVED0 : 20; //!< Reserved
     } B;
 } hw_esai_prrc_t;
@@ -3649,22 +4096,22 @@ typedef union
  * constants & macros for individual ESAI_PRRC bitfields
  */
 
-/* --- Register HW_ESAI_PRRC, field PDC_ (RW)
+/* --- Register HW_ESAI_PRRC, field PDC (RW)
  *
  * See .
  */
 
-#define BP_ESAI_PRRC_PDC_      0
-#define BM_ESAI_PRRC_PDC_      0x00000fff
+#define BP_ESAI_PRRC_PDC      0
+#define BM_ESAI_PRRC_PDC      0x00000fff
 
 #ifndef __LANGUAGE_ASM__
-#define BF_ESAI_PRRC_PDC_(v)   ((((reg32_t) v) << 0) & BM_ESAI_PRRC_PDC_)
+#define BF_ESAI_PRRC_PDC(v)   ((((reg32_t) v) << 0) & BM_ESAI_PRRC_PDC)
 #else
-#define BF_ESAI_PRRC_PDC_(v)   (((v) << 0) & BM_ESAI_PRRC_PDC_)
+#define BF_ESAI_PRRC_PDC(v)   (((v) << 0) & BM_ESAI_PRRC_PDC)
 #endif
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PDC_ field to a new value.
-#define BW_ESAI_PRRC_PDC_(v)   BF_CS1(ESAI_PRRC, PDC_, v)
+//! @brief Set the PDC field to a new value.
+#define BW_ESAI_PRRC_PDC(v)   BF_CS1(ESAI_PRRC, PDC, v)
 #endif
 
 #ifndef __LANGUAGE_ASM__
@@ -3741,12 +4188,19 @@ typedef struct
     volatile hw_esai_rfcr_t RFCR; //!< Receive FIFO Configuration Register
     volatile hw_esai_rfsr_t RFSR; //!< Receive FIFO Status Register
     reg32_t _reserved0[24];
-    volatile hw_esai_tx_t TX; //!< Transmit Data Register n
-    reg32_t _reserved1[5];
+    volatile hw_esai_tx0_t TX0; //!< Transmit Data Register n 0
+    volatile hw_esai_tx1_t TX1; //!< Transmit Data Register n 1
+    volatile hw_esai_tx2_t TX2; //!< Transmit Data Register n 2
+    volatile hw_esai_tx3_t TX3; //!< Transmit Data Register n 3
+    volatile hw_esai_tx4_t TX4; //!< Transmit Data Register n 4
+    volatile hw_esai_tx5_t TX5; //!< Transmit Data Register n 5
     volatile hw_esai_tsr_t TSR; //!< ESAI Transmit Slot Register
-    reg32_t _reserved2;
-    volatile hw_esai_rx_t RX; //!< Receive Data Register n
-    reg32_t _reserved3[10];
+    reg32_t _reserved1;
+    volatile hw_esai_rx0_t RX0; //!< Receive Data Register n 0
+    volatile hw_esai_rx1_t RX1; //!< Receive Data Register n 1
+    volatile hw_esai_rx2_t RX2; //!< Receive Data Register n 2
+    volatile hw_esai_rx3_t RX3; //!< Receive Data Register n 3
+    reg32_t _reserved2[7];
     volatile hw_esai_saisr_t SAISR; //!< Serial Audio Interface Status Register
     volatile hw_esai_saicr_t SAICR; //!< Serial Audio Interface Control Register
     volatile hw_esai_tcr_t TCR; //!< Transmit Control Register
@@ -3757,10 +4211,10 @@ typedef struct
     volatile hw_esai_tsmb_t TSMB; //!< Transmit Slot Mask Register B
     volatile hw_esai_rsma_t RSMA; //!< Receive Slot Mask Register A
     volatile hw_esai_rsmb_t RSMB; //!< Receive Slot Mask Register B
-    reg32_t _reserved4;
+    reg32_t _reserved3;
     volatile hw_esai_prrc_t PRRC; //!< Port C Direction Register
     volatile hw_esai_pcrc_t PCRC; //!< Port C Control Register
-} hw_esai_t
+} hw_esai_t;
 #endif
 
 //! @brief Macro to access all ESAI registers.

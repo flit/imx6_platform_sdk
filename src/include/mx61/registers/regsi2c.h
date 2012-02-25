@@ -25,13 +25,13 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_I2C_BASE
-#define REGS_I2C0_BASE (0x021a0000) //!< Base address for I2C instance number 0.
-#define REGS_I2C1_BASE (0x021a4000) //!< Base address for I2C instance number 1.
-#define REGS_I2C2_BASE (0x021a8000) //!< Base address for I2C instance number 2.
+#define REGS_I2C1_BASE (0x021a0000) //!< Base address for I2C instance number 1.
+#define REGS_I2C2_BASE (0x021a4000) //!< Base address for I2C instance number 2.
+#define REGS_I2C3_BASE (0x021a8000) //!< Base address for I2C instance number 3.
 
 //! @brief Get the base address of I2C by instance number.
 //! @param x I2C instance number, from 0 through 3.
-#define REGS_I2C_BASE(x) ( x == 0 ? REGS_I2C0_BASE : x == 1 ? REGS_I2C1_BASE : x == 2 ? REGS_I2C2_BASE : 0xffff0000)
+#define REGS_I2C_BASE(x) ( x == 1 ? REGS_I2C1_BASE : x == 2 ? REGS_I2C2_BASE : x == 3 ? REGS_I2C3_BASE : 0xffff0000)
 #endif
 //@}
 
@@ -71,7 +71,7 @@ typedef union
  * constants & macros for individual I2C_IADR bitfields
  */
 
-/* --- Register HW_I2C_IADR, field ADR (RW)
+/* --- Register HW_I2C_IADR, field ADR[7:1] (RW)
  *
  * Slave address. Contains the specific slave address to be used by the I2C. Slave mode is the
  * default I2C mode for an address match on the bus. The I2C_IADR holds the address the I2C responds
@@ -79,8 +79,8 @@ typedef union
  * address transfer. The register is not reset by a software reset.
  */
 
-#define BP_I2C_IADR_ADR      1
-#define BM_I2C_IADR_ADR      0x000000fe
+#define BP_I2C_IADR_ADR      (1)
+#define BM_I2C_IADR_ADR      (0x000000fe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_IADR_ADR(v)   ((((reg32_t) v) << 1) & BM_I2C_IADR_ADR)
@@ -138,7 +138,7 @@ typedef union
  * constants & macros for individual I2C_IFDR bitfields
  */
 
-/* --- Register HW_I2C_IFDR, field IC (RW)
+/* --- Register HW_I2C_IFDR, field IC[5:0] (RW)
  *
  * I2C clock rate. Pre scales the clock for bit-rate selection. Due to potentially slow SCL and SDA
  * rise and fall times, bus signals are sampled at the prescaler frequency. The serial bit clock
@@ -148,8 +148,8 @@ typedef union
  * to 400 kbps. The IC bits need to be programmed in accordance with this constraint.
  */
 
-#define BP_I2C_IFDR_IC      0
-#define BM_I2C_IFDR_IC      0x0000003f
+#define BP_I2C_IFDR_IC      (0)
+#define BM_I2C_IFDR_IC      (0x0000003f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_IFDR_IC(v)   ((((reg32_t) v) << 0) & BM_I2C_IFDR_IC)
@@ -203,7 +203,7 @@ typedef union
  * constants & macros for individual I2C_I2CR bitfields
  */
 
-/* --- Register HW_I2C_I2CR, field RSTA (WORZ)
+/* --- Register HW_I2C_I2CR, field RSTA[2:2] (WORZ)
  *
  * Repeat start. Always reads as 0. Attempting a repeat start without bus mastership causes loss of
  * arbitration.
@@ -213,8 +213,8 @@ typedef union
  * 1 - Generates a repeated START condition
  */
 
-#define BP_I2C_I2CR_RSTA      2
-#define BM_I2C_I2CR_RSTA      0x00000004
+#define BP_I2C_I2CR_RSTA      (2)
+#define BM_I2C_I2CR_RSTA      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2CR_RSTA(v)   ((((reg32_t) v) << 2) & BM_I2C_I2CR_RSTA)
@@ -227,7 +227,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_I2C_I2CR, field TXAK (RW)
+/* --- Register HW_I2C_I2CR, field TXAK[3:3] (RW)
  *
  * Transmit acknowledge enable. Specifies the value driven onto SDA during acknowledge cycles for
  * both master and slave receivers. Writing TXAK applies only when the I2C bus is a receiver.
@@ -237,8 +237,8 @@ typedef union
  * 1 - No acknowledge signal response is sent (that is, the acknowledge bit = 1).
  */
 
-#define BP_I2C_I2CR_TXAK      3
-#define BM_I2C_I2CR_TXAK      0x00000008
+#define BP_I2C_I2CR_TXAK      (3)
+#define BM_I2C_I2CR_TXAK      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2CR_TXAK(v)   ((((reg32_t) v) << 3) & BM_I2C_I2CR_TXAK)
@@ -251,7 +251,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_I2C_I2CR, field MTX (RW)
+/* --- Register HW_I2C_I2CR, field MTX[4:4] (RW)
  *
  * Transmit/receive mode select bit. Selects the direction of master and slave transfers.
  *
@@ -262,8 +262,8 @@ typedef union
  *     for address cycles, MTX is always 1.
  */
 
-#define BP_I2C_I2CR_MTX      4
-#define BM_I2C_I2CR_MTX      0x00000010
+#define BP_I2C_I2CR_MTX      (4)
+#define BM_I2C_I2CR_MTX      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2CR_MTX(v)   ((((reg32_t) v) << 4) & BM_I2C_I2CR_MTX)
@@ -276,7 +276,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_I2C_I2CR, field MSTA (RW)
+/* --- Register HW_I2C_I2CR, field MSTA[5:5] (RW)
  *
  * Master/slave mode select bit. If the master loses arbitration, MSTA is cleared without generating
  * a STOP signal. Module clock should be on for writing to the MSTA bit. The MSTA bit is cleared by
@@ -288,8 +288,8 @@ typedef union
  * 1 - Master mode. Changing MSTA from 0 to 1 signals a START on the bus and selects master mode.
  */
 
-#define BP_I2C_I2CR_MSTA      5
-#define BM_I2C_I2CR_MSTA      0x00000020
+#define BP_I2C_I2CR_MSTA      (5)
+#define BM_I2C_I2CR_MSTA      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2CR_MSTA(v)   ((((reg32_t) v) << 5) & BM_I2C_I2CR_MSTA)
@@ -302,7 +302,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_I2C_I2CR, field IIEN (RW)
+/* --- Register HW_I2C_I2CR, field IIEN[6:6] (RW)
  *
  * I2C interrupt enable. If data is written during the START condition, that is, just after setting
  * the I2C_I2CR[MSTA] and I2C_I2CR[MTX] bits, then the ICF bit is cleared at the falling edge of
@@ -315,8 +315,8 @@ typedef union
  * 1 - I2C interrupts are enabled. An I2C interrupt occurs if I2C_I2SR[IIF] is also set.
  */
 
-#define BP_I2C_I2CR_IIEN      6
-#define BM_I2C_I2CR_IIEN      0x00000040
+#define BP_I2C_I2CR_IIEN      (6)
+#define BM_I2C_I2CR_IIEN      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2CR_IIEN(v)   ((((reg32_t) v) << 6) & BM_I2C_I2CR_IIEN)
@@ -329,7 +329,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_I2C_I2CR, field IEN (RW)
+/* --- Register HW_I2C_I2CR, field IEN[7:7] (RW)
  *
  * I2C enable. Also controls the software reset of the entire I2C. Resetting the bit generates an
  * internal reset to the block. If the block is enabled in the middle of a byte transfer, slave mode
@@ -343,8 +343,8 @@ typedef union
  * 1 - The I2C is enabled. This bit must be set before any other I2C_I2CR bits have any effect.
  */
 
-#define BP_I2C_I2CR_IEN      7
-#define BM_I2C_I2CR_IEN      0x00000080
+#define BP_I2C_I2CR_IEN      (7)
+#define BM_I2C_I2CR_IEN      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2CR_IEN(v)   ((((reg32_t) v) << 7) & BM_I2C_I2CR_IEN)
@@ -399,7 +399,7 @@ typedef union
  * constants & macros for individual I2C_I2SR bitfields
  */
 
-/* --- Register HW_I2C_I2SR, field RXAK (RO)
+/* --- Register HW_I2C_I2SR, field RXAK[0:0] (RO)
  *
  * Received acknowledge. This is the value received of the SDA input for the acknowledge bit during
  * a bus cycle.
@@ -409,11 +409,11 @@ typedef union
  * 1 - A "No acknowledge" signal was detected at the ninth clock.
  */
 
-#define BP_I2C_I2SR_RXAK      0
-#define BM_I2C_I2SR_RXAK      0x00000001
+#define BP_I2C_I2SR_RXAK      (0)
+#define BM_I2C_I2SR_RXAK      (0x00000001)
 
 
-/* --- Register HW_I2C_I2SR, field IIF (RW)
+/* --- Register HW_I2C_I2SR, field IIF[1:1] (RW)
  *
  * I2C interrupt. Must be cleared by the software by writing a "0" to it in the interrupt routine.
  * The software cannot set the bit.
@@ -427,8 +427,8 @@ typedef union
  *     is lost.
  */
 
-#define BP_I2C_I2SR_IIF      1
-#define BM_I2C_I2SR_IIF      0x00000002
+#define BP_I2C_I2SR_IIF      (1)
+#define BM_I2C_I2SR_IIF      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2SR_IIF(v)   ((((reg32_t) v) << 1) & BM_I2C_I2SR_IIF)
@@ -441,7 +441,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_I2C_I2SR, field SRW (RO)
+/* --- Register HW_I2C_I2SR, field SRW[2:2] (RO)
  *
  * Slave read/write. When the I2C is addressed as a slave, IAAS is set, and the slave read/write bit
  * (SRW) indicates the value of the R/W command bit of the calling address sent from the master. SRW
@@ -453,11 +453,11 @@ typedef union
  * 1 - Slave transmit, master reading from slave
  */
 
-#define BP_I2C_I2SR_SRW      2
-#define BM_I2C_I2SR_SRW      0x00000004
+#define BP_I2C_I2SR_SRW      (2)
+#define BM_I2C_I2SR_SRW      (0x00000004)
 
 
-/* --- Register HW_I2C_I2SR, field IAL (RW)
+/* --- Register HW_I2C_I2SR, field IAL[4:4] (RW)
  *
  * Arbitration lost. Set by hardware in the following circumstances (IAL must be cleared by software
  * by writing a "0" to it at the start of the interrupt service routine): SDA input sampled low when
@@ -472,8 +472,8 @@ typedef union
  * 1 - Arbitration is lost.
  */
 
-#define BP_I2C_I2SR_IAL      4
-#define BM_I2C_I2SR_IAL      0x00000010
+#define BP_I2C_I2SR_IAL      (4)
+#define BM_I2C_I2SR_IAL      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2SR_IAL(v)   ((((reg32_t) v) << 4) & BM_I2C_I2SR_IAL)
@@ -486,7 +486,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_I2C_I2SR, field IBB (RO)
+/* --- Register HW_I2C_I2SR, field IBB[5:5] (RO)
  *
  * I2C bus busy bit. Indicates the status of the bus. When I2C is enabled (I2C_I2CR[IEN] = 1), it
  * continuously polls the bus data (SDAK) and clock (SCLK) signals to determine a START or STOP
@@ -497,11 +497,11 @@ typedef union
  * 1 - Bus is busy. When START is detected, IBB is set.
  */
 
-#define BP_I2C_I2SR_IBB      5
-#define BM_I2C_I2SR_IBB      0x00000020
+#define BP_I2C_I2SR_IBB      (5)
+#define BM_I2C_I2SR_IBB      (0x00000020)
 
 
-/* --- Register HW_I2C_I2SR, field IAAS (RO)
+/* --- Register HW_I2C_I2SR, field IAAS[6:6] (RO)
  *
  * I2C addressed as a slave bit. The ARM platform is interrupted if the interrupt enable
  * (I2C_I2CR[IIEN]) is set. The ARM platform must check the slave read/write bit (SRW) and set its
@@ -512,11 +512,11 @@ typedef union
  * 1 - Addressed as a slave. Set when its own address (I2C_IADR) matches the calling address.
  */
 
-#define BP_I2C_I2SR_IAAS      6
-#define BM_I2C_I2SR_IAAS      0x00000040
+#define BP_I2C_I2SR_IAAS      (6)
+#define BM_I2C_I2SR_IAAS      (0x00000040)
 
 
-/* --- Register HW_I2C_I2SR, field ICF (RO)
+/* --- Register HW_I2C_I2SR, field ICF[7:7] (RO)
  *
  * Data transferring bit. While one byte of data is transferred, ICF is cleared.
  *
@@ -526,8 +526,8 @@ typedef union
  *     transfer.
  */
 
-#define BP_I2C_I2SR_ICF      7
-#define BM_I2C_I2SR_ICF      0x00000080
+#define BP_I2C_I2SR_ICF      (7)
+#define BM_I2C_I2SR_ICF      (0x00000080)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -566,7 +566,7 @@ typedef union
  * constants & macros for individual I2C_I2DR bitfields
  */
 
-/* --- Register HW_I2C_I2DR, field DATA (RW)
+/* --- Register HW_I2C_I2DR, field DATA[7:0] (RW)
  *
  * Data Byte. Holds the last data byte received or the next data byte to be transferred. Software
  * writes the next data byte to be transmitted or reads the data byte received. The core-written
@@ -576,8 +576,8 @@ typedef union
  * I2C and read by IP interface.
  */
 
-#define BP_I2C_I2DR_DATA      0
-#define BM_I2C_I2DR_DATA      0x000000ff
+#define BP_I2C_I2DR_DATA      (0)
+#define BM_I2C_I2DR_DATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_I2C_I2DR_DATA(v)   ((((reg32_t) v) << 0) & BM_I2C_I2DR_DATA)

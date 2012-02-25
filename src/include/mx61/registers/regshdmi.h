@@ -423,14 +423,14 @@ typedef union
  * constants & macros for individual HDMI_DESIGN_ID bitfields
  */
 
-/* --- Register HW_HDMI_DESIGN_ID, field DESIGN_ID (RO)
+/* --- Register HW_HDMI_DESIGN_ID, field DESIGN_ID[7:0] (RO)
  *
  * This is a 1 byte design ID code fixed by Freescale that Identifies the main revision of the HDMI
  * TX controller. For example, HDMI TX 1.30a, DESIGN_ID = 11h; REVISION_ID = 0Ah
  */
 
-#define BP_HDMI_DESIGN_ID_DESIGN_ID      0
-#define BM_HDMI_DESIGN_ID_DESIGN_ID      0x000000ff
+#define BP_HDMI_DESIGN_ID_DESIGN_ID      (0)
+#define BM_HDMI_DESIGN_ID_DESIGN_ID      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -463,14 +463,14 @@ typedef union
  * constants & macros for individual HDMI_REVISION_ID bitfields
  */
 
-/* --- Register HW_HDMI_REVISION_ID, field REVISION_ID (RO)
+/* --- Register HW_HDMI_REVISION_ID, field REVISION_ID[7:0] (RO)
  *
  * This is a one byte revision ID code fixed by Freescale that Identifies the main revision of the
  * HDMI TX controller. For example, HDMI TX 1.30a, DESIGN_ID = 12h; REVISION_ID = 0Ah
  */
 
-#define BP_HDMI_REVISION_ID_REVISION_ID      0
-#define BM_HDMI_REVISION_ID_REVISION_ID      0x000000ff
+#define BP_HDMI_REVISION_ID_REVISION_ID      (0)
+#define BM_HDMI_REVISION_ID_REVISION_ID      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -503,13 +503,13 @@ typedef union
  * constants & macros for individual HDMI_PRODUCT_ID0 bitfields
  */
 
-/* --- Register HW_HDMI_PRODUCT_ID0, field PRODUCT_ID0 (RO)
+/* --- Register HW_HDMI_PRODUCT_ID0, field PRODUCT_ID0[7:0] (RO)
  *
  * This one byte fixed code Identifies Freescale's product line ("A0h" for HDMI TX products).
  */
 
-#define BP_HDMI_PRODUCT_ID0_PRODUCT_ID0      0
-#define BM_HDMI_PRODUCT_ID0_PRODUCT_ID0      0x000000ff
+#define BP_HDMI_PRODUCT_ID0_PRODUCT_ID0      (0)
+#define BM_HDMI_PRODUCT_ID0_PRODUCT_ID0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -542,15 +542,15 @@ typedef union
  * constants & macros for individual HDMI_PRODUCT_ID1 bitfields
  */
 
-/* --- Register HW_HDMI_PRODUCT_ID1, field PRODUCT_ID1 (RO)
+/* --- Register HW_HDMI_PRODUCT_ID1, field PRODUCT_ID1[7:0] (RO)
  *
  * This one byte fixed code identifies Freescale's product line according to: 01h HDMI TX Controller
  * 02h DWC_hdmi_rx Controller C1h HDMI TX Controller with HDCP encryption engine C2h DWC_hdmi_rx
  * Controller with encryption engine
  */
 
-#define BP_HDMI_PRODUCT_ID1_PRODUCT_ID1      0
-#define BM_HDMI_PRODUCT_ID1_PRODUCT_ID1      0x000000ff
+#define BP_HDMI_PRODUCT_ID1_PRODUCT_ID1      (0)
+#define BM_HDMI_PRODUCT_ID1_PRODUCT_ID1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -590,69 +590,69 @@ typedef union
  * constants & macros for individual HDMI_CONFIG0_ID bitfields
  */
 
-/* --- Register HW_HDMI_CONFIG0_ID, field HDCP (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field HDCP[0:0] (RO)
  *
  * Indicates if HDCP is present
  */
 
-#define BP_HDMI_CONFIG0_ID_HDCP      0
-#define BM_HDMI_CONFIG0_ID_HDCP      0x00000001
+#define BP_HDMI_CONFIG0_ID_HDCP      (0)
+#define BM_HDMI_CONFIG0_ID_HDCP      (0x00000001)
 
-/* --- Register HW_HDMI_CONFIG0_ID, field CEC (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field CEC[1:1] (RO)
  *
  * Indicates if CEC is present
  */
 
-#define BP_HDMI_CONFIG0_ID_CEC      1
-#define BM_HDMI_CONFIG0_ID_CEC      0x00000002
+#define BP_HDMI_CONFIG0_ID_CEC      (1)
+#define BM_HDMI_CONFIG0_ID_CEC      (0x00000002)
 
-/* --- Register HW_HDMI_CONFIG0_ID, field CSC (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field CSC[2:2] (RO)
  *
  * Indicates if Color Space Conversion block is present
  */
 
-#define BP_HDMI_CONFIG0_ID_CSC      2
-#define BM_HDMI_CONFIG0_ID_CSC      0x00000004
+#define BP_HDMI_CONFIG0_ID_CSC      (2)
+#define BM_HDMI_CONFIG0_ID_CSC      (0x00000004)
 
-/* --- Register HW_HDMI_CONFIG0_ID, field HDMI14 (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field HDMI14[3:3] (RO)
  *
  * Indicates if HDMI 1.4 features are present
  */
 
-#define BP_HDMI_CONFIG0_ID_HDMI14      3
-#define BM_HDMI_CONFIG0_ID_HDMI14      0x00000008
+#define BP_HDMI_CONFIG0_ID_HDMI14      (3)
+#define BM_HDMI_CONFIG0_ID_HDMI14      (0x00000008)
 
-/* --- Register HW_HDMI_CONFIG0_ID, field AUDI2S (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field AUDI2S[4:4] (RO)
  *
  * Indicates if I2S interface is present
  */
 
-#define BP_HDMI_CONFIG0_ID_AUDI2S      4
-#define BM_HDMI_CONFIG0_ID_AUDI2S      0x00000010
+#define BP_HDMI_CONFIG0_ID_AUDI2S      (4)
+#define BM_HDMI_CONFIG0_ID_AUDI2S      (0x00000010)
 
-/* --- Register HW_HDMI_CONFIG0_ID, field AUDSPDIF (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field AUDSPDIF[5:5] (RO)
  *
  * Indicates if SPDIF interface is present
  */
 
-#define BP_HDMI_CONFIG0_ID_AUDSPDIF      5
-#define BM_HDMI_CONFIG0_ID_AUDSPDIF      0x00000020
+#define BP_HDMI_CONFIG0_ID_AUDSPDIF      (5)
+#define BM_HDMI_CONFIG0_ID_AUDSPDIF      (0x00000020)
 
-/* --- Register HW_HDMI_CONFIG0_ID, field AUDHBR (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field AUDHBR[6:6] (RO)
  *
  * Indicates if HBR interface is present
  */
 
-#define BP_HDMI_CONFIG0_ID_AUDHBR      6
-#define BM_HDMI_CONFIG0_ID_AUDHBR      0x00000040
+#define BP_HDMI_CONFIG0_ID_AUDHBR      (6)
+#define BM_HDMI_CONFIG0_ID_AUDHBR      (0x00000040)
 
-/* --- Register HW_HDMI_CONFIG0_ID, field PREPEN (RO)
+/* --- Register HW_HDMI_CONFIG0_ID, field PREPEN[7:7] (RO)
  *
  * Indicates if it is possible to use internal pixel repetition
  */
 
-#define BP_HDMI_CONFIG0_ID_PREPEN      7
-#define BM_HDMI_CONFIG0_ID_PREPEN      0x00000080
+#define BP_HDMI_CONFIG0_ID_PREPEN      (7)
+#define BM_HDMI_CONFIG0_ID_PREPEN      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -690,45 +690,45 @@ typedef union
  * constants & macros for individual HDMI_CONFIG1_ID bitfields
  */
 
-/* --- Register HW_HDMI_CONFIG1_ID, field CONFAHB (RO)
+/* --- Register HW_HDMI_CONFIG1_ID, field CONFAHB[0:0] (RO)
  *
  * Indicates that configuration interface is AHB interface
  */
 
-#define BP_HDMI_CONFIG1_ID_CONFAHB      0
-#define BM_HDMI_CONFIG1_ID_CONFAHB      0x00000001
+#define BP_HDMI_CONFIG1_ID_CONFAHB      (0)
+#define BM_HDMI_CONFIG1_ID_CONFAHB      (0x00000001)
 
-/* --- Register HW_HDMI_CONFIG1_ID, field CONFAPB (RO)
+/* --- Register HW_HDMI_CONFIG1_ID, field CONFAPB[1:1] (RO)
  *
  * Indicates that configuration interface is APB interface
  */
 
-#define BP_HDMI_CONFIG1_ID_CONFAPB      1
-#define BM_HDMI_CONFIG1_ID_CONFAPB      0x00000002
+#define BP_HDMI_CONFIG1_ID_CONFAPB      (1)
+#define BM_HDMI_CONFIG1_ID_CONFAPB      (0x00000002)
 
-/* --- Register HW_HDMI_CONFIG1_ID, field CONFOCP (RO)
+/* --- Register HW_HDMI_CONFIG1_ID, field CONFOCP[2:2] (RO)
  *
  * Indicates that configuration interface is OCP interface
  */
 
-#define BP_HDMI_CONFIG1_ID_CONFOCP      2
-#define BM_HDMI_CONFIG1_ID_CONFOCP      0x00000004
+#define BP_HDMI_CONFIG1_ID_CONFOCP      (2)
+#define BM_HDMI_CONFIG1_ID_CONFOCP      (0x00000004)
 
-/* --- Register HW_HDMI_CONFIG1_ID, field CONFI2C (RO)
+/* --- Register HW_HDMI_CONFIG1_ID, field CONFI2C[3:3] (RO)
  *
  * Indicates that configuration interface is I2C interface
  */
 
-#define BP_HDMI_CONFIG1_ID_CONFI2C      3
-#define BM_HDMI_CONFIG1_ID_CONFI2C      0x00000008
+#define BP_HDMI_CONFIG1_ID_CONFI2C      (3)
+#define BM_HDMI_CONFIG1_ID_CONFI2C      (0x00000008)
 
-/* --- Register HW_HDMI_CONFIG1_ID, field CONFSFRDIR (RO)
+/* --- Register HW_HDMI_CONFIG1_ID, field CONFSFRDIR[4:4] (RO)
  *
  * Indicates that configuration interface is SFR interface
  */
 
-#define BP_HDMI_CONFIG1_ID_CONFSFRDIR      4
-#define BM_HDMI_CONFIG1_ID_CONFSFRDIR      0x00000010
+#define BP_HDMI_CONFIG1_ID_CONFSFRDIR      (4)
+#define BM_HDMI_CONFIG1_ID_CONFSFRDIR      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -761,14 +761,14 @@ typedef union
  * constants & macros for individual HDMI_CONFIG2_ID bitfields
  */
 
-/* --- Register HW_HDMI_CONFIG2_ID, field PHYTYPE (RO)
+/* --- Register HW_HDMI_CONFIG2_ID, field PHYTYPE[7:0] (RO)
  *
  * Indicates the type of PHY interface selected: 00h Legacy PHY (HDMI TX PHY) F2h PHY_Gen2 (HDMI 3D
  * TX PHY) E2h PHY_Gen2 (HDMI 3D TX PHY) + HEAC PHY
  */
 
-#define BP_HDMI_CONFIG2_ID_PHYTYPE      0
-#define BM_HDMI_CONFIG2_ID_PHYTYPE      0x000000ff
+#define BP_HDMI_CONFIG2_ID_PHYTYPE      (0)
+#define BM_HDMI_CONFIG2_ID_PHYTYPE      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -802,13 +802,13 @@ typedef union
  * constants & macros for individual HDMI_CONFIG3_ID bitfields
  */
 
-/* --- Register HW_HDMI_CONFIG3_ID, field CONFGPAUD (RO)
+/* --- Register HW_HDMI_CONFIG3_ID, field CONFGPAUD[0:0] (RO)
  *
  * Indicates that configuration interface is Generic Parallel Audio (GPAUD) interface
  */
 
-#define BP_HDMI_CONFIG3_ID_CONFGPAUD      0
-#define BM_HDMI_CONFIG3_ID_CONFGPAUD      0x00000001
+#define BP_HDMI_CONFIG3_ID_CONFGPAUD      (0)
+#define BM_HDMI_CONFIG3_ID_CONFGPAUD      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -857,14 +857,14 @@ typedef union
  * constants & macros for individual HDMI_IH_FC_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field NULL (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field NULL[0:0] (W1C)
  *
  * Active after successful transmission of an Null packet. Due to high number of audio sample
  * packets transmitted, this interrupt is by default masked at frame composer.
  */
 
-#define BP_HDMI_IH_FC_STAT0_NULL      0
-#define BM_HDMI_IH_FC_STAT0_NULL      0x00000001
+#define BP_HDMI_IH_FC_STAT0_NULL      (0)
+#define BM_HDMI_IH_FC_STAT0_NULL      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_NULL(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_FC_STAT0_NULL)
@@ -876,13 +876,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT0_NULL(v)   BF_CS1(HDMI_IH_FC_STAT0, NULL, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field ACR (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field ACR[1:1] (W1C)
  *
  * Active after successful transmission of an Audio Clock Regeneration (N/CTS transmission) packet.
  */
 
-#define BP_HDMI_IH_FC_STAT0_ACR      1
-#define BM_HDMI_IH_FC_STAT0_ACR      0x00000002
+#define BP_HDMI_IH_FC_STAT0_ACR      (1)
+#define BM_HDMI_IH_FC_STAT0_ACR      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_ACR(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_FC_STAT0_ACR)
@@ -894,14 +894,14 @@ typedef union
 #define BW_HDMI_IH_FC_STAT0_ACR(v)   BF_CS1(HDMI_IH_FC_STAT0, ACR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field AUDS (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field AUDS[2:2] (W1C)
  *
  * Active after successful transmission of an Audio Sample packet. Due to high number of audio
  * sample packets transmitted, this interrupt is by default masked at frame composer.
  */
 
-#define BP_HDMI_IH_FC_STAT0_AUDS      2
-#define BM_HDMI_IH_FC_STAT0_AUDS      0x00000004
+#define BP_HDMI_IH_FC_STAT0_AUDS      (2)
+#define BM_HDMI_IH_FC_STAT0_AUDS      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_AUDS(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_FC_STAT0_AUDS)
@@ -913,13 +913,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT0_AUDS(v)   BF_CS1(HDMI_IH_FC_STAT0, AUDS, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field OBA (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field OBA[3:3] (W1C)
  *
  * Reserved
  */
 
-#define BP_HDMI_IH_FC_STAT0_OBA      3
-#define BM_HDMI_IH_FC_STAT0_OBA      0x00000008
+#define BP_HDMI_IH_FC_STAT0_OBA      (3)
+#define BM_HDMI_IH_FC_STAT0_OBA      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_OBA(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_FC_STAT0_OBA)
@@ -931,13 +931,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT0_OBA(v)   BF_CS1(HDMI_IH_FC_STAT0, OBA, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field DST (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field DST[4:4] (W1C)
  *
  * Reserved
  */
 
-#define BP_HDMI_IH_FC_STAT0_DST      4
-#define BM_HDMI_IH_FC_STAT0_DST      0x00000010
+#define BP_HDMI_IH_FC_STAT0_DST      (4)
+#define BM_HDMI_IH_FC_STAT0_DST      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_DST(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_FC_STAT0_DST)
@@ -949,13 +949,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT0_DST(v)   BF_CS1(HDMI_IH_FC_STAT0, DST, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field HBR (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field HBR[5:5] (W1C)
  *
  * Active after successful transmission of an Audio HBR packet.
  */
 
-#define BP_HDMI_IH_FC_STAT0_HBR      5
-#define BM_HDMI_IH_FC_STAT0_HBR      0x00000020
+#define BP_HDMI_IH_FC_STAT0_HBR      (5)
+#define BM_HDMI_IH_FC_STAT0_HBR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_HBR(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_FC_STAT0_HBR)
@@ -967,13 +967,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT0_HBR(v)   BF_CS1(HDMI_IH_FC_STAT0, HBR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field ACP (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field ACP[6:6] (W1C)
  *
  * Active after successful transmission of an Audio Content Protection packet.
  */
 
-#define BP_HDMI_IH_FC_STAT0_ACP      6
-#define BM_HDMI_IH_FC_STAT0_ACP      0x00000040
+#define BP_HDMI_IH_FC_STAT0_ACP      (6)
+#define BM_HDMI_IH_FC_STAT0_ACP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_ACP(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_FC_STAT0_ACP)
@@ -985,13 +985,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT0_ACP(v)   BF_CS1(HDMI_IH_FC_STAT0, ACP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT0, field AUDI (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT0, field AUDI[7:7] (W1C)
  *
  * Active after successful transmission of an Audio InfoFrame packet.
  */
 
-#define BP_HDMI_IH_FC_STAT0_AUDI      7
-#define BM_HDMI_IH_FC_STAT0_AUDI      0x00000080
+#define BP_HDMI_IH_FC_STAT0_AUDI      (7)
+#define BM_HDMI_IH_FC_STAT0_AUDI      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT0_AUDI(v)   ((((reg32_t) v) << 7) & BM_HDMI_IH_FC_STAT0_AUDI)
@@ -1044,13 +1044,13 @@ typedef union
  * constants & macros for individual HDMI_IH_FC_STAT1 bitfields
  */
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field GCP (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field GCP[0:0] (W1C)
  *
  * Active after successful transmission of an General Control Packet.
  */
 
-#define BP_HDMI_IH_FC_STAT1_GCP      0
-#define BM_HDMI_IH_FC_STAT1_GCP      0x00000001
+#define BP_HDMI_IH_FC_STAT1_GCP      (0)
+#define BM_HDMI_IH_FC_STAT1_GCP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_GCP(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_FC_STAT1_GCP)
@@ -1062,13 +1062,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT1_GCP(v)   BF_CS1(HDMI_IH_FC_STAT1, GCP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field AVI (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field AVI[1:1] (W1C)
  *
  * Active after successful transmission of an AVI infoFrame packet.
  */
 
-#define BP_HDMI_IH_FC_STAT1_AVI      1
-#define BM_HDMI_IH_FC_STAT1_AVI      0x00000002
+#define BP_HDMI_IH_FC_STAT1_AVI      (1)
+#define BM_HDMI_IH_FC_STAT1_AVI      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_AVI(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_FC_STAT1_AVI)
@@ -1080,13 +1080,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT1_AVI(v)   BF_CS1(HDMI_IH_FC_STAT1, AVI, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field MPEG (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field MPEG[2:2] (W1C)
  *
  * Reserved
  */
 
-#define BP_HDMI_IH_FC_STAT1_MPEG      2
-#define BM_HDMI_IH_FC_STAT1_MPEG      0x00000004
+#define BP_HDMI_IH_FC_STAT1_MPEG      (2)
+#define BM_HDMI_IH_FC_STAT1_MPEG      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_MPEG(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_FC_STAT1_MPEG)
@@ -1098,13 +1098,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT1_MPEG(v)   BF_CS1(HDMI_IH_FC_STAT1, MPEG, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field SPD (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field SPD[3:3] (W1C)
  *
  * Active after successful transmission of an Source Product Descriptor infoFrame packet.
  */
 
-#define BP_HDMI_IH_FC_STAT1_SPD      3
-#define BM_HDMI_IH_FC_STAT1_SPD      0x00000008
+#define BP_HDMI_IH_FC_STAT1_SPD      (3)
+#define BM_HDMI_IH_FC_STAT1_SPD      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_SPD(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_FC_STAT1_SPD)
@@ -1116,13 +1116,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT1_SPD(v)   BF_CS1(HDMI_IH_FC_STAT1, SPD, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field VSD (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field VSD[4:4] (W1C)
  *
  * Active after successful transmission of an Vendor Specific Data infoFrame packet.
  */
 
-#define BP_HDMI_IH_FC_STAT1_VSD      4
-#define BM_HDMI_IH_FC_STAT1_VSD      0x00000010
+#define BP_HDMI_IH_FC_STAT1_VSD      (4)
+#define BM_HDMI_IH_FC_STAT1_VSD      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_VSD(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_FC_STAT1_VSD)
@@ -1134,13 +1134,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT1_VSD(v)   BF_CS1(HDMI_IH_FC_STAT1, VSD, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field ISCR2 (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field ISCR2[5:5] (W1C)
  *
  * Active after successful transmission of an International Standard Recording Code 2 packet.
  */
 
-#define BP_HDMI_IH_FC_STAT1_ISCR2      5
-#define BM_HDMI_IH_FC_STAT1_ISCR2      0x00000020
+#define BP_HDMI_IH_FC_STAT1_ISCR2      (5)
+#define BM_HDMI_IH_FC_STAT1_ISCR2      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_ISCR2(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_FC_STAT1_ISCR2)
@@ -1152,13 +1152,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT1_ISCR2(v)   BF_CS1(HDMI_IH_FC_STAT1, ISCR2, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field ISCR1 (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field ISCR1[6:6] (W1C)
  *
  * Active after successful transmission of an International Standard Recording Code 1 packet.
  */
 
-#define BP_HDMI_IH_FC_STAT1_ISCR1      6
-#define BM_HDMI_IH_FC_STAT1_ISCR1      0x00000040
+#define BP_HDMI_IH_FC_STAT1_ISCR1      (6)
+#define BM_HDMI_IH_FC_STAT1_ISCR1      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_ISCR1(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_FC_STAT1_ISCR1)
@@ -1170,13 +1170,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT1_ISCR1(v)   BF_CS1(HDMI_IH_FC_STAT1, ISCR1, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT1, field GMD (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT1, field GMD[7:7] (W1C)
  *
  * Active after successful transmission of an Gamut metadata packet.
  */
 
-#define BP_HDMI_IH_FC_STAT1_GMD      7
-#define BM_HDMI_IH_FC_STAT1_GMD      0x00000080
+#define BP_HDMI_IH_FC_STAT1_GMD      (7)
+#define BM_HDMI_IH_FC_STAT1_GMD      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT1_GMD(v)   ((((reg32_t) v) << 7) & BM_HDMI_IH_FC_STAT1_GMD)
@@ -1224,13 +1224,13 @@ typedef union
  * constants & macros for individual HDMI_IH_FC_STAT2 bitfields
  */
 
-/* --- Register HW_HDMI_IH_FC_STAT2, field HIGHPRIORITY_OVERFLOW (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT2, field HIGHPRIORITY_OVERFLOW[0:0] (W1C)
  *
  * Frame Composer high priority packet queue descriptor overflow indication.
  */
 
-#define BP_HDMI_IH_FC_STAT2_HIGHPRIORITY_OVERFLOW      0
-#define BM_HDMI_IH_FC_STAT2_HIGHPRIORITY_OVERFLOW      0x00000001
+#define BP_HDMI_IH_FC_STAT2_HIGHPRIORITY_OVERFLOW      (0)
+#define BM_HDMI_IH_FC_STAT2_HIGHPRIORITY_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT2_HIGHPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_FC_STAT2_HIGHPRIORITY_OVERFLOW)
@@ -1242,13 +1242,13 @@ typedef union
 #define BW_HDMI_IH_FC_STAT2_HIGHPRIORITY_OVERFLOW(v)   BF_CS1(HDMI_IH_FC_STAT2, HIGHPRIORITY_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_FC_STAT2, field LOWPRIORITY_OVERFLOW (W1C)
+/* --- Register HW_HDMI_IH_FC_STAT2, field LOWPRIORITY_OVERFLOW[1:1] (W1C)
  *
  * Frame Composer low priority packet queue descriptor overflow indication.
  */
 
-#define BP_HDMI_IH_FC_STAT2_LOWPRIORITY_OVERFLOW      1
-#define BM_HDMI_IH_FC_STAT2_LOWPRIORITY_OVERFLOW      0x00000002
+#define BP_HDMI_IH_FC_STAT2_LOWPRIORITY_OVERFLOW      (1)
+#define BM_HDMI_IH_FC_STAT2_LOWPRIORITY_OVERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_FC_STAT2_LOWPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_FC_STAT2_LOWPRIORITY_OVERFLOW)
@@ -1297,13 +1297,13 @@ typedef union
  * constants & macros for individual HDMI_IH_AS_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_AS_STAT0, field AUD_FIFO_OVERFLOW (W1C)
+/* --- Register HW_HDMI_IH_AS_STAT0, field AUD_FIFO_OVERFLOW[0:0] (W1C)
  *
  * Audio Sampler audio FIFO full indication.
  */
 
-#define BP_HDMI_IH_AS_STAT0_AUD_FIFO_OVERFLOW      0
-#define BM_HDMI_IH_AS_STAT0_AUD_FIFO_OVERFLOW      0x00000001
+#define BP_HDMI_IH_AS_STAT0_AUD_FIFO_OVERFLOW      (0)
+#define BM_HDMI_IH_AS_STAT0_AUD_FIFO_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AS_STAT0_AUD_FIFO_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_AS_STAT0_AUD_FIFO_OVERFLOW)
@@ -1315,13 +1315,13 @@ typedef union
 #define BW_HDMI_IH_AS_STAT0_AUD_FIFO_OVERFLOW(v)   BF_CS1(HDMI_IH_AS_STAT0, AUD_FIFO_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_AS_STAT0, field AUD_FIFO_UNDERFLOW (W1C)
+/* --- Register HW_HDMI_IH_AS_STAT0, field AUD_FIFO_UNDERFLOW[1:1] (W1C)
  *
  * Audio Sampler audio FIFO empty indication.
  */
 
-#define BP_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW      1
-#define BM_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW      0x00000002
+#define BP_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW      (1)
+#define BM_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW)
@@ -1333,13 +1333,13 @@ typedef union
 #define BW_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW(v)   BF_CS1(HDMI_IH_AS_STAT0, AUD_FIFO_UNDERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_AS_STAT0, field AUD_FIFO_UNDERFLOW_THR (W1C)
+/* --- Register HW_HDMI_IH_AS_STAT0, field AUD_FIFO_UNDERFLOW_THR[2:2] (W1C)
  *
  * Audio Sampler audio FIFO empty threshold (four samples) indication. Only valid in HBR audio.
  */
 
-#define BP_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      2
-#define BM_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      0x00000004
+#define BP_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      (2)
+#define BM_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW_THR(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_AS_STAT0_AUD_FIFO_UNDERFLOW_THR)
@@ -1391,14 +1391,14 @@ typedef union
  * constants & macros for individual HDMI_IH_PHY_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_PHY_STAT0, field HDP (W1C)
+/* --- Register HW_HDMI_IH_PHY_STAT0, field HDP[0:0] (W1C)
  *
  * HDMI Hot Plug Detect indication. You may need to mask or change polarity of this interrupt after
  * it has become active.
  */
 
-#define BP_HDMI_IH_PHY_STAT0_HDP      0
-#define BM_HDMI_IH_PHY_STAT0_HDP      0x00000001
+#define BP_HDMI_IH_PHY_STAT0_HDP      (0)
+#define BM_HDMI_IH_PHY_STAT0_HDP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_PHY_STAT0_HDP(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_PHY_STAT0_HDP)
@@ -1410,14 +1410,14 @@ typedef union
 #define BW_HDMI_IH_PHY_STAT0_HDP(v)   BF_CS1(HDMI_IH_PHY_STAT0, HDP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_PHY_STAT0, field TX_PHY_LOCK (W1C)
+/* --- Register HW_HDMI_IH_PHY_STAT0, field TX_PHY_LOCK[1:1] (W1C)
  *
  * TX PHY PLL lock indication. Please refer to PHY datasheet for more information. You may need to
  * mask or change polarity of this interrupt after it has become active.
  */
 
-#define BP_HDMI_IH_PHY_STAT0_TX_PHY_LOCK      1
-#define BM_HDMI_IH_PHY_STAT0_TX_PHY_LOCK      0x00000002
+#define BP_HDMI_IH_PHY_STAT0_TX_PHY_LOCK      (1)
+#define BM_HDMI_IH_PHY_STAT0_TX_PHY_LOCK      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_PHY_STAT0_TX_PHY_LOCK(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_PHY_STAT0_TX_PHY_LOCK)
@@ -1429,14 +1429,14 @@ typedef union
 #define BW_HDMI_IH_PHY_STAT0_TX_PHY_LOCK(v)   BF_CS1(HDMI_IH_PHY_STAT0, TX_PHY_LOCK, v)
 #endif
 
-/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE (W1C)
+/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE[2:2] (W1C)
  *
  * TX PHY RX_SENSE indication for driver 0. You may need to mask or change polarity of this
  * interrupt after it has become active.
  */
 
-#define BP_HDMI_IH_PHY_STAT0_RX_SENSE      2
-#define BM_HDMI_IH_PHY_STAT0_RX_SENSE      0x00000004
+#define BP_HDMI_IH_PHY_STAT0_RX_SENSE      (2)
+#define BM_HDMI_IH_PHY_STAT0_RX_SENSE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_PHY_STAT0_RX_SENSE(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_PHY_STAT0_RX_SENSE)
@@ -1448,14 +1448,14 @@ typedef union
 #define BW_HDMI_IH_PHY_STAT0_RX_SENSE(v)   BF_CS1(HDMI_IH_PHY_STAT0, RX_SENSE, v)
 #endif
 
-/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE1 (W1C)
+/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE1[3:3] (W1C)
  *
  * TX PHY RX_SENSE indication for driver 1. You may need to mask or change polarity of this
  * interrupt after it has become active.
  */
 
-#define BP_HDMI_IH_PHY_STAT0_RX_SENSE1      3
-#define BM_HDMI_IH_PHY_STAT0_RX_SENSE1      0x00000008
+#define BP_HDMI_IH_PHY_STAT0_RX_SENSE1      (3)
+#define BM_HDMI_IH_PHY_STAT0_RX_SENSE1      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_PHY_STAT0_RX_SENSE1(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_PHY_STAT0_RX_SENSE1)
@@ -1467,14 +1467,14 @@ typedef union
 #define BW_HDMI_IH_PHY_STAT0_RX_SENSE1(v)   BF_CS1(HDMI_IH_PHY_STAT0, RX_SENSE1, v)
 #endif
 
-/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE2 (W1C)
+/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE2[4:4] (W1C)
  *
  * TX PHY RX_SENSE indication for driver 2. You may need to mask or change polarity of this
  * interrupt after it has become active.
  */
 
-#define BP_HDMI_IH_PHY_STAT0_RX_SENSE2      4
-#define BM_HDMI_IH_PHY_STAT0_RX_SENSE2      0x00000010
+#define BP_HDMI_IH_PHY_STAT0_RX_SENSE2      (4)
+#define BM_HDMI_IH_PHY_STAT0_RX_SENSE2      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_PHY_STAT0_RX_SENSE2(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_PHY_STAT0_RX_SENSE2)
@@ -1486,14 +1486,14 @@ typedef union
 #define BW_HDMI_IH_PHY_STAT0_RX_SENSE2(v)   BF_CS1(HDMI_IH_PHY_STAT0, RX_SENSE2, v)
 #endif
 
-/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE3 (W1C)
+/* --- Register HW_HDMI_IH_PHY_STAT0, field RX_SENSE3[5:5] (W1C)
  *
  * TX PHY RX_SENSE indication for driver 3. You may need to mask or change polarity of this
  * interrupt after it has become active.
  */
 
-#define BP_HDMI_IH_PHY_STAT0_RX_SENSE3      5
-#define BM_HDMI_IH_PHY_STAT0_RX_SENSE3      0x00000020
+#define BP_HDMI_IH_PHY_STAT0_RX_SENSE3      (5)
+#define BM_HDMI_IH_PHY_STAT0_RX_SENSE3      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_PHY_STAT0_RX_SENSE3(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_PHY_STAT0_RX_SENSE3)
@@ -1541,13 +1541,13 @@ typedef union
  * constants & macros for individual HDMI_IH_I2CM_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_I2CM_STAT0, field I2CMASTER_ERROR (W1C)
+/* --- Register HW_HDMI_IH_I2CM_STAT0, field I2CMASTER_ERROR[0:0] (W1C)
  *
  * I2C Master error indication
  */
 
-#define BP_HDMI_IH_I2CM_STAT0_I2CMASTER_ERROR      0
-#define BM_HDMI_IH_I2CM_STAT0_I2CMASTER_ERROR      0x00000001
+#define BP_HDMI_IH_I2CM_STAT0_I2CMASTER_ERROR      (0)
+#define BM_HDMI_IH_I2CM_STAT0_I2CMASTER_ERROR      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_I2CM_STAT0_I2CMASTER_ERROR(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_I2CM_STAT0_I2CMASTER_ERROR)
@@ -1559,13 +1559,13 @@ typedef union
 #define BW_HDMI_IH_I2CM_STAT0_I2CMASTER_ERROR(v)   BF_CS1(HDMI_IH_I2CM_STAT0, I2CMASTER_ERROR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_I2CM_STAT0, field I2CMASTERDONE (W1C)
+/* --- Register HW_HDMI_IH_I2CM_STAT0, field I2CMASTERDONE[1:1] (W1C)
  *
  * I2C Master done indication
  */
 
-#define BP_HDMI_IH_I2CM_STAT0_I2CMASTERDONE      1
-#define BM_HDMI_IH_I2CM_STAT0_I2CMASTERDONE      0x00000002
+#define BP_HDMI_IH_I2CM_STAT0_I2CMASTERDONE      (1)
+#define BM_HDMI_IH_I2CM_STAT0_I2CMASTERDONE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_I2CM_STAT0_I2CMASTERDONE(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_I2CM_STAT0_I2CMASTERDONE)
@@ -1618,13 +1618,13 @@ typedef union
  * constants & macros for individual HDMI_IH_CEC_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_CEC_STAT0, field DONE (W1C)
+/* --- Register HW_HDMI_IH_CEC_STAT0, field DONE[0:0] (W1C)
  *
  * CEC Done Indication
  */
 
-#define BP_HDMI_IH_CEC_STAT0_DONE      0
-#define BM_HDMI_IH_CEC_STAT0_DONE      0x00000001
+#define BP_HDMI_IH_CEC_STAT0_DONE      (0)
+#define BM_HDMI_IH_CEC_STAT0_DONE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_CEC_STAT0_DONE(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_CEC_STAT0_DONE)
@@ -1636,13 +1636,13 @@ typedef union
 #define BW_HDMI_IH_CEC_STAT0_DONE(v)   BF_CS1(HDMI_IH_CEC_STAT0, DONE, v)
 #endif
 
-/* --- Register HW_HDMI_IH_CEC_STAT0, field EOM (W1C)
+/* --- Register HW_HDMI_IH_CEC_STAT0, field EOM[1:1] (W1C)
  *
  * CEC End of Message Indication
  */
 
-#define BP_HDMI_IH_CEC_STAT0_EOM      1
-#define BM_HDMI_IH_CEC_STAT0_EOM      0x00000002
+#define BP_HDMI_IH_CEC_STAT0_EOM      (1)
+#define BM_HDMI_IH_CEC_STAT0_EOM      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_CEC_STAT0_EOM(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_CEC_STAT0_EOM)
@@ -1654,13 +1654,13 @@ typedef union
 #define BW_HDMI_IH_CEC_STAT0_EOM(v)   BF_CS1(HDMI_IH_CEC_STAT0, EOM, v)
 #endif
 
-/* --- Register HW_HDMI_IH_CEC_STAT0, field NACK (W1C)
+/* --- Register HW_HDMI_IH_CEC_STAT0, field NACK[2:2] (W1C)
  *
  * CEC Nack indication
  */
 
-#define BP_HDMI_IH_CEC_STAT0_NACK      2
-#define BM_HDMI_IH_CEC_STAT0_NACK      0x00000004
+#define BP_HDMI_IH_CEC_STAT0_NACK      (2)
+#define BM_HDMI_IH_CEC_STAT0_NACK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_CEC_STAT0_NACK(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_CEC_STAT0_NACK)
@@ -1672,13 +1672,13 @@ typedef union
 #define BW_HDMI_IH_CEC_STAT0_NACK(v)   BF_CS1(HDMI_IH_CEC_STAT0, NACK, v)
 #endif
 
-/* --- Register HW_HDMI_IH_CEC_STAT0, field ARB_LOST (W1C)
+/* --- Register HW_HDMI_IH_CEC_STAT0, field ARB_LOST[3:3] (W1C)
  *
  * CEC Arb_Lost indication
  */
 
-#define BP_HDMI_IH_CEC_STAT0_ARB_LOST      3
-#define BM_HDMI_IH_CEC_STAT0_ARB_LOST      0x00000008
+#define BP_HDMI_IH_CEC_STAT0_ARB_LOST      (3)
+#define BM_HDMI_IH_CEC_STAT0_ARB_LOST      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_CEC_STAT0_ARB_LOST(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_CEC_STAT0_ARB_LOST)
@@ -1690,13 +1690,13 @@ typedef union
 #define BW_HDMI_IH_CEC_STAT0_ARB_LOST(v)   BF_CS1(HDMI_IH_CEC_STAT0, ARB_LOST, v)
 #endif
 
-/* --- Register HW_HDMI_IH_CEC_STAT0, field ERROR_INITIATOR (W1C)
+/* --- Register HW_HDMI_IH_CEC_STAT0, field ERROR_INITIATOR[4:4] (W1C)
  *
  * CEC Error_follow indication
  */
 
-#define BP_HDMI_IH_CEC_STAT0_ERROR_INITIATOR      4
-#define BM_HDMI_IH_CEC_STAT0_ERROR_INITIATOR      0x00000010
+#define BP_HDMI_IH_CEC_STAT0_ERROR_INITIATOR      (4)
+#define BM_HDMI_IH_CEC_STAT0_ERROR_INITIATOR      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_CEC_STAT0_ERROR_INITIATOR(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_CEC_STAT0_ERROR_INITIATOR)
@@ -1708,13 +1708,13 @@ typedef union
 #define BW_HDMI_IH_CEC_STAT0_ERROR_INITIATOR(v)   BF_CS1(HDMI_IH_CEC_STAT0, ERROR_INITIATOR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_CEC_STAT0, field ERROR_FOLLOW (W1C)
+/* --- Register HW_HDMI_IH_CEC_STAT0, field ERROR_FOLLOW[5:5] (W1C)
  *
  * CEC Error_follow indication
  */
 
-#define BP_HDMI_IH_CEC_STAT0_ERROR_FOLLOW      5
-#define BM_HDMI_IH_CEC_STAT0_ERROR_FOLLOW      0x00000020
+#define BP_HDMI_IH_CEC_STAT0_ERROR_FOLLOW      (5)
+#define BM_HDMI_IH_CEC_STAT0_ERROR_FOLLOW      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_CEC_STAT0_ERROR_FOLLOW(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_CEC_STAT0_ERROR_FOLLOW)
@@ -1726,13 +1726,13 @@ typedef union
 #define BW_HDMI_IH_CEC_STAT0_ERROR_FOLLOW(v)   BF_CS1(HDMI_IH_CEC_STAT0, ERROR_FOLLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_CEC_STAT0, field WAKEUP (W1C)
+/* --- Register HW_HDMI_IH_CEC_STAT0, field WAKEUP[6:6] (W1C)
  *
  * CEC Wake-up indication
  */
 
-#define BP_HDMI_IH_CEC_STAT0_WAKEUP      6
-#define BM_HDMI_IH_CEC_STAT0_WAKEUP      0x00000040
+#define BP_HDMI_IH_CEC_STAT0_WAKEUP      (6)
+#define BM_HDMI_IH_CEC_STAT0_WAKEUP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_CEC_STAT0_WAKEUP(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_CEC_STAT0_WAKEUP)
@@ -1785,13 +1785,13 @@ typedef union
  * constants & macros for individual HDMI_IH_VP_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYBYP (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYBYP[0:0] (W1C)
  *
  * Video packetizer 8-bit bypass fifo empty interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYBYP      0
-#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYBYP      0x00000001
+#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYBYP      (0)
+#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYBYP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOEMPTYBYP(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_VP_STAT0_FIFOEMPTYBYP)
@@ -1803,13 +1803,13 @@ typedef union
 #define BW_HDMI_IH_VP_STAT0_FIFOEMPTYBYP(v)   BF_CS1(HDMI_IH_VP_STAT0, FIFOEMPTYBYP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLBYP (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLBYP[1:1] (W1C)
  *
  * Video packetizer 8-bit bypass fifo full interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOFULLBYP      1
-#define BM_HDMI_IH_VP_STAT0_FIFOFULLBYP      0x00000002
+#define BP_HDMI_IH_VP_STAT0_FIFOFULLBYP      (1)
+#define BM_HDMI_IH_VP_STAT0_FIFOFULLBYP      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOFULLBYP(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_VP_STAT0_FIFOFULLBYP)
@@ -1821,13 +1821,13 @@ typedef union
 #define BW_HDMI_IH_VP_STAT0_FIFOFULLBYP(v)   BF_CS1(HDMI_IH_VP_STAT0, FIFOFULLBYP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYREMAP (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYREMAP[2:2] (W1C)
  *
  * Video packetizer pixel YCC 422 re-mapper FIFO empty interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYREMAP      2
-#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYREMAP      0x00000004
+#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYREMAP      (2)
+#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYREMAP      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOEMPTYREMAP(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_VP_STAT0_FIFOEMPTYREMAP)
@@ -1839,13 +1839,13 @@ typedef union
 #define BW_HDMI_IH_VP_STAT0_FIFOEMPTYREMAP(v)   BF_CS1(HDMI_IH_VP_STAT0, FIFOEMPTYREMAP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLREMAP (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLREMAP[3:3] (W1C)
  *
  * Video packetizer pixel YCC 422 re-mapper FIFO full interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOFULLREMAP      3
-#define BM_HDMI_IH_VP_STAT0_FIFOFULLREMAP      0x00000008
+#define BP_HDMI_IH_VP_STAT0_FIFOFULLREMAP      (3)
+#define BM_HDMI_IH_VP_STAT0_FIFOFULLREMAP      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOFULLREMAP(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_VP_STAT0_FIFOFULLREMAP)
@@ -1857,13 +1857,13 @@ typedef union
 #define BW_HDMI_IH_VP_STAT0_FIFOFULLREMAP(v)   BF_CS1(HDMI_IH_VP_STAT0, FIFOFULLREMAP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYPP (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYPP[4:4] (W1C)
  *
  * Video packetizer pixel packing FIFO empty interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYPP      4
-#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYPP      0x00000010
+#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYPP      (4)
+#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYPP      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOEMPTYPP(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_VP_STAT0_FIFOEMPTYPP)
@@ -1875,13 +1875,13 @@ typedef union
 #define BW_HDMI_IH_VP_STAT0_FIFOEMPTYPP(v)   BF_CS1(HDMI_IH_VP_STAT0, FIFOEMPTYPP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLPP (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLPP[5:5] (W1C)
  *
  * Video packetizer pixel packing FIFO full interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOFULLPP      5
-#define BM_HDMI_IH_VP_STAT0_FIFOFULLPP      0x00000020
+#define BP_HDMI_IH_VP_STAT0_FIFOFULLPP      (5)
+#define BM_HDMI_IH_VP_STAT0_FIFOFULLPP      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOFULLPP(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_VP_STAT0_FIFOFULLPP)
@@ -1893,13 +1893,13 @@ typedef union
 #define BW_HDMI_IH_VP_STAT0_FIFOFULLPP(v)   BF_CS1(HDMI_IH_VP_STAT0, FIFOFULLPP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYREPET (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOEMPTYREPET[6:6] (W1C)
  *
  * Video packetizer pixel repeater FIFO empty interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYREPET      6
-#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYREPET      0x00000040
+#define BP_HDMI_IH_VP_STAT0_FIFOEMPTYREPET      (6)
+#define BM_HDMI_IH_VP_STAT0_FIFOEMPTYREPET      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOEMPTYREPET(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_VP_STAT0_FIFOEMPTYREPET)
@@ -1911,13 +1911,13 @@ typedef union
 #define BW_HDMI_IH_VP_STAT0_FIFOEMPTYREPET(v)   BF_CS1(HDMI_IH_VP_STAT0, FIFOEMPTYREPET, v)
 #endif
 
-/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLREPET (W1C)
+/* --- Register HW_HDMI_IH_VP_STAT0, field FIFOFULLREPET[7:7] (W1C)
  *
  * Video packetizer pixel repeater FIFO full interrupt
  */
 
-#define BP_HDMI_IH_VP_STAT0_FIFOFULLREPET      7
-#define BM_HDMI_IH_VP_STAT0_FIFOFULLREPET      0x00000080
+#define BP_HDMI_IH_VP_STAT0_FIFOFULLREPET      (7)
+#define BM_HDMI_IH_VP_STAT0_FIFOFULLREPET      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_VP_STAT0_FIFOFULLREPET(v)   ((((reg32_t) v) << 7) & BM_HDMI_IH_VP_STAT0_FIFOFULLREPET)
@@ -1967,13 +1967,13 @@ typedef union
  * constants & macros for individual HDMI_IH_I2CMPHY_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_I2CMPHY_STAT0, field I2CMPHYERROR (W1C)
+/* --- Register HW_HDMI_IH_I2CMPHY_STAT0, field I2CMPHYERROR[0:0] (W1C)
  *
  * I2C Master PHY error indication
  */
 
-#define BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR      0
-#define BM_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR      0x00000001
+#define BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR      (0)
+#define BM_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR)
@@ -1985,13 +1985,13 @@ typedef union
 #define BW_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR(v)   BF_CS1(HDMI_IH_I2CMPHY_STAT0, I2CMPHYERROR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_I2CMPHY_STAT0, field I2CMPHYDONE (W1C)
+/* --- Register HW_HDMI_IH_I2CMPHY_STAT0, field I2CMPHYDONE[1:1] (W1C)
  *
  * I2C Master PHY done indication
  */
 
-#define BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE      1
-#define BM_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE      0x00000002
+#define BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE      (1)
+#define BM_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE)
@@ -2043,13 +2043,13 @@ typedef union
  * constants & macros for individual HDMI_IH_AHBDMAAUD_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFEMPTY (W1C)
+/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFEMPTY[0:0] (W1C)
  *
  * AHB audio DMA Buffer empty interrupt
  */
 
-#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      0
-#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      0x00000001
+#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      (0)
+#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY)
@@ -2061,13 +2061,13 @@ typedef union
 #define BW_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY(v)   BF_CS1(HDMI_IH_AHBDMAAUD_STAT0, AHBDMAAUD_INTBUFFEMPTY, v)
 #endif
 
-/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFFULL (W1C)
+/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFFULL[1:1] (W1C)
  *
  * AHB audio DMA Buffer full interrupt
  */
 
-#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      1
-#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      0x00000002
+#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      (1)
+#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL)
@@ -2079,13 +2079,13 @@ typedef union
 #define BW_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL(v)   BF_CS1(HDMI_IH_AHBDMAAUD_STAT0, AHBDMAAUD_INTBUFFFULL, v)
 #endif
 
-/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTDONE (W1C)
+/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTDONE[2:2] (W1C)
  *
  * AHB audio DMA done interrupt
  */
 
-#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      2
-#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      0x00000004
+#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      (2)
+#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE)
@@ -2097,13 +2097,13 @@ typedef union
 #define BW_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE(v)   BF_CS1(HDMI_IH_AHBDMAAUD_STAT0, AHBDMAAUD_INTDONE, v)
 #endif
 
-/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTRETRYSPLIT (W1C)
+/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTRETRYSPLIT[3:3] (W1C)
  *
  * AHB audio DMA RETRY/SPLIT interrupt
  */
 
-#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      3
-#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      0x00000008
+#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      (3)
+#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT)
@@ -2115,13 +2115,13 @@ typedef union
 #define BW_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT(v)   BF_CS1(HDMI_IH_AHBDMAAUD_STAT0, AHBDMAAUD_INTRETRYSPLIT, v)
 #endif
 
-/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTLOSTOWNERSHIP (W1C)
+/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTLOSTOWNERSHIP[4:4] (W1C)
  *
  * AHB audio DMA lost ownership interrupt
  */
 
-#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      4
-#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      0x00000010
+#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      (4)
+#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP)
@@ -2133,13 +2133,13 @@ typedef union
 #define BW_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP(v)   BF_CS1(HDMI_IH_AHBDMAAUD_STAT0, AHBDMAAUD_INTLOSTOWNERSHIP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTERROR (W1C)
+/* --- Register HW_HDMI_IH_AHBDMAAUD_STAT0, field AHBDMAAUD_INTERROR[5:5] (W1C)
  *
  * AHB audio DMA error interrupt
  */
 
-#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      5
-#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      0x00000020
+#define BP_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      (5)
+#define BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR)
@@ -2192,13 +2192,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_FC_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field NULL (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field NULL[0:0] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_NULL      0
-#define BM_HDMI_IH_MUTE_FC_STAT0_NULL      0x00000001
+#define BP_HDMI_IH_MUTE_FC_STAT0_NULL      (0)
+#define BM_HDMI_IH_MUTE_FC_STAT0_NULL      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_NULL(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_FC_STAT0_NULL)
@@ -2210,13 +2210,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT0_NULL(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT0, NULL, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field ACR (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field ACR[1:1] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_ACR      1
-#define BM_HDMI_IH_MUTE_FC_STAT0_ACR      0x00000002
+#define BP_HDMI_IH_MUTE_FC_STAT0_ACR      (1)
+#define BM_HDMI_IH_MUTE_FC_STAT0_ACR      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_ACR(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_FC_STAT0_ACR)
@@ -2228,13 +2228,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT0_ACR(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT0, ACR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field AUDS (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field AUDS[2:2] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[2]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_AUDS      2
-#define BM_HDMI_IH_MUTE_FC_STAT0_AUDS      0x00000004
+#define BP_HDMI_IH_MUTE_FC_STAT0_AUDS      (2)
+#define BM_HDMI_IH_MUTE_FC_STAT0_AUDS      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_AUDS(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_FC_STAT0_AUDS)
@@ -2246,13 +2246,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT0_AUDS(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT0, AUDS, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field OBA (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field OBA[3:3] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[3]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_OBA      3
-#define BM_HDMI_IH_MUTE_FC_STAT0_OBA      0x00000008
+#define BP_HDMI_IH_MUTE_FC_STAT0_OBA      (3)
+#define BM_HDMI_IH_MUTE_FC_STAT0_OBA      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_OBA(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_MUTE_FC_STAT0_OBA)
@@ -2264,13 +2264,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT0_OBA(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT0, OBA, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field DST (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field DST[4:4] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[4]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_DST      4
-#define BM_HDMI_IH_MUTE_FC_STAT0_DST      0x00000010
+#define BP_HDMI_IH_MUTE_FC_STAT0_DST      (4)
+#define BM_HDMI_IH_MUTE_FC_STAT0_DST      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_DST(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_MUTE_FC_STAT0_DST)
@@ -2282,13 +2282,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT0_DST(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT0, DST, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field HBR (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field HBR[5:5] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[5]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_HBR      5
-#define BM_HDMI_IH_MUTE_FC_STAT0_HBR      0x00000020
+#define BP_HDMI_IH_MUTE_FC_STAT0_HBR      (5)
+#define BM_HDMI_IH_MUTE_FC_STAT0_HBR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_HBR(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_MUTE_FC_STAT0_HBR)
@@ -2300,13 +2300,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT0_HBR(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT0, HBR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field ACP (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field ACP[6:6] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[6]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_ACP      6
-#define BM_HDMI_IH_MUTE_FC_STAT0_ACP      0x00000040
+#define BP_HDMI_IH_MUTE_FC_STAT0_ACP      (6)
+#define BM_HDMI_IH_MUTE_FC_STAT0_ACP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_ACP(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_MUTE_FC_STAT0_ACP)
@@ -2318,13 +2318,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT0_ACP(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT0, ACP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field AUDI (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT0, field AUDI[7:7] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT0[7]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT0_AUDI      7
-#define BM_HDMI_IH_MUTE_FC_STAT0_AUDI      0x00000080
+#define BP_HDMI_IH_MUTE_FC_STAT0_AUDI      (7)
+#define BM_HDMI_IH_MUTE_FC_STAT0_AUDI      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT0_AUDI(v)   ((((reg32_t) v) << 7) & BM_HDMI_IH_MUTE_FC_STAT0_AUDI)
@@ -2377,13 +2377,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_FC_STAT1 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field GCP (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field GCP[0:0] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[0]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_GCP      0
-#define BM_HDMI_IH_MUTE_FC_STAT1_GCP      0x00000001
+#define BP_HDMI_IH_MUTE_FC_STAT1_GCP      (0)
+#define BM_HDMI_IH_MUTE_FC_STAT1_GCP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_GCP(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_FC_STAT1_GCP)
@@ -2395,13 +2395,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT1_GCP(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT1, GCP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field AVI (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field AVI[1:1] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[1]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_AVI      1
-#define BM_HDMI_IH_MUTE_FC_STAT1_AVI      0x00000002
+#define BP_HDMI_IH_MUTE_FC_STAT1_AVI      (1)
+#define BM_HDMI_IH_MUTE_FC_STAT1_AVI      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_AVI(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_FC_STAT1_AVI)
@@ -2413,13 +2413,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT1_AVI(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT1, AVI, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field MPEG (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field MPEG[2:2] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[2]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_MPEG      2
-#define BM_HDMI_IH_MUTE_FC_STAT1_MPEG      0x00000004
+#define BP_HDMI_IH_MUTE_FC_STAT1_MPEG      (2)
+#define BM_HDMI_IH_MUTE_FC_STAT1_MPEG      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_MPEG(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_FC_STAT1_MPEG)
@@ -2431,13 +2431,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT1_MPEG(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT1, MPEG, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field SPD (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field SPD[3:3] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[3]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_SPD      3
-#define BM_HDMI_IH_MUTE_FC_STAT1_SPD      0x00000008
+#define BP_HDMI_IH_MUTE_FC_STAT1_SPD      (3)
+#define BM_HDMI_IH_MUTE_FC_STAT1_SPD      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_SPD(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_MUTE_FC_STAT1_SPD)
@@ -2449,13 +2449,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT1_SPD(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT1, SPD, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field VSD (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field VSD[4:4] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[4]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_VSD      4
-#define BM_HDMI_IH_MUTE_FC_STAT1_VSD      0x00000010
+#define BP_HDMI_IH_MUTE_FC_STAT1_VSD      (4)
+#define BM_HDMI_IH_MUTE_FC_STAT1_VSD      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_VSD(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_MUTE_FC_STAT1_VSD)
@@ -2467,13 +2467,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT1_VSD(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT1, VSD, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field ISCR2 (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field ISCR2[5:5] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[5]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_ISCR2      5
-#define BM_HDMI_IH_MUTE_FC_STAT1_ISCR2      0x00000020
+#define BP_HDMI_IH_MUTE_FC_STAT1_ISCR2      (5)
+#define BM_HDMI_IH_MUTE_FC_STAT1_ISCR2      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_ISCR2(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_MUTE_FC_STAT1_ISCR2)
@@ -2485,13 +2485,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT1_ISCR2(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT1, ISCR2, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field ISCR1 (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field ISCR1[6:6] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[6]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_ISCR1      6
-#define BM_HDMI_IH_MUTE_FC_STAT1_ISCR1      0x00000040
+#define BP_HDMI_IH_MUTE_FC_STAT1_ISCR1      (6)
+#define BM_HDMI_IH_MUTE_FC_STAT1_ISCR1      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_ISCR1(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_MUTE_FC_STAT1_ISCR1)
@@ -2503,13 +2503,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT1_ISCR1(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT1, ISCR1, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field GMD (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT1, field GMD[7:7] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT1[7]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT1_GMD      7
-#define BM_HDMI_IH_MUTE_FC_STAT1_GMD      0x00000080
+#define BP_HDMI_IH_MUTE_FC_STAT1_GMD      (7)
+#define BM_HDMI_IH_MUTE_FC_STAT1_GMD      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT1_GMD(v)   ((((reg32_t) v) << 7) & BM_HDMI_IH_MUTE_FC_STAT1_GMD)
@@ -2557,13 +2557,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_FC_STAT2 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT2, field HIGHPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT2, field HIGHPRIORITY_OVERFLOW[0:0] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT2[0]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT2_HIGHPRIORITY_OVERFLOW      0
-#define BM_HDMI_IH_MUTE_FC_STAT2_HIGHPRIORITY_OVERFLOW      0x00000001
+#define BP_HDMI_IH_MUTE_FC_STAT2_HIGHPRIORITY_OVERFLOW      (0)
+#define BM_HDMI_IH_MUTE_FC_STAT2_HIGHPRIORITY_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT2_HIGHPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_FC_STAT2_HIGHPRIORITY_OVERFLOW)
@@ -2575,13 +2575,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_FC_STAT2_HIGHPRIORITY_OVERFLOW(v)   BF_CS1(HDMI_IH_MUTE_FC_STAT2, HIGHPRIORITY_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_FC_STAT2, field LOWPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_IH_MUTE_FC_STAT2, field LOWPRIORITY_OVERFLOW[1:1] (RW)
  *
  * When set to 1, mutes IH_ FC_STAT2[1]
  */
 
-#define BP_HDMI_IH_MUTE_FC_STAT2_LOWPRIORITY_OVERFLOW      1
-#define BM_HDMI_IH_MUTE_FC_STAT2_LOWPRIORITY_OVERFLOW      0x00000002
+#define BP_HDMI_IH_MUTE_FC_STAT2_LOWPRIORITY_OVERFLOW      (1)
+#define BM_HDMI_IH_MUTE_FC_STAT2_LOWPRIORITY_OVERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_FC_STAT2_LOWPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_FC_STAT2_LOWPRIORITY_OVERFLOW)
@@ -2630,13 +2630,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_AS_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_AS_STAT0, field AUD_FIFO_OVERFLOW (RW)
+/* --- Register HW_HDMI_IH_MUTE_AS_STAT0, field AUD_FIFO_OVERFLOW[0:0] (RW)
  *
  * When set to 1, mutes IH_ AS_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_OVERFLOW      0
-#define BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_OVERFLOW      0x00000001
+#define BP_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_OVERFLOW      (0)
+#define BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_OVERFLOW)
@@ -2648,13 +2648,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_OVERFLOW(v)   BF_CS1(HDMI_IH_MUTE_AS_STAT0, AUD_FIFO_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_AS_STAT0, field AUD_FIFO_UNDERFLOW (RW)
+/* --- Register HW_HDMI_IH_MUTE_AS_STAT0, field AUD_FIFO_UNDERFLOW[1:1] (RW)
  *
  * When set to 1, mutes IH_ AS_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW      1
-#define BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW      0x00000002
+#define BP_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW      (1)
+#define BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW)
@@ -2666,13 +2666,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW(v)   BF_CS1(HDMI_IH_MUTE_AS_STAT0, AUD_FIFO_UNDERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_AS_STAT0, field AUD_FIFO_UNDERFLOW_THR (RW)
+/* --- Register HW_HDMI_IH_MUTE_AS_STAT0, field AUD_FIFO_UNDERFLOW_THR[2:2] (RW)
  *
  * When set to 1, mutes IH_ AS_STAT0[2]
  */
 
-#define BP_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      2
-#define BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      0x00000004
+#define BP_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      (2)
+#define BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW_THR      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW_THR(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_AS_STAT0_AUD_FIFO_UNDERFLOW_THR)
@@ -2724,13 +2724,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_PHY_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field HDP (RW)
+/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field HDP[0:0] (RW)
  *
  * When set to 1, mutes IH_ PHY_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_PHY_STAT0_HDP      0
-#define BM_HDMI_IH_MUTE_PHY_STAT0_HDP      0x00000001
+#define BP_HDMI_IH_MUTE_PHY_STAT0_HDP      (0)
+#define BM_HDMI_IH_MUTE_PHY_STAT0_HDP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_PHY_STAT0_HDP(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_PHY_STAT0_HDP)
@@ -2742,13 +2742,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_PHY_STAT0_HDP(v)   BF_CS1(HDMI_IH_MUTE_PHY_STAT0, HDP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field TX_PHY_LOCK (RW)
+/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field TX_PHY_LOCK[1:1] (RW)
  *
  * When set to 1, mutes IH_ PHY_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_PHY_STAT0_TX_PHY_LOCK      1
-#define BM_HDMI_IH_MUTE_PHY_STAT0_TX_PHY_LOCK      0x00000002
+#define BP_HDMI_IH_MUTE_PHY_STAT0_TX_PHY_LOCK      (1)
+#define BM_HDMI_IH_MUTE_PHY_STAT0_TX_PHY_LOCK      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_PHY_STAT0_TX_PHY_LOCK(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_PHY_STAT0_TX_PHY_LOCK)
@@ -2760,13 +2760,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_PHY_STAT0_TX_PHY_LOCK(v)   BF_CS1(HDMI_IH_MUTE_PHY_STAT0, TX_PHY_LOCK, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE (RW)
+/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE[2:2] (RW)
  *
  * When set to 1, mutes IH_ PHY_STAT0[2]
  */
 
-#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE      2
-#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE      0x00000004
+#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE      (2)
+#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE)
@@ -2778,13 +2778,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE(v)   BF_CS1(HDMI_IH_MUTE_PHY_STAT0, RX_SENSE, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE1 (RW)
+/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE1[3:3] (RW)
  *
  * When set to 1, mutes IH_ PHY_STAT0[3]
  */
 
-#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE1      3
-#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE1      0x00000008
+#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE1      (3)
+#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE1      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE1(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE1)
@@ -2796,13 +2796,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE1(v)   BF_CS1(HDMI_IH_MUTE_PHY_STAT0, RX_SENSE1, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE2 (RW)
+/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE2[4:4] (RW)
  *
  * When set to 1, mutes IH_ PHY_STAT0[4]
  */
 
-#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE2      4
-#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE2      0x00000010
+#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE2      (4)
+#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE2      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE2(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE2)
@@ -2814,13 +2814,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE2(v)   BF_CS1(HDMI_IH_MUTE_PHY_STAT0, RX_SENSE2, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE3 (RW)
+/* --- Register HW_HDMI_IH_MUTE_PHY_STAT0, field RX_SENSE3[5:5] (RW)
  *
  * When set to 1, mutes IH_ PHY_STAT0[5]
  */
 
-#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE3      5
-#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE3      0x00000020
+#define BP_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE3      (5)
+#define BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE3      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE3(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_MUTE_PHY_STAT0_RX_SENSE3)
@@ -2868,13 +2868,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_I2CM_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_I2CM_STAT0, field I2CMASTER_ERROR (RW)
+/* --- Register HW_HDMI_IH_MUTE_I2CM_STAT0, field I2CMASTER_ERROR[0:0] (RW)
  *
  * When set to 1, mutes IH_ I2CM_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTER_ERROR      0
-#define BM_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTER_ERROR      0x00000001
+#define BP_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTER_ERROR      (0)
+#define BM_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTER_ERROR      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTER_ERROR(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTER_ERROR)
@@ -2886,13 +2886,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTER_ERROR(v)   BF_CS1(HDMI_IH_MUTE_I2CM_STAT0, I2CMASTER_ERROR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_I2CM_STAT0, field I2CMASTERDONE (RW)
+/* --- Register HW_HDMI_IH_MUTE_I2CM_STAT0, field I2CMASTERDONE[1:1] (RW)
  *
  * When set to 1, mutes IH_ I2CM_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTERDONE      1
-#define BM_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTERDONE      0x00000002
+#define BP_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTERDONE      (1)
+#define BM_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTERDONE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTERDONE(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_I2CM_STAT0_I2CMASTERDONE)
@@ -2945,13 +2945,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_CEC_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field DONE (RW)
+/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field DONE[0:0] (RW)
  *
  * When set to 1, mutes IH_ CEC_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_CEC_STAT0_DONE      0
-#define BM_HDMI_IH_MUTE_CEC_STAT0_DONE      0x00000001
+#define BP_HDMI_IH_MUTE_CEC_STAT0_DONE      (0)
+#define BM_HDMI_IH_MUTE_CEC_STAT0_DONE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_CEC_STAT0_DONE(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_CEC_STAT0_DONE)
@@ -2963,13 +2963,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_CEC_STAT0_DONE(v)   BF_CS1(HDMI_IH_MUTE_CEC_STAT0, DONE, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field EOM (RW)
+/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field EOM[1:1] (RW)
  *
  * When set to 1, mutes IH_ CEC_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_CEC_STAT0_EOM      1
-#define BM_HDMI_IH_MUTE_CEC_STAT0_EOM      0x00000002
+#define BP_HDMI_IH_MUTE_CEC_STAT0_EOM      (1)
+#define BM_HDMI_IH_MUTE_CEC_STAT0_EOM      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_CEC_STAT0_EOM(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_CEC_STAT0_EOM)
@@ -2981,13 +2981,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_CEC_STAT0_EOM(v)   BF_CS1(HDMI_IH_MUTE_CEC_STAT0, EOM, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field NACK (RW)
+/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field NACK[2:2] (RW)
  *
  * When set to 1, mutes IH_ CEC_STAT0[2]
  */
 
-#define BP_HDMI_IH_MUTE_CEC_STAT0_NACK      2
-#define BM_HDMI_IH_MUTE_CEC_STAT0_NACK      0x00000004
+#define BP_HDMI_IH_MUTE_CEC_STAT0_NACK      (2)
+#define BM_HDMI_IH_MUTE_CEC_STAT0_NACK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_CEC_STAT0_NACK(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_CEC_STAT0_NACK)
@@ -2999,13 +2999,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_CEC_STAT0_NACK(v)   BF_CS1(HDMI_IH_MUTE_CEC_STAT0, NACK, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field ARB_LOST (RW)
+/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field ARB_LOST[3:3] (RW)
  *
  * When set to 1, mutes IH_ CEC_STAT0[3]
  */
 
-#define BP_HDMI_IH_MUTE_CEC_STAT0_ARB_LOST      3
-#define BM_HDMI_IH_MUTE_CEC_STAT0_ARB_LOST      0x00000008
+#define BP_HDMI_IH_MUTE_CEC_STAT0_ARB_LOST      (3)
+#define BM_HDMI_IH_MUTE_CEC_STAT0_ARB_LOST      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_CEC_STAT0_ARB_LOST(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_MUTE_CEC_STAT0_ARB_LOST)
@@ -3017,13 +3017,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_CEC_STAT0_ARB_LOST(v)   BF_CS1(HDMI_IH_MUTE_CEC_STAT0, ARB_LOST, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field ERROR_INITIATOR (RW)
+/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field ERROR_INITIATOR[4:4] (RW)
  *
  * When set to 1, mutes IH_ CEC_STAT0[4]
  */
 
-#define BP_HDMI_IH_MUTE_CEC_STAT0_ERROR_INITIATOR      4
-#define BM_HDMI_IH_MUTE_CEC_STAT0_ERROR_INITIATOR      0x00000010
+#define BP_HDMI_IH_MUTE_CEC_STAT0_ERROR_INITIATOR      (4)
+#define BM_HDMI_IH_MUTE_CEC_STAT0_ERROR_INITIATOR      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_CEC_STAT0_ERROR_INITIATOR(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_MUTE_CEC_STAT0_ERROR_INITIATOR)
@@ -3035,13 +3035,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_CEC_STAT0_ERROR_INITIATOR(v)   BF_CS1(HDMI_IH_MUTE_CEC_STAT0, ERROR_INITIATOR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field ERROR_FOLLOW (RW)
+/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field ERROR_FOLLOW[5:5] (RW)
  *
  * When set to 1, mutes IH_ CEC_STAT0[5]
  */
 
-#define BP_HDMI_IH_MUTE_CEC_STAT0_ERROR_FOLLOW      5
-#define BM_HDMI_IH_MUTE_CEC_STAT0_ERROR_FOLLOW      0x00000020
+#define BP_HDMI_IH_MUTE_CEC_STAT0_ERROR_FOLLOW      (5)
+#define BM_HDMI_IH_MUTE_CEC_STAT0_ERROR_FOLLOW      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_CEC_STAT0_ERROR_FOLLOW(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_MUTE_CEC_STAT0_ERROR_FOLLOW)
@@ -3053,13 +3053,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_CEC_STAT0_ERROR_FOLLOW(v)   BF_CS1(HDMI_IH_MUTE_CEC_STAT0, ERROR_FOLLOW, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field WAKEUP (RW)
+/* --- Register HW_HDMI_IH_MUTE_CEC_STAT0, field WAKEUP[6:6] (RW)
  *
  * When set to 1, mutes IH_ CEC_STAT0[6]
  */
 
-#define BP_HDMI_IH_MUTE_CEC_STAT0_WAKEUP      6
-#define BM_HDMI_IH_MUTE_CEC_STAT0_WAKEUP      0x00000040
+#define BP_HDMI_IH_MUTE_CEC_STAT0_WAKEUP      (6)
+#define BM_HDMI_IH_MUTE_CEC_STAT0_WAKEUP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_CEC_STAT0_WAKEUP(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_MUTE_CEC_STAT0_WAKEUP)
@@ -3112,13 +3112,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_VP_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYBYP (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYBYP[0:0] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYBYP      0
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYBYP      0x00000001
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYBYP      (0)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYBYP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYBYP(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYBYP)
@@ -3130,13 +3130,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYBYP(v)   BF_CS1(HDMI_IH_MUTE_VP_STAT0, FIFOEMPTYBYP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLBYP (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLBYP[1:1] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLBYP      1
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLBYP      0x00000002
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLBYP      (1)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLBYP      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOFULLBYP(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLBYP)
@@ -3148,13 +3148,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_VP_STAT0_FIFOFULLBYP(v)   BF_CS1(HDMI_IH_MUTE_VP_STAT0, FIFOFULLBYP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYREMAP (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYREMAP[2:2] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[2]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREMAP      2
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREMAP      0x00000004
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREMAP      (2)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREMAP      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREMAP(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREMAP)
@@ -3166,13 +3166,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREMAP(v)   BF_CS1(HDMI_IH_MUTE_VP_STAT0, FIFOEMPTYREMAP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLREMAP (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLREMAP[3:3] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[3]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREMAP      3
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREMAP      0x00000008
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREMAP      (3)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREMAP      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREMAP(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREMAP)
@@ -3184,13 +3184,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREMAP(v)   BF_CS1(HDMI_IH_MUTE_VP_STAT0, FIFOFULLREMAP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYPP (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYPP[4:4] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[4]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYPP      4
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYPP      0x00000010
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYPP      (4)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYPP      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYPP(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYPP)
@@ -3202,13 +3202,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYPP(v)   BF_CS1(HDMI_IH_MUTE_VP_STAT0, FIFOEMPTYPP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLPP (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLPP[5:5] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[5]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLPP      5
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLPP      0x00000020
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLPP      (5)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLPP      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOFULLPP(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLPP)
@@ -3220,13 +3220,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_VP_STAT0_FIFOFULLPP(v)   BF_CS1(HDMI_IH_MUTE_VP_STAT0, FIFOFULLPP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYREPET (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOEMPTYREPET[6:6] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[6]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREPET      6
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREPET      0x00000040
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREPET      (6)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREPET      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREPET(v)   ((((reg32_t) v) << 6) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREPET)
@@ -3238,13 +3238,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_VP_STAT0_FIFOEMPTYREPET(v)   BF_CS1(HDMI_IH_MUTE_VP_STAT0, FIFOEMPTYREPET, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLREPET (RW)
+/* --- Register HW_HDMI_IH_MUTE_VP_STAT0, field FIFOFULLREPET[7:7] (RW)
  *
  * When set to 1, mutes IH_ VP_STAT0[7]
  */
 
-#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREPET      7
-#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREPET      0x00000080
+#define BP_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREPET      (7)
+#define BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREPET      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREPET(v)   ((((reg32_t) v) << 7) & BM_HDMI_IH_MUTE_VP_STAT0_FIFOFULLREPET)
@@ -3292,13 +3292,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_I2CMPHY_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_I2CMPHY_STAT0, field I2CMPHYERROR (RW)
+/* --- Register HW_HDMI_IH_MUTE_I2CMPHY_STAT0, field I2CMPHYERROR[0:0] (RW)
  *
  * When set to 1, mutes IH_ I2CMPHY_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYERROR      0
-#define BM_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYERROR      0x00000001
+#define BP_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYERROR      (0)
+#define BM_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYERROR      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYERROR(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYERROR)
@@ -3310,13 +3310,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYERROR(v)   BF_CS1(HDMI_IH_MUTE_I2CMPHY_STAT0, I2CMPHYERROR, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_I2CMPHY_STAT0, field I2CMPHYDONE (RW)
+/* --- Register HW_HDMI_IH_MUTE_I2CMPHY_STAT0, field I2CMPHYDONE[1:1] (RW)
  *
  * When set to 1, mutes IH_ I2CMPHY_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYDONE      1
-#define BM_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYDONE      0x00000002
+#define BP_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYDONE      (1)
+#define BM_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYDONE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYDONE(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_I2CMPHY_STAT0_I2CMPHYDONE)
@@ -3368,13 +3368,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE_AHBDMAAUD_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFEMPTY (RW)
+/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFEMPTY[0:0] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      0
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      0x00000001
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      (0)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY)
@@ -3386,13 +3386,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFEMPTY(v)   BF_CS1(HDMI_IH_MUTE_AHBDMAAUD_STAT0, AHBDMAAUD_INTBUFFEMPTY, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFFULL (RW)
+/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTBUFFFULL[1:1] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      1
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      0x00000002
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      (1)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL)
@@ -3404,13 +3404,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTBUFFFULL(v)   BF_CS1(HDMI_IH_MUTE_AHBDMAAUD_STAT0, AHBDMAAUD_INTBUFFFULL, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTDONE (RW)
+/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTDONE[2:2] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[2]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      2
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      0x00000004
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      (2)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE)
@@ -3422,13 +3422,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTDONE(v)   BF_CS1(HDMI_IH_MUTE_AHBDMAAUD_STAT0, AHBDMAAUD_INTDONE, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTRETRYSPLIT (RW)
+/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTRETRYSPLIT[3:3] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[3]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      3
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      0x00000008
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      (3)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT)
@@ -3440,13 +3440,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTRETRYSPLIT(v)   BF_CS1(HDMI_IH_MUTE_AHBDMAAUD_STAT0, AHBDMAAUD_INTRETRYSPLIT, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTLOSTOWNERSHIP (RW)
+/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTLOSTOWNERSHIP[4:4] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[4]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      4
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      0x00000010
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      (4)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP)
@@ -3458,13 +3458,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTLOSTOWNERSHIP(v)   BF_CS1(HDMI_IH_MUTE_AHBDMAAUD_STAT0, AHBDMAAUD_INTLOSTOWNERSHIP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTERROR (RW)
+/* --- Register HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0, field AHBDMAAUD_INTERROR[5:5] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[5]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      5
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      0x00000020
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      (5)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_MUTE_AHBDMAAUD_STAT0_AHBDMAAUD_INTERROR)
@@ -3516,13 +3516,13 @@ typedef union
  * constants & macros for individual HDMI_IH_MUTE bitfields
  */
 
-/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTBUFFEMPTY (RW)
+/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTBUFFEMPTY[0:0] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[0]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFEMPTY      0
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFEMPTY      0x00000001
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFEMPTY      (0)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFEMPTY      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFEMPTY(v)   ((((reg32_t) v) << 0) & BM_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFEMPTY)
@@ -3534,13 +3534,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFEMPTY(v)   BF_CS1(HDMI_IH_MUTE, AHBDMAAUD_INTBUFFEMPTY, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTBUFFFULL (RW)
+/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTBUFFFULL[1:1] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[1]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFFULL      1
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFFULL      0x00000002
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFFULL      (1)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFFULL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFFULL(v)   ((((reg32_t) v) << 1) & BM_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFFULL)
@@ -3552,13 +3552,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_INTBUFFFULL(v)   BF_CS1(HDMI_IH_MUTE, AHBDMAAUD_INTBUFFFULL, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTDONE (RW)
+/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTDONE[2:2] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[2]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTDONE      2
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTDONE      0x00000004
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTDONE      (2)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTDONE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_INTDONE(v)   ((((reg32_t) v) << 2) & BM_HDMI_IH_MUTE_AHBDMAAUD_INTDONE)
@@ -3570,13 +3570,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_INTDONE(v)   BF_CS1(HDMI_IH_MUTE, AHBDMAAUD_INTDONE, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTRETRYSPLIT (RW)
+/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTRETRYSPLIT[3:3] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[3]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTRETRYSPLIT      3
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTRETRYSPLIT      0x00000008
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTRETRYSPLIT      (3)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTRETRYSPLIT      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_INTRETRYSPLIT(v)   ((((reg32_t) v) << 3) & BM_HDMI_IH_MUTE_AHBDMAAUD_INTRETRYSPLIT)
@@ -3588,13 +3588,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_INTRETRYSPLIT(v)   BF_CS1(HDMI_IH_MUTE, AHBDMAAUD_INTRETRYSPLIT, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTLOSTOWNERSHIP (RW)
+/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTLOSTOWNERSHIP[4:4] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[4]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTLOSTOWNERSHIP      4
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTLOSTOWNERSHIP      0x00000010
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTLOSTOWNERSHIP      (4)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTLOSTOWNERSHIP      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_INTLOSTOWNERSHIP(v)   ((((reg32_t) v) << 4) & BM_HDMI_IH_MUTE_AHBDMAAUD_INTLOSTOWNERSHIP)
@@ -3606,13 +3606,13 @@ typedef union
 #define BW_HDMI_IH_MUTE_AHBDMAAUD_INTLOSTOWNERSHIP(v)   BF_CS1(HDMI_IH_MUTE, AHBDMAAUD_INTLOSTOWNERSHIP, v)
 #endif
 
-/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTERROR (RW)
+/* --- Register HW_HDMI_IH_MUTE, field AHBDMAAUD_INTERROR[5:5] (RW)
  *
  * When set to 1, mutes IH_AHBDMAAUD_STAT0[5]
  */
 
-#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTERROR      5
-#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTERROR      0x00000020
+#define BP_HDMI_IH_MUTE_AHBDMAAUD_INTERROR      (5)
+#define BM_HDMI_IH_MUTE_AHBDMAAUD_INTERROR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_IH_MUTE_AHBDMAAUD_INTERROR(v)   ((((reg32_t) v) << 5) & BM_HDMI_IH_MUTE_AHBDMAAUD_INTERROR)
@@ -3661,13 +3661,13 @@ typedef union
  * constants & macros for individual HDMI_TX_INVID0 bitfields
  */
 
-/* --- Register HW_HDMI_TX_INVID0, field VIDEO_MAPPING (RW)
+/* --- Register HW_HDMI_TX_INVID0, field VIDEO_MAPPING[4:0] (RW)
  *
  * video_mapping
  */
 
-#define BP_HDMI_TX_INVID0_VIDEO_MAPPING      0
-#define BM_HDMI_TX_INVID0_VIDEO_MAPPING      0x0000001f
+#define BP_HDMI_TX_INVID0_VIDEO_MAPPING      (0)
+#define BM_HDMI_TX_INVID0_VIDEO_MAPPING      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_INVID0_VIDEO_MAPPING(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_INVID0_VIDEO_MAPPING)
@@ -3679,7 +3679,7 @@ typedef union
 #define BW_HDMI_TX_INVID0_VIDEO_MAPPING(v)   BF_CS1(HDMI_TX_INVID0, VIDEO_MAPPING, v)
 #endif
 
-/* --- Register HW_HDMI_TX_INVID0, field INTERNAL_DE_GENERATOR (RW)
+/* --- Register HW_HDMI_TX_INVID0, field INTERNAL_DE_GENERATOR[7:7] (RW)
  *
  * Internal data enable (DE) generator enable. If data enable is not available for the input video
  * the user may set this bit to one to activate the internal data enable generator. This feature
@@ -3688,8 +3688,8 @@ typedef union
  * the Frame Composer and not this block.
  */
 
-#define BP_HDMI_TX_INVID0_INTERNAL_DE_GENERATOR      7
-#define BM_HDMI_TX_INVID0_INTERNAL_DE_GENERATOR      0x00000080
+#define BP_HDMI_TX_INVID0_INTERNAL_DE_GENERATOR      (7)
+#define BM_HDMI_TX_INVID0_INTERNAL_DE_GENERATOR      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_INVID0_INTERNAL_DE_GENERATOR(v)   ((((reg32_t) v) << 7) & BM_HDMI_TX_INVID0_INTERNAL_DE_GENERATOR)
@@ -3741,7 +3741,7 @@ typedef union
  * constants & macros for individual HDMI_TX_INSTUFFING bitfields
  */
 
-/* --- Register HW_HDMI_TX_INSTUFFING, field GYDATA_STUFFING (RW)
+/* --- Register HW_HDMI_TX_INSTUFFING, field GYDATA_STUFFING[0:0] (RW)
  *
 
  *
@@ -3752,8 +3752,8 @@ typedef union
  *     TX_GYDTA0 and TX_GYDATA1 registers.
  */
 
-#define BP_HDMI_TX_INSTUFFING_GYDATA_STUFFING      0
-#define BM_HDMI_TX_INSTUFFING_GYDATA_STUFFING      0x00000001
+#define BP_HDMI_TX_INSTUFFING_GYDATA_STUFFING      (0)
+#define BM_HDMI_TX_INSTUFFING_GYDATA_STUFFING      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_INSTUFFING_GYDATA_STUFFING(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_INSTUFFING_GYDATA_STUFFING)
@@ -3766,7 +3766,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_TX_INSTUFFING, field RCRDATA_STUFFING (RW)
+/* --- Register HW_HDMI_TX_INSTUFFING, field RCRDATA_STUFFING[1:1] (RW)
  *
 
  *
@@ -3777,8 +3777,8 @@ typedef union
  *     TX_RCRDTA0 and TX_RCRDATA1 registers.
  */
 
-#define BP_HDMI_TX_INSTUFFING_RCRDATA_STUFFING      1
-#define BM_HDMI_TX_INSTUFFING_RCRDATA_STUFFING      0x00000002
+#define BP_HDMI_TX_INSTUFFING_RCRDATA_STUFFING      (1)
+#define BM_HDMI_TX_INSTUFFING_RCRDATA_STUFFING      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_INSTUFFING_RCRDATA_STUFFING(v)   ((((reg32_t) v) << 1) & BM_HDMI_TX_INSTUFFING_RCRDATA_STUFFING)
@@ -3791,7 +3791,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_TX_INSTUFFING, field BCBDATA_STUFFING (RW)
+/* --- Register HW_HDMI_TX_INSTUFFING, field BCBDATA_STUFFING[2:2] (RW)
  *
 
  *
@@ -3802,8 +3802,8 @@ typedef union
  *     register TX_BCBDTA0 and TX_BCBDATA1.
  */
 
-#define BP_HDMI_TX_INSTUFFING_BCBDATA_STUFFING      2
-#define BM_HDMI_TX_INSTUFFING_BCBDATA_STUFFING      0x00000004
+#define BP_HDMI_TX_INSTUFFING_BCBDATA_STUFFING      (2)
+#define BM_HDMI_TX_INSTUFFING_BCBDATA_STUFFING      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_INSTUFFING_BCBDATA_STUFFING(v)   ((((reg32_t) v) << 2) & BM_HDMI_TX_INSTUFFING_BCBDATA_STUFFING)
@@ -3850,14 +3850,14 @@ typedef union
  * constants & macros for individual HDMI_TX_GYDATA0 bitfields
  */
 
-/* --- Register HW_HDMI_TX_GYDATA0, field GYDATA (RW)
+/* --- Register HW_HDMI_TX_GYDATA0, field GYDATA[7:0] (RW)
  *
  * gydata[7:0].This register defines the value of gydata[7:0] when TX_INSTUFFING[0]
  * (gydata_stuffing) is set to 1b.
  */
 
-#define BP_HDMI_TX_GYDATA0_GYDATA      0
-#define BM_HDMI_TX_GYDATA0_GYDATA      0x000000ff
+#define BP_HDMI_TX_GYDATA0_GYDATA      (0)
+#define BM_HDMI_TX_GYDATA0_GYDATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_GYDATA0_GYDATA(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_GYDATA0_GYDATA)
@@ -3903,14 +3903,14 @@ typedef union
  * constants & macros for individual HDMI_TX_GYDATA1 bitfields
  */
 
-/* --- Register HW_HDMI_TX_GYDATA1, field GYDATA (RW)
+/* --- Register HW_HDMI_TX_GYDATA1, field GYDATA[7:0] (RW)
  *
  * gydata[15:8].This register defines the value of gydata[15:8] when TX_INSTUFFING[0]
  * (gydata_stuffing) is set to 1b.
  */
 
-#define BP_HDMI_TX_GYDATA1_GYDATA      0
-#define BM_HDMI_TX_GYDATA1_GYDATA      0x000000ff
+#define BP_HDMI_TX_GYDATA1_GYDATA      (0)
+#define BM_HDMI_TX_GYDATA1_GYDATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_GYDATA1_GYDATA(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_GYDATA1_GYDATA)
@@ -3956,14 +3956,14 @@ typedef union
  * constants & macros for individual HDMI_TX_RCRDATA0 bitfields
  */
 
-/* --- Register HW_HDMI_TX_RCRDATA0, field RCRDATA (RW)
+/* --- Register HW_HDMI_TX_RCRDATA0, field RCRDATA[7:0] (RW)
  *
  * rcrdata[7:0]. This register defines the value of rcrydata[7:0] when TX_INSTUFFING[1]
  * (rcrdata_stuffing) is set to 1b.
  */
 
-#define BP_HDMI_TX_RCRDATA0_RCRDATA      0
-#define BM_HDMI_TX_RCRDATA0_RCRDATA      0x000000ff
+#define BP_HDMI_TX_RCRDATA0_RCRDATA      (0)
+#define BM_HDMI_TX_RCRDATA0_RCRDATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_RCRDATA0_RCRDATA(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_RCRDATA0_RCRDATA)
@@ -4009,14 +4009,14 @@ typedef union
  * constants & macros for individual HDMI_TX_RCRDATA1 bitfields
  */
 
-/* --- Register HW_HDMI_TX_RCRDATA1, field RCRDATA (RW)
+/* --- Register HW_HDMI_TX_RCRDATA1, field RCRDATA[7:0] (RW)
  *
  * rcrdata[15:8]. This register defines the value of rcrydata[15:8] when TX_INSTUFFING[1]
  * (rcrdata_stuffing) is set to 1b.
  */
 
-#define BP_HDMI_TX_RCRDATA1_RCRDATA      0
-#define BM_HDMI_TX_RCRDATA1_RCRDATA      0x000000ff
+#define BP_HDMI_TX_RCRDATA1_RCRDATA      (0)
+#define BM_HDMI_TX_RCRDATA1_RCRDATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_RCRDATA1_RCRDATA(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_RCRDATA1_RCRDATA)
@@ -4062,14 +4062,14 @@ typedef union
  * constants & macros for individual HDMI_TX_BCBDATA0 bitfields
  */
 
-/* --- Register HW_HDMI_TX_BCBDATA0, field BCBDATA (RW)
+/* --- Register HW_HDMI_TX_BCBDATA0, field BCBDATA[7:0] (RW)
  *
  * bcbdata[7:0]. This register defines the value of bcbdata[7:0] when TX_INSTUFFING[2]
  * (bcbdata_stuffing) is set to 1b.
  */
 
-#define BP_HDMI_TX_BCBDATA0_BCBDATA      0
-#define BM_HDMI_TX_BCBDATA0_BCBDATA      0x000000ff
+#define BP_HDMI_TX_BCBDATA0_BCBDATA      (0)
+#define BM_HDMI_TX_BCBDATA0_BCBDATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_BCBDATA0_BCBDATA(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_BCBDATA0_BCBDATA)
@@ -4115,14 +4115,14 @@ typedef union
  * constants & macros for individual HDMI_TX_BCBDATA1 bitfields
  */
 
-/* --- Register HW_HDMI_TX_BCBDATA1, field BCBDATA (RW)
+/* --- Register HW_HDMI_TX_BCBDATA1, field BCBDATA[7:0] (RW)
  *
  * bcbdata[15:8]. This register defines the value of bcbdata[15:8] when TX_INSTUFFING[2]
  * (bcbdata_stuffing) is set to 1b.
  */
 
-#define BP_HDMI_TX_BCBDATA1_BCBDATA      0
-#define BM_HDMI_TX_BCBDATA1_BCBDATA      0x000000ff
+#define BP_HDMI_TX_BCBDATA1_BCBDATA      (0)
+#define BM_HDMI_TX_BCBDATA1_BCBDATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_TX_BCBDATA1_BCBDATA(v)   ((((reg32_t) v) << 0) & BM_HDMI_TX_BCBDATA1_BCBDATA)
@@ -4165,15 +4165,15 @@ typedef union
  * constants & macros for individual HDMI_VP_STATUS bitfields
  */
 
-/* --- Register HW_HDMI_VP_STATUS, field PACKING_PHASE (RO)
+/* --- Register HW_HDMI_VP_STATUS, field PACKING_PHASE[3:0] (RO)
  *
  * Read only register that holds the "packing phase" output by the Video packetizer block. For more
  * information about "packing" video data, refer to the HDMI1.4a specification. The register is
  * updated at tmds clock rate.
  */
 
-#define BP_HDMI_VP_STATUS_PACKING_PHASE      0
-#define BM_HDMI_VP_STATUS_PACKING_PHASE      0x0000000f
+#define BP_HDMI_VP_STATUS_PACKING_PHASE      (0)
+#define BM_HDMI_VP_STATUS_PACKING_PHASE      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4211,7 +4211,7 @@ typedef union
  * constants & macros for individual HDMI_VP_PR_CD bitfields
  */
 
-/* --- Register HW_HDMI_VP_PR_CD, field DESIRED_PR_FACTOR (RW)
+/* --- Register HW_HDMI_VP_PR_CD, field DESIRED_PR_FACTOR[3:0] (RW)
  *
  * Desired pixel repetition factor configuration. The configured value sets H13T PHY PLL to multiply
  * pixel clock by the factor in order to obtain the desired repetition clock. For the CEA modes some
@@ -4232,8 +4232,8 @@ typedef union
  * 1001 - Pixel sent 10 times
  */
 
-#define BP_HDMI_VP_PR_CD_DESIRED_PR_FACTOR      0
-#define BM_HDMI_VP_PR_CD_DESIRED_PR_FACTOR      0x0000000f
+#define BP_HDMI_VP_PR_CD_DESIRED_PR_FACTOR      (0)
+#define BM_HDMI_VP_PR_CD_DESIRED_PR_FACTOR      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_PR_CD_DESIRED_PR_FACTOR(v)   ((((reg32_t) v) << 0) & BM_HDMI_VP_PR_CD_DESIRED_PR_FACTOR)
@@ -4246,7 +4246,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_VP_PR_CD, field COLOR_DEPTH (RW)
+/* --- Register HW_HDMI_VP_PR_CD, field COLOR_DEPTH[7:4] (RW)
  *
  * Color depth configuration: other Reserved. Not used.
  *
@@ -4258,8 +4258,8 @@ typedef union
  * 0111 - 48 bits per pixel video (16 bit per component). 16-bit packing mode.
  */
 
-#define BP_HDMI_VP_PR_CD_COLOR_DEPTH      4
-#define BM_HDMI_VP_PR_CD_COLOR_DEPTH      0x000000f0
+#define BP_HDMI_VP_PR_CD_COLOR_DEPTH      (4)
+#define BM_HDMI_VP_PR_CD_COLOR_DEPTH      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_PR_CD_COLOR_DEPTH(v)   ((((reg32_t) v) << 4) & BM_HDMI_VP_PR_CD_COLOR_DEPTH)
@@ -4313,7 +4313,7 @@ typedef union
  * constants & macros for individual HDMI_VP_STUFF bitfields
  */
 
-/* --- Register HW_HDMI_VP_STUFF, field PR_STUFFING (RW)
+/* --- Register HW_HDMI_VP_STUFF, field PR_STUFFING[0:0] (RW)
  *
  * Pixel repeater stuffing control
  *
@@ -4322,8 +4322,8 @@ typedef union
  * 1 - Pixel repeater block in stuffing mode. When "de" goes to low the outputs are fixed to 0x00.
  */
 
-#define BP_HDMI_VP_STUFF_PR_STUFFING      0
-#define BM_HDMI_VP_STUFF_PR_STUFFING      0x00000001
+#define BP_HDMI_VP_STUFF_PR_STUFFING      (0)
+#define BM_HDMI_VP_STUFF_PR_STUFFING      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_STUFF_PR_STUFFING(v)   ((((reg32_t) v) << 0) & BM_HDMI_VP_STUFF_PR_STUFFING)
@@ -4336,7 +4336,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_VP_STUFF, field PP_STUFFING (RW)
+/* --- Register HW_HDMI_VP_STUFF, field PP_STUFFING[1:1] (RW)
  *
  * Pixel packing stuffing control
  *
@@ -4345,8 +4345,8 @@ typedef union
  * 1 - Pixel packing block in stuffing mode. When "de_rep" goes to low the outputs are fixed to 0x00.
  */
 
-#define BP_HDMI_VP_STUFF_PP_STUFFING      1
-#define BM_HDMI_VP_STUFF_PP_STUFFING      0x00000002
+#define BP_HDMI_VP_STUFF_PP_STUFFING      (1)
+#define BM_HDMI_VP_STUFF_PP_STUFFING      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_STUFF_PP_STUFFING(v)   ((((reg32_t) v) << 1) & BM_HDMI_VP_STUFF_PP_STUFFING)
@@ -4359,7 +4359,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_VP_STUFF, field YCC422_STUFFING (RW)
+/* --- Register HW_HDMI_VP_STUFF, field YCC422_STUFFING[2:2] (RW)
  *
  * YCC 422 remap stuffing control. For horizontal blanking:
  *
@@ -4368,8 +4368,8 @@ typedef union
  * 1 - YCC 422 remap block in stuffing mode. When "de" goes to low the outputs are fixed to 0x00.
  */
 
-#define BP_HDMI_VP_STUFF_YCC422_STUFFING      2
-#define BM_HDMI_VP_STUFF_YCC422_STUFFING      0x00000004
+#define BP_HDMI_VP_STUFF_YCC422_STUFFING      (2)
+#define BM_HDMI_VP_STUFF_YCC422_STUFFING      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_STUFF_YCC422_STUFFING(v)   ((((reg32_t) v) << 2) & BM_HDMI_VP_STUFF_YCC422_STUFFING)
@@ -4382,13 +4382,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_VP_STUFF, field ICX_GOTO_P0_ST (RW)
+/* --- Register HW_HDMI_VP_STUFF, field ICX_GOTO_P0_ST[3:3] (RW)
  *
  * Reserved. Controls packing machine strategy.
  */
 
-#define BP_HDMI_VP_STUFF_ICX_GOTO_P0_ST      3
-#define BM_HDMI_VP_STUFF_ICX_GOTO_P0_ST      0x00000008
+#define BP_HDMI_VP_STUFF_ICX_GOTO_P0_ST      (3)
+#define BM_HDMI_VP_STUFF_ICX_GOTO_P0_ST      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_STUFF_ICX_GOTO_P0_ST(v)   ((((reg32_t) v) << 3) & BM_HDMI_VP_STUFF_ICX_GOTO_P0_ST)
@@ -4400,13 +4400,13 @@ typedef union
 #define BW_HDMI_VP_STUFF_ICX_GOTO_P0_ST(v)   BF_CS1(HDMI_VP_STUFF, ICX_GOTO_P0_ST, v)
 #endif
 
-/* --- Register HW_HDMI_VP_STUFF, field IFIX_PP_TO_LAST (RW)
+/* --- Register HW_HDMI_VP_STUFF, field IFIX_PP_TO_LAST[4:4] (RW)
  *
  * Reserved. Controls packing machine strategy.
  */
 
-#define BP_HDMI_VP_STUFF_IFIX_PP_TO_LAST      4
-#define BM_HDMI_VP_STUFF_IFIX_PP_TO_LAST      0x00000010
+#define BP_HDMI_VP_STUFF_IFIX_PP_TO_LAST      (4)
+#define BM_HDMI_VP_STUFF_IFIX_PP_TO_LAST      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_STUFF_IFIX_PP_TO_LAST(v)   ((((reg32_t) v) << 4) & BM_HDMI_VP_STUFF_IFIX_PP_TO_LAST)
@@ -4418,7 +4418,7 @@ typedef union
 #define BW_HDMI_VP_STUFF_IFIX_PP_TO_LAST(v)   BF_CS1(HDMI_VP_STUFF, IFIX_PP_TO_LAST, v)
 #endif
 
-/* --- Register HW_HDMI_VP_STUFF, field IDEFAULT_PHASE (RW)
+/* --- Register HW_HDMI_VP_STUFF, field IDEFAULT_PHASE[5:5] (RW)
  *
  * Controls the default phase packing machine used according to: "If the transmitted video format
  * has timing such that the phase of the first pixel of every Video Data Period corresponds to pixel
@@ -4428,8 +4428,8 @@ typedef union
  * for 12 bit mode the Htotal must be dividable by 2.
  */
 
-#define BP_HDMI_VP_STUFF_IDEFAULT_PHASE      5
-#define BM_HDMI_VP_STUFF_IDEFAULT_PHASE      0x00000020
+#define BP_HDMI_VP_STUFF_IDEFAULT_PHASE      (5)
+#define BM_HDMI_VP_STUFF_IDEFAULT_PHASE      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_STUFF_IDEFAULT_PHASE(v)   ((((reg32_t) v) << 5) & BM_HDMI_VP_STUFF_IDEFAULT_PHASE)
@@ -4478,7 +4478,7 @@ typedef union
  * constants & macros for individual HDMI_VP_REMAP bitfields
  */
 
-/* --- Register HW_HDMI_VP_REMAP, field YCC422_SIZE (RW)
+/* --- Register HW_HDMI_VP_REMAP, field YCC422_SIZE[1:0] (RW)
  *
  * YCC 422 remap input video size:
  *
@@ -4489,8 +4489,8 @@ typedef union
  * 11 - Reserved. Not used.
  */
 
-#define BP_HDMI_VP_REMAP_YCC422_SIZE      0
-#define BM_HDMI_VP_REMAP_YCC422_SIZE      0x00000003
+#define BP_HDMI_VP_REMAP_YCC422_SIZE      (0)
+#define BM_HDMI_VP_REMAP_YCC422_SIZE      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_REMAP_YCC422_SIZE(v)   ((((reg32_t) v) << 0) & BM_HDMI_VP_REMAP_YCC422_SIZE)
@@ -4545,7 +4545,7 @@ typedef union
  * constants & macros for individual HDMI_VP_CONF bitfields
  */
 
-/* --- Register HW_HDMI_VP_CONF, field OUTPUT_SELECTOR (RW)
+/* --- Register HW_HDMI_VP_CONF, field OUTPUT_SELECTOR[1:0] (RW)
  *
  * Video packetizer output selection.
  *
@@ -4556,8 +4556,8 @@ typedef union
  * 11 - Data from 8-bit bypass block.
  */
 
-#define BP_HDMI_VP_CONF_OUTPUT_SELECTOR      0
-#define BM_HDMI_VP_CONF_OUTPUT_SELECTOR      0x00000003
+#define BP_HDMI_VP_CONF_OUTPUT_SELECTOR      (0)
+#define BM_HDMI_VP_CONF_OUTPUT_SELECTOR      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_CONF_OUTPUT_SELECTOR(v)   ((((reg32_t) v) << 0) & BM_HDMI_VP_CONF_OUTPUT_SELECTOR)
@@ -4570,7 +4570,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_VP_CONF, field BYPASS_SELECT (RW)
+/* --- Register HW_HDMI_VP_CONF, field BYPASS_SELECT[2:2] (RW)
  *
 
  *
@@ -4579,8 +4579,8 @@ typedef union
  * 1 - Data from input of video packetizer block.
  */
 
-#define BP_HDMI_VP_CONF_BYPASS_SELECT      2
-#define BM_HDMI_VP_CONF_BYPASS_SELECT      0x00000004
+#define BP_HDMI_VP_CONF_BYPASS_SELECT      (2)
+#define BM_HDMI_VP_CONF_BYPASS_SELECT      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_CONF_BYPASS_SELECT(v)   ((((reg32_t) v) << 2) & BM_HDMI_VP_CONF_BYPASS_SELECT)
@@ -4593,13 +4593,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_VP_CONF, field YCC422_EN (RW)
+/* --- Register HW_HDMI_VP_CONF, field YCC422_EN[3:3] (RW)
  *
  * YCC 422 select enable. Disabling forces bypass module to output always zeros.
  */
 
-#define BP_HDMI_VP_CONF_YCC422_EN      3
-#define BM_HDMI_VP_CONF_YCC422_EN      0x00000008
+#define BP_HDMI_VP_CONF_YCC422_EN      (3)
+#define BM_HDMI_VP_CONF_YCC422_EN      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_CONF_YCC422_EN(v)   ((((reg32_t) v) << 3) & BM_HDMI_VP_CONF_YCC422_EN)
@@ -4611,13 +4611,13 @@ typedef union
 #define BW_HDMI_VP_CONF_YCC422_EN(v)   BF_CS1(HDMI_VP_CONF, YCC422_EN, v)
 #endif
 
-/* --- Register HW_HDMI_VP_CONF, field PR_EN (RW)
+/* --- Register HW_HDMI_VP_CONF, field PR_EN[4:4] (RW)
  *
  * Pixel repeater enable. Disabling forces bypass module to output always zeros.
  */
 
-#define BP_HDMI_VP_CONF_PR_EN      4
-#define BM_HDMI_VP_CONF_PR_EN      0x00000010
+#define BP_HDMI_VP_CONF_PR_EN      (4)
+#define BM_HDMI_VP_CONF_PR_EN      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_CONF_PR_EN(v)   ((((reg32_t) v) << 4) & BM_HDMI_VP_CONF_PR_EN)
@@ -4629,13 +4629,13 @@ typedef union
 #define BW_HDMI_VP_CONF_PR_EN(v)   BF_CS1(HDMI_VP_CONF, PR_EN, v)
 #endif
 
-/* --- Register HW_HDMI_VP_CONF, field PP_EN (RW)
+/* --- Register HW_HDMI_VP_CONF, field PP_EN[5:5] (RW)
  *
  * Pixel packing enable. Disabling forces bypass module to output always zeros.
  */
 
-#define BP_HDMI_VP_CONF_PP_EN      5
-#define BM_HDMI_VP_CONF_PP_EN      0x00000020
+#define BP_HDMI_VP_CONF_PP_EN      (5)
+#define BM_HDMI_VP_CONF_PP_EN      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_CONF_PP_EN(v)   ((((reg32_t) v) << 5) & BM_HDMI_VP_CONF_PP_EN)
@@ -4647,13 +4647,13 @@ typedef union
 #define BW_HDMI_VP_CONF_PP_EN(v)   BF_CS1(HDMI_VP_CONF, PP_EN, v)
 #endif
 
-/* --- Register HW_HDMI_VP_CONF, field BYPASS_EN (RW)
+/* --- Register HW_HDMI_VP_CONF, field BYPASS_EN[6:6] (RW)
  *
  * Bypass enable. Disabling forces bypass module to output always zeros.
  */
 
-#define BP_HDMI_VP_CONF_BYPASS_EN      6
-#define BM_HDMI_VP_CONF_BYPASS_EN      0x00000040
+#define BP_HDMI_VP_CONF_BYPASS_EN      (6)
+#define BM_HDMI_VP_CONF_BYPASS_EN      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_CONF_BYPASS_EN(v)   ((((reg32_t) v) << 6) & BM_HDMI_VP_CONF_BYPASS_EN)
@@ -4703,69 +4703,69 @@ typedef union
  * constants & macros for individual HDMI_VP_STAT bitfields
  */
 
-/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYBYP (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYBYP[0:0] (RO)
  *
  * Video packetizer 8-bit bypass FIFO empty status.
  */
 
-#define BP_HDMI_VP_STAT_OSTEMPTYBYP      0
-#define BM_HDMI_VP_STAT_OSTEMPTYBYP      0x00000001
+#define BP_HDMI_VP_STAT_OSTEMPTYBYP      (0)
+#define BM_HDMI_VP_STAT_OSTEMPTYBYP      (0x00000001)
 
-/* --- Register HW_HDMI_VP_STAT, field OSTFULLBYP (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTFULLBYP[1:1] (RO)
  *
  * Video packetizer 8-bit bypass FIFO full status.
  */
 
-#define BP_HDMI_VP_STAT_OSTFULLBYP      1
-#define BM_HDMI_VP_STAT_OSTFULLBYP      0x00000002
+#define BP_HDMI_VP_STAT_OSTFULLBYP      (1)
+#define BM_HDMI_VP_STAT_OSTFULLBYP      (0x00000002)
 
-/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYREMAP (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYREMAP[2:2] (RO)
  *
  * Video packetizer pixel YCC 422 re-mapper FIFO empty status.
  */
 
-#define BP_HDMI_VP_STAT_OSTEMPTYREMAP      2
-#define BM_HDMI_VP_STAT_OSTEMPTYREMAP      0x00000004
+#define BP_HDMI_VP_STAT_OSTEMPTYREMAP      (2)
+#define BM_HDMI_VP_STAT_OSTEMPTYREMAP      (0x00000004)
 
-/* --- Register HW_HDMI_VP_STAT, field OSTFULLREMAP (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTFULLREMAP[3:3] (RO)
  *
  * Video packetizer pixel YCC 422 re-mapper FIFO full status.
  */
 
-#define BP_HDMI_VP_STAT_OSTFULLREMAP      3
-#define BM_HDMI_VP_STAT_OSTFULLREMAP      0x00000008
+#define BP_HDMI_VP_STAT_OSTFULLREMAP      (3)
+#define BM_HDMI_VP_STAT_OSTFULLREMAP      (0x00000008)
 
-/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYPP (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYPP[4:4] (RO)
  *
  * Video packetizer pixel packing FIFO empty status.
  */
 
-#define BP_HDMI_VP_STAT_OSTEMPTYPP      4
-#define BM_HDMI_VP_STAT_OSTEMPTYPP      0x00000010
+#define BP_HDMI_VP_STAT_OSTEMPTYPP      (4)
+#define BM_HDMI_VP_STAT_OSTEMPTYPP      (0x00000010)
 
-/* --- Register HW_HDMI_VP_STAT, field OSTFULLPP (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTFULLPP[5:5] (RO)
  *
  * Video packetizer pixel packing FIFO full status.
  */
 
-#define BP_HDMI_VP_STAT_OSTFULLPP      5
-#define BM_HDMI_VP_STAT_OSTFULLPP      0x00000020
+#define BP_HDMI_VP_STAT_OSTFULLPP      (5)
+#define BM_HDMI_VP_STAT_OSTFULLPP      (0x00000020)
 
-/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYREPET (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTEMPTYREPET[6:6] (RO)
  *
  * Video packetizer pixel repeater FIFO empty status.
  */
 
-#define BP_HDMI_VP_STAT_OSTEMPTYREPET      6
-#define BM_HDMI_VP_STAT_OSTEMPTYREPET      0x00000040
+#define BP_HDMI_VP_STAT_OSTEMPTYREPET      (6)
+#define BM_HDMI_VP_STAT_OSTEMPTYREPET      (0x00000040)
 
-/* --- Register HW_HDMI_VP_STAT, field OSTFULLREPET (RO)
+/* --- Register HW_HDMI_VP_STAT, field OSTFULLREPET[7:7] (RO)
  *
  * Video packetizer pixel repeater FIFO full status.
  */
 
-#define BP_HDMI_VP_STAT_OSTFULLREPET      7
-#define BM_HDMI_VP_STAT_OSTFULLREPET      0x00000080
+#define BP_HDMI_VP_STAT_OSTFULLREPET      (7)
+#define BM_HDMI_VP_STAT_OSTFULLREPET      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4809,69 +4809,69 @@ typedef union
  * constants & macros for individual HDMI_VP_INT bitfields
  */
 
-/* --- Register HW_HDMI_VP_INT, field OINTEMPTYBYP (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTEMPTYBYP[0:0] (RO)
  *
  * Video packetizer 8-bit bypass FIFO empty status.
  */
 
-#define BP_HDMI_VP_INT_OINTEMPTYBYP      0
-#define BM_HDMI_VP_INT_OINTEMPTYBYP      0x00000001
+#define BP_HDMI_VP_INT_OINTEMPTYBYP      (0)
+#define BM_HDMI_VP_INT_OINTEMPTYBYP      (0x00000001)
 
-/* --- Register HW_HDMI_VP_INT, field OINTFULLBYP (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTFULLBYP[1:1] (RO)
  *
  * Video packetizer 8-bit bypass FIFO full status.
  */
 
-#define BP_HDMI_VP_INT_OINTFULLBYP      1
-#define BM_HDMI_VP_INT_OINTFULLBYP      0x00000002
+#define BP_HDMI_VP_INT_OINTFULLBYP      (1)
+#define BM_HDMI_VP_INT_OINTFULLBYP      (0x00000002)
 
-/* --- Register HW_HDMI_VP_INT, field OINTEMPTYREMAP (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTEMPTYREMAP[2:2] (RO)
  *
  * Video packetizer pixel YCC 422 re-mapper FIFO empty status.
  */
 
-#define BP_HDMI_VP_INT_OINTEMPTYREMAP      2
-#define BM_HDMI_VP_INT_OINTEMPTYREMAP      0x00000004
+#define BP_HDMI_VP_INT_OINTEMPTYREMAP      (2)
+#define BM_HDMI_VP_INT_OINTEMPTYREMAP      (0x00000004)
 
-/* --- Register HW_HDMI_VP_INT, field OINTFULLREMAP (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTFULLREMAP[3:3] (RO)
  *
  * Video packetizer pixel YCC 422 re-mapper FIFO full status.
  */
 
-#define BP_HDMI_VP_INT_OINTFULLREMAP      3
-#define BM_HDMI_VP_INT_OINTFULLREMAP      0x00000008
+#define BP_HDMI_VP_INT_OINTFULLREMAP      (3)
+#define BM_HDMI_VP_INT_OINTFULLREMAP      (0x00000008)
 
-/* --- Register HW_HDMI_VP_INT, field OINTEMPTYPP (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTEMPTYPP[4:4] (RO)
  *
  * Video packetizer pixel packing FIFO empty status
  */
 
-#define BP_HDMI_VP_INT_OINTEMPTYPP      4
-#define BM_HDMI_VP_INT_OINTEMPTYPP      0x00000010
+#define BP_HDMI_VP_INT_OINTEMPTYPP      (4)
+#define BM_HDMI_VP_INT_OINTEMPTYPP      (0x00000010)
 
-/* --- Register HW_HDMI_VP_INT, field OINTFULLPP (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTFULLPP[5:5] (RO)
  *
  * Video packetizer pixel packing FIFO full status
  */
 
-#define BP_HDMI_VP_INT_OINTFULLPP      5
-#define BM_HDMI_VP_INT_OINTFULLPP      0x00000020
+#define BP_HDMI_VP_INT_OINTFULLPP      (5)
+#define BM_HDMI_VP_INT_OINTFULLPP      (0x00000020)
 
-/* --- Register HW_HDMI_VP_INT, field OINTEMPTYREPET (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTEMPTYREPET[6:6] (RO)
  *
  * Video packetizer pixel repeater FIFO empty status
  */
 
-#define BP_HDMI_VP_INT_OINTEMPTYREPET      6
-#define BM_HDMI_VP_INT_OINTEMPTYREPET      0x00000040
+#define BP_HDMI_VP_INT_OINTEMPTYREPET      (6)
+#define BM_HDMI_VP_INT_OINTEMPTYREPET      (0x00000040)
 
-/* --- Register HW_HDMI_VP_INT, field OINTFULLREPET (RO)
+/* --- Register HW_HDMI_VP_INT, field OINTFULLREPET[7:7] (RO)
  *
  * Video packetizer pixel repeater FIFO full status
  */
 
-#define BP_HDMI_VP_INT_OINTFULLREPET      7
-#define BM_HDMI_VP_INT_OINTFULLREPET      0x00000080
+#define BP_HDMI_VP_INT_OINTFULLREPET      (7)
+#define BM_HDMI_VP_INT_OINTFULLREPET      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4915,13 +4915,13 @@ typedef union
  * constants & macros for individual HDMI_VP_MASK bitfields
  */
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK[0:0] (RW)
  *
  * Mask bit for VP_INT[0] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK      0
-#define BM_HDMI_VP_MASK_VPMASK      0x00000001
+#define BP_HDMI_VP_MASK_VPMASK      (0)
+#define BM_HDMI_VP_MASK_VPMASK      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK(v)   ((((reg32_t) v) << 0) & BM_HDMI_VP_MASK_VPMASK)
@@ -4933,13 +4933,13 @@ typedef union
 #define BW_HDMI_VP_MASK_VPMASK(v)   BF_CS1(HDMI_VP_MASK, VPMASK, v)
 #endif
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK1 (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK1[1:1] (RW)
  *
  * Mask bit for VP_INT[1] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK1      1
-#define BM_HDMI_VP_MASK_VPMASK1      0x00000002
+#define BP_HDMI_VP_MASK_VPMASK1      (1)
+#define BM_HDMI_VP_MASK_VPMASK1      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK1(v)   ((((reg32_t) v) << 1) & BM_HDMI_VP_MASK_VPMASK1)
@@ -4951,13 +4951,13 @@ typedef union
 #define BW_HDMI_VP_MASK_VPMASK1(v)   BF_CS1(HDMI_VP_MASK, VPMASK1, v)
 #endif
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK2 (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK2[2:2] (RW)
  *
  * Mask bit for VP_INT[2] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK2      2
-#define BM_HDMI_VP_MASK_VPMASK2      0x00000004
+#define BP_HDMI_VP_MASK_VPMASK2      (2)
+#define BM_HDMI_VP_MASK_VPMASK2      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK2(v)   ((((reg32_t) v) << 2) & BM_HDMI_VP_MASK_VPMASK2)
@@ -4969,13 +4969,13 @@ typedef union
 #define BW_HDMI_VP_MASK_VPMASK2(v)   BF_CS1(HDMI_VP_MASK, VPMASK2, v)
 #endif
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK3 (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK3[3:3] (RW)
  *
  * Mask bit for VP_INT[3] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK3      3
-#define BM_HDMI_VP_MASK_VPMASK3      0x00000008
+#define BP_HDMI_VP_MASK_VPMASK3      (3)
+#define BM_HDMI_VP_MASK_VPMASK3      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK3(v)   ((((reg32_t) v) << 3) & BM_HDMI_VP_MASK_VPMASK3)
@@ -4987,13 +4987,13 @@ typedef union
 #define BW_HDMI_VP_MASK_VPMASK3(v)   BF_CS1(HDMI_VP_MASK, VPMASK3, v)
 #endif
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK4 (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK4[4:4] (RW)
  *
  * Mask bit for VP_INT[4] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK4      4
-#define BM_HDMI_VP_MASK_VPMASK4      0x00000010
+#define BP_HDMI_VP_MASK_VPMASK4      (4)
+#define BM_HDMI_VP_MASK_VPMASK4      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK4(v)   ((((reg32_t) v) << 4) & BM_HDMI_VP_MASK_VPMASK4)
@@ -5005,13 +5005,13 @@ typedef union
 #define BW_HDMI_VP_MASK_VPMASK4(v)   BF_CS1(HDMI_VP_MASK, VPMASK4, v)
 #endif
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK5 (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK5[5:5] (RW)
  *
  * Mask bit for VP_INT[5] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK5      5
-#define BM_HDMI_VP_MASK_VPMASK5      0x00000020
+#define BP_HDMI_VP_MASK_VPMASK5      (5)
+#define BM_HDMI_VP_MASK_VPMASK5      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK5(v)   ((((reg32_t) v) << 5) & BM_HDMI_VP_MASK_VPMASK5)
@@ -5023,13 +5023,13 @@ typedef union
 #define BW_HDMI_VP_MASK_VPMASK5(v)   BF_CS1(HDMI_VP_MASK, VPMASK5, v)
 #endif
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK6 (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK6[6:6] (RW)
  *
  * Mask bit for VP_INT[6] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK6      6
-#define BM_HDMI_VP_MASK_VPMASK6      0x00000040
+#define BP_HDMI_VP_MASK_VPMASK6      (6)
+#define BM_HDMI_VP_MASK_VPMASK6      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK6(v)   ((((reg32_t) v) << 6) & BM_HDMI_VP_MASK_VPMASK6)
@@ -5041,13 +5041,13 @@ typedef union
 #define BW_HDMI_VP_MASK_VPMASK6(v)   BF_CS1(HDMI_VP_MASK, VPMASK6, v)
 #endif
 
-/* --- Register HW_HDMI_VP_MASK, field VPMASK7 (RW)
+/* --- Register HW_HDMI_VP_MASK, field VPMASK7[7:7] (RW)
  *
  * Mask bit for VP_INT[7] interrupt bit.
  */
 
-#define BP_HDMI_VP_MASK_VPMASK7      7
-#define BM_HDMI_VP_MASK_VPMASK7      0x00000080
+#define BP_HDMI_VP_MASK_VPMASK7      (7)
+#define BM_HDMI_VP_MASK_VPMASK7      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_MASK_VPMASK7(v)   ((((reg32_t) v) << 7) & BM_HDMI_VP_MASK_VPMASK7)
@@ -5101,13 +5101,13 @@ typedef union
  * constants & macros for individual HDMI_VP_POL bitfields
  */
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL[0:0] (RW)
  *
  * Polarity bit for VP_INT[0] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL      0
-#define BM_HDMI_VP_POL_VPPOL      0x00000001
+#define BP_HDMI_VP_POL_VPPOL      (0)
+#define BM_HDMI_VP_POL_VPPOL      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL(v)   ((((reg32_t) v) << 0) & BM_HDMI_VP_POL_VPPOL)
@@ -5119,13 +5119,13 @@ typedef union
 #define BW_HDMI_VP_POL_VPPOL(v)   BF_CS1(HDMI_VP_POL, VPPOL, v)
 #endif
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL1 (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL1[1:1] (RW)
  *
  * Polarity bit for VP_INT[1] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL1      1
-#define BM_HDMI_VP_POL_VPPOL1      0x00000002
+#define BP_HDMI_VP_POL_VPPOL1      (1)
+#define BM_HDMI_VP_POL_VPPOL1      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL1(v)   ((((reg32_t) v) << 1) & BM_HDMI_VP_POL_VPPOL1)
@@ -5137,13 +5137,13 @@ typedef union
 #define BW_HDMI_VP_POL_VPPOL1(v)   BF_CS1(HDMI_VP_POL, VPPOL1, v)
 #endif
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL2 (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL2[2:2] (RW)
  *
  * Polarity bit for VP_INT[2] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL2      2
-#define BM_HDMI_VP_POL_VPPOL2      0x00000004
+#define BP_HDMI_VP_POL_VPPOL2      (2)
+#define BM_HDMI_VP_POL_VPPOL2      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL2(v)   ((((reg32_t) v) << 2) & BM_HDMI_VP_POL_VPPOL2)
@@ -5155,13 +5155,13 @@ typedef union
 #define BW_HDMI_VP_POL_VPPOL2(v)   BF_CS1(HDMI_VP_POL, VPPOL2, v)
 #endif
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL3 (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL3[3:3] (RW)
  *
  * Polarity bit for VP_INT[3] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL3      3
-#define BM_HDMI_VP_POL_VPPOL3      0x00000008
+#define BP_HDMI_VP_POL_VPPOL3      (3)
+#define BM_HDMI_VP_POL_VPPOL3      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL3(v)   ((((reg32_t) v) << 3) & BM_HDMI_VP_POL_VPPOL3)
@@ -5173,13 +5173,13 @@ typedef union
 #define BW_HDMI_VP_POL_VPPOL3(v)   BF_CS1(HDMI_VP_POL, VPPOL3, v)
 #endif
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL4 (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL4[4:4] (RW)
  *
  * Polarity bit for VP_INT[4] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL4      4
-#define BM_HDMI_VP_POL_VPPOL4      0x00000010
+#define BP_HDMI_VP_POL_VPPOL4      (4)
+#define BM_HDMI_VP_POL_VPPOL4      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL4(v)   ((((reg32_t) v) << 4) & BM_HDMI_VP_POL_VPPOL4)
@@ -5191,13 +5191,13 @@ typedef union
 #define BW_HDMI_VP_POL_VPPOL4(v)   BF_CS1(HDMI_VP_POL, VPPOL4, v)
 #endif
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL5 (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL5[5:5] (RW)
  *
  * Polarity bit for VP_INT[5] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL5      5
-#define BM_HDMI_VP_POL_VPPOL5      0x00000020
+#define BP_HDMI_VP_POL_VPPOL5      (5)
+#define BM_HDMI_VP_POL_VPPOL5      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL5(v)   ((((reg32_t) v) << 5) & BM_HDMI_VP_POL_VPPOL5)
@@ -5209,13 +5209,13 @@ typedef union
 #define BW_HDMI_VP_POL_VPPOL5(v)   BF_CS1(HDMI_VP_POL, VPPOL5, v)
 #endif
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL6 (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL6[6:6] (RW)
  *
  * Polarity bit for VP_INT[6] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL6      6
-#define BM_HDMI_VP_POL_VPPOL6      0x00000040
+#define BP_HDMI_VP_POL_VPPOL6      (6)
+#define BM_HDMI_VP_POL_VPPOL6      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL6(v)   ((((reg32_t) v) << 6) & BM_HDMI_VP_POL_VPPOL6)
@@ -5227,13 +5227,13 @@ typedef union
 #define BW_HDMI_VP_POL_VPPOL6(v)   BF_CS1(HDMI_VP_POL, VPPOL6, v)
 #endif
 
-/* --- Register HW_HDMI_VP_POL, field VPPOL7 (RW)
+/* --- Register HW_HDMI_VP_POL, field VPPOL7[7:7] (RW)
  *
  * Polarity bit for VP_INT[7] interrupt bit.
  */
 
-#define BP_HDMI_VP_POL_VPPOL7      7
-#define BM_HDMI_VP_POL_VPPOL7      0x00000080
+#define BP_HDMI_VP_POL_VPPOL7      (7)
+#define BM_HDMI_VP_POL_VPPOL7      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_VP_POL_VPPOL7(v)   ((((reg32_t) v) << 7) & BM_HDMI_VP_POL_VPPOL7)
@@ -5288,17 +5288,17 @@ typedef union
  * constants & macros for individual HDMI_FC_INVIDCONF bitfields
  */
 
-/* --- Register HW_HDMI_FC_INVIDCONF, field IN_I_P (RW)
+/* --- Register HW_HDMI_FC_INVIDCONF, field IN_I_P[0:0] (RW)
  *
  * Input video mode:
  *
  * Values:
- * 1 - Interlaced
  * 0 - Progressive
+ * 1 - Interlaced
  */
 
-#define BP_HDMI_FC_INVIDCONF_IN_I_P      0
-#define BM_HDMI_FC_INVIDCONF_IN_I_P      0x00000001
+#define BP_HDMI_FC_INVIDCONF_IN_I_P      (0)
+#define BM_HDMI_FC_INVIDCONF_IN_I_P      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVIDCONF_IN_I_P(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INVIDCONF_IN_I_P)
@@ -5311,7 +5311,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_INVIDCONF, field R_V_BLANK_IN_OSC (RW)
+/* --- Register HW_HDMI_FC_INVIDCONF, field R_V_BLANK_IN_OSC[1:1] (RW)
  *
  * Used for CEA861-D modes with fractional Vblank (for example, modes 5, 6, 7, 10, 11, 20, 21, and
  * 22. For more modes, refer to CEA861-D specification.
@@ -5320,8 +5320,8 @@ typedef union
  * 1 - Active high
  */
 
-#define BP_HDMI_FC_INVIDCONF_R_V_BLANK_IN_OSC      1
-#define BM_HDMI_FC_INVIDCONF_R_V_BLANK_IN_OSC      0x00000002
+#define BP_HDMI_FC_INVIDCONF_R_V_BLANK_IN_OSC      (1)
+#define BM_HDMI_FC_INVIDCONF_R_V_BLANK_IN_OSC      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVIDCONF_R_V_BLANK_IN_OSC(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_INVIDCONF_R_V_BLANK_IN_OSC)
@@ -5334,7 +5334,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_INVIDCONF, field DVI_MODEZ (RW)
+/* --- Register HW_HDMI_FC_INVIDCONF, field DVI_MODEZ[3:3] (RW)
  *
  * Active low
  *
@@ -5343,8 +5343,8 @@ typedef union
  * 1 - HDMI mode selected
  */
 
-#define BP_HDMI_FC_INVIDCONF_DVI_MODEZ      3
-#define BM_HDMI_FC_INVIDCONF_DVI_MODEZ      0x00000008
+#define BP_HDMI_FC_INVIDCONF_DVI_MODEZ      (3)
+#define BM_HDMI_FC_INVIDCONF_DVI_MODEZ      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVIDCONF_DVI_MODEZ(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_INVIDCONF_DVI_MODEZ)
@@ -5357,17 +5357,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_INVIDCONF, field DE_IN_POLARITY (RW)
+/* --- Register HW_HDMI_FC_INVIDCONF, field DE_IN_POLARITY[4:4] (RW)
  *
  * Data enable input polarity
  *
  * Values:
- * 1 - Active high
  * 0 - Active low
+ * 1 - Active high
  */
 
-#define BP_HDMI_FC_INVIDCONF_DE_IN_POLARITY      4
-#define BM_HDMI_FC_INVIDCONF_DE_IN_POLARITY      0x00000010
+#define BP_HDMI_FC_INVIDCONF_DE_IN_POLARITY      (4)
+#define BM_HDMI_FC_INVIDCONF_DE_IN_POLARITY      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVIDCONF_DE_IN_POLARITY(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_INVIDCONF_DE_IN_POLARITY)
@@ -5380,17 +5380,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_INVIDCONF, field HSYNC_IN_POLARITY (RW)
+/* --- Register HW_HDMI_FC_INVIDCONF, field HSYNC_IN_POLARITY[5:5] (RW)
  *
  * Hsync input polarity
  *
  * Values:
- * 1 - Active high
  * 0 - Active low
+ * 1 - Active high
  */
 
-#define BP_HDMI_FC_INVIDCONF_HSYNC_IN_POLARITY      5
-#define BM_HDMI_FC_INVIDCONF_HSYNC_IN_POLARITY      0x00000020
+#define BP_HDMI_FC_INVIDCONF_HSYNC_IN_POLARITY      (5)
+#define BM_HDMI_FC_INVIDCONF_HSYNC_IN_POLARITY      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVIDCONF_HSYNC_IN_POLARITY(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_INVIDCONF_HSYNC_IN_POLARITY)
@@ -5403,17 +5403,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_INVIDCONF, field VSYNC_IN_POLARITY (RW)
+/* --- Register HW_HDMI_FC_INVIDCONF, field VSYNC_IN_POLARITY[6:6] (RW)
  *
  * Vsync input polarity
  *
  * Values:
- * 1 - Active high
  * 0 - Active low
+ * 1 - Active high
  */
 
-#define BP_HDMI_FC_INVIDCONF_VSYNC_IN_POLARITY      6
-#define BM_HDMI_FC_INVIDCONF_VSYNC_IN_POLARITY      0x00000040
+#define BP_HDMI_FC_INVIDCONF_VSYNC_IN_POLARITY      (6)
+#define BM_HDMI_FC_INVIDCONF_VSYNC_IN_POLARITY      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVIDCONF_VSYNC_IN_POLARITY(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_INVIDCONF_VSYNC_IN_POLARITY)
@@ -5426,7 +5426,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_INVIDCONF, field HDCP_KEEPOUT (RW)
+/* --- Register HW_HDMI_FC_INVIDCONF, field HDCP_KEEPOUT[7:7] (RW)
  *
  * Start/stop HDCP keepout window generation
  *
@@ -5434,8 +5434,8 @@ typedef union
  * 1b - Active
  */
 
-#define BP_HDMI_FC_INVIDCONF_HDCP_KEEPOUT      7
-#define BM_HDMI_FC_INVIDCONF_HDCP_KEEPOUT      0x00000080
+#define BP_HDMI_FC_INVIDCONF_HDCP_KEEPOUT      (7)
+#define BM_HDMI_FC_INVIDCONF_HDCP_KEEPOUT      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVIDCONF_HDCP_KEEPOUT(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_INVIDCONF_HDCP_KEEPOUT)
@@ -5482,13 +5482,13 @@ typedef union
  * constants & macros for individual HDMI_FC_INHACTIV0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INHACTIV0, field H_IN_ACTIV (RW)
+/* --- Register HW_HDMI_FC_INHACTIV0, field H_IN_ACTIV[7:0] (RW)
  *
  * Input video Horizontal active pixel region width. Number of Horizontal active pixels [0...8191].
  */
 
-#define BP_HDMI_FC_INHACTIV0_H_IN_ACTIV      0
-#define BM_HDMI_FC_INHACTIV0_H_IN_ACTIV      0x000000ff
+#define BP_HDMI_FC_INHACTIV0_H_IN_ACTIV      (0)
+#define BM_HDMI_FC_INHACTIV0_H_IN_ACTIV      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INHACTIV0_H_IN_ACTIV(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INHACTIV0_H_IN_ACTIV)
@@ -5535,14 +5535,14 @@ typedef union
  * constants & macros for individual HDMI_FC_INHACTIV1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INHACTIV1, field H_IN_ACTIV (RW)
+/* --- Register HW_HDMI_FC_INHACTIV1, field H_IN_ACTIV[4:0] (RW)
  *
  * Input video Horizontal active pixel region width. Dependencies: Value after Reset: 0000b the
  * higher bit of Horizontal active pixels; Number of Horizontal active pixels [0...8191].
  */
 
-#define BP_HDMI_FC_INHACTIV1_H_IN_ACTIV      0
-#define BM_HDMI_FC_INHACTIV1_H_IN_ACTIV      0x0000001f
+#define BP_HDMI_FC_INHACTIV1_H_IN_ACTIV      (0)
+#define BM_HDMI_FC_INHACTIV1_H_IN_ACTIV      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INHACTIV1_H_IN_ACTIV(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INHACTIV1_H_IN_ACTIV)
@@ -5588,14 +5588,14 @@ typedef union
  * constants & macros for individual HDMI_FC_INHBLANK0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INHBLANK0, field H_IN_BLANK (RW)
+/* --- Register HW_HDMI_FC_INHBLANK0, field H_IN_BLANK[7:0] (RW)
  *
  * Input video Horizontal blanking pixel region width. Number of Horizontal blanking pixels
  * [0...4095].
  */
 
-#define BP_HDMI_FC_INHBLANK0_H_IN_BLANK      0
-#define BM_HDMI_FC_INHBLANK0_H_IN_BLANK      0x000000ff
+#define BP_HDMI_FC_INHBLANK0_H_IN_BLANK      (0)
+#define BM_HDMI_FC_INHBLANK0_H_IN_BLANK      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INHBLANK0_H_IN_BLANK(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INHBLANK0_H_IN_BLANK)
@@ -5642,14 +5642,14 @@ typedef union
  * constants & macros for individual HDMI_FC_INHBLANK1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INHBLANK1, field H_IN_BLANK (RW)
+/* --- Register HW_HDMI_FC_INHBLANK1, field H_IN_BLANK[4:0] (RW)
  *
  * Input video Horizontal blanking pixel region width. Dependencies: Value after Reset: 0000b the
  * higher bits of Horizontal blanking pixels; Number of Horizontal blanking pixels [0...8191].
  */
 
-#define BP_HDMI_FC_INHBLANK1_H_IN_BLANK      0
-#define BM_HDMI_FC_INHBLANK1_H_IN_BLANK      0x0000001f
+#define BP_HDMI_FC_INHBLANK1_H_IN_BLANK      (0)
+#define BM_HDMI_FC_INHBLANK1_H_IN_BLANK      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INHBLANK1_H_IN_BLANK(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INHBLANK1_H_IN_BLANK)
@@ -5695,13 +5695,13 @@ typedef union
  * constants & macros for individual HDMI_FC_INVACTIV0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INVACTIV0, field V_IN_ACTIV (RW)
+/* --- Register HW_HDMI_FC_INVACTIV0, field V_IN_ACTIV[7:0] (RW)
  *
  * Input video Vertical active pixel region width. Number of Vertical active lines [0...4095].
  */
 
-#define BP_HDMI_FC_INVACTIV0_V_IN_ACTIV      0
-#define BM_HDMI_FC_INVACTIV0_V_IN_ACTIV      0x000000ff
+#define BP_HDMI_FC_INVACTIV0_V_IN_ACTIV      (0)
+#define BM_HDMI_FC_INVACTIV0_V_IN_ACTIV      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVACTIV0_V_IN_ACTIV(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INVACTIV0_V_IN_ACTIV)
@@ -5748,14 +5748,14 @@ typedef union
  * constants & macros for individual HDMI_FC_INVACTIV1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INVACTIV1, field V_IN_ACTIV (RW)
+/* --- Register HW_HDMI_FC_INVACTIV1, field V_IN_ACTIV[4:0] (RW)
  *
  * Input video Vertical active pixel region width. Dependencies: Value after Reset: 0000b the higher
  * 5 bits of Vertical active line; Number of Vertical active lines [0...8191].
  */
 
-#define BP_HDMI_FC_INVACTIV1_V_IN_ACTIV      0
-#define BM_HDMI_FC_INVACTIV1_V_IN_ACTIV      0x0000001f
+#define BP_HDMI_FC_INVACTIV1_V_IN_ACTIV      (0)
+#define BM_HDMI_FC_INVACTIV1_V_IN_ACTIV      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVACTIV1_V_IN_ACTIV(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INVACTIV1_V_IN_ACTIV)
@@ -5801,14 +5801,14 @@ typedef union
  * constants & macros for individual HDMI_FC_INVBLANK bitfields
  */
 
-/* --- Register HW_HDMI_FC_INVBLANK, field V_IN_BLANK (RW)
+/* --- Register HW_HDMI_FC_INVBLANK, field V_IN_BLANK[7:0] (RW)
  *
  * Input video Vertical blanking pixel region width. Number of Vertical blanking lines [0...255].
  * Value after Reset: 0x00
  */
 
-#define BP_HDMI_FC_INVBLANK_V_IN_BLANK      0
-#define BM_HDMI_FC_INVBLANK_V_IN_BLANK      0x000000ff
+#define BP_HDMI_FC_INVBLANK_V_IN_BLANK      (0)
+#define BM_HDMI_FC_INVBLANK_V_IN_BLANK      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INVBLANK_V_IN_BLANK(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INVBLANK_V_IN_BLANK)
@@ -5854,14 +5854,14 @@ typedef union
  * constants & macros for individual HDMI_FC_HSYNCINDELAY0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_HSYNCINDELAY0, field H_IN_DELAY (RW)
+/* --- Register HW_HDMI_FC_HSYNCINDELAY0, field H_IN_DELAY[7:0] (RW)
  *
  * Input video Hsync active edge delay. Integer number of pixel clock cycles from "de" non active
  * edge of the last "de" valid period [0...4095].
  */
 
-#define BP_HDMI_FC_HSYNCINDELAY0_H_IN_DELAY      0
-#define BM_HDMI_FC_HSYNCINDELAY0_H_IN_DELAY      0x000000ff
+#define BP_HDMI_FC_HSYNCINDELAY0_H_IN_DELAY      (0)
+#define BM_HDMI_FC_HSYNCINDELAY0_H_IN_DELAY      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_HSYNCINDELAY0_H_IN_DELAY(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_HSYNCINDELAY0_H_IN_DELAY)
@@ -5908,15 +5908,15 @@ typedef union
  * constants & macros for individual HDMI_FC_HSYNCINDELAY1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_HSYNCINDELAY1, field H_IN_DELAY (RW)
+/* --- Register HW_HDMI_FC_HSYNCINDELAY1, field H_IN_DELAY[4:0] (RW)
  *
  * Input video Hsync active edge delay. Dependencies: Value after Reset: 0000b the higher 5 bits of
  * delay; Integer number of pixel clock cycles from "de" non active edge of the last "de" valid
  * period [0...8191].
  */
 
-#define BP_HDMI_FC_HSYNCINDELAY1_H_IN_DELAY      0
-#define BM_HDMI_FC_HSYNCINDELAY1_H_IN_DELAY      0x0000001f
+#define BP_HDMI_FC_HSYNCINDELAY1_H_IN_DELAY      (0)
+#define BM_HDMI_FC_HSYNCINDELAY1_H_IN_DELAY      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_HSYNCINDELAY1_H_IN_DELAY(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_HSYNCINDELAY1_H_IN_DELAY)
@@ -5962,13 +5962,13 @@ typedef union
  * constants & macros for individual HDMI_FC_HSYNCINWIDTH0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_HSYNCINWIDTH0, field H_IN_WIDTH (RW)
+/* --- Register HW_HDMI_FC_HSYNCINWIDTH0, field H_IN_WIDTH[7:0] (RW)
  *
  * Input video Hsync active pulse width. Integer number of pixel clock cycles [0...511].
  */
 
-#define BP_HDMI_FC_HSYNCINWIDTH0_H_IN_WIDTH      0
-#define BM_HDMI_FC_HSYNCINWIDTH0_H_IN_WIDTH      0x000000ff
+#define BP_HDMI_FC_HSYNCINWIDTH0_H_IN_WIDTH      (0)
+#define BM_HDMI_FC_HSYNCINWIDTH0_H_IN_WIDTH      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_HSYNCINWIDTH0_H_IN_WIDTH(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_HSYNCINWIDTH0_H_IN_WIDTH)
@@ -6015,14 +6015,14 @@ typedef union
  * constants & macros for individual HDMI_FC_HSYNCINWIDTH1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_HSYNCINWIDTH1, field H_IN_WIDTH (RW)
+/* --- Register HW_HDMI_FC_HSYNCINWIDTH1, field H_IN_WIDTH[1:0] (RW)
  *
  * Input video Hsync active pulse width. Dependencies: Value after Reset after Reset: 0b Integer
  * number of pixel clock cycles [0...1024].
  */
 
-#define BP_HDMI_FC_HSYNCINWIDTH1_H_IN_WIDTH      0
-#define BM_HDMI_FC_HSYNCINWIDTH1_H_IN_WIDTH      0x00000003
+#define BP_HDMI_FC_HSYNCINWIDTH1_H_IN_WIDTH      (0)
+#define BM_HDMI_FC_HSYNCINWIDTH1_H_IN_WIDTH      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_HSYNCINWIDTH1_H_IN_WIDTH(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_HSYNCINWIDTH1_H_IN_WIDTH)
@@ -6068,14 +6068,14 @@ typedef union
  * constants & macros for individual HDMI_FC_VSYNCINDELAY bitfields
  */
 
-/* --- Register HW_HDMI_FC_VSYNCINDELAY, field V_IN_DELAY (RW)
+/* --- Register HW_HDMI_FC_VSYNCINDELAY, field V_IN_DELAY[7:0] (RW)
  *
  * Input video Vsync active edge delay. Integer number of Hsync pulses from "de" non active edge of
  * the last "de" valid period. [0...255].
  */
 
-#define BP_HDMI_FC_VSYNCINDELAY_V_IN_DELAY      0
-#define BM_HDMI_FC_VSYNCINDELAY_V_IN_DELAY      0x000000ff
+#define BP_HDMI_FC_VSYNCINDELAY_V_IN_DELAY      (0)
+#define BM_HDMI_FC_VSYNCINDELAY_V_IN_DELAY      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_VSYNCINDELAY_V_IN_DELAY(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_VSYNCINDELAY_V_IN_DELAY)
@@ -6122,14 +6122,14 @@ typedef union
  * constants & macros for individual HDMI_FC_VSYNCINWIDTH bitfields
  */
 
-/* --- Register HW_HDMI_FC_VSYNCINWIDTH, field V_IN_WIDTH (RW)
+/* --- Register HW_HDMI_FC_VSYNCINWIDTH, field V_IN_WIDTH[5:0] (RW)
  *
  * Value after Reset: 000000b Input video Vsync active pulse width: Integer number of pixel clock
  * cycles [0...63].
  */
 
-#define BP_HDMI_FC_VSYNCINWIDTH_V_IN_WIDTH      0
-#define BM_HDMI_FC_VSYNCINWIDTH_V_IN_WIDTH      0x0000003f
+#define BP_HDMI_FC_VSYNCINWIDTH_V_IN_WIDTH      (0)
+#define BM_HDMI_FC_VSYNCINWIDTH_V_IN_WIDTH      (0x0000003f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_VSYNCINWIDTH_V_IN_WIDTH(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_VSYNCINWIDTH_V_IN_WIDTH)
@@ -6175,15 +6175,15 @@ typedef union
  * constants & macros for individual HDMI_FC_INFREQ0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INFREQ0, field INFREQ (RW)
+/* --- Register HW_HDMI_FC_INFREQ0, field INFREQ[7:0] (RW)
  *
  * Video refresh rate in Hz*1E3 format. This registers are provided for debug and informative
  * purposes. No data is written to this registers by the H13TCTRL and the data here written by
  * software is not used in any way by the H13TCTRL.
  */
 
-#define BP_HDMI_FC_INFREQ0_INFREQ      0
-#define BM_HDMI_FC_INFREQ0_INFREQ      0x000000ff
+#define BP_HDMI_FC_INFREQ0_INFREQ      (0)
+#define BM_HDMI_FC_INFREQ0_INFREQ      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INFREQ0_INFREQ(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INFREQ0_INFREQ)
@@ -6229,15 +6229,15 @@ typedef union
  * constants & macros for individual HDMI_FC_INFREQ1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INFREQ1, field INFREQ (RW)
+/* --- Register HW_HDMI_FC_INFREQ1, field INFREQ[7:0] (RW)
  *
  * Video refresh rate in Hz*1E3 format. This registers are provided for debug and informative
  * purposes. No data is written to this registers by the H13TCTRL and the data here written by
  * software is not used in any way by the H13TCTRL.
  */
 
-#define BP_HDMI_FC_INFREQ1_INFREQ      0
-#define BM_HDMI_FC_INFREQ1_INFREQ      0x000000ff
+#define BP_HDMI_FC_INFREQ1_INFREQ      (0)
+#define BM_HDMI_FC_INFREQ1_INFREQ      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INFREQ1_INFREQ(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INFREQ1_INFREQ)
@@ -6284,15 +6284,15 @@ typedef union
  * constants & macros for individual HDMI_FC_INFREQ2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INFREQ2, field INFREQ (RW)
+/* --- Register HW_HDMI_FC_INFREQ2, field INFREQ[3:0] (RW)
  *
  * Video refresh rate in Hz*1E3 format. This registers are provided for debug and informative
  * purposes. No data is written to this registers by the H13TCTRL and the data here written by
  * software is not used in any way by the H13TCTRL. Value after Reset: 0000b
  */
 
-#define BP_HDMI_FC_INFREQ2_INFREQ      0
-#define BM_HDMI_FC_INFREQ2_INFREQ      0x0000000f
+#define BP_HDMI_FC_INFREQ2_INFREQ      (0)
+#define BM_HDMI_FC_INFREQ2_INFREQ      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INFREQ2_INFREQ(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INFREQ2_INFREQ)
@@ -6338,14 +6338,14 @@ typedef union
  * constants & macros for individual HDMI_FC_CTRLDUR bitfields
  */
 
-/* --- Register HW_HDMI_FC_CTRLDUR, field CTRLPERIODDURATION (RW)
+/* --- Register HW_HDMI_FC_CTRLDUR, field CTRLPERIODDURATION[7:0] (RW)
  *
  * Configuration of the control period minimum duration (min. of 12 pixel clock cycles, refer to
  * HDMI 1.4a specification). Integer number of pixel clocks cycles [0..255].
  */
 
-#define BP_HDMI_FC_CTRLDUR_CTRLPERIODDURATION      0
-#define BM_HDMI_FC_CTRLDUR_CTRLPERIODDURATION      0x000000ff
+#define BP_HDMI_FC_CTRLDUR_CTRLPERIODDURATION      (0)
+#define BM_HDMI_FC_CTRLDUR_CTRLPERIODDURATION      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_CTRLDUR_CTRLPERIODDURATION(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_CTRLDUR_CTRLPERIODDURATION)
@@ -6391,14 +6391,14 @@ typedef union
  * constants & macros for individual HDMI_FC_EXCTRLDUR bitfields
  */
 
-/* --- Register HW_HDMI_FC_EXCTRLDUR, field EXCTRLPERIODDURATION (RW)
+/* --- Register HW_HDMI_FC_EXCTRLDUR, field EXCTRLPERIODDURATION[7:0] (RW)
  *
  * Configuration of the extended control period minimum duration (min. of 32 pixel clock cycles, see
  * HDMI 1.4a specification). Integer number of pixel clocks cycles [0..255].
  */
 
-#define BP_HDMI_FC_EXCTRLDUR_EXCTRLPERIODDURATION      0
-#define BM_HDMI_FC_EXCTRLDUR_EXCTRLPERIODDURATION      0x000000ff
+#define BP_HDMI_FC_EXCTRLDUR_EXCTRLPERIODDURATION      (0)
+#define BM_HDMI_FC_EXCTRLDUR_EXCTRLPERIODDURATION      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_EXCTRLDUR_EXCTRLPERIODDURATION(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_EXCTRLDUR_EXCTRLPERIODDURATION)
@@ -6444,15 +6444,15 @@ typedef union
  * constants & macros for individual HDMI_FC_EXCTRLSPAC bitfields
  */
 
-/* --- Register HW_HDMI_FC_EXCTRLSPAC, field EXCTRLPERIODSPACING (RW)
+/* --- Register HW_HDMI_FC_EXCTRLSPAC, field EXCTRLPERIODSPACING[7:0] (RW)
  *
  * Configuration of the maximum spacing between consecutive extended control periods (max of 50msec,
  * see HDMI 1.4a specification): generated spacing = (1/freq tmds
  * clock)*256*256*extctrlperiodspacing
  */
 
-#define BP_HDMI_FC_EXCTRLSPAC_EXCTRLPERIODSPACING      0
-#define BM_HDMI_FC_EXCTRLSPAC_EXCTRLPERIODSPACING      0x000000ff
+#define BP_HDMI_FC_EXCTRLSPAC_EXCTRLPERIODSPACING      (0)
+#define BM_HDMI_FC_EXCTRLSPAC_EXCTRLPERIODSPACING      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_EXCTRLSPAC_EXCTRLPERIODSPACING(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_EXCTRLSPAC_EXCTRLPERIODSPACING)
@@ -6498,14 +6498,14 @@ typedef union
  * constants & macros for individual HDMI_FC_CH0PREAM bitfields
  */
 
-/* --- Register HW_HDMI_FC_CH0PREAM, field CH0_PREAMBLE_FILTER (RW)
+/* --- Register HW_HDMI_FC_CH0PREAM, field CH0_PREAMBLE_FILTER[7:0] (RW)
  *
  * When in control mode, configures 8-bits that are going to fill the channel 0 data lines not used
  * to transmit the preamble (for more clarifications refer to HDMI 1.4a specification).
  */
 
-#define BP_HDMI_FC_CH0PREAM_CH0_PREAMBLE_FILTER      0
-#define BM_HDMI_FC_CH0PREAM_CH0_PREAMBLE_FILTER      0x000000ff
+#define BP_HDMI_FC_CH0PREAM_CH0_PREAMBLE_FILTER      (0)
+#define BM_HDMI_FC_CH0PREAM_CH0_PREAMBLE_FILTER      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_CH0PREAM_CH0_PREAMBLE_FILTER(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_CH0PREAM_CH0_PREAMBLE_FILTER)
@@ -6552,14 +6552,14 @@ typedef union
  * constants & macros for individual HDMI_FC_CH1PREAM bitfields
  */
 
-/* --- Register HW_HDMI_FC_CH1PREAM, field CH1_PREAMBLE_FILTER (RW)
+/* --- Register HW_HDMI_FC_CH1PREAM, field CH1_PREAMBLE_FILTER[5:0] (RW)
  *
  * When in control mode, configures 6-bits that are going to fill the channel 1 data lines not used
  * to transmit the preamble (for more clarifications refer to HDMI 1.4a specification).
  */
 
-#define BP_HDMI_FC_CH1PREAM_CH1_PREAMBLE_FILTER      0
-#define BM_HDMI_FC_CH1PREAM_CH1_PREAMBLE_FILTER      0x0000003f
+#define BP_HDMI_FC_CH1PREAM_CH1_PREAMBLE_FILTER      (0)
+#define BM_HDMI_FC_CH1PREAM_CH1_PREAMBLE_FILTER      (0x0000003f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_CH1PREAM_CH1_PREAMBLE_FILTER(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_CH1PREAM_CH1_PREAMBLE_FILTER)
@@ -6606,14 +6606,14 @@ typedef union
  * constants & macros for individual HDMI_FC_CH2PREAM bitfields
  */
 
-/* --- Register HW_HDMI_FC_CH2PREAM, field CH2_PREAMBLE_FILTER (RW)
+/* --- Register HW_HDMI_FC_CH2PREAM, field CH2_PREAMBLE_FILTER[5:0] (RW)
  *
  * When in control mode, configures 6-bits that are going to fill the channel 2 data lines not used
  * to transmit the preamble (for more clarifications, see HDMI 1.4a specification).
  */
 
-#define BP_HDMI_FC_CH2PREAM_CH2_PREAMBLE_FILTER      0
-#define BM_HDMI_FC_CH2PREAM_CH2_PREAMBLE_FILTER      0x0000003f
+#define BP_HDMI_FC_CH2PREAM_CH2_PREAMBLE_FILTER      (0)
+#define BM_HDMI_FC_CH2PREAM_CH2_PREAMBLE_FILTER      (0x0000003f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_CH2PREAM_CH2_PREAMBLE_FILTER(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_CH2PREAM_CH2_PREAMBLE_FILTER)
@@ -6662,13 +6662,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVICONF3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVICONF3, field CN1 (RW)
+/* --- Register HW_HDMI_FC_AVICONF3, field CN1[1:0] (RW)
  *
  * IT content type according to CEA specification
  */
 
-#define BP_HDMI_FC_AVICONF3_CN1      0
-#define BM_HDMI_FC_AVICONF3_CN1      0x00000003
+#define BP_HDMI_FC_AVICONF3_CN1      (0)
+#define BM_HDMI_FC_AVICONF3_CN1      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF3_CN1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVICONF3_CN1)
@@ -6680,13 +6680,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF3_CN1(v)   BF_CS1(HDMI_FC_AVICONF3, CN1, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF3, field YQ1 (RW)
+/* --- Register HW_HDMI_FC_AVICONF3, field YQ1[3:2] (RW)
  *
  * Quantization range according to CEA specification.
  */
 
-#define BP_HDMI_FC_AVICONF3_YQ1      2
-#define BM_HDMI_FC_AVICONF3_YQ1      0x0000000c
+#define BP_HDMI_FC_AVICONF3_YQ1      (2)
+#define BM_HDMI_FC_AVICONF3_YQ1      (0x0000000c)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF3_YQ1(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_AVICONF3_YQ1)
@@ -6736,13 +6736,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GCP bitfields
  */
 
-/* --- Register HW_HDMI_FC_GCP, field CLEAR_AVMUTE (RW)
+/* --- Register HW_HDMI_FC_GCP, field CLEAR_AVMUTE[0:0] (RW)
  *
  * Value of "clear_avmute" in the GCP packet. Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_GCP_CLEAR_AVMUTE      0
-#define BM_HDMI_FC_GCP_CLEAR_AVMUTE      0x00000001
+#define BP_HDMI_FC_GCP_CLEAR_AVMUTE      (0)
+#define BM_HDMI_FC_GCP_CLEAR_AVMUTE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GCP_CLEAR_AVMUTE(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GCP_CLEAR_AVMUTE)
@@ -6754,13 +6754,13 @@ typedef union
 #define BW_HDMI_FC_GCP_CLEAR_AVMUTE(v)   BF_CS1(HDMI_FC_GCP, CLEAR_AVMUTE, v)
 #endif
 
-/* --- Register HW_HDMI_FC_GCP, field SET_AVMUTE (RW)
+/* --- Register HW_HDMI_FC_GCP, field SET_AVMUTE[1:1] (RW)
  *
  * Value of "set_avmute" in the GCP packet. Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_GCP_SET_AVMUTE      1
-#define BM_HDMI_FC_GCP_SET_AVMUTE      0x00000002
+#define BP_HDMI_FC_GCP_SET_AVMUTE      (1)
+#define BM_HDMI_FC_GCP_SET_AVMUTE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GCP_SET_AVMUTE(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_GCP_SET_AVMUTE)
@@ -6772,14 +6772,14 @@ typedef union
 #define BW_HDMI_FC_GCP_SET_AVMUTE(v)   BF_CS1(HDMI_FC_GCP, SET_AVMUTE, v)
 #endif
 
-/* --- Register HW_HDMI_FC_GCP, field DEFAULT_PHASE (RW)
+/* --- Register HW_HDMI_FC_GCP, field DEFAULT_PHASE[2:2] (RW)
  *
  * Value of "default_phase" in the GCP packet. This data should be equal to the default phase used
  * at Video packetizer packing machine. Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_GCP_DEFAULT_PHASE      2
-#define BM_HDMI_FC_GCP_DEFAULT_PHASE      0x00000004
+#define BP_HDMI_FC_GCP_DEFAULT_PHASE      (2)
+#define BM_HDMI_FC_GCP_DEFAULT_PHASE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GCP_DEFAULT_PHASE(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_GCP_DEFAULT_PHASE)
@@ -6833,13 +6833,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVICONF0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF0 (RW)
+/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF0[1:0] (RW)
  *
  * RGB/YCC indication Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_AVICONF0_FC_AVICONF0      0
-#define BM_HDMI_FC_AVICONF0_FC_AVICONF0      0x00000003
+#define BP_HDMI_FC_AVICONF0_FC_AVICONF0      (0)
+#define BM_HDMI_FC_AVICONF0_FC_AVICONF0      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF0_FC_AVICONF0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVICONF0_FC_AVICONF0)
@@ -6851,13 +6851,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF0_FC_AVICONF0(v)   BF_CS1(HDMI_FC_AVICONF0, FC_AVICONF0, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF01 (RW)
+/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF01[3:2] (RW)
  *
  * Bar information
  */
 
-#define BP_HDMI_FC_AVICONF0_FC_AVICONF01      2
-#define BM_HDMI_FC_AVICONF0_FC_AVICONF01      0x0000000c
+#define BP_HDMI_FC_AVICONF0_FC_AVICONF01      (2)
+#define BM_HDMI_FC_AVICONF0_FC_AVICONF01      (0x0000000c)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF0_FC_AVICONF01(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_AVICONF0_FC_AVICONF01)
@@ -6869,13 +6869,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF0_FC_AVICONF01(v)   BF_CS1(HDMI_FC_AVICONF0, FC_AVICONF01, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF02 (RW)
+/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF02[5:4] (RW)
  *
  * Scan information
  */
 
-#define BP_HDMI_FC_AVICONF0_FC_AVICONF02      4
-#define BM_HDMI_FC_AVICONF0_FC_AVICONF02      0x00000030
+#define BP_HDMI_FC_AVICONF0_FC_AVICONF02      (4)
+#define BM_HDMI_FC_AVICONF0_FC_AVICONF02      (0x00000030)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF0_FC_AVICONF02(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_AVICONF0_FC_AVICONF02)
@@ -6887,13 +6887,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF0_FC_AVICONF02(v)   BF_CS1(HDMI_FC_AVICONF0, FC_AVICONF02, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF03 (RW)
+/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF03[6:6] (RW)
  *
  * Active format present
  */
 
-#define BP_HDMI_FC_AVICONF0_FC_AVICONF03      6
-#define BM_HDMI_FC_AVICONF0_FC_AVICONF03      0x00000040
+#define BP_HDMI_FC_AVICONF0_FC_AVICONF03      (6)
+#define BM_HDMI_FC_AVICONF0_FC_AVICONF03      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF0_FC_AVICONF03(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_AVICONF0_FC_AVICONF03)
@@ -6905,13 +6905,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF0_FC_AVICONF03(v)   BF_CS1(HDMI_FC_AVICONF0, FC_AVICONF03, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF04 (RW)
+/* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF04[7:7] (RW)
  *
  * ?
  */
 
-#define BP_HDMI_FC_AVICONF0_FC_AVICONF04      7
-#define BM_HDMI_FC_AVICONF0_FC_AVICONF04      0x00000080
+#define BP_HDMI_FC_AVICONF0_FC_AVICONF04      (7)
+#define BM_HDMI_FC_AVICONF0_FC_AVICONF04      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF0_FC_AVICONF04(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_AVICONF0_FC_AVICONF04)
@@ -6959,13 +6959,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVICONF1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVICONF1, field FC_AVICONF1 (RW)
+/* --- Register HW_HDMI_FC_AVICONF1, field FC_AVICONF1[3:0] (RW)
  *
  * Active aspect ratio Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_AVICONF1_FC_AVICONF1      0
-#define BM_HDMI_FC_AVICONF1_FC_AVICONF1      0x0000000f
+#define BP_HDMI_FC_AVICONF1_FC_AVICONF1      (0)
+#define BM_HDMI_FC_AVICONF1_FC_AVICONF1      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF1_FC_AVICONF1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVICONF1_FC_AVICONF1)
@@ -6977,13 +6977,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF1_FC_AVICONF1(v)   BF_CS1(HDMI_FC_AVICONF1, FC_AVICONF1, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF1, field FC_AVICONF11 (RW)
+/* --- Register HW_HDMI_FC_AVICONF1, field FC_AVICONF11[5:4] (RW)
  *
  * Picture aspect ratio
  */
 
-#define BP_HDMI_FC_AVICONF1_FC_AVICONF11      4
-#define BM_HDMI_FC_AVICONF1_FC_AVICONF11      0x00000030
+#define BP_HDMI_FC_AVICONF1_FC_AVICONF11      (4)
+#define BM_HDMI_FC_AVICONF1_FC_AVICONF11      (0x00000030)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF1_FC_AVICONF11(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_AVICONF1_FC_AVICONF11)
@@ -6995,13 +6995,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF1_FC_AVICONF11(v)   BF_CS1(HDMI_FC_AVICONF1, FC_AVICONF11, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF1, field FC_AVICONF0 (RW)
+/* --- Register HW_HDMI_FC_AVICONF1, field FC_AVICONF0[7:6] (RW)
  *
  * Colorimetry
  */
 
-#define BP_HDMI_FC_AVICONF1_FC_AVICONF0      6
-#define BM_HDMI_FC_AVICONF1_FC_AVICONF0      0x000000c0
+#define BP_HDMI_FC_AVICONF1_FC_AVICONF0      (6)
+#define BM_HDMI_FC_AVICONF1_FC_AVICONF0      (0x000000c0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF1_FC_AVICONF0(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_AVICONF1_FC_AVICONF0)
@@ -7050,13 +7050,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVICONF2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVICONF2, field FC_AVICONF2 (RW)
+/* --- Register HW_HDMI_FC_AVICONF2, field FC_AVICONF2[1:0] (RW)
  *
  * Non-uniform picture scaling Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_AVICONF2_FC_AVICONF2      0
-#define BM_HDMI_FC_AVICONF2_FC_AVICONF2      0x00000003
+#define BP_HDMI_FC_AVICONF2_FC_AVICONF2      (0)
+#define BM_HDMI_FC_AVICONF2_FC_AVICONF2      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF2_FC_AVICONF2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVICONF2_FC_AVICONF2)
@@ -7068,13 +7068,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF2_FC_AVICONF2(v)   BF_CS1(HDMI_FC_AVICONF2, FC_AVICONF2, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF2, field FC_AVICONF21 (RW)
+/* --- Register HW_HDMI_FC_AVICONF2, field FC_AVICONF21[6:4] (RW)
  *
  * Extended colorimetry
  */
 
-#define BP_HDMI_FC_AVICONF2_FC_AVICONF21      4
-#define BM_HDMI_FC_AVICONF2_FC_AVICONF21      0x00000070
+#define BP_HDMI_FC_AVICONF2_FC_AVICONF21      (4)
+#define BM_HDMI_FC_AVICONF2_FC_AVICONF21      (0x00000070)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF2_FC_AVICONF21(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_AVICONF2_FC_AVICONF21)
@@ -7086,13 +7086,13 @@ typedef union
 #define BW_HDMI_FC_AVICONF2_FC_AVICONF21(v)   BF_CS1(HDMI_FC_AVICONF2, FC_AVICONF21, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AVICONF2, field FC_AVICONF22 (RW)
+/* --- Register HW_HDMI_FC_AVICONF2, field FC_AVICONF22[7:7] (RW)
  *
  * IT content
  */
 
-#define BP_HDMI_FC_AVICONF2_FC_AVICONF22      7
-#define BM_HDMI_FC_AVICONF2_FC_AVICONF22      0x00000080
+#define BP_HDMI_FC_AVICONF2_FC_AVICONF22      (7)
+#define BM_HDMI_FC_AVICONF2_FC_AVICONF22      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVICONF2_FC_AVICONF22(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_AVICONF2_FC_AVICONF22)
@@ -7140,13 +7140,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVIVID bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVIVID, field FC_AVIVID (RW)
+/* --- Register HW_HDMI_FC_AVIVID, field FC_AVIVID[7:0] (RW)
  *
  * the AVI infoFrame Video Identification code.
  */
 
-#define BP_HDMI_FC_AVIVID_FC_AVIVID      0
-#define BM_HDMI_FC_AVIVID_FC_AVIVID      0x000000ff
+#define BP_HDMI_FC_AVIVID_FC_AVIVID      (0)
+#define BM_HDMI_FC_AVIVID_FC_AVIVID      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVIVID_FC_AVIVID(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVIVID_FC_AVIVID)
@@ -7264,13 +7264,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVISBB0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVISBB0, field FC_AVISBB0 (RW)
+/* --- Register HW_HDMI_FC_AVISBB0, field FC_AVISBB0[7:0] (RW)
  *
  * Line number of Start of Bottom Bar (lower 8 bits)
  */
 
-#define BP_HDMI_FC_AVISBB0_FC_AVISBB0      0
-#define BM_HDMI_FC_AVISBB0_FC_AVISBB0      0x000000ff
+#define BP_HDMI_FC_AVISBB0_FC_AVISBB0      (0)
+#define BM_HDMI_FC_AVISBB0_FC_AVISBB0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVISBB0_FC_AVISBB0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVISBB0_FC_AVISBB0)
@@ -7316,13 +7316,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVISBB1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVISBB1, field FC_AVISBB1 (RW)
+/* --- Register HW_HDMI_FC_AVISBB1, field FC_AVISBB1[7:0] (RW)
  *
  * Line number of Start of Bottom Bar (upper 8 bits)
  */
 
-#define BP_HDMI_FC_AVISBB1_FC_AVISBB1      0
-#define BM_HDMI_FC_AVISBB1_FC_AVISBB1      0x000000ff
+#define BP_HDMI_FC_AVISBB1_FC_AVISBB1      (0)
+#define BM_HDMI_FC_AVISBB1_FC_AVISBB1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVISBB1_FC_AVISBB1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVISBB1_FC_AVISBB1)
@@ -7370,13 +7370,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVIELB0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVIELB0, field FC_AVIELB0 (RW)
+/* --- Register HW_HDMI_FC_AVIELB0, field FC_AVIELB0[7:0] (RW)
  *
  * Pixel number of end of left Bar (lower 8 bits)
  */
 
-#define BP_HDMI_FC_AVIELB0_FC_AVIELB0      0
-#define BM_HDMI_FC_AVIELB0_FC_AVIELB0      0x000000ff
+#define BP_HDMI_FC_AVIELB0_FC_AVIELB0      (0)
+#define BM_HDMI_FC_AVIELB0_FC_AVIELB0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVIELB0_FC_AVIELB0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVIELB0_FC_AVIELB0)
@@ -7422,13 +7422,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVIELB1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVIELB1, field FC_AVIELB1 (RW)
+/* --- Register HW_HDMI_FC_AVIELB1, field FC_AVIELB1[7:0] (RW)
  *
  * Pixel number of end of left Bar (lower 8 bits)
  */
 
-#define BP_HDMI_FC_AVIELB1_FC_AVIELB1      0
-#define BM_HDMI_FC_AVIELB1_FC_AVIELB1      0x000000ff
+#define BP_HDMI_FC_AVIELB1_FC_AVIELB1      (0)
+#define BM_HDMI_FC_AVIELB1_FC_AVIELB1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVIELB1_FC_AVIELB1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVIELB1_FC_AVIELB1)
@@ -7476,13 +7476,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVISRB0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVISRB0, field FC_AVISRB0 (RW)
+/* --- Register HW_HDMI_FC_AVISRB0, field FC_AVISRB0[7:0] (RW)
  *
  * Pixel number of start of right Bar (lower 8 bits)
  */
 
-#define BP_HDMI_FC_AVISRB0_FC_AVISRB0      0
-#define BM_HDMI_FC_AVISRB0_FC_AVISRB0      0x000000ff
+#define BP_HDMI_FC_AVISRB0_FC_AVISRB0      (0)
+#define BM_HDMI_FC_AVISRB0_FC_AVISRB0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVISRB0_FC_AVISRB0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVISRB0_FC_AVISRB0)
@@ -7528,13 +7528,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AVISRB1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AVISRB1, field FC_AVISRB1 (RW)
+/* --- Register HW_HDMI_FC_AVISRB1, field FC_AVISRB1[7:0] (RW)
  *
  * Pixel number of start of right Bar (upper 8 bits)
  */
 
-#define BP_HDMI_FC_AVISRB1_FC_AVISRB1      0
-#define BM_HDMI_FC_AVISRB1_FC_AVISRB1      0x000000ff
+#define BP_HDMI_FC_AVISRB1_FC_AVISRB1      (0)
+#define BM_HDMI_FC_AVISRB1_FC_AVISRB1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AVISRB1_FC_AVISRB1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AVISRB1_FC_AVISRB1)
@@ -7587,13 +7587,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AUDICONF0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AUDICONF0, field CT (RW)
+/* --- Register HW_HDMI_FC_AUDICONF0, field CT[3:0] (RW)
  *
  * Coding Type
  */
 
-#define BP_HDMI_FC_AUDICONF0_CT      0
-#define BM_HDMI_FC_AUDICONF0_CT      0x0000000f
+#define BP_HDMI_FC_AUDICONF0_CT      (0)
+#define BM_HDMI_FC_AUDICONF0_CT      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF0_CT(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AUDICONF0_CT)
@@ -7605,13 +7605,13 @@ typedef union
 #define BW_HDMI_FC_AUDICONF0_CT(v)   BF_CS1(HDMI_FC_AUDICONF0, CT, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AUDICONF0, field CC (RW)
+/* --- Register HW_HDMI_FC_AUDICONF0, field CC[6:4] (RW)
  *
  * Channel count
  */
 
-#define BP_HDMI_FC_AUDICONF0_CC      4
-#define BM_HDMI_FC_AUDICONF0_CC      0x00000070
+#define BP_HDMI_FC_AUDICONF0_CC      (4)
+#define BM_HDMI_FC_AUDICONF0_CC      (0x00000070)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF0_CC(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_AUDICONF0_CC)
@@ -7659,13 +7659,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AUDICONF1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AUDICONF1, field SF (RW)
+/* --- Register HW_HDMI_FC_AUDICONF1, field SF[2:0] (RW)
  *
  * Sampling frequency
  */
 
-#define BP_HDMI_FC_AUDICONF1_SF      0
-#define BM_HDMI_FC_AUDICONF1_SF      0x00000007
+#define BP_HDMI_FC_AUDICONF1_SF      (0)
+#define BM_HDMI_FC_AUDICONF1_SF      (0x00000007)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF1_SF(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AUDICONF1_SF)
@@ -7677,13 +7677,13 @@ typedef union
 #define BW_HDMI_FC_AUDICONF1_SF(v)   BF_CS1(HDMI_FC_AUDICONF1, SF, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AUDICONF1, field SS (RW)
+/* --- Register HW_HDMI_FC_AUDICONF1, field SS[4:3] (RW)
  *
  * Sampling size
  */
 
-#define BP_HDMI_FC_AUDICONF1_SS      3
-#define BM_HDMI_FC_AUDICONF1_SS      0x00000018
+#define BP_HDMI_FC_AUDICONF1_SS      (3)
+#define BM_HDMI_FC_AUDICONF1_SS      (0x00000018)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF1_SS(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_AUDICONF1_SS)
@@ -7729,13 +7729,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AUDICONF2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AUDICONF2, field CA (RW)
+/* --- Register HW_HDMI_FC_AUDICONF2, field CA[7:0] (RW)
  *
  * Channel allocation
  */
 
-#define BP_HDMI_FC_AUDICONF2_CA      0
-#define BM_HDMI_FC_AUDICONF2_CA      0x000000ff
+#define BP_HDMI_FC_AUDICONF2_CA      (0)
+#define BM_HDMI_FC_AUDICONF2_CA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF2_CA(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AUDICONF2_CA)
@@ -7784,13 +7784,13 @@ typedef union
  * constants & macros for individual HDMI_FC_AUDICONF3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_AUDICONF3, field LSV (RW)
+/* --- Register HW_HDMI_FC_AUDICONF3, field LSV[3:0] (RW)
  *
  * Level shift value (for down mixing)
  */
 
-#define BP_HDMI_FC_AUDICONF3_LSV      0
-#define BM_HDMI_FC_AUDICONF3_LSV      0x0000000f
+#define BP_HDMI_FC_AUDICONF3_LSV      (0)
+#define BM_HDMI_FC_AUDICONF3_LSV      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF3_LSV(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AUDICONF3_LSV)
@@ -7802,13 +7802,13 @@ typedef union
 #define BW_HDMI_FC_AUDICONF3_LSV(v)   BF_CS1(HDMI_FC_AUDICONF3, LSV, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AUDICONF3, field DM_INH (RW)
+/* --- Register HW_HDMI_FC_AUDICONF3, field DM_INH[4:4] (RW)
  *
  * Down mix enable
  */
 
-#define BP_HDMI_FC_AUDICONF3_DM_INH      4
-#define BM_HDMI_FC_AUDICONF3_DM_INH      0x00000010
+#define BP_HDMI_FC_AUDICONF3_DM_INH      (4)
+#define BM_HDMI_FC_AUDICONF3_DM_INH      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF3_DM_INH(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_AUDICONF3_DM_INH)
@@ -7820,13 +7820,13 @@ typedef union
 #define BW_HDMI_FC_AUDICONF3_DM_INH(v)   BF_CS1(HDMI_FC_AUDICONF3, DM_INH, v)
 #endif
 
-/* --- Register HW_HDMI_FC_AUDICONF3, field LFEPBL (RW)
+/* --- Register HW_HDMI_FC_AUDICONF3, field LFEPBL[6:5] (RW)
  *
  * LFE playback information
  */
 
-#define BP_HDMI_FC_AUDICONF3_LFEPBL      5
-#define BM_HDMI_FC_AUDICONF3_LFEPBL      0x00000060
+#define BP_HDMI_FC_AUDICONF3_LFEPBL      (5)
+#define BM_HDMI_FC_AUDICONF3_LFEPBL      (0x00000060)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDICONF3_LFEPBL(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_AUDICONF3_LFEPBL)
@@ -7910,13 +7910,13 @@ typedef union
  * constants & macros for individual HDMI_FC_VSDSIZE bitfields
  */
 
-/* --- Register HW_HDMI_FC_VSDSIZE, field VSDSIZE (RW)
+/* --- Register HW_HDMI_FC_VSDSIZE, field VSDSIZE[4:0] (RW)
  *
  * Packet size as described in HDMI Vendor Specific InfoFrame (from HDMI specification).
  */
 
-#define BP_HDMI_FC_VSDSIZE_VSDSIZE      0
-#define BM_HDMI_FC_VSDSIZE_VSDSIZE      0x0000001f
+#define BP_HDMI_FC_VSDSIZE_VSDSIZE      (0)
+#define BM_HDMI_FC_VSDSIZE_VSDSIZE      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_VSDSIZE_VSDSIZE(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_VSDSIZE_VSDSIZE)
@@ -8850,13 +8850,13 @@ typedef union
  * constants & macros for individual HDMI_FC_SPDVENDORNAME0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_SPDVENDORNAME0, field VENDOR_NAME (RW)
+/* --- Register HW_HDMI_FC_SPDVENDORNAME0, field VENDOR_NAME[7:0] (RW)
  *
  * Vendor name
  */
 
-#define BP_HDMI_FC_SPDVENDORNAME0_VENDOR_NAME      0
-#define BM_HDMI_FC_SPDVENDORNAME0_VENDOR_NAME      0x000000ff
+#define BP_HDMI_FC_SPDVENDORNAME0_VENDOR_NAME      (0)
+#define BM_HDMI_FC_SPDVENDORNAME0_VENDOR_NAME      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_SPDVENDORNAME0_VENDOR_NAME(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_SPDVENDORNAME0_VENDOR_NAME)
@@ -8904,13 +8904,13 @@ typedef union
  * constants & macros for individual HDMI_FC_SPDPRODUCTNAME0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_SPDPRODUCTNAME0, field PRODUCT_NAME (RW)
+/* --- Register HW_HDMI_FC_SPDPRODUCTNAME0, field PRODUCT_NAME[7:0] (RW)
  *
  * Product name
  */
 
-#define BP_HDMI_FC_SPDPRODUCTNAME0_PRODUCT_NAME      0
-#define BM_HDMI_FC_SPDPRODUCTNAME0_PRODUCT_NAME      0x000000ff
+#define BP_HDMI_FC_SPDPRODUCTNAME0_PRODUCT_NAME      (0)
+#define BM_HDMI_FC_SPDPRODUCTNAME0_PRODUCT_NAME      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_SPDPRODUCTNAME0_PRODUCT_NAME(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_SPDPRODUCTNAME0_PRODUCT_NAME)
@@ -8958,13 +8958,13 @@ typedef union
  * constants & macros for individual HDMI_FC_SPDDEVICEINF bitfields
  */
 
-/* --- Register HW_HDMI_FC_SPDDEVICEINF, field PRODUCT_DESCRIPTOR (RW)
+/* --- Register HW_HDMI_FC_SPDDEVICEINF, field PRODUCT_DESCRIPTOR[7:0] (RW)
  *
  * Product descriptor
  */
 
-#define BP_HDMI_FC_SPDDEVICEINF_PRODUCT_DESCRIPTOR      0
-#define BM_HDMI_FC_SPDDEVICEINF_PRODUCT_DESCRIPTOR      0x000000ff
+#define BP_HDMI_FC_SPDDEVICEINF_PRODUCT_DESCRIPTOR      (0)
+#define BM_HDMI_FC_SPDDEVICEINF_PRODUCT_DESCRIPTOR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_SPDDEVICEINF_PRODUCT_DESCRIPTOR(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_SPDDEVICEINF_PRODUCT_DESCRIPTOR)
@@ -9014,17 +9014,17 @@ typedef union
  * constants & macros for individual HDMI_FC_AUDSCONF bitfields
  */
 
-/* --- Register HW_HDMI_FC_AUDSCONF, field AUD_PACKET_LAYOUT (RW)
+/* --- Register HW_HDMI_FC_AUDSCONF, field AUD_PACKET_LAYOUT[0:0] (RW)
  *
  * Set the audio packet layout to be sent in the packet:
  *
  * Values:
- * 1 - layout 1
  * 0 - layout 0
+ * 1 - layout 1
  */
 
-#define BP_HDMI_FC_AUDSCONF_AUD_PACKET_LAYOUT      0
-#define BM_HDMI_FC_AUDSCONF_AUD_PACKET_LAYOUT      0x00000001
+#define BP_HDMI_FC_AUDSCONF_AUD_PACKET_LAYOUT      (0)
+#define BM_HDMI_FC_AUDSCONF_AUD_PACKET_LAYOUT      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDSCONF_AUD_PACKET_LAYOUT(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_AUDSCONF_AUD_PACKET_LAYOUT)
@@ -9037,13 +9037,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_AUDSCONF, field AUD_PACKET_SAMPFIT (RW)
+/* --- Register HW_HDMI_FC_AUDSCONF, field AUD_PACKET_SAMPFIT[7:4] (RW)
  *
  * Set the audio packet sample flat value to be sent on the packet.
  */
 
-#define BP_HDMI_FC_AUDSCONF_AUD_PACKET_SAMPFIT      4
-#define BM_HDMI_FC_AUDSCONF_AUD_PACKET_SAMPFIT      0x000000f0
+#define BP_HDMI_FC_AUDSCONF_AUD_PACKET_SAMPFIT      (4)
+#define BM_HDMI_FC_AUDSCONF_AUD_PACKET_SAMPFIT      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_AUDSCONF_AUD_PACKET_SAMPFIT(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_AUDSCONF_AUD_PACKET_SAMPFIT)
@@ -9088,14 +9088,14 @@ typedef union
  * constants & macros for individual HDMI_FC_AUDSSTAT bitfields
  */
 
-/* --- Register HW_HDMI_FC_AUDSSTAT, field PACKET_SAMPPRS (RO)
+/* --- Register HW_HDMI_FC_AUDSSTAT, field PACKET_SAMPPRS[3:0] (RO)
  *
  * Shows the data sample present indication of the last Audio sample packet sent by the HDMI TX
  * Controller. This register information is at tmds clock rate.
  */
 
-#define BP_HDMI_FC_AUDSSTAT_PACKET_SAMPPRS      0
-#define BM_HDMI_FC_AUDSSTAT_PACKET_SAMPPRS      0x0000000f
+#define BP_HDMI_FC_AUDSSTAT_PACKET_SAMPPRS      (0)
+#define BM_HDMI_FC_AUDSSTAT_PACKET_SAMPPRS      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9132,14 +9132,14 @@ typedef union
  * constants & macros for individual HDMI_FC_CTRLQHIGH bitfields
  */
 
-/* --- Register HW_HDMI_FC_CTRLQHIGH, field ONHIGHATTENDED (RW)
+/* --- Register HW_HDMI_FC_CTRLQHIGH, field ONHIGHATTENDED[4:0] (RW)
  *
  * Configures the number of high priority packets or audio sample packets consecutively attended
  * before checking low priority queue status. Integer number [0..31]
  */
 
-#define BP_HDMI_FC_CTRLQHIGH_ONHIGHATTENDED      0
-#define BM_HDMI_FC_CTRLQHIGH_ONHIGHATTENDED      0x0000001f
+#define BP_HDMI_FC_CTRLQHIGH_ONHIGHATTENDED      (0)
+#define BM_HDMI_FC_CTRLQHIGH_ONHIGHATTENDED      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_CTRLQHIGH_ONHIGHATTENDED(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_CTRLQHIGH_ONHIGHATTENDED)
@@ -9186,14 +9186,14 @@ typedef union
  * constants & macros for individual HDMI_FC_CTRLQLOW bitfields
  */
 
-/* --- Register HW_HDMI_FC_CTRLQLOW, field ONLOWATTENDED (RW)
+/* --- Register HW_HDMI_FC_CTRLQLOW, field ONLOWATTENDED[4:0] (RW)
  *
  * Configures the number of low priority packets or null packets consecutively attended before
  * checking high priority queue status or audio sample availability. Integer number [0..31]
  */
 
-#define BP_HDMI_FC_CTRLQLOW_ONLOWATTENDED      0
-#define BM_HDMI_FC_CTRLQLOW_ONLOWATTENDED      0x0000001f
+#define BP_HDMI_FC_CTRLQLOW_ONLOWATTENDED      (0)
+#define BM_HDMI_FC_CTRLQLOW_ONLOWATTENDED      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_CTRLQLOW_ONLOWATTENDED(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_CTRLQLOW_ONLOWATTENDED)
@@ -9241,13 +9241,13 @@ typedef union
  * constants & macros for individual HDMI_FC_ACP0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_ACP0, field ACPTYPE (RW)
+/* --- Register HW_HDMI_FC_ACP0, field ACPTYPE[7:0] (RW)
  *
  * Configures the ACP packet type.
  */
 
-#define BP_HDMI_FC_ACP0_ACPTYPE      0
-#define BM_HDMI_FC_ACP0_ACPTYPE      0x000000ff
+#define BP_HDMI_FC_ACP0_ACPTYPE      (0)
+#define BM_HDMI_FC_ACP0_ACPTYPE      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_ACP0_ACPTYPE(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_ACP0_ACPTYPE)
@@ -9294,13 +9294,13 @@ typedef union
  * constants & macros for individual HDMI_FC_ACP1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_ACP1, field AUDIO_CONTENTPACKET (RW)
+/* --- Register HW_HDMI_FC_ACP1, field AUDIO_CONTENTPACKET[7:0] (RW)
  *
  * Audio content packet
  */
 
-#define BP_HDMI_FC_ACP1_AUDIO_CONTENTPACKET      0
-#define BM_HDMI_FC_ACP1_AUDIO_CONTENTPACKET      0x000000ff
+#define BP_HDMI_FC_ACP1_AUDIO_CONTENTPACKET      (0)
+#define BM_HDMI_FC_ACP1_AUDIO_CONTENTPACKET      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_ACP1_AUDIO_CONTENTPACKET(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_ACP1_AUDIO_CONTENTPACKET)
@@ -9351,13 +9351,13 @@ typedef union
  * constants & macros for individual HDMI_FC_ISCR1_0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_ISCR1_0, field ISRC_CONT (RW)
+/* --- Register HW_HDMI_FC_ISCR1_0, field ISRC_CONT[0:0] (RW)
  *
  * Indication of ISRC2.
  */
 
-#define BP_HDMI_FC_ISCR1_0_ISRC_CONT      0
-#define BM_HDMI_FC_ISCR1_0_ISRC_CONT      0x00000001
+#define BP_HDMI_FC_ISCR1_0_ISRC_CONT      (0)
+#define BM_HDMI_FC_ISCR1_0_ISRC_CONT      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_ISCR1_0_ISRC_CONT(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_ISCR1_0_ISRC_CONT)
@@ -9369,13 +9369,13 @@ typedef union
 #define BW_HDMI_FC_ISCR1_0_ISRC_CONT(v)   BF_CS1(HDMI_FC_ISCR1_0, ISRC_CONT, v)
 #endif
 
-/* --- Register HW_HDMI_FC_ISCR1_0, field ISRC_VALID (RW)
+/* --- Register HW_HDMI_FC_ISCR1_0, field ISRC_VALID[1:1] (RW)
  *
  * Valid of ISRC1.
  */
 
-#define BP_HDMI_FC_ISCR1_0_ISRC_VALID      1
-#define BM_HDMI_FC_ISCR1_0_ISRC_VALID      0x00000002
+#define BP_HDMI_FC_ISCR1_0_ISRC_VALID      (1)
+#define BM_HDMI_FC_ISCR1_0_ISRC_VALID      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_ISCR1_0_ISRC_VALID(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_ISCR1_0_ISRC_VALID)
@@ -9387,13 +9387,13 @@ typedef union
 #define BW_HDMI_FC_ISCR1_0_ISRC_VALID(v)   BF_CS1(HDMI_FC_ISCR1_0, ISRC_VALID, v)
 #endif
 
-/* --- Register HW_HDMI_FC_ISCR1_0, field ISRC_STATUS (RW)
+/* --- Register HW_HDMI_FC_ISCR1_0, field ISRC_STATUS[4:2] (RW)
  *
  * Status of ISRC1.
  */
 
-#define BP_HDMI_FC_ISCR1_0_ISRC_STATUS      2
-#define BM_HDMI_FC_ISCR1_0_ISRC_STATUS      0x0000001c
+#define BP_HDMI_FC_ISCR1_0_ISRC_STATUS      (2)
+#define BM_HDMI_FC_ISCR1_0_ISRC_STATUS      (0x0000001c)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_ISCR1_0_ISRC_STATUS(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_ISCR1_0_ISRC_STATUS)
@@ -9441,13 +9441,13 @@ typedef union
  * constants & macros for individual HDMI_FC_ISCR1_1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_ISCR1_1, field ISRC1 (RW)
+/* --- Register HW_HDMI_FC_ISCR1_1, field ISRC1[7:0] (RW)
  *
  * Configures the contents of the ISRC1 packet:
  */
 
-#define BP_HDMI_FC_ISCR1_1_ISRC1      0
-#define BM_HDMI_FC_ISCR1_1_ISRC1      0x000000ff
+#define BP_HDMI_FC_ISCR1_1_ISRC1      (0)
+#define BM_HDMI_FC_ISCR1_1_ISRC1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_ISCR1_1_ISRC1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_ISCR1_1_ISRC1)
@@ -9495,13 +9495,13 @@ typedef union
  * constants & macros for individual HDMI_FC_ISCR2_0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_ISCR2_0, field ISRC2 (RW)
+/* --- Register HW_HDMI_FC_ISCR2_0, field ISRC2[7:0] (RW)
  *
  * Configures the contents of the ISRC1 packet:
  */
 
-#define BP_HDMI_FC_ISCR2_0_ISRC2      0
-#define BM_HDMI_FC_ISCR2_0_ISRC2      0x000000ff
+#define BP_HDMI_FC_ISCR2_0_ISRC2      (0)
+#define BM_HDMI_FC_ISCR2_0_ISRC2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_ISCR2_0_ISRC2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_ISCR2_0_ISRC2)
@@ -9556,13 +9556,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DATAUTO0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DATAUTO0, field ACP_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO0, field ACP_AUTO[0:0] (RW)
  *
  * Enables ACP automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO0_ACP_AUTO      0
-#define BM_HDMI_FC_DATAUTO0_ACP_AUTO      0x00000001
+#define BP_HDMI_FC_DATAUTO0_ACP_AUTO      (0)
+#define BM_HDMI_FC_DATAUTO0_ACP_AUTO      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO0_ACP_AUTO(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DATAUTO0_ACP_AUTO)
@@ -9574,13 +9574,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO0_ACP_AUTO(v)   BF_CS1(HDMI_FC_DATAUTO0, ACP_AUTO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO0, field ISCR1_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO0, field ISCR1_AUTO[1:1] (RW)
  *
  * Enables ISRC1 automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO0_ISCR1_AUTO      1
-#define BM_HDMI_FC_DATAUTO0_ISCR1_AUTO      0x00000002
+#define BP_HDMI_FC_DATAUTO0_ISCR1_AUTO      (1)
+#define BM_HDMI_FC_DATAUTO0_ISCR1_AUTO      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO0_ISCR1_AUTO(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_DATAUTO0_ISCR1_AUTO)
@@ -9592,13 +9592,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO0_ISCR1_AUTO(v)   BF_CS1(HDMI_FC_DATAUTO0, ISCR1_AUTO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO0, field ISCR2_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO0, field ISCR2_AUTO[2:2] (RW)
  *
  * Enables ISRC2 automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO0_ISCR2_AUTO      2
-#define BM_HDMI_FC_DATAUTO0_ISCR2_AUTO      0x00000004
+#define BP_HDMI_FC_DATAUTO0_ISCR2_AUTO      (2)
+#define BM_HDMI_FC_DATAUTO0_ISCR2_AUTO      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO0_ISCR2_AUTO(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_DATAUTO0_ISCR2_AUTO)
@@ -9610,13 +9610,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO0_ISCR2_AUTO(v)   BF_CS1(HDMI_FC_DATAUTO0, ISCR2_AUTO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO0, field VSD_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO0, field VSD_AUTO[3:3] (RW)
  *
  * Enables VSD automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO0_VSD_AUTO      3
-#define BM_HDMI_FC_DATAUTO0_VSD_AUTO      0x00000008
+#define BP_HDMI_FC_DATAUTO0_VSD_AUTO      (3)
+#define BM_HDMI_FC_DATAUTO0_VSD_AUTO      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO0_VSD_AUTO(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_DATAUTO0_VSD_AUTO)
@@ -9628,13 +9628,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO0_VSD_AUTO(v)   BF_CS1(HDMI_FC_DATAUTO0, VSD_AUTO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO0, field SPD_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO0, field SPD_AUTO[4:4] (RW)
  *
  * Enables SPD automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO0_SPD_AUTO      4
-#define BM_HDMI_FC_DATAUTO0_SPD_AUTO      0x00000010
+#define BP_HDMI_FC_DATAUTO0_SPD_AUTO      (4)
+#define BM_HDMI_FC_DATAUTO0_SPD_AUTO      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO0_SPD_AUTO(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_DATAUTO0_SPD_AUTO)
@@ -9683,13 +9683,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DATAUTO1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DATAUTO1, field AUTO_FRAME_INTERPOLATION (RW)
+/* --- Register HW_HDMI_FC_DATAUTO1, field AUTO_FRAME_INTERPOLATION[3:0] (RW)
  *
  * Packet frame interpolation, for automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO1_AUTO_FRAME_INTERPOLATION      0
-#define BM_HDMI_FC_DATAUTO1_AUTO_FRAME_INTERPOLATION      0x0000000f
+#define BP_HDMI_FC_DATAUTO1_AUTO_FRAME_INTERPOLATION      (0)
+#define BM_HDMI_FC_DATAUTO1_AUTO_FRAME_INTERPOLATION      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO1_AUTO_FRAME_INTERPOLATION(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DATAUTO1_AUTO_FRAME_INTERPOLATION)
@@ -9739,13 +9739,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DATAUTO2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DATAUTO2, field AUTO_LINE_SPACING (RW)
+/* --- Register HW_HDMI_FC_DATAUTO2, field AUTO_LINE_SPACING[3:0] (RW)
  *
  * Packets line spacing, for automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO2_AUTO_LINE_SPACING      0
-#define BM_HDMI_FC_DATAUTO2_AUTO_LINE_SPACING      0x0000000f
+#define BP_HDMI_FC_DATAUTO2_AUTO_LINE_SPACING      (0)
+#define BM_HDMI_FC_DATAUTO2_AUTO_LINE_SPACING      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO2_AUTO_LINE_SPACING(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DATAUTO2_AUTO_LINE_SPACING)
@@ -9757,13 +9757,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO2_AUTO_LINE_SPACING(v)   BF_CS1(HDMI_FC_DATAUTO2, AUTO_LINE_SPACING, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO2, field AUTO_FRAME_PACKETS (RW)
+/* --- Register HW_HDMI_FC_DATAUTO2, field AUTO_FRAME_PACKETS[7:4] (RW)
  *
  * Packets per frame, for automatic packet scheduling
  */
 
-#define BP_HDMI_FC_DATAUTO2_AUTO_FRAME_PACKETS      4
-#define BM_HDMI_FC_DATAUTO2_AUTO_FRAME_PACKETS      0x000000f0
+#define BP_HDMI_FC_DATAUTO2_AUTO_FRAME_PACKETS      (4)
+#define BM_HDMI_FC_DATAUTO2_AUTO_FRAME_PACKETS      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO2_AUTO_FRAME_PACKETS(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_DATAUTO2_AUTO_FRAME_PACKETS)
@@ -9813,13 +9813,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DATMAN bitfields
  */
 
-/* --- Register HW_HDMI_FC_DATMAN, field ACP_TX (WO)
+/* --- Register HW_HDMI_FC_DATMAN, field ACP_TX[0:0] (WO)
  *
  * ACP packet
  */
 
-#define BP_HDMI_FC_DATMAN_ACP_TX      0
-#define BM_HDMI_FC_DATMAN_ACP_TX      0x00000001
+#define BP_HDMI_FC_DATMAN_ACP_TX      (0)
+#define BM_HDMI_FC_DATMAN_ACP_TX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATMAN_ACP_TX(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DATMAN_ACP_TX)
@@ -9831,13 +9831,13 @@ typedef union
 #define BW_HDMI_FC_DATMAN_ACP_TX(v)   BF_CS1(HDMI_FC_DATMAN, ACP_TX, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATMAN, field ISR1_TX (WO)
+/* --- Register HW_HDMI_FC_DATMAN, field ISR1_TX[1:1] (WO)
  *
  * ISRC1 packet
  */
 
-#define BP_HDMI_FC_DATMAN_ISR1_TX      1
-#define BM_HDMI_FC_DATMAN_ISR1_TX      0x00000002
+#define BP_HDMI_FC_DATMAN_ISR1_TX      (1)
+#define BM_HDMI_FC_DATMAN_ISR1_TX      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATMAN_ISR1_TX(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_DATMAN_ISR1_TX)
@@ -9849,13 +9849,13 @@ typedef union
 #define BW_HDMI_FC_DATMAN_ISR1_TX(v)   BF_CS1(HDMI_FC_DATMAN, ISR1_TX, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATMAN, field ISCR2_TX (WO)
+/* --- Register HW_HDMI_FC_DATMAN, field ISCR2_TX[2:2] (WO)
  *
  * ISRC2 packet
  */
 
-#define BP_HDMI_FC_DATMAN_ISCR2_TX      2
-#define BM_HDMI_FC_DATMAN_ISCR2_TX      0x00000004
+#define BP_HDMI_FC_DATMAN_ISCR2_TX      (2)
+#define BM_HDMI_FC_DATMAN_ISCR2_TX      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATMAN_ISCR2_TX(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_DATMAN_ISCR2_TX)
@@ -9867,13 +9867,13 @@ typedef union
 #define BW_HDMI_FC_DATMAN_ISCR2_TX(v)   BF_CS1(HDMI_FC_DATMAN, ISCR2_TX, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATMAN, field VSD_TX (WO)
+/* --- Register HW_HDMI_FC_DATMAN, field VSD_TX[3:3] (WO)
  *
  * VSD packet
  */
 
-#define BP_HDMI_FC_DATMAN_VSD_TX      3
-#define BM_HDMI_FC_DATMAN_VSD_TX      0x00000008
+#define BP_HDMI_FC_DATMAN_VSD_TX      (3)
+#define BM_HDMI_FC_DATMAN_VSD_TX      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATMAN_VSD_TX(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_DATMAN_VSD_TX)
@@ -9885,13 +9885,13 @@ typedef union
 #define BW_HDMI_FC_DATMAN_VSD_TX(v)   BF_CS1(HDMI_FC_DATMAN, VSD_TX, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATMAN, field SPD_TX (WO)
+/* --- Register HW_HDMI_FC_DATMAN, field SPD_TX[4:4] (WO)
  *
  * SPD packet
  */
 
-#define BP_HDMI_FC_DATMAN_SPD_TX      4
-#define BM_HDMI_FC_DATMAN_SPD_TX      0x00000010
+#define BP_HDMI_FC_DATMAN_SPD_TX      (4)
+#define BM_HDMI_FC_DATMAN_SPD_TX      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATMAN_SPD_TX(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_DATMAN_SPD_TX)
@@ -9903,13 +9903,13 @@ typedef union
 #define BW_HDMI_FC_DATMAN_SPD_TX(v)   BF_CS1(HDMI_FC_DATMAN, SPD_TX, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATMAN, field NULL_TX (WO)
+/* --- Register HW_HDMI_FC_DATMAN, field NULL_TX[5:5] (WO)
  *
  * Null packet
  */
 
-#define BP_HDMI_FC_DATMAN_NULL_TX      5
-#define BM_HDMI_FC_DATMAN_NULL_TX      0x00000020
+#define BP_HDMI_FC_DATMAN_NULL_TX      (5)
+#define BM_HDMI_FC_DATMAN_NULL_TX      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATMAN_NULL_TX(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_DATMAN_NULL_TX)
@@ -9962,13 +9962,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DATAUTO3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DATAUTO3, field ACR_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO3, field ACR_AUTO[0:0] (RW)
  *
  * Enable ACR packet insertion
  */
 
-#define BP_HDMI_FC_DATAUTO3_ACR_AUTO      0
-#define BM_HDMI_FC_DATAUTO3_ACR_AUTO      0x00000001
+#define BP_HDMI_FC_DATAUTO3_ACR_AUTO      (0)
+#define BM_HDMI_FC_DATAUTO3_ACR_AUTO      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO3_ACR_AUTO(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DATAUTO3_ACR_AUTO)
@@ -9980,13 +9980,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO3_ACR_AUTO(v)   BF_CS1(HDMI_FC_DATAUTO3, ACR_AUTO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO3, field AUDI_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO3, field AUDI_AUTO[1:1] (RW)
  *
  * Enable AUDI packet insertion
  */
 
-#define BP_HDMI_FC_DATAUTO3_AUDI_AUTO      1
-#define BM_HDMI_FC_DATAUTO3_AUDI_AUTO      0x00000002
+#define BP_HDMI_FC_DATAUTO3_AUDI_AUTO      (1)
+#define BM_HDMI_FC_DATAUTO3_AUDI_AUTO      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO3_AUDI_AUTO(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_DATAUTO3_AUDI_AUTO)
@@ -9998,13 +9998,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO3_AUDI_AUTO(v)   BF_CS1(HDMI_FC_DATAUTO3, AUDI_AUTO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO3, field GCP_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO3, field GCP_AUTO[2:2] (RW)
  *
  * Enable GCP packet insertion
  */
 
-#define BP_HDMI_FC_DATAUTO3_GCP_AUTO      2
-#define BM_HDMI_FC_DATAUTO3_GCP_AUTO      0x00000004
+#define BP_HDMI_FC_DATAUTO3_GCP_AUTO      (2)
+#define BM_HDMI_FC_DATAUTO3_GCP_AUTO      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO3_GCP_AUTO(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_DATAUTO3_GCP_AUTO)
@@ -10016,13 +10016,13 @@ typedef union
 #define BW_HDMI_FC_DATAUTO3_GCP_AUTO(v)   BF_CS1(HDMI_FC_DATAUTO3, GCP_AUTO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DATAUTO3, field AVI_AUTO (RW)
+/* --- Register HW_HDMI_FC_DATAUTO3, field AVI_AUTO[3:3] (RW)
  *
  * Enable AVI packet insertion
  */
 
-#define BP_HDMI_FC_DATAUTO3_AVI_AUTO      3
-#define BM_HDMI_FC_DATAUTO3_AVI_AUTO      0x00000008
+#define BP_HDMI_FC_DATAUTO3_AVI_AUTO      (3)
+#define BM_HDMI_FC_DATAUTO3_AVI_AUTO      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DATAUTO3_AVI_AUTO(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_DATAUTO3_AVI_AUTO)
@@ -10071,13 +10071,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB0, field ACRFRAMEINTERPOLATION (RW)
+/* --- Register HW_HDMI_FC_RDRB0, field ACRFRAMEINTERPOLATION[3:0] (RW)
  *
  * ACR frame interpolation
  */
 
-#define BP_HDMI_FC_RDRB0_ACRFRAMEINTERPOLATION      0
-#define BM_HDMI_FC_RDRB0_ACRFRAMEINTERPOLATION      0x0000000f
+#define BP_HDMI_FC_RDRB0_ACRFRAMEINTERPOLATION      (0)
+#define BM_HDMI_FC_RDRB0_ACRFRAMEINTERPOLATION      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB0_ACRFRAMEINTERPOLATION(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB0_ACRFRAMEINTERPOLATION)
@@ -10126,13 +10126,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB1, field ACRPACKETLINESPACING (RW)
+/* --- Register HW_HDMI_FC_RDRB1, field ACRPACKETLINESPACING[3:0] (RW)
  *
  * ACR packet line spacing
  */
 
-#define BP_HDMI_FC_RDRB1_ACRPACKETLINESPACING      0
-#define BM_HDMI_FC_RDRB1_ACRPACKETLINESPACING      0x0000000f
+#define BP_HDMI_FC_RDRB1_ACRPACKETLINESPACING      (0)
+#define BM_HDMI_FC_RDRB1_ACRPACKETLINESPACING      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB1_ACRPACKETLINESPACING(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB1_ACRPACKETLINESPACING)
@@ -10144,13 +10144,13 @@ typedef union
 #define BW_HDMI_FC_RDRB1_ACRPACKETLINESPACING(v)   BF_CS1(HDMI_FC_RDRB1, ACRPACKETLINESPACING, v)
 #endif
 
-/* --- Register HW_HDMI_FC_RDRB1, field ACRPACKETSINFRAME (RW)
+/* --- Register HW_HDMI_FC_RDRB1, field ACRPACKETSINFRAME[7:4] (RW)
  *
  * ACR packets in frame
  */
 
-#define BP_HDMI_FC_RDRB1_ACRPACKETSINFRAME      4
-#define BM_HDMI_FC_RDRB1_ACRPACKETSINFRAME      0x000000f0
+#define BP_HDMI_FC_RDRB1_ACRPACKETSINFRAME      (4)
+#define BM_HDMI_FC_RDRB1_ACRPACKETSINFRAME      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB1_ACRPACKETSINFRAME(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_RDRB1_ACRPACKETSINFRAME)
@@ -10199,13 +10199,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB2, field AUDIFRAMEINTERPOLATION (RW)
+/* --- Register HW_HDMI_FC_RDRB2, field AUDIFRAMEINTERPOLATION[3:0] (RW)
  *
  * Audio frame interpolation
  */
 
-#define BP_HDMI_FC_RDRB2_AUDIFRAMEINTERPOLATION      0
-#define BM_HDMI_FC_RDRB2_AUDIFRAMEINTERPOLATION      0x0000000f
+#define BP_HDMI_FC_RDRB2_AUDIFRAMEINTERPOLATION      (0)
+#define BM_HDMI_FC_RDRB2_AUDIFRAMEINTERPOLATION      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB2_AUDIFRAMEINTERPOLATION(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB2_AUDIFRAMEINTERPOLATION)
@@ -10254,13 +10254,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB3, field AUDIPACKETLINESPACING (RW)
+/* --- Register HW_HDMI_FC_RDRB3, field AUDIPACKETLINESPACING[3:0] (RW)
  *
  * Audio packets line spacing
  */
 
-#define BP_HDMI_FC_RDRB3_AUDIPACKETLINESPACING      0
-#define BM_HDMI_FC_RDRB3_AUDIPACKETLINESPACING      0x0000000f
+#define BP_HDMI_FC_RDRB3_AUDIPACKETLINESPACING      (0)
+#define BM_HDMI_FC_RDRB3_AUDIPACKETLINESPACING      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB3_AUDIPACKETLINESPACING(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB3_AUDIPACKETLINESPACING)
@@ -10272,13 +10272,13 @@ typedef union
 #define BW_HDMI_FC_RDRB3_AUDIPACKETLINESPACING(v)   BF_CS1(HDMI_FC_RDRB3, AUDIPACKETLINESPACING, v)
 #endif
 
-/* --- Register HW_HDMI_FC_RDRB3, field AUDIPACKETSINFRAME (RW)
+/* --- Register HW_HDMI_FC_RDRB3, field AUDIPACKETSINFRAME[7:4] (RW)
  *
  * Audio packets per frame
  */
 
-#define BP_HDMI_FC_RDRB3_AUDIPACKETSINFRAME      4
-#define BM_HDMI_FC_RDRB3_AUDIPACKETSINFRAME      0x000000f0
+#define BP_HDMI_FC_RDRB3_AUDIPACKETSINFRAME      (4)
+#define BM_HDMI_FC_RDRB3_AUDIPACKETSINFRAME      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB3_AUDIPACKETSINFRAME(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_RDRB3_AUDIPACKETSINFRAME)
@@ -10327,13 +10327,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB4 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB4, field GCPFRAMEINTERPOLATION (RW)
+/* --- Register HW_HDMI_FC_RDRB4, field GCPFRAMEINTERPOLATION[3:0] (RW)
  *
  * GCP packets line spacing
  */
 
-#define BP_HDMI_FC_RDRB4_GCPFRAMEINTERPOLATION      0
-#define BM_HDMI_FC_RDRB4_GCPFRAMEINTERPOLATION      0x0000000f
+#define BP_HDMI_FC_RDRB4_GCPFRAMEINTERPOLATION      (0)
+#define BM_HDMI_FC_RDRB4_GCPFRAMEINTERPOLATION      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB4_GCPFRAMEINTERPOLATION(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB4_GCPFRAMEINTERPOLATION)
@@ -10382,13 +10382,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB5 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB5, field GCPPACKETLINESPACING (RW)
+/* --- Register HW_HDMI_FC_RDRB5, field GCPPACKETLINESPACING[3:0] (RW)
  *
  * GCP packets line spacing
  */
 
-#define BP_HDMI_FC_RDRB5_GCPPACKETLINESPACING      0
-#define BM_HDMI_FC_RDRB5_GCPPACKETLINESPACING      0x0000000f
+#define BP_HDMI_FC_RDRB5_GCPPACKETLINESPACING      (0)
+#define BM_HDMI_FC_RDRB5_GCPPACKETLINESPACING      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB5_GCPPACKETLINESPACING(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB5_GCPPACKETLINESPACING)
@@ -10400,13 +10400,13 @@ typedef union
 #define BW_HDMI_FC_RDRB5_GCPPACKETLINESPACING(v)   BF_CS1(HDMI_FC_RDRB5, GCPPACKETLINESPACING, v)
 #endif
 
-/* --- Register HW_HDMI_FC_RDRB5, field GCPPACKETSINFRAME (RW)
+/* --- Register HW_HDMI_FC_RDRB5, field GCPPACKETSINFRAME[7:4] (RW)
  *
  * GCP packets per frame
  */
 
-#define BP_HDMI_FC_RDRB5_GCPPACKETSINFRAME      4
-#define BM_HDMI_FC_RDRB5_GCPPACKETSINFRAME      0x000000f0
+#define BP_HDMI_FC_RDRB5_GCPPACKETSINFRAME      (4)
+#define BM_HDMI_FC_RDRB5_GCPPACKETSINFRAME      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB5_GCPPACKETSINFRAME(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_RDRB5_GCPPACKETSINFRAME)
@@ -10455,13 +10455,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB6 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB6, field AVIFRAMEINTERPOLATION (RW)
+/* --- Register HW_HDMI_FC_RDRB6, field AVIFRAMEINTERPOLATION[3:0] (RW)
  *
  * GCP packets line spacing
  */
 
-#define BP_HDMI_FC_RDRB6_AVIFRAMEINTERPOLATION      0
-#define BM_HDMI_FC_RDRB6_AVIFRAMEINTERPOLATION      0x0000000f
+#define BP_HDMI_FC_RDRB6_AVIFRAMEINTERPOLATION      (0)
+#define BM_HDMI_FC_RDRB6_AVIFRAMEINTERPOLATION      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB6_AVIFRAMEINTERPOLATION(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB6_AVIFRAMEINTERPOLATION)
@@ -10510,13 +10510,13 @@ typedef union
  * constants & macros for individual HDMI_FC_RDRB7 bitfields
  */
 
-/* --- Register HW_HDMI_FC_RDRB7, field AVIPACKETLINESPACING (RW)
+/* --- Register HW_HDMI_FC_RDRB7, field AVIPACKETLINESPACING[3:0] (RW)
  *
  * AVI packets line spacing
  */
 
-#define BP_HDMI_FC_RDRB7_AVIPACKETLINESPACING      0
-#define BM_HDMI_FC_RDRB7_AVIPACKETLINESPACING      0x0000000f
+#define BP_HDMI_FC_RDRB7_AVIPACKETLINESPACING      (0)
+#define BM_HDMI_FC_RDRB7_AVIPACKETLINESPACING      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB7_AVIPACKETLINESPACING(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_RDRB7_AVIPACKETLINESPACING)
@@ -10528,13 +10528,13 @@ typedef union
 #define BW_HDMI_FC_RDRB7_AVIPACKETLINESPACING(v)   BF_CS1(HDMI_FC_RDRB7, AVIPACKETLINESPACING, v)
 #endif
 
-/* --- Register HW_HDMI_FC_RDRB7, field AVIPACKETSINFRAME (RW)
+/* --- Register HW_HDMI_FC_RDRB7, field AVIPACKETSINFRAME[7:4] (RW)
  *
  * AVI packets per frame
  */
 
-#define BP_HDMI_FC_RDRB7_AVIPACKETSINFRAME      4
-#define BM_HDMI_FC_RDRB7_AVIPACKETSINFRAME      0x000000f0
+#define BP_HDMI_FC_RDRB7_AVIPACKETSINFRAME      (4)
+#define BM_HDMI_FC_RDRB7_AVIPACKETSINFRAME      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_RDRB7_AVIPACKETSINFRAME(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_RDRB7_AVIPACKETSINFRAME)
@@ -10584,54 +10584,54 @@ typedef union
  * constants & macros for individual HDMI_FC_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_STAT0, field NULL (RO)
+/* --- Register HW_HDMI_FC_STAT0, field NULL[0:0] (RO)
  *
  * Status bit Active after successful transmission of an Null packet.
  */
 
-#define BP_HDMI_FC_STAT0_NULL      0
-#define BM_HDMI_FC_STAT0_NULL      0x00000001
+#define BP_HDMI_FC_STAT0_NULL      (0)
+#define BM_HDMI_FC_STAT0_NULL      (0x00000001)
 
-/* --- Register HW_HDMI_FC_STAT0, field ACR (RO)
+/* --- Register HW_HDMI_FC_STAT0, field ACR[1:1] (RO)
  *
  * Status bit Active after successful transmission of an Audio Clock Regeneration (N/CTS
  * transmission) packet.
  */
 
-#define BP_HDMI_FC_STAT0_ACR      1
-#define BM_HDMI_FC_STAT0_ACR      0x00000002
+#define BP_HDMI_FC_STAT0_ACR      (1)
+#define BM_HDMI_FC_STAT0_ACR      (0x00000002)
 
-/* --- Register HW_HDMI_FC_STAT0, field AUDS (RO)
+/* --- Register HW_HDMI_FC_STAT0, field AUDS[2:2] (RO)
  *
  * Status bit Active after successful transmission of an Audio Sample packet.
  */
 
-#define BP_HDMI_FC_STAT0_AUDS      2
-#define BM_HDMI_FC_STAT0_AUDS      0x00000004
+#define BP_HDMI_FC_STAT0_AUDS      (2)
+#define BM_HDMI_FC_STAT0_AUDS      (0x00000004)
 
-/* --- Register HW_HDMI_FC_STAT0, field HBR (RO)
+/* --- Register HW_HDMI_FC_STAT0, field HBR[5:5] (RO)
  *
  * Status bit. Active after successful transmission of an Audio HBR packet
  */
 
-#define BP_HDMI_FC_STAT0_HBR      5
-#define BM_HDMI_FC_STAT0_HBR      0x00000020
+#define BP_HDMI_FC_STAT0_HBR      (5)
+#define BM_HDMI_FC_STAT0_HBR      (0x00000020)
 
-/* --- Register HW_HDMI_FC_STAT0, field ACP (RO)
+/* --- Register HW_HDMI_FC_STAT0, field ACP[6:6] (RO)
  *
  * Status bit. Active after successful transmission of an Audio Content Protection Packet.
  */
 
-#define BP_HDMI_FC_STAT0_ACP      6
-#define BM_HDMI_FC_STAT0_ACP      0x00000040
+#define BP_HDMI_FC_STAT0_ACP      (6)
+#define BM_HDMI_FC_STAT0_ACP      (0x00000040)
 
-/* --- Register HW_HDMI_FC_STAT0, field AUDI (RO)
+/* --- Register HW_HDMI_FC_STAT0, field AUDI[7:7] (RO)
  *
  * Status bit Active after successful transmission of an Audio InfoFrame packet.
  */
 
-#define BP_HDMI_FC_STAT0_AUDI      7
-#define BM_HDMI_FC_STAT0_AUDI      0x00000080
+#define BP_HDMI_FC_STAT0_AUDI      (7)
+#define BM_HDMI_FC_STAT0_AUDI      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10678,13 +10678,13 @@ typedef union
  * constants & macros for individual HDMI_FC_INT0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INT0, field NULL (RW)
+/* --- Register HW_HDMI_FC_INT0, field NULL[0:0] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Null packet interrupt.
  */
 
-#define BP_HDMI_FC_INT0_NULL      0
-#define BM_HDMI_FC_INT0_NULL      0x00000001
+#define BP_HDMI_FC_INT0_NULL      (0)
+#define BM_HDMI_FC_INT0_NULL      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT0_NULL(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INT0_NULL)
@@ -10696,14 +10696,14 @@ typedef union
 #define BW_HDMI_FC_INT0_NULL(v)   BF_CS1(HDMI_FC_INT0, NULL, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT0, field ACR (RW)
+/* --- Register HW_HDMI_FC_INT0, field ACR[1:1] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Audio Clock Regeneration
  * (N/CTS transmission) packet interrupt.
  */
 
-#define BP_HDMI_FC_INT0_ACR      1
-#define BM_HDMI_FC_INT0_ACR      0x00000002
+#define BP_HDMI_FC_INT0_ACR      (1)
+#define BM_HDMI_FC_INT0_ACR      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT0_ACR(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_INT0_ACR)
@@ -10715,14 +10715,14 @@ typedef union
 #define BW_HDMI_FC_INT0_ACR(v)   BF_CS1(HDMI_FC_INT0, ACR, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT0, field AUDS (RW)
+/* --- Register HW_HDMI_FC_INT0, field AUDS[2:2] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Audio Sample packet
  * interrupt.
  */
 
-#define BP_HDMI_FC_INT0_AUDS      2
-#define BM_HDMI_FC_INT0_AUDS      0x00000004
+#define BP_HDMI_FC_INT0_AUDS      (2)
+#define BM_HDMI_FC_INT0_AUDS      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT0_AUDS(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_INT0_AUDS)
@@ -10734,13 +10734,13 @@ typedef union
 #define BW_HDMI_FC_INT0_AUDS(v)   BF_CS1(HDMI_FC_INT0, AUDS, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT0, field HBR (RW)
+/* --- Register HW_HDMI_FC_INT0, field HBR[5:5] (RW)
  *
  * Interrupt indication bit Active after successful transmission of a Audio HBR packet interrupt.
  */
 
-#define BP_HDMI_FC_INT0_HBR      5
-#define BM_HDMI_FC_INT0_HBR      0x00000020
+#define BP_HDMI_FC_INT0_HBR      (5)
+#define BM_HDMI_FC_INT0_HBR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT0_HBR(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_INT0_HBR)
@@ -10752,14 +10752,14 @@ typedef union
 #define BW_HDMI_FC_INT0_HBR(v)   BF_CS1(HDMI_FC_INT0, HBR, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT0, field ACP (RW)
+/* --- Register HW_HDMI_FC_INT0, field ACP[6:6] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Audio Content Protection
  * packet interrupt.
  */
 
-#define BP_HDMI_FC_INT0_ACP      6
-#define BM_HDMI_FC_INT0_ACP      0x00000040
+#define BP_HDMI_FC_INT0_ACP      (6)
+#define BM_HDMI_FC_INT0_ACP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT0_ACP(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_INT0_ACP)
@@ -10771,14 +10771,14 @@ typedef union
 #define BW_HDMI_FC_INT0_ACP(v)   BF_CS1(HDMI_FC_INT0, ACP, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT0, field AUDI (RW)
+/* --- Register HW_HDMI_FC_INT0, field AUDI[7:7] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Audio InfoFrame packet
  * interrupt.
  */
 
-#define BP_HDMI_FC_INT0_AUDI      7
-#define BM_HDMI_FC_INT0_AUDI      0x00000080
+#define BP_HDMI_FC_INT0_AUDI      (7)
+#define BM_HDMI_FC_INT0_AUDI      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT0_AUDI(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_INT0_AUDI)
@@ -10831,13 +10831,13 @@ typedef union
  * constants & macros for individual HDMI_FC_MASK0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_MASK0, field NULL (RW)
+/* --- Register HW_HDMI_FC_MASK0, field NULL[0:0] (RW)
  *
  * Mask bit for FC_INT0.NULL interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK0_NULL      0
-#define BM_HDMI_FC_MASK0_NULL      0x00000001
+#define BP_HDMI_FC_MASK0_NULL      (0)
+#define BM_HDMI_FC_MASK0_NULL      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK0_NULL(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_MASK0_NULL)
@@ -10849,13 +10849,13 @@ typedef union
 #define BW_HDMI_FC_MASK0_NULL(v)   BF_CS1(HDMI_FC_MASK0, NULL, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK0, field ACR (RW)
+/* --- Register HW_HDMI_FC_MASK0, field ACR[1:1] (RW)
  *
  * Mask bit for FC_INT0.ACR interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK0_ACR      1
-#define BM_HDMI_FC_MASK0_ACR      0x00000002
+#define BP_HDMI_FC_MASK0_ACR      (1)
+#define BM_HDMI_FC_MASK0_ACR      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK0_ACR(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_MASK0_ACR)
@@ -10867,13 +10867,13 @@ typedef union
 #define BW_HDMI_FC_MASK0_ACR(v)   BF_CS1(HDMI_FC_MASK0, ACR, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK0, field AUDS (RW)
+/* --- Register HW_HDMI_FC_MASK0, field AUDS[2:2] (RW)
  *
  * Mask bit for FC_INT0.AUDS interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK0_AUDS      2
-#define BM_HDMI_FC_MASK0_AUDS      0x00000004
+#define BP_HDMI_FC_MASK0_AUDS      (2)
+#define BM_HDMI_FC_MASK0_AUDS      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK0_AUDS(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_MASK0_AUDS)
@@ -10885,13 +10885,13 @@ typedef union
 #define BW_HDMI_FC_MASK0_AUDS(v)   BF_CS1(HDMI_FC_MASK0, AUDS, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK0, field HBR (RW)
+/* --- Register HW_HDMI_FC_MASK0, field HBR[5:5] (RW)
  *
  * Mask bit for FC_INT0.HBR interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK0_HBR      5
-#define BM_HDMI_FC_MASK0_HBR      0x00000020
+#define BP_HDMI_FC_MASK0_HBR      (5)
+#define BM_HDMI_FC_MASK0_HBR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK0_HBR(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_MASK0_HBR)
@@ -10903,13 +10903,13 @@ typedef union
 #define BW_HDMI_FC_MASK0_HBR(v)   BF_CS1(HDMI_FC_MASK0, HBR, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK0, field ACP (RW)
+/* --- Register HW_HDMI_FC_MASK0, field ACP[6:6] (RW)
  *
  * Mask bit for FC_INT0.ACP interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK0_ACP      6
-#define BM_HDMI_FC_MASK0_ACP      0x00000040
+#define BP_HDMI_FC_MASK0_ACP      (6)
+#define BM_HDMI_FC_MASK0_ACP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK0_ACP(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_MASK0_ACP)
@@ -10921,13 +10921,13 @@ typedef union
 #define BW_HDMI_FC_MASK0_ACP(v)   BF_CS1(HDMI_FC_MASK0, ACP, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK0, field AUDI (RW)
+/* --- Register HW_HDMI_FC_MASK0, field AUDI[7:7] (RW)
  *
  * Mask bit for FC_INT0.AUDI interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK0_AUDI      7
-#define BM_HDMI_FC_MASK0_AUDI      0x00000080
+#define BP_HDMI_FC_MASK0_AUDI      (7)
+#define BM_HDMI_FC_MASK0_AUDI      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK0_AUDI(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_MASK0_AUDI)
@@ -10980,13 +10980,13 @@ typedef union
  * constants & macros for individual HDMI_FC_POL0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_POL0, field NULL (RW)
+/* --- Register HW_HDMI_FC_POL0, field NULL[0:0] (RW)
  *
  * Polarity bit for FC_INT0.NULL interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_POL0_NULL      0
-#define BM_HDMI_FC_POL0_NULL      0x00000001
+#define BP_HDMI_FC_POL0_NULL      (0)
+#define BM_HDMI_FC_POL0_NULL      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL0_NULL(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_POL0_NULL)
@@ -10998,13 +10998,13 @@ typedef union
 #define BW_HDMI_FC_POL0_NULL(v)   BF_CS1(HDMI_FC_POL0, NULL, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL0, field ACR (RW)
+/* --- Register HW_HDMI_FC_POL0, field ACR[1:1] (RW)
  *
  * Polarity bit for FC_INT0.ACR interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_POL0_ACR      1
-#define BM_HDMI_FC_POL0_ACR      0x00000002
+#define BP_HDMI_FC_POL0_ACR      (1)
+#define BM_HDMI_FC_POL0_ACR      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL0_ACR(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_POL0_ACR)
@@ -11016,13 +11016,13 @@ typedef union
 #define BW_HDMI_FC_POL0_ACR(v)   BF_CS1(HDMI_FC_POL0, ACR, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL0, field AUDS (RW)
+/* --- Register HW_HDMI_FC_POL0, field AUDS[2:2] (RW)
  *
  * Polarity bit for FC_INT0.AUDS interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_POL0_AUDS      2
-#define BM_HDMI_FC_POL0_AUDS      0x00000004
+#define BP_HDMI_FC_POL0_AUDS      (2)
+#define BM_HDMI_FC_POL0_AUDS      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL0_AUDS(v)   ((((reg32_t) v) << 2) & BM_HDMI_FC_POL0_AUDS)
@@ -11034,13 +11034,13 @@ typedef union
 #define BW_HDMI_FC_POL0_AUDS(v)   BF_CS1(HDMI_FC_POL0, AUDS, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL0, field HBR (RW)
+/* --- Register HW_HDMI_FC_POL0, field HBR[5:5] (RW)
  *
  * Polarity bit for FC_INT0.HBR interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_POL0_HBR      5
-#define BM_HDMI_FC_POL0_HBR      0x00000020
+#define BP_HDMI_FC_POL0_HBR      (5)
+#define BM_HDMI_FC_POL0_HBR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL0_HBR(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_POL0_HBR)
@@ -11052,13 +11052,13 @@ typedef union
 #define BW_HDMI_FC_POL0_HBR(v)   BF_CS1(HDMI_FC_POL0, HBR, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL0, field ACP (RW)
+/* --- Register HW_HDMI_FC_POL0, field ACP[6:6] (RW)
  *
  * Polarity bit for FC_INT0.ACP interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_POL0_ACP      6
-#define BM_HDMI_FC_POL0_ACP      0x00000040
+#define BP_HDMI_FC_POL0_ACP      (6)
+#define BM_HDMI_FC_POL0_ACP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL0_ACP(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_POL0_ACP)
@@ -11070,13 +11070,13 @@ typedef union
 #define BW_HDMI_FC_POL0_ACP(v)   BF_CS1(HDMI_FC_POL0, ACP, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL0, field AUDI (RW)
+/* --- Register HW_HDMI_FC_POL0, field AUDI[7:7] (RW)
  *
  * Polarity bit for FC_INT0.AUDI interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_POL0_AUDI      7
-#define BM_HDMI_FC_POL0_AUDI      0x00000080
+#define BP_HDMI_FC_POL0_AUDI      (7)
+#define BM_HDMI_FC_POL0_AUDI      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL0_AUDI(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_POL0_AUDI)
@@ -11130,13 +11130,13 @@ typedef union
  * constants & macros for individual HDMI_FC_STAT1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_STAT1, field GCP (RW)
+/* --- Register HW_HDMI_FC_STAT1, field GCP[0:0] (RW)
  *
  * Status bit Active after successful transmission of an General Content Packet.
  */
 
-#define BP_HDMI_FC_STAT1_GCP      0
-#define BM_HDMI_FC_STAT1_GCP      0x00000001
+#define BP_HDMI_FC_STAT1_GCP      (0)
+#define BM_HDMI_FC_STAT1_GCP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT1_GCP(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_STAT1_GCP)
@@ -11148,13 +11148,13 @@ typedef union
 #define BW_HDMI_FC_STAT1_GCP(v)   BF_CS1(HDMI_FC_STAT1, GCP, v)
 #endif
 
-/* --- Register HW_HDMI_FC_STAT1, field AVI (RW)
+/* --- Register HW_HDMI_FC_STAT1, field AVI[1:1] (RW)
  *
  * Status bit Active after successful transmission of an AVI infoFrame packet.
  */
 
-#define BP_HDMI_FC_STAT1_AVI      1
-#define BM_HDMI_FC_STAT1_AVI      0x00000002
+#define BP_HDMI_FC_STAT1_AVI      (1)
+#define BM_HDMI_FC_STAT1_AVI      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT1_AVI(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_STAT1_AVI)
@@ -11166,13 +11166,13 @@ typedef union
 #define BW_HDMI_FC_STAT1_AVI(v)   BF_CS1(HDMI_FC_STAT1, AVI, v)
 #endif
 
-/* --- Register HW_HDMI_FC_STAT1, field SPD (RW)
+/* --- Register HW_HDMI_FC_STAT1, field SPD[3:3] (RW)
  *
  * Active after successful transmission of an Source Product Descriptor infoFrame packet.
  */
 
-#define BP_HDMI_FC_STAT1_SPD      3
-#define BM_HDMI_FC_STAT1_SPD      0x00000008
+#define BP_HDMI_FC_STAT1_SPD      (3)
+#define BM_HDMI_FC_STAT1_SPD      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT1_SPD(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_STAT1_SPD)
@@ -11184,13 +11184,13 @@ typedef union
 #define BW_HDMI_FC_STAT1_SPD(v)   BF_CS1(HDMI_FC_STAT1, SPD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_STAT1, field VSD (RW)
+/* --- Register HW_HDMI_FC_STAT1, field VSD[4:4] (RW)
  *
  * Active after successful transmission of an Vendor Specific Data infoFrame packet.
  */
 
-#define BP_HDMI_FC_STAT1_VSD      4
-#define BM_HDMI_FC_STAT1_VSD      0x00000010
+#define BP_HDMI_FC_STAT1_VSD      (4)
+#define BM_HDMI_FC_STAT1_VSD      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT1_VSD(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_STAT1_VSD)
@@ -11202,13 +11202,13 @@ typedef union
 #define BW_HDMI_FC_STAT1_VSD(v)   BF_CS1(HDMI_FC_STAT1, VSD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_STAT1, field ISCR2 (RW)
+/* --- Register HW_HDMI_FC_STAT1, field ISCR2[5:5] (RW)
  *
  * Active after successful transmission of an International Standard Recording Code 2 packet.
  */
 
-#define BP_HDMI_FC_STAT1_ISCR2      5
-#define BM_HDMI_FC_STAT1_ISCR2      0x00000020
+#define BP_HDMI_FC_STAT1_ISCR2      (5)
+#define BM_HDMI_FC_STAT1_ISCR2      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT1_ISCR2(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_STAT1_ISCR2)
@@ -11220,14 +11220,14 @@ typedef union
 #define BW_HDMI_FC_STAT1_ISCR2(v)   BF_CS1(HDMI_FC_STAT1, ISCR2, v)
 #endif
 
-/* --- Register HW_HDMI_FC_STAT1, field ISCR1 (RW)
+/* --- Register HW_HDMI_FC_STAT1, field ISCR1[6:6] (RW)
  *
  * Status bit Active after successful transmission of an International Standard Recording Code 1
  * packet.
  */
 
-#define BP_HDMI_FC_STAT1_ISCR1      6
-#define BM_HDMI_FC_STAT1_ISCR1      0x00000040
+#define BP_HDMI_FC_STAT1_ISCR1      (6)
+#define BM_HDMI_FC_STAT1_ISCR1      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT1_ISCR1(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_STAT1_ISCR1)
@@ -11239,13 +11239,13 @@ typedef union
 #define BW_HDMI_FC_STAT1_ISCR1(v)   BF_CS1(HDMI_FC_STAT1, ISCR1, v)
 #endif
 
-/* --- Register HW_HDMI_FC_STAT1, field GMD (RW)
+/* --- Register HW_HDMI_FC_STAT1, field GMD[7:7] (RW)
  *
  * Status bit Active after successful transmission of an Gamut metadata packet.
  */
 
-#define BP_HDMI_FC_STAT1_GMD      7
-#define BM_HDMI_FC_STAT1_GMD      0x00000080
+#define BP_HDMI_FC_STAT1_GMD      (7)
+#define BM_HDMI_FC_STAT1_GMD      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT1_GMD(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_STAT1_GMD)
@@ -11303,14 +11303,14 @@ typedef union
  * constants & macros for individual HDMI_FC_INT1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INT1, field GCP (RW)
+/* --- Register HW_HDMI_FC_INT1, field GCP[0:0] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an General Content Packet
  * interrupt.
  */
 
-#define BP_HDMI_FC_INT1_GCP      0
-#define BM_HDMI_FC_INT1_GCP      0x00000001
+#define BP_HDMI_FC_INT1_GCP      (0)
+#define BM_HDMI_FC_INT1_GCP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT1_GCP(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INT1_GCP)
@@ -11322,14 +11322,14 @@ typedef union
 #define BW_HDMI_FC_INT1_GCP(v)   BF_CS1(HDMI_FC_INT1, GCP, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT1, field AVI (RW)
+/* --- Register HW_HDMI_FC_INT1, field AVI[1:1] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an AVI infoFrame packet
  * interrupt.
  */
 
-#define BP_HDMI_FC_INT1_AVI      1
-#define BM_HDMI_FC_INT1_AVI      0x00000002
+#define BP_HDMI_FC_INT1_AVI      (1)
+#define BM_HDMI_FC_INT1_AVI      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT1_AVI(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_INT1_AVI)
@@ -11341,14 +11341,14 @@ typedef union
 #define BW_HDMI_FC_INT1_AVI(v)   BF_CS1(HDMI_FC_INT1, AVI, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT1, field SPD (RW)
+/* --- Register HW_HDMI_FC_INT1, field SPD[3:3] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Source Product Descriptor
  * infoFrame packet interrupt.
  */
 
-#define BP_HDMI_FC_INT1_SPD      3
-#define BM_HDMI_FC_INT1_SPD      0x00000008
+#define BP_HDMI_FC_INT1_SPD      (3)
+#define BM_HDMI_FC_INT1_SPD      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT1_SPD(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_INT1_SPD)
@@ -11360,14 +11360,14 @@ typedef union
 #define BW_HDMI_FC_INT1_SPD(v)   BF_CS1(HDMI_FC_INT1, SPD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT1, field VSD (RW)
+/* --- Register HW_HDMI_FC_INT1, field VSD[4:4] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Vendor Specific Data
  * infoFrame packet interrupt.
  */
 
-#define BP_HDMI_FC_INT1_VSD      4
-#define BM_HDMI_FC_INT1_VSD      0x00000010
+#define BP_HDMI_FC_INT1_VSD      (4)
+#define BM_HDMI_FC_INT1_VSD      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT1_VSD(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_INT1_VSD)
@@ -11379,14 +11379,14 @@ typedef union
 #define BW_HDMI_FC_INT1_VSD(v)   BF_CS1(HDMI_FC_INT1, VSD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT1, field ISCR2 (RW)
+/* --- Register HW_HDMI_FC_INT1, field ISCR2[5:5] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an International Standard
  * Recording Code 2 packet interrupt.
  */
 
-#define BP_HDMI_FC_INT1_ISCR2      5
-#define BM_HDMI_FC_INT1_ISCR2      0x00000020
+#define BP_HDMI_FC_INT1_ISCR2      (5)
+#define BM_HDMI_FC_INT1_ISCR2      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT1_ISCR2(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_INT1_ISCR2)
@@ -11398,14 +11398,14 @@ typedef union
 #define BW_HDMI_FC_INT1_ISCR2(v)   BF_CS1(HDMI_FC_INT1, ISCR2, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT1, field ISCR1 (RW)
+/* --- Register HW_HDMI_FC_INT1, field ISCR1[6:6] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an International Standard
  * Recording Code 1 packet interrupt.
  */
 
-#define BP_HDMI_FC_INT1_ISCR1      6
-#define BM_HDMI_FC_INT1_ISCR1      0x00000040
+#define BP_HDMI_FC_INT1_ISCR1      (6)
+#define BM_HDMI_FC_INT1_ISCR1      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT1_ISCR1(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_INT1_ISCR1)
@@ -11417,14 +11417,14 @@ typedef union
 #define BW_HDMI_FC_INT1_ISCR1(v)   BF_CS1(HDMI_FC_INT1, ISCR1, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT1, field GMD (RW)
+/* --- Register HW_HDMI_FC_INT1, field GMD[7:7] (RW)
  *
  * Interrupt indication bit Active after successful transmission of an Gamut metadata packet
  * interrupt.
  */
 
-#define BP_HDMI_FC_INT1_GMD      7
-#define BM_HDMI_FC_INT1_GMD      0x00000080
+#define BP_HDMI_FC_INT1_GMD      (7)
+#define BM_HDMI_FC_INT1_GMD      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT1_GMD(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_INT1_GMD)
@@ -11478,13 +11478,13 @@ typedef union
  * constants & macros for individual HDMI_FC_MASK1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_MASK1, field GCP (RW)
+/* --- Register HW_HDMI_FC_MASK1, field GCP[0:0] (RW)
  *
  * Mask bit for FC_INT1.GCP interrupt bit
  */
 
-#define BP_HDMI_FC_MASK1_GCP      0
-#define BM_HDMI_FC_MASK1_GCP      0x00000001
+#define BP_HDMI_FC_MASK1_GCP      (0)
+#define BM_HDMI_FC_MASK1_GCP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK1_GCP(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_MASK1_GCP)
@@ -11496,13 +11496,13 @@ typedef union
 #define BW_HDMI_FC_MASK1_GCP(v)   BF_CS1(HDMI_FC_MASK1, GCP, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK1, field AVI (RW)
+/* --- Register HW_HDMI_FC_MASK1, field AVI[1:1] (RW)
  *
  * Mask bit for FC_INT1.AVI interrupt bit
  */
 
-#define BP_HDMI_FC_MASK1_AVI      1
-#define BM_HDMI_FC_MASK1_AVI      0x00000002
+#define BP_HDMI_FC_MASK1_AVI      (1)
+#define BM_HDMI_FC_MASK1_AVI      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK1_AVI(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_MASK1_AVI)
@@ -11514,13 +11514,13 @@ typedef union
 #define BW_HDMI_FC_MASK1_AVI(v)   BF_CS1(HDMI_FC_MASK1, AVI, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK1, field SPD (RW)
+/* --- Register HW_HDMI_FC_MASK1, field SPD[3:3] (RW)
  *
  * Mask bit for FC_INT1.SPD interrupt bit
  */
 
-#define BP_HDMI_FC_MASK1_SPD      3
-#define BM_HDMI_FC_MASK1_SPD      0x00000008
+#define BP_HDMI_FC_MASK1_SPD      (3)
+#define BM_HDMI_FC_MASK1_SPD      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK1_SPD(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_MASK1_SPD)
@@ -11532,13 +11532,13 @@ typedef union
 #define BW_HDMI_FC_MASK1_SPD(v)   BF_CS1(HDMI_FC_MASK1, SPD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK1, field VSD (RW)
+/* --- Register HW_HDMI_FC_MASK1, field VSD[4:4] (RW)
  *
  * Mask bit for FC_INT1.VSD interrupt bit
  */
 
-#define BP_HDMI_FC_MASK1_VSD      4
-#define BM_HDMI_FC_MASK1_VSD      0x00000010
+#define BP_HDMI_FC_MASK1_VSD      (4)
+#define BM_HDMI_FC_MASK1_VSD      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK1_VSD(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_MASK1_VSD)
@@ -11550,13 +11550,13 @@ typedef union
 #define BW_HDMI_FC_MASK1_VSD(v)   BF_CS1(HDMI_FC_MASK1, VSD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK1, field ISCR2 (RW)
+/* --- Register HW_HDMI_FC_MASK1, field ISCR2[5:5] (RW)
  *
  * Mask bit for FC_INT1.ISRC2 interrupt bit
  */
 
-#define BP_HDMI_FC_MASK1_ISCR2      5
-#define BM_HDMI_FC_MASK1_ISCR2      0x00000020
+#define BP_HDMI_FC_MASK1_ISCR2      (5)
+#define BM_HDMI_FC_MASK1_ISCR2      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK1_ISCR2(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_MASK1_ISCR2)
@@ -11568,13 +11568,13 @@ typedef union
 #define BW_HDMI_FC_MASK1_ISCR2(v)   BF_CS1(HDMI_FC_MASK1, ISCR2, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK1, field ISCR1 (RW)
+/* --- Register HW_HDMI_FC_MASK1, field ISCR1[6:6] (RW)
  *
  * Mask bit for FC_INT1.ISRC1 interrupt bit
  */
 
-#define BP_HDMI_FC_MASK1_ISCR1      6
-#define BM_HDMI_FC_MASK1_ISCR1      0x00000040
+#define BP_HDMI_FC_MASK1_ISCR1      (6)
+#define BM_HDMI_FC_MASK1_ISCR1      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK1_ISCR1(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_MASK1_ISCR1)
@@ -11586,13 +11586,13 @@ typedef union
 #define BW_HDMI_FC_MASK1_ISCR1(v)   BF_CS1(HDMI_FC_MASK1, ISCR1, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK1, field GMD (RW)
+/* --- Register HW_HDMI_FC_MASK1, field GMD[7:7] (RW)
  *
  * Mask bit for FC_INT1.GMD interrupt bit
  */
 
-#define BP_HDMI_FC_MASK1_GMD      7
-#define BM_HDMI_FC_MASK1_GMD      0x00000080
+#define BP_HDMI_FC_MASK1_GMD      (7)
+#define BM_HDMI_FC_MASK1_GMD      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK1_GMD(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_MASK1_GMD)
@@ -11646,13 +11646,13 @@ typedef union
  * constants & macros for individual HDMI_FC_POL1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_POL1, field GCP (RW)
+/* --- Register HW_HDMI_FC_POL1, field GCP[0:0] (RW)
  *
  * Polarity bit for FC_INT1.GCP interrupt bit
  */
 
-#define BP_HDMI_FC_POL1_GCP      0
-#define BM_HDMI_FC_POL1_GCP      0x00000001
+#define BP_HDMI_FC_POL1_GCP      (0)
+#define BM_HDMI_FC_POL1_GCP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL1_GCP(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_POL1_GCP)
@@ -11664,13 +11664,13 @@ typedef union
 #define BW_HDMI_FC_POL1_GCP(v)   BF_CS1(HDMI_FC_POL1, GCP, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL1, field AVI (RW)
+/* --- Register HW_HDMI_FC_POL1, field AVI[1:1] (RW)
  *
  * Polarity bit for FC_INT1.AVI interrupt bit
  */
 
-#define BP_HDMI_FC_POL1_AVI      1
-#define BM_HDMI_FC_POL1_AVI      0x00000002
+#define BP_HDMI_FC_POL1_AVI      (1)
+#define BM_HDMI_FC_POL1_AVI      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL1_AVI(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_POL1_AVI)
@@ -11682,13 +11682,13 @@ typedef union
 #define BW_HDMI_FC_POL1_AVI(v)   BF_CS1(HDMI_FC_POL1, AVI, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL1, field SPD (RW)
+/* --- Register HW_HDMI_FC_POL1, field SPD[3:3] (RW)
  *
  * Polarity bit for FC_INT1.SPD interrupt bit
  */
 
-#define BP_HDMI_FC_POL1_SPD      3
-#define BM_HDMI_FC_POL1_SPD      0x00000008
+#define BP_HDMI_FC_POL1_SPD      (3)
+#define BM_HDMI_FC_POL1_SPD      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL1_SPD(v)   ((((reg32_t) v) << 3) & BM_HDMI_FC_POL1_SPD)
@@ -11700,13 +11700,13 @@ typedef union
 #define BW_HDMI_FC_POL1_SPD(v)   BF_CS1(HDMI_FC_POL1, SPD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL1, field VSD (RW)
+/* --- Register HW_HDMI_FC_POL1, field VSD[4:4] (RW)
  *
  * Polarity bit for FC_INT1.VSD interrupt bit
  */
 
-#define BP_HDMI_FC_POL1_VSD      4
-#define BM_HDMI_FC_POL1_VSD      0x00000010
+#define BP_HDMI_FC_POL1_VSD      (4)
+#define BM_HDMI_FC_POL1_VSD      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL1_VSD(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_POL1_VSD)
@@ -11718,13 +11718,13 @@ typedef union
 #define BW_HDMI_FC_POL1_VSD(v)   BF_CS1(HDMI_FC_POL1, VSD, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL1, field ISCR2 (RW)
+/* --- Register HW_HDMI_FC_POL1, field ISCR2[5:5] (RW)
  *
  * Polarity bit for FC_INT1.ISRC2 interrupt bit
  */
 
-#define BP_HDMI_FC_POL1_ISCR2      5
-#define BM_HDMI_FC_POL1_ISCR2      0x00000020
+#define BP_HDMI_FC_POL1_ISCR2      (5)
+#define BM_HDMI_FC_POL1_ISCR2      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL1_ISCR2(v)   ((((reg32_t) v) << 5) & BM_HDMI_FC_POL1_ISCR2)
@@ -11736,13 +11736,13 @@ typedef union
 #define BW_HDMI_FC_POL1_ISCR2(v)   BF_CS1(HDMI_FC_POL1, ISCR2, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL1, field ISCR1 (RW)
+/* --- Register HW_HDMI_FC_POL1, field ISCR1[6:6] (RW)
  *
  * Polarity bit for FC_INT1.ISRC1 interrupt bit
  */
 
-#define BP_HDMI_FC_POL1_ISCR1      6
-#define BM_HDMI_FC_POL1_ISCR1      0x00000040
+#define BP_HDMI_FC_POL1_ISCR1      (6)
+#define BM_HDMI_FC_POL1_ISCR1      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL1_ISCR1(v)   ((((reg32_t) v) << 6) & BM_HDMI_FC_POL1_ISCR1)
@@ -11754,13 +11754,13 @@ typedef union
 #define BW_HDMI_FC_POL1_ISCR1(v)   BF_CS1(HDMI_FC_POL1, ISCR1, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL1, field GMD (RW)
+/* --- Register HW_HDMI_FC_POL1, field GMD[7:7] (RW)
  *
  * Polarity bit for FC_INT1.GMD interrupt bit
  */
 
-#define BP_HDMI_FC_POL1_GMD      7
-#define BM_HDMI_FC_POL1_GMD      0x00000080
+#define BP_HDMI_FC_POL1_GMD      (7)
+#define BM_HDMI_FC_POL1_GMD      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL1_GMD(v)   ((((reg32_t) v) << 7) & BM_HDMI_FC_POL1_GMD)
@@ -11809,13 +11809,13 @@ typedef union
  * constants & macros for individual HDMI_FC_STAT2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_STAT2, field HIGHPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_STAT2, field HIGHPRIORITY_OVERFLOW[0:0] (RW)
  *
  * Status bit Frame Composer high priority packet queue descriptor overflow indication.
  */
 
-#define BP_HDMI_FC_STAT2_HIGHPRIORITY_OVERFLOW      0
-#define BM_HDMI_FC_STAT2_HIGHPRIORITY_OVERFLOW      0x00000001
+#define BP_HDMI_FC_STAT2_HIGHPRIORITY_OVERFLOW      (0)
+#define BM_HDMI_FC_STAT2_HIGHPRIORITY_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT2_HIGHPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_STAT2_HIGHPRIORITY_OVERFLOW)
@@ -11827,13 +11827,13 @@ typedef union
 #define BW_HDMI_FC_STAT2_HIGHPRIORITY_OVERFLOW(v)   BF_CS1(HDMI_FC_STAT2, HIGHPRIORITY_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_FC_STAT2, field LOWPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_STAT2, field LOWPRIORITY_OVERFLOW[1:1] (RW)
  *
  * Status bit Frame Composer low priority packet queue descriptor overflow indication.
  */
 
-#define BP_HDMI_FC_STAT2_LOWPRIORITY_OVERFLOW      1
-#define BM_HDMI_FC_STAT2_LOWPRIORITY_OVERFLOW      0x00000002
+#define BP_HDMI_FC_STAT2_LOWPRIORITY_OVERFLOW      (1)
+#define BM_HDMI_FC_STAT2_LOWPRIORITY_OVERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_STAT2_LOWPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_STAT2_LOWPRIORITY_OVERFLOW)
@@ -11886,14 +11886,14 @@ typedef union
  * constants & macros for individual HDMI_FC_INT2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_INT2, field HIGHPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_INT2, field HIGHPRIORITY_OVERFLOW[0:0] (RW)
  *
  * Interrupt indication bit Frame Composer high priority packet queue descriptor overflow indication
  * interrupt.
  */
 
-#define BP_HDMI_FC_INT2_HIGHPRIORITY_OVERFLOW      0
-#define BM_HDMI_FC_INT2_HIGHPRIORITY_OVERFLOW      0x00000001
+#define BP_HDMI_FC_INT2_HIGHPRIORITY_OVERFLOW      (0)
+#define BM_HDMI_FC_INT2_HIGHPRIORITY_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT2_HIGHPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_INT2_HIGHPRIORITY_OVERFLOW)
@@ -11905,14 +11905,14 @@ typedef union
 #define BW_HDMI_FC_INT2_HIGHPRIORITY_OVERFLOW(v)   BF_CS1(HDMI_FC_INT2, HIGHPRIORITY_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_FC_INT2, field LOWPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_INT2, field LOWPRIORITY_OVERFLOW[1:1] (RW)
  *
  * Interrupt indication bit Frame Composer low priority packet queue descriptor overflow indication
  * interrupt.
  */
 
-#define BP_HDMI_FC_INT2_LOWPRIORITY_OVERFLOW      1
-#define BM_HDMI_FC_INT2_LOWPRIORITY_OVERFLOW      0x00000002
+#define BP_HDMI_FC_INT2_LOWPRIORITY_OVERFLOW      (1)
+#define BM_HDMI_FC_INT2_LOWPRIORITY_OVERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_INT2_LOWPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_INT2_LOWPRIORITY_OVERFLOW)
@@ -11961,13 +11961,13 @@ typedef union
  * constants & macros for individual HDMI_FC_MASK2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_MASK2, field HIGHPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_MASK2, field HIGHPRIORITY_OVERFLOW[0:0] (RW)
  *
  * Mask bit for FC_INT1.HighPriority_overflow interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK2_HIGHPRIORITY_OVERFLOW      0
-#define BM_HDMI_FC_MASK2_HIGHPRIORITY_OVERFLOW      0x00000001
+#define BP_HDMI_FC_MASK2_HIGHPRIORITY_OVERFLOW      (0)
+#define BM_HDMI_FC_MASK2_HIGHPRIORITY_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK2_HIGHPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_MASK2_HIGHPRIORITY_OVERFLOW)
@@ -11979,13 +11979,13 @@ typedef union
 #define BW_HDMI_FC_MASK2_HIGHPRIORITY_OVERFLOW(v)   BF_CS1(HDMI_FC_MASK2, HIGHPRIORITY_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_FC_MASK2, field LOWPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_MASK2, field LOWPRIORITY_OVERFLOW[1:1] (RW)
  *
  * Mask bit for FC_INT1.LowPriority_overflow interrupt bit Value after Reset: 0b
  */
 
-#define BP_HDMI_FC_MASK2_LOWPRIORITY_OVERFLOW      1
-#define BM_HDMI_FC_MASK2_LOWPRIORITY_OVERFLOW      0x00000002
+#define BP_HDMI_FC_MASK2_LOWPRIORITY_OVERFLOW      (1)
+#define BM_HDMI_FC_MASK2_LOWPRIORITY_OVERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_MASK2_LOWPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_MASK2_LOWPRIORITY_OVERFLOW)
@@ -12034,13 +12034,13 @@ typedef union
  * constants & macros for individual HDMI_FC_POL2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_POL2, field HIGHPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_POL2, field HIGHPRIORITY_OVERFLOW[0:0] (RW)
  *
  * Polarity bit for FC_INT1.HighPriority_overflow interrupt bit Value after Reset: 1b
  */
 
-#define BP_HDMI_FC_POL2_HIGHPRIORITY_OVERFLOW      0
-#define BM_HDMI_FC_POL2_HIGHPRIORITY_OVERFLOW      0x00000001
+#define BP_HDMI_FC_POL2_HIGHPRIORITY_OVERFLOW      (0)
+#define BM_HDMI_FC_POL2_HIGHPRIORITY_OVERFLOW      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL2_HIGHPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_POL2_HIGHPRIORITY_OVERFLOW)
@@ -12052,13 +12052,13 @@ typedef union
 #define BW_HDMI_FC_POL2_HIGHPRIORITY_OVERFLOW(v)   BF_CS1(HDMI_FC_POL2, HIGHPRIORITY_OVERFLOW, v)
 #endif
 
-/* --- Register HW_HDMI_FC_POL2, field LOWPRIORITY_OVERFLOW (RW)
+/* --- Register HW_HDMI_FC_POL2, field LOWPRIORITY_OVERFLOW[1:1] (RW)
  *
  * Polarity bit for FC_INT1.LowPriority_overflow interrupt bit Value after Reset: 1b
  */
 
-#define BP_HDMI_FC_POL2_LOWPRIORITY_OVERFLOW      1
-#define BM_HDMI_FC_POL2_LOWPRIORITY_OVERFLOW      0x00000002
+#define BP_HDMI_FC_POL2_LOWPRIORITY_OVERFLOW      (1)
+#define BM_HDMI_FC_POL2_LOWPRIORITY_OVERFLOW      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_POL2_LOWPRIORITY_OVERFLOW(v)   ((((reg32_t) v) << 1) & BM_HDMI_FC_POL2_LOWPRIORITY_OVERFLOW)
@@ -12106,7 +12106,7 @@ typedef union
  * constants & macros for individual HDMI_FC_PRCONF bitfields
  */
 
-/* --- Register HW_HDMI_FC_PRCONF, field OUTPUT_PR_FACTOR (RW)
+/* --- Register HW_HDMI_FC_PRCONF, field OUTPUT_PR_FACTOR[3:0] (RW)
  *
  * Configures the video pixel repetition ratio to be sent on the AVI infoFrame. This value must be
  * valid according to HDMI spec. The output_pr_factor = incoming_pr_factor(without the + 1 factor) *
@@ -12125,8 +12125,8 @@ typedef union
  * 1001 - Pixel sent 10 times.
  */
 
-#define BP_HDMI_FC_PRCONF_OUTPUT_PR_FACTOR      0
-#define BM_HDMI_FC_PRCONF_OUTPUT_PR_FACTOR      0x0000000f
+#define BP_HDMI_FC_PRCONF_OUTPUT_PR_FACTOR      (0)
+#define BM_HDMI_FC_PRCONF_OUTPUT_PR_FACTOR      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_PRCONF_OUTPUT_PR_FACTOR(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_PRCONF_OUTPUT_PR_FACTOR)
@@ -12139,7 +12139,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_FC_PRCONF, field INCOMING_PR_FACTOR (RW)
+/* --- Register HW_HDMI_FC_PRCONF, field INCOMING_PR_FACTOR[7:4] (RW)
  *
  * Configures the input video pixel repetition. A plus 1 factor should be added in this register
  * configuration. For CEA modes this value should be extracted from the CEA spec for the video mode
@@ -12163,8 +12163,8 @@ typedef union
  * 1010 - Pixel sent 10 times.
  */
 
-#define BP_HDMI_FC_PRCONF_INCOMING_PR_FACTOR      4
-#define BM_HDMI_FC_PRCONF_INCOMING_PR_FACTOR      0x000000f0
+#define BP_HDMI_FC_PRCONF_INCOMING_PR_FACTOR      (4)
+#define BM_HDMI_FC_PRCONF_INCOMING_PR_FACTOR      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_PRCONF_INCOMING_PR_FACTOR(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_PRCONF_INCOMING_PR_FACTOR)
@@ -12212,37 +12212,37 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_STAT bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDCURRENT_GAMUT_SEQ_NUM (RO)
+/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDCURRENT_GAMUT_SEQ_NUM[3:0] (RO)
  *
  * Gamut scheduling: Current Gamut packet sequence number
  */
 
-#define BP_HDMI_FC_GMD_STAT_IGMDCURRENT_GAMUT_SEQ_NUM      0
-#define BM_HDMI_FC_GMD_STAT_IGMDCURRENT_GAMUT_SEQ_NUM      0x0000000f
+#define BP_HDMI_FC_GMD_STAT_IGMDCURRENT_GAMUT_SEQ_NUM      (0)
+#define BM_HDMI_FC_GMD_STAT_IGMDCURRENT_GAMUT_SEQ_NUM      (0x0000000f)
 
-/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDPACKET_SEQ (RO)
+/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDPACKET_SEQ[5:4] (RO)
  *
  * Gamut scheduling: Gamut packet sequence
  */
 
-#define BP_HDMI_FC_GMD_STAT_IGMDPACKET_SEQ      4
-#define BM_HDMI_FC_GMD_STAT_IGMDPACKET_SEQ      0x00000030
+#define BP_HDMI_FC_GMD_STAT_IGMDPACKET_SEQ      (4)
+#define BM_HDMI_FC_GMD_STAT_IGMDPACKET_SEQ      (0x00000030)
 
-/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDDNEXT_FIELD (RO)
+/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDDNEXT_FIELD[6:6] (RO)
  *
  * Gamut scheduling: Gamut Next field
  */
 
-#define BP_HDMI_FC_GMD_STAT_IGMDDNEXT_FIELD      6
-#define BM_HDMI_FC_GMD_STAT_IGMDDNEXT_FIELD      0x00000040
+#define BP_HDMI_FC_GMD_STAT_IGMDDNEXT_FIELD      (6)
+#define BM_HDMI_FC_GMD_STAT_IGMDDNEXT_FIELD      (0x00000040)
 
-/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDNO_CRNT_GBD (RO)
+/* --- Register HW_HDMI_FC_GMD_STAT, field IGMDNO_CRNT_GBD[7:7] (RO)
  *
  * Gamut scheduling: No current gamut data
  */
 
-#define BP_HDMI_FC_GMD_STAT_IGMDNO_CRNT_GBD      7
-#define BM_HDMI_FC_GMD_STAT_IGMDNO_CRNT_GBD      0x00000080
+#define BP_HDMI_FC_GMD_STAT_IGMDNO_CRNT_GBD      (7)
+#define BM_HDMI_FC_GMD_STAT_IGMDNO_CRNT_GBD      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12283,13 +12283,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_EN bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_EN, field GMDENABLETX (RW)
+/* --- Register HW_HDMI_FC_GMD_EN, field GMDENABLETX[0:0] (RW)
  *
  * Gamut Metadata packet transmission enable (1b).
  */
 
-#define BP_HDMI_FC_GMD_EN_GMDENABLETX      0
-#define BM_HDMI_FC_GMD_EN_GMDENABLETX      0x00000001
+#define BP_HDMI_FC_GMD_EN_GMDENABLETX      (0)
+#define BM_HDMI_FC_GMD_EN_GMDENABLETX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_EN_GMDENABLETX(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_EN_GMDENABLETX)
@@ -12341,13 +12341,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_UP bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_UP, field GMDUPDATEPACKET (WO)
+/* --- Register HW_HDMI_FC_GMD_UP, field GMDUPDATEPACKET[0:0] (WO)
  *
  * Gamut Metadata packet update.
  */
 
-#define BP_HDMI_FC_GMD_UP_GMDUPDATEPACKET      0
-#define BM_HDMI_FC_GMD_UP_GMDUPDATEPACKET      0x00000001
+#define BP_HDMI_FC_GMD_UP_GMDUPDATEPACKET      (0)
+#define BM_HDMI_FC_GMD_UP_GMDUPDATEPACKET      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_UP_GMDUPDATEPACKET(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_UP_GMDUPDATEPACKET)
@@ -12398,13 +12398,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_CONF bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_CONF, field GMDPACKETLINESPACING (RW)
+/* --- Register HW_HDMI_FC_GMD_CONF, field GMDPACKETLINESPACING[3:0] (RW)
  *
  * Number of line spacing between the transmitted GMD packets
  */
 
-#define BP_HDMI_FC_GMD_CONF_GMDPACKETLINESPACING      0
-#define BM_HDMI_FC_GMD_CONF_GMDPACKETLINESPACING      0x0000000f
+#define BP_HDMI_FC_GMD_CONF_GMDPACKETLINESPACING      (0)
+#define BM_HDMI_FC_GMD_CONF_GMDPACKETLINESPACING      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_CONF_GMDPACKETLINESPACING(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_CONF_GMDPACKETLINESPACING)
@@ -12416,13 +12416,13 @@ typedef union
 #define BW_HDMI_FC_GMD_CONF_GMDPACKETLINESPACING(v)   BF_CS1(HDMI_FC_GMD_CONF, GMDPACKETLINESPACING, v)
 #endif
 
-/* --- Register HW_HDMI_FC_GMD_CONF, field GMDPACKETSINFRAME (RW)
+/* --- Register HW_HDMI_FC_GMD_CONF, field GMDPACKETSINFRAME[7:4] (RW)
  *
  * Number of GMD packets per frame or video field (profile P0)
  */
 
-#define BP_HDMI_FC_GMD_CONF_GMDPACKETSINFRAME      4
-#define BM_HDMI_FC_GMD_CONF_GMDPACKETSINFRAME      0x000000f0
+#define BP_HDMI_FC_GMD_CONF_GMDPACKETSINFRAME      (4)
+#define BM_HDMI_FC_GMD_CONF_GMDPACKETSINFRAME      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_CONF_GMDPACKETSINFRAME(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_GMD_CONF_GMDPACKETSINFRAME)
@@ -12472,13 +12472,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_HB bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_HB, field GMDAFFECTED_GAMUT_SEQ_NUM (RW)
+/* --- Register HW_HDMI_FC_GMD_HB, field GMDAFFECTED_GAMUT_SEQ_NUM[3:0] (RW)
  *
  * Affected gamut sequence number
  */
 
-#define BP_HDMI_FC_GMD_HB_GMDAFFECTED_GAMUT_SEQ_NUM      0
-#define BM_HDMI_FC_GMD_HB_GMDAFFECTED_GAMUT_SEQ_NUM      0x0000000f
+#define BP_HDMI_FC_GMD_HB_GMDAFFECTED_GAMUT_SEQ_NUM      (0)
+#define BM_HDMI_FC_GMD_HB_GMDAFFECTED_GAMUT_SEQ_NUM      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_HB_GMDAFFECTED_GAMUT_SEQ_NUM(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_HB_GMDAFFECTED_GAMUT_SEQ_NUM)
@@ -12490,13 +12490,13 @@ typedef union
 #define BW_HDMI_FC_GMD_HB_GMDAFFECTED_GAMUT_SEQ_NUM(v)   BF_CS1(HDMI_FC_GMD_HB, GMDAFFECTED_GAMUT_SEQ_NUM, v)
 #endif
 
-/* --- Register HW_HDMI_FC_GMD_HB, field GMDGBD_PROFILE (RW)
+/* --- Register HW_HDMI_FC_GMD_HB, field GMDGBD_PROFILE[6:4] (RW)
  *
  * GMD profile bits
  */
 
-#define BP_HDMI_FC_GMD_HB_GMDGBD_PROFILE      4
-#define BM_HDMI_FC_GMD_HB_GMDGBD_PROFILE      0x00000070
+#define BP_HDMI_FC_GMD_HB_GMDGBD_PROFILE      (4)
+#define BM_HDMI_FC_GMD_HB_GMDGBD_PROFILE      (0x00000070)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_HB_GMDGBD_PROFILE(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_GMD_HB_GMDGBD_PROFILE)
@@ -12544,13 +12544,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB0, field FC_GMD_PB0 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB0, field FC_GMD_PB0[7:0] (RW)
  *
  * Gamut Metadata packet byte0
  */
 
-#define BP_HDMI_FC_GMD_PB0_FC_GMD_PB0      0
-#define BM_HDMI_FC_GMD_PB0_FC_GMD_PB0      0x000000ff
+#define BP_HDMI_FC_GMD_PB0_FC_GMD_PB0      (0)
+#define BM_HDMI_FC_GMD_PB0_FC_GMD_PB0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB0_FC_GMD_PB0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB0_FC_GMD_PB0)
@@ -12597,13 +12597,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB1, field FC_GMD_PB1 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB1, field FC_GMD_PB1[7:0] (RW)
  *
  * Gamut Metadata packet byte1
  */
 
-#define BP_HDMI_FC_GMD_PB1_FC_GMD_PB1      0
-#define BM_HDMI_FC_GMD_PB1_FC_GMD_PB1      0x000000ff
+#define BP_HDMI_FC_GMD_PB1_FC_GMD_PB1      (0)
+#define BM_HDMI_FC_GMD_PB1_FC_GMD_PB1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB1_FC_GMD_PB1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB1_FC_GMD_PB1)
@@ -12650,13 +12650,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB2, field FC_GMD_PB2 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB2, field FC_GMD_PB2[7:0] (RW)
  *
  * Gamut Metadata packet byte2
  */
 
-#define BP_HDMI_FC_GMD_PB2_FC_GMD_PB2      0
-#define BM_HDMI_FC_GMD_PB2_FC_GMD_PB2      0x000000ff
+#define BP_HDMI_FC_GMD_PB2_FC_GMD_PB2      (0)
+#define BM_HDMI_FC_GMD_PB2_FC_GMD_PB2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB2_FC_GMD_PB2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB2_FC_GMD_PB2)
@@ -12703,13 +12703,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB3, field FC_GMD_PB3 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB3, field FC_GMD_PB3[7:0] (RW)
  *
  * Gamut Metadata packet byte3
  */
 
-#define BP_HDMI_FC_GMD_PB3_FC_GMD_PB3      0
-#define BM_HDMI_FC_GMD_PB3_FC_GMD_PB3      0x000000ff
+#define BP_HDMI_FC_GMD_PB3_FC_GMD_PB3      (0)
+#define BM_HDMI_FC_GMD_PB3_FC_GMD_PB3      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB3_FC_GMD_PB3(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB3_FC_GMD_PB3)
@@ -12756,13 +12756,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB4 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB4, field FC_GMD_PB4 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB4, field FC_GMD_PB4[7:0] (RW)
  *
  * Gamut Metadata packet byte4
  */
 
-#define BP_HDMI_FC_GMD_PB4_FC_GMD_PB4      0
-#define BM_HDMI_FC_GMD_PB4_FC_GMD_PB4      0x000000ff
+#define BP_HDMI_FC_GMD_PB4_FC_GMD_PB4      (0)
+#define BM_HDMI_FC_GMD_PB4_FC_GMD_PB4      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB4_FC_GMD_PB4(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB4_FC_GMD_PB4)
@@ -12809,13 +12809,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB5 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB5, field FC_GMD_PB5 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB5, field FC_GMD_PB5[7:0] (RW)
  *
  * Gamut Metadata packet byte5
  */
 
-#define BP_HDMI_FC_GMD_PB5_FC_GMD_PB5      0
-#define BM_HDMI_FC_GMD_PB5_FC_GMD_PB5      0x000000ff
+#define BP_HDMI_FC_GMD_PB5_FC_GMD_PB5      (0)
+#define BM_HDMI_FC_GMD_PB5_FC_GMD_PB5      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB5_FC_GMD_PB5(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB5_FC_GMD_PB5)
@@ -12862,13 +12862,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB6 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB6, field FC_GMD_PB6 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB6, field FC_GMD_PB6[7:0] (RW)
  *
  * Gamut Metadata packet byte6
  */
 
-#define BP_HDMI_FC_GMD_PB6_FC_GMD_PB6      0
-#define BM_HDMI_FC_GMD_PB6_FC_GMD_PB6      0x000000ff
+#define BP_HDMI_FC_GMD_PB6_FC_GMD_PB6      (0)
+#define BM_HDMI_FC_GMD_PB6_FC_GMD_PB6      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB6_FC_GMD_PB6(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB6_FC_GMD_PB6)
@@ -12915,13 +12915,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB7 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB7, field FC_GMD_PB2 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB7, field FC_GMD_PB2[7:0] (RW)
  *
  * Gamut Metadata packet byte7
  */
 
-#define BP_HDMI_FC_GMD_PB7_FC_GMD_PB2      0
-#define BM_HDMI_FC_GMD_PB7_FC_GMD_PB2      0x000000ff
+#define BP_HDMI_FC_GMD_PB7_FC_GMD_PB2      (0)
+#define BM_HDMI_FC_GMD_PB7_FC_GMD_PB2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB7_FC_GMD_PB2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB7_FC_GMD_PB2)
@@ -12968,13 +12968,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB8 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB8, field FC_GMD_PB8 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB8, field FC_GMD_PB8[7:0] (RW)
  *
  * Gamut Metadata packet byte8
  */
 
-#define BP_HDMI_FC_GMD_PB8_FC_GMD_PB8      0
-#define BM_HDMI_FC_GMD_PB8_FC_GMD_PB8      0x000000ff
+#define BP_HDMI_FC_GMD_PB8_FC_GMD_PB8      (0)
+#define BM_HDMI_FC_GMD_PB8_FC_GMD_PB8      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB8_FC_GMD_PB8(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB8_FC_GMD_PB8)
@@ -13021,13 +13021,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB9 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB9, field FC_GMD_PB9 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB9, field FC_GMD_PB9[7:0] (RW)
  *
  * Gamut Metadata packet byte9
  */
 
-#define BP_HDMI_FC_GMD_PB9_FC_GMD_PB9      0
-#define BM_HDMI_FC_GMD_PB9_FC_GMD_PB9      0x000000ff
+#define BP_HDMI_FC_GMD_PB9_FC_GMD_PB9      (0)
+#define BM_HDMI_FC_GMD_PB9_FC_GMD_PB9      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB9_FC_GMD_PB9(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB9_FC_GMD_PB9)
@@ -13074,13 +13074,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB10 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB10, field FC_GMD_PB10 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB10, field FC_GMD_PB10[7:0] (RW)
  *
  * Gamut Metadata packet byte10
  */
 
-#define BP_HDMI_FC_GMD_PB10_FC_GMD_PB10      0
-#define BM_HDMI_FC_GMD_PB10_FC_GMD_PB10      0x000000ff
+#define BP_HDMI_FC_GMD_PB10_FC_GMD_PB10      (0)
+#define BM_HDMI_FC_GMD_PB10_FC_GMD_PB10      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB10_FC_GMD_PB10(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB10_FC_GMD_PB10)
@@ -13127,13 +13127,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB11 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB11, field FC_GMD_PB11 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB11, field FC_GMD_PB11[7:0] (RW)
  *
  * Gamut Metadata packet byte11
  */
 
-#define BP_HDMI_FC_GMD_PB11_FC_GMD_PB11      0
-#define BM_HDMI_FC_GMD_PB11_FC_GMD_PB11      0x000000ff
+#define BP_HDMI_FC_GMD_PB11_FC_GMD_PB11      (0)
+#define BM_HDMI_FC_GMD_PB11_FC_GMD_PB11      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB11_FC_GMD_PB11(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB11_FC_GMD_PB11)
@@ -13180,13 +13180,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB12 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB12, field FC_GMD_PB12 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB12, field FC_GMD_PB12[7:0] (RW)
  *
  * Gamut Metadata packet byte12
  */
 
-#define BP_HDMI_FC_GMD_PB12_FC_GMD_PB12      0
-#define BM_HDMI_FC_GMD_PB12_FC_GMD_PB12      0x000000ff
+#define BP_HDMI_FC_GMD_PB12_FC_GMD_PB12      (0)
+#define BM_HDMI_FC_GMD_PB12_FC_GMD_PB12      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB12_FC_GMD_PB12(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB12_FC_GMD_PB12)
@@ -13233,13 +13233,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB13 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB13, field FC_GMD_PB13 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB13, field FC_GMD_PB13[7:0] (RW)
  *
  * Gamut Metadata packet byte13
  */
 
-#define BP_HDMI_FC_GMD_PB13_FC_GMD_PB13      0
-#define BM_HDMI_FC_GMD_PB13_FC_GMD_PB13      0x000000ff
+#define BP_HDMI_FC_GMD_PB13_FC_GMD_PB13      (0)
+#define BM_HDMI_FC_GMD_PB13_FC_GMD_PB13      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB13_FC_GMD_PB13(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB13_FC_GMD_PB13)
@@ -13286,13 +13286,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB14 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB14, field FC_GMD_PB14 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB14, field FC_GMD_PB14[7:0] (RW)
  *
  * Gamut Metadata packet byte14
  */
 
-#define BP_HDMI_FC_GMD_PB14_FC_GMD_PB14      0
-#define BM_HDMI_FC_GMD_PB14_FC_GMD_PB14      0x000000ff
+#define BP_HDMI_FC_GMD_PB14_FC_GMD_PB14      (0)
+#define BM_HDMI_FC_GMD_PB14_FC_GMD_PB14      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB14_FC_GMD_PB14(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB14_FC_GMD_PB14)
@@ -13339,13 +13339,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB15 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB15, field FC_GMD_PB15 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB15, field FC_GMD_PB15[7:0] (RW)
  *
  * Gamut Metadata packet byte15
  */
 
-#define BP_HDMI_FC_GMD_PB15_FC_GMD_PB15      0
-#define BM_HDMI_FC_GMD_PB15_FC_GMD_PB15      0x000000ff
+#define BP_HDMI_FC_GMD_PB15_FC_GMD_PB15      (0)
+#define BM_HDMI_FC_GMD_PB15_FC_GMD_PB15      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB15_FC_GMD_PB15(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB15_FC_GMD_PB15)
@@ -13392,13 +13392,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB16 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB16, field FC_GMD_PB16 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB16, field FC_GMD_PB16[7:0] (RW)
  *
  * Gamut Metadata packet byte16
  */
 
-#define BP_HDMI_FC_GMD_PB16_FC_GMD_PB16      0
-#define BM_HDMI_FC_GMD_PB16_FC_GMD_PB16      0x000000ff
+#define BP_HDMI_FC_GMD_PB16_FC_GMD_PB16      (0)
+#define BM_HDMI_FC_GMD_PB16_FC_GMD_PB16      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB16_FC_GMD_PB16(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB16_FC_GMD_PB16)
@@ -13445,13 +13445,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB17 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB17, field FC_GMD_PB17 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB17, field FC_GMD_PB17[7:0] (RW)
  *
  * Gamut Metadata packet byte17
  */
 
-#define BP_HDMI_FC_GMD_PB17_FC_GMD_PB17      0
-#define BM_HDMI_FC_GMD_PB17_FC_GMD_PB17      0x000000ff
+#define BP_HDMI_FC_GMD_PB17_FC_GMD_PB17      (0)
+#define BM_HDMI_FC_GMD_PB17_FC_GMD_PB17      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB17_FC_GMD_PB17(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB17_FC_GMD_PB17)
@@ -13498,13 +13498,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB18 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB18, field FC_GMD_PB18 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB18, field FC_GMD_PB18[7:0] (RW)
  *
  * Gamut Metadata packet byte18
  */
 
-#define BP_HDMI_FC_GMD_PB18_FC_GMD_PB18      0
-#define BM_HDMI_FC_GMD_PB18_FC_GMD_PB18      0x000000ff
+#define BP_HDMI_FC_GMD_PB18_FC_GMD_PB18      (0)
+#define BM_HDMI_FC_GMD_PB18_FC_GMD_PB18      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB18_FC_GMD_PB18(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB18_FC_GMD_PB18)
@@ -13551,13 +13551,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB19 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB19, field FC_GMD_PB18 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB19, field FC_GMD_PB18[7:0] (RW)
  *
  * Gamut Metadata packet byte18
  */
 
-#define BP_HDMI_FC_GMD_PB19_FC_GMD_PB18      0
-#define BM_HDMI_FC_GMD_PB19_FC_GMD_PB18      0x000000ff
+#define BP_HDMI_FC_GMD_PB19_FC_GMD_PB18      (0)
+#define BM_HDMI_FC_GMD_PB19_FC_GMD_PB18      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB19_FC_GMD_PB18(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB19_FC_GMD_PB18)
@@ -13604,13 +13604,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB20 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB20, field FC_GMD_PB20 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB20, field FC_GMD_PB20[7:0] (RW)
  *
  * Gamut Metadata packet byte20
  */
 
-#define BP_HDMI_FC_GMD_PB20_FC_GMD_PB20      0
-#define BM_HDMI_FC_GMD_PB20_FC_GMD_PB20      0x000000ff
+#define BP_HDMI_FC_GMD_PB20_FC_GMD_PB20      (0)
+#define BM_HDMI_FC_GMD_PB20_FC_GMD_PB20      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB20_FC_GMD_PB20(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB20_FC_GMD_PB20)
@@ -13657,13 +13657,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB21 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB21, field FC_GMD_PB21 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB21, field FC_GMD_PB21[7:0] (RW)
  *
  * Gamut Metadata packet byte21
  */
 
-#define BP_HDMI_FC_GMD_PB21_FC_GMD_PB21      0
-#define BM_HDMI_FC_GMD_PB21_FC_GMD_PB21      0x000000ff
+#define BP_HDMI_FC_GMD_PB21_FC_GMD_PB21      (0)
+#define BM_HDMI_FC_GMD_PB21_FC_GMD_PB21      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB21_FC_GMD_PB21(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB21_FC_GMD_PB21)
@@ -13710,13 +13710,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB22 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB22, field FC_GMD_PB22 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB22, field FC_GMD_PB22[7:0] (RW)
  *
  * Gamut Metadata packet byte22
  */
 
-#define BP_HDMI_FC_GMD_PB22_FC_GMD_PB22      0
-#define BM_HDMI_FC_GMD_PB22_FC_GMD_PB22      0x000000ff
+#define BP_HDMI_FC_GMD_PB22_FC_GMD_PB22      (0)
+#define BM_HDMI_FC_GMD_PB22_FC_GMD_PB22      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB22_FC_GMD_PB22(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB22_FC_GMD_PB22)
@@ -13763,13 +13763,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB23 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB23, field FC_GMD_PB23 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB23, field FC_GMD_PB23[7:0] (RW)
  *
  * Gamut Metadata packet byte23
  */
 
-#define BP_HDMI_FC_GMD_PB23_FC_GMD_PB23      0
-#define BM_HDMI_FC_GMD_PB23_FC_GMD_PB23      0x000000ff
+#define BP_HDMI_FC_GMD_PB23_FC_GMD_PB23      (0)
+#define BM_HDMI_FC_GMD_PB23_FC_GMD_PB23      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB23_FC_GMD_PB23(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB23_FC_GMD_PB23)
@@ -13816,13 +13816,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB24 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB24, field FC_GMD_PB24 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB24, field FC_GMD_PB24[7:0] (RW)
  *
  * Gamut Metadata packet byte24
  */
 
-#define BP_HDMI_FC_GMD_PB24_FC_GMD_PB24      0
-#define BM_HDMI_FC_GMD_PB24_FC_GMD_PB24      0x000000ff
+#define BP_HDMI_FC_GMD_PB24_FC_GMD_PB24      (0)
+#define BM_HDMI_FC_GMD_PB24_FC_GMD_PB24      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB24_FC_GMD_PB24(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB24_FC_GMD_PB24)
@@ -13869,13 +13869,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB25 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB25, field FC_GMD_PB25 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB25, field FC_GMD_PB25[7:0] (RW)
  *
  * Gamut Metadata packet byte25
  */
 
-#define BP_HDMI_FC_GMD_PB25_FC_GMD_PB25      0
-#define BM_HDMI_FC_GMD_PB25_FC_GMD_PB25      0x000000ff
+#define BP_HDMI_FC_GMD_PB25_FC_GMD_PB25      (0)
+#define BM_HDMI_FC_GMD_PB25_FC_GMD_PB25      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB25_FC_GMD_PB25(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB25_FC_GMD_PB25)
@@ -13922,13 +13922,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB26 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB26, field FC_GMD_PB26 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB26, field FC_GMD_PB26[7:0] (RW)
  *
  * Gamut Metadata packet byte26
  */
 
-#define BP_HDMI_FC_GMD_PB26_FC_GMD_PB26      0
-#define BM_HDMI_FC_GMD_PB26_FC_GMD_PB26      0x000000ff
+#define BP_HDMI_FC_GMD_PB26_FC_GMD_PB26      (0)
+#define BM_HDMI_FC_GMD_PB26_FC_GMD_PB26      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB26_FC_GMD_PB26(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB26_FC_GMD_PB26)
@@ -13975,13 +13975,13 @@ typedef union
  * constants & macros for individual HDMI_FC_GMD_PB27 bitfields
  */
 
-/* --- Register HW_HDMI_FC_GMD_PB27, field FC_GMD_PB27 (RW)
+/* --- Register HW_HDMI_FC_GMD_PB27, field FC_GMD_PB27[7:0] (RW)
  *
  * Gamut Metadata packet byte27
  */
 
-#define BP_HDMI_FC_GMD_PB27_FC_GMD_PB27      0
-#define BM_HDMI_FC_GMD_PB27_FC_GMD_PB27      0x000000ff
+#define BP_HDMI_FC_GMD_PB27_FC_GMD_PB27      (0)
+#define BM_HDMI_FC_GMD_PB27_FC_GMD_PB27      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_GMD_PB27_FC_GMD_PB27(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_GMD_PB27_FC_GMD_PB27)
@@ -14032,13 +14032,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGFORCE bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGFORCE, field FORCEVIDEO (RW)
+/* --- Register HW_HDMI_FC_DBGFORCE, field FORCEVIDEO[0:0] (RW)
  *
  * Force fixed video output with FC_DBGTMDSx registers contain.
  */
 
-#define BP_HDMI_FC_DBGFORCE_FORCEVIDEO      0
-#define BM_HDMI_FC_DBGFORCE_FORCEVIDEO      0x00000001
+#define BP_HDMI_FC_DBGFORCE_FORCEVIDEO      (0)
+#define BM_HDMI_FC_DBGFORCE_FORCEVIDEO      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGFORCE_FORCEVIDEO(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGFORCE_FORCEVIDEO)
@@ -14050,13 +14050,13 @@ typedef union
 #define BW_HDMI_FC_DBGFORCE_FORCEVIDEO(v)   BF_CS1(HDMI_FC_DBGFORCE, FORCEVIDEO, v)
 #endif
 
-/* --- Register HW_HDMI_FC_DBGFORCE, field FORCEAUDIO (RW)
+/* --- Register HW_HDMI_FC_DBGFORCE, field FORCEAUDIO[4:4] (RW)
  *
  * Force fixed audio output with FC_DBGAUDxCHx registers contain.
  */
 
-#define BP_HDMI_FC_DBGFORCE_FORCEAUDIO      4
-#define BM_HDMI_FC_DBGFORCE_FORCEAUDIO      0x00000010
+#define BP_HDMI_FC_DBGFORCE_FORCEAUDIO      (4)
+#define BM_HDMI_FC_DBGFORCE_FORCEAUDIO      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGFORCE_FORCEAUDIO(v)   ((((reg32_t) v) << 4) & BM_HDMI_FC_DBGFORCE_FORCEAUDIO)
@@ -14103,13 +14103,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH0, field FC_DBGAUD0CH0 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH0, field FC_DBGAUD0CH0[7:0] (RW)
  *
  * the audio fixed data byte0 to be used in channel 0 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH0_FC_DBGAUD0CH0      0
-#define BM_HDMI_FC_DBGAUD0CH0_FC_DBGAUD0CH0      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH0_FC_DBGAUD0CH0      (0)
+#define BM_HDMI_FC_DBGAUD0CH0_FC_DBGAUD0CH0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH0_FC_DBGAUD0CH0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH0_FC_DBGAUD0CH0)
@@ -14155,13 +14155,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH0, field FC_DBGAUD1CH0 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH0, field FC_DBGAUD1CH0[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 0 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH0_FC_DBGAUD1CH0      0
-#define BM_HDMI_FC_DBGAUD1CH0_FC_DBGAUD1CH0      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH0_FC_DBGAUD1CH0      (0)
+#define BM_HDMI_FC_DBGAUD1CH0_FC_DBGAUD1CH0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH0_FC_DBGAUD1CH0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH0_FC_DBGAUD1CH0)
@@ -14207,13 +14207,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH0, field FC_DBGAUD2CH0 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH0, field FC_DBGAUD2CH0[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 0 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH0_FC_DBGAUD2CH0      0
-#define BM_HDMI_FC_DBGAUD2CH0_FC_DBGAUD2CH0      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH0_FC_DBGAUD2CH0      (0)
+#define BM_HDMI_FC_DBGAUD2CH0_FC_DBGAUD2CH0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH0_FC_DBGAUD2CH0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH0_FC_DBGAUD2CH0)
@@ -14260,13 +14260,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH1, field FC_DBGAUD0CH1 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH1, field FC_DBGAUD0CH1[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 0 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH1_FC_DBGAUD0CH1      0
-#define BM_HDMI_FC_DBGAUD0CH1_FC_DBGAUD0CH1      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH1_FC_DBGAUD0CH1      (0)
+#define BM_HDMI_FC_DBGAUD0CH1_FC_DBGAUD0CH1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH1_FC_DBGAUD0CH1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH1_FC_DBGAUD0CH1)
@@ -14312,13 +14312,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH1, field FC_DBGAUD1CH1 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH1, field FC_DBGAUD1CH1[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 1 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH1_FC_DBGAUD1CH1      0
-#define BM_HDMI_FC_DBGAUD1CH1_FC_DBGAUD1CH1      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH1_FC_DBGAUD1CH1      (0)
+#define BM_HDMI_FC_DBGAUD1CH1_FC_DBGAUD1CH1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH1_FC_DBGAUD1CH1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH1_FC_DBGAUD1CH1)
@@ -14364,13 +14364,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH1, field FC_DBGAUD2CH1 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH1, field FC_DBGAUD2CH1[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 1 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH1_FC_DBGAUD2CH1      0
-#define BM_HDMI_FC_DBGAUD2CH1_FC_DBGAUD2CH1      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH1_FC_DBGAUD2CH1      (0)
+#define BM_HDMI_FC_DBGAUD2CH1_FC_DBGAUD2CH1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH1_FC_DBGAUD2CH1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH1_FC_DBGAUD2CH1)
@@ -14417,13 +14417,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH2, field FC_DBGAUD0CH2 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH2, field FC_DBGAUD0CH2[7:0] (RW)
  *
  * the audio fixed data byte0 to be used in channel 2 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH2_FC_DBGAUD0CH2      0
-#define BM_HDMI_FC_DBGAUD0CH2_FC_DBGAUD0CH2      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH2_FC_DBGAUD0CH2      (0)
+#define BM_HDMI_FC_DBGAUD0CH2_FC_DBGAUD0CH2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH2_FC_DBGAUD0CH2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH2_FC_DBGAUD0CH2)
@@ -14469,13 +14469,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH2, field FC_DBGAUD1CH2 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH2, field FC_DBGAUD1CH2[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 2 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH2_FC_DBGAUD1CH2      0
-#define BM_HDMI_FC_DBGAUD1CH2_FC_DBGAUD1CH2      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH2_FC_DBGAUD1CH2      (0)
+#define BM_HDMI_FC_DBGAUD1CH2_FC_DBGAUD1CH2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH2_FC_DBGAUD1CH2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH2_FC_DBGAUD1CH2)
@@ -14521,13 +14521,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH2, field FC_DBGAUD2CH2 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH2, field FC_DBGAUD2CH2[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 2 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH2_FC_DBGAUD2CH2      0
-#define BM_HDMI_FC_DBGAUD2CH2_FC_DBGAUD2CH2      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH2_FC_DBGAUD2CH2      (0)
+#define BM_HDMI_FC_DBGAUD2CH2_FC_DBGAUD2CH2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH2_FC_DBGAUD2CH2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH2_FC_DBGAUD2CH2)
@@ -14574,13 +14574,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH3, field FC_DBGAUD0CH3 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH3, field FC_DBGAUD0CH3[7:0] (RW)
  *
  * the audio fixed data byte0 to be used in channel 3 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH3_FC_DBGAUD0CH3      0
-#define BM_HDMI_FC_DBGAUD0CH3_FC_DBGAUD0CH3      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH3_FC_DBGAUD0CH3      (0)
+#define BM_HDMI_FC_DBGAUD0CH3_FC_DBGAUD0CH3      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH3_FC_DBGAUD0CH3(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH3_FC_DBGAUD0CH3)
@@ -14626,13 +14626,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH3, field FC_DBGAUD1CH3 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH3, field FC_DBGAUD1CH3[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 3 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH3_FC_DBGAUD1CH3      0
-#define BM_HDMI_FC_DBGAUD1CH3_FC_DBGAUD1CH3      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH3_FC_DBGAUD1CH3      (0)
+#define BM_HDMI_FC_DBGAUD1CH3_FC_DBGAUD1CH3      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH3_FC_DBGAUD1CH3(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH3_FC_DBGAUD1CH3)
@@ -14678,13 +14678,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH3 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH3, field FC_DBGAUD2CH3 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH3, field FC_DBGAUD2CH3[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 3 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH3_FC_DBGAUD2CH3      0
-#define BM_HDMI_FC_DBGAUD2CH3_FC_DBGAUD2CH3      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH3_FC_DBGAUD2CH3      (0)
+#define BM_HDMI_FC_DBGAUD2CH3_FC_DBGAUD2CH3      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH3_FC_DBGAUD2CH3(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH3_FC_DBGAUD2CH3)
@@ -14731,13 +14731,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH4 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH4, field FC_DBGAUD0CH4 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH4, field FC_DBGAUD0CH4[7:0] (RW)
  *
  * the audio fixed data byte0 to be used in channel 4 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH4_FC_DBGAUD0CH4      0
-#define BM_HDMI_FC_DBGAUD0CH4_FC_DBGAUD0CH4      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH4_FC_DBGAUD0CH4      (0)
+#define BM_HDMI_FC_DBGAUD0CH4_FC_DBGAUD0CH4      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH4_FC_DBGAUD0CH4(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH4_FC_DBGAUD0CH4)
@@ -14783,13 +14783,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH4 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH4, field FC_DBGAUD1CH4 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH4, field FC_DBGAUD1CH4[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 4 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH4_FC_DBGAUD1CH4      0
-#define BM_HDMI_FC_DBGAUD1CH4_FC_DBGAUD1CH4      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH4_FC_DBGAUD1CH4      (0)
+#define BM_HDMI_FC_DBGAUD1CH4_FC_DBGAUD1CH4      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH4_FC_DBGAUD1CH4(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH4_FC_DBGAUD1CH4)
@@ -14835,13 +14835,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH4 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH4, field FC_DBGAUD2CH4 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH4, field FC_DBGAUD2CH4[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 4 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH4_FC_DBGAUD2CH4      0
-#define BM_HDMI_FC_DBGAUD2CH4_FC_DBGAUD2CH4      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH4_FC_DBGAUD2CH4      (0)
+#define BM_HDMI_FC_DBGAUD2CH4_FC_DBGAUD2CH4      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH4_FC_DBGAUD2CH4(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH4_FC_DBGAUD2CH4)
@@ -14888,13 +14888,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH5 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH5, field FC_DBGAUD0CH5 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH5, field FC_DBGAUD0CH5[7:0] (RW)
  *
  * the audio fixed data byte0 to be used in channel 5 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH5_FC_DBGAUD0CH5      0
-#define BM_HDMI_FC_DBGAUD0CH5_FC_DBGAUD0CH5      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH5_FC_DBGAUD0CH5      (0)
+#define BM_HDMI_FC_DBGAUD0CH5_FC_DBGAUD0CH5      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH5_FC_DBGAUD0CH5(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH5_FC_DBGAUD0CH5)
@@ -14940,13 +14940,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH5 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH5, field FC_DBGAUD1CH5 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH5, field FC_DBGAUD1CH5[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 5 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH5_FC_DBGAUD1CH5      0
-#define BM_HDMI_FC_DBGAUD1CH5_FC_DBGAUD1CH5      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH5_FC_DBGAUD1CH5      (0)
+#define BM_HDMI_FC_DBGAUD1CH5_FC_DBGAUD1CH5      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH5_FC_DBGAUD1CH5(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH5_FC_DBGAUD1CH5)
@@ -14992,13 +14992,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH5 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH5, field FC_DBGAUD2CH5 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH5, field FC_DBGAUD2CH5[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 5 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH5_FC_DBGAUD2CH5      0
-#define BM_HDMI_FC_DBGAUD2CH5_FC_DBGAUD2CH5      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH5_FC_DBGAUD2CH5      (0)
+#define BM_HDMI_FC_DBGAUD2CH5_FC_DBGAUD2CH5      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH5_FC_DBGAUD2CH5(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH5_FC_DBGAUD2CH5)
@@ -15045,13 +15045,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH6 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH6, field FC_DBGAUD0CH6 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH6, field FC_DBGAUD0CH6[7:0] (RW)
  *
  * The audio fixed data byte0 to be used in channel 6 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH6_FC_DBGAUD0CH6      0
-#define BM_HDMI_FC_DBGAUD0CH6_FC_DBGAUD0CH6      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH6_FC_DBGAUD0CH6      (0)
+#define BM_HDMI_FC_DBGAUD0CH6_FC_DBGAUD0CH6      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH6_FC_DBGAUD0CH6(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH6_FC_DBGAUD0CH6)
@@ -15097,13 +15097,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH6 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH6, field FC_DBGAUD1CH6 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH6, field FC_DBGAUD1CH6[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 6 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH6_FC_DBGAUD1CH6      0
-#define BM_HDMI_FC_DBGAUD1CH6_FC_DBGAUD1CH6      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH6_FC_DBGAUD1CH6      (0)
+#define BM_HDMI_FC_DBGAUD1CH6_FC_DBGAUD1CH6      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH6_FC_DBGAUD1CH6(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH6_FC_DBGAUD1CH6)
@@ -15149,13 +15149,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH6 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH6, field FC_DBGAUD2CH6 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH6, field FC_DBGAUD2CH6[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 6 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH6_FC_DBGAUD2CH6      0
-#define BM_HDMI_FC_DBGAUD2CH6_FC_DBGAUD2CH6      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH6_FC_DBGAUD2CH6      (0)
+#define BM_HDMI_FC_DBGAUD2CH6_FC_DBGAUD2CH6      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH6_FC_DBGAUD2CH6(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH6_FC_DBGAUD2CH6)
@@ -15202,13 +15202,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD0CH7 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD0CH7, field FC_DBGAUD0CH7 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD0CH7, field FC_DBGAUD0CH7[7:0] (RW)
  *
  * the audio fixed data byte0 to be used in channel 7 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD0CH7_FC_DBGAUD0CH7      0
-#define BM_HDMI_FC_DBGAUD0CH7_FC_DBGAUD0CH7      0x000000ff
+#define BP_HDMI_FC_DBGAUD0CH7_FC_DBGAUD0CH7      (0)
+#define BM_HDMI_FC_DBGAUD0CH7_FC_DBGAUD0CH7      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD0CH7_FC_DBGAUD0CH7(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD0CH7_FC_DBGAUD0CH7)
@@ -15254,13 +15254,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD1CH7 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD1CH7, field FC_DBGAUD1CH7 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD1CH7, field FC_DBGAUD1CH7[7:0] (RW)
  *
  * the audio fixed data byte1 to be used in channel 0 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD1CH7_FC_DBGAUD1CH7      0
-#define BM_HDMI_FC_DBGAUD1CH7_FC_DBGAUD1CH7      0x000000ff
+#define BP_HDMI_FC_DBGAUD1CH7_FC_DBGAUD1CH7      (0)
+#define BM_HDMI_FC_DBGAUD1CH7_FC_DBGAUD1CH7      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD1CH7_FC_DBGAUD1CH7(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD1CH7_FC_DBGAUD1CH7)
@@ -15306,13 +15306,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGAUD2CH7 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGAUD2CH7, field FC_DBGAUD2CH7 (RW)
+/* --- Register HW_HDMI_FC_DBGAUD2CH7, field FC_DBGAUD2CH7[7:0] (RW)
  *
  * the audio fixed data byte2 to be used in channel 0 when in fixed audio selection
  */
 
-#define BP_HDMI_FC_DBGAUD2CH7_FC_DBGAUD2CH7      0
-#define BM_HDMI_FC_DBGAUD2CH7_FC_DBGAUD2CH7      0x000000ff
+#define BP_HDMI_FC_DBGAUD2CH7_FC_DBGAUD2CH7      (0)
+#define BM_HDMI_FC_DBGAUD2CH7_FC_DBGAUD2CH7      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGAUD2CH7_FC_DBGAUD2CH7(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGAUD2CH7_FC_DBGAUD2CH7)
@@ -15360,13 +15360,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGTMDS0 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGTMDS0, field FC_DBGTMDS0 (RW)
+/* --- Register HW_HDMI_FC_DBGTMDS0, field FC_DBGTMDS0[7:0] (RW)
  *
  * set B pixel component value in RGB video or Cb pixel component value in YCbCr
  */
 
-#define BP_HDMI_FC_DBGTMDS0_FC_DBGTMDS0      0
-#define BM_HDMI_FC_DBGTMDS0_FC_DBGTMDS0      0x000000ff
+#define BP_HDMI_FC_DBGTMDS0_FC_DBGTMDS0      (0)
+#define BM_HDMI_FC_DBGTMDS0_FC_DBGTMDS0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGTMDS0_FC_DBGTMDS0(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGTMDS0_FC_DBGTMDS0)
@@ -15414,13 +15414,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGTMDS1 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGTMDS1, field FC_DBGTMDS1 (RW)
+/* --- Register HW_HDMI_FC_DBGTMDS1, field FC_DBGTMDS1[7:0] (RW)
  *
  * set G pixel component value in RGB video or Y pixel component value in YCbCr
  */
 
-#define BP_HDMI_FC_DBGTMDS1_FC_DBGTMDS1      0
-#define BM_HDMI_FC_DBGTMDS1_FC_DBGTMDS1      0x000000ff
+#define BP_HDMI_FC_DBGTMDS1_FC_DBGTMDS1      (0)
+#define BM_HDMI_FC_DBGTMDS1_FC_DBGTMDS1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGTMDS1_FC_DBGTMDS1(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGTMDS1_FC_DBGTMDS1)
@@ -15468,13 +15468,13 @@ typedef union
  * constants & macros for individual HDMI_FC_DBGTMDS2 bitfields
  */
 
-/* --- Register HW_HDMI_FC_DBGTMDS2, field FC_DBGTMDS2 (RW)
+/* --- Register HW_HDMI_FC_DBGTMDS2, field FC_DBGTMDS2[7:0] (RW)
  *
  * set R pixel component value in RGB video or Cr pixel component value in YCbCr
  */
 
-#define BP_HDMI_FC_DBGTMDS2_FC_DBGTMDS2      0
-#define BM_HDMI_FC_DBGTMDS2_FC_DBGTMDS2      0x000000ff
+#define BP_HDMI_FC_DBGTMDS2_FC_DBGTMDS2      (0)
+#define BM_HDMI_FC_DBGTMDS2_FC_DBGTMDS2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_FC_DBGTMDS2_FC_DBGTMDS2(v)   ((((reg32_t) v) << 0) & BM_HDMI_FC_DBGTMDS2_FC_DBGTMDS2)
@@ -15529,13 +15529,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_CONF0 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_CONF0, field SELDIPIF (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field SELDIPIF[0:0] (RW)
  *
  * Select interface control. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_CONF0_SELDIPIF      0
-#define BM_HDMI_PHY_CONF0_SELDIPIF      0x00000001
+#define BP_HDMI_PHY_CONF0_SELDIPIF      (0)
+#define BM_HDMI_PHY_CONF0_SELDIPIF      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_SELDIPIF(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_CONF0_SELDIPIF)
@@ -15547,13 +15547,13 @@ typedef union
 #define BW_HDMI_PHY_CONF0_SELDIPIF(v)   BF_CS1(HDMI_PHY_CONF0, SELDIPIF, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CONF0, field SELDATAENPOL (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field SELDATAENPOL[1:1] (RW)
  *
  * Select data enable polarity. Value after Reset: 1b
  */
 
-#define BP_HDMI_PHY_CONF0_SELDATAENPOL      1
-#define BM_HDMI_PHY_CONF0_SELDATAENPOL      0x00000002
+#define BP_HDMI_PHY_CONF0_SELDATAENPOL      (1)
+#define BM_HDMI_PHY_CONF0_SELDATAENPOL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_SELDATAENPOL(v)   ((((reg32_t) v) << 1) & BM_HDMI_PHY_CONF0_SELDATAENPOL)
@@ -15565,13 +15565,13 @@ typedef union
 #define BW_HDMI_PHY_CONF0_SELDATAENPOL(v)   BF_CS1(HDMI_PHY_CONF0, SELDATAENPOL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CONF0, field GEN2_ENHPDRXSENSE (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field GEN2_ENHPDRXSENSE[2:2] (RW)
  *
  * PHY_Gen2 ENHPDRXSENSE signal Value after Reset: 1b
  */
 
-#define BP_HDMI_PHY_CONF0_GEN2_ENHPDRXSENSE      2
-#define BM_HDMI_PHY_CONF0_GEN2_ENHPDRXSENSE      0x00000004
+#define BP_HDMI_PHY_CONF0_GEN2_ENHPDRXSENSE      (2)
+#define BM_HDMI_PHY_CONF0_GEN2_ENHPDRXSENSE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_GEN2_ENHPDRXSENSE(v)   ((((reg32_t) v) << 2) & BM_HDMI_PHY_CONF0_GEN2_ENHPDRXSENSE)
@@ -15583,13 +15583,13 @@ typedef union
 #define BW_HDMI_PHY_CONF0_GEN2_ENHPDRXSENSE(v)   BF_CS1(HDMI_PHY_CONF0, GEN2_ENHPDRXSENSE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CONF0, field GEN2_TXPWRON (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field GEN2_TXPWRON[3:3] (RW)
  *
  * PHY_Gen2 TXPWRON signal Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_CONF0_GEN2_TXPWRON      3
-#define BM_HDMI_PHY_CONF0_GEN2_TXPWRON      0x00000008
+#define BP_HDMI_PHY_CONF0_GEN2_TXPWRON      (3)
+#define BM_HDMI_PHY_CONF0_GEN2_TXPWRON      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_GEN2_TXPWRON(v)   ((((reg32_t) v) << 3) & BM_HDMI_PHY_CONF0_GEN2_TXPWRON)
@@ -15601,13 +15601,13 @@ typedef union
 #define BW_HDMI_PHY_CONF0_GEN2_TXPWRON(v)   BF_CS1(HDMI_PHY_CONF0, GEN2_TXPWRON, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CONF0, field GEN2_PDDQ (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field GEN2_PDDQ[4:4] (RW)
  *
  * PHY_Gen2 PDDQ signal Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_CONF0_GEN2_PDDQ      4
-#define BM_HDMI_PHY_CONF0_GEN2_PDDQ      0x00000010
+#define BP_HDMI_PHY_CONF0_GEN2_PDDQ      (4)
+#define BM_HDMI_PHY_CONF0_GEN2_PDDQ      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_GEN2_PDDQ(v)   ((((reg32_t) v) << 4) & BM_HDMI_PHY_CONF0_GEN2_PDDQ)
@@ -15619,13 +15619,13 @@ typedef union
 #define BW_HDMI_PHY_CONF0_GEN2_PDDQ(v)   BF_CS1(HDMI_PHY_CONF0, GEN2_PDDQ, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CONF0, field SPARECTRL (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field SPARECTRL[5:5] (RW)
  *
  * Reserved. Spare pin control. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_CONF0_SPARECTRL      5
-#define BM_HDMI_PHY_CONF0_SPARECTRL      0x00000020
+#define BP_HDMI_PHY_CONF0_SPARECTRL      (5)
+#define BM_HDMI_PHY_CONF0_SPARECTRL      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_SPARECTRL(v)   ((((reg32_t) v) << 5) & BM_HDMI_PHY_CONF0_SPARECTRL)
@@ -15637,13 +15637,13 @@ typedef union
 #define BW_HDMI_PHY_CONF0_SPARECTRL(v)   BF_CS1(HDMI_PHY_CONF0, SPARECTRL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CONF0, field ENTMDS (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field ENTMDS[6:6] (RW)
  *
  * Enable TMDS drivers, bias, and TMDS digital logic. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_CONF0_ENTMDS      6
-#define BM_HDMI_PHY_CONF0_ENTMDS      0x00000040
+#define BP_HDMI_PHY_CONF0_ENTMDS      (6)
+#define BM_HDMI_PHY_CONF0_ENTMDS      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_ENTMDS(v)   ((((reg32_t) v) << 6) & BM_HDMI_PHY_CONF0_ENTMDS)
@@ -15655,13 +15655,13 @@ typedef union
 #define BW_HDMI_PHY_CONF0_ENTMDS(v)   BF_CS1(HDMI_PHY_CONF0, ENTMDS, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_CONF0, field PDZ (RW)
+/* --- Register HW_HDMI_PHY_CONF0, field PDZ[7:7] (RW)
  *
  * Power-down enable (active low 0b). Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_CONF0_PDZ      7
-#define BM_HDMI_PHY_CONF0_PDZ      0x00000080
+#define BP_HDMI_PHY_CONF0_PDZ      (7)
+#define BM_HDMI_PHY_CONF0_PDZ      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_CONF0_PDZ(v)   ((((reg32_t) v) << 7) & BM_HDMI_PHY_CONF0_PDZ)
@@ -15713,13 +15713,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_TST0 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_TST0, field TESTCLK (RW)
+/* --- Register HW_HDMI_PHY_TST0, field TESTCLK[0:0] (RW)
  *
  * Test clock signal. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_TST0_TESTCLK      0
-#define BM_HDMI_PHY_TST0_TESTCLK      0x00000001
+#define BP_HDMI_PHY_TST0_TESTCLK      (0)
+#define BM_HDMI_PHY_TST0_TESTCLK      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_TST0_TESTCLK(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_TST0_TESTCLK)
@@ -15731,13 +15731,13 @@ typedef union
 #define BW_HDMI_PHY_TST0_TESTCLK(v)   BF_CS1(HDMI_PHY_TST0, TESTCLK, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_TST0, field TESTEN (RW)
+/* --- Register HW_HDMI_PHY_TST0, field TESTEN[4:4] (RW)
  *
  * Reserved. Spare control pins. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_TST0_TESTEN      4
-#define BM_HDMI_PHY_TST0_TESTEN      0x00000010
+#define BP_HDMI_PHY_TST0_TESTEN      (4)
+#define BM_HDMI_PHY_TST0_TESTEN      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_TST0_TESTEN(v)   ((((reg32_t) v) << 4) & BM_HDMI_PHY_TST0_TESTEN)
@@ -15749,13 +15749,13 @@ typedef union
 #define BW_HDMI_PHY_TST0_TESTEN(v)   BF_CS1(HDMI_PHY_TST0, TESTEN, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_TST0, field TESTCLR (RW)
+/* --- Register HW_HDMI_PHY_TST0, field TESTCLR[5:5] (RW)
  *
  * Enable TMDS drivers, bias and tmds digital logic. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_TST0_TESTCLR      5
-#define BM_HDMI_PHY_TST0_TESTCLR      0x00000020
+#define BP_HDMI_PHY_TST0_TESTCLR      (5)
+#define BM_HDMI_PHY_TST0_TESTCLR      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_TST0_TESTCLR(v)   ((((reg32_t) v) << 5) & BM_HDMI_PHY_TST0_TESTCLR)
@@ -15803,13 +15803,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_TST1 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_TST1, field TESTDIN (RW)
+/* --- Register HW_HDMI_PHY_TST1, field TESTDIN[7:0] (RW)
  *
  * Test data input.
  */
 
-#define BP_HDMI_PHY_TST1_TESTDIN      0
-#define BM_HDMI_PHY_TST1_TESTDIN      0x000000ff
+#define BP_HDMI_PHY_TST1_TESTDIN      (0)
+#define BM_HDMI_PHY_TST1_TESTDIN      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_TST1_TESTDIN(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_TST1_TESTDIN)
@@ -15852,13 +15852,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_TST2 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_TST2, field TESTDOUT (RO)
+/* --- Register HW_HDMI_PHY_TST2, field TESTDOUT[7:0] (RO)
  *
  * Test data output.
  */
 
-#define BP_HDMI_PHY_TST2_TESTDOUT      0
-#define BM_HDMI_PHY_TST2_TESTDOUT      0x000000ff
+#define BP_HDMI_PHY_TST2_TESTDOUT      (0)
+#define BM_HDMI_PHY_TST2_TESTDOUT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15897,59 +15897,59 @@ typedef union
  * constants & macros for individual HDMI_PHY_STAT0 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_STAT0, field TX_PHY_LOCK (RO)
+/* --- Register HW_HDMI_PHY_STAT0, field TX_PHY_LOCK[0:0] (RO)
  *
  * Status bit. TX PHY PLL lock indication. Please refer to PHY datasheet for more information. User
  * may need to mask or change polarity of this interrupt after it has became active.
  */
 
-#define BP_HDMI_PHY_STAT0_TX_PHY_LOCK      0
-#define BM_HDMI_PHY_STAT0_TX_PHY_LOCK      0x00000001
+#define BP_HDMI_PHY_STAT0_TX_PHY_LOCK      (0)
+#define BM_HDMI_PHY_STAT0_TX_PHY_LOCK      (0x00000001)
 
-/* --- Register HW_HDMI_PHY_STAT0, field HPD (RO)
+/* --- Register HW_HDMI_PHY_STAT0, field HPD[1:1] (RO)
  *
  * Status bit. HDMI Hot Plug Detect indication. User may need to mask or change polarity of this
  * interrupt after it has became active.
  */
 
-#define BP_HDMI_PHY_STAT0_HPD      1
-#define BM_HDMI_PHY_STAT0_HPD      0x00000002
+#define BP_HDMI_PHY_STAT0_HPD      (1)
+#define BM_HDMI_PHY_STAT0_HPD      (0x00000002)
 
-/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE (RO)
+/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE[4:4] (RO)
  *
  * Status bit. TX PHY RX_SENSE indication for TMDS channel 0 driver. User may need to mask or change
  * polarity of this interrupt after it has became active.
  */
 
-#define BP_HDMI_PHY_STAT0_RX_SENSE      4
-#define BM_HDMI_PHY_STAT0_RX_SENSE      0x00000010
+#define BP_HDMI_PHY_STAT0_RX_SENSE      (4)
+#define BM_HDMI_PHY_STAT0_RX_SENSE      (0x00000010)
 
-/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE1 (RO)
+/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE1[5:5] (RO)
  *
  * Status bit. TX PHY RX_SENSE indication for TMDS channel 1 driver. User may need to mask or change
  * polarity of this interrupt after it has became active.
  */
 
-#define BP_HDMI_PHY_STAT0_RX_SENSE1      5
-#define BM_HDMI_PHY_STAT0_RX_SENSE1      0x00000020
+#define BP_HDMI_PHY_STAT0_RX_SENSE1      (5)
+#define BM_HDMI_PHY_STAT0_RX_SENSE1      (0x00000020)
 
-/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE2 (RO)
+/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE2[6:6] (RO)
  *
  * Status bit. TX PHY RX_SENSE indication for TMDS channel 2 driver. User may need to mask or change
  * polarity of this interrupt after it has became active.
  */
 
-#define BP_HDMI_PHY_STAT0_RX_SENSE2      6
-#define BM_HDMI_PHY_STAT0_RX_SENSE2      0x00000040
+#define BP_HDMI_PHY_STAT0_RX_SENSE2      (6)
+#define BM_HDMI_PHY_STAT0_RX_SENSE2      (0x00000040)
 
-/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE3 (RO)
+/* --- Register HW_HDMI_PHY_STAT0, field RX_SENSE3[7:7] (RO)
  *
  * Status bit. TX PHY RX_SENSE indication for TMDS CLK driver. User may need to mask or change
  * polarity of this interrupt after it has became active.
  */
 
-#define BP_HDMI_PHY_STAT0_RX_SENSE3      7
-#define BM_HDMI_PHY_STAT0_RX_SENSE3      0x00000080
+#define BP_HDMI_PHY_STAT0_RX_SENSE3      (7)
+#define BM_HDMI_PHY_STAT0_RX_SENSE3      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15992,53 +15992,53 @@ typedef union
  * constants & macros for individual HDMI_PHY_INT0 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_INT0, field TX_PHY_LOCK (RO)
+/* --- Register HW_HDMI_PHY_INT0, field TX_PHY_LOCK[0:0] (RO)
  *
  * Interrupt indication bit TX PHY PLL lock indication interrupt.
  */
 
-#define BP_HDMI_PHY_INT0_TX_PHY_LOCK      0
-#define BM_HDMI_PHY_INT0_TX_PHY_LOCK      0x00000001
+#define BP_HDMI_PHY_INT0_TX_PHY_LOCK      (0)
+#define BM_HDMI_PHY_INT0_TX_PHY_LOCK      (0x00000001)
 
-/* --- Register HW_HDMI_PHY_INT0, field HPD (RO)
+/* --- Register HW_HDMI_PHY_INT0, field HPD[1:1] (RO)
  *
  * Interrupt indication bit HDMI Hot Plug Detect indication interrupt.
  */
 
-#define BP_HDMI_PHY_INT0_HPD      1
-#define BM_HDMI_PHY_INT0_HPD      0x00000002
+#define BP_HDMI_PHY_INT0_HPD      (1)
+#define BM_HDMI_PHY_INT0_HPD      (0x00000002)
 
-/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE (RO)
+/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE[4:4] (RO)
  *
  * Interrupt indication bit TX PHY RX_SENSE indication interrupt for TMDS channel 0 driver.
  */
 
-#define BP_HDMI_PHY_INT0_RX_SENSE      4
-#define BM_HDMI_PHY_INT0_RX_SENSE      0x00000010
+#define BP_HDMI_PHY_INT0_RX_SENSE      (4)
+#define BM_HDMI_PHY_INT0_RX_SENSE      (0x00000010)
 
-/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE1 (RO)
+/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE1[5:5] (RO)
  *
  * Interrupt indication bit TX PHY RX_SENSE indication interrupt for TMDS channel 1 driver.
  */
 
-#define BP_HDMI_PHY_INT0_RX_SENSE1      5
-#define BM_HDMI_PHY_INT0_RX_SENSE1      0x00000020
+#define BP_HDMI_PHY_INT0_RX_SENSE1      (5)
+#define BM_HDMI_PHY_INT0_RX_SENSE1      (0x00000020)
 
-/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE2 (RO)
+/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE2[6:6] (RO)
  *
  * Interrupt indication bit TX PHY RX_SENSE indication interrupt for TMDS channel 2 driver.
  */
 
-#define BP_HDMI_PHY_INT0_RX_SENSE2      6
-#define BM_HDMI_PHY_INT0_RX_SENSE2      0x00000040
+#define BP_HDMI_PHY_INT0_RX_SENSE2      (6)
+#define BM_HDMI_PHY_INT0_RX_SENSE2      (0x00000040)
 
-/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE3 (RO)
+/* --- Register HW_HDMI_PHY_INT0, field RX_SENSE3[7:7] (RO)
  *
  * Interrupt indication bit TX PHY RX_SENSE indication interrupt for TMDS CLK driver.
  */
 
-#define BP_HDMI_PHY_INT0_RX_SENSE3      7
-#define BM_HDMI_PHY_INT0_RX_SENSE3      0x00000080
+#define BP_HDMI_PHY_INT0_RX_SENSE3      (7)
+#define BM_HDMI_PHY_INT0_RX_SENSE3      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16081,13 +16081,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_MASK0 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_MASK0, field TX_PHY_LOCK (RW)
+/* --- Register HW_HDMI_PHY_MASK0, field TX_PHY_LOCK[0:0] (RW)
  *
  * Mask bit for PHY_INT0.TX_PHY_LOCK interrupt bit
  */
 
-#define BP_HDMI_PHY_MASK0_TX_PHY_LOCK      0
-#define BM_HDMI_PHY_MASK0_TX_PHY_LOCK      0x00000001
+#define BP_HDMI_PHY_MASK0_TX_PHY_LOCK      (0)
+#define BM_HDMI_PHY_MASK0_TX_PHY_LOCK      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_MASK0_TX_PHY_LOCK(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_MASK0_TX_PHY_LOCK)
@@ -16099,13 +16099,13 @@ typedef union
 #define BW_HDMI_PHY_MASK0_TX_PHY_LOCK(v)   BF_CS1(HDMI_PHY_MASK0, TX_PHY_LOCK, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MASK0, field HPD (RW)
+/* --- Register HW_HDMI_PHY_MASK0, field HPD[1:1] (RW)
  *
  * Mask bit for PHY_INT0.HPD interrupt bit
  */
 
-#define BP_HDMI_PHY_MASK0_HPD      1
-#define BM_HDMI_PHY_MASK0_HPD      0x00000002
+#define BP_HDMI_PHY_MASK0_HPD      (1)
+#define BM_HDMI_PHY_MASK0_HPD      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_MASK0_HPD(v)   ((((reg32_t) v) << 1) & BM_HDMI_PHY_MASK0_HPD)
@@ -16117,13 +16117,13 @@ typedef union
 #define BW_HDMI_PHY_MASK0_HPD(v)   BF_CS1(HDMI_PHY_MASK0, HPD, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE (RW)
+/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE[4:4] (RW)
  *
  * Mask bit for PHY_INT0.RX_SENSE[0] interrupt bit
  */
 
-#define BP_HDMI_PHY_MASK0_RX_SENSE      4
-#define BM_HDMI_PHY_MASK0_RX_SENSE      0x00000010
+#define BP_HDMI_PHY_MASK0_RX_SENSE      (4)
+#define BM_HDMI_PHY_MASK0_RX_SENSE      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_MASK0_RX_SENSE(v)   ((((reg32_t) v) << 4) & BM_HDMI_PHY_MASK0_RX_SENSE)
@@ -16135,13 +16135,13 @@ typedef union
 #define BW_HDMI_PHY_MASK0_RX_SENSE(v)   BF_CS1(HDMI_PHY_MASK0, RX_SENSE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE1 (RW)
+/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE1[5:5] (RW)
  *
  * Mask bit for PHY_INT0.RX_SENSE[1] interrupt bit
  */
 
-#define BP_HDMI_PHY_MASK0_RX_SENSE1      5
-#define BM_HDMI_PHY_MASK0_RX_SENSE1      0x00000020
+#define BP_HDMI_PHY_MASK0_RX_SENSE1      (5)
+#define BM_HDMI_PHY_MASK0_RX_SENSE1      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_MASK0_RX_SENSE1(v)   ((((reg32_t) v) << 5) & BM_HDMI_PHY_MASK0_RX_SENSE1)
@@ -16153,13 +16153,13 @@ typedef union
 #define BW_HDMI_PHY_MASK0_RX_SENSE1(v)   BF_CS1(HDMI_PHY_MASK0, RX_SENSE1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE2 (RW)
+/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE2[6:6] (RW)
  *
  * Mask bit for PHY_INT0.RX_SENSE[2] interrupt bit
  */
 
-#define BP_HDMI_PHY_MASK0_RX_SENSE2      6
-#define BM_HDMI_PHY_MASK0_RX_SENSE2      0x00000040
+#define BP_HDMI_PHY_MASK0_RX_SENSE2      (6)
+#define BM_HDMI_PHY_MASK0_RX_SENSE2      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_MASK0_RX_SENSE2(v)   ((((reg32_t) v) << 6) & BM_HDMI_PHY_MASK0_RX_SENSE2)
@@ -16171,13 +16171,13 @@ typedef union
 #define BW_HDMI_PHY_MASK0_RX_SENSE2(v)   BF_CS1(HDMI_PHY_MASK0, RX_SENSE2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE3 (RW)
+/* --- Register HW_HDMI_PHY_MASK0, field RX_SENSE3[7:7] (RW)
  *
  * Mask bit for PHY_INT0.RX_SENSE[3] interrupt bit
  */
 
-#define BP_HDMI_PHY_MASK0_RX_SENSE3      7
-#define BM_HDMI_PHY_MASK0_RX_SENSE3      0x00000080
+#define BP_HDMI_PHY_MASK0_RX_SENSE3      (7)
+#define BM_HDMI_PHY_MASK0_RX_SENSE3      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_MASK0_RX_SENSE3(v)   ((((reg32_t) v) << 7) & BM_HDMI_PHY_MASK0_RX_SENSE3)
@@ -16230,13 +16230,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_POL0 bitfields
  */
 
-/* --- Register HW_HDMI_PHY_POL0, field TX_PHY_LOCK (RW)
+/* --- Register HW_HDMI_PHY_POL0, field TX_PHY_LOCK[0:0] (RW)
  *
  * Polarity bit for PHY_INT0.TX_PHY_LOCK interrupt bit
  */
 
-#define BP_HDMI_PHY_POL0_TX_PHY_LOCK      0
-#define BM_HDMI_PHY_POL0_TX_PHY_LOCK      0x00000001
+#define BP_HDMI_PHY_POL0_TX_PHY_LOCK      (0)
+#define BM_HDMI_PHY_POL0_TX_PHY_LOCK      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_POL0_TX_PHY_LOCK(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_POL0_TX_PHY_LOCK)
@@ -16248,13 +16248,13 @@ typedef union
 #define BW_HDMI_PHY_POL0_TX_PHY_LOCK(v)   BF_CS1(HDMI_PHY_POL0, TX_PHY_LOCK, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_POL0, field HPD (RW)
+/* --- Register HW_HDMI_PHY_POL0, field HPD[1:1] (RW)
  *
  * Polarity bit for PHY_INT0.HPD interrupt bit
  */
 
-#define BP_HDMI_PHY_POL0_HPD      1
-#define BM_HDMI_PHY_POL0_HPD      0x00000002
+#define BP_HDMI_PHY_POL0_HPD      (1)
+#define BM_HDMI_PHY_POL0_HPD      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_POL0_HPD(v)   ((((reg32_t) v) << 1) & BM_HDMI_PHY_POL0_HPD)
@@ -16266,13 +16266,13 @@ typedef union
 #define BW_HDMI_PHY_POL0_HPD(v)   BF_CS1(HDMI_PHY_POL0, HPD, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE (RW)
+/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE[4:4] (RW)
  *
  * Polarity bit for PHY_INT0.RX_SENSE[0] interrupt bit
  */
 
-#define BP_HDMI_PHY_POL0_RX_SENSE      4
-#define BM_HDMI_PHY_POL0_RX_SENSE      0x00000010
+#define BP_HDMI_PHY_POL0_RX_SENSE      (4)
+#define BM_HDMI_PHY_POL0_RX_SENSE      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_POL0_RX_SENSE(v)   ((((reg32_t) v) << 4) & BM_HDMI_PHY_POL0_RX_SENSE)
@@ -16284,13 +16284,13 @@ typedef union
 #define BW_HDMI_PHY_POL0_RX_SENSE(v)   BF_CS1(HDMI_PHY_POL0, RX_SENSE, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE1 (RW)
+/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE1[5:5] (RW)
  *
  * Polarity bit for PHY_INT0.RX_SENSE[1] interrupt bit
  */
 
-#define BP_HDMI_PHY_POL0_RX_SENSE1      5
-#define BM_HDMI_PHY_POL0_RX_SENSE1      0x00000020
+#define BP_HDMI_PHY_POL0_RX_SENSE1      (5)
+#define BM_HDMI_PHY_POL0_RX_SENSE1      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_POL0_RX_SENSE1(v)   ((((reg32_t) v) << 5) & BM_HDMI_PHY_POL0_RX_SENSE1)
@@ -16302,13 +16302,13 @@ typedef union
 #define BW_HDMI_PHY_POL0_RX_SENSE1(v)   BF_CS1(HDMI_PHY_POL0, RX_SENSE1, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE2 (RW)
+/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE2[6:6] (RW)
  *
  * Polarity bit for PHY_INT0.RX_SENSE[2] interrupt bit
  */
 
-#define BP_HDMI_PHY_POL0_RX_SENSE2      6
-#define BM_HDMI_PHY_POL0_RX_SENSE2      0x00000040
+#define BP_HDMI_PHY_POL0_RX_SENSE2      (6)
+#define BM_HDMI_PHY_POL0_RX_SENSE2      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_POL0_RX_SENSE2(v)   ((((reg32_t) v) << 6) & BM_HDMI_PHY_POL0_RX_SENSE2)
@@ -16320,13 +16320,13 @@ typedef union
 #define BW_HDMI_PHY_POL0_RX_SENSE2(v)   BF_CS1(HDMI_PHY_POL0, RX_SENSE2, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE3 (RW)
+/* --- Register HW_HDMI_PHY_POL0, field RX_SENSE3[7:7] (RW)
  *
  * Polarity bit for PHY_INT0.RX_SENSE[3] interrupt bit
  */
 
-#define BP_HDMI_PHY_POL0_RX_SENSE3      7
-#define BM_HDMI_PHY_POL0_RX_SENSE3      0x00000080
+#define BP_HDMI_PHY_POL0_RX_SENSE3      (7)
+#define BM_HDMI_PHY_POL0_RX_SENSE3      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_POL0_RX_SENSE3(v)   ((((reg32_t) v) << 7) & BM_HDMI_PHY_POL0_RX_SENSE3)
@@ -16409,13 +16409,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_ADDRESS_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_ADDRESS_ADDR, field ADDRESS (RW)
+/* --- Register HW_HDMI_PHY_I2CM_ADDRESS_ADDR, field ADDRESS[7:0] (RW)
  *
  * Register address for read and write operations.
  */
 
-#define BP_HDMI_PHY_I2CM_ADDRESS_ADDR_ADDRESS      0
-#define BM_HDMI_PHY_I2CM_ADDRESS_ADDR_ADDRESS      0x000000ff
+#define BP_HDMI_PHY_I2CM_ADDRESS_ADDR_ADDRESS      (0)
+#define BM_HDMI_PHY_I2CM_ADDRESS_ADDR_ADDRESS      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_ADDRESS_ADDR_ADDRESS(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_ADDRESS_ADDR_ADDRESS)
@@ -16461,13 +16461,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_DATAO_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_DATAO_1_ADDR, field DATAO (RW)
+/* --- Register HW_HDMI_PHY_I2CM_DATAO_1_ADDR, field DATAO[7:0] (RW)
  *
  * MSB's of data to be written on register pointed by address [7:0].
  */
 
-#define BP_HDMI_PHY_I2CM_DATAO_1_ADDR_DATAO      0
-#define BM_HDMI_PHY_I2CM_DATAO_1_ADDR_DATAO      0x000000ff
+#define BP_HDMI_PHY_I2CM_DATAO_1_ADDR_DATAO      (0)
+#define BM_HDMI_PHY_I2CM_DATAO_1_ADDR_DATAO      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_DATAO_1_ADDR_DATAO(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_DATAO_1_ADDR_DATAO)
@@ -16513,13 +16513,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_DATAO_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_DATAO_0_ADDR, field DATAO (RW)
+/* --- Register HW_HDMI_PHY_I2CM_DATAO_0_ADDR, field DATAO[7:0] (RW)
  *
  * LSB's of data to be written on register pointed by address [7:0].
  */
 
-#define BP_HDMI_PHY_I2CM_DATAO_0_ADDR_DATAO      0
-#define BM_HDMI_PHY_I2CM_DATAO_0_ADDR_DATAO      0x000000ff
+#define BP_HDMI_PHY_I2CM_DATAO_0_ADDR_DATAO      (0)
+#define BM_HDMI_PHY_I2CM_DATAO_0_ADDR_DATAO      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_DATAO_0_ADDR_DATAO(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_DATAO_0_ADDR_DATAO)
@@ -16561,13 +16561,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_DATAI_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_DATAI_1_ADDR, field DATAI (RO)
+/* --- Register HW_HDMI_PHY_I2CM_DATAI_1_ADDR, field DATAI[7:0] (RO)
  *
  * MSB's of data read from the register pointed by address [7:0].
  */
 
-#define BP_HDMI_PHY_I2CM_DATAI_1_ADDR_DATAI      0
-#define BM_HDMI_PHY_I2CM_DATAI_1_ADDR_DATAI      0x000000ff
+#define BP_HDMI_PHY_I2CM_DATAI_1_ADDR_DATAI      (0)
+#define BM_HDMI_PHY_I2CM_DATAI_1_ADDR_DATAI      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16603,13 +16603,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_DATAI_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_DATAI_0_ADDR, field DATAI (RW)
+/* --- Register HW_HDMI_PHY_I2CM_DATAI_0_ADDR, field DATAI[7:0] (RW)
  *
  * LSB's of data read from the register pointed by address [7:0].
  */
 
-#define BP_HDMI_PHY_I2CM_DATAI_0_ADDR_DATAI      0
-#define BM_HDMI_PHY_I2CM_DATAI_0_ADDR_DATAI      0x000000ff
+#define BP_HDMI_PHY_I2CM_DATAI_0_ADDR_DATAI      (0)
+#define BM_HDMI_PHY_I2CM_DATAI_0_ADDR_DATAI      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_DATAI_0_ADDR_DATAI(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_DATAI_0_ADDR_DATAI)
@@ -16657,13 +16657,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_OPERATION_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_OPERATION_ADDR, field READ (WO)
+/* --- Register HW_HDMI_PHY_I2CM_OPERATION_ADDR, field READ[0:0] (WO)
  *
  * Read operation request.
  */
 
-#define BP_HDMI_PHY_I2CM_OPERATION_ADDR_READ      0
-#define BM_HDMI_PHY_I2CM_OPERATION_ADDR_READ      0x00000001
+#define BP_HDMI_PHY_I2CM_OPERATION_ADDR_READ      (0)
+#define BM_HDMI_PHY_I2CM_OPERATION_ADDR_READ      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_OPERATION_ADDR_READ(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_OPERATION_ADDR_READ)
@@ -16675,13 +16675,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_OPERATION_ADDR_READ(v)   BF_CS1(HDMI_PHY_I2CM_OPERATION_ADDR, READ, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_OPERATION_ADDR, field WRITE (WO)
+/* --- Register HW_HDMI_PHY_I2CM_OPERATION_ADDR, field WRITE[4:4] (WO)
  *
  * Write operation request
  */
 
-#define BP_HDMI_PHY_I2CM_OPERATION_ADDR_WRITE      4
-#define BM_HDMI_PHY_I2CM_OPERATION_ADDR_WRITE      0x00000010
+#define BP_HDMI_PHY_I2CM_OPERATION_ADDR_WRITE      (4)
+#define BM_HDMI_PHY_I2CM_OPERATION_ADDR_WRITE      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_OPERATION_ADDR_WRITE(v)   ((((reg32_t) v) << 4) & BM_HDMI_PHY_I2CM_OPERATION_ADDR_WRITE)
@@ -16732,13 +16732,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_INT_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_STATUS (RW)
+/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_STATUS[0:0] (RW)
  *
  * Operation done status bit.Marks the end of a rd or write operation. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_STATUS      0
-#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_STATUS      0x00000001
+#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_STATUS      (0)
+#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_STATUS      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_INT_ADDR_DONE_STATUS(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_INT_ADDR_DONE_STATUS)
@@ -16750,14 +16750,14 @@ typedef union
 #define BW_HDMI_PHY_I2CM_INT_ADDR_DONE_STATUS(v)   BF_CS1(HDMI_PHY_I2CM_INT_ADDR, DONE_STATUS, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_INTERRUPT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_INTERRUPT[1:1] (RW)
  *
  * Operation done interrupt bit.{done_interrupt =(done_mask==0b)&& (done_status==done_pol)}. Value
  * after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_INTERRUPT      1
-#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_INTERRUPT      0x00000002
+#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_INTERRUPT      (1)
+#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_INTERRUPT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_INT_ADDR_DONE_INTERRUPT(v)   ((((reg32_t) v) << 1) & BM_HDMI_PHY_I2CM_INT_ADDR_DONE_INTERRUPT)
@@ -16769,13 +16769,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_INT_ADDR_DONE_INTERRUPT(v)   BF_CS1(HDMI_PHY_I2CM_INT_ADDR, DONE_INTERRUPT, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_MASK (RW)
+/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_MASK[2:2] (RW)
  *
  * Done interrupt mask signal Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_MASK      2
-#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_MASK      0x00000004
+#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_MASK      (2)
+#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_MASK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_INT_ADDR_DONE_MASK(v)   ((((reg32_t) v) << 2) & BM_HDMI_PHY_I2CM_INT_ADDR_DONE_MASK)
@@ -16787,13 +16787,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_INT_ADDR_DONE_MASK(v)   BF_CS1(HDMI_PHY_I2CM_INT_ADDR, DONE_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_POL (RW)
+/* --- Register HW_HDMI_PHY_I2CM_INT_ADDR, field DONE_POL[3:3] (RW)
  *
  * Done interrupt polarity configuration Value after Reset: 1b
  */
 
-#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_POL      3
-#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_POL      0x00000008
+#define BP_HDMI_PHY_I2CM_INT_ADDR_DONE_POL      (3)
+#define BM_HDMI_PHY_I2CM_INT_ADDR_DONE_POL      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_INT_ADDR_DONE_POL(v)   ((((reg32_t) v) << 3) & BM_HDMI_PHY_I2CM_INT_ADDR_DONE_POL)
@@ -16847,13 +16847,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_CTLINT_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_STATUS (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_STATUS[0:0] (RW)
  *
  * Arbitration error status bit. Error on master I2C protocol arbitration. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_STATUS      0
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_STATUS      0x00000001
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_STATUS      (0)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_STATUS      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_STATUS(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_STATUS)
@@ -16865,14 +16865,14 @@ typedef union
 #define BW_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_STATUS(v)   BF_CS1(HDMI_PHY_I2CM_CTLINT_ADDR, ARBITRATION_STATUS, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_INTERRUPT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_INTERRUPT[1:1] (RW)
  *
  * Arbitration error interrupt bit.{arbitration_interrupt = (arbitration_mask==0b)&&
  * (arbitration_status==arbitration_pol)}. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_INTERRUPT      1
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_INTERRUPT      0x00000002
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_INTERRUPT      (1)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_INTERRUPT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_INTERRUPT(v)   ((((reg32_t) v) << 1) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_INTERRUPT)
@@ -16884,13 +16884,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_INTERRUPT(v)   BF_CS1(HDMI_PHY_I2CM_CTLINT_ADDR, ARBITRATION_INTERRUPT, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_MASK (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_MASK[2:2] (RW)
  *
  * Arbitration error interrupt mask signal. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_MASK      2
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_MASK      0x00000004
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_MASK      (2)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_MASK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_MASK(v)   ((((reg32_t) v) << 2) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_MASK)
@@ -16902,13 +16902,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_MASK(v)   BF_CS1(HDMI_PHY_I2CM_CTLINT_ADDR, ARBITRATION_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_POL (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field ARBITRATION_POL[3:3] (RW)
  *
  * Arbitration error interrupt polarity configuration. Value after Reset: 1b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL      3
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL      0x00000008
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL      (3)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL(v)   ((((reg32_t) v) << 3) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL)
@@ -16920,13 +16920,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL(v)   BF_CS1(HDMI_PHY_I2CM_CTLINT_ADDR, ARBITRATION_POL, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_STATUS (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_STATUS[4:4] (RW)
  *
  * Not acknowledge error status bit.Error on I2C not acknowledge. Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_STATUS      4
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_STATUS      0x00000010
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_STATUS      (4)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_STATUS      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_STATUS(v)   ((((reg32_t) v) << 4) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_STATUS)
@@ -16938,14 +16938,14 @@ typedef union
 #define BW_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_STATUS(v)   BF_CS1(HDMI_PHY_I2CM_CTLINT_ADDR, NACK_STATUS, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_INTERRUPT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_INTERRUPT[5:5] (RW)
  *
  * Not acknowledge error interrupt bit.{nack_interrupt = nack_mask==0b) && (nack_status==nack_pol)}.
  * Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_INTERRUPT      5
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_INTERRUPT      0x00000020
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_INTERRUPT      (5)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_INTERRUPT      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_INTERRUPT(v)   ((((reg32_t) v) << 5) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_INTERRUPT)
@@ -16957,13 +16957,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_INTERRUPT(v)   BF_CS1(HDMI_PHY_I2CM_CTLINT_ADDR, NACK_INTERRUPT, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_MASK (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_MASK[6:6] (RW)
  *
  * Not acknowledge error interrupt mask signal Value after Reset: 0b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_MASK      6
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_MASK      0x00000040
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_MASK      (6)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_MASK      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_MASK(v)   ((((reg32_t) v) << 6) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_MASK)
@@ -16975,13 +16975,13 @@ typedef union
 #define BW_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_MASK(v)   BF_CS1(HDMI_PHY_I2CM_CTLINT_ADDR, NACK_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_POL (RW)
+/* --- Register HW_HDMI_PHY_I2CM_CTLINT_ADDR, field NACK_POL[7:7] (RW)
  *
  * Not acknowledge error interrupt polarity configuration. Value after Reset: 1b
  */
 
-#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_POL      7
-#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_POL      0x00000080
+#define BP_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_POL      (7)
+#define BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_POL      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_POL(v)   ((((reg32_t) v) << 7) & BM_HDMI_PHY_I2CM_CTLINT_ADDR_NACK_POL)
@@ -17029,14 +17029,14 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_DIV_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_DIV_ADDR, field FAST_MODE (RW)
+/* --- Register HW_HDMI_PHY_I2CM_DIV_ADDR, field FAST_MODE[3:0] (RW)
  *
  * Sets the I2C Master to work in Fast Mode or Standard Mode (x implies that it can take any value)
  * Value after Reset: 1011b 1xxxb Fast Mode 0xxxb Standard Mode
  */
 
-#define BP_HDMI_PHY_I2CM_DIV_ADDR_FAST_MODE      0
-#define BM_HDMI_PHY_I2CM_DIV_ADDR_FAST_MODE      0x0000000f
+#define BP_HDMI_PHY_I2CM_DIV_ADDR_FAST_MODE      (0)
+#define BM_HDMI_PHY_I2CM_DIV_ADDR_FAST_MODE      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_DIV_ADDR_FAST_MODE(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_DIV_ADDR_FAST_MODE)
@@ -17087,14 +17087,14 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_SOFTRSTZ_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_SOFTRSTZ_ADDR, field I2C_SOFTRST (RW)
+/* --- Register HW_HDMI_PHY_I2CM_SOFTRSTZ_ADDR, field I2C_SOFTRST[0:0] (RW)
  *
  * I2C Master PHY Software Reset. Active by writing a zero and auto cleared to one in the following
  * cycle. Value after Reset: 1b
  */
 
-#define BP_HDMI_PHY_I2CM_SOFTRSTZ_ADDR_I2C_SOFTRST      0
-#define BM_HDMI_PHY_I2CM_SOFTRSTZ_ADDR_I2C_SOFTRST      0x00000001
+#define BP_HDMI_PHY_I2CM_SOFTRSTZ_ADDR_I2C_SOFTRST      (0)
+#define BM_HDMI_PHY_I2CM_SOFTRSTZ_ADDR_I2C_SOFTRST      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_SOFTRSTZ_ADDR_I2C_SOFTRST(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_SOFTRSTZ_ADDR_I2C_SOFTRST)
@@ -17140,13 +17140,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR, field I2CMP_SS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR, field I2CMP_SS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      0
-#define BM_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      (0)
+#define BM_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT)
@@ -17192,13 +17192,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR, field I2CMP_SS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR, field I2CMP_SS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h6C
  */
 
-#define BP_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      0
-#define BM_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      (0)
+#define BM_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT)
@@ -17244,13 +17244,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR, field I2CMP_SS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR, field I2CMP_SS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      0
-#define BM_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      (0)
+#define BM_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT)
@@ -17296,13 +17296,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR, field I2CMP_SS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR, field I2CMP_SS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h7F
  */
 
-#define BP_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      0
-#define BM_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      (0)
+#define BM_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT)
@@ -17348,13 +17348,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR, field I2CMP_FS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR, field I2CMP_FS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      0
-#define BM_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      (0)
+#define BM_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT)
@@ -17400,13 +17400,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR, field I2CMP_FS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR, field I2CMP_FS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h11
  */
 
-#define BP_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      0
-#define BM_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      (0)
+#define BM_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT)
@@ -17452,13 +17452,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR, field I2CMP_FS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR, field I2CMP_FS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      0
-#define BM_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      (0)
+#define BM_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT)
@@ -17504,13 +17504,13 @@ typedef union
  * constants & macros for individual HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR, field I2CMP_FS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR, field I2CMP_FS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h24
  */
 
-#define BP_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      0
-#define BM_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      0x000000ff
+#define BP_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      (0)
+#define BM_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_PHY_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT)
@@ -17557,13 +17557,13 @@ typedef union
  * constants & macros for individual HDMI_AUD_N1 bitfields
  */
 
-/* --- Register HW_HDMI_AUD_N1, field AUDN (RW)
+/* --- Register HW_HDMI_AUD_N1, field AUDN[7:0] (RW)
  *
  * HDMI Audio Clock Regenerator N value
  */
 
-#define BP_HDMI_AUD_N1_AUDN      0
-#define BM_HDMI_AUD_N1_AUDN      0x000000ff
+#define BP_HDMI_AUD_N1_AUDN      (0)
+#define BM_HDMI_AUD_N1_AUDN      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AUD_N1_AUDN(v)   ((((reg32_t) v) << 0) & BM_HDMI_AUD_N1_AUDN)
@@ -17610,13 +17610,13 @@ typedef union
  * constants & macros for individual HDMI_AUD_N2 bitfields
  */
 
-/* --- Register HW_HDMI_AUD_N2, field AUDN (RW)
+/* --- Register HW_HDMI_AUD_N2, field AUDN[7:0] (RW)
  *
  * HDMI Audio Clock Regenerator N value
  */
 
-#define BP_HDMI_AUD_N2_AUDN      0
-#define BM_HDMI_AUD_N2_AUDN      0x000000ff
+#define BP_HDMI_AUD_N2_AUDN      (0)
+#define BM_HDMI_AUD_N2_AUDN      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AUD_N2_AUDN(v)   ((((reg32_t) v) << 0) & BM_HDMI_AUD_N2_AUDN)
@@ -17664,13 +17664,13 @@ typedef union
  * constants & macros for individual HDMI_AUD_N3 bitfields
  */
 
-/* --- Register HW_HDMI_AUD_N3, field AUDN (RW)
+/* --- Register HW_HDMI_AUD_N3, field AUDN[3:0] (RW)
  *
  * HDMI Audio Clock Regenerator N value
  */
 
-#define BP_HDMI_AUD_N3_AUDN      0
-#define BM_HDMI_AUD_N3_AUDN      0x0000000f
+#define BP_HDMI_AUD_N3_AUDN      (0)
+#define BM_HDMI_AUD_N3_AUDN      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AUD_N3_AUDN(v)   ((((reg32_t) v) << 0) & BM_HDMI_AUD_N3_AUDN)
@@ -17717,14 +17717,14 @@ typedef union
  * constants & macros for individual HDMI_AUD_CTS1 bitfields
  */
 
-/* --- Register HW_HDMI_AUD_CTS1, field AUDCTS (RW)
+/* --- Register HW_HDMI_AUD_CTS1, field AUDCTS[7:0] (RW)
  *
  * HDMI Audio Clock Regenerator CTS calculated value. This value can be manually set using the
  * CTS_manual (AUD_CTS3) mechanism.
  */
 
-#define BP_HDMI_AUD_CTS1_AUDCTS      0
-#define BM_HDMI_AUD_CTS1_AUDCTS      0x000000ff
+#define BP_HDMI_AUD_CTS1_AUDCTS      (0)
+#define BM_HDMI_AUD_CTS1_AUDCTS      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AUD_CTS1_AUDCTS(v)   ((((reg32_t) v) << 0) & BM_HDMI_AUD_CTS1_AUDCTS)
@@ -17771,14 +17771,14 @@ typedef union
  * constants & macros for individual HDMI_AUD_CTS2 bitfields
  */
 
-/* --- Register HW_HDMI_AUD_CTS2, field AUDCTS (RW)
+/* --- Register HW_HDMI_AUD_CTS2, field AUDCTS[7:0] (RW)
  *
  * HDMI Audio Clock Regenerator CTS calculated value. This value can be manually set using the
  * CTS_manual (AUD_CTS3) mechanism.
  */
 
-#define BP_HDMI_AUD_CTS2_AUDCTS      0
-#define BM_HDMI_AUD_CTS2_AUDCTS      0x000000ff
+#define BP_HDMI_AUD_CTS2_AUDCTS      (0)
+#define BM_HDMI_AUD_CTS2_AUDCTS      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AUD_CTS2_AUDCTS(v)   ((((reg32_t) v) << 0) & BM_HDMI_AUD_CTS2_AUDCTS)
@@ -17826,14 +17826,14 @@ typedef union
  * constants & macros for individual HDMI_AUD_CTS3 bitfields
  */
 
-/* --- Register HW_HDMI_AUD_CTS3, field AUDCTS (RW)
+/* --- Register HW_HDMI_AUD_CTS3, field AUDCTS[3:0] (RW)
  *
  * HDMI Audio Clock Regenerator CTS calculated value. This value can be manually set using the
  * CTS_manual (AUD_CTS3) mechanism.
  */
 
-#define BP_HDMI_AUD_CTS3_AUDCTS      0
-#define BM_HDMI_AUD_CTS3_AUDCTS      0x0000000f
+#define BP_HDMI_AUD_CTS3_AUDCTS      (0)
+#define BM_HDMI_AUD_CTS3_AUDCTS      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AUD_CTS3_AUDCTS(v)   ((((reg32_t) v) << 0) & BM_HDMI_AUD_CTS3_AUDCTS)
@@ -17886,18 +17886,18 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_CONF0 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_CONF0, field BURST_MODE (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF0, field BURST_MODE[0:0] (RW)
  *
 
  *
  * Values:
+ * 0 - Normal operation is unspecified length incremental burst. It corresponds to INCR AHB burst mode.
  * 1 - Forces the burst mode to be fixed beat incremental burst mode designated by the incr_type[1:0]
  *     signal.
- * 0 - Normal operation is unspecified length incremental burst. It corresponds to INCR AHB burst mode.
  */
 
-#define BP_HDMI_AHB_DMA_CONF0_BURST_MODE      0
-#define BM_HDMI_AHB_DMA_CONF0_BURST_MODE      0x00000001
+#define BP_HDMI_AHB_DMA_CONF0_BURST_MODE      (0)
+#define BM_HDMI_AHB_DMA_CONF0_BURST_MODE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF0_BURST_MODE(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_CONF0_BURST_MODE)
@@ -17910,7 +17910,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF0, field INCR_TYPE (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF0, field INCR_TYPE[2:1] (RW)
  *
  * Forced size burst mode.
  *
@@ -17922,8 +17922,8 @@ typedef union
  * 11 - Corresponds to INCR16 fixed 16 beat incremental AHB burst mode. Only valid when burst_mode is high.
  */
 
-#define BP_HDMI_AHB_DMA_CONF0_INCR_TYPE      1
-#define BM_HDMI_AHB_DMA_CONF0_INCR_TYPE      0x00000006
+#define BP_HDMI_AHB_DMA_CONF0_INCR_TYPE      (1)
+#define BM_HDMI_AHB_DMA_CONF0_INCR_TYPE      (0x00000006)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF0_INCR_TYPE(v)   ((((reg32_t) v) << 1) & BM_HDMI_AHB_DMA_CONF0_INCR_TYPE)
@@ -17936,17 +17936,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF0, field ENABLE_HLOCK (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF0, field ENABLE_HLOCK[3:3] (RW)
  *
  * Enable request of locked burst AHB mechanism.
  *
  * Values:
- * 1 - Enables the usage of ohlock for master request to arbiter of a locked complete burst.\
  * 0 - Disables request of locked burst AHB mechanism
+ * 1 - Enables the usage of ohlock for master request to arbiter of a locked complete burst.\
  */
 
-#define BP_HDMI_AHB_DMA_CONF0_ENABLE_HLOCK      3
-#define BM_HDMI_AHB_DMA_CONF0_ENABLE_HLOCK      0x00000008
+#define BP_HDMI_AHB_DMA_CONF0_ENABLE_HLOCK      (3)
+#define BM_HDMI_AHB_DMA_CONF0_ENABLE_HLOCK      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF0_ENABLE_HLOCK(v)   ((((reg32_t) v) << 3) & BM_HDMI_AHB_DMA_CONF0_ENABLE_HLOCK)
@@ -17959,15 +17959,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF0, field HBR (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF0, field HBR[4:4] (RW)
  *
  * HBR packets enable. The HDMI TX sends the HBR packets. This bit is enabled when the audio
  * frequency is higher than 192 KHz. If this bit is enabled, the number of channels configured in
  * AHB_DMA_CONF1 is always 8.
  */
 
-#define BP_HDMI_AHB_DMA_CONF0_HBR      4
-#define BM_HDMI_AHB_DMA_CONF0_HBR      0x00000010
+#define BP_HDMI_AHB_DMA_CONF0_HBR      (4)
+#define BM_HDMI_AHB_DMA_CONF0_HBR      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF0_HBR(v)   ((((reg32_t) v) << 4) & BM_HDMI_AHB_DMA_CONF0_HBR)
@@ -17979,15 +17979,15 @@ typedef union
 #define BW_HDMI_AHB_DMA_CONF0_HBR(v)   BF_CS1(HDMI_AHB_DMA_CONF0, HBR, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_CONF0, field SW_FIFO_RST (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF0, field SW_FIFO_RST[7:7] (RW)
  *
  * This is the software reset bit for the audio and FIFOs clear. Writing 0'b does not result in any
  * action. Writing 1'b to this register resets all audio FIFOs. Reading from this register always
  * returns 0'b.
  */
 
-#define BP_HDMI_AHB_DMA_CONF0_SW_FIFO_RST      7
-#define BM_HDMI_AHB_DMA_CONF0_SW_FIFO_RST      0x00000080
+#define BP_HDMI_AHB_DMA_CONF0_SW_FIFO_RST      (7)
+#define BM_HDMI_AHB_DMA_CONF0_SW_FIFO_RST      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF0_SW_FIFO_RST(v)   ((((reg32_t) v) << 7) & BM_HDMI_AHB_DMA_CONF0_SW_FIFO_RST)
@@ -18041,13 +18041,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_START bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_START, field DATA_BUFFER_READY (RW)
+/* --- Register HW_HDMI_AHB_DMA_START, field DATA_BUFFER_READY[0:0] (RW)
  *
  * Data buffer ready
  */
 
-#define BP_HDMI_AHB_DMA_START_DATA_BUFFER_READY      0
-#define BM_HDMI_AHB_DMA_START_DATA_BUFFER_READY      0x00000001
+#define BP_HDMI_AHB_DMA_START_DATA_BUFFER_READY      (0)
+#define BM_HDMI_AHB_DMA_START_DATA_BUFFER_READY      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_START_DATA_BUFFER_READY(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_START_DATA_BUFFER_READY)
@@ -18097,13 +18097,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STOP bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STOP, field STOP_DMA_TRANSACTION (RW)
+/* --- Register HW_HDMI_AHB_DMA_STOP, field STOP_DMA_TRANSACTION[0:0] (RW)
  *
  * Stop DMA transaction
  */
 
-#define BP_HDMI_AHB_DMA_STOP_STOP_DMA_TRANSACTION      0
-#define BM_HDMI_AHB_DMA_STOP_STOP_DMA_TRANSACTION      0x00000001
+#define BP_HDMI_AHB_DMA_STOP_STOP_DMA_TRANSACTION      (0)
+#define BM_HDMI_AHB_DMA_STOP_STOP_DMA_TRANSACTION      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STOP_STOP_DMA_TRANSACTION(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STOP_STOP_DMA_TRANSACTION)
@@ -18157,13 +18157,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_THRSLD bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_THRSLD, field FIFO_THRESHOLD (RW)
+/* --- Register HW_HDMI_AHB_DMA_THRSLD, field FIFO_THRESHOLD[7:0] (RW)
  *
  * FIFO medium threshold occupation value
  */
 
-#define BP_HDMI_AHB_DMA_THRSLD_FIFO_THRESHOLD      0
-#define BM_HDMI_AHB_DMA_THRSLD_FIFO_THRESHOLD      0x000000ff
+#define BP_HDMI_AHB_DMA_THRSLD_FIFO_THRESHOLD      (0)
+#define BM_HDMI_AHB_DMA_THRSLD_FIFO_THRESHOLD      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_THRSLD_FIFO_THRESHOLD(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_THRSLD_FIFO_THRESHOLD)
@@ -18211,13 +18211,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STRADDR0 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STRADDR0, field INITIAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STRADDR0, field INITIAL_ADDR[7:0] (RW)
  *
  * Defines init_addr[7:0] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STRADDR0_INITIAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STRADDR0_INITIAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STRADDR0_INITIAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STRADDR0_INITIAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STRADDR0_INITIAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STRADDR0_INITIAL_ADDR)
@@ -18263,13 +18263,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STRADDR1 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STRADDR1, field INITIAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STRADDR1, field INITIAL_ADDR[7:0] (RW)
  *
  * Defines init_addr[15:8] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STRADDR1_INITIAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STRADDR1_INITIAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STRADDR1_INITIAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STRADDR1_INITIAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STRADDR1_INITIAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STRADDR1_INITIAL_ADDR)
@@ -18315,13 +18315,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STRADDR2 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STRADDR2, field INITIAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STRADDR2, field INITIAL_ADDR[7:0] (RW)
  *
  * Defines init_addr[23:16] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STRADDR2_INITIAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STRADDR2_INITIAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STRADDR2_INITIAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STRADDR2_INITIAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STRADDR2_INITIAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STRADDR2_INITIAL_ADDR)
@@ -18367,13 +18367,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STRADDR3 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STRADDR3, field INITIAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STRADDR3, field INITIAL_ADDR[7:0] (RW)
  *
  * Defines init_addr[31:24] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STRADDR3_INITIAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STRADDR3_INITIAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STRADDR3_INITIAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STRADDR3_INITIAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STRADDR3_INITIAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STRADDR3_INITIAL_ADDR)
@@ -18431,13 +18431,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STPADDR0 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STPADDR0, field FINAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STPADDR0, field FINAL_ADDR[7:0] (RW)
  *
  * Defines final_addr[7:0] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STPADDR0_FINAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STPADDR0_FINAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STPADDR0_FINAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STPADDR0_FINAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STPADDR0_FINAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STPADDR0_FINAL_ADDR)
@@ -18483,13 +18483,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STPADDR1 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STPADDR1, field FINAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STPADDR1, field FINAL_ADDR[7:0] (RW)
  *
  * Defines final_addr[15:8] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STPADDR1_FINAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STPADDR1_FINAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STPADDR1_FINAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STPADDR1_FINAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STPADDR1_FINAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STPADDR1_FINAL_ADDR)
@@ -18535,13 +18535,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STPADDR2 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STPADDR2, field FINAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STPADDR2, field FINAL_ADDR[7:0] (RW)
  *
  * Defines final_addr[23:16] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STPADDR2_FINAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STPADDR2_FINAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STPADDR2_FINAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STPADDR2_FINAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STPADDR2_FINAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STPADDR2_FINAL_ADDR)
@@ -18587,13 +18587,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STPADDR3 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STPADDR3, field FINAL_ADDR (RW)
+/* --- Register HW_HDMI_AHB_DMA_STPADDR3, field FINAL_ADDR[7:0] (RW)
  *
  * Defines final_addr[31:24] for bits 7-0 to initiate DMA burst transactions
  */
 
-#define BP_HDMI_AHB_DMA_STPADDR3_FINAL_ADDR      0
-#define BM_HDMI_AHB_DMA_STPADDR3_FINAL_ADDR      0x000000ff
+#define BP_HDMI_AHB_DMA_STPADDR3_FINAL_ADDR      (0)
+#define BM_HDMI_AHB_DMA_STPADDR3_FINAL_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_STPADDR3_FINAL_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_STPADDR3_FINAL_ADDR)
@@ -18639,13 +18639,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BSTADDR0 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BSTADDR0, field BURST_START (RO)
+/* --- Register HW_HDMI_AHB_DMA_BSTADDR0, field BURST_START[7:0] (RO)
  *
  * Start address for the current burst operation
  */
 
-#define BP_HDMI_AHB_DMA_BSTADDR0_BURST_START      0
-#define BM_HDMI_AHB_DMA_BSTADDR0_BURST_START      0x000000ff
+#define BP_HDMI_AHB_DMA_BSTADDR0_BURST_START      (0)
+#define BM_HDMI_AHB_DMA_BSTADDR0_BURST_START      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18677,13 +18677,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BSTADDR1 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BSTADDR1, field BURST_START (RO)
+/* --- Register HW_HDMI_AHB_DMA_BSTADDR1, field BURST_START[7:0] (RO)
  *
  * Start address for the current burst operation
  */
 
-#define BP_HDMI_AHB_DMA_BSTADDR1_BURST_START      0
-#define BM_HDMI_AHB_DMA_BSTADDR1_BURST_START      0x000000ff
+#define BP_HDMI_AHB_DMA_BSTADDR1_BURST_START      (0)
+#define BM_HDMI_AHB_DMA_BSTADDR1_BURST_START      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18715,13 +18715,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BSTADDR2 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BSTADDR2, field BURST_START (RO)
+/* --- Register HW_HDMI_AHB_DMA_BSTADDR2, field BURST_START[7:0] (RO)
  *
  * Start address for the current burst operation
  */
 
-#define BP_HDMI_AHB_DMA_BSTADDR2_BURST_START      0
-#define BM_HDMI_AHB_DMA_BSTADDR2_BURST_START      0x000000ff
+#define BP_HDMI_AHB_DMA_BSTADDR2_BURST_START      (0)
+#define BM_HDMI_AHB_DMA_BSTADDR2_BURST_START      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18753,13 +18753,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BSTADDR3 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BSTADDR3, field BURST_START (RO)
+/* --- Register HW_HDMI_AHB_DMA_BSTADDR3, field BURST_START[7:0] (RO)
  *
  * Start address for the current burst operation
  */
 
-#define BP_HDMI_AHB_DMA_BSTADDR3_BURST_START      0
-#define BM_HDMI_AHB_DMA_BSTADDR3_BURST_START      0x000000ff
+#define BP_HDMI_AHB_DMA_BSTADDR3_BURST_START      (0)
+#define BM_HDMI_AHB_DMA_BSTADDR3_BURST_START      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18796,13 +18796,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_MBLENGTH0 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_MBLENGTH0, field MBURSTLENGTH (RO)
+/* --- Register HW_HDMI_AHB_DMA_MBLENGTH0, field MBURSTLENGTH[7:0] (RO)
  *
  * Requested burst length
  */
 
-#define BP_HDMI_AHB_DMA_MBLENGTH0_MBURSTLENGTH      0
-#define BM_HDMI_AHB_DMA_MBLENGTH0_MBURSTLENGTH      0x000000ff
+#define BP_HDMI_AHB_DMA_MBLENGTH0_MBURSTLENGTH      (0)
+#define BM_HDMI_AHB_DMA_MBLENGTH0_MBURSTLENGTH      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18837,29 +18837,29 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_MBLENGTH1 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_MBLENGTH1, field MBURSTLENGTH (RO)
+/* --- Register HW_HDMI_AHB_DMA_MBLENGTH1, field MBURSTLENGTH[0:0] (RO)
  *
  * Requested burst length
  */
 
-#define BP_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH      0
-#define BM_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH      0x00000001
+#define BP_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH      (0)
+#define BM_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH      (0x00000001)
 
-/* --- Register HW_HDMI_AHB_DMA_MBLENGTH1, field MBURSTLENGTH1 (RO)
+/* --- Register HW_HDMI_AHB_DMA_MBLENGTH1, field MBURSTLENGTH1[1:1] (RO)
  *
  * Requested burst length
  */
 
-#define BP_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH1      1
-#define BM_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH1      0x00000002
+#define BP_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH1      (1)
+#define BM_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH1      (0x00000002)
 
-/* --- Register HW_HDMI_AHB_DMA_MBLENGTH1, field MBURSTLENGTH2 (RO)
+/* --- Register HW_HDMI_AHB_DMA_MBLENGTH1, field MBURSTLENGTH2[2:2] (RO)
  *
  * Requested burst length
  */
 
-#define BP_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH2      2
-#define BM_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH2      0x00000004
+#define BP_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH2      (2)
+#define BM_HDMI_AHB_DMA_MBLENGTH1_MBURSTLENGTH2      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18899,64 +18899,64 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_STAT bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_STAT, field STATFIFOEMPTY (RO)
+/* --- Register HW_HDMI_AHB_DMA_STAT, field STATFIFOEMPTY[0:0] (RO)
  *
  * Status of audio FIFO empty interrupt.
  */
 
-#define BP_HDMI_AHB_DMA_STAT_STATFIFOEMPTY      0
-#define BM_HDMI_AHB_DMA_STAT_STATFIFOEMPTY      0x00000001
+#define BP_HDMI_AHB_DMA_STAT_STATFIFOEMPTY      (0)
+#define BM_HDMI_AHB_DMA_STAT_STATFIFOEMPTY      (0x00000001)
 
-/* --- Register HW_HDMI_AHB_DMA_STAT, field STATFIFOFULL (RO)
+/* --- Register HW_HDMI_AHB_DMA_STAT, field STATFIFOFULL[1:1] (RO)
  *
  * Status of audio FIFO full interrupt.
  */
 
-#define BP_HDMI_AHB_DMA_STAT_STATFIFOFULL      1
-#define BM_HDMI_AHB_DMA_STAT_STATFIFOFULL      0x00000002
+#define BP_HDMI_AHB_DMA_STAT_STATFIFOFULL      (1)
+#define BM_HDMI_AHB_DMA_STAT_STATFIFOFULL      (0x00000002)
 
-/* --- Register HW_HDMI_AHB_DMA_STAT, field STATTHRFIFOEMPTY (RO)
+/* --- Register HW_HDMI_AHB_DMA_STAT, field STATTHRFIFOEMPTY[2:2] (RO)
  *
  * Status of audio FIFO empty when audio FIFO has less than four samples.
  */
 
-#define BP_HDMI_AHB_DMA_STAT_STATTHRFIFOEMPTY      2
-#define BM_HDMI_AHB_DMA_STAT_STATTHRFIFOEMPTY      0x00000004
+#define BP_HDMI_AHB_DMA_STAT_STATTHRFIFOEMPTY      (2)
+#define BM_HDMI_AHB_DMA_STAT_STATTHRFIFOEMPTY      (0x00000004)
 
-/* --- Register HW_HDMI_AHB_DMA_STAT, field STATERROR (RO)
+/* --- Register HW_HDMI_AHB_DMA_STAT, field STATERROR[4:4] (RO)
  *
  * Status of error interrupt. Active when slave indicates error through the isresp[1:0].
  */
 
-#define BP_HDMI_AHB_DMA_STAT_STATERROR      4
-#define BM_HDMI_AHB_DMA_STAT_STATERROR      0x00000010
+#define BP_HDMI_AHB_DMA_STAT_STATERROR      (4)
+#define BM_HDMI_AHB_DMA_STAT_STATERROR      (0x00000010)
 
-/* --- Register HW_HDMI_AHB_DMA_STAT, field STATLOSTOWNERSHIP (RO)
+/* --- Register HW_HDMI_AHB_DMA_STAT, field STATLOSTOWNERSHIP[5:5] (RO)
  *
  * Status of master lost ownership when in burst transfer. Active when AHB master loses BUS
  * ownership within the course of a burst transfer.
  */
 
-#define BP_HDMI_AHB_DMA_STAT_STATLOSTOWNERSHIP      5
-#define BM_HDMI_AHB_DMA_STAT_STATLOSTOWNERSHIP      0x00000020
+#define BP_HDMI_AHB_DMA_STAT_STATLOSTOWNERSHIP      (5)
+#define BM_HDMI_AHB_DMA_STAT_STATLOSTOWNERSHIP      (0x00000020)
 
-/* --- Register HW_HDMI_AHB_DMA_STAT, field STATRETRYSPLIT (RO)
+/* --- Register HW_HDMI_AHB_DMA_STAT, field STATRETRYSPLIT[6:6] (RO)
  *
  * Status of retry/split interrupt. Active when AHB master receives a RETRY or SPLIT response from
  * slave.
  */
 
-#define BP_HDMI_AHB_DMA_STAT_STATRETRYSPLIT      6
-#define BM_HDMI_AHB_DMA_STAT_STATRETRYSPLIT      0x00000040
+#define BP_HDMI_AHB_DMA_STAT_STATRETRYSPLIT      (6)
+#define BM_HDMI_AHB_DMA_STAT_STATRETRYSPLIT      (0x00000040)
 
-/* --- Register HW_HDMI_AHB_DMA_STAT, field STATDONE (RO)
+/* --- Register HW_HDMI_AHB_DMA_STAT, field STATDONE[7:7] (RO)
  *
  * Status of DMA end of operation interrupt. Active when DMA engine reaches final_addr[15:0] or when
  * stop DMA operation is activated.
  */
 
-#define BP_HDMI_AHB_DMA_STAT_STATDONE      7
-#define BM_HDMI_AHB_DMA_STAT_STATDONE      0x00000080
+#define BP_HDMI_AHB_DMA_STAT_STATDONE      (7)
+#define BM_HDMI_AHB_DMA_STAT_STATDONE      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18996,63 +18996,63 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_INT bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_INT, field INTFIFOEMPTY (RO)
+/* --- Register HW_HDMI_AHB_DMA_INT, field INTFIFOEMPTY[0:0] (RO)
  *
  * Audio FIFO empty interrupt.
  */
 
-#define BP_HDMI_AHB_DMA_INT_INTFIFOEMPTY      0
-#define BM_HDMI_AHB_DMA_INT_INTFIFOEMPTY      0x00000001
+#define BP_HDMI_AHB_DMA_INT_INTFIFOEMPTY      (0)
+#define BM_HDMI_AHB_DMA_INT_INTFIFOEMPTY      (0x00000001)
 
-/* --- Register HW_HDMI_AHB_DMA_INT, field INTFIFOFULL (RO)
+/* --- Register HW_HDMI_AHB_DMA_INT, field INTFIFOFULL[1:1] (RO)
  *
  * Audio FIFO full interrupt.
  */
 
-#define BP_HDMI_AHB_DMA_INT_INTFIFOFULL      1
-#define BM_HDMI_AHB_DMA_INT_INTFIFOFULL      0x00000002
+#define BP_HDMI_AHB_DMA_INT_INTFIFOFULL      (1)
+#define BM_HDMI_AHB_DMA_INT_INTFIFOFULL      (0x00000002)
 
-/* --- Register HW_HDMI_AHB_DMA_INT, field INTTHRFIFOEMPTY (RO)
+/* --- Register HW_HDMI_AHB_DMA_INT, field INTTHRFIFOEMPTY[2:2] (RO)
  *
  * Audio FIFO empty interrupt when audio FIFO has less than four samples.
  */
 
-#define BP_HDMI_AHB_DMA_INT_INTTHRFIFOEMPTY      2
-#define BM_HDMI_AHB_DMA_INT_INTTHRFIFOEMPTY      0x00000004
+#define BP_HDMI_AHB_DMA_INT_INTTHRFIFOEMPTY      (2)
+#define BM_HDMI_AHB_DMA_INT_INTTHRFIFOEMPTY      (0x00000004)
 
-/* --- Register HW_HDMI_AHB_DMA_INT, field INTERROR (RO)
+/* --- Register HW_HDMI_AHB_DMA_INT, field INTERROR[4:4] (RO)
  *
  * Error interrupt. Active when slave indicates error through the isresp[1:0].
  */
 
-#define BP_HDMI_AHB_DMA_INT_INTERROR      4
-#define BM_HDMI_AHB_DMA_INT_INTERROR      0x00000010
+#define BP_HDMI_AHB_DMA_INT_INTERROR      (4)
+#define BM_HDMI_AHB_DMA_INT_INTERROR      (0x00000010)
 
-/* --- Register HW_HDMI_AHB_DMA_INT, field INTLOSTOWNERSHIP (RO)
+/* --- Register HW_HDMI_AHB_DMA_INT, field INTLOSTOWNERSHIP[5:5] (RO)
  *
  * Master lost ownership interrupt when in burst transfer. Active when AHB master loses BUS
  * ownership within the course of a burst transfer.
  */
 
-#define BP_HDMI_AHB_DMA_INT_INTLOSTOWNERSHIP      5
-#define BM_HDMI_AHB_DMA_INT_INTLOSTOWNERSHIP      0x00000020
+#define BP_HDMI_AHB_DMA_INT_INTLOSTOWNERSHIP      (5)
+#define BM_HDMI_AHB_DMA_INT_INTLOSTOWNERSHIP      (0x00000020)
 
-/* --- Register HW_HDMI_AHB_DMA_INT, field INTRETRYSPLIT (RO)
+/* --- Register HW_HDMI_AHB_DMA_INT, field INTRETRYSPLIT[6:6] (RO)
  *
  * Retry/split interrupt. Active when AHB master receives a RETRY or SPLIT response from slave.
  */
 
-#define BP_HDMI_AHB_DMA_INT_INTRETRYSPLIT      6
-#define BM_HDMI_AHB_DMA_INT_INTRETRYSPLIT      0x00000040
+#define BP_HDMI_AHB_DMA_INT_INTRETRYSPLIT      (6)
+#define BM_HDMI_AHB_DMA_INT_INTRETRYSPLIT      (0x00000040)
 
-/* --- Register HW_HDMI_AHB_DMA_INT, field INTDONE (RO)
+/* --- Register HW_HDMI_AHB_DMA_INT, field INTDONE[7:7] (RO)
  *
  * DMA end of operation interrupt. Active when DMA engine reaches final_addr[15:0] or when stop DMA
  * operation is activated.
  */
 
-#define BP_HDMI_AHB_DMA_INT_INTDONE      7
-#define BM_HDMI_AHB_DMA_INT_INTDONE      0x00000080
+#define BP_HDMI_AHB_DMA_INT_INTDONE      (7)
+#define BM_HDMI_AHB_DMA_INT_INTDONE      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -19097,13 +19097,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_MASK bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_MASK, field FIFO_EMPTY_MASK (RW)
+/* --- Register HW_HDMI_AHB_DMA_MASK, field FIFO_EMPTY_MASK[0:0] (RW)
  *
  * Audio FIFO empty interrupt mask.
  */
 
-#define BP_HDMI_AHB_DMA_MASK_FIFO_EMPTY_MASK      0
-#define BM_HDMI_AHB_DMA_MASK_FIFO_EMPTY_MASK      0x00000001
+#define BP_HDMI_AHB_DMA_MASK_FIFO_EMPTY_MASK      (0)
+#define BM_HDMI_AHB_DMA_MASK_FIFO_EMPTY_MASK      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_MASK_FIFO_EMPTY_MASK(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_MASK_FIFO_EMPTY_MASK)
@@ -19115,13 +19115,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_MASK_FIFO_EMPTY_MASK(v)   BF_CS1(HDMI_AHB_DMA_MASK, FIFO_EMPTY_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_MASK, field FIFO_FULL_MASK (RW)
+/* --- Register HW_HDMI_AHB_DMA_MASK, field FIFO_FULL_MASK[1:1] (RW)
  *
  * Audio FIFO full interrupt mask.
  */
 
-#define BP_HDMI_AHB_DMA_MASK_FIFO_FULL_MASK      1
-#define BM_HDMI_AHB_DMA_MASK_FIFO_FULL_MASK      0x00000002
+#define BP_HDMI_AHB_DMA_MASK_FIFO_FULL_MASK      (1)
+#define BM_HDMI_AHB_DMA_MASK_FIFO_FULL_MASK      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_MASK_FIFO_FULL_MASK(v)   ((((reg32_t) v) << 1) & BM_HDMI_AHB_DMA_MASK_FIFO_FULL_MASK)
@@ -19133,13 +19133,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_MASK_FIFO_FULL_MASK(v)   BF_CS1(HDMI_AHB_DMA_MASK, FIFO_FULL_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_MASK, field FIFO_THREMPTY_MASK (RW)
+/* --- Register HW_HDMI_AHB_DMA_MASK, field FIFO_THREMPTY_MASK[2:2] (RW)
  *
  * Audio FIFO empty interrupt mask when audio FIFO has less than four samples.
  */
 
-#define BP_HDMI_AHB_DMA_MASK_FIFO_THREMPTY_MASK      2
-#define BM_HDMI_AHB_DMA_MASK_FIFO_THREMPTY_MASK      0x00000004
+#define BP_HDMI_AHB_DMA_MASK_FIFO_THREMPTY_MASK      (2)
+#define BM_HDMI_AHB_DMA_MASK_FIFO_THREMPTY_MASK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_MASK_FIFO_THREMPTY_MASK(v)   ((((reg32_t) v) << 2) & BM_HDMI_AHB_DMA_MASK_FIFO_THREMPTY_MASK)
@@ -19151,13 +19151,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_MASK_FIFO_THREMPTY_MASK(v)   BF_CS1(HDMI_AHB_DMA_MASK, FIFO_THREMPTY_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_MASK, field ERROR_MASK (RW)
+/* --- Register HW_HDMI_AHB_DMA_MASK, field ERROR_MASK[4:4] (RW)
  *
  * Error interrupt mask. Active when slave indicates error through the isresp[1:0].
  */
 
-#define BP_HDMI_AHB_DMA_MASK_ERROR_MASK      4
-#define BM_HDMI_AHB_DMA_MASK_ERROR_MASK      0x00000010
+#define BP_HDMI_AHB_DMA_MASK_ERROR_MASK      (4)
+#define BM_HDMI_AHB_DMA_MASK_ERROR_MASK      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_MASK_ERROR_MASK(v)   ((((reg32_t) v) << 4) & BM_HDMI_AHB_DMA_MASK_ERROR_MASK)
@@ -19169,14 +19169,14 @@ typedef union
 #define BW_HDMI_AHB_DMA_MASK_ERROR_MASK(v)   BF_CS1(HDMI_AHB_DMA_MASK, ERROR_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_MASK, field LOSTOWNERSHIP_MASK (RW)
+/* --- Register HW_HDMI_AHB_DMA_MASK, field LOSTOWNERSHIP_MASK[5:5] (RW)
  *
  * Master lost ownership interrupt mask when in burst transfer. Active when AHB master loses BUS
  * ownership within the course of a burst transfer.
  */
 
-#define BP_HDMI_AHB_DMA_MASK_LOSTOWNERSHIP_MASK      5
-#define BM_HDMI_AHB_DMA_MASK_LOSTOWNERSHIP_MASK      0x00000020
+#define BP_HDMI_AHB_DMA_MASK_LOSTOWNERSHIP_MASK      (5)
+#define BM_HDMI_AHB_DMA_MASK_LOSTOWNERSHIP_MASK      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_MASK_LOSTOWNERSHIP_MASK(v)   ((((reg32_t) v) << 5) & BM_HDMI_AHB_DMA_MASK_LOSTOWNERSHIP_MASK)
@@ -19188,13 +19188,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_MASK_LOSTOWNERSHIP_MASK(v)   BF_CS1(HDMI_AHB_DMA_MASK, LOSTOWNERSHIP_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_MASK, field RETRYSPLIT_MASK (RW)
+/* --- Register HW_HDMI_AHB_DMA_MASK, field RETRYSPLIT_MASK[6:6] (RW)
  *
  * Retry/split interrupt mask. Active when AHB master receives a RETRY or SPLIT response from slave.
  */
 
-#define BP_HDMI_AHB_DMA_MASK_RETRYSPLIT_MASK      6
-#define BM_HDMI_AHB_DMA_MASK_RETRYSPLIT_MASK      0x00000040
+#define BP_HDMI_AHB_DMA_MASK_RETRYSPLIT_MASK      (6)
+#define BM_HDMI_AHB_DMA_MASK_RETRYSPLIT_MASK      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_MASK_RETRYSPLIT_MASK(v)   ((((reg32_t) v) << 6) & BM_HDMI_AHB_DMA_MASK_RETRYSPLIT_MASK)
@@ -19206,14 +19206,14 @@ typedef union
 #define BW_HDMI_AHB_DMA_MASK_RETRYSPLIT_MASK(v)   BF_CS1(HDMI_AHB_DMA_MASK, RETRYSPLIT_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_MASK, field DONE_MASK (RW)
+/* --- Register HW_HDMI_AHB_DMA_MASK, field DONE_MASK[7:7] (RW)
  *
  * DMA end of operation interrupt mask. Active when DMA engine reaches final_addr[15:0] or when stop
  * DMA operation is activated.
  */
 
-#define BP_HDMI_AHB_DMA_MASK_DONE_MASK      7
-#define BM_HDMI_AHB_DMA_MASK_DONE_MASK      0x00000080
+#define BP_HDMI_AHB_DMA_MASK_DONE_MASK      (7)
+#define BM_HDMI_AHB_DMA_MASK_DONE_MASK      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_MASK_DONE_MASK(v)   ((((reg32_t) v) << 7) & BM_HDMI_AHB_DMA_MASK_DONE_MASK)
@@ -19268,13 +19268,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_POL bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_POL, field FIFO_EMPTY_POLARITY (RW)
+/* --- Register HW_HDMI_AHB_DMA_POL, field FIFO_EMPTY_POLARITY[0:0] (RW)
  *
  * Audio FIFO empty interrupt mask.
  */
 
-#define BP_HDMI_AHB_DMA_POL_FIFO_EMPTY_POLARITY      0
-#define BM_HDMI_AHB_DMA_POL_FIFO_EMPTY_POLARITY      0x00000001
+#define BP_HDMI_AHB_DMA_POL_FIFO_EMPTY_POLARITY      (0)
+#define BM_HDMI_AHB_DMA_POL_FIFO_EMPTY_POLARITY      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_POL_FIFO_EMPTY_POLARITY(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_POL_FIFO_EMPTY_POLARITY)
@@ -19286,13 +19286,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_POL_FIFO_EMPTY_POLARITY(v)   BF_CS1(HDMI_AHB_DMA_POL, FIFO_EMPTY_POLARITY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_POL, field FIFO_FULL_POLARITY (RW)
+/* --- Register HW_HDMI_AHB_DMA_POL, field FIFO_FULL_POLARITY[1:1] (RW)
  *
  * Audio FIFO full interrupt mask.
  */
 
-#define BP_HDMI_AHB_DMA_POL_FIFO_FULL_POLARITY      1
-#define BM_HDMI_AHB_DMA_POL_FIFO_FULL_POLARITY      0x00000002
+#define BP_HDMI_AHB_DMA_POL_FIFO_FULL_POLARITY      (1)
+#define BM_HDMI_AHB_DMA_POL_FIFO_FULL_POLARITY      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_POL_FIFO_FULL_POLARITY(v)   ((((reg32_t) v) << 1) & BM_HDMI_AHB_DMA_POL_FIFO_FULL_POLARITY)
@@ -19304,13 +19304,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_POL_FIFO_FULL_POLARITY(v)   BF_CS1(HDMI_AHB_DMA_POL, FIFO_FULL_POLARITY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_POL, field FIFO_THRFIFOEMPTY_POLARITY (RW)
+/* --- Register HW_HDMI_AHB_DMA_POL, field FIFO_THRFIFOEMPTY_POLARITY[2:2] (RW)
  *
  * Audio FIFO empty interrupt mask when audio FIFO has less than four samples.
  */
 
-#define BP_HDMI_AHB_DMA_POL_FIFO_THRFIFOEMPTY_POLARITY      2
-#define BM_HDMI_AHB_DMA_POL_FIFO_THRFIFOEMPTY_POLARITY      0x00000004
+#define BP_HDMI_AHB_DMA_POL_FIFO_THRFIFOEMPTY_POLARITY      (2)
+#define BM_HDMI_AHB_DMA_POL_FIFO_THRFIFOEMPTY_POLARITY      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_POL_FIFO_THRFIFOEMPTY_POLARITY(v)   ((((reg32_t) v) << 2) & BM_HDMI_AHB_DMA_POL_FIFO_THRFIFOEMPTY_POLARITY)
@@ -19322,13 +19322,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_POL_FIFO_THRFIFOEMPTY_POLARITY(v)   BF_CS1(HDMI_AHB_DMA_POL, FIFO_THRFIFOEMPTY_POLARITY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_POL, field ERROR_POLARITY (RW)
+/* --- Register HW_HDMI_AHB_DMA_POL, field ERROR_POLARITY[4:4] (RW)
  *
  * Error interrupt mask. Active when slave indicates error through the isresp[1:0].
  */
 
-#define BP_HDMI_AHB_DMA_POL_ERROR_POLARITY      4
-#define BM_HDMI_AHB_DMA_POL_ERROR_POLARITY      0x00000010
+#define BP_HDMI_AHB_DMA_POL_ERROR_POLARITY      (4)
+#define BM_HDMI_AHB_DMA_POL_ERROR_POLARITY      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_POL_ERROR_POLARITY(v)   ((((reg32_t) v) << 4) & BM_HDMI_AHB_DMA_POL_ERROR_POLARITY)
@@ -19340,14 +19340,14 @@ typedef union
 #define BW_HDMI_AHB_DMA_POL_ERROR_POLARITY(v)   BF_CS1(HDMI_AHB_DMA_POL, ERROR_POLARITY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_POL, field LOSTOWNERSHIP_POLARITY (RW)
+/* --- Register HW_HDMI_AHB_DMA_POL, field LOSTOWNERSHIP_POLARITY[5:5] (RW)
  *
  * Master lost ownership interrupt mask when in burst transfer. Active when AHB master loses BUS
  * ownership within the course of a burst transfer.
  */
 
-#define BP_HDMI_AHB_DMA_POL_LOSTOWNERSHIP_POLARITY      5
-#define BM_HDMI_AHB_DMA_POL_LOSTOWNERSHIP_POLARITY      0x00000020
+#define BP_HDMI_AHB_DMA_POL_LOSTOWNERSHIP_POLARITY      (5)
+#define BM_HDMI_AHB_DMA_POL_LOSTOWNERSHIP_POLARITY      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_POL_LOSTOWNERSHIP_POLARITY(v)   ((((reg32_t) v) << 5) & BM_HDMI_AHB_DMA_POL_LOSTOWNERSHIP_POLARITY)
@@ -19359,13 +19359,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_POL_LOSTOWNERSHIP_POLARITY(v)   BF_CS1(HDMI_AHB_DMA_POL, LOSTOWNERSHIP_POLARITY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_POL, field RETRYSPLIT_POLARITY (RW)
+/* --- Register HW_HDMI_AHB_DMA_POL, field RETRYSPLIT_POLARITY[6:6] (RW)
  *
  * Retry/split interrupt mask. Active when AHB master receives a RETRY or SPLIT response from slave.
  */
 
-#define BP_HDMI_AHB_DMA_POL_RETRYSPLIT_POLARITY      6
-#define BM_HDMI_AHB_DMA_POL_RETRYSPLIT_POLARITY      0x00000040
+#define BP_HDMI_AHB_DMA_POL_RETRYSPLIT_POLARITY      (6)
+#define BM_HDMI_AHB_DMA_POL_RETRYSPLIT_POLARITY      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_POL_RETRYSPLIT_POLARITY(v)   ((((reg32_t) v) << 6) & BM_HDMI_AHB_DMA_POL_RETRYSPLIT_POLARITY)
@@ -19377,14 +19377,14 @@ typedef union
 #define BW_HDMI_AHB_DMA_POL_RETRYSPLIT_POLARITY(v)   BF_CS1(HDMI_AHB_DMA_POL, RETRYSPLIT_POLARITY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_POL, field DONE_POLARITY (RW)
+/* --- Register HW_HDMI_AHB_DMA_POL, field DONE_POLARITY[7:7] (RW)
  *
  * DMA end of operation interrupt mask. Active when DMA engine reaches final_addr[15:0] or when stop
  * DMA operation is activated.
  */
 
-#define BP_HDMI_AHB_DMA_POL_DONE_POLARITY      7
-#define BM_HDMI_AHB_DMA_POL_DONE_POLARITY      0x00000080
+#define BP_HDMI_AHB_DMA_POL_DONE_POLARITY      (7)
+#define BM_HDMI_AHB_DMA_POL_DONE_POLARITY      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_POL_DONE_POLARITY(v)   ((((reg32_t) v) << 7) & BM_HDMI_AHB_DMA_POL_DONE_POLARITY)
@@ -19437,13 +19437,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_CONF1 bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN[0:0] (RW)
  *
  * Channel 0 is always enabled.
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN      0
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN      0x00000001
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN      (0)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN)
@@ -19455,13 +19455,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_CONF1_CH_IN_EN(v)   BF_CS1(HDMI_AHB_DMA_CONF1, CH_IN_EN, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN1 (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN1[1:1] (RW)
  *
  * Channel 1 is always enabled.
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN1      1
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN1      0x00000002
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN1      (1)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN1      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN1(v)   ((((reg32_t) v) << 1) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN1)
@@ -19473,17 +19473,17 @@ typedef union
 #define BW_HDMI_AHB_DMA_CONF1_CH_IN_EN1(v)   BF_CS1(HDMI_AHB_DMA_CONF1, CH_IN_EN1, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN2 (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN2[2:2] (RW)
  *
  * Channel 2 enable bit
  *
  * Values:
- * 1 - Channel enabled
  * 0 - Channel disabled
+ * 1 - Channel enabled
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN2      2
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN2      0x00000004
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN2      (2)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN2      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN2(v)   ((((reg32_t) v) << 2) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN2)
@@ -19496,17 +19496,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN3 (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN3[3:3] (RW)
  *
  * Channel 3 enable bit
  *
  * Values:
- * 1 - Channel enabled
  * 0 - Channel disabled
+ * 1 - Channel enabled
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN3      3
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN3      0x00000008
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN3      (3)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN3      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN3(v)   ((((reg32_t) v) << 3) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN3)
@@ -19519,17 +19519,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN4 (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN4[4:4] (RW)
  *
  * Channel 4 enable bit
  *
  * Values:
- * 1 - Channel enabled
  * 0 - Channel disabled
+ * 1 - Channel enabled
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN4      4
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN4      0x00000010
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN4      (4)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN4      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN4(v)   ((((reg32_t) v) << 4) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN4)
@@ -19542,17 +19542,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN5 (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN5[5:5] (RW)
  *
  * Channel 5 enable bit
  *
  * Values:
- * 1 - Channel enabled
  * 0 - Channel disabled
+ * 1 - Channel enabled
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN5      5
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN5      0x00000020
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN5      (5)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN5      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN5(v)   ((((reg32_t) v) << 5) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN5)
@@ -19565,17 +19565,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN6 (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN6[6:6] (RW)
  *
  * Channel 6 enable bit
  *
  * Values:
- * 1 - Channel enabled
  * 0 - Channel disabled
+ * 1 - Channel enabled
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN6      6
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN6      0x00000040
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN6      (6)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN6      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN6(v)   ((((reg32_t) v) << 6) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN6)
@@ -19588,17 +19588,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN7 (RW)
+/* --- Register HW_HDMI_AHB_DMA_CONF1, field CH_IN_EN7[7:7] (RW)
  *
  * Channel 7 enable bit
  *
  * Values:
- * 1 - Channel enabled
  * 0 - Channel disabled
+ * 1 - Channel enabled
  */
 
-#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN7      7
-#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN7      0x00000080
+#define BP_HDMI_AHB_DMA_CONF1_CH_IN_EN7      (7)
+#define BM_HDMI_AHB_DMA_CONF1_CH_IN_EN7      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_CONF1_CH_IN_EN7(v)   ((((reg32_t) v) << 7) & BM_HDMI_AHB_DMA_CONF1_CH_IN_EN7)
@@ -19643,21 +19643,21 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BUFFSTAT bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFSTAT, field BUFF_EMPTY (RO)
+/* --- Register HW_HDMI_AHB_DMA_BUFFSTAT, field BUFF_EMPTY[0:0] (RO)
  *
  * Buffer empty flag status
  */
 
-#define BP_HDMI_AHB_DMA_BUFFSTAT_BUFF_EMPTY      0
-#define BM_HDMI_AHB_DMA_BUFFSTAT_BUFF_EMPTY      0x00000001
+#define BP_HDMI_AHB_DMA_BUFFSTAT_BUFF_EMPTY      (0)
+#define BM_HDMI_AHB_DMA_BUFFSTAT_BUFF_EMPTY      (0x00000001)
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFSTAT, field BUFF_FULL (RO)
+/* --- Register HW_HDMI_AHB_DMA_BUFFSTAT, field BUFF_FULL[1:1] (RO)
  *
  * Buffer full flag status
  */
 
-#define BP_HDMI_AHB_DMA_BUFFSTAT_BUFF_FULL      1
-#define BM_HDMI_AHB_DMA_BUFFSTAT_BUFF_FULL      0x00000002
+#define BP_HDMI_AHB_DMA_BUFFSTAT_BUFF_FULL      (1)
+#define BM_HDMI_AHB_DMA_BUFFSTAT_BUFF_FULL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -19691,21 +19691,21 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BUFFINT bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFINT, field INT_BUFF_EMPTY (RO)
+/* --- Register HW_HDMI_AHB_DMA_BUFFINT, field INT_BUFF_EMPTY[0:0] (RO)
  *
  * Buffer empty flag interrupt
  */
 
-#define BP_HDMI_AHB_DMA_BUFFINT_INT_BUFF_EMPTY      0
-#define BM_HDMI_AHB_DMA_BUFFINT_INT_BUFF_EMPTY      0x00000001
+#define BP_HDMI_AHB_DMA_BUFFINT_INT_BUFF_EMPTY      (0)
+#define BM_HDMI_AHB_DMA_BUFFINT_INT_BUFF_EMPTY      (0x00000001)
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFINT, field INT_BUFF_FULL (RO)
+/* --- Register HW_HDMI_AHB_DMA_BUFFINT, field INT_BUFF_FULL[1:1] (RO)
  *
  * Buffer full flag interrupt
  */
 
-#define BP_HDMI_AHB_DMA_BUFFINT_INT_BUFF_FULL      1
-#define BM_HDMI_AHB_DMA_BUFFINT_INT_BUFF_FULL      0x00000002
+#define BP_HDMI_AHB_DMA_BUFFINT_INT_BUFF_FULL      (1)
+#define BM_HDMI_AHB_DMA_BUFFINT_INT_BUFF_FULL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -19743,13 +19743,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BUFFMASK bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFMASK, field INT_BUFF_EMPTY (RW)
+/* --- Register HW_HDMI_AHB_DMA_BUFFMASK, field INT_BUFF_EMPTY[0:0] (RW)
  *
  * Buffer empty flag mask
  */
 
-#define BP_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_EMPTY      0
-#define BM_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_EMPTY      0x00000001
+#define BP_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_EMPTY      (0)
+#define BM_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_EMPTY      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_EMPTY(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_EMPTY)
@@ -19761,13 +19761,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_EMPTY(v)   BF_CS1(HDMI_AHB_DMA_BUFFMASK, INT_BUFF_EMPTY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFMASK, field INT_BUFF_FULL (RW)
+/* --- Register HW_HDMI_AHB_DMA_BUFFMASK, field INT_BUFF_FULL[1:1] (RW)
  *
  * Buffer full flag mask
  */
 
-#define BP_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_FULL      1
-#define BM_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_FULL      0x00000002
+#define BP_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_FULL      (1)
+#define BM_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_FULL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_FULL(v)   ((((reg32_t) v) << 1) & BM_HDMI_AHB_DMA_BUFFMASK_INT_BUFF_FULL)
@@ -19815,13 +19815,13 @@ typedef union
  * constants & macros for individual HDMI_AHB_DMA_BUFFPOL bitfields
  */
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFPOL, field INT_BUFF_EMPTY (RW)
+/* --- Register HW_HDMI_AHB_DMA_BUFFPOL, field INT_BUFF_EMPTY[0:0] (RW)
  *
  * Buffer empty flag polarity
  */
 
-#define BP_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_EMPTY      0
-#define BM_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_EMPTY      0x00000001
+#define BP_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_EMPTY      (0)
+#define BM_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_EMPTY      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_EMPTY(v)   ((((reg32_t) v) << 0) & BM_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_EMPTY)
@@ -19833,13 +19833,13 @@ typedef union
 #define BW_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_EMPTY(v)   BF_CS1(HDMI_AHB_DMA_BUFFPOL, INT_BUFF_EMPTY, v)
 #endif
 
-/* --- Register HW_HDMI_AHB_DMA_BUFFPOL, field INT_BUFF_FULL (RW)
+/* --- Register HW_HDMI_AHB_DMA_BUFFPOL, field INT_BUFF_FULL[1:1] (RW)
  *
  * Buffer full flag polarity
  */
 
-#define BP_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_FULL      1
-#define BM_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_FULL      0x00000002
+#define BP_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_FULL      (1)
+#define BM_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_FULL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_FULL(v)   ((((reg32_t) v) << 1) & BM_HDMI_AHB_DMA_BUFFPOL_INT_BUFF_FULL)
@@ -19895,13 +19895,13 @@ typedef union
  * constants & macros for individual HDMI_MC_CLKDIS bitfields
  */
 
-/* --- Register HW_HDMI_MC_CLKDIS, field PIXELCLK_DISABLE (RW)
+/* --- Register HW_HDMI_MC_CLKDIS, field PIXELCLK_DISABLE[0:0] (RW)
  *
  * Pixel clock synchronous disable signal.
  */
 
-#define BP_HDMI_MC_CLKDIS_PIXELCLK_DISABLE      0
-#define BM_HDMI_MC_CLKDIS_PIXELCLK_DISABLE      0x00000001
+#define BP_HDMI_MC_CLKDIS_PIXELCLK_DISABLE      (0)
+#define BM_HDMI_MC_CLKDIS_PIXELCLK_DISABLE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_CLKDIS_PIXELCLK_DISABLE(v)   ((((reg32_t) v) << 0) & BM_HDMI_MC_CLKDIS_PIXELCLK_DISABLE)
@@ -19913,13 +19913,13 @@ typedef union
 #define BW_HDMI_MC_CLKDIS_PIXELCLK_DISABLE(v)   BF_CS1(HDMI_MC_CLKDIS, PIXELCLK_DISABLE, v)
 #endif
 
-/* --- Register HW_HDMI_MC_CLKDIS, field TMDSCLK_DISABLE (RW)
+/* --- Register HW_HDMI_MC_CLKDIS, field TMDSCLK_DISABLE[1:1] (RW)
  *
  * TMDS clock synchronous disable signal.
  */
 
-#define BP_HDMI_MC_CLKDIS_TMDSCLK_DISABLE      1
-#define BM_HDMI_MC_CLKDIS_TMDSCLK_DISABLE      0x00000002
+#define BP_HDMI_MC_CLKDIS_TMDSCLK_DISABLE      (1)
+#define BM_HDMI_MC_CLKDIS_TMDSCLK_DISABLE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_CLKDIS_TMDSCLK_DISABLE(v)   ((((reg32_t) v) << 1) & BM_HDMI_MC_CLKDIS_TMDSCLK_DISABLE)
@@ -19931,13 +19931,13 @@ typedef union
 #define BW_HDMI_MC_CLKDIS_TMDSCLK_DISABLE(v)   BF_CS1(HDMI_MC_CLKDIS, TMDSCLK_DISABLE, v)
 #endif
 
-/* --- Register HW_HDMI_MC_CLKDIS, field PREPCLK_DISABLE (RW)
+/* --- Register HW_HDMI_MC_CLKDIS, field PREPCLK_DISABLE[2:2] (RW)
  *
  * Pixel Repetition clock synchronous disable signal.
  */
 
-#define BP_HDMI_MC_CLKDIS_PREPCLK_DISABLE      2
-#define BM_HDMI_MC_CLKDIS_PREPCLK_DISABLE      0x00000004
+#define BP_HDMI_MC_CLKDIS_PREPCLK_DISABLE      (2)
+#define BM_HDMI_MC_CLKDIS_PREPCLK_DISABLE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_CLKDIS_PREPCLK_DISABLE(v)   ((((reg32_t) v) << 2) & BM_HDMI_MC_CLKDIS_PREPCLK_DISABLE)
@@ -19949,13 +19949,13 @@ typedef union
 #define BW_HDMI_MC_CLKDIS_PREPCLK_DISABLE(v)   BF_CS1(HDMI_MC_CLKDIS, PREPCLK_DISABLE, v)
 #endif
 
-/* --- Register HW_HDMI_MC_CLKDIS, field AUDCLK_DISABLE (RW)
+/* --- Register HW_HDMI_MC_CLKDIS, field AUDCLK_DISABLE[3:3] (RW)
  *
  * Audio Sampler clock synchronous disable signal.
  */
 
-#define BP_HDMI_MC_CLKDIS_AUDCLK_DISABLE      3
-#define BM_HDMI_MC_CLKDIS_AUDCLK_DISABLE      0x00000008
+#define BP_HDMI_MC_CLKDIS_AUDCLK_DISABLE      (3)
+#define BM_HDMI_MC_CLKDIS_AUDCLK_DISABLE      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_CLKDIS_AUDCLK_DISABLE(v)   ((((reg32_t) v) << 3) & BM_HDMI_MC_CLKDIS_AUDCLK_DISABLE)
@@ -19967,13 +19967,13 @@ typedef union
 #define BW_HDMI_MC_CLKDIS_AUDCLK_DISABLE(v)   BF_CS1(HDMI_MC_CLKDIS, AUDCLK_DISABLE, v)
 #endif
 
-/* --- Register HW_HDMI_MC_CLKDIS, field CSCCLK_DISABLE (RW)
+/* --- Register HW_HDMI_MC_CLKDIS, field CSCCLK_DISABLE[4:4] (RW)
  *
  * Color Space Converter clock synchronous disable signal.
  */
 
-#define BP_HDMI_MC_CLKDIS_CSCCLK_DISABLE      4
-#define BM_HDMI_MC_CLKDIS_CSCCLK_DISABLE      0x00000010
+#define BP_HDMI_MC_CLKDIS_CSCCLK_DISABLE      (4)
+#define BM_HDMI_MC_CLKDIS_CSCCLK_DISABLE      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_CLKDIS_CSCCLK_DISABLE(v)   ((((reg32_t) v) << 4) & BM_HDMI_MC_CLKDIS_CSCCLK_DISABLE)
@@ -19985,13 +19985,13 @@ typedef union
 #define BW_HDMI_MC_CLKDIS_CSCCLK_DISABLE(v)   BF_CS1(HDMI_MC_CLKDIS, CSCCLK_DISABLE, v)
 #endif
 
-/* --- Register HW_HDMI_MC_CLKDIS, field CECCLK_DISABLE (RW)
+/* --- Register HW_HDMI_MC_CLKDIS, field CECCLK_DISABLE[5:5] (RW)
  *
  * CEC Engine clock synchronous disable signal.
  */
 
-#define BP_HDMI_MC_CLKDIS_CECCLK_DISABLE      5
-#define BM_HDMI_MC_CLKDIS_CECCLK_DISABLE      0x00000020
+#define BP_HDMI_MC_CLKDIS_CECCLK_DISABLE      (5)
+#define BM_HDMI_MC_CLKDIS_CECCLK_DISABLE      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_CLKDIS_CECCLK_DISABLE(v)   ((((reg32_t) v) << 5) & BM_HDMI_MC_CLKDIS_CECCLK_DISABLE)
@@ -20003,13 +20003,13 @@ typedef union
 #define BW_HDMI_MC_CLKDIS_CECCLK_DISABLE(v)   BF_CS1(HDMI_MC_CLKDIS, CECCLK_DISABLE, v)
 #endif
 
-/* --- Register HW_HDMI_MC_CLKDIS, field HDCPCLK_DISABLE (RW)
+/* --- Register HW_HDMI_MC_CLKDIS, field HDCPCLK_DISABLE[6:6] (RW)
  *
  * HDCP clock synchronous disable signal. When active (1b) simultaneously bypasses HDCP.
  */
 
-#define BP_HDMI_MC_CLKDIS_HDCPCLK_DISABLE      6
-#define BM_HDMI_MC_CLKDIS_HDCPCLK_DISABLE      0x00000040
+#define BP_HDMI_MC_CLKDIS_HDCPCLK_DISABLE      (6)
+#define BM_HDMI_MC_CLKDIS_HDCPCLK_DISABLE      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_CLKDIS_HDCPCLK_DISABLE(v)   ((((reg32_t) v) << 6) & BM_HDMI_MC_CLKDIS_HDCPCLK_DISABLE)
@@ -20064,13 +20064,13 @@ typedef union
  * constants & macros for individual HDMI_MC_SWRSTZREQ bitfields
  */
 
-/* --- Register HW_HDMI_MC_SWRSTZREQ, field PIXELSWRST_REQ (RW)
+/* --- Register HW_HDMI_MC_SWRSTZREQ, field PIXELSWRST_REQ[0:0] (RW)
  *
  * Pixel software reset request. Defaults back to 1b after reset request.
  */
 
-#define BP_HDMI_MC_SWRSTZREQ_PIXELSWRST_REQ      0
-#define BM_HDMI_MC_SWRSTZREQ_PIXELSWRST_REQ      0x00000001
+#define BP_HDMI_MC_SWRSTZREQ_PIXELSWRST_REQ      (0)
+#define BM_HDMI_MC_SWRSTZREQ_PIXELSWRST_REQ      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_SWRSTZREQ_PIXELSWRST_REQ(v)   ((((reg32_t) v) << 0) & BM_HDMI_MC_SWRSTZREQ_PIXELSWRST_REQ)
@@ -20082,13 +20082,13 @@ typedef union
 #define BW_HDMI_MC_SWRSTZREQ_PIXELSWRST_REQ(v)   BF_CS1(HDMI_MC_SWRSTZREQ, PIXELSWRST_REQ, v)
 #endif
 
-/* --- Register HW_HDMI_MC_SWRSTZREQ, field TMDSSWRST_REQ (RW)
+/* --- Register HW_HDMI_MC_SWRSTZREQ, field TMDSSWRST_REQ[1:1] (RW)
  *
  * TMDS software reset request. Defaults back to 1b after reset request.
  */
 
-#define BP_HDMI_MC_SWRSTZREQ_TMDSSWRST_REQ      1
-#define BM_HDMI_MC_SWRSTZREQ_TMDSSWRST_REQ      0x00000002
+#define BP_HDMI_MC_SWRSTZREQ_TMDSSWRST_REQ      (1)
+#define BM_HDMI_MC_SWRSTZREQ_TMDSSWRST_REQ      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_SWRSTZREQ_TMDSSWRST_REQ(v)   ((((reg32_t) v) << 1) & BM_HDMI_MC_SWRSTZREQ_TMDSSWRST_REQ)
@@ -20100,13 +20100,13 @@ typedef union
 #define BW_HDMI_MC_SWRSTZREQ_TMDSSWRST_REQ(v)   BF_CS1(HDMI_MC_SWRSTZREQ, TMDSSWRST_REQ, v)
 #endif
 
-/* --- Register HW_HDMI_MC_SWRSTZREQ, field PREPSWRST_REQ (RW)
+/* --- Register HW_HDMI_MC_SWRSTZREQ, field PREPSWRST_REQ[2:2] (RW)
  *
  * Pixel Repetition clock synchronous disable signal.
  */
 
-#define BP_HDMI_MC_SWRSTZREQ_PREPSWRST_REQ      2
-#define BM_HDMI_MC_SWRSTZREQ_PREPSWRST_REQ      0x00000004
+#define BP_HDMI_MC_SWRSTZREQ_PREPSWRST_REQ      (2)
+#define BM_HDMI_MC_SWRSTZREQ_PREPSWRST_REQ      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_SWRSTZREQ_PREPSWRST_REQ(v)   ((((reg32_t) v) << 2) & BM_HDMI_MC_SWRSTZREQ_PREPSWRST_REQ)
@@ -20118,13 +20118,13 @@ typedef union
 #define BW_HDMI_MC_SWRSTZREQ_PREPSWRST_REQ(v)   BF_CS1(HDMI_MC_SWRSTZREQ, PREPSWRST_REQ, v)
 #endif
 
-/* --- Register HW_HDMI_MC_SWRSTZREQ, field CECSWRST_REQ (RW)
+/* --- Register HW_HDMI_MC_SWRSTZREQ, field CECSWRST_REQ[6:6] (RW)
  *
  * CEC software reset request. Defaults back to 1b after reset request.
  */
 
-#define BP_HDMI_MC_SWRSTZREQ_CECSWRST_REQ      6
-#define BM_HDMI_MC_SWRSTZREQ_CECSWRST_REQ      0x00000040
+#define BP_HDMI_MC_SWRSTZREQ_CECSWRST_REQ      (6)
+#define BM_HDMI_MC_SWRSTZREQ_CECSWRST_REQ      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_SWRSTZREQ_CECSWRST_REQ(v)   ((((reg32_t) v) << 6) & BM_HDMI_MC_SWRSTZREQ_CECSWRST_REQ)
@@ -20171,17 +20171,17 @@ typedef union
  * constants & macros for individual HDMI_MC_FLOWCTRL bitfields
  */
 
-/* --- Register HW_HDMI_MC_FLOWCTRL, field FEED_THROUGH_OFF (RW)
+/* --- Register HW_HDMI_MC_FLOWCTRL, field FEED_THROUGH_OFF[0:0] (RW)
  *
  * Video path Feed Through enable bit:
  *
  * Values:
- * 1 - Color Space Converter is in the video data path.
  * 0 - Color Space Converter is bypassed (not in the video data path).
+ * 1 - Color Space Converter is in the video data path.
  */
 
-#define BP_HDMI_MC_FLOWCTRL_FEED_THROUGH_OFF      0
-#define BM_HDMI_MC_FLOWCTRL_FEED_THROUGH_OFF      0x00000001
+#define BP_HDMI_MC_FLOWCTRL_FEED_THROUGH_OFF      (0)
+#define BM_HDMI_MC_FLOWCTRL_FEED_THROUGH_OFF      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_FLOWCTRL_FEED_THROUGH_OFF(v)   ((((reg32_t) v) << 0) & BM_HDMI_MC_FLOWCTRL_FEED_THROUGH_OFF)
@@ -20229,13 +20229,13 @@ typedef union
  * constants & macros for individual HDMI_MC_PHYRSTZ bitfields
  */
 
-/* --- Register HW_HDMI_MC_PHYRSTZ, field PHYRSTZ (RW)
+/* --- Register HW_HDMI_MC_PHYRSTZ, field PHYRSTZ[0:0] (RW)
  *
  * HDMI Source PHY active low reset control.
  */
 
-#define BP_HDMI_MC_PHYRSTZ_PHYRSTZ      0
-#define BM_HDMI_MC_PHYRSTZ_PHYRSTZ      0x00000001
+#define BP_HDMI_MC_PHYRSTZ_PHYRSTZ      (0)
+#define BM_HDMI_MC_PHYRSTZ_PHYRSTZ      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_PHYRSTZ_PHYRSTZ(v)   ((((reg32_t) v) << 0) & BM_HDMI_MC_PHYRSTZ_PHYRSTZ)
@@ -20286,14 +20286,14 @@ typedef union
  * constants & macros for individual HDMI_MC_LOCKONCLOCK bitfields
  */
 
-/* --- Register HW_HDMI_MC_LOCKONCLOCK, field CECCLK (W1C)
+/* --- Register HW_HDMI_MC_LOCKONCLOCK, field CECCLK[0:0] (W1C)
  *
  * CEC clock status. Indicates that the clock is present in the system. Cleared by WR 1 to this
  * position.
  */
 
-#define BP_HDMI_MC_LOCKONCLOCK_CECCLK      0
-#define BM_HDMI_MC_LOCKONCLOCK_CECCLK      0x00000001
+#define BP_HDMI_MC_LOCKONCLOCK_CECCLK      (0)
+#define BM_HDMI_MC_LOCKONCLOCK_CECCLK      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_LOCKONCLOCK_CECCLK(v)   ((((reg32_t) v) << 0) & BM_HDMI_MC_LOCKONCLOCK_CECCLK)
@@ -20305,14 +20305,14 @@ typedef union
 #define BW_HDMI_MC_LOCKONCLOCK_CECCLK(v)   BF_CS1(HDMI_MC_LOCKONCLOCK, CECCLK, v)
 #endif
 
-/* --- Register HW_HDMI_MC_LOCKONCLOCK, field PREPCLK (W1C)
+/* --- Register HW_HDMI_MC_LOCKONCLOCK, field PREPCLK[4:4] (W1C)
  *
  * Pixel repetition clock status. Indicates that the clock is present in the system. Cleared by WR 1
  * to this position.
  */
 
-#define BP_HDMI_MC_LOCKONCLOCK_PREPCLK      4
-#define BM_HDMI_MC_LOCKONCLOCK_PREPCLK      0x00000010
+#define BP_HDMI_MC_LOCKONCLOCK_PREPCLK      (4)
+#define BM_HDMI_MC_LOCKONCLOCK_PREPCLK      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_LOCKONCLOCK_PREPCLK(v)   ((((reg32_t) v) << 4) & BM_HDMI_MC_LOCKONCLOCK_PREPCLK)
@@ -20324,14 +20324,14 @@ typedef union
 #define BW_HDMI_MC_LOCKONCLOCK_PREPCLK(v)   BF_CS1(HDMI_MC_LOCKONCLOCK, PREPCLK, v)
 #endif
 
-/* --- Register HW_HDMI_MC_LOCKONCLOCK, field TCLKTCLK (W1C)
+/* --- Register HW_HDMI_MC_LOCKONCLOCK, field TCLKTCLK[5:5] (W1C)
  *
  * TMDS clock status. Indicates that the clock is present in the system. Cleared by WR 1 to this
  * position
  */
 
-#define BP_HDMI_MC_LOCKONCLOCK_TCLKTCLK      5
-#define BM_HDMI_MC_LOCKONCLOCK_TCLKTCLK      0x00000020
+#define BP_HDMI_MC_LOCKONCLOCK_TCLKTCLK      (5)
+#define BM_HDMI_MC_LOCKONCLOCK_TCLKTCLK      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_LOCKONCLOCK_TCLKTCLK(v)   ((((reg32_t) v) << 5) & BM_HDMI_MC_LOCKONCLOCK_TCLKTCLK)
@@ -20343,14 +20343,14 @@ typedef union
 #define BW_HDMI_MC_LOCKONCLOCK_TCLKTCLK(v)   BF_CS1(HDMI_MC_LOCKONCLOCK, TCLKTCLK, v)
 #endif
 
-/* --- Register HW_HDMI_MC_LOCKONCLOCK, field PCLK (W1C)
+/* --- Register HW_HDMI_MC_LOCKONCLOCK, field PCLK[6:6] (W1C)
  *
  * Pixel clock status. Indicates that the clock is present in the system. Cleared by WR 1 to this
  * position.
  */
 
-#define BP_HDMI_MC_LOCKONCLOCK_PCLK      6
-#define BM_HDMI_MC_LOCKONCLOCK_PCLK      0x00000040
+#define BP_HDMI_MC_LOCKONCLOCK_PCLK      (6)
+#define BM_HDMI_MC_LOCKONCLOCK_PCLK      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_LOCKONCLOCK_PCLK(v)   ((((reg32_t) v) << 6) & BM_HDMI_MC_LOCKONCLOCK_PCLK)
@@ -20397,13 +20397,13 @@ typedef union
  * constants & macros for individual HDMI_MC_HEACPHY_RST bitfields
  */
 
-/* --- Register HW_HDMI_MC_HEACPHY_RST, field HEACPHYRST (RW)
+/* --- Register HW_HDMI_MC_HEACPHY_RST, field HEACPHYRST[0:0] (RW)
  *
  * HEAC PHY reset (active high)
  */
 
-#define BP_HDMI_MC_HEACPHY_RST_HEACPHYRST      0
-#define BM_HDMI_MC_HEACPHY_RST_HEACPHYRST      0x00000001
+#define BP_HDMI_MC_HEACPHY_RST_HEACPHYRST      (0)
+#define BM_HDMI_MC_HEACPHY_RST_HEACPHYRST      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_MC_HEACPHY_RST_HEACPHYRST(v)   ((((reg32_t) v) << 0) & BM_HDMI_MC_HEACPHY_RST_HEACPHYRST)
@@ -20454,7 +20454,7 @@ typedef union
  * constants & macros for individual HDMI_CSC_CFG bitfields
  */
 
-/* --- Register HW_HDMI_CSC_CFG, field DECMODE (RW)
+/* --- Register HW_HDMI_CSC_CFG, field DECMODE[1:0] (RW)
  *
  * Chroma decimation configuration: decmode[1:0] Chroma decimation 00 decimation disabled 01 H d?
  * z?=1 10 H d? z?=1/ 4?1/ 2 z?1?1/4 z?2 11 H d? z?Þ211=?5?12 z?2?22 z?4?39 z?6?65 z?8?109 z?10?204
@@ -20464,8 +20464,8 @@ typedef union
  * +39z -24 -22z -26 +12z -28 -5z -30
  */
 
-#define BP_HDMI_CSC_CFG_DECMODE      0
-#define BM_HDMI_CSC_CFG_DECMODE      0x00000003
+#define BP_HDMI_CSC_CFG_DECMODE      (0)
+#define BM_HDMI_CSC_CFG_DECMODE      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_CFG_DECMODE(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_CFG_DECMODE)
@@ -20477,14 +20477,14 @@ typedef union
 #define BW_HDMI_CSC_CFG_DECMODE(v)   BF_CS1(HDMI_CSC_CFG, DECMODE, v)
 #endif
 
-/* --- Register HW_HDMI_CSC_CFG, field INTMODE (RW)
+/* --- Register HW_HDMI_CSC_CFG, field INTMODE[5:4] (RW)
  *
  * Chroma interpolation configuration: 00 interpolation disabled 01 H u (z) = 1 + z -1 10 H u
  * (z)=1/2 + Z -1 +1/2 z -2 11 interpolation disabled.
  */
 
-#define BP_HDMI_CSC_CFG_INTMODE      4
-#define BM_HDMI_CSC_CFG_INTMODE      0x00000030
+#define BP_HDMI_CSC_CFG_INTMODE      (4)
+#define BM_HDMI_CSC_CFG_INTMODE      (0x00000030)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_CFG_INTMODE(v)   ((((reg32_t) v) << 4) & BM_HDMI_CSC_CFG_INTMODE)
@@ -20533,7 +20533,7 @@ typedef union
  * constants & macros for individual HDMI_CSC_SCALE bitfields
  */
 
-/* --- Register HW_HDMI_CSC_SCALE, field CSC_COLORDE_PTH (RW)
+/* --- Register HW_HDMI_CSC_SCALE, field CSC_COLORDE_PTH[7:4] (RW)
  *
  * Color space converter color depth configuration: Other: Reserved.
  *
@@ -20545,8 +20545,8 @@ typedef union
  * 0111 - 48 bit per pixel video (16 bit per component).
  */
 
-#define BP_HDMI_CSC_SCALE_CSC_COLORDE_PTH      4
-#define BM_HDMI_CSC_SCALE_CSC_COLORDE_PTH      0x000000f0
+#define BP_HDMI_CSC_SCALE_CSC_COLORDE_PTH      (4)
+#define BM_HDMI_CSC_SCALE_CSC_COLORDE_PTH      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_SCALE_CSC_COLORDE_PTH(v)   ((((reg32_t) v) << 4) & BM_HDMI_CSC_SCALE_CSC_COLORDE_PTH)
@@ -20594,13 +20594,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A1_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A1_MSB, field CSC_COEF_A1_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A1_MSB, field CSC_COEF_A1_MSB[7:0] (RW)
  *
  * Color Space Conversion A1 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_A1_MSB_CSC_COEF_A1_MSB      0
-#define BM_HDMI_CSC_COEF_A1_MSB_CSC_COEF_A1_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A1_MSB_CSC_COEF_A1_MSB      (0)
+#define BM_HDMI_CSC_COEF_A1_MSB_CSC_COEF_A1_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A1_MSB_CSC_COEF_A1_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A1_MSB_CSC_COEF_A1_MSB)
@@ -20647,13 +20647,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A1_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A1_LSB, field CSC_COEF_A1_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A1_LSB, field CSC_COEF_A1_LSB[7:0] (RW)
  *
  * Color Space Conversion A1 LSB coefficient
  */
 
-#define BP_HDMI_CSC_COEF_A1_LSB_CSC_COEF_A1_LSB      0
-#define BM_HDMI_CSC_COEF_A1_LSB_CSC_COEF_A1_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A1_LSB_CSC_COEF_A1_LSB      (0)
+#define BM_HDMI_CSC_COEF_A1_LSB_CSC_COEF_A1_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A1_LSB_CSC_COEF_A1_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A1_LSB_CSC_COEF_A1_LSB)
@@ -20700,13 +20700,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A2_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A2_MSB, field CSC_COEF_A2_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A2_MSB, field CSC_COEF_A2_MSB[7:0] (RW)
  *
  * Color Space Conversion A2 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_A2_MSB_CSC_COEF_A2_MSB      0
-#define BM_HDMI_CSC_COEF_A2_MSB_CSC_COEF_A2_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A2_MSB_CSC_COEF_A2_MSB      (0)
+#define BM_HDMI_CSC_COEF_A2_MSB_CSC_COEF_A2_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A2_MSB_CSC_COEF_A2_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A2_MSB_CSC_COEF_A2_MSB)
@@ -20753,13 +20753,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A2_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A2_LSB, field CSC_COEF_A2_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A2_LSB, field CSC_COEF_A2_LSB[7:0] (RW)
  *
  * Color Space Conversion A2 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_A2_LSB_CSC_COEF_A2_LSB      0
-#define BM_HDMI_CSC_COEF_A2_LSB_CSC_COEF_A2_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A2_LSB_CSC_COEF_A2_LSB      (0)
+#define BM_HDMI_CSC_COEF_A2_LSB_CSC_COEF_A2_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A2_LSB_CSC_COEF_A2_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A2_LSB_CSC_COEF_A2_LSB)
@@ -20806,13 +20806,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A3_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A3_MSB, field CSC_COEF_A3_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A3_MSB, field CSC_COEF_A3_MSB[7:0] (RW)
  *
  * Color Space Conversion A3 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_A3_MSB_CSC_COEF_A3_MSB      0
-#define BM_HDMI_CSC_COEF_A3_MSB_CSC_COEF_A3_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A3_MSB_CSC_COEF_A3_MSB      (0)
+#define BM_HDMI_CSC_COEF_A3_MSB_CSC_COEF_A3_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A3_MSB_CSC_COEF_A3_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A3_MSB_CSC_COEF_A3_MSB)
@@ -20859,13 +20859,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A3_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A3_LSB, field CSC_COEF_A3_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A3_LSB, field CSC_COEF_A3_LSB[7:0] (RW)
  *
  * Color Space Conversion A3 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_A3_LSB_CSC_COEF_A3_LSB      0
-#define BM_HDMI_CSC_COEF_A3_LSB_CSC_COEF_A3_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A3_LSB_CSC_COEF_A3_LSB      (0)
+#define BM_HDMI_CSC_COEF_A3_LSB_CSC_COEF_A3_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A3_LSB_CSC_COEF_A3_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A3_LSB_CSC_COEF_A3_LSB)
@@ -20912,13 +20912,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A4_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A4_MSB, field CSC_COEF_A4_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A4_MSB, field CSC_COEF_A4_MSB[7:0] (RW)
  *
  * Color Space Conversion A4 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_A4_MSB_CSC_COEF_A4_MSB      0
-#define BM_HDMI_CSC_COEF_A4_MSB_CSC_COEF_A4_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A4_MSB_CSC_COEF_A4_MSB      (0)
+#define BM_HDMI_CSC_COEF_A4_MSB_CSC_COEF_A4_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A4_MSB_CSC_COEF_A4_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A4_MSB_CSC_COEF_A4_MSB)
@@ -20965,13 +20965,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_A4_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_A4_LSB, field CSC_COEF_A4_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_A4_LSB, field CSC_COEF_A4_LSB[7:0] (RW)
  *
  * Color Space Conversion A4 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_A4_LSB_CSC_COEF_A4_LSB      0
-#define BM_HDMI_CSC_COEF_A4_LSB_CSC_COEF_A4_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_A4_LSB_CSC_COEF_A4_LSB      (0)
+#define BM_HDMI_CSC_COEF_A4_LSB_CSC_COEF_A4_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_A4_LSB_CSC_COEF_A4_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_A4_LSB_CSC_COEF_A4_LSB)
@@ -21018,13 +21018,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B1_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B1_MSB, field CSC_COEF_B1_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B1_MSB, field CSC_COEF_B1_MSB[7:0] (RW)
  *
  * Color Space Conversion B1 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B1_MSB_CSC_COEF_B1_MSB      0
-#define BM_HDMI_CSC_COEF_B1_MSB_CSC_COEF_B1_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B1_MSB_CSC_COEF_B1_MSB      (0)
+#define BM_HDMI_CSC_COEF_B1_MSB_CSC_COEF_B1_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B1_MSB_CSC_COEF_B1_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B1_MSB_CSC_COEF_B1_MSB)
@@ -21071,13 +21071,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B1_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B1_LSB, field CSC_COEF_B1_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B1_LSB, field CSC_COEF_B1_LSB[7:0] (RW)
  *
  * Color Space Conversion B1 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B1_LSB_CSC_COEF_B1_LSB      0
-#define BM_HDMI_CSC_COEF_B1_LSB_CSC_COEF_B1_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B1_LSB_CSC_COEF_B1_LSB      (0)
+#define BM_HDMI_CSC_COEF_B1_LSB_CSC_COEF_B1_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B1_LSB_CSC_COEF_B1_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B1_LSB_CSC_COEF_B1_LSB)
@@ -21124,13 +21124,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B2_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B2_MSB, field CSC_COEF_B2_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B2_MSB, field CSC_COEF_B2_MSB[7:0] (RW)
  *
  * Color Space Conversion B2 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B2_MSB_CSC_COEF_B2_MSB      0
-#define BM_HDMI_CSC_COEF_B2_MSB_CSC_COEF_B2_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B2_MSB_CSC_COEF_B2_MSB      (0)
+#define BM_HDMI_CSC_COEF_B2_MSB_CSC_COEF_B2_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B2_MSB_CSC_COEF_B2_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B2_MSB_CSC_COEF_B2_MSB)
@@ -21177,13 +21177,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B2_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B2_LSB, field CSC_COEF_B2_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B2_LSB, field CSC_COEF_B2_LSB[7:0] (RW)
  *
  * Color Space Conversion B2 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B2_LSB_CSC_COEF_B2_LSB      0
-#define BM_HDMI_CSC_COEF_B2_LSB_CSC_COEF_B2_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B2_LSB_CSC_COEF_B2_LSB      (0)
+#define BM_HDMI_CSC_COEF_B2_LSB_CSC_COEF_B2_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B2_LSB_CSC_COEF_B2_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B2_LSB_CSC_COEF_B2_LSB)
@@ -21230,13 +21230,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B3_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B3_MSB, field CSC_COEF_B3_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B3_MSB, field CSC_COEF_B3_MSB[7:0] (RW)
  *
  * Color Space Conversion B3 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B3_MSB_CSC_COEF_B3_MSB      0
-#define BM_HDMI_CSC_COEF_B3_MSB_CSC_COEF_B3_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B3_MSB_CSC_COEF_B3_MSB      (0)
+#define BM_HDMI_CSC_COEF_B3_MSB_CSC_COEF_B3_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B3_MSB_CSC_COEF_B3_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B3_MSB_CSC_COEF_B3_MSB)
@@ -21283,13 +21283,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B3_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B3_LSB, field CSC_COEF_B3_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B3_LSB, field CSC_COEF_B3_LSB[7:0] (RW)
  *
  * Color Space Conversion B3 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B3_LSB_CSC_COEF_B3_LSB      0
-#define BM_HDMI_CSC_COEF_B3_LSB_CSC_COEF_B3_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B3_LSB_CSC_COEF_B3_LSB      (0)
+#define BM_HDMI_CSC_COEF_B3_LSB_CSC_COEF_B3_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B3_LSB_CSC_COEF_B3_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B3_LSB_CSC_COEF_B3_LSB)
@@ -21336,13 +21336,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B4_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B4_MSB, field CSC_COEF_B4_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B4_MSB, field CSC_COEF_B4_MSB[7:0] (RW)
  *
  * Color Space Conversion B4 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B4_MSB_CSC_COEF_B4_MSB      0
-#define BM_HDMI_CSC_COEF_B4_MSB_CSC_COEF_B4_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B4_MSB_CSC_COEF_B4_MSB      (0)
+#define BM_HDMI_CSC_COEF_B4_MSB_CSC_COEF_B4_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B4_MSB_CSC_COEF_B4_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B4_MSB_CSC_COEF_B4_MSB)
@@ -21389,13 +21389,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_B4_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_B4_LSB, field CSC_COEF_B4_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_B4_LSB, field CSC_COEF_B4_LSB[7:0] (RW)
  *
  * Color Space Conversion B4 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_B4_LSB_CSC_COEF_B4_LSB      0
-#define BM_HDMI_CSC_COEF_B4_LSB_CSC_COEF_B4_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_B4_LSB_CSC_COEF_B4_LSB      (0)
+#define BM_HDMI_CSC_COEF_B4_LSB_CSC_COEF_B4_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_B4_LSB_CSC_COEF_B4_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_B4_LSB_CSC_COEF_B4_LSB)
@@ -21442,13 +21442,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_C1_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_C1_MSB, field CSC_COEF_C1_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_C1_MSB, field CSC_COEF_C1_MSB[7:0] (RW)
  *
  * Color Space Conversion C1 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_C1_MSB_CSC_COEF_C1_MSB      0
-#define BM_HDMI_CSC_COEF_C1_MSB_CSC_COEF_C1_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_C1_MSB_CSC_COEF_C1_MSB      (0)
+#define BM_HDMI_CSC_COEF_C1_MSB_CSC_COEF_C1_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_C1_MSB_CSC_COEF_C1_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_C1_MSB_CSC_COEF_C1_MSB)
@@ -21495,13 +21495,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_C1_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_C1_LSB, field CSC_COEF_C1_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_C1_LSB, field CSC_COEF_C1_LSB[7:0] (RW)
  *
  * Color Space Conversion C1 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_C1_LSB_CSC_COEF_C1_LSB      0
-#define BM_HDMI_CSC_COEF_C1_LSB_CSC_COEF_C1_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_C1_LSB_CSC_COEF_C1_LSB      (0)
+#define BM_HDMI_CSC_COEF_C1_LSB_CSC_COEF_C1_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_C1_LSB_CSC_COEF_C1_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_C1_LSB_CSC_COEF_C1_LSB)
@@ -21548,13 +21548,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_C2_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_C2_MSB, field CSC_COEF_C2_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_C2_MSB, field CSC_COEF_C2_MSB[7:0] (RW)
  *
  * Color Space Conversion C2 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_C2_MSB_CSC_COEF_C2_MSB      0
-#define BM_HDMI_CSC_COEF_C2_MSB_CSC_COEF_C2_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_C2_MSB_CSC_COEF_C2_MSB      (0)
+#define BM_HDMI_CSC_COEF_C2_MSB_CSC_COEF_C2_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_C2_MSB_CSC_COEF_C2_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_C2_MSB_CSC_COEF_C2_MSB)
@@ -21601,13 +21601,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_C2_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_C2_LSB, field CSC_COEF_C2_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_C2_LSB, field CSC_COEF_C2_LSB[7:0] (RW)
  *
  * Color Space Conversion C2 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_C2_LSB_CSC_COEF_C2_LSB      0
-#define BM_HDMI_CSC_COEF_C2_LSB_CSC_COEF_C2_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_C2_LSB_CSC_COEF_C2_LSB      (0)
+#define BM_HDMI_CSC_COEF_C2_LSB_CSC_COEF_C2_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_C2_LSB_CSC_COEF_C2_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_C2_LSB_CSC_COEF_C2_LSB)
@@ -21654,13 +21654,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_C3_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_C3_MSB, field CSC_COEF_C3_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_C3_MSB, field CSC_COEF_C3_MSB[7:0] (RW)
  *
  * Color Space Conversion C3 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_C3_MSB_CSC_COEF_C3_MSB      0
-#define BM_HDMI_CSC_COEF_C3_MSB_CSC_COEF_C3_MSB      0x000000ff
+#define BP_HDMI_CSC_COEF_C3_MSB_CSC_COEF_C3_MSB      (0)
+#define BM_HDMI_CSC_COEF_C3_MSB_CSC_COEF_C3_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_C3_MSB_CSC_COEF_C3_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_C3_MSB_CSC_COEF_C3_MSB)
@@ -21707,13 +21707,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEF_C3_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEF_C3_LSB, field CSC_COEF_C3_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEF_C3_LSB, field CSC_COEF_C3_LSB[7:0] (RW)
  *
  * Color Space Conversion C3 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEF_C3_LSB_CSC_COEF_C3_LSB      0
-#define BM_HDMI_CSC_COEF_C3_LSB_CSC_COEF_C3_LSB      0x000000ff
+#define BP_HDMI_CSC_COEF_C3_LSB_CSC_COEF_C3_LSB      (0)
+#define BM_HDMI_CSC_COEF_C3_LSB_CSC_COEF_C3_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEF_C3_LSB_CSC_COEF_C3_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEF_C3_LSB_CSC_COEF_C3_LSB)
@@ -21760,13 +21760,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEFC4_MSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEFC4_MSB, field CSC_COEFC4_MSB (RW)
+/* --- Register HW_HDMI_CSC_COEFC4_MSB, field CSC_COEFC4_MSB[7:0] (RW)
  *
  * Color Space Conversion C4 MSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEFC4_MSB_CSC_COEFC4_MSB      0
-#define BM_HDMI_CSC_COEFC4_MSB_CSC_COEFC4_MSB      0x000000ff
+#define BP_HDMI_CSC_COEFC4_MSB_CSC_COEFC4_MSB      (0)
+#define BM_HDMI_CSC_COEFC4_MSB_CSC_COEFC4_MSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEFC4_MSB_CSC_COEFC4_MSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEFC4_MSB_CSC_COEFC4_MSB)
@@ -21813,13 +21813,13 @@ typedef union
  * constants & macros for individual HDMI_CSC_COEFC4_LSB bitfields
  */
 
-/* --- Register HW_HDMI_CSC_COEFC4_LSB, field CSC_COEFC4_LSB (RW)
+/* --- Register HW_HDMI_CSC_COEFC4_LSB, field CSC_COEFC4_LSB[7:0] (RW)
  *
  * Color Space Conversion C4 LSB coefficient.
  */
 
-#define BP_HDMI_CSC_COEFC4_LSB_CSC_COEFC4_LSB      0
-#define BM_HDMI_CSC_COEFC4_LSB_CSC_COEFC4_LSB      0x000000ff
+#define BP_HDMI_CSC_COEFC4_LSB_CSC_COEFC4_LSB      (0)
+#define BM_HDMI_CSC_COEFC4_LSB_CSC_COEFC4_LSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CSC_COEFC4_LSB_CSC_COEFC4_LSB(v)   ((((reg32_t) v) << 0) & BM_HDMI_CSC_COEFC4_LSB_CSC_COEFC4_LSB)
@@ -21872,13 +21872,13 @@ typedef union
  * constants & macros for individual HDMI_A_HDCPCFG0 bitfields
  */
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field HDMIDVI (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field HDMIDVI[0:0] (RW)
  *
  * Configures the transmitter to operate with a HDMI capable device or with a DVI device.
  */
 
-#define BP_HDMI_A_HDCPCFG0_HDMIDVI      0
-#define BM_HDMI_A_HDCPCFG0_HDMIDVI      0x00000001
+#define BP_HDMI_A_HDCPCFG0_HDMIDVI      (0)
+#define BM_HDMI_A_HDCPCFG0_HDMIDVI      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_HDMIDVI(v)   ((((reg32_t) v) << 0) & BM_HDMI_A_HDCPCFG0_HDMIDVI)
@@ -21890,13 +21890,13 @@ typedef union
 #define BW_HDMI_A_HDCPCFG0_HDMIDVI(v)   BF_CS1(HDMI_A_HDCPCFG0, HDMIDVI, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field EN11FEATURE (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field EN11FEATURE[1:1] (RW)
  *
  * Enable the use of features 1.1 from the transmitter's side
  */
 
-#define BP_HDMI_A_HDCPCFG0_EN11FEATURE      1
-#define BM_HDMI_A_HDCPCFG0_EN11FEATURE      0x00000002
+#define BP_HDMI_A_HDCPCFG0_EN11FEATURE      (1)
+#define BM_HDMI_A_HDCPCFG0_EN11FEATURE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_EN11FEATURE(v)   ((((reg32_t) v) << 1) & BM_HDMI_A_HDCPCFG0_EN11FEATURE)
@@ -21908,13 +21908,13 @@ typedef union
 #define BW_HDMI_A_HDCPCFG0_EN11FEATURE(v)   BF_CS1(HDMI_A_HDCPCFG0, EN11FEATURE, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field RXDETECT (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field RXDETECT[2:2] (RW)
  *
  * Information that a RX device was detected connected to the HDMI port
  */
 
-#define BP_HDMI_A_HDCPCFG0_RXDETECT      2
-#define BM_HDMI_A_HDCPCFG0_RXDETECT      0x00000004
+#define BP_HDMI_A_HDCPCFG0_RXDETECT      (2)
+#define BM_HDMI_A_HDCPCFG0_RXDETECT      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_RXDETECT(v)   ((((reg32_t) v) << 2) & BM_HDMI_A_HDCPCFG0_RXDETECT)
@@ -21926,13 +21926,13 @@ typedef union
 #define BW_HDMI_A_HDCPCFG0_RXDETECT(v)   BF_CS1(HDMI_A_HDCPCFG0, RXDETECT, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field AVMUTE (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field AVMUTE[3:3] (RW)
  *
  * Command given by the API system to enter in AVMUTE state
  */
 
-#define BP_HDMI_A_HDCPCFG0_AVMUTE      3
-#define BM_HDMI_A_HDCPCFG0_AVMUTE      0x00000008
+#define BP_HDMI_A_HDCPCFG0_AVMUTE      (3)
+#define BM_HDMI_A_HDCPCFG0_AVMUTE      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_AVMUTE(v)   ((((reg32_t) v) << 3) & BM_HDMI_A_HDCPCFG0_AVMUTE)
@@ -21944,14 +21944,14 @@ typedef union
 #define BW_HDMI_A_HDCPCFG0_AVMUTE(v)   BF_CS1(HDMI_A_HDCPCFG0, AVMUTE, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field SYNCRICHECK (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field SYNCRICHECK[4:4] (RW)
  *
  * Configure if the Ri check should be done at every 2s even or synchronously to every 128 encrypted
  * frame.
  */
 
-#define BP_HDMI_A_HDCPCFG0_SYNCRICHECK      4
-#define BM_HDMI_A_HDCPCFG0_SYNCRICHECK      0x00000010
+#define BP_HDMI_A_HDCPCFG0_SYNCRICHECK      (4)
+#define BM_HDMI_A_HDCPCFG0_SYNCRICHECK      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_SYNCRICHECK(v)   ((((reg32_t) v) << 4) & BM_HDMI_A_HDCPCFG0_SYNCRICHECK)
@@ -21963,13 +21963,13 @@ typedef union
 #define BW_HDMI_A_HDCPCFG0_SYNCRICHECK(v)   BF_CS1(HDMI_A_HDCPCFG0, SYNCRICHECK, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field BYPENCRYPTION (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field BYPENCRYPTION[5:5] (RW)
  *
  * Bypasses all the data encryption stage.
  */
 
-#define BP_HDMI_A_HDCPCFG0_BYPENCRYPTION      5
-#define BM_HDMI_A_HDCPCFG0_BYPENCRYPTION      0x00000020
+#define BP_HDMI_A_HDCPCFG0_BYPENCRYPTION      (5)
+#define BM_HDMI_A_HDCPCFG0_BYPENCRYPTION      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_BYPENCRYPTION(v)   ((((reg32_t) v) << 5) & BM_HDMI_A_HDCPCFG0_BYPENCRYPTION)
@@ -21981,13 +21981,13 @@ typedef union
 #define BW_HDMI_A_HDCPCFG0_BYPENCRYPTION(v)   BF_CS1(HDMI_A_HDCPCFG0, BYPENCRYPTION, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field I2CFASTMODE (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field I2CFASTMODE[6:6] (RW)
  *
  * Enable the I2C fast mode option from the transmitter's side.
  */
 
-#define BP_HDMI_A_HDCPCFG0_I2CFASTMODE      6
-#define BM_HDMI_A_HDCPCFG0_I2CFASTMODE      0x00000040
+#define BP_HDMI_A_HDCPCFG0_I2CFASTMODE      (6)
+#define BM_HDMI_A_HDCPCFG0_I2CFASTMODE      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_I2CFASTMODE(v)   ((((reg32_t) v) << 6) & BM_HDMI_A_HDCPCFG0_I2CFASTMODE)
@@ -21999,13 +21999,13 @@ typedef union
 #define BW_HDMI_A_HDCPCFG0_I2CFASTMODE(v)   BF_CS1(HDMI_A_HDCPCFG0, I2CFASTMODE, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG0, field ELVENA (RW)
+/* --- Register HW_HDMI_A_HDCPCFG0, field ELVENA[7:7] (RW)
  *
  * Enables the Enhanced Link Verification from the transmitter's side.
  */
 
-#define BP_HDMI_A_HDCPCFG0_ELVENA      7
-#define BM_HDMI_A_HDCPCFG0_ELVENA      0x00000080
+#define BP_HDMI_A_HDCPCFG0_ELVENA      (7)
+#define BM_HDMI_A_HDCPCFG0_ELVENA      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG0_ELVENA(v)   ((((reg32_t) v) << 7) & BM_HDMI_A_HDCPCFG0_ELVENA)
@@ -22055,13 +22055,13 @@ typedef union
  * constants & macros for individual HDMI_A_HDCPCFG1 bitfields
  */
 
-/* --- Register HW_HDMI_A_HDCPCFG1, field SWRESET (RW)
+/* --- Register HW_HDMI_A_HDCPCFG1, field SWRESET[0:0] (RW)
  *
  * Software reset signal, active by writing a zero and auto cleared to one in the following cycle.
  */
 
-#define BP_HDMI_A_HDCPCFG1_SWRESET      0
-#define BM_HDMI_A_HDCPCFG1_SWRESET      0x00000001
+#define BP_HDMI_A_HDCPCFG1_SWRESET      (0)
+#define BM_HDMI_A_HDCPCFG1_SWRESET      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG1_SWRESET(v)   ((((reg32_t) v) << 0) & BM_HDMI_A_HDCPCFG1_SWRESET)
@@ -22073,13 +22073,13 @@ typedef union
 #define BW_HDMI_A_HDCPCFG1_SWRESET(v)   BF_CS1(HDMI_A_HDCPCFG1, SWRESET, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG1, field ENCRYPTIONDISABLE (RW)
+/* --- Register HW_HDMI_A_HDCPCFG1, field ENCRYPTIONDISABLE[1:1] (RW)
  *
  * Disable encryption without losing authentication.
  */
 
-#define BP_HDMI_A_HDCPCFG1_ENCRYPTIONDISABLE      1
-#define BM_HDMI_A_HDCPCFG1_ENCRYPTIONDISABLE      0x00000002
+#define BP_HDMI_A_HDCPCFG1_ENCRYPTIONDISABLE      (1)
+#define BM_HDMI_A_HDCPCFG1_ENCRYPTIONDISABLE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG1_ENCRYPTIONDISABLE(v)   ((((reg32_t) v) << 1) & BM_HDMI_A_HDCPCFG1_ENCRYPTIONDISABLE)
@@ -22091,14 +22091,14 @@ typedef union
 #define BW_HDMI_A_HDCPCFG1_ENCRYPTIONDISABLE(v)   BF_CS1(HDMI_A_HDCPCFG1, ENCRYPTIONDISABLE, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG1, field PH2UPSHFTENC (RW)
+/* --- Register HW_HDMI_A_HDCPCFG1, field PH2UPSHFTENC[2:2] (RW)
  *
  * This bit enables the encoding of packet header in the tmdsch0 bit[0] with cipher[2] instead of
  * the tmdsch0 bit[2].
  */
 
-#define BP_HDMI_A_HDCPCFG1_PH2UPSHFTENC      2
-#define BM_HDMI_A_HDCPCFG1_PH2UPSHFTENC      0x00000004
+#define BP_HDMI_A_HDCPCFG1_PH2UPSHFTENC      (2)
+#define BM_HDMI_A_HDCPCFG1_PH2UPSHFTENC      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG1_PH2UPSHFTENC(v)   ((((reg32_t) v) << 2) & BM_HDMI_A_HDCPCFG1_PH2UPSHFTENC)
@@ -22110,14 +22110,14 @@ typedef union
 #define BW_HDMI_A_HDCPCFG1_PH2UPSHFTENC(v)   BF_CS1(HDMI_A_HDCPCFG1, PH2UPSHFTENC, v)
 #endif
 
-/* --- Register HW_HDMI_A_HDCPCFG1, field DISSHA1CHECK (RW)
+/* --- Register HW_HDMI_A_HDCPCFG1, field DISSHA1CHECK[3:3] (RW)
  *
  * This bit disables the request to the API processor to verify the SHA1 message digest of a
  * received KSV List.
  */
 
-#define BP_HDMI_A_HDCPCFG1_DISSHA1CHECK      3
-#define BM_HDMI_A_HDCPCFG1_DISSHA1CHECK      0x00000008
+#define BP_HDMI_A_HDCPCFG1_DISSHA1CHECK      (3)
+#define BM_HDMI_A_HDCPCFG1_DISSHA1CHECK      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_HDCPCFG1_DISSHA1CHECK(v)   ((((reg32_t) v) << 3) & BM_HDMI_A_HDCPCFG1_DISSHA1CHECK)
@@ -22161,29 +22161,29 @@ typedef union
  * constants & macros for individual HDMI_A_HDCPOBS0 bitfields
  */
 
-/* --- Register HW_HDMI_A_HDCPOBS0, field HDCPENGAGED (RO)
+/* --- Register HW_HDMI_A_HDCPOBS0, field HDCPENGAGED[0:0] (RO)
  *
  * Informs that the current HDMI link has the HDCP protocol fully engaged.
  */
 
-#define BP_HDMI_A_HDCPOBS0_HDCPENGAGED      0
-#define BM_HDMI_A_HDCPOBS0_HDCPENGAGED      0x00000001
+#define BP_HDMI_A_HDCPOBS0_HDCPENGAGED      (0)
+#define BM_HDMI_A_HDCPOBS0_HDCPENGAGED      (0x00000001)
 
-/* --- Register HW_HDMI_A_HDCPOBS0, field DISSHA1CHECK (RO)
+/* --- Register HW_HDMI_A_HDCPOBS0, field DISSHA1CHECK[3:1] (RO)
  *
  * Observability register informs in which sub-state the authentication is on.
  */
 
-#define BP_HDMI_A_HDCPOBS0_DISSHA1CHECK      1
-#define BM_HDMI_A_HDCPOBS0_DISSHA1CHECK      0x0000000e
+#define BP_HDMI_A_HDCPOBS0_DISSHA1CHECK      (1)
+#define BM_HDMI_A_HDCPOBS0_DISSHA1CHECK      (0x0000000e)
 
-/* --- Register HW_HDMI_A_HDCPOBS0, field STATEA (RO)
+/* --- Register HW_HDMI_A_HDCPOBS0, field STATEA[7:4] (RO)
  *
  * Observability register informs in which state the authentication machine is on.
  */
 
-#define BP_HDMI_A_HDCPOBS0_STATEA      4
-#define BM_HDMI_A_HDCPOBS0_STATEA      0x000000f0
+#define BP_HDMI_A_HDCPOBS0_STATEA      (4)
+#define BM_HDMI_A_HDCPOBS0_STATEA      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22217,21 +22217,21 @@ typedef union
  * constants & macros for individual HDMI_A_HDCPOBS1 bitfields
  */
 
-/* --- Register HW_HDMI_A_HDCPOBS1, field STATER (RO)
+/* --- Register HW_HDMI_A_HDCPOBS1, field STATER[2:0] (RO)
  *
  * Observability register informs in which state the revocation machine is on.
  */
 
-#define BP_HDMI_A_HDCPOBS1_STATER      0
-#define BM_HDMI_A_HDCPOBS1_STATER      0x00000007
+#define BP_HDMI_A_HDCPOBS1_STATER      (0)
+#define BM_HDMI_A_HDCPOBS1_STATER      (0x00000007)
 
-/* --- Register HW_HDMI_A_HDCPOBS1, field STATEOEG (RO)
+/* --- Register HW_HDMI_A_HDCPOBS1, field STATEOEG[5:3] (RO)
  *
  * Observability register informs in which state the OESS machine is on.
  */
 
-#define BP_HDMI_A_HDCPOBS1_STATEOEG      3
-#define BM_HDMI_A_HDCPOBS1_STATEOEG      0x00000038
+#define BP_HDMI_A_HDCPOBS1_STATEOEG      (3)
+#define BM_HDMI_A_HDCPOBS1_STATEOEG      (0x00000038)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22265,21 +22265,21 @@ typedef union
  * constants & macros for individual HDMI_A_HDCPOBS2 bitfields
  */
 
-/* --- Register HW_HDMI_A_HDCPOBS2, field STATEEEG (RO)
+/* --- Register HW_HDMI_A_HDCPOBS2, field STATEEEG[2:0] (RO)
  *
  * Observability register informs in which state the EESS machine is on.
  */
 
-#define BP_HDMI_A_HDCPOBS2_STATEEEG      0
-#define BM_HDMI_A_HDCPOBS2_STATEEEG      0x00000007
+#define BP_HDMI_A_HDCPOBS2_STATEEEG      (0)
+#define BM_HDMI_A_HDCPOBS2_STATEEEG      (0x00000007)
 
-/* --- Register HW_HDMI_A_HDCPOBS2, field STATEE (RO)
+/* --- Register HW_HDMI_A_HDCPOBS2, field STATEE[5:3] (RO)
  *
  * Observability register informs in which state the cipher machine is on.
  */
 
-#define BP_HDMI_A_HDCPOBS2_STATEE      3
-#define BM_HDMI_A_HDCPOBS2_STATEE      0x00000038
+#define BP_HDMI_A_HDCPOBS2_STATEE      (3)
+#define BM_HDMI_A_HDCPOBS2_STATEE      (0x00000038)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22318,69 +22318,69 @@ typedef union
  * constants & macros for individual HDMI_A_HDCPOBS3 bitfields
  */
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field FAST_REAUTHENTICATION (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field FAST_REAUTHENTICATION[0:0] (RO)
  *
  * From RX: Bcap(0x40) bit 0.
  */
 
-#define BP_HDMI_A_HDCPOBS3_FAST_REAUTHENTICATION      0
-#define BM_HDMI_A_HDCPOBS3_FAST_REAUTHENTICATION      0x00000001
+#define BP_HDMI_A_HDCPOBS3_FAST_REAUTHENTICATION      (0)
+#define BM_HDMI_A_HDCPOBS3_FAST_REAUTHENTICATION      (0x00000001)
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field FEATURES_1_1 (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field FEATURES_1_1[1:1] (RO)
  *
  * From RX: Bcap(0x40) bit 1.
  */
 
-#define BP_HDMI_A_HDCPOBS3_FEATURES_1_1      1
-#define BM_HDMI_A_HDCPOBS3_FEATURES_1_1      0x00000002
+#define BP_HDMI_A_HDCPOBS3_FEATURES_1_1      (1)
+#define BM_HDMI_A_HDCPOBS3_FEATURES_1_1      (0x00000002)
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field HDMI_MODE (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field HDMI_MODE[2:2] (RO)
  *
  * From RX: Bstatus(0x41) bit 12.
  */
 
-#define BP_HDMI_A_HDCPOBS3_HDMI_MODE      2
-#define BM_HDMI_A_HDCPOBS3_HDMI_MODE      0x00000004
+#define BP_HDMI_A_HDCPOBS3_HDMI_MODE      (2)
+#define BM_HDMI_A_HDCPOBS3_HDMI_MODE      (0x00000004)
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field HDMI_RESERVED_2 (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field HDMI_RESERVED_2[3:3] (RO)
  *
  * From RX: Bstatus(0x41) bit 13.
  */
 
-#define BP_HDMI_A_HDCPOBS3_HDMI_RESERVED_2      3
-#define BM_HDMI_A_HDCPOBS3_HDMI_RESERVED_2      0x00000008
+#define BP_HDMI_A_HDCPOBS3_HDMI_RESERVED_2      (3)
+#define BM_HDMI_A_HDCPOBS3_HDMI_RESERVED_2      (0x00000008)
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field FAST_I_2C (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field FAST_I_2C[4:4] (RO)
  *
  * From RX: Bcap(0x40) bit 4.
  */
 
-#define BP_HDMI_A_HDCPOBS3_FAST_I_2C      4
-#define BM_HDMI_A_HDCPOBS3_FAST_I_2C      0x00000010
+#define BP_HDMI_A_HDCPOBS3_FAST_I_2C      (4)
+#define BM_HDMI_A_HDCPOBS3_FAST_I_2C      (0x00000010)
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field KSV_FIFO_READY (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field KSV_FIFO_READY[5:5] (RO)
  *
  * From RX: Bcap(0x40) bit 5.
  */
 
-#define BP_HDMI_A_HDCPOBS3_KSV_FIFO_READY      5
-#define BM_HDMI_A_HDCPOBS3_KSV_FIFO_READY      0x00000020
+#define BP_HDMI_A_HDCPOBS3_KSV_FIFO_READY      (5)
+#define BM_HDMI_A_HDCPOBS3_KSV_FIFO_READY      (0x00000020)
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field REPEATER (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field REPEATER[6:6] (RO)
  *
  * From RX: Bcap(0x40) bit 6.
  */
 
-#define BP_HDMI_A_HDCPOBS3_REPEATER      6
-#define BM_HDMI_A_HDCPOBS3_REPEATER      0x00000040
+#define BP_HDMI_A_HDCPOBS3_REPEATER      (6)
+#define BM_HDMI_A_HDCPOBS3_REPEATER      (0x00000040)
 
-/* --- Register HW_HDMI_A_HDCPOBS3, field HDMI_RESERVED_1 (RO)
+/* --- Register HW_HDMI_A_HDCPOBS3, field HDMI_RESERVED_1[7:7] (RO)
  *
  * From RX: Bcap(0x40) bit 7.
  */
 
-#define BP_HDMI_A_HDCPOBS3_HDMI_RESERVED_1      7
-#define BM_HDMI_A_HDCPOBS3_HDMI_RESERVED_1      0x00000080
+#define BP_HDMI_A_HDCPOBS3_HDMI_RESERVED_1      (7)
+#define BM_HDMI_A_HDCPOBS3_HDMI_RESERVED_1      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22421,13 +22421,13 @@ typedef union
  * constants & macros for individual HDMI_A_APIINTCLR bitfields
  */
 
-/* --- Register HW_HDMI_A_APIINTCLR, field KSVACCESSINT (WO)
+/* --- Register HW_HDMI_A_APIINTCLR, field KSVACCESSINT[0:0] (WO)
  *
  * Clear the interruption related to KSV memory access grant for Read-Write access.
  */
 
-#define BP_HDMI_A_APIINTCLR_KSVACCESSINT      0
-#define BM_HDMI_A_APIINTCLR_KSVACCESSINT      0x00000001
+#define BP_HDMI_A_APIINTCLR_KSVACCESSINT      (0)
+#define BM_HDMI_A_APIINTCLR_KSVACCESSINT      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTCLR_KSVACCESSINT(v)   ((((reg32_t) v) << 0) & BM_HDMI_A_APIINTCLR_KSVACCESSINT)
@@ -22439,13 +22439,13 @@ typedef union
 #define BW_HDMI_A_APIINTCLR_KSVACCESSINT(v)   BF_CS1(HDMI_A_APIINTCLR, KSVACCESSINT, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTCLR, field KSVSHA1CALCINT (WO)
+/* --- Register HW_HDMI_A_APIINTCLR, field KSVSHA1CALCINT[1:1] (WO)
  *
  * Clear the interruption related to KSV list update in memory that needs to be SHA1 verified.
  */
 
-#define BP_HDMI_A_APIINTCLR_KSVSHA1CALCINT      1
-#define BM_HDMI_A_APIINTCLR_KSVSHA1CALCINT      0x00000002
+#define BP_HDMI_A_APIINTCLR_KSVSHA1CALCINT      (1)
+#define BM_HDMI_A_APIINTCLR_KSVSHA1CALCINT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTCLR_KSVSHA1CALCINT(v)   ((((reg32_t) v) << 1) & BM_HDMI_A_APIINTCLR_KSVSHA1CALCINT)
@@ -22457,13 +22457,13 @@ typedef union
 #define BW_HDMI_A_APIINTCLR_KSVSHA1CALCINT(v)   BF_CS1(HDMI_A_APIINTCLR, KSVSHA1CALCINT, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTCLR, field KEEPOUTERRORINT (WO)
+/* --- Register HW_HDMI_A_APIINTCLR, field KEEPOUTERRORINT[2:2] (WO)
  *
  * Clear the interruption related to keep out window error.
  */
 
-#define BP_HDMI_A_APIINTCLR_KEEPOUTERRORINT      2
-#define BM_HDMI_A_APIINTCLR_KEEPOUTERRORINT      0x00000004
+#define BP_HDMI_A_APIINTCLR_KEEPOUTERRORINT      (2)
+#define BM_HDMI_A_APIINTCLR_KEEPOUTERRORINT      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTCLR_KEEPOUTERRORINT(v)   ((((reg32_t) v) << 2) & BM_HDMI_A_APIINTCLR_KEEPOUTERRORINT)
@@ -22475,13 +22475,13 @@ typedef union
 #define BW_HDMI_A_APIINTCLR_KEEPOUTERRORINT(v)   BF_CS1(HDMI_A_APIINTCLR, KEEPOUTERRORINT, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTCLR, field LOSTARBITRATION (WO)
+/* --- Register HW_HDMI_A_APIINTCLR, field LOSTARBITRATION[3:3] (WO)
  *
  * Clear the interruption related to I2C arbitration lost.
  */
 
-#define BP_HDMI_A_APIINTCLR_LOSTARBITRATION      3
-#define BM_HDMI_A_APIINTCLR_LOSTARBITRATION      0x00000008
+#define BP_HDMI_A_APIINTCLR_LOSTARBITRATION      (3)
+#define BM_HDMI_A_APIINTCLR_LOSTARBITRATION      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTCLR_LOSTARBITRATION(v)   ((((reg32_t) v) << 3) & BM_HDMI_A_APIINTCLR_LOSTARBITRATION)
@@ -22493,13 +22493,13 @@ typedef union
 #define BW_HDMI_A_APIINTCLR_LOSTARBITRATION(v)   BF_CS1(HDMI_A_APIINTCLR, LOSTARBITRATION, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTCLR, field I2CNACK (WO)
+/* --- Register HW_HDMI_A_APIINTCLR, field I2CNACK[4:4] (WO)
  *
  * Clear the interruption related to I2C NACK reception.
  */
 
-#define BP_HDMI_A_APIINTCLR_I2CNACK      4
-#define BM_HDMI_A_APIINTCLR_I2CNACK      0x00000010
+#define BP_HDMI_A_APIINTCLR_I2CNACK      (4)
+#define BM_HDMI_A_APIINTCLR_I2CNACK      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTCLR_I2CNACK(v)   ((((reg32_t) v) << 4) & BM_HDMI_A_APIINTCLR_I2CNACK)
@@ -22511,13 +22511,13 @@ typedef union
 #define BW_HDMI_A_APIINTCLR_I2CNACK(v)   BF_CS1(HDMI_A_APIINTCLR, I2CNACK, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTCLR, field HDCP_FAILED (WO)
+/* --- Register HW_HDMI_A_APIINTCLR, field HDCP_FAILED[6:6] (WO)
  *
  * Clear the interruption related to HDCP authentication process failed.
  */
 
-#define BP_HDMI_A_APIINTCLR_HDCP_FAILED      6
-#define BM_HDMI_A_APIINTCLR_HDCP_FAILED      0x00000040
+#define BP_HDMI_A_APIINTCLR_HDCP_FAILED      (6)
+#define BM_HDMI_A_APIINTCLR_HDCP_FAILED      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTCLR_HDCP_FAILED(v)   ((((reg32_t) v) << 6) & BM_HDMI_A_APIINTCLR_HDCP_FAILED)
@@ -22529,13 +22529,13 @@ typedef union
 #define BW_HDMI_A_APIINTCLR_HDCP_FAILED(v)   BF_CS1(HDMI_A_APIINTCLR, HDCP_FAILED, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTCLR, field HDCP_ENGAGED (WO)
+/* --- Register HW_HDMI_A_APIINTCLR, field HDCP_ENGAGED[7:7] (WO)
  *
  * Clear the interruption related to HDCP authentication process successful.
  */
 
-#define BP_HDMI_A_APIINTCLR_HDCP_ENGAGED      7
-#define BM_HDMI_A_APIINTCLR_HDCP_ENGAGED      0x00000080
+#define BP_HDMI_A_APIINTCLR_HDCP_ENGAGED      (7)
+#define BM_HDMI_A_APIINTCLR_HDCP_ENGAGED      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTCLR_HDCP_ENGAGED(v)   ((((reg32_t) v) << 7) & BM_HDMI_A_APIINTCLR_HDCP_ENGAGED)
@@ -22585,62 +22585,62 @@ typedef union
  * constants & macros for individual HDMI_A_APIINTSTAT bitfields
  */
 
-/* --- Register HW_HDMI_A_APIINTSTAT, field KSVACCESSINT (RO)
+/* --- Register HW_HDMI_A_APIINTSTAT, field KSVACCESSINT[0:0] (RO)
  *
  * Notifies that the KSV memory access as been guaranteed for Read-Write access.
  */
 
-#define BP_HDMI_A_APIINTSTAT_KSVACCESSINT      0
-#define BM_HDMI_A_APIINTSTAT_KSVACCESSINT      0x00000001
+#define BP_HDMI_A_APIINTSTAT_KSVACCESSINT      (0)
+#define BM_HDMI_A_APIINTSTAT_KSVACCESSINT      (0x00000001)
 
-/* --- Register HW_HDMI_A_APIINTSTAT, field KSVSHA1CALCINT (RO)
+/* --- Register HW_HDMI_A_APIINTSTAT, field KSVSHA1CALCINT[1:1] (RO)
  *
  * Notifies that the HDCP13TCTRL core as updated a KSV list in memory that needs to be SHA1
  * verified.
  */
 
-#define BP_HDMI_A_APIINTSTAT_KSVSHA1CALCINT      1
-#define BM_HDMI_A_APIINTSTAT_KSVSHA1CALCINT      0x00000002
+#define BP_HDMI_A_APIINTSTAT_KSVSHA1CALCINT      (1)
+#define BM_HDMI_A_APIINTSTAT_KSVSHA1CALCINT      (0x00000002)
 
-/* --- Register HW_HDMI_A_APIINTSTAT, field KEEPOUTERRORINT (RO)
+/* --- Register HW_HDMI_A_APIINTSTAT, field KEEPOUTERRORINT[2:2] (RO)
  *
  * Notifies that during the keep out window, the ctlout[3:0] bus was used besides control period.
  */
 
-#define BP_HDMI_A_APIINTSTAT_KEEPOUTERRORINT      2
-#define BM_HDMI_A_APIINTSTAT_KEEPOUTERRORINT      0x00000004
+#define BP_HDMI_A_APIINTSTAT_KEEPOUTERRORINT      (2)
+#define BM_HDMI_A_APIINTSTAT_KEEPOUTERRORINT      (0x00000004)
 
-/* --- Register HW_HDMI_A_APIINTSTAT, field LOSTARBITRATION (RO)
+/* --- Register HW_HDMI_A_APIINTSTAT, field LOSTARBITRATION[3:3] (RO)
  *
  * Notifies that the I2C lost the arbitration to communicate. Another master gained arbitration.
  */
 
-#define BP_HDMI_A_APIINTSTAT_LOSTARBITRATION      3
-#define BM_HDMI_A_APIINTSTAT_LOSTARBITRATION      0x00000008
+#define BP_HDMI_A_APIINTSTAT_LOSTARBITRATION      (3)
+#define BM_HDMI_A_APIINTSTAT_LOSTARBITRATION      (0x00000008)
 
-/* --- Register HW_HDMI_A_APIINTSTAT, field I2CNACK (RO)
+/* --- Register HW_HDMI_A_APIINTSTAT, field I2CNACK[4:4] (RO)
  *
  * Notifies that the I2C received a NACK from slave device.
  */
 
-#define BP_HDMI_A_APIINTSTAT_I2CNACK      4
-#define BM_HDMI_A_APIINTSTAT_I2CNACK      0x00000010
+#define BP_HDMI_A_APIINTSTAT_I2CNACK      (4)
+#define BM_HDMI_A_APIINTSTAT_I2CNACK      (0x00000010)
 
-/* --- Register HW_HDMI_A_APIINTSTAT, field HDCP_FAILED (RO)
+/* --- Register HW_HDMI_A_APIINTSTAT, field HDCP_FAILED[6:6] (RO)
  *
  * Notifies that the HDCP authentication process was failed.
  */
 
-#define BP_HDMI_A_APIINTSTAT_HDCP_FAILED      6
-#define BM_HDMI_A_APIINTSTAT_HDCP_FAILED      0x00000040
+#define BP_HDMI_A_APIINTSTAT_HDCP_FAILED      (6)
+#define BM_HDMI_A_APIINTSTAT_HDCP_FAILED      (0x00000040)
 
-/* --- Register HW_HDMI_A_APIINTSTAT, field HCDP_ENGAGED (RO)
+/* --- Register HW_HDMI_A_APIINTSTAT, field HCDP_ENGAGED[7:7] (RO)
  *
  * Notifies that the HDCP authentication process was successful.
  */
 
-#define BP_HDMI_A_APIINTSTAT_HCDP_ENGAGED      7
-#define BM_HDMI_A_APIINTSTAT_HCDP_ENGAGED      0x00000080
+#define BP_HDMI_A_APIINTSTAT_HCDP_ENGAGED      (7)
+#define BM_HDMI_A_APIINTSTAT_HCDP_ENGAGED      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22685,13 +22685,13 @@ typedef union
  * constants & macros for individual HDMI_A_APIINTMSK bitfields
  */
 
-/* --- Register HW_HDMI_A_APIINTMSK, field KSVACCESSINT (RW)
+/* --- Register HW_HDMI_A_APIINTMSK, field KSVACCESSINT[0:0] (RW)
  *
  * Masks the interruption related to KSV memory access grant for Read-Write access.
  */
 
-#define BP_HDMI_A_APIINTMSK_KSVACCESSINT      0
-#define BM_HDMI_A_APIINTMSK_KSVACCESSINT      0x00000001
+#define BP_HDMI_A_APIINTMSK_KSVACCESSINT      (0)
+#define BM_HDMI_A_APIINTMSK_KSVACCESSINT      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTMSK_KSVACCESSINT(v)   ((((reg32_t) v) << 0) & BM_HDMI_A_APIINTMSK_KSVACCESSINT)
@@ -22703,13 +22703,13 @@ typedef union
 #define BW_HDMI_A_APIINTMSK_KSVACCESSINT(v)   BF_CS1(HDMI_A_APIINTMSK, KSVACCESSINT, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTMSK, field KSVSHA1CALCINT (RW)
+/* --- Register HW_HDMI_A_APIINTMSK, field KSVSHA1CALCINT[1:1] (RW)
  *
  * Masks the interruption related to KSV list update in memory that needs to be SHA1 verified.
  */
 
-#define BP_HDMI_A_APIINTMSK_KSVSHA1CALCINT      1
-#define BM_HDMI_A_APIINTMSK_KSVSHA1CALCINT      0x00000002
+#define BP_HDMI_A_APIINTMSK_KSVSHA1CALCINT      (1)
+#define BM_HDMI_A_APIINTMSK_KSVSHA1CALCINT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTMSK_KSVSHA1CALCINT(v)   ((((reg32_t) v) << 1) & BM_HDMI_A_APIINTMSK_KSVSHA1CALCINT)
@@ -22721,13 +22721,13 @@ typedef union
 #define BW_HDMI_A_APIINTMSK_KSVSHA1CALCINT(v)   BF_CS1(HDMI_A_APIINTMSK, KSVSHA1CALCINT, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTMSK, field KEEPOUTERRORINT (RW)
+/* --- Register HW_HDMI_A_APIINTMSK, field KEEPOUTERRORINT[2:2] (RW)
  *
  * Masks the interruption related to keep out window error.
  */
 
-#define BP_HDMI_A_APIINTMSK_KEEPOUTERRORINT      2
-#define BM_HDMI_A_APIINTMSK_KEEPOUTERRORINT      0x00000004
+#define BP_HDMI_A_APIINTMSK_KEEPOUTERRORINT      (2)
+#define BM_HDMI_A_APIINTMSK_KEEPOUTERRORINT      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTMSK_KEEPOUTERRORINT(v)   ((((reg32_t) v) << 2) & BM_HDMI_A_APIINTMSK_KEEPOUTERRORINT)
@@ -22739,13 +22739,13 @@ typedef union
 #define BW_HDMI_A_APIINTMSK_KEEPOUTERRORINT(v)   BF_CS1(HDMI_A_APIINTMSK, KEEPOUTERRORINT, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTMSK, field LOSTARBITRATION (RW)
+/* --- Register HW_HDMI_A_APIINTMSK, field LOSTARBITRATION[3:3] (RW)
  *
  * Masks the interruption related to I2C arbitration lost.
  */
 
-#define BP_HDMI_A_APIINTMSK_LOSTARBITRATION      3
-#define BM_HDMI_A_APIINTMSK_LOSTARBITRATION      0x00000008
+#define BP_HDMI_A_APIINTMSK_LOSTARBITRATION      (3)
+#define BM_HDMI_A_APIINTMSK_LOSTARBITRATION      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTMSK_LOSTARBITRATION(v)   ((((reg32_t) v) << 3) & BM_HDMI_A_APIINTMSK_LOSTARBITRATION)
@@ -22757,13 +22757,13 @@ typedef union
 #define BW_HDMI_A_APIINTMSK_LOSTARBITRATION(v)   BF_CS1(HDMI_A_APIINTMSK, LOSTARBITRATION, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTMSK, field I2CNACK (RW)
+/* --- Register HW_HDMI_A_APIINTMSK, field I2CNACK[4:4] (RW)
  *
  * Masks the interruption related to I2C NACK reception.
  */
 
-#define BP_HDMI_A_APIINTMSK_I2CNACK      4
-#define BM_HDMI_A_APIINTMSK_I2CNACK      0x00000010
+#define BP_HDMI_A_APIINTMSK_I2CNACK      (4)
+#define BM_HDMI_A_APIINTMSK_I2CNACK      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTMSK_I2CNACK(v)   ((((reg32_t) v) << 4) & BM_HDMI_A_APIINTMSK_I2CNACK)
@@ -22775,13 +22775,13 @@ typedef union
 #define BW_HDMI_A_APIINTMSK_I2CNACK(v)   BF_CS1(HDMI_A_APIINTMSK, I2CNACK, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTMSK, field HDCP_FAILED (RW)
+/* --- Register HW_HDMI_A_APIINTMSK, field HDCP_FAILED[6:6] (RW)
  *
  * Masks the interruption related to HDCP authentication process failed.
  */
 
-#define BP_HDMI_A_APIINTMSK_HDCP_FAILED      6
-#define BM_HDMI_A_APIINTMSK_HDCP_FAILED      0x00000040
+#define BP_HDMI_A_APIINTMSK_HDCP_FAILED      (6)
+#define BM_HDMI_A_APIINTMSK_HDCP_FAILED      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTMSK_HDCP_FAILED(v)   ((((reg32_t) v) << 6) & BM_HDMI_A_APIINTMSK_HDCP_FAILED)
@@ -22793,13 +22793,13 @@ typedef union
 #define BW_HDMI_A_APIINTMSK_HDCP_FAILED(v)   BF_CS1(HDMI_A_APIINTMSK, HDCP_FAILED, v)
 #endif
 
-/* --- Register HW_HDMI_A_APIINTMSK, field HCDP_ENGAGED (RW)
+/* --- Register HW_HDMI_A_APIINTMSK, field HCDP_ENGAGED[7:7] (RW)
  *
  * Masks the interruption related to HDCP authentication process successful.
  */
 
-#define BP_HDMI_A_APIINTMSK_HCDP_ENGAGED      7
-#define BM_HDMI_A_APIINTMSK_HCDP_ENGAGED      0x00000080
+#define BP_HDMI_A_APIINTMSK_HCDP_ENGAGED      (7)
+#define BM_HDMI_A_APIINTMSK_HCDP_ENGAGED      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_APIINTMSK_HCDP_ENGAGED(v)   ((((reg32_t) v) << 7) & BM_HDMI_A_APIINTMSK_HCDP_ENGAGED)
@@ -22851,13 +22851,13 @@ typedef union
  * constants & macros for individual HDMI_A_VIDPOLCFG bitfields
  */
 
-/* --- Register HW_HDMI_A_VIDPOLCFG, field HSYNCPOL (RW)
+/* --- Register HW_HDMI_A_VIDPOLCFG, field HSYNCPOL[1:1] (RW)
  *
  * Configuration of the video Horizontal synchronism polarity.
  */
 
-#define BP_HDMI_A_VIDPOLCFG_HSYNCPOL      1
-#define BM_HDMI_A_VIDPOLCFG_HSYNCPOL      0x00000002
+#define BP_HDMI_A_VIDPOLCFG_HSYNCPOL      (1)
+#define BM_HDMI_A_VIDPOLCFG_HSYNCPOL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_VIDPOLCFG_HSYNCPOL(v)   ((((reg32_t) v) << 1) & BM_HDMI_A_VIDPOLCFG_HSYNCPOL)
@@ -22869,13 +22869,13 @@ typedef union
 #define BW_HDMI_A_VIDPOLCFG_HSYNCPOL(v)   BF_CS1(HDMI_A_VIDPOLCFG, HSYNCPOL, v)
 #endif
 
-/* --- Register HW_HDMI_A_VIDPOLCFG, field VSYNCPOL (RW)
+/* --- Register HW_HDMI_A_VIDPOLCFG, field VSYNCPOL[3:3] (RW)
  *
  * Configuration of the video Vertical synchronism polarity.
  */
 
-#define BP_HDMI_A_VIDPOLCFG_VSYNCPOL      3
-#define BM_HDMI_A_VIDPOLCFG_VSYNCPOL      0x00000008
+#define BP_HDMI_A_VIDPOLCFG_VSYNCPOL      (3)
+#define BM_HDMI_A_VIDPOLCFG_VSYNCPOL      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_VIDPOLCFG_VSYNCPOL(v)   ((((reg32_t) v) << 3) & BM_HDMI_A_VIDPOLCFG_VSYNCPOL)
@@ -22887,13 +22887,13 @@ typedef union
 #define BW_HDMI_A_VIDPOLCFG_VSYNCPOL(v)   BF_CS1(HDMI_A_VIDPOLCFG, VSYNCPOL, v)
 #endif
 
-/* --- Register HW_HDMI_A_VIDPOLCFG, field DATAENPOL (RW)
+/* --- Register HW_HDMI_A_VIDPOLCFG, field DATAENPOL[4:4] (RW)
  *
  * Configuration of the video data enable polarity.
  */
 
-#define BP_HDMI_A_VIDPOLCFG_DATAENPOL      4
-#define BM_HDMI_A_VIDPOLCFG_DATAENPOL      0x00000010
+#define BP_HDMI_A_VIDPOLCFG_DATAENPOL      (4)
+#define BM_HDMI_A_VIDPOLCFG_DATAENPOL      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_VIDPOLCFG_DATAENPOL(v)   ((((reg32_t) v) << 4) & BM_HDMI_A_VIDPOLCFG_DATAENPOL)
@@ -22905,7 +22905,7 @@ typedef union
 #define BW_HDMI_A_VIDPOLCFG_DATAENPOL(v)   BF_CS1(HDMI_A_VIDPOLCFG, DATAENPOL, v)
 #endif
 
-/* --- Register HW_HDMI_A_VIDPOLCFG, field UNENCRYPTCONF (RW)
+/* --- Register HW_HDMI_A_VIDPOLCFG, field UNENCRYPTCONF[6:5] (RW)
  *
  * Configuration of the color sent when sending unencrypted video data
  *
@@ -22916,8 +22916,8 @@ typedef union
  * 11 - tmdsch0out=0xFF, tmdsch1out=0xFF, tmdsch2out=0xFF
  */
 
-#define BP_HDMI_A_VIDPOLCFG_UNENCRYPTCONF      5
-#define BM_HDMI_A_VIDPOLCFG_UNENCRYPTCONF      0x00000060
+#define BP_HDMI_A_VIDPOLCFG_UNENCRYPTCONF      (5)
+#define BM_HDMI_A_VIDPOLCFG_UNENCRYPTCONF      (0x00000060)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_VIDPOLCFG_UNENCRYPTCONF(v)   ((((reg32_t) v) << 5) & BM_HDMI_A_VIDPOLCFG_UNENCRYPTCONF)
@@ -22967,7 +22967,7 @@ typedef union
  * constants & macros for individual HDMI_A_OESSWCFG bitfields
  */
 
-/* --- Register HW_HDMI_A_OESSWCFG, field A_OESSWCFG (RW)
+/* --- Register HW_HDMI_A_OESSWCFG, field A_OESSWCFG[7:0] (RW)
  *
  * Size of the window of opportunity for the OESS mode. The window of opportunity for the Original
  * Encryption Status Signaling will start at the active edge of the Vertical synchronism and will
@@ -22980,8 +22980,8 @@ typedef union
  * starting no closer than 128 pixel clocks from the end of the vertical blank interval.
  */
 
-#define BP_HDMI_A_OESSWCFG_A_OESSWCFG      0
-#define BM_HDMI_A_OESSWCFG_A_OESSWCFG      0x000000ff
+#define BP_HDMI_A_OESSWCFG_A_OESSWCFG      (0)
+#define BM_HDMI_A_OESSWCFG_A_OESSWCFG      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_OESSWCFG_A_OESSWCFG(v)   ((((reg32_t) v) << 0) & BM_HDMI_A_OESSWCFG_A_OESSWCFG)
@@ -23023,13 +23023,13 @@ typedef union
  * constants & macros for individual HDMI_A_COREVERLSB bitfields
  */
 
-/* --- Register HW_HDMI_A_COREVERLSB, field A_COREVERLSB (RO)
+/* --- Register HW_HDMI_A_COREVERLSB, field A_COREVERLSB[7:0] (RO)
  *
  * Design ID number
  */
 
-#define BP_HDMI_A_COREVERLSB_A_COREVERLSB      0
-#define BM_HDMI_A_COREVERLSB_A_COREVERLSB      0x000000ff
+#define BP_HDMI_A_COREVERLSB_A_COREVERLSB      (0)
+#define BM_HDMI_A_COREVERLSB_A_COREVERLSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23061,13 +23061,13 @@ typedef union
  * constants & macros for individual HDMI_A_COREVERMSB bitfields
  */
 
-/* --- Register HW_HDMI_A_COREVERMSB, field A_COREVERMSB (RO)
+/* --- Register HW_HDMI_A_COREVERMSB, field A_COREVERMSB[7:0] (RO)
  *
  * Revision ID number
  */
 
-#define BP_HDMI_A_COREVERMSB_A_COREVERMSB      0
-#define BM_HDMI_A_COREVERMSB_A_COREVERMSB      0x000000ff
+#define BP_HDMI_A_COREVERMSB_A_COREVERMSB      (0)
+#define BM_HDMI_A_COREVERMSB_A_COREVERMSB      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23124,14 +23124,14 @@ typedef union
  * constants & macros for individual HDMI_A_KSVMEMCTRL bitfields
  */
 
-/* --- Register HW_HDMI_A_KSVMEMCTRL, field KSVMEMREQUEST (RW)
+/* --- Register HW_HDMI_A_KSVMEMCTRL, field KSVMEMREQUEST[0:0] (RW)
  *
  * Request access to the KSV memory, must be de-asserted after the access is completed by the
  * system.
  */
 
-#define BP_HDMI_A_KSVMEMCTRL_KSVMEMREQUEST      0
-#define BM_HDMI_A_KSVMEMCTRL_KSVMEMREQUEST      0x00000001
+#define BP_HDMI_A_KSVMEMCTRL_KSVMEMREQUEST      (0)
+#define BM_HDMI_A_KSVMEMCTRL_KSVMEMREQUEST      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_KSVMEMCTRL_KSVMEMREQUEST(v)   ((((reg32_t) v) << 0) & BM_HDMI_A_KSVMEMCTRL_KSVMEMREQUEST)
@@ -23143,13 +23143,13 @@ typedef union
 #define BW_HDMI_A_KSVMEMCTRL_KSVMEMREQUEST(v)   BF_CS1(HDMI_A_KSVMEMCTRL, KSVMEMREQUEST, v)
 #endif
 
-/* --- Register HW_HDMI_A_KSVMEMCTRL, field KSVMEMACCESS (RW)
+/* --- Register HW_HDMI_A_KSVMEMCTRL, field KSVMEMACCESS[1:1] (RW)
  *
  * Notification that the KSV memory access as been guaranteed.
  */
 
-#define BP_HDMI_A_KSVMEMCTRL_KSVMEMACCESS      1
-#define BM_HDMI_A_KSVMEMCTRL_KSVMEMACCESS      0x00000002
+#define BP_HDMI_A_KSVMEMCTRL_KSVMEMACCESS      (1)
+#define BM_HDMI_A_KSVMEMCTRL_KSVMEMACCESS      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_KSVMEMCTRL_KSVMEMACCESS(v)   ((((reg32_t) v) << 1) & BM_HDMI_A_KSVMEMCTRL_KSVMEMACCESS)
@@ -23161,14 +23161,14 @@ typedef union
 #define BW_HDMI_A_KSVMEMCTRL_KSVMEMACCESS(v)   BF_CS1(HDMI_A_KSVMEMCTRL, KSVMEMACCESS, v)
 #endif
 
-/* --- Register HW_HDMI_A_KSVMEMCTRL, field KSVCTRLUPD (RW)
+/* --- Register HW_HDMI_A_KSVMEMCTRL, field KSVCTRLUPD[2:2] (RW)
  *
  * Set to inform that the KSV list in memory has been analyzed and the response to it's Message
  * Digest as been updated.
  */
 
-#define BP_HDMI_A_KSVMEMCTRL_KSVCTRLUPD      2
-#define BM_HDMI_A_KSVMEMCTRL_KSVCTRLUPD      0x00000004
+#define BP_HDMI_A_KSVMEMCTRL_KSVCTRLUPD      (2)
+#define BM_HDMI_A_KSVMEMCTRL_KSVCTRLUPD      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_KSVMEMCTRL_KSVCTRLUPD(v)   ((((reg32_t) v) << 2) & BM_HDMI_A_KSVMEMCTRL_KSVCTRLUPD)
@@ -23180,13 +23180,13 @@ typedef union
 #define BW_HDMI_A_KSVMEMCTRL_KSVCTRLUPD(v)   BF_CS1(HDMI_A_KSVMEMCTRL, KSVCTRLUPD, v)
 #endif
 
-/* --- Register HW_HDMI_A_KSVMEMCTRL, field SHA1FAIL (RW)
+/* --- Register HW_HDMI_A_KSVMEMCTRL, field SHA1FAIL[3:3] (RW)
  *
  * Notification that the KSV list's message digest is correct or not.
  */
 
-#define BP_HDMI_A_KSVMEMCTRL_SHA1FAIL      3
-#define BM_HDMI_A_KSVMEMCTRL_SHA1FAIL      0x00000008
+#define BP_HDMI_A_KSVMEMCTRL_SHA1FAIL      (3)
+#define BM_HDMI_A_KSVMEMCTRL_SHA1FAIL      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_A_KSVMEMCTRL_SHA1FAIL(v)   ((((reg32_t) v) << 3) & BM_HDMI_A_KSVMEMCTRL_SHA1FAIL)
@@ -23235,7 +23235,7 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_BKSV0 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_BKSV0, field HDCPREG_BKSV0 (RO)
+/* --- Register HW_HDMI_HDCPREG_BKSV0, field HDCPREG_BKSV0[7:0] (RO)
  *
  * Contains the value of BKSV[7:0] During HDCP authentication, the HDCP Transmitter (Device A) sends
  * an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization
@@ -23243,8 +23243,8 @@ typedef union
  * the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
  */
 
-#define BP_HDMI_HDCPREG_BKSV0_HDCPREG_BKSV0      0
-#define BM_HDMI_HDCPREG_BKSV0_HDCPREG_BKSV0      0x000000ff
+#define BP_HDMI_HDCPREG_BKSV0_HDCPREG_BKSV0      (0)
+#define BM_HDMI_HDCPREG_BKSV0_HDCPREG_BKSV0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23277,7 +23277,7 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_BKSV1 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_BKSV1, field HDCPREG_BKSV1 (RO)
+/* --- Register HW_HDMI_HDCPREG_BKSV1, field HDCPREG_BKSV1[7:0] (RO)
  *
  * Contains the value of BKSV[15:8] During HDCP authentication, the HDCP Transmitter (Device A)
  * sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its
@@ -23285,8 +23285,8 @@ typedef union
  * registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
  */
 
-#define BP_HDMI_HDCPREG_BKSV1_HDCPREG_BKSV1      0
-#define BM_HDMI_HDCPREG_BKSV1_HDCPREG_BKSV1      0x000000ff
+#define BP_HDMI_HDCPREG_BKSV1_HDCPREG_BKSV1      (0)
+#define BM_HDMI_HDCPREG_BKSV1_HDCPREG_BKSV1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23319,7 +23319,7 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_BKSV2 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_BKSV2, field HDCPREG_BKSV2 (RO)
+/* --- Register HW_HDMI_HDCPREG_BKSV2, field HDCPREG_BKSV2[7:0] (RO)
  *
  * Contains the value of BKSV[23:16] During HDCP authentication, the HDCP Transmitter (Device A)
  * sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its
@@ -23327,8 +23327,8 @@ typedef union
  * registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
  */
 
-#define BP_HDMI_HDCPREG_BKSV2_HDCPREG_BKSV2      0
-#define BM_HDMI_HDCPREG_BKSV2_HDCPREG_BKSV2      0x000000ff
+#define BP_HDMI_HDCPREG_BKSV2_HDCPREG_BKSV2      (0)
+#define BM_HDMI_HDCPREG_BKSV2_HDCPREG_BKSV2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23361,7 +23361,7 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_BKSV3 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_BKSV3, field HDCPREG_BKSV3 (RO)
+/* --- Register HW_HDMI_HDCPREG_BKSV3, field HDCPREG_BKSV3[7:0] (RO)
  *
  * Contains the value of BKSV[31:24] During HDCP authentication, the HDCP Transmitter (Device A)
  * sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its
@@ -23369,8 +23369,8 @@ typedef union
  * registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
  */
 
-#define BP_HDMI_HDCPREG_BKSV3_HDCPREG_BKSV3      0
-#define BM_HDMI_HDCPREG_BKSV3_HDCPREG_BKSV3      0x000000ff
+#define BP_HDMI_HDCPREG_BKSV3_HDCPREG_BKSV3      (0)
+#define BM_HDMI_HDCPREG_BKSV3_HDCPREG_BKSV3      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23403,7 +23403,7 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_BKSV4 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_BKSV4, field HDCPREG_BKSV4 (RO)
+/* --- Register HW_HDMI_HDCPREG_BKSV4, field HDCPREG_BKSV4[7:0] (RO)
  *
  * Contains the value of BKSV[39:32] During HDCP authentication, the HDCP Transmitter (Device A)
  * sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its
@@ -23411,8 +23411,8 @@ typedef union
  * registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
  */
 
-#define BP_HDMI_HDCPREG_BKSV4_HDCPREG_BKSV4      0
-#define BM_HDMI_HDCPREG_BKSV4_HDCPREG_BKSV4      0x000000ff
+#define BP_HDMI_HDCPREG_BKSV4_HDCPREG_BKSV4      (0)
+#define BM_HDMI_HDCPREG_BKSV4_HDCPREG_BKSV4      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23455,15 +23455,15 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_ANCONF bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_ANCONF, field OANBYPASS (RW)
+/* --- Register HW_HDMI_HDCPREG_ANCONF, field OANBYPASS[0:0] (RW)
  *
  * When oanbypass=1, the value of AN used in the HDCP engine comes from the registers HDCPREG_AN0 to
  * HDCPREG_AN7. When oanbypass=0, the value of AN used in the HDCP engine comes from the random
  * number input.
  */
 
-#define BP_HDMI_HDCPREG_ANCONF_OANBYPASS      0
-#define BM_HDMI_HDCPREG_ANCONF_OANBYPASS      0x00000001
+#define BP_HDMI_HDCPREG_ANCONF_OANBYPASS      (0)
+#define BM_HDMI_HDCPREG_ANCONF_OANBYPASS      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_ANCONF_OANBYPASS(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_ANCONF_OANBYPASS)
@@ -23510,13 +23510,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN0 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN0, field HDCPREG_AN0 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN0, field HDCPREG_AN0[7:0] (RW)
  *
  * Contains the value of AN[7:0]
  */
 
-#define BP_HDMI_HDCPREG_AN0_HDCPREG_AN0      0
-#define BM_HDMI_HDCPREG_AN0_HDCPREG_AN0      0x000000ff
+#define BP_HDMI_HDCPREG_AN0_HDCPREG_AN0      (0)
+#define BM_HDMI_HDCPREG_AN0_HDCPREG_AN0      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN0_HDCPREG_AN0(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN0_HDCPREG_AN0)
@@ -23563,13 +23563,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN1 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN1, field HDCPREG_AN1 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN1, field HDCPREG_AN1[7:0] (RW)
  *
  * Contains the value of AN[15:8]
  */
 
-#define BP_HDMI_HDCPREG_AN1_HDCPREG_AN1      0
-#define BM_HDMI_HDCPREG_AN1_HDCPREG_AN1      0x000000ff
+#define BP_HDMI_HDCPREG_AN1_HDCPREG_AN1      (0)
+#define BM_HDMI_HDCPREG_AN1_HDCPREG_AN1      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN1_HDCPREG_AN1(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN1_HDCPREG_AN1)
@@ -23616,13 +23616,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN2 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN2, field HDCPREG_AN2 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN2, field HDCPREG_AN2[7:0] (RW)
  *
  * Contains the value of AN[23:16]
  */
 
-#define BP_HDMI_HDCPREG_AN2_HDCPREG_AN2      0
-#define BM_HDMI_HDCPREG_AN2_HDCPREG_AN2      0x000000ff
+#define BP_HDMI_HDCPREG_AN2_HDCPREG_AN2      (0)
+#define BM_HDMI_HDCPREG_AN2_HDCPREG_AN2      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN2_HDCPREG_AN2(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN2_HDCPREG_AN2)
@@ -23669,13 +23669,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN3 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN3, field HDCPREG_AN3 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN3, field HDCPREG_AN3[7:0] (RW)
  *
  * Contains the value of AN[31:24]
  */
 
-#define BP_HDMI_HDCPREG_AN3_HDCPREG_AN3      0
-#define BM_HDMI_HDCPREG_AN3_HDCPREG_AN3      0x000000ff
+#define BP_HDMI_HDCPREG_AN3_HDCPREG_AN3      (0)
+#define BM_HDMI_HDCPREG_AN3_HDCPREG_AN3      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN3_HDCPREG_AN3(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN3_HDCPREG_AN3)
@@ -23722,13 +23722,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN4 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN4, field HDCPREG_AN4 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN4, field HDCPREG_AN4[7:0] (RW)
  *
  * Contains the value of AN[39:32]
  */
 
-#define BP_HDMI_HDCPREG_AN4_HDCPREG_AN4      0
-#define BM_HDMI_HDCPREG_AN4_HDCPREG_AN4      0x000000ff
+#define BP_HDMI_HDCPREG_AN4_HDCPREG_AN4      (0)
+#define BM_HDMI_HDCPREG_AN4_HDCPREG_AN4      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN4_HDCPREG_AN4(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN4_HDCPREG_AN4)
@@ -23775,13 +23775,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN5 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN5, field HDCPREG_AN5 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN5, field HDCPREG_AN5[7:0] (RW)
  *
  * Contains the value of AN[47:40]
  */
 
-#define BP_HDMI_HDCPREG_AN5_HDCPREG_AN5      0
-#define BM_HDMI_HDCPREG_AN5_HDCPREG_AN5      0x000000ff
+#define BP_HDMI_HDCPREG_AN5_HDCPREG_AN5      (0)
+#define BM_HDMI_HDCPREG_AN5_HDCPREG_AN5      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN5_HDCPREG_AN5(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN5_HDCPREG_AN5)
@@ -23828,13 +23828,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN6 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN6, field HDCPREG_AN6 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN6, field HDCPREG_AN6[7:0] (RW)
  *
  * Contains the value of AN[55:48]
  */
 
-#define BP_HDMI_HDCPREG_AN6_HDCPREG_AN6      0
-#define BM_HDMI_HDCPREG_AN6_HDCPREG_AN6      0x000000ff
+#define BP_HDMI_HDCPREG_AN6_HDCPREG_AN6      (0)
+#define BM_HDMI_HDCPREG_AN6_HDCPREG_AN6      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN6_HDCPREG_AN6(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN6_HDCPREG_AN6)
@@ -23881,13 +23881,13 @@ typedef union
  * constants & macros for individual HDMI_HDCPREG_AN7 bitfields
  */
 
-/* --- Register HW_HDMI_HDCPREG_AN7, field HDCPREG_AN7 (RW)
+/* --- Register HW_HDMI_HDCPREG_AN7, field HDCPREG_AN7[7:0] (RW)
  *
  * Contains the value of AN[63:56]
  */
 
-#define BP_HDMI_HDCPREG_AN7_HDCPREG_AN7      0
-#define BM_HDMI_HDCPREG_AN7_HDCPREG_AN7      0x000000ff
+#define BP_HDMI_HDCPREG_AN7_HDCPREG_AN7      (0)
+#define BM_HDMI_HDCPREG_AN7_HDCPREG_AN7      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_HDCPREG_AN7_HDCPREG_AN7(v)   ((((reg32_t) v) << 0) & BM_HDMI_HDCPREG_AN7_HDCPREG_AN7)
@@ -23940,7 +23940,7 @@ typedef union
  * constants & macros for individual HDMI_CEC_CTRL bitfields
  */
 
-/* --- Register HW_HDMI_CEC_CTRL, field SEND (RW)
+/* --- Register HW_HDMI_CEC_CTRL, field SEND[0:0] (RW)
  *
 
  *
@@ -23951,8 +23951,8 @@ typedef union
  *     transmission is going on.
  */
 
-#define BP_HDMI_CEC_CTRL_SEND      0
-#define BM_HDMI_CEC_CTRL_SEND      0x00000001
+#define BP_HDMI_CEC_CTRL_SEND      (0)
+#define BM_HDMI_CEC_CTRL_SEND      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_CTRL_SEND(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_CTRL_SEND)
@@ -23965,7 +23965,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_CEC_CTRL, field FRAME_TYP (RW)
+/* --- Register HW_HDMI_CEC_CTRL, field FRAME_TYP[2:1] (RW)
  *
 
  *
@@ -23977,8 +23977,8 @@ typedef union
  * 11 - Illegal value. If software write this value, hardware will set the value to the default 2'b01.
  */
 
-#define BP_HDMI_CEC_CTRL_FRAME_TYP      1
-#define BM_HDMI_CEC_CTRL_FRAME_TYP      0x00000006
+#define BP_HDMI_CEC_CTRL_FRAME_TYP      (1)
+#define BM_HDMI_CEC_CTRL_FRAME_TYP      (0x00000006)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_CTRL_FRAME_TYP(v)   ((((reg32_t) v) << 1) & BM_HDMI_CEC_CTRL_FRAME_TYP)
@@ -23991,7 +23991,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_CEC_CTRL, field BC_NACK (RW)
+/* --- Register HW_HDMI_CEC_CTRL, field BC_NACK[3:3] (RW)
  *
 
  *
@@ -24001,8 +24001,8 @@ typedef union
  *     broadcasts will be answered with 1'b0. It means the follower reject the message.
  */
 
-#define BP_HDMI_CEC_CTRL_BC_NACK      3
-#define BM_HDMI_CEC_CTRL_BC_NACK      0x00000008
+#define BP_HDMI_CEC_CTRL_BC_NACK      (3)
+#define BM_HDMI_CEC_CTRL_BC_NACK      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_CTRL_BC_NACK(v)   ((((reg32_t) v) << 3) & BM_HDMI_CEC_CTRL_BC_NACK)
@@ -24015,7 +24015,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_HDMI_CEC_CTRL, field STANDBY (RW)
+/* --- Register HW_HDMI_CEC_CTRL, field STANDBY[4:4] (RW)
  *
 
  *
@@ -24026,8 +24026,8 @@ typedef union
  *     that the NACK will only be posted on the last block of a frame.
  */
 
-#define BP_HDMI_CEC_CTRL_STANDBY      4
-#define BM_HDMI_CEC_CTRL_STANDBY      0x00000010
+#define BP_HDMI_CEC_CTRL_STANDBY      (4)
+#define BM_HDMI_CEC_CTRL_STANDBY      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_CTRL_STANDBY(v)   ((((reg32_t) v) << 4) & BM_HDMI_CEC_CTRL_STANDBY)
@@ -24081,63 +24081,63 @@ typedef union
  * constants & macros for individual HDMI_CEC_STAT bitfields
  */
 
-/* --- Register HW_HDMI_CEC_STAT, field DONE (RO)
+/* --- Register HW_HDMI_CEC_STAT, field DONE[0:0] (RO)
  *
  * The current transmission is successful (for initiator only).
  */
 
-#define BP_HDMI_CEC_STAT_DONE      0
-#define BM_HDMI_CEC_STAT_DONE      0x00000001
+#define BP_HDMI_CEC_STAT_DONE      (0)
+#define BM_HDMI_CEC_STAT_DONE      (0x00000001)
 
-/* --- Register HW_HDMI_CEC_STAT, field EOM (RO)
+/* --- Register HW_HDMI_CEC_STAT, field EOM[1:1] (RO)
  *
  * EOM is detected so that the received data is ready in the receiver data buffer (for follower
  * only).
  */
 
-#define BP_HDMI_CEC_STAT_EOM      1
-#define BM_HDMI_CEC_STAT_EOM      0x00000002
+#define BP_HDMI_CEC_STAT_EOM      (1)
+#define BM_HDMI_CEC_STAT_EOM      (0x00000002)
 
-/* --- Register HW_HDMI_CEC_STAT, field NACK (RO)
+/* --- Register HW_HDMI_CEC_STAT, field NACK[2:2] (RO)
  *
  * A frame is not acknowledged in a directly addressed message. Or a frame is negatively
  * acknowledged in a broadcast message (for initiator only).
  */
 
-#define BP_HDMI_CEC_STAT_NACK      2
-#define BM_HDMI_CEC_STAT_NACK      0x00000004
+#define BP_HDMI_CEC_STAT_NACK      (2)
+#define BM_HDMI_CEC_STAT_NACK      (0x00000004)
 
-/* --- Register HW_HDMI_CEC_STAT, field ARB_LOST (RO)
+/* --- Register HW_HDMI_CEC_STAT, field ARB_LOST[3:3] (RO)
  *
  * The initiator losses the CEC line arbitration to a second initiator. (specification CEC 9).
  */
 
-#define BP_HDMI_CEC_STAT_ARB_LOST      3
-#define BM_HDMI_CEC_STAT_ARB_LOST      0x00000008
+#define BP_HDMI_CEC_STAT_ARB_LOST      (3)
+#define BM_HDMI_CEC_STAT_ARB_LOST      (0x00000008)
 
-/* --- Register HW_HDMI_CEC_STAT, field ERROR_INIT (RO)
+/* --- Register HW_HDMI_CEC_STAT, field ERROR_INIT[4:4] (RO)
  *
  * An error is detected on cec line (for initiator only).
  */
 
-#define BP_HDMI_CEC_STAT_ERROR_INIT      4
-#define BM_HDMI_CEC_STAT_ERROR_INIT      0x00000010
+#define BP_HDMI_CEC_STAT_ERROR_INIT      (4)
+#define BM_HDMI_CEC_STAT_ERROR_INIT      (0x00000010)
 
-/* --- Register HW_HDMI_CEC_STAT, field ERROR_FOLL (RO)
+/* --- Register HW_HDMI_CEC_STAT, field ERROR_FOLL[5:5] (RO)
  *
  * An error is notified by a follower. Abnormal logic data bit error (for follower).
  */
 
-#define BP_HDMI_CEC_STAT_ERROR_FOLL      5
-#define BM_HDMI_CEC_STAT_ERROR_FOLL      0x00000020
+#define BP_HDMI_CEC_STAT_ERROR_FOLL      (5)
+#define BM_HDMI_CEC_STAT_ERROR_FOLL      (0x00000020)
 
-/* --- Register HW_HDMI_CEC_STAT, field WAKEUP (RO)
+/* --- Register HW_HDMI_CEC_STAT, field WAKEUP[6:6] (RO)
  *
  * Follower received wake-up command (for follower only).
  */
 
-#define BP_HDMI_CEC_STAT_WAKEUP      6
-#define BM_HDMI_CEC_STAT_WAKEUP      0x00000040
+#define BP_HDMI_CEC_STAT_WAKEUP      (6)
+#define BM_HDMI_CEC_STAT_WAKEUP      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -24183,13 +24183,13 @@ typedef union
  * constants & macros for individual HDMI_CEC_MASK bitfields
  */
 
-/* --- Register HW_HDMI_CEC_MASK, field DONE_MASK (RW)
+/* --- Register HW_HDMI_CEC_MASK, field DONE_MASK[0:0] (RW)
  *
  * The current transmission is successful (for initiator only).
  */
 
-#define BP_HDMI_CEC_MASK_DONE_MASK      0
-#define BM_HDMI_CEC_MASK_DONE_MASK      0x00000001
+#define BP_HDMI_CEC_MASK_DONE_MASK      (0)
+#define BM_HDMI_CEC_MASK_DONE_MASK      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_MASK_DONE_MASK(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_MASK_DONE_MASK)
@@ -24201,14 +24201,14 @@ typedef union
 #define BW_HDMI_CEC_MASK_DONE_MASK(v)   BF_CS1(HDMI_CEC_MASK, DONE_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_MASK, field EOM_MASK (RW)
+/* --- Register HW_HDMI_CEC_MASK, field EOM_MASK[1:1] (RW)
  *
  * EOM is detected so that the received data is ready in the receiver data buffer (for follower
  * only).
  */
 
-#define BP_HDMI_CEC_MASK_EOM_MASK      1
-#define BM_HDMI_CEC_MASK_EOM_MASK      0x00000002
+#define BP_HDMI_CEC_MASK_EOM_MASK      (1)
+#define BM_HDMI_CEC_MASK_EOM_MASK      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_MASK_EOM_MASK(v)   ((((reg32_t) v) << 1) & BM_HDMI_CEC_MASK_EOM_MASK)
@@ -24220,14 +24220,14 @@ typedef union
 #define BW_HDMI_CEC_MASK_EOM_MASK(v)   BF_CS1(HDMI_CEC_MASK, EOM_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_MASK, field NACK_MASK (RW)
+/* --- Register HW_HDMI_CEC_MASK, field NACK_MASK[2:2] (RW)
  *
  * A frame is not acknowledged in a directly addressed message. Or a frame is negatively
  * acknowledged in a broadcast message (for initiator only).
  */
 
-#define BP_HDMI_CEC_MASK_NACK_MASK      2
-#define BM_HDMI_CEC_MASK_NACK_MASK      0x00000004
+#define BP_HDMI_CEC_MASK_NACK_MASK      (2)
+#define BM_HDMI_CEC_MASK_NACK_MASK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_MASK_NACK_MASK(v)   ((((reg32_t) v) << 2) & BM_HDMI_CEC_MASK_NACK_MASK)
@@ -24239,13 +24239,13 @@ typedef union
 #define BW_HDMI_CEC_MASK_NACK_MASK(v)   BF_CS1(HDMI_CEC_MASK, NACK_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_MASK, field ARB_LOST_MASK (RW)
+/* --- Register HW_HDMI_CEC_MASK, field ARB_LOST_MASK[3:3] (RW)
  *
  * The initiator losses the CEC line arbitration to a second initiator. (specification CEC 9).
  */
 
-#define BP_HDMI_CEC_MASK_ARB_LOST_MASK      3
-#define BM_HDMI_CEC_MASK_ARB_LOST_MASK      0x00000008
+#define BP_HDMI_CEC_MASK_ARB_LOST_MASK      (3)
+#define BM_HDMI_CEC_MASK_ARB_LOST_MASK      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_MASK_ARB_LOST_MASK(v)   ((((reg32_t) v) << 3) & BM_HDMI_CEC_MASK_ARB_LOST_MASK)
@@ -24257,13 +24257,13 @@ typedef union
 #define BW_HDMI_CEC_MASK_ARB_LOST_MASK(v)   BF_CS1(HDMI_CEC_MASK, ARB_LOST_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_MASK, field ERROR_INIT_MASK (RW)
+/* --- Register HW_HDMI_CEC_MASK, field ERROR_INIT_MASK[4:4] (RW)
  *
  * An error is detected on cec line (for initiator only).
  */
 
-#define BP_HDMI_CEC_MASK_ERROR_INIT_MASK      4
-#define BM_HDMI_CEC_MASK_ERROR_INIT_MASK      0x00000010
+#define BP_HDMI_CEC_MASK_ERROR_INIT_MASK      (4)
+#define BM_HDMI_CEC_MASK_ERROR_INIT_MASK      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_MASK_ERROR_INIT_MASK(v)   ((((reg32_t) v) << 4) & BM_HDMI_CEC_MASK_ERROR_INIT_MASK)
@@ -24275,13 +24275,13 @@ typedef union
 #define BW_HDMI_CEC_MASK_ERROR_INIT_MASK(v)   BF_CS1(HDMI_CEC_MASK, ERROR_INIT_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_MASK, field ERROR_FOLL__MASK (RW)
+/* --- Register HW_HDMI_CEC_MASK, field ERROR_FOLL__MASK[5:5] (RW)
  *
  * An error is notified by a follower. Abnormal logic data bit error (for follower).
  */
 
-#define BP_HDMI_CEC_MASK_ERROR_FOLL__MASK      5
-#define BM_HDMI_CEC_MASK_ERROR_FOLL__MASK      0x00000020
+#define BP_HDMI_CEC_MASK_ERROR_FOLL__MASK      (5)
+#define BM_HDMI_CEC_MASK_ERROR_FOLL__MASK      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_MASK_ERROR_FOLL__MASK(v)   ((((reg32_t) v) << 5) & BM_HDMI_CEC_MASK_ERROR_FOLL__MASK)
@@ -24293,13 +24293,13 @@ typedef union
 #define BW_HDMI_CEC_MASK_ERROR_FOLL__MASK(v)   BF_CS1(HDMI_CEC_MASK, ERROR_FOLL__MASK, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_MASK, field WAKEUP_MASK (RW)
+/* --- Register HW_HDMI_CEC_MASK, field WAKEUP_MASK[6:6] (RW)
  *
  * Follower wake-up signal mask
  */
 
-#define BP_HDMI_CEC_MASK_WAKEUP_MASK      6
-#define BM_HDMI_CEC_MASK_WAKEUP_MASK      0x00000040
+#define BP_HDMI_CEC_MASK_WAKEUP_MASK      (6)
+#define BM_HDMI_CEC_MASK_WAKEUP_MASK      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_MASK_WAKEUP_MASK(v)   ((((reg32_t) v) << 6) & BM_HDMI_CEC_MASK_WAKEUP_MASK)
@@ -24354,13 +24354,13 @@ typedef union
  * constants & macros for individual HDMI_CEC_POLARITY bitfields
  */
 
-/* --- Register HW_HDMI_CEC_POLARITY, field DONE_POL (RW)
+/* --- Register HW_HDMI_CEC_POLARITY, field DONE_POL[0:0] (RW)
  *
  * Current transmission success or not signal polarity
  */
 
-#define BP_HDMI_CEC_POLARITY_DONE_POL      0
-#define BM_HDMI_CEC_POLARITY_DONE_POL      0x00000001
+#define BP_HDMI_CEC_POLARITY_DONE_POL      (0)
+#define BM_HDMI_CEC_POLARITY_DONE_POL      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_POLARITY_DONE_POL(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_POLARITY_DONE_POL)
@@ -24372,13 +24372,13 @@ typedef union
 #define BW_HDMI_CEC_POLARITY_DONE_POL(v)   BF_CS1(HDMI_CEC_POLARITY, DONE_POL, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_POLARITY, field EOM_POL (RW)
+/* --- Register HW_HDMI_CEC_POLARITY, field EOM_POL[1:1] (RW)
  *
  * EOM detect signal polarity (follower only)
  */
 
-#define BP_HDMI_CEC_POLARITY_EOM_POL      1
-#define BM_HDMI_CEC_POLARITY_EOM_POL      0x00000002
+#define BP_HDMI_CEC_POLARITY_EOM_POL      (1)
+#define BM_HDMI_CEC_POLARITY_EOM_POL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_POLARITY_EOM_POL(v)   ((((reg32_t) v) << 1) & BM_HDMI_CEC_POLARITY_EOM_POL)
@@ -24390,13 +24390,13 @@ typedef union
 #define BW_HDMI_CEC_POLARITY_EOM_POL(v)   BF_CS1(HDMI_CEC_POLARITY, EOM_POL, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_POLARITY, field NACK_POL (RW)
+/* --- Register HW_HDMI_CEC_POLARITY, field NACK_POL[2:2] (RW)
  *
  * Frame NACK signal polarity
  */
 
-#define BP_HDMI_CEC_POLARITY_NACK_POL      2
-#define BM_HDMI_CEC_POLARITY_NACK_POL      0x00000004
+#define BP_HDMI_CEC_POLARITY_NACK_POL      (2)
+#define BM_HDMI_CEC_POLARITY_NACK_POL      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_POLARITY_NACK_POL(v)   ((((reg32_t) v) << 2) & BM_HDMI_CEC_POLARITY_NACK_POL)
@@ -24408,13 +24408,13 @@ typedef union
 #define BW_HDMI_CEC_POLARITY_NACK_POL(v)   BF_CS1(HDMI_CEC_POLARITY, NACK_POL, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_POLARITY, field ARB_LOST_POL (RW)
+/* --- Register HW_HDMI_CEC_POLARITY, field ARB_LOST_POL[3:3] (RW)
  *
  * Initiator Arbitration lost signal polarity
  */
 
-#define BP_HDMI_CEC_POLARITY_ARB_LOST_POL      3
-#define BM_HDMI_CEC_POLARITY_ARB_LOST_POL      0x00000008
+#define BP_HDMI_CEC_POLARITY_ARB_LOST_POL      (3)
+#define BM_HDMI_CEC_POLARITY_ARB_LOST_POL      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_POLARITY_ARB_LOST_POL(v)   ((((reg32_t) v) << 3) & BM_HDMI_CEC_POLARITY_ARB_LOST_POL)
@@ -24426,13 +24426,13 @@ typedef union
 #define BW_HDMI_CEC_POLARITY_ARB_LOST_POL(v)   BF_CS1(HDMI_CEC_POLARITY, ARB_LOST_POL, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_POLARITY, field ERROR_INIT_POL (RW)
+/* --- Register HW_HDMI_CEC_POLARITY, field ERROR_INIT_POL[4:4] (RW)
  *
  * CEC line error polarity (for initiator only)
  */
 
-#define BP_HDMI_CEC_POLARITY_ERROR_INIT_POL      4
-#define BM_HDMI_CEC_POLARITY_ERROR_INIT_POL      0x00000010
+#define BP_HDMI_CEC_POLARITY_ERROR_INIT_POL      (4)
+#define BM_HDMI_CEC_POLARITY_ERROR_INIT_POL      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_POLARITY_ERROR_INIT_POL(v)   ((((reg32_t) v) << 4) & BM_HDMI_CEC_POLARITY_ERROR_INIT_POL)
@@ -24444,13 +24444,13 @@ typedef union
 #define BW_HDMI_CEC_POLARITY_ERROR_INIT_POL(v)   BF_CS1(HDMI_CEC_POLARITY, ERROR_INIT_POL, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_POLARITY, field ERROR_FOLL_POL (RW)
+/* --- Register HW_HDMI_CEC_POLARITY, field ERROR_FOLL_POL[5:5] (RW)
  *
  * CEC line error polarity (for follower only)
  */
 
-#define BP_HDMI_CEC_POLARITY_ERROR_FOLL_POL      5
-#define BM_HDMI_CEC_POLARITY_ERROR_FOLL_POL      0x00000020
+#define BP_HDMI_CEC_POLARITY_ERROR_FOLL_POL      (5)
+#define BM_HDMI_CEC_POLARITY_ERROR_FOLL_POL      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_POLARITY_ERROR_FOLL_POL(v)   ((((reg32_t) v) << 5) & BM_HDMI_CEC_POLARITY_ERROR_FOLL_POL)
@@ -24462,13 +24462,13 @@ typedef union
 #define BW_HDMI_CEC_POLARITY_ERROR_FOLL_POL(v)   BF_CS1(HDMI_CEC_POLARITY, ERROR_FOLL_POL, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_POLARITY, field WAKEUP_POL (RW)
+/* --- Register HW_HDMI_CEC_POLARITY, field WAKEUP_POL[6:6] (RW)
  *
  * Follower wakeup signal polarity
  */
 
-#define BP_HDMI_CEC_POLARITY_WAKEUP_POL      6
-#define BM_HDMI_CEC_POLARITY_WAKEUP_POL      0x00000040
+#define BP_HDMI_CEC_POLARITY_WAKEUP_POL      (6)
+#define BM_HDMI_CEC_POLARITY_WAKEUP_POL      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_POLARITY_WAKEUP_POL(v)   ((((reg32_t) v) << 6) & BM_HDMI_CEC_POLARITY_WAKEUP_POL)
@@ -24523,61 +24523,61 @@ typedef union
  * constants & macros for individual HDMI_CEC_INT bitfields
  */
 
-/* --- Register HW_HDMI_CEC_INT, field DONE_INT (RO)
+/* --- Register HW_HDMI_CEC_INT, field DONE_INT[0:0] (RO)
  *
  * EOM detect interrupt (for follower only)
  */
 
-#define BP_HDMI_CEC_INT_DONE_INT      0
-#define BM_HDMI_CEC_INT_DONE_INT      0x00000001
+#define BP_HDMI_CEC_INT_DONE_INT      (0)
+#define BM_HDMI_CEC_INT_DONE_INT      (0x00000001)
 
-/* --- Register HW_HDMI_CEC_INT, field EOM_INT (RO)
+/* --- Register HW_HDMI_CEC_INT, field EOM_INT[1:1] (RO)
  *
  * Frame NACK interrupt
  */
 
-#define BP_HDMI_CEC_INT_EOM_INT      1
-#define BM_HDMI_CEC_INT_EOM_INT      0x00000002
+#define BP_HDMI_CEC_INT_EOM_INT      (1)
+#define BM_HDMI_CEC_INT_EOM_INT      (0x00000002)
 
-/* --- Register HW_HDMI_CEC_INT, field NACK_INT (RO)
+/* --- Register HW_HDMI_CEC_INT, field NACK_INT[2:2] (RO)
  *
  * Initiator Arbitration lost interrupt
  */
 
-#define BP_HDMI_CEC_INT_NACK_INT      2
-#define BM_HDMI_CEC_INT_NACK_INT      0x00000004
+#define BP_HDMI_CEC_INT_NACK_INT      (2)
+#define BM_HDMI_CEC_INT_NACK_INT      (0x00000004)
 
-/* --- Register HW_HDMI_CEC_INT, field ARB_LOST_INT (RO)
+/* --- Register HW_HDMI_CEC_INT, field ARB_LOST_INT[3:3] (RO)
  *
  * CEC line error interrupt (for initiator only)
  */
 
-#define BP_HDMI_CEC_INT_ARB_LOST_INT      3
-#define BM_HDMI_CEC_INT_ARB_LOST_INT      0x00000008
+#define BP_HDMI_CEC_INT_ARB_LOST_INT      (3)
+#define BM_HDMI_CEC_INT_ARB_LOST_INT      (0x00000008)
 
-/* --- Register HW_HDMI_CEC_INT, field ERROR_INIT_INT (RO)
+/* --- Register HW_HDMI_CEC_INT, field ERROR_INIT_INT[4:4] (RO)
  *
  * CEC line error interrupt (for follower only)
  */
 
-#define BP_HDMI_CEC_INT_ERROR_INIT_INT      4
-#define BM_HDMI_CEC_INT_ERROR_INIT_INT      0x00000010
+#define BP_HDMI_CEC_INT_ERROR_INIT_INT      (4)
+#define BM_HDMI_CEC_INT_ERROR_INIT_INT      (0x00000010)
 
-/* --- Register HW_HDMI_CEC_INT, field ERROR_FOLL_INT (RO)
+/* --- Register HW_HDMI_CEC_INT, field ERROR_FOLL_INT[5:5] (RO)
  *
  * Follower wakeup interrupt
  */
 
-#define BP_HDMI_CEC_INT_ERROR_FOLL_INT      5
-#define BM_HDMI_CEC_INT_ERROR_FOLL_INT      0x00000020
+#define BP_HDMI_CEC_INT_ERROR_FOLL_INT      (5)
+#define BM_HDMI_CEC_INT_ERROR_FOLL_INT      (0x00000020)
 
-/* --- Register HW_HDMI_CEC_INT, field WAKEUP_INT (RO)
+/* --- Register HW_HDMI_CEC_INT, field WAKEUP_INT[6:6] (RO)
  *
  * Follower wakeup signal polarity
  */
 
-#define BP_HDMI_CEC_INT_WAKEUP_INT      6
-#define BM_HDMI_CEC_INT_WAKEUP_INT      0x00000040
+#define BP_HDMI_CEC_INT_WAKEUP_INT      (6)
+#define BM_HDMI_CEC_INT_WAKEUP_INT      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -24624,13 +24624,13 @@ typedef union
  * constants & macros for individual HDMI_CEC_ADDR_L bitfields
  */
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L[0:0] (RW)
  *
  * Logical address 0 - Device TV
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L      0
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L      0x00000001
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L      (0)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L)
@@ -24642,13 +24642,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_L_CEC_ADDR_L(v)   BF_CS1(HDMI_CEC_ADDR_L, CEC_ADDR_L, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L1 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L1[1:1] (RW)
  *
  * Logical address 1 - Recording Device 1
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L1      1
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L1      0x00000002
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L1      (1)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L1      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L1(v)   ((((reg32_t) v) << 1) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L1)
@@ -24660,13 +24660,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_L_CEC_ADDR_L1(v)   BF_CS1(HDMI_CEC_ADDR_L, CEC_ADDR_L1, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L2 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L2[2:2] (RW)
  *
  * Logical address 2 - Recording Device 2
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L2      2
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L2      0x00000004
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L2      (2)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L2      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L2(v)   ((((reg32_t) v) << 2) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L2)
@@ -24678,13 +24678,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_L_CEC_ADDR_L2(v)   BF_CS1(HDMI_CEC_ADDR_L, CEC_ADDR_L2, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L3 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L3[3:3] (RW)
  *
  * Logical address 3 - Tuner 1
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L3      3
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L3      0x00000008
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L3      (3)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L3      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L3(v)   ((((reg32_t) v) << 3) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L3)
@@ -24696,13 +24696,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_L_CEC_ADDR_L3(v)   BF_CS1(HDMI_CEC_ADDR_L, CEC_ADDR_L3, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L4 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L4[4:4] (RW)
  *
  * Logical address 4 - Playback Device 1
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L4      4
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L4      0x00000010
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L4      (4)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L4      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L4(v)   ((((reg32_t) v) << 4) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L4)
@@ -24714,13 +24714,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_L_CEC_ADDR_L4(v)   BF_CS1(HDMI_CEC_ADDR_L, CEC_ADDR_L4, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L5 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L5[5:5] (RW)
  *
  * Logical address 5 - Audio System
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L5      5
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L5      0x00000020
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L5      (5)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L5      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L5(v)   ((((reg32_t) v) << 5) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L5)
@@ -24732,13 +24732,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_L_CEC_ADDR_L5(v)   BF_CS1(HDMI_CEC_ADDR_L, CEC_ADDR_L5, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L6 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L6[6:6] (RW)
  *
  * Logical address 6 - Tuner 2
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L6      6
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L6      0x00000040
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L6      (6)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L6      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L6(v)   ((((reg32_t) v) << 6) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L6)
@@ -24750,13 +24750,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_L_CEC_ADDR_L6(v)   BF_CS1(HDMI_CEC_ADDR_L, CEC_ADDR_L6, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L7 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_L, field CEC_ADDR_L7[7:7] (RW)
  *
  * Logical address 7 - Tuner 3
  */
 
-#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L7      7
-#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L7      0x00000080
+#define BP_HDMI_CEC_ADDR_L_CEC_ADDR_L7      (7)
+#define BM_HDMI_CEC_ADDR_L_CEC_ADDR_L7      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_L_CEC_ADDR_L7(v)   ((((reg32_t) v) << 7) & BM_HDMI_CEC_ADDR_L_CEC_ADDR_L7)
@@ -24813,13 +24813,13 @@ typedef union
  * constants & macros for individual HDMI_CEC_ADDR_H bitfields
  */
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H[0:0] (RW)
  *
  * Logical address 8 - Playback Device 2
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H      0
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H      0x00000001
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H      (0)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H)
@@ -24831,13 +24831,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_H_CEC_ADDR_H(v)   BF_CS1(HDMI_CEC_ADDR_H, CEC_ADDR_H, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H1 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H1[1:1] (RW)
  *
  * Logical address 9 - Playback Device 3
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H1      1
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H1      0x00000002
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H1      (1)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H1      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H1(v)   ((((reg32_t) v) << 1) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H1)
@@ -24849,13 +24849,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_H_CEC_ADDR_H1(v)   BF_CS1(HDMI_CEC_ADDR_H, CEC_ADDR_H1, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H2 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H2[2:2] (RW)
  *
  * Logical address 10 - Tuner 4
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H2      2
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H2      0x00000004
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H2      (2)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H2      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H2(v)   ((((reg32_t) v) << 2) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H2)
@@ -24867,13 +24867,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_H_CEC_ADDR_H2(v)   BF_CS1(HDMI_CEC_ADDR_H, CEC_ADDR_H2, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H3 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H3[3:3] (RW)
  *
  * Logical address 11 - Playback Device 3
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H3      3
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H3      0x00000008
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H3      (3)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H3      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H3(v)   ((((reg32_t) v) << 3) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H3)
@@ -24885,13 +24885,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_H_CEC_ADDR_H3(v)   BF_CS1(HDMI_CEC_ADDR_H, CEC_ADDR_H3, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H4 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H4[4:4] (RW)
  *
  * Logical address 12 - Reserved
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H4      4
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H4      0x00000010
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H4      (4)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H4      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H4(v)   ((((reg32_t) v) << 4) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H4)
@@ -24903,13 +24903,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_H_CEC_ADDR_H4(v)   BF_CS1(HDMI_CEC_ADDR_H, CEC_ADDR_H4, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H5 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H5[5:5] (RW)
  *
  * Logical address 13 - Reserved
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H5      5
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H5      0x00000020
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H5      (5)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H5      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H5(v)   ((((reg32_t) v) << 5) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H5)
@@ -24921,13 +24921,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_H_CEC_ADDR_H5(v)   BF_CS1(HDMI_CEC_ADDR_H, CEC_ADDR_H5, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H6 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H6[6:6] (RW)
  *
  * Logical address 14 - Free use
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H6      6
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H6      0x00000040
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H6      (6)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H6      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H6(v)   ((((reg32_t) v) << 6) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H6)
@@ -24939,13 +24939,13 @@ typedef union
 #define BW_HDMI_CEC_ADDR_H_CEC_ADDR_H6(v)   BF_CS1(HDMI_CEC_ADDR_H, CEC_ADDR_H6, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H7 (RW)
+/* --- Register HW_HDMI_CEC_ADDR_H, field CEC_ADDR_H7[7:7] (RW)
  *
  * Logical address 15 - Unregistered (as initiator address), Broadcast (as destination address)
  */
 
-#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H7      7
-#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H7      0x00000080
+#define BP_HDMI_CEC_ADDR_H_CEC_ADDR_H7      (7)
+#define BM_HDMI_CEC_ADDR_H_CEC_ADDR_H7      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_ADDR_H_CEC_ADDR_H7(v)   ((((reg32_t) v) << 7) & BM_HDMI_CEC_ADDR_H_CEC_ADDR_H7)
@@ -24996,7 +24996,7 @@ typedef union
  * constants & macros for individual HDMI_CEC_TX_CNT bitfields
  */
 
-/* --- Register HW_HDMI_CEC_TX_CNT, field CEC_TX_CNT (RW)
+/* --- Register HW_HDMI_CEC_TX_CNT, field CEC_TX_CNT[4:0] (RW)
  *
  * CEC Transmitter Counter register: Value after Reset: 5'b00000
  *
@@ -25006,8 +25006,8 @@ typedef union
  * 16 - Frame size is 16 byte.
  */
 
-#define BP_HDMI_CEC_TX_CNT_CEC_TX_CNT      0
-#define BM_HDMI_CEC_TX_CNT_CEC_TX_CNT      0x0000001f
+#define BP_HDMI_CEC_TX_CNT_CEC_TX_CNT      (0)
+#define BM_HDMI_CEC_TX_CNT_CEC_TX_CNT      (0x0000001f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_TX_CNT_CEC_TX_CNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_TX_CNT_CEC_TX_CNT)
@@ -25052,13 +25052,13 @@ typedef union
  * constants & macros for individual HDMI_CEC_RX_CNT bitfields
  */
 
-/* --- Register HW_HDMI_CEC_RX_CNT, field TX_DATA (RO)
+/* --- Register HW_HDMI_CEC_RX_CNT, field TX_DATA[7:0] (RO)
  *
  * Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn
  */
 
-#define BP_HDMI_CEC_RX_CNT_TX_DATA      0
-#define BM_HDMI_CEC_RX_CNT_TX_DATA      0x000000ff
+#define BP_HDMI_CEC_RX_CNT_TX_DATA      (0)
+#define BM_HDMI_CEC_RX_CNT_TX_DATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -25096,13 +25096,13 @@ typedef union
  * constants & macros for individual HDMI_CEC_TX_DATAN bitfields
  */
 
-/* --- Register HW_HDMI_CEC_TX_DATAN, field RX_DATA (RW)
+/* --- Register HW_HDMI_CEC_TX_DATAN, field RX_DATA[7:0] (RW)
  *
  * Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn
  */
 
-#define BP_HDMI_CEC_TX_DATAN_RX_DATA      0
-#define BM_HDMI_CEC_TX_DATAN_RX_DATA      0x000000ff
+#define BP_HDMI_CEC_TX_DATAN_RX_DATA      (0)
+#define BM_HDMI_CEC_TX_DATAN_RX_DATA      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_TX_DATAN_RX_DATA(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_TX_DATAN_RX_DATA)
@@ -25149,7 +25149,7 @@ typedef union
  * constants & macros for individual HDMI_CEC_RX_DATAN bitfields
  */
 
-/* --- Register HW_HDMI_CEC_RX_DATAN, field CEC_RX_CNT (RO)
+/* --- Register HW_HDMI_CEC_RX_DATAN, field CEC_RX_CNT[4:0] (RO)
  *
  * CEC Receiver Counter register Value after Reset: 5'b00000
  *
@@ -25159,8 +25159,8 @@ typedef union
  * 16 - 16-byte data is received
  */
 
-#define BP_HDMI_CEC_RX_DATAN_CEC_RX_CNT      0
-#define BM_HDMI_CEC_RX_DATAN_CEC_RX_CNT      0x0000001f
+#define BP_HDMI_CEC_RX_DATAN_CEC_RX_CNT      (0)
+#define BM_HDMI_CEC_RX_DATAN_CEC_RX_CNT      (0x0000001f)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -25198,14 +25198,14 @@ typedef union
  * constants & macros for individual HDMI_CEC_LOCK bitfields
  */
 
-/* --- Register HW_HDMI_CEC_LOCK, field LOCKED_BUFFER (RW)
+/* --- Register HW_HDMI_CEC_LOCK, field LOCKED_BUFFER[0:0] (RW)
  *
  * When a frame is received, this bit would be active. The CEC controller answers to all the
  * messages with NACK until the CPU writes it to '0'.
  */
 
-#define BP_HDMI_CEC_LOCK_LOCKED_BUFFER      0
-#define BM_HDMI_CEC_LOCK_LOCKED_BUFFER      0x00000001
+#define BP_HDMI_CEC_LOCK_LOCKED_BUFFER      (0)
+#define BM_HDMI_CEC_LOCK_LOCKED_BUFFER      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_LOCK_LOCKED_BUFFER(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_LOCK_LOCKED_BUFFER)
@@ -25268,13 +25268,13 @@ typedef union
  * constants & macros for individual HDMI_CEC_WKUPCTRL bitfields
  */
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X04EN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X04EN[0:0] (RW)
  *
  * OPCODE 0x04 wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X04EN      0
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X04EN      0x00000001
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X04EN      (0)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X04EN      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X04EN(v)   ((((reg32_t) v) << 0) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X04EN)
@@ -25286,13 +25286,13 @@ typedef union
 #define BW_HDMI_CEC_WKUPCTRL_OPCODE0X04EN(v)   BF_CS1(HDMI_CEC_WKUPCTRL, OPCODE0X04EN, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X0DEN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X0DEN[1:1] (RW)
  *
  * OPCODE 0x0D wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X0DEN      1
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X0DEN      0x00000002
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X0DEN      (1)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X0DEN      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X0DEN(v)   ((((reg32_t) v) << 1) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X0DEN)
@@ -25304,13 +25304,13 @@ typedef union
 #define BW_HDMI_CEC_WKUPCTRL_OPCODE0X0DEN(v)   BF_CS1(HDMI_CEC_WKUPCTRL, OPCODE0X0DEN, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X41EN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X41EN[2:2] (RW)
  *
  * OPCODE 0x41 wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X41EN      2
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X41EN      0x00000004
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X41EN      (2)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X41EN      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X41EN(v)   ((((reg32_t) v) << 2) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X41EN)
@@ -25322,13 +25322,13 @@ typedef union
 #define BW_HDMI_CEC_WKUPCTRL_OPCODE0X41EN(v)   BF_CS1(HDMI_CEC_WKUPCTRL, OPCODE0X41EN, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X42EN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X42EN[3:3] (RW)
  *
  * OPCODE 0x42 wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X42EN      3
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X42EN      0x00000008
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X42EN      (3)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X42EN      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X42EN(v)   ((((reg32_t) v) << 3) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X42EN)
@@ -25340,13 +25340,13 @@ typedef union
 #define BW_HDMI_CEC_WKUPCTRL_OPCODE0X42EN(v)   BF_CS1(HDMI_CEC_WKUPCTRL, OPCODE0X42EN, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X44EN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X44EN[4:4] (RW)
  *
  * OPCODE 0x44 wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X44EN      4
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X44EN      0x00000010
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X44EN      (4)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X44EN      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X44EN(v)   ((((reg32_t) v) << 4) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X44EN)
@@ -25358,13 +25358,13 @@ typedef union
 #define BW_HDMI_CEC_WKUPCTRL_OPCODE0X44EN(v)   BF_CS1(HDMI_CEC_WKUPCTRL, OPCODE0X44EN, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X70EN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X70EN[5:5] (RW)
  *
  * OPCODE 0x70 wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X70EN      5
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X70EN      0x00000020
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X70EN      (5)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X70EN      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X70EN(v)   ((((reg32_t) v) << 5) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X70EN)
@@ -25376,13 +25376,13 @@ typedef union
 #define BW_HDMI_CEC_WKUPCTRL_OPCODE0X70EN(v)   BF_CS1(HDMI_CEC_WKUPCTRL, OPCODE0X70EN, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X82EN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X82EN[6:6] (RW)
  *
  * OPCODE 0x82 wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X82EN      6
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X82EN      0x00000040
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X82EN      (6)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X82EN      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X82EN(v)   ((((reg32_t) v) << 6) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X82EN)
@@ -25394,13 +25394,13 @@ typedef union
 #define BW_HDMI_CEC_WKUPCTRL_OPCODE0X82EN(v)   BF_CS1(HDMI_CEC_WKUPCTRL, OPCODE0X82EN, v)
 #endif
 
-/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X86EN (RW)
+/* --- Register HW_HDMI_CEC_WKUPCTRL, field OPCODE0X86EN[7:7] (RW)
  *
  * OPCODE 0x86 wake up enable
  */
 
-#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X86EN      7
-#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X86EN      0x00000080
+#define BP_HDMI_CEC_WKUPCTRL_OPCODE0X86EN      (7)
+#define BM_HDMI_CEC_WKUPCTRL_OPCODE0X86EN      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_CEC_WKUPCTRL_OPCODE0X86EN(v)   ((((reg32_t) v) << 7) & BM_HDMI_CEC_WKUPCTRL_OPCODE0X86EN)
@@ -25450,13 +25450,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SLAVE bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SLAVE, field SLAVEADDR (RW)
+/* --- Register HW_HDMI_I2CM_SLAVE, field SLAVEADDR[6:0] (RW)
  *
  * Slave address to be sent during read and write normal operations.
  */
 
-#define BP_HDMI_I2CM_SLAVE_SLAVEADDR      0
-#define BM_HDMI_I2CM_SLAVE_SLAVEADDR      0x0000007f
+#define BP_HDMI_I2CM_SLAVE_SLAVEADDR      (0)
+#define BM_HDMI_I2CM_SLAVE_SLAVEADDR      (0x0000007f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SLAVE_SLAVEADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SLAVE_SLAVEADDR)
@@ -25502,13 +25502,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_ADDRESS bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_ADDRESS, field ADDRESS (RW)
+/* --- Register HW_HDMI_I2CM_ADDRESS, field ADDRESS[7:0] (RW)
  *
  * Register address for read and write operations.
  */
 
-#define BP_HDMI_I2CM_ADDRESS_ADDRESS      0
-#define BM_HDMI_I2CM_ADDRESS_ADDRESS      0x000000ff
+#define BP_HDMI_I2CM_ADDRESS_ADDRESS      (0)
+#define BM_HDMI_I2CM_ADDRESS_ADDRESS      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_ADDRESS_ADDRESS(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_ADDRESS_ADDRESS)
@@ -25554,13 +25554,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_DATAO bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_DATAO, field DATAO (RW)
+/* --- Register HW_HDMI_I2CM_DATAO, field DATAO[7:0] (RW)
  *
  * Data to be written on register pointed by address[7:0].
  */
 
-#define BP_HDMI_I2CM_DATAO_DATAO      0
-#define BM_HDMI_I2CM_DATAO_DATAO      0x000000ff
+#define BP_HDMI_I2CM_DATAO_DATAO      (0)
+#define BM_HDMI_I2CM_DATAO_DATAO      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_DATAO_DATAO(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_DATAO_DATAO)
@@ -25602,13 +25602,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_DATAI bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_DATAI, field DATAI (RO)
+/* --- Register HW_HDMI_I2CM_DATAI, field DATAI[7:0] (RO)
  *
  * Data read from register pointed by address[7:0].
  */
 
-#define BP_HDMI_I2CM_DATAI_DATAI      0
-#define BM_HDMI_I2CM_DATAI_DATAI      0x000000ff
+#define BP_HDMI_I2CM_DATAI_DATAI      (0)
+#define BM_HDMI_I2CM_DATAI_DATAI      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -25647,13 +25647,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_OPERATION bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_OPERATION, field RD (WO)
+/* --- Register HW_HDMI_I2CM_OPERATION, field RD[0:0] (WO)
  *
  * Read operation request.
  */
 
-#define BP_HDMI_I2CM_OPERATION_RD      0
-#define BM_HDMI_I2CM_OPERATION_RD      0x00000001
+#define BP_HDMI_I2CM_OPERATION_RD      (0)
+#define BM_HDMI_I2CM_OPERATION_RD      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_OPERATION_RD(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_OPERATION_RD)
@@ -25665,14 +25665,14 @@ typedef union
 #define BW_HDMI_I2CM_OPERATION_RD(v)   BF_CS1(HDMI_I2CM_OPERATION, RD, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_OPERATION, field RD_EXT (WO)
+/* --- Register HW_HDMI_I2CM_OPERATION, field RD_EXT[1:1] (WO)
  *
  * After writing 1'b1 to rd_ext bit a extended data read operation is started (E- DDC read
  * operation).
  */
 
-#define BP_HDMI_I2CM_OPERATION_RD_EXT      1
-#define BM_HDMI_I2CM_OPERATION_RD_EXT      0x00000002
+#define BP_HDMI_I2CM_OPERATION_RD_EXT      (1)
+#define BM_HDMI_I2CM_OPERATION_RD_EXT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_OPERATION_RD_EXT(v)   ((((reg32_t) v) << 1) & BM_HDMI_I2CM_OPERATION_RD_EXT)
@@ -25684,13 +25684,13 @@ typedef union
 #define BW_HDMI_I2CM_OPERATION_RD_EXT(v)   BF_CS1(HDMI_I2CM_OPERATION, RD_EXT, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_OPERATION, field WR (WO)
+/* --- Register HW_HDMI_I2CM_OPERATION, field WR[4:4] (WO)
  *
  * Write operation request.
  */
 
-#define BP_HDMI_I2CM_OPERATION_WR      4
-#define BM_HDMI_I2CM_OPERATION_WR      0x00000010
+#define BP_HDMI_I2CM_OPERATION_WR      (4)
+#define BM_HDMI_I2CM_OPERATION_WR      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_OPERATION_WR(v)   ((((reg32_t) v) << 4) & BM_HDMI_I2CM_OPERATION_WR)
@@ -25741,13 +25741,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_INT bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_INT, field DONE_STATUS (RW)
+/* --- Register HW_HDMI_I2CM_INT, field DONE_STATUS[0:0] (RW)
  *
  * Operation done status bit. Marks the end of a rd or write operation.
  */
 
-#define BP_HDMI_I2CM_INT_DONE_STATUS      0
-#define BM_HDMI_I2CM_INT_DONE_STATUS      0x00000001
+#define BP_HDMI_I2CM_INT_DONE_STATUS      (0)
+#define BM_HDMI_I2CM_INT_DONE_STATUS      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_INT_DONE_STATUS(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_INT_DONE_STATUS)
@@ -25759,14 +25759,14 @@ typedef union
 #define BW_HDMI_I2CM_INT_DONE_STATUS(v)   BF_CS1(HDMI_I2CM_INT, DONE_STATUS, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_INT, field DONE_INTERRUPT (RW)
+/* --- Register HW_HDMI_I2CM_INT, field DONE_INTERRUPT[1:1] (RW)
  *
  * Operation done interrupt bit. Only lasts for 1 SFR clock cycle and is auto cleaned after it.
  * {done_interrupt = (done_mask==0b) && (done_status==done_pol)}.
  */
 
-#define BP_HDMI_I2CM_INT_DONE_INTERRUPT      1
-#define BM_HDMI_I2CM_INT_DONE_INTERRUPT      0x00000002
+#define BP_HDMI_I2CM_INT_DONE_INTERRUPT      (1)
+#define BM_HDMI_I2CM_INT_DONE_INTERRUPT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_INT_DONE_INTERRUPT(v)   ((((reg32_t) v) << 1) & BM_HDMI_I2CM_INT_DONE_INTERRUPT)
@@ -25778,13 +25778,13 @@ typedef union
 #define BW_HDMI_I2CM_INT_DONE_INTERRUPT(v)   BF_CS1(HDMI_I2CM_INT, DONE_INTERRUPT, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_INT, field DONE_MASK (RW)
+/* --- Register HW_HDMI_I2CM_INT, field DONE_MASK[2:2] (RW)
  *
  * Done interrupt mask signal.
  */
 
-#define BP_HDMI_I2CM_INT_DONE_MASK      2
-#define BM_HDMI_I2CM_INT_DONE_MASK      0x00000004
+#define BP_HDMI_I2CM_INT_DONE_MASK      (2)
+#define BM_HDMI_I2CM_INT_DONE_MASK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_INT_DONE_MASK(v)   ((((reg32_t) v) << 2) & BM_HDMI_I2CM_INT_DONE_MASK)
@@ -25796,13 +25796,13 @@ typedef union
 #define BW_HDMI_I2CM_INT_DONE_MASK(v)   BF_CS1(HDMI_I2CM_INT, DONE_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_INT, field DONE_POL (RW)
+/* --- Register HW_HDMI_I2CM_INT, field DONE_POL[3:3] (RW)
  *
  * Done interrupt polarity configuration.
  */
 
-#define BP_HDMI_I2CM_INT_DONE_POL      3
-#define BM_HDMI_I2CM_INT_DONE_POL      0x00000008
+#define BP_HDMI_I2CM_INT_DONE_POL      (3)
+#define BM_HDMI_I2CM_INT_DONE_POL      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_INT_DONE_POL(v)   ((((reg32_t) v) << 3) & BM_HDMI_I2CM_INT_DONE_POL)
@@ -25856,13 +25856,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_CTLINT bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_STATUS (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_STATUS[0:0] (RW)
  *
  * Arbitration error status bit. Error on master I2C protocol arbitration.
  */
 
-#define BP_HDMI_I2CM_CTLINT_ARBITRATION_STATUS      0
-#define BM_HDMI_I2CM_CTLINT_ARBITRATION_STATUS      0x00000001
+#define BP_HDMI_I2CM_CTLINT_ARBITRATION_STATUS      (0)
+#define BM_HDMI_I2CM_CTLINT_ARBITRATION_STATUS      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_ARBITRATION_STATUS(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_CTLINT_ARBITRATION_STATUS)
@@ -25874,14 +25874,14 @@ typedef union
 #define BW_HDMI_I2CM_CTLINT_ARBITRATION_STATUS(v)   BF_CS1(HDMI_I2CM_CTLINT, ARBITRATION_STATUS, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_INTERRUPT (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_INTERRUPT[1:1] (RW)
  *
  * Arbitration error interrupt bit. Only lasts for 1 SFR clock cycle and is auto cleaned after it.
  * {arbitration_interrupt = (arbitration_mask==0b) && (arbitration_status==arbitration_pol)}.
  */
 
-#define BP_HDMI_I2CM_CTLINT_ARBITRATION_INTERRUPT      1
-#define BM_HDMI_I2CM_CTLINT_ARBITRATION_INTERRUPT      0x00000002
+#define BP_HDMI_I2CM_CTLINT_ARBITRATION_INTERRUPT      (1)
+#define BM_HDMI_I2CM_CTLINT_ARBITRATION_INTERRUPT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_ARBITRATION_INTERRUPT(v)   ((((reg32_t) v) << 1) & BM_HDMI_I2CM_CTLINT_ARBITRATION_INTERRUPT)
@@ -25893,13 +25893,13 @@ typedef union
 #define BW_HDMI_I2CM_CTLINT_ARBITRATION_INTERRUPT(v)   BF_CS1(HDMI_I2CM_CTLINT, ARBITRATION_INTERRUPT, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_MASK (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_MASK[2:2] (RW)
  *
  * Arbitration error interrupt mask signal.
  */
 
-#define BP_HDMI_I2CM_CTLINT_ARBITRATION_MASK      2
-#define BM_HDMI_I2CM_CTLINT_ARBITRATION_MASK      0x00000004
+#define BP_HDMI_I2CM_CTLINT_ARBITRATION_MASK      (2)
+#define BM_HDMI_I2CM_CTLINT_ARBITRATION_MASK      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_ARBITRATION_MASK(v)   ((((reg32_t) v) << 2) & BM_HDMI_I2CM_CTLINT_ARBITRATION_MASK)
@@ -25911,13 +25911,13 @@ typedef union
 #define BW_HDMI_I2CM_CTLINT_ARBITRATION_MASK(v)   BF_CS1(HDMI_I2CM_CTLINT, ARBITRATION_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_POL (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field ARBITRATION_POL[3:3] (RW)
  *
  * Arbitration error interrupt polarity configuration.
  */
 
-#define BP_HDMI_I2CM_CTLINT_ARBITRATION_POL      3
-#define BM_HDMI_I2CM_CTLINT_ARBITRATION_POL      0x00000008
+#define BP_HDMI_I2CM_CTLINT_ARBITRATION_POL      (3)
+#define BM_HDMI_I2CM_CTLINT_ARBITRATION_POL      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_ARBITRATION_POL(v)   ((((reg32_t) v) << 3) & BM_HDMI_I2CM_CTLINT_ARBITRATION_POL)
@@ -25929,13 +25929,13 @@ typedef union
 #define BW_HDMI_I2CM_CTLINT_ARBITRATION_POL(v)   BF_CS1(HDMI_I2CM_CTLINT, ARBITRATION_POL, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_STATUS (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_STATUS[4:4] (RW)
  *
  * Not acknowledge error status bit. Error on I2C not acknowledge.
  */
 
-#define BP_HDMI_I2CM_CTLINT_NACK_STATUS      4
-#define BM_HDMI_I2CM_CTLINT_NACK_STATUS      0x00000010
+#define BP_HDMI_I2CM_CTLINT_NACK_STATUS      (4)
+#define BM_HDMI_I2CM_CTLINT_NACK_STATUS      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_NACK_STATUS(v)   ((((reg32_t) v) << 4) & BM_HDMI_I2CM_CTLINT_NACK_STATUS)
@@ -25947,14 +25947,14 @@ typedef union
 #define BW_HDMI_I2CM_CTLINT_NACK_STATUS(v)   BF_CS1(HDMI_I2CM_CTLINT, NACK_STATUS, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_INTERRUPT (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_INTERRUPT[5:5] (RW)
  *
  * Not acknowledge error interrupt bit. Only lasts for 1 SFR clock cycle and is auto cleaned after
  * it. {nack_interrupt = (nack_mask==0b) && (nack_status==nack_pol)}.
  */
 
-#define BP_HDMI_I2CM_CTLINT_NACK_INTERRUPT      5
-#define BM_HDMI_I2CM_CTLINT_NACK_INTERRUPT      0x00000020
+#define BP_HDMI_I2CM_CTLINT_NACK_INTERRUPT      (5)
+#define BM_HDMI_I2CM_CTLINT_NACK_INTERRUPT      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_NACK_INTERRUPT(v)   ((((reg32_t) v) << 5) & BM_HDMI_I2CM_CTLINT_NACK_INTERRUPT)
@@ -25966,13 +25966,13 @@ typedef union
 #define BW_HDMI_I2CM_CTLINT_NACK_INTERRUPT(v)   BF_CS1(HDMI_I2CM_CTLINT, NACK_INTERRUPT, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_MASK (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_MASK[6:6] (RW)
  *
  * Not acknowledge error interrupt mask signal.
  */
 
-#define BP_HDMI_I2CM_CTLINT_NACK_MASK      6
-#define BM_HDMI_I2CM_CTLINT_NACK_MASK      0x00000040
+#define BP_HDMI_I2CM_CTLINT_NACK_MASK      (6)
+#define BM_HDMI_I2CM_CTLINT_NACK_MASK      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_NACK_MASK(v)   ((((reg32_t) v) << 6) & BM_HDMI_I2CM_CTLINT_NACK_MASK)
@@ -25984,13 +25984,13 @@ typedef union
 #define BW_HDMI_I2CM_CTLINT_NACK_MASK(v)   BF_CS1(HDMI_I2CM_CTLINT, NACK_MASK, v)
 #endif
 
-/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_POL (RW)
+/* --- Register HW_HDMI_I2CM_CTLINT, field NACK_POL[7:7] (RW)
  *
  * Not acknowledge error interrupt polarity configuration.
  */
 
-#define BP_HDMI_I2CM_CTLINT_NACK_POL      7
-#define BM_HDMI_I2CM_CTLINT_NACK_POL      0x00000080
+#define BP_HDMI_I2CM_CTLINT_NACK_POL      (7)
+#define BM_HDMI_I2CM_CTLINT_NACK_POL      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_CTLINT_NACK_POL(v)   ((((reg32_t) v) << 7) & BM_HDMI_I2CM_CTLINT_NACK_POL)
@@ -26039,17 +26039,17 @@ typedef union
  * constants & macros for individual HDMI_I2CM_DIV bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_DIV, field FAST_STD_MODE (RW)
+/* --- Register HW_HDMI_I2CM_DIV, field FAST_STD_MODE[3:3] (RW)
  *
  * Sets the I2C Master to work in Fast Mode or Standard Mode:
  *
  * Values:
- * 1 - Fast Mode
  * 0 - Standard Mode
+ * 1 - Fast Mode
  */
 
-#define BP_HDMI_I2CM_DIV_FAST_STD_MODE      3
-#define BM_HDMI_I2CM_DIV_FAST_STD_MODE      0x00000008
+#define BP_HDMI_I2CM_DIV_FAST_STD_MODE      (3)
+#define BM_HDMI_I2CM_DIV_FAST_STD_MODE      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_DIV_FAST_STD_MODE(v)   ((((reg32_t) v) << 3) & BM_HDMI_I2CM_DIV_FAST_STD_MODE)
@@ -26098,13 +26098,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SEGADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SEGADDR, field SEGADDR (RW)
+/* --- Register HW_HDMI_I2CM_SEGADDR, field SEGADDR[6:0] (RW)
  *
  * E-DDC Extended read segment address
  */
 
-#define BP_HDMI_I2CM_SEGADDR_SEGADDR      0
-#define BM_HDMI_I2CM_SEGADDR_SEGADDR      0x0000007f
+#define BP_HDMI_I2CM_SEGADDR_SEGADDR      (0)
+#define BM_HDMI_I2CM_SEGADDR_SEGADDR      (0x0000007f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SEGADDR_SEGADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SEGADDR_SEGADDR)
@@ -26152,14 +26152,14 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SOFTRSTZ bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SOFTRSTZ, field I2C_SOFTRST (RW)
+/* --- Register HW_HDMI_I2CM_SOFTRSTZ, field I2C_SOFTRST[0:0] (RW)
  *
  * I2C Master Software Reset. Active by writing a zero and auto cleared to one in the following
  * cycle. Value after Reset: 1b
  */
 
-#define BP_HDMI_I2CM_SOFTRSTZ_I2C_SOFTRST      0
-#define BM_HDMI_I2CM_SOFTRSTZ_I2C_SOFTRST      0x00000001
+#define BP_HDMI_I2CM_SOFTRSTZ_I2C_SOFTRST      (0)
+#define BM_HDMI_I2CM_SOFTRSTZ_I2C_SOFTRST      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SOFTRSTZ_I2C_SOFTRST(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SOFTRSTZ_I2C_SOFTRST)
@@ -26208,15 +26208,15 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SEGPTR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SEGPTR, field I2CM_SEGPTR (RW)
+/* --- Register HW_HDMI_I2CM_SEGPTR, field I2CM_SEGPTR[7:0] (RW)
  *
  * I2CM_SEGPTR is used for EDID reading operations, particularly for the Extended Data Read
  * Operation (See ") which is used for Enhanced DDC. This is all described in the VESA Enhanced
  * Display Data Channel Standard v1.1 spec. (addresses A0h/A1h pairs and a segment pointer - 60h).
  */
 
-#define BP_HDMI_I2CM_SEGPTR_I2CM_SEGPTR      0
-#define BM_HDMI_I2CM_SEGPTR_I2CM_SEGPTR      0x000000ff
+#define BP_HDMI_I2CM_SEGPTR_I2CM_SEGPTR      (0)
+#define BM_HDMI_I2CM_SEGPTR_I2CM_SEGPTR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SEGPTR_I2CM_SEGPTR(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SEGPTR_I2CM_SEGPTR)
@@ -26262,13 +26262,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SS_SCL_HCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SS_SCL_HCNT_1_ADDR, field I2CMP_SS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_I2CM_SS_SCL_HCNT_1_ADDR, field I2CMP_SS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      0
-#define BM_HDMI_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      0x000000ff
+#define BP_HDMI_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      (0)
+#define BM_HDMI_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SS_SCL_HCNT_1_ADDR_I2CMP_SS_SCL_HCNT)
@@ -26314,13 +26314,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SS_SCL_HCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SS_SCL_HCNT_0_ADDR, field I2CMP_SS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_I2CM_SS_SCL_HCNT_0_ADDR, field I2CMP_SS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h6C
  */
 
-#define BP_HDMI_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      0
-#define BM_HDMI_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      0x000000ff
+#define BP_HDMI_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      (0)
+#define BM_HDMI_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SS_SCL_HCNT_0_ADDR_I2CMP_SS_SCL_HCNT)
@@ -26366,13 +26366,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SS_SCL_LCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SS_SCL_LCNT_1_ADDR, field I2CMP_SS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_I2CM_SS_SCL_LCNT_1_ADDR, field I2CMP_SS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      0
-#define BM_HDMI_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      0x000000ff
+#define BP_HDMI_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      (0)
+#define BM_HDMI_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SS_SCL_LCNT_1_ADDR_I2CMP_SS_SCL_LCNT)
@@ -26418,13 +26418,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_SS_SCL_LCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_SS_SCL_LCNT_0_ADDR, field I2CMP_SS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_I2CM_SS_SCL_LCNT_0_ADDR, field I2CMP_SS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h7F
  */
 
-#define BP_HDMI_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      0
-#define BM_HDMI_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      0x000000ff
+#define BP_HDMI_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      (0)
+#define BM_HDMI_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_SS_SCL_LCNT_0_ADDR_I2CMP_SS_SCL_LCNT)
@@ -26470,13 +26470,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_FS_SCL_HCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_FS_SCL_HCNT_1_ADDR, field I2CMP_FS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_I2CM_FS_SCL_HCNT_1_ADDR, field I2CMP_FS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      0
-#define BM_HDMI_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      0x000000ff
+#define BP_HDMI_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      (0)
+#define BM_HDMI_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_FS_SCL_HCNT_1_ADDR_I2CMP_FS_SCL_HCNT)
@@ -26522,13 +26522,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_FS_SCL_HCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_FS_SCL_HCNT_0_ADDR, field I2CMP_FS_SCL_HCNT (RW)
+/* --- Register HW_HDMI_I2CM_FS_SCL_HCNT_0_ADDR, field I2CMP_FS_SCL_HCNT[7:0] (RW)
  *
  * Value after Reset: 8'h11
  */
 
-#define BP_HDMI_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      0
-#define BM_HDMI_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      0x000000ff
+#define BP_HDMI_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      (0)
+#define BM_HDMI_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_FS_SCL_HCNT_0_ADDR_I2CMP_FS_SCL_HCNT)
@@ -26574,13 +26574,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_FS_SCL_LCNT_1_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_FS_SCL_LCNT_1_ADDR, field I2CMP_FS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_I2CM_FS_SCL_LCNT_1_ADDR, field I2CMP_FS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h00
  */
 
-#define BP_HDMI_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      0
-#define BM_HDMI_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      0x000000ff
+#define BP_HDMI_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      (0)
+#define BM_HDMI_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_FS_SCL_LCNT_1_ADDR_I2CMP_FS_SCL_LCNT)
@@ -26626,13 +26626,13 @@ typedef union
  * constants & macros for individual HDMI_I2CM_FS_SCL_LCNT_0_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_I2CM_FS_SCL_LCNT_0_ADDR, field I2CMP_FS_SCL_LCNT (RW)
+/* --- Register HW_HDMI_I2CM_FS_SCL_LCNT_0_ADDR, field I2CMP_FS_SCL_LCNT[7:0] (RW)
  *
  * Value after Reset: 8'h24
  */
 
-#define BP_HDMI_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      0
-#define BM_HDMI_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      0x000000ff
+#define BP_HDMI_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      (0)
+#define BM_HDMI_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT(v)   ((((reg32_t) v) << 0) & BM_HDMI_I2CM_FS_SCL_LCNT_0_ADDR_I2CMP_FS_SCL_LCNT)
@@ -26686,13 +26686,13 @@ typedef union
  * constants & macros for individual HDMI_BASE_POINTER_ADDR bitfields
  */
 
-/* --- Register HW_HDMI_BASE_POINTER_ADDR, field BASE_POINTER_BASE_ADDR (RW)
+/* --- Register HW_HDMI_BASE_POINTER_ADDR, field BASE_POINTER_BASE_ADDR[6:0] (RW)
  *
  * Defines the base address for base pointer operation mode. They represent the address bits [14:8]
  */
 
-#define BP_HDMI_BASE_POINTER_ADDR_BASE_POINTER_BASE_ADDR      0
-#define BM_HDMI_BASE_POINTER_ADDR_BASE_POINTER_BASE_ADDR      0x0000007f
+#define BP_HDMI_BASE_POINTER_ADDR_BASE_POINTER_BASE_ADDR      (0)
+#define BM_HDMI_BASE_POINTER_ADDR_BASE_POINTER_BASE_ADDR      (0x0000007f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_BASE_POINTER_ADDR_BASE_POINTER_BASE_ADDR(v)   ((((reg32_t) v) << 0) & BM_HDMI_BASE_POINTER_ADDR_BASE_POINTER_BASE_ADDR)
@@ -26704,13 +26704,13 @@ typedef union
 #define BW_HDMI_BASE_POINTER_ADDR_BASE_POINTER_BASE_ADDR(v)   BF_CS1(HDMI_BASE_POINTER_ADDR, BASE_POINTER_BASE_ADDR, v)
 #endif
 
-/* --- Register HW_HDMI_BASE_POINTER_ADDR, field EN_BASE_POINTER_ADDR (RW)
+/* --- Register HW_HDMI_BASE_POINTER_ADDR, field EN_BASE_POINTER_ADDR[7:7] (RW)
  *
  * Enables the base pointer operation mode.
  */
 
-#define BP_HDMI_BASE_POINTER_ADDR_EN_BASE_POINTER_ADDR      7
-#define BM_HDMI_BASE_POINTER_ADDR_EN_BASE_POINTER_ADDR      0x00000080
+#define BP_HDMI_BASE_POINTER_ADDR_EN_BASE_POINTER_ADDR      (7)
+#define BM_HDMI_BASE_POINTER_ADDR_EN_BASE_POINTER_ADDR      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_HDMI_BASE_POINTER_ADDR_EN_BASE_POINTER_ADDR(v)   ((((reg32_t) v) << 7) & BM_HDMI_BASE_POINTER_ADDR_EN_BASE_POINTER_ADDR)

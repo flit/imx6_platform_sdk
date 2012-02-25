@@ -87,7 +87,7 @@ typedef union
  * constants & macros for individual GPT_CR bitfields
  */
 
-/* --- Register HW_GPT_CR, field EN (RW)
+/* --- Register HW_GPT_CR, field EN[0:0] (RW)
  *
  * GPT Enable. The EN bit is the GPT module enable bit. Before setting the EN bit , we recommend
  * that all registers be properly programmed . A hardware reset resets the EN bit. A software reset
@@ -98,8 +98,8 @@ typedef union
  * 1 - GPT is enabled.
  */
 
-#define BP_GPT_CR_EN      0
-#define BM_GPT_CR_EN      0x00000001
+#define BP_GPT_CR_EN      (0)
+#define BM_GPT_CR_EN      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_EN(v)   ((((reg32_t) v) << 0) & BM_GPT_CR_EN)
@@ -112,7 +112,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field ENMOD (RW)
+/* --- Register HW_GPT_CR, field ENMOD[1:1] (RW)
  *
  * GPT Enable mode. When the GPT is disabled (EN=0), then both the Main Counter and Prescaler
  * Counter freeze their current count values . The ENMOD bit determines the value of the GPT counter
@@ -131,8 +131,8 @@ typedef union
  * 1 - GPT counter value is reset to 0 when it is disabled.
  */
 
-#define BP_GPT_CR_ENMOD      1
-#define BM_GPT_CR_ENMOD      0x00000002
+#define BP_GPT_CR_ENMOD      (1)
+#define BM_GPT_CR_ENMOD      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_ENMOD(v)   ((((reg32_t) v) << 1) & BM_GPT_CR_ENMOD)
@@ -145,7 +145,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field DBGEN (RW)
+/* --- Register HW_GPT_CR, field DBGEN[2:2] (RW)
  *
  * GPT debug mode enable. The DBGEN read/write control bit enables GPT operation during Debug mode .
  * A hardware reset resets the DBGEN bit. A software reset does not affect the DBGEN bit.
@@ -155,8 +155,8 @@ typedef union
  * 1 - GPT is enabled in debug mode.
  */
 
-#define BP_GPT_CR_DBGEN      2
-#define BM_GPT_CR_DBGEN      0x00000004
+#define BP_GPT_CR_DBGEN      (2)
+#define BM_GPT_CR_DBGEN      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_DBGEN(v)   ((((reg32_t) v) << 2) & BM_GPT_CR_DBGEN)
@@ -169,7 +169,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field WAITEN (RW)
+/* --- Register HW_GPT_CR, field WAITEN[3:3] (RW)
  *
  * GPT Wait Mode enable. The WAITEN read/write control bit enables GPT operation during Wait mode .
  * A hardware reset resets the WAITEN bit. A software reset does not affect the WAITEN bit.
@@ -179,8 +179,8 @@ typedef union
  * 1 - GPT is enabled in wait mode.
  */
 
-#define BP_GPT_CR_WAITEN      3
-#define BM_GPT_CR_WAITEN      0x00000008
+#define BP_GPT_CR_WAITEN      (3)
+#define BM_GPT_CR_WAITEN      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_WAITEN(v)   ((((reg32_t) v) << 3) & BM_GPT_CR_WAITEN)
@@ -193,7 +193,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field DOZEEN (RW)
+/* --- Register HW_GPT_CR, field DOZEEN[4:4] (RW)
  *
  * GPT Doze Mode Enable. A hardware reset resets the DOZEEN bit. A software reset does not affect
  * the DOZEEN bit.
@@ -203,8 +203,8 @@ typedef union
  * 1 - GPT is enabled in doze mode.
  */
 
-#define BP_GPT_CR_DOZEEN      4
-#define BM_GPT_CR_DOZEEN      0x00000010
+#define BP_GPT_CR_DOZEEN      (4)
+#define BM_GPT_CR_DOZEEN      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_DOZEEN(v)   ((((reg32_t) v) << 4) & BM_GPT_CR_DOZEEN)
@@ -217,7 +217,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field STOPEN (RW)
+/* --- Register HW_GPT_CR, field STOPEN[5:5] (RW)
  *
  * GPT Stop Mode enable. The STOPEN read/write control bit enables GPT operation during Stop mode .
  * A hardware reset resets the STOPEN bit. A software reset does not affect the STOPEN bit.
@@ -227,8 +227,8 @@ typedef union
  * 1 - GPT is enabled in Stop mode.
  */
 
-#define BP_GPT_CR_STOPEN      5
-#define BM_GPT_CR_STOPEN      0x00000020
+#define BP_GPT_CR_STOPEN      (5)
+#define BM_GPT_CR_STOPEN      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_STOPEN(v)   ((((reg32_t) v) << 5) & BM_GPT_CR_STOPEN)
@@ -241,7 +241,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field CLKSRC (RW)
+/* --- Register HW_GPT_CR, field CLKSRC[8:6] (RW)
  *
  * Clock Source select. The CLKSRC bits select which clock will go to the prescaler (and
  * subsequently be used to run the GPT counter). The CLKSRC bit field value should only be changed
@@ -260,8 +260,8 @@ typedef union
  * others - Reserved
  */
 
-#define BP_GPT_CR_CLKSRC      6
-#define BM_GPT_CR_CLKSRC      0x000001c0
+#define BP_GPT_CR_CLKSRC      (6)
+#define BM_GPT_CR_CLKSRC      (0x000001c0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_CLKSRC(v)   ((((reg32_t) v) << 6) & BM_GPT_CR_CLKSRC)
@@ -274,7 +274,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field FRR (RW)
+/* --- Register HW_GPT_CR, field FRR[9:9] (RW)
  *
  * Free-Run or Restart mode. The FFR bit determines the behavior of the GPT when a compare event in
  * channel 1 occurs. In Restart mode, after a compare event, the counter resets to 0x00000000 and
@@ -286,8 +286,8 @@ typedef union
  * 1 - Free-Run mode
  */
 
-#define BP_GPT_CR_FRR      9
-#define BM_GPT_CR_FRR      0x00000200
+#define BP_GPT_CR_FRR      (9)
+#define BM_GPT_CR_FRR      (0x00000200)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_FRR(v)   ((((reg32_t) v) << 9) & BM_GPT_CR_FRR)
@@ -300,7 +300,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field SWR (RW)
+/* --- Register HW_GPT_CR, field SWR[15:15] (RW)
  *
  * Software reset. This is the software reset of the GPT module. It is a self-clearing bit. The SWR
  * bit is set when the module is in reset state. The SWR bit is cleared when the reset procedure
@@ -313,8 +313,8 @@ typedef union
  * 1 - GPT is in reset state
  */
 
-#define BP_GPT_CR_SWR      15
-#define BM_GPT_CR_SWR      0x00008000
+#define BP_GPT_CR_SWR      (15)
+#define BM_GPT_CR_SWR      (0x00008000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_SWR(v)   ((((reg32_t) v) << 15) & BM_GPT_CR_SWR)
@@ -327,13 +327,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field IM1 (RW)
+/* --- Register HW_GPT_CR, field IM1[17:16] (RW)
  *
  * See IM2
  */
 
-#define BP_GPT_CR_IM1      16
-#define BM_GPT_CR_IM1      0x00030000
+#define BP_GPT_CR_IM1      (16)
+#define BM_GPT_CR_IM1      (0x00030000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_IM1(v)   ((((reg32_t) v) << 16) & BM_GPT_CR_IM1)
@@ -345,7 +345,7 @@ typedef union
 #define BW_GPT_CR_IM1(v)   BF_CS1(GPT_CR, IM1, v)
 #endif
 
-/* --- Register HW_GPT_CR, field IM2 (RW)
+/* --- Register HW_GPT_CR, field IM2[19:18] (RW)
  *
  * IM2 (bits 19-18, Input Capture Channel 2 operating mode) IM1 (bits 17-16, Input Capture Channel 1
  * operating mode) The IM n bit field determines the transition on the input pin (for Input capture
@@ -358,8 +358,8 @@ typedef union
  * 11 - capture on both edges
  */
 
-#define BP_GPT_CR_IM2      18
-#define BM_GPT_CR_IM2      0x000c0000
+#define BP_GPT_CR_IM2      (18)
+#define BM_GPT_CR_IM2      (0x000c0000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_IM2(v)   ((((reg32_t) v) << 18) & BM_GPT_CR_IM2)
@@ -372,13 +372,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field OM1 (RW)
+/* --- Register HW_GPT_CR, field OM1[22:20] (RW)
  *
  * See OM3
  */
 
-#define BP_GPT_CR_OM1      20
-#define BM_GPT_CR_OM1      0x00700000
+#define BP_GPT_CR_OM1      (20)
+#define BM_GPT_CR_OM1      (0x00700000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_OM1(v)   ((((reg32_t) v) << 20) & BM_GPT_CR_OM1)
@@ -390,13 +390,13 @@ typedef union
 #define BW_GPT_CR_OM1(v)   BF_CS1(GPT_CR, OM1, v)
 #endif
 
-/* --- Register HW_GPT_CR, field OM2 (RW)
+/* --- Register HW_GPT_CR, field OM2[25:23] (RW)
  *
  * See OM3
  */
 
-#define BP_GPT_CR_OM2      23
-#define BM_GPT_CR_OM2      0x03800000
+#define BP_GPT_CR_OM2      (23)
+#define BM_GPT_CR_OM2      (0x03800000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_OM2(v)   ((((reg32_t) v) << 23) & BM_GPT_CR_OM2)
@@ -408,7 +408,7 @@ typedef union
 #define BW_GPT_CR_OM2(v)   BF_CS1(GPT_CR, OM2, v)
 #endif
 
-/* --- Register HW_GPT_CR, field OM3 (RW)
+/* --- Register HW_GPT_CR, field OM3[28:26] (RW)
  *
  * OM3 (bits 28-26) controls the Output Compare Channel 3 operating mode. OM2 (bits 25-23) controls
  * the Output Compare Channel 2 operating mode. OM1 (bits 22-20) controls the Output Compare Channel
@@ -427,8 +427,8 @@ typedef union
  * 1xx - Generate an active low pulse (that is one input clock wide) on the output pin.
  */
 
-#define BP_GPT_CR_OM3      26
-#define BM_GPT_CR_OM3      0x1c000000
+#define BP_GPT_CR_OM3      (26)
+#define BM_GPT_CR_OM3      (0x1c000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_OM3(v)   ((((reg32_t) v) << 26) & BM_GPT_CR_OM3)
@@ -441,13 +441,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_CR, field FO1 (WORZ)
+/* --- Register HW_GPT_CR, field FO1[29:29] (WORZ)
  *
  * See F03
  */
 
-#define BP_GPT_CR_FO1      29
-#define BM_GPT_CR_FO1      0x20000000
+#define BP_GPT_CR_FO1      (29)
+#define BM_GPT_CR_FO1      (0x20000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_FO1(v)   ((((reg32_t) v) << 29) & BM_GPT_CR_FO1)
@@ -459,13 +459,13 @@ typedef union
 #define BW_GPT_CR_FO1(v)   BF_CS1(GPT_CR, FO1, v)
 #endif
 
-/* --- Register HW_GPT_CR, field FO2 (WORZ)
+/* --- Register HW_GPT_CR, field FO2[30:30] (WORZ)
  *
  * See F03
  */
 
-#define BP_GPT_CR_FO2      30
-#define BM_GPT_CR_FO2      0x40000000
+#define BP_GPT_CR_FO2      (30)
+#define BM_GPT_CR_FO2      (0x40000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_FO2(v)   ((((reg32_t) v) << 30) & BM_GPT_CR_FO2)
@@ -477,7 +477,7 @@ typedef union
 #define BW_GPT_CR_FO2(v)   BF_CS1(GPT_CR, FO2, v)
 #endif
 
-/* --- Register HW_GPT_CR, field FO3 (WORZ)
+/* --- Register HW_GPT_CR, field FO3[31:31] (WORZ)
  *
  * FO3 Force Output Compare Channel 3 FO2 Force Output Compare Channel 2 FO1 Force Output Compare
  * Channel 1 The FO n bit causes the pin action programmed for the timer Output Compare n pin
@@ -489,8 +489,8 @@ typedef union
  * 1 - Causes the programmed pin action on the timer Output Compare n pin; the OF n flag is not set.
  */
 
-#define BP_GPT_CR_FO3      31
-#define BM_GPT_CR_FO3      0x80000000
+#define BP_GPT_CR_FO3      (31)
+#define BM_GPT_CR_FO3      (0x80000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_CR_FO3(v)   ((((reg32_t) v) << 31) & BM_GPT_CR_FO3)
@@ -539,7 +539,7 @@ typedef union
  * constants & macros for individual GPT_PR bitfields
  */
 
-/* --- Register HW_GPT_PR, field PRESCALER (RW)
+/* --- Register HW_GPT_PR, field PRESCALER[11:0] (RW)
  *
  * Prescaler bits. The clock selected by the CLKSRC field is divided by [PRESCALER + 1], and then
  * used to run the counter. A change in the value of the PRESCALER bits cause the Prescaler counter
@@ -552,8 +552,8 @@ typedef union
  * 0xFFF - Divide by 4096
  */
 
-#define BP_GPT_PR_PRESCALER      0
-#define BM_GPT_PR_PRESCALER      0x00000fff
+#define BP_GPT_PR_PRESCALER      (0)
+#define BM_GPT_PR_PRESCALER      (0x00000fff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_PR_PRESCALER(v)   ((((reg32_t) v) << 0) & BM_GPT_PR_PRESCALER)
@@ -608,13 +608,13 @@ typedef union
  * constants & macros for individual GPT_SR bitfields
  */
 
-/* --- Register HW_GPT_SR, field OF1 (W1C)
+/* --- Register HW_GPT_SR, field OF1[0:0] (W1C)
  *
  * See OF3
  */
 
-#define BP_GPT_SR_OF1      0
-#define BM_GPT_SR_OF1      0x00000001
+#define BP_GPT_SR_OF1      (0)
+#define BM_GPT_SR_OF1      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_SR_OF1(v)   ((((reg32_t) v) << 0) & BM_GPT_SR_OF1)
@@ -626,13 +626,13 @@ typedef union
 #define BW_GPT_SR_OF1(v)   BF_CS1(GPT_SR, OF1, v)
 #endif
 
-/* --- Register HW_GPT_SR, field OF2 (W1C)
+/* --- Register HW_GPT_SR, field OF2[1:1] (W1C)
  *
  * See OF3
  */
 
-#define BP_GPT_SR_OF2      1
-#define BM_GPT_SR_OF2      0x00000002
+#define BP_GPT_SR_OF2      (1)
+#define BM_GPT_SR_OF2      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_SR_OF2(v)   ((((reg32_t) v) << 1) & BM_GPT_SR_OF2)
@@ -644,7 +644,7 @@ typedef union
 #define BW_GPT_SR_OF2(v)   BF_CS1(GPT_SR, OF2, v)
 #endif
 
-/* --- Register HW_GPT_SR, field OF3 (W1C)
+/* --- Register HW_GPT_SR, field OF3[2:2] (W1C)
  *
  * OF3 Output Compare 3 Flag OF2 Output Compare 2 Flag OF1 Output Compare 1 Flag The OF n bit
  * indicates that a compare event has occurred on Output Compare channel n .
@@ -654,8 +654,8 @@ typedef union
  * 1 - Compare event has occurred.
  */
 
-#define BP_GPT_SR_OF3      2
-#define BM_GPT_SR_OF3      0x00000004
+#define BP_GPT_SR_OF3      (2)
+#define BM_GPT_SR_OF3      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_SR_OF3(v)   ((((reg32_t) v) << 2) & BM_GPT_SR_OF3)
@@ -668,13 +668,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_SR, field IF1 (W1C)
+/* --- Register HW_GPT_SR, field IF1[3:3] (W1C)
  *
  * See IF2
  */
 
-#define BP_GPT_SR_IF1      3
-#define BM_GPT_SR_IF1      0x00000008
+#define BP_GPT_SR_IF1      (3)
+#define BM_GPT_SR_IF1      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_SR_IF1(v)   ((((reg32_t) v) << 3) & BM_GPT_SR_IF1)
@@ -686,7 +686,7 @@ typedef union
 #define BW_GPT_SR_IF1(v)   BF_CS1(GPT_SR, IF1, v)
 #endif
 
-/* --- Register HW_GPT_SR, field IF2 (W1C)
+/* --- Register HW_GPT_SR, field IF2[4:4] (W1C)
  *
  * IF2 Input capture 2 Flag IF1 Input capture 1 Flag The IF n bit indicates that a capture event has
  * occurred on Input Capture channel n .
@@ -696,8 +696,8 @@ typedef union
  * 1 - Capture event has occurred.
  */
 
-#define BP_GPT_SR_IF2      4
-#define BM_GPT_SR_IF2      0x00000010
+#define BP_GPT_SR_IF2      (4)
+#define BM_GPT_SR_IF2      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_SR_IF2(v)   ((((reg32_t) v) << 4) & BM_GPT_SR_IF2)
@@ -710,7 +710,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_SR, field ROV (W1C)
+/* --- Register HW_GPT_SR, field ROV[5:5] (W1C)
  *
  * Rollover Flag. The ROV bit indicates that the counter has reached its maximum possible value and
  * rolled over to 0 (from which the counter continues counting). The ROV bit is only set if the
@@ -721,8 +721,8 @@ typedef union
  * 1 - Rollover has occurred.
  */
 
-#define BP_GPT_SR_ROV      5
-#define BM_GPT_SR_ROV      0x00000020
+#define BP_GPT_SR_ROV      (5)
+#define BM_GPT_SR_ROV      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_SR_ROV(v)   ((((reg32_t) v) << 5) & BM_GPT_SR_ROV)
@@ -776,13 +776,13 @@ typedef union
  * constants & macros for individual GPT_IR bitfields
  */
 
-/* --- Register HW_GPT_IR, field OF1IE (RW)
+/* --- Register HW_GPT_IR, field OF1IE[0:0] (RW)
  *
  * See OF3IE
  */
 
-#define BP_GPT_IR_OF1IE      0
-#define BM_GPT_IR_OF1IE      0x00000001
+#define BP_GPT_IR_OF1IE      (0)
+#define BM_GPT_IR_OF1IE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_IR_OF1IE(v)   ((((reg32_t) v) << 0) & BM_GPT_IR_OF1IE)
@@ -794,13 +794,13 @@ typedef union
 #define BW_GPT_IR_OF1IE(v)   BF_CS1(GPT_IR, OF1IE, v)
 #endif
 
-/* --- Register HW_GPT_IR, field OF2IE (RW)
+/* --- Register HW_GPT_IR, field OF2IE[1:1] (RW)
  *
  * See OF3IE
  */
 
-#define BP_GPT_IR_OF2IE      1
-#define BM_GPT_IR_OF2IE      0x00000002
+#define BP_GPT_IR_OF2IE      (1)
+#define BM_GPT_IR_OF2IE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_IR_OF2IE(v)   ((((reg32_t) v) << 1) & BM_GPT_IR_OF2IE)
@@ -812,7 +812,7 @@ typedef union
 #define BW_GPT_IR_OF2IE(v)   BF_CS1(GPT_IR, OF2IE, v)
 #endif
 
-/* --- Register HW_GPT_IR, field OF3IE (RW)
+/* --- Register HW_GPT_IR, field OF3IE[2:2] (RW)
  *
  * OF3IE Output Compare 3 Interrupt Enable OF2IE Output Compare 2 Interrupt Enable OF1IE Output
  * Compare 1 Interrupt Enable The OF n IE bit controls the Output Compare Channel n interrupt.
@@ -822,8 +822,8 @@ typedef union
  * 1 - Output Compare Channel n interrupt is enabled.
  */
 
-#define BP_GPT_IR_OF3IE      2
-#define BM_GPT_IR_OF3IE      0x00000004
+#define BP_GPT_IR_OF3IE      (2)
+#define BM_GPT_IR_OF3IE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_IR_OF3IE(v)   ((((reg32_t) v) << 2) & BM_GPT_IR_OF3IE)
@@ -836,13 +836,13 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_IR, field IF1IE (RW)
+/* --- Register HW_GPT_IR, field IF1IE[3:3] (RW)
  *
  * See IF2IE
  */
 
-#define BP_GPT_IR_IF1IE      3
-#define BM_GPT_IR_IF1IE      0x00000008
+#define BP_GPT_IR_IF1IE      (3)
+#define BM_GPT_IR_IF1IE      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_IR_IF1IE(v)   ((((reg32_t) v) << 3) & BM_GPT_IR_IF1IE)
@@ -854,7 +854,7 @@ typedef union
 #define BW_GPT_IR_IF1IE(v)   BF_CS1(GPT_IR, IF1IE, v)
 #endif
 
-/* --- Register HW_GPT_IR, field IF2IE (RW)
+/* --- Register HW_GPT_IR, field IF2IE[4:4] (RW)
  *
  * IF2IE Input capture 2 Interrupt Enable IF1IE Input capture 1 Interrupt Enable The IF n IE bit
  * controls the IF n IE Input Capture n Interrupt Enable.
@@ -864,8 +864,8 @@ typedef union
  * 1 - IF2IE Input Capture n Interrupt Enable is enabled.
  */
 
-#define BP_GPT_IR_IF2IE      4
-#define BM_GPT_IR_IF2IE      0x00000010
+#define BP_GPT_IR_IF2IE      (4)
+#define BM_GPT_IR_IF2IE      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_IR_IF2IE(v)   ((((reg32_t) v) << 4) & BM_GPT_IR_IF2IE)
@@ -878,7 +878,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_GPT_IR, field ROVIE (RW)
+/* --- Register HW_GPT_IR, field ROVIE[5:5] (RW)
  *
  * Rollover Interrupt Enable. The ROVIE bit controls the Rollover interrupt.
  *
@@ -887,8 +887,8 @@ typedef union
  * 1 - Rollover interrupt enabled.
  */
 
-#define BP_GPT_IR_ROVIE      5
-#define BM_GPT_IR_ROVIE      0x00000020
+#define BP_GPT_IR_ROVIE      (5)
+#define BM_GPT_IR_ROVIE      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_IR_ROVIE(v)   ((((reg32_t) v) << 5) & BM_GPT_IR_ROVIE)
@@ -939,14 +939,14 @@ typedef union
  * constants & macros for individual GPT_OCR1 bitfields
  */
 
-/* --- Register HW_GPT_OCR1, field COMP (RW)
+/* --- Register HW_GPT_OCR1, field COMP[31:0] (RW)
  *
  * Compare Value. When the counter value equals the COMP bit field value, a compare event is
  * generated on Output Compare Channel 1.
  */
 
-#define BP_GPT_OCR1_COMP      0
-#define BM_GPT_OCR1_COMP      0xffffffff
+#define BP_GPT_OCR1_COMP      (0)
+#define BM_GPT_OCR1_COMP      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_OCR1_COMP(v)   ((((reg32_t) v) << 0) & BM_GPT_OCR1_COMP)
@@ -993,14 +993,14 @@ typedef union
  * constants & macros for individual GPT_OCR2 bitfields
  */
 
-/* --- Register HW_GPT_OCR2, field COMP (RW)
+/* --- Register HW_GPT_OCR2, field COMP[31:0] (RW)
  *
  * Compare Value. When the counter value equals the COMP bit field value, a compare event is
  * generated on Output Compare Channel 2.
  */
 
-#define BP_GPT_OCR2_COMP      0
-#define BM_GPT_OCR2_COMP      0xffffffff
+#define BP_GPT_OCR2_COMP      (0)
+#define BM_GPT_OCR2_COMP      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_OCR2_COMP(v)   ((((reg32_t) v) << 0) & BM_GPT_OCR2_COMP)
@@ -1047,14 +1047,14 @@ typedef union
  * constants & macros for individual GPT_OCR3 bitfields
  */
 
-/* --- Register HW_GPT_OCR3, field COMP (RW)
+/* --- Register HW_GPT_OCR3, field COMP[31:0] (RW)
  *
  * Compare Value. When the counter value equals the COMP bit field value, a compare event is
  * generated on Output Compare Channel 3.
  */
 
-#define BP_GPT_OCR3_COMP      0
-#define BM_GPT_OCR3_COMP      0xffffffff
+#define BP_GPT_OCR3_COMP      (0)
+#define BM_GPT_OCR3_COMP      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_GPT_OCR3_COMP(v)   ((((reg32_t) v) << 0) & BM_GPT_OCR3_COMP)
@@ -1097,14 +1097,14 @@ typedef union
  * constants & macros for individual GPT_ICR1 bitfields
  */
 
-/* --- Register HW_GPT_ICR1, field CAPT (RO)
+/* --- Register HW_GPT_ICR1, field CAPT[31:0] (RO)
  *
  * Capture Value. After a capture event on Input Capture Channel 1 occurs, the current value of the
  * counter is loaded into GPT Input Capture Register 1.
  */
 
-#define BP_GPT_ICR1_CAPT      0
-#define BM_GPT_ICR1_CAPT      0xffffffff
+#define BP_GPT_ICR1_CAPT      (0)
+#define BM_GPT_ICR1_CAPT      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1137,14 +1137,14 @@ typedef union
  * constants & macros for individual GPT_ICR2 bitfields
  */
 
-/* --- Register HW_GPT_ICR2, field CAPT (RO)
+/* --- Register HW_GPT_ICR2, field CAPT[31:0] (RO)
  *
  * Capture Value. After a capture event on Input Capture Channel 2 occurs, the current value of the
  * counter is loaded into GPT Input Capture Register 2.
  */
 
-#define BP_GPT_ICR2_CAPT      0
-#define BM_GPT_ICR2_CAPT      0xffffffff
+#define BP_GPT_ICR2_CAPT      (0)
+#define BM_GPT_ICR2_CAPT      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1177,13 +1177,13 @@ typedef union
  * constants & macros for individual GPT_CNT bitfields
  */
 
-/* --- Register HW_GPT_CNT, field COUNT (RO)
+/* --- Register HW_GPT_CNT, field COUNT[31:0] (RO)
  *
  * Counter Value. The COUNT bits show the current count value of the GPT counter.
  */
 
-#define BP_GPT_CNT_COUNT      0
-#define BM_GPT_CNT_COUNT      0xffffffff
+#define BP_GPT_CNT_COUNT      (0)
+#define BM_GPT_CNT_COUNT      (0xffffffff)
 
 
 /*!

@@ -101,14 +101,14 @@ typedef union
  * constants & macros for individual MLB_MLBC0 bitfields
  */
 
-/* --- Register HW_MLB_MLBC0, field MLBEN (RW)
+/* --- Register HW_MLB_MLBC0, field MLBEN[0:0] (RW)
  *
  * MediaLB enable. When set, MediaLB clock, signal, and data are received and transmitted on the
  * appropriate MediaLB pins.
  */
 
-#define BP_MLB_MLBC0_MLBEN      0
-#define BM_MLB_MLBC0_MLBEN      0x00000001
+#define BP_MLB_MLBC0_MLBEN      (0)
+#define BM_MLB_MLBC0_MLBEN      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBC0_MLBEN(v)   ((((reg32_t) v) << 0) & BM_MLB_MLBC0_MLBEN)
@@ -120,7 +120,7 @@ typedef union
 #define BW_MLB_MLBC0_MLBEN(v)   BF_CS1(MLB_MLBC0, MLBEN, v)
 #endif
 
-/* --- Register HW_MLB_MLBC0, field MLBCLK (RW)
+/* --- Register HW_MLB_MLBC0, field MLBCLK[4:2] (RW)
  *
  * MediaLB clock speed select.
  *
@@ -135,8 +135,8 @@ typedef union
  * 111 - 8192¥Fs (for MLBPEN = 1)
  */
 
-#define BP_MLB_MLBC0_MLBCLK      2
-#define BM_MLB_MLBC0_MLBCLK      0x0000001c
+#define BP_MLB_MLBC0_MLBCLK      (2)
+#define BM_MLB_MLBC0_MLBCLK      (0x0000001c)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBC0_MLBCLK(v)   ((((reg32_t) v) << 2) & BM_MLB_MLBC0_MLBCLK)
@@ -149,7 +149,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_MLBC0, field MLBPEN (RW)
+/* --- Register HW_MLB_MLBC0, field MLBPEN[5:5] (RW)
  *
  * MediaLB 6-pin enable.
  *
@@ -158,8 +158,8 @@ typedef union
  * 1 - MediaLB 6-pin interface enabled
  */
 
-#define BP_MLB_MLBC0_MLBPEN      5
-#define BM_MLB_MLBC0_MLBPEN      0x00000020
+#define BP_MLB_MLBC0_MLBPEN      (5)
+#define BM_MLB_MLBC0_MLBPEN      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBC0_MLBPEN(v)   ((((reg32_t) v) << 5) & BM_MLB_MLBC0_MLBPEN)
@@ -172,7 +172,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_MLBC0, field MLBLK (RO)
+/* --- Register HW_MLB_MLBC0, field MLBLK[7:7] (RO)
  *
  * MediaLB lock status. When set, indicates that the MediaLB block is synchronized to the incoming
  * MediaLB frame. If MLBLK is clear (unlocked), MLBLK is set after FRAMESYNC is detected at the same
@@ -181,18 +181,18 @@ typedef union
  * FRAMESYNC patterns occurring at locations other than the expected one are ignored. (read-only)
  */
 
-#define BP_MLB_MLBC0_MLBLK      7
-#define BM_MLB_MLBC0_MLBLK      0x00000080
+#define BP_MLB_MLBC0_MLBLK      (7)
+#define BM_MLB_MLBC0_MLBLK      (0x00000080)
 
-/* --- Register HW_MLB_MLBC0, field ASYRETRY (RW)
+/* --- Register HW_MLB_MLBC0, field ASYRETRY[12:12] (RW)
  *
  * Asynchronous Tx packet retry. When set, an asynchronous packet that is flagged with a Break or
  * ProtocolError by the receiver is retransmitted. When cleared, an asynchronous packet that is
  * flagged with a Break or ProtocolError by the receiver is skipped.
  */
 
-#define BP_MLB_MLBC0_ASYRETRY      12
-#define BM_MLB_MLBC0_ASYRETRY      0x00001000
+#define BP_MLB_MLBC0_ASYRETRY      (12)
+#define BM_MLB_MLBC0_ASYRETRY      (0x00001000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBC0_ASYRETRY(v)   ((((reg32_t) v) << 12) & BM_MLB_MLBC0_ASYRETRY)
@@ -204,15 +204,15 @@ typedef union
 #define BW_MLB_MLBC0_ASYRETRY(v)   BF_CS1(MLB_MLBC0, ASYRETRY, v)
 #endif
 
-/* --- Register HW_MLB_MLBC0, field CTLRETRY (RW)
+/* --- Register HW_MLB_MLBC0, field CTLRETRY[14:14] (RW)
  *
  * Control Tx packet retry. When set, a control packet that is flagged with a Break or ProtocolError
  * by the receiver is retransmitted. When cleared, a control packet that is flagged with a Break or
  * ProtocolError by the receiver is skipped.
  */
 
-#define BP_MLB_MLBC0_CTLRETRY      14
-#define BM_MLB_MLBC0_CTLRETRY      0x00004000
+#define BP_MLB_MLBC0_CTLRETRY      (14)
+#define BM_MLB_MLBC0_CTLRETRY      (0x00004000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBC0_CTLRETRY(v)   ((((reg32_t) v) << 14) & BM_MLB_MLBC0_CTLRETRY)
@@ -224,7 +224,7 @@ typedef union
 #define BW_MLB_MLBC0_CTLRETRY(v)   BF_CS1(MLB_MLBC0, CTLRETRY, v)
 #endif
 
-/* --- Register HW_MLB_MLBC0, field FCNT (RW)
+/* --- Register HW_MLB_MLBC0, field FCNT[17:15] (RW)
  *
  * The number of frames per sub-buffer for synchronous channels.
  *
@@ -239,8 +239,8 @@ typedef union
  * 111 - Reserved
  */
 
-#define BP_MLB_MLBC0_FCNT      15
-#define BM_MLB_MLBC0_FCNT      0x00038000
+#define BP_MLB_MLBC0_FCNT      (15)
+#define BM_MLB_MLBC0_FCNT      (0x00038000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBC0_FCNT(v)   ((((reg32_t) v) << 15) & BM_MLB_MLBC0_FCNT)
@@ -289,14 +289,14 @@ typedef union
  * constants & macros for individual MLB_MLBPC0 bitfields
  */
 
-/* --- Register HW_MLB_MLBPC0, field MCLKHYS (RW)
+/* --- Register HW_MLB_MLBPC0, field MCLKHYS[11:11] (RW)
  *
  * MediaLB (6-pin) hysteresis enable. When set, enables hysteresis on the MediaLB clock. This value
  * is driven on mlb_clk_hys_enable output pin and has no internal function.
  */
 
-#define BP_MLB_MLBPC0_MCLKHYS      11
-#define BM_MLB_MLBPC0_MCLKHYS      0x00000800
+#define BP_MLB_MLBPC0_MCLKHYS      (11)
+#define BM_MLB_MLBPC0_MCLKHYS      (0x00000800)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBPC0_MCLKHYS(v)   ((((reg32_t) v) << 11) & BM_MLB_MLBPC0_MCLKHYS)
@@ -338,15 +338,15 @@ typedef union
  * constants & macros for individual MLB_MS0 bitfields
  */
 
-/* --- Register HW_MLB_MS0, field MCS (RO)
+/* --- Register HW_MLB_MS0, field MCS[31:0] (RO)
  *
  * MediaLB channel status. Indicates the channel status for MediaLB channels 31 to 0. Channel status
  * bits are set by hardware and cleared by software. Status is only set if the appropriate bits in
  * the MIEN register are set.
  */
 
-#define BP_MLB_MS0_MCS      0
-#define BM_MLB_MS0_MCS      0xffffffff
+#define BP_MLB_MS0_MCS      (0)
+#define BM_MLB_MS0_MCS      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -380,7 +380,7 @@ typedef union
  * constants & macros for individual MLB_MLBPC2 bitfields
  */
 
-/* --- Register HW_MLB_MLBPC2, field SDOPC (RW)
+/* --- Register HW_MLB_MLBPC2, field SDOPC[0:0] (RW)
  *
  * MLB 3-pin interface: Signal/Data output phase control.
  *
@@ -389,17 +389,17 @@ typedef union
  * 1 - MLB signal/data launch at falling edge of MLB clock
  */
 
-#define BP_MLB_MLBPC2_SDOPC      0
-#define BM_MLB_MLBPC2_SDOPC      0x00000001
+#define BP_MLB_MLBPC2_SDOPC      (0)
+#define BM_MLB_MLBPC2_SDOPC      (0x00000001)
 
 
-/* --- Register HW_MLB_MLBPC2, field SDRTO (RW)
+/* --- Register HW_MLB_MLBPC2, field SDRTO[2:1] (RW)
  *
  * MLB 6-pin interface: Signal/Data receiver threshold offset control.
  */
 
-#define BP_MLB_MLBPC2_SDRTO      1
-#define BM_MLB_MLBPC2_SDRTO      0x00000006
+#define BP_MLB_MLBPC2_SDRTO      (1)
+#define BM_MLB_MLBPC2_SDRTO      (0x00000006)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -431,15 +431,15 @@ typedef union
  * constants & macros for individual MLB_MS1 bitfields
  */
 
-/* --- Register HW_MLB_MS1, field MCS (RO)
+/* --- Register HW_MLB_MS1, field MCS[31:0] (RO)
  *
  * MediaLB channel status. Indicates the channel status for MediaLB channels 63 to 32. Channel
  * status bits are set by hardware and cleared by software. Status is only set if the appropriate
  * bits in the MIEN register are set.
  */
 
-#define BP_MLB_MS1_MCS      0
-#define BM_MLB_MS1_MCS      0xffffffff
+#define BP_MLB_MS1_MCS      (0)
+#define BM_MLB_MS1_MCS      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -477,33 +477,33 @@ typedef union
  * constants & macros for individual MLB_MSS bitfields
  */
 
-/* --- Register HW_MLB_MSS, field RSTSYSCMD (RO)
+/* --- Register HW_MLB_MSS, field RSTSYSCMD[0:0] (RO)
  *
  * Reset system command detected (in the system quadlet). Set by hardware, cleared by software.
  */
 
-#define BP_MLB_MSS_RSTSYSCMD      0
-#define BM_MLB_MSS_RSTSYSCMD      0x00000001
+#define BP_MLB_MSS_RSTSYSCMD      (0)
+#define BM_MLB_MSS_RSTSYSCMD      (0x00000001)
 
-/* --- Register HW_MLB_MSS, field LKSYSCMD (RO)
+/* --- Register HW_MLB_MSS, field LKSYSCMD[1:1] (RO)
  *
  * Network lock system command detected (in the system quadlet). Set by hardware, cleared by
  * software.
  */
 
-#define BP_MLB_MSS_LKSYSCMD      1
-#define BM_MLB_MSS_LKSYSCMD      0x00000002
+#define BP_MLB_MSS_LKSYSCMD      (1)
+#define BM_MLB_MSS_LKSYSCMD      (0x00000002)
 
-/* --- Register HW_MLB_MSS, field ULKSYSCMD (RO)
+/* --- Register HW_MLB_MSS, field ULKSYSCMD[2:2] (RO)
  *
  * Network unlock system command detected (in the system quadlet). Set by hardware, cleared by
  * software.
  */
 
-#define BP_MLB_MSS_ULKSYSCMD      2
-#define BM_MLB_MSS_ULKSYSCMD      0x00000004
+#define BP_MLB_MSS_ULKSYSCMD      (2)
+#define BM_MLB_MSS_ULKSYSCMD      (0x00000004)
 
-/* --- Register HW_MLB_MSS, field CSSYSCMD (RO)
+/* --- Register HW_MLB_MSS, field CSSYSCMD[3:3] (RO)
  *
  * Channel scan system command detected (in the system quadlet). Set by hardware, cleared by
  * software. If the node address specified in Data quadlet matches the value in MLBC1.NDA , the
@@ -511,27 +511,27 @@ typedef union
  * the next system quadlet.
  */
 
-#define BP_MLB_MSS_CSSYSCMD      3
-#define BM_MLB_MSS_CSSYSCMD      0x00000008
+#define BP_MLB_MSS_CSSYSCMD      (3)
+#define BM_MLB_MSS_CSSYSCMD      (0x00000008)
 
-/* --- Register HW_MLB_MSS, field SWSYSCMD (RO)
+/* --- Register HW_MLB_MSS, field SWSYSCMD[4:4] (RO)
  *
  * Software system command detected (in the system quadlet). Set by hardware, cleared by software.
  * Data is stored in the MSD register for this command.
  */
 
-#define BP_MLB_MSS_SWSYSCMD      4
-#define BM_MLB_MSS_SWSYSCMD      0x00000010
+#define BP_MLB_MSS_SWSYSCMD      (4)
+#define BM_MLB_MSS_SWSYSCMD      (0x00000010)
 
-/* --- Register HW_MLB_MSS, field SERVREQ (RW)
+/* --- Register HW_MLB_MSS, field SERVREQ[5:5] (RW)
  *
  * Service request enabled. When set, the MediaLB block responds with a "device present, request
  * service" system response if a matching channel scan system command is detected. When cleared, the
  * MediaLB block responds with a "device present" system response.
  */
 
-#define BP_MLB_MSS_SERVREQ      5
-#define BM_MLB_MSS_SERVREQ      0x00000020
+#define BP_MLB_MSS_SERVREQ      (5)
+#define BM_MLB_MSS_SERVREQ      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -566,45 +566,45 @@ typedef union
  * constants & macros for individual MLB_MSD bitfields
  */
 
-/* --- Register HW_MLB_MSD, field SD0 (RO)
+/* --- Register HW_MLB_MSD, field SD0[7:0] (RO)
  *
  * System data (byte 0). Updated with MediaLB Data[7:0] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD0 is not updated. (read-
  * only)
  */
 
-#define BP_MLB_MSD_SD0      0
-#define BM_MLB_MSD_SD0      0x000000ff
+#define BP_MLB_MSD_SD0      (0)
+#define BM_MLB_MSD_SD0      (0x000000ff)
 
-/* --- Register HW_MLB_MSD, field SD1 (RO)
+/* --- Register HW_MLB_MSD, field SD1[15:8] (RO)
  *
  * System data (byte 1). Updated with MediaLB Data[15:8] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD1 is not updated. (read-
  * only)
  */
 
-#define BP_MLB_MSD_SD1      8
-#define BM_MLB_MSD_SD1      0x0000ff00
+#define BP_MLB_MSD_SD1      (8)
+#define BM_MLB_MSD_SD1      (0x0000ff00)
 
-/* --- Register HW_MLB_MSD, field SD2 (RO)
+/* --- Register HW_MLB_MSD, field SD2[23:16] (RO)
  *
  * System data (byte 2). Updated with MediaLB Data[23:16] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD2 is not updated. (read-
  * only)
  */
 
-#define BP_MLB_MSD_SD2      16
-#define BM_MLB_MSD_SD2      0x00ff0000
+#define BP_MLB_MSD_SD2      (16)
+#define BM_MLB_MSD_SD2      (0x00ff0000)
 
-/* --- Register HW_MLB_MSD, field SD3 (RO)
+/* --- Register HW_MLB_MSD, field SD3[31:24] (RO)
  *
  * System data (byte 3). Updated with MediaLB Data[31:24] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD3 is not updated. (read-
  * only)
  */
 
-#define BP_MLB_MSD_SD3      24
-#define BM_MLB_MSD_SD3      0xff000000
+#define BP_MLB_MSD_SD3      (24)
+#define BM_MLB_MSD_SD3      (0xff000000)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -657,14 +657,14 @@ typedef union
  * constants & macros for individual MLB_MIEN bitfields
  */
 
-/* --- Register HW_MLB_MIEN, field ISOC_PE (RW)
+/* --- Register HW_MLB_MIEN, field ISOC_PE[0:0] (RW)
  *
  * Isochronous Rx protocol error enable. When set, a ProtocolError detected on an isochronous Rx
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_ISOC_PE      0
-#define BM_MLB_MIEN_ISOC_PE      0x00000001
+#define BP_MLB_MIEN_ISOC_PE      (0)
+#define BM_MLB_MIEN_ISOC_PE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ISOC_PE(v)   ((((reg32_t) v) << 0) & BM_MLB_MIEN_ISOC_PE)
@@ -676,15 +676,15 @@ typedef union
 #define BW_MLB_MIEN_ISOC_PE(v)   BF_CS1(MLB_MIEN, ISOC_PE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field ISOC_BUFO (RW)
+/* --- Register HW_MLB_MIEN, field ISOC_BUFO[1:1] (RW)
  *
  * Isochronous Rx buffer overflow enable. When set, a buffer overflow on an isochronous Rx channel
  * causes the appropriate channel bit in the MS0 or MS1 registers to be set. This occurs only when
  * isochronous flow control is disabled.
  */
 
-#define BP_MLB_MIEN_ISOC_BUFO      1
-#define BM_MLB_MIEN_ISOC_BUFO      0x00000002
+#define BP_MLB_MIEN_ISOC_BUFO      (1)
+#define BM_MLB_MIEN_ISOC_BUFO      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ISOC_BUFO(v)   ((((reg32_t) v) << 1) & BM_MLB_MIEN_ISOC_BUFO)
@@ -696,14 +696,14 @@ typedef union
 #define BW_MLB_MIEN_ISOC_BUFO(v)   BF_CS1(MLB_MIEN, ISOC_BUFO, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field SYNC_PE (RW)
+/* --- Register HW_MLB_MIEN, field SYNC_PE[16:16] (RW)
  *
  * Synchronous protocol error enable. When set, a ProtocolError detected on a synchronous Rx channel
  * causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_SYNC_PE      16
-#define BM_MLB_MIEN_SYNC_PE      0x00010000
+#define BP_MLB_MIEN_SYNC_PE      (16)
+#define BM_MLB_MIEN_SYNC_PE      (0x00010000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_SYNC_PE(v)   ((((reg32_t) v) << 16) & BM_MLB_MIEN_SYNC_PE)
@@ -715,14 +715,14 @@ typedef union
 #define BW_MLB_MIEN_SYNC_PE(v)   BF_CS1(MLB_MIEN, SYNC_PE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field ARX_DONE (RW)
+/* --- Register HW_MLB_MIEN, field ARX_DONE[17:17] (RW)
  *
  * Asynchronous Rx done enable. When set, a packet received with no errors on an asynchronous Rx
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_ARX_DONE      17
-#define BM_MLB_MIEN_ARX_DONE      0x00020000
+#define BP_MLB_MIEN_ARX_DONE      (17)
+#define BM_MLB_MIEN_ARX_DONE      (0x00020000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ARX_DONE(v)   ((((reg32_t) v) << 17) & BM_MLB_MIEN_ARX_DONE)
@@ -734,14 +734,14 @@ typedef union
 #define BW_MLB_MIEN_ARX_DONE(v)   BF_CS1(MLB_MIEN, ARX_DONE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field ARX_PE (RW)
+/* --- Register HW_MLB_MIEN, field ARX_PE[18:18] (RW)
  *
  * Asynchronous Rx protocol error enable. When set, a ProtocolError detected on an asynchronous Rx
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_ARX_PE      18
-#define BM_MLB_MIEN_ARX_PE      0x00040000
+#define BP_MLB_MIEN_ARX_PE      (18)
+#define BM_MLB_MIEN_ARX_PE      (0x00040000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ARX_PE(v)   ((((reg32_t) v) << 18) & BM_MLB_MIEN_ARX_PE)
@@ -753,14 +753,14 @@ typedef union
 #define BW_MLB_MIEN_ARX_PE(v)   BF_CS1(MLB_MIEN, ARX_PE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field ARX_BREAK (RW)
+/* --- Register HW_MLB_MIEN, field ARX_BREAK[19:19] (RW)
  *
  * Asynchronous Rx break enable. When set, a AsyncBreak command received from the transmitter on an
  * asynchronous Rx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_ARX_BREAK      19
-#define BM_MLB_MIEN_ARX_BREAK      0x00080000
+#define BP_MLB_MIEN_ARX_BREAK      (19)
+#define BM_MLB_MIEN_ARX_BREAK      (0x00080000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ARX_BREAK(v)   ((((reg32_t) v) << 19) & BM_MLB_MIEN_ARX_BREAK)
@@ -772,14 +772,14 @@ typedef union
 #define BW_MLB_MIEN_ARX_BREAK(v)   BF_CS1(MLB_MIEN, ARX_BREAK, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field ATX_DONE (RW)
+/* --- Register HW_MLB_MIEN, field ATX_DONE[20:20] (RW)
  *
  * Asynchronous Tx packet done enable. When set, a packet transmitted with no errors on an
  * asynchronous Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_ATX_DONE      20
-#define BM_MLB_MIEN_ATX_DONE      0x00100000
+#define BP_MLB_MIEN_ATX_DONE      (20)
+#define BM_MLB_MIEN_ATX_DONE      (0x00100000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ATX_DONE(v)   ((((reg32_t) v) << 20) & BM_MLB_MIEN_ATX_DONE)
@@ -791,14 +791,14 @@ typedef union
 #define BW_MLB_MIEN_ATX_DONE(v)   BF_CS1(MLB_MIEN, ATX_DONE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field ATX_PE (RW)
+/* --- Register HW_MLB_MIEN, field ATX_PE[21:21] (RW)
  *
  * Asynchronous Tx protocol error enable. When set, a ProtocolError generated by the receiver on an
  * asynchronous Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_ATX_PE      21
-#define BM_MLB_MIEN_ATX_PE      0x00200000
+#define BP_MLB_MIEN_ATX_PE      (21)
+#define BM_MLB_MIEN_ATX_PE      (0x00200000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ATX_PE(v)   ((((reg32_t) v) << 21) & BM_MLB_MIEN_ATX_PE)
@@ -810,14 +810,14 @@ typedef union
 #define BW_MLB_MIEN_ATX_PE(v)   BF_CS1(MLB_MIEN, ATX_PE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field ATX_BREAK (RW)
+/* --- Register HW_MLB_MIEN, field ATX_BREAK[22:22] (RW)
  *
  * Asynchronous Tx break enable. When set, a ReceiverBreak response received from the receiver on an
  * asynchronous Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_ATX_BREAK      22
-#define BM_MLB_MIEN_ATX_BREAK      0x00400000
+#define BP_MLB_MIEN_ATX_BREAK      (22)
+#define BM_MLB_MIEN_ATX_BREAK      (0x00400000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_ATX_BREAK(v)   ((((reg32_t) v) << 22) & BM_MLB_MIEN_ATX_BREAK)
@@ -829,14 +829,14 @@ typedef union
 #define BW_MLB_MIEN_ATX_BREAK(v)   BF_CS1(MLB_MIEN, ATX_BREAK, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field CRX_DONE (RW)
+/* --- Register HW_MLB_MIEN, field CRX_DONE[24:24] (RW)
  *
  * Control Rx packet done enable. When set, a packet received with no errors on a control Rx channel
  * causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_CRX_DONE      24
-#define BM_MLB_MIEN_CRX_DONE      0x01000000
+#define BP_MLB_MIEN_CRX_DONE      (24)
+#define BM_MLB_MIEN_CRX_DONE      (0x01000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_CRX_DONE(v)   ((((reg32_t) v) << 24) & BM_MLB_MIEN_CRX_DONE)
@@ -848,14 +848,14 @@ typedef union
 #define BW_MLB_MIEN_CRX_DONE(v)   BF_CS1(MLB_MIEN, CRX_DONE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field CRX_PE (RW)
+/* --- Register HW_MLB_MIEN, field CRX_PE[25:25] (RW)
  *
  * Control Rx protocol error enable. When set, a ProtocolError detected on a control Rx channel
  * causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_CRX_PE      25
-#define BM_MLB_MIEN_CRX_PE      0x02000000
+#define BP_MLB_MIEN_CRX_PE      (25)
+#define BM_MLB_MIEN_CRX_PE      (0x02000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_CRX_PE(v)   ((((reg32_t) v) << 25) & BM_MLB_MIEN_CRX_PE)
@@ -867,14 +867,14 @@ typedef union
 #define BW_MLB_MIEN_CRX_PE(v)   BF_CS1(MLB_MIEN, CRX_PE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field CRX_BREAK (RW)
+/* --- Register HW_MLB_MIEN, field CRX_BREAK[26:26] (RW)
  *
  * Control Rx break enable. When set, a ControlBreak command received from the transmitter on a
  * control Rx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_CRX_BREAK      26
-#define BM_MLB_MIEN_CRX_BREAK      0x04000000
+#define BP_MLB_MIEN_CRX_BREAK      (26)
+#define BM_MLB_MIEN_CRX_BREAK      (0x04000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_CRX_BREAK(v)   ((((reg32_t) v) << 26) & BM_MLB_MIEN_CRX_BREAK)
@@ -886,14 +886,14 @@ typedef union
 #define BW_MLB_MIEN_CRX_BREAK(v)   BF_CS1(MLB_MIEN, CRX_BREAK, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field CTX_DONE (RW)
+/* --- Register HW_MLB_MIEN, field CTX_DONE[27:27] (RW)
  *
  * Control Tx packet done enable. When set, a packet transmitted with no errors on a control Tx
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_CTX_DONE      27
-#define BM_MLB_MIEN_CTX_DONE      0x08000000
+#define BP_MLB_MIEN_CTX_DONE      (27)
+#define BM_MLB_MIEN_CTX_DONE      (0x08000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_CTX_DONE(v)   ((((reg32_t) v) << 27) & BM_MLB_MIEN_CTX_DONE)
@@ -905,14 +905,14 @@ typedef union
 #define BW_MLB_MIEN_CTX_DONE(v)   BF_CS1(MLB_MIEN, CTX_DONE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field CTX_PE (RW)
+/* --- Register HW_MLB_MIEN, field CTX_PE[28:28] (RW)
  *
  * Control Tx protocol error enable. When set, a ProtocolError generated by the receiver on a
  * control Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_CTX_PE      28
-#define BM_MLB_MIEN_CTX_PE      0x10000000
+#define BP_MLB_MIEN_CTX_PE      (28)
+#define BM_MLB_MIEN_CTX_PE      (0x10000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_CTX_PE(v)   ((((reg32_t) v) << 28) & BM_MLB_MIEN_CTX_PE)
@@ -924,14 +924,14 @@ typedef union
 #define BW_MLB_MIEN_CTX_PE(v)   BF_CS1(MLB_MIEN, CTX_PE, v)
 #endif
 
-/* --- Register HW_MLB_MIEN, field CTX_BREAK (RW)
+/* --- Register HW_MLB_MIEN, field CTX_BREAK[29:29] (RW)
  *
  * Control Tx break enable. When set, a ReceiverBreak response received from the receiver on a
  * control Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 
-#define BP_MLB_MIEN_CTX_BREAK      29
-#define BM_MLB_MIEN_CTX_BREAK      0x20000000
+#define BP_MLB_MIEN_CTX_BREAK      (29)
+#define BM_MLB_MIEN_CTX_BREAK      (0x20000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MIEN_CTX_BREAK(v)   ((((reg32_t) v) << 29) & BM_MLB_MIEN_CTX_BREAK)
@@ -980,15 +980,15 @@ typedef union
  * constants & macros for individual MLB_MLBPC1 bitfields
  */
 
-/* --- Register HW_MLB_MLBPC1, field SDRCVBIAS (RW)
+/* --- Register HW_MLB_MLBPC1, field SDRCVBIAS[3:0] (RW)
  *
  * Signal/Data receiver bias control (for MediaLB 6-pin interface). Must be written to 0xC when
  * MediaLB 6-pin is initialized (final value needs to be determined through characterization). This
  * value is driven on mlb_sig_data_rx_bias_ctl[3:0] output pin and has no internal function.
  */
 
-#define BP_MLB_MLBPC1_SDRCVBIAS      0
-#define BM_MLB_MLBPC1_SDRCVBIAS      0x0000000f
+#define BP_MLB_MLBPC1_SDRCVBIAS      (0)
+#define BM_MLB_MLBPC1_SDRCVBIAS      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBPC1_SDRCVBIAS(v)   ((((reg32_t) v) << 0) & BM_MLB_MLBPC1_SDRCVBIAS)
@@ -1000,15 +1000,15 @@ typedef union
 #define BW_MLB_MLBPC1_SDRCVBIAS(v)   BF_CS1(MLB_MLBPC1, SDRCVBIAS, v)
 #endif
 
-/* --- Register HW_MLB_MLBPC1, field SDXMTBIAS (RW)
+/* --- Register HW_MLB_MLBPC1, field SDXMTBIAS[7:4] (RW)
  *
  * Signal/Data transmitter bias control (for MediaLB 6-pin interface). Must be written to 0xC when
  * MediaLB 6-pin is initialized (final value needs to be determined through characterization). This
  * value is driven on mlb_sig_data_tx_bias_ctl[3:0] output pin and has no internal function.
  */
 
-#define BP_MLB_MLBPC1_SDXMTBIAS      4
-#define BM_MLB_MLBPC1_SDXMTBIAS      0x000000f0
+#define BP_MLB_MLBPC1_SDXMTBIAS      (4)
+#define BM_MLB_MLBPC1_SDXMTBIAS      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBPC1_SDXMTBIAS(v)   ((((reg32_t) v) << 4) & BM_MLB_MLBPC1_SDXMTBIAS)
@@ -1020,15 +1020,15 @@ typedef union
 #define BW_MLB_MLBPC1_SDXMTBIAS(v)   BF_CS1(MLB_MLBPC1, SDXMTBIAS, v)
 #endif
 
-/* --- Register HW_MLB_MLBPC1, field CKRCVBIAS (RW)
+/* --- Register HW_MLB_MLBPC1, field CKRCVBIAS[11:8] (RW)
  *
  * Clock receiver bias control (for MediaLB 6-pin interface). Must be written to 0xC when MediaLB
  * 6-pin is initialized (final value needs to be determined through characterization). This value is
  * driven on mlb_clk_rx_bias_ctl[3:0] output pin and has no internal function.
  */
 
-#define BP_MLB_MLBPC1_CKRCVBIAS      8
-#define BM_MLB_MLBPC1_CKRCVBIAS      0x00000f00
+#define BP_MLB_MLBPC1_CKRCVBIAS      (8)
+#define BM_MLB_MLBPC1_CKRCVBIAS      (0x00000f00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MLBPC1_CKRCVBIAS(v)   ((((reg32_t) v) << 8) & BM_MLB_MLBPC1_CKRCVBIAS)
@@ -1074,30 +1074,30 @@ typedef union
  * constants & macros for individual MLB_MLBC1 bitfields
  */
 
-/* --- Register HW_MLB_MLBC1, field LOCK (RO)
+/* --- Register HW_MLB_MLBC1, field LOCK[6:6] (RO)
  *
  * MediaLB lock error status. Set when MediaLB is unlocked; cleared by software.
  */
 
-#define BP_MLB_MLBC1_LOCK      6
-#define BM_MLB_MLBC1_LOCK      0x00000040
+#define BP_MLB_MLBC1_LOCK      (6)
+#define BM_MLB_MLBC1_LOCK      (0x00000040)
 
-/* --- Register HW_MLB_MLBC1, field CLKM (RO)
+/* --- Register HW_MLB_MLBC1, field CLKM[7:7] (RO)
  *
  * MediaLB clock missing status. Set when MediaLB clock is not toggling at the pin; cleared by
  * software.
  */
 
-#define BP_MLB_MLBC1_CLKM      7
-#define BM_MLB_MLBC1_CLKM      0x00000080
+#define BP_MLB_MLBC1_CLKM      (7)
+#define BM_MLB_MLBC1_CLKM      (0x00000080)
 
-/* --- Register HW_MLB_MLBC1, field NDA (RW)
+/* --- Register HW_MLB_MLBC1, field NDA[15:8] (RW)
  *
  * Node device address. Used for system commands directed to individual MediaLB nodes.
  */
 
-#define BP_MLB_MLBC1_NDA      8
-#define BM_MLB_MLBC1_NDA      0x0000ff00
+#define BP_MLB_MLBC1_NDA      (8)
+#define BM_MLB_MLBC1_NDA      (0x0000ff00)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1138,17 +1138,17 @@ typedef union
  * constants & macros for individual MLB_HCTL bitfields
  */
 
-/* --- Register HW_MLB_HCTL, field RST0 (RW)
+/* --- Register HW_MLB_HCTL, field RST0[0:0] (RW)
  *
  * AGU0 software reset
  *
  * Values:
- * 1 - reset
  * 0 - active
+ * 1 - reset
  */
 
-#define BP_MLB_HCTL_RST0      0
-#define BM_MLB_HCTL_RST0      0x00000001
+#define BP_MLB_HCTL_RST0      (0)
+#define BM_MLB_HCTL_RST0      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_HCTL_RST0(v)   ((((reg32_t) v) << 0) & BM_MLB_HCTL_RST0)
@@ -1161,17 +1161,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_HCTL, field RST1 (RW)
+/* --- Register HW_MLB_HCTL, field RST1[1:1] (RW)
  *
  * AGU1 software reset
  *
  * Values:
- * 1 - reset
  * 0 - active
+ * 1 - reset
  */
 
-#define BP_MLB_HCTL_RST1      1
-#define BM_MLB_HCTL_RST1      0x00000002
+#define BP_MLB_HCTL_RST1      (1)
+#define BM_MLB_HCTL_RST1      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_HCTL_RST1(v)   ((((reg32_t) v) << 1) & BM_MLB_HCTL_RST1)
@@ -1184,17 +1184,17 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_HCTL, field EN (RW)
+/* --- Register HW_MLB_HCTL, field EN[15:15] (RW)
  *
  * HBI enable
  *
  * Values:
- * 1 - enabled
  * 0 - disabled
+ * 1 - enabled
  */
 
-#define BP_MLB_HCTL_EN      15
-#define BM_MLB_HCTL_EN      0x00008000
+#define BP_MLB_HCTL_EN      (15)
+#define BM_MLB_HCTL_EN      (0x00008000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_HCTL_EN(v)   ((((reg32_t) v) << 15) & BM_MLB_HCTL_EN)
@@ -1244,7 +1244,7 @@ typedef union
  * constants & macros for individual MLB_HCMR0 bitfields
  */
 
-/* --- Register HW_MLB_HCMR0, field CHM (RW)
+/* --- Register HW_MLB_HCMR0, field CHM[31:0] (RW)
  *
  * Bitwise channel mask bit
  *
@@ -1253,8 +1253,8 @@ typedef union
  * 1 - unmasked
  */
 
-#define BP_MLB_HCMR0_CHM      0
-#define BM_MLB_HCMR0_CHM      0xffffffff
+#define BP_MLB_HCMR0_CHM      (0)
+#define BM_MLB_HCMR0_CHM      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_HCMR0_CHM(v)   ((((reg32_t) v) << 0) & BM_MLB_HCMR0_CHM)
@@ -1301,7 +1301,7 @@ typedef union
  * constants & macros for individual MLB_HCMR1 bitfields
  */
 
-/* --- Register HW_MLB_HCMR1, field CHM (RW)
+/* --- Register HW_MLB_HCMR1, field CHM[31:0] (RW)
  *
  * Bitwise channel mask bit
  *
@@ -1310,8 +1310,8 @@ typedef union
  * 1 - unmasked
  */
 
-#define BP_MLB_HCMR1_CHM      0
-#define BM_MLB_HCMR1_CHM      0xffffffff
+#define BP_MLB_HCMR1_CHM      (0)
+#define BM_MLB_HCMR1_CHM      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_HCMR1_CHM(v)   ((((reg32_t) v) << 0) & BM_MLB_HCMR1_CHM)
@@ -1354,13 +1354,13 @@ typedef union
  * constants & macros for individual MLB_HCER0 bitfields
  */
 
-/* --- Register HW_MLB_HCER0, field CERR (RO)
+/* --- Register HW_MLB_HCER0, field CERR[31:0] (RO)
  *
  * Bitwise channel error bit
  */
 
-#define BP_MLB_HCER0_CERR      0
-#define BM_MLB_HCER0_CERR      0xffffffff
+#define BP_MLB_HCER0_CERR      (0)
+#define BM_MLB_HCER0_CERR      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1394,13 +1394,13 @@ typedef union
  * constants & macros for individual MLB_HCER1 bitfields
  */
 
-/* --- Register HW_MLB_HCER1, field CERR (RO)
+/* --- Register HW_MLB_HCER1, field CERR[31:0] (RO)
  *
  * Bitwise channel error bit
  */
 
-#define BP_MLB_HCER1_CERR      0
-#define BM_MLB_HCER1_CERR      0xffffffff
+#define BP_MLB_HCER1_CERR      (0)
+#define BM_MLB_HCER1_CERR      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1437,7 +1437,7 @@ typedef union
  * constants & macros for individual MLB_HCBR0 bitfields
  */
 
-/* --- Register HW_MLB_HCBR0, field CHB (RO)
+/* --- Register HW_MLB_HCBR0, field CHB[31:0] (RO)
  *
  * Bitwise channel busy bit
  *
@@ -1446,8 +1446,8 @@ typedef union
  * 1 - busy
  */
 
-#define BP_MLB_HCBR0_CHB      0
-#define BM_MLB_HCBR0_CHB      0xffffffff
+#define BP_MLB_HCBR0_CHB      (0)
+#define BM_MLB_HCBR0_CHB      (0xffffffff)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -1480,7 +1480,7 @@ typedef union
  * constants & macros for individual MLB_HCBR1 bitfields
  */
 
-/* --- Register HW_MLB_HCBR1, field CHB (RO)
+/* --- Register HW_MLB_HCBR1, field CHB[31:0] (RO)
  *
  * Bitwise channel busy bit
  *
@@ -1489,8 +1489,8 @@ typedef union
  * 1 - busy
  */
 
-#define BP_MLB_HCBR1_CHB      0
-#define BM_MLB_HCBR1_CHB      0xffffffff
+#define BP_MLB_HCBR1_CHB      (0)
+#define BM_MLB_HCBR1_CHB      (0xffffffff)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -1527,13 +1527,13 @@ typedef union
  * constants & macros for individual MLB_MDAT0 bitfields
  */
 
-/* --- Register HW_MLB_MDAT0, field DATA (RW)
+/* --- Register HW_MLB_MDAT0, field DATA[31:0] (RW)
  *
  * CTR data - bits[31:0] of 128-bit entry or DBR data - bits[7:0] of 8-bit entry
  */
 
-#define BP_MLB_MDAT0_DATA      0
-#define BM_MLB_MDAT0_DATA      0xffffffff
+#define BP_MLB_MDAT0_DATA      (0)
+#define BM_MLB_MDAT0_DATA      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDAT0_DATA(v)   ((((reg32_t) v) << 0) & BM_MLB_MDAT0_DATA)
@@ -1579,13 +1579,13 @@ typedef union
  * constants & macros for individual MLB_MDAT1 bitfields
  */
 
-/* --- Register HW_MLB_MDAT1, field DATA (RW)
+/* --- Register HW_MLB_MDAT1, field DATA[31:0] (RW)
  *
  * CTR data - bits[63:32] of 128-bit entry
  */
 
-#define BP_MLB_MDAT1_DATA      0
-#define BM_MLB_MDAT1_DATA      0xffffffff
+#define BP_MLB_MDAT1_DATA      (0)
+#define BM_MLB_MDAT1_DATA      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDAT1_DATA(v)   ((((reg32_t) v) << 0) & BM_MLB_MDAT1_DATA)
@@ -1631,13 +1631,13 @@ typedef union
  * constants & macros for individual MLB_MDAT2 bitfields
  */
 
-/* --- Register HW_MLB_MDAT2, field DATA (RW)
+/* --- Register HW_MLB_MDAT2, field DATA[31:0] (RW)
  *
  * CTR data - bits[95:64] of 128-bit entry
  */
 
-#define BP_MLB_MDAT2_DATA      0
-#define BM_MLB_MDAT2_DATA      0xffffffff
+#define BP_MLB_MDAT2_DATA      (0)
+#define BM_MLB_MDAT2_DATA      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDAT2_DATA(v)   ((((reg32_t) v) << 0) & BM_MLB_MDAT2_DATA)
@@ -1683,13 +1683,13 @@ typedef union
  * constants & macros for individual MLB_MDAT3 bitfields
  */
 
-/* --- Register HW_MLB_MDAT3, field DATA (RW)
+/* --- Register HW_MLB_MDAT3, field DATA[31:0] (RW)
  *
  * CTR data - bits[127:96] of 128-bit entry
  */
 
-#define BP_MLB_MDAT3_DATA      0
-#define BM_MLB_MDAT3_DATA      0xffffffff
+#define BP_MLB_MDAT3_DATA      (0)
+#define BM_MLB_MDAT3_DATA      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDAT3_DATA(v)   ((((reg32_t) v) << 0) & BM_MLB_MDAT3_DATA)
@@ -1735,7 +1735,7 @@ typedef union
  * constants & macros for individual MLB_MDWE0 bitfields
  */
 
-/* --- Register HW_MLB_MDWE0, field MASK (RW)
+/* --- Register HW_MLB_MDWE0, field MASK[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[31:0]
  *
@@ -1744,8 +1744,8 @@ typedef union
  * 1 - enabled
  */
 
-#define BP_MLB_MDWE0_MASK      0
-#define BM_MLB_MDWE0_MASK      0xffffffff
+#define BP_MLB_MDWE0_MASK      (0)
+#define BM_MLB_MDWE0_MASK      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDWE0_MASK(v)   ((((reg32_t) v) << 0) & BM_MLB_MDWE0_MASK)
@@ -1792,7 +1792,7 @@ typedef union
  * constants & macros for individual MLB_MDWE1 bitfields
  */
 
-/* --- Register HW_MLB_MDWE1, field MASK (RW)
+/* --- Register HW_MLB_MDWE1, field MASK[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[63:32]
  *
@@ -1801,8 +1801,8 @@ typedef union
  * 1 - enabled
  */
 
-#define BP_MLB_MDWE1_MASK      0
-#define BM_MLB_MDWE1_MASK      0xffffffff
+#define BP_MLB_MDWE1_MASK      (0)
+#define BM_MLB_MDWE1_MASK      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDWE1_MASK(v)   ((((reg32_t) v) << 0) & BM_MLB_MDWE1_MASK)
@@ -1849,7 +1849,7 @@ typedef union
  * constants & macros for individual MLB_MDWE2 bitfields
  */
 
-/* --- Register HW_MLB_MDWE2, field MASK (RW)
+/* --- Register HW_MLB_MDWE2, field MASK[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[95:64]
  *
@@ -1858,8 +1858,8 @@ typedef union
  * 1 - enabled
  */
 
-#define BP_MLB_MDWE2_MASK      0
-#define BM_MLB_MDWE2_MASK      0xffffffff
+#define BP_MLB_MDWE2_MASK      (0)
+#define BM_MLB_MDWE2_MASK      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDWE2_MASK(v)   ((((reg32_t) v) << 0) & BM_MLB_MDWE2_MASK)
@@ -1906,7 +1906,7 @@ typedef union
  * constants & macros for individual MLB_MDWE3 bitfields
  */
 
-/* --- Register HW_MLB_MDWE3, field MASK (RW)
+/* --- Register HW_MLB_MDWE3, field MASK[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[127:96]
  *
@@ -1915,8 +1915,8 @@ typedef union
  * 1 - enabled
  */
 
-#define BP_MLB_MDWE3_MASK      0
-#define BM_MLB_MDWE3_MASK      0xffffffff
+#define BP_MLB_MDWE3_MASK      (0)
+#define BM_MLB_MDWE3_MASK      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MDWE3_MASK(v)   ((((reg32_t) v) << 0) & BM_MLB_MDWE3_MASK)
@@ -1960,13 +1960,13 @@ typedef union
  * constants & macros for individual MLB_MCTL bitfields
  */
 
-/* --- Register HW_MLB_MCTL, field XCMP (RO)
+/* --- Register HW_MLB_MCTL, field XCMP[0:0] (RO)
  *
  * Transfer complete (write 0 to clear)
  */
 
-#define BP_MLB_MCTL_XCMP      0
-#define BM_MLB_MCTL_XCMP      0x00000001
+#define BP_MLB_MCTL_XCMP      (0)
+#define BM_MLB_MCTL_XCMP      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2006,13 +2006,13 @@ typedef union
  * constants & macros for individual MLB_MADR bitfields
  */
 
-/* --- Register HW_MLB_MADR, field ADDR (RW)
+/* --- Register HW_MLB_MADR, field ADDR[7:0] (RW)
  *
  * CTR address of 128-bit entry or DBR address of 8-bit entry - bits[7:0]
  */
 
-#define BP_MLB_MADR_ADDR      0
-#define BM_MLB_MADR_ADDR      0x000000ff
+#define BP_MLB_MADR_ADDR      (0)
+#define BM_MLB_MADR_ADDR      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MADR_ADDR(v)   ((((reg32_t) v) << 0) & BM_MLB_MADR_ADDR)
@@ -2024,13 +2024,13 @@ typedef union
 #define BW_MLB_MADR_ADDR(v)   BF_CS1(MLB_MADR, ADDR, v)
 #endif
 
-/* --- Register HW_MLB_MADR, field ADDR1 (RW)
+/* --- Register HW_MLB_MADR, field ADDR1[13:8] (RW)
  *
  * DBR address of 8-bit entry - bits[13:8]
  */
 
-#define BP_MLB_MADR_ADDR1      8
-#define BM_MLB_MADR_ADDR1      0x00003f00
+#define BP_MLB_MADR_ADDR1      (8)
+#define BM_MLB_MADR_ADDR1      (0x00003f00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MADR_ADDR1(v)   ((((reg32_t) v) << 8) & BM_MLB_MADR_ADDR1)
@@ -2042,7 +2042,7 @@ typedef union
 #define BW_MLB_MADR_ADDR1(v)   BF_CS1(MLB_MADR, ADDR1, v)
 #endif
 
-/* --- Register HW_MLB_MADR, field TB (RW)
+/* --- Register HW_MLB_MADR, field TB[30:30] (RW)
  *
  * Target location bit
  *
@@ -2051,8 +2051,8 @@ typedef union
  * 1 - selects DBR
  */
 
-#define BP_MLB_MADR_TB      30
-#define BM_MLB_MADR_TB      0x40000000
+#define BP_MLB_MADR_TB      (30)
+#define BM_MLB_MADR_TB      (0x40000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MADR_TB(v)   ((((reg32_t) v) << 30) & BM_MLB_MADR_TB)
@@ -2065,7 +2065,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_MADR, field WNR (RW)
+/* --- Register HW_MLB_MADR, field WNR[31:31] (RW)
  *
  * Write-Not-Read selection
  *
@@ -2074,8 +2074,8 @@ typedef union
  * 1 - write
  */
 
-#define BP_MLB_MADR_WNR      31
-#define BM_MLB_MADR_WNR      0x80000000
+#define BP_MLB_MADR_WNR      (31)
+#define BM_MLB_MADR_WNR      (0x80000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_MADR_WNR(v)   ((((reg32_t) v) << 31) & BM_MLB_MADR_WNR)
@@ -2130,7 +2130,7 @@ typedef union
  * constants & macros for individual MLB_ACTL bitfields
  */
 
-/* --- Register HW_MLB_ACTL, field SCE (RW)
+/* --- Register HW_MLB_ACTL, field SCE[0:0] (RW)
  *
  * Software clear enable:
  *
@@ -2139,8 +2139,8 @@ typedef union
  * 1 - Software clears interrupt
  */
 
-#define BP_MLB_ACTL_SCE      0
-#define BM_MLB_ACTL_SCE      0x00000001
+#define BP_MLB_ACTL_SCE      (0)
+#define BM_MLB_ACTL_SCE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_ACTL_SCE(v)   ((((reg32_t) v) << 0) & BM_MLB_ACTL_SCE)
@@ -2153,7 +2153,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_ACTL, field SMX (RW)
+/* --- Register HW_MLB_ACTL, field SMX[1:1] (RW)
  *
  * AHB interrupt mux enable:
  *
@@ -2162,8 +2162,8 @@ typedef union
  * 1 - ACSR0 and ACSR1 generate an interrupts on ahb_int[0] only
  */
 
-#define BP_MLB_ACTL_SMX      1
-#define BM_MLB_ACTL_SMX      0x00000002
+#define BP_MLB_ACTL_SMX      (1)
+#define BM_MLB_ACTL_SMX      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_ACTL_SMX(v)   ((((reg32_t) v) << 1) & BM_MLB_ACTL_SMX)
@@ -2176,7 +2176,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_ACTL, field DMA_MODE (RW)
+/* --- Register HW_MLB_ACTL, field DMA_MODE[2:2] (RW)
  *
  * DMA Mode:
  *
@@ -2185,8 +2185,8 @@ typedef union
  * 1 - DMA Mode 1
  */
 
-#define BP_MLB_ACTL_DMA_MODE      2
-#define BM_MLB_ACTL_DMA_MODE      0x00000004
+#define BP_MLB_ACTL_DMA_MODE      (2)
+#define BM_MLB_ACTL_DMA_MODE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_ACTL_DMA_MODE(v)   ((((reg32_t) v) << 2) & BM_MLB_ACTL_DMA_MODE)
@@ -2199,7 +2199,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_MLB_ACTL, field MPB (RW)
+/* --- Register HW_MLB_ACTL, field MPB[4:4] (RW)
  *
  * DMA Packet buffering mode.
  *
@@ -2208,8 +2208,8 @@ typedef union
  * 1 - Multiple-packet mode
  */
 
-#define BP_MLB_ACTL_MPB      4
-#define BM_MLB_ACTL_MPB      0x00000010
+#define BP_MLB_ACTL_MPB      (4)
+#define BM_MLB_ACTL_MPB      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_ACTL_MPB(v)   ((((reg32_t) v) << 4) & BM_MLB_ACTL_MPB)
@@ -2261,7 +2261,7 @@ typedef union
  * constants & macros for individual MLB_ACSR0 bitfields
  */
 
-/* --- Register HW_MLB_ACSR0, field V (RO)
+/* --- Register HW_MLB_ACSR0, field V[31:0] (RO)
  *
  * Interrupt status for logical channels 31 to 0:
  *
@@ -2270,8 +2270,8 @@ typedef union
  * 1 - Interrupt
  */
 
-#define BP_MLB_ACSR0_V      0
-#define BM_MLB_ACSR0_V      0xffffffff
+#define BP_MLB_ACSR0_V      (0)
+#define BM_MLB_ACSR0_V      (0xffffffff)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -2304,7 +2304,7 @@ typedef union
  * constants & macros for individual MLB_ACSR1 bitfields
  */
 
-/* --- Register HW_MLB_ACSR1, field CHS (RO)
+/* --- Register HW_MLB_ACSR1, field CHS[31:0] (RO)
  *
  * Interrupt status for logical channels 63 to 32:
  *
@@ -2313,8 +2313,8 @@ typedef union
  * 1 - Interrupt
  */
 
-#define BP_MLB_ACSR1_CHS      0
-#define BM_MLB_ACSR1_CHS      0xffffffff
+#define BP_MLB_ACSR1_CHS      (0)
+#define BM_MLB_ACSR1_CHS      (0xffffffff)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -2353,7 +2353,7 @@ typedef union
  * constants & macros for individual MLB_ACMR0 bitfields
  */
 
-/* --- Register HW_MLB_ACMR0, field CHM (RW)
+/* --- Register HW_MLB_ACMR0, field CHM[31:0] (RW)
  *
  * Bitwise channel mask bit:
  *
@@ -2362,8 +2362,8 @@ typedef union
  * 1 - Unmasked
  */
 
-#define BP_MLB_ACMR0_CHM      0
-#define BM_MLB_ACMR0_CHM      0xffffffff
+#define BP_MLB_ACMR0_CHM      (0)
+#define BM_MLB_ACMR0_CHM      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_ACMR0_CHM(v)   ((((reg32_t) v) << 0) & BM_MLB_ACMR0_CHM)
@@ -2410,7 +2410,7 @@ typedef union
  * constants & macros for individual MLB_ACMR1 bitfields
  */
 
-/* --- Register HW_MLB_ACMR1, field CHM (RW)
+/* --- Register HW_MLB_ACMR1, field CHM[31:0] (RW)
  *
  * Bitwise channel mask bit:
  *
@@ -2419,8 +2419,8 @@ typedef union
  * 1 - Unmasked
  */
 
-#define BP_MLB_ACMR1_CHM      0
-#define BM_MLB_ACMR1_CHM      0xffffffff
+#define BP_MLB_ACMR1_CHM      (0)
+#define BM_MLB_ACMR1_CHM      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_MLB_ACMR1_CHM(v)   ((((reg32_t) v) << 0) & BM_MLB_ACMR1_CHM)

@@ -30,15 +30,15 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_ECSPI_BASE
-#define REGS_ECSPI0_BASE (0x02008000) //!< Base address for ECSPI instance number 0.
-#define REGS_ECSPI1_BASE (0x0200c000) //!< Base address for ECSPI instance number 1.
-#define REGS_ECSPI2_BASE (0x02010000) //!< Base address for ECSPI instance number 2.
-#define REGS_ECSPI3_BASE (0x02014000) //!< Base address for ECSPI instance number 3.
-#define REGS_ECSPI4_BASE (0x02018000) //!< Base address for ECSPI instance number 4.
+#define REGS_ECSPI1_BASE (0x02008000) //!< Base address for ECSPI instance number 1.
+#define REGS_ECSPI2_BASE (0x0200c000) //!< Base address for ECSPI instance number 2.
+#define REGS_ECSPI3_BASE (0x02010000) //!< Base address for ECSPI instance number 3.
+#define REGS_ECSPI4_BASE (0x02014000) //!< Base address for ECSPI instance number 4.
+#define REGS_ECSPI5_BASE (0x02018000) //!< Base address for ECSPI instance number 5.
 
 //! @brief Get the base address of ECSPI by instance number.
 //! @param x ECSPI instance number, from 0 through 5.
-#define REGS_ECSPI_BASE(x) ( x == 0 ? REGS_ECSPI0_BASE : x == 1 ? REGS_ECSPI1_BASE : x == 2 ? REGS_ECSPI2_BASE : x == 3 ? REGS_ECSPI3_BASE : x == 4 ? REGS_ECSPI4_BASE : 0xffff0000)
+#define REGS_ECSPI_BASE(x) ( x == 1 ? REGS_ECSPI1_BASE : x == 2 ? REGS_ECSPI2_BASE : x == 3 ? REGS_ECSPI3_BASE : x == 4 ? REGS_ECSPI4_BASE : x == 5 ? REGS_ECSPI5_BASE : 0xffff0000)
 #endif
 //@}
 
@@ -74,15 +74,15 @@ typedef union
  * constants & macros for individual ECSPI_RXDATA bitfields
  */
 
-/* --- Register HW_ECSPI_RXDATA, field ECSPI_RXDATA (RO)
+/* --- Register HW_ECSPI_RXDATA, field ECSPI_RXDATA[31:0] (RO)
  *
  * Receive Data. This register holds the top word of the receive data FIFO. The FIFO is advanced for
  * each read of this register. The data read is undefined when the Receive Data Ready (RR) bit in
  * the Interrupt Control/Status register is cleared. Zeros are read when ECSPI is disabled.
  */
 
-#define BP_ECSPI_RXDATA_ECSPI_RXDATA      0
-#define BM_ECSPI_RXDATA_ECSPI_RXDATA      0xffffffff
+#define BP_ECSPI_RXDATA_ECSPI_RXDATA      (0)
+#define BM_ECSPI_RXDATA_ECSPI_RXDATA      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -118,7 +118,7 @@ typedef union
  * constants & macros for individual ECSPI_TXDATA bitfields
  */
 
-/* --- Register HW_ECSPI_TXDATA, field ECSPI_TXDATA (WO)
+/* --- Register HW_ECSPI_TXDATA, field ECSPI_TXDATA[31:0] (WO)
  *
  * Transmit Data. This register holds the top word of data loaded into the FIFO. Data written to
  * this register must be a word operation. The number of bits actually transmitted is determined by
@@ -129,8 +129,8 @@ typedef union
  * is empty. Zeros are read when ECSPI is disabled.
  */
 
-#define BP_ECSPI_TXDATA_ECSPI_TXDATA      0
-#define BM_ECSPI_TXDATA_ECSPI_TXDATA      0xffffffff
+#define BP_ECSPI_TXDATA_ECSPI_TXDATA      (0)
+#define BM_ECSPI_TXDATA_ECSPI_TXDATA      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_TXDATA_ECSPI_TXDATA(v)   ((((reg32_t) v) << 0) & BM_ECSPI_TXDATA_ECSPI_TXDATA)
@@ -187,7 +187,7 @@ typedef union
  * constants & macros for individual ECSPI_CONREG bitfields
  */
 
-/* --- Register HW_ECSPI_CONREG, field EN (RW)
+/* --- Register HW_ECSPI_CONREG, field EN[0:0] (RW)
  *
  * SPI Block Enable Control. This bit enables the ECSPI. This bit must be set before writing to
  * other registers or initiating an exchange. Writing zero to this bit disables the block and resets
@@ -199,8 +199,8 @@ typedef union
  * 1 - Enable the block.
  */
 
-#define BP_ECSPI_CONREG_EN      0
-#define BM_ECSPI_CONREG_EN      0x00000001
+#define BP_ECSPI_CONREG_EN      (0)
+#define BM_ECSPI_CONREG_EN      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_EN(v)   ((((reg32_t) v) << 0) & BM_ECSPI_CONREG_EN)
@@ -213,7 +213,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field HT (RW)
+/* --- Register HW_ECSPI_CONREG, field HT[1:1] (RW)
  *
  * Hardware Trigger Enable. This bit is used in master mode only. It enables hardware trigger (HT)
  * mode.
@@ -223,8 +223,8 @@ typedef union
  * 1 - Enable HT mode.
  */
 
-#define BP_ECSPI_CONREG_HT      1
-#define BM_ECSPI_CONREG_HT      0x00000002
+#define BP_ECSPI_CONREG_HT      (1)
+#define BM_ECSPI_CONREG_HT      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_HT(v)   ((((reg32_t) v) << 1) & BM_ECSPI_CONREG_HT)
@@ -237,7 +237,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field XCH (RW)
+/* --- Register HW_ECSPI_CONREG, field XCH[2:2] (RW)
  *
  * SPI Exchange Bit. This bit applies only when the module is configured in Master mode (MODE = 1).
  * This bit applies only to channels configured in Master mode (CHANNEL MODE = 1). If the Start Mode
@@ -252,8 +252,8 @@ typedef union
  * 1 - Initiates exchange (write) or busy (read).
  */
 
-#define BP_ECSPI_CONREG_XCH      2
-#define BM_ECSPI_CONREG_XCH      0x00000004
+#define BP_ECSPI_CONREG_XCH      (2)
+#define BM_ECSPI_CONREG_XCH      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_XCH(v)   ((((reg32_t) v) << 2) & BM_ECSPI_CONREG_XCH)
@@ -266,7 +266,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field SMC (RW)
+/* --- Register HW_ECSPI_CONREG, field SMC[3:3] (RW)
  *
  * Start Mode Control. This bit applies only when the module is configured in Master mode (MODE =
  * 1). This bit applies only to channels configured in Master mode (CHANNEL MODE = 1). It controls
@@ -280,8 +280,8 @@ typedef union
  * 1 - Immediately starts a SPI burst when data is written in TXFIFO.
  */
 
-#define BP_ECSPI_CONREG_SMC      3
-#define BM_ECSPI_CONREG_SMC      0x00000008
+#define BP_ECSPI_CONREG_SMC      (3)
+#define BM_ECSPI_CONREG_SMC      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_SMC(v)   ((((reg32_t) v) << 3) & BM_ECSPI_CONREG_SMC)
@@ -294,7 +294,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field CHANNEL_MODE (RW)
+/* --- Register HW_ECSPI_CONREG, field CHANNEL_MODE[7:4] (RW)
  *
  * SPI CHANNEL MODE selects the mode for each SPI channel. CHANNEL MODE[3] is for SPI channel 3.
  * CHANNEL MODE[2] is for SPI channel 2. CHANNEL MODE[1] is for SPI channel 1. CHANNEL MODE[0] is
@@ -305,8 +305,8 @@ typedef union
  * 1 - Master mode.
  */
 
-#define BP_ECSPI_CONREG_CHANNEL_MODE      4
-#define BM_ECSPI_CONREG_CHANNEL_MODE      0x000000f0
+#define BP_ECSPI_CONREG_CHANNEL_MODE      (4)
+#define BM_ECSPI_CONREG_CHANNEL_MODE      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_CHANNEL_MODE(v)   ((((reg32_t) v) << 4) & BM_ECSPI_CONREG_CHANNEL_MODE)
@@ -319,7 +319,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field POST_DIVIDER (RW)
+/* --- Register HW_ECSPI_CONREG, field POST_DIVIDER[11:8] (RW)
  *
  * SPI Post Divider. ECSPI uses a two-stage divider to generate the SPI clock. This field defines
  * the post-divider of the reference clock using the equation: 2 n .
@@ -332,8 +332,8 @@ typedef union
  * 1111 - Divide by 2 15 .
  */
 
-#define BP_ECSPI_CONREG_POST_DIVIDER      8
-#define BM_ECSPI_CONREG_POST_DIVIDER      0x00000f00
+#define BP_ECSPI_CONREG_POST_DIVIDER      (8)
+#define BM_ECSPI_CONREG_POST_DIVIDER      (0x00000f00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_POST_DIVIDER(v)   ((((reg32_t) v) << 8) & BM_ECSPI_CONREG_POST_DIVIDER)
@@ -346,7 +346,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field PRE_DIVIDER (RW)
+/* --- Register HW_ECSPI_CONREG, field PRE_DIVIDER[15:12] (RW)
  *
  * SPI Pre Divider. ECSPI uses a two-stage divider to generate the SPI clock. This field defines the
  * pre-divider of the reference clock.
@@ -360,8 +360,8 @@ typedef union
  * 1111 - Divide by 16.
  */
 
-#define BP_ECSPI_CONREG_PRE_DIVIDER      12
-#define BM_ECSPI_CONREG_PRE_DIVIDER      0x0000f000
+#define BP_ECSPI_CONREG_PRE_DIVIDER      (12)
+#define BM_ECSPI_CONREG_PRE_DIVIDER      (0x0000f000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_PRE_DIVIDER(v)   ((((reg32_t) v) << 12) & BM_ECSPI_CONREG_PRE_DIVIDER)
@@ -374,7 +374,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field DRCTL (RW)
+/* --- Register HW_ECSPI_CONREG, field DRCTL[17:16] (RW)
  *
  * SPI Data Ready Control. This field selects the utilization of the SPI_RDY signal in master mode.
  * ECSPI checks this field before it starts an SPI burst.
@@ -386,8 +386,8 @@ typedef union
  * 11 - Reserved.
  */
 
-#define BP_ECSPI_CONREG_DRCTL      16
-#define BM_ECSPI_CONREG_DRCTL      0x00030000
+#define BP_ECSPI_CONREG_DRCTL      (16)
+#define BM_ECSPI_CONREG_DRCTL      (0x00030000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_DRCTL(v)   ((((reg32_t) v) << 16) & BM_ECSPI_CONREG_DRCTL)
@@ -400,7 +400,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field CHANNEL_SELECT (RW)
+/* --- Register HW_ECSPI_CONREG, field CHANNEL_SELECT[19:18] (RW)
  *
  * SPI CHANNEL SELECT bits. Select one of four external SPI Master/Slave Devices. In master mode,
  * these two bits select the external slave devices by asserting the Chip Select (SSn) outputs. Only
@@ -414,8 +414,8 @@ typedef union
  * 11 - Channel 3 is selected. Chip Select 3 (SS3) will be asserted.
  */
 
-#define BP_ECSPI_CONREG_CHANNEL_SELECT      18
-#define BM_ECSPI_CONREG_CHANNEL_SELECT      0x000c0000
+#define BP_ECSPI_CONREG_CHANNEL_SELECT      (18)
+#define BM_ECSPI_CONREG_CHANNEL_SELECT      (0x000c0000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_CHANNEL_SELECT(v)   ((((reg32_t) v) << 18) & BM_ECSPI_CONREG_CHANNEL_SELECT)
@@ -428,7 +428,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONREG, field BURST_LENGTH (RW)
+/* --- Register HW_ECSPI_CONREG, field BURST_LENGTH[31:20] (RW)
  *
  * Burst Length. This field defines the length of a SPI burst to be transferred. The Chip Select
  * (SS) will remain asserted until all bits in a SPI burst are shifted out. A maximum of 2^12 bits
@@ -449,8 +449,8 @@ typedef union
  * 0xFFF - A SPI burst contains 2^7 words.
  */
 
-#define BP_ECSPI_CONREG_BURST_LENGTH      20
-#define BM_ECSPI_CONREG_BURST_LENGTH      0xfff00000
+#define BP_ECSPI_CONREG_BURST_LENGTH      (20)
+#define BM_ECSPI_CONREG_BURST_LENGTH      (0xfff00000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONREG_BURST_LENGTH(v)   ((((reg32_t) v) << 20) & BM_ECSPI_CONREG_BURST_LENGTH)
@@ -506,7 +506,7 @@ typedef union
  * constants & macros for individual ECSPI_CONFIGREG bitfields
  */
 
-/* --- Register HW_ECSPI_CONFIGREG, field SCLK_PHA (RW)
+/* --- Register HW_ECSPI_CONFIGREG, field SCLK_PHA[3:0] (RW)
  *
  * SPI Clock/Data Phase Control. This field controls the clock/data phase relationship. See for more
  * information. SCLK PHA[3] is for SPI channel 3. SCLK PHA[2] is for SPI channel 2. SCLK PHA[1] is
@@ -517,8 +517,8 @@ typedef union
  * 1 - Phase 1 operation.
  */
 
-#define BP_ECSPI_CONFIGREG_SCLK_PHA      0
-#define BM_ECSPI_CONFIGREG_SCLK_PHA      0x0000000f
+#define BP_ECSPI_CONFIGREG_SCLK_PHA      (0)
+#define BM_ECSPI_CONFIGREG_SCLK_PHA      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONFIGREG_SCLK_PHA(v)   ((((reg32_t) v) << 0) & BM_ECSPI_CONFIGREG_SCLK_PHA)
@@ -531,7 +531,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONFIGREG, field SCLK_POL (RW)
+/* --- Register HW_ECSPI_CONFIGREG, field SCLK_POL[7:4] (RW)
  *
  * SPI Clock Polarity Control. This field controls the polarity of the SCLK signal. See for more
  * information. SCLK POL[3] is for SPI channel 3. SCLK POL[2] is for SPI channel 2. SCLK POL[1] is
@@ -542,8 +542,8 @@ typedef union
  * 1 - Active low polarity (1 = Idle).
  */
 
-#define BP_ECSPI_CONFIGREG_SCLK_POL      4
-#define BM_ECSPI_CONFIGREG_SCLK_POL      0x000000f0
+#define BP_ECSPI_CONFIGREG_SCLK_POL      (4)
+#define BM_ECSPI_CONFIGREG_SCLK_POL      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONFIGREG_SCLK_POL(v)   ((((reg32_t) v) << 4) & BM_ECSPI_CONFIGREG_SCLK_POL)
@@ -556,7 +556,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONFIGREG, field SS_CTL (RW)
+/* --- Register HW_ECSPI_CONFIGREG, field SS_CTL[11:8] (RW)
  *
  * SPI SS Wave Form Select. In master mode, this field controls the output wave form of the Chip
  * Select (SS) signal when the SMC (Start Mode Control) bit is cleared. The SS_CTL are ignored if
@@ -579,8 +579,8 @@ typedef union
  *     is detected or the shift register contains 32-bits of valid data.
  */
 
-#define BP_ECSPI_CONFIGREG_SS_CTL      8
-#define BM_ECSPI_CONFIGREG_SS_CTL      0x00000f00
+#define BP_ECSPI_CONFIGREG_SS_CTL      (8)
+#define BM_ECSPI_CONFIGREG_SS_CTL      (0x00000f00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONFIGREG_SS_CTL(v)   ((((reg32_t) v) << 8) & BM_ECSPI_CONFIGREG_SS_CTL)
@@ -593,7 +593,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONFIGREG, field SS_POL (RW)
+/* --- Register HW_ECSPI_CONFIGREG, field SS_POL[15:12] (RW)
  *
  * SPI SS Polarity Select. In both Master and Slave modes, this field selects the polarity of the
  * Chip Select (SS) signal. SS POL[3] is for SPI channel 3. SS POL[2] is for SPI channel 2. SS
@@ -604,8 +604,8 @@ typedef union
  * 1 - Active high.
  */
 
-#define BP_ECSPI_CONFIGREG_SS_POL      12
-#define BM_ECSPI_CONFIGREG_SS_POL      0x0000f000
+#define BP_ECSPI_CONFIGREG_SS_POL      (12)
+#define BM_ECSPI_CONFIGREG_SS_POL      (0x0000f000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONFIGREG_SS_POL(v)   ((((reg32_t) v) << 12) & BM_ECSPI_CONFIGREG_SS_POL)
@@ -618,7 +618,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONFIGREG, field DATA_CTL (RW)
+/* --- Register HW_ECSPI_CONFIGREG, field DATA_CTL[19:16] (RW)
  *
  * DATA CTL. This field controls inactive state of the data line for each SPI channel. DATA CTL[3]
  * is for SPI channel 3. DATA CTL[2] is for SPI channel 2. DATA CTL[1] is for SPI channel 1. DATA
@@ -629,8 +629,8 @@ typedef union
  * 1 - Stay low.
  */
 
-#define BP_ECSPI_CONFIGREG_DATA_CTL      16
-#define BM_ECSPI_CONFIGREG_DATA_CTL      0x000f0000
+#define BP_ECSPI_CONFIGREG_DATA_CTL      (16)
+#define BM_ECSPI_CONFIGREG_DATA_CTL      (0x000f0000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONFIGREG_DATA_CTL(v)   ((((reg32_t) v) << 16) & BM_ECSPI_CONFIGREG_DATA_CTL)
@@ -643,7 +643,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONFIGREG, field SCLK_CTL (RW)
+/* --- Register HW_ECSPI_CONFIGREG, field SCLK_CTL[23:20] (RW)
  *
  * SCLK CTL. This field controls the inactive state of SCLK for each SPI channel. SCLK CTL[3] is for
  * SPI channel 3. SCLK CTL[2] is for SPI channel 2. SCLK CTL[1] is for SPI channel 1. SCLK CTL[0] is
@@ -654,8 +654,8 @@ typedef union
  * 1 - Stay high.
  */
 
-#define BP_ECSPI_CONFIGREG_SCLK_CTL      20
-#define BM_ECSPI_CONFIGREG_SCLK_CTL      0x00f00000
+#define BP_ECSPI_CONFIGREG_SCLK_CTL      (20)
+#define BM_ECSPI_CONFIGREG_SCLK_CTL      (0x00f00000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONFIGREG_SCLK_CTL(v)   ((((reg32_t) v) << 20) & BM_ECSPI_CONFIGREG_SCLK_CTL)
@@ -668,14 +668,14 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_CONFIGREG, field HT_LENGTH (RW)
+/* --- Register HW_ECSPI_CONFIGREG, field HT_LENGTH[28:24] (RW)
  *
  * HT LENGTH. This field defines the message length in HT Mode. The length in bits of one message is
  * (HT LENGTH + 1).
  */
 
-#define BP_ECSPI_CONFIGREG_HT_LENGTH      24
-#define BM_ECSPI_CONFIGREG_HT_LENGTH      0x1f000000
+#define BP_ECSPI_CONFIGREG_HT_LENGTH      (24)
+#define BM_ECSPI_CONFIGREG_HT_LENGTH      (0x1f000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_CONFIGREG_HT_LENGTH(v)   ((((reg32_t) v) << 24) & BM_ECSPI_CONFIGREG_HT_LENGTH)
@@ -730,7 +730,7 @@ typedef union
  * constants & macros for individual ECSPI_INTREG bitfields
  */
 
-/* --- Register HW_ECSPI_INTREG, field TEEN (RW)
+/* --- Register HW_ECSPI_INTREG, field TEEN[0:0] (RW)
  *
  * TXFIFO Empty Interrupt enable. This bit enables the TXFIFO Empty Interrupt.
  *
@@ -739,8 +739,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_TEEN      0
-#define BM_ECSPI_INTREG_TEEN      0x00000001
+#define BP_ECSPI_INTREG_TEEN      (0)
+#define BM_ECSPI_INTREG_TEEN      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_TEEN(v)   ((((reg32_t) v) << 0) & BM_ECSPI_INTREG_TEEN)
@@ -753,7 +753,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_INTREG, field TDREN (RW)
+/* --- Register HW_ECSPI_INTREG, field TDREN[1:1] (RW)
  *
  * TXFIFO Data Request Interrupt enable. This bit enables the TXFIFO Data Request Interrupt when the
  * number of data entries in the TXFIFO is less than or equal to TX THRESHOLD.
@@ -763,8 +763,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_TDREN      1
-#define BM_ECSPI_INTREG_TDREN      0x00000002
+#define BP_ECSPI_INTREG_TDREN      (1)
+#define BM_ECSPI_INTREG_TDREN      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_TDREN(v)   ((((reg32_t) v) << 1) & BM_ECSPI_INTREG_TDREN)
@@ -777,7 +777,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_INTREG, field TFEN (RW)
+/* --- Register HW_ECSPI_INTREG, field TFEN[2:2] (RW)
  *
  * TXFIFO Full Interrupt enable. This bit enables the TXFIFO Full Interrupt.
  *
@@ -786,8 +786,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_TFEN      2
-#define BM_ECSPI_INTREG_TFEN      0x00000004
+#define BP_ECSPI_INTREG_TFEN      (2)
+#define BM_ECSPI_INTREG_TFEN      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_TFEN(v)   ((((reg32_t) v) << 2) & BM_ECSPI_INTREG_TFEN)
@@ -800,7 +800,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_INTREG, field RREN (RW)
+/* --- Register HW_ECSPI_INTREG, field RREN[3:3] (RW)
  *
  * RXFIFO Ready Interrupt enable. This bit enables the RXFIFO Ready Interrupt.
  *
@@ -809,8 +809,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_RREN      3
-#define BM_ECSPI_INTREG_RREN      0x00000008
+#define BP_ECSPI_INTREG_RREN      (3)
+#define BM_ECSPI_INTREG_RREN      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_RREN(v)   ((((reg32_t) v) << 3) & BM_ECSPI_INTREG_RREN)
@@ -823,7 +823,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_INTREG, field RDREN (RW)
+/* --- Register HW_ECSPI_INTREG, field RDREN[4:4] (RW)
  *
  * RXFIFO Data Request Interrupt enable. This bit enables the RXFIFO Data Request Interrupt when the
  * number of data entries in the RXFIFO is greater than RX THRESHOLD.
@@ -833,8 +833,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_RDREN      4
-#define BM_ECSPI_INTREG_RDREN      0x00000010
+#define BP_ECSPI_INTREG_RDREN      (4)
+#define BM_ECSPI_INTREG_RDREN      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_RDREN(v)   ((((reg32_t) v) << 4) & BM_ECSPI_INTREG_RDREN)
@@ -847,7 +847,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_INTREG, field RFEN (RW)
+/* --- Register HW_ECSPI_INTREG, field RFEN[5:5] (RW)
  *
  * RXFIFO Full Interrupt enable. This bit enables the RXFIFO Full Interrupt.
  *
@@ -856,8 +856,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_RFEN      5
-#define BM_ECSPI_INTREG_RFEN      0x00000020
+#define BP_ECSPI_INTREG_RFEN      (5)
+#define BM_ECSPI_INTREG_RFEN      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_RFEN(v)   ((((reg32_t) v) << 5) & BM_ECSPI_INTREG_RFEN)
@@ -870,7 +870,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_INTREG, field ROEN (RW)
+/* --- Register HW_ECSPI_INTREG, field ROEN[6:6] (RW)
  *
  * RXFIFO Overflow Interrupt enable. This bit enables the RXFIFO Overflow Interrupt.
  *
@@ -879,8 +879,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_ROEN      6
-#define BM_ECSPI_INTREG_ROEN      0x00000040
+#define BP_ECSPI_INTREG_ROEN      (6)
+#define BM_ECSPI_INTREG_ROEN      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_ROEN(v)   ((((reg32_t) v) << 6) & BM_ECSPI_INTREG_ROEN)
@@ -893,7 +893,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_INTREG, field TCEN (RW)
+/* --- Register HW_ECSPI_INTREG, field TCEN[7:7] (RW)
  *
  * Transfer Completed Interrupt enable. This bit enables the Transfer Completed Interrupt.
  *
@@ -902,8 +902,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_INTREG_TCEN      7
-#define BM_ECSPI_INTREG_TCEN      0x00000080
+#define BP_ECSPI_INTREG_TCEN      (7)
+#define BM_ECSPI_INTREG_TCEN      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_INTREG_TCEN(v)   ((((reg32_t) v) << 7) & BM_ECSPI_INTREG_TCEN)
@@ -962,15 +962,15 @@ typedef union
  * constants & macros for individual ECSPI_DMAREG bitfields
  */
 
-/* --- Register HW_ECSPI_DMAREG, field TX_THRESHOLD (RW)
+/* --- Register HW_ECSPI_DMAREG, field TX_THRESHOLD[5:0] (RW)
  *
  * TX THRESHOLD. This field defines the FIFO threshold that triggers a TX DMA/INT request. A TX
  * DMA/INT request is issued when the number of data entries in the TXFIFO is greater than TX
  * THRESHOLD.
  */
 
-#define BP_ECSPI_DMAREG_TX_THRESHOLD      0
-#define BM_ECSPI_DMAREG_TX_THRESHOLD      0x0000003f
+#define BP_ECSPI_DMAREG_TX_THRESHOLD      (0)
+#define BM_ECSPI_DMAREG_TX_THRESHOLD      (0x0000003f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_DMAREG_TX_THRESHOLD(v)   ((((reg32_t) v) << 0) & BM_ECSPI_DMAREG_TX_THRESHOLD)
@@ -982,7 +982,7 @@ typedef union
 #define BW_ECSPI_DMAREG_TX_THRESHOLD(v)   BF_CS1(ECSPI_DMAREG, TX_THRESHOLD, v)
 #endif
 
-/* --- Register HW_ECSPI_DMAREG, field TEDEN (RW)
+/* --- Register HW_ECSPI_DMAREG, field TEDEN[7:7] (RW)
  *
  * TXFIFO Empty DMA Request Enable. This bit enables/disables the TXFIFO Empty DMA Request.
  *
@@ -991,8 +991,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_DMAREG_TEDEN      7
-#define BM_ECSPI_DMAREG_TEDEN      0x00000080
+#define BP_ECSPI_DMAREG_TEDEN      (7)
+#define BM_ECSPI_DMAREG_TEDEN      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_DMAREG_TEDEN(v)   ((((reg32_t) v) << 7) & BM_ECSPI_DMAREG_TEDEN)
@@ -1005,15 +1005,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_DMAREG, field RX_THRESHOLD (RW)
+/* --- Register HW_ECSPI_DMAREG, field RX_THRESHOLD[21:16] (RW)
  *
  * RX THRESHOLD. This field defines the FIFO threshold that triggers a RX DMA/INT request. A RX
  * DMA/INT request is issued when the number of data entries in the RXFIFO is greater than RX
  * THRESHOLD.
  */
 
-#define BP_ECSPI_DMAREG_RX_THRESHOLD      16
-#define BM_ECSPI_DMAREG_RX_THRESHOLD      0x003f0000
+#define BP_ECSPI_DMAREG_RX_THRESHOLD      (16)
+#define BM_ECSPI_DMAREG_RX_THRESHOLD      (0x003f0000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_DMAREG_RX_THRESHOLD(v)   ((((reg32_t) v) << 16) & BM_ECSPI_DMAREG_RX_THRESHOLD)
@@ -1025,7 +1025,7 @@ typedef union
 #define BW_ECSPI_DMAREG_RX_THRESHOLD(v)   BF_CS1(ECSPI_DMAREG, RX_THRESHOLD, v)
 #endif
 
-/* --- Register HW_ECSPI_DMAREG, field RXDEN (RW)
+/* --- Register HW_ECSPI_DMAREG, field RXDEN[23:23] (RW)
  *
  * RXFIFO DMA Request Enable. This bit enables/disables the RXFIFO DMA Request.
  *
@@ -1034,8 +1034,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_DMAREG_RXDEN      23
-#define BM_ECSPI_DMAREG_RXDEN      0x00800000
+#define BP_ECSPI_DMAREG_RXDEN      (23)
+#define BM_ECSPI_DMAREG_RXDEN      (0x00800000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_DMAREG_RXDEN(v)   ((((reg32_t) v) << 23) & BM_ECSPI_DMAREG_RXDEN)
@@ -1048,14 +1048,14 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_DMAREG, field RX_DMA_LENGTH (RW)
+/* --- Register HW_ECSPI_DMAREG, field RX_DMA_LENGTH[29:24] (RW)
  *
  * RX DMA LENGTH. This field defines the burst length of a DMA operation. Applies only when RXTDEN
  * is set.
  */
 
-#define BP_ECSPI_DMAREG_RX_DMA_LENGTH      24
-#define BM_ECSPI_DMAREG_RX_DMA_LENGTH      0x3f000000
+#define BP_ECSPI_DMAREG_RX_DMA_LENGTH      (24)
+#define BM_ECSPI_DMAREG_RX_DMA_LENGTH      (0x3f000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_DMAREG_RX_DMA_LENGTH(v)   ((((reg32_t) v) << 24) & BM_ECSPI_DMAREG_RX_DMA_LENGTH)
@@ -1067,7 +1067,7 @@ typedef union
 #define BW_ECSPI_DMAREG_RX_DMA_LENGTH(v)   BF_CS1(ECSPI_DMAREG, RX_DMA_LENGTH, v)
 #endif
 
-/* --- Register HW_ECSPI_DMAREG, field RXTDEN (RW)
+/* --- Register HW_ECSPI_DMAREG, field RXTDEN[31:31] (RW)
  *
  * RXFIFO TAIL DMA Request Enable. This bit enables an internal counter that is increased at each
  * read of the RXFIFO. This counter is cleared automatically when it reaches RX DMA LENGTH. If the
@@ -1079,8 +1079,8 @@ typedef union
  * 1 - Enable
  */
 
-#define BP_ECSPI_DMAREG_RXTDEN      31
-#define BM_ECSPI_DMAREG_RXTDEN      0x80000000
+#define BP_ECSPI_DMAREG_RXTDEN      (31)
+#define BM_ECSPI_DMAREG_RXTDEN      (0x80000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_DMAREG_RXTDEN(v)   ((((reg32_t) v) << 31) & BM_ECSPI_DMAREG_RXTDEN)
@@ -1136,7 +1136,7 @@ typedef union
  * constants & macros for individual ECSPI_STATREG bitfields
  */
 
-/* --- Register HW_ECSPI_STATREG, field TE (RO)
+/* --- Register HW_ECSPI_STATREG, field TE[0:0] (RO)
  *
  * TXFIFO Empty. This bit is set if the TXFIFO is empty.
  *
@@ -1145,11 +1145,11 @@ typedef union
  * 1 - TXFIFO is empty.
  */
 
-#define BP_ECSPI_STATREG_TE      0
-#define BM_ECSPI_STATREG_TE      0x00000001
+#define BP_ECSPI_STATREG_TE      (0)
+#define BM_ECSPI_STATREG_TE      (0x00000001)
 
 
-/* --- Register HW_ECSPI_STATREG, field TDR (RO)
+/* --- Register HW_ECSPI_STATREG, field TDR[1:1] (RO)
  *
  * TXFIFO Data Request.
  *
@@ -1158,11 +1158,11 @@ typedef union
  * 1 - Number of empty slots in TXFIFO is not greater than TX THRESHOLD.
  */
 
-#define BP_ECSPI_STATREG_TDR      1
-#define BM_ECSPI_STATREG_TDR      0x00000002
+#define BP_ECSPI_STATREG_TDR      (1)
+#define BM_ECSPI_STATREG_TDR      (0x00000002)
 
 
-/* --- Register HW_ECSPI_STATREG, field TF (RO)
+/* --- Register HW_ECSPI_STATREG, field TF[2:2] (RO)
  *
  * TXFIFO Full. This bit is set when if the TXFIFO is full.
  *
@@ -1171,11 +1171,11 @@ typedef union
  * 1 - TXFIFO is Full.
  */
 
-#define BP_ECSPI_STATREG_TF      2
-#define BM_ECSPI_STATREG_TF      0x00000004
+#define BP_ECSPI_STATREG_TF      (2)
+#define BM_ECSPI_STATREG_TF      (0x00000004)
 
 
-/* --- Register HW_ECSPI_STATREG, field RR (RO)
+/* --- Register HW_ECSPI_STATREG, field RR[3:3] (RO)
  *
  * RXFIFO Ready. This bit is set when one or more words are stored in the RXFIFO.
  *
@@ -1184,27 +1184,27 @@ typedef union
  * 1 - More than 1 word in RXFIFO.
  */
 
-#define BP_ECSPI_STATREG_RR      3
-#define BM_ECSPI_STATREG_RR      0x00000008
+#define BP_ECSPI_STATREG_RR      (3)
+#define BM_ECSPI_STATREG_RR      (0x00000008)
 
 
-/* --- Register HW_ECSPI_STATREG, field RDR (RO)
+/* --- Register HW_ECSPI_STATREG, field RDR[4:4] (RO)
  *
  * RXFIFO Data Request.
  *
  * Values:
  * 0 - When RXTDE is set - Number of data entries in the RXFIFO is not greater than RX THRESHOLD.
+ * 0 - When RXTDE is clear - Number of data entries in the RXFIFO is not greater than RX THRESHOLD.
  * 1 - When RXTDE is set - Number of data entries in the RXFIFO is greater than RX THRESHOLD or a DMA TAIL
  *     DMA condition exists.
- * 0 - When RXTDE is clear - Number of data entries in the RXFIFO is not greater than RX THRESHOLD.
  * 1 - When RXTDE is clear - Number of data entries in the RXFIFO is greater than RX THRESHOLD.
  */
 
-#define BP_ECSPI_STATREG_RDR      4
-#define BM_ECSPI_STATREG_RDR      0x00000010
+#define BP_ECSPI_STATREG_RDR      (4)
+#define BM_ECSPI_STATREG_RDR      (0x00000010)
 
 
-/* --- Register HW_ECSPI_STATREG, field RF (RO)
+/* --- Register HW_ECSPI_STATREG, field RF[5:5] (RO)
  *
  * RXFIFO Full. This bit is set when the RXFIFO is full.
  *
@@ -1213,11 +1213,11 @@ typedef union
  * 1 - Full.
  */
 
-#define BP_ECSPI_STATREG_RF      5
-#define BM_ECSPI_STATREG_RF      0x00000020
+#define BP_ECSPI_STATREG_RF      (5)
+#define BM_ECSPI_STATREG_RF      (0x00000020)
 
 
-/* --- Register HW_ECSPI_STATREG, field RO (W1C)
+/* --- Register HW_ECSPI_STATREG, field RO[6:6] (W1C)
  *
  * RXFIFO Overflow. When set, this bit indicates that RXFIFO has overflowed. Writing 1 to this bit
  * clears it.
@@ -1227,8 +1227,8 @@ typedef union
  * 1 - RXFIFO has overflowed.
  */
 
-#define BP_ECSPI_STATREG_RO      6
-#define BM_ECSPI_STATREG_RO      0x00000040
+#define BP_ECSPI_STATREG_RO      (6)
+#define BM_ECSPI_STATREG_RO      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_STATREG_RO(v)   ((((reg32_t) v) << 6) & BM_ECSPI_STATREG_RO)
@@ -1241,7 +1241,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_STATREG, field TC (W1C)
+/* --- Register HW_ECSPI_STATREG, field TC[7:7] (W1C)
  *
  * Transfer Completed Status bit. Writing 1 to this bit clears it.
  *
@@ -1250,8 +1250,8 @@ typedef union
  * 1 - Transfer completed.
  */
 
-#define BP_ECSPI_STATREG_TC      7
-#define BM_ECSPI_STATREG_TC      0x00000080
+#define BP_ECSPI_STATREG_TC      (7)
+#define BM_ECSPI_STATREG_TC      (0x00000080)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_STATREG_TC(v)   ((((reg32_t) v) << 7) & BM_ECSPI_STATREG_TC)
@@ -1308,7 +1308,7 @@ typedef union
  * constants & macros for individual ECSPI_PERIODREG bitfields
  */
 
-/* --- Register HW_ECSPI_PERIODREG, field SAMPLE_PERIOD (RW)
+/* --- Register HW_ECSPI_PERIODREG, field SAMPLE_PERIOD[14:0] (RW)
  *
  * Sample Period Control. These bits control the number of wait states to be inserted in data
  * transfers. During the idle clocks, the state of the SS output will operate according to the
@@ -1322,8 +1322,8 @@ typedef union
  * 0x7FFF - 32767 wait states inserted
  */
 
-#define BP_ECSPI_PERIODREG_SAMPLE_PERIOD      0
-#define BM_ECSPI_PERIODREG_SAMPLE_PERIOD      0x00007fff
+#define BP_ECSPI_PERIODREG_SAMPLE_PERIOD      (0)
+#define BM_ECSPI_PERIODREG_SAMPLE_PERIOD      (0x00007fff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_PERIODREG_SAMPLE_PERIOD(v)   ((((reg32_t) v) << 0) & BM_ECSPI_PERIODREG_SAMPLE_PERIOD)
@@ -1336,7 +1336,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_PERIODREG, field CSRC (RW)
+/* --- Register HW_ECSPI_PERIODREG, field CSRC[15:15] (RW)
  *
  * Clock Source Control. This bit selects the clock source for the sample period counter.
  *
@@ -1345,8 +1345,8 @@ typedef union
  * 1 - Low-Frequency Reference Clock (32.768 KHz)
  */
 
-#define BP_ECSPI_PERIODREG_CSRC      15
-#define BM_ECSPI_PERIODREG_CSRC      0x00008000
+#define BP_ECSPI_PERIODREG_CSRC      (15)
+#define BM_ECSPI_PERIODREG_CSRC      (0x00008000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_PERIODREG_CSRC(v)   ((((reg32_t) v) << 15) & BM_ECSPI_PERIODREG_CSRC)
@@ -1359,14 +1359,14 @@ typedef union
 #endif
 
 
-/* --- Register HW_ECSPI_PERIODREG, field CSD_CTL (RW)
+/* --- Register HW_ECSPI_PERIODREG, field CSD_CTL[21:16] (RW)
  *
  * Chip Select Delay Control bits. This field defines how many SPI clocks will be inserted between
  * the chip select's active edge and the first SPI clock edge. The range is from 0 to 63.
  */
 
-#define BP_ECSPI_PERIODREG_CSD_CTL      16
-#define BM_ECSPI_PERIODREG_CSD_CTL      0x003f0000
+#define BP_ECSPI_PERIODREG_CSD_CTL      (16)
+#define BM_ECSPI_PERIODREG_CSD_CTL      (0x003f0000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_PERIODREG_CSD_CTL(v)   ((((reg32_t) v) << 16) & BM_ECSPI_PERIODREG_CSD_CTL)
@@ -1419,13 +1419,13 @@ typedef union
  * constants & macros for individual ECSPI_TESTREG bitfields
  */
 
-/* --- Register HW_ECSPI_TESTREG, field TXCNT (RW)
+/* --- Register HW_ECSPI_TESTREG, field TXCNT[6:0] (RW)
  *
  * TXFIFO Counter. This field indicates the number of words in the TXFIFO.
  */
 
-#define BP_ECSPI_TESTREG_TXCNT      0
-#define BM_ECSPI_TESTREG_TXCNT      0x0000007f
+#define BP_ECSPI_TESTREG_TXCNT      (0)
+#define BM_ECSPI_TESTREG_TXCNT      (0x0000007f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_TESTREG_TXCNT(v)   ((((reg32_t) v) << 0) & BM_ECSPI_TESTREG_TXCNT)
@@ -1437,13 +1437,13 @@ typedef union
 #define BW_ECSPI_TESTREG_TXCNT(v)   BF_CS1(ECSPI_TESTREG, TXCNT, v)
 #endif
 
-/* --- Register HW_ECSPI_TESTREG, field RXCNT (RW)
+/* --- Register HW_ECSPI_TESTREG, field RXCNT[14:8] (RW)
  *
  * RXFIFO Counter. This field indicates the number of words in the RXFIFO.
  */
 
-#define BP_ECSPI_TESTREG_RXCNT      8
-#define BM_ECSPI_TESTREG_RXCNT      0x00007f00
+#define BP_ECSPI_TESTREG_RXCNT      (8)
+#define BM_ECSPI_TESTREG_RXCNT      (0x00007f00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_TESTREG_RXCNT(v)   ((((reg32_t) v) << 8) & BM_ECSPI_TESTREG_RXCNT)
@@ -1455,7 +1455,7 @@ typedef union
 #define BW_ECSPI_TESTREG_RXCNT(v)   BF_CS1(ECSPI_TESTREG, RXCNT, v)
 #endif
 
-/* --- Register HW_ECSPI_TESTREG, field LBC (RW)
+/* --- Register HW_ECSPI_TESTREG, field LBC[31:31] (RW)
  *
  * Loop Back Control. This bit is used in Master mode only. When this bit is set, the ECSPI connects
  * the transmitter and receiver sections internally, and the data shifted out from the most-
@@ -1468,8 +1468,8 @@ typedef union
  * 1 - Transmitter and receiver sections internally connected for Loopback.
  */
 
-#define BP_ECSPI_TESTREG_LBC      31
-#define BM_ECSPI_TESTREG_LBC      0x80000000
+#define BP_ECSPI_TESTREG_LBC      (31)
+#define BM_ECSPI_TESTREG_LBC      (0x80000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_TESTREG_LBC(v)   ((((reg32_t) v) << 31) & BM_ECSPI_TESTREG_LBC)
@@ -1514,15 +1514,15 @@ typedef union
  * constants & macros for individual ECSPI_MSGDATA bitfields
  */
 
-/* --- Register HW_ECSPI_MSGDATA, field ECSPI_MSGDATA (WO)
+/* --- Register HW_ECSPI_MSGDATA, field ECSPI_MSGDATA[31:0] (WO)
  *
  * ECSPI_MSGDATA holds the top word of MSG Data FIFO. The MSG Data FIFO is advanced for each write
  * of this register. The data read is zero. The data written to this register is stored in the MSG
  * Data FIFO.
  */
 
-#define BP_ECSPI_MSGDATA_ECSPI_MSGDATA      0
-#define BM_ECSPI_MSGDATA_ECSPI_MSGDATA      0xffffffff
+#define BP_ECSPI_MSGDATA_ECSPI_MSGDATA      (0)
+#define BM_ECSPI_MSGDATA_ECSPI_MSGDATA      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ECSPI_MSGDATA_ECSPI_MSGDATA(v)   ((((reg32_t) v) << 0) & BM_ECSPI_MSGDATA_ECSPI_MSGDATA)

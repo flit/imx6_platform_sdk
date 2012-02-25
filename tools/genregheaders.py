@@ -39,16 +39,32 @@ from UserDict import UserDict
 # sidsc-component XML that is used to create the register sections of Freescale reference manuals.
 #
 # @par Remaining tasks:
-# - Support true SCT variants of registers, and registers that dont have them.
-# - Print warning for registers with too many bits.
+#
 # - Do HTML entities need to be converted?
 # - Need to process and filter all elements to build text. Even <bitFieldName> sometimes has more
 #   than one <ph> node within, each with different filter attribtues.
 # - Handle uniqueing of register and bitfield names in those classes, not in HeaderGenerator.
 # - Don't generate BW_ macros for bitfields that belong to a register without SCT macros, such
 #   as write-only registers.
+# - Add --enable=x (?) and --disable=x command line options that take a list of sections to include
+#   or exclude in the output. For instance, to disable the module struct or read/write macros.
+# - Use the relative paths in the sidsc-design file to find the input XML files, so most headers
+#   for an entire design can be generated in one command.
+# - Use the log package for error output and honour the --quiet command.
 #
 # @par Version history:
+#
+# 1.0b5:
+# - Putting BP_ and BM_ macros in parentheses.
+# - Start multi-instance numbering at 1 instead of 0, to match the RM.
+# - Support true SCT variants of registers.
+# - Fixed conversion of binary values.
+# - Handles 'x' chars in binary bitfield values, treating them as a zero.
+# - New --design-name, --base-address, and --instance-offsets arguments.
+# - Removed --product, --feature, and --audience arguments. A filter file is now the only way to filter.
+# - Warns when bitfields overlap.
+# - Print warning for registers with too many bits.
+# - BV_ macros are commented with the bitfield value description.
 #
 # 1.0b4:
 # - Better parsing of access modes.
@@ -71,10 +87,10 @@ from UserDict import UserDict
 #
 
 # Tool version number and copyright string.
-kToolVersion = "1.0b4"
+kToolVersion = "1.0b5"
 kToolCopyright = "Copyright (c) 2012 Freescale Semiconductor, Inc. All rights reserved."
 
-# Possible access modes for registers and bitfields.
+# Possible access modes for registers and bitfields. This list is just for reference.
 kAccessModes = ['R', 'W', 'RW', 'RO', 'WO', 'WORZ', 'ROZ', 'RORZ', 'ROO', 'RU', 'W1C', 'RC1']
 
 ##
@@ -137,6 +153,9 @@ def convertHexValue(addressString, base=0):
     if addressString.startswith('0x'):
         addressString = addressString[2:]
         base = 16
+    elif addressString.endswith('h'):
+        addressString = addressString[:-1]
+        base = 16
 
     digits = ''.join([d for d in addressString if (d in string.hexdigits)])
 
@@ -149,22 +168,39 @@ def convertHexValue(addressString, base=0):
     if hasHexDigit or digits.startswith('0'):
         base = 16
     
+    if len(digits) == 0:
+        return 0
+    
     return int(digits, base)
+
+##
+# @brief Test whether the string has only 0 and 1 characters in it.
+def hasOnlyBinaryDigits(valueString):
+    for digit in valueString:
+        if digit not in "01xX":
+            return False
+    return True
 
 ##
 # @brief Convert a binary number from string to an integer.
 # @exception Exception Raised if the input string is not a binary number, i.e. if it contains
 #   characters other than '0' or '1'.
 def convertBinaryValue(valueString):
-    if len(addressString) == 0:
+    #print >> sys.stderr, "converting bin: " + valueString
+    if len(valueString) == 0:
         return 0
     
     result = 0
     for i in range(len(valueString)):
         digit = valueString[-(i + 1)]
-        if digit not in "01":
+        if digit not in "01xX":
             raise Exception("string in not a binary value: " + valueString)
+        if digit.lower() == 'x':
+            digit = '0'
         result += int(digit) << i
+        #print >> sys.stderr, "   %d dig=%s, r= %x" % (i, digit, result)
+    
+    return result
 
 ##
 # @brief Check an attribute against a list of values.
@@ -249,28 +285,29 @@ class ExcludedByFilterException(Exception):
 ##
 # @brief Holds component information.
 class Component:
-    def __init__(self, memoryMap, name):
+    def __init__(self, memoryMap, name, designName):
         self.memoryMap = memoryMap
         self.name = name.upper()
+        self.designName = designName.upper()
         self.registers = []
         
-        self.count = self.memoryMap.getInstanceCount(self.name)
+        self.count = self.memoryMap.getInstanceCount(self.designName)
         self.isMultiInstance = (self.count > 1)
         
         # Get address of first instance.
-        self.baseAddress = self.memoryMap.getBaseAddress(self.name, 0)
+        self.baseAddress = self.memoryMap.getBaseAddress(self.designName, 0)
         
         self.structName = "hw_%s_t" % (self.name.lower())
     
     def addRegister(self, reg):
         # Check for a pre-existing register with the same name.
         if self.getRegisterWithName(reg.name) is not None:
-            print >> sys.stderr, "Warning: register already exists with the name %s!" % reg.name
+            print >> sys.stderr, "Warning: register already exists with the name %s in %s!" % (reg.name, self.name)
             return
         
         # Check for register with the same address offset.
         if self.getRegisterWithOffset(reg.addressOffset) is not None:
-            print >> sys.stderr, "Warning: register %s has the same offset as another register!" % reg.name
+            print >> sys.stderr, "Warning: register %s of %s has the same offset as another register!" % (reg.name, self.name)
             return
         
         # Add the new register.
@@ -303,10 +340,6 @@ class Register:
     # @return A list of zero or more Register instances. 
     @staticmethod
     def buildFromXml(component, elem, filterAttribs):
-#         self.memoryMap = component.memoryMap
-#         self.component = component
-#         self.element = elem
-        
         # Filter based on attributes.
         if not filterAttributes(elem, filterAttribs):
             return []
@@ -318,25 +351,6 @@ class Register:
         
         # Get register properties element.
         props = elem.find('registerBody/registerProperties/registerPropset')
-        
-#         self.addressOffset = convertHexValue(getElementText(props, 'addressOffset'))
-#         self.sizeInBits = int(getElementText(props, 'registerSize'), 0)
-#         self.sizeInBytes = self.sizeInBits / 8
-#         self.access = getElementText(props, 'registerAccess').upper()
-#         if len(self.access) == 0:
-#             self.access = 'RO'
-#         self.isReadable = isAccessModeReadable(self.access)
-#         self.isWritable = isAccessModeWriteable(self.access)
-#         self.resetValue = convertHexValue(getElementText(props, 'registerResetValue'))
-#         
-#         if self.sizeInBits == 32:
-#             self.bitFieldType = "unsigned"
-#         elif self.sizeInBits == 16:
-#             self.bitFieldType = "unsigned short"
-#         elif self.sizeInBits == 8:
-#             self.bitFieldType = "unsigned char"
-#         else:
-#             raise Exception("invalid register size: " + str(self.sizeInBits))
         
         # Determine how many related registers there are. Start off with a count and list that will
         # produce a single register.
@@ -352,35 +366,32 @@ class Register:
                 offsetIncrement = int(getElementText(dims, 'dimensionIncrement', default='0'))
                 registerSuffixes = getElementText(dims, 'unitQualifier').split(',')
         
+        # Handle SCT qualifiers specially, so we don't create a Register instance for each
+        # of the SCT variants.
+        hasSct = ('_SET' in registerSuffixes) and ('_CLR' in registerSuffixes) and ('_TOG' in registerSuffixes)
+        if hasSct:
+            registerCount = 1
+        
         # Create the new registers.
         offsetDelta = 0
         for suffixIndex in range(registerCount):
+            # Get the suffix for this register.
             suffix = cleanWhitespace(registerSuffixes[suffixIndex])
+            
+            # Append suffix to names.
             thisName = name + suffix
             thisFullName = fullName
-            if len(suffix) > 0:
+            if len(suffix) > 0: # Just make sure we don't get an extra space on the end.
                 thisFullName += ' ' + suffix
-            newRegister = Register(thisName, thisFullName, description, offsetDelta, component, props, filterAttribs)
+            
+            # Create the register instance and add it to the list.
+            newRegister = Register(thisName, thisFullName, description, offsetDelta, component, props, hasSct, filterAttribs)
             newRegister.buildBitfields(elem, filterAttribs)
             registersList.append(newRegister)
+            
             offsetDelta += offsetIncrement
         
         return registersList
-        
-        # Create the BitField objects.
-#         self.bitFields = []
-#         for e in elem.findall('bitField'):
-#             try:
-#                 self.bitFields.append(BitField(self, e, filterAttribs))
-#             except ExcludedByFilterException:
-#                 # Just ignore this exception
-#                 pass
-#         
-#         # Make sure all bits have a bitfield.
-#         self._createMissingBitFields()
-#         
-#         # Now sort the bitfields by bit number.
-#         self.bitFields.sort(key=lambda field:field.offset)
     
     ##
     # @brief Constructor.
@@ -392,24 +403,18 @@ class Register:
     # @param component
     # @param props
     # @param filterAttribs
-    def __init__(self, name, fullName, desc, offsetDelta, component, props, filterAttribs):
+    def __init__(self, name, fullName, desc, offsetDelta, component, props, hasSct, filterAttribs):
         self.memoryMap = component.memoryMap
         self.component = component
-#         self.element = elem
         
-        # Filter based on attributes.
-#         if not filterAttributes(elem, filterAttribs):
-#             raise ExcludedByFilterException()
-        
-        self.name = name #formatIdentifier(getElementText(elem, 'registerName'))
-        self.fullName = fullName #getElementText(elem, 'registerNameMore/registerNameFull')
-        self.description = desc #formatText(elem.find('registerBody/registerDescription'))
+        self.name = name
+        self.fullName = fullName
+        self.description = desc
         
         self.formattedName = "%s_%s" % (self.component.name, self.name)
         self.structName = "hw_%s_t" % (self.formattedName.lower())
         
         # Extract register details.
-#         props = elem.find('registerBody/registerProperties/registerPropset')
         self.addressOffset = convertHexValue(getElementText(props, 'addressOffset')) + offsetDelta
         self.sizeInBits = int(getElementText(props, 'registerSize'), 0)
         self.sizeInBytes = self.sizeInBits / 8
@@ -419,6 +424,7 @@ class Register:
         self.isReadable = isAccessModeReadable(self.access)
         self.isWritable = isAccessModeWriteable(self.access)
         self.resetValue = convertHexValue(getElementText(props, 'registerResetValue'))
+        self.hasSct = hasSct
         self.bitFields = []
         
         if self.sizeInBits == 32:
@@ -429,15 +435,6 @@ class Register:
             self.bitFieldType = "unsigned char"
         else:
             raise Exception("invalid register size: " + str(self.sizeInBits))
-        
-        # Determine how many related registers there are.
-#         self.relatedRegisterSuffixes = []
-#         dims = props.find('dimension')
-#         if dims is not None:
-#             dimValue = dims.find('dimensionValue').text
-#             if dimValue is not None:
-#                 self.relatedRegisterSuffixes = getElementText(dims, 'unitQualifier').split(',')
-        
     
     ##
     # @brief Create the BitField objects from the register XML node.
@@ -446,7 +443,16 @@ class Register:
 #         self.bitFields = []
         for e in registerElem.findall('bitField'):
             try:
-                self.bitFields.append(BitField(self, e, filterAttribs))
+                newField = BitField(self, e, filterAttribs)
+                
+                # Verify that there is not already a bitfield with the same bit range.
+                for bit in range(newField.offset, newField.width):
+                    existingField = self.getBitFieldForBit(bit)
+                    if existingField is not None:
+                        print >> sys.stderr, "Warning: bitfield %s of %s overlaps with bitfield %s!" % (newField.name, self.formattedName, existingField.name)
+                        raise ExcludedByFilterException()
+                
+                self.bitFields.append(newField)
             except ExcludedByFilterException:
                 # Just ignore this exception
                 pass
@@ -456,6 +462,13 @@ class Register:
         
         # Now sort the bitfields by bit number.
         self.bitFields.sort(key=lambda field:field.offset)
+        
+        # Finally, verify that there are not more bitfield bits than register bits.
+        bits = 0
+        for field in self.bitFields:
+            bits += field.width
+        if bits > self.sizeInBits:
+            print >> sys.stderr, "Warning: register %s of %s has %d total bits!" % (self.name, self.component.name, bits)
     
     ##
     # @brief Create reserved bitfields for missing bits.
@@ -555,6 +568,7 @@ class BitField:
         props = elem.find('bitFieldBody/bitFieldProperties/bitFieldPropset')
         self.width = int(getElementText(props, 'bitWidth'))
         self.offset = int(getElementText(props, 'bitOffset'))
+        self.topBitOffset = self.offset + self.width - 1
         self.access = getElementText(props, 'bitFieldAccess').upper()
         if len(self.access) == 0:
             self.access = 'RO'
@@ -597,7 +611,7 @@ class BitField:
             
             # Check for a binary value.
             try:
-                if len(thisValue.valueText) == self.width:
+                if (len(thisValue.valueText) == self.width) and (hasOnlyBinaryDigits(thisValue.valueText)):
                     thisValue.value = convertBinaryValue(thisValue.valueText)
                 else:
                     thisValue.value = convertHexValue(thisValue.valueText)
@@ -673,6 +687,7 @@ class MemoryMap:
                 
             except Exception, e:
                 print >> sys.stderr, "Error processing component: " + str(e)
+                raise
     
     ##
     # @return A list containing UserDict objects for each instance of the component.
@@ -681,7 +696,7 @@ class MemoryMap:
         instances = []
         
         # Extract attribtues.
-        name = component.get('ip-name').upper()
+        name = cleanWhitespace(component.get('ip-name')).upper()
         base = convertHexValue(component.get('base-address'), 16) # string in the form "020C_4000"
         
         # Try to get attributes for multiple instances. These are optional attributes. If the
@@ -690,15 +705,19 @@ class MemoryMap:
         if count is None:
             count = 1
         else:
-            count = int(count)
+            count = int(cleanWhitespace(count))
             
-        qualifiers = component.get('unitQualifier')
+        # Get the list of instance name modifiers. We assume these are appended to the name,
+        # although we really should be using the namePattern attribute.
+        qualifiers = cleanWhitespace(component.get('unitQualifier'))
         if qualifiers is None:
             qualifiers = ['']
         else:
             qualifiers = qualifiers.split(',')
         
-        offsets = component.get('instanceOffsets')
+        # Build the list of address offsets for each instance. The list must start with 0, for
+        # the first instance, which is not included in the instanceOffsets attribute.
+        offsets = cleanWhitespace(component.get('instanceOffsets'))
         if offsets is None:
             offsets = [0]
         else:
@@ -720,11 +739,19 @@ class MemoryMap:
             i = self.components[k]
             print "%s: 0x%08x" % (i.name, i.baseAddress)
     
+    def hasInstance(self, name, instance):
+        try:
+            x = self.components[name][instance].baseAddress
+            return True
+        except KeyError:
+            #print >> sys.stderr, "Warning: failed to find base address for component %s instance %d" % (name, instance)
+            return False
+    
     def getBaseAddress(self, name, instance):
         try:
             return self.components[name][instance].baseAddress
         except KeyError:
-            print >> sys.stderr, "Warning: failed to find base address for component %s instance %d" % (name, instance)
+            #print >> sys.stderr, "Warning: failed to find base address for component %s instance %d" % (name, instance)
             return 0
     
     def getInstanceCount(self, name):
@@ -732,6 +759,30 @@ class MemoryMap:
             return len(self.components[name])
         except KeyError:
             return 0
+    
+    ##
+    # @brief Override the list of instances for a component.
+    # @param self
+    # @param componentName The name of the component to set instances of.
+    # @param baseAddress Base address of the first instance.
+    # @param offsetList List of offsets from the base address for each instance. If an offset of 0
+    #   is not present in the list, it will be added automatically.
+    def setInstances(self, componentName, baseAddress, offsetList=[]):
+        # Make sure there is a 0 in the list.
+        if not 0 in offsetList:
+            offsetList = [0] + offsetList
+        
+        instances = []
+        i = 1
+        for offset in offsetList:
+            instance = UserDict()
+            instance.name = componentName + str(i)
+            instance.offset = offset
+            instance.baseAddress = baseAddress + offset
+            
+            instances.append(instance)
+        
+        self.components[componentName] = instances
 
 ##
 # @brief Class to hold template strings for header generation.
@@ -802,7 +853,7 @@ typedef union
  * constants & macros for entire {reg.formattedName} register
  */
 #define HW_{reg.formattedName}_ADDR      (REGS_{component.name}_BASE + {reg.addressOffset:#x})
-
+{sctAddresses}
 #ifndef __LANGUAGE_ASM__
 #define HW_{reg.formattedName}           (*(volatile {reg.structName} *) HW_{reg.formattedName}_ADDR)
 {readMacros}{writeMacros}{sctMacros}#endif
@@ -832,7 +883,7 @@ typedef union
  * constants & macros for entire multi-block {reg.formattedName} register
  */
 #define HW_{reg.formattedName}_ADDR(x)      (REGS_{component.name}_BASE(x) + {reg.addressOffset:#x})
-
+{sctAddresses}
 #ifndef __LANGUAGE_ASM__
 #define HW_{reg.formattedName}(x)           (*(volatile {reg.structName} *) HW_{reg.formattedName}_ADDR(x))
 {readMacros}{writeMacros}{sctMacros}#endif
@@ -848,6 +899,15 @@ typedef union
     regWriteTemplate = u"#define HW_{reg.formattedName}_WR(v)     (HW_{reg.formattedName}.U = (v))\n"
     regWriteTemplateMulti = u"#define HW_{reg.formattedName}_WR(x, v)     (HW_{reg.formattedName}(x).U = (v))\n"
     
+    regSctAddressesTemplate = u"""#define HW_{reg.formattedName}_SET_ADDR  (HW_{reg.formattedName}_ADDR + 0x4)
+#define HW_{reg.formattedName}_CLR_ADDR  (HW_{reg.formattedName}_ADDR + 0x8)
+#define HW_{reg.formattedName}_TOG_ADDR  (HW_{reg.formattedName}_ADDR + 0xC)
+"""
+    regSctAddressesTemplateMulti = u"""#define HW_{reg.formattedName}_SET_ADDR(x)  (HW_{reg.formattedName}_ADDR(x) + 0x4)
+#define HW_{reg.formattedName}_CLR_ADDR(x)  (HW_{reg.formattedName}_ADDR(x) + 0x8)
+#define HW_{reg.formattedName}_TOG_ADDR(x)  (HW_{reg.formattedName}_ADDR(x) + 0xC)
+"""
+    
     regSctTemplate = u"""#define HW_{reg.formattedName}_SET(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() |  (v)))
 #define HW_{reg.formattedName}_CLR(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() & ~(v)))
 #define HW_{reg.formattedName}_TOG(v)    (HW_{reg.formattedName}_WR(HW_{reg.formattedName}_RD() ^  (v)))
@@ -857,15 +917,24 @@ typedef union
 #define HW_{reg.formattedName}_TOG(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) ^  (v)))
 """
 
+    regRealSctTemplate = u"""#define HW_GPMI_CTRL0_SET(v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_SET_ADDR) = (v))
+#define HW_{reg.formattedName}_CLR(v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_CLR_ADDR) = (v))
+#define HW_{reg.formattedName}_TOG(v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_TOG_ADDR) = (v))
+"""
+    regRealSctTemplateMulti = u"""#define HW_GPMI_CTRL0_SET(x, v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_SET_ADDR(x)) = (v))
+#define HW_{reg.formattedName}_CLR(x, v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_CLR_ADDR(x)) = (v))
+#define HW_{reg.formattedName}_TOG(x, v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_TOG_ADDR(x)) = (v))
+"""
+
     structBitFieldTemplate = u"        {fieldType} {fieldName} : {fieldWidth}; //!< {fieldDesc}\n"
 
     bitFieldTemplate = u"""
-/* --- Register HW_{reg.formattedName}, field {field.name} ({field.access})
+/* --- Register HW_{reg.formattedName}, field {field.name}[{field.topBitOffset}:{field.offset}] ({field.access})
  *
 {fieldComment} */
 
-#define BP_{field.formattedName}      {field.offset}
-#define BM_{field.formattedName}      {field.mask:#010x}
+#define BP_{field.formattedName}      ({field.offset})
+#define BM_{field.formattedName}      ({field.mask:#010x})
 """
 
     bitFieldValuePrefixTemplate = u" *\n * Values:\n"
@@ -884,7 +953,7 @@ typedef union
 #endif
 """
 
-    bitFieldValueTemplate = u"#define BV_{field.formattedName}__{value.name}    {value.value:#x}\n"
+    bitFieldValueTemplate = u"#define BV_{field.formattedName}__{value.name} ({value.value:#x}) //!< {value.desc}\n"
 
     moduleStructTemplate = u"""
 /*!
@@ -898,6 +967,7 @@ typedef struct
 """
 
     moduleStructMemberTemplate = u"    volatile {reg.structName} {reg.name}; //!< {reg.fullName}\n"
+    moduleStructSctMemberTemplate = u"    volatile {regType} {reg.name}{suffix}; //!< {reg.fullName} {sctDesc}\n"
     moduleStructPaddingTemplate = u"    {paddingType} {paddingName}{paddingBytes};\n"
 
     moduleStructRefTemplate = u"""
@@ -961,9 +1031,16 @@ class HeaderGenerator:
             txt = self.templates.baseAddressMultiMacroTemplate1.format(component=self.component)
             
             for i in range(self.component.count):
-                offset = self.component.memoryMap.getBaseAddress(self.component.name, i)
+                # Check for a valid base address and print a warning if there isn't one.
+                if not self.component.memoryMap.hasInstance(self.component.designName, i):
+                    print >> sys.stderr, "Warning: failed to find base address for component %s instance %d" % (name, instance)
+
+                # Get the base address for this instance. If the instance isn't in the memory map,
+                # the base will default to 0.
+                offset = self.component.memoryMap.getBaseAddress(self.component.designName, i)
+                
                 formatDict = { 'component':self.component,
-                                'instanceNumber':i,
+                                'instanceNumber':i + 1, # Start numbering at 1 like the RM.
                                 'instanceOffset':offset }
                 output += self.templates.baseAddressTemplateMulti.format(**formatDict)
                 txt += self.templates.baseAddressMultiMacroTemplate2.format(**formatDict)
@@ -986,12 +1063,24 @@ class HeaderGenerator:
             whichTemplate = self.templates.regTemplateMulti
             whichReadTemplate = self.templates.regReadTemplateMulti
             whichWriteTemplate = self.templates.regWriteTemplateMulti
-            whichSctTemplate = self.templates.regSctTemplateMulti
+            
+            if reg.hasSct:
+                whichSctTemplate = self.templates.regRealSctTemplateMulti
+            else:
+                whichSctTemplate = self.templates.regSctTemplateMulti
+            
+            whichSctAddressesTemplate = self.templates.regSctAddressesTemplateMulti
         else:
             whichTemplate = self.templates.regTemplate
             whichReadTemplate = self.templates.regReadTemplate
             whichWriteTemplate = self.templates.regWriteTemplate
-            whichSctTemplate = self.templates.regSctTemplate
+            
+            if reg.hasSct:
+                whichSctTemplate = self.templates.regRealSctTemplate
+            else:
+                whichSctTemplate = self.templates.regSctTemplate
+            
+            whichSctAddressesTemplate = self.templates.regSctAddressesTemplate
         
         bitFields = self._generateStructBitfields(reg)
         regComment = self.commentWrapper.fill(reg.description.strip().replace('\n', ' '))
@@ -1002,7 +1091,8 @@ class HeaderGenerator:
                         'regComment':regComment,
                         'readMacros':'',
                         'writeMacros':'',
-                        'sctMacros':'' }
+                        'sctMacros':'',
+                        'sctAddresses':'' }
         
         # Add register read macros if the register is readable.
         if reg.isReadable:
@@ -1014,6 +1104,10 @@ class HeaderGenerator:
         
         # Add SCT macros if the register is both readable and writable.
         if reg.isReadable and reg.isWritable:
+            # If the register has real SCT variants, we need to generate addresses for them.
+            if reg.hasSct:
+                formatDict['sctAddresses'] = whichSctAddressesTemplate.format(**formatDict)
+            
             formatDict['sctMacros'] = whichSctTemplate.format(**formatDict)
         
         output = whichTemplate.format(**formatDict)
@@ -1117,7 +1211,7 @@ class HeaderGenerator:
         members = ""
         
         # Generate members of whole-module registers struct. If there are holes in the addresses,
-        # 
+        # then we have to insert padding fields.
         paddingCount = 0
         currentOffset = 0
         for aReg in self.component.registers:
@@ -1144,10 +1238,26 @@ class HeaderGenerator:
                 paddingName = "_reserved%d" % paddingCount
                 paddingCount += 1
                 
-                members += self.templates.moduleStructPaddingTemplate.format(paddingType=t, paddingName=paddingName, paddingBytes=nStr)
+                paddingDict = { 'paddingType':t,
+                                'paddingName':paddingName,
+                                'paddingBytes':nStr }
+                members += self.templates.moduleStructPaddingTemplate.format(**paddingDict)
             
+            # Insert the main register struct member.
             members += self.templates.moduleStructMemberTemplate.format(reg=aReg)
             currentOffset += aReg.sizeInBytes
+            
+            # Insert members for SCT variants of the register.
+            if aReg.hasSct:
+                for suffix in ['_SET', '_CLR', '_TOG']:
+                    regTypes = { 1:'reg8_t', 2:'reg16_t', 4:'reg32_t' }
+                    sctDescriptions = { '_SET':"Set", '_CLR':"Clear", '_TOG':"Toggle" }
+                    sctDict = { 'reg':aReg,
+                                'regType':regTypes[aReg.sizeInBytes],
+                                'suffix':suffix,
+                                'sctDesc':sctDescriptions[suffix] }
+                    members += self.templates.moduleStructSctMemberTemplate.format(**sctDict)
+                    currentOffset += aReg.sizeInBytes
         
         formatDict = { 'component':self.component,
                         'structMembers':members }
@@ -1186,7 +1296,11 @@ class HeaderGeneratorTool:
     
     def _buildComponent(self, memoryMap, componentXmlFiles, forcedComponentName):
         component = None
+        handledInstanceOverride = False
         for componentXml in componentXmlFiles:
+            if not self.args.quiet:
+                print >> sys.stderr, "Reading %s..." % (os.path.basename(componentXml.name))
+
             # Parse the component XML into a tree.
             tree = ElementTree.ElementTree()
             tree.parse(componentXml)
@@ -1197,14 +1311,33 @@ class HeaderGeneratorTool:
                 nameNode = tree.find('componentName')
             componentName = nameNode.text.strip()
             
+            if forcedComponentName is None:
+                nameToUse = componentName
+            else:
+                nameToUse = forcedComponentName
+            
+            if self.args.design_name is None:
+                designName = nameToUse
+            else:
+                designName = self.args.design_name
+        
+            # Override instances is provided on the command line. We have to wait until now to
+            # do this because we only now know the component name. But we have to do it before the
+            # first Component object is created.
+            if self.args.base_address is not None and not handledInstanceOverride:
+                baseAddress = convertHexValue(self.args.base_address, 16)
+                if self.args.instance_offsets is None:
+                    instanceOffsets = [0]
+                else:
+                    # Zero offset will be added for us by setInstances().
+                    instanceOffsets = [convertHexValue(o) for o in self.args.instance_offsets.split(',')]
+                memoryMap.setInstances(designName, baseAddress, instanceOffsets)
+                handledInstanceOverride = True
+    
             # Create component instance. If the component was already created, compare the name of
             # this component with previous ones to make sure they're the same.
             if component is None:
-                if forcedComponentName is None:
-                    nameToUse = componentName
-                else:
-                    nameToUse = forcedComponentName
-                component = Component(memoryMap, nameToUse)
+                component = Component(memoryMap, nameToUse, designName)
             elif (forcedComponentName is None) and (componentName != component.name):
                 raise Exception("Error: not all input files are for the same component (%s, %s)" % (componentName, thisComponentName))
             
@@ -1214,9 +1347,6 @@ class HeaderGeneratorTool:
             
             for regElem in registerElements:
                 try:
-#                     newReg = Register(component, regElem, self.filterAttribs)
-#                     component.addRegister(newReg)
-                    
                     newRegs = Register.buildFromXml(component, regElem, self.filterAttribs)
                     for r in newRegs:
                         component.addRegister(r)
@@ -1238,9 +1368,16 @@ class HeaderGeneratorTool:
         memoryMap = self._buildMap(designXml)
         component = self._buildComponent(memoryMap, componentXmlFiles, forcedComponentName)
         
+        # Generate output.
+        if not self.args.quiet:
+            print >> sys.stderr, "Generating header for %s..." % (component.name)
         generator = HeaderGenerator(component)
         generator.generate()
 
+    ##
+    # @brief Read the ditaval filter file.
+    # @return A dictionary where the keys are attribute name and values are lists of included
+    #       attribute values.
     def _readFilterFile(self, filterFile):
         tree = ElementTree.ElementTree()
         tree.parse(filterFile)
@@ -1266,6 +1403,7 @@ class HeaderGeneratorTool:
     def run(self):
         # Process command line options.
         args = self._readOptions()
+        self.args = args
         
         # Check for version option.
         if args.showVersion:
@@ -1278,7 +1416,7 @@ class HeaderGeneratorTool:
             return
         
         # Check for a design file.
-        if args.design is None:
+        if args.design is None and args.base_address is None:
             print >> sys.stderr, "Warning: no design XML was provided, register addresses will be invalid!"
         
         # Uppercase the forced component name.
@@ -1289,9 +1427,7 @@ class HeaderGeneratorTool:
         if args.filters is not None:
             self.filterAttribs = self._readFilterFile(args.filters)
         else:
-            self.filterAttribs = { 'product':[args.product.lower()],
-                                    'feature':args.feature,
-                                    'audience':[args.audience.lower()] }
+            self.filterAttribs = { }
         #print >> sys.stderr, 'filter=' + repr(self.filterAttribs)
         
         # Generate the header file from the input XML.
@@ -1300,33 +1436,21 @@ class HeaderGeneratorTool:
     ##
     # @brief Parse command line options into an options dictionary.
     #
-    # The options dictionary that is the first element in the tuple returned from this
-    # method has the following attributes:
-    #   - inputFilePath: Path to the input OTP bit settings file.
-    #   - outputFilePath: Path to the output file, which will either be the .dat file
-    #       containing the binary OTP bit data or the .sb file, depending on whether
-    #       the user wants to run elftosb or not. This attribute may be None, in
-    #       which case the user expects output file names to be based on the input
-    #       file name.
-    #   - showVersion: Boolean for whether to show the tool version and exit.
-    #
-    # @return A bi-tuple is returned that contains the command line options value dictionary
-    #   and any leftover command line positional arguments.
+    # @return An object is returned that contains the command line options as attributes.
     def _readOptions(self):
         # Build arg parser.
         parser = argparse.ArgumentParser(description="Generate register headers from XML")
 
         parser.add_argument("-V", "--version", action="store_true", dest="showVersion", help="Show version information.")
-        parser.add_argument("-d", "--design", type=argparse.FileType('r'), help="Specify the design file with component details.")
-        parser.add_argument("-p", "--product", default='mx6dq', help="Set the product name.")
-        parser.add_argument("-f", "--feature", action="append", help="Add a named feature.", default=[])
-        parser.add_argument("--filters", type=argparse.FileType('r'), help="Read filters from an XML file.")
-        parser.add_argument("-a", "--audience", default='customer', help="Specify the audience.")
         parser.add_argument("-q", "--quiet", action="store_true", help="Don't print informational messages.")
-        parser.add_argument("-n", "--name", help="Force component name to a value.")
+        parser.add_argument("-d", "--design", metavar="PATH", type=argparse.FileType('r'), help="Specify the design file with component details.")
+        parser.add_argument("-f", "--filters", metavar="PATH", type=argparse.FileType('r'), help="Read filters from an XML file.")
+        parser.add_argument("-n", "--name", help="Override the component name.")
+        parser.add_argument("--design-name", metavar="NAME", help="Set the name used to look up the base address in the design file. Defaults to the component name.")
+        parser.add_argument("--base-address", metavar="ADDRESS", help="Override component base address.")
+        parser.add_argument("--instance-offsets", metavar="OFFSETS", help="Specify offsets of additional instances of the component. Offsets should be separated by a comma, with no extra whitespace. There will always be one instance with an offset of 0, so passing one offset to this option will result in two instances")
         parser.add_argument("components", nargs='*', type=argparse.FileType('r'), help="Component XML files. Must be for the same component.")
 
-        #Retrieve agruments(list) and options(dictionary)
         return parser.parse_args()
 
 # Are we being executed directly?

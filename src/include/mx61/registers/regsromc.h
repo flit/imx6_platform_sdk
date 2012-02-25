@@ -94,7 +94,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD0 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD0, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD0, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -103,8 +103,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD0_DATAX      0
-#define BM_ROMC_ROMPATCHD0_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD0_DATAX      (0)
+#define BM_ROMC_ROMPATCHD0_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD0_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD0_DATAX)
@@ -158,7 +158,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD1 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD1, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD1, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -167,8 +167,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD1_DATAX      0
-#define BM_ROMC_ROMPATCHD1_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD1_DATAX      (0)
+#define BM_ROMC_ROMPATCHD1_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD1_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD1_DATAX)
@@ -222,7 +222,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD2 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD2, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD2, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -231,8 +231,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD2_DATAX      0
-#define BM_ROMC_ROMPATCHD2_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD2_DATAX      (0)
+#define BM_ROMC_ROMPATCHD2_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD2_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD2_DATAX)
@@ -286,7 +286,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD3 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD3, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD3, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -295,8 +295,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD3_DATAX      0
-#define BM_ROMC_ROMPATCHD3_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD3_DATAX      (0)
+#define BM_ROMC_ROMPATCHD3_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD3_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD3_DATAX)
@@ -350,7 +350,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD4 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD4, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD4, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -359,8 +359,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD4_DATAX      0
-#define BM_ROMC_ROMPATCHD4_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD4_DATAX      (0)
+#define BM_ROMC_ROMPATCHD4_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD4_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD4_DATAX)
@@ -414,7 +414,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD5 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD5, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD5, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -423,8 +423,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD5_DATAX      0
-#define BM_ROMC_ROMPATCHD5_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD5_DATAX      (0)
+#define BM_ROMC_ROMPATCHD5_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD5_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD5_DATAX)
@@ -478,7 +478,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD6 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD6, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD6, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -487,8 +487,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD6_DATAX      0
-#define BM_ROMC_ROMPATCHD6_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD6_DATAX      (0)
+#define BM_ROMC_ROMPATCHD6_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD6_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD6_DATAX)
@@ -542,7 +542,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHD7 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHD7, field DATAX (RW)
+/* --- Register HW_ROMC_ROMPATCHD7, field DATAX[31:0] (RW)
  *
  * Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored
  * within these registers do not affect the writes to the memory system. They are selected over the
@@ -551,8 +551,8 @@ typedef union
  * the entire word. The word is word address aligned.
  */
 
-#define BP_ROMC_ROMPATCHD7_DATAX      0
-#define BM_ROMC_ROMPATCHD7_DATAX      0xffffffff
+#define BP_ROMC_ROMPATCHD7_DATAX      (0)
+#define BM_ROMC_ROMPATCHD7_DATAX      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHD7_DATAX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHD7_DATAX)
@@ -605,7 +605,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHCNTL bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHCNTL, field DATAFIX (RW)
+/* --- Register HW_ROMC_ROMPATCHCNTL, field DATAFIX[7:0] (RW)
  *
  * Data Fix Enable - Controls the use of the first 8 address comparators for 1-word data fix or for
  * code patch routine.
@@ -615,8 +615,8 @@ typedef union
  * 1 - Address comparator triggers a data fix
  */
 
-#define BP_ROMC_ROMPATCHCNTL_DATAFIX      0
-#define BM_ROMC_ROMPATCHCNTL_DATAFIX      0x000000ff
+#define BP_ROMC_ROMPATCHCNTL_DATAFIX      (0)
+#define BM_ROMC_ROMPATCHCNTL_DATAFIX      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHCNTL_DATAFIX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHCNTL_DATAFIX)
@@ -629,7 +629,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHCNTL, field DIS (RW)
+/* --- Register HW_ROMC_ROMPATCHCNTL, field DIS[29:29] (RW)
  *
  * ROMC Disable -- This bit, when set, disables all ROMC operations. This bit is used to enable
  * secure operations.
@@ -639,8 +639,8 @@ typedef union
  * 1 - Disable all ROMC functions: data fixing, and opcode patching
  */
 
-#define BP_ROMC_ROMPATCHCNTL_DIS      29
-#define BM_ROMC_ROMPATCHCNTL_DIS      0x20000000
+#define BP_ROMC_ROMPATCHCNTL_DIS      (29)
+#define BM_ROMC_ROMPATCHCNTL_DIS      (0x20000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHCNTL_DIS(v)   ((((reg32_t) v) << 29) & BM_ROMC_ROMPATCHCNTL_DIS)
@@ -728,7 +728,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHENL bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHENL, field ENABLE (RW)
+/* --- Register HW_ROMC_ROMPATCHENL, field ENABLE[15:0] (RW)
  *
  * Enable Address Comparator - This bit enables the corresponding address comparator to trigger an
  * event.
@@ -739,8 +739,8 @@ typedef union
  *     associated address
  */
 
-#define BP_ROMC_ROMPATCHENL_ENABLE      0
-#define BM_ROMC_ROMPATCHENL_ENABLE      0x0000ffff
+#define BP_ROMC_ROMPATCHENL_ENABLE      (0)
+#define BM_ROMC_ROMPATCHENL_ENABLE      (0x0000ffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHENL_ENABLE(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHENL_ENABLE)
@@ -795,7 +795,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA0 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA0, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA0, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -806,8 +806,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA0_THUMBX      0
-#define BM_ROMC_ROMPATCHA0_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA0_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA0_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA0_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA0_THUMBX)
@@ -820,15 +820,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA0, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA0, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA0_ADDRX      1
-#define BM_ROMC_ROMPATCHA0_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA0_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA0_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA0_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA0_ADDRX)
@@ -882,7 +882,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA1 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA1, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA1, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -893,8 +893,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA1_THUMBX      0
-#define BM_ROMC_ROMPATCHA1_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA1_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA1_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA1_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA1_THUMBX)
@@ -907,15 +907,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA1, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA1, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA1_ADDRX      1
-#define BM_ROMC_ROMPATCHA1_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA1_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA1_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA1_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA1_ADDRX)
@@ -969,7 +969,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA2 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA2, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA2, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -980,8 +980,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA2_THUMBX      0
-#define BM_ROMC_ROMPATCHA2_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA2_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA2_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA2_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA2_THUMBX)
@@ -994,15 +994,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA2, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA2, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA2_ADDRX      1
-#define BM_ROMC_ROMPATCHA2_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA2_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA2_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA2_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA2_ADDRX)
@@ -1056,7 +1056,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA3 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA3, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA3, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1067,8 +1067,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA3_THUMBX      0
-#define BM_ROMC_ROMPATCHA3_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA3_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA3_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA3_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA3_THUMBX)
@@ -1081,15 +1081,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA3, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA3, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA3_ADDRX      1
-#define BM_ROMC_ROMPATCHA3_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA3_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA3_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA3_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA3_ADDRX)
@@ -1143,7 +1143,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA4 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA4, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA4, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1154,8 +1154,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA4_THUMBX      0
-#define BM_ROMC_ROMPATCHA4_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA4_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA4_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA4_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA4_THUMBX)
@@ -1168,15 +1168,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA4, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA4, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA4_ADDRX      1
-#define BM_ROMC_ROMPATCHA4_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA4_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA4_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA4_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA4_ADDRX)
@@ -1230,7 +1230,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA5 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA5, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA5, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1241,8 +1241,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA5_THUMBX      0
-#define BM_ROMC_ROMPATCHA5_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA5_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA5_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA5_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA5_THUMBX)
@@ -1255,15 +1255,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA5, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA5, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA5_ADDRX      1
-#define BM_ROMC_ROMPATCHA5_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA5_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA5_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA5_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA5_ADDRX)
@@ -1317,7 +1317,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA6 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA6, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA6, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1328,8 +1328,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA6_THUMBX      0
-#define BM_ROMC_ROMPATCHA6_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA6_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA6_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA6_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA6_THUMBX)
@@ -1342,15 +1342,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA6, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA6, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA6_ADDRX      1
-#define BM_ROMC_ROMPATCHA6_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA6_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA6_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA6_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA6_ADDRX)
@@ -1404,7 +1404,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA7 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA7, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA7, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1415,8 +1415,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA7_THUMBX      0
-#define BM_ROMC_ROMPATCHA7_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA7_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA7_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA7_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA7_THUMBX)
@@ -1429,15 +1429,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA7, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA7, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA7_ADDRX      1
-#define BM_ROMC_ROMPATCHA7_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA7_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA7_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA7_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA7_ADDRX)
@@ -1491,7 +1491,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA8 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA8, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA8, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1502,8 +1502,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA8_THUMBX      0
-#define BM_ROMC_ROMPATCHA8_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA8_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA8_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA8_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA8_THUMBX)
@@ -1516,15 +1516,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA8, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA8, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA8_ADDRX      1
-#define BM_ROMC_ROMPATCHA8_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA8_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA8_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA8_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA8_ADDRX)
@@ -1578,7 +1578,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA9 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA9, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA9, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1589,8 +1589,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA9_THUMBX      0
-#define BM_ROMC_ROMPATCHA9_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA9_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA9_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA9_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA9_THUMBX)
@@ -1603,15 +1603,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA9, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA9, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA9_ADDRX      1
-#define BM_ROMC_ROMPATCHA9_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA9_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA9_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA9_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA9_ADDRX)
@@ -1665,7 +1665,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA10 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA10, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA10, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1676,8 +1676,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA10_THUMBX      0
-#define BM_ROMC_ROMPATCHA10_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA10_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA10_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA10_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA10_THUMBX)
@@ -1690,15 +1690,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA10, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA10, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA10_ADDRX      1
-#define BM_ROMC_ROMPATCHA10_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA10_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA10_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA10_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA10_ADDRX)
@@ -1752,7 +1752,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA11 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA11, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA11, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1763,8 +1763,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA11_THUMBX      0
-#define BM_ROMC_ROMPATCHA11_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA11_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA11_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA11_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA11_THUMBX)
@@ -1777,15 +1777,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA11, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA11, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA11_ADDRX      1
-#define BM_ROMC_ROMPATCHA11_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA11_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA11_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA11_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA11_ADDRX)
@@ -1839,7 +1839,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA12 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA12, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA12, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1850,8 +1850,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA12_THUMBX      0
-#define BM_ROMC_ROMPATCHA12_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA12_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA12_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA12_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA12_THUMBX)
@@ -1864,15 +1864,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA12, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA12, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA12_ADDRX      1
-#define BM_ROMC_ROMPATCHA12_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA12_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA12_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA12_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA12_ADDRX)
@@ -1926,7 +1926,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA13 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA13, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA13, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -1937,8 +1937,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA13_THUMBX      0
-#define BM_ROMC_ROMPATCHA13_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA13_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA13_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA13_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA13_THUMBX)
@@ -1951,15 +1951,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA13, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA13, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA13_ADDRX      1
-#define BM_ROMC_ROMPATCHA13_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA13_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA13_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA13_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA13_ADDRX)
@@ -2013,7 +2013,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA14 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA14, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA14, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -2024,8 +2024,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA14_THUMBX      0
-#define BM_ROMC_ROMPATCHA14_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA14_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA14_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA14_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA14_THUMBX)
@@ -2038,15 +2038,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA14, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA14, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA14_ADDRX      1
-#define BM_ROMC_ROMPATCHA14_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA14_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA14_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA14_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA14_ADDRX)
@@ -2100,7 +2100,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHA15 bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHA15, field THUMBX (RW)
+/* --- Register HW_ROMC_ROMPATCHA15, field THUMBX[0:0] (RW)
  *
  * THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM
  * opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all
@@ -2111,8 +2111,8 @@ typedef union
  * 1 - THUMB patch (ignore if data fix)
  */
 
-#define BP_ROMC_ROMPATCHA15_THUMBX      0
-#define BM_ROMC_ROMPATCHA15_THUMBX      0x00000001
+#define BP_ROMC_ROMPATCHA15_THUMBX      (0)
+#define BM_ROMC_ROMPATCHA15_THUMBX      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA15_THUMBX(v)   ((((reg32_t) v) << 0) & BM_ROMC_ROMPATCHA15_THUMBX)
@@ -2125,15 +2125,15 @@ typedef union
 #endif
 
 
-/* --- Register HW_ROMC_ROMPATCHA15, field ADDRX (RW)
+/* --- Register HW_ROMC_ROMPATCHA15, field ADDRX[22:1] (RW)
  *
  * Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can
  * be used for code patch address comparison. Only the first 8 registers can be used for a 1-word
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 
-#define BP_ROMC_ROMPATCHA15_ADDRX      1
-#define BM_ROMC_ROMPATCHA15_ADDRX      0x007ffffe
+#define BP_ROMC_ROMPATCHA15_ADDRX      (1)
+#define BM_ROMC_ROMPATCHA15_ADDRX      (0x007ffffe)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHA15_ADDRX(v)   ((((reg32_t) v) << 1) & BM_ROMC_ROMPATCHA15_ADDRX)
@@ -2183,7 +2183,7 @@ typedef union
  * constants & macros for individual ROMC_ROMPATCHSR bitfields
  */
 
-/* --- Register HW_ROMC_ROMPATCHSR, field SOURCE (RO)
+/* --- Register HW_ROMC_ROMPATCHSR, field SOURCE[5:0] (RO)
  *
  * ROMC Source Number - Binary encoding of the number of the address comparator which has an address
  * match in the most recent patch event on ROMC AHB. If multiple matches occurred, the highest
@@ -2195,11 +2195,11 @@ typedef union
  * 15 - Address Comparator 15 matched
  */
 
-#define BP_ROMC_ROMPATCHSR_SOURCE      0
-#define BM_ROMC_ROMPATCHSR_SOURCE      0x0000003f
+#define BP_ROMC_ROMPATCHSR_SOURCE      (0)
+#define BM_ROMC_ROMPATCHSR_SOURCE      (0x0000003f)
 
 
-/* --- Register HW_ROMC_ROMPATCHSR, field SW (W1C)
+/* --- Register HW_ROMC_ROMPATCHSR, field SW[17:17] (W1C)
  *
  * ROMC AHB Multiple Address Comparator matches Indicator - Indicates that multiple address
  * comparator matches occurred. Writing a 1 to this bit will clear this it.
@@ -2209,8 +2209,8 @@ typedef union
  * 1 - a collision has occurred
  */
 
-#define BP_ROMC_ROMPATCHSR_SW      17
-#define BM_ROMC_ROMPATCHSR_SW      0x00020000
+#define BP_ROMC_ROMPATCHSR_SW      (17)
+#define BM_ROMC_ROMPATCHSR_SW      (0x00020000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_ROMC_ROMPATCHSR_SW(v)   ((((reg32_t) v) << 17) & BM_ROMC_ROMPATCHSR_SW)

@@ -63,7 +63,7 @@ typedef union
  * constants & macros for individual CSI2IPU_SW_RST bitfields
  */
 
-/* --- Register HW_CSI2IPU_SW_RST, field SW_RST (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field SW_RST[0:0] (RW)
  *
  * Software Reset
  *
@@ -72,8 +72,8 @@ typedef union
  * 1 - Software Reset Enable
  */
 
-#define BP_CSI2IPU_SW_RST_SW_RST      0
-#define BM_CSI2IPU_SW_RST_SW_RST      0x00000001
+#define BP_CSI2IPU_SW_RST_SW_RST      (0)
+#define BM_CSI2IPU_SW_RST_SW_RST      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_CSI2IPU_SW_RST_SW_RST(v)   ((((reg32_t) v) << 0) & BM_CSI2IPU_SW_RST_SW_RST)
@@ -86,7 +86,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_CSI2IPU_SW_RST, field CLK_SEL (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field CLK_SEL[1:1] (RW)
  *
  * Clock mode selection
  *
@@ -95,8 +95,8 @@ typedef union
  * 1 - Non-Gated Mode
  */
 
-#define BP_CSI2IPU_SW_RST_CLK_SEL      1
-#define BM_CSI2IPU_SW_RST_CLK_SEL      0x00000002
+#define BP_CSI2IPU_SW_RST_CLK_SEL      (1)
+#define BM_CSI2IPU_SW_RST_CLK_SEL      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_CSI2IPU_SW_RST_CLK_SEL(v)   ((((reg32_t) v) << 1) & BM_CSI2IPU_SW_RST_CLK_SEL)
@@ -109,7 +109,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_CSI2IPU_SW_RST, field YUV422_8BIT_FM (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field YUV422_8BIT_FM[2:2] (RW)
  *
  * YUV422 8-bit mode selection
  *
@@ -118,8 +118,8 @@ typedef union
  * 1 - UYVY
  */
 
-#define BP_CSI2IPU_SW_RST_YUV422_8BIT_FM      2
-#define BM_CSI2IPU_SW_RST_YUV422_8BIT_FM      0x00000004
+#define BP_CSI2IPU_SW_RST_YUV422_8BIT_FM      (2)
+#define BM_CSI2IPU_SW_RST_YUV422_8BIT_FM      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   ((((reg32_t) v) << 2) & BM_CSI2IPU_SW_RST_YUV422_8BIT_FM)
@@ -132,7 +132,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_CSI2IPU_SW_RST, field RGB444_FM (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field RGB444_FM[3:3] (RW)
  *
  * Rgb888 mode selection
  *
@@ -141,8 +141,8 @@ typedef union
  * 1 - {r4,1’b0,g4,2’b00,b4,1’b0}
  */
 
-#define BP_CSI2IPU_SW_RST_RGB444_FM      3
-#define BM_CSI2IPU_SW_RST_RGB444_FM      0x00000008
+#define BP_CSI2IPU_SW_RST_RGB444_FM      (3)
+#define BM_CSI2IPU_SW_RST_RGB444_FM      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_CSI2IPU_SW_RST_RGB444_FM(v)   ((((reg32_t) v) << 3) & BM_CSI2IPU_SW_RST_RGB444_FM)

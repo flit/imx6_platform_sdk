@@ -111,17 +111,17 @@ typedef union
  * constants & macros for individual SATA_CAP bitfields
  */
 
-/* --- Register HW_SATA_CAP, field NP (RO)
+/* --- Register HW_SATA_CAP, field NP[4:0] (RO)
  *
  * Number of Ports. 0's based value indicating the number of Ports supported by the SATA block: The
  * options for this field are: • 0x00: 1 Port • 0x01: 2 Ports • 0x02: 3 Ports Reset Value: 0x00
  * Configurable: AHSATA_NUM_PORTS-1
  */
 
-#define BP_SATA_CAP_NP      0
-#define BM_SATA_CAP_NP      0x0000001f
+#define BP_SATA_CAP_NP      (0)
+#define BM_SATA_CAP_NP      (0x0000001f)
 
-/* --- Register HW_SATA_CAP, field SXS (RO)
+/* --- Register HW_SATA_CAP, field SXS[5:5] (RO)
  *
  * Supports External SATA. The options for this field are: 1 Indicates that the SATA block has one
  * or more Ports that has a signal only connector (power is not part of that connector) that is
@@ -131,129 +131,129 @@ typedef union
  * accessible. Reset Value: Configurable
  *
  * Values:
- * 1 - when any of the SATA_P #  0 CMD[ESP]=1
  * 0 - when all of the SATA_P #  0 CMD[ESP]=0
+ * 1 - when any of the SATA_P #  0 CMD[ESP]=1
  */
 
-#define BP_SATA_CAP_SXS      5
-#define BM_SATA_CAP_SXS      0x00000020
+#define BP_SATA_CAP_SXS      (5)
+#define BM_SATA_CAP_SXS      (0x00000020)
 
 
-/* --- Register HW_SATA_CAP, field EMS (RO)
+/* --- Register HW_SATA_CAP, field EMS[6:6] (RO)
  *
  * Enclosure Management Support. SATA block does not support enclosure management.
  */
 
-#define BP_SATA_CAP_EMS      6
-#define BM_SATA_CAP_EMS      0x00000040
+#define BP_SATA_CAP_EMS      (6)
+#define BM_SATA_CAP_EMS      (0x00000040)
 
-/* --- Register HW_SATA_CAP, field CCCS (RO)
+/* --- Register HW_SATA_CAP, field CCCS[7:7] (RO)
  *
  * Command Completion Coalescing Support. SATA block supports command completion coalescing.
  */
 
-#define BP_SATA_CAP_CCCS      7
-#define BM_SATA_CAP_CCCS      0x00000080
+#define BP_SATA_CAP_CCCS      (7)
+#define BM_SATA_CAP_CCCS      (0x00000080)
 
-/* --- Register HW_SATA_CAP, field NCS (RO)
+/* --- Register HW_SATA_CAP, field NCS[12:8] (RO)
  *
  * Number of Command Slots. SATA block supports 32 command slots per Port.
  */
 
-#define BP_SATA_CAP_NCS      8
-#define BM_SATA_CAP_NCS      0x00001f00
+#define BP_SATA_CAP_NCS      (8)
+#define BM_SATA_CAP_NCS      (0x00001f00)
 
-/* --- Register HW_SATA_CAP, field PSC (RO)
+/* --- Register HW_SATA_CAP, field PSC[13:13] (RO)
  *
  * Partial State Capable. SATA block supports transitions to the interface PARTIAL power management
  * state.
  */
 
-#define BP_SATA_CAP_PSC      13
-#define BM_SATA_CAP_PSC      0x00002000
+#define BP_SATA_CAP_PSC      (13)
+#define BM_SATA_CAP_PSC      (0x00002000)
 
-/* --- Register HW_SATA_CAP, field SSC (RO)
+/* --- Register HW_SATA_CAP, field SSC[14:14] (RO)
  *
  * Slumber State Capable. SATA block supports transitions to the interface SLUMBER power management
  * state.
  */
 
-#define BP_SATA_CAP_SSC      14
-#define BM_SATA_CAP_SSC      0x00004000
+#define BP_SATA_CAP_SSC      (14)
+#define BM_SATA_CAP_SSC      (0x00004000)
 
-/* --- Register HW_SATA_CAP, field PMD (RO)
+/* --- Register HW_SATA_CAP, field PMD[15:15] (RO)
  *
  * PIO Multiple DRQ Block. SATA block supports multiple DRQ block data transfers for the PIO command
  * protocol.
  */
 
-#define BP_SATA_CAP_PMD      15
-#define BM_SATA_CAP_PMD      0x00008000
+#define BP_SATA_CAP_PMD      (15)
+#define BM_SATA_CAP_PMD      (0x00008000)
 
-/* --- Register HW_SATA_CAP, field SMP (RO)
+/* --- Register HW_SATA_CAP, field SMP[17:17] (RO)
  *
  * Supports Port Multiplier. SATA block supports command-based switching Port Multiplier on any of
  * its Ports.
  */
 
-#define BP_SATA_CAP_SMP      17
-#define BM_SATA_CAP_SMP      0x00020000
+#define BP_SATA_CAP_SMP      (17)
+#define BM_SATA_CAP_SMP      (0x00020000)
 
-/* --- Register HW_SATA_CAP, field SAM (RO)
+/* --- Register HW_SATA_CAP, field SAM[18:18] (RO)
  *
  * Supports AHCI Mode Only. SATA block supports AHCI mode only and does not support legacy, task-
  * file based register interface.
  */
 
-#define BP_SATA_CAP_SAM      18
-#define BM_SATA_CAP_SAM      0x00040000
+#define BP_SATA_CAP_SAM      (18)
+#define BM_SATA_CAP_SAM      (0x00040000)
 
-/* --- Register HW_SATA_CAP, field ISS (RU)
+/* --- Register HW_SATA_CAP, field ISS[23:20] (RU)
  *
  * Interface Speed Support. Reserved. Returns 0x2 on read.
  */
 
-#define BP_SATA_CAP_ISS      20
-#define BM_SATA_CAP_ISS      0x00f00000
+#define BP_SATA_CAP_ISS      (20)
+#define BM_SATA_CAP_ISS      (0x00f00000)
 
-/* --- Register HW_SATA_CAP, field SCLO (RO)
+/* --- Register HW_SATA_CAP, field SCLO[24:24] (RO)
  *
  * Supports Command List Override. SATA block supports the SATA_P # 0 CMD[CLO] bit functionality for
  * Port Multiplier devices' enumeration.
  */
 
-#define BP_SATA_CAP_SCLO      24
-#define BM_SATA_CAP_SCLO      0x01000000
+#define BP_SATA_CAP_SCLO      (24)
+#define BM_SATA_CAP_SCLO      (0x01000000)
 
-/* --- Register HW_SATA_CAP, field SAL (RO)
+/* --- Register HW_SATA_CAP, field SAL[25:25] (RO)
  *
  * Supports Activity LED. SATA block supports activity indication using signal p # 0 _act_led.
  */
 
-#define BP_SATA_CAP_SAL      25
-#define BM_SATA_CAP_SAL      0x02000000
+#define BP_SATA_CAP_SAL      (25)
+#define BM_SATA_CAP_SAL      (0x02000000)
 
-/* --- Register HW_SATA_CAP, field SALP (RO)
+/* --- Register HW_SATA_CAP, field SALP[26:26] (RO)
  *
  * Supports Aggressive Link Power Management. SATA block supports auto-generating (Port-initiated)
  * Link Layer requests to the PARTIAL or SLUMBER power management states when there are no commands
  * to process.
  */
 
-#define BP_SATA_CAP_SALP      26
-#define BM_SATA_CAP_SALP      0x04000000
+#define BP_SATA_CAP_SALP      (26)
+#define BM_SATA_CAP_SALP      (0x04000000)
 
-/* --- Register HW_SATA_CAP, field SSS (RO)
+/* --- Register HW_SATA_CAP, field SSS[27:27] (RO)
  *
  * Supports Staggered Spin-up. This bit is set by the system firmware/BIOS to indicate platform
  * support for staggered devices' spin-up. SATA block supports this feature through the SATA_P # 0
  * CMD[SUD] bit functionality.
  */
 
-#define BP_SATA_CAP_SSS      27
-#define BM_SATA_CAP_SSS      0x08000000
+#define BP_SATA_CAP_SSS      (27)
+#define BM_SATA_CAP_SSS      (0x08000000)
 
-/* --- Register HW_SATA_CAP, field SMPS (RO)
+/* --- Register HW_SATA_CAP, field SMPS[28:28] (RO)
  *
  * Supports Mechanical Presence Switch. This bit is set by the system firmware/BIOS when the
  * platform supports mechanical presence switch for hot plug operation. Dependencies: This field is
@@ -261,39 +261,39 @@ typedef union
  * field is not implemented, this field is reserved, and reads 1'b0.
  */
 
-#define BP_SATA_CAP_SMPS      28
-#define BM_SATA_CAP_SMPS      0x10000000
+#define BP_SATA_CAP_SMPS      (28)
+#define BM_SATA_CAP_SMPS      (0x10000000)
 
-/* --- Register HW_SATA_CAP, field SSNTF (RO)
+/* --- Register HW_SATA_CAP, field SSNTF[29:29] (RO)
  *
  * Supports SNotification Register. SATA block supports SATA_P # 0 SNTF (SNotification) register and
  * its associated functionality.
  */
 
-#define BP_SATA_CAP_SSNTF      29
-#define BM_SATA_CAP_SSNTF      0x20000000
+#define BP_SATA_CAP_SSNTF      (29)
+#define BM_SATA_CAP_SSNTF      (0x20000000)
 
-/* --- Register HW_SATA_CAP, field SNCQ (RO)
+/* --- Register HW_SATA_CAP, field SNCQ[30:30] (RO)
  *
  * Supports Native Command Queuing. SATA block supports SATA native command queueing by handling DMA
  * Setup FIS natively.
  */
 
-#define BP_SATA_CAP_SNCQ      30
-#define BM_SATA_CAP_SNCQ      0x40000000
+#define BP_SATA_CAP_SNCQ      (30)
+#define BM_SATA_CAP_SNCQ      (0x40000000)
 
-/* --- Register HW_SATA_CAP, field S64A (RO)
+/* --- Register HW_SATA_CAP, field S64A[31:31] (RO)
  *
  * Supports 64-bit Addressing SATA block supports 64-bit addressable data structures by utilizing
  * PFFBU and P#CLBU registers. Reset Value: Configurable.
  *
  * Values:
- * 1 - when M_HADDR_WIDTH=64
  * 0 - when M_HADDR_WIDTH=32
+ * 1 - when M_HADDR_WIDTH=64
  */
 
-#define BP_SATA_CAP_S64A      31
-#define BM_SATA_CAP_S64A      0x80000000
+#define BP_SATA_CAP_S64A      (31)
+#define BM_SATA_CAP_S64A      (0x80000000)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -333,7 +333,7 @@ typedef union
  * constants & macros for individual SATA_GHC bitfields
  */
 
-/* --- Register HW_SATA_GHC, field HR (WO)
+/* --- Register HW_SATA_GHC, field HR[0:0] (WO)
  *
  * HBA Reset. When set by the software, this bit causes an internal Global reset of the SATA block.
  * All state machines that relate to data transfers and queueing return to an idle state, and all
@@ -343,8 +343,8 @@ typedef union
  * software write of 0 has no effect.
  */
 
-#define BP_SATA_GHC_HR      0
-#define BM_SATA_GHC_HR      0x00000001
+#define BP_SATA_GHC_HR      (0)
+#define BM_SATA_GHC_HR      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_GHC_HR(v)   ((((reg32_t) v) << 0) & BM_SATA_GHC_HR)
@@ -356,7 +356,7 @@ typedef union
 #define BW_SATA_GHC_HR(v)   BF_CS1(SATA_GHC, HR, v)
 #endif
 
-/* --- Register HW_SATA_GHC, field IE (RW)
+/* --- Register HW_SATA_GHC, field IE[1:1] (RW)
  *
  * Interrupt Enable. This global bit enables interrupts from the SATA block. When cleared, all
  * interrupt sources from all the Ports are disabled (masked). When set, interrupts are enabled and
@@ -364,8 +364,8 @@ typedef union
  * (SATA_GHC[HR]=1).
  */
 
-#define BP_SATA_GHC_IE      1
-#define BM_SATA_GHC_IE      0x00000002
+#define BP_SATA_GHC_IE      (1)
+#define BM_SATA_GHC_IE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_GHC_IE(v)   ((((reg32_t) v) << 1) & BM_SATA_GHC_IE)
@@ -377,14 +377,14 @@ typedef union
 #define BW_SATA_GHC_IE(v)   BF_CS1(SATA_GHC, IE, v)
 #endif
 
-/* --- Register HW_SATA_GHC, field AE (RW)
+/* --- Register HW_SATA_GHC, field AE[31:31] (RW)
  *
  * AHCI Enable. This bit is always set since SATA block supports only AHCI mode as indicated by the
  * SATA_CAP[SAM]=1.
  */
 
-#define BP_SATA_GHC_AE      31
-#define BM_SATA_GHC_AE      0x80000000
+#define BP_SATA_GHC_AE      (31)
+#define BM_SATA_GHC_AE      (0x80000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_GHC_AE(v)   ((((reg32_t) v) << 31) & BM_SATA_GHC_AE)
@@ -433,7 +433,7 @@ typedef union
  * constants & macros for individual SATA_IS bitfields
  */
 
-/* --- Register HW_SATA_IS, field IPS (W1C)
+/* --- Register HW_SATA_IS, field IPS[1:0] (W1C)
  *
  * Interrupt Pending Status. np-1-0 np = AHSATA_NUM_PORTS. When bit 1is set, this bit indicates that
  * the corresponding Port 0 has an interrupt pending. Software can use this information to determine
@@ -444,8 +444,8 @@ typedef union
  * of the SATA_P # 0 IE register). Bit 0 of the IPS field is not used.
  */
 
-#define BP_SATA_IS_IPS      0
-#define BM_SATA_IS_IPS      0x00000003
+#define BP_SATA_IS_IPS      (0)
+#define BM_SATA_IS_IPS      (0x00000003)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_IS_IPS(v)   ((((reg32_t) v) << 0) & BM_SATA_IS_IPS)
@@ -492,15 +492,15 @@ typedef union
  * constants & macros for individual SATA_PI bitfields
  */
 
-/* --- Register HW_SATA_PI, field PI (RO)
+/* --- Register HW_SATA_PI, field PI[0:0] (RO)
  *
  * Ports Implemented. BIOS must set this bit to 1 np-1-0. np = AHSATA_NUM_PORTS. This register is
  * bit significant. The maximum number of bits that can be set to 1 is CAP.NP+1. At least one bit
  * must be set to 1.
  */
 
-#define BP_SATA_PI_PI      0
-#define BM_SATA_PI_PI      0x00000001
+#define BP_SATA_PI_PI      (0)
+#define BM_SATA_PI_PI      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -536,21 +536,21 @@ typedef union
  * constants & macros for individual SATA_VS bitfields
  */
 
-/* --- Register HW_SATA_VS, field MNR (RO)
+/* --- Register HW_SATA_VS, field MNR[15:0] (RO)
  *
  * Minor Version Number. Indicates that the minor AHCI version is 30.
  */
 
-#define BP_SATA_VS_MNR      0
-#define BM_SATA_VS_MNR      0x0000ffff
+#define BP_SATA_VS_MNR      (0)
+#define BM_SATA_VS_MNR      (0x0000ffff)
 
-/* --- Register HW_SATA_VS, field MJR (RO)
+/* --- Register HW_SATA_VS, field MJR[31:16] (RO)
  *
  * Major Version Number. Indicates that the major AHCI version is 1.
  */
 
-#define BP_SATA_VS_MJR      16
-#define BM_SATA_VS_MJR      0xffff0000
+#define BP_SATA_VS_MJR      (16)
+#define BM_SATA_VS_MJR      (0xffff0000)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -591,7 +591,7 @@ typedef union
  * constants & macros for individual SATA_CCC_CTL bitfields
  */
 
-/* --- Register HW_SATA_CCC_CTL, field EN (RW)
+/* --- Register HW_SATA_CCC_CTL, field EN[0:0] (RW)
  *
  * Enable. When field SATA_CCC_CTL[EN]==1, the software can not change the fields SATA_CCC_CTL[TV]
  * and SATA_CCC_CTL[CC]. The options for this field are:
@@ -602,8 +602,8 @@ typedef union
  *     completion conditions.
  */
 
-#define BP_SATA_CCC_CTL_EN      0
-#define BM_SATA_CCC_CTL_EN      0x00000001
+#define BP_SATA_CCC_CTL_EN      (0)
+#define BM_SATA_CCC_CTL_EN      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_CCC_CTL_EN(v)   ((((reg32_t) v) << 0) & BM_SATA_CCC_CTL_EN)
@@ -616,7 +616,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_CCC_CTL, field INT (RW)
+/* --- Register HW_SATA_CCC_CTL, field INT[7:3] (RW)
  *
  * Interrupt. Set this field to 0x01. This field specifies the interrupt used by the CCC feature,
  * using the number of Ports configured for the core. For example, when AHSATA_NUM_PORTS==6 then
@@ -624,8 +624,8 @@ typedef union
  * 1. Reset Value: Configurable: AHSATA_NUM_PORTS.
  */
 
-#define BP_SATA_CCC_CTL_INT      3
-#define BM_SATA_CCC_CTL_INT      0x000000f8
+#define BP_SATA_CCC_CTL_INT      (3)
+#define BM_SATA_CCC_CTL_INT      (0x000000f8)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_CCC_CTL_INT(v)   ((((reg32_t) v) << 3) & BM_SATA_CCC_CTL_INT)
@@ -637,7 +637,7 @@ typedef union
 #define BW_SATA_CCC_CTL_INT(v)   BF_CS1(SATA_CCC_CTL, INT, v)
 #endif
 
-/* --- Register HW_SATA_CCC_CTL, field CC (RW)
+/* --- Register HW_SATA_CCC_CTL, field CC[15:8] (RW)
  *
  * Command Completions. This field specifies the number of command completions that are necessary to
  * cause a CCC interrupt. The value 0x00 for this field disables CCC interrupts being generated
@@ -646,8 +646,8 @@ typedef union
  * SATA_CCC_CTL[EN]==0 • RO when SATA_CCC_CTL[EN]==1
  */
 
-#define BP_SATA_CCC_CTL_CC      8
-#define BM_SATA_CCC_CTL_CC      0x0000ff00
+#define BP_SATA_CCC_CTL_CC      (8)
+#define BM_SATA_CCC_CTL_CC      (0x0000ff00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_CCC_CTL_CC(v)   ((((reg32_t) v) << 8) & BM_SATA_CCC_CTL_CC)
@@ -659,15 +659,15 @@ typedef union
 #define BW_SATA_CCC_CTL_CC(v)   BF_CS1(SATA_CCC_CTL, CC, v)
 #endif
 
-/* --- Register HW_SATA_CCC_CTL, field TV (RW)
+/* --- Register HW_SATA_CCC_CTL, field TV[31:16] (RW)
  *
  * Time-out Value. This field specifies the CCC time-out value in 1ms intervals. The software loads
  * this value prior to enabling CCC. The options for this field are: • RW when SATA_CCC_CTL[EN]==0.
  * • RO when SATA_CCC_CTL[EN]==1. A time-out value of 0x0000 is reserved and should not be used.
  */
 
-#define BP_SATA_CCC_CTL_TV      16
-#define BM_SATA_CCC_CTL_TV      0xffff0000
+#define BP_SATA_CCC_CTL_TV      (16)
+#define BM_SATA_CCC_CTL_TV      (0xffff0000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_CCC_CTL_TV(v)   ((((reg32_t) v) << 16) & BM_SATA_CCC_CTL_TV)
@@ -714,7 +714,7 @@ typedef union
  * constants & macros for individual SATA_CCC_PORTS bitfields
  */
 
-/* --- Register HW_SATA_CCC_PORTS, field PRT (RW)
+/* --- Register HW_SATA_CCC_PORTS, field PRT[31:0] (RW)
  *
  * Ports. This field is bit significant. Each bit corresponds to a particular Port, where bit 0
  * corresponds to Port0. Bits set in this register must have the corresponding bit set in the
@@ -725,8 +725,8 @@ typedef union
  * 1 - the corresponding Port is part of the CCC feature.
  */
 
-#define BP_SATA_CCC_PORTS_PRT      0
-#define BM_SATA_CCC_PORTS_PRT      0xffffffff
+#define BP_SATA_CCC_PORTS_PRT      (0)
+#define BM_SATA_CCC_PORTS_PRT      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_CCC_PORTS_PRT(v)   ((((reg32_t) v) << 0) & BM_SATA_CCC_PORTS_PRT)
@@ -771,14 +771,14 @@ typedef union
  * constants & macros for individual SATA_CAP2 bitfields
  */
 
-/* --- Register HW_SATA_CAP2, field APST (RO)
+/* --- Register HW_SATA_CAP2, field APST[2:2] (RO)
  *
  * Automatic Partial to Slumber Transitions. SATA block supports automatic Partial to Slumber
  * transitions.
  */
 
-#define BP_SATA_CAP2_APST      2
-#define BM_SATA_CAP2_APST      0x00000004
+#define BP_SATA_CAP2_APST      (2)
+#define BM_SATA_CAP2_APST      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -815,7 +815,7 @@ typedef union
  * constants & macros for individual SATA_BISTAFR bitfields
  */
 
-/* --- Register HW_SATA_BISTAFR, field PD (RO)
+/* --- Register HW_SATA_BISTAFR, field PD[7:0] (RO)
  *
  * Pattern Definition Indicates the pattern definition field of the received BIST Activate FIS -
  * bits [23:16] of the first DWORD. It is used to put the SATA block in one of the following BIST
@@ -830,11 +830,11 @@ typedef union
  * All other values - should not be used by the device, otherwise, the FIS is negatively acknowledged with R_ERRp.
  */
 
-#define BP_SATA_BISTAFR_PD      0
-#define BM_SATA_BISTAFR_PD      0x000000ff
+#define BP_SATA_BISTAFR_PD      (0)
+#define BM_SATA_BISTAFR_PD      (0x000000ff)
 
 
-/* --- Register HW_SATA_BISTAFR, field NCP (RO)
+/* --- Register HW_SATA_BISTAFR, field NCP[15:8] (RO)
  *
  * Least significant byte of the received BIST Activate FIS second DWORD (bits [7:0]). This value
  * defines the required pattern for far-end transmit only mode (SATA_BISTAFR[PD]=0x80 or 0xA0): When
@@ -851,8 +851,8 @@ typedef union
  * 0xF1 - Low transition density pattern (LTDP)
  */
 
-#define BP_SATA_BISTAFR_NCP      8
-#define BM_SATA_BISTAFR_NCP      0x0000ff00
+#define BP_SATA_BISTAFR_NCP      (8)
+#define BM_SATA_BISTAFR_NCP      (0x0000ff00)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -906,7 +906,7 @@ typedef union
  * constants & macros for individual SATA_BISTCR bitfields
  */
 
-/* --- Register HW_SATA_BISTCR, field PATTERN (RW)
+/* --- Register HW_SATA_BISTCR, field PATTERN[3:0] (RW)
  *
  * This field defines one of the following SATA compliant patterns for far-end retimed/ far-end
  * analog/ near-end analog initiator modes, or non-compliant patterns for transmit-only responder
@@ -926,8 +926,8 @@ typedef union
  * 1000b - Low frequency test pattern (LFTP)
  */
 
-#define BP_SATA_BISTCR_PATTERN      0
-#define BM_SATA_BISTCR_PATTERN      0x0000000f
+#define BP_SATA_BISTCR_PATTERN      (0)
+#define BM_SATA_BISTCR_PATTERN      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_PATTERN(v)   ((((reg32_t) v) << 0) & BM_SATA_BISTCR_PATTERN)
@@ -940,7 +940,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_BISTCR, field PV (RW)
+/* --- Register HW_SATA_BISTCR, field PV[4:4] (RW)
  *
  * Pattern Version This bit is used to select either short or long version of the SSOP, HTDP, LTDP,
  * LFSCP, COMP patterns. The options for this field are:
@@ -950,8 +950,8 @@ typedef union
  * 1 - Long pattern version
  */
 
-#define BP_SATA_BISTCR_PV      4
-#define BM_SATA_BISTCR_PV      0x00000010
+#define BP_SATA_BISTCR_PV      (4)
+#define BM_SATA_BISTCR_PV      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_PV(v)   ((((reg32_t) v) << 4) & BM_SATA_BISTCR_PV)
@@ -964,14 +964,14 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_BISTCR, field FLIP (RW)
+/* --- Register HW_SATA_BISTCR, field FLIP[5:5] (RW)
  *
  * Flip Disparity This bit is used to change disparity of the current test pattern to the opposite
  * every time its state is changed by the software.
  */
 
-#define BP_SATA_BISTCR_FLIP      5
-#define BM_SATA_BISTCR_FLIP      0x00000020
+#define BP_SATA_BISTCR_FLIP      (5)
+#define BM_SATA_BISTCR_FLIP      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_FLIP(v)   ((((reg32_t) v) << 5) & BM_SATA_BISTCR_FLIP)
@@ -983,7 +983,7 @@ typedef union
 #define BW_SATA_BISTCR_FLIP(v)   BF_CS1(SATA_BISTCR, FLIP, v)
 #endif
 
-/* --- Register HW_SATA_BISTCR, field ERREN (RW)
+/* --- Register HW_SATA_BISTCR, field ERREN[6:6] (RW)
  *
  * Error Enable. This bit is used to allow or filter (disable) [ internal errors outside the FIS
  * boundary to set corresponding SATA_P # 0 SERR bits. The options for this field are:
@@ -993,8 +993,8 @@ typedef union
  * 1 - Allow errors outside or inside the FIS.
  */
 
-#define BP_SATA_BISTCR_ERREN      6
-#define BM_SATA_BISTCR_ERREN      0x00000040
+#define BP_SATA_BISTCR_ERREN      (6)
+#define BM_SATA_BISTCR_ERREN      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_ERREN(v)   ((((reg32_t) v) << 6) & BM_SATA_BISTCR_ERREN)
@@ -1007,7 +1007,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_BISTCR, field LLC (RW)
+/* --- Register HW_SATA_BISTCR, field LLC[10:8] (RW)
  *
  * Link Layer Control This field controls the Port Link Layer functions: scrambler, descrambler, and
  * repeat primitive drop. Note the different meanings for normal and BIST modes of operation: •
@@ -1022,8 +1022,8 @@ typedef union
  * changed only during Port reset (SATA_P # 0 SCTL[DET]=0x1)
  */
 
-#define BP_SATA_BISTCR_LLC      8
-#define BM_SATA_BISTCR_LLC      0x00000700
+#define BP_SATA_BISTCR_LLC      (8)
+#define BM_SATA_BISTCR_LLC      (0x00000700)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_LLC(v)   ((((reg32_t) v) << 8) & BM_SATA_BISTCR_LLC)
@@ -1035,7 +1035,7 @@ typedef union
 #define BW_SATA_BISTCR_LLC(v)   BF_CS1(SATA_BISTCR, LLC, v)
 #endif
 
-/* --- Register HW_SATA_BISTCR, field SDFE (RW)
+/* --- Register HW_SATA_BISTCR, field SDFE[12:12] (RW)
  *
  * Signal Detect Feature Enable Reset: PHY_INTERFACE_TYPE 1: Link layer feature to handle
  * unstable/absent phy_sig_det signal is enabled 0: Link layer feature to handle unstable/absent
@@ -1047,8 +1047,8 @@ typedef union
  * not be tied high and must go low when no data is detected on the wires.
  */
 
-#define BP_SATA_BISTCR_SDFE      12
-#define BM_SATA_BISTCR_SDFE      0x00001000
+#define BP_SATA_BISTCR_SDFE      (12)
+#define BM_SATA_BISTCR_SDFE      (0x00001000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_SDFE(v)   ((((reg32_t) v) << 12) & BM_SATA_BISTCR_SDFE)
@@ -1060,15 +1060,15 @@ typedef union
 #define BW_SATA_BISTCR_SDFE(v)   BF_CS1(SATA_BISTCR, SDFE, v)
 #endif
 
-/* --- Register HW_SATA_BISTCR, field QPHYINIT (RW)
+/* --- Register HW_SATA_BISTCR, field QPHYINIT[14:14] (RW)
  *
  * When set, this bit enables quick PHY initialization feature. The Link does not require any ALIGNs
  * to transition from OOB to normal operation. For more details, see This bit is available only when
  * TX_OOB_MODE = Exclude (0) and ALIGN_MODE = Aligned (1), otherwise it is reserved.
  */
 
-#define BP_SATA_BISTCR_QPHYINIT      14
-#define BM_SATA_BISTCR_QPHYINIT      0x00004000
+#define BP_SATA_BISTCR_QPHYINIT      (14)
+#define BM_SATA_BISTCR_QPHYINIT      (0x00004000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_QPHYINIT(v)   ((((reg32_t) v) << 14) & BM_SATA_BISTCR_QPHYINIT)
@@ -1080,7 +1080,7 @@ typedef union
 #define BW_SATA_BISTCR_QPHYINIT(v)   BF_CS1(SATA_BISTCR, QPHYINIT, v)
 #endif
 
-/* --- Register HW_SATA_BISTCR, field NEALB (WO)
+/* --- Register HW_SATA_BISTCR, field NEALB[16:16] (WO)
  *
  * Near-End Analog Loopback This mode should be initiated either in the PARTIAL or SLUMBER power
  * mode, or with the device disconnected from the Port PHY (Link NOCOMM state). BIST Activate FIS is
@@ -1091,8 +1091,8 @@ typedef union
  * 1 - Near-end analog loopback request. SATA_BISTCR[PATTERN] field contains the appropriate pattern.
  */
 
-#define BP_SATA_BISTCR_NEALB      16
-#define BM_SATA_BISTCR_NEALB      0x00010000
+#define BP_SATA_BISTCR_NEALB      (16)
+#define BM_SATA_BISTCR_NEALB      (0x00010000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_NEALB(v)   ((((reg32_t) v) << 16) & BM_SATA_BISTCR_NEALB)
@@ -1105,7 +1105,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_BISTCR, field CNTCLR (WO)
+/* --- Register HW_SATA_BISTCR, field CNTCLR[17:17] (WO)
  *
  * Counter Clear This bit clears BIST error count registers. This field is one-shot type and reads
  * returns 0.
@@ -1114,8 +1114,8 @@ typedef union
  * 1 - Clear SATA_BISTFCTR, and SATA_BISTSR , and SATA_BISTDECR registers.
  */
 
-#define BP_SATA_BISTCR_CNTCLR      17
-#define BM_SATA_BISTCR_CNTCLR      0x00020000
+#define BP_SATA_BISTCR_CNTCLR      (17)
+#define BM_SATA_BISTCR_CNTCLR      (0x00020000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_CNTCLR(v)   ((((reg32_t) v) << 17) & BM_SATA_BISTCR_CNTCLR)
@@ -1128,14 +1128,14 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_BISTCR, field TXO (RW)
+/* --- Register HW_SATA_BISTCR, field TXO[18:18] (RW)
  *
  * Transmit Only. This bit is used to initiate transmission of one of the non-compliant patterns
  * defined by the SATA_BISTCR[PATTERN] value when the device is disconnected.
  */
 
-#define BP_SATA_BISTCR_TXO      18
-#define BM_SATA_BISTCR_TXO      0x00040000
+#define BP_SATA_BISTCR_TXO      (18)
+#define BM_SATA_BISTCR_TXO      (0x00040000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_TXO(v)   ((((reg32_t) v) << 18) & BM_SATA_BISTCR_TXO)
@@ -1147,15 +1147,15 @@ typedef union
 #define BW_SATA_BISTCR_TXO(v)   BF_CS1(SATA_BISTCR, TXO, v)
 #endif
 
-/* --- Register HW_SATA_BISTCR, field FERLB (WO)
+/* --- Register HW_SATA_BISTCR, field FERLB[20:20] (WO)
  *
  * Far-end Retimed Loopback. When set, this bit is used to put the SATA block Link into Far-end
  * Retimed mode, without the BIST Activate FIS, regardless whether the device is connected or
  * disconnected (Link in NOCOMM state). This field is one-shot type and reads returns 0.
  */
 
-#define BP_SATA_BISTCR_FERLB      20
-#define BM_SATA_BISTCR_FERLB      0x00100000
+#define BP_SATA_BISTCR_FERLB      (20)
+#define BM_SATA_BISTCR_FERLB      (0x00100000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_BISTCR_FERLB(v)   ((((reg32_t) v) << 20) & BM_SATA_BISTCR_FERLB)
@@ -1236,17 +1236,17 @@ typedef union
  * constants & macros for individual SATA_BISTSR bitfields
  */
 
-/* --- Register HW_SATA_BISTSR, field FRAMERR (RO)
+/* --- Register HW_SATA_BISTSR, field FRAMERR[15:0] (RO)
  *
  * Frame Error. This field contains the frame error count. It is accumulated (new value is added to
  * the old value) each time a new BIST frame with a CRC error is received. The FRAMERR value does
  * not roll over and freezes at FFFFh.
  */
 
-#define BP_SATA_BISTSR_FRAMERR      0
-#define BM_SATA_BISTSR_FRAMERR      0x0000ffff
+#define BP_SATA_BISTSR_FRAMERR      (0)
+#define BM_SATA_BISTSR_FRAMERR      (0x0000ffff)
 
-/* --- Register HW_SATA_BISTSR, field BRSTERR (RO)
+/* --- Register HW_SATA_BISTSR, field BRSTERR[23:16] (RO)
  *
  * Burst Error. This field contains the burst error count. It is accumulated each time a burst error
  * condition is detected: DWORD error is detected in the received frame and 1.5 seconds (27,000
@@ -1255,8 +1255,8 @@ typedef union
  * BIST_MODE=DWORD.
  */
 
-#define BP_SATA_BISTSR_BRSTERR      16
-#define BM_SATA_BISTSR_BRSTERR      0x00ff0000
+#define BP_SATA_BISTSR_BRSTERR      (16)
+#define BM_SATA_BISTSR_BRSTERR      (0x00ff0000)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1302,13 +1302,13 @@ typedef union
  * constants & macros for individual SATA_OOBR bitfields
  */
 
-/* --- Register HW_SATA_OOBR, field CIMAX (RW)
+/* --- Register HW_SATA_OOBR, field CIMAX[7:0] (RW)
  *
  * COMINIT Maximum Value This field is RW when WE=1 and RO when WE=0.
  */
 
-#define BP_SATA_OOBR_CIMAX      0
-#define BM_SATA_OOBR_CIMAX      0x000000ff
+#define BP_SATA_OOBR_CIMAX      (0)
+#define BM_SATA_OOBR_CIMAX      (0x000000ff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_OOBR_CIMAX(v)   ((((reg32_t) v) << 0) & BM_SATA_OOBR_CIMAX)
@@ -1320,13 +1320,13 @@ typedef union
 #define BW_SATA_OOBR_CIMAX(v)   BF_CS1(SATA_OOBR, CIMAX, v)
 #endif
 
-/* --- Register HW_SATA_OOBR, field CIMIN (RW)
+/* --- Register HW_SATA_OOBR, field CIMIN[15:8] (RW)
  *
  * COMINIT Minimum Value This field is RW when WE=1 and RO when WE=0.
  */
 
-#define BP_SATA_OOBR_CIMIN      8
-#define BM_SATA_OOBR_CIMIN      0x0000ff00
+#define BP_SATA_OOBR_CIMIN      (8)
+#define BM_SATA_OOBR_CIMIN      (0x0000ff00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_OOBR_CIMIN(v)   ((((reg32_t) v) << 8) & BM_SATA_OOBR_CIMIN)
@@ -1338,13 +1338,13 @@ typedef union
 #define BW_SATA_OOBR_CIMIN(v)   BF_CS1(SATA_OOBR, CIMIN, v)
 #endif
 
-/* --- Register HW_SATA_OOBR, field CWMAX (RW)
+/* --- Register HW_SATA_OOBR, field CWMAX[23:16] (RW)
  *
  * COMWAKE Maximum Value This field is RW when WE=1 and RO when WE=0.
  */
 
-#define BP_SATA_OOBR_CWMAX      16
-#define BM_SATA_OOBR_CWMAX      0x00ff0000
+#define BP_SATA_OOBR_CWMAX      (16)
+#define BM_SATA_OOBR_CWMAX      (0x00ff0000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_OOBR_CWMAX(v)   ((((reg32_t) v) << 16) & BM_SATA_OOBR_CWMAX)
@@ -1356,13 +1356,13 @@ typedef union
 #define BW_SATA_OOBR_CWMAX(v)   BF_CS1(SATA_OOBR, CWMAX, v)
 #endif
 
-/* --- Register HW_SATA_OOBR, field CWMIN (RW)
+/* --- Register HW_SATA_OOBR, field CWMIN[30:24] (RW)
  *
  * COMWAKE Minimum Value This field is RW when WE=1 and RO when WE=0.
  */
 
-#define BP_SATA_OOBR_CWMIN      24
-#define BM_SATA_OOBR_CWMIN      0x7f000000
+#define BP_SATA_OOBR_CWMIN      (24)
+#define BM_SATA_OOBR_CWMIN      (0x7f000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_OOBR_CWMIN(v)   ((((reg32_t) v) << 24) & BM_SATA_OOBR_CWMIN)
@@ -1374,17 +1374,17 @@ typedef union
 #define BW_SATA_OOBR_CWMIN(v)   BF_CS1(SATA_OOBR, CWMIN, v)
 #endif
 
-/* --- Register HW_SATA_OOBR, field WE (RW)
+/* --- Register HW_SATA_OOBR, field WE[31:31] (RW)
  *
  * Write Enable This bit is cleared when COMRESET is detected. The options for this field are:
  *
  * Values:
- * 1 - SATA_OOBR bits [30:0] can be written
  * 0 - SATA_OOBR bits [30:0] are read-only
+ * 1 - SATA_OOBR bits [30:0] can be written
  */
 
-#define BP_SATA_OOBR_WE      31
-#define BM_SATA_OOBR_WE      0x80000000
+#define BP_SATA_OOBR_WE      (31)
+#define BM_SATA_OOBR_WE      (0x80000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_OOBR_WE(v)   ((((reg32_t) v) << 31) & BM_SATA_OOBR_WE)
@@ -1434,14 +1434,14 @@ typedef union
  * constants & macros for individual SATA_GPCR bitfields
  */
 
-/* --- Register HW_SATA_GPCR, field GP_CONTROL (RW)
+/* --- Register HW_SATA_GPCR, field GP_CONTROL[31:0] (RW)
  *
  * General Purpose Control. Present only when GP_CTRL=Include(1). Reset Value: Configurable
  * parameter GP_CTRL_DEF
  */
 
-#define BP_SATA_GPCR_GP_CONTROL      0
-#define BM_SATA_GPCR_GP_CONTROL      0xffffffff
+#define BP_SATA_GPCR_GP_CONTROL      (0)
+#define BM_SATA_GPCR_GP_CONTROL      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_GPCR_GP_CONTROL(v)   ((((reg32_t) v) << 0) & BM_SATA_GPCR_GP_CONTROL)
@@ -1492,13 +1492,13 @@ typedef union
  * constants & macros for individual SATA_GPSR bitfields
  */
 
-/* --- Register HW_SATA_GPSR, field GP_STATUS (RW)
+/* --- Register HW_SATA_GPSR, field GP_STATUS[31:0] (RW)
  *
  * General Purpose Status. Present only when GP_STAT=Include(1)
  */
 
-#define BP_SATA_GPSR_GP_STATUS      0
-#define BM_SATA_GPSR_GP_STATUS      0xffffffff
+#define BP_SATA_GPSR_GP_STATUS      (0)
+#define BM_SATA_GPSR_GP_STATUS      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_GPSR_GP_STATUS(v)   ((((reg32_t) v) << 0) & BM_SATA_GPSR_GP_STATUS)
@@ -1548,15 +1548,15 @@ typedef union
  * constants & macros for individual SATA_TIMER1MS bitfields
  */
 
-/* --- Register HW_SATA_TIMER1MS, field TIMV (RW)
+/* --- Register HW_SATA_TIMER1MS, field TIMV[19:0] (RW)
  *
  * 1ms Timer Value This field contains the following value for the internal timer to generate 1-ms
  * tick: Fhclk*1000 where Fhclk = AHB clock frequency in MHz The options for this field are: • RW
  * when SATA_CCC_CTL[EN]==0 • RO when SATA_CCC_CTL[EN]==1.
  */
 
-#define BP_SATA_TIMER1MS_TIMV      0
-#define BM_SATA_TIMER1MS_TIMV      0x000fffff
+#define BP_SATA_TIMER1MS_TIMV      (0)
+#define BM_SATA_TIMER1MS_TIMV      (0x000fffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_TIMER1MS_TIMV(v)   ((((reg32_t) v) << 0) & BM_SATA_TIMER1MS_TIMV)
@@ -1612,7 +1612,7 @@ typedef union
  * constants & macros for individual SATA_GPARAM1R bitfields
  */
 
-/* --- Register HW_SATA_GPARAM1R, field M_HADDR (RO)
+/* --- Register HW_SATA_GPARAM1R, field M_HADDR[6:6] (RO)
  *
  * AHB Master Address Bus Width This value is derived from the M_HADDR_WIDTH parameter: The options
  * for this field are:
@@ -1621,11 +1621,11 @@ typedef union
  * 0 - 32 bits
  */
 
-#define BP_SATA_GPARAM1R_M_HADDR      6
-#define BM_SATA_GPARAM1R_M_HADDR      0x00000040
+#define BP_SATA_GPARAM1R_M_HADDR      (6)
+#define BM_SATA_GPARAM1R_M_HADDR      (0x00000040)
 
 
-/* --- Register HW_SATA_GPARAM1R, field S_HADDR (RO)
+/* --- Register HW_SATA_GPARAM1R, field S_HADDR[7:7] (RO)
  *
  * AHB Slave Address Bus Width This value is derived from the S_HADDR_WIDTH parameter: The options
  * for this field are:
@@ -1634,11 +1634,11 @@ typedef union
  * 0 - 32 bits
  */
 
-#define BP_SATA_GPARAM1R_S_HADDR      7
-#define BM_SATA_GPARAM1R_S_HADDR      0x00000080
+#define BP_SATA_GPARAM1R_S_HADDR      (7)
+#define BM_SATA_GPARAM1R_S_HADDR      (0x00000080)
 
 
-/* --- Register HW_SATA_GPARAM1R, field AHB_ENDIAN (RO)
+/* --- Register HW_SATA_GPARAM1R, field AHB_ENDIAN[9:8] (RO)
  *
  * AHB Bus Endianness This value is derived from the AHB_ENDIANNESS parameter: The options for this
  * field are:
@@ -1647,11 +1647,11 @@ typedef union
  * 0 - Little Endian
  */
 
-#define BP_SATA_GPARAM1R_AHB_ENDIAN      8
-#define BM_SATA_GPARAM1R_AHB_ENDIAN      0x00000300
+#define BP_SATA_GPARAM1R_AHB_ENDIAN      (8)
+#define BM_SATA_GPARAM1R_AHB_ENDIAN      (0x00000300)
 
 
-/* --- Register HW_SATA_GPARAM1R, field RETURN_ERR (RO)
+/* --- Register HW_SATA_GPARAM1R, field RETURN_ERR[10:10] (RO)
  *
  * AHB Error Response This value is derived from the RETURN_ERR_RESP parameter: The options for this
  * field are:
@@ -1660,11 +1660,11 @@ typedef union
  * 1 - True
  */
 
-#define BP_SATA_GPARAM1R_RETURN_ERR      10
-#define BM_SATA_GPARAM1R_RETURN_ERR      0x00000400
+#define BP_SATA_GPARAM1R_RETURN_ERR      (10)
+#define BM_SATA_GPARAM1R_RETURN_ERR      (0x00000400)
 
 
-/* --- Register HW_SATA_GPARAM1R, field BIST_M (RO)
+/* --- Register HW_SATA_GPARAM1R, field BIST_M[13:13] (RO)
  *
  * BIST Loopback Checking Depth This value is derived from the BIST_MODE parameter. The options for
  * this field are:
@@ -1673,29 +1673,29 @@ typedef union
  * 0 - FIS
  */
 
-#define BP_SATA_GPARAM1R_BIST_M      13
-#define BM_SATA_GPARAM1R_BIST_M      0x00002000
+#define BP_SATA_GPARAM1R_BIST_M      (13)
+#define BM_SATA_GPARAM1R_BIST_M      (0x00002000)
 
 
-/* --- Register HW_SATA_GPARAM1R, field PHY_STAT (RO)
+/* --- Register HW_SATA_GPARAM1R, field PHY_STAT[20:15] (RO)
  *
  * PHY Status Width 0x20 (32) PHY Status Width is 32 bits. This value reflects the PHY_STAT_W
  * parameter.
  */
 
-#define BP_SATA_GPARAM1R_PHY_STAT      15
-#define BM_SATA_GPARAM1R_PHY_STAT      0x001f8000
+#define BP_SATA_GPARAM1R_PHY_STAT      (15)
+#define BM_SATA_GPARAM1R_PHY_STAT      (0x001f8000)
 
-/* --- Register HW_SATA_GPARAM1R, field PHY_CTRL (RO)
+/* --- Register HW_SATA_GPARAM1R, field PHY_CTRL[26:21] (RO)
  *
  * PHY Control Width 0x20 (32) PHY Control Width is 32 bits. This value reflects the PHY_CTRL_W
  * parameter.
  */
 
-#define BP_SATA_GPARAM1R_PHY_CTRL      21
-#define BM_SATA_GPARAM1R_PHY_CTRL      0x07e00000
+#define BP_SATA_GPARAM1R_PHY_CTRL      (21)
+#define BM_SATA_GPARAM1R_PHY_CTRL      (0x07e00000)
 
-/* --- Register HW_SATA_GPARAM1R, field PHY_RST (RO)
+/* --- Register HW_SATA_GPARAM1R, field PHY_RST[27:27] (RO)
  *
  * PHY Reset Mode This value is derived from the PHY_RST_MODE parameter. The options for this field
  * are:
@@ -1704,20 +1704,20 @@ typedef union
  * 0 - Low
  */
 
-#define BP_SATA_GPARAM1R_PHY_RST      27
-#define BM_SATA_GPARAM1R_PHY_RST      0x08000000
+#define BP_SATA_GPARAM1R_PHY_RST      (27)
+#define BM_SATA_GPARAM1R_PHY_RST      (0x08000000)
 
 
-/* --- Register HW_SATA_GPARAM1R, field PHY_DATA (RO)
+/* --- Register HW_SATA_GPARAM1R, field PHY_DATA[29:28] (RO)
  *
  * PHY Data Width This value is derived from the PHY_DATA_WIDTH parameter: The options for this
  * field are: • 0x0: 1 0x1: PHY DATA WIDTH = 2 • 0x2: 4 Other values are reserved.
  */
 
-#define BP_SATA_GPARAM1R_PHY_DATA      28
-#define BM_SATA_GPARAM1R_PHY_DATA      0x30000000
+#define BP_SATA_GPARAM1R_PHY_DATA      (28)
+#define BM_SATA_GPARAM1R_PHY_DATA      (0x30000000)
 
-/* --- Register HW_SATA_GPARAM1R, field RX_BUFFER (RO)
+/* --- Register HW_SATA_GPARAM1R, field RX_BUFFER[30:30] (RO)
  *
  * Rx Data Buffer This value is derived from the RX_BUFFER_MODE parameter:
  *
@@ -1725,11 +1725,11 @@ typedef union
  * 1 - Include
  */
 
-#define BP_SATA_GPARAM1R_RX_BUFFER      30
-#define BM_SATA_GPARAM1R_RX_BUFFER      0x40000000
+#define BP_SATA_GPARAM1R_RX_BUFFER      (30)
+#define BM_SATA_GPARAM1R_RX_BUFFER      (0x40000000)
 
 
-/* --- Register HW_SATA_GPARAM1R, field ALIGN_M (RO)
+/* --- Register HW_SATA_GPARAM1R, field ALIGN_M[31:31] (RO)
  *
  * Rx Data Alignment This value is derived from the ALIGN_MODE parameter. The options for this field
  * are:
@@ -1738,8 +1738,8 @@ typedef union
  * 0 - Misaligned
  */
 
-#define BP_SATA_GPARAM1R_ALIGN_M      31
-#define BM_SATA_GPARAM1R_ALIGN_M      0x80000000
+#define BP_SATA_GPARAM1R_ALIGN_M      (31)
+#define BM_SATA_GPARAM1R_ALIGN_M      (0x80000000)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -1780,16 +1780,16 @@ typedef union
  * constants & macros for individual SATA_GPARAM2R bitfields
  */
 
-/* --- Register HW_SATA_GPARAM2R, field RXOOB_CLK (RO)
+/* --- Register HW_SATA_GPARAM2R, field RXOOB_CLK[8:0] (RO)
  *
  * Rx OOB Clock Frequency This field returns 0x32 (50 decimal) The Rx OOB clock frequency is 50 MHz.
  * This value reflects the hexadecimal value of the RXOOB_CLK_FREQ parameter .
  */
 
-#define BP_SATA_GPARAM2R_RXOOB_CLK      0
-#define BM_SATA_GPARAM2R_RXOOB_CLK      0x000001ff
+#define BP_SATA_GPARAM2R_RXOOB_CLK      (0)
+#define BM_SATA_GPARAM2R_RXOOB_CLK      (0x000001ff)
 
-/* --- Register HW_SATA_GPARAM2R, field TX_OOB_M (RO)
+/* --- Register HW_SATA_GPARAM2R, field TX_OOB_M[9:9] (RO)
  *
  * Tx OOB Mode This value is derived from the TX_OOB_MODE parameter: The options for this field are:
  *
@@ -1797,11 +1797,11 @@ typedef union
  * 1 - Tx OOB signalling is supported
  */
 
-#define BP_SATA_GPARAM2R_TX_OOB_M      9
-#define BM_SATA_GPARAM2R_TX_OOB_M      0x00000200
+#define BP_SATA_GPARAM2R_TX_OOB_M      (9)
+#define BM_SATA_GPARAM2R_TX_OOB_M      (0x00000200)
 
 
-/* --- Register HW_SATA_GPARAM2R, field RX_OOB_M (RO)
+/* --- Register HW_SATA_GPARAM2R, field RX_OOB_M[10:10] (RO)
  *
  * Rx OOB Mode This value is derived from the RX_OOB_MODE parameter: The options for this field are:
  *
@@ -1809,11 +1809,11 @@ typedef union
  * 1 - Rx OOB signalling is supported
  */
 
-#define BP_SATA_GPARAM2R_RX_OOB_M      10
-#define BM_SATA_GPARAM2R_RX_OOB_M      0x00000400
+#define BP_SATA_GPARAM2R_RX_OOB_M      (10)
+#define BM_SATA_GPARAM2R_RX_OOB_M      (0x00000400)
 
 
-/* --- Register HW_SATA_GPARAM2R, field RXOOB_CLK_M (RO)
+/* --- Register HW_SATA_GPARAM2R, field RXOOB_CLK_M[11:11] (RO)
  *
  * Rx OOB Clock Mode This value is derived from the RXOOB_CLK_MODE parameter, The options for this
  * field are:
@@ -1822,11 +1822,11 @@ typedef union
  * 1 - separate clock
  */
 
-#define BP_SATA_GPARAM2R_RXOOB_CLK_M      11
-#define BM_SATA_GPARAM2R_RXOOB_CLK_M      0x00000800
+#define BP_SATA_GPARAM2R_RXOOB_CLK_M      (11)
+#define BM_SATA_GPARAM2R_RXOOB_CLK_M      (0x00000800)
 
 
-/* --- Register HW_SATA_GPARAM2R, field ENCODE_M (RO)
+/* --- Register HW_SATA_GPARAM2R, field ENCODE_M[12:12] (RO)
  *
  * 8b/10b Encoding/Decoding This value is derived from the ENCODE_MODE parameter. The options for
  * this field are:
@@ -1835,11 +1835,11 @@ typedef union
  * 1 - 8b/10b encoding/decoding is supported
  */
 
-#define BP_SATA_GPARAM2R_ENCODE_M      12
-#define BM_SATA_GPARAM2R_ENCODE_M      0x00001000
+#define BP_SATA_GPARAM2R_ENCODE_M      (12)
+#define BM_SATA_GPARAM2R_ENCODE_M      (0x00001000)
 
 
-/* --- Register HW_SATA_GPARAM2R, field DEV_MP (RO)
+/* --- Register HW_SATA_GPARAM2R, field DEV_MP[13:13] (RO)
  *
  * Mechanical Presence Switch This value is derived from the DEV_MP_SWITCH parameter. The options
  * for this field are:
@@ -1848,11 +1848,11 @@ typedef union
  * 0 - Mechanical presence switch is not supported
  */
 
-#define BP_SATA_GPARAM2R_DEV_MP      13
-#define BM_SATA_GPARAM2R_DEV_MP      0x00002000
+#define BP_SATA_GPARAM2R_DEV_MP      (13)
+#define BM_SATA_GPARAM2R_DEV_MP      (0x00002000)
 
 
-/* --- Register HW_SATA_GPARAM2R, field DEV_CP (RO)
+/* --- Register HW_SATA_GPARAM2R, field DEV_CP[14:14] (RO)
  *
  * Cold Presence Detect This value is derived from the DEV_CP_DET parameter. The options for this
  * field are:
@@ -1861,8 +1861,8 @@ typedef union
  * 0 - cold presence detect is not supported
  */
 
-#define BP_SATA_GPARAM2R_DEV_CP      14
-#define BM_SATA_GPARAM2R_DEV_CP      0x00004000
+#define BP_SATA_GPARAM2R_DEV_CP      (14)
+#define BM_SATA_GPARAM2R_DEV_CP      (0x00004000)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -1904,25 +1904,25 @@ typedef union
  * constants & macros for individual SATA_PPARAMR bitfields
  */
 
-/* --- Register HW_SATA_PPARAMR, field RXFIFO_DEPTH (RO)
+/* --- Register HW_SATA_PPARAMR, field RXFIFO_DEPTH[2:0] (RO)
  *
  * Rx FIFO Depth 0x4 Rx FIFO Depth set to 512 DWORDs This value is derived from the P#_RXFIFO_DEPTH
  * parameter: The options for this field are:
  */
 
-#define BP_SATA_PPARAMR_RXFIFO_DEPTH      0
-#define BM_SATA_PPARAMR_RXFIFO_DEPTH      0x00000007
+#define BP_SATA_PPARAMR_RXFIFO_DEPTH      (0)
+#define BM_SATA_PPARAMR_RXFIFO_DEPTH      (0x00000007)
 
-/* --- Register HW_SATA_PPARAMR, field TXFIFO_DEPTH (RO)
+/* --- Register HW_SATA_PPARAMR, field TXFIFO_DEPTH[5:3] (RO)
  *
  * Tx FIFO Depth 0x4 Tx FIFO Depth set to 512 DWORDs This value is derived from the P#_TXFIFO_DEPTH
  * parameter: The options for this field are:
  */
 
-#define BP_SATA_PPARAMR_TXFIFO_DEPTH      3
-#define BM_SATA_PPARAMR_TXFIFO_DEPTH      0x00000038
+#define BP_SATA_PPARAMR_TXFIFO_DEPTH      (3)
+#define BM_SATA_PPARAMR_TXFIFO_DEPTH      (0x00000038)
 
-/* --- Register HW_SATA_PPARAMR, field RX_MEM_S (RO)
+/* --- Register HW_SATA_PPARAMR, field RX_MEM_S[6:6] (RO)
  *
  * Rx FIFO Memory Type This value is derived from the P#_RX_MEM_SELECT parameter: The options for
  * this field are:
@@ -1931,11 +1931,11 @@ typedef union
  * 0 - External
  */
 
-#define BP_SATA_PPARAMR_RX_MEM_S      6
-#define BM_SATA_PPARAMR_RX_MEM_S      0x00000040
+#define BP_SATA_PPARAMR_RX_MEM_S      (6)
+#define BM_SATA_PPARAMR_RX_MEM_S      (0x00000040)
 
 
-/* --- Register HW_SATA_PPARAMR, field RX_MEM_M (RO)
+/* --- Register HW_SATA_PPARAMR, field RX_MEM_M[7:7] (RO)
  *
  * Rx FIFO Memory Read Port Type This value is derived from the P#_RX_MEM_MODE parameter: The
  * options for this field are:
@@ -1944,11 +1944,11 @@ typedef union
  * 1 - Sync
  */
 
-#define BP_SATA_PPARAMR_RX_MEM_M      7
-#define BM_SATA_PPARAMR_RX_MEM_M      0x00000080
+#define BP_SATA_PPARAMR_RX_MEM_M      (7)
+#define BM_SATA_PPARAMR_RX_MEM_M      (0x00000080)
 
 
-/* --- Register HW_SATA_PPARAMR, field TX_MEM_S (RO)
+/* --- Register HW_SATA_PPARAMR, field TX_MEM_S[8:8] (RO)
  *
  * Tx FIFO Memory Type This value is derived from the P#_TX_MEM_SELECT parameter: The options for
  * this field are:
@@ -1957,11 +1957,11 @@ typedef union
  * 0 - External
  */
 
-#define BP_SATA_PPARAMR_TX_MEM_S      8
-#define BM_SATA_PPARAMR_TX_MEM_S      0x00000100
+#define BP_SATA_PPARAMR_TX_MEM_S      (8)
+#define BM_SATA_PPARAMR_TX_MEM_S      (0x00000100)
 
 
-/* --- Register HW_SATA_PPARAMR, field TX_MEM_M (RO)
+/* --- Register HW_SATA_PPARAMR, field TX_MEM_M[9:9] (RO)
  *
  * Tx FIFO Memory Read Port Type This value is derived from the P#_TX_MEM_MODE parameter: The
  * options for this field are:
@@ -1970,11 +1970,11 @@ typedef union
  * 1 - Sync
  */
 
-#define BP_SATA_PPARAMR_TX_MEM_M      9
-#define BM_SATA_PPARAMR_TX_MEM_M      0x00000200
+#define BP_SATA_PPARAMR_TX_MEM_M      (9)
+#define BM_SATA_PPARAMR_TX_MEM_M      (0x00000200)
 
 
-/* --- Register HW_SATA_PPARAMR, field TX_MEM_S1 (RU)
+/* --- Register HW_SATA_PPARAMR, field TX_MEM_S1[10:10] (RU)
  *
  * TX FIFO Memory This value is derived from the P0_TX_MEM_SELECT parameter. The options for this
  * field are:
@@ -1984,11 +1984,11 @@ typedef union
  * 1 - Internal
  */
 
-#define BP_SATA_PPARAMR_TX_MEM_S1      10
-#define BM_SATA_PPARAMR_TX_MEM_S1      0x00000400
+#define BP_SATA_PPARAMR_TX_MEM_S1      (10)
+#define BM_SATA_PPARAMR_TX_MEM_S1      (0x00000400)
 
 
-/* --- Register HW_SATA_PPARAMR, field TX_MEM_M1 (RU)
+/* --- Register HW_SATA_PPARAMR, field TX_MEM_M1[11:11] (RU)
  *
  * TX FIFO Memory Read Port Type This value is derived from the P0_TX_MEM_MODE parameter. The
  * options for this field are:
@@ -1998,8 +1998,8 @@ typedef union
  * 1 - Sync
  */
 
-#define BP_SATA_PPARAMR_TX_MEM_M1      11
-#define BM_SATA_PPARAMR_TX_MEM_M1      0x00000800
+#define BP_SATA_PPARAMR_TX_MEM_M1      (11)
+#define BM_SATA_PPARAMR_TX_MEM_M1      (0x00000800)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -2040,7 +2040,7 @@ typedef union
  * constants & macros for individual SATA_TESTR bitfields
  */
 
-/* --- Register HW_SATA_TESTR, field TEST_IF (RW)
+/* --- Register HW_SATA_TESTR, field TEST_IF[0:0] (RW)
  *
  * TEST_IF: Test Interface Normal operation is disabled. The following registers can be accessed in
  * this mode: - SATA_GHC register IE bit - SATA_BISTAFR register NCP and PD bits become read-write -
@@ -2065,8 +2065,8 @@ typedef union
  * 1 - Test mode: the read back value of the registers matches the value written.
  */
 
-#define BP_SATA_TESTR_TEST_IF      0
-#define BM_SATA_TESTR_TEST_IF      0x00000001
+#define BP_SATA_TESTR_TEST_IF      (0)
+#define BM_SATA_TESTR_TEST_IF      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_TESTR_TEST_IF(v)   ((((reg32_t) v) << 0) & BM_SATA_TESTR_TEST_IF)
@@ -2079,7 +2079,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_TESTR, field PSEL (RW)
+/* --- Register HW_SATA_TESTR, field PSEL[18:16] (RW)
  *
  * Port Select This field is used to select a Port for BIST operation: The options for this field
  * are:
@@ -2095,8 +2095,8 @@ typedef union
  * 0x0 - Port7 is selected
  */
 
-#define BP_SATA_TESTR_PSEL      16
-#define BM_SATA_TESTR_PSEL      0x00070000
+#define BP_SATA_TESTR_PSEL      (16)
+#define BM_SATA_TESTR_PSEL      (0x00070000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_TESTR_PSEL(v)   ((((reg32_t) v) << 16) & BM_SATA_TESTR_PSEL)
@@ -2181,7 +2181,7 @@ typedef union
  * constants & macros for individual SATA_P0CLB bitfields
  */
 
-/* --- Register HW_SATA_P0CLB, field CLB (RW)
+/* --- Register HW_SATA_P0CLB, field CLB[31:10] (RW)
  *
  * Command List Base Address Indicates the 32-bit base physical address for the command list for
  * this Port. This base is used when fetching commands to execute. The structure pointed to by this
@@ -2189,8 +2189,8 @@ typedef union
  * being read only.
  */
 
-#define BP_SATA_P0CLB_CLB      10
-#define BM_SATA_P0CLB_CLB      0xfffffc00
+#define BP_SATA_P0CLB_CLB      (10)
+#define BM_SATA_P0CLB_CLB      (0xfffffc00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CLB_CLB(v)   ((((reg32_t) v) << 10) & BM_SATA_P0CLB_CLB)
@@ -2239,15 +2239,15 @@ typedef union
  * constants & macros for individual SATA_P0FB bitfields
  */
 
-/* --- Register HW_SATA_P0FB, field FB (RW)
+/* --- Register HW_SATA_P0FB, field FB[31:8] (RW)
  *
  * FIS Base Address. Indicates the 32-bit base physical address for received FISes. The structure
  * pointed to by this address range is 256 bytes in length. This address must be 256byte-aligned as
  * indicated by bits [7:0] being read only. Reset: 0x000000
  */
 
-#define BP_SATA_P0FB_FB      8
-#define BM_SATA_P0FB_FB      0xffffff00
+#define BP_SATA_P0FB_FB      (8)
+#define BM_SATA_P0FB_FB      (0xffffff00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0FB_FB(v)   ((((reg32_t) v) << 8) & BM_SATA_P0FB_FB)
@@ -2315,44 +2315,44 @@ typedef union
  * constants & macros for individual SATA_P0IS bitfields
  */
 
-/* --- Register HW_SATA_P0IS, field DHRS (RO)
+/* --- Register HW_SATA_P0IS, field DHRS[0:0] (RO)
  *
  * Device to Host Register FIS Interrupt A D2H Register FIS has been received with the 'I' bit set,
  * and has been copied into system memory.
  */
 
-#define BP_SATA_P0IS_DHRS      0
-#define BM_SATA_P0IS_DHRS      0x00000001
+#define BP_SATA_P0IS_DHRS      (0)
+#define BM_SATA_P0IS_DHRS      (0x00000001)
 
-/* --- Register HW_SATA_P0IS, field PSS (RO)
+/* --- Register HW_SATA_P0IS, field PSS[1:1] (RO)
  *
  * PIO Setup FIS Interrupt. A PIO Setup FIS has been received with the 'I' bit set, it has been
  * copied into system memory, and the data related to that FIS has been transferred. This bit is set
  * even when the data transfer resulted in an error.
  */
 
-#define BP_SATA_P0IS_PSS      1
-#define BM_SATA_P0IS_PSS      0x00000002
+#define BP_SATA_P0IS_PSS      (1)
+#define BM_SATA_P0IS_PSS      (0x00000002)
 
-/* --- Register HW_SATA_P0IS, field DSS (RO)
+/* --- Register HW_SATA_P0IS, field DSS[2:2] (RO)
  *
  * DMA Setup FIS Interrupt A DMA Setup FIS has been received with the 'I' bit set and has been
  * copied into system memory.
  */
 
-#define BP_SATA_P0IS_DSS      2
-#define BM_SATA_P0IS_DSS      0x00000004
+#define BP_SATA_P0IS_DSS      (2)
+#define BM_SATA_P0IS_DSS      (0x00000004)
 
-/* --- Register HW_SATA_P0IS, field SDBS (RO)
+/* --- Register HW_SATA_P0IS, field SDBS[3:3] (RO)
  *
  * Set Device Bits Interrupt. A Set Device Bits FIS has been received with the 'I' bit set and has
  * been copied into system memory.
  */
 
-#define BP_SATA_P0IS_SDBS      3
-#define BM_SATA_P0IS_SDBS      0x00000008
+#define BP_SATA_P0IS_SDBS      (3)
+#define BM_SATA_P0IS_SDBS      (0x00000008)
 
-/* --- Register HW_SATA_P0IS, field UFS (RO)
+/* --- Register HW_SATA_P0IS, field UFS[4:4] (RO)
  *
  * Unknown FIS Interrupt. When set to 1, indicates that an unknown FIS was received and has been
  * copied into system memory. This bit is cleared to 0 by the software clearing the SATA_P # 0
@@ -2362,10 +2362,10 @@ typedef union
  * until the UFS bit is set to 1 or the two bits may become out of sync.
  */
 
-#define BP_SATA_P0IS_UFS      4
-#define BM_SATA_P0IS_UFS      0x00000010
+#define BP_SATA_P0IS_UFS      (4)
+#define BM_SATA_P0IS_UFS      (0x00000010)
 
-/* --- Register HW_SATA_P0IS, field DPS (RO)
+/* --- Register HW_SATA_P0IS, field DPS[5:5] (RO)
  *
  * Descriptor Processed A PRD with the I bit set has transferred all of its data. This is an
  * opportunistic interrupt and must not be used to definitively indicate the end of a transfer. Two
@@ -2373,34 +2373,34 @@ typedef union
  * the first PRD interrupt is being cleared.
  */
 
-#define BP_SATA_P0IS_DPS      5
-#define BM_SATA_P0IS_DPS      0x00000020
+#define BP_SATA_P0IS_DPS      (5)
+#define BM_SATA_P0IS_DPS      (0x00000020)
 
-/* --- Register HW_SATA_P0IS, field PCS (RO)
+/* --- Register HW_SATA_P0IS, field PCS[6:6] (RO)
  *
  * Port Connect Change Status This bit is cleared only when SATA_P # 0 SERR[DIAG_X] is cleared. This
  * bit reflects the state of the SATA_P # 0 SERR[DIAG_X] bit:
  *
  * Values:
- * 1 - Change in Current Connect Status;
  * 0 - No change in Current Connect Status.
+ * 1 - Change in Current Connect Status;
  */
 
-#define BP_SATA_P0IS_PCS      6
-#define BM_SATA_P0IS_PCS      0x00000040
+#define BP_SATA_P0IS_PCS      (6)
+#define BM_SATA_P0IS_PCS      (0x00000040)
 
 
-/* --- Register HW_SATA_P0IS, field PRCS (RO)
+/* --- Register HW_SATA_P0IS, field PRCS[22:22] (RO)
  *
  * PHY Ready Change Status This bit reflects the state of the SATA_P # 0 SERR[DIAG_N] bit. When set
  * to 1, indicates the internal p # 0 _phy_ready signal changed state. To clear this bit, the
  * software must clear the SATA_P # 0 SERR[DIAG_N] bit to 0.
  */
 
-#define BP_SATA_P0IS_PRCS      22
-#define BM_SATA_P0IS_PRCS      0x00400000
+#define BP_SATA_P0IS_PRCS      (22)
+#define BM_SATA_P0IS_PRCS      (0x00400000)
 
-/* --- Register HW_SATA_P0IS, field IPMS (RO)
+/* --- Register HW_SATA_P0IS, field IPMS[23:23] (RO)
  *
  * Incorrect Port Multiplier Status. Indicates that the HBA received a FIS from a device whose Port
  * Multiplier field did not match what was expected. This bit may be set during enumeration of
@@ -2408,10 +2408,10 @@ typedef union
  * must use the IPMS bit only after enumeration is complete on the Port Multiplier.
  */
 
-#define BP_SATA_P0IS_IPMS      23
-#define BM_SATA_P0IS_IPMS      0x00800000
+#define BP_SATA_P0IS_IPMS      (23)
+#define BM_SATA_P0IS_IPMS      (0x00800000)
 
-/* --- Register HW_SATA_P0IS, field OFS (RO)
+/* --- Register HW_SATA_P0IS, field OFS[24:24] (RO)
  *
  * Overflow Status This bit is set when command list overflow is detected during read or write
  * operation when the software builds command table that has fever total bytes than the transaction
@@ -2419,10 +2419,10 @@ typedef union
  * CMD[ST] bit or resets the interface by way of Port or Global reset.
  */
 
-#define BP_SATA_P0IS_OFS      24
-#define BM_SATA_P0IS_OFS      0x01000000
+#define BP_SATA_P0IS_OFS      (24)
+#define BM_SATA_P0IS_OFS      (0x01000000)
 
-/* --- Register HW_SATA_P0IS, field INFS (RO)
+/* --- Register HW_SATA_P0IS, field INFS[26:26] (RO)
  *
  * Interface Non-fatal Error Status This bit is set when any of the following conditions is
  * detected: • One or more of the following errors are detected during non-data FIS transfer - 10B
@@ -2432,10 +2432,10 @@ typedef union
  * table that has more total bytes than the transaction given to the device.
  */
 
-#define BP_SATA_P0IS_INFS      26
-#define BM_SATA_P0IS_INFS      0x04000000
+#define BP_SATA_P0IS_INFS      (26)
+#define BM_SATA_P0IS_INFS      (0x04000000)
 
-/* --- Register HW_SATA_P0IS, field IFS (RO)
+/* --- Register HW_SATA_P0IS, field IFS[27:27] (RO)
  *
  * Interface Fatal Error Status This bit is set when any of the following conditions is detected: •
  * SYNC escape is received from the device during H2D Register or Data FIS transmission; • One or
@@ -2447,34 +2447,34 @@ typedef union
  * interface by way of Port or Global reset.
  */
 
-#define BP_SATA_P0IS_IFS      27
-#define BM_SATA_P0IS_IFS      0x08000000
+#define BP_SATA_P0IS_IFS      (27)
+#define BM_SATA_P0IS_IFS      (0x08000000)
 
-/* --- Register HW_SATA_P0IS, field HBDS (RO)
+/* --- Register HW_SATA_P0IS, field HBDS[28:28] (RO)
  *
  * Host Bus Data Error Status. This bit is always cleared to 0.
  */
 
-#define BP_SATA_P0IS_HBDS      28
-#define BM_SATA_P0IS_HBDS      0x10000000
+#define BP_SATA_P0IS_HBDS      (28)
+#define BM_SATA_P0IS_HBDS      (0x10000000)
 
-/* --- Register HW_SATA_P0IS, field HBFS (RO)
+/* --- Register HW_SATA_P0IS, field HBFS[29:29] (RO)
  *
  * Host Bus Fatal Error Status. This bit is set when SATA block AHB Master detects an ERROR response
  * from the slave.
  */
 
-#define BP_SATA_P0IS_HBFS      29
-#define BM_SATA_P0IS_HBFS      0x20000000
+#define BP_SATA_P0IS_HBFS      (29)
+#define BM_SATA_P0IS_HBFS      (0x20000000)
 
-/* --- Register HW_SATA_P0IS, field TFES (RO)
+/* --- Register HW_SATA_P0IS, field TFES[30:30] (RO)
  *
  * Task File Error Status. This bit is set whenever the SATA_P # 0 TFD[STS] register is updated by
  * the device and the error bit (bit 0) is set.
  */
 
-#define BP_SATA_P0IS_TFES      30
-#define BM_SATA_P0IS_TFES      0x40000000
+#define BP_SATA_P0IS_TFES      (30)
+#define BM_SATA_P0IS_TFES      (0x40000000)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2534,14 +2534,14 @@ typedef union
  * constants & macros for individual SATA_P0IE bitfields
  */
 
-/* --- Register HW_SATA_P0IE, field DHRE (RW)
+/* --- Register HW_SATA_P0IE, field DHRE[0:0] (RW)
  *
  * Device to Host Register FIS Interrupt Dependencies: when the following conditions are true, the
  * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DHRS]=1
  */
 
-#define BP_SATA_P0IE_DHRE      0
-#define BM_SATA_P0IE_DHRE      0x00000001
+#define BP_SATA_P0IE_DHRE      (0)
+#define BM_SATA_P0IE_DHRE      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_DHRE(v)   ((((reg32_t) v) << 0) & BM_SATA_P0IE_DHRE)
@@ -2553,14 +2553,14 @@ typedef union
 #define BW_SATA_P0IE_DHRE(v)   BF_CS1(SATA_P0IE, DHRE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field PSE (RW)
+/* --- Register HW_SATA_P0IE, field PSE[1:1] (RW)
  *
  * PIO Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PSS]=1
  */
 
-#define BP_SATA_P0IE_PSE      1
-#define BM_SATA_P0IE_PSE      0x00000002
+#define BP_SATA_P0IE_PSE      (1)
+#define BM_SATA_P0IE_PSE      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_PSE(v)   ((((reg32_t) v) << 1) & BM_SATA_P0IE_PSE)
@@ -2572,14 +2572,14 @@ typedef union
 #define BW_SATA_P0IE_PSE(v)   BF_CS1(SATA_P0IE, PSE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field DSE (RW)
+/* --- Register HW_SATA_P0IE, field DSE[2:2] (RW)
  *
  * DMA Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DSS]=1
  */
 
-#define BP_SATA_P0IE_DSE      2
-#define BM_SATA_P0IE_DSE      0x00000004
+#define BP_SATA_P0IE_DSE      (2)
+#define BM_SATA_P0IE_DSE      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_DSE(v)   ((((reg32_t) v) << 2) & BM_SATA_P0IE_DSE)
@@ -2591,14 +2591,14 @@ typedef union
 #define BW_SATA_P0IE_DSE(v)   BF_CS1(SATA_P0IE, DSE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field SDBE (RW)
+/* --- Register HW_SATA_P0IE, field SDBE[3:3] (RW)
  *
  * Set Device Bits FIS Interrupt Enable Dependencies: when the following conditions are true, the
  * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[SDBS]=1
  */
 
-#define BP_SATA_P0IE_SDBE      3
-#define BM_SATA_P0IE_SDBE      0x00000008
+#define BP_SATA_P0IE_SDBE      (3)
+#define BM_SATA_P0IE_SDBE      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_SDBE(v)   ((((reg32_t) v) << 3) & BM_SATA_P0IE_SDBE)
@@ -2610,14 +2610,14 @@ typedef union
 #define BW_SATA_P0IE_SDBE(v)   BF_CS1(SATA_P0IE, SDBE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field UFE (RW)
+/* --- Register HW_SATA_P0IE, field UFE[4:4] (RW)
  *
  * Unknown FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[UFS]=1
  */
 
-#define BP_SATA_P0IE_UFE      4
-#define BM_SATA_P0IE_UFE      0x00000010
+#define BP_SATA_P0IE_UFE      (4)
+#define BM_SATA_P0IE_UFE      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_UFE(v)   ((((reg32_t) v) << 4) & BM_SATA_P0IE_UFE)
@@ -2629,14 +2629,14 @@ typedef union
 #define BW_SATA_P0IE_UFE(v)   BF_CS1(SATA_P0IE, UFE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field DPE (RW)
+/* --- Register HW_SATA_P0IE, field DPE[5:5] (RW)
  *
  * Descriptor Processed Interrupt Enable Dependencies: when the following conditions are true, the
  * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DPS]=1
  */
 
-#define BP_SATA_P0IE_DPE      5
-#define BM_SATA_P0IE_DPE      0x00000020
+#define BP_SATA_P0IE_DPE      (5)
+#define BM_SATA_P0IE_DPE      (0x00000020)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_DPE(v)   ((((reg32_t) v) << 5) & BM_SATA_P0IE_DPE)
@@ -2648,14 +2648,14 @@ typedef union
 #define BW_SATA_P0IE_DPE(v)   BF_CS1(SATA_P0IE, DPE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field PCE (RW)
+/* --- Register HW_SATA_P0IE, field PCE[6:6] (RW)
  *
  * Port Change Interrupt Enable Dependencies: when the following conditions are true, the intrq
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PCS]=1
  */
 
-#define BP_SATA_P0IE_PCE      6
-#define BM_SATA_P0IE_PCE      0x00000040
+#define BP_SATA_P0IE_PCE      (6)
+#define BM_SATA_P0IE_PCE      (0x00000040)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_PCE(v)   ((((reg32_t) v) << 6) & BM_SATA_P0IE_PCE)
@@ -2667,14 +2667,14 @@ typedef union
 #define BW_SATA_P0IE_PCE(v)   BF_CS1(SATA_P0IE, PCE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field PRCE (RW)
+/* --- Register HW_SATA_P0IE, field PRCE[22:22] (RW)
  *
  * PHY Ready Change Enable Dependencies: when the following conditions are true, the intrq output
  * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PRCS]=1
  */
 
-#define BP_SATA_P0IE_PRCE      22
-#define BM_SATA_P0IE_PRCE      0x00400000
+#define BP_SATA_P0IE_PRCE      (22)
+#define BM_SATA_P0IE_PRCE      (0x00400000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_PRCE(v)   ((((reg32_t) v) << 22) & BM_SATA_P0IE_PRCE)
@@ -2686,14 +2686,14 @@ typedef union
 #define BW_SATA_P0IE_PRCE(v)   BF_CS1(SATA_P0IE, PRCE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field IPME (RW)
+/* --- Register HW_SATA_P0IE, field IPME[23:23] (RW)
  *
  * Incorrect Port Multiplier Enable Dependencies: when the following conditions are true, the intrq
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[IPMS]=1
  */
 
-#define BP_SATA_P0IE_IPME      23
-#define BM_SATA_P0IE_IPME      0x00800000
+#define BP_SATA_P0IE_IPME      (23)
+#define BM_SATA_P0IE_IPME      (0x00800000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_IPME(v)   ((((reg32_t) v) << 23) & BM_SATA_P0IE_IPME)
@@ -2705,14 +2705,14 @@ typedef union
 #define BW_SATA_P0IE_IPME(v)   BF_CS1(SATA_P0IE, IPME, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field OFE (RW)
+/* --- Register HW_SATA_P0IE, field OFE[24:24] (RW)
  *
  * Overflow Enable Dependencies: when the following conditions are true, the intrq output signal is
  * asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[OFS]=1
  */
 
-#define BP_SATA_P0IE_OFE      24
-#define BM_SATA_P0IE_OFE      0x01000000
+#define BP_SATA_P0IE_OFE      (24)
+#define BM_SATA_P0IE_OFE      (0x01000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_OFE(v)   ((((reg32_t) v) << 24) & BM_SATA_P0IE_OFE)
@@ -2724,14 +2724,14 @@ typedef union
 #define BW_SATA_P0IE_OFE(v)   BF_CS1(SATA_P0IE, OFE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field INFE (RW)
+/* --- Register HW_SATA_P0IE, field INFE[26:26] (RW)
  *
  * Interface Non-Fatal Error Enable Dependencies: when the following conditions are true, the intrq
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[INFS]=1
  */
 
-#define BP_SATA_P0IE_INFE      26
-#define BM_SATA_P0IE_INFE      0x04000000
+#define BP_SATA_P0IE_INFE      (26)
+#define BM_SATA_P0IE_INFE      (0x04000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_INFE(v)   ((((reg32_t) v) << 26) & BM_SATA_P0IE_INFE)
@@ -2743,14 +2743,14 @@ typedef union
 #define BW_SATA_P0IE_INFE(v)   BF_CS1(SATA_P0IE, INFE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field IFE (RW)
+/* --- Register HW_SATA_P0IE, field IFE[27:27] (RW)
  *
  * Dependencies: when the following conditions are true, the intrq output signal is asserted: • This
  * bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[IFS]=1
  */
 
-#define BP_SATA_P0IE_IFE      27
-#define BM_SATA_P0IE_IFE      0x08000000
+#define BP_SATA_P0IE_IFE      (27)
+#define BM_SATA_P0IE_IFE      (0x08000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_IFE(v)   ((((reg32_t) v) << 27) & BM_SATA_P0IE_IFE)
@@ -2762,14 +2762,14 @@ typedef union
 #define BW_SATA_P0IE_IFE(v)   BF_CS1(SATA_P0IE, IFE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field HBDE (RW)
+/* --- Register HW_SATA_P0IE, field HBDE[28:28] (RW)
  *
  * Host Bus Data Error Enable Dependencies: when the following conditions are true, the intrq output
  * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[HBDS]=1
  */
 
-#define BP_SATA_P0IE_HBDE      28
-#define BM_SATA_P0IE_HBDE      0x10000000
+#define BP_SATA_P0IE_HBDE      (28)
+#define BM_SATA_P0IE_HBDE      (0x10000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_HBDE(v)   ((((reg32_t) v) << 28) & BM_SATA_P0IE_HBDE)
@@ -2781,14 +2781,14 @@ typedef union
 #define BW_SATA_P0IE_HBDE(v)   BF_CS1(SATA_P0IE, HBDE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field HBFE (RW)
+/* --- Register HW_SATA_P0IE, field HBFE[29:29] (RW)
  *
  * Host Bus Fatal Error Enable Dependencies: when the following conditions are true, the intrq
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[HBFS]=1
  */
 
-#define BP_SATA_P0IE_HBFE      29
-#define BM_SATA_P0IE_HBFE      0x20000000
+#define BP_SATA_P0IE_HBFE      (29)
+#define BM_SATA_P0IE_HBFE      (0x20000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_HBFE(v)   ((((reg32_t) v) << 29) & BM_SATA_P0IE_HBFE)
@@ -2800,14 +2800,14 @@ typedef union
 #define BW_SATA_P0IE_HBFE(v)   BF_CS1(SATA_P0IE, HBFE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field TFEE (RW)
+/* --- Register HW_SATA_P0IE, field TFEE[30:30] (RW)
  *
  * Task File Error Enable Dependencies: when the following conditions are true, the intrq output
  * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[TFES]=1
  */
 
-#define BP_SATA_P0IE_TFEE      30
-#define BM_SATA_P0IE_TFEE      0x40000000
+#define BP_SATA_P0IE_TFEE      (30)
+#define BM_SATA_P0IE_TFEE      (0x40000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_TFEE(v)   ((((reg32_t) v) << 30) & BM_SATA_P0IE_TFEE)
@@ -2819,7 +2819,7 @@ typedef union
 #define BW_SATA_P0IE_TFEE(v)   BF_CS1(SATA_P0IE, TFEE, v)
 #endif
 
-/* --- Register HW_SATA_P0IE, field CPDE (RW)
+/* --- Register HW_SATA_P0IE, field CPDE[31:31] (RW)
  *
  * Cold Port Detect Enable Read-only. Returns 0. The options for this field are: • When
  * DEV_CP_DET=Include, this bit is read/write. • When DEV_CP_DET=Exclude, this bit is read-only 0.
@@ -2827,8 +2827,8 @@ typedef union
  * bit=1 • SATA_GHC[IE]=1 • P#IS[CPDS]=1
  */
 
-#define BP_SATA_P0IE_CPDE      31
-#define BM_SATA_P0IE_CPDE      0x80000000
+#define BP_SATA_P0IE_CPDE      (31)
+#define BM_SATA_P0IE_CPDE      (0x80000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0IE_CPDE(v)   ((((reg32_t) v) << 31) & BM_SATA_P0IE_CPDE)
@@ -2899,7 +2899,7 @@ typedef union
  * constants & macros for individual SATA_P0CMD bitfields
  */
 
-/* --- Register HW_SATA_P0CMD, field ST (RW)
+/* --- Register HW_SATA_P0CMD, field ST[0:0] (RW)
  *
  * Start When set to 1, the Port processes the command list. When cleared, the Port does not process
  * the command list. Whenever this bit is changed from a 0 to a 1, the Port starts processing the
@@ -2909,8 +2909,8 @@ typedef union
  * register must be cleared prior to setting ST bit to 1.
  */
 
-#define BP_SATA_P0CMD_ST      0
-#define BM_SATA_P0CMD_ST      0x00000001
+#define BP_SATA_P0CMD_ST      (0)
+#define BM_SATA_P0CMD_ST      (0x00000001)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_ST(v)   ((((reg32_t) v) << 0) & BM_SATA_P0CMD_ST)
@@ -2922,7 +2922,7 @@ typedef union
 #define BW_SATA_P0CMD_ST(v)   BF_CS1(SATA_P0CMD, ST, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field SUD (RW)
+/* --- Register HW_SATA_P0CMD, field SUD[1:1] (RW)
  *
  * Spin-Up Device This bit is read/write when staggered spin-up is supported as indicated by the
  * SATA_CAP[SSS]=1. This bit is read-only 1 when staggered spin-up is not supported and
@@ -2931,8 +2931,8 @@ typedef union
  * read-only 0 on power-up until SATA_CAP[SSS] bit is written with the required value.
  */
 
-#define BP_SATA_P0CMD_SUD      1
-#define BM_SATA_P0CMD_SUD      0x00000002
+#define BP_SATA_P0CMD_SUD      (1)
+#define BM_SATA_P0CMD_SUD      (0x00000002)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_SUD(v)   ((((reg32_t) v) << 1) & BM_SATA_P0CMD_SUD)
@@ -2944,7 +2944,7 @@ typedef union
 #define BW_SATA_P0CMD_SUD(v)   BF_CS1(SATA_P0CMD, SUD, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field POD (RW)
+/* --- Register HW_SATA_P0CMD, field POD[2:2] (RW)
  *
  * Power On Device This bit is read/write when cold presence detection is supported on this Port as
  * indicated by SATA_P # 0 CMD[CPD]=1. This bit is read-only 1 when cold presence detection is not
@@ -2952,8 +2952,8 @@ typedef union
  * that it may be used to provide power to a cold-presence detectable Port.
  */
 
-#define BP_SATA_P0CMD_POD      2
-#define BM_SATA_P0CMD_POD      0x00000004
+#define BP_SATA_P0CMD_POD      (2)
+#define BM_SATA_P0CMD_POD      (0x00000004)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_POD(v)   ((((reg32_t) v) << 2) & BM_SATA_P0CMD_POD)
@@ -2965,7 +2965,7 @@ typedef union
 #define BW_SATA_P0CMD_POD(v)   BF_CS1(SATA_P0CMD, POD, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field CLO (RW)
+/* --- Register HW_SATA_P0CMD, field CLO[3:3] (RW)
  *
  * Command List Override Setting this bit to 1 causes the SATA_P # 0 TFD[STS] field BSY bit and the
  * SATA_P # 0 TFD[STS] field DRQ bit to be cleared. This allows a software reset to be transmitted
@@ -2977,8 +2977,8 @@ typedef union
  * behavior.
  */
 
-#define BP_SATA_P0CMD_CLO      3
-#define BM_SATA_P0CMD_CLO      0x00000008
+#define BP_SATA_P0CMD_CLO      (3)
+#define BM_SATA_P0CMD_CLO      (0x00000008)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_CLO(v)   ((((reg32_t) v) << 3) & BM_SATA_P0CMD_CLO)
@@ -2990,7 +2990,7 @@ typedef union
 #define BW_SATA_P0CMD_CLO(v)   BF_CS1(SATA_P0CMD, CLO, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field FRE (RW)
+/* --- Register HW_SATA_P0CMD, field FRE[4:4] (RW)
  *
  * FIS Receive Enable When set to 1, the Port may post received FISes into the FIS receive area
  * pointed to by SATA_P # 0 FB (and P#FBU when M_HADDR_WIDTH=64) . When cleared, received FISes are
@@ -3001,8 +3001,8 @@ typedef union
  * for the SATA_P # 0 CMD[FR] bit to be cleared.
  */
 
-#define BP_SATA_P0CMD_FRE      4
-#define BM_SATA_P0CMD_FRE      0x00000010
+#define BP_SATA_P0CMD_FRE      (4)
+#define BM_SATA_P0CMD_FRE      (0x00000010)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_FRE(v)   ((((reg32_t) v) << 4) & BM_SATA_P0CMD_FRE)
@@ -3014,7 +3014,7 @@ typedef union
 #define BW_SATA_P0CMD_FRE(v)   BF_CS1(SATA_P0CMD, FRE, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field CCS (RW)
+/* --- Register HW_SATA_P0CMD, field CCS[12:8] (RW)
  *
  * Current Command Slot This field is set to the command slot value value of the command that is
  * currently being issued by the Port. • When SATA_P # 0 CMD[ST] transitions from 1 to 0, this field
@@ -3025,8 +3025,8 @@ typedef union
  * from command slot 1. This field is valid only when SATA_P # 0 CMD[ST] is set to 1.
  */
 
-#define BP_SATA_P0CMD_CCS      8
-#define BM_SATA_P0CMD_CCS      0x00001f00
+#define BP_SATA_P0CMD_CCS      (8)
+#define BM_SATA_P0CMD_CCS      (0x00001f00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_CCS(v)   ((((reg32_t) v) << 8) & BM_SATA_P0CMD_CCS)
@@ -3038,7 +3038,7 @@ typedef union
 #define BW_SATA_P0CMD_CCS(v)   BF_CS1(SATA_P0CMD, CCS, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field MPSS (RW)
+/* --- Register HW_SATA_P0CMD, field MPSS[13:13] (RW)
  *
  * Mechanical Presence Switch State The software must use this bit only when both SATA_CAP[SMPS] and
  * SATA_P # 0 CMD[MPSP] are set. This bit reports the state of a mechanical presence switch attached
@@ -3051,8 +3051,8 @@ typedef union
  * 1 - Switch is open
  */
 
-#define BP_SATA_P0CMD_MPSS      13
-#define BM_SATA_P0CMD_MPSS      0x00002000
+#define BP_SATA_P0CMD_MPSS      (13)
+#define BM_SATA_P0CMD_MPSS      (0x00002000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_MPSS(v)   ((((reg32_t) v) << 13) & BM_SATA_P0CMD_MPSS)
@@ -3065,14 +3065,14 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0CMD, field FR (RW)
+/* --- Register HW_SATA_P0CMD, field FR[14:14] (RW)
  *
  * FIS Receive Running When set to '1', the FIS Receive DMA engine for the Port is running. See AHCI
  * specification section 10.3.2 for details on when this bit is set and cleared by the Port.
  */
 
-#define BP_SATA_P0CMD_FR      14
-#define BM_SATA_P0CMD_FR      0x00004000
+#define BP_SATA_P0CMD_FR      (14)
+#define BM_SATA_P0CMD_FR      (0x00004000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_FR(v)   ((((reg32_t) v) << 14) & BM_SATA_P0CMD_FR)
@@ -3084,15 +3084,15 @@ typedef union
 #define BW_SATA_P0CMD_FR(v)   BF_CS1(SATA_P0CMD, FR, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field CR (RW)
+/* --- Register HW_SATA_P0CMD, field CR[15:15] (RW)
  *
  * Command List Running When this bit is set to '1', the command list DMA engine for this Port is
  * running. See AHCI state machine in AHCI specification section 5.3.2 (this is a reference to an
  * external document) for details on when this bit is set and cleared by the Port.
  */
 
-#define BP_SATA_P0CMD_CR      15
-#define BM_SATA_P0CMD_CR      0x00008000
+#define BP_SATA_P0CMD_CR      (15)
+#define BM_SATA_P0CMD_CR      (0x00008000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_CR(v)   ((((reg32_t) v) << 15) & BM_SATA_P0CMD_CR)
@@ -3104,19 +3104,19 @@ typedef union
 #define BW_SATA_P0CMD_CR(v)   BF_CS1(SATA_P0CMD, CR, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field CPS (RW)
+/* --- Register HW_SATA_P0CMD, field CPS[16:16] (RW)
  *
  * Cold Presence State This bit reports whether a device is currently detected on this Port as
  * indicated by the p # 0 _cp_det input state (assuming SATA_P # 0 CMD[CPD]=1). The options for this
  * field are:
  *
  * Values:
- * 1 - device is attached to this Port
  * 0 - no device attached to this Port
+ * 1 - device is attached to this Port
  */
 
-#define BP_SATA_P0CMD_CPS      16
-#define BM_SATA_P0CMD_CPS      0x00010000
+#define BP_SATA_P0CMD_CPS      (16)
+#define BM_SATA_P0CMD_CPS      (0x00010000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_CPS(v)   ((((reg32_t) v) << 16) & BM_SATA_P0CMD_CPS)
@@ -3129,19 +3129,19 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0CMD, field PMA (RW)
+/* --- Register HW_SATA_P0CMD, field PMA[17:17] (RW)
  *
  * Port Multiplier Attached The software is responsible for detecting whether a Port Multiplier is
  * present; the SATA block Port does not auto-detect the presence of a Port Multiplier. The options
  * for this field are:
  *
  * Values:
- * 1 - A Port Multiplier is attached to this Port.
  * 0 - A Port Multiplier is not attached to this Port.
+ * 1 - A Port Multiplier is attached to this Port.
  */
 
-#define BP_SATA_P0CMD_PMA      17
-#define BM_SATA_P0CMD_PMA      0x00020000
+#define BP_SATA_P0CMD_PMA      (17)
+#define BM_SATA_P0CMD_PMA      (0x00020000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_PMA(v)   ((((reg32_t) v) << 17) & BM_SATA_P0CMD_PMA)
@@ -3154,19 +3154,19 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0CMD, field HPCP (RW)
+/* --- Register HW_SATA_P0CMD, field HPCP[18:18] (RW)
  *
  * Hot Plug Capable Port The HPCP bit is mutually exclusive with SATA_P # 0 CMD[ESP]. The options
  * for this field are:
  *
  * Values:
+ * 0 - Indicates that this Port's signal and power connectors are not externally accessible.
  * 1 - Indicates that this Port's signal and power connectors are externally accessible via a joint signal-
  *     power connector for blindmate device hot plug.
- * 0 - Indicates that this Port's signal and power connectors are not externally accessible.
  */
 
-#define BP_SATA_P0CMD_HPCP      18
-#define BM_SATA_P0CMD_HPCP      0x00040000
+#define BP_SATA_P0CMD_HPCP      (18)
+#define BM_SATA_P0CMD_HPCP      (0x00040000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_HPCP(v)   ((((reg32_t) v) << 18) & BM_SATA_P0CMD_HPCP)
@@ -3179,7 +3179,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0CMD, field ESP (RW)
+/* --- Register HW_SATA_P0CMD, field ESP[21:21] (RW)
  *
  * External SATA Port When set to 1, indicates that this Port's signal only connector is externally
  * accessible. When set to 1, SATA_CAP[SXS] is also set to 1. When cleared to 0, indicates that this
@@ -3187,8 +3187,8 @@ typedef union
  * exclusive with SATA_P # 0 CMD[HPCP]
  */
 
-#define BP_SATA_P0CMD_ESP      21
-#define BM_SATA_P0CMD_ESP      0x00200000
+#define BP_SATA_P0CMD_ESP      (21)
+#define BM_SATA_P0CMD_ESP      (0x00200000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_ESP(v)   ((((reg32_t) v) << 21) & BM_SATA_P0CMD_ESP)
@@ -3200,7 +3200,7 @@ typedef union
 #define BW_SATA_P0CMD_ESP(v)   BF_CS1(SATA_P0CMD, ESP, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field APSTE (RW)
+/* --- Register HW_SATA_P0CMD, field APSTE[23:23] (RW)
  *
  * Device is ATAPI This bit is used by the Port to control whether to assert p # 0 _act_led output
  * when commands are active (see " ) . The options for this field are:
@@ -3210,8 +3210,8 @@ typedef union
  * 1 - ATAPI device
  */
 
-#define BP_SATA_P0CMD_APSTE      23
-#define BM_SATA_P0CMD_APSTE      0x00800000
+#define BP_SATA_P0CMD_APSTE      (23)
+#define BM_SATA_P0CMD_APSTE      (0x00800000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_APSTE(v)   ((((reg32_t) v) << 23) & BM_SATA_P0CMD_APSTE)
@@ -3224,7 +3224,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0CMD, field ATAPI (RW)
+/* --- Register HW_SATA_P0CMD, field ATAPI[24:24] (RW)
  *
  * ATAPI Device is ATAPI This bit is used by the Port to control whether to assert p # 0 _act_led
  * output when commands are active (see " ) . The options for this field are:
@@ -3234,8 +3234,8 @@ typedef union
  * 1 - ATAPI device
  */
 
-#define BP_SATA_P0CMD_ATAPI      24
-#define BM_SATA_P0CMD_ATAPI      0x01000000
+#define BP_SATA_P0CMD_ATAPI      (24)
+#define BM_SATA_P0CMD_ATAPI      (0x01000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_ATAPI(v)   ((((reg32_t) v) << 24) & BM_SATA_P0CMD_ATAPI)
@@ -3248,14 +3248,14 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0CMD, field DLAE (RW)
+/* --- Register HW_SATA_P0CMD, field DLAE[25:25] (RW)
  *
  * Drive LED on ATAPI Enable When set to 1, SATA_P # 0 CMD[ATAPI]=1, and commands are active, the
  * Port asserts p # 0 _act_led output (see " ) .
  */
 
-#define BP_SATA_P0CMD_DLAE      25
-#define BM_SATA_P0CMD_DLAE      0x02000000
+#define BP_SATA_P0CMD_DLAE      (25)
+#define BM_SATA_P0CMD_DLAE      (0x02000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_DLAE(v)   ((((reg32_t) v) << 25) & BM_SATA_P0CMD_DLAE)
@@ -3267,15 +3267,15 @@ typedef union
 #define BW_SATA_P0CMD_DLAE(v)   BF_CS1(SATA_P0CMD, DLAE, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field ALPE (RW)
+/* --- Register HW_SATA_P0CMD, field ALPE[26:26] (RW)
  *
  * Aggressive Link Power Management Enable When set to 1, the Port aggressively enters a lower link
  * power state (PARTIAL or SLUMBER) based on the setting of the SATA_P # 0 CMD[ASP] bit. When
  * cleared to 0, aggressive power management state transition is disabled.
  */
 
-#define BP_SATA_P0CMD_ALPE      26
-#define BM_SATA_P0CMD_ALPE      0x04000000
+#define BP_SATA_P0CMD_ALPE      (26)
+#define BM_SATA_P0CMD_ALPE      (0x04000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_ALPE(v)   ((((reg32_t) v) << 26) & BM_SATA_P0CMD_ALPE)
@@ -3287,7 +3287,7 @@ typedef union
 #define BW_SATA_P0CMD_ALPE(v)   BF_CS1(SATA_P0CMD, ALPE, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field ASP (RW)
+/* --- Register HW_SATA_P0CMD, field ASP[27:27] (RW)
  *
  * Aggressive Slumber/ Partial The options for this field are: • When set to 1, and SATA_P # 0
  * CMD[ALPE]=1, the Port aggressively enters the SLUMBER state when one of the following conditions
@@ -3298,8 +3298,8 @@ typedef union
  * is cleared. - The Port clears the SATA_P # 0 SACT register and SATA_P # 0 CI is cleared.
  */
 
-#define BP_SATA_P0CMD_ASP      27
-#define BM_SATA_P0CMD_ASP      0x08000000
+#define BP_SATA_P0CMD_ASP      (27)
+#define BM_SATA_P0CMD_ASP      (0x08000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_ASP(v)   ((((reg32_t) v) << 27) & BM_SATA_P0CMD_ASP)
@@ -3311,7 +3311,7 @@ typedef union
 #define BW_SATA_P0CMD_ASP(v)   BF_CS1(SATA_P0CMD, ASP, v)
 #endif
 
-/* --- Register HW_SATA_P0CMD, field ICC (RW)
+/* --- Register HW_SATA_P0CMD, field ICC[31:28] (RW)
  *
  * Interface Communication Control This field is used to control power management states of the
  * interface. When the Link layer is currently in the L_IDLE state, writes to this field cause the
@@ -3333,8 +3333,8 @@ typedef union
  * bring the link to active and then initiate the transition to the desired low power state.
  */
 
-#define BP_SATA_P0CMD_ICC      28
-#define BM_SATA_P0CMD_ICC      0xf0000000
+#define BP_SATA_P0CMD_ICC      (28)
+#define BM_SATA_P0CMD_ICC      (0xf0000000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CMD_ICC(v)   ((((reg32_t) v) << 28) & BM_SATA_P0CMD_ICC)
@@ -3382,7 +3382,7 @@ typedef union
  * constants & macros for individual SATA_P0TFD bitfields
  */
 
-/* --- Register HW_SATA_P0TFD, field STS (RO)
+/* --- Register HW_SATA_P0TFD, field STS[7:0] (RO)
  *
  * Status This field contains the latest copy of the task file status register. The bits that affect
  * SATA block operation are: • Bit [7] BSY - Indicates the interface is busy • Bits [6:4] cs -
@@ -3391,16 +3391,16 @@ typedef union
  * field, not just the bits noted above.
  */
 
-#define BP_SATA_P0TFD_STS      0
-#define BM_SATA_P0TFD_STS      0x000000ff
+#define BP_SATA_P0TFD_STS      (0)
+#define BM_SATA_P0TFD_STS      (0x000000ff)
 
-/* --- Register HW_SATA_P0TFD, field ERR (RO)
+/* --- Register HW_SATA_P0TFD, field ERR[15:8] (RO)
  *
  * Error This field contains the latest copy of the task file error register.
  */
 
-#define BP_SATA_P0TFD_ERR      8
-#define BM_SATA_P0TFD_ERR      0x0000ff00
+#define BP_SATA_P0TFD_ERR      (8)
+#define BM_SATA_P0TFD_ERR      (0x0000ff00)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3434,7 +3434,7 @@ typedef union
  * constants & macros for individual SATA_P0SIG bitfields
  */
 
-/* --- Register HW_SATA_P0SIG, field SIG (RO)
+/* --- Register HW_SATA_P0SIG, field SIG[31:0] (RO)
  *
  * Signature This field contains the signature received from a device on the first D2H Register FIS.
  * The bit order as follows: • Bits [31:24] - LBA High (Cylinder High) Register • Bits [23:16] - LBA
@@ -3443,8 +3443,8 @@ typedef union
  * reset.
  */
 
-#define BP_SATA_P0SIG_SIG      0
-#define BM_SATA_P0SIG_SIG      0xffffffff
+#define BP_SATA_P0SIG_SIG      (0)
+#define BM_SATA_P0SIG_SIG      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3484,7 +3484,7 @@ typedef union
  * constants & macros for individual SATA_P0SSTS bitfields
  */
 
-/* --- Register HW_SATA_P0SSTS, field DET (RU)
+/* --- Register HW_SATA_P0SSTS, field DET[3:0] (RU)
  *
  * Indicates the interface device detection and PHY state. The options for this field are: 0x0: No
  * device detected and PHY communication not established 0x1: Device presence detected but PHY
@@ -3493,10 +3493,10 @@ typedef union
  * interface being disabled or running in a BIST loopback mode. All other values reserved.
  */
 
-#define BP_SATA_P0SSTS_DET      0
-#define BM_SATA_P0SSTS_DET      0x0000000f
+#define BP_SATA_P0SSTS_DET      (0)
+#define BM_SATA_P0SSTS_DET      (0x0000000f)
 
-/* --- Register HW_SATA_P0SSTS, field SPD (RO)
+/* --- Register HW_SATA_P0SSTS, field SPD[7:4] (RO)
  *
  * Current Interface Speed Indicates the negotiated interface communication speed. The options for
  * this field are:
@@ -3508,11 +3508,11 @@ typedef union
  * All other values - Reserved and should not be used
  */
 
-#define BP_SATA_P0SSTS_SPD      4
-#define BM_SATA_P0SSTS_SPD      0x000000f0
+#define BP_SATA_P0SSTS_SPD      (4)
+#define BM_SATA_P0SSTS_SPD      (0x000000f0)
 
 
-/* --- Register HW_SATA_P0SSTS, field IPM (RO)
+/* --- Register HW_SATA_P0SSTS, field IPM[11:8] (RO)
  *
  * Interface Power Management Indicates the current interface state. The options for this field are:
  *
@@ -3524,8 +3524,8 @@ typedef union
  * All other values - Reserved
  */
 
-#define BP_SATA_P0SSTS_IPM      8
-#define BM_SATA_P0SSTS_IPM      0x00000f00
+#define BP_SATA_P0SSTS_IPM      (8)
+#define BM_SATA_P0SSTS_IPM      (0x00000f00)
 
 
 #ifndef __LANGUAGE_ASM__
@@ -3572,7 +3572,7 @@ typedef union
  * constants & macros for individual SATA_P0SCTL bitfields
  */
 
-/* --- Register HW_SATA_P0SCTL, field DET (RW)
+/* --- Register HW_SATA_P0SCTL, field DET[3:0] (RW)
  *
  * Device Detection Initialization Controls the Port's device detection and interface
  * initialization. The options for this field are: This field may only be modified when SATA_P # 0
@@ -3586,8 +3586,8 @@ typedef union
  * 0x4 - Disable the Serial ATA interface and put the Port PHY in offline mode. All other values reserved.
  */
 
-#define BP_SATA_P0SCTL_DET      0
-#define BM_SATA_P0SCTL_DET      0x0000000f
+#define BP_SATA_P0SCTL_DET      (0)
+#define BM_SATA_P0SCTL_DET      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0SCTL_DET(v)   ((((reg32_t) v) << 0) & BM_SATA_P0SCTL_DET)
@@ -3600,7 +3600,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0SCTL, field SPD (RW)
+/* --- Register HW_SATA_P0SCTL, field SPD[7:4] (RW)
  *
  * Speed Allowed This field indicates the highest allowable speed of the Port PHY interface. The
  * options for this field are: When the host software must change this field value, the host must
@@ -3614,8 +3614,8 @@ typedef union
  * All other values - Reserved and should not be used.
  */
 
-#define BP_SATA_P0SCTL_SPD      4
-#define BM_SATA_P0SCTL_SPD      0x000000f0
+#define BP_SATA_P0SCTL_SPD      (4)
+#define BM_SATA_P0SCTL_SPD      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0SCTL_SPD(v)   ((((reg32_t) v) << 4) & BM_SATA_P0SCTL_SPD)
@@ -3628,7 +3628,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0SCTL, field IPM (RW)
+/* --- Register HW_SATA_P0SCTL, field IPM[11:8] (RW)
  *
  * Interface Power Management Transitions Allowed This field indicates which power states the Port
  * PHY interface is allowed to transition to. When an interface power management state is disabled,
@@ -3643,8 +3643,8 @@ typedef union
  * All other values. - Reserved and should not be used
  */
 
-#define BP_SATA_P0SCTL_IPM      8
-#define BM_SATA_P0SCTL_IPM      0x00000f00
+#define BP_SATA_P0SCTL_IPM      (8)
+#define BM_SATA_P0SCTL_IPM      (0x00000f00)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0SCTL_IPM(v)   ((((reg32_t) v) << 8) & BM_SATA_P0SCTL_IPM)
@@ -3716,74 +3716,74 @@ typedef union
  * constants & macros for individual SATA_P0SERR bitfields
  */
 
-/* --- Register HW_SATA_P0SERR, field ERR_I (RO)
+/* --- Register HW_SATA_P0SERR, field ERR_I[0:0] (RO)
  *
  * This bit is set when any of the following SATA_P # 0 SERR register bits is set during non- Data
  * FIS transfer: • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
  */
 
-#define BP_SATA_P0SERR_ERR_I      0
-#define BM_SATA_P0SERR_ERR_I      0x00000001
+#define BP_SATA_P0SERR_ERR_I      (0)
+#define BM_SATA_P0SERR_ERR_I      (0x00000001)
 
-/* --- Register HW_SATA_P0SERR, field ERR_M (RO)
+/* --- Register HW_SATA_P0SERR, field ERR_M[1:1] (RO)
  *
  * Recovered Communication Error This bit is set to 1 when PHY Ready condition is detected after
  * interface initialization, but not after transition from Partial or Slumber power management state
  * to active state.
  */
 
-#define BP_SATA_P0SERR_ERR_M      1
-#define BM_SATA_P0SERR_ERR_M      0x00000002
+#define BP_SATA_P0SERR_ERR_M      (1)
+#define BM_SATA_P0SERR_ERR_M      (0x00000002)
 
-/* --- Register HW_SATA_P0SERR, field ERR_T (RO)
+/* --- Register HW_SATA_P0SERR, field ERR_T[8:8] (RO)
  *
  * Non-Recovered Transient Data Integrity Error This bit is set when any of the following SATA_P # 0
  * SERR register bits is set during Data FIS transfer: ERR_P (Protocol) • DIAG_C (CRC) • DIAG_H
  * (Handshake) • ERR_C ("PHY Ready" negation)
  */
 
-#define BP_SATA_P0SERR_ERR_T      8
-#define BM_SATA_P0SERR_ERR_T      0x00000100
+#define BP_SATA_P0SERR_ERR_T      (8)
+#define BM_SATA_P0SERR_ERR_T      (0x00000100)
 
-/* --- Register HW_SATA_P0SERR, field ERR_C (RO)
+/* --- Register HW_SATA_P0SERR, field ERR_C[9:9] (RO)
  *
  * Non-Recovered Persistent Communication Error This bit is set to 1 when PHY Ready signal is
  * negated due to the loss of communication with the device or problems with interface, but not
  * after transition from active to Partial or Slumber power management state.
  */
 
-#define BP_SATA_P0SERR_ERR_C      9
-#define BM_SATA_P0SERR_ERR_C      0x00000200
+#define BP_SATA_P0SERR_ERR_C      (9)
+#define BM_SATA_P0SERR_ERR_C      (0x00000200)
 
-/* --- Register HW_SATA_P0SERR, field ERR_P (RO)
+/* --- Register HW_SATA_P0SERR, field ERR_P[10:10] (RO)
  *
  * Protocol Error This bit is set to 1 when any of the following conditions are detected. •
  * Transport state transition error (DIAG_T) • Link sequence error (DIAG_S) • RxFIFO overflow • Link
  * bad end error (WTRM instead of EOF is received).
  */
 
-#define BP_SATA_P0SERR_ERR_P      10
-#define BM_SATA_P0SERR_ERR_P      0x00000400
+#define BP_SATA_P0SERR_ERR_P      (10)
+#define BM_SATA_P0SERR_ERR_P      (0x00000400)
 
-/* --- Register HW_SATA_P0SERR, field ERR_E (RO)
+/* --- Register HW_SATA_P0SERR, field ERR_E[11:11] (RO)
  *
  * Internal Error This bit is set to 1 when one or more AHB bus ERROR responses are detected on the
  * master interface.
  */
 
-#define BP_SATA_P0SERR_ERR_E      11
-#define BM_SATA_P0SERR_ERR_E      0x00000800
+#define BP_SATA_P0SERR_ERR_E      (11)
+#define BM_SATA_P0SERR_ERR_E      (0x00000800)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_N (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_N[16:16] (RO)
  *
  * PHY Ready Change This bit indicates that the PHY Ready signal changed state. This bit is
  * reflected in the SATA_P # 0 IS[PRCS] bit.
  */
 
-#define BP_SATA_P0SERR_DIAG_N      16
-#define BM_SATA_P0SERR_DIAG_N      0x00010000
+#define BP_SATA_P0SERR_DIAG_N      (16)
+#define BM_SATA_P0SERR_DIAG_N      (0x00010000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_I (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_I[17:17] (RO)
  *
  * PHY Internal Error This bit is set when the PHY detects some internal error as indicated by the
  * assertion of the p # 0 _phy_rx_err input. The setting of this bit is controlled by the
@@ -3792,18 +3792,18 @@ typedef union
  * bit to be set.
  */
 
-#define BP_SATA_P0SERR_DIAG_I      17
-#define BM_SATA_P0SERR_DIAG_I      0x00020000
+#define BP_SATA_P0SERR_DIAG_I      (17)
+#define BM_SATA_P0SERR_DIAG_I      (0x00020000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_W (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_W[18:18] (RO)
  *
  * Comm Wake This bit is set when PHY COMWAKE signal is detected.
  */
 
-#define BP_SATA_P0SERR_DIAG_W      18
-#define BM_SATA_P0SERR_DIAG_W      0x00040000
+#define BP_SATA_P0SERR_DIAG_W      (18)
+#define BM_SATA_P0SERR_DIAG_W      (0x00040000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_B (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_B[19:19] (RO)
  *
  * 10B to 8B Decode Error This bit indicates errors were detected by 10b8b decoder. This bit
  * indicates that one or more CRC errors were detected by the Link layer during FIS reception. This
@@ -3811,26 +3811,26 @@ typedef union
  * when an error is detected on the primitive, regardless whether it is inside or outside the FIS.
  */
 
-#define BP_SATA_P0SERR_DIAG_B      19
-#define BM_SATA_P0SERR_DIAG_B      0x00080000
+#define BP_SATA_P0SERR_DIAG_B      (19)
+#define BM_SATA_P0SERR_DIAG_B      (0x00080000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_D (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_D[20:20] (RO)
  *
  * Disparity Error This bit is always cleared to 0 since it is not used by the AHCI specification.
  */
 
-#define BP_SATA_P0SERR_DIAG_D      20
-#define BM_SATA_P0SERR_DIAG_D      0x00100000
+#define BP_SATA_P0SERR_DIAG_D      (20)
+#define BM_SATA_P0SERR_DIAG_D      (0x00100000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_C (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_C[21:21] (RO)
  *
  * CRC Error
  */
 
-#define BP_SATA_P0SERR_DIAG_C      21
-#define BM_SATA_P0SERR_DIAG_C      0x00200000
+#define BP_SATA_P0SERR_DIAG_C      (21)
+#define BM_SATA_P0SERR_DIAG_C      (0x00200000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_H (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_H[22:22] (RO)
  *
  * Handshake Error This bit indicates that one or more R_ERRp was received in response to frame
  * transmission. Such errors may be the result of a CRC error detected by the device, a disparity or
@@ -3838,29 +3838,29 @@ typedef union
  * frame.
  */
 
-#define BP_SATA_P0SERR_DIAG_H      22
-#define BM_SATA_P0SERR_DIAG_H      0x00400000
+#define BP_SATA_P0SERR_DIAG_H      (22)
+#define BM_SATA_P0SERR_DIAG_H      (0x00400000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_S (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_S[23:23] (RO)
  *
  * Link Sequence Error This bit indicates that one or more Link state machine error conditions was
  * encountered. One of the conditions that cause this bit to be set is device doing SYNC escape
  * during FIS transmission.
  */
 
-#define BP_SATA_P0SERR_DIAG_S      23
-#define BM_SATA_P0SERR_DIAG_S      0x00800000
+#define BP_SATA_P0SERR_DIAG_S      (23)
+#define BM_SATA_P0SERR_DIAG_S      (0x00800000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_T (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_T[24:24] (RO)
  *
  * Transport State Transition Error This bit indicates that a Transport Layer protocol violation was
  * detected since the last time this bit was cleared. See for details.
  */
 
-#define BP_SATA_P0SERR_DIAG_T      24
-#define BM_SATA_P0SERR_DIAG_T      0x01000000
+#define BP_SATA_P0SERR_DIAG_T      (24)
+#define BM_SATA_P0SERR_DIAG_T      (0x01000000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_F (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_F[25:25] (RO)
  *
  * Unknown FIS Type This bit indicates that one or more FISes were received by the Transport layer
  * with good CRC, but had a type field that was not recognized/known and the length was less than or
@@ -3868,17 +3868,17 @@ typedef union
  * DIAG_T bit is set instead.
  */
 
-#define BP_SATA_P0SERR_DIAG_F      25
-#define BM_SATA_P0SERR_DIAG_F      0x02000000
+#define BP_SATA_P0SERR_DIAG_F      (25)
+#define BM_SATA_P0SERR_DIAG_F      (0x02000000)
 
-/* --- Register HW_SATA_P0SERR, field DIAG_X (RO)
+/* --- Register HW_SATA_P0SERR, field DIAG_X[26:26] (RO)
  *
  * Exchanged This bit is set to 1 when PHY COMINIT signal is detected. This bit is reflected in the
  * SATA_P # 0 IS[PCS] bit.
  */
 
-#define BP_SATA_P0SERR_DIAG_X      26
-#define BM_SATA_P0SERR_DIAG_X      0x04000000
+#define BP_SATA_P0SERR_DIAG_X      (26)
+#define BM_SATA_P0SERR_DIAG_X      (0x04000000)
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3914,7 +3914,7 @@ typedef union
  * constants & macros for individual SATA_P0SACT bitfields
  */
 
-/* --- Register HW_SATA_P0SACT, field DS (RW)
+/* --- Register HW_SATA_P0SACT, field DS[31:0] (RW)
  *
  * Device Status This field is bit significant. Each bit corresponds to the TAG and command slot of
  * a native queued command, where bit 0 corresponds to TAG 0 and command slot 0. Software sets this
@@ -3928,8 +3928,8 @@ typedef union
  * when SATA_P # 0 CMD[ST] bit is set to 1.
  */
 
-#define BP_SATA_P0SACT_DS      0
-#define BM_SATA_P0SACT_DS      0xffffffff
+#define BP_SATA_P0SACT_DS      (0)
+#define BM_SATA_P0SACT_DS      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0SACT_DS(v)   ((((reg32_t) v) << 0) & BM_SATA_P0SACT_DS)
@@ -3975,7 +3975,7 @@ typedef union
  * constants & macros for individual SATA_P0CI bitfields
  */
 
-/* --- Register HW_SATA_P0CI, field CI (RW)
+/* --- Register HW_SATA_P0CI, field CI[31:0] (RW)
  *
  * Command Issued This field is bit significant. Each bit corresponds to a command slot, where bit 0
  * corresponds to command slot 0. This field is set by the software to indicate to the Port that a
@@ -3986,8 +3986,8 @@ typedef union
  * is written from a 1 to a 0 by the software.
  */
 
-#define BP_SATA_P0CI_CI      0
-#define BM_SATA_P0CI_CI      0xffffffff
+#define BP_SATA_P0CI_CI      (0)
+#define BM_SATA_P0CI_CI      (0xffffffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0CI_CI(v)   ((((reg32_t) v) << 0) & BM_SATA_P0CI_CI)
@@ -4038,7 +4038,7 @@ typedef union
  * constants & macros for individual SATA_P0SNTF bitfields
  */
 
-/* --- Register HW_SATA_P0SNTF, field PMN (W1C)
+/* --- Register HW_SATA_P0SNTF, field PMN[15:0] (W1C)
  *
  * PM Notify This field indicates whether a particular device with the corresponding PM Port number
  * issued a Set Device Bits FIS to the SATA block Port with the Notification bit set: • PM Port 0h
@@ -4047,8 +4047,8 @@ typedef union
  * but it is not reset by Port reset (COMRESET) or software reset.
  */
 
-#define BP_SATA_P0SNTF_PMN      0
-#define BM_SATA_P0SNTF_PMN      0x0000ffff
+#define BP_SATA_P0SNTF_PMN      (0)
+#define BM_SATA_P0SNTF_PMN      (0x0000ffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0SNTF_PMN(v)   ((((reg32_t) v) << 0) & BM_SATA_P0SNTF_PMN)
@@ -4103,7 +4103,7 @@ typedef union
  * constants & macros for individual SATA_P0DMACR bitfields
  */
 
-/* --- Register HW_SATA_P0DMACR, field TXTS (RW)
+/* --- Register HW_SATA_P0DMACR, field TXTS[3:0] (RW)
  *
  * Transmit Transaction Size This field defines the DMA transaction size in DWORDs for transmit
  * (system bus read, device write) operation. The options for this field are: This field is read-
@@ -4126,8 +4126,8 @@ typedef union
  *     be used.
  */
 
-#define BP_SATA_P0DMACR_TXTS      0
-#define BM_SATA_P0DMACR_TXTS      0x0000000f
+#define BP_SATA_P0DMACR_TXTS      (0)
+#define BM_SATA_P0DMACR_TXTS      (0x0000000f)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0DMACR_TXTS(v)   ((((reg32_t) v) << 0) & BM_SATA_P0DMACR_TXTS)
@@ -4140,7 +4140,7 @@ typedef union
 #endif
 
 
-/* --- Register HW_SATA_P0DMACR, field RXTS (RW)
+/* --- Register HW_SATA_P0DMACR, field RXTS[7:4] (RW)
  *
  * Receive Transaction Size This field defines the Port DMA transaction size in DWORDs for receive
  * (system bus write, device read) operation. This field is read-write when SATA_P 0 # CMD[ST]=0 and
@@ -4163,8 +4163,8 @@ typedef union
  *     be used.
  */
 
-#define BP_SATA_P0DMACR_RXTS      4
-#define BM_SATA_P0DMACR_RXTS      0x000000f0
+#define BP_SATA_P0DMACR_RXTS      (4)
+#define BM_SATA_P0DMACR_RXTS      (0x000000f0)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0DMACR_RXTS(v)   ((((reg32_t) v) << 4) & BM_SATA_P0DMACR_RXTS)
@@ -4225,13 +4225,13 @@ typedef union
  * constants & macros for individual SATA_P0PHYCR bitfields
  */
 
-/* --- Register HW_SATA_P0PHYCR, field CR_DATA_IN (RW)
+/* --- Register HW_SATA_P0PHYCR, field CR_DATA_IN[15:0] (RW)
  *
  * CR Address and Write Data Input Bus. Supplies and captures address and write data.
  */
 
-#define BP_SATA_P0PHYCR_CR_DATA_IN      0
-#define BM_SATA_P0PHYCR_CR_DATA_IN      0x0000ffff
+#define BP_SATA_P0PHYCR_CR_DATA_IN      (0)
+#define BM_SATA_P0PHYCR_CR_DATA_IN      (0x0000ffff)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0PHYCR_CR_DATA_IN(v)   ((((reg32_t) v) << 0) & BM_SATA_P0PHYCR_CR_DATA_IN)
@@ -4243,13 +4243,13 @@ typedef union
 #define BW_SATA_P0PHYCR_CR_DATA_IN(v)   BF_CS1(SATA_P0PHYCR, CR_DATA_IN, v)
 #endif
 
-/* --- Register HW_SATA_P0PHYCR, field CR_CAP_ADDR (RW)
+/* --- Register HW_SATA_P0PHYCR, field CR_CAP_ADDR[16:16] (RW)
  *
  * CR Capture Address. Captures phy_cr_data_in[15:0] into the Address register.
  */
 
-#define BP_SATA_P0PHYCR_CR_CAP_ADDR      16
-#define BM_SATA_P0PHYCR_CR_CAP_ADDR      0x00010000
+#define BP_SATA_P0PHYCR_CR_CAP_ADDR      (16)
+#define BM_SATA_P0PHYCR_CR_CAP_ADDR      (0x00010000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0PHYCR_CR_CAP_ADDR(v)   ((((reg32_t) v) << 16) & BM_SATA_P0PHYCR_CR_CAP_ADDR)
@@ -4261,13 +4261,13 @@ typedef union
 #define BW_SATA_P0PHYCR_CR_CAP_ADDR(v)   BF_CS1(SATA_P0PHYCR, CR_CAP_ADDR, v)
 #endif
 
-/* --- Register HW_SATA_P0PHYCR, field CR_CAP_DATA (RW)
+/* --- Register HW_SATA_P0PHYCR, field CR_CAP_DATA[17:17] (RW)
  *
  * CR Capture Data. Captures phy_cr_data_in[15:0] into the Write Data register.
  */
 
-#define BP_SATA_P0PHYCR_CR_CAP_DATA      17
-#define BM_SATA_P0PHYCR_CR_CAP_DATA      0x00020000
+#define BP_SATA_P0PHYCR_CR_CAP_DATA      (17)
+#define BM_SATA_P0PHYCR_CR_CAP_DATA      (0x00020000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0PHYCR_CR_CAP_DATA(v)   ((((reg32_t) v) << 17) & BM_SATA_P0PHYCR_CR_CAP_DATA)
@@ -4279,13 +4279,13 @@ typedef union
 #define BW_SATA_P0PHYCR_CR_CAP_DATA(v)   BF_CS1(SATA_P0PHYCR, CR_CAP_DATA, v)
 #endif
 
-/* --- Register HW_SATA_P0PHYCR, field CR_WRITE (RW)
+/* --- Register HW_SATA_P0PHYCR, field CR_WRITE[18:18] (RW)
  *
  * CR Write. Writes the Write Data register to the referenced Address register.
  */
 
-#define BP_SATA_P0PHYCR_CR_WRITE      18
-#define BM_SATA_P0PHYCR_CR_WRITE      0x00040000
+#define BP_SATA_P0PHYCR_CR_WRITE      (18)
+#define BM_SATA_P0PHYCR_CR_WRITE      (0x00040000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0PHYCR_CR_WRITE(v)   ((((reg32_t) v) << 18) & BM_SATA_P0PHYCR_CR_WRITE)
@@ -4297,13 +4297,13 @@ typedef union
 #define BW_SATA_P0PHYCR_CR_WRITE(v)   BF_CS1(SATA_P0PHYCR, CR_WRITE, v)
 #endif
 
-/* --- Register HW_SATA_P0PHYCR, field CR_READ (RW)
+/* --- Register HW_SATA_P0PHYCR, field CR_READ[19:19] (RW)
  *
  * CR Read. Reads from the referenced Address register.
  */
 
-#define BP_SATA_P0PHYCR_CR_READ      19
-#define BM_SATA_P0PHYCR_CR_READ      0x00080000
+#define BP_SATA_P0PHYCR_CR_READ      (19)
+#define BM_SATA_P0PHYCR_CR_READ      (0x00080000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0PHYCR_CR_READ(v)   ((((reg32_t) v) << 19) & BM_SATA_P0PHYCR_CR_READ)
@@ -4315,13 +4315,13 @@ typedef union
 #define BW_SATA_P0PHYCR_CR_READ(v)   BF_CS1(SATA_P0PHYCR, CR_READ, v)
 #endif
 
-/* --- Register HW_SATA_P0PHYCR, field TEST_PDDQ (RW)
+/* --- Register HW_SATA_P0PHYCR, field TEST_PDDQ[20:20] (RW)
  *
  * Test IDDQ
  */
 
-#define BP_SATA_P0PHYCR_TEST_PDDQ      20
-#define BM_SATA_P0PHYCR_TEST_PDDQ      0x00100000
+#define BP_SATA_P0PHYCR_TEST_PDDQ      (20)
+#define BM_SATA_P0PHYCR_TEST_PDDQ      (0x00100000)
 
 #ifndef __LANGUAGE_ASM__
 #define BF_SATA_P0PHYCR_TEST_PDDQ(v)   ((((reg32_t) v) << 20) & BM_SATA_P0PHYCR_TEST_PDDQ)
@@ -4375,22 +4375,22 @@ typedef union
  * constants & macros for individual SATA_P0PHYSR bitfields
  */
 
-/* --- Register HW_SATA_P0PHYSR, field CR_DATA_OUT (RO)
+/* --- Register HW_SATA_P0PHYSR, field CR_DATA_OUT[15:0] (RO)
  *
  * CR Data Output Bus. Always presents last read data.
  */
 
-#define BP_SATA_P0PHYSR_CR_DATA_OUT      0
-#define BM_SATA_P0PHYSR_CR_DATA_OUT      0x0000ffff
+#define BP_SATA_P0PHYSR_CR_DATA_OUT      (0)
+#define BM_SATA_P0PHYSR_CR_DATA_OUT      (0x0000ffff)
 
-/* --- Register HW_SATA_P0PHYSR, field CR_ACK (RO)
+/* --- Register HW_SATA_P0PHYSR, field CR_ACK[18:18] (RO)
  *
  * CR Acknowledgement. Acknowledgement for the phy_cr_cap_addr, phy_cr_cap_data, phy_cr_write, and
  * phy_cr_read control signals.
  */
 
-#define BP_SATA_P0PHYSR_CR_ACK      18
-#define BM_SATA_P0PHYSR_CR_ACK      0x00040000
+#define BP_SATA_P0PHYSR_CR_ACK      (18)
+#define BM_SATA_P0PHYSR_CR_ACK      (0x00040000)
 
 
 /*!

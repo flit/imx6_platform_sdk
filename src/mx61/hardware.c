@@ -222,7 +222,7 @@ void show_ddr_config(void)
  */
 void board_init(void)
 {
-#if defined(MX61_EVB)
+#if (defined(MX61_EVB) || defined(MX61_ARD))
     // Configure some board signals through I/O expanders
     max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
@@ -230,7 +230,13 @@ void board_init(void)
     max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
     max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
+#ifdef MX61_ARD
+    max7310_i2c_req_array[2].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
+    max7310_i2c_req_array[2].dev_addr = MAX7310_I2C_ID2;    // the I2C DEVICE address
+    max7310_init(2, MAX7310_ID2_DEF_DIR, MAX7310_ID2_DEF_VAL);
 #endif
+#endif
+
 }
 
 /*!

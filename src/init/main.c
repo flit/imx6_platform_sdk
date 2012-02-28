@@ -29,7 +29,7 @@ extern void system_memory_arrange(void);
  */
 int main(void)
 {
-#if defined(MX61_EVB)||defined(MX61_SABRE_TABLET)
+#if defined(MX61_EVB)||defined(MX61_SABRE_TABLET)||defined(MX61_ARD)
     system_memory_arrange();
     disable_strict_align_check();
 #endif

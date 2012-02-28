@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -12,18 +12,21 @@ void can2_rx_handler(void);
 
 /* CAN module data structures */
 static struct hw_module can1_port = {
-    "CAN1",
-    CAN1_BASE_ADDR,
-    30000000,
-    IMX_INT_CAN1,
+    "CAN1",          // int8_t* name; // name
+    CAN1_BASE_ADDR,  // uint32_t base; // base_address
+    30000000,        // uint32_t freq; // frequency CAN_CLK_ROOT aka can_PE_clock
+    IMX_INT_CAN1,    // uint32_t irq_id; // interrut source ID
+    // void (*irq_subroutine)(void); // IRQ subroutine
+    // void (*iomux_config) (void); // module iomux configuration fucntion
 };
 
 static struct hw_module can2_port = {
-    "CAN2",
-    CAN2_BASE_ADDR,
-    30000000,
-    IMX_INT_CAN2,
-    &can2_rx_handler,
+    "CAN2",           // int8_t* name; // name
+    CAN2_BASE_ADDR,   // uint32_t base; // base_address
+    30000000,         // uint32_t freq; // frequency CAN_CLK_ROOT aka can_PE_clock
+    IMX_INT_CAN2,     // uint32_t irq_id; // interrut source ID
+    &can2_rx_handler, // void (*irq_subroutine)(void); // IRQ subroutine
+    // void (*iomux_config) (void); // module iomux configuration fucntion
 };
 
 uint32_t can_test_count;
@@ -35,6 +38,12 @@ uint32_t can_test_count;
 void flexcan_test(void)
 {
     int i;
+    //struct imx_flexcan can1, can2;    
+
+    //can_set_can_attributes(&can1, KBPS_500, &can1_port);
+    //can_set_can_attributes(&can2, KBPS_500, &can2_port);
+    //can_update_bitrate(&can1);
+    //can_update_bitrate(&can2);
 
     printf("\n---- Running CAN1/2 loopback test ----\n");
     can_test_count = 0;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -8,7 +8,7 @@
 #ifndef __CAN_H__
 #define __CAN_H__
 
-#include "io.h"
+#include "hardware.h"
 
 /* CAN driver general defines */
 #define CAN_NUMBER_OF_BUFFERS 64    // Define the number of MB
@@ -321,6 +321,35 @@ struct can_gfw {
     volatile uint32_t gfwr;     // 09e0
 };
 
+/* CAN timing related structures */
+struct time_segment {
+	uint32_t propseg;
+	uint32_t pseg1;
+	uint32_t pseg2;
+};
+
+enum can_bitrate {
+      MBPS_1,
+      KBPS_800,
+      KBPS_500,
+      KBPS_250,
+      KBPS_125,
+      KBPS_62,  //62.5kps
+      KBPS_20,
+      KBPS_10
+};
+
+/* CAN structure with attributes */
+struct imx_flexcan {
+    struct hw_module *port;
+    volatile struct mx_can_control *can_ctl;
+    
+    // attributes
+    uint32_t presdiv;
+    enum can_bitrate bitrate;  //default 500kbps
+    struct time_segment ts;
+};
+
 /* CAN driver list of functions */
 void can_sw_reset(struct hw_module *port);
 void can_init(struct hw_module *port, uint32_t max_mb);
@@ -331,5 +360,8 @@ void can_enable_mb_interrupt(struct hw_module *port, uint32_t mbID);
 void can_disable_mb_interrupt(struct hw_module *port, uint32_t mbID);
 void can_exit_freeze(struct hw_module *port);
 void can_freeze(struct hw_module *port);
+
+void can_update_bitrate(struct imx_flexcan *can_module);
+void can_set_can_attributes(struct imx_flexcan *can_module, uint32_t bitrate, struct hw_module *hw_port);
 
 #endif //__CAN_H__

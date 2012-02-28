@@ -65,3 +65,4 @@ workspace
 ~*
 
 diag-sdk_coding_violations.*
+Doxyfile

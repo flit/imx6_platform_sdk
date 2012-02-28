@@ -6,6 +6,7 @@
 */
 
 #include "hardware.h"
+#include "regsccm.h"
 
 /* In i.MX61, PLLs don't need to be configured. Default values cover most use cases. */
 void prog_pll(void)
@@ -461,19 +462,24 @@ void ccm_set_lpm_wakeup_source(uint32_t irq_id, uint32_t state)
  * Prepare and enter in a low power mode.
  * @param   lp_mode - low power mode : WAIT_MODE or STOP_MODE.
  */
-void ccm_enter_low_power(uint32_t lp_mode)
+void ccm_enter_low_power(enum lp_modes lp_mode)
 {
     uint32_t ccm_clpcr = 0;
 
     /* if MMDC channel 1 is not used, the handshake must be masked */
     /* enable the well-biased mode - set disable core clock in wait - set
        disable oscillator in stop */
-    ccm_clpcr = BYPASS_MMDC_CH1_HS | CORE_WB | SBYOS | ARM_CLK_DIS | lp_mode;
+    ccm_clpcr = BM_CCM_CLPCR_BYPASS_MMDC_CH1_LPM_HS |
+                BM_CCM_CLPCR_WB_CORE_AT_LPM |
+                BM_CCM_CLPCR_SBYOS |
+                BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM |
+                lp_mode;
+
     if(lp_mode == STOP_MODE)
         /* enable peripherals well-biased */
-        ccm_clpcr |= PER_WB;
+        ccm_clpcr |= BM_CCM_CLPCR_WB_PER_AT_LPM;
 
-    writel(ccm_clpcr , CCM_BASE_ADDR + CCM_CLPCR_OFFSET);
+    HW_CCM_CLPCR_WR(ccm_clpcr);
 
     __asm(
            /* data synchronization barrier (caches, TLB maintenance, ...) */

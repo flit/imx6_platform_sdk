@@ -189,14 +189,11 @@
 #define usdhc1_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,11) + 1)
 #define uart_clk_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),6,0) + 1)
 
-/* defines for low power modes - CCM_CLPCR */
-#define BYPASS_MMDC_CH1_HS  (1 << 21)
-#define CORE_WB     (1 << 17)
-#define PER_WB      (1 << 16)
-#define SBYOS       (1 << 6)
-#define ARM_CLK_DIS (1 << 5)
-#define WAIT_MODE   0x1
-#define STOP_MODE   0x2
+enum lp_modes {
+    RUN_MODE,
+    WAIT_MODE,
+    STOP_MODE,
+};
 
 enum main_clocks {
     CPU_CLK,
@@ -243,7 +240,7 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode);
 uint32_t get_main_clock(enum main_clocks clk);
 uint32_t get_peri_clock(enum peri_clocks clk);
 void ccm_init(void);
-void ccm_enter_low_power(uint32_t lp_mode);
+void ccm_enter_low_power(enum lp_modes);
 void ccm_set_lpm_wakeup_source(uint32_t irq_id, uint32_t state);
 
 #endif

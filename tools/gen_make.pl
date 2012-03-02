@@ -28,10 +28,12 @@ MODULE_A_DEFINES 	:=
 
 S_SRCS := \$(wildcard *.S)
 C_SRCS := \$(wildcard *.c)
+CPP_SRCS := \$(wildcard *.cpp)
 C_OBJS := \$(patsubst %c,%o,\$(C_SRCS))
+CPP_OBJS := \$(patsubst %cpp,%o,\$(CPP_SRCS))
 S_OBJS := \$(patsubst %S,%o,\$(S_SRCS))
 A_OBJS :=
-MODULE_OBJS := \$(A_OBJS) \$(C_OBJS) \$(S_OBJS)
+MODULE_OBJS := \$(A_OBJS) \$(C_OBJS) \$(CPP_OBJS) \$(S_OBJS)
 MODULE_OBJS := \$(addprefix \$(MODULE_OUT)/, \$(MODULE_OBJS))
 
 SUB_DIRS := -=SUB_DIRS=-

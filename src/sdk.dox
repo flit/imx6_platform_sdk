@@ -1,0 +1,57 @@
+/*!
+
+@mainpage
+
+The Platform SDK is a comprehensive set of reference drivers for the modules and
+peripherals present on the i.MX6 Series SoCs.
+
+
+
+ */
+
+
+// Define doxygen modules.
+/*!
+
+@defgroup diag_util Utilities
+
+@defgroup diag_timer Timer
+
+@defgroup diag_keypad Keypad Port
+
+@defgroup diag_init Base SDK
+
+@defgroup diag_ipu IPU
+
+@defgroup diag_hdmi HDMI
+
+@defgroup diag_uart UART
+
+@defgroup diag_ioexpander IO Expander
+
+@defgroup diag_nand NAND
+
+@defgroup bch BCH40 ECC
+
+@defgroup diag_usb USB
+
+@defgroup diag_audio Audio
+
+@defgroup VPU VPU
+
+@defgroup diag_camera Camera Interface
+
+@defgroup diag_mipi MIPI DSI/CSI
+
+@defgroup diag-ocotp OTP
+
+@defgroup diag_i2c I2C
+
+@defgroup diag_ldb LDB
+
+@defgroup diag_enet Ethernet
+
+
+
+ */
+

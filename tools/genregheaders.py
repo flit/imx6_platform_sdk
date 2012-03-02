@@ -28,7 +28,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import sys, os, string, argparse, re, textwrap, datetime, codecs
+import sys, os, string, argparse, re, textwrap, datetime, codecs, types
 from xml.etree import ElementTree
 from UserDict import UserDict
 
@@ -49,10 +49,36 @@ from UserDict import UserDict
 # - Add --enable=x (?) and --disable=x command line options that take a list of sections to include
 #   or exclude in the output. For instance, to disable the module struct or read/write macros.
 # - Use the relative paths in the sidsc-design file to find the input XML files, so most headers
-#   for an entire design can be generated in one command.
+#   for an entire design can be generated in one command. (?)
 # - Use the log package for error output and honour the --quiet command.
+# - Write a real template language with looping and conditionals. (?)
+# - Add check for dimension addressIncrement less than register size in bytes.
+# - Consider adding defs in header to access multi-instance registers with an index parameter to
+#   the macro, just like registers of a multi-instance component are accessed.
 #
 # @par Version history:
+#
+# 1.0b7:
+# - Handle all namePattern types instead of assuming the end. This fixes a number of register names.
+# - Add check for unitQualifier elements not equal to dimensionValue.
+# - Coalesce adjacent reserved bitfields.
+#
+# 1.0b6:
+# - Added BG_ macros.
+# - Single-bit bitfield bit ranges in the comment above the bitfield macros will now appear like
+#   [12] instead of [12:12].
+# - Corrected BW_ macros for multi-instance components.
+# - Using more efficient BW_ macros for registers without true SCT variants.
+# - Fixed name of real _SET macro. Was hardcoded to HW_GPMI_CTRL0_SET().
+# - Added names for unions and structs.
+# - '\' characters are stripped from comment text so they can't end up at the end of a line in
+#   the output header file.
+# - Identifying names that match some of the more common standard C library definitions, like
+#   "NULL", and appending an underscore to prevent compiler errors.
+# - Add an option to set the chip name and output it in the headers.
+# - Prefixing the comment on bitfields in a register string with the bitfield bit range.
+# - The module struct is wrapped with #pragma pack(1).
+# - Putting the reset value in the register comments.
 #
 # 1.0b5:
 # - Putting BP_ and BM_ macros in parentheses.
@@ -87,11 +113,16 @@ from UserDict import UserDict
 #
 
 # Tool version number and copyright string.
-kToolVersion = "1.0b5"
+kToolVersion = "1.0b7"
 kToolCopyright = "Copyright (c) 2012 Freescale Semiconductor, Inc. All rights reserved."
 
-# Possible access modes for registers and bitfields. This list is just for reference.
+## Possible access modes for registers and bitfields. This list is just for reference.
 kAccessModes = ['R', 'W', 'RW', 'RO', 'WO', 'WORZ', 'ROZ', 'RORZ', 'ROO', 'RU', 'W1C', 'RC1']
+
+## Standard C library names.
+#
+# There are a ton more standard C macros, but most aren't likely to cause a conflict.
+kStandardLibNames = [ 'NULL', 'SIZE_MAX' ]
 
 ##
 # @brief Returns true if the access mode allows for reading.
@@ -110,7 +141,7 @@ def isAccessModeWriteable(mode):
 def cleanWhitespace(text):
     if text is None:
         return ''
-    return ' '.join(re.split('[ \t\n]+', text.strip()))
+    return ' '.join(re.split('[ \t\n]+', text.strip().replace('\\', '')))
 
 ##
 # @brief Turns an Element tree into a string.
@@ -278,6 +309,26 @@ def isReservedName(ident):
         return False
 
 ##
+# @brief Apply a pattern to a base name.
+# @param baseName The base string to which the qualifiers are applied to generate the output list.
+# @param qualifiers A list of strings to apply to the base name using the pattern.
+# @param pattern Either the string "end", an integer as a string, or an integer value. The pattern
+#   should already have whitespace cleaned and be stripped, but it doesn't have to be converted
+#   to lowercase.
+# @return A list of strings.
+def applyNamePattern(baseName, qualifiers, pattern):
+    # Get the position to insert the qualifier string in the base name.
+    if type(pattern) == types.StringType:
+        if pattern.lower() == "end":
+            insertPos = len(baseName)
+        else:
+            insertPos = int(pattern)
+    else:
+        insertPos = pattern
+    
+    return [(baseName[:insertPos] + q + baseName[insertPos:]) for q in qualifiers]
+
+##
 # @brief Exception thrown to indicate a mismatched product.
 class ExcludedByFilterException(Exception):
     pass
@@ -297,7 +348,8 @@ class Component:
         # Get address of first instance.
         self.baseAddress = self.memoryMap.getBaseAddress(self.designName, 0)
         
-        self.structName = "hw_%s_t" % (self.name.lower())
+        self.structName = "_hw_%s" % (self.name.lower())
+        self.typedefName = "hw_%s_t" % (self.name.lower())
     
     def addRegister(self, reg):
         # Check for a pre-existing register with the same name.
@@ -310,9 +362,13 @@ class Component:
             print >> sys.stderr, "Warning: register %s of %s has the same offset as another register!" % (reg.name, self.name)
             return
         
-        # Add the new register.
+        # Add the new register and sort the list.
         self.registers.append(reg)
+        self.sortRegisters()
         
+    ##
+    # @brief Sort registers by ascending address offset.
+    def sortRegisters(self):
         # Sort registers by address.
         self.registers.sort(key=lambda reg:reg.addressOffset)
     
@@ -333,6 +389,10 @@ class Component:
 ##
 # @brief Register definition.
 class Register:
+    ## Dict to convert byte count to standard C type.
+    kBitFieldTypes = { 1:"unsigned char", 2:"unsigned short", 4:"unsigned" }
+    ## Dict to convert byte count to regX_t type.
+    kRegTypes = { 1:'reg8_t', 2:'reg16_t', 4:'reg32_t' }
     
     ##
     # @brief Factory for registers.
@@ -356,7 +416,8 @@ class Register:
         # produce a single register.
         registersList = []
         registerCount = 1
-        registerSuffixes = ['']
+        registerQualifiers = ['']
+        namePattern = "end"
         offsetIncrement = 0
         dims = props.find('dimension')
         if dims is not None:
@@ -364,28 +425,32 @@ class Register:
             if dimValue is not None and dimValue.text is not None:
                 registerCount = int(getElementText(dimValue, default='1'))
                 offsetIncrement = int(getElementText(dims, 'dimensionIncrement', default='0'))
-                registerSuffixes = getElementText(dims, 'unitQualifier').split(',')
+                registerQualifiers = [cleanWhitespace(s) for s in getElementText(dims, 'unitQualifier').split(',')]
+                namePattern = getElementText(dims, 'namePattern')
+        
+        # Verify there are the same number if qualifiers and the dimension value.
+        if registerCount != len(registerQualifiers):
+            print >> sys.stderr, "Warning: register %s of %s qualifier count not equal to dimensionValue!" % (name, component.name)
+            
+            # Adjust count so we don't get an error.
+            registerCount = min(registerCount, len(registerQualifiers))
         
         # Handle SCT qualifiers specially, so we don't create a Register instance for each
         # of the SCT variants.
-        hasSct = ('_SET' in registerSuffixes) and ('_CLR' in registerSuffixes) and ('_TOG' in registerSuffixes)
+        hasSct = ('_SET' in registerQualifiers) and ('_CLR' in registerQualifiers) and ('_TOG' in registerQualifiers)
+
+        # Determine the list of register names.
         if hasSct:
-            registerCount = 1
+            names = [name]
+        else:
+            # Generate the list of register names by applying name modifiers.
+            names = applyNamePattern(name, registerQualifiers, namePattern)
         
         # Create the new registers.
         offsetDelta = 0
-        for suffixIndex in range(registerCount):
-            # Get the suffix for this register.
-            suffix = cleanWhitespace(registerSuffixes[suffixIndex])
-            
-            # Append suffix to names.
-            thisName = name + suffix
-            thisFullName = fullName
-            if len(suffix) > 0: # Just make sure we don't get an extra space on the end.
-                thisFullName += ' ' + suffix
-            
+        for thisName in names:
             # Create the register instance and add it to the list.
-            newRegister = Register(thisName, thisFullName, description, offsetDelta, component, props, hasSct, filterAttribs)
+            newRegister = Register(thisName, fullName, description, offsetDelta, component, props, hasSct, filterAttribs)
             newRegister.buildBitfields(elem, filterAttribs)
             registersList.append(newRegister)
             
@@ -402,6 +467,7 @@ class Register:
     # @param offsetDelta
     # @param component
     # @param props
+    # @param hasSct
     # @param filterAttribs
     def __init__(self, name, fullName, desc, offsetDelta, component, props, hasSct, filterAttribs):
         self.memoryMap = component.memoryMap
@@ -412,7 +478,8 @@ class Register:
         self.description = desc
         
         self.formattedName = "%s_%s" % (self.component.name, self.name)
-        self.structName = "hw_%s_t" % (self.formattedName.lower())
+        self.typedefName = "hw_%s_t" % (self.formattedName.lower())
+        self.unionName = "_hw_%s" % (self.formattedName.lower())
         
         # Extract register details.
         self.addressOffset = convertHexValue(getElementText(props, 'addressOffset')) + offsetDelta
@@ -427,14 +494,13 @@ class Register:
         self.hasSct = hasSct
         self.bitFields = []
         
-        if self.sizeInBits == 32:
-            self.bitFieldType = "unsigned"
-        elif self.sizeInBits == 16:
-            self.bitFieldType = "unsigned short"
-        elif self.sizeInBits == 8:
-            self.bitFieldType = "unsigned char"
-        else:
+        # Validate register size.
+        if self.sizeInBits not in [8, 16, 32]:
             raise Exception("invalid register size: " + str(self.sizeInBits))
+        
+        # Get bitfield and regX-t type.
+        self.bitFieldType = Register.kBitFieldTypes[self.sizeInBytes]
+        self.regType = Register.kRegTypes[self.sizeInBytes]
     
     ##
     # @brief Create the BitField objects from the register XML node.
@@ -461,7 +527,10 @@ class Register:
         self._createMissingBitFields()
         
         # Now sort the bitfields by bit number.
-        self.bitFields.sort(key=lambda field:field.offset)
+        self.sortBitFields()
+        
+        # Coalesce reserved bitfields.
+        self._coalesceReservedBitFields()
         
         # Finally, verify that there are not more bitfield bits than register bits.
         bits = 0
@@ -488,6 +557,44 @@ class Register:
             self.bitFields.append(ReservedBitField(self, holeWidth, i))
             
             i += holeWidth
+    
+    ##
+    # @brief Reserved bitfields next to each other are merged.
+    def _coalesceReservedBitFields(self):
+        # This while loop is used to allow for multiple passes over the bitfield list.
+        doAnotherPass = True
+        while doAnotherPass:
+            i = 0
+            doAnotherPass = False
+            for i in range(len(self.bitFields) - 1):
+                # Get the current bitfield and the next one.
+                thisField = self.bitFields[i]
+                nextField = self.bitFields[i + 1]
+                
+                # Merge the two bitfields if they are both reserved.
+                if thisField.isReserved and nextField.isReserved:
+                    # Create the merged reserved bitfield.
+                    width = thisField.width + nextField.width
+                    offset = thisField.offset
+                    replacementBitField = ReservedBitField(self, width, offset)
+                    
+                    # Remove the current list entries.
+                    del self.bitFields[i + 1]
+                    del self.bitFields[i]
+                    
+                    # Add the replacement and re-sort.
+                    self.bitFields.append(replacementBitField)
+                    self.sortBitFields()
+                    
+                    # Say we need another pass over the bitfields and exit the for loop. However,
+                    # we don't need another pass if we are already at the end of the list.
+                    doAnotherPass = (i < len(self.bitFields) - 2)
+                    break
+    
+    ##
+    # @brief Sort bitfields in ascending bit offset order.
+    def sortBitFields(self):
+        self.bitFields.sort(key=lambda field:field.offset)
     
     def getBitFieldForBit(self, bitNumber):
         for field in self.bitFields:
@@ -542,6 +649,10 @@ class BitField:
         
         identName = formatIdentifier(self.name)
         
+        # Make sure the identifier isn't a standard C library identifier. If it is, add an underscore.
+        if identName in kStandardLibNames:
+            identName += '_'
+        
         # Try to figure out if the bitfield is reserved.
         self.isReserved = isReservedName(self.name) or isReservedName(identName)
         
@@ -575,6 +686,8 @@ class BitField:
         self.isReadable = isAccessModeReadable(self.access)
         self.isWritable = isAccessModeWriteable(self.access)
         
+        self._makeBitRangeString()
+        
         # Build mask.
         self._buildMask()
         
@@ -584,6 +697,13 @@ class BitField:
     def setName(self, newName):
         self.name = newName
         self.formattedName = "%s_%s" % (self.register.formattedName, self.name)
+        
+    def _makeBitRangeString(self):
+        # Create bitfield range string.
+        if self.width == 1:
+            self.bitRangeString = str(self.offset)
+        else:
+            self.bitRangeString = "%d:%d" % (self.offset + self.width - 1, self.offset)
     
     def _buildValuesList(self, allValueElems, filterAttribs):
         self.values = []
@@ -668,8 +788,9 @@ class ReservedBitField(BitField):
         self.isReserved = True
         self.isInternal = False
         self.formattedName = "-"
-        self.description = ""
+        self.description = "Reserved."
         
+        self._makeBitRangeString()
         self._buildMask()
 
 ##
@@ -803,10 +924,10 @@ class CHeaderTemplates:
 #include "regs.h"
 
 /*
- * Registers defined in this header file.
+ * {fileCommentHead}
  *
 {registerList} *
- * {component.structName} - Struct containing all module registers.
+ * {component.typedefName} - Struct containing all module registers.
  */
 
 //! @name Module base addresses
@@ -819,7 +940,10 @@ class CHeaderTemplates:
 
 #endif // _{component.name}_H
 """
-
+    
+    fileCommentHeadTemplate = u"{component.name} registers defined in this header file."
+    fileCommentHeadWithChipTemplate = u"{chipName} {component.name} registers defined in this header file."
+    
     baseAddressTemplate = u"#define REGS_{component.name}_BASE ({component.baseAddress:#010x}) //!< Base address for {component.name}.\n"
 
     baseAddressTemplateMulti = u"#define REGS_{component.name}{instanceNumber}_BASE ({instanceOffset:#010x}) //!< Base address for {component.name} instance number {instanceNumber}.\n"
@@ -838,15 +962,17 @@ class CHeaderTemplates:
 /*!
  * @brief HW_{reg.formattedName} - {reg.fullName} ({reg.access})
  *
+ * Reset value: {reg.resetValue:#010x}
+ *
 {regComment}
  */
-typedef union
+typedef union {reg.unionName}
 {{
     reg{reg.sizeInBits}_t U;
-    struct
+    struct {reg.unionName}_bitfields
     {{
 {bitFields}    }} B;
-}} {reg.structName};
+}} {reg.typedefName};
 #endif
 
 /*
@@ -855,7 +981,7 @@ typedef union
 #define HW_{reg.formattedName}_ADDR      (REGS_{component.name}_BASE + {reg.addressOffset:#x})
 {sctAddresses}
 #ifndef __LANGUAGE_ASM__
-#define HW_{reg.formattedName}           (*(volatile {reg.structName} *) HW_{reg.formattedName}_ADDR)
+#define HW_{reg.formattedName}           (*(volatile {reg.typedefName} *) HW_{reg.formattedName}_ADDR)
 {readMacros}{writeMacros}{sctMacros}#endif
 
 /*
@@ -868,15 +994,17 @@ typedef union
 /*!
  * @brief HW_{reg.formattedName} - {reg.fullName} ({reg.access})
  *
+ * Reset value: {reg.resetValue:#010x}
+ *
 {regComment}
  */
-typedef union
+typedef union {reg.unionName}
 {{
     reg{reg.sizeInBits}_t U;
-    struct
+    struct {reg.unionName}_bitfields
     {{
 {bitFields}    }} B;
-}} {reg.structName};
+}} {reg.typedefName};
 #endif
 
 /*
@@ -885,7 +1013,7 @@ typedef union
 #define HW_{reg.formattedName}_ADDR(x)      (REGS_{component.name}_BASE(x) + {reg.addressOffset:#x})
 {sctAddresses}
 #ifndef __LANGUAGE_ASM__
-#define HW_{reg.formattedName}(x)           (*(volatile {reg.structName} *) HW_{reg.formattedName}_ADDR(x))
+#define HW_{reg.formattedName}(x)           (*(volatile {reg.typedefName} *) HW_{reg.formattedName}_ADDR(x))
 {readMacros}{writeMacros}{sctMacros}#endif
 
 /*
@@ -917,39 +1045,66 @@ typedef union
 #define HW_{reg.formattedName}_TOG(x, v)    (HW_{reg.formattedName}_WR(x, HW_{reg.formattedName}_RD(x) ^  (v)))
 """
 
-    regRealSctTemplate = u"""#define HW_GPMI_CTRL0_SET(v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_SET_ADDR) = (v))
+    regRealSctTemplate = u"""#define HW_{reg.formattedName}_SET(v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_SET_ADDR) = (v))
 #define HW_{reg.formattedName}_CLR(v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_CLR_ADDR) = (v))
 #define HW_{reg.formattedName}_TOG(v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_TOG_ADDR) = (v))
 """
-    regRealSctTemplateMulti = u"""#define HW_GPMI_CTRL0_SET(x, v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_SET_ADDR(x)) = (v))
+    regRealSctTemplateMulti = u"""#define HW_{reg.formattedName}_SET(x, v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_SET_ADDR(x)) = (v))
 #define HW_{reg.formattedName}_CLR(x, v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_CLR_ADDR(x)) = (v))
 #define HW_{reg.formattedName}_TOG(x, v)    ((*(volatile reg32_t *) HW_{reg.formattedName}_TOG_ADDR(x)) = (v))
 """
 
-    structBitFieldTemplate = u"        {fieldType} {fieldName} : {fieldWidth}; //!< {fieldDesc}\n"
+    structBitFieldTemplate = u"        {fieldType} {fieldName} : {fieldWidth}; //!< [{fieldBitRange}] {fieldDesc}\n"
 
     bitFieldTemplate = u"""
-/* --- Register HW_{reg.formattedName}, field {field.name}[{field.topBitOffset}:{field.offset}] ({field.access})
+/* --- Register HW_{reg.formattedName}, field {field.name}[{field.bitRangeString}] ({field.access})
  *
 {fieldComment} */
 
-#define BP_{field.formattedName}      ({field.offset})
-#define BM_{field.formattedName}      ({field.mask:#010x})
+#define BP_{field.formattedName}      ({field.offset})      //!< Bit position for {field.formattedName}.
+#define BM_{field.formattedName}      ({field.mask:#010x})  //!< Bit mask for {field.formattedName}.
+
+//! @brief Get value of {field.formattedName} from a register value.
+#define BG_{field.formattedName}(r)   (((r) & BM_{field.formattedName}) >> BP_{field.formattedName})
 """
 
     bitFieldValuePrefixTemplate = u" *\n * Values:\n"
     bitFieldValueCommentTemplate = u" * {value.name} = {value.valueText} - {valueDesc}\n"
     bitFieldValueNoNameCommentTemplate = u" * {value.valueText} - {valueDesc}\n"
     
-    bitFieldWriteTemplate = u"""
+    bitFieldFormatTemplate = u"""
 #ifndef __LANGUAGE_ASM__
-#define BF_{field.formattedName}(v)   ((((reg32_t) v) << {field.offset}) & BM_{field.formattedName})
+//! @brief Format value for bitfield {field.formattedName}.
+#define BF_{field.formattedName}(v)   (((({reg.regType}) v) << BP_{field.formattedName}) & BM_{field.formattedName})
 #else
-#define BF_{field.formattedName}(v)   (((v) << {field.offset}) & BM_{field.formattedName})
+//! @brief Format value for bitfield {field.formattedName}.
+#define BF_{field.formattedName}(v)   (((v) << BP_{field.formattedName}) & BM_{field.formattedName})
 #endif
+"""
+
+    bitFieldWriteSctTemplate = u"""
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the {field.name} field to a new value.
 #define BW_{field.formattedName}(v)   BF_CS1({component.name}_{reg.name}, {field.name}, v)
+#endif
+"""
+    bitFieldWriteSctTemplateMulti = u"""
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the {field.name} field to a new value.
+#define BW_{field.formattedName}(x, v)   BFn_CS1((x), {component.name}_{reg.name}, {field.name}, v)
+#endif
+"""
+
+    bitFieldWriteNoSctTemplate = u"""
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the {field.name} field to a new value.
+#define BW_{field.formattedName}(v)   (HW_{reg.formattedName}_WR((HW_{reg.formattedName}_RD() & ~BM_{field.formattedName}) | BF_{field.formattedName}(v)))
+#endif
+"""
+    bitFieldWriteNoSctTemplateMulti = u"""
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the {field.name} field to a new value.
+#define BW_{field.formattedName}(x, v)   (HW_{reg.formattedName}_WR(x, (HW_{reg.formattedName}_RD(x) & ~BM_{field.formattedName}) | BF_{field.formattedName}(v)))
 #endif
 """
 
@@ -960,39 +1115,48 @@ typedef union
  * @brief All {component.name} module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef struct
+#pragma pack(1)
+typedef struct {component.structName}
 {{
-{structMembers}}} {component.structName};
+{structMembers}}} {component.typedefName};
+#pragma pack()
 #endif
 """
 
-    moduleStructMemberTemplate = u"    volatile {reg.structName} {reg.name}; //!< {reg.fullName}\n"
-    moduleStructSctMemberTemplate = u"    volatile {regType} {reg.name}{suffix}; //!< {reg.fullName} {sctDesc}\n"
+    moduleStructMemberTemplate = u"    volatile {reg.typedefName} {reg.name}; //!< {reg.fullName}\n"
+    moduleStructSctMemberTemplate = u"    volatile {reg.regType} {reg.name}{suffix}; //!< {reg.fullName} {sctDesc}\n"
     moduleStructPaddingTemplate = u"    {paddingType} {paddingName}{paddingBytes};\n"
 
     moduleStructRefTemplate = u"""
 //! @brief Macro to access all {component.name} registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_{component.name}(0)</code>.
-#define HW_{component.name}     (*(volatile {component.structName} *) REGS_{component.name}_BASE)
+#define HW_{component.name}     (*(volatile {component.typedefName} *) REGS_{component.name}_BASE)
 """
-
     moduleStructRefTemplateMulti = u"""
 //! @brief Macro to access all {component.name} registers.
 //! @param x {component.name} instance number.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_{component.name}(0)</code>.
-#define HW_{component.name}(x)     (*(volatile {component.structName} *) REGS_{component.name}_BASE(x))
+#define HW_{component.name}(x)     (*(volatile {component.typedefName} *) REGS_{component.name}_BASE(x))
 """
 
 ##
 # @brief Generate a header file from a component.
 class HeaderGenerator:
+    ##
+    # @brief Constructor.
     def __init__(self, component):
+        self.chipName = None
         self.component = component
         self.templates = CHeaderTemplates
         self.commentWrapper = textwrap.TextWrapper(width=100, initial_indent=" * ", subsequent_indent=" * ")
         self.bitfieldValueCommentWrapper = textwrap.TextWrapper(width=100, subsequent_indent=" *     ")
+    
+    ##
+    # @brief Specify the chip name.
+    def setChipName(self, name):
+        self.chipName = name
     
     ##
     # @brief Generate output.
@@ -1009,12 +1173,18 @@ class HeaderGenerator:
         # Get the current year.
         year = datetime.datetime.today().year
         
+        if self.chipName:
+            commentHead = self.templates.fileCommentHeadWithChipTemplate.format(component=self.component, chipName=self.chipName)
+        else:
+            commentHead = self.templates.fileCommentHeadTemplate.format(component=self.component)
+        
         formatDict = { 'component':self.component,
                         'baseAddressMacros':baseAddressMacros,
                         'registerList':registerList,
                         'registerDefinitions':regs,
                         'moduleStructDefinition':moduleStruct,
-                        'year':year}
+                        'year':year,
+                        'fileCommentHead':commentHead }
         
         s = self.templates.fileTemplate.format(**formatDict)
         
@@ -1159,7 +1329,8 @@ class HeaderGenerator:
             formatDict = { 'fieldName':fieldName,
                             'fieldWidth':f.width,
                             'fieldType':reg.bitFieldType,
-                            'fieldDesc':cleanDescription}
+                            'fieldDesc':cleanDescription,
+                            'fieldBitRange':f.bitRangeString }
             output += self.templates.structBitFieldTemplate.format(**formatDict)
         
         return output
@@ -1196,7 +1367,24 @@ class HeaderGenerator:
             
             # Now append the bitfield write macros if both the register and bitfield are RW.
             if reg.isWritable and f.isWritable:
-                output += self.templates.bitFieldWriteTemplate.format(**formatDict)
+                # Select template to generate BW_ macros.
+                if reg.hasSct:
+                    if self.component.isMultiInstance:
+                        whichWriteTemplate = self.templates.bitFieldWriteSctTemplateMulti
+                    else:
+                        whichWriteTemplate = self.templates.bitFieldWriteSctTemplate
+                else:
+                    if self.component.isMultiInstance:
+                        whichWriteTemplate = self.templates.bitFieldWriteNoSctTemplateMulti
+                    else:
+                        whichWriteTemplate = self.templates.bitFieldWriteNoSctTemplate
+                
+                # Append BF_ macros.
+                output += self.templates.bitFieldFormatTemplate.format(**formatDict)
+                
+                # Append BW_ macros only if the field is readable.
+                if f.isReadable:
+                    output += whichWriteTemplate.format(**formatDict)
             
             # Append bitfield value macros. Only add macros for values that have names.
             if len(f.values):
@@ -1250,10 +1438,8 @@ class HeaderGenerator:
             # Insert members for SCT variants of the register.
             if aReg.hasSct:
                 for suffix in ['_SET', '_CLR', '_TOG']:
-                    regTypes = { 1:'reg8_t', 2:'reg16_t', 4:'reg32_t' }
                     sctDescriptions = { '_SET':"Set", '_CLR':"Clear", '_TOG':"Toggle" }
                     sctDict = { 'reg':aReg,
-                                'regType':regTypes[aReg.sizeInBytes],
                                 'suffix':suffix,
                                 'sctDesc':sctDescriptions[suffix] }
                     members += self.templates.moduleStructSctMemberTemplate.format(**sctDict)
@@ -1368,11 +1554,15 @@ class HeaderGeneratorTool:
         memoryMap = self._buildMap(designXml)
         component = self._buildComponent(memoryMap, componentXmlFiles, forcedComponentName)
         
-        # Generate output.
+        # Generate output. It defaults to printing to stdout, but can be overidden with the
+        # --output option.
         if not self.args.quiet:
             print >> sys.stderr, "Generating header for %s..." % (component.name)
         generator = HeaderGenerator(component)
-        generator.generate()
+        if self.args.chip_name is not None:
+            generator.setChipName(self.args.chip_name)
+        outputFile = self.args.output if (self.args.output is not None) else sys.stdout
+        generator.generate(outputFile)
 
     ##
     # @brief Read the ditaval filter file.
@@ -1445,10 +1635,12 @@ class HeaderGeneratorTool:
         parser.add_argument("-q", "--quiet", action="store_true", help="Don't print informational messages.")
         parser.add_argument("-d", "--design", metavar="PATH", type=argparse.FileType('r'), help="Specify the design file with component details.")
         parser.add_argument("-f", "--filters", metavar="PATH", type=argparse.FileType('r'), help="Read filters from an XML file.")
+        parser.add_argument("--chip-name", metavar="CHIP", help="Provide the name of the device, which will appear in header commments.")
         parser.add_argument("-n", "--name", help="Override the component name.")
         parser.add_argument("--design-name", metavar="NAME", help="Set the name used to look up the base address in the design file. Defaults to the component name.")
         parser.add_argument("--base-address", metavar="ADDRESS", help="Override component base address.")
         parser.add_argument("--instance-offsets", metavar="OFFSETS", help="Specify offsets of additional instances of the component. Offsets should be separated by a comma, with no extra whitespace. There will always be one instance with an offset of 0, so passing one offset to this option will result in two instances")
+        parser.add_argument("-o", "--output", metavar="PATH", type=argparse.FileType('w'), help="Specify the output file.")
         parser.add_argument("components", nargs='*', type=argparse.FileType('r'), help="Component XML files. Must be for the same component.")
 
         return parser.parse_args()

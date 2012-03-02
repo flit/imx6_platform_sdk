@@ -11,7 +11,7 @@
 #include "regs.h"
 
 /*
- * Registers defined in this header file.
+ * i.MX6SL SDMAARM registers defined in this header file.
  *
  * - HW_SDMAARM_MC0PTR - ARM platform Channel 0 Pointer
  * - HW_SDMAARM_INTR - Channel Interrupts
@@ -39,86 +39,86 @@
  * - HW_SDMAARM_EVT_MIRROR2 - DMA Requests 2
  * - HW_SDMAARM_XTRIG_CONF1 - Cross-Trigger Events Configuration Register 1
  * - HW_SDMAARM_XTRIG_CONF2 - Cross-Trigger Events Configuration Register 2
- * - HW_SDMAARM_SDMA_CHNPRI0 - Channel Priority Registers 0
- * - HW_SDMAARM_SDMA_CHNPRI1 - Channel Priority Registers 1
- * - HW_SDMAARM_SDMA_CHNPRI2 - Channel Priority Registers 2
- * - HW_SDMAARM_SDMA_CHNPRI3 - Channel Priority Registers 3
- * - HW_SDMAARM_SDMA_CHNPRI4 - Channel Priority Registers 4
- * - HW_SDMAARM_SDMA_CHNPRI5 - Channel Priority Registers 5
- * - HW_SDMAARM_SDMA_CHNPRI6 - Channel Priority Registers 6
- * - HW_SDMAARM_SDMA_CHNPRI7 - Channel Priority Registers 7
- * - HW_SDMAARM_SDMA_CHNPRI8 - Channel Priority Registers 8
- * - HW_SDMAARM_SDMA_CHNPRI9 - Channel Priority Registers 9
- * - HW_SDMAARM_SDMA_CHNPRI10 - Channel Priority Registers 10
- * - HW_SDMAARM_SDMA_CHNPRI11 - Channel Priority Registers 11
- * - HW_SDMAARM_SDMA_CHNPRI12 - Channel Priority Registers 12
- * - HW_SDMAARM_SDMA_CHNPRI13 - Channel Priority Registers 13
- * - HW_SDMAARM_SDMA_CHNPRI14 - Channel Priority Registers 14
- * - HW_SDMAARM_SDMA_CHNPRI15 - Channel Priority Registers 15
- * - HW_SDMAARM_SDMA_CHNPRI16 - Channel Priority Registers 16
- * - HW_SDMAARM_SDMA_CHNPRI17 - Channel Priority Registers 17
- * - HW_SDMAARM_SDMA_CHNPRI18 - Channel Priority Registers 18
- * - HW_SDMAARM_SDMA_CHNPRI19 - Channel Priority Registers 19
- * - HW_SDMAARM_SDMA_CHNPRI20 - Channel Priority Registers 20
- * - HW_SDMAARM_SDMA_CHNPRI21 - Channel Priority Registers 21
- * - HW_SDMAARM_SDMA_CHNPRI22 - Channel Priority Registers 22
- * - HW_SDMAARM_SDMA_CHNPRI23 - Channel Priority Registers 23
- * - HW_SDMAARM_SDMA_CHNPRI24 - Channel Priority Registers 24
- * - HW_SDMAARM_SDMA_CHNPRI25 - Channel Priority Registers 25
- * - HW_SDMAARM_SDMA_CHNPRI26 - Channel Priority Registers 26
- * - HW_SDMAARM_SDMA_CHNPRI27 - Channel Priority Registers 27
- * - HW_SDMAARM_SDMA_CHNPRI28 - Channel Priority Registers 28
- * - HW_SDMAARM_SDMA_CHNPRI29 - Channel Priority Registers 29
- * - HW_SDMAARM_SDMA_CHNPRI30 - Channel Priority Registers 30
- * - HW_SDMAARM_SDMA_CHNPRI31 - Channel Priority Registers 31
- * - HW_SDMAARM_SDMA_CHNENBL0 - Channel Enable RAM 0
- * - HW_SDMAARM_SDMA_CHNENBL1 - Channel Enable RAM 1
- * - HW_SDMAARM_SDMA_CHNENBL2 - Channel Enable RAM 2
- * - HW_SDMAARM_SDMA_CHNENBL3 - Channel Enable RAM 3
- * - HW_SDMAARM_SDMA_CHNENBL4 - Channel Enable RAM 4
- * - HW_SDMAARM_SDMA_CHNENBL5 - Channel Enable RAM 5
- * - HW_SDMAARM_SDMA_CHNENBL6 - Channel Enable RAM 6
- * - HW_SDMAARM_SDMA_CHNENBL7 - Channel Enable RAM 7
- * - HW_SDMAARM_SDMA_CHNENBL8 - Channel Enable RAM 8
- * - HW_SDMAARM_SDMA_CHNENBL9 - Channel Enable RAM 9
- * - HW_SDMAARM_SDMA_CHNENBL10 - Channel Enable RAM 10
- * - HW_SDMAARM_SDMA_CHNENBL11 - Channel Enable RAM 11
- * - HW_SDMAARM_SDMA_CHNENBL12 - Channel Enable RAM 12
- * - HW_SDMAARM_SDMA_CHNENBL13 - Channel Enable RAM 13
- * - HW_SDMAARM_SDMA_CHNENBL14 - Channel Enable RAM 14
- * - HW_SDMAARM_SDMA_CHNENBL15 - Channel Enable RAM 15
- * - HW_SDMAARM_SDMA_CHNENBL16 - Channel Enable RAM 16
- * - HW_SDMAARM_SDMA_CHNENBL17 - Channel Enable RAM 17
- * - HW_SDMAARM_SDMA_CHNENBL18 - Channel Enable RAM 18
- * - HW_SDMAARM_SDMA_CHNENBL19 - Channel Enable RAM 19
- * - HW_SDMAARM_SDMA_CHNENBL20 - Channel Enable RAM 20
- * - HW_SDMAARM_SDMA_CHNENBL21 - Channel Enable RAM 21
- * - HW_SDMAARM_SDMA_CHNENBL22 - Channel Enable RAM 22
- * - HW_SDMAARM_SDMA_CHNENBL23 - Channel Enable RAM 23
- * - HW_SDMAARM_SDMA_CHNENBL24 - Channel Enable RAM 24
- * - HW_SDMAARM_SDMA_CHNENBL25 - Channel Enable RAM 25
- * - HW_SDMAARM_SDMA_CHNENBL26 - Channel Enable RAM 26
- * - HW_SDMAARM_SDMA_CHNENBL27 - Channel Enable RAM 27
- * - HW_SDMAARM_SDMA_CHNENBL28 - Channel Enable RAM 28
- * - HW_SDMAARM_SDMA_CHNENBL29 - Channel Enable RAM 29
- * - HW_SDMAARM_SDMA_CHNENBL30 - Channel Enable RAM 30
- * - HW_SDMAARM_SDMA_CHNENBL31 - Channel Enable RAM 31
- * - HW_SDMAARM_SDMA_CHNENBL32 - Channel Enable RAM 32
- * - HW_SDMAARM_SDMA_CHNENBL33 - Channel Enable RAM 33
- * - HW_SDMAARM_SDMA_CHNENBL34 - Channel Enable RAM 34
- * - HW_SDMAARM_SDMA_CHNENBL35 - Channel Enable RAM 35
- * - HW_SDMAARM_SDMA_CHNENBL36 - Channel Enable RAM 36
- * - HW_SDMAARM_SDMA_CHNENBL37 - Channel Enable RAM 37
- * - HW_SDMAARM_SDMA_CHNENBL38 - Channel Enable RAM 38
- * - HW_SDMAARM_SDMA_CHNENBL39 - Channel Enable RAM 39
- * - HW_SDMAARM_SDMA_CHNENBL40 - Channel Enable RAM 40
- * - HW_SDMAARM_SDMA_CHNENBL41 - Channel Enable RAM 41
- * - HW_SDMAARM_SDMA_CHNENBL42 - Channel Enable RAM 42
- * - HW_SDMAARM_SDMA_CHNENBL43 - Channel Enable RAM 43
- * - HW_SDMAARM_SDMA_CHNENBL44 - Channel Enable RAM 44
- * - HW_SDMAARM_SDMA_CHNENBL45 - Channel Enable RAM 45
- * - HW_SDMAARM_SDMA_CHNENBL46 - Channel Enable RAM 46
- * - HW_SDMAARM_SDMA_CHNENBL47 - Channel Enable RAM 47
+ * - HW_SDMAARM_SDMA_CHNPRI0 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI1 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI2 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI3 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI4 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI5 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI6 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI7 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI8 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI9 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI10 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI11 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI12 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI13 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI14 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI15 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI16 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI17 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI18 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI19 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI20 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI21 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI22 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI23 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI24 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI25 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI26 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI27 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI28 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI29 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI30 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNPRI31 - Channel Priority Registers
+ * - HW_SDMAARM_SDMA_CHNENBL0 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL1 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL2 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL3 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL4 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL5 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL6 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL7 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL8 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL9 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL10 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL11 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL12 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL13 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL14 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL15 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL16 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL17 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL18 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL19 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL20 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL21 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL22 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL23 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL24 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL25 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL26 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL27 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL28 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL29 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL30 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL31 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL32 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL33 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL34 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL35 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL36 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL37 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL38 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL39 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL40 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL41 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL42 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL43 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL44 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL45 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL46 - Channel Enable RAM
+ * - HW_SDMAARM_SDMA_CHNENBL47 - Channel Enable RAM
  *
  * hw_sdmaarm_t - Struct containing all module registers.
  */
@@ -134,14 +134,16 @@
 /*!
  * @brief HW_SDMAARM_MC0PTR - ARM platform Channel 0 Pointer (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_mc0ptr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_mc0ptr_bitfields
     {
-        unsigned MC0PTR : 32; //!< Channel 0 Pointer contains the 32-bit address, in ARM platform memory, of channel 0 control block (the boot channel). Appendix A fully describes the SDMA Application Programming Interface (API). The ARM platform has a read/write access and the SDMA has a read-only access.
+        unsigned MC0PTR : 32; //!< [31:0] Channel 0 Pointer contains the 32-bit address, in ARM platform memory, of channel 0 control block (the boot channel). Appendix A fully describes the SDMA Application Programming Interface (API). The ARM platform has a read/write access and the SDMA has a read-only access.
     } B;
 } hw_sdmaarm_mc0ptr_t;
 #endif
@@ -171,31 +173,39 @@ typedef union
  * The ARM platform has a read/write access and the SDMA has a read-only access.
  */
 
-#define BP_SDMAARM_MC0PTR_MC0PTR      (0)
-#define BM_SDMAARM_MC0PTR_MC0PTR      (0xffffffff)
+#define BP_SDMAARM_MC0PTR_MC0PTR      (0)      //!< Bit position for SDMAARM_MC0PTR_MC0PTR.
+#define BM_SDMAARM_MC0PTR_MC0PTR      (0xffffffff)  //!< Bit mask for SDMAARM_MC0PTR_MC0PTR.
+
+//! @brief Get value of SDMAARM_MC0PTR_MC0PTR from a register value.
+#define BG_SDMAARM_MC0PTR_MC0PTR(r)   (((r) & BM_SDMAARM_MC0PTR_MC0PTR) >> BP_SDMAARM_MC0PTR_MC0PTR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_MC0PTR_MC0PTR(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_MC0PTR_MC0PTR)
+//! @brief Format value for bitfield SDMAARM_MC0PTR_MC0PTR.
+#define BF_SDMAARM_MC0PTR_MC0PTR(v)   ((((reg32_t) v) << BP_SDMAARM_MC0PTR_MC0PTR) & BM_SDMAARM_MC0PTR_MC0PTR)
 #else
-#define BF_SDMAARM_MC0PTR_MC0PTR(v)   (((v) << 0) & BM_SDMAARM_MC0PTR_MC0PTR)
+//! @brief Format value for bitfield SDMAARM_MC0PTR_MC0PTR.
+#define BF_SDMAARM_MC0PTR_MC0PTR(v)   (((v) << BP_SDMAARM_MC0PTR_MC0PTR) & BM_SDMAARM_MC0PTR_MC0PTR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MC0PTR field to a new value.
-#define BW_SDMAARM_MC0PTR_MC0PTR(v)   BF_CS1(SDMAARM_MC0PTR, MC0PTR, v)
+#define BW_SDMAARM_MC0PTR_MC0PTR(v)   (HW_SDMAARM_MC0PTR_WR((HW_SDMAARM_MC0PTR_RD() & ~BM_SDMAARM_MC0PTR_MC0PTR) | BF_SDMAARM_MC0PTR_MC0PTR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_INTR - Channel Interrupts (W1C)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_intr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_intr_bitfields
     {
-        unsigned HI : 32; //!< The ARM platform Interrupts register contains the 32 HI[i] bits. If any bit is set, it will cause an interrupt to the ARM platform. This register is a "write-ones" register to the ARM platform. When the ARM platform sets a bit in this register the corresponding HI[i] bit is cleared. The interrupt service routine should clear individual channel bits when their interrupts are serviced, failure to do so will cause continuous interrupts. The SDMA is responsible for setting the HI[i] bit corresponding to the current channel when the corresponding done instruction is executed.
+        unsigned HI : 32; //!< [31:0] The ARM platform Interrupts register contains the 32 HI[i] bits. If any bit is set, it will cause an interrupt to the ARM platform. This register is a "write-ones" register to the ARM platform. When the ARM platform sets a bit in this register the corresponding HI[i] bit is cleared. The interrupt service routine should clear individual channel bits when their interrupts are serviced, failure to do so will cause continuous interrupts. The SDMA is responsible for setting the HI[i] bit corresponding to the current channel when the corresponding done instruction is executed.
     } B;
 } hw_sdmaarm_intr_t;
 #endif
@@ -229,31 +239,39 @@ typedef union
  * executed.
  */
 
-#define BP_SDMAARM_INTR_HI      (0)
-#define BM_SDMAARM_INTR_HI      (0xffffffff)
+#define BP_SDMAARM_INTR_HI      (0)      //!< Bit position for SDMAARM_INTR_HI.
+#define BM_SDMAARM_INTR_HI      (0xffffffff)  //!< Bit mask for SDMAARM_INTR_HI.
+
+//! @brief Get value of SDMAARM_INTR_HI from a register value.
+#define BG_SDMAARM_INTR_HI(r)   (((r) & BM_SDMAARM_INTR_HI) >> BP_SDMAARM_INTR_HI)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_INTR_HI(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_INTR_HI)
+//! @brief Format value for bitfield SDMAARM_INTR_HI.
+#define BF_SDMAARM_INTR_HI(v)   ((((reg32_t) v) << BP_SDMAARM_INTR_HI) & BM_SDMAARM_INTR_HI)
 #else
-#define BF_SDMAARM_INTR_HI(v)   (((v) << 0) & BM_SDMAARM_INTR_HI)
+//! @brief Format value for bitfield SDMAARM_INTR_HI.
+#define BF_SDMAARM_INTR_HI(v)   (((v) << BP_SDMAARM_INTR_HI) & BM_SDMAARM_INTR_HI)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HI field to a new value.
-#define BW_SDMAARM_INTR_HI(v)   BF_CS1(SDMAARM_INTR, HI, v)
+#define BW_SDMAARM_INTR_HI(v)   (HW_SDMAARM_INTR_WR((HW_SDMAARM_INTR_RD() & ~BM_SDMAARM_INTR_HI) | BF_SDMAARM_INTR_HI(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_STOP_STAT - Channel Stop/Channel Status (W1C)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_stop_stat
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_stop_stat_bitfields
     {
-        unsigned HE : 32; //!< This 32-bit register gives access to the ARM platform Enable bits. There is one bit for every channel. This register is a "write-ones" register to the ARM platform. When the ARM platform writes 1 in bit i of this register, it clears the HE[i] and HSTART[i] bits. Reading this register yields the current state of the HE[i] bits.
+        unsigned HE : 32; //!< [31:0] This 32-bit register gives access to the ARM platform Enable bits. There is one bit for every channel. This register is a "write-ones" register to the ARM platform. When the ARM platform writes 1 in bit i of this register, it clears the HE[i] and HSTART[i] bits. Reading this register yields the current state of the HE[i] bits.
     } B;
 } hw_sdmaarm_stop_stat_t;
 #endif
@@ -284,31 +302,39 @@ typedef union
  * yields the current state of the HE[i] bits.
  */
 
-#define BP_SDMAARM_STOP_STAT_HE      (0)
-#define BM_SDMAARM_STOP_STAT_HE      (0xffffffff)
+#define BP_SDMAARM_STOP_STAT_HE      (0)      //!< Bit position for SDMAARM_STOP_STAT_HE.
+#define BM_SDMAARM_STOP_STAT_HE      (0xffffffff)  //!< Bit mask for SDMAARM_STOP_STAT_HE.
+
+//! @brief Get value of SDMAARM_STOP_STAT_HE from a register value.
+#define BG_SDMAARM_STOP_STAT_HE(r)   (((r) & BM_SDMAARM_STOP_STAT_HE) >> BP_SDMAARM_STOP_STAT_HE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_STOP_STAT_HE(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_STOP_STAT_HE)
+//! @brief Format value for bitfield SDMAARM_STOP_STAT_HE.
+#define BF_SDMAARM_STOP_STAT_HE(v)   ((((reg32_t) v) << BP_SDMAARM_STOP_STAT_HE) & BM_SDMAARM_STOP_STAT_HE)
 #else
-#define BF_SDMAARM_STOP_STAT_HE(v)   (((v) << 0) & BM_SDMAARM_STOP_STAT_HE)
+//! @brief Format value for bitfield SDMAARM_STOP_STAT_HE.
+#define BF_SDMAARM_STOP_STAT_HE(v)   (((v) << BP_SDMAARM_STOP_STAT_HE) & BM_SDMAARM_STOP_STAT_HE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HE field to a new value.
-#define BW_SDMAARM_STOP_STAT_HE(v)   BF_CS1(SDMAARM_STOP_STAT, HE, v)
+#define BW_SDMAARM_STOP_STAT_HE(v)   (HW_SDMAARM_STOP_STAT_WR((HW_SDMAARM_STOP_STAT_RD() & ~BM_SDMAARM_STOP_STAT_HE) | BF_SDMAARM_STOP_STAT_HE(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_HSTART - Channel Start (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_hstart
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_hstart_bitfields
     {
-        unsigned HSTART : 32; //!< The HSTART/HE registers are 32 bits wide with one bit for every channel. When a bit is written to 1, it enables the corresponding channel. Two physical registers are accessed with that address (HSTART and HE), which enables the ARM platform to trigger a channel a second time before the first trigger is processed. This register is a "write-ones" register to the ARM platform. Neither HSTART[i] bit can be set while the corresponding HE[i] bit is cleared. When the ARM platform tries to set the HSTART[i] bit by writing a one (if the corresponding HE[i] bit is clear), the bit in the HSTART[i] register will remain cleared and the HE[i] bit will be set. If the corresponding HE[i] bit was already set, the HSTART[i] bit will be set. The next time the SDMA channel i attempts to clear the HE[i] bit by means of a done instruction, the bit in the HSTART[i] register will be cleared and the HE[i] bit will take the old value of the HSTART[i] bit. Reading this register yields the current state of the HSTART[i] bits. This mechanism enables the ARM platform to pipeline two HSTART commands per channel.
+        unsigned HSTART : 32; //!< [31:0] The HSTART/HE registers are 32 bits wide with one bit for every channel. When a bit is written to 1, it enables the corresponding channel. Two physical registers are accessed with that address (HSTART and HE), which enables the ARM platform to trigger a channel a second time before the first trigger is processed. This register is a "write-ones" register to the ARM platform. Neither HSTART[i] bit can be set while the corresponding HE[i] bit is cleared. When the ARM platform tries to set the HSTART[i] bit by writing a one (if the corresponding HE[i] bit is clear), the bit in the HSTART[i] register will remain cleared and the HE[i] bit will be set. If the corresponding HE[i] bit was already set, the HSTART[i] bit will be set. The next time the SDMA channel i attempts to clear the HE[i] bit by means of a done instruction, the bit in the HSTART[i] register will be cleared and the HE[i] bit will take the old value of the HSTART[i] bit. Reading this register yields the current state of the HSTART[i] bits. This mechanism enables the ARM platform to pipeline two HSTART commands per channel.
     } B;
 } hw_sdmaarm_hstart_t;
 #endif
@@ -347,31 +373,39 @@ typedef union
  * the ARM platform to pipeline two HSTART commands per channel.
  */
 
-#define BP_SDMAARM_HSTART_HSTART      (0)
-#define BM_SDMAARM_HSTART_HSTART      (0xffffffff)
+#define BP_SDMAARM_HSTART_HSTART      (0)      //!< Bit position for SDMAARM_HSTART_HSTART.
+#define BM_SDMAARM_HSTART_HSTART      (0xffffffff)  //!< Bit mask for SDMAARM_HSTART_HSTART.
+
+//! @brief Get value of SDMAARM_HSTART_HSTART from a register value.
+#define BG_SDMAARM_HSTART_HSTART(r)   (((r) & BM_SDMAARM_HSTART_HSTART) >> BP_SDMAARM_HSTART_HSTART)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_HSTART_HSTART(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_HSTART_HSTART)
+//! @brief Format value for bitfield SDMAARM_HSTART_HSTART.
+#define BF_SDMAARM_HSTART_HSTART(v)   ((((reg32_t) v) << BP_SDMAARM_HSTART_HSTART) & BM_SDMAARM_HSTART_HSTART)
 #else
-#define BF_SDMAARM_HSTART_HSTART(v)   (((v) << 0) & BM_SDMAARM_HSTART_HSTART)
+//! @brief Format value for bitfield SDMAARM_HSTART_HSTART.
+#define BF_SDMAARM_HSTART_HSTART(v)   (((v) << BP_SDMAARM_HSTART_HSTART) & BM_SDMAARM_HSTART_HSTART)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSTART field to a new value.
-#define BW_SDMAARM_HSTART_HSTART(v)   BF_CS1(SDMAARM_HSTART, HSTART, v)
+#define BW_SDMAARM_HSTART_HSTART(v)   (HW_SDMAARM_HSTART_WR((HW_SDMAARM_HSTART_RD() & ~BM_SDMAARM_HSTART_HSTART) | BF_SDMAARM_HSTART_HSTART(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_EVTOVR - Channel Event Override (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_evtovr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_evtovr_bitfields
     {
-        unsigned EO : 32; //!< The Channel Event Override register contains the 32 EO[i] bits. A bit set in this register causes the SDMA to ignore DMA requests when scheduling the corresponding channel.
+        unsigned EO : 32; //!< [31:0] The Channel Event Override register contains the 32 EO[i] bits. A bit set in this register causes the SDMA to ignore DMA requests when scheduling the corresponding channel.
     } B;
 } hw_sdmaarm_evtovr_t;
 #endif
@@ -400,31 +434,39 @@ typedef union
  * the SDMA to ignore DMA requests when scheduling the corresponding channel.
  */
 
-#define BP_SDMAARM_EVTOVR_EO      (0)
-#define BM_SDMAARM_EVTOVR_EO      (0xffffffff)
+#define BP_SDMAARM_EVTOVR_EO      (0)      //!< Bit position for SDMAARM_EVTOVR_EO.
+#define BM_SDMAARM_EVTOVR_EO      (0xffffffff)  //!< Bit mask for SDMAARM_EVTOVR_EO.
+
+//! @brief Get value of SDMAARM_EVTOVR_EO from a register value.
+#define BG_SDMAARM_EVTOVR_EO(r)   (((r) & BM_SDMAARM_EVTOVR_EO) >> BP_SDMAARM_EVTOVR_EO)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_EVTOVR_EO(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_EVTOVR_EO)
+//! @brief Format value for bitfield SDMAARM_EVTOVR_EO.
+#define BF_SDMAARM_EVTOVR_EO(v)   ((((reg32_t) v) << BP_SDMAARM_EVTOVR_EO) & BM_SDMAARM_EVTOVR_EO)
 #else
-#define BF_SDMAARM_EVTOVR_EO(v)   (((v) << 0) & BM_SDMAARM_EVTOVR_EO)
+//! @brief Format value for bitfield SDMAARM_EVTOVR_EO.
+#define BF_SDMAARM_EVTOVR_EO(v)   (((v) << BP_SDMAARM_EVTOVR_EO) & BM_SDMAARM_EVTOVR_EO)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EO field to a new value.
-#define BW_SDMAARM_EVTOVR_EO(v)   BF_CS1(SDMAARM_EVTOVR, EO, v)
+#define BW_SDMAARM_EVTOVR_EO(v)   (HW_SDMAARM_EVTOVR_WR((HW_SDMAARM_EVTOVR_RD() & ~BM_SDMAARM_EVTOVR_EO) | BF_SDMAARM_EVTOVR_EO(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_DSPOVR - Channel BP Override (RW)
  *
+ * Reset value: 0xffffffff
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_dspovr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_dspovr_bitfields
     {
-        unsigned DO : 32; //!< The Channel BP Override register contains the 32 DO[i] bits. A bit set in this register causes the SDMA to ignore a BP enable condition when scheduling the corresponding channel. By default, all DO[i] bits are set to 1, which means that register can be ignored when the BP connections are not used. This register is reserved. All DO bits should be set to the reset value of 1. A setting of 0 will prevent SDMA channels from starting according to the condition described in .
+        unsigned DO : 32; //!< [31:0] The Channel BP Override register contains the 32 DO[i] bits. A bit set in this register causes the SDMA to ignore a BP enable condition when scheduling the corresponding channel. By default, all DO[i] bits are set to 1, which means that register can be ignored when the BP connections are not used. This register is reserved. All DO bits should be set to the reset value of 1. A setting of 0 will prevent SDMA channels from starting according to the condition described in .
     } B;
 } hw_sdmaarm_dspovr_t;
 #endif
@@ -460,17 +502,23 @@ typedef union
  * 1 - - Reset value.
  */
 
-#define BP_SDMAARM_DSPOVR_DO      (0)
-#define BM_SDMAARM_DSPOVR_DO      (0xffffffff)
+#define BP_SDMAARM_DSPOVR_DO      (0)      //!< Bit position for SDMAARM_DSPOVR_DO.
+#define BM_SDMAARM_DSPOVR_DO      (0xffffffff)  //!< Bit mask for SDMAARM_DSPOVR_DO.
+
+//! @brief Get value of SDMAARM_DSPOVR_DO from a register value.
+#define BG_SDMAARM_DSPOVR_DO(r)   (((r) & BM_SDMAARM_DSPOVR_DO) >> BP_SDMAARM_DSPOVR_DO)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_DSPOVR_DO(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_DSPOVR_DO)
+//! @brief Format value for bitfield SDMAARM_DSPOVR_DO.
+#define BF_SDMAARM_DSPOVR_DO(v)   ((((reg32_t) v) << BP_SDMAARM_DSPOVR_DO) & BM_SDMAARM_DSPOVR_DO)
 #else
-#define BF_SDMAARM_DSPOVR_DO(v)   (((v) << 0) & BM_SDMAARM_DSPOVR_DO)
+//! @brief Format value for bitfield SDMAARM_DSPOVR_DO.
+#define BF_SDMAARM_DSPOVR_DO(v)   (((v) << BP_SDMAARM_DSPOVR_DO) & BM_SDMAARM_DSPOVR_DO)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DO field to a new value.
-#define BW_SDMAARM_DSPOVR_DO(v)   BF_CS1(SDMAARM_DSPOVR, DO, v)
+#define BW_SDMAARM_DSPOVR_DO(v)   (HW_SDMAARM_DSPOVR_WR((HW_SDMAARM_DSPOVR_RD() & ~BM_SDMAARM_DSPOVR_DO) | BF_SDMAARM_DSPOVR_DO(v)))
 #endif
 
 
@@ -478,14 +526,16 @@ typedef union
 /*!
  * @brief HW_SDMAARM_HOSTOVR - Channel ARM platform Override (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_hostovr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_hostovr_bitfields
     {
-        unsigned HO : 32; //!< The Channel ARM platform Override register contains the 32 HO[i] bits. A bit set in this register causes the SDMA to ignore the ARM platform enable bit (HE) when scheduling the corresponding channel.
+        unsigned HO : 32; //!< [31:0] The Channel ARM platform Override register contains the 32 HO[i] bits. A bit set in this register causes the SDMA to ignore the ARM platform enable bit (HE) when scheduling the corresponding channel.
     } B;
 } hw_sdmaarm_hostovr_t;
 #endif
@@ -515,31 +565,39 @@ typedef union
  * channel.
  */
 
-#define BP_SDMAARM_HOSTOVR_HO      (0)
-#define BM_SDMAARM_HOSTOVR_HO      (0xffffffff)
+#define BP_SDMAARM_HOSTOVR_HO      (0)      //!< Bit position for SDMAARM_HOSTOVR_HO.
+#define BM_SDMAARM_HOSTOVR_HO      (0xffffffff)  //!< Bit mask for SDMAARM_HOSTOVR_HO.
+
+//! @brief Get value of SDMAARM_HOSTOVR_HO from a register value.
+#define BG_SDMAARM_HOSTOVR_HO(r)   (((r) & BM_SDMAARM_HOSTOVR_HO) >> BP_SDMAARM_HOSTOVR_HO)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_HOSTOVR_HO(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_HOSTOVR_HO)
+//! @brief Format value for bitfield SDMAARM_HOSTOVR_HO.
+#define BF_SDMAARM_HOSTOVR_HO(v)   ((((reg32_t) v) << BP_SDMAARM_HOSTOVR_HO) & BM_SDMAARM_HOSTOVR_HO)
 #else
-#define BF_SDMAARM_HOSTOVR_HO(v)   (((v) << 0) & BM_SDMAARM_HOSTOVR_HO)
+//! @brief Format value for bitfield SDMAARM_HOSTOVR_HO.
+#define BF_SDMAARM_HOSTOVR_HO(v)   (((v) << BP_SDMAARM_HOSTOVR_HO) & BM_SDMAARM_HOSTOVR_HO)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HO field to a new value.
-#define BW_SDMAARM_HOSTOVR_HO(v)   BF_CS1(SDMAARM_HOSTOVR, HO, v)
+#define BW_SDMAARM_HOSTOVR_HO(v)   (HW_SDMAARM_HOSTOVR_WR((HW_SDMAARM_HOSTOVR_RD() & ~BM_SDMAARM_HOSTOVR_HO) | BF_SDMAARM_HOSTOVR_HO(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_EVTPEND - Channel Event Pending (W1C)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_evtpend
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_evtpend_bitfields
     {
-        unsigned EP : 32; //!< The Channel Event Pending register contains the 32 EP[i] bits. Reading this register enables the ARM platform to determine what channels are pending after the reception of a DMA request. Setting a bit in this register causes the SDMA to reevaluate scheduling as if a DMA request mapped on this channel had occurred. This is useful for starting up channels, so that initialization is done before awaiting the first request. The scheduler can also set bits in the EVTPEND register according to the received DMA requests. The EP[i] bit may be cleared by the done instruction when running the channel i script. This a "write-ones" mechanism: Writing a '0' does not clear the corresponding bit.
+        unsigned EP : 32; //!< [31:0] The Channel Event Pending register contains the 32 EP[i] bits. Reading this register enables the ARM platform to determine what channels are pending after the reception of a DMA request. Setting a bit in this register causes the SDMA to reevaluate scheduling as if a DMA request mapped on this channel had occurred. This is useful for starting up channels, so that initialization is done before awaiting the first request. The scheduler can also set bits in the EVTPEND register according to the received DMA requests. The EP[i] bit may be cleared by the done instruction when running the channel i script. This a "write-ones" mechanism: Writing a '0' does not clear the corresponding bit.
     } B;
 } hw_sdmaarm_evtpend_t;
 #endif
@@ -574,33 +632,41 @@ typedef union
  * corresponding bit.
  */
 
-#define BP_SDMAARM_EVTPEND_EP      (0)
-#define BM_SDMAARM_EVTPEND_EP      (0xffffffff)
+#define BP_SDMAARM_EVTPEND_EP      (0)      //!< Bit position for SDMAARM_EVTPEND_EP.
+#define BM_SDMAARM_EVTPEND_EP      (0xffffffff)  //!< Bit mask for SDMAARM_EVTPEND_EP.
+
+//! @brief Get value of SDMAARM_EVTPEND_EP from a register value.
+#define BG_SDMAARM_EVTPEND_EP(r)   (((r) & BM_SDMAARM_EVTPEND_EP) >> BP_SDMAARM_EVTPEND_EP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_EVTPEND_EP(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_EVTPEND_EP)
+//! @brief Format value for bitfield SDMAARM_EVTPEND_EP.
+#define BF_SDMAARM_EVTPEND_EP(v)   ((((reg32_t) v) << BP_SDMAARM_EVTPEND_EP) & BM_SDMAARM_EVTPEND_EP)
 #else
-#define BF_SDMAARM_EVTPEND_EP(v)   (((v) << 0) & BM_SDMAARM_EVTPEND_EP)
+//! @brief Format value for bitfield SDMAARM_EVTPEND_EP.
+#define BF_SDMAARM_EVTPEND_EP(v)   (((v) << BP_SDMAARM_EVTPEND_EP) & BM_SDMAARM_EVTPEND_EP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EP field to a new value.
-#define BW_SDMAARM_EVTPEND_EP(v)   BF_CS1(SDMAARM_EVTPEND, EP, v)
+#define BW_SDMAARM_EVTPEND_EP(v)   (HW_SDMAARM_EVTPEND_WR((HW_SDMAARM_EVTPEND_RD() & ~BM_SDMAARM_EVTPEND_EP) | BF_SDMAARM_EVTPEND_EP(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_RESET - Reset Register (RO)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_reset
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_reset_bitfields
     {
-        unsigned RESET : 1; //!< When set, this bit causes the SDMA to be held in a software reset. The internal reset signal is held low 16 cycles; the RESET bit is automatically cleared when the internal reset signal rises.
-        unsigned RESCHED : 1; //!< When set, this bit forces the SDMA to reschedule as if a script had executed a done instruction. This enables the ARM platform to recover from a runaway script on a channel by clearing its HE[i] bit via the STOP register, and then forcing a reschedule via the RESCHED bit. The RESCHED bit is cleared when the context switch starts.
-        unsigned RESERVED0 : 30; //!< Reserved
+        unsigned RESET : 1; //!< [0] When set, this bit causes the SDMA to be held in a software reset. The internal reset signal is held low 16 cycles; the RESET bit is automatically cleared when the internal reset signal rises.
+        unsigned RESCHED : 1; //!< [1] When set, this bit forces the SDMA to reschedule as if a script had executed a done instruction. This enables the ARM platform to recover from a runaway script on a channel by clearing its HE[i] bit via the STOP register, and then forcing a reschedule via the RESCHED bit. The RESCHED bit is cleared when the context switch starts.
+        unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_sdmaarm_reset_t;
 #endif
@@ -619,16 +685,19 @@ typedef union
  * constants & macros for individual SDMAARM_RESET bitfields
  */
 
-/* --- Register HW_SDMAARM_RESET, field RESET[0:0] (RO)
+/* --- Register HW_SDMAARM_RESET, field RESET[0] (RO)
  *
  * When set, this bit causes the SDMA to be held in a software reset. The internal reset signal is
  * held low 16 cycles; the RESET bit is automatically cleared when the internal reset signal rises.
  */
 
-#define BP_SDMAARM_RESET_RESET      (0)
-#define BM_SDMAARM_RESET_RESET      (0x00000001)
+#define BP_SDMAARM_RESET_RESET      (0)      //!< Bit position for SDMAARM_RESET_RESET.
+#define BM_SDMAARM_RESET_RESET      (0x00000001)  //!< Bit mask for SDMAARM_RESET_RESET.
 
-/* --- Register HW_SDMAARM_RESET, field RESCHED[1:1] (RO)
+//! @brief Get value of SDMAARM_RESET_RESET from a register value.
+#define BG_SDMAARM_RESET_RESET(r)   (((r) & BM_SDMAARM_RESET_RESET) >> BP_SDMAARM_RESET_RESET)
+
+/* --- Register HW_SDMAARM_RESET, field RESCHED[1] (RO)
  *
  * When set, this bit forces the SDMA to reschedule as if a script had executed a done instruction.
  * This enables the ARM platform to recover from a runaway script on a channel by clearing its HE[i]
@@ -636,21 +705,26 @@ typedef union
  * cleared when the context switch starts.
  */
 
-#define BP_SDMAARM_RESET_RESCHED      (1)
-#define BM_SDMAARM_RESET_RESCHED      (0x00000002)
+#define BP_SDMAARM_RESET_RESCHED      (1)      //!< Bit position for SDMAARM_RESET_RESCHED.
+#define BM_SDMAARM_RESET_RESCHED      (0x00000002)  //!< Bit mask for SDMAARM_RESET_RESCHED.
+
+//! @brief Get value of SDMAARM_RESET_RESCHED from a register value.
+#define BG_SDMAARM_RESET_RESCHED(r)   (((r) & BM_SDMAARM_RESET_RESCHED) >> BP_SDMAARM_RESET_RESCHED)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_EVTERR - DMA Request Error Register (RO)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_evterr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_evterr_bitfields
     {
-        unsigned CHNERR : 32; //!< This register is used by the SDMA to warn the ARM platform when an incoming DMA request was detected and it triggers a channel that is already pending or being serviced. This probably means there is an overflow of data for that channel. An interrupt is sent to the ARM platform if the corresponding channel bit is set in the INTRMASK register. This is a "write-ones" register for the scheduler. It is only able to set the flags. The flags are cleared when the register is read by the ARM platform or during SDMA reset. The CHNERR[i] bit is set when a DMA request that triggers channel i is received through the corresponding input pins and the EP[i] bit is already set; the EVTERR[i] bit is unaffected if the ARM platform tries to set the EP[i] bit, whereas, that EP[i] bit is already set.
+        unsigned CHNERR : 32; //!< [31:0] This register is used by the SDMA to warn the ARM platform when an incoming DMA request was detected and it triggers a channel that is already pending or being serviced. This probably means there is an overflow of data for that channel. An interrupt is sent to the ARM platform if the corresponding channel bit is set in the INTRMASK register. This is a "write-ones" register for the scheduler. It is only able to set the flags. The flags are cleared when the register is read by the ARM platform or during SDMA reset. The CHNERR[i] bit is set when a DMA request that triggers channel i is received through the corresponding input pins and the EP[i] bit is already set; the EVTERR[i] bit is unaffected if the ARM platform tries to set the EP[i] bit, whereas, that EP[i] bit is already set.
     } B;
 } hw_sdmaarm_evterr_t;
 #endif
@@ -682,21 +756,26 @@ typedef union
  * that EP[i] bit is already set.
  */
 
-#define BP_SDMAARM_EVTERR_CHNERR      (0)
-#define BM_SDMAARM_EVTERR_CHNERR      (0xffffffff)
+#define BP_SDMAARM_EVTERR_CHNERR      (0)      //!< Bit position for SDMAARM_EVTERR_CHNERR.
+#define BM_SDMAARM_EVTERR_CHNERR      (0xffffffff)  //!< Bit mask for SDMAARM_EVTERR_CHNERR.
+
+//! @brief Get value of SDMAARM_EVTERR_CHNERR from a register value.
+#define BG_SDMAARM_EVTERR_CHNERR(r)   (((r) & BM_SDMAARM_EVTERR_CHNERR) >> BP_SDMAARM_EVTERR_CHNERR)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_INTRMASK - Channel ARM platform Interrupt Mask (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_intrmask
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_intrmask_bitfields
     {
-        unsigned HIMASK : 32; //!< The Interrupt Mask Register contains 32 interrupt generation mask bits. If bit HIMASK[i] is set, the HI[i] bit is set and an interrupt is sent to the ARM platform when a DMA request error is detected on channel i (for example, EVTERR[i] is set).
+        unsigned HIMASK : 32; //!< [31:0] The Interrupt Mask Register contains 32 interrupt generation mask bits. If bit HIMASK[i] is set, the HI[i] bit is set and an interrupt is sent to the ARM platform when a DMA request error is detected on channel i (for example, EVTERR[i] is set).
     } B;
 } hw_sdmaarm_intrmask_t;
 #endif
@@ -726,35 +805,43 @@ typedef union
  * detected on channel i (for example, EVTERR[i] is set).
  */
 
-#define BP_SDMAARM_INTRMASK_HIMASK      (0)
-#define BM_SDMAARM_INTRMASK_HIMASK      (0xffffffff)
+#define BP_SDMAARM_INTRMASK_HIMASK      (0)      //!< Bit position for SDMAARM_INTRMASK_HIMASK.
+#define BM_SDMAARM_INTRMASK_HIMASK      (0xffffffff)  //!< Bit mask for SDMAARM_INTRMASK_HIMASK.
+
+//! @brief Get value of SDMAARM_INTRMASK_HIMASK from a register value.
+#define BG_SDMAARM_INTRMASK_HIMASK(r)   (((r) & BM_SDMAARM_INTRMASK_HIMASK) >> BP_SDMAARM_INTRMASK_HIMASK)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_INTRMASK_HIMASK(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_INTRMASK_HIMASK)
+//! @brief Format value for bitfield SDMAARM_INTRMASK_HIMASK.
+#define BF_SDMAARM_INTRMASK_HIMASK(v)   ((((reg32_t) v) << BP_SDMAARM_INTRMASK_HIMASK) & BM_SDMAARM_INTRMASK_HIMASK)
 #else
-#define BF_SDMAARM_INTRMASK_HIMASK(v)   (((v) << 0) & BM_SDMAARM_INTRMASK_HIMASK)
+//! @brief Format value for bitfield SDMAARM_INTRMASK_HIMASK.
+#define BF_SDMAARM_INTRMASK_HIMASK(v)   (((v) << BP_SDMAARM_INTRMASK_HIMASK) & BM_SDMAARM_INTRMASK_HIMASK)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HIMASK field to a new value.
-#define BW_SDMAARM_INTRMASK_HIMASK(v)   BF_CS1(SDMAARM_INTRMASK, HIMASK, v)
+#define BW_SDMAARM_INTRMASK_HIMASK(v)   (HW_SDMAARM_INTRMASK_WR((HW_SDMAARM_INTRMASK_RD() & ~BM_SDMAARM_INTRMASK_HIMASK) | BF_SDMAARM_INTRMASK_HIMASK(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_PSW - Schedule Status (RO)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_psw
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_psw_bitfields
     {
-        unsigned CCR : 4; //!< The Current Channel Register indicates the number of the channel that is being executed by the SDMA. SDMA. In the case that the SDMA has finished running the channel and has entered sleep state, CCR will indicate the previous running channel.
-        unsigned CCP : 4; //!< The Current Channel Priority indicates the priority of the current active channel. When the priority is 0, no channel is running: The SDMA is idle and the CCR value has no meaning. In the case that the SDMA has finished running the channel and has entered sleep state, CCP will indicate the priority of previous running channel.
-        unsigned NCR : 5; //!< The Next Channel Register indicates the number of the next scheduled pending channel with the highest priority.
-        unsigned NCP : 3; //!< The Next Channel Priority gives the next pending channel priority. When the priority is 0, it means there is no pending channel and the NCR value has no meaning.
-        unsigned RESERVED0 : 16; //!< Reserved
+        unsigned CCR : 4; //!< [3:0] The Current Channel Register indicates the number of the channel that is being executed by the SDMA. SDMA. In the case that the SDMA has finished running the channel and has entered sleep state, CCR will indicate the previous running channel.
+        unsigned CCP : 4; //!< [7:4] The Current Channel Priority indicates the priority of the current active channel. When the priority is 0, no channel is running: The SDMA is idle and the CCR value has no meaning. In the case that the SDMA has finished running the channel and has entered sleep state, CCP will indicate the priority of previous running channel.
+        unsigned NCR : 5; //!< [12:8] The Next Channel Register indicates the number of the next scheduled pending channel with the highest priority.
+        unsigned NCP : 3; //!< [15:13] The Next Channel Priority gives the next pending channel priority. When the priority is 0, it means there is no pending channel and the NCR value has no meaning.
+        unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_psw_t;
 #endif
@@ -780,8 +867,11 @@ typedef union
  * state, CCR will indicate the previous running channel.
  */
 
-#define BP_SDMAARM_PSW_CCR      (0)
-#define BM_SDMAARM_PSW_CCR      (0x0000000f)
+#define BP_SDMAARM_PSW_CCR      (0)      //!< Bit position for SDMAARM_PSW_CCR.
+#define BM_SDMAARM_PSW_CCR      (0x0000000f)  //!< Bit mask for SDMAARM_PSW_CCR.
+
+//! @brief Get value of SDMAARM_PSW_CCR from a register value.
+#define BG_SDMAARM_PSW_CCR(r)   (((r) & BM_SDMAARM_PSW_CCR) >> BP_SDMAARM_PSW_CCR)
 
 /* --- Register HW_SDMAARM_PSW, field CCP[7:4] (RO)
  *
@@ -795,8 +885,11 @@ typedef union
  * 1 - Active channel priority
  */
 
-#define BP_SDMAARM_PSW_CCP      (4)
-#define BM_SDMAARM_PSW_CCP      (0x000000f0)
+#define BP_SDMAARM_PSW_CCP      (4)      //!< Bit position for SDMAARM_PSW_CCP.
+#define BM_SDMAARM_PSW_CCP      (0x000000f0)  //!< Bit mask for SDMAARM_PSW_CCP.
+
+//! @brief Get value of SDMAARM_PSW_CCP from a register value.
+#define BG_SDMAARM_PSW_CCP(r)   (((r) & BM_SDMAARM_PSW_CCP) >> BP_SDMAARM_PSW_CCP)
 
 
 /* --- Register HW_SDMAARM_PSW, field NCR[12:8] (RO)
@@ -805,8 +898,11 @@ typedef union
  * highest priority.
  */
 
-#define BP_SDMAARM_PSW_NCR      (8)
-#define BM_SDMAARM_PSW_NCR      (0x00001f00)
+#define BP_SDMAARM_PSW_NCR      (8)      //!< Bit position for SDMAARM_PSW_NCR.
+#define BM_SDMAARM_PSW_NCR      (0x00001f00)  //!< Bit mask for SDMAARM_PSW_NCR.
+
+//! @brief Get value of SDMAARM_PSW_NCR from a register value.
+#define BG_SDMAARM_PSW_NCR(r)   (((r) & BM_SDMAARM_PSW_NCR) >> BP_SDMAARM_PSW_NCR)
 
 /* --- Register HW_SDMAARM_PSW, field NCP[15:13] (RO)
  *
@@ -818,22 +914,27 @@ typedef union
  * 1 - Active channel priority
  */
 
-#define BP_SDMAARM_PSW_NCP      (13)
-#define BM_SDMAARM_PSW_NCP      (0x0000e000)
+#define BP_SDMAARM_PSW_NCP      (13)      //!< Bit position for SDMAARM_PSW_NCP.
+#define BM_SDMAARM_PSW_NCP      (0x0000e000)  //!< Bit mask for SDMAARM_PSW_NCP.
+
+//! @brief Get value of SDMAARM_PSW_NCP from a register value.
+#define BG_SDMAARM_PSW_NCP(r)   (((r) & BM_SDMAARM_PSW_NCP) >> BP_SDMAARM_PSW_NCP)
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_EVTERRDBG - DMA Request Error Register (RO)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_evterrdbg
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_evterrdbg_bitfields
     {
-        unsigned CHNERR : 32; //!< This register is the same as EVTERR, except reading it does not clear its contents. This address is meant to be used in debug mode. The ARM platform OnCE may check this register value without modifying it.
+        unsigned CHNERR : 32; //!< [31:0] This register is the same as EVTERR, except reading it does not clear its contents. This address is meant to be used in debug mode. The ARM platform OnCE may check this register value without modifying it.
     } B;
 } hw_sdmaarm_evterrdbg_t;
 #endif
@@ -859,27 +960,32 @@ typedef union
  * modifying it.
  */
 
-#define BP_SDMAARM_EVTERRDBG_CHNERR      (0)
-#define BM_SDMAARM_EVTERRDBG_CHNERR      (0xffffffff)
+#define BP_SDMAARM_EVTERRDBG_CHNERR      (0)      //!< Bit position for SDMAARM_EVTERRDBG_CHNERR.
+#define BM_SDMAARM_EVTERRDBG_CHNERR      (0xffffffff)  //!< Bit mask for SDMAARM_EVTERRDBG_CHNERR.
+
+//! @brief Get value of SDMAARM_EVTERRDBG_CHNERR from a register value.
+#define BG_SDMAARM_EVTERRDBG_CHNERR(r)   (((r) & BM_SDMAARM_EVTERRDBG_CHNERR) >> BP_SDMAARM_EVTERRDBG_CHNERR)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_CONFIG - Configuration Register (RW)
  *
+ * Reset value: 0x00000003
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_config
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_config_bitfields
     {
-        unsigned CSM : 2; //!< Selects the Context Switch Mode. The ARM platform has a read/write access. The SDMA cannot modify that register. The value at reset is 3, which selects the dynamic context switch by default. That register can be modified at anytime but the new context switch configuration will only be taken into account at the start of the next restore phase. NOTE: The first call to SDMA's channel 0 Bootload script after reset should use static context switch mode to ensure the context RAM for channel 0 is initialized in the channel SAVE Phase. After Channel 0 is run once, then any of the dynamic context modes can be used.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned ACR : 1; //!< ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio between ARM platform DMA interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the internal SDMA core clock. The frequency selection is determined separately by the chip clock controller. This bit has to match the configuration of the chip clock controller that generates the clocks used in the SDMA.
-        unsigned RESERVED1 : 6; //!< Reserved
-        unsigned RTDOBS : 1; //!< Indicates if Real-Time Debug pins are used: They do not toggle by default in order to reduce power consumption.
-        unsigned DSPDMA : 1; //!< This bit's function is reserved and should be configured as zero.
-        unsigned RESERVED2 : 19; //!< Reserved
+        unsigned CSM : 2; //!< [1:0] Selects the Context Switch Mode. The ARM platform has a read/write access. The SDMA cannot modify that register. The value at reset is 3, which selects the dynamic context switch by default. That register can be modified at anytime but the new context switch configuration will only be taken into account at the start of the next restore phase. NOTE: The first call to SDMA's channel 0 Bootload script after reset should use static context switch mode to ensure the context RAM for channel 0 is initialized in the channel SAVE Phase. After Channel 0 is run once, then any of the dynamic context modes can be used.
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned ACR : 1; //!< [4] ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio between ARM platform DMA interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the internal SDMA core clock. The frequency selection is determined separately by the chip clock controller. This bit has to match the configuration of the chip clock controller that generates the clocks used in the SDMA.
+        unsigned RESERVED1 : 6; //!< [10:5] Reserved
+        unsigned RTDOBS : 1; //!< [11] Indicates if Real-Time Debug pins are used: They do not toggle by default in order to reduce power consumption.
+        unsigned DSPDMA : 1; //!< [12] This bit's function is reserved and should be configured as zero.
+        unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
 } hw_sdmaarm_config_t;
 #endif
@@ -919,21 +1025,27 @@ typedef union
  * 3 - dynamic
  */
 
-#define BP_SDMAARM_CONFIG_CSM      (0)
-#define BM_SDMAARM_CONFIG_CSM      (0x00000003)
+#define BP_SDMAARM_CONFIG_CSM      (0)      //!< Bit position for SDMAARM_CONFIG_CSM.
+#define BM_SDMAARM_CONFIG_CSM      (0x00000003)  //!< Bit mask for SDMAARM_CONFIG_CSM.
+
+//! @brief Get value of SDMAARM_CONFIG_CSM from a register value.
+#define BG_SDMAARM_CONFIG_CSM(r)   (((r) & BM_SDMAARM_CONFIG_CSM) >> BP_SDMAARM_CONFIG_CSM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_CSM(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_CONFIG_CSM)
+//! @brief Format value for bitfield SDMAARM_CONFIG_CSM.
+#define BF_SDMAARM_CONFIG_CSM(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_CSM) & BM_SDMAARM_CONFIG_CSM)
 #else
-#define BF_SDMAARM_CONFIG_CSM(v)   (((v) << 0) & BM_SDMAARM_CONFIG_CSM)
+//! @brief Format value for bitfield SDMAARM_CONFIG_CSM.
+#define BF_SDMAARM_CONFIG_CSM(v)   (((v) << BP_SDMAARM_CONFIG_CSM) & BM_SDMAARM_CONFIG_CSM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSM field to a new value.
-#define BW_SDMAARM_CONFIG_CSM(v)   BF_CS1(SDMAARM_CONFIG, CSM, v)
+#define BW_SDMAARM_CONFIG_CSM(v)   (HW_SDMAARM_CONFIG_WR((HW_SDMAARM_CONFIG_RD() & ~BM_SDMAARM_CONFIG_CSM) | BF_SDMAARM_CONFIG_CSM(v)))
 #endif
 
 
-/* --- Register HW_SDMAARM_CONFIG, field ACR[4:4] (RW)
+/* --- Register HW_SDMAARM_CONFIG, field ACR[4] (RW)
  *
  * ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio between ARM platform DMA
  * interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the internal SDMA core clock. The
@@ -945,21 +1057,27 @@ typedef union
  * 1 - ARM platform DMA interface frequency equals core frequency
  */
 
-#define BP_SDMAARM_CONFIG_ACR      (4)
-#define BM_SDMAARM_CONFIG_ACR      (0x00000010)
+#define BP_SDMAARM_CONFIG_ACR      (4)      //!< Bit position for SDMAARM_CONFIG_ACR.
+#define BM_SDMAARM_CONFIG_ACR      (0x00000010)  //!< Bit mask for SDMAARM_CONFIG_ACR.
+
+//! @brief Get value of SDMAARM_CONFIG_ACR from a register value.
+#define BG_SDMAARM_CONFIG_ACR(r)   (((r) & BM_SDMAARM_CONFIG_ACR) >> BP_SDMAARM_CONFIG_ACR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_ACR(v)   ((((reg32_t) v) << 4) & BM_SDMAARM_CONFIG_ACR)
+//! @brief Format value for bitfield SDMAARM_CONFIG_ACR.
+#define BF_SDMAARM_CONFIG_ACR(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_ACR) & BM_SDMAARM_CONFIG_ACR)
 #else
-#define BF_SDMAARM_CONFIG_ACR(v)   (((v) << 4) & BM_SDMAARM_CONFIG_ACR)
+//! @brief Format value for bitfield SDMAARM_CONFIG_ACR.
+#define BF_SDMAARM_CONFIG_ACR(v)   (((v) << BP_SDMAARM_CONFIG_ACR) & BM_SDMAARM_CONFIG_ACR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACR field to a new value.
-#define BW_SDMAARM_CONFIG_ACR(v)   BF_CS1(SDMAARM_CONFIG, ACR, v)
+#define BW_SDMAARM_CONFIG_ACR(v)   (HW_SDMAARM_CONFIG_WR((HW_SDMAARM_CONFIG_RD() & ~BM_SDMAARM_CONFIG_ACR) | BF_SDMAARM_CONFIG_ACR(v)))
 #endif
 
 
-/* --- Register HW_SDMAARM_CONFIG, field RTDOBS[11:11] (RW)
+/* --- Register HW_SDMAARM_CONFIG, field RTDOBS[11] (RW)
  *
  * Indicates if Real-Time Debug pins are used: They do not toggle by default in order to reduce
  * power consumption.
@@ -969,21 +1087,27 @@ typedef union
  * 1 - RTD pins enabled
  */
 
-#define BP_SDMAARM_CONFIG_RTDOBS      (11)
-#define BM_SDMAARM_CONFIG_RTDOBS      (0x00000800)
+#define BP_SDMAARM_CONFIG_RTDOBS      (11)      //!< Bit position for SDMAARM_CONFIG_RTDOBS.
+#define BM_SDMAARM_CONFIG_RTDOBS      (0x00000800)  //!< Bit mask for SDMAARM_CONFIG_RTDOBS.
+
+//! @brief Get value of SDMAARM_CONFIG_RTDOBS from a register value.
+#define BG_SDMAARM_CONFIG_RTDOBS(r)   (((r) & BM_SDMAARM_CONFIG_RTDOBS) >> BP_SDMAARM_CONFIG_RTDOBS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_RTDOBS(v)   ((((reg32_t) v) << 11) & BM_SDMAARM_CONFIG_RTDOBS)
+//! @brief Format value for bitfield SDMAARM_CONFIG_RTDOBS.
+#define BF_SDMAARM_CONFIG_RTDOBS(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_RTDOBS) & BM_SDMAARM_CONFIG_RTDOBS)
 #else
-#define BF_SDMAARM_CONFIG_RTDOBS(v)   (((v) << 11) & BM_SDMAARM_CONFIG_RTDOBS)
+//! @brief Format value for bitfield SDMAARM_CONFIG_RTDOBS.
+#define BF_SDMAARM_CONFIG_RTDOBS(v)   (((v) << BP_SDMAARM_CONFIG_RTDOBS) & BM_SDMAARM_CONFIG_RTDOBS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTDOBS field to a new value.
-#define BW_SDMAARM_CONFIG_RTDOBS(v)   BF_CS1(SDMAARM_CONFIG, RTDOBS, v)
+#define BW_SDMAARM_CONFIG_RTDOBS(v)   (HW_SDMAARM_CONFIG_WR((HW_SDMAARM_CONFIG_RD() & ~BM_SDMAARM_CONFIG_RTDOBS) | BF_SDMAARM_CONFIG_RTDOBS(v)))
 #endif
 
 
-/* --- Register HW_SDMAARM_CONFIG, field DSPDMA[12:12] (RW)
+/* --- Register HW_SDMAARM_CONFIG, field DSPDMA[12] (RW)
  *
  * This bit's function is reserved and should be configured as zero.
  *
@@ -992,17 +1116,23 @@ typedef union
  * 1 - - Reserved
  */
 
-#define BP_SDMAARM_CONFIG_DSPDMA      (12)
-#define BM_SDMAARM_CONFIG_DSPDMA      (0x00001000)
+#define BP_SDMAARM_CONFIG_DSPDMA      (12)      //!< Bit position for SDMAARM_CONFIG_DSPDMA.
+#define BM_SDMAARM_CONFIG_DSPDMA      (0x00001000)  //!< Bit mask for SDMAARM_CONFIG_DSPDMA.
+
+//! @brief Get value of SDMAARM_CONFIG_DSPDMA from a register value.
+#define BG_SDMAARM_CONFIG_DSPDMA(r)   (((r) & BM_SDMAARM_CONFIG_DSPDMA) >> BP_SDMAARM_CONFIG_DSPDMA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   ((((reg32_t) v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
+//! @brief Format value for bitfield SDMAARM_CONFIG_DSPDMA.
+#define BF_SDMAARM_CONFIG_DSPDMA(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_DSPDMA) & BM_SDMAARM_CONFIG_DSPDMA)
 #else
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   (((v) << 12) & BM_SDMAARM_CONFIG_DSPDMA)
+//! @brief Format value for bitfield SDMAARM_CONFIG_DSPDMA.
+#define BF_SDMAARM_CONFIG_DSPDMA(v)   (((v) << BP_SDMAARM_CONFIG_DSPDMA) & BM_SDMAARM_CONFIG_DSPDMA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSPDMA field to a new value.
-#define BW_SDMAARM_CONFIG_DSPDMA(v)   BF_CS1(SDMAARM_CONFIG, DSPDMA, v)
+#define BW_SDMAARM_CONFIG_DSPDMA(v)   (HW_SDMAARM_CONFIG_WR((HW_SDMAARM_CONFIG_RD() & ~BM_SDMAARM_CONFIG_DSPDMA) | BF_SDMAARM_CONFIG_DSPDMA(v)))
 #endif
 
 
@@ -1010,16 +1140,18 @@ typedef union
 /*!
  * @brief HW_SDMAARM_SDMA_LOCK - SDMA LOCK (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_lock
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_lock_bitfields
     {
-        unsigned LOCK : 1; //!< The LOCK bit is used to restrict access to update SDMA script memory through ROM channel zero scripts and through the OnCE interface under ARM platform control. The LOCK bit is set: The SDMA_LOCK, ONCE_ENB,CH0ADDR, and ILLINSTADDR registers cannot be written. These registers can be read, but writes are ignored. SDMA software executing out of ROM or RAM may check the LOCK bit in the LOCK register to determine if certain operations are allowed, such as up-loading new scripts. Once the LOCK bit is set to 1, only a reset can clear it. The LOCK bit is cleared by a hardware reset. LOCK is cleared by a software reset only if SRESET_LOCK_CLR is set.
-        unsigned SRESET_LOCK_CLR : 1; //!< The SRESET_LOCK_CLR bit determine if the LOCK bit is cleared on a software reset triggered by writing to the RESET register. This bit cannot be changed if LOCK=1. SREST_LOCK_CLR is cleared by conditions that clear the LOCK bit.
-        unsigned RESERVED0 : 30; //!< Reserved
+        unsigned LOCK : 1; //!< [0] The LOCK bit is used to restrict access to update SDMA script memory through ROM channel zero scripts and through the OnCE interface under ARM platform control. The LOCK bit is set: The SDMA_LOCK, ONCE_ENB,CH0ADDR, and ILLINSTADDR registers cannot be written. These registers can be read, but writes are ignored. SDMA software executing out of ROM or RAM may check the LOCK bit in the LOCK register to determine if certain operations are allowed, such as up-loading new scripts. Once the LOCK bit is set to 1, only a reset can clear it. The LOCK bit is cleared by a hardware reset. LOCK is cleared by a software reset only if SRESET_LOCK_CLR is set.
+        unsigned SRESET_LOCK_CLR : 1; //!< [1] The SRESET_LOCK_CLR bit determine if the LOCK bit is cleared on a software reset triggered by writing to the RESET register. This bit cannot be changed if LOCK=1. SREST_LOCK_CLR is cleared by conditions that clear the LOCK bit.
+        unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_sdmaarm_sdma_lock_t;
 #endif
@@ -1042,7 +1174,7 @@ typedef union
  * constants & macros for individual SDMAARM_SDMA_LOCK bitfields
  */
 
-/* --- Register HW_SDMAARM_SDMA_LOCK, field LOCK[0:0] (RW)
+/* --- Register HW_SDMAARM_SDMA_LOCK, field LOCK[0] (RW)
  *
  * The LOCK bit is used to restrict access to update SDMA script memory through ROM channel zero
  * scripts and through the OnCE interface under ARM platform control. The LOCK bit is set: The
@@ -1057,21 +1189,27 @@ typedef union
  * 1 - LOCK enabled.
  */
 
-#define BP_SDMAARM_SDMA_LOCK_LOCK      (0)
-#define BM_SDMAARM_SDMA_LOCK_LOCK      (0x00000001)
+#define BP_SDMAARM_SDMA_LOCK_LOCK      (0)      //!< Bit position for SDMAARM_SDMA_LOCK_LOCK.
+#define BM_SDMAARM_SDMA_LOCK_LOCK      (0x00000001)  //!< Bit mask for SDMAARM_SDMA_LOCK_LOCK.
+
+//! @brief Get value of SDMAARM_SDMA_LOCK_LOCK from a register value.
+#define BG_SDMAARM_SDMA_LOCK_LOCK(r)   (((r) & BM_SDMAARM_SDMA_LOCK_LOCK) >> BP_SDMAARM_SDMA_LOCK_LOCK)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_LOCK_LOCK)
+//! @brief Format value for bitfield SDMAARM_SDMA_LOCK_LOCK.
+#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_LOCK_LOCK) & BM_SDMAARM_SDMA_LOCK_LOCK)
 #else
-#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   (((v) << 0) & BM_SDMAARM_SDMA_LOCK_LOCK)
+//! @brief Format value for bitfield SDMAARM_SDMA_LOCK_LOCK.
+#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   (((v) << BP_SDMAARM_SDMA_LOCK_LOCK) & BM_SDMAARM_SDMA_LOCK_LOCK)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK field to a new value.
-#define BW_SDMAARM_SDMA_LOCK_LOCK(v)   BF_CS1(SDMAARM_SDMA_LOCK, LOCK, v)
+#define BW_SDMAARM_SDMA_LOCK_LOCK(v)   (HW_SDMAARM_SDMA_LOCK_WR((HW_SDMAARM_SDMA_LOCK_RD() & ~BM_SDMAARM_SDMA_LOCK_LOCK) | BF_SDMAARM_SDMA_LOCK_LOCK(v)))
 #endif
 
 
-/* --- Register HW_SDMAARM_SDMA_LOCK, field SRESET_LOCK_CLR[1:1] (RW)
+/* --- Register HW_SDMAARM_SDMA_LOCK, field SRESET_LOCK_CLR[1] (RW)
  *
  * The SRESET_LOCK_CLR bit determine if the LOCK bit is cleared on a software reset triggered by
  * writing to the RESET register. This bit cannot be changed if LOCK=1. SREST_LOCK_CLR is cleared by
@@ -1082,17 +1220,23 @@ typedef union
  * 1 - Software Reset clears the LOCK bit.
  */
 
-#define BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      (1)
-#define BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      (0x00000002)
+#define BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      (1)      //!< Bit position for SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR.
+#define BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      (0x00000002)  //!< Bit mask for SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR.
+
+//! @brief Get value of SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR from a register value.
+#define BG_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(r)   (((r) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) >> BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   ((((reg32_t) v) << 1) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
+//! @brief Format value for bitfield SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR.
+#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
 #else
-#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   (((v) << 1) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
+//! @brief Format value for bitfield SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR.
+#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   (((v) << BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRESET_LOCK_CLR field to a new value.
-#define BW_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   BF_CS1(SDMAARM_SDMA_LOCK, SRESET_LOCK_CLR, v)
+#define BW_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   (HW_SDMAARM_SDMA_LOCK_WR((HW_SDMAARM_SDMA_LOCK_RD() & ~BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) | BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)))
 #endif
 
 
@@ -1100,15 +1244,17 @@ typedef union
 /*!
  * @brief HW_SDMAARM_ONCE_ENB - OnCE Enable (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_once_enb
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_once_enb_bitfields
     {
-        unsigned ENB : 1; //!< The OnCE Enable register selects the OnCE control source: When cleared (0), the OnCE registers are accessed through the JTAG interface; when set (1), the OnCE registers may be accessed by the ARM platform through the addresses described, as follows. After reset, the OnCE registers are accessed through the JTAG interface. Writing a 1 to ENB enables the ARM platform to access the ONCE_* as any other SDMA control register. When cleared (0), all the ONCE_xxx registers cannot be written. The value of ENB cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned ENB : 1; //!< [0] The OnCE Enable register selects the OnCE control source: When cleared (0), the OnCE registers are accessed through the JTAG interface; when set (1), the OnCE registers may be accessed by the ARM platform through the addresses described, as follows. After reset, the OnCE registers are accessed through the JTAG interface. Writing a 1 to ENB enables the ARM platform to access the ONCE_* as any other SDMA control register. When cleared (0), all the ONCE_xxx registers cannot be written. The value of ENB cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_sdmaarm_once_enb_t;
 #endif
@@ -1131,7 +1277,7 @@ typedef union
  * constants & macros for individual SDMAARM_ONCE_ENB bitfields
  */
 
-/* --- Register HW_SDMAARM_ONCE_ENB, field ENB[0:0] (RW)
+/* --- Register HW_SDMAARM_ONCE_ENB, field ENB[0] (RW)
  *
  * The OnCE Enable register selects the OnCE control source: When cleared (0), the OnCE registers
  * are accessed through the JTAG interface; when set (1), the OnCE registers may be accessed by the
@@ -1141,31 +1287,39 @@ typedef union
  * written. The value of ENB cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
  */
 
-#define BP_SDMAARM_ONCE_ENB_ENB      (0)
-#define BM_SDMAARM_ONCE_ENB_ENB      (0x00000001)
+#define BP_SDMAARM_ONCE_ENB_ENB      (0)      //!< Bit position for SDMAARM_ONCE_ENB_ENB.
+#define BM_SDMAARM_ONCE_ENB_ENB      (0x00000001)  //!< Bit mask for SDMAARM_ONCE_ENB_ENB.
+
+//! @brief Get value of SDMAARM_ONCE_ENB_ENB from a register value.
+#define BG_SDMAARM_ONCE_ENB_ENB(r)   (((r) & BM_SDMAARM_ONCE_ENB_ENB) >> BP_SDMAARM_ONCE_ENB_ENB)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_ENB_ENB(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_ONCE_ENB_ENB)
+//! @brief Format value for bitfield SDMAARM_ONCE_ENB_ENB.
+#define BF_SDMAARM_ONCE_ENB_ENB(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_ENB_ENB) & BM_SDMAARM_ONCE_ENB_ENB)
 #else
-#define BF_SDMAARM_ONCE_ENB_ENB(v)   (((v) << 0) & BM_SDMAARM_ONCE_ENB_ENB)
+//! @brief Format value for bitfield SDMAARM_ONCE_ENB_ENB.
+#define BF_SDMAARM_ONCE_ENB_ENB(v)   (((v) << BP_SDMAARM_ONCE_ENB_ENB) & BM_SDMAARM_ONCE_ENB_ENB)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENB field to a new value.
-#define BW_SDMAARM_ONCE_ENB_ENB(v)   BF_CS1(SDMAARM_ONCE_ENB, ENB, v)
+#define BW_SDMAARM_ONCE_ENB_ENB(v)   (HW_SDMAARM_ONCE_ENB_WR((HW_SDMAARM_ONCE_ENB_RD() & ~BM_SDMAARM_ONCE_ENB_ENB) | BF_SDMAARM_ONCE_ENB_ENB(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_ONCE_DATA - OnCE Data Register (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_once_data
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_once_data_bitfields
     {
-        unsigned DATA : 32; //!< Data register of the OnCE JTAG controller. Refer to for information on this register.
+        unsigned DATA : 32; //!< [31:0] Data register of the OnCE JTAG controller. Refer to for information on this register.
     } B;
 } hw_sdmaarm_once_data_t;
 #endif
@@ -1193,32 +1347,40 @@ typedef union
  * Data register of the OnCE JTAG controller. Refer to for information on this register.
  */
 
-#define BP_SDMAARM_ONCE_DATA_DATA      (0)
-#define BM_SDMAARM_ONCE_DATA_DATA      (0xffffffff)
+#define BP_SDMAARM_ONCE_DATA_DATA      (0)      //!< Bit position for SDMAARM_ONCE_DATA_DATA.
+#define BM_SDMAARM_ONCE_DATA_DATA      (0xffffffff)  //!< Bit mask for SDMAARM_ONCE_DATA_DATA.
+
+//! @brief Get value of SDMAARM_ONCE_DATA_DATA from a register value.
+#define BG_SDMAARM_ONCE_DATA_DATA(r)   (((r) & BM_SDMAARM_ONCE_DATA_DATA) >> BP_SDMAARM_ONCE_DATA_DATA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_DATA_DATA(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_ONCE_DATA_DATA)
+//! @brief Format value for bitfield SDMAARM_ONCE_DATA_DATA.
+#define BF_SDMAARM_ONCE_DATA_DATA(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_DATA_DATA) & BM_SDMAARM_ONCE_DATA_DATA)
 #else
-#define BF_SDMAARM_ONCE_DATA_DATA(v)   (((v) << 0) & BM_SDMAARM_ONCE_DATA_DATA)
+//! @brief Format value for bitfield SDMAARM_ONCE_DATA_DATA.
+#define BF_SDMAARM_ONCE_DATA_DATA(v)   (((v) << BP_SDMAARM_ONCE_DATA_DATA) & BM_SDMAARM_ONCE_DATA_DATA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
-#define BW_SDMAARM_ONCE_DATA_DATA(v)   BF_CS1(SDMAARM_ONCE_DATA, DATA, v)
+#define BW_SDMAARM_ONCE_DATA_DATA(v)   (HW_SDMAARM_ONCE_DATA_WR((HW_SDMAARM_ONCE_DATA_RD() & ~BM_SDMAARM_ONCE_DATA_DATA) | BF_SDMAARM_ONCE_DATA_DATA(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_ONCE_INSTR - OnCE Instruction Register (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_once_instr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_once_instr_bitfields
     {
-        unsigned INSTR : 16; //!< Instruction register of the OnCE JTAG controller. Refer to for information on this register.
-        unsigned RESERVED0 : 16; //!< Reserved
+        unsigned INSTR : 16; //!< [15:0] Instruction register of the OnCE JTAG controller. Refer to for information on this register.
+        unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_once_instr_t;
 #endif
@@ -1246,39 +1408,47 @@ typedef union
  * Instruction register of the OnCE JTAG controller. Refer to for information on this register.
  */
 
-#define BP_SDMAARM_ONCE_INSTR_INSTR      (0)
-#define BM_SDMAARM_ONCE_INSTR_INSTR      (0x0000ffff)
+#define BP_SDMAARM_ONCE_INSTR_INSTR      (0)      //!< Bit position for SDMAARM_ONCE_INSTR_INSTR.
+#define BM_SDMAARM_ONCE_INSTR_INSTR      (0x0000ffff)  //!< Bit mask for SDMAARM_ONCE_INSTR_INSTR.
+
+//! @brief Get value of SDMAARM_ONCE_INSTR_INSTR from a register value.
+#define BG_SDMAARM_ONCE_INSTR_INSTR(r)   (((r) & BM_SDMAARM_ONCE_INSTR_INSTR) >> BP_SDMAARM_ONCE_INSTR_INSTR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_INSTR_INSTR(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_ONCE_INSTR_INSTR)
+//! @brief Format value for bitfield SDMAARM_ONCE_INSTR_INSTR.
+#define BF_SDMAARM_ONCE_INSTR_INSTR(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_INSTR_INSTR) & BM_SDMAARM_ONCE_INSTR_INSTR)
 #else
-#define BF_SDMAARM_ONCE_INSTR_INSTR(v)   (((v) << 0) & BM_SDMAARM_ONCE_INSTR_INSTR)
+//! @brief Format value for bitfield SDMAARM_ONCE_INSTR_INSTR.
+#define BF_SDMAARM_ONCE_INSTR_INSTR(v)   (((v) << BP_SDMAARM_ONCE_INSTR_INSTR) & BM_SDMAARM_ONCE_INSTR_INSTR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INSTR field to a new value.
-#define BW_SDMAARM_ONCE_INSTR_INSTR(v)   BF_CS1(SDMAARM_ONCE_INSTR, INSTR, v)
+#define BW_SDMAARM_ONCE_INSTR_INSTR(v)   (HW_SDMAARM_ONCE_INSTR_WR((HW_SDMAARM_ONCE_INSTR_RD() & ~BM_SDMAARM_ONCE_INSTR_INSTR) | BF_SDMAARM_ONCE_INSTR_INSTR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_ONCE_STAT - OnCE Status Register (RO)
  *
+ * Reset value: 0x0000e000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_once_stat
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_once_stat_bitfields
     {
-        unsigned ECDR : 3; //!< Event Cell Debug Request. If the debug request comes from the event cell, the reason for entering debug mode is given by the EDR bits. If all three bits of the EDR are reset, then it did not generate any debug request. If the cell did generate a debug request, then at least one of the EDR bits is set (the meaning of the encoding is given below). The encoding of the EDR bits is useful to find out more precisely why the debug request was generated. A debug request from an event cell is generated for a specific combination of the addra_cond, addrb_cond, and data_cond conditions. The value of those fields is given by the EDR bits.
-        unsigned RESERVED0 : 4; //!< Reserved
-        unsigned MST : 1; //!< This flag is raised when the OnCE is controlled from the ARM platform peripheral interface.
-        unsigned SWB : 1; //!< This flag is raised when the SDMA has entered debug mode after a software breakpoint.
-        unsigned ODR : 1; //!< This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
-        unsigned EDR : 1; //!< This flag is raised when the SDMA has entered debug mode after an external debug request.
-        unsigned RCV : 1; //!< After each write access to the real time buffer (RTB), the RCV bit is set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
-        unsigned PST : 4; //!< The Processor Status bits reflect the state of the SDMA RISC engine. Its states are as follows: The "Program" state is the usual instruction execution cycle. The "Data" state is inserted when there are wait-states during a load or a store on the data bus (ld or st). The "Change of Flow" state is the second cycle of any instruction that breaks the sequence of instructions (jumps and channel switching instructions). The "Change of Flow in Loop" state is used when an error causes a hardware loop exit. The "Debug" state means the SDMA is in debug mode. The "Functional Unit" state is inserted when there are wait-states during a load or a store on the functional units bus (ldf or stf). In "Sleep" modes, no script is running (this is the RISC engine idle state). The "after Reset" is slightly different because no context restoring phase will happen when a channel is triggered: The script located at address 0 will be executed (boot operation). The "in Sleep" states are the same as above except they do not have any corresponding channel: They are used when entering debug mode after reset. The reason is that it is necessary to return to the "Sleep after Reset" state when leaving debug mode.
-        unsigned RESERVED1 : 16; //!< Reserved
+        unsigned ECDR : 3; //!< [2:0] Event Cell Debug Request. If the debug request comes from the event cell, the reason for entering debug mode is given by the EDR bits. If all three bits of the EDR are reset, then it did not generate any debug request. If the cell did generate a debug request, then at least one of the EDR bits is set (the meaning of the encoding is given below). The encoding of the EDR bits is useful to find out more precisely why the debug request was generated. A debug request from an event cell is generated for a specific combination of the addra_cond, addrb_cond, and data_cond conditions. The value of those fields is given by the EDR bits.
+        unsigned RESERVED0 : 4; //!< [6:3] Reserved
+        unsigned MST : 1; //!< [7] This flag is raised when the OnCE is controlled from the ARM platform peripheral interface.
+        unsigned SWB : 1; //!< [8] This flag is raised when the SDMA has entered debug mode after a software breakpoint.
+        unsigned ODR : 1; //!< [9] This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
+        unsigned EDR : 1; //!< [10] This flag is raised when the SDMA has entered debug mode after an external debug request.
+        unsigned RCV : 1; //!< [11] After each write access to the real time buffer (RTB), the RCV bit is set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
+        unsigned PST : 4; //!< [15:12] The Processor Status bits reflect the state of the SDMA RISC engine. Its states are as follows: The "Program" state is the usual instruction execution cycle. The "Data" state is inserted when there are wait-states during a load or a store on the data bus (ld or st). The "Change of Flow" state is the second cycle of any instruction that breaks the sequence of instructions (jumps and channel switching instructions). The "Change of Flow in Loop" state is used when an error causes a hardware loop exit. The "Debug" state means the SDMA is in debug mode. The "Functional Unit" state is inserted when there are wait-states during a load or a store on the functional units bus (ldf or stf). In "Sleep" modes, no script is running (this is the RISC engine idle state). The "after Reset" is slightly different because no context restoring phase will happen when a channel is triggered: The script located at address 0 will be executed (boot operation). The "in Sleep" states are the same as above except they do not have any corresponding channel: They are used when entering debug mode after reset. The reason is that it is necessary to return to the "Sleep after Reset" state when leaving debug mode.
+        unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_once_stat_t;
 #endif
@@ -1313,11 +1483,14 @@ typedef union
  * 2 - 1 matched data_cond
  */
 
-#define BP_SDMAARM_ONCE_STAT_ECDR      (0)
-#define BM_SDMAARM_ONCE_STAT_ECDR      (0x00000007)
+#define BP_SDMAARM_ONCE_STAT_ECDR      (0)      //!< Bit position for SDMAARM_ONCE_STAT_ECDR.
+#define BM_SDMAARM_ONCE_STAT_ECDR      (0x00000007)  //!< Bit mask for SDMAARM_ONCE_STAT_ECDR.
+
+//! @brief Get value of SDMAARM_ONCE_STAT_ECDR from a register value.
+#define BG_SDMAARM_ONCE_STAT_ECDR(r)   (((r) & BM_SDMAARM_ONCE_STAT_ECDR) >> BP_SDMAARM_ONCE_STAT_ECDR)
 
 
-/* --- Register HW_SDMAARM_ONCE_STAT, field MST[7:7] (RO)
+/* --- Register HW_SDMAARM_ONCE_STAT, field MST[7] (RO)
  *
  * This flag is raised when the OnCE is controlled from the ARM platform peripheral interface.
  *
@@ -1326,42 +1499,57 @@ typedef union
  * 1 - The ARM platform peripheral interface controls the OnCE.
  */
 
-#define BP_SDMAARM_ONCE_STAT_MST      (7)
-#define BM_SDMAARM_ONCE_STAT_MST      (0x00000080)
+#define BP_SDMAARM_ONCE_STAT_MST      (7)      //!< Bit position for SDMAARM_ONCE_STAT_MST.
+#define BM_SDMAARM_ONCE_STAT_MST      (0x00000080)  //!< Bit mask for SDMAARM_ONCE_STAT_MST.
+
+//! @brief Get value of SDMAARM_ONCE_STAT_MST from a register value.
+#define BG_SDMAARM_ONCE_STAT_MST(r)   (((r) & BM_SDMAARM_ONCE_STAT_MST) >> BP_SDMAARM_ONCE_STAT_MST)
 
 
-/* --- Register HW_SDMAARM_ONCE_STAT, field SWB[8:8] (RO)
+/* --- Register HW_SDMAARM_ONCE_STAT, field SWB[8] (RO)
  *
  * This flag is raised when the SDMA has entered debug mode after a software breakpoint.
  */
 
-#define BP_SDMAARM_ONCE_STAT_SWB      (8)
-#define BM_SDMAARM_ONCE_STAT_SWB      (0x00000100)
+#define BP_SDMAARM_ONCE_STAT_SWB      (8)      //!< Bit position for SDMAARM_ONCE_STAT_SWB.
+#define BM_SDMAARM_ONCE_STAT_SWB      (0x00000100)  //!< Bit mask for SDMAARM_ONCE_STAT_SWB.
 
-/* --- Register HW_SDMAARM_ONCE_STAT, field ODR[9:9] (RO)
+//! @brief Get value of SDMAARM_ONCE_STAT_SWB from a register value.
+#define BG_SDMAARM_ONCE_STAT_SWB(r)   (((r) & BM_SDMAARM_ONCE_STAT_SWB) >> BP_SDMAARM_ONCE_STAT_SWB)
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field ODR[9] (RO)
  *
  * This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
  */
 
-#define BP_SDMAARM_ONCE_STAT_ODR      (9)
-#define BM_SDMAARM_ONCE_STAT_ODR      (0x00000200)
+#define BP_SDMAARM_ONCE_STAT_ODR      (9)      //!< Bit position for SDMAARM_ONCE_STAT_ODR.
+#define BM_SDMAARM_ONCE_STAT_ODR      (0x00000200)  //!< Bit mask for SDMAARM_ONCE_STAT_ODR.
 
-/* --- Register HW_SDMAARM_ONCE_STAT, field EDR[10:10] (RO)
+//! @brief Get value of SDMAARM_ONCE_STAT_ODR from a register value.
+#define BG_SDMAARM_ONCE_STAT_ODR(r)   (((r) & BM_SDMAARM_ONCE_STAT_ODR) >> BP_SDMAARM_ONCE_STAT_ODR)
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field EDR[10] (RO)
  *
  * This flag is raised when the SDMA has entered debug mode after an external debug request.
  */
 
-#define BP_SDMAARM_ONCE_STAT_EDR      (10)
-#define BM_SDMAARM_ONCE_STAT_EDR      (0x00000400)
+#define BP_SDMAARM_ONCE_STAT_EDR      (10)      //!< Bit position for SDMAARM_ONCE_STAT_EDR.
+#define BM_SDMAARM_ONCE_STAT_EDR      (0x00000400)  //!< Bit mask for SDMAARM_ONCE_STAT_EDR.
 
-/* --- Register HW_SDMAARM_ONCE_STAT, field RCV[11:11] (RO)
+//! @brief Get value of SDMAARM_ONCE_STAT_EDR from a register value.
+#define BG_SDMAARM_ONCE_STAT_EDR(r)   (((r) & BM_SDMAARM_ONCE_STAT_EDR) >> BP_SDMAARM_ONCE_STAT_EDR)
+
+/* --- Register HW_SDMAARM_ONCE_STAT, field RCV[11] (RO)
  *
  * After each write access to the real time buffer (RTB), the RCV bit is set. This bit is cleared
  * after execution of an rbuffer command and on a JTAG reset.
  */
 
-#define BP_SDMAARM_ONCE_STAT_RCV      (11)
-#define BM_SDMAARM_ONCE_STAT_RCV      (0x00000800)
+#define BP_SDMAARM_ONCE_STAT_RCV      (11)      //!< Bit position for SDMAARM_ONCE_STAT_RCV.
+#define BM_SDMAARM_ONCE_STAT_RCV      (0x00000800)  //!< Bit mask for SDMAARM_ONCE_STAT_RCV.
+
+//! @brief Get value of SDMAARM_ONCE_STAT_RCV from a register value.
+#define BG_SDMAARM_ONCE_STAT_RCV(r)   (((r) & BM_SDMAARM_ONCE_STAT_RCV) >> BP_SDMAARM_ONCE_STAT_RCV)
 
 /* --- Register HW_SDMAARM_ONCE_STAT, field PST[15:12] (RO)
  *
@@ -1398,23 +1586,28 @@ typedef union
  * 15 - Restore
  */
 
-#define BP_SDMAARM_ONCE_STAT_PST      (12)
-#define BM_SDMAARM_ONCE_STAT_PST      (0x0000f000)
+#define BP_SDMAARM_ONCE_STAT_PST      (12)      //!< Bit position for SDMAARM_ONCE_STAT_PST.
+#define BM_SDMAARM_ONCE_STAT_PST      (0x0000f000)  //!< Bit mask for SDMAARM_ONCE_STAT_PST.
+
+//! @brief Get value of SDMAARM_ONCE_STAT_PST from a register value.
+#define BG_SDMAARM_ONCE_STAT_PST(r)   (((r) & BM_SDMAARM_ONCE_STAT_PST) >> BP_SDMAARM_ONCE_STAT_PST)
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_ONCE_CMD - OnCE Command Register (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_once_cmd
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_once_cmd_bitfields
     {
-        unsigned CMD : 4; //!< Writing to this register will cause the OnCE to execute the command that is written. When needed, the ONCE_DATA and ONCE_INSTR registers should be loaded with the correct value before writing the command to that register. For a list of the OnCE commands and their usage, see . 7-15 reserved
-        unsigned RESERVED0 : 28; //!< Reserved
+        unsigned CMD : 4; //!< [3:0] Writing to this register will cause the OnCE to execute the command that is written. When needed, the ONCE_DATA and ONCE_INSTR registers should be loaded with the correct value before writing the command to that register. For a list of the OnCE commands and their usage, see . 7-15 reserved
+        unsigned RESERVED0 : 28; //!< [31:4] Reserved
     } B;
 } hw_sdmaarm_once_cmd_t;
 #endif
@@ -1453,17 +1646,23 @@ typedef union
  * 6 - rbuffer
  */
 
-#define BP_SDMAARM_ONCE_CMD_CMD      (0)
-#define BM_SDMAARM_ONCE_CMD_CMD      (0x0000000f)
+#define BP_SDMAARM_ONCE_CMD_CMD      (0)      //!< Bit position for SDMAARM_ONCE_CMD_CMD.
+#define BM_SDMAARM_ONCE_CMD_CMD      (0x0000000f)  //!< Bit mask for SDMAARM_ONCE_CMD_CMD.
+
+//! @brief Get value of SDMAARM_ONCE_CMD_CMD from a register value.
+#define BG_SDMAARM_ONCE_CMD_CMD(r)   (((r) & BM_SDMAARM_ONCE_CMD_CMD) >> BP_SDMAARM_ONCE_CMD_CMD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ONCE_CMD_CMD(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_ONCE_CMD_CMD)
+//! @brief Format value for bitfield SDMAARM_ONCE_CMD_CMD.
+#define BF_SDMAARM_ONCE_CMD_CMD(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_CMD_CMD) & BM_SDMAARM_ONCE_CMD_CMD)
 #else
-#define BF_SDMAARM_ONCE_CMD_CMD(v)   (((v) << 0) & BM_SDMAARM_ONCE_CMD_CMD)
+//! @brief Format value for bitfield SDMAARM_ONCE_CMD_CMD.
+#define BF_SDMAARM_ONCE_CMD_CMD(v)   (((v) << BP_SDMAARM_ONCE_CMD_CMD) & BM_SDMAARM_ONCE_CMD_CMD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD field to a new value.
-#define BW_SDMAARM_ONCE_CMD_CMD(v)   BF_CS1(SDMAARM_ONCE_CMD, CMD, v)
+#define BW_SDMAARM_ONCE_CMD_CMD(v)   (HW_SDMAARM_ONCE_CMD_WR((HW_SDMAARM_ONCE_CMD_RD() & ~BM_SDMAARM_ONCE_CMD_CMD) | BF_SDMAARM_ONCE_CMD_CMD(v)))
 #endif
 
 
@@ -1471,15 +1670,17 @@ typedef union
 /*!
  * @brief HW_SDMAARM_ILLINSTADDR - Illegal Instruction Trap Address (RW)
  *
+ * Reset value: 0x00000001
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_illinstaddr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_illinstaddr_bitfields
     {
-        unsigned ILLINSTADDR : 14; //!< The Illegal Instruction Trap Address is the address where the SDMA jumps when an illegal instruction is executed. It is 0x0001 after reset. The value of ILLINSTADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
-        unsigned RESERVED0 : 18; //!< Reserved
+        unsigned ILLINSTADDR : 14; //!< [13:0] The Illegal Instruction Trap Address is the address where the SDMA jumps when an illegal instruction is executed. It is 0x0001 after reset. The value of ILLINSTADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_sdmaarm_illinstaddr_t;
 #endif
@@ -1509,33 +1710,41 @@ typedef union
  * the LOCK bit in the SDMA_LOCK register is set.
  */
 
-#define BP_SDMAARM_ILLINSTADDR_ILLINSTADDR      (0)
-#define BM_SDMAARM_ILLINSTADDR_ILLINSTADDR      (0x00003fff)
+#define BP_SDMAARM_ILLINSTADDR_ILLINSTADDR      (0)      //!< Bit position for SDMAARM_ILLINSTADDR_ILLINSTADDR.
+#define BM_SDMAARM_ILLINSTADDR_ILLINSTADDR      (0x00003fff)  //!< Bit mask for SDMAARM_ILLINSTADDR_ILLINSTADDR.
+
+//! @brief Get value of SDMAARM_ILLINSTADDR_ILLINSTADDR from a register value.
+#define BG_SDMAARM_ILLINSTADDR_ILLINSTADDR(r)   (((r) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR) >> BP_SDMAARM_ILLINSTADDR_ILLINSTADDR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR)
+//! @brief Format value for bitfield SDMAARM_ILLINSTADDR_ILLINSTADDR.
+#define BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   ((((reg32_t) v) << BP_SDMAARM_ILLINSTADDR_ILLINSTADDR) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR)
 #else
-#define BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   (((v) << 0) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR)
+//! @brief Format value for bitfield SDMAARM_ILLINSTADDR_ILLINSTADDR.
+#define BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   (((v) << BP_SDMAARM_ILLINSTADDR_ILLINSTADDR) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ILLINSTADDR field to a new value.
-#define BW_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   BF_CS1(SDMAARM_ILLINSTADDR, ILLINSTADDR, v)
+#define BW_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   (HW_SDMAARM_ILLINSTADDR_WR((HW_SDMAARM_ILLINSTADDR_RD() & ~BM_SDMAARM_ILLINSTADDR_ILLINSTADDR) | BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_CHN0ADDR - Channel 0 Boot Address (RW)
  *
+ * Reset value: 0x00000050
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_chn0addr
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_chn0addr_bitfields
     {
-        unsigned CHN0ADDR : 14; //!< This 14-bit register is used by the boot code of the SDMA. After reset, it points to the standard boot routine in ROM (channel 0 routine). By changing this address, you can perform a boot sequence with your own routine. The very first instructions of the boot code fetch the contents of this register (it is also mapped in the SDMA memory space) and jump to the given address. The reset value is 0x0050 (decimal 80). The value of CHN0ADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
-        unsigned SMSZ : 1; //!< The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context. After reset, it is equal to 0, which defines a RAM space of 24 words for each channel. All of this area stores the channel context. By setting this bit, 32 words are reserved for every channel context, which gives eight additional words that can be used by the channel script to store any type of data. Those words are never erased by the context switching mechanism. The value of SMSZ cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
-        unsigned RESERVED0 : 17; //!< Reserved
+        unsigned CHN0ADDR : 14; //!< [13:0] This 14-bit register is used by the boot code of the SDMA. After reset, it points to the standard boot routine in ROM (channel 0 routine). By changing this address, you can perform a boot sequence with your own routine. The very first instructions of the boot code fetch the contents of this register (it is also mapped in the SDMA memory space) and jump to the given address. The reset value is 0x0050 (decimal 80). The value of CHN0ADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned SMSZ : 1; //!< [14] The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context. After reset, it is equal to 0, which defines a RAM space of 24 words for each channel. All of this area stores the channel context. By setting this bit, 32 words are reserved for every channel context, which gives eight additional words that can be used by the channel script to store any type of data. Those words are never erased by the context switching mechanism. The value of SMSZ cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned RESERVED0 : 17; //!< [31:15] Reserved
     } B;
 } hw_sdmaarm_chn0addr_t;
 #endif
@@ -1568,20 +1777,26 @@ typedef union
  * the SDMA_LOCK register is set.
  */
 
-#define BP_SDMAARM_CHN0ADDR_CHN0ADDR      (0)
-#define BM_SDMAARM_CHN0ADDR_CHN0ADDR      (0x00003fff)
+#define BP_SDMAARM_CHN0ADDR_CHN0ADDR      (0)      //!< Bit position for SDMAARM_CHN0ADDR_CHN0ADDR.
+#define BM_SDMAARM_CHN0ADDR_CHN0ADDR      (0x00003fff)  //!< Bit mask for SDMAARM_CHN0ADDR_CHN0ADDR.
+
+//! @brief Get value of SDMAARM_CHN0ADDR_CHN0ADDR from a register value.
+#define BG_SDMAARM_CHN0ADDR_CHN0ADDR(r)   (((r) & BM_SDMAARM_CHN0ADDR_CHN0ADDR) >> BP_SDMAARM_CHN0ADDR_CHN0ADDR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_CHN0ADDR_CHN0ADDR)
+//! @brief Format value for bitfield SDMAARM_CHN0ADDR_CHN0ADDR.
+#define BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)   ((((reg32_t) v) << BP_SDMAARM_CHN0ADDR_CHN0ADDR) & BM_SDMAARM_CHN0ADDR_CHN0ADDR)
 #else
-#define BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)   (((v) << 0) & BM_SDMAARM_CHN0ADDR_CHN0ADDR)
+//! @brief Format value for bitfield SDMAARM_CHN0ADDR_CHN0ADDR.
+#define BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)   (((v) << BP_SDMAARM_CHN0ADDR_CHN0ADDR) & BM_SDMAARM_CHN0ADDR_CHN0ADDR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHN0ADDR field to a new value.
-#define BW_SDMAARM_CHN0ADDR_CHN0ADDR(v)   BF_CS1(SDMAARM_CHN0ADDR, CHN0ADDR, v)
+#define BW_SDMAARM_CHN0ADDR_CHN0ADDR(v)   (HW_SDMAARM_CHN0ADDR_WR((HW_SDMAARM_CHN0ADDR_RD() & ~BM_SDMAARM_CHN0ADDR_CHN0ADDR) | BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)))
 #endif
 
-/* --- Register HW_SDMAARM_CHN0ADDR, field SMSZ[14:14] (RW)
+/* --- Register HW_SDMAARM_CHN0ADDR, field SMSZ[14] (RW)
  *
  * The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every
  * channel context. After reset, it is equal to 0, which defines a RAM space of 24 words for each
@@ -1595,17 +1810,23 @@ typedef union
  * 1 - 32 words per context
  */
 
-#define BP_SDMAARM_CHN0ADDR_SMSZ      (14)
-#define BM_SDMAARM_CHN0ADDR_SMSZ      (0x00004000)
+#define BP_SDMAARM_CHN0ADDR_SMSZ      (14)      //!< Bit position for SDMAARM_CHN0ADDR_SMSZ.
+#define BM_SDMAARM_CHN0ADDR_SMSZ      (0x00004000)  //!< Bit mask for SDMAARM_CHN0ADDR_SMSZ.
+
+//! @brief Get value of SDMAARM_CHN0ADDR_SMSZ from a register value.
+#define BG_SDMAARM_CHN0ADDR_SMSZ(r)   (((r) & BM_SDMAARM_CHN0ADDR_SMSZ) >> BP_SDMAARM_CHN0ADDR_SMSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_CHN0ADDR_SMSZ)
+//! @brief Format value for bitfield SDMAARM_CHN0ADDR_SMSZ.
+#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   ((((reg32_t) v) << BP_SDMAARM_CHN0ADDR_SMSZ) & BM_SDMAARM_CHN0ADDR_SMSZ)
 #else
-#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   (((v) << 14) & BM_SDMAARM_CHN0ADDR_SMSZ)
+//! @brief Format value for bitfield SDMAARM_CHN0ADDR_SMSZ.
+#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   (((v) << BP_SDMAARM_CHN0ADDR_SMSZ) & BM_SDMAARM_CHN0ADDR_SMSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SMSZ field to a new value.
-#define BW_SDMAARM_CHN0ADDR_SMSZ(v)   BF_CS1(SDMAARM_CHN0ADDR, SMSZ, v)
+#define BW_SDMAARM_CHN0ADDR_SMSZ(v)   (HW_SDMAARM_CHN0ADDR_WR((HW_SDMAARM_CHN0ADDR_RD() & ~BM_SDMAARM_CHN0ADDR_SMSZ) | BF_SDMAARM_CHN0ADDR_SMSZ(v)))
 #endif
 
 
@@ -1613,14 +1834,16 @@ typedef union
 /*!
  * @brief HW_SDMAARM_EVT_MIRROR - DMA Requests (RO)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_evt_mirror
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_evt_mirror_bitfields
     {
-        unsigned EVENTS : 32; //!< This register reflects the DMA requests received by the SDMA for events 31-0. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of 32 DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR register is cleared following read access.
+        unsigned EVENTS : 32; //!< [31:0] This register reflects the DMA requests received by the SDMA for events 31-0. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of 32 DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR register is cleared following read access.
     } B;
 } hw_sdmaarm_evt_mirror_t;
 #endif
@@ -1651,23 +1874,28 @@ typedef union
  * 1 - DMA request event pending
  */
 
-#define BP_SDMAARM_EVT_MIRROR_EVENTS      (0)
-#define BM_SDMAARM_EVT_MIRROR_EVENTS      (0xffffffff)
+#define BP_SDMAARM_EVT_MIRROR_EVENTS      (0)      //!< Bit position for SDMAARM_EVT_MIRROR_EVENTS.
+#define BM_SDMAARM_EVT_MIRROR_EVENTS      (0xffffffff)  //!< Bit mask for SDMAARM_EVT_MIRROR_EVENTS.
+
+//! @brief Get value of SDMAARM_EVT_MIRROR_EVENTS from a register value.
+#define BG_SDMAARM_EVT_MIRROR_EVENTS(r)   (((r) & BM_SDMAARM_EVT_MIRROR_EVENTS) >> BP_SDMAARM_EVT_MIRROR_EVENTS)
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_EVT_MIRROR2 - DMA Requests 2 (RO)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_evt_mirror2
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_evt_mirror2_bitfields
     {
-        unsigned EVENTS : 16; //!< This register reflects the DMA requests received by the SDMA for events 47-32. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR2 register is cleared following read access.
-        unsigned RESERVED0 : 16; //!< Reserved
+        unsigned EVENTS : 16; //!< [15:0] This register reflects the DMA requests received by the SDMA for events 47-32. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR2 register is cleared following read access.
+        unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_evt_mirror2_t;
 #endif
@@ -1698,33 +1926,38 @@ typedef union
  * 1- - DMA request event pending
  */
 
-#define BP_SDMAARM_EVT_MIRROR2_EVENTS      (0)
-#define BM_SDMAARM_EVT_MIRROR2_EVENTS      (0x0000ffff)
+#define BP_SDMAARM_EVT_MIRROR2_EVENTS      (0)      //!< Bit position for SDMAARM_EVT_MIRROR2_EVENTS.
+#define BM_SDMAARM_EVT_MIRROR2_EVENTS      (0x0000ffff)  //!< Bit mask for SDMAARM_EVT_MIRROR2_EVENTS.
+
+//! @brief Get value of SDMAARM_EVT_MIRROR2_EVENTS from a register value.
+#define BG_SDMAARM_EVT_MIRROR2_EVENTS(r)   (((r) & BM_SDMAARM_EVT_MIRROR2_EVENTS) >> BP_SDMAARM_EVT_MIRROR2_EVENTS)
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_XTRIG_CONF1 - Cross-Trigger Events Configuration Register 1 (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_xtrig_conf1
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_xtrig_conf1_bitfields
     {
-        unsigned NUM0 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF0 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned NUM1 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF1 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned NUM2 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF2 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned NUM3 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF3 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by the reception of a DMA request or by the starting of a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED3 : 1; //!< Reserved
+        unsigned NUM0 : 6; //!< [5:0] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF0 : 1; //!< [6] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned NUM1 : 6; //!< [13:8] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF1 : 1; //!< [14] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED1 : 1; //!< [15] Reserved
+        unsigned NUM2 : 6; //!< [21:16] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF2 : 1; //!< [22] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED2 : 1; //!< [23] Reserved
+        unsigned NUM3 : 6; //!< [29:24] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF3 : 1; //!< [30] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by the reception of a DMA request or by the starting of a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_sdmaarm_xtrig_conf1_t;
 #endif
@@ -1753,20 +1986,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_NUM0      (0)
-#define BM_SDMAARM_XTRIG_CONF1_NUM0      (0x0000003f)
+#define BP_SDMAARM_XTRIG_CONF1_NUM0      (0)      //!< Bit position for SDMAARM_XTRIG_CONF1_NUM0.
+#define BM_SDMAARM_XTRIG_CONF1_NUM0      (0x0000003f)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM0.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_NUM0 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_NUM0(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM0) >> BP_SDMAARM_XTRIG_CONF1_NUM0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM0.
+#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM0.
+#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM0 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_NUM0(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM0, v)
+#define BW_SDMAARM_XTRIG_CONF1_NUM0(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_NUM0) | BF_SDMAARM_XTRIG_CONF1_NUM0(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF0[6:6] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF0[6] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
@@ -1779,17 +2018,23 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_CNF0      (6)
-#define BM_SDMAARM_XTRIG_CONF1_CNF0      (0x00000040)
+#define BP_SDMAARM_XTRIG_CONF1_CNF0      (6)      //!< Bit position for SDMAARM_XTRIG_CONF1_CNF0.
+#define BM_SDMAARM_XTRIG_CONF1_CNF0      (0x00000040)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF0.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_CNF0 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_CNF0(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF0) >> BP_SDMAARM_XTRIG_CONF1_CNF0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_CNF0(v)   ((((reg32_t) v) << 6) & BM_SDMAARM_XTRIG_CONF1_CNF0)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF0.
+#define BF_SDMAARM_XTRIG_CONF1_CNF0(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF0) & BM_SDMAARM_XTRIG_CONF1_CNF0)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_CNF0(v)   (((v) << 6) & BM_SDMAARM_XTRIG_CONF1_CNF0)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF0.
+#define BF_SDMAARM_XTRIG_CONF1_CNF0(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF0) & BM_SDMAARM_XTRIG_CONF1_CNF0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF0 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_CNF0(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF0, v)
+#define BW_SDMAARM_XTRIG_CONF1_CNF0(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_CNF0) | BF_SDMAARM_XTRIG_CONF1_CNF0(v)))
 #endif
 
 
@@ -1799,20 +2044,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_NUM1      (8)
-#define BM_SDMAARM_XTRIG_CONF1_NUM1      (0x00003f00)
+#define BP_SDMAARM_XTRIG_CONF1_NUM1      (8)      //!< Bit position for SDMAARM_XTRIG_CONF1_NUM1.
+#define BM_SDMAARM_XTRIG_CONF1_NUM1      (0x00003f00)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM1.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_NUM1 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_NUM1(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM1) >> BP_SDMAARM_XTRIG_CONF1_NUM1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM1.
+#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM1) & BM_SDMAARM_XTRIG_CONF1_NUM1)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF1_NUM1)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM1.
+#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM1) & BM_SDMAARM_XTRIG_CONF1_NUM1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM1 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_NUM1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM1, v)
+#define BW_SDMAARM_XTRIG_CONF1_NUM1(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_NUM1) | BF_SDMAARM_XTRIG_CONF1_NUM1(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF1[14:14] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF1[14] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
@@ -1825,17 +2076,23 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_CNF1      (14)
-#define BM_SDMAARM_XTRIG_CONF1_CNF1      (0x00004000)
+#define BP_SDMAARM_XTRIG_CONF1_CNF1      (14)      //!< Bit position for SDMAARM_XTRIG_CONF1_CNF1.
+#define BM_SDMAARM_XTRIG_CONF1_CNF1      (0x00004000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF1.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_CNF1 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_CNF1(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF1) >> BP_SDMAARM_XTRIG_CONF1_CNF1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_XTRIG_CONF1_CNF1)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF1.
+#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF1) & BM_SDMAARM_XTRIG_CONF1_CNF1)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   (((v) << 14) & BM_SDMAARM_XTRIG_CONF1_CNF1)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF1.
+#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF1) & BM_SDMAARM_XTRIG_CONF1_CNF1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF1 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_CNF1(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF1, v)
+#define BW_SDMAARM_XTRIG_CONF1_CNF1(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_CNF1) | BF_SDMAARM_XTRIG_CONF1_CNF1(v)))
 #endif
 
 
@@ -1845,20 +2102,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_NUM2      (16)
-#define BM_SDMAARM_XTRIG_CONF1_NUM2      (0x003f0000)
+#define BP_SDMAARM_XTRIG_CONF1_NUM2      (16)      //!< Bit position for SDMAARM_XTRIG_CONF1_NUM2.
+#define BM_SDMAARM_XTRIG_CONF1_NUM2      (0x003f0000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM2.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_NUM2 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_NUM2(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM2) >> BP_SDMAARM_XTRIG_CONF1_NUM2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM2.
+#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM2) & BM_SDMAARM_XTRIG_CONF1_NUM2)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF1_NUM2)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM2.
+#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM2) & BM_SDMAARM_XTRIG_CONF1_NUM2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM2 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_NUM2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM2, v)
+#define BW_SDMAARM_XTRIG_CONF1_NUM2(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_NUM2) | BF_SDMAARM_XTRIG_CONF1_NUM2(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF2[22:22] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF2[22] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
@@ -1871,17 +2134,23 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_CNF2      (22)
-#define BM_SDMAARM_XTRIG_CONF1_CNF2      (0x00400000)
+#define BP_SDMAARM_XTRIG_CONF1_CNF2      (22)      //!< Bit position for SDMAARM_XTRIG_CONF1_CNF2.
+#define BM_SDMAARM_XTRIG_CONF1_CNF2      (0x00400000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF2.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_CNF2 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_CNF2(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF2) >> BP_SDMAARM_XTRIG_CONF1_CNF2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   ((((reg32_t) v) << 22) & BM_SDMAARM_XTRIG_CONF1_CNF2)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF2.
+#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF2) & BM_SDMAARM_XTRIG_CONF1_CNF2)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   (((v) << 22) & BM_SDMAARM_XTRIG_CONF1_CNF2)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF2.
+#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF2) & BM_SDMAARM_XTRIG_CONF1_CNF2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF2 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_CNF2(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF2, v)
+#define BW_SDMAARM_XTRIG_CONF1_CNF2(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_CNF2) | BF_SDMAARM_XTRIG_CONF1_CNF2(v)))
 #endif
 
 
@@ -1891,20 +2160,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_NUM3      (24)
-#define BM_SDMAARM_XTRIG_CONF1_NUM3      (0x3f000000)
+#define BP_SDMAARM_XTRIG_CONF1_NUM3      (24)      //!< Bit position for SDMAARM_XTRIG_CONF1_NUM3.
+#define BM_SDMAARM_XTRIG_CONF1_NUM3      (0x3f000000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM3.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_NUM3 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_NUM3(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM3) >> BP_SDMAARM_XTRIG_CONF1_NUM3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM3.
+#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM3) & BM_SDMAARM_XTRIG_CONF1_NUM3)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF1_NUM3)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM3.
+#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM3) & BM_SDMAARM_XTRIG_CONF1_NUM3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM3 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_NUM3(v)   BF_CS1(SDMAARM_XTRIG_CONF1, NUM3, v)
+#define BW_SDMAARM_XTRIG_CONF1_NUM3(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_NUM3) | BF_SDMAARM_XTRIG_CONF1_NUM3(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF3[30:30] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF1, field CNF3[30] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by the reception of a DMA request or by the
@@ -1918,17 +2193,23 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF1_CNF3      (30)
-#define BM_SDMAARM_XTRIG_CONF1_CNF3      (0x40000000)
+#define BP_SDMAARM_XTRIG_CONF1_CNF3      (30)      //!< Bit position for SDMAARM_XTRIG_CONF1_CNF3.
+#define BM_SDMAARM_XTRIG_CONF1_CNF3      (0x40000000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF3.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF1_CNF3 from a register value.
+#define BG_SDMAARM_XTRIG_CONF1_CNF3(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF3) >> BP_SDMAARM_XTRIG_CONF1_CNF3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   ((((reg32_t) v) << 30) & BM_SDMAARM_XTRIG_CONF1_CNF3)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF3.
+#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF3) & BM_SDMAARM_XTRIG_CONF1_CNF3)
 #else
-#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   (((v) << 30) & BM_SDMAARM_XTRIG_CONF1_CNF3)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF3.
+#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF3) & BM_SDMAARM_XTRIG_CONF1_CNF3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF3 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF1_CNF3(v)   BF_CS1(SDMAARM_XTRIG_CONF1, CNF3, v)
+#define BW_SDMAARM_XTRIG_CONF1_CNF3(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_CNF3) | BF_SDMAARM_XTRIG_CONF1_CNF3(v)))
 #endif
 
 
@@ -1936,25 +2217,27 @@ typedef union
 /*!
  * @brief HW_SDMAARM_XTRIG_CONF2 - Cross-Trigger Events Configuration Register 2 (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_sdmaarm_xtrig_conf2
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_xtrig_conf2_bitfields
     {
-        unsigned NUM4 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF4 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned NUM5 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF5 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution . When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned NUM6 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF6 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned NUM7 : 6; //!< Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF7 : 1; //!< Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
-        unsigned RESERVED3 : 1; //!< Reserved
+        unsigned NUM4 : 6; //!< [5:0] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF4 : 1; //!< [6] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned NUM5 : 6; //!< [13:8] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF5 : 1; //!< [14] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution . When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED1 : 1; //!< [15] Reserved
+        unsigned NUM6 : 6; //!< [21:16] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF6 : 1; //!< [22] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED2 : 1; //!< [23] Reserved
+        unsigned NUM7 : 6; //!< [29:24] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
+        unsigned CNF7 : 1; //!< [30] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_sdmaarm_xtrig_conf2_t;
 #endif
@@ -1983,20 +2266,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_NUM4      (0)
-#define BM_SDMAARM_XTRIG_CONF2_NUM4      (0x0000003f)
+#define BP_SDMAARM_XTRIG_CONF2_NUM4      (0)      //!< Bit position for SDMAARM_XTRIG_CONF2_NUM4.
+#define BM_SDMAARM_XTRIG_CONF2_NUM4      (0x0000003f)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM4.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_NUM4 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_NUM4(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM4) >> BP_SDMAARM_XTRIG_CONF2_NUM4)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM4.
+#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM4) & BM_SDMAARM_XTRIG_CONF2_NUM4)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   (((v) << 0) & BM_SDMAARM_XTRIG_CONF2_NUM4)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM4.
+#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM4) & BM_SDMAARM_XTRIG_CONF2_NUM4)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM4 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_NUM4(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM4, v)
+#define BW_SDMAARM_XTRIG_CONF2_NUM4(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_NUM4) | BF_SDMAARM_XTRIG_CONF2_NUM4(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF4[6:6] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF4[6] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
@@ -2009,17 +2298,23 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_CNF4      (6)
-#define BM_SDMAARM_XTRIG_CONF2_CNF4      (0x00000040)
+#define BP_SDMAARM_XTRIG_CONF2_CNF4      (6)      //!< Bit position for SDMAARM_XTRIG_CONF2_CNF4.
+#define BM_SDMAARM_XTRIG_CONF2_CNF4      (0x00000040)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF4.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_CNF4 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_CNF4(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF4) >> BP_SDMAARM_XTRIG_CONF2_CNF4)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_CNF4(v)   ((((reg32_t) v) << 6) & BM_SDMAARM_XTRIG_CONF2_CNF4)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF4.
+#define BF_SDMAARM_XTRIG_CONF2_CNF4(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF4) & BM_SDMAARM_XTRIG_CONF2_CNF4)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_CNF4(v)   (((v) << 6) & BM_SDMAARM_XTRIG_CONF2_CNF4)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF4.
+#define BF_SDMAARM_XTRIG_CONF2_CNF4(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF4) & BM_SDMAARM_XTRIG_CONF2_CNF4)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF4 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_CNF4(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF4, v)
+#define BW_SDMAARM_XTRIG_CONF2_CNF4(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_CNF4) | BF_SDMAARM_XTRIG_CONF2_CNF4(v)))
 #endif
 
 
@@ -2029,20 +2324,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_NUM5      (8)
-#define BM_SDMAARM_XTRIG_CONF2_NUM5      (0x00003f00)
+#define BP_SDMAARM_XTRIG_CONF2_NUM5      (8)      //!< Bit position for SDMAARM_XTRIG_CONF2_NUM5.
+#define BM_SDMAARM_XTRIG_CONF2_NUM5      (0x00003f00)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM5.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_NUM5 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_NUM5(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM5) >> BP_SDMAARM_XTRIG_CONF2_NUM5)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   ((((reg32_t) v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM5.
+#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM5) & BM_SDMAARM_XTRIG_CONF2_NUM5)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   (((v) << 8) & BM_SDMAARM_XTRIG_CONF2_NUM5)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM5.
+#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM5) & BM_SDMAARM_XTRIG_CONF2_NUM5)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM5 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_NUM5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM5, v)
+#define BW_SDMAARM_XTRIG_CONF2_NUM5(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_NUM5) | BF_SDMAARM_XTRIG_CONF2_NUM5(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF5[14:14] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF5[14] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
@@ -2055,17 +2356,23 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_CNF5      (14)
-#define BM_SDMAARM_XTRIG_CONF2_CNF5      (0x00004000)
+#define BP_SDMAARM_XTRIG_CONF2_CNF5      (14)      //!< Bit position for SDMAARM_XTRIG_CONF2_CNF5.
+#define BM_SDMAARM_XTRIG_CONF2_CNF5      (0x00004000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF5.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_CNF5 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_CNF5(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF5) >> BP_SDMAARM_XTRIG_CONF2_CNF5)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   ((((reg32_t) v) << 14) & BM_SDMAARM_XTRIG_CONF2_CNF5)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF5.
+#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF5) & BM_SDMAARM_XTRIG_CONF2_CNF5)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   (((v) << 14) & BM_SDMAARM_XTRIG_CONF2_CNF5)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF5.
+#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF5) & BM_SDMAARM_XTRIG_CONF2_CNF5)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF5 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_CNF5(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF5, v)
+#define BW_SDMAARM_XTRIG_CONF2_CNF5(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_CNF5) | BF_SDMAARM_XTRIG_CONF2_CNF5(v)))
 #endif
 
 
@@ -2075,20 +2382,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_NUM6      (16)
-#define BM_SDMAARM_XTRIG_CONF2_NUM6      (0x003f0000)
+#define BP_SDMAARM_XTRIG_CONF2_NUM6      (16)      //!< Bit position for SDMAARM_XTRIG_CONF2_NUM6.
+#define BM_SDMAARM_XTRIG_CONF2_NUM6      (0x003f0000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM6.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_NUM6 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_NUM6(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM6) >> BP_SDMAARM_XTRIG_CONF2_NUM6)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   ((((reg32_t) v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM6.
+#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM6) & BM_SDMAARM_XTRIG_CONF2_NUM6)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   (((v) << 16) & BM_SDMAARM_XTRIG_CONF2_NUM6)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM6.
+#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM6) & BM_SDMAARM_XTRIG_CONF2_NUM6)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM6 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_NUM6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM6, v)
+#define BW_SDMAARM_XTRIG_CONF2_NUM6(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_NUM6) | BF_SDMAARM_XTRIG_CONF2_NUM6(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF6[22:22] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF6[22] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
@@ -2101,17 +2414,23 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_CNF6      (22)
-#define BM_SDMAARM_XTRIG_CONF2_CNF6      (0x00400000)
+#define BP_SDMAARM_XTRIG_CONF2_CNF6      (22)      //!< Bit position for SDMAARM_XTRIG_CONF2_CNF6.
+#define BM_SDMAARM_XTRIG_CONF2_CNF6      (0x00400000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF6.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_CNF6 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_CNF6(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF6) >> BP_SDMAARM_XTRIG_CONF2_CNF6)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   ((((reg32_t) v) << 22) & BM_SDMAARM_XTRIG_CONF2_CNF6)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF6.
+#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF6) & BM_SDMAARM_XTRIG_CONF2_CNF6)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   (((v) << 22) & BM_SDMAARM_XTRIG_CONF2_CNF6)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF6.
+#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF6) & BM_SDMAARM_XTRIG_CONF2_CNF6)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF6 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_CNF6(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF6, v)
+#define BW_SDMAARM_XTRIG_CONF2_CNF6(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_CNF6) | BF_SDMAARM_XTRIG_CONF2_CNF6(v)))
 #endif
 
 
@@ -2121,20 +2440,26 @@ typedef union
  * event line number i .
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_NUM7      (24)
-#define BM_SDMAARM_XTRIG_CONF2_NUM7      (0x3f000000)
+#define BP_SDMAARM_XTRIG_CONF2_NUM7      (24)      //!< Bit position for SDMAARM_XTRIG_CONF2_NUM7.
+#define BM_SDMAARM_XTRIG_CONF2_NUM7      (0x3f000000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM7.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_NUM7 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_NUM7(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM7) >> BP_SDMAARM_XTRIG_CONF2_NUM7)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   ((((reg32_t) v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM7.
+#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM7) & BM_SDMAARM_XTRIG_CONF2_NUM7)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   (((v) << 24) & BM_SDMAARM_XTRIG_CONF2_NUM7)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM7.
+#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM7) & BM_SDMAARM_XTRIG_CONF2_NUM7)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM7 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_NUM7(v)   BF_CS1(SDMAARM_XTRIG_CONF2, NUM7, v)
+#define BW_SDMAARM_XTRIG_CONF2_NUM7(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_NUM7) | BF_SDMAARM_XTRIG_CONF2_NUM7(v)))
 #endif
 
-/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF7[30:30] (RW)
+/* --- Register HW_SDMAARM_XTRIG_CONF2, field CNF7[30] (RW)
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
@@ -2147,33 +2472,41 @@ typedef union
  * 1 - DMA request
  */
 
-#define BP_SDMAARM_XTRIG_CONF2_CNF7      (30)
-#define BM_SDMAARM_XTRIG_CONF2_CNF7      (0x40000000)
+#define BP_SDMAARM_XTRIG_CONF2_CNF7      (30)      //!< Bit position for SDMAARM_XTRIG_CONF2_CNF7.
+#define BM_SDMAARM_XTRIG_CONF2_CNF7      (0x40000000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF7.
+
+//! @brief Get value of SDMAARM_XTRIG_CONF2_CNF7 from a register value.
+#define BG_SDMAARM_XTRIG_CONF2_CNF7(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF7) >> BP_SDMAARM_XTRIG_CONF2_CNF7)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   ((((reg32_t) v) << 30) & BM_SDMAARM_XTRIG_CONF2_CNF7)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF7.
+#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF7) & BM_SDMAARM_XTRIG_CONF2_CNF7)
 #else
-#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   (((v) << 30) & BM_SDMAARM_XTRIG_CONF2_CNF7)
+//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF7.
+#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF7) & BM_SDMAARM_XTRIG_CONF2_CNF7)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF7 field to a new value.
-#define BW_SDMAARM_XTRIG_CONF2_CNF7(v)   BF_CS1(SDMAARM_XTRIG_CONF2, CNF7, v)
+#define BW_SDMAARM_XTRIG_CONF2_CNF7(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_CNF7) | BF_SDMAARM_XTRIG_CONF2_CNF7(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI0 - Channel Priority Registers 0 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI0 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri0
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri0_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri0_t;
 #endif
@@ -2203,32 +2536,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI0_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI0_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI0_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI0_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI0_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI0_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI0, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI0_WR((HW_SDMAARM_SDMA_CHNPRI0_RD() & ~BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI1 - Channel Priority Registers 1 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI1 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri1
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri1_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri1_t;
 #endif
@@ -2258,32 +2599,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI1_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI1_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI1_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI1_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI1_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI1_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI1, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI1_WR((HW_SDMAARM_SDMA_CHNPRI1_RD() & ~BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI2 - Channel Priority Registers 2 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI2 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri2
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri2_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri2_t;
 #endif
@@ -2313,32 +2662,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI2_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI2_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI2_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI2_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI2_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI2_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI2, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI2_WR((HW_SDMAARM_SDMA_CHNPRI2_RD() & ~BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI3 - Channel Priority Registers 3 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI3 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri3
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri3_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri3_t;
 #endif
@@ -2368,32 +2725,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI3_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI3_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI3_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI3_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI3_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI3_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI3, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI3_WR((HW_SDMAARM_SDMA_CHNPRI3_RD() & ~BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI4 - Channel Priority Registers 4 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI4 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri4
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri4_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri4_t;
 #endif
@@ -2423,32 +2788,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI4_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI4_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI4_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI4_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI4_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI4_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI4, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI4_WR((HW_SDMAARM_SDMA_CHNPRI4_RD() & ~BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI5 - Channel Priority Registers 5 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI5 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri5
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri5_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri5_t;
 #endif
@@ -2478,32 +2851,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI5_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI5_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI5_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI5_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI5_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI5_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI5, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI5_WR((HW_SDMAARM_SDMA_CHNPRI5_RD() & ~BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI6 - Channel Priority Registers 6 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI6 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri6
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri6_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri6_t;
 #endif
@@ -2533,32 +2914,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI6_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI6_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI6_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI6_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI6_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI6_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI6, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI6_WR((HW_SDMAARM_SDMA_CHNPRI6_RD() & ~BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI7 - Channel Priority Registers 7 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI7 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri7
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri7_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri7_t;
 #endif
@@ -2588,32 +2977,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI7_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI7_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI7_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI7_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI7_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI7_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI7, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI7_WR((HW_SDMAARM_SDMA_CHNPRI7_RD() & ~BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI8 - Channel Priority Registers 8 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI8 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri8
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri8_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri8_t;
 #endif
@@ -2643,32 +3040,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI8_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI8_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI8_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI8_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI8_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI8_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI8, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI8_WR((HW_SDMAARM_SDMA_CHNPRI8_RD() & ~BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI9 - Channel Priority Registers 9 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI9 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri9
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri9_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri9_t;
 #endif
@@ -2698,32 +3103,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI9_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI9_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI9_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI9_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI9_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI9_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI9, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI9_WR((HW_SDMAARM_SDMA_CHNPRI9_RD() & ~BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI10 - Channel Priority Registers 10 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI10 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri10
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri10_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri10_t;
 #endif
@@ -2753,32 +3166,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI10_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI10_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI10_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI10_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI10_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI10_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI10, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI10_WR((HW_SDMAARM_SDMA_CHNPRI10_RD() & ~BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI11 - Channel Priority Registers 11 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI11 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri11
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri11_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri11_t;
 #endif
@@ -2808,32 +3229,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI11_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI11_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI11_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI11_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI11_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI11_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI11, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI11_WR((HW_SDMAARM_SDMA_CHNPRI11_RD() & ~BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI12 - Channel Priority Registers 12 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI12 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri12
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri12_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri12_t;
 #endif
@@ -2863,32 +3292,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI12_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI12_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI12_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI12_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI12_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI12_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI12, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI12_WR((HW_SDMAARM_SDMA_CHNPRI12_RD() & ~BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI13 - Channel Priority Registers 13 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI13 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri13
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri13_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri13_t;
 #endif
@@ -2918,32 +3355,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI13_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI13_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI13_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI13_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI13_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI13_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI13, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI13_WR((HW_SDMAARM_SDMA_CHNPRI13_RD() & ~BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI14 - Channel Priority Registers 14 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI14 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri14
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri14_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri14_t;
 #endif
@@ -2973,32 +3418,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI14_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI14_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI14_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI14_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI14_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI14_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI14, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI14_WR((HW_SDMAARM_SDMA_CHNPRI14_RD() & ~BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI15 - Channel Priority Registers 15 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI15 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri15
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri15_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri15_t;
 #endif
@@ -3028,32 +3481,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI15_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI15_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI15_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI15_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI15_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI15_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI15, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI15_WR((HW_SDMAARM_SDMA_CHNPRI15_RD() & ~BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI16 - Channel Priority Registers 16 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI16 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri16
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri16_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri16_t;
 #endif
@@ -3083,32 +3544,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI16_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI16_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI16_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI16_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI16_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI16_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI16, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI16_WR((HW_SDMAARM_SDMA_CHNPRI16_RD() & ~BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI17 - Channel Priority Registers 17 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI17 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri17
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri17_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri17_t;
 #endif
@@ -3138,32 +3607,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI17_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI17_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI17_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI17_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI17_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI17_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI17, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI17_WR((HW_SDMAARM_SDMA_CHNPRI17_RD() & ~BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI18 - Channel Priority Registers 18 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI18 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri18
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri18_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri18_t;
 #endif
@@ -3193,32 +3670,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI18_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI18_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI18_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI18_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI18_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI18_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI18, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI18_WR((HW_SDMAARM_SDMA_CHNPRI18_RD() & ~BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI19 - Channel Priority Registers 19 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI19 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri19
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri19_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri19_t;
 #endif
@@ -3248,32 +3733,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI19_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI19_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI19_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI19_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI19_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI19_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI19, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI19_WR((HW_SDMAARM_SDMA_CHNPRI19_RD() & ~BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI20 - Channel Priority Registers 20 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI20 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri20
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri20_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri20_t;
 #endif
@@ -3303,32 +3796,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI20_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI20_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI20_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI20_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI20_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI20_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI20, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI20_WR((HW_SDMAARM_SDMA_CHNPRI20_RD() & ~BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI21 - Channel Priority Registers 21 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI21 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri21
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri21_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri21_t;
 #endif
@@ -3358,32 +3859,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI21_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI21_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI21_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI21_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI21_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI21_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI21, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI21_WR((HW_SDMAARM_SDMA_CHNPRI21_RD() & ~BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI22 - Channel Priority Registers 22 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI22 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri22
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri22_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri22_t;
 #endif
@@ -3413,32 +3922,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI22_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI22_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI22_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI22_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI22_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI22_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI22, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI22_WR((HW_SDMAARM_SDMA_CHNPRI22_RD() & ~BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI23 - Channel Priority Registers 23 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI23 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri23
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri23_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri23_t;
 #endif
@@ -3468,32 +3985,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI23_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI23_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI23_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI23_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI23_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI23_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI23, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI23_WR((HW_SDMAARM_SDMA_CHNPRI23_RD() & ~BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI24 - Channel Priority Registers 24 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI24 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri24
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri24_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri24_t;
 #endif
@@ -3523,32 +4048,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI24_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI24_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI24_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI24_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI24_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI24_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI24, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI24_WR((HW_SDMAARM_SDMA_CHNPRI24_RD() & ~BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI25 - Channel Priority Registers 25 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI25 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri25
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri25_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri25_t;
 #endif
@@ -3578,32 +4111,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI25_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI25_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI25_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI25_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI25_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI25_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI25, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI25_WR((HW_SDMAARM_SDMA_CHNPRI25_RD() & ~BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI26 - Channel Priority Registers 26 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI26 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri26
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri26_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri26_t;
 #endif
@@ -3633,32 +4174,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI26_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI26_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI26_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI26_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI26_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI26_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI26, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI26_WR((HW_SDMAARM_SDMA_CHNPRI26_RD() & ~BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI27 - Channel Priority Registers 27 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI27 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri27
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri27_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri27_t;
 #endif
@@ -3688,32 +4237,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI27_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI27_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI27_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI27_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI27_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI27_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI27, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI27_WR((HW_SDMAARM_SDMA_CHNPRI27_RD() & ~BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI28 - Channel Priority Registers 28 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI28 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri28
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri28_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri28_t;
 #endif
@@ -3743,32 +4300,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI28_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI28_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI28_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI28_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI28_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI28_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI28, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI28_WR((HW_SDMAARM_SDMA_CHNPRI28_RD() & ~BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI29 - Channel Priority Registers 29 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI29 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri29
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri29_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri29_t;
 #endif
@@ -3798,32 +4363,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI29_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI29_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI29_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI29_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI29_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI29_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI29, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI29_WR((HW_SDMAARM_SDMA_CHNPRI29_RD() & ~BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI30 - Channel Priority Registers 30 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI30 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri30
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri30_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri30_t;
 #endif
@@ -3853,32 +4426,40 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI30_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI30_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI30_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI30_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI30_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI30_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI30, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI30_WR((HW_SDMAARM_SDMA_CHNPRI30_RD() & ~BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNPRI31 - Channel Priority Registers 31 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNPRI31 - Channel Priority Registers (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnpri31
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnpri31_bitfields
     {
-        unsigned CHNPRIN : 3; //!< This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
-        unsigned RESERVED0 : 29; //!< Reserved
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri31_t;
 #endif
@@ -3908,31 +4489,39 @@ typedef union
  * prevents the channels from starting.
  */
 
-#define BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN      (0)
-#define BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN      (0x00000007)
+#define BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN      (0)      //!< Bit position for SDMAARM_SDMA_CHNPRI31_CHNPRIN.
+#define BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI31_CHNPRIN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNPRI31_CHNPRIN from a register value.
+#define BG_SDMAARM_SDMA_CHNPRI31_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI31_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
 #else
-#define BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI31_CHNPRIN.
+#define BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
-#define BW_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   BF_CS1(SDMAARM_SDMA_CHNPRI31, CHNPRIN, v)
+#define BW_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI31_WR((HW_SDMAARM_SDMA_CHNPRI31_RD() & ~BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL0 - Channel Enable RAM 0 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL0 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl0
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl0_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl0_t;
 #endif
@@ -3964,31 +4553,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL0_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL0_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL0_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL0_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL0_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL0_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL0_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL0_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL0_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL0_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL0_ENBLN) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL0_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL0_ENBLN) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL0, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL0_WR((HW_SDMAARM_SDMA_CHNENBL0_RD() & ~BM_SDMAARM_SDMA_CHNENBL0_ENBLN) | BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL1 - Channel Enable RAM 1 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL1 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl1
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl1_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl1_t;
 #endif
@@ -4020,31 +4617,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL1_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL1_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL1_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL1_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL1_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL1_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL1_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL1_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL1_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL1_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL1_ENBLN) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL1_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL1_ENBLN) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL1, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL1_WR((HW_SDMAARM_SDMA_CHNENBL1_RD() & ~BM_SDMAARM_SDMA_CHNENBL1_ENBLN) | BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL2 - Channel Enable RAM 2 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL2 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl2
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl2_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl2_t;
 #endif
@@ -4076,31 +4681,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL2_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL2_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL2_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL2_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL2_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL2_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL2_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL2_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL2_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL2_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL2_ENBLN) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL2_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL2_ENBLN) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL2, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL2_WR((HW_SDMAARM_SDMA_CHNENBL2_RD() & ~BM_SDMAARM_SDMA_CHNENBL2_ENBLN) | BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL3 - Channel Enable RAM 3 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL3 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl3
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl3_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl3_t;
 #endif
@@ -4132,31 +4745,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL3_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL3_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL3_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL3_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL3_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL3_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL3_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL3_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL3_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL3_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL3_ENBLN) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL3_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL3_ENBLN) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL3, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL3_WR((HW_SDMAARM_SDMA_CHNENBL3_RD() & ~BM_SDMAARM_SDMA_CHNENBL3_ENBLN) | BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL4 - Channel Enable RAM 4 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL4 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl4
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl4_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl4_t;
 #endif
@@ -4188,31 +4809,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL4_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL4_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL4_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL4_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL4_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL4_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL4_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL4_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL4_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL4_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL4_ENBLN) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL4_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL4_ENBLN) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL4, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL4_WR((HW_SDMAARM_SDMA_CHNENBL4_RD() & ~BM_SDMAARM_SDMA_CHNENBL4_ENBLN) | BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL5 - Channel Enable RAM 5 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL5 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl5
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl5_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl5_t;
 #endif
@@ -4244,31 +4873,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL5_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL5_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL5_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL5_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL5_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL5_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL5_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL5_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL5_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL5_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL5_ENBLN) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL5_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL5_ENBLN) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL5, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL5_WR((HW_SDMAARM_SDMA_CHNENBL5_RD() & ~BM_SDMAARM_SDMA_CHNENBL5_ENBLN) | BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL6 - Channel Enable RAM 6 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL6 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl6
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl6_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl6_t;
 #endif
@@ -4300,31 +4937,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL6_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL6_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL6_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL6_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL6_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL6_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL6_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL6_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL6_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL6_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL6_ENBLN) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL6_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL6_ENBLN) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL6, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL6_WR((HW_SDMAARM_SDMA_CHNENBL6_RD() & ~BM_SDMAARM_SDMA_CHNENBL6_ENBLN) | BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL7 - Channel Enable RAM 7 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL7 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl7
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl7_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl7_t;
 #endif
@@ -4356,31 +5001,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL7_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL7_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL7_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL7_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL7_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL7_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL7_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL7_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL7_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL7_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL7_ENBLN) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL7_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL7_ENBLN) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL7, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL7_WR((HW_SDMAARM_SDMA_CHNENBL7_RD() & ~BM_SDMAARM_SDMA_CHNENBL7_ENBLN) | BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL8 - Channel Enable RAM 8 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL8 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl8
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl8_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl8_t;
 #endif
@@ -4412,31 +5065,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL8_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL8_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL8_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL8_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL8_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL8_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL8_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL8_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL8_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL8_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL8_ENBLN) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL8_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL8_ENBLN) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL8, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL8_WR((HW_SDMAARM_SDMA_CHNENBL8_RD() & ~BM_SDMAARM_SDMA_CHNENBL8_ENBLN) | BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL9 - Channel Enable RAM 9 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL9 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl9
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl9_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl9_t;
 #endif
@@ -4468,31 +5129,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL9_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL9_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL9_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL9_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL9_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL9_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL9_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL9_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL9_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL9_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL9_ENBLN) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL9_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL9_ENBLN) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL9, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL9_WR((HW_SDMAARM_SDMA_CHNENBL9_RD() & ~BM_SDMAARM_SDMA_CHNENBL9_ENBLN) | BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL10 - Channel Enable RAM 10 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL10 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl10
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl10_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl10_t;
 #endif
@@ -4524,31 +5193,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL10_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL10_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL10_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL10_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL10_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL10_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL10_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL10_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL10_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL10_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL10_ENBLN) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL10_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL10_ENBLN) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL10, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL10_WR((HW_SDMAARM_SDMA_CHNENBL10_RD() & ~BM_SDMAARM_SDMA_CHNENBL10_ENBLN) | BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL11 - Channel Enable RAM 11 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL11 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl11
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl11_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl11_t;
 #endif
@@ -4580,31 +5257,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL11_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL11_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL11_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL11_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL11_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL11_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL11_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL11_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL11_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL11_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL11_ENBLN) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL11_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL11_ENBLN) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL11, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL11_WR((HW_SDMAARM_SDMA_CHNENBL11_RD() & ~BM_SDMAARM_SDMA_CHNENBL11_ENBLN) | BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL12 - Channel Enable RAM 12 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL12 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl12
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl12_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl12_t;
 #endif
@@ -4636,31 +5321,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL12_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL12_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL12_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL12_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL12_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL12_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL12_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL12_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL12_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL12_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL12_ENBLN) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL12_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL12_ENBLN) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL12, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL12_WR((HW_SDMAARM_SDMA_CHNENBL12_RD() & ~BM_SDMAARM_SDMA_CHNENBL12_ENBLN) | BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL13 - Channel Enable RAM 13 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL13 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl13
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl13_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl13_t;
 #endif
@@ -4692,31 +5385,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL13_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL13_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL13_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL13_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL13_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL13_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL13_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL13_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL13_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL13_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL13_ENBLN) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL13_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL13_ENBLN) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL13, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL13_WR((HW_SDMAARM_SDMA_CHNENBL13_RD() & ~BM_SDMAARM_SDMA_CHNENBL13_ENBLN) | BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL14 - Channel Enable RAM 14 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL14 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl14
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl14_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl14_t;
 #endif
@@ -4748,31 +5449,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL14_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL14_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL14_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL14_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL14_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL14_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL14_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL14_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL14_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL14_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL14_ENBLN) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL14_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL14_ENBLN) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL14, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL14_WR((HW_SDMAARM_SDMA_CHNENBL14_RD() & ~BM_SDMAARM_SDMA_CHNENBL14_ENBLN) | BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL15 - Channel Enable RAM 15 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL15 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl15
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl15_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl15_t;
 #endif
@@ -4804,31 +5513,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL15_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL15_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL15_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL15_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL15_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL15_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL15_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL15_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL15_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL15_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL15_ENBLN) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL15_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL15_ENBLN) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL15, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL15_WR((HW_SDMAARM_SDMA_CHNENBL15_RD() & ~BM_SDMAARM_SDMA_CHNENBL15_ENBLN) | BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL16 - Channel Enable RAM 16 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL16 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl16
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl16_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl16_t;
 #endif
@@ -4860,31 +5577,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL16_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL16_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL16_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL16_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL16_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL16_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL16_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL16_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL16_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL16_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL16_ENBLN) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL16_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL16_ENBLN) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL16, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL16_WR((HW_SDMAARM_SDMA_CHNENBL16_RD() & ~BM_SDMAARM_SDMA_CHNENBL16_ENBLN) | BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL17 - Channel Enable RAM 17 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL17 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl17
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl17_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl17_t;
 #endif
@@ -4916,31 +5641,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL17_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL17_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL17_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL17_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL17_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL17_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL17_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL17_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL17_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL17_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL17_ENBLN) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL17_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL17_ENBLN) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL17, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL17_WR((HW_SDMAARM_SDMA_CHNENBL17_RD() & ~BM_SDMAARM_SDMA_CHNENBL17_ENBLN) | BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL18 - Channel Enable RAM 18 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL18 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl18
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl18_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl18_t;
 #endif
@@ -4972,31 +5705,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL18_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL18_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL18_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL18_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL18_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL18_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL18_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL18_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL18_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL18_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL18_ENBLN) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL18_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL18_ENBLN) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL18, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL18_WR((HW_SDMAARM_SDMA_CHNENBL18_RD() & ~BM_SDMAARM_SDMA_CHNENBL18_ENBLN) | BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL19 - Channel Enable RAM 19 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL19 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl19
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl19_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl19_t;
 #endif
@@ -5028,31 +5769,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL19_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL19_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL19_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL19_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL19_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL19_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL19_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL19_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL19_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL19_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL19_ENBLN) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL19_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL19_ENBLN) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL19, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL19_WR((HW_SDMAARM_SDMA_CHNENBL19_RD() & ~BM_SDMAARM_SDMA_CHNENBL19_ENBLN) | BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL20 - Channel Enable RAM 20 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL20 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl20
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl20_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl20_t;
 #endif
@@ -5084,31 +5833,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL20_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL20_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL20_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL20_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL20_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL20_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL20_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL20_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL20_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL20_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL20_ENBLN) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL20_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL20_ENBLN) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL20, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL20_WR((HW_SDMAARM_SDMA_CHNENBL20_RD() & ~BM_SDMAARM_SDMA_CHNENBL20_ENBLN) | BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL21 - Channel Enable RAM 21 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL21 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl21
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl21_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl21_t;
 #endif
@@ -5140,31 +5897,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL21_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL21_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL21_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL21_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL21_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL21_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL21_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL21_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL21_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL21_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL21_ENBLN) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL21_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL21_ENBLN) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL21, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL21_WR((HW_SDMAARM_SDMA_CHNENBL21_RD() & ~BM_SDMAARM_SDMA_CHNENBL21_ENBLN) | BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL22 - Channel Enable RAM 22 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL22 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl22
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl22_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl22_t;
 #endif
@@ -5196,31 +5961,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL22_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL22_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL22_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL22_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL22_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL22_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL22_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL22_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL22_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL22_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL22_ENBLN) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL22_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL22_ENBLN) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL22, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL22_WR((HW_SDMAARM_SDMA_CHNENBL22_RD() & ~BM_SDMAARM_SDMA_CHNENBL22_ENBLN) | BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL23 - Channel Enable RAM 23 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL23 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl23
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl23_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl23_t;
 #endif
@@ -5252,31 +6025,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL23_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL23_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL23_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL23_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL23_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL23_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL23_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL23_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL23_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL23_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL23_ENBLN) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL23_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL23_ENBLN) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL23, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL23_WR((HW_SDMAARM_SDMA_CHNENBL23_RD() & ~BM_SDMAARM_SDMA_CHNENBL23_ENBLN) | BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL24 - Channel Enable RAM 24 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL24 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl24
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl24_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl24_t;
 #endif
@@ -5308,31 +6089,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL24_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL24_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL24_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL24_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL24_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL24_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL24_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL24_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL24_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL24_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL24_ENBLN) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL24_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL24_ENBLN) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL24, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL24_WR((HW_SDMAARM_SDMA_CHNENBL24_RD() & ~BM_SDMAARM_SDMA_CHNENBL24_ENBLN) | BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL25 - Channel Enable RAM 25 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL25 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl25
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl25_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl25_t;
 #endif
@@ -5364,31 +6153,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL25_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL25_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL25_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL25_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL25_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL25_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL25_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL25_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL25_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL25_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL25_ENBLN) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL25_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL25_ENBLN) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL25, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL25_WR((HW_SDMAARM_SDMA_CHNENBL25_RD() & ~BM_SDMAARM_SDMA_CHNENBL25_ENBLN) | BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL26 - Channel Enable RAM 26 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL26 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl26
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl26_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl26_t;
 #endif
@@ -5420,31 +6217,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL26_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL26_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL26_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL26_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL26_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL26_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL26_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL26_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL26_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL26_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL26_ENBLN) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL26_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL26_ENBLN) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL26, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL26_WR((HW_SDMAARM_SDMA_CHNENBL26_RD() & ~BM_SDMAARM_SDMA_CHNENBL26_ENBLN) | BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL27 - Channel Enable RAM 27 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL27 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl27
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl27_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl27_t;
 #endif
@@ -5476,31 +6281,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL27_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL27_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL27_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL27_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL27_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL27_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL27_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL27_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL27_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL27_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL27_ENBLN) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL27_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL27_ENBLN) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL27, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL27_WR((HW_SDMAARM_SDMA_CHNENBL27_RD() & ~BM_SDMAARM_SDMA_CHNENBL27_ENBLN) | BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL28 - Channel Enable RAM 28 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL28 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl28
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl28_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl28_t;
 #endif
@@ -5532,31 +6345,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL28_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL28_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL28_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL28_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL28_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL28_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL28_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL28_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL28_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL28_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL28_ENBLN) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL28_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL28_ENBLN) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL28, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL28_WR((HW_SDMAARM_SDMA_CHNENBL28_RD() & ~BM_SDMAARM_SDMA_CHNENBL28_ENBLN) | BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL29 - Channel Enable RAM 29 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL29 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl29
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl29_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl29_t;
 #endif
@@ -5588,31 +6409,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL29_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL29_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL29_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL29_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL29_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL29_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL29_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL29_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL29_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL29_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL29_ENBLN) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL29_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL29_ENBLN) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL29, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL29_WR((HW_SDMAARM_SDMA_CHNENBL29_RD() & ~BM_SDMAARM_SDMA_CHNENBL29_ENBLN) | BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL30 - Channel Enable RAM 30 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL30 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl30
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl30_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl30_t;
 #endif
@@ -5644,31 +6473,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL30_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL30_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL30_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL30_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL30_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL30_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL30_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL30_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL30_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL30_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL30_ENBLN) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL30_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL30_ENBLN) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL30, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL30_WR((HW_SDMAARM_SDMA_CHNENBL30_RD() & ~BM_SDMAARM_SDMA_CHNENBL30_ENBLN) | BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL31 - Channel Enable RAM 31 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL31 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl31
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl31_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl31_t;
 #endif
@@ -5700,31 +6537,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL31_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL31_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL31_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL31_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL31_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL31_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL31_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL31_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL31_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL31_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL31_ENBLN) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL31_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL31_ENBLN) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL31, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL31_WR((HW_SDMAARM_SDMA_CHNENBL31_RD() & ~BM_SDMAARM_SDMA_CHNENBL31_ENBLN) | BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL32 - Channel Enable RAM 32 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL32 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl32
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl32_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl32_t;
 #endif
@@ -5756,31 +6601,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL32_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL32_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL32_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL32_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL32_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL32_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL32_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL32_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL32_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL32_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL32_ENBLN) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL32_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL32_ENBLN) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL32, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL32_WR((HW_SDMAARM_SDMA_CHNENBL32_RD() & ~BM_SDMAARM_SDMA_CHNENBL32_ENBLN) | BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL33 - Channel Enable RAM 33 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL33 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl33
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl33_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl33_t;
 #endif
@@ -5812,31 +6665,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL33_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL33_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL33_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL33_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL33_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL33_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL33_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL33_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL33_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL33_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL33_ENBLN) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL33_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL33_ENBLN) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL33, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL33_WR((HW_SDMAARM_SDMA_CHNENBL33_RD() & ~BM_SDMAARM_SDMA_CHNENBL33_ENBLN) | BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL34 - Channel Enable RAM 34 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL34 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl34
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl34_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl34_t;
 #endif
@@ -5868,31 +6729,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL34_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL34_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL34_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL34_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL34_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL34_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL34_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL34_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL34_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL34_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL34_ENBLN) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL34_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL34_ENBLN) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL34, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL34_WR((HW_SDMAARM_SDMA_CHNENBL34_RD() & ~BM_SDMAARM_SDMA_CHNENBL34_ENBLN) | BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL35 - Channel Enable RAM 35 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL35 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl35
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl35_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl35_t;
 #endif
@@ -5924,31 +6793,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL35_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL35_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL35_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL35_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL35_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL35_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL35_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL35_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL35_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL35_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL35_ENBLN) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL35_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL35_ENBLN) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL35, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL35_WR((HW_SDMAARM_SDMA_CHNENBL35_RD() & ~BM_SDMAARM_SDMA_CHNENBL35_ENBLN) | BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL36 - Channel Enable RAM 36 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL36 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl36
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl36_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl36_t;
 #endif
@@ -5980,31 +6857,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL36_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL36_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL36_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL36_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL36_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL36_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL36_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL36_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL36_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL36_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL36_ENBLN) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL36_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL36_ENBLN) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL36, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL36_WR((HW_SDMAARM_SDMA_CHNENBL36_RD() & ~BM_SDMAARM_SDMA_CHNENBL36_ENBLN) | BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL37 - Channel Enable RAM 37 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL37 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl37
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl37_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl37_t;
 #endif
@@ -6036,31 +6921,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL37_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL37_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL37_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL37_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL37_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL37_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL37_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL37_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL37_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL37_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL37_ENBLN) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL37_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL37_ENBLN) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL37, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL37_WR((HW_SDMAARM_SDMA_CHNENBL37_RD() & ~BM_SDMAARM_SDMA_CHNENBL37_ENBLN) | BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL38 - Channel Enable RAM 38 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL38 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl38
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl38_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl38_t;
 #endif
@@ -6092,31 +6985,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL38_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL38_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL38_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL38_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL38_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL38_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL38_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL38_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL38_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL38_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL38_ENBLN) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL38_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL38_ENBLN) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL38, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL38_WR((HW_SDMAARM_SDMA_CHNENBL38_RD() & ~BM_SDMAARM_SDMA_CHNENBL38_ENBLN) | BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL39 - Channel Enable RAM 39 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL39 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl39
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl39_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl39_t;
 #endif
@@ -6148,31 +7049,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL39_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL39_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL39_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL39_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL39_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL39_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL39_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL39_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL39_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL39_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL39_ENBLN) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL39_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL39_ENBLN) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL39, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL39_WR((HW_SDMAARM_SDMA_CHNENBL39_RD() & ~BM_SDMAARM_SDMA_CHNENBL39_ENBLN) | BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL40 - Channel Enable RAM 40 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL40 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl40
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl40_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl40_t;
 #endif
@@ -6204,31 +7113,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL40_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL40_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL40_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL40_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL40_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL40_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL40_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL40_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL40_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL40_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL40_ENBLN) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL40_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL40_ENBLN) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL40, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL40_WR((HW_SDMAARM_SDMA_CHNENBL40_RD() & ~BM_SDMAARM_SDMA_CHNENBL40_ENBLN) | BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL41 - Channel Enable RAM 41 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL41 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl41
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl41_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl41_t;
 #endif
@@ -6260,31 +7177,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL41_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL41_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL41_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL41_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL41_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL41_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL41_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL41_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL41_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL41_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL41_ENBLN) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL41_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL41_ENBLN) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL41, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL41_WR((HW_SDMAARM_SDMA_CHNENBL41_RD() & ~BM_SDMAARM_SDMA_CHNENBL41_ENBLN) | BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL42 - Channel Enable RAM 42 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL42 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl42
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl42_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl42_t;
 #endif
@@ -6316,31 +7241,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL42_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL42_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL42_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL42_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL42_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL42_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL42_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL42_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL42_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL42_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL42_ENBLN) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL42_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL42_ENBLN) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL42, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL42_WR((HW_SDMAARM_SDMA_CHNENBL42_RD() & ~BM_SDMAARM_SDMA_CHNENBL42_ENBLN) | BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL43 - Channel Enable RAM 43 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL43 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl43
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl43_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl43_t;
 #endif
@@ -6372,31 +7305,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL43_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL43_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL43_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL43_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL43_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL43_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL43_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL43_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL43_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL43_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL43_ENBLN) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL43_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL43_ENBLN) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL43, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL43_WR((HW_SDMAARM_SDMA_CHNENBL43_RD() & ~BM_SDMAARM_SDMA_CHNENBL43_ENBLN) | BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL44 - Channel Enable RAM 44 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL44 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl44
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl44_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl44_t;
 #endif
@@ -6428,31 +7369,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL44_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL44_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL44_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL44_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL44_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL44_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL44_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL44_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL44_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL44_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL44_ENBLN) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL44_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL44_ENBLN) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL44, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL44_WR((HW_SDMAARM_SDMA_CHNENBL44_RD() & ~BM_SDMAARM_SDMA_CHNENBL44_ENBLN) | BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL45 - Channel Enable RAM 45 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL45 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl45
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl45_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl45_t;
 #endif
@@ -6484,31 +7433,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL45_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL45_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL45_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL45_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL45_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL45_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL45_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL45_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL45_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL45_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL45_ENBLN) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL45_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL45_ENBLN) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL45, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL45_WR((HW_SDMAARM_SDMA_CHNENBL45_RD() & ~BM_SDMAARM_SDMA_CHNENBL45_ENBLN) | BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL46 - Channel Enable RAM 46 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL46 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl46
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl46_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl46_t;
 #endif
@@ -6540,31 +7497,39 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL46_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL46_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL46_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL46_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL46_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL46_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL46_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL46_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL46_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL46_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL46_ENBLN) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL46_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL46_ENBLN) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL46, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL46_WR((HW_SDMAARM_SDMA_CHNENBL46_RD() & ~BM_SDMAARM_SDMA_CHNENBL46_ENBLN) | BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SDMAARM_SDMA_CHNENBL47 - Channel Enable RAM 47 (RW)
+ * @brief HW_SDMAARM_SDMA_CHNENBL47 - Channel Enable RAM (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_sdmaarm_sdma_chnenbl47
 {
     reg32_t U;
-    struct
+    struct _hw_sdmaarm_sdma_chnenbl47_bitfields
     {
-        unsigned ENBLN : 32; //!< This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
     } B;
 } hw_sdmaarm_sdma_chnenbl47_t;
 #endif
@@ -6596,17 +7561,23 @@ typedef union
  * unpredictable combination of channels may be started.
  */
 
-#define BP_SDMAARM_SDMA_CHNENBL47_ENBLN      (0)
-#define BM_SDMAARM_SDMA_CHNENBL47_ENBLN      (0xffffffff)
+#define BP_SDMAARM_SDMA_CHNENBL47_ENBLN      (0)      //!< Bit position for SDMAARM_SDMA_CHNENBL47_ENBLN.
+#define BM_SDMAARM_SDMA_CHNENBL47_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL47_ENBLN.
+
+//! @brief Get value of SDMAARM_SDMA_CHNENBL47_ENBLN from a register value.
+#define BG_SDMAARM_SDMA_CHNENBL47_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL47_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   ((((reg32_t) v) << 0) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL47_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL47_ENBLN) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN)
 #else
-#define BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   (((v) << 0) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN)
+//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL47_ENBLN.
+#define BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL47_ENBLN) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
-#define BW_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   BF_CS1(SDMAARM_SDMA_CHNENBL47, ENBLN, v)
+#define BW_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL47_WR((HW_SDMAARM_SDMA_CHNENBL47_RD() & ~BM_SDMAARM_SDMA_CHNENBL47_ENBLN) | BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)))
 #endif
 
 
@@ -6614,7 +7585,8 @@ typedef union
  * @brief All SDMAARM module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef struct
+#pragma pack(1)
+typedef struct _hw_sdmaarm
 {
     volatile hw_sdmaarm_mc0ptr_t MC0PTR; //!< ARM platform Channel 0 Pointer
     volatile hw_sdmaarm_intr_t INTR; //!< Channel Interrupts
@@ -6646,88 +7618,89 @@ typedef struct
     volatile hw_sdmaarm_xtrig_conf1_t XTRIG_CONF1; //!< Cross-Trigger Events Configuration Register 1
     volatile hw_sdmaarm_xtrig_conf2_t XTRIG_CONF2; //!< Cross-Trigger Events Configuration Register 2
     reg32_t _reserved3[34];
-    volatile hw_sdmaarm_sdma_chnpri0_t SDMA_CHNPRI0; //!< Channel Priority Registers 0
-    volatile hw_sdmaarm_sdma_chnpri1_t SDMA_CHNPRI1; //!< Channel Priority Registers 1
-    volatile hw_sdmaarm_sdma_chnpri2_t SDMA_CHNPRI2; //!< Channel Priority Registers 2
-    volatile hw_sdmaarm_sdma_chnpri3_t SDMA_CHNPRI3; //!< Channel Priority Registers 3
-    volatile hw_sdmaarm_sdma_chnpri4_t SDMA_CHNPRI4; //!< Channel Priority Registers 4
-    volatile hw_sdmaarm_sdma_chnpri5_t SDMA_CHNPRI5; //!< Channel Priority Registers 5
-    volatile hw_sdmaarm_sdma_chnpri6_t SDMA_CHNPRI6; //!< Channel Priority Registers 6
-    volatile hw_sdmaarm_sdma_chnpri7_t SDMA_CHNPRI7; //!< Channel Priority Registers 7
-    volatile hw_sdmaarm_sdma_chnpri8_t SDMA_CHNPRI8; //!< Channel Priority Registers 8
-    volatile hw_sdmaarm_sdma_chnpri9_t SDMA_CHNPRI9; //!< Channel Priority Registers 9
-    volatile hw_sdmaarm_sdma_chnpri10_t SDMA_CHNPRI10; //!< Channel Priority Registers 10
-    volatile hw_sdmaarm_sdma_chnpri11_t SDMA_CHNPRI11; //!< Channel Priority Registers 11
-    volatile hw_sdmaarm_sdma_chnpri12_t SDMA_CHNPRI12; //!< Channel Priority Registers 12
-    volatile hw_sdmaarm_sdma_chnpri13_t SDMA_CHNPRI13; //!< Channel Priority Registers 13
-    volatile hw_sdmaarm_sdma_chnpri14_t SDMA_CHNPRI14; //!< Channel Priority Registers 14
-    volatile hw_sdmaarm_sdma_chnpri15_t SDMA_CHNPRI15; //!< Channel Priority Registers 15
-    volatile hw_sdmaarm_sdma_chnpri16_t SDMA_CHNPRI16; //!< Channel Priority Registers 16
-    volatile hw_sdmaarm_sdma_chnpri17_t SDMA_CHNPRI17; //!< Channel Priority Registers 17
-    volatile hw_sdmaarm_sdma_chnpri18_t SDMA_CHNPRI18; //!< Channel Priority Registers 18
-    volatile hw_sdmaarm_sdma_chnpri19_t SDMA_CHNPRI19; //!< Channel Priority Registers 19
-    volatile hw_sdmaarm_sdma_chnpri20_t SDMA_CHNPRI20; //!< Channel Priority Registers 20
-    volatile hw_sdmaarm_sdma_chnpri21_t SDMA_CHNPRI21; //!< Channel Priority Registers 21
-    volatile hw_sdmaarm_sdma_chnpri22_t SDMA_CHNPRI22; //!< Channel Priority Registers 22
-    volatile hw_sdmaarm_sdma_chnpri23_t SDMA_CHNPRI23; //!< Channel Priority Registers 23
-    volatile hw_sdmaarm_sdma_chnpri24_t SDMA_CHNPRI24; //!< Channel Priority Registers 24
-    volatile hw_sdmaarm_sdma_chnpri25_t SDMA_CHNPRI25; //!< Channel Priority Registers 25
-    volatile hw_sdmaarm_sdma_chnpri26_t SDMA_CHNPRI26; //!< Channel Priority Registers 26
-    volatile hw_sdmaarm_sdma_chnpri27_t SDMA_CHNPRI27; //!< Channel Priority Registers 27
-    volatile hw_sdmaarm_sdma_chnpri28_t SDMA_CHNPRI28; //!< Channel Priority Registers 28
-    volatile hw_sdmaarm_sdma_chnpri29_t SDMA_CHNPRI29; //!< Channel Priority Registers 29
-    volatile hw_sdmaarm_sdma_chnpri30_t SDMA_CHNPRI30; //!< Channel Priority Registers 30
-    volatile hw_sdmaarm_sdma_chnpri31_t SDMA_CHNPRI31; //!< Channel Priority Registers 31
+    volatile hw_sdmaarm_sdma_chnpri0_t SDMA_CHNPRI0; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri1_t SDMA_CHNPRI1; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri2_t SDMA_CHNPRI2; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri3_t SDMA_CHNPRI3; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri4_t SDMA_CHNPRI4; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri5_t SDMA_CHNPRI5; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri6_t SDMA_CHNPRI6; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri7_t SDMA_CHNPRI7; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri8_t SDMA_CHNPRI8; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri9_t SDMA_CHNPRI9; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri10_t SDMA_CHNPRI10; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri11_t SDMA_CHNPRI11; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri12_t SDMA_CHNPRI12; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri13_t SDMA_CHNPRI13; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri14_t SDMA_CHNPRI14; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri15_t SDMA_CHNPRI15; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri16_t SDMA_CHNPRI16; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri17_t SDMA_CHNPRI17; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri18_t SDMA_CHNPRI18; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri19_t SDMA_CHNPRI19; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri20_t SDMA_CHNPRI20; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri21_t SDMA_CHNPRI21; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri22_t SDMA_CHNPRI22; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri23_t SDMA_CHNPRI23; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri24_t SDMA_CHNPRI24; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri25_t SDMA_CHNPRI25; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri26_t SDMA_CHNPRI26; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri27_t SDMA_CHNPRI27; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri28_t SDMA_CHNPRI28; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri29_t SDMA_CHNPRI29; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri30_t SDMA_CHNPRI30; //!< Channel Priority Registers
+    volatile hw_sdmaarm_sdma_chnpri31_t SDMA_CHNPRI31; //!< Channel Priority Registers
     reg32_t _reserved4[32];
-    volatile hw_sdmaarm_sdma_chnenbl0_t SDMA_CHNENBL0; //!< Channel Enable RAM 0
-    volatile hw_sdmaarm_sdma_chnenbl1_t SDMA_CHNENBL1; //!< Channel Enable RAM 1
-    volatile hw_sdmaarm_sdma_chnenbl2_t SDMA_CHNENBL2; //!< Channel Enable RAM 2
-    volatile hw_sdmaarm_sdma_chnenbl3_t SDMA_CHNENBL3; //!< Channel Enable RAM 3
-    volatile hw_sdmaarm_sdma_chnenbl4_t SDMA_CHNENBL4; //!< Channel Enable RAM 4
-    volatile hw_sdmaarm_sdma_chnenbl5_t SDMA_CHNENBL5; //!< Channel Enable RAM 5
-    volatile hw_sdmaarm_sdma_chnenbl6_t SDMA_CHNENBL6; //!< Channel Enable RAM 6
-    volatile hw_sdmaarm_sdma_chnenbl7_t SDMA_CHNENBL7; //!< Channel Enable RAM 7
-    volatile hw_sdmaarm_sdma_chnenbl8_t SDMA_CHNENBL8; //!< Channel Enable RAM 8
-    volatile hw_sdmaarm_sdma_chnenbl9_t SDMA_CHNENBL9; //!< Channel Enable RAM 9
-    volatile hw_sdmaarm_sdma_chnenbl10_t SDMA_CHNENBL10; //!< Channel Enable RAM 10
-    volatile hw_sdmaarm_sdma_chnenbl11_t SDMA_CHNENBL11; //!< Channel Enable RAM 11
-    volatile hw_sdmaarm_sdma_chnenbl12_t SDMA_CHNENBL12; //!< Channel Enable RAM 12
-    volatile hw_sdmaarm_sdma_chnenbl13_t SDMA_CHNENBL13; //!< Channel Enable RAM 13
-    volatile hw_sdmaarm_sdma_chnenbl14_t SDMA_CHNENBL14; //!< Channel Enable RAM 14
-    volatile hw_sdmaarm_sdma_chnenbl15_t SDMA_CHNENBL15; //!< Channel Enable RAM 15
-    volatile hw_sdmaarm_sdma_chnenbl16_t SDMA_CHNENBL16; //!< Channel Enable RAM 16
-    volatile hw_sdmaarm_sdma_chnenbl17_t SDMA_CHNENBL17; //!< Channel Enable RAM 17
-    volatile hw_sdmaarm_sdma_chnenbl18_t SDMA_CHNENBL18; //!< Channel Enable RAM 18
-    volatile hw_sdmaarm_sdma_chnenbl19_t SDMA_CHNENBL19; //!< Channel Enable RAM 19
-    volatile hw_sdmaarm_sdma_chnenbl20_t SDMA_CHNENBL20; //!< Channel Enable RAM 20
-    volatile hw_sdmaarm_sdma_chnenbl21_t SDMA_CHNENBL21; //!< Channel Enable RAM 21
-    volatile hw_sdmaarm_sdma_chnenbl22_t SDMA_CHNENBL22; //!< Channel Enable RAM 22
-    volatile hw_sdmaarm_sdma_chnenbl23_t SDMA_CHNENBL23; //!< Channel Enable RAM 23
-    volatile hw_sdmaarm_sdma_chnenbl24_t SDMA_CHNENBL24; //!< Channel Enable RAM 24
-    volatile hw_sdmaarm_sdma_chnenbl25_t SDMA_CHNENBL25; //!< Channel Enable RAM 25
-    volatile hw_sdmaarm_sdma_chnenbl26_t SDMA_CHNENBL26; //!< Channel Enable RAM 26
-    volatile hw_sdmaarm_sdma_chnenbl27_t SDMA_CHNENBL27; //!< Channel Enable RAM 27
-    volatile hw_sdmaarm_sdma_chnenbl28_t SDMA_CHNENBL28; //!< Channel Enable RAM 28
-    volatile hw_sdmaarm_sdma_chnenbl29_t SDMA_CHNENBL29; //!< Channel Enable RAM 29
-    volatile hw_sdmaarm_sdma_chnenbl30_t SDMA_CHNENBL30; //!< Channel Enable RAM 30
-    volatile hw_sdmaarm_sdma_chnenbl31_t SDMA_CHNENBL31; //!< Channel Enable RAM 31
-    volatile hw_sdmaarm_sdma_chnenbl32_t SDMA_CHNENBL32; //!< Channel Enable RAM 32
-    volatile hw_sdmaarm_sdma_chnenbl33_t SDMA_CHNENBL33; //!< Channel Enable RAM 33
-    volatile hw_sdmaarm_sdma_chnenbl34_t SDMA_CHNENBL34; //!< Channel Enable RAM 34
-    volatile hw_sdmaarm_sdma_chnenbl35_t SDMA_CHNENBL35; //!< Channel Enable RAM 35
-    volatile hw_sdmaarm_sdma_chnenbl36_t SDMA_CHNENBL36; //!< Channel Enable RAM 36
-    volatile hw_sdmaarm_sdma_chnenbl37_t SDMA_CHNENBL37; //!< Channel Enable RAM 37
-    volatile hw_sdmaarm_sdma_chnenbl38_t SDMA_CHNENBL38; //!< Channel Enable RAM 38
-    volatile hw_sdmaarm_sdma_chnenbl39_t SDMA_CHNENBL39; //!< Channel Enable RAM 39
-    volatile hw_sdmaarm_sdma_chnenbl40_t SDMA_CHNENBL40; //!< Channel Enable RAM 40
-    volatile hw_sdmaarm_sdma_chnenbl41_t SDMA_CHNENBL41; //!< Channel Enable RAM 41
-    volatile hw_sdmaarm_sdma_chnenbl42_t SDMA_CHNENBL42; //!< Channel Enable RAM 42
-    volatile hw_sdmaarm_sdma_chnenbl43_t SDMA_CHNENBL43; //!< Channel Enable RAM 43
-    volatile hw_sdmaarm_sdma_chnenbl44_t SDMA_CHNENBL44; //!< Channel Enable RAM 44
-    volatile hw_sdmaarm_sdma_chnenbl45_t SDMA_CHNENBL45; //!< Channel Enable RAM 45
-    volatile hw_sdmaarm_sdma_chnenbl46_t SDMA_CHNENBL46; //!< Channel Enable RAM 46
-    volatile hw_sdmaarm_sdma_chnenbl47_t SDMA_CHNENBL47; //!< Channel Enable RAM 47
+    volatile hw_sdmaarm_sdma_chnenbl0_t SDMA_CHNENBL0; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl1_t SDMA_CHNENBL1; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl2_t SDMA_CHNENBL2; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl3_t SDMA_CHNENBL3; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl4_t SDMA_CHNENBL4; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl5_t SDMA_CHNENBL5; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl6_t SDMA_CHNENBL6; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl7_t SDMA_CHNENBL7; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl8_t SDMA_CHNENBL8; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl9_t SDMA_CHNENBL9; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl10_t SDMA_CHNENBL10; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl11_t SDMA_CHNENBL11; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl12_t SDMA_CHNENBL12; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl13_t SDMA_CHNENBL13; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl14_t SDMA_CHNENBL14; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl15_t SDMA_CHNENBL15; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl16_t SDMA_CHNENBL16; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl17_t SDMA_CHNENBL17; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl18_t SDMA_CHNENBL18; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl19_t SDMA_CHNENBL19; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl20_t SDMA_CHNENBL20; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl21_t SDMA_CHNENBL21; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl22_t SDMA_CHNENBL22; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl23_t SDMA_CHNENBL23; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl24_t SDMA_CHNENBL24; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl25_t SDMA_CHNENBL25; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl26_t SDMA_CHNENBL26; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl27_t SDMA_CHNENBL27; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl28_t SDMA_CHNENBL28; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl29_t SDMA_CHNENBL29; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl30_t SDMA_CHNENBL30; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl31_t SDMA_CHNENBL31; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl32_t SDMA_CHNENBL32; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl33_t SDMA_CHNENBL33; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl34_t SDMA_CHNENBL34; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl35_t SDMA_CHNENBL35; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl36_t SDMA_CHNENBL36; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl37_t SDMA_CHNENBL37; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl38_t SDMA_CHNENBL38; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl39_t SDMA_CHNENBL39; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl40_t SDMA_CHNENBL40; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl41_t SDMA_CHNENBL41; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl42_t SDMA_CHNENBL42; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl43_t SDMA_CHNENBL43; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl44_t SDMA_CHNENBL44; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl45_t SDMA_CHNENBL45; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl46_t SDMA_CHNENBL46; //!< Channel Enable RAM
+    volatile hw_sdmaarm_sdma_chnenbl47_t SDMA_CHNENBL47; //!< Channel Enable RAM
 } hw_sdmaarm_t;
+#pragma pack()
 #endif
 
 //! @brief Macro to access all SDMAARM registers.

@@ -11,7 +11,7 @@
 #include "regs.h"
 
 /*
- * Registers defined in this header file.
+ * i.MX6SL CSU registers defined in this header file.
  *
  *
  * hw_csu_t - Struct containing all module registers.
@@ -29,9 +29,11 @@
  * @brief All CSU module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef struct
+#pragma pack(1)
+typedef struct _hw_csu
 {
 } hw_csu_t;
+#pragma pack()
 #endif
 
 //! @brief Macro to access all CSU registers.

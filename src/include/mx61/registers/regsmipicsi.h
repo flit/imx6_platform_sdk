@@ -11,7 +11,7 @@
 #include "regs.h"
 
 /*
- * Registers defined in this header file.
+ * i.MX6DQ MIPI_CSI registers defined in this header file.
  *
  * - HW_MIPI_CSI_VERSION - Controller Version Identification Register
  * - HW_MIPI_CSI_N_LANES - Number of Active Data Lanes
@@ -42,15 +42,17 @@
 /*!
  * @brief HW_MIPI_CSI_VERSION - Controller Version Identification Register (RO)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Controller Version Identification Register  Address Offset: 0x000  Size: 32 bits  Default
  * Value: CSI_VERSION_ID  Access: Read
  */
-typedef union
+typedef union _hw_mipi_csi_version
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_version_bitfields
     {
-        unsigned VERSION : 32; //!< Version of the CSI-2 Host Controller Default Value: CSI_VERSION_ID
+        unsigned VERSION : 32; //!< [31:0] Version of the CSI-2 Host Controller Default Value: CSI_VERSION_ID
     } B;
 } hw_mipi_csi_version_t;
 #endif
@@ -74,23 +76,28 @@ typedef union
  * Version of the CSI-2 Host Controller Default Value: CSI_VERSION_ID
  */
 
-#define BP_MIPI_CSI_VERSION_VERSION      (0)
-#define BM_MIPI_CSI_VERSION_VERSION      (0xffffffff)
+#define BP_MIPI_CSI_VERSION_VERSION      (0)      //!< Bit position for MIPI_CSI_VERSION_VERSION.
+#define BM_MIPI_CSI_VERSION_VERSION      (0xffffffff)  //!< Bit mask for MIPI_CSI_VERSION_VERSION.
+
+//! @brief Get value of MIPI_CSI_VERSION_VERSION from a register value.
+#define BG_MIPI_CSI_VERSION_VERSION(r)   (((r) & BM_MIPI_CSI_VERSION_VERSION) >> BP_MIPI_CSI_VERSION_VERSION)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_N_LANES - Number of Active Data Lanes (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Number of Active Data Lanes  Address Offset: 0x004  Size: 2 bits  Size: 1 bits  Default
  * Value: CSI_N_LANES  Access: Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_n_lanes
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_n_lanes_bitfields
     {
-        unsigned N_LANES : 2; //!< Number of Active Data Lanes Can only be updated when the PHY lane is in stop state. Default Value: CSI_N_LANES
-        unsigned RESERVED0 : 30; //!< Reserved
+        unsigned N_LANES : 2; //!< [1:0] Number of Active Data Lanes Can only be updated when the PHY lane is in stop state. Default Value: CSI_N_LANES
+        unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_mipi_csi_n_lanes_t;
 #endif
@@ -125,17 +132,23 @@ typedef union
  * 11 - 4 Data Lanes (All)
  */
 
-#define BP_MIPI_CSI_N_LANES_N_LANES      (0)
-#define BM_MIPI_CSI_N_LANES_N_LANES      (0x00000003)
+#define BP_MIPI_CSI_N_LANES_N_LANES      (0)      //!< Bit position for MIPI_CSI_N_LANES_N_LANES.
+#define BM_MIPI_CSI_N_LANES_N_LANES      (0x00000003)  //!< Bit mask for MIPI_CSI_N_LANES_N_LANES.
+
+//! @brief Get value of MIPI_CSI_N_LANES_N_LANES from a register value.
+#define BG_MIPI_CSI_N_LANES_N_LANES(r)   (((r) & BM_MIPI_CSI_N_LANES_N_LANES) >> BP_MIPI_CSI_N_LANES_N_LANES)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_N_LANES_N_LANES(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_N_LANES_N_LANES)
+//! @brief Format value for bitfield MIPI_CSI_N_LANES_N_LANES.
+#define BF_MIPI_CSI_N_LANES_N_LANES(v)   ((((reg32_t) v) << BP_MIPI_CSI_N_LANES_N_LANES) & BM_MIPI_CSI_N_LANES_N_LANES)
 #else
-#define BF_MIPI_CSI_N_LANES_N_LANES(v)   (((v) << 0) & BM_MIPI_CSI_N_LANES_N_LANES)
+//! @brief Format value for bitfield MIPI_CSI_N_LANES_N_LANES.
+#define BF_MIPI_CSI_N_LANES_N_LANES(v)   (((v) << BP_MIPI_CSI_N_LANES_N_LANES) & BM_MIPI_CSI_N_LANES_N_LANES)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the N_LANES field to a new value.
-#define BW_MIPI_CSI_N_LANES_N_LANES(v)   BF_CS1(MIPI_CSI_N_LANES, N_LANES, v)
+#define BW_MIPI_CSI_N_LANES_N_LANES(v)   (HW_MIPI_CSI_N_LANES_WR((HW_MIPI_CSI_N_LANES_RD() & ~BM_MIPI_CSI_N_LANES_N_LANES) | BF_MIPI_CSI_N_LANES_N_LANES(v)))
 #endif
 
 
@@ -143,16 +156,18 @@ typedef union
 /*!
  * @brief HW_MIPI_CSI_PHY_SHUTDOWNZ - Phy shutdown control (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Phy shutdown control  Address Offset: 0x008  Size: 1 bit  Default Value: 0  Access:
  * Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_phy_shutdownz
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_phy_shutdownz_bitfields
     {
-        unsigned PHY_SHUTDOWNZ : 1; //!< Shutdown input. This line is used to place the complete macro in power down. All analog blocks are in power down mode and digital logic is cleared. Active Low Default Value: 0
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned PHY_SHUTDOWNZ : 1; //!< [0] Shutdown input. This line is used to place the complete macro in power down. All analog blocks are in power down mode and digital logic is cleared. Active Low Default Value: 0
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_mipi_csi_phy_shutdownz_t;
 #endif
@@ -175,38 +190,46 @@ typedef union
  * constants & macros for individual MIPI_CSI_PHY_SHUTDOWNZ bitfields
  */
 
-/* --- Register HW_MIPI_CSI_PHY_SHUTDOWNZ, field PHY_SHUTDOWNZ[0:0] (RW)
+/* --- Register HW_MIPI_CSI_PHY_SHUTDOWNZ, field PHY_SHUTDOWNZ[0] (RW)
  *
  * Shutdown input. This line is used to place the complete macro in power down. All analog blocks
  * are in power down mode and digital logic is cleared. Active Low Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ      (0)
-#define BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ      (0x00000001)
+#define BP_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ      (0)      //!< Bit position for MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ.
+#define BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ      (0x00000001)  //!< Bit mask for MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ.
+
+//! @brief Get value of MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ from a register value.
+#define BG_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(r)   (((r) & BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ) >> BP_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ)
+//! @brief Format value for bitfield MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ.
+#define BF_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(v)   ((((reg32_t) v) << BP_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ) & BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ)
 #else
-#define BF_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(v)   (((v) << 0) & BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ)
+//! @brief Format value for bitfield MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ.
+#define BF_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(v)   (((v) << BP_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ) & BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PHY_SHUTDOWNZ field to a new value.
-#define BW_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(v)   BF_CS1(MIPI_CSI_PHY_SHUTDOWNZ, PHY_SHUTDOWNZ, v)
+#define BW_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(v)   (HW_MIPI_CSI_PHY_SHUTDOWNZ_WR((HW_MIPI_CSI_PHY_SHUTDOWNZ_RD() & ~BM_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ) | BF_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_DPHY_RSTZ - Phy reset control (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Phy reset control  Address Offset: 0x00C  Size: 1 bit  Default Value: 0  Access: Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_dphy_rstz
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_dphy_rstz_bitfields
     {
-        unsigned DPHY_RSTZ : 1; //!< DPHY reset output. Active Low Default Value: 0
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned DPHY_RSTZ : 1; //!< [0] DPHY reset output. Active Low Default Value: 0
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_mipi_csi_dphy_rstz_t;
 #endif
@@ -229,38 +252,46 @@ typedef union
  * constants & macros for individual MIPI_CSI_DPHY_RSTZ bitfields
  */
 
-/* --- Register HW_MIPI_CSI_DPHY_RSTZ, field DPHY_RSTZ[0:0] (RW)
+/* --- Register HW_MIPI_CSI_DPHY_RSTZ, field DPHY_RSTZ[0] (RW)
  *
  * DPHY reset output. Active Low Default Value: 0
  */
 
-#define BP_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ      (0)
-#define BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ      (0x00000001)
+#define BP_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ      (0)      //!< Bit position for MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ.
+#define BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ      (0x00000001)  //!< Bit mask for MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ.
+
+//! @brief Get value of MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ from a register value.
+#define BG_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(r)   (((r) & BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ) >> BP_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ)
+//! @brief Format value for bitfield MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ.
+#define BF_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(v)   ((((reg32_t) v) << BP_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ) & BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ)
 #else
-#define BF_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(v)   (((v) << 0) & BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ)
+//! @brief Format value for bitfield MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ.
+#define BF_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(v)   (((v) << BP_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ) & BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DPHY_RSTZ field to a new value.
-#define BW_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(v)   BF_CS1(MIPI_CSI_DPHY_RSTZ, DPHY_RSTZ, v)
+#define BW_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(v)   (HW_MIPI_CSI_DPHY_RSTZ_WR((HW_MIPI_CSI_DPHY_RSTZ_RD() & ~BM_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ) | BF_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_CSI2_RESETN - CSI2 controller reset (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: CSI2 controller reset  Address Offset: 0x010  Size: 1 bit  Default Value: 0  Access:
  * Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_csi2_resetn
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_csi2_resetn_bitfields
     {
-        unsigned CSI2_RESETN : 1; //!< CSI-2 controller reset output. Active Low Default Value: 0
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned CSI2_RESETN : 1; //!< [0] CSI-2 controller reset output. Active Low Default Value: 0
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_mipi_csi_csi2_resetn_t;
 #endif
@@ -283,49 +314,57 @@ typedef union
  * constants & macros for individual MIPI_CSI_CSI2_RESETN bitfields
  */
 
-/* --- Register HW_MIPI_CSI_CSI2_RESETN, field CSI2_RESETN[0:0] (RW)
+/* --- Register HW_MIPI_CSI_CSI2_RESETN, field CSI2_RESETN[0] (RW)
  *
  * CSI-2 controller reset output. Active Low Default Value: 0
  */
 
-#define BP_MIPI_CSI_CSI2_RESETN_CSI2_RESETN      (0)
-#define BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN      (0x00000001)
+#define BP_MIPI_CSI_CSI2_RESETN_CSI2_RESETN      (0)      //!< Bit position for MIPI_CSI_CSI2_RESETN_CSI2_RESETN.
+#define BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN      (0x00000001)  //!< Bit mask for MIPI_CSI_CSI2_RESETN_CSI2_RESETN.
+
+//! @brief Get value of MIPI_CSI_CSI2_RESETN_CSI2_RESETN from a register value.
+#define BG_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(r)   (((r) & BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN) >> BP_MIPI_CSI_CSI2_RESETN_CSI2_RESETN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN)
+//! @brief Format value for bitfield MIPI_CSI_CSI2_RESETN_CSI2_RESETN.
+#define BF_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(v)   ((((reg32_t) v) << BP_MIPI_CSI_CSI2_RESETN_CSI2_RESETN) & BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN)
 #else
-#define BF_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(v)   (((v) << 0) & BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN)
+//! @brief Format value for bitfield MIPI_CSI_CSI2_RESETN_CSI2_RESETN.
+#define BF_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(v)   (((v) << BP_MIPI_CSI_CSI2_RESETN_CSI2_RESETN) & BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSI2_RESETN field to a new value.
-#define BW_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(v)   BF_CS1(MIPI_CSI_CSI2_RESETN, CSI2_RESETN, v)
+#define BW_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(v)   (HW_MIPI_CSI_CSI2_RESETN_WR((HW_MIPI_CSI_CSI2_RESETN_RD() & ~BM_MIPI_CSI_CSI2_RESETN_CSI2_RESETN) | BF_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_PHY_STATE - General settings for all blocks (RO)
  *
+ * Reset value: 0x00000000
+ *
  * Name: General settings for all blocks  Address Offset: 0x014  Size: 12 bit  Size: 8 bit  Default
  * Value: 0  Access: Read (with exception of bit 11 which is Read/Write)
  */
-typedef union
+typedef union _hw_mipi_csi_phy_state
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_phy_state_bitfields
     {
-        unsigned PHY_RXULPSESC_0 : 1; //!< Lane module 0 has entered the Ultra Low Power mode Default Value: 0
-        unsigned PHY_RXULPSESC_1 : 1; //!< Lane module 1 has entered the Ultra Low Power mode Default Value: 0
-        unsigned PHY_RXULPSESC_2 : 1; //!< Lane module 2 has entered the Ultra Low Power mode Default Value: 0
-        unsigned PHY_RXULPSESC_3 : 1; //!< Lane module 3 has entered the Ultra Low Power mode Default Value: 0
-        unsigned PHY_STOPSTATEDATA_0 : 1; //!< Data Lane 0 in Stop state Default Value: 0
-        unsigned PHY_STOPSTATEDATA_1 : 1; //!< Data Lane 1 in Stop state Default Value: 0
-        unsigned PHY_STOPSTATEDATA_2 : 1; //!< Data Lane 2 in Stop state Default Value: 0
-        unsigned PHY_STOPSTATEDATA_3 : 1; //!< Data Lane 3 in Stop state Default Value: 0
-        unsigned PHY_RXCLKACTIVEHS : 1; //!< Indicates that the clock lane is actively receiving a DDR clock Default Value: 0
-        unsigned PHY_RXULPSCLKNOT : 1; //!< Active Low. This signal indicates that the Clock Lane module has entered the Ultra Low Power state Default Value: 0
-        unsigned PHY_STOPSTATECLK : 1; //!< Clock Lane in Stop state Default Value: 0
-        unsigned BYPASS_2ECC_TST : 1; //!< Payload Bypass test mode for double ECC errors Default Value: 0
-        unsigned RESERVED0 : 20; //!< Reserved
+        unsigned PHY_RXULPSESC_0 : 1; //!< [0] Lane module 0 has entered the Ultra Low Power mode Default Value: 0
+        unsigned PHY_RXULPSESC_1 : 1; //!< [1] Lane module 1 has entered the Ultra Low Power mode Default Value: 0
+        unsigned PHY_RXULPSESC_2 : 1; //!< [2] Lane module 2 has entered the Ultra Low Power mode Default Value: 0
+        unsigned PHY_RXULPSESC_3 : 1; //!< [3] Lane module 3 has entered the Ultra Low Power mode Default Value: 0
+        unsigned PHY_STOPSTATEDATA_0 : 1; //!< [4] Data Lane 0 in Stop state Default Value: 0
+        unsigned PHY_STOPSTATEDATA_1 : 1; //!< [5] Data Lane 1 in Stop state Default Value: 0
+        unsigned PHY_STOPSTATEDATA_2 : 1; //!< [6] Data Lane 2 in Stop state Default Value: 0
+        unsigned PHY_STOPSTATEDATA_3 : 1; //!< [7] Data Lane 3 in Stop state Default Value: 0
+        unsigned PHY_RXCLKACTIVEHS : 1; //!< [8] Indicates that the clock lane is actively receiving a DDR clock Default Value: 0
+        unsigned PHY_RXULPSCLKNOT : 1; //!< [9] Active Low. This signal indicates that the Clock Lane module has entered the Ultra Low Power state Default Value: 0
+        unsigned PHY_STOPSTATECLK : 1; //!< [10] Clock Lane in Stop state Default Value: 0
+        unsigned BYPASS_2ECC_TST : 1; //!< [11] Payload Bypass test mode for double ECC errors Default Value: 0
+        unsigned RESERVED0 : 20; //!< [31:12] Reserved
     } B;
 } hw_mipi_csi_phy_state_t;
 #endif
@@ -344,123 +383,161 @@ typedef union
  * constants & macros for individual MIPI_CSI_PHY_STATE bitfields
  */
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_0[0:0] (RO)
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_0[0] (RO)
  *
  * Lane module 0 has entered the Ultra Low Power mode Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0      (0)
-#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0      (0x00000001)
+#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0      (0)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0.
+#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0      (0x00000001)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_1[1:1] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0) >> BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_0)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_1[1] (RO)
  *
  * Lane module 1 has entered the Ultra Low Power mode Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1      (1)
-#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1      (0x00000002)
+#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1      (1)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1.
+#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1      (0x00000002)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_2[2:2] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1) >> BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_1)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_2[2] (RO)
  *
  * Lane module 2 has entered the Ultra Low Power mode Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2      (2)
-#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2      (0x00000004)
+#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2      (2)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2.
+#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2      (0x00000004)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_3[3:3] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2) >> BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_2)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSESC_3[3] (RO)
  *
  * Lane module 3 has entered the Ultra Low Power mode Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3      (3)
-#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3      (0x00000008)
+#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3      (3)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3.
+#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3      (0x00000008)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_0[4:4] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3) >> BP_MIPI_CSI_PHY_STATE_PHY_RXULPSESC_3)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_0[4] (RO)
  *
  * Data Lane 0 in Stop state Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0      (4)
-#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0      (0x00000010)
+#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0      (4)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0.
+#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0      (0x00000010)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_1[5:5] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0) >> BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_0)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_1[5] (RO)
  *
  * Data Lane 1 in Stop state Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1      (5)
-#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1      (0x00000020)
+#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1      (5)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1.
+#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1      (0x00000020)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_2[6:6] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1) >> BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_1)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_2[6] (RO)
  *
  * Data Lane 2 in Stop state Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2      (6)
-#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2      (0x00000040)
+#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2      (6)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2.
+#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2      (0x00000040)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_3[7:7] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2) >> BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_2)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATEDATA_3[7] (RO)
  *
  * Data Lane 3 in Stop state Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3      (7)
-#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3      (0x00000080)
+#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3      (7)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3.
+#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3      (0x00000080)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXCLKACTIVEHS[8:8] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3 from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3) >> BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATEDATA_3)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXCLKACTIVEHS[8] (RO)
  *
  * Indicates that the clock lane is actively receiving a DDR clock Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS      (8)
-#define BM_MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS      (0x00000100)
+#define BP_MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS      (8)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS.
+#define BM_MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS      (0x00000100)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSCLKNOT[9:9] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS) >> BP_MIPI_CSI_PHY_STATE_PHY_RXCLKACTIVEHS)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_RXULPSCLKNOT[9] (RO)
  *
  * Active Low. This signal indicates that the Clock Lane module has entered the Ultra Low Power
  * state Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT      (9)
-#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT      (0x00000200)
+#define BP_MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT      (9)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT.
+#define BM_MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT      (0x00000200)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATECLK[10:10] (RO)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT) >> BP_MIPI_CSI_PHY_STATE_PHY_RXULPSCLKNOT)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field PHY_STOPSTATECLK[10] (RO)
  *
  * Clock Lane in Stop state Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK      (10)
-#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK      (0x00000400)
+#define BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK      (10)      //!< Bit position for MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK.
+#define BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK      (0x00000400)  //!< Bit mask for MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK.
 
-/* --- Register HW_MIPI_CSI_PHY_STATE, field BYPASS_2ECC_TST[11:11] (RW)
+//! @brief Get value of MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK from a register value.
+#define BG_MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK(r)   (((r) & BM_MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK) >> BP_MIPI_CSI_PHY_STATE_PHY_STOPSTATECLK)
+
+/* --- Register HW_MIPI_CSI_PHY_STATE, field BYPASS_2ECC_TST[11] (RW)
  *
  * Payload Bypass test mode for double ECC errors Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST      (11)
-#define BM_MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST      (0x00000800)
+#define BP_MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST      (11)      //!< Bit position for MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST.
+#define BM_MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST      (0x00000800)  //!< Bit mask for MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST.
+
+//! @brief Get value of MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST from a register value.
+#define BG_MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST(r)   (((r) & BM_MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST) >> BP_MIPI_CSI_PHY_STATE_BYPASS_2ECC_TST)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_DATA_IDS_1 - Data IDs for which IDI reports line boundary matching errors (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Data IDs for which IDI reports line boundary matching errors  Address Offset: 0x018  Size:
  * 32 bit  Default Value: 0  Access: Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_data_ids_1
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_data_ids_1_bitfields
     {
-        unsigned DI0_DT : 6; //!< Data ID 0 Data Type Default Value: 0
-        unsigned DI0_VC : 2; //!< Data ID 0 Virtual channel Default Value: 0
-        unsigned DI1_DT : 6; //!< Data ID 1 Data Type Default Value: 0
-        unsigned DI1_VC : 2; //!< Data ID 1 Virtual channel Default Value: 0
-        unsigned DI2_DT : 6; //!< DATA ID 2 Data Type Default Value: 0
-        unsigned DI2_VC : 2; //!< DATA ID 2 Virtual channel Default Value: 0
-        unsigned DI3_DT : 6; //!< Data ID 3 Data Type Default Value: 0
-        unsigned DI3_VC : 2; //!< Data ID 3 Virtual channel Default Value: 0
+        unsigned DI0_DT : 6; //!< [5:0] Data ID 0 Data Type Default Value: 0
+        unsigned DI0_VC : 2; //!< [7:6] Data ID 0 Virtual channel Default Value: 0
+        unsigned DI1_DT : 6; //!< [13:8] Data ID 1 Data Type Default Value: 0
+        unsigned DI1_VC : 2; //!< [15:14] Data ID 1 Virtual channel Default Value: 0
+        unsigned DI2_DT : 6; //!< [21:16] DATA ID 2 Data Type Default Value: 0
+        unsigned DI2_VC : 2; //!< [23:22] DATA ID 2 Virtual channel Default Value: 0
+        unsigned DI3_DT : 6; //!< [29:24] Data ID 3 Data Type Default Value: 0
+        unsigned DI3_VC : 2; //!< [31:30] Data ID 3 Virtual channel Default Value: 0
     } B;
 } hw_mipi_csi_data_ids_1_t;
 #endif
@@ -488,17 +565,23 @@ typedef union
  * Data ID 0 Data Type Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI0_DT      (0)
-#define BM_MIPI_CSI_DATA_IDS_1_DI0_DT      (0x0000003f)
+#define BP_MIPI_CSI_DATA_IDS_1_DI0_DT      (0)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI0_DT.
+#define BM_MIPI_CSI_DATA_IDS_1_DI0_DT      (0x0000003f)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI0_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI0_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI0_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI0_DT) >> BP_MIPI_CSI_DATA_IDS_1_DI0_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI0_DT(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_DATA_IDS_1_DI0_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI0_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI0_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI0_DT) & BM_MIPI_CSI_DATA_IDS_1_DI0_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI0_DT(v)   (((v) << 0) & BM_MIPI_CSI_DATA_IDS_1_DI0_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI0_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI0_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI0_DT) & BM_MIPI_CSI_DATA_IDS_1_DI0_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI0_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI0_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI0_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI0_DT(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI0_DT) | BF_MIPI_CSI_DATA_IDS_1_DI0_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_1, field DI0_VC[7:6] (RW)
@@ -506,17 +589,23 @@ typedef union
  * Data ID 0 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI0_VC      (6)
-#define BM_MIPI_CSI_DATA_IDS_1_DI0_VC      (0x000000c0)
+#define BP_MIPI_CSI_DATA_IDS_1_DI0_VC      (6)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI0_VC.
+#define BM_MIPI_CSI_DATA_IDS_1_DI0_VC      (0x000000c0)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI0_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI0_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI0_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI0_VC) >> BP_MIPI_CSI_DATA_IDS_1_DI0_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI0_VC(v)   ((((reg32_t) v) << 6) & BM_MIPI_CSI_DATA_IDS_1_DI0_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI0_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI0_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI0_VC) & BM_MIPI_CSI_DATA_IDS_1_DI0_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI0_VC(v)   (((v) << 6) & BM_MIPI_CSI_DATA_IDS_1_DI0_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI0_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI0_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI0_VC) & BM_MIPI_CSI_DATA_IDS_1_DI0_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI0_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI0_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI0_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI0_VC(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI0_VC) | BF_MIPI_CSI_DATA_IDS_1_DI0_VC(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_1, field DI1_DT[13:8] (RW)
@@ -524,17 +613,23 @@ typedef union
  * Data ID 1 Data Type Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI1_DT      (8)
-#define BM_MIPI_CSI_DATA_IDS_1_DI1_DT      (0x00003f00)
+#define BP_MIPI_CSI_DATA_IDS_1_DI1_DT      (8)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI1_DT.
+#define BM_MIPI_CSI_DATA_IDS_1_DI1_DT      (0x00003f00)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI1_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI1_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI1_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI1_DT) >> BP_MIPI_CSI_DATA_IDS_1_DI1_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI1_DT(v)   ((((reg32_t) v) << 8) & BM_MIPI_CSI_DATA_IDS_1_DI1_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI1_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI1_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI1_DT) & BM_MIPI_CSI_DATA_IDS_1_DI1_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI1_DT(v)   (((v) << 8) & BM_MIPI_CSI_DATA_IDS_1_DI1_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI1_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI1_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI1_DT) & BM_MIPI_CSI_DATA_IDS_1_DI1_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI1_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI1_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI1_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI1_DT(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI1_DT) | BF_MIPI_CSI_DATA_IDS_1_DI1_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_1, field DI1_VC[15:14] (RW)
@@ -542,17 +637,23 @@ typedef union
  * Data ID 1 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI1_VC      (14)
-#define BM_MIPI_CSI_DATA_IDS_1_DI1_VC      (0x0000c000)
+#define BP_MIPI_CSI_DATA_IDS_1_DI1_VC      (14)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI1_VC.
+#define BM_MIPI_CSI_DATA_IDS_1_DI1_VC      (0x0000c000)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI1_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI1_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI1_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI1_VC) >> BP_MIPI_CSI_DATA_IDS_1_DI1_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI1_VC(v)   ((((reg32_t) v) << 14) & BM_MIPI_CSI_DATA_IDS_1_DI1_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI1_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI1_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI1_VC) & BM_MIPI_CSI_DATA_IDS_1_DI1_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI1_VC(v)   (((v) << 14) & BM_MIPI_CSI_DATA_IDS_1_DI1_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI1_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI1_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI1_VC) & BM_MIPI_CSI_DATA_IDS_1_DI1_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI1_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI1_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI1_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI1_VC(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI1_VC) | BF_MIPI_CSI_DATA_IDS_1_DI1_VC(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_1, field DI2_DT[21:16] (RW)
@@ -560,17 +661,23 @@ typedef union
  * DATA ID 2 Data Type Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI2_DT      (16)
-#define BM_MIPI_CSI_DATA_IDS_1_DI2_DT      (0x003f0000)
+#define BP_MIPI_CSI_DATA_IDS_1_DI2_DT      (16)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI2_DT.
+#define BM_MIPI_CSI_DATA_IDS_1_DI2_DT      (0x003f0000)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI2_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI2_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI2_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI2_DT) >> BP_MIPI_CSI_DATA_IDS_1_DI2_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI2_DT(v)   ((((reg32_t) v) << 16) & BM_MIPI_CSI_DATA_IDS_1_DI2_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI2_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI2_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI2_DT) & BM_MIPI_CSI_DATA_IDS_1_DI2_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI2_DT(v)   (((v) << 16) & BM_MIPI_CSI_DATA_IDS_1_DI2_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI2_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI2_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI2_DT) & BM_MIPI_CSI_DATA_IDS_1_DI2_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI2_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI2_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI2_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI2_DT(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI2_DT) | BF_MIPI_CSI_DATA_IDS_1_DI2_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_1, field DI2_VC[23:22] (RW)
@@ -578,17 +685,23 @@ typedef union
  * DATA ID 2 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI2_VC      (22)
-#define BM_MIPI_CSI_DATA_IDS_1_DI2_VC      (0x00c00000)
+#define BP_MIPI_CSI_DATA_IDS_1_DI2_VC      (22)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI2_VC.
+#define BM_MIPI_CSI_DATA_IDS_1_DI2_VC      (0x00c00000)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI2_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI2_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI2_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI2_VC) >> BP_MIPI_CSI_DATA_IDS_1_DI2_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI2_VC(v)   ((((reg32_t) v) << 22) & BM_MIPI_CSI_DATA_IDS_1_DI2_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI2_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI2_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI2_VC) & BM_MIPI_CSI_DATA_IDS_1_DI2_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI2_VC(v)   (((v) << 22) & BM_MIPI_CSI_DATA_IDS_1_DI2_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI2_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI2_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI2_VC) & BM_MIPI_CSI_DATA_IDS_1_DI2_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI2_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI2_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI2_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI2_VC(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI2_VC) | BF_MIPI_CSI_DATA_IDS_1_DI2_VC(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_1, field DI3_DT[29:24] (RW)
@@ -596,17 +709,23 @@ typedef union
  * Data ID 3 Data Type Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI3_DT      (24)
-#define BM_MIPI_CSI_DATA_IDS_1_DI3_DT      (0x3f000000)
+#define BP_MIPI_CSI_DATA_IDS_1_DI3_DT      (24)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI3_DT.
+#define BM_MIPI_CSI_DATA_IDS_1_DI3_DT      (0x3f000000)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI3_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI3_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI3_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI3_DT) >> BP_MIPI_CSI_DATA_IDS_1_DI3_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI3_DT(v)   ((((reg32_t) v) << 24) & BM_MIPI_CSI_DATA_IDS_1_DI3_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI3_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI3_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI3_DT) & BM_MIPI_CSI_DATA_IDS_1_DI3_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI3_DT(v)   (((v) << 24) & BM_MIPI_CSI_DATA_IDS_1_DI3_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI3_DT.
+#define BF_MIPI_CSI_DATA_IDS_1_DI3_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI3_DT) & BM_MIPI_CSI_DATA_IDS_1_DI3_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI3_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI3_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI3_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI3_DT(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI3_DT) | BF_MIPI_CSI_DATA_IDS_1_DI3_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_1, field DI3_VC[31:30] (RW)
@@ -614,39 +733,47 @@ typedef union
  * Data ID 3 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_1_DI3_VC      (30)
-#define BM_MIPI_CSI_DATA_IDS_1_DI3_VC      (0xc0000000)
+#define BP_MIPI_CSI_DATA_IDS_1_DI3_VC      (30)      //!< Bit position for MIPI_CSI_DATA_IDS_1_DI3_VC.
+#define BM_MIPI_CSI_DATA_IDS_1_DI3_VC      (0xc0000000)  //!< Bit mask for MIPI_CSI_DATA_IDS_1_DI3_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_1_DI3_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_1_DI3_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_1_DI3_VC) >> BP_MIPI_CSI_DATA_IDS_1_DI3_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_1_DI3_VC(v)   ((((reg32_t) v) << 30) & BM_MIPI_CSI_DATA_IDS_1_DI3_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI3_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI3_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_1_DI3_VC) & BM_MIPI_CSI_DATA_IDS_1_DI3_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_1_DI3_VC(v)   (((v) << 30) & BM_MIPI_CSI_DATA_IDS_1_DI3_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_1_DI3_VC.
+#define BF_MIPI_CSI_DATA_IDS_1_DI3_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_1_DI3_VC) & BM_MIPI_CSI_DATA_IDS_1_DI3_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI3_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_1_DI3_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_1, DI3_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_1_DI3_VC(v)   (HW_MIPI_CSI_DATA_IDS_1_WR((HW_MIPI_CSI_DATA_IDS_1_RD() & ~BM_MIPI_CSI_DATA_IDS_1_DI3_VC) | BF_MIPI_CSI_DATA_IDS_1_DI3_VC(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_DATA_IDS_2 - Data IDs for which IDI reports line boundary matching errors (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Data IDs for which IDI reports line boundary matching errors  Address Offset: 0x01C  Size:
  * 32 bit  Default Value: 0  Access: Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_data_ids_2
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_data_ids_2_bitfields
     {
-        unsigned DI4_DT : 6; //!< Data ID 4 Data Type Default Value: 0
-        unsigned DI4_VC : 2; //!< Data ID 4 Virtual channel Default Value: 0
-        unsigned DI5_DT : 6; //!< Data ID 5 Data Type D efault Value: 0
-        unsigned DI5_VC : 2; //!< Data ID 5 Virtual channel Default Value: 0
-        unsigned DI6_DT : 6; //!< Data ID 6 Data Type Default Value: 0
-        unsigned DI6_VC : 2; //!< Data ID 6 Virtual channel Default Value: 0
-        unsigned DI7_DT : 6; //!< Data ID 7 Data Type Default Value: 0
-        unsigned DI7_VC : 2; //!< Data ID 7 Virtual channel Default Value: 0
+        unsigned DI4_DT : 6; //!< [5:0] Data ID 4 Data Type Default Value: 0
+        unsigned DI4_VC : 2; //!< [7:6] Data ID 4 Virtual channel Default Value: 0
+        unsigned DI5_DT : 6; //!< [13:8] Data ID 5 Data Type D efault Value: 0
+        unsigned DI5_VC : 2; //!< [15:14] Data ID 5 Virtual channel Default Value: 0
+        unsigned DI6_DT : 6; //!< [21:16] Data ID 6 Data Type Default Value: 0
+        unsigned DI6_VC : 2; //!< [23:22] Data ID 6 Virtual channel Default Value: 0
+        unsigned DI7_DT : 6; //!< [29:24] Data ID 7 Data Type Default Value: 0
+        unsigned DI7_VC : 2; //!< [31:30] Data ID 7 Virtual channel Default Value: 0
     } B;
 } hw_mipi_csi_data_ids_2_t;
 #endif
@@ -674,17 +801,23 @@ typedef union
  * Data ID 4 Data Type Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI4_DT      (0)
-#define BM_MIPI_CSI_DATA_IDS_2_DI4_DT      (0x0000003f)
+#define BP_MIPI_CSI_DATA_IDS_2_DI4_DT      (0)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI4_DT.
+#define BM_MIPI_CSI_DATA_IDS_2_DI4_DT      (0x0000003f)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI4_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI4_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI4_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI4_DT) >> BP_MIPI_CSI_DATA_IDS_2_DI4_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI4_DT(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_DATA_IDS_2_DI4_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI4_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI4_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI4_DT) & BM_MIPI_CSI_DATA_IDS_2_DI4_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI4_DT(v)   (((v) << 0) & BM_MIPI_CSI_DATA_IDS_2_DI4_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI4_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI4_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI4_DT) & BM_MIPI_CSI_DATA_IDS_2_DI4_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI4_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI4_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI4_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI4_DT(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI4_DT) | BF_MIPI_CSI_DATA_IDS_2_DI4_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_2, field DI4_VC[7:6] (RW)
@@ -692,17 +825,23 @@ typedef union
  * Data ID 4 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI4_VC      (6)
-#define BM_MIPI_CSI_DATA_IDS_2_DI4_VC      (0x000000c0)
+#define BP_MIPI_CSI_DATA_IDS_2_DI4_VC      (6)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI4_VC.
+#define BM_MIPI_CSI_DATA_IDS_2_DI4_VC      (0x000000c0)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI4_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI4_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI4_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI4_VC) >> BP_MIPI_CSI_DATA_IDS_2_DI4_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI4_VC(v)   ((((reg32_t) v) << 6) & BM_MIPI_CSI_DATA_IDS_2_DI4_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI4_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI4_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI4_VC) & BM_MIPI_CSI_DATA_IDS_2_DI4_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI4_VC(v)   (((v) << 6) & BM_MIPI_CSI_DATA_IDS_2_DI4_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI4_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI4_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI4_VC) & BM_MIPI_CSI_DATA_IDS_2_DI4_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI4_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI4_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI4_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI4_VC(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI4_VC) | BF_MIPI_CSI_DATA_IDS_2_DI4_VC(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_2, field DI5_DT[13:8] (RW)
@@ -710,17 +849,23 @@ typedef union
  * Data ID 5 Data Type D efault Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI5_DT      (8)
-#define BM_MIPI_CSI_DATA_IDS_2_DI5_DT      (0x00003f00)
+#define BP_MIPI_CSI_DATA_IDS_2_DI5_DT      (8)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI5_DT.
+#define BM_MIPI_CSI_DATA_IDS_2_DI5_DT      (0x00003f00)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI5_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI5_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI5_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI5_DT) >> BP_MIPI_CSI_DATA_IDS_2_DI5_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI5_DT(v)   ((((reg32_t) v) << 8) & BM_MIPI_CSI_DATA_IDS_2_DI5_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI5_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI5_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI5_DT) & BM_MIPI_CSI_DATA_IDS_2_DI5_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI5_DT(v)   (((v) << 8) & BM_MIPI_CSI_DATA_IDS_2_DI5_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI5_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI5_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI5_DT) & BM_MIPI_CSI_DATA_IDS_2_DI5_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI5_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI5_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI5_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI5_DT(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI5_DT) | BF_MIPI_CSI_DATA_IDS_2_DI5_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_2, field DI5_VC[15:14] (RW)
@@ -728,17 +873,23 @@ typedef union
  * Data ID 5 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI5_VC      (14)
-#define BM_MIPI_CSI_DATA_IDS_2_DI5_VC      (0x0000c000)
+#define BP_MIPI_CSI_DATA_IDS_2_DI5_VC      (14)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI5_VC.
+#define BM_MIPI_CSI_DATA_IDS_2_DI5_VC      (0x0000c000)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI5_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI5_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI5_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI5_VC) >> BP_MIPI_CSI_DATA_IDS_2_DI5_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI5_VC(v)   ((((reg32_t) v) << 14) & BM_MIPI_CSI_DATA_IDS_2_DI5_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI5_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI5_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI5_VC) & BM_MIPI_CSI_DATA_IDS_2_DI5_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI5_VC(v)   (((v) << 14) & BM_MIPI_CSI_DATA_IDS_2_DI5_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI5_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI5_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI5_VC) & BM_MIPI_CSI_DATA_IDS_2_DI5_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI5_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI5_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI5_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI5_VC(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI5_VC) | BF_MIPI_CSI_DATA_IDS_2_DI5_VC(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_2, field DI6_DT[21:16] (RW)
@@ -746,17 +897,23 @@ typedef union
  * Data ID 6 Data Type Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI6_DT      (16)
-#define BM_MIPI_CSI_DATA_IDS_2_DI6_DT      (0x003f0000)
+#define BP_MIPI_CSI_DATA_IDS_2_DI6_DT      (16)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI6_DT.
+#define BM_MIPI_CSI_DATA_IDS_2_DI6_DT      (0x003f0000)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI6_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI6_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI6_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI6_DT) >> BP_MIPI_CSI_DATA_IDS_2_DI6_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI6_DT(v)   ((((reg32_t) v) << 16) & BM_MIPI_CSI_DATA_IDS_2_DI6_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI6_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI6_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI6_DT) & BM_MIPI_CSI_DATA_IDS_2_DI6_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI6_DT(v)   (((v) << 16) & BM_MIPI_CSI_DATA_IDS_2_DI6_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI6_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI6_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI6_DT) & BM_MIPI_CSI_DATA_IDS_2_DI6_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI6_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI6_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI6_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI6_DT(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI6_DT) | BF_MIPI_CSI_DATA_IDS_2_DI6_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_2, field DI6_VC[23:22] (RW)
@@ -764,17 +921,23 @@ typedef union
  * Data ID 6 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI6_VC      (22)
-#define BM_MIPI_CSI_DATA_IDS_2_DI6_VC      (0x00c00000)
+#define BP_MIPI_CSI_DATA_IDS_2_DI6_VC      (22)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI6_VC.
+#define BM_MIPI_CSI_DATA_IDS_2_DI6_VC      (0x00c00000)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI6_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI6_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI6_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI6_VC) >> BP_MIPI_CSI_DATA_IDS_2_DI6_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI6_VC(v)   ((((reg32_t) v) << 22) & BM_MIPI_CSI_DATA_IDS_2_DI6_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI6_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI6_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI6_VC) & BM_MIPI_CSI_DATA_IDS_2_DI6_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI6_VC(v)   (((v) << 22) & BM_MIPI_CSI_DATA_IDS_2_DI6_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI6_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI6_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI6_VC) & BM_MIPI_CSI_DATA_IDS_2_DI6_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI6_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI6_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI6_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI6_VC(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI6_VC) | BF_MIPI_CSI_DATA_IDS_2_DI6_VC(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_2, field DI7_DT[29:24] (RW)
@@ -782,17 +945,23 @@ typedef union
  * Data ID 7 Data Type Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI7_DT      (24)
-#define BM_MIPI_CSI_DATA_IDS_2_DI7_DT      (0x3f000000)
+#define BP_MIPI_CSI_DATA_IDS_2_DI7_DT      (24)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI7_DT.
+#define BM_MIPI_CSI_DATA_IDS_2_DI7_DT      (0x3f000000)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI7_DT.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI7_DT from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI7_DT(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI7_DT) >> BP_MIPI_CSI_DATA_IDS_2_DI7_DT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI7_DT(v)   ((((reg32_t) v) << 24) & BM_MIPI_CSI_DATA_IDS_2_DI7_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI7_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI7_DT(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI7_DT) & BM_MIPI_CSI_DATA_IDS_2_DI7_DT)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI7_DT(v)   (((v) << 24) & BM_MIPI_CSI_DATA_IDS_2_DI7_DT)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI7_DT.
+#define BF_MIPI_CSI_DATA_IDS_2_DI7_DT(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI7_DT) & BM_MIPI_CSI_DATA_IDS_2_DI7_DT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI7_DT field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI7_DT(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI7_DT, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI7_DT(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI7_DT) | BF_MIPI_CSI_DATA_IDS_2_DI7_DT(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_DATA_IDS_2, field DI7_VC[31:30] (RW)
@@ -800,61 +969,69 @@ typedef union
  * Data ID 7 Virtual channel Default Value: 0
  */
 
-#define BP_MIPI_CSI_DATA_IDS_2_DI7_VC      (30)
-#define BM_MIPI_CSI_DATA_IDS_2_DI7_VC      (0xc0000000)
+#define BP_MIPI_CSI_DATA_IDS_2_DI7_VC      (30)      //!< Bit position for MIPI_CSI_DATA_IDS_2_DI7_VC.
+#define BM_MIPI_CSI_DATA_IDS_2_DI7_VC      (0xc0000000)  //!< Bit mask for MIPI_CSI_DATA_IDS_2_DI7_VC.
+
+//! @brief Get value of MIPI_CSI_DATA_IDS_2_DI7_VC from a register value.
+#define BG_MIPI_CSI_DATA_IDS_2_DI7_VC(r)   (((r) & BM_MIPI_CSI_DATA_IDS_2_DI7_VC) >> BP_MIPI_CSI_DATA_IDS_2_DI7_VC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_DATA_IDS_2_DI7_VC(v)   ((((reg32_t) v) << 30) & BM_MIPI_CSI_DATA_IDS_2_DI7_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI7_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI7_VC(v)   ((((reg32_t) v) << BP_MIPI_CSI_DATA_IDS_2_DI7_VC) & BM_MIPI_CSI_DATA_IDS_2_DI7_VC)
 #else
-#define BF_MIPI_CSI_DATA_IDS_2_DI7_VC(v)   (((v) << 30) & BM_MIPI_CSI_DATA_IDS_2_DI7_VC)
+//! @brief Format value for bitfield MIPI_CSI_DATA_IDS_2_DI7_VC.
+#define BF_MIPI_CSI_DATA_IDS_2_DI7_VC(v)   (((v) << BP_MIPI_CSI_DATA_IDS_2_DI7_VC) & BM_MIPI_CSI_DATA_IDS_2_DI7_VC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI7_VC field to a new value.
-#define BW_MIPI_CSI_DATA_IDS_2_DI7_VC(v)   BF_CS1(MIPI_CSI_DATA_IDS_2, DI7_VC, v)
+#define BW_MIPI_CSI_DATA_IDS_2_DI7_VC(v)   (HW_MIPI_CSI_DATA_IDS_2_WR((HW_MIPI_CSI_DATA_IDS_2_RD() & ~BM_MIPI_CSI_DATA_IDS_2_DI7_VC) | BF_MIPI_CSI_DATA_IDS_2_DI7_VC(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_ERR1 - Error state register 1 (RO)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Error state register 1  Address Offset: 0x020  Size: 29 bit  Size: 29 bit  Default Value: 0
  * Access: Read
  */
-typedef union
+typedef union _hw_mipi_csi_err1
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_err1_bitfields
     {
-        unsigned PHY_ERRSOTSYNCHS_0 : 1; //!< Start of Transmission Error on data lane 0 (no synchronization achieved) Default Value: 0
-        unsigned PHY_ERRSOTSYNCHS_1 : 1; //!< Start of Transmission Error on data lane 1 (no synchronization achieved) Default Value: 0
-        unsigned PHY_ERRSOTSYNCHS_2 : 1; //!< Start of Transmission Error on data lane 2 (no synchronization achieved) Default Value: 0
-        unsigned PHY_ERRSOTSYNCHS_3 : 1; //!< Start of Transmission Error on data lane 3 (no synchronization achieved) Default Value: 0
-        unsigned ERR_F_BNDRY_MATCH_VC0 : 1; //!< Error matching Frame Start with Frame End for Virtual Channel 0 Default Value: 0
-        unsigned ERR_F_BNDRY_MATCH_VC1 : 1; //!< Error matching Frame Start with Frame End for Virtual Channel 1 Default Value: 0
-        unsigned ERR_F_BNDRY_MATCH_VC2 : 1; //!< Error matching Frame Start with Frame End for Virtual Channel 2 Default Value: 0
-        unsigned ERR_F_BNDRY_MATCH_VC3 : 1; //!< Error matching Frame Start with Frame End for Virtual Channel 3 Default Value: 0
-        unsigned ERR_F_SEQ_VC0 : 1; //!< Incorrect Frame Sequence detected in Virtual Channel 0 Default Value: 0
-        unsigned ERR_F_SEQ_VC1 : 1; //!< Incorrect Frame Sequence detected in Virtual Channel 1 Default Value: 0
-        unsigned ERR_F_SEQ_VC2 : 1; //!< Incorrect Frame Sequence detected in Virtual Channel 2 Default Value: 0
-        unsigned ERR_F_SEQ_VC3 : 1; //!< Incorrect Frame Sequence detected in Virtual Channel 3 Default Value: 0
-        unsigned ERR_FRAME_DATA_VC0 : 1; //!< Last received frame, in Virtual Channel 0, had at least one CRC error Default Value: 0
-        unsigned ERR_FRAME_DATA_VC1 : 1; //!< Last received frame, in Virtual Channel 1, had at least one CRC error Default Value: 0
-        unsigned ERR_FRAME_DATA_VC2 : 1; //!< Last received frame, in Virtual Channel 2, had at least one CRC error Default Value: 0
-        unsigned ERR_FRAME_DATA_VC3 : 1; //!< Last received frame, in Virtual Channel 3, had at least one CRC error Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI0 : 1; //!< Error matching Line Start with Line End for vc0 and dt0 Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI1 : 1; //!< Error matching Line Start with Line End for vc1 and dt1 Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI2 : 1; //!< Error matching Line Start with Line End for vc2 and dt2 Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI3 : 1; //!< Error matching Line Start with Line End for vc3 and dt3 Default Value: 0
-        unsigned ERR_L_SEQ_DI0 : 1; //!< Error in the sequence of lines for vc0 and dt0 Default Value: 0
-        unsigned ERR_L_SEQ_DI1 : 1; //!< Error in the sequence of lines for vc1 and dt1 Default Value: 0
-        unsigned ERR_L_SEQ_DI2 : 1; //!< Error in the sequence of lines for vc2 and dt2 Default Value: 0
-        unsigned ERR_L_SEQ_DI3 : 1; //!< Error in the sequence of lines for vc3 and dt3 Default Value: 0
-        unsigned VC0_ERR_CRC : 1; //!< Checksum Error detected on Virtual Channel 0 Default Value: 0
-        unsigned VC1_ERR_CRC : 1; //!< Checksum Error detected on Virtual Channel 1 Default Value: 0
-        unsigned VC2_ERR_CRC : 1; //!< Checksum Error detected on Virtual Channel 2 Default Value: 0
-        unsigned VC3_ERR_CRC : 1; //!< Checksum Error detected on Virtual Channel 3 Default Value: 0
-        unsigned ERR_ECC_DOUBLE : 1; //!< Header ECC contains 2 errors. Unrecoverable. Default Value: 0
-        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned PHY_ERRSOTSYNCHS_0 : 1; //!< [0] Start of Transmission Error on data lane 0 (no synchronization achieved) Default Value: 0
+        unsigned PHY_ERRSOTSYNCHS_1 : 1; //!< [1] Start of Transmission Error on data lane 1 (no synchronization achieved) Default Value: 0
+        unsigned PHY_ERRSOTSYNCHS_2 : 1; //!< [2] Start of Transmission Error on data lane 2 (no synchronization achieved) Default Value: 0
+        unsigned PHY_ERRSOTSYNCHS_3 : 1; //!< [3] Start of Transmission Error on data lane 3 (no synchronization achieved) Default Value: 0
+        unsigned ERR_F_BNDRY_MATCH_VC0 : 1; //!< [4] Error matching Frame Start with Frame End for Virtual Channel 0 Default Value: 0
+        unsigned ERR_F_BNDRY_MATCH_VC1 : 1; //!< [5] Error matching Frame Start with Frame End for Virtual Channel 1 Default Value: 0
+        unsigned ERR_F_BNDRY_MATCH_VC2 : 1; //!< [6] Error matching Frame Start with Frame End for Virtual Channel 2 Default Value: 0
+        unsigned ERR_F_BNDRY_MATCH_VC3 : 1; //!< [7] Error matching Frame Start with Frame End for Virtual Channel 3 Default Value: 0
+        unsigned ERR_F_SEQ_VC0 : 1; //!< [8] Incorrect Frame Sequence detected in Virtual Channel 0 Default Value: 0
+        unsigned ERR_F_SEQ_VC1 : 1; //!< [9] Incorrect Frame Sequence detected in Virtual Channel 1 Default Value: 0
+        unsigned ERR_F_SEQ_VC2 : 1; //!< [10] Incorrect Frame Sequence detected in Virtual Channel 2 Default Value: 0
+        unsigned ERR_F_SEQ_VC3 : 1; //!< [11] Incorrect Frame Sequence detected in Virtual Channel 3 Default Value: 0
+        unsigned ERR_FRAME_DATA_VC0 : 1; //!< [12] Last received frame, in Virtual Channel 0, had at least one CRC error Default Value: 0
+        unsigned ERR_FRAME_DATA_VC1 : 1; //!< [13] Last received frame, in Virtual Channel 1, had at least one CRC error Default Value: 0
+        unsigned ERR_FRAME_DATA_VC2 : 1; //!< [14] Last received frame, in Virtual Channel 2, had at least one CRC error Default Value: 0
+        unsigned ERR_FRAME_DATA_VC3 : 1; //!< [15] Last received frame, in Virtual Channel 3, had at least one CRC error Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI0 : 1; //!< [16] Error matching Line Start with Line End for vc0 and dt0 Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI1 : 1; //!< [17] Error matching Line Start with Line End for vc1 and dt1 Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI2 : 1; //!< [18] Error matching Line Start with Line End for vc2 and dt2 Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI3 : 1; //!< [19] Error matching Line Start with Line End for vc3 and dt3 Default Value: 0
+        unsigned ERR_L_SEQ_DI0 : 1; //!< [20] Error in the sequence of lines for vc0 and dt0 Default Value: 0
+        unsigned ERR_L_SEQ_DI1 : 1; //!< [21] Error in the sequence of lines for vc1 and dt1 Default Value: 0
+        unsigned ERR_L_SEQ_DI2 : 1; //!< [22] Error in the sequence of lines for vc2 and dt2 Default Value: 0
+        unsigned ERR_L_SEQ_DI3 : 1; //!< [23] Error in the sequence of lines for vc3 and dt3 Default Value: 0
+        unsigned VC0_ERR_CRC : 1; //!< [24] Checksum Error detected on Virtual Channel 0 Default Value: 0
+        unsigned VC1_ERR_CRC : 1; //!< [25] Checksum Error detected on Virtual Channel 1 Default Value: 0
+        unsigned VC2_ERR_CRC : 1; //!< [26] Checksum Error detected on Virtual Channel 2 Default Value: 0
+        unsigned VC3_ERR_CRC : 1; //!< [27] Checksum Error detected on Virtual Channel 3 Default Value: 0
+        unsigned ERR_ECC_DOUBLE : 1; //!< [28] Header ECC contains 2 errors. Unrecoverable. Default Value: 0
+        unsigned RESERVED0 : 3; //!< [31:29] Reserved
     } B;
 } hw_mipi_csi_err1_t;
 #endif
@@ -873,274 +1050,363 @@ typedef union
  * constants & macros for individual MIPI_CSI_ERR1 bitfields
  */
 
-/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_0[0:0] (RO)
+/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_0[0] (RO)
  *
  * Start of Transmission Error on data lane 0 (no synchronization achieved) Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0      (0)
-#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0      (0x00000001)
+#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0      (0)      //!< Bit position for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0.
+#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0      (0x00000001)  //!< Bit mask for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0.
 
-/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_1[1:1] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0 from a register value.
+#define BG_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0(r)   (((r) & BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0) >> BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_0)
+
+/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_1[1] (RO)
  *
  * Start of Transmission Error on data lane 1 (no synchronization achieved) Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1      (1)
-#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1      (0x00000002)
+#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1      (1)      //!< Bit position for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1.
+#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1      (0x00000002)  //!< Bit mask for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1.
 
-/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_2[2:2] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1 from a register value.
+#define BG_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1(r)   (((r) & BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1) >> BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_1)
+
+/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_2[2] (RO)
  *
  * Start of Transmission Error on data lane 2 (no synchronization achieved) Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2      (2)
-#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2      (0x00000004)
+#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2      (2)      //!< Bit position for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2.
+#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2      (0x00000004)  //!< Bit mask for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2.
 
-/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_3[3:3] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2 from a register value.
+#define BG_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2(r)   (((r) & BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2) >> BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_2)
+
+/* --- Register HW_MIPI_CSI_ERR1, field PHY_ERRSOTSYNCHS_3[3] (RO)
  *
  * Start of Transmission Error on data lane 3 (no synchronization achieved) Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3      (3)
-#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3      (0x00000008)
+#define BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3      (3)      //!< Bit position for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3.
+#define BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3      (0x00000008)  //!< Bit mask for MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC0[4:4] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3 from a register value.
+#define BG_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3(r)   (((r) & BM_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3) >> BP_MIPI_CSI_ERR1_PHY_ERRSOTSYNCHS_3)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC0[4] (RO)
  *
  * Error matching Frame Start with Frame End for Virtual Channel 0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0      (4)
-#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0      (0x00000010)
+#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0      (4)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0.
+#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0      (0x00000010)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC1[5:5] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0) >> BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC0)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC1[5] (RO)
  *
  * Error matching Frame Start with Frame End for Virtual Channel 1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1      (5)
-#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1      (0x00000020)
+#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1      (5)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1.
+#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1      (0x00000020)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC2[6:6] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1) >> BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC1)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC2[6] (RO)
  *
  * Error matching Frame Start with Frame End for Virtual Channel 2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2      (6)
-#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2      (0x00000040)
+#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2      (6)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2.
+#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2      (0x00000040)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC3[7:7] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2) >> BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC2)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_BNDRY_MATCH_VC3[7] (RO)
  *
  * Error matching Frame Start with Frame End for Virtual Channel 3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3      (7)
-#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3      (0x00000080)
+#define BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3      (7)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3.
+#define BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3      (0x00000080)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC0[8:8] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3) >> BP_MIPI_CSI_ERR1_ERR_F_BNDRY_MATCH_VC3)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC0[8] (RO)
  *
  * Incorrect Frame Sequence detected in Virtual Channel 0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC0      (8)
-#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC0      (0x00000100)
+#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC0      (8)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_SEQ_VC0.
+#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC0      (0x00000100)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_SEQ_VC0.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC1[9:9] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_SEQ_VC0 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_SEQ_VC0(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC0) >> BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC0)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC1[9] (RO)
  *
  * Incorrect Frame Sequence detected in Virtual Channel 1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC1      (9)
-#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC1      (0x00000200)
+#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC1      (9)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_SEQ_VC1.
+#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC1      (0x00000200)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_SEQ_VC1.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC2[10:10] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_SEQ_VC1 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_SEQ_VC1(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC1) >> BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC1)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC2[10] (RO)
  *
  * Incorrect Frame Sequence detected in Virtual Channel 2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC2      (10)
-#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC2      (0x00000400)
+#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC2      (10)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_SEQ_VC2.
+#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC2      (0x00000400)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_SEQ_VC2.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC3[11:11] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_SEQ_VC2 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_SEQ_VC2(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC2) >> BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC2)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_F_SEQ_VC3[11] (RO)
  *
  * Incorrect Frame Sequence detected in Virtual Channel 3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC3      (11)
-#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC3      (0x00000800)
+#define BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC3      (11)      //!< Bit position for MIPI_CSI_ERR1_ERR_F_SEQ_VC3.
+#define BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC3      (0x00000800)  //!< Bit mask for MIPI_CSI_ERR1_ERR_F_SEQ_VC3.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC0[12:12] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_F_SEQ_VC3 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_F_SEQ_VC3(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_F_SEQ_VC3) >> BP_MIPI_CSI_ERR1_ERR_F_SEQ_VC3)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC0[12] (RO)
  *
  * Last received frame, in Virtual Channel 0, had at least one CRC error Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0      (12)
-#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0      (0x00001000)
+#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0      (12)      //!< Bit position for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0.
+#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0      (0x00001000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC1[13:13] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0) >> BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC0)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC1[13] (RO)
  *
  * Last received frame, in Virtual Channel 1, had at least one CRC error Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1      (13)
-#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1      (0x00002000)
+#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1      (13)      //!< Bit position for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1.
+#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1      (0x00002000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC2[14:14] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1) >> BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC1)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC2[14] (RO)
  *
  * Last received frame, in Virtual Channel 2, had at least one CRC error Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2      (14)
-#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2      (0x00004000)
+#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2      (14)      //!< Bit position for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2.
+#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2      (0x00004000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC3[15:15] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2) >> BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC2)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_FRAME_DATA_VC3[15] (RO)
  *
  * Last received frame, in Virtual Channel 3, had at least one CRC error Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3      (15)
-#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3      (0x00008000)
+#define BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3      (15)      //!< Bit position for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3.
+#define BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3      (0x00008000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI0[16:16] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3) >> BP_MIPI_CSI_ERR1_ERR_FRAME_DATA_VC3)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI0[16] (RO)
  *
  * Error matching Line Start with Line End for vc0 and dt0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0      (16)
-#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0      (0x00010000)
+#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0      (16)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0.
+#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0      (0x00010000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI1[17:17] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0) >> BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI0)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI1[17] (RO)
  *
  * Error matching Line Start with Line End for vc1 and dt1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1      (17)
-#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1      (0x00020000)
+#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1      (17)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1.
+#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1      (0x00020000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI2[18:18] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1) >> BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI1)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI2[18] (RO)
  *
  * Error matching Line Start with Line End for vc2 and dt2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2      (18)
-#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2      (0x00040000)
+#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2      (18)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2.
+#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2      (0x00040000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI3[19:19] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2) >> BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI2)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_BNDRY_MATCH_DI3[19] (RO)
  *
  * Error matching Line Start with Line End for vc3 and dt3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3      (19)
-#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3      (0x00080000)
+#define BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3      (19)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3.
+#define BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3      (0x00080000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI0[20:20] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3) >> BP_MIPI_CSI_ERR1_ERR_L_BNDRY_MATCH_DI3)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI0[20] (RO)
  *
  * Error in the sequence of lines for vc0 and dt0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI0      (20)
-#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI0      (0x00100000)
+#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI0      (20)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_SEQ_DI0.
+#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI0      (0x00100000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_SEQ_DI0.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI1[21:21] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_SEQ_DI0 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_SEQ_DI0(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI0) >> BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI0)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI1[21] (RO)
  *
  * Error in the sequence of lines for vc1 and dt1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI1      (21)
-#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI1      (0x00200000)
+#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI1      (21)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_SEQ_DI1.
+#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI1      (0x00200000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_SEQ_DI1.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI2[22:22] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_SEQ_DI1 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_SEQ_DI1(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI1) >> BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI1)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI2[22] (RO)
  *
  * Error in the sequence of lines for vc2 and dt2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI2      (22)
-#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI2      (0x00400000)
+#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI2      (22)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_SEQ_DI2.
+#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI2      (0x00400000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_SEQ_DI2.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI3[23:23] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_SEQ_DI2 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_SEQ_DI2(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI2) >> BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI2)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_L_SEQ_DI3[23] (RO)
  *
  * Error in the sequence of lines for vc3 and dt3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI3      (23)
-#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI3      (0x00800000)
+#define BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI3      (23)      //!< Bit position for MIPI_CSI_ERR1_ERR_L_SEQ_DI3.
+#define BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI3      (0x00800000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_L_SEQ_DI3.
 
-/* --- Register HW_MIPI_CSI_ERR1, field VC0_ERR_CRC[24:24] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_ERR_L_SEQ_DI3 from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_L_SEQ_DI3(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_L_SEQ_DI3) >> BP_MIPI_CSI_ERR1_ERR_L_SEQ_DI3)
+
+/* --- Register HW_MIPI_CSI_ERR1, field VC0_ERR_CRC[24] (RO)
  *
  * Checksum Error detected on Virtual Channel 0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_VC0_ERR_CRC      (24)
-#define BM_MIPI_CSI_ERR1_VC0_ERR_CRC      (0x01000000)
+#define BP_MIPI_CSI_ERR1_VC0_ERR_CRC      (24)      //!< Bit position for MIPI_CSI_ERR1_VC0_ERR_CRC.
+#define BM_MIPI_CSI_ERR1_VC0_ERR_CRC      (0x01000000)  //!< Bit mask for MIPI_CSI_ERR1_VC0_ERR_CRC.
 
-/* --- Register HW_MIPI_CSI_ERR1, field VC1_ERR_CRC[25:25] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_VC0_ERR_CRC from a register value.
+#define BG_MIPI_CSI_ERR1_VC0_ERR_CRC(r)   (((r) & BM_MIPI_CSI_ERR1_VC0_ERR_CRC) >> BP_MIPI_CSI_ERR1_VC0_ERR_CRC)
+
+/* --- Register HW_MIPI_CSI_ERR1, field VC1_ERR_CRC[25] (RO)
  *
  * Checksum Error detected on Virtual Channel 1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_VC1_ERR_CRC      (25)
-#define BM_MIPI_CSI_ERR1_VC1_ERR_CRC      (0x02000000)
+#define BP_MIPI_CSI_ERR1_VC1_ERR_CRC      (25)      //!< Bit position for MIPI_CSI_ERR1_VC1_ERR_CRC.
+#define BM_MIPI_CSI_ERR1_VC1_ERR_CRC      (0x02000000)  //!< Bit mask for MIPI_CSI_ERR1_VC1_ERR_CRC.
 
-/* --- Register HW_MIPI_CSI_ERR1, field VC2_ERR_CRC[26:26] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_VC1_ERR_CRC from a register value.
+#define BG_MIPI_CSI_ERR1_VC1_ERR_CRC(r)   (((r) & BM_MIPI_CSI_ERR1_VC1_ERR_CRC) >> BP_MIPI_CSI_ERR1_VC1_ERR_CRC)
+
+/* --- Register HW_MIPI_CSI_ERR1, field VC2_ERR_CRC[26] (RO)
  *
  * Checksum Error detected on Virtual Channel 2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_VC2_ERR_CRC      (26)
-#define BM_MIPI_CSI_ERR1_VC2_ERR_CRC      (0x04000000)
+#define BP_MIPI_CSI_ERR1_VC2_ERR_CRC      (26)      //!< Bit position for MIPI_CSI_ERR1_VC2_ERR_CRC.
+#define BM_MIPI_CSI_ERR1_VC2_ERR_CRC      (0x04000000)  //!< Bit mask for MIPI_CSI_ERR1_VC2_ERR_CRC.
 
-/* --- Register HW_MIPI_CSI_ERR1, field VC3_ERR_CRC[27:27] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_VC2_ERR_CRC from a register value.
+#define BG_MIPI_CSI_ERR1_VC2_ERR_CRC(r)   (((r) & BM_MIPI_CSI_ERR1_VC2_ERR_CRC) >> BP_MIPI_CSI_ERR1_VC2_ERR_CRC)
+
+/* --- Register HW_MIPI_CSI_ERR1, field VC3_ERR_CRC[27] (RO)
  *
  * Checksum Error detected on Virtual Channel 3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_VC3_ERR_CRC      (27)
-#define BM_MIPI_CSI_ERR1_VC3_ERR_CRC      (0x08000000)
+#define BP_MIPI_CSI_ERR1_VC3_ERR_CRC      (27)      //!< Bit position for MIPI_CSI_ERR1_VC3_ERR_CRC.
+#define BM_MIPI_CSI_ERR1_VC3_ERR_CRC      (0x08000000)  //!< Bit mask for MIPI_CSI_ERR1_VC3_ERR_CRC.
 
-/* --- Register HW_MIPI_CSI_ERR1, field ERR_ECC_DOUBLE[28:28] (RO)
+//! @brief Get value of MIPI_CSI_ERR1_VC3_ERR_CRC from a register value.
+#define BG_MIPI_CSI_ERR1_VC3_ERR_CRC(r)   (((r) & BM_MIPI_CSI_ERR1_VC3_ERR_CRC) >> BP_MIPI_CSI_ERR1_VC3_ERR_CRC)
+
+/* --- Register HW_MIPI_CSI_ERR1, field ERR_ECC_DOUBLE[28] (RO)
  *
  * Header ECC contains 2 errors. Unrecoverable. Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR1_ERR_ECC_DOUBLE      (28)
-#define BM_MIPI_CSI_ERR1_ERR_ECC_DOUBLE      (0x10000000)
+#define BP_MIPI_CSI_ERR1_ERR_ECC_DOUBLE      (28)      //!< Bit position for MIPI_CSI_ERR1_ERR_ECC_DOUBLE.
+#define BM_MIPI_CSI_ERR1_ERR_ECC_DOUBLE      (0x10000000)  //!< Bit mask for MIPI_CSI_ERR1_ERR_ECC_DOUBLE.
+
+//! @brief Get value of MIPI_CSI_ERR1_ERR_ECC_DOUBLE from a register value.
+#define BG_MIPI_CSI_ERR1_ERR_ECC_DOUBLE(r)   (((r) & BM_MIPI_CSI_ERR1_ERR_ECC_DOUBLE) >> BP_MIPI_CSI_ERR1_ERR_ECC_DOUBLE)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_ERR2 - Error state register 2 (RO)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Error state register 2  Address Offset: 0x024  Size: 24 bit  Default Value: 0  Access: Read
  */
-typedef union
+typedef union _hw_mipi_csi_err2
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_err2_bitfields
     {
-        unsigned PHY_ERRESC_0 : 1; //!< Escape Entry Error (ULPM) on data lane 0 Default Value: 0
-        unsigned PHY_ERRESC_1 : 1; //!< Escape Entry Error (ULPM) on data lane 1 Default Value: 0
-        unsigned PHY_ERRESC_2 : 1; //!< Escape Entry Error (ULPM) on data lane 2 Default Value: 0
-        unsigned PHY_ERRESC_3 : 1; //!< Escape Entry Error (ULPM) on data lane 3 Default Value: 0
-        unsigned PHY_ERRSOTHS_0 : 1; //!< Start of Transmission Error on data lane 0 (synchronization can still be achieved) Default Value: 0
-        unsigned PHY_ERRSOTHS_1 : 1; //!< Start of Transmission Error on data lane 1 (synchronization can still be achieved) Default Value: 0
-        unsigned PHY_ERRSOTHS_2 : 1; //!< Start of Transmission Error on data lane 2 (synchronization can still be achieved) Default Value: 0
-        unsigned PHY_ERRSOTHS_3 : 1; //!< Start of Transmission Error on data lane 3 (synchronization can still be achieved) Default Value: 0
-        unsigned VC0_ERR_ECC_CORRECTED : 1; //!< Header error detected and corrected on Virtual Channel 0 Default Value: 0
-        unsigned VC1_ERR_ECC_CORRECTED : 1; //!< Header error detected and corrected on Virtual Channel 1 Default Value: 0
-        unsigned VC2_ERR_ECC_CORRECTED : 1; //!< Header error detected and corrected on Virtual Channel 2 Default Value: 0
-        unsigned VC3_ERR_ECC_CORRECTED : 1; //!< Header error detected and corrected on Virtual Channel 3 Default Value: 0
-        unsigned ERR_ID_VC0 : 1; //!< Unrecognized or unimplemented data type detected in Virtual Channel 0 Default Value: 0
-        unsigned ERR_ID_VC1 : 1; //!< Unrecognized or unimplemented data type detected in Virtual Channel 1 Default Value: 0
-        unsigned ERR_ID_VC2 : 1; //!< Unrecognized or unimplemented data type detected in Virtual Channel 2 Default Value: 0
-        unsigned ERR_ID_VC3 : 1; //!< Unrecognized or unimplemented data type detected in Virtual Channel 3 Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI4 : 1; //!< Error matching Line Start with Line End for vc4 and dt4 Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI5 : 1; //!< Error matching Line Start with Line End for vc5 and dt5 Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI6 : 1; //!< Error matching Line Start with Line End for vc6 and dt6 Default Value: 0
-        unsigned ERR_L_BNDRY_MATCH_DI7 : 1; //!< Error matching Line Start with Line End for vc7 and dt7 Default Value: 0
-        unsigned ERR_L_SEQ_DI4 : 1; //!< Error in the sequence of lines for vc4 and dt4 Default Value: 0
-        unsigned ERR_L_SEQ_DI5 : 1; //!< Error in the sequence of lines for vc5 and dt5 Default Value: 0
-        unsigned ERR_L_SEQ_DI6 : 1; //!< Error in the sequence of lines for vc6 and dt6 Default Value: 0
-        unsigned ERR_L_SEQ_DI7 : 1; //!< Error in the sequence of lines for vc7 and dt7 Default Value: 0
-        unsigned RESERVED0 : 8; //!< Reserved
+        unsigned PHY_ERRESC_0 : 1; //!< [0] Escape Entry Error (ULPM) on data lane 0 Default Value: 0
+        unsigned PHY_ERRESC_1 : 1; //!< [1] Escape Entry Error (ULPM) on data lane 1 Default Value: 0
+        unsigned PHY_ERRESC_2 : 1; //!< [2] Escape Entry Error (ULPM) on data lane 2 Default Value: 0
+        unsigned PHY_ERRESC_3 : 1; //!< [3] Escape Entry Error (ULPM) on data lane 3 Default Value: 0
+        unsigned PHY_ERRSOTHS_0 : 1; //!< [4] Start of Transmission Error on data lane 0 (synchronization can still be achieved) Default Value: 0
+        unsigned PHY_ERRSOTHS_1 : 1; //!< [5] Start of Transmission Error on data lane 1 (synchronization can still be achieved) Default Value: 0
+        unsigned PHY_ERRSOTHS_2 : 1; //!< [6] Start of Transmission Error on data lane 2 (synchronization can still be achieved) Default Value: 0
+        unsigned PHY_ERRSOTHS_3 : 1; //!< [7] Start of Transmission Error on data lane 3 (synchronization can still be achieved) Default Value: 0
+        unsigned VC0_ERR_ECC_CORRECTED : 1; //!< [8] Header error detected and corrected on Virtual Channel 0 Default Value: 0
+        unsigned VC1_ERR_ECC_CORRECTED : 1; //!< [9] Header error detected and corrected on Virtual Channel 1 Default Value: 0
+        unsigned VC2_ERR_ECC_CORRECTED : 1; //!< [10] Header error detected and corrected on Virtual Channel 2 Default Value: 0
+        unsigned VC3_ERR_ECC_CORRECTED : 1; //!< [11] Header error detected and corrected on Virtual Channel 3 Default Value: 0
+        unsigned ERR_ID_VC0 : 1; //!< [12] Unrecognized or unimplemented data type detected in Virtual Channel 0 Default Value: 0
+        unsigned ERR_ID_VC1 : 1; //!< [13] Unrecognized or unimplemented data type detected in Virtual Channel 1 Default Value: 0
+        unsigned ERR_ID_VC2 : 1; //!< [14] Unrecognized or unimplemented data type detected in Virtual Channel 2 Default Value: 0
+        unsigned ERR_ID_VC3 : 1; //!< [15] Unrecognized or unimplemented data type detected in Virtual Channel 3 Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI4 : 1; //!< [16] Error matching Line Start with Line End for vc4 and dt4 Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI5 : 1; //!< [17] Error matching Line Start with Line End for vc5 and dt5 Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI6 : 1; //!< [18] Error matching Line Start with Line End for vc6 and dt6 Default Value: 0
+        unsigned ERR_L_BNDRY_MATCH_DI7 : 1; //!< [19] Error matching Line Start with Line End for vc7 and dt7 Default Value: 0
+        unsigned ERR_L_SEQ_DI4 : 1; //!< [20] Error in the sequence of lines for vc4 and dt4 Default Value: 0
+        unsigned ERR_L_SEQ_DI5 : 1; //!< [21] Error in the sequence of lines for vc5 and dt5 Default Value: 0
+        unsigned ERR_L_SEQ_DI6 : 1; //!< [22] Error in the sequence of lines for vc6 and dt6 Default Value: 0
+        unsigned ERR_L_SEQ_DI7 : 1; //!< [23] Error in the sequence of lines for vc7 and dt7 Default Value: 0
+        unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_mipi_csi_err2_t;
 #endif
@@ -1159,244 +1425,318 @@ typedef union
  * constants & macros for individual MIPI_CSI_ERR2 bitfields
  */
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_0[0:0] (RO)
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_0[0] (RO)
  *
  * Escape Entry Error (ULPM) on data lane 0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRESC_0      (0)
-#define BM_MIPI_CSI_ERR2_PHY_ERRESC_0      (0x00000001)
+#define BP_MIPI_CSI_ERR2_PHY_ERRESC_0      (0)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRESC_0.
+#define BM_MIPI_CSI_ERR2_PHY_ERRESC_0      (0x00000001)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRESC_0.
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_1[1:1] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRESC_0 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRESC_0(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRESC_0) >> BP_MIPI_CSI_ERR2_PHY_ERRESC_0)
+
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_1[1] (RO)
  *
  * Escape Entry Error (ULPM) on data lane 1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRESC_1      (1)
-#define BM_MIPI_CSI_ERR2_PHY_ERRESC_1      (0x00000002)
+#define BP_MIPI_CSI_ERR2_PHY_ERRESC_1      (1)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRESC_1.
+#define BM_MIPI_CSI_ERR2_PHY_ERRESC_1      (0x00000002)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRESC_1.
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_2[2:2] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRESC_1 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRESC_1(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRESC_1) >> BP_MIPI_CSI_ERR2_PHY_ERRESC_1)
+
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_2[2] (RO)
  *
  * Escape Entry Error (ULPM) on data lane 2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRESC_2      (2)
-#define BM_MIPI_CSI_ERR2_PHY_ERRESC_2      (0x00000004)
+#define BP_MIPI_CSI_ERR2_PHY_ERRESC_2      (2)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRESC_2.
+#define BM_MIPI_CSI_ERR2_PHY_ERRESC_2      (0x00000004)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRESC_2.
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_3[3:3] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRESC_2 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRESC_2(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRESC_2) >> BP_MIPI_CSI_ERR2_PHY_ERRESC_2)
+
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRESC_3[3] (RO)
  *
  * Escape Entry Error (ULPM) on data lane 3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRESC_3      (3)
-#define BM_MIPI_CSI_ERR2_PHY_ERRESC_3      (0x00000008)
+#define BP_MIPI_CSI_ERR2_PHY_ERRESC_3      (3)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRESC_3.
+#define BM_MIPI_CSI_ERR2_PHY_ERRESC_3      (0x00000008)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRESC_3.
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_0[4:4] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRESC_3 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRESC_3(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRESC_3) >> BP_MIPI_CSI_ERR2_PHY_ERRESC_3)
+
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_0[4] (RO)
  *
  * Start of Transmission Error on data lane 0 (synchronization can still be achieved) Default Value:
  * 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_0      (4)
-#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_0      (0x00000010)
+#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_0      (4)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRSOTHS_0.
+#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_0      (0x00000010)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRSOTHS_0.
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_1[5:5] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRSOTHS_0 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRSOTHS_0(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_0) >> BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_0)
+
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_1[5] (RO)
  *
  * Start of Transmission Error on data lane 1 (synchronization can still be achieved) Default Value:
  * 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_1      (5)
-#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_1      (0x00000020)
+#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_1      (5)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRSOTHS_1.
+#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_1      (0x00000020)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRSOTHS_1.
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_2[6:6] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRSOTHS_1 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRSOTHS_1(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_1) >> BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_1)
+
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_2[6] (RO)
  *
  * Start of Transmission Error on data lane 2 (synchronization can still be achieved) Default Value:
  * 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_2      (6)
-#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_2      (0x00000040)
+#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_2      (6)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRSOTHS_2.
+#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_2      (0x00000040)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRSOTHS_2.
 
-/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_3[7:7] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRSOTHS_2 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRSOTHS_2(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_2) >> BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_2)
+
+/* --- Register HW_MIPI_CSI_ERR2, field PHY_ERRSOTHS_3[7] (RO)
  *
  * Start of Transmission Error on data lane 3 (synchronization can still be achieved) Default Value:
  * 0
  */
 
-#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_3      (7)
-#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_3      (0x00000080)
+#define BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_3      (7)      //!< Bit position for MIPI_CSI_ERR2_PHY_ERRSOTHS_3.
+#define BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_3      (0x00000080)  //!< Bit mask for MIPI_CSI_ERR2_PHY_ERRSOTHS_3.
 
-/* --- Register HW_MIPI_CSI_ERR2, field VC0_ERR_ECC_CORRECTED[8:8] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_PHY_ERRSOTHS_3 from a register value.
+#define BG_MIPI_CSI_ERR2_PHY_ERRSOTHS_3(r)   (((r) & BM_MIPI_CSI_ERR2_PHY_ERRSOTHS_3) >> BP_MIPI_CSI_ERR2_PHY_ERRSOTHS_3)
+
+/* --- Register HW_MIPI_CSI_ERR2, field VC0_ERR_ECC_CORRECTED[8] (RO)
  *
  * Header error detected and corrected on Virtual Channel 0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED      (8)
-#define BM_MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED      (0x00000100)
+#define BP_MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED      (8)      //!< Bit position for MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED      (0x00000100)  //!< Bit mask for MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED.
 
-/* --- Register HW_MIPI_CSI_ERR2, field VC1_ERR_ECC_CORRECTED[9:9] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_ERR2_VC0_ERR_ECC_CORRECTED)
+
+/* --- Register HW_MIPI_CSI_ERR2, field VC1_ERR_ECC_CORRECTED[9] (RO)
  *
  * Header error detected and corrected on Virtual Channel 1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED      (9)
-#define BM_MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED      (0x00000200)
+#define BP_MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED      (9)      //!< Bit position for MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED      (0x00000200)  //!< Bit mask for MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED.
 
-/* --- Register HW_MIPI_CSI_ERR2, field VC2_ERR_ECC_CORRECTED[10:10] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_ERR2_VC1_ERR_ECC_CORRECTED)
+
+/* --- Register HW_MIPI_CSI_ERR2, field VC2_ERR_ECC_CORRECTED[10] (RO)
  *
  * Header error detected and corrected on Virtual Channel 2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED      (10)
-#define BM_MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED      (0x00000400)
+#define BP_MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED      (10)      //!< Bit position for MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED      (0x00000400)  //!< Bit mask for MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED.
 
-/* --- Register HW_MIPI_CSI_ERR2, field VC3_ERR_ECC_CORRECTED[11:11] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_ERR2_VC2_ERR_ECC_CORRECTED)
+
+/* --- Register HW_MIPI_CSI_ERR2, field VC3_ERR_ECC_CORRECTED[11] (RO)
  *
  * Header error detected and corrected on Virtual Channel 3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED      (11)
-#define BM_MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED      (0x00000800)
+#define BP_MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED      (11)      //!< Bit position for MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED      (0x00000800)  //!< Bit mask for MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC0[12:12] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_ERR2_VC3_ERR_ECC_CORRECTED)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC0[12] (RO)
  *
  * Unrecognized or unimplemented data type detected in Virtual Channel 0 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_ID_VC0      (12)
-#define BM_MIPI_CSI_ERR2_ERR_ID_VC0      (0x00001000)
+#define BP_MIPI_CSI_ERR2_ERR_ID_VC0      (12)      //!< Bit position for MIPI_CSI_ERR2_ERR_ID_VC0.
+#define BM_MIPI_CSI_ERR2_ERR_ID_VC0      (0x00001000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_ID_VC0.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC1[13:13] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_ID_VC0 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_ID_VC0(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_ID_VC0) >> BP_MIPI_CSI_ERR2_ERR_ID_VC0)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC1[13] (RO)
  *
  * Unrecognized or unimplemented data type detected in Virtual Channel 1 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_ID_VC1      (13)
-#define BM_MIPI_CSI_ERR2_ERR_ID_VC1      (0x00002000)
+#define BP_MIPI_CSI_ERR2_ERR_ID_VC1      (13)      //!< Bit position for MIPI_CSI_ERR2_ERR_ID_VC1.
+#define BM_MIPI_CSI_ERR2_ERR_ID_VC1      (0x00002000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_ID_VC1.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC2[14:14] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_ID_VC1 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_ID_VC1(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_ID_VC1) >> BP_MIPI_CSI_ERR2_ERR_ID_VC1)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC2[14] (RO)
  *
  * Unrecognized or unimplemented data type detected in Virtual Channel 2 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_ID_VC2      (14)
-#define BM_MIPI_CSI_ERR2_ERR_ID_VC2      (0x00004000)
+#define BP_MIPI_CSI_ERR2_ERR_ID_VC2      (14)      //!< Bit position for MIPI_CSI_ERR2_ERR_ID_VC2.
+#define BM_MIPI_CSI_ERR2_ERR_ID_VC2      (0x00004000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_ID_VC2.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC3[15:15] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_ID_VC2 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_ID_VC2(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_ID_VC2) >> BP_MIPI_CSI_ERR2_ERR_ID_VC2)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_ID_VC3[15] (RO)
  *
  * Unrecognized or unimplemented data type detected in Virtual Channel 3 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_ID_VC3      (15)
-#define BM_MIPI_CSI_ERR2_ERR_ID_VC3      (0x00008000)
+#define BP_MIPI_CSI_ERR2_ERR_ID_VC3      (15)      //!< Bit position for MIPI_CSI_ERR2_ERR_ID_VC3.
+#define BM_MIPI_CSI_ERR2_ERR_ID_VC3      (0x00008000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_ID_VC3.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI4[16:16] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_ID_VC3 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_ID_VC3(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_ID_VC3) >> BP_MIPI_CSI_ERR2_ERR_ID_VC3)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI4[16] (RO)
  *
  * Error matching Line Start with Line End for vc4 and dt4 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4      (16)
-#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4      (0x00010000)
+#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4      (16)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4.
+#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4      (0x00010000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI5[17:17] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4) >> BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI4)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI5[17] (RO)
  *
  * Error matching Line Start with Line End for vc5 and dt5 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5      (17)
-#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5      (0x00020000)
+#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5      (17)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5.
+#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5      (0x00020000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI6[18:18] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5) >> BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI5)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI6[18] (RO)
  *
  * Error matching Line Start with Line End for vc6 and dt6 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6      (18)
-#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6      (0x00040000)
+#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6      (18)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6.
+#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6      (0x00040000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI7[19:19] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6) >> BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI6)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_BNDRY_MATCH_DI7[19] (RO)
  *
  * Error matching Line Start with Line End for vc7 and dt7 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7      (19)
-#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7      (0x00080000)
+#define BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7      (19)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7.
+#define BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7      (0x00080000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI4[20:20] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7) >> BP_MIPI_CSI_ERR2_ERR_L_BNDRY_MATCH_DI7)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI4[20] (RO)
  *
  * Error in the sequence of lines for vc4 and dt4 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI4      (20)
-#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI4      (0x00100000)
+#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI4      (20)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_SEQ_DI4.
+#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI4      (0x00100000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_SEQ_DI4.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI5[21:21] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_SEQ_DI4 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_SEQ_DI4(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI4) >> BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI4)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI5[21] (RO)
  *
  * Error in the sequence of lines for vc5 and dt5 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI5      (21)
-#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI5      (0x00200000)
+#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI5      (21)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_SEQ_DI5.
+#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI5      (0x00200000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_SEQ_DI5.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI6[22:22] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_SEQ_DI5 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_SEQ_DI5(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI5) >> BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI5)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI6[22] (RO)
  *
  * Error in the sequence of lines for vc6 and dt6 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI6      (22)
-#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI6      (0x00400000)
+#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI6      (22)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_SEQ_DI6.
+#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI6      (0x00400000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_SEQ_DI6.
 
-/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI7[23:23] (RO)
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_SEQ_DI6 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_SEQ_DI6(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI6) >> BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI6)
+
+/* --- Register HW_MIPI_CSI_ERR2, field ERR_L_SEQ_DI7[23] (RO)
  *
  * Error in the sequence of lines for vc7 and dt7 Default Value: 0
  */
 
-#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI7      (23)
-#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI7      (0x00800000)
+#define BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI7      (23)      //!< Bit position for MIPI_CSI_ERR2_ERR_L_SEQ_DI7.
+#define BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI7      (0x00800000)  //!< Bit mask for MIPI_CSI_ERR2_ERR_L_SEQ_DI7.
+
+//! @brief Get value of MIPI_CSI_ERR2_ERR_L_SEQ_DI7 from a register value.
+#define BG_MIPI_CSI_ERR2_ERR_L_SEQ_DI7(r)   (((r) & BM_MIPI_CSI_ERR2_ERR_L_SEQ_DI7) >> BP_MIPI_CSI_ERR2_ERR_L_SEQ_DI7)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_MASK1 - Masks for errors 1 (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Masks for errors 1  Address Offset: 0x028  Size: 29 bit  Default Value: 0  Access:
  * Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_mask1
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_mask1_bitfields
     {
-        unsigned MASK_PHY_ERRSOTSYNCHS_0 : 1; //!< Mask for phy_errsotsynchs_0. Default Value: 0
-        unsigned MASK_PHY_ERRSOTSYNCHS_1 : 1; //!< Mask for phy_errsotsynchs_1. Default Value: 0
-        unsigned MASK_PHY_ERRSOTSYNCHS_2 : 1; //!< Mask for phy_errsotsynchs_2. Default Value: 0
-        unsigned MASK_PHY_ERRSOTSYNCHS_3 : 1; //!< Mask for phy_errsotsynchs_3. Default Value: 0
-        unsigned MASK_ERR_F_BNDRY_MATCH_VC0 : 1; //!< Mask for err_f_bndry_match_vc0. Default Value: 0
-        unsigned MASK_ERR_F_BNDRY_MATCH_VC1 : 1; //!< Mask for err_f_bndry_match_vc1. Default Value: 0
-        unsigned MASK_ERR_F_BNDRY_MATCH_VC2 : 1; //!< Mask for err_f_bndry_match_vc2. Default Value: 0
-        unsigned MASK_ERR_F_BNDRY_MATCH_VC3 : 1; //!< Mask for err_f_bndry_match_vc3. Default Value: 0
-        unsigned MASK_ERR_F_SEQ_VC0 : 1; //!< Mask for err_f_seq_vc0. Default Value: 0
-        unsigned MASK_ERR_F_SEQ_VC1 : 1; //!< Mask for err_f_seq_vc1. Default Value: 0
-        unsigned MASK_ERR_F_SEQ_VC2 : 1; //!< Mask for err_f_seq_vc2. Default Value: 0
-        unsigned MASK_ERR_F_SEQ_VC3 : 1; //!< Mask for err_f_seq_vc3. Default Value: 0
-        unsigned MASK_ERR_FRAME_DATA_VC0 : 1; //!< Mask for err_frame_data_vc0. Default Value: 0
-        unsigned MASK_ERR_FRAME_DATA_VC1 : 1; //!< Mask for err_frame_data_vc1. Default Value: 0
-        unsigned MASK_ERR_FRAME_DATA_VC2 : 1; //!< Mask for err_frame_data_vc2. Default Value: 0
-        unsigned MASK_ERR_FRAME_DATA_VC3 : 1; //!< Mask for err_frame_data_vc3. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI0 : 1; //!< Mask for err_l_bndry_match_di0. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI1 : 1; //!< Mask for err_l_bndry_match_di1. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI2 : 1; //!< Mask for err_l_bndry_match_di2. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI3 : 1; //!< Mask for err_l_bndry_match_di3. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI0 : 1; //!< Mask for err_l_seq_di0. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI1 : 1; //!< Mask for err_l_seq_di1. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI2 : 1; //!< Mask for err_l_seq_di2. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI3 : 1; //!< Mask for err_l_seq_di3. Default Value: 0
-        unsigned MASK_VC0_ERR_CRC : 1; //!< Mask for vc0_err_crc. Default Value: 0
-        unsigned MASK_VC1_ERR_CRC : 1; //!< Mask for vc1_err_crc. Default Value: 0
-        unsigned MASK_VC2_ERR_CRC : 1; //!< Mask for vc2_err_crc. Default Value: 0
-        unsigned MASK_VC3_ERR_CRC : 1; //!< Mask for vc3_err_crc. Default Value: 0
-        unsigned MASK_ERR_ECC_DOUBLE : 1; //!< Mask for err_ecc_double. Default Value: 0
-        unsigned RESERVED0 : 3; //!< Reserved
+        unsigned MASK_PHY_ERRSOTSYNCHS_0 : 1; //!< [0] Mask for phy_errsotsynchs_0. Default Value: 0
+        unsigned MASK_PHY_ERRSOTSYNCHS_1 : 1; //!< [1] Mask for phy_errsotsynchs_1. Default Value: 0
+        unsigned MASK_PHY_ERRSOTSYNCHS_2 : 1; //!< [2] Mask for phy_errsotsynchs_2. Default Value: 0
+        unsigned MASK_PHY_ERRSOTSYNCHS_3 : 1; //!< [3] Mask for phy_errsotsynchs_3. Default Value: 0
+        unsigned MASK_ERR_F_BNDRY_MATCH_VC0 : 1; //!< [4] Mask for err_f_bndry_match_vc0. Default Value: 0
+        unsigned MASK_ERR_F_BNDRY_MATCH_VC1 : 1; //!< [5] Mask for err_f_bndry_match_vc1. Default Value: 0
+        unsigned MASK_ERR_F_BNDRY_MATCH_VC2 : 1; //!< [6] Mask for err_f_bndry_match_vc2. Default Value: 0
+        unsigned MASK_ERR_F_BNDRY_MATCH_VC3 : 1; //!< [7] Mask for err_f_bndry_match_vc3. Default Value: 0
+        unsigned MASK_ERR_F_SEQ_VC0 : 1; //!< [8] Mask for err_f_seq_vc0. Default Value: 0
+        unsigned MASK_ERR_F_SEQ_VC1 : 1; //!< [9] Mask for err_f_seq_vc1. Default Value: 0
+        unsigned MASK_ERR_F_SEQ_VC2 : 1; //!< [10] Mask for err_f_seq_vc2. Default Value: 0
+        unsigned MASK_ERR_F_SEQ_VC3 : 1; //!< [11] Mask for err_f_seq_vc3. Default Value: 0
+        unsigned MASK_ERR_FRAME_DATA_VC0 : 1; //!< [12] Mask for err_frame_data_vc0. Default Value: 0
+        unsigned MASK_ERR_FRAME_DATA_VC1 : 1; //!< [13] Mask for err_frame_data_vc1. Default Value: 0
+        unsigned MASK_ERR_FRAME_DATA_VC2 : 1; //!< [14] Mask for err_frame_data_vc2. Default Value: 0
+        unsigned MASK_ERR_FRAME_DATA_VC3 : 1; //!< [15] Mask for err_frame_data_vc3. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI0 : 1; //!< [16] Mask for err_l_bndry_match_di0. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI1 : 1; //!< [17] Mask for err_l_bndry_match_di1. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI2 : 1; //!< [18] Mask for err_l_bndry_match_di2. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI3 : 1; //!< [19] Mask for err_l_bndry_match_di3. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI0 : 1; //!< [20] Mask for err_l_seq_di0. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI1 : 1; //!< [21] Mask for err_l_seq_di1. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI2 : 1; //!< [22] Mask for err_l_seq_di2. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI3 : 1; //!< [23] Mask for err_l_seq_di3. Default Value: 0
+        unsigned MASK_VC0_ERR_CRC : 1; //!< [24] Mask for vc0_err_crc. Default Value: 0
+        unsigned MASK_VC1_ERR_CRC : 1; //!< [25] Mask for vc1_err_crc. Default Value: 0
+        unsigned MASK_VC2_ERR_CRC : 1; //!< [26] Mask for vc2_err_crc. Default Value: 0
+        unsigned MASK_VC3_ERR_CRC : 1; //!< [27] Mask for vc3_err_crc. Default Value: 0
+        unsigned MASK_ERR_ECC_DOUBLE : 1; //!< [28] Mask for err_ecc_double. Default Value: 0
+        unsigned RESERVED0 : 3; //!< [31:29] Reserved
     } B;
 } hw_mipi_csi_mask1_t;
 #endif
@@ -1419,565 +1759,741 @@ typedef union
  * constants & macros for individual MIPI_CSI_MASK1 bitfields
  */
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_0[0:0] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_0[0] (RW)
  *
  * Mask for phy_errsotsynchs_0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0      (0)
-#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0      (0x00000001)
+#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0      (0)      //!< Bit position for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0.
+#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0      (0x00000001)  //!< Bit mask for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0) >> BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(v)   (((v) << 0) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTSYNCHS_0 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(v)   BF_CS1(MIPI_CSI_MASK1, MASK_PHY_ERRSOTSYNCHS_0, v)
+#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0) | BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_1[1:1] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_1[1] (RW)
  *
  * Mask for phy_errsotsynchs_1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1      (1)
-#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1      (0x00000002)
+#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1      (1)      //!< Bit position for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1.
+#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1      (0x00000002)  //!< Bit mask for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1) >> BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(v)   ((((reg32_t) v) << 1) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(v)   (((v) << 1) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTSYNCHS_1 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(v)   BF_CS1(MIPI_CSI_MASK1, MASK_PHY_ERRSOTSYNCHS_1, v)
+#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1) | BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_2[2:2] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_2[2] (RW)
  *
  * Mask for phy_errsotsynchs_2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2      (2)
-#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2      (0x00000004)
+#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2      (2)      //!< Bit position for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2.
+#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2      (0x00000004)  //!< Bit mask for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2) >> BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(v)   ((((reg32_t) v) << 2) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(v)   (((v) << 2) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTSYNCHS_2 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(v)   BF_CS1(MIPI_CSI_MASK1, MASK_PHY_ERRSOTSYNCHS_2, v)
+#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2) | BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_3[3:3] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_PHY_ERRSOTSYNCHS_3[3] (RW)
  *
  * Mask for phy_errsotsynchs_3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3      (3)
-#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3      (0x00000008)
+#define BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3      (3)      //!< Bit position for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3.
+#define BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3      (0x00000008)  //!< Bit mask for MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3) >> BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(v)   ((((reg32_t) v) << 3) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(v)   (((v) << 3) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3.
+#define BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3) & BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTSYNCHS_3 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(v)   BF_CS1(MIPI_CSI_MASK1, MASK_PHY_ERRSOTSYNCHS_3, v)
+#define BW_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3) | BF_MIPI_CSI_MASK1_MASK_PHY_ERRSOTSYNCHS_3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC0[4:4] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC0[4] (RW)
  *
  * Mask for err_f_bndry_match_vc0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0      (4)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0      (0x00000010)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0      (4)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0      (0x00000010)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(v)   ((((reg32_t) v) << 4) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(v)   (((v) << 4) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_BNDRY_MATCH_VC0 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_BNDRY_MATCH_VC0, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0) | BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC1[5:5] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC1[5] (RW)
  *
  * Mask for err_f_bndry_match_vc1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1      (5)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1      (0x00000020)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1      (5)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1      (0x00000020)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(v)   ((((reg32_t) v) << 5) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(v)   (((v) << 5) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_BNDRY_MATCH_VC1 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_BNDRY_MATCH_VC1, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1) | BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC2[6:6] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC2[6] (RW)
  *
  * Mask for err_f_bndry_match_vc2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2      (6)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2      (0x00000040)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2      (6)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2      (0x00000040)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(v)   ((((reg32_t) v) << 6) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(v)   (((v) << 6) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_BNDRY_MATCH_VC2 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_BNDRY_MATCH_VC2, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2) | BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC3[7:7] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_BNDRY_MATCH_VC3[7] (RW)
  *
  * Mask for err_f_bndry_match_vc3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3      (7)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3      (0x00000080)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3      (7)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3      (0x00000080)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(v)   ((((reg32_t) v) << 7) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(v)   (((v) << 7) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3) & BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_BNDRY_MATCH_VC3 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_BNDRY_MATCH_VC3, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3) | BF_MIPI_CSI_MASK1_MASK_ERR_F_BNDRY_MATCH_VC3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC0[8:8] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC0[8] (RW)
  *
  * Mask for err_f_seq_vc0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0      (8)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0      (0x00000100)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0      (8)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0      (0x00000100)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(v)   ((((reg32_t) v) << 8) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(v)   (((v) << 8) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_SEQ_VC0 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_SEQ_VC0, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0) | BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC1[9:9] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC1[9] (RW)
  *
  * Mask for err_f_seq_vc1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1      (9)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1      (0x00000200)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1      (9)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1      (0x00000200)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(v)   ((((reg32_t) v) << 9) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(v)   (((v) << 9) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_SEQ_VC1 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_SEQ_VC1, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1) | BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC2[10:10] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC2[10] (RW)
  *
  * Mask for err_f_seq_vc2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2      (10)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2      (0x00000400)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2      (10)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2      (0x00000400)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(v)   ((((reg32_t) v) << 10) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(v)   (((v) << 10) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_SEQ_VC2 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_SEQ_VC2, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2) | BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC3[11:11] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_F_SEQ_VC3[11] (RW)
  *
  * Mask for err_f_seq_vc3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3      (11)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3      (0x00000800)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3      (11)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3      (0x00000800)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3) >> BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(v)   ((((reg32_t) v) << 11) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(v)   (((v) << 11) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3) & BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_F_SEQ_VC3 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_F_SEQ_VC3, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3) | BF_MIPI_CSI_MASK1_MASK_ERR_F_SEQ_VC3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC0[12:12] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC0[12] (RW)
  *
  * Mask for err_frame_data_vc0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0      (12)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0      (0x00001000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0      (12)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0      (0x00001000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0) >> BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(v)   ((((reg32_t) v) << 12) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(v)   (((v) << 12) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_FRAME_DATA_VC0 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_FRAME_DATA_VC0, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0) | BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC1[13:13] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC1[13] (RW)
  *
  * Mask for err_frame_data_vc1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1      (13)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1      (0x00002000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1      (13)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1      (0x00002000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1) >> BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(v)   ((((reg32_t) v) << 13) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(v)   (((v) << 13) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_FRAME_DATA_VC1 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_FRAME_DATA_VC1, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1) | BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC2[14:14] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC2[14] (RW)
  *
  * Mask for err_frame_data_vc2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2      (14)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2      (0x00004000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2      (14)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2      (0x00004000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2) >> BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(v)   ((((reg32_t) v) << 14) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(v)   (((v) << 14) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_FRAME_DATA_VC2 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_FRAME_DATA_VC2, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2) | BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC3[15:15] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_FRAME_DATA_VC3[15] (RW)
  *
  * Mask for err_frame_data_vc3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3      (15)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3      (0x00008000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3      (15)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3      (0x00008000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3) >> BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(v)   ((((reg32_t) v) << 15) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(v)   (((v) << 15) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3) & BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_FRAME_DATA_VC3 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_FRAME_DATA_VC3, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3) | BF_MIPI_CSI_MASK1_MASK_ERR_FRAME_DATA_VC3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI0[16:16] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI0[16] (RW)
  *
  * Mask for err_l_bndry_match_di0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0      (16)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0      (0x00010000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0      (16)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0      (0x00010000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(v)   ((((reg32_t) v) << 16) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(v)   (((v) << 16) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI0 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_BNDRY_MATCH_DI0, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0) | BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI1[17:17] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI1[17] (RW)
  *
  * Mask for err_l_bndry_match_di1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1      (17)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1      (0x00020000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1      (17)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1      (0x00020000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(v)   ((((reg32_t) v) << 17) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(v)   (((v) << 17) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI1 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_BNDRY_MATCH_DI1, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1) | BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI2[18:18] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI2[18] (RW)
  *
  * Mask for err_l_bndry_match_di2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2      (18)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2      (0x00040000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2      (18)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2      (0x00040000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(v)   ((((reg32_t) v) << 18) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(v)   (((v) << 18) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI2 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_BNDRY_MATCH_DI2, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2) | BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI3[19:19] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_BNDRY_MATCH_DI3[19] (RW)
  *
  * Mask for err_l_bndry_match_di3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3      (19)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3      (0x00080000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3      (19)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3      (0x00080000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(v)   ((((reg32_t) v) << 19) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(v)   (((v) << 19) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3) & BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI3 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_BNDRY_MATCH_DI3, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3) | BF_MIPI_CSI_MASK1_MASK_ERR_L_BNDRY_MATCH_DI3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI0[20:20] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI0[20] (RW)
  *
  * Mask for err_l_seq_di0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0      (20)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0      (0x00100000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0      (20)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0      (0x00100000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(v)   ((((reg32_t) v) << 20) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(v)   (((v) << 20) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI0 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_SEQ_DI0, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0) | BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI1[21:21] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI1[21] (RW)
  *
  * Mask for err_l_seq_di1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1      (21)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1      (0x00200000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1      (21)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1      (0x00200000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(v)   ((((reg32_t) v) << 21) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(v)   (((v) << 21) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI1 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_SEQ_DI1, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1) | BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI2[22:22] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI2[22] (RW)
  *
  * Mask for err_l_seq_di2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2      (22)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2      (0x00400000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2      (22)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2      (0x00400000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(v)   ((((reg32_t) v) << 22) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(v)   (((v) << 22) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI2 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_SEQ_DI2, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2) | BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI3[23:23] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_L_SEQ_DI3[23] (RW)
  *
  * Mask for err_l_seq_di3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3      (23)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3      (0x00800000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3      (23)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3      (0x00800000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3 from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3) >> BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(v)   ((((reg32_t) v) << 23) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(v)   (((v) << 23) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3) & BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI3 field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_L_SEQ_DI3, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3) | BF_MIPI_CSI_MASK1_MASK_ERR_L_SEQ_DI3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC0_ERR_CRC[24:24] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC0_ERR_CRC[24] (RW)
  *
  * Mask for vc0_err_crc. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC      (24)
-#define BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC      (0x01000000)
+#define BP_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC      (24)      //!< Bit position for MIPI_CSI_MASK1_MASK_VC0_ERR_CRC.
+#define BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC      (0x01000000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_VC0_ERR_CRC.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_VC0_ERR_CRC from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC) >> BP_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(v)   ((((reg32_t) v) << 24) & BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC0_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(v)   (((v) << 24) & BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC0_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC0_ERR_CRC field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(v)   BF_CS1(MIPI_CSI_MASK1, MASK_VC0_ERR_CRC, v)
+#define BW_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC) | BF_MIPI_CSI_MASK1_MASK_VC0_ERR_CRC(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC1_ERR_CRC[25:25] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC1_ERR_CRC[25] (RW)
  *
  * Mask for vc1_err_crc. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC      (25)
-#define BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC      (0x02000000)
+#define BP_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC      (25)      //!< Bit position for MIPI_CSI_MASK1_MASK_VC1_ERR_CRC.
+#define BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC      (0x02000000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_VC1_ERR_CRC.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_VC1_ERR_CRC from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC) >> BP_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(v)   ((((reg32_t) v) << 25) & BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC1_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(v)   (((v) << 25) & BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC1_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC1_ERR_CRC field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(v)   BF_CS1(MIPI_CSI_MASK1, MASK_VC1_ERR_CRC, v)
+#define BW_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC) | BF_MIPI_CSI_MASK1_MASK_VC1_ERR_CRC(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC2_ERR_CRC[26:26] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC2_ERR_CRC[26] (RW)
  *
  * Mask for vc2_err_crc. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC      (26)
-#define BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC      (0x04000000)
+#define BP_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC      (26)      //!< Bit position for MIPI_CSI_MASK1_MASK_VC2_ERR_CRC.
+#define BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC      (0x04000000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_VC2_ERR_CRC.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_VC2_ERR_CRC from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC) >> BP_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(v)   ((((reg32_t) v) << 26) & BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC2_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(v)   (((v) << 26) & BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC2_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC2_ERR_CRC field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(v)   BF_CS1(MIPI_CSI_MASK1, MASK_VC2_ERR_CRC, v)
+#define BW_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC) | BF_MIPI_CSI_MASK1_MASK_VC2_ERR_CRC(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC3_ERR_CRC[27:27] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_VC3_ERR_CRC[27] (RW)
  *
  * Mask for vc3_err_crc. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC      (27)
-#define BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC      (0x08000000)
+#define BP_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC      (27)      //!< Bit position for MIPI_CSI_MASK1_MASK_VC3_ERR_CRC.
+#define BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC      (0x08000000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_VC3_ERR_CRC.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_VC3_ERR_CRC from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC) >> BP_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(v)   ((((reg32_t) v) << 27) & BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC3_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(v)   (((v) << 27) & BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_VC3_ERR_CRC.
+#define BF_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC) & BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC3_ERR_CRC field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(v)   BF_CS1(MIPI_CSI_MASK1, MASK_VC3_ERR_CRC, v)
+#define BW_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC) | BF_MIPI_CSI_MASK1_MASK_VC3_ERR_CRC(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_ECC_DOUBLE[28:28] (RW)
+/* --- Register HW_MIPI_CSI_MASK1, field MASK_ERR_ECC_DOUBLE[28] (RW)
  *
  * Mask for err_ecc_double. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE      (28)
-#define BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE      (0x10000000)
+#define BP_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE      (28)      //!< Bit position for MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE.
+#define BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE      (0x10000000)  //!< Bit mask for MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE.
+
+//! @brief Get value of MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE from a register value.
+#define BG_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(r)   (((r) & BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE) >> BP_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(v)   ((((reg32_t) v) << 28) & BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE) & BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE)
 #else
-#define BF_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(v)   (((v) << 28) & BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE)
+//! @brief Format value for bitfield MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE.
+#define BF_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(v)   (((v) << BP_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE) & BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_ECC_DOUBLE field to a new value.
-#define BW_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(v)   BF_CS1(MIPI_CSI_MASK1, MASK_ERR_ECC_DOUBLE, v)
+#define BW_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(v)   (HW_MIPI_CSI_MASK1_WR((HW_MIPI_CSI_MASK1_RD() & ~BM_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE) | BF_MIPI_CSI_MASK1_MASK_ERR_ECC_DOUBLE(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_MASK2 - Masks for errors 2 (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: Masks for errors 2  Address Offset: 0x02C  Size: 24 bit  Default Value: 0  Access:
  * Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_mask2
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_mask2_bitfields
     {
-        unsigned MASK_PHY_ERRESC_0 : 1; //!< Mask for phy_erresc_0. Default Value: 0
-        unsigned MASK_PHY_ERRESC_1 : 1; //!< Mask for phy_erresc_1. Default Value: 0
-        unsigned MASK_PHY_ERRESC_2 : 1; //!< Mask for phy_erresc_2. Default Value: 0
-        unsigned MASK_PHY_ERRESC_3 : 1; //!< Mask for phy_erresc_3. Default Value: 0
-        unsigned MASK_PHY_ERRSOTHS_0 : 1; //!< Mask for phy_errsoths_0. Default Value: 0
-        unsigned MASK_PHY_ERRSOTHS_1 : 1; //!< Mask for phy_errsoths_1. Default Value: 0
-        unsigned MASK_PHY_ERRSOTHS_2 : 1; //!< Mask for phy_errsoths_2. Default Value: 0
-        unsigned MASK_PHY_ERRSOTHS_3 : 1; //!< Mask for phy_errsoths_3. Default Value: 0
-        unsigned MASK_VC0_ERR_ECC_CORRECTED : 1; //!< Mask for vc0_err_ecc_corrected. Default Value: 0
-        unsigned MASK_VC1_ERR_ECC_CORRECTED : 1; //!< Mask for vc1_err_ecc_corrected. Default Value: 0
-        unsigned MASK_VC2_ERR_ECC_CORRECTED : 1; //!< Mask for vc2_err_ecc_corrected. Default Value: 0
-        unsigned MASK_VC3_ERR_ECC_CORRECTED : 1; //!< Mask for vc3_err_ecc_corrected. Default Value: 0
-        unsigned MASK_ERR_ID_VC0 : 1; //!< Mask for err_id_vc0. Default Value: 0
-        unsigned MASK_ERR_ID_VC1 : 1; //!< Mask for err_id_vc1. Default Value: 0
-        unsigned MASK_ERR_ID_VC2 : 1; //!< Mask for err_id_vc2. Default Value: 0
-        unsigned MASK_ERR_ID_VC3 : 1; //!< Mask for err_id_vc3. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI4 : 1; //!< Mask for err_l_bndry_match_di4. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI5 : 1; //!< Mask for err_l_bndry_match_di5. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI6 : 1; //!< Mask for err_l_bndry_match_di6. Default Value: 0
-        unsigned MASK_ERR_L_BNDRY_MATCH_DI7 : 1; //!< Mask for err_l_bndry_match_di7. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI4 : 1; //!< Mask for err_l_seq_di4. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI5 : 1; //!< Mask for err_l_seq_di5. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI6 : 1; //!< Mask for err_l_seq_di6. Default Value: 0
-        unsigned MASK_ERR_L_SEQ_DI7 : 1; //!< Mask for err_l_seq_di7. Default Value: 0
-        unsigned RESERVED0 : 8; //!< Reserved
+        unsigned MASK_PHY_ERRESC_0 : 1; //!< [0] Mask for phy_erresc_0. Default Value: 0
+        unsigned MASK_PHY_ERRESC_1 : 1; //!< [1] Mask for phy_erresc_1. Default Value: 0
+        unsigned MASK_PHY_ERRESC_2 : 1; //!< [2] Mask for phy_erresc_2. Default Value: 0
+        unsigned MASK_PHY_ERRESC_3 : 1; //!< [3] Mask for phy_erresc_3. Default Value: 0
+        unsigned MASK_PHY_ERRSOTHS_0 : 1; //!< [4] Mask for phy_errsoths_0. Default Value: 0
+        unsigned MASK_PHY_ERRSOTHS_1 : 1; //!< [5] Mask for phy_errsoths_1. Default Value: 0
+        unsigned MASK_PHY_ERRSOTHS_2 : 1; //!< [6] Mask for phy_errsoths_2. Default Value: 0
+        unsigned MASK_PHY_ERRSOTHS_3 : 1; //!< [7] Mask for phy_errsoths_3. Default Value: 0
+        unsigned MASK_VC0_ERR_ECC_CORRECTED : 1; //!< [8] Mask for vc0_err_ecc_corrected. Default Value: 0
+        unsigned MASK_VC1_ERR_ECC_CORRECTED : 1; //!< [9] Mask for vc1_err_ecc_corrected. Default Value: 0
+        unsigned MASK_VC2_ERR_ECC_CORRECTED : 1; //!< [10] Mask for vc2_err_ecc_corrected. Default Value: 0
+        unsigned MASK_VC3_ERR_ECC_CORRECTED : 1; //!< [11] Mask for vc3_err_ecc_corrected. Default Value: 0
+        unsigned MASK_ERR_ID_VC0 : 1; //!< [12] Mask for err_id_vc0. Default Value: 0
+        unsigned MASK_ERR_ID_VC1 : 1; //!< [13] Mask for err_id_vc1. Default Value: 0
+        unsigned MASK_ERR_ID_VC2 : 1; //!< [14] Mask for err_id_vc2. Default Value: 0
+        unsigned MASK_ERR_ID_VC3 : 1; //!< [15] Mask for err_id_vc3. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI4 : 1; //!< [16] Mask for err_l_bndry_match_di4. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI5 : 1; //!< [17] Mask for err_l_bndry_match_di5. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI6 : 1; //!< [18] Mask for err_l_bndry_match_di6. Default Value: 0
+        unsigned MASK_ERR_L_BNDRY_MATCH_DI7 : 1; //!< [19] Mask for err_l_bndry_match_di7. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI4 : 1; //!< [20] Mask for err_l_seq_di4. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI5 : 1; //!< [21] Mask for err_l_seq_di5. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI6 : 1; //!< [22] Mask for err_l_seq_di6. Default Value: 0
+        unsigned MASK_ERR_L_SEQ_DI7 : 1; //!< [23] Mask for err_l_seq_di7. Default Value: 0
+        unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_mipi_csi_mask2_t;
 #endif
@@ -2000,453 +2516,599 @@ typedef union
  * constants & macros for individual MIPI_CSI_MASK2 bitfields
  */
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_0[0:0] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_0[0] (RW)
  *
  * Mask for phy_erresc_0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0      (0)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0      (0x00000001)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0      (0)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRESC_0.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0      (0x00000001)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRESC_0.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRESC_0 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_0.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(v)   (((v) << 0) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_0.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRESC_0 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRESC_0, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_1[1:1] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_1[1] (RW)
  *
  * Mask for phy_erresc_1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1      (1)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1      (0x00000002)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1      (1)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRESC_1.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1      (0x00000002)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRESC_1.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRESC_1 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(v)   ((((reg32_t) v) << 1) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_1.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(v)   (((v) << 1) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_1.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRESC_1 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRESC_1, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_2[2:2] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_2[2] (RW)
  *
  * Mask for phy_erresc_2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2      (2)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2      (0x00000004)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2      (2)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRESC_2.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2      (0x00000004)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRESC_2.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRESC_2 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(v)   ((((reg32_t) v) << 2) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_2.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(v)   (((v) << 2) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_2.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRESC_2 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRESC_2, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_3[3:3] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRESC_3[3] (RW)
  *
  * Mask for phy_erresc_3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3      (3)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3      (0x00000008)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3      (3)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRESC_3.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3      (0x00000008)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRESC_3.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRESC_3 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(v)   ((((reg32_t) v) << 3) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_3.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(v)   (((v) << 3) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRESC_3.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRESC_3 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRESC_3, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRESC_3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_0[4:4] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_0[4] (RW)
  *
  * Mask for phy_errsoths_0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0      (4)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0      (0x00000010)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0      (4)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0      (0x00000010)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(v)   ((((reg32_t) v) << 4) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(v)   (((v) << 4) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTHS_0 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRSOTHS_0, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_1[5:5] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_1[5] (RW)
  *
  * Mask for phy_errsoths_1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1      (5)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1      (0x00000020)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1      (5)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1      (0x00000020)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(v)   ((((reg32_t) v) << 5) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(v)   (((v) << 5) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTHS_1 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRSOTHS_1, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_2[6:6] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_2[6] (RW)
  *
  * Mask for phy_errsoths_2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2      (6)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2      (0x00000040)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2      (6)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2      (0x00000040)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(v)   ((((reg32_t) v) << 6) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(v)   (((v) << 6) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTHS_2 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRSOTHS_2, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_3[7:7] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_PHY_ERRSOTHS_3[7] (RW)
  *
  * Mask for phy_errsoths_3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3      (7)
-#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3      (0x00000080)
+#define BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3      (7)      //!< Bit position for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3.
+#define BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3      (0x00000080)  //!< Bit mask for MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3) >> BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(v)   ((((reg32_t) v) << 7) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(v)   (((v) << 7) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3.
+#define BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3) & BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PHY_ERRSOTHS_3 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(v)   BF_CS1(MIPI_CSI_MASK2, MASK_PHY_ERRSOTHS_3, v)
+#define BW_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3) | BF_MIPI_CSI_MASK2_MASK_PHY_ERRSOTHS_3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC0_ERR_ECC_CORRECTED[8:8] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC0_ERR_ECC_CORRECTED[8] (RW)
  *
  * Mask for vc0_err_ecc_corrected. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED      (8)
-#define BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED      (0x00000100)
+#define BP_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED      (8)      //!< Bit position for MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED      (0x00000100)  //!< Bit mask for MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << 8) & BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(v)   (((v) << 8) & BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC0_ERR_ECC_CORRECTED field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(v)   BF_CS1(MIPI_CSI_MASK2, MASK_VC0_ERR_ECC_CORRECTED, v)
+#define BW_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED) | BF_MIPI_CSI_MASK2_MASK_VC0_ERR_ECC_CORRECTED(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC1_ERR_ECC_CORRECTED[9:9] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC1_ERR_ECC_CORRECTED[9] (RW)
  *
  * Mask for vc1_err_ecc_corrected. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED      (9)
-#define BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED      (0x00000200)
+#define BP_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED      (9)      //!< Bit position for MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED      (0x00000200)  //!< Bit mask for MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << 9) & BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(v)   (((v) << 9) & BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC1_ERR_ECC_CORRECTED field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(v)   BF_CS1(MIPI_CSI_MASK2, MASK_VC1_ERR_ECC_CORRECTED, v)
+#define BW_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED) | BF_MIPI_CSI_MASK2_MASK_VC1_ERR_ECC_CORRECTED(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC2_ERR_ECC_CORRECTED[10:10] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC2_ERR_ECC_CORRECTED[10] (RW)
  *
  * Mask for vc2_err_ecc_corrected. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED      (10)
-#define BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED      (0x00000400)
+#define BP_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED      (10)      //!< Bit position for MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED      (0x00000400)  //!< Bit mask for MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << 10) & BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(v)   (((v) << 10) & BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC2_ERR_ECC_CORRECTED field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(v)   BF_CS1(MIPI_CSI_MASK2, MASK_VC2_ERR_ECC_CORRECTED, v)
+#define BW_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED) | BF_MIPI_CSI_MASK2_MASK_VC2_ERR_ECC_CORRECTED(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC3_ERR_ECC_CORRECTED[11:11] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_VC3_ERR_ECC_CORRECTED[11] (RW)
  *
  * Mask for vc3_err_ecc_corrected. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED      (11)
-#define BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED      (0x00000800)
+#define BP_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED      (11)      //!< Bit position for MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED.
+#define BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED      (0x00000800)  //!< Bit mask for MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED) >> BP_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << 11) & BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(v)   (((v) << 11) & BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED.
+#define BF_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED) & BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VC3_ERR_ECC_CORRECTED field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(v)   BF_CS1(MIPI_CSI_MASK2, MASK_VC3_ERR_ECC_CORRECTED, v)
+#define BW_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED) | BF_MIPI_CSI_MASK2_MASK_VC3_ERR_ECC_CORRECTED(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC0[12:12] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC0[12] (RW)
  *
  * Mask for err_id_vc0. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC0      (12)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0      (0x00001000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC0      (12)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_ID_VC0.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0      (0x00001000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_ID_VC0.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_ID_VC0 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0) >> BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(v)   ((((reg32_t) v) << 12) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC0.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC0) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(v)   (((v) << 12) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC0.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC0) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_ID_VC0 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_ID_VC0, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC0) | BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC0(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC1[13:13] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC1[13] (RW)
  *
  * Mask for err_id_vc1. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC1      (13)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1      (0x00002000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC1      (13)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_ID_VC1.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1      (0x00002000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_ID_VC1.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_ID_VC1 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1) >> BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(v)   ((((reg32_t) v) << 13) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC1.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC1) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(v)   (((v) << 13) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC1.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC1) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_ID_VC1 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_ID_VC1, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC1) | BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC1(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC2[14:14] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC2[14] (RW)
  *
  * Mask for err_id_vc2. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC2      (14)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2      (0x00004000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC2      (14)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_ID_VC2.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2      (0x00004000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_ID_VC2.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_ID_VC2 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2) >> BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(v)   ((((reg32_t) v) << 14) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC2.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC2) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(v)   (((v) << 14) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC2.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC2) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_ID_VC2 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_ID_VC2, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC2) | BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC2(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC3[15:15] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_ID_VC3[15] (RW)
  *
  * Mask for err_id_vc3. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC3      (15)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3      (0x00008000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC3      (15)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_ID_VC3.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3      (0x00008000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_ID_VC3.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_ID_VC3 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3) >> BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(v)   ((((reg32_t) v) << 15) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC3.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC3) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(v)   (((v) << 15) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_ID_VC3.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_ID_VC3) & BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_ID_VC3 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_ID_VC3, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_ID_VC3) | BF_MIPI_CSI_MASK2_MASK_ERR_ID_VC3(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI4[16:16] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI4[16] (RW)
  *
  * Mask for err_l_bndry_match_di4. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4      (16)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4      (0x00010000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4      (16)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4      (0x00010000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(v)   ((((reg32_t) v) << 16) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(v)   (((v) << 16) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI4 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_BNDRY_MATCH_DI4, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4) | BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI4(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI5[17:17] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI5[17] (RW)
  *
  * Mask for err_l_bndry_match_di5. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5      (17)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5      (0x00020000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5      (17)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5      (0x00020000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(v)   ((((reg32_t) v) << 17) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(v)   (((v) << 17) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI5 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_BNDRY_MATCH_DI5, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5) | BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI5(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI6[18:18] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI6[18] (RW)
  *
  * Mask for err_l_bndry_match_di6. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6      (18)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6      (0x00040000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6      (18)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6      (0x00040000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(v)   ((((reg32_t) v) << 18) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(v)   (((v) << 18) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI6 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_BNDRY_MATCH_DI6, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6) | BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI6(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI7[19:19] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_BNDRY_MATCH_DI7[19] (RW)
  *
  * Mask for err_l_bndry_match_di7. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7      (19)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7      (0x00080000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7      (19)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7      (0x00080000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(v)   ((((reg32_t) v) << 19) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(v)   (((v) << 19) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7) & BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_BNDRY_MATCH_DI7 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_BNDRY_MATCH_DI7, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7) | BF_MIPI_CSI_MASK2_MASK_ERR_L_BNDRY_MATCH_DI7(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI4[20:20] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI4[20] (RW)
  *
  * Mask for err_l_seq_di4. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4      (20)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4      (0x00100000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4      (20)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4      (0x00100000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(v)   ((((reg32_t) v) << 20) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(v)   (((v) << 20) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI4 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_SEQ_DI4, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4) | BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI4(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI5[21:21] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI5[21] (RW)
  *
  * Mask for err_l_seq_di5. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5      (21)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5      (0x00200000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5      (21)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5      (0x00200000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(v)   ((((reg32_t) v) << 21) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(v)   (((v) << 21) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI5 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_SEQ_DI5, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5) | BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI5(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI6[22:22] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI6[22] (RW)
  *
  * Mask for err_l_seq_di6. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6      (22)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6      (0x00400000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6      (22)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6      (0x00400000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(v)   ((((reg32_t) v) << 22) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(v)   (((v) << 22) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI6 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_SEQ_DI6, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6) | BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI6(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI7[23:23] (RW)
+/* --- Register HW_MIPI_CSI_MASK2, field MASK_ERR_L_SEQ_DI7[23] (RW)
  *
  * Mask for err_l_seq_di7. Default Value: 0
  */
 
-#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7      (23)
-#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7      (0x00800000)
+#define BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7      (23)      //!< Bit position for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7.
+#define BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7      (0x00800000)  //!< Bit mask for MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7.
+
+//! @brief Get value of MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7 from a register value.
+#define BG_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(r)   (((r) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7) >> BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(v)   ((((reg32_t) v) << 23) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(v)   ((((reg32_t) v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7)
 #else
-#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(v)   (((v) << 23) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7)
+//! @brief Format value for bitfield MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7.
+#define BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(v)   (((v) << BP_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7) & BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_ERR_L_SEQ_DI7 field to a new value.
-#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(v)   BF_CS1(MIPI_CSI_MASK2, MASK_ERR_L_SEQ_DI7, v)
+#define BW_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(v)   (HW_MIPI_CSI_MASK2_WR((HW_MIPI_CSI_MASK2_RD() & ~BM_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7) | BF_MIPI_CSI_MASK2_MASK_ERR_L_SEQ_DI7(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_PHY_TST_CRTL0 - D-PHY Test interface control 0 (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: D-PHY Test interface control 0  Address Offset: 0x030  Size: 2 bit  Default Value: 0
  * Access: Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_phy_tst_crtl0
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_phy_tst_crtl0_bitfields
     {
-        unsigned PHY_TESTCLR : 1; //!< PHY test interface clear. Used when active performs vendor specific interface initialization(Active High). Default Value: 0
-        unsigned PHY_TESTCLK : 1; //!< PHY test interface strobe signal. Used to clock TESTDIN bus into the D-PHY. In conjunction with TESTEN signal controls the operation selection. Default Value: 0
-        unsigned RESERVED0 : 30; //!< Reserved
+        unsigned PHY_TESTCLR : 1; //!< [0] PHY test interface clear. Used when active performs vendor specific interface initialization(Active High). Default Value: 0
+        unsigned PHY_TESTCLK : 1; //!< [1] PHY test interface strobe signal. Used to clock TESTDIN bus into the D-PHY. In conjunction with TESTEN signal controls the operation selection. Default Value: 0
+        unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_mipi_csi_phy_tst_crtl0_t;
 #endif
@@ -2469,60 +3131,74 @@ typedef union
  * constants & macros for individual MIPI_CSI_PHY_TST_CRTL0 bitfields
  */
 
-/* --- Register HW_MIPI_CSI_PHY_TST_CRTL0, field PHY_TESTCLR[0:0] (RW)
+/* --- Register HW_MIPI_CSI_PHY_TST_CRTL0, field PHY_TESTCLR[0] (RW)
  *
  * PHY test interface clear. Used when active performs vendor specific interface
  * initialization(Active High). Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR      (0)
-#define BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR      (0x00000001)
+#define BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR      (0)      //!< Bit position for MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR.
+#define BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR      (0x00000001)  //!< Bit mask for MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR.
+
+//! @brief Get value of MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR from a register value.
+#define BG_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(r)   (((r) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR) >> BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR.
+#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(v)   ((((reg32_t) v) << BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR)
 #else
-#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(v)   (((v) << 0) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR.
+#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(v)   (((v) << BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PHY_TESTCLR field to a new value.
-#define BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(v)   BF_CS1(MIPI_CSI_PHY_TST_CRTL0, PHY_TESTCLR, v)
+#define BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(v)   (HW_MIPI_CSI_PHY_TST_CRTL0_WR((HW_MIPI_CSI_PHY_TST_CRTL0_RD() & ~BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR) | BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_PHY_TST_CRTL0, field PHY_TESTCLK[1:1] (RW)
+/* --- Register HW_MIPI_CSI_PHY_TST_CRTL0, field PHY_TESTCLK[1] (RW)
  *
  * PHY test interface strobe signal. Used to clock TESTDIN bus into the D-PHY. In conjunction with
  * TESTEN signal controls the operation selection. Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK      (1)
-#define BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK      (0x00000002)
+#define BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK      (1)      //!< Bit position for MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK.
+#define BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK      (0x00000002)  //!< Bit mask for MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK.
+
+//! @brief Get value of MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK from a register value.
+#define BG_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(r)   (((r) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK) >> BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(v)   ((((reg32_t) v) << 1) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK.
+#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(v)   ((((reg32_t) v) << BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK)
 #else
-#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(v)   (((v) << 1) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK.
+#define BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(v)   (((v) << BP_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK) & BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PHY_TESTCLK field to a new value.
-#define BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(v)   BF_CS1(MIPI_CSI_PHY_TST_CRTL0, PHY_TESTCLK, v)
+#define BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(v)   (HW_MIPI_CSI_PHY_TST_CRTL0_WR((HW_MIPI_CSI_PHY_TST_CRTL0_RD() & ~BM_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK) | BF_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_CSI_PHY_TST_CTRL1 - D-PHY Test interface control 1 (RW)
  *
+ * Reset value: 0x00000000
+ *
  * Name: D-PHY Test interface control 1  Address Offset: 0x034  Size: 17 bit  Default Value: 0
  * Access: Read/Write
  */
-typedef union
+typedef union _hw_mipi_csi_phy_tst_ctrl1
 {
     reg32_t U;
-    struct
+    struct _hw_mipi_csi_phy_tst_ctrl1_bitfields
     {
-        unsigned PHY_TESTDIN : 8; //!< PHY test interface input 8-bit data bus for internal register programming and test functionalities access Default Value: 0
-        unsigned PHY_TESTDOUT : 8; //!< PHY output 8-bit data bus for read-back and internal probing functionalities. Default Value: 0
-        unsigned PHY_TESTEN : 1; //!< PHY test interface operation selector:
-        unsigned RESERVED0 : 15; //!< Reserved
+        unsigned PHY_TESTDIN : 8; //!< [7:0] PHY test interface input 8-bit data bus for internal register programming and test functionalities access Default Value: 0
+        unsigned PHY_TESTDOUT : 8; //!< [15:8] PHY output 8-bit data bus for read-back and internal probing functionalities. Default Value: 0
+        unsigned PHY_TESTEN : 1; //!< [16] PHY test interface operation selector:
+        unsigned RESERVED0 : 15; //!< [31:17] Reserved
     } B;
 } hw_mipi_csi_phy_tst_ctrl1_t;
 #endif
@@ -2551,17 +3227,23 @@ typedef union
  * functionalities access Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN      (0)
-#define BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN      (0x000000ff)
+#define BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN      (0)      //!< Bit position for MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN.
+#define BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN      (0x000000ff)  //!< Bit mask for MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN.
+
+//! @brief Get value of MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN from a register value.
+#define BG_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(r)   (((r) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN) >> BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(v)   ((((reg32_t) v) << 0) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN.
+#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(v)   ((((reg32_t) v) << BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN)
 #else
-#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(v)   (((v) << 0) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN.
+#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(v)   (((v) << BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PHY_TESTDIN field to a new value.
-#define BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(v)   BF_CS1(MIPI_CSI_PHY_TST_CTRL1, PHY_TESTDIN, v)
+#define BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(v)   (HW_MIPI_CSI_PHY_TST_CTRL1_WR((HW_MIPI_CSI_PHY_TST_CTRL1_RD() & ~BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN) | BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(v)))
 #endif
 
 /* --- Register HW_MIPI_CSI_PHY_TST_CTRL1, field PHY_TESTDOUT[15:8] (RW)
@@ -2569,20 +3251,26 @@ typedef union
  * PHY output 8-bit data bus for read-back and internal probing functionalities. Default Value: 0
  */
 
-#define BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT      (8)
-#define BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT      (0x0000ff00)
+#define BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT      (8)      //!< Bit position for MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT.
+#define BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT      (0x0000ff00)  //!< Bit mask for MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT.
+
+//! @brief Get value of MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT from a register value.
+#define BG_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(r)   (((r) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT) >> BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)   ((((reg32_t) v) << 8) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT.
+#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)   ((((reg32_t) v) << BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT)
 #else
-#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)   (((v) << 8) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT.
+#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)   (((v) << BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PHY_TESTDOUT field to a new value.
-#define BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)   BF_CS1(MIPI_CSI_PHY_TST_CTRL1, PHY_TESTDOUT, v)
+#define BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)   (HW_MIPI_CSI_PHY_TST_CTRL1_WR((HW_MIPI_CSI_PHY_TST_CTRL1_RD() & ~BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT) | BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)))
 #endif
 
-/* --- Register HW_MIPI_CSI_PHY_TST_CTRL1, field PHY_TESTEN[16:16] (RW)
+/* --- Register HW_MIPI_CSI_PHY_TST_CTRL1, field PHY_TESTEN[16] (RW)
  *
  * PHY test interface operation selector:
  *
@@ -2591,17 +3279,23 @@ typedef union
  * 1 - configures address write operation on the falling edge of TESTCLK
  */
 
-#define BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN      (16)
-#define BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN      (0x00010000)
+#define BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN      (16)      //!< Bit position for MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN.
+#define BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN      (0x00010000)  //!< Bit mask for MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN.
+
+//! @brief Get value of MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN from a register value.
+#define BG_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(r)   (((r) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN) >> BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(v)   ((((reg32_t) v) << 16) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN.
+#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(v)   ((((reg32_t) v) << BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN)
 #else
-#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(v)   (((v) << 16) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN)
+//! @brief Format value for bitfield MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN.
+#define BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(v)   (((v) << BP_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN) & BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PHY_TESTEN field to a new value.
-#define BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(v)   BF_CS1(MIPI_CSI_PHY_TST_CTRL1, PHY_TESTEN, v)
+#define BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(v)   (HW_MIPI_CSI_PHY_TST_CTRL1_WR((HW_MIPI_CSI_PHY_TST_CTRL1_RD() & ~BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN) | BF_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(v)))
 #endif
 
 
@@ -2610,7 +3304,8 @@ typedef union
  * @brief All MIPI_CSI module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef struct
+#pragma pack(1)
+typedef struct _hw_mipi_csi
 {
     volatile hw_mipi_csi_version_t VERSION; //!< Controller Version Identification Register
     volatile hw_mipi_csi_n_lanes_t N_LANES; //!< Number of Active Data Lanes
@@ -2627,6 +3322,7 @@ typedef struct
     volatile hw_mipi_csi_phy_tst_crtl0_t PHY_TST_CRTL0; //!< D-PHY Test interface control 0
     volatile hw_mipi_csi_phy_tst_ctrl1_t PHY_TST_CTRL1; //!< D-PHY Test interface control 1
 } hw_mipi_csi_t;
+#pragma pack()
 #endif
 
 //! @brief Macro to access all MIPI_CSI registers.

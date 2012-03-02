@@ -11,7 +11,7 @@
 #include "regs.h"
 
 /*
- * Registers defined in this header file.
+ * i.MX6DQ CSI2IPU registers defined in this header file.
  *
  * - HW_CSI2IPU_SW_RST - CSI 2 IPU Gasket Software Reset
  *
@@ -29,18 +29,20 @@
 /*!
  * @brief HW_CSI2IPU_SW_RST - CSI 2 IPU Gasket Software Reset (RW)
  *
+ * Reset value: 0x00000000
+ *
  * This register describes the IPU interface signals.
  */
-typedef union
+typedef union _hw_csi2ipu_sw_rst
 {
     reg32_t U;
-    struct
+    struct _hw_csi2ipu_sw_rst_bitfields
     {
-        unsigned SW_RST : 1; //!< Software Reset
-        unsigned CLK_SEL : 1; //!< Clock mode selection
-        unsigned YUV422_8BIT_FM : 1; //!< YUV422 8-bit mode selection
-        unsigned RGB444_FM : 1; //!< Rgb888 mode selection
-        unsigned RESERVED0 : 28; //!< Reserved.
+        unsigned SW_RST : 1; //!< [0] Software Reset
+        unsigned CLK_SEL : 1; //!< [1] Clock mode selection
+        unsigned YUV422_8BIT_FM : 1; //!< [2] YUV422 8-bit mode selection
+        unsigned RGB444_FM : 1; //!< [3] Rgb888 mode selection
+        unsigned RESERVED0 : 28; //!< [31:4] Reserved.
     } B;
 } hw_csi2ipu_sw_rst_t;
 #endif
@@ -63,7 +65,7 @@ typedef union
  * constants & macros for individual CSI2IPU_SW_RST bitfields
  */
 
-/* --- Register HW_CSI2IPU_SW_RST, field SW_RST[0:0] (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field SW_RST[0] (RW)
  *
  * Software Reset
  *
@@ -72,21 +74,27 @@ typedef union
  * 1 - Software Reset Enable
  */
 
-#define BP_CSI2IPU_SW_RST_SW_RST      (0)
-#define BM_CSI2IPU_SW_RST_SW_RST      (0x00000001)
+#define BP_CSI2IPU_SW_RST_SW_RST      (0)      //!< Bit position for CSI2IPU_SW_RST_SW_RST.
+#define BM_CSI2IPU_SW_RST_SW_RST      (0x00000001)  //!< Bit mask for CSI2IPU_SW_RST_SW_RST.
+
+//! @brief Get value of CSI2IPU_SW_RST_SW_RST from a register value.
+#define BG_CSI2IPU_SW_RST_SW_RST(r)   (((r) & BM_CSI2IPU_SW_RST_SW_RST) >> BP_CSI2IPU_SW_RST_SW_RST)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSI2IPU_SW_RST_SW_RST(v)   ((((reg32_t) v) << 0) & BM_CSI2IPU_SW_RST_SW_RST)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_SW_RST.
+#define BF_CSI2IPU_SW_RST_SW_RST(v)   ((((reg32_t) v) << BP_CSI2IPU_SW_RST_SW_RST) & BM_CSI2IPU_SW_RST_SW_RST)
 #else
-#define BF_CSI2IPU_SW_RST_SW_RST(v)   (((v) << 0) & BM_CSI2IPU_SW_RST_SW_RST)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_SW_RST.
+#define BF_CSI2IPU_SW_RST_SW_RST(v)   (((v) << BP_CSI2IPU_SW_RST_SW_RST) & BM_CSI2IPU_SW_RST_SW_RST)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_RST field to a new value.
-#define BW_CSI2IPU_SW_RST_SW_RST(v)   BF_CS1(CSI2IPU_SW_RST, SW_RST, v)
+#define BW_CSI2IPU_SW_RST_SW_RST(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_SW_RST) | BF_CSI2IPU_SW_RST_SW_RST(v)))
 #endif
 
 
-/* --- Register HW_CSI2IPU_SW_RST, field CLK_SEL[1:1] (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field CLK_SEL[1] (RW)
  *
  * Clock mode selection
  *
@@ -95,21 +103,27 @@ typedef union
  * 1 - Non-Gated Mode
  */
 
-#define BP_CSI2IPU_SW_RST_CLK_SEL      (1)
-#define BM_CSI2IPU_SW_RST_CLK_SEL      (0x00000002)
+#define BP_CSI2IPU_SW_RST_CLK_SEL      (1)      //!< Bit position for CSI2IPU_SW_RST_CLK_SEL.
+#define BM_CSI2IPU_SW_RST_CLK_SEL      (0x00000002)  //!< Bit mask for CSI2IPU_SW_RST_CLK_SEL.
+
+//! @brief Get value of CSI2IPU_SW_RST_CLK_SEL from a register value.
+#define BG_CSI2IPU_SW_RST_CLK_SEL(r)   (((r) & BM_CSI2IPU_SW_RST_CLK_SEL) >> BP_CSI2IPU_SW_RST_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSI2IPU_SW_RST_CLK_SEL(v)   ((((reg32_t) v) << 1) & BM_CSI2IPU_SW_RST_CLK_SEL)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_CLK_SEL.
+#define BF_CSI2IPU_SW_RST_CLK_SEL(v)   ((((reg32_t) v) << BP_CSI2IPU_SW_RST_CLK_SEL) & BM_CSI2IPU_SW_RST_CLK_SEL)
 #else
-#define BF_CSI2IPU_SW_RST_CLK_SEL(v)   (((v) << 1) & BM_CSI2IPU_SW_RST_CLK_SEL)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_CLK_SEL.
+#define BF_CSI2IPU_SW_RST_CLK_SEL(v)   (((v) << BP_CSI2IPU_SW_RST_CLK_SEL) & BM_CSI2IPU_SW_RST_CLK_SEL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLK_SEL field to a new value.
-#define BW_CSI2IPU_SW_RST_CLK_SEL(v)   BF_CS1(CSI2IPU_SW_RST, CLK_SEL, v)
+#define BW_CSI2IPU_SW_RST_CLK_SEL(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_CLK_SEL) | BF_CSI2IPU_SW_RST_CLK_SEL(v)))
 #endif
 
 
-/* --- Register HW_CSI2IPU_SW_RST, field YUV422_8BIT_FM[2:2] (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field YUV422_8BIT_FM[2] (RW)
  *
  * YUV422 8-bit mode selection
  *
@@ -118,21 +132,27 @@ typedef union
  * 1 - UYVY
  */
 
-#define BP_CSI2IPU_SW_RST_YUV422_8BIT_FM      (2)
-#define BM_CSI2IPU_SW_RST_YUV422_8BIT_FM      (0x00000004)
+#define BP_CSI2IPU_SW_RST_YUV422_8BIT_FM      (2)      //!< Bit position for CSI2IPU_SW_RST_YUV422_8BIT_FM.
+#define BM_CSI2IPU_SW_RST_YUV422_8BIT_FM      (0x00000004)  //!< Bit mask for CSI2IPU_SW_RST_YUV422_8BIT_FM.
+
+//! @brief Get value of CSI2IPU_SW_RST_YUV422_8BIT_FM from a register value.
+#define BG_CSI2IPU_SW_RST_YUV422_8BIT_FM(r)   (((r) & BM_CSI2IPU_SW_RST_YUV422_8BIT_FM) >> BP_CSI2IPU_SW_RST_YUV422_8BIT_FM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   ((((reg32_t) v) << 2) & BM_CSI2IPU_SW_RST_YUV422_8BIT_FM)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_YUV422_8BIT_FM.
+#define BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   ((((reg32_t) v) << BP_CSI2IPU_SW_RST_YUV422_8BIT_FM) & BM_CSI2IPU_SW_RST_YUV422_8BIT_FM)
 #else
-#define BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   (((v) << 2) & BM_CSI2IPU_SW_RST_YUV422_8BIT_FM)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_YUV422_8BIT_FM.
+#define BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   (((v) << BP_CSI2IPU_SW_RST_YUV422_8BIT_FM) & BM_CSI2IPU_SW_RST_YUV422_8BIT_FM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the YUV422_8BIT_FM field to a new value.
-#define BW_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   BF_CS1(CSI2IPU_SW_RST, YUV422_8BIT_FM, v)
+#define BW_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_YUV422_8BIT_FM) | BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)))
 #endif
 
 
-/* --- Register HW_CSI2IPU_SW_RST, field RGB444_FM[3:3] (RW)
+/* --- Register HW_CSI2IPU_SW_RST, field RGB444_FM[3] (RW)
  *
  * Rgb888 mode selection
  *
@@ -141,17 +161,23 @@ typedef union
  * 1 - {r4,1’b0,g4,2’b00,b4,1’b0}
  */
 
-#define BP_CSI2IPU_SW_RST_RGB444_FM      (3)
-#define BM_CSI2IPU_SW_RST_RGB444_FM      (0x00000008)
+#define BP_CSI2IPU_SW_RST_RGB444_FM      (3)      //!< Bit position for CSI2IPU_SW_RST_RGB444_FM.
+#define BM_CSI2IPU_SW_RST_RGB444_FM      (0x00000008)  //!< Bit mask for CSI2IPU_SW_RST_RGB444_FM.
+
+//! @brief Get value of CSI2IPU_SW_RST_RGB444_FM from a register value.
+#define BG_CSI2IPU_SW_RST_RGB444_FM(r)   (((r) & BM_CSI2IPU_SW_RST_RGB444_FM) >> BP_CSI2IPU_SW_RST_RGB444_FM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_CSI2IPU_SW_RST_RGB444_FM(v)   ((((reg32_t) v) << 3) & BM_CSI2IPU_SW_RST_RGB444_FM)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_RGB444_FM.
+#define BF_CSI2IPU_SW_RST_RGB444_FM(v)   ((((reg32_t) v) << BP_CSI2IPU_SW_RST_RGB444_FM) & BM_CSI2IPU_SW_RST_RGB444_FM)
 #else
-#define BF_CSI2IPU_SW_RST_RGB444_FM(v)   (((v) << 3) & BM_CSI2IPU_SW_RST_RGB444_FM)
+//! @brief Format value for bitfield CSI2IPU_SW_RST_RGB444_FM.
+#define BF_CSI2IPU_SW_RST_RGB444_FM(v)   (((v) << BP_CSI2IPU_SW_RST_RGB444_FM) & BM_CSI2IPU_SW_RST_RGB444_FM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RGB444_FM field to a new value.
-#define BW_CSI2IPU_SW_RST_RGB444_FM(v)   BF_CS1(CSI2IPU_SW_RST, RGB444_FM, v)
+#define BW_CSI2IPU_SW_RST_RGB444_FM(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_RGB444_FM) | BF_CSI2IPU_SW_RST_RGB444_FM(v)))
 #endif
 
 
@@ -160,11 +186,13 @@ typedef union
  * @brief All CSI2IPU module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef struct
+#pragma pack(1)
+typedef struct _hw_csi2ipu
 {
     reg32_t _reserved0[960];
     volatile hw_csi2ipu_sw_rst_t SW_RST; //!< CSI 2 IPU Gasket Software Reset
 } hw_csi2ipu_t;
+#pragma pack()
 #endif
 
 //! @brief Macro to access all CSI2IPU registers.

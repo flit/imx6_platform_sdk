@@ -11,44 +11,44 @@
 #include "regs.h"
 
 /*
- * Registers defined in this header file.
+ * i.MX6SDL EIM registers defined in this header file.
  *
- * - HW_EIM_CSGCR10 - Chip Select n General Configuration Register 1 0
- * - HW_EIM_CSGCR20 - Chip Select n General Configuration Register 2 0
- * - HW_EIM_CSRCR10 - Chip Select n Read Configuration Register 1 0
- * - HW_EIM_CSRCR20 - Chip Select n Read Configuration Register 2 0
- * - HW_EIM_CSWCR10 - Chip Select n Write Configuration Register 1 0
- * - HW_EIM_CSWCR20 - Chip Select n Write Configuration Register 2 0
- * - HW_EIM_CSGCR11 - Chip Select n General Configuration Register 1 1
- * - HW_EIM_CSGCR21 - Chip Select n General Configuration Register 2 1
- * - HW_EIM_CSRCR11 - Chip Select n Read Configuration Register 1 1
- * - HW_EIM_CSRCR21 - Chip Select n Read Configuration Register 2 1
- * - HW_EIM_CSWCR11 - Chip Select n Write Configuration Register 1 1
- * - HW_EIM_CSWCR21 - Chip Select n Write Configuration Register 2 1
- * - HW_EIM_CSGCR12 - Chip Select n General Configuration Register 1 2
- * - HW_EIM_CSGCR22 - Chip Select n General Configuration Register 2 2
- * - HW_EIM_CSRCR12 - Chip Select n Read Configuration Register 1 2
- * - HW_EIM_CSRCR22 - Chip Select n Read Configuration Register 2 2
- * - HW_EIM_CSWCR12 - Chip Select n Write Configuration Register 1 2
- * - HW_EIM_CSWCR22 - Chip Select n Write Configuration Register 2 2
- * - HW_EIM_CSGCR13 - Chip Select n General Configuration Register 1 3
- * - HW_EIM_CSGCR23 - Chip Select n General Configuration Register 2 3
- * - HW_EIM_CSRCR13 - Chip Select n Read Configuration Register 1 3
- * - HW_EIM_CSRCR23 - Chip Select n Read Configuration Register 2 3
- * - HW_EIM_CSWCR13 - Chip Select n Write Configuration Register 1 3
- * - HW_EIM_CSWCR23 - Chip Select n Write Configuration Register 2 3
- * - HW_EIM_CSGCR14 - Chip Select n General Configuration Register 1 4
- * - HW_EIM_CSGCR24 - Chip Select n General Configuration Register 2 4
- * - HW_EIM_CSRCR14 - Chip Select n Read Configuration Register 1 4
- * - HW_EIM_CSRCR24 - Chip Select n Read Configuration Register 2 4
- * - HW_EIM_CSWCR14 - Chip Select n Write Configuration Register 1 4
- * - HW_EIM_CSWCR24 - Chip Select n Write Configuration Register 2 4
- * - HW_EIM_CSGCR15 - Chip Select n General Configuration Register 1 5
- * - HW_EIM_CSGCR25 - Chip Select n General Configuration Register 2 5
- * - HW_EIM_CSRCR15 - Chip Select n Read Configuration Register 1 5
- * - HW_EIM_CSRCR25 - Chip Select n Read Configuration Register 2 5
- * - HW_EIM_CSWCR15 - Chip Select n Write Configuration Register 1 5
- * - HW_EIM_CSWCR25 - Chip Select n Write Configuration Register 2 5
+ * - HW_EIM_CS0GCR1 - Chip Select n General Configuration Register 1
+ * - HW_EIM_CS0GCR2 - Chip Select n General Configuration Register 2
+ * - HW_EIM_CS0RCR1 - Chip Select n Read Configuration Register 1
+ * - HW_EIM_CS0RCR2 - Chip Select n Read Configuration Register 2
+ * - HW_EIM_CS0WCR1 - Chip Select n Write Configuration Register 1
+ * - HW_EIM_CS0WCR2 - Chip Select n Write Configuration Register 2
+ * - HW_EIM_CS1GCR1 - Chip Select n General Configuration Register 1
+ * - HW_EIM_CS1GCR2 - Chip Select n General Configuration Register 2
+ * - HW_EIM_CS1RCR1 - Chip Select n Read Configuration Register 1
+ * - HW_EIM_CS1RCR2 - Chip Select n Read Configuration Register 2
+ * - HW_EIM_CS1WCR1 - Chip Select n Write Configuration Register 1
+ * - HW_EIM_CS1WCR2 - Chip Select n Write Configuration Register 2
+ * - HW_EIM_CS2GCR1 - Chip Select n General Configuration Register 1
+ * - HW_EIM_CS2GCR2 - Chip Select n General Configuration Register 2
+ * - HW_EIM_CS2RCR1 - Chip Select n Read Configuration Register 1
+ * - HW_EIM_CS2RCR2 - Chip Select n Read Configuration Register 2
+ * - HW_EIM_CS2WCR1 - Chip Select n Write Configuration Register 1
+ * - HW_EIM_CS2WCR2 - Chip Select n Write Configuration Register 2
+ * - HW_EIM_CS3GCR1 - Chip Select n General Configuration Register 1
+ * - HW_EIM_CS3GCR2 - Chip Select n General Configuration Register 2
+ * - HW_EIM_CS3RCR1 - Chip Select n Read Configuration Register 1
+ * - HW_EIM_CS3RCR2 - Chip Select n Read Configuration Register 2
+ * - HW_EIM_CS3WCR1 - Chip Select n Write Configuration Register 1
+ * - HW_EIM_CS3WCR2 - Chip Select n Write Configuration Register 2
+ * - HW_EIM_CS4GCR1 - Chip Select n General Configuration Register 1
+ * - HW_EIM_CS4GCR2 - Chip Select n General Configuration Register 2
+ * - HW_EIM_CS4RCR1 - Chip Select n Read Configuration Register 1
+ * - HW_EIM_CS4RCR2 - Chip Select n Read Configuration Register 2
+ * - HW_EIM_CS4WCR1 - Chip Select n Write Configuration Register 1
+ * - HW_EIM_CS4WCR2 - Chip Select n Write Configuration Register 2
+ * - HW_EIM_CS5GCR1 - Chip Select n General Configuration Register 1
+ * - HW_EIM_CS5GCR2 - Chip Select n General Configuration Register 2
+ * - HW_EIM_CS5RCR1 - Chip Select n Read Configuration Register 1
+ * - HW_EIM_CS5RCR2 - Chip Select n Read Configuration Register 2
+ * - HW_EIM_CS5WCR1 - Chip Select n Write Configuration Register 1
+ * - HW_EIM_CS5WCR2 - Chip Select n Write Configuration Register 2
  * - HW_EIM_WCR - EIM Configuration Register
  * - HW_EIM_DCR - DLL Control Register
  * - HW_EIM_DSR - DLL Status Register
@@ -67,57 +67,59 @@
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR10 - Chip Select n General Configuration Register 1 0 (RW)
+ * @brief HW_EIM_CS0GCR1 - Chip Select n General Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00010080
  *
 
  */
-typedef union
+typedef union _hw_eim_cs0gcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs0gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
+        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
+        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
+        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
+        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
+        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
+        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
+        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
+        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
     } B;
-} hw_eim_csgcr10_t;
+} hw_eim_cs0gcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR10 register
+ * constants & macros for entire EIM_CS0GCR1 register
  */
-#define HW_EIM_CSGCR10_ADDR      (REGS_EIM_BASE + 0x0)
+#define HW_EIM_CS0GCR1_ADDR      (REGS_EIM_BASE + 0x0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR10           (*(volatile hw_eim_csgcr10_t *) HW_EIM_CSGCR10_ADDR)
-#define HW_EIM_CSGCR10_RD()      (HW_EIM_CSGCR10.U)
-#define HW_EIM_CSGCR10_WR(v)     (HW_EIM_CSGCR10.U = (v))
-#define HW_EIM_CSGCR10_SET(v)    (HW_EIM_CSGCR10_WR(HW_EIM_CSGCR10_RD() |  (v)))
-#define HW_EIM_CSGCR10_CLR(v)    (HW_EIM_CSGCR10_WR(HW_EIM_CSGCR10_RD() & ~(v)))
-#define HW_EIM_CSGCR10_TOG(v)    (HW_EIM_CSGCR10_WR(HW_EIM_CSGCR10_RD() ^  (v)))
+#define HW_EIM_CS0GCR1           (*(volatile hw_eim_cs0gcr1_t *) HW_EIM_CS0GCR1_ADDR)
+#define HW_EIM_CS0GCR1_RD()      (HW_EIM_CS0GCR1.U)
+#define HW_EIM_CS0GCR1_WR(v)     (HW_EIM_CS0GCR1.U = (v))
+#define HW_EIM_CS0GCR1_SET(v)    (HW_EIM_CS0GCR1_WR(HW_EIM_CS0GCR1_RD() |  (v)))
+#define HW_EIM_CS0GCR1_CLR(v)    (HW_EIM_CS0GCR1_WR(HW_EIM_CS0GCR1_RD() & ~(v)))
+#define HW_EIM_CS0GCR1_TOG(v)    (HW_EIM_CS0GCR1_WR(HW_EIM_CS0GCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR10 bitfields
+ * constants & macros for individual EIM_CS0GCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR10, field CSEN[0:0] (RW)
+/* --- Register HW_EIM_CS0GCR1, field CSEN[0] (RW)
  *
  * CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware
  * reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to
@@ -130,21 +132,27 @@ typedef union
  * 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 
-#define BP_EIM_CSGCR10_CSEN      (0)
-#define BM_EIM_CSGCR10_CSEN      (0x00000001)
+#define BP_EIM_CS0GCR1_CSEN      (0)      //!< Bit position for EIM_CS0GCR1_CSEN.
+#define BM_EIM_CS0GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS0GCR1_CSEN.
+
+//! @brief Get value of EIM_CS0GCR1_CSEN from a register value.
+#define BG_EIM_CS0GCR1_CSEN(r)   (((r) & BM_EIM_CS0GCR1_CSEN) >> BP_EIM_CS0GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_CSEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR10_CSEN)
+//! @brief Format value for bitfield EIM_CS0GCR1_CSEN.
+#define BF_EIM_CS0GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CSEN) & BM_EIM_CS0GCR1_CSEN)
 #else
-#define BF_EIM_CSGCR10_CSEN(v)   (((v) << 0) & BM_EIM_CSGCR10_CSEN)
+//! @brief Format value for bitfield EIM_CS0GCR1_CSEN.
+#define BF_EIM_CS0GCR1_CSEN(v)   (((v) << BP_EIM_CS0GCR1_CSEN) & BM_EIM_CS0GCR1_CSEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
-#define BW_EIM_CSGCR10_CSEN(v)   BF_CS1(EIM_CSGCR10, CSEN, v)
+#define BW_EIM_CS0GCR1_CSEN(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CSEN) | BF_EIM_CS0GCR1_CSEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field SWR[1:1] (RW)
+/* --- Register HW_EIM_CS0GCR1, field SWR[1] (RW)
  *
  * Synchronous Write Data. This bit field determine the write accesses mode to the External device
  * of the chip select. The External device should be configured to the same mode as this bit
@@ -155,21 +163,27 @@ typedef union
  * 1 - write accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR10_SWR      (1)
-#define BM_EIM_CSGCR10_SWR      (0x00000002)
+#define BP_EIM_CS0GCR1_SWR      (1)      //!< Bit position for EIM_CS0GCR1_SWR.
+#define BM_EIM_CS0GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS0GCR1_SWR.
+
+//! @brief Get value of EIM_CS0GCR1_SWR from a register value.
+#define BG_EIM_CS0GCR1_SWR(r)   (((r) & BM_EIM_CS0GCR1_SWR) >> BP_EIM_CS0GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_SWR(v)   ((((reg32_t) v) << 1) & BM_EIM_CSGCR10_SWR)
+//! @brief Format value for bitfield EIM_CS0GCR1_SWR.
+#define BF_EIM_CS0GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_SWR) & BM_EIM_CS0GCR1_SWR)
 #else
-#define BF_EIM_CSGCR10_SWR(v)   (((v) << 1) & BM_EIM_CSGCR10_SWR)
+//! @brief Format value for bitfield EIM_CS0GCR1_SWR.
+#define BF_EIM_CS0GCR1_SWR(v)   (((v) << BP_EIM_CS0GCR1_SWR) & BM_EIM_CS0GCR1_SWR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
-#define BW_EIM_CSGCR10_SWR(v)   BF_CS1(EIM_CSGCR10, SWR, v)
+#define BW_EIM_CS0GCR1_SWR(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_SWR) | BF_EIM_CS0GCR1_SWR(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field SRD[2:2] (RW)
+/* --- Register HW_EIM_CS0GCR1, field SRD[2] (RW)
  *
  * Synchronous Read Data. This bit field determine the read accesses mode to the External device of
  * the chip select. The External device should be configured to the same mode as this bit
@@ -180,21 +194,27 @@ typedef union
  * 1 - read accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR10_SRD      (2)
-#define BM_EIM_CSGCR10_SRD      (0x00000004)
+#define BP_EIM_CS0GCR1_SRD      (2)      //!< Bit position for EIM_CS0GCR1_SRD.
+#define BM_EIM_CS0GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS0GCR1_SRD.
+
+//! @brief Get value of EIM_CS0GCR1_SRD from a register value.
+#define BG_EIM_CS0GCR1_SRD(r)   (((r) & BM_EIM_CS0GCR1_SRD) >> BP_EIM_CS0GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_SRD(v)   ((((reg32_t) v) << 2) & BM_EIM_CSGCR10_SRD)
+//! @brief Format value for bitfield EIM_CS0GCR1_SRD.
+#define BF_EIM_CS0GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_SRD) & BM_EIM_CS0GCR1_SRD)
 #else
-#define BF_EIM_CSGCR10_SRD(v)   (((v) << 2) & BM_EIM_CSGCR10_SRD)
+//! @brief Format value for bitfield EIM_CS0GCR1_SRD.
+#define BF_EIM_CS0GCR1_SRD(v)   (((v) << BP_EIM_CS0GCR1_SRD) & BM_EIM_CS0GCR1_SRD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
-#define BW_EIM_CSGCR10_SRD(v)   BF_CS1(EIM_CSGCR10, SRD, v)
+#define BW_EIM_CS0GCR1_SRD(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_SRD) | BF_EIM_CS0GCR1_SRD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field MUM[3:3] (RW)
+/* --- Register HW_EIM_CS0GCR1, field MUM[3] (RW)
  *
  * Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and
  * synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value
@@ -205,21 +225,27 @@ typedef union
  * 1 - Multiplexed Mode enable
  */
 
-#define BP_EIM_CSGCR10_MUM      (3)
-#define BM_EIM_CSGCR10_MUM      (0x00000008)
+#define BP_EIM_CS0GCR1_MUM      (3)      //!< Bit position for EIM_CS0GCR1_MUM.
+#define BM_EIM_CS0GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS0GCR1_MUM.
+
+//! @brief Get value of EIM_CS0GCR1_MUM from a register value.
+#define BG_EIM_CS0GCR1_MUM(r)   (((r) & BM_EIM_CS0GCR1_MUM) >> BP_EIM_CS0GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_MUM(v)   ((((reg32_t) v) << 3) & BM_EIM_CSGCR10_MUM)
+//! @brief Format value for bitfield EIM_CS0GCR1_MUM.
+#define BF_EIM_CS0GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_MUM) & BM_EIM_CS0GCR1_MUM)
 #else
-#define BF_EIM_CSGCR10_MUM(v)   (((v) << 3) & BM_EIM_CSGCR10_MUM)
+//! @brief Format value for bitfield EIM_CS0GCR1_MUM.
+#define BF_EIM_CS0GCR1_MUM(v)   (((v) << BP_EIM_CS0GCR1_MUM) & BM_EIM_CS0GCR1_MUM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
-#define BW_EIM_CSGCR10_MUM(v)   BF_CS1(EIM_CSGCR10, MUM, v)
+#define BW_EIM_CS0GCR1_MUM(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_MUM) | BF_EIM_CS0GCR1_MUM(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field WFL[4:4] (RW)
+/* --- Register HW_EIM_CS0GCR1, field WFL[4] (RW)
  *
  * Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -233,21 +259,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR10_WFL      (4)
-#define BM_EIM_CSGCR10_WFL      (0x00000010)
+#define BP_EIM_CS0GCR1_WFL      (4)      //!< Bit position for EIM_CS0GCR1_WFL.
+#define BM_EIM_CS0GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS0GCR1_WFL.
+
+//! @brief Get value of EIM_CS0GCR1_WFL from a register value.
+#define BG_EIM_CS0GCR1_WFL(r)   (((r) & BM_EIM_CS0GCR1_WFL) >> BP_EIM_CS0GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_WFL(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR10_WFL)
+//! @brief Format value for bitfield EIM_CS0GCR1_WFL.
+#define BF_EIM_CS0GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_WFL) & BM_EIM_CS0GCR1_WFL)
 #else
-#define BF_EIM_CSGCR10_WFL(v)   (((v) << 4) & BM_EIM_CSGCR10_WFL)
+//! @brief Format value for bitfield EIM_CS0GCR1_WFL.
+#define BF_EIM_CS0GCR1_WFL(v)   (((v) << BP_EIM_CS0GCR1_WFL) & BM_EIM_CS0GCR1_WFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
-#define BW_EIM_CSGCR10_WFL(v)   BF_CS1(EIM_CSGCR10, WFL, v)
+#define BW_EIM_CS0GCR1_WFL(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_WFL) | BF_EIM_CS0GCR1_WFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field RFL[5:5] (RW)
+/* --- Register HW_EIM_CS0GCR1, field RFL[5] (RW)
  *
  * Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -261,21 +293,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR10_RFL      (5)
-#define BM_EIM_CSGCR10_RFL      (0x00000020)
+#define BP_EIM_CS0GCR1_RFL      (5)      //!< Bit position for EIM_CS0GCR1_RFL.
+#define BM_EIM_CS0GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS0GCR1_RFL.
+
+//! @brief Get value of EIM_CS0GCR1_RFL from a register value.
+#define BG_EIM_CS0GCR1_RFL(r)   (((r) & BM_EIM_CS0GCR1_RFL) >> BP_EIM_CS0GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_RFL(v)   ((((reg32_t) v) << 5) & BM_EIM_CSGCR10_RFL)
+//! @brief Format value for bitfield EIM_CS0GCR1_RFL.
+#define BF_EIM_CS0GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_RFL) & BM_EIM_CS0GCR1_RFL)
 #else
-#define BF_EIM_CSGCR10_RFL(v)   (((v) << 5) & BM_EIM_CSGCR10_RFL)
+//! @brief Format value for bitfield EIM_CS0GCR1_RFL.
+#define BF_EIM_CS0GCR1_RFL(v)   (((v) << BP_EIM_CS0GCR1_RFL) & BM_EIM_CS0GCR1_RFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
-#define BW_EIM_CSGCR10_RFL(v)   BF_CS1(EIM_CSGCR10, RFL, v)
+#define BW_EIM_CS0GCR1_RFL(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_RFL) | BF_EIM_CS0GCR1_RFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field CRE[6:6] (RW)
+/* --- Register HW_EIM_CS0GCR1, field CRE[6] (RW)
  *
  * Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory
  * register set command to PSRAM external device. CRE is cleared by a hardware reset.
@@ -285,21 +323,27 @@ typedef union
  * 1 - CRE signal use is enable
  */
 
-#define BP_EIM_CSGCR10_CRE      (6)
-#define BM_EIM_CSGCR10_CRE      (0x00000040)
+#define BP_EIM_CS0GCR1_CRE      (6)      //!< Bit position for EIM_CS0GCR1_CRE.
+#define BM_EIM_CS0GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS0GCR1_CRE.
+
+//! @brief Get value of EIM_CS0GCR1_CRE from a register value.
+#define BG_EIM_CS0GCR1_CRE(r)   (((r) & BM_EIM_CS0GCR1_CRE) >> BP_EIM_CS0GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_CRE(v)   ((((reg32_t) v) << 6) & BM_EIM_CSGCR10_CRE)
+//! @brief Format value for bitfield EIM_CS0GCR1_CRE.
+#define BF_EIM_CS0GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CRE) & BM_EIM_CS0GCR1_CRE)
 #else
-#define BF_EIM_CSGCR10_CRE(v)   (((v) << 6) & BM_EIM_CSGCR10_CRE)
+//! @brief Format value for bitfield EIM_CS0GCR1_CRE.
+#define BF_EIM_CS0GCR1_CRE(v)   (((v) << BP_EIM_CS0GCR1_CRE) & BM_EIM_CS0GCR1_CRE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
-#define BW_EIM_CSGCR10_CRE(v)   BF_CS1(EIM_CSGCR10, CRE, v)
+#define BW_EIM_CS0GCR1_CRE(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CRE) | BF_EIM_CS0GCR1_CRE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field CREP[7:7] (RW)
+/* --- Register HW_EIM_CS0GCR1, field CREP[7] (RW)
  *
  * Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state,
  * active-low or active-high, while executing a memory register set command to the external device
@@ -312,21 +356,27 @@ typedef union
  * 1 - CRE signal is active high
  */
 
-#define BP_EIM_CSGCR10_CREP      (7)
-#define BM_EIM_CSGCR10_CREP      (0x00000080)
+#define BP_EIM_CS0GCR1_CREP      (7)      //!< Bit position for EIM_CS0GCR1_CREP.
+#define BM_EIM_CS0GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS0GCR1_CREP.
+
+//! @brief Get value of EIM_CS0GCR1_CREP from a register value.
+#define BG_EIM_CS0GCR1_CREP(r)   (((r) & BM_EIM_CS0GCR1_CREP) >> BP_EIM_CS0GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_CREP(v)   ((((reg32_t) v) << 7) & BM_EIM_CSGCR10_CREP)
+//! @brief Format value for bitfield EIM_CS0GCR1_CREP.
+#define BF_EIM_CS0GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CREP) & BM_EIM_CS0GCR1_CREP)
 #else
-#define BF_EIM_CSGCR10_CREP(v)   (((v) << 7) & BM_EIM_CSGCR10_CREP)
+//! @brief Format value for bitfield EIM_CS0GCR1_CREP.
+#define BF_EIM_CS0GCR1_CREP(v)   (((v) << BP_EIM_CS0GCR1_CREP) & BM_EIM_CS0GCR1_CREP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
-#define BW_EIM_CSGCR10_CREP(v)   BF_CS1(EIM_CSGCR10, CREP, v)
+#define BW_EIM_CS0GCR1_CREP(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CREP) | BF_EIM_CS0GCR1_CREP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field BL[10:8] (RW)
+/* --- Register HW_EIM_CS0GCR1, field BL[10:8] (RW)
  *
  * Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ
  * field) and should be properly initialized for mixed wrap/increment accesses support. Continuous
@@ -348,21 +398,27 @@ typedef union
  * 111 - Reserved
  */
 
-#define BP_EIM_CSGCR10_BL      (8)
-#define BM_EIM_CSGCR10_BL      (0x00000700)
+#define BP_EIM_CS0GCR1_BL      (8)      //!< Bit position for EIM_CS0GCR1_BL.
+#define BM_EIM_CS0GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS0GCR1_BL.
+
+//! @brief Get value of EIM_CS0GCR1_BL from a register value.
+#define BG_EIM_CS0GCR1_BL(r)   (((r) & BM_EIM_CS0GCR1_BL) >> BP_EIM_CS0GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_BL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR10_BL)
+//! @brief Format value for bitfield EIM_CS0GCR1_BL.
+#define BF_EIM_CS0GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_BL) & BM_EIM_CS0GCR1_BL)
 #else
-#define BF_EIM_CSGCR10_BL(v)   (((v) << 8) & BM_EIM_CSGCR10_BL)
+//! @brief Format value for bitfield EIM_CS0GCR1_BL.
+#define BF_EIM_CS0GCR1_BL(v)   (((v) << BP_EIM_CS0GCR1_BL) & BM_EIM_CS0GCR1_BL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
-#define BW_EIM_CSGCR10_BL(v)   BF_CS1(EIM_CSGCR10, BL, v)
+#define BW_EIM_CS0GCR1_BL(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_BL) | BF_EIM_CS0GCR1_BL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field WC[11:11] (RW)
+/* --- Register HW_EIM_CS0GCR1, field WC[11] (RW)
  *
  * Write Continuous. The WI bit indicates that write access to the memory are always continuous
  * accesses regardless of the BL field value. WI is cleared by hardware reset.
@@ -372,21 +428,27 @@ typedef union
  * 1 - Write access burst length is continuous.
  */
 
-#define BP_EIM_CSGCR10_WC      (11)
-#define BM_EIM_CSGCR10_WC      (0x00000800)
+#define BP_EIM_CS0GCR1_WC      (11)      //!< Bit position for EIM_CS0GCR1_WC.
+#define BM_EIM_CS0GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS0GCR1_WC.
+
+//! @brief Get value of EIM_CS0GCR1_WC from a register value.
+#define BG_EIM_CS0GCR1_WC(r)   (((r) & BM_EIM_CS0GCR1_WC) >> BP_EIM_CS0GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_WC(v)   ((((reg32_t) v) << 11) & BM_EIM_CSGCR10_WC)
+//! @brief Format value for bitfield EIM_CS0GCR1_WC.
+#define BF_EIM_CS0GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_WC) & BM_EIM_CS0GCR1_WC)
 #else
-#define BF_EIM_CSGCR10_WC(v)   (((v) << 11) & BM_EIM_CSGCR10_WC)
+//! @brief Format value for bitfield EIM_CS0GCR1_WC.
+#define BF_EIM_CS0GCR1_WC(v)   (((v) << BP_EIM_CS0GCR1_WC) & BM_EIM_CS0GCR1_WC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
-#define BW_EIM_CSGCR10_WC(v)   BF_CS1(EIM_CSGCR10, WC, v)
+#define BW_EIM_CS0GCR1_WC(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_WC) | BF_EIM_CS0GCR1_WC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field BCD[13:12] (RW)
+/* --- Register HW_EIM_CS0GCR1, field BCD[13:12] (RW)
  *
  * Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor
  * for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a
@@ -400,21 +462,27 @@ typedef union
  * 11 - Divide EIM clock by 4
  */
 
-#define BP_EIM_CSGCR10_BCD      (12)
-#define BM_EIM_CSGCR10_BCD      (0x00003000)
+#define BP_EIM_CS0GCR1_BCD      (12)      //!< Bit position for EIM_CS0GCR1_BCD.
+#define BM_EIM_CS0GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS0GCR1_BCD.
+
+//! @brief Get value of EIM_CS0GCR1_BCD from a register value.
+#define BG_EIM_CS0GCR1_BCD(r)   (((r) & BM_EIM_CS0GCR1_BCD) >> BP_EIM_CS0GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_BCD(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR10_BCD)
+//! @brief Format value for bitfield EIM_CS0GCR1_BCD.
+#define BF_EIM_CS0GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_BCD) & BM_EIM_CS0GCR1_BCD)
 #else
-#define BF_EIM_CSGCR10_BCD(v)   (((v) << 12) & BM_EIM_CSGCR10_BCD)
+//! @brief Format value for bitfield EIM_CS0GCR1_BCD.
+#define BF_EIM_CS0GCR1_BCD(v)   (((v) << BP_EIM_CS0GCR1_BCD) & BM_EIM_CS0GCR1_BCD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
-#define BW_EIM_CSGCR10_BCD(v)   BF_CS1(EIM_CSGCR10, BCD, v)
+#define BW_EIM_CS0GCR1_BCD(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_BCD) | BF_EIM_CS0GCR1_BCD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field BCS[15:14] (RW)
+/* --- Register HW_EIM_CS0GCR1, field BCS[15:14] (RW)
  *
  * Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles
  * delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of
@@ -429,21 +497,27 @@ typedef union
  * 11 - 3 EIM clock cycle additional delay
  */
 
-#define BP_EIM_CSGCR10_BCS      (14)
-#define BM_EIM_CSGCR10_BCS      (0x0000c000)
+#define BP_EIM_CS0GCR1_BCS      (14)      //!< Bit position for EIM_CS0GCR1_BCS.
+#define BM_EIM_CS0GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS0GCR1_BCS.
+
+//! @brief Get value of EIM_CS0GCR1_BCS from a register value.
+#define BG_EIM_CS0GCR1_BCS(r)   (((r) & BM_EIM_CS0GCR1_BCS) >> BP_EIM_CS0GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_BCS(v)   ((((reg32_t) v) << 14) & BM_EIM_CSGCR10_BCS)
+//! @brief Format value for bitfield EIM_CS0GCR1_BCS.
+#define BF_EIM_CS0GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_BCS) & BM_EIM_CS0GCR1_BCS)
 #else
-#define BF_EIM_CSGCR10_BCS(v)   (((v) << 14) & BM_EIM_CSGCR10_BCS)
+//! @brief Format value for bitfield EIM_CS0GCR1_BCS.
+#define BF_EIM_CS0GCR1_BCS(v)   (((v) << BP_EIM_CS0GCR1_BCS) & BM_EIM_CS0GCR1_BCS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
-#define BW_EIM_CSGCR10_BCS(v)   BF_CS1(EIM_CSGCR10, BCS, v)
+#define BW_EIM_CS0GCR1_BCS(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_BCS) | BF_EIM_CS0GCR1_BCS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field DSZ[18:16] (RW)
+/* --- Register HW_EIM_CS0GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
  * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
@@ -461,21 +535,27 @@ typedef union
  * 111 - 8 bit port resides on DATA[31:24]
  */
 
-#define BP_EIM_CSGCR10_DSZ      (16)
-#define BM_EIM_CSGCR10_DSZ      (0x00070000)
+#define BP_EIM_CS0GCR1_DSZ      (16)      //!< Bit position for EIM_CS0GCR1_DSZ.
+#define BM_EIM_CS0GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS0GCR1_DSZ.
+
+//! @brief Get value of EIM_CS0GCR1_DSZ from a register value.
+#define BG_EIM_CS0GCR1_DSZ(r)   (((r) & BM_EIM_CS0GCR1_DSZ) >> BP_EIM_CS0GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_DSZ(v)   ((((reg32_t) v) << 16) & BM_EIM_CSGCR10_DSZ)
+//! @brief Format value for bitfield EIM_CS0GCR1_DSZ.
+#define BF_EIM_CS0GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_DSZ) & BM_EIM_CS0GCR1_DSZ)
 #else
-#define BF_EIM_CSGCR10_DSZ(v)   (((v) << 16) & BM_EIM_CSGCR10_DSZ)
+//! @brief Format value for bitfield EIM_CS0GCR1_DSZ.
+#define BF_EIM_CS0GCR1_DSZ(v)   (((v) << BP_EIM_CS0GCR1_DSZ) & BM_EIM_CS0GCR1_DSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
-#define BW_EIM_CSGCR10_DSZ(v)   BF_CS1(EIM_CSGCR10, DSZ, v)
+#define BW_EIM_CS0GCR1_DSZ(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_DSZ) | BF_EIM_CS0GCR1_DSZ(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field SP[19:19] (RW)
+/* --- Register HW_EIM_CS0GCR1, field SP[19] (RW)
  *
  * Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding
  * chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
@@ -486,21 +566,27 @@ typedef union
  *     User mode results in an error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR10_SP      (19)
-#define BM_EIM_CSGCR10_SP      (0x00080000)
+#define BP_EIM_CS0GCR1_SP      (19)      //!< Bit position for EIM_CS0GCR1_SP.
+#define BM_EIM_CS0GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS0GCR1_SP.
+
+//! @brief Get value of EIM_CS0GCR1_SP from a register value.
+#define BG_EIM_CS0GCR1_SP(r)   (((r) & BM_EIM_CS0GCR1_SP) >> BP_EIM_CS0GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_SP(v)   ((((reg32_t) v) << 19) & BM_EIM_CSGCR10_SP)
+//! @brief Format value for bitfield EIM_CS0GCR1_SP.
+#define BF_EIM_CS0GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_SP) & BM_EIM_CS0GCR1_SP)
 #else
-#define BF_EIM_CSGCR10_SP(v)   (((v) << 19) & BM_EIM_CSGCR10_SP)
+//! @brief Format value for bitfield EIM_CS0GCR1_SP.
+#define BF_EIM_CS0GCR1_SP(v)   (((v) << BP_EIM_CS0GCR1_SP) & BM_EIM_CS0GCR1_SP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
-#define BW_EIM_CSGCR10_SP(v)   BF_CS1(EIM_CSGCR10, SP, v)
+#define BW_EIM_CS0GCR1_SP(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_SP) | BF_EIM_CS0GCR1_SP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field CSREC[22:20] (RW)
+/* --- Register HW_EIM_CS0GCR1, field CSREC[22:20] (RW)
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
@@ -515,21 +601,27 @@ typedef union
  * 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 
-#define BP_EIM_CSGCR10_CSREC      (20)
-#define BM_EIM_CSGCR10_CSREC      (0x00700000)
+#define BP_EIM_CS0GCR1_CSREC      (20)      //!< Bit position for EIM_CS0GCR1_CSREC.
+#define BM_EIM_CS0GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS0GCR1_CSREC.
+
+//! @brief Get value of EIM_CS0GCR1_CSREC from a register value.
+#define BG_EIM_CS0GCR1_CSREC(r)   (((r) & BM_EIM_CS0GCR1_CSREC) >> BP_EIM_CS0GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_CSREC(v)   ((((reg32_t) v) << 20) & BM_EIM_CSGCR10_CSREC)
+//! @brief Format value for bitfield EIM_CS0GCR1_CSREC.
+#define BF_EIM_CS0GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CSREC) & BM_EIM_CS0GCR1_CSREC)
 #else
-#define BF_EIM_CSGCR10_CSREC(v)   (((v) << 20) & BM_EIM_CSGCR10_CSREC)
+//! @brief Format value for bitfield EIM_CS0GCR1_CSREC.
+#define BF_EIM_CS0GCR1_CSREC(v)   (((v) << BP_EIM_CS0GCR1_CSREC) & BM_EIM_CS0GCR1_CSREC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
-#define BW_EIM_CSGCR10_CSREC(v)   BF_CS1(EIM_CSGCR10, CSREC, v)
+#define BW_EIM_CS0GCR1_CSREC(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CSREC) | BF_EIM_CS0GCR1_CSREC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field AUS[23:23] (RW)
+/* --- Register HW_EIM_CS0GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
  * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
@@ -540,21 +632,27 @@ typedef union
  * 1 - Address unshifted
  */
 
-#define BP_EIM_CSGCR10_AUS      (23)
-#define BM_EIM_CSGCR10_AUS      (0x00800000)
+#define BP_EIM_CS0GCR1_AUS      (23)      //!< Bit position for EIM_CS0GCR1_AUS.
+#define BM_EIM_CS0GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS0GCR1_AUS.
+
+//! @brief Get value of EIM_CS0GCR1_AUS from a register value.
+#define BG_EIM_CS0GCR1_AUS(r)   (((r) & BM_EIM_CS0GCR1_AUS) >> BP_EIM_CS0GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_AUS(v)   ((((reg32_t) v) << 23) & BM_EIM_CSGCR10_AUS)
+//! @brief Format value for bitfield EIM_CS0GCR1_AUS.
+#define BF_EIM_CS0GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_AUS) & BM_EIM_CS0GCR1_AUS)
 #else
-#define BF_EIM_CSGCR10_AUS(v)   (((v) << 23) & BM_EIM_CSGCR10_AUS)
+//! @brief Format value for bitfield EIM_CS0GCR1_AUS.
+#define BF_EIM_CS0GCR1_AUS(v)   (((v) << BP_EIM_CS0GCR1_AUS) & BM_EIM_CS0GCR1_AUS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
-#define BW_EIM_CSGCR10_AUS(v)   BF_CS1(EIM_CSGCR10, AUS, v)
+#define BW_EIM_CS0GCR1_AUS(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_AUS) | BF_EIM_CS0GCR1_AUS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field GBC[26:24] (RW)
+/* --- Register HW_EIM_CS0GCR1, field GBC[26:24] (RW)
  *
  * Gap Between Chip Selects. This bit field, according to the settings shown below, determines the
  * minimum time between end of access to the current chip select and start of access to different
@@ -567,21 +665,27 @@ typedef union
  * 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 
-#define BP_EIM_CSGCR10_GBC      (24)
-#define BM_EIM_CSGCR10_GBC      (0x07000000)
+#define BP_EIM_CS0GCR1_GBC      (24)      //!< Bit position for EIM_CS0GCR1_GBC.
+#define BM_EIM_CS0GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS0GCR1_GBC.
+
+//! @brief Get value of EIM_CS0GCR1_GBC from a register value.
+#define BG_EIM_CS0GCR1_GBC(r)   (((r) & BM_EIM_CS0GCR1_GBC) >> BP_EIM_CS0GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_GBC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSGCR10_GBC)
+//! @brief Format value for bitfield EIM_CS0GCR1_GBC.
+#define BF_EIM_CS0GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_GBC) & BM_EIM_CS0GCR1_GBC)
 #else
-#define BF_EIM_CSGCR10_GBC(v)   (((v) << 24) & BM_EIM_CSGCR10_GBC)
+//! @brief Format value for bitfield EIM_CS0GCR1_GBC.
+#define BF_EIM_CS0GCR1_GBC(v)   (((v) << BP_EIM_CS0GCR1_GBC) & BM_EIM_CS0GCR1_GBC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
-#define BW_EIM_CSGCR10_GBC(v)   BF_CS1(EIM_CSGCR10, GBC, v)
+#define BW_EIM_CS0GCR1_GBC(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_GBC) | BF_EIM_CS0GCR1_GBC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field WP[27:27] (RW)
+/* --- Register HW_EIM_CS0GCR1, field WP[27] (RW)
  *
  * Write Protect. This bit prevents writes to the address range defined by the corresponding chip
  * select. WP is cleared by a hardware reset.
@@ -592,21 +696,27 @@ typedef union
  *     error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR10_WP      (27)
-#define BM_EIM_CSGCR10_WP      (0x08000000)
+#define BP_EIM_CS0GCR1_WP      (27)      //!< Bit position for EIM_CS0GCR1_WP.
+#define BM_EIM_CS0GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS0GCR1_WP.
+
+//! @brief Get value of EIM_CS0GCR1_WP from a register value.
+#define BG_EIM_CS0GCR1_WP(r)   (((r) & BM_EIM_CS0GCR1_WP) >> BP_EIM_CS0GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_WP(v)   ((((reg32_t) v) << 27) & BM_EIM_CSGCR10_WP)
+//! @brief Format value for bitfield EIM_CS0GCR1_WP.
+#define BF_EIM_CS0GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_WP) & BM_EIM_CS0GCR1_WP)
 #else
-#define BF_EIM_CSGCR10_WP(v)   (((v) << 27) & BM_EIM_CSGCR10_WP)
+//! @brief Format value for bitfield EIM_CS0GCR1_WP.
+#define BF_EIM_CS0GCR1_WP(v)   (((v) << BP_EIM_CS0GCR1_WP) & BM_EIM_CS0GCR1_WP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
-#define BW_EIM_CSGCR10_WP(v)   BF_CS1(EIM_CSGCR10, WP, v)
+#define BW_EIM_CS0GCR1_WP(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_WP) | BF_EIM_CS0GCR1_WP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR10, field PSZ[31:28] (RW)
+/* --- Register HW_EIM_CS0GCR1, field PSZ[31:28] (RW)
  *
  * Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field).
  * PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync.
@@ -629,62 +739,70 @@ typedef union
  * 1001 - - 1111 Reserved
  */
 
-#define BP_EIM_CSGCR10_PSZ      (28)
-#define BM_EIM_CSGCR10_PSZ      (0xf0000000)
+#define BP_EIM_CS0GCR1_PSZ      (28)      //!< Bit position for EIM_CS0GCR1_PSZ.
+#define BM_EIM_CS0GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS0GCR1_PSZ.
+
+//! @brief Get value of EIM_CS0GCR1_PSZ from a register value.
+#define BG_EIM_CS0GCR1_PSZ(r)   (((r) & BM_EIM_CS0GCR1_PSZ) >> BP_EIM_CS0GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR10_PSZ(v)   ((((reg32_t) v) << 28) & BM_EIM_CSGCR10_PSZ)
+//! @brief Format value for bitfield EIM_CS0GCR1_PSZ.
+#define BF_EIM_CS0GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_PSZ) & BM_EIM_CS0GCR1_PSZ)
 #else
-#define BF_EIM_CSGCR10_PSZ(v)   (((v) << 28) & BM_EIM_CSGCR10_PSZ)
+//! @brief Format value for bitfield EIM_CS0GCR1_PSZ.
+#define BF_EIM_CS0GCR1_PSZ(v)   (((v) << BP_EIM_CS0GCR1_PSZ) & BM_EIM_CS0GCR1_PSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
-#define BW_EIM_CSGCR10_PSZ(v)   BF_CS1(EIM_CSGCR10, PSZ, v)
+#define BW_EIM_CS0GCR1_PSZ(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_PSZ) | BF_EIM_CS0GCR1_PSZ(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR20 - Chip Select n General Configuration Register 2 0 (RW)
+ * @brief HW_EIM_CS0GCR2 - Chip Select n General Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00001000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs0gcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs0gcr2_bitfields
     {
-        unsigned ADH : 2; //!< Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned DAPS : 4; //!< Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
-        unsigned RESERVED2 : 19; //!< Reserved
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
-} hw_eim_csgcr20_t;
+} hw_eim_cs0gcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR20 register
+ * constants & macros for entire EIM_CS0GCR2 register
  */
-#define HW_EIM_CSGCR20_ADDR      (REGS_EIM_BASE + 0x4)
+#define HW_EIM_CS0GCR2_ADDR      (REGS_EIM_BASE + 0x4)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR20           (*(volatile hw_eim_csgcr20_t *) HW_EIM_CSGCR20_ADDR)
-#define HW_EIM_CSGCR20_RD()      (HW_EIM_CSGCR20.U)
-#define HW_EIM_CSGCR20_WR(v)     (HW_EIM_CSGCR20.U = (v))
-#define HW_EIM_CSGCR20_SET(v)    (HW_EIM_CSGCR20_WR(HW_EIM_CSGCR20_RD() |  (v)))
-#define HW_EIM_CSGCR20_CLR(v)    (HW_EIM_CSGCR20_WR(HW_EIM_CSGCR20_RD() & ~(v)))
-#define HW_EIM_CSGCR20_TOG(v)    (HW_EIM_CSGCR20_WR(HW_EIM_CSGCR20_RD() ^  (v)))
+#define HW_EIM_CS0GCR2           (*(volatile hw_eim_cs0gcr2_t *) HW_EIM_CS0GCR2_ADDR)
+#define HW_EIM_CS0GCR2_RD()      (HW_EIM_CS0GCR2.U)
+#define HW_EIM_CS0GCR2_WR(v)     (HW_EIM_CS0GCR2.U = (v))
+#define HW_EIM_CS0GCR2_SET(v)    (HW_EIM_CS0GCR2_WR(HW_EIM_CS0GCR2_RD() |  (v)))
+#define HW_EIM_CS0GCR2_CLR(v)    (HW_EIM_CS0GCR2_WR(HW_EIM_CS0GCR2_RD() & ~(v)))
+#define HW_EIM_CS0GCR2_TOG(v)    (HW_EIM_CS0GCR2_WR(HW_EIM_CS0GCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR20 bitfields
+ * constants & macros for individual EIM_CS0GCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR20, field ADH[1:0] (RW)
+/* --- Register HW_EIM_CS0GCR2, field ADH[1:0] (RW)
  *
  * Address hold time - This bit field determine the address hold time after ADV negation when mum =
  * 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when
@@ -698,21 +816,27 @@ typedef union
  * 11 - Reserved
  */
 
-#define BP_EIM_CSGCR20_ADH      (0)
-#define BM_EIM_CSGCR20_ADH      (0x00000003)
+#define BP_EIM_CS0GCR2_ADH      (0)      //!< Bit position for EIM_CS0GCR2_ADH.
+#define BM_EIM_CS0GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS0GCR2_ADH.
+
+//! @brief Get value of EIM_CS0GCR2_ADH from a register value.
+#define BG_EIM_CS0GCR2_ADH(r)   (((r) & BM_EIM_CS0GCR2_ADH) >> BP_EIM_CS0GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR20_ADH(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR20_ADH)
+//! @brief Format value for bitfield EIM_CS0GCR2_ADH.
+#define BF_EIM_CS0GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_ADH) & BM_EIM_CS0GCR2_ADH)
 #else
-#define BF_EIM_CSGCR20_ADH(v)   (((v) << 0) & BM_EIM_CSGCR20_ADH)
+//! @brief Format value for bitfield EIM_CS0GCR2_ADH.
+#define BF_EIM_CS0GCR2_ADH(v)   (((v) << BP_EIM_CS0GCR2_ADH) & BM_EIM_CS0GCR2_ADH)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
-#define BW_EIM_CSGCR20_ADH(v)   BF_CS1(EIM_CSGCR20, ADH, v)
+#define BW_EIM_CS0GCR2_ADH(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_ADH) | BF_EIM_CS0GCR2_ADH(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR20, field DAPS[7:4] (RW)
+/* --- Register HW_EIM_CS0GCR2, field DAPS[7:4] (RW)
  *
  * Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal
  * polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an
@@ -728,21 +852,27 @@ typedef union
  * 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 
-#define BP_EIM_CSGCR20_DAPS      (4)
-#define BM_EIM_CSGCR20_DAPS      (0x000000f0)
+#define BP_EIM_CS0GCR2_DAPS      (4)      //!< Bit position for EIM_CS0GCR2_DAPS.
+#define BM_EIM_CS0GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS0GCR2_DAPS.
+
+//! @brief Get value of EIM_CS0GCR2_DAPS from a register value.
+#define BG_EIM_CS0GCR2_DAPS(r)   (((r) & BM_EIM_CS0GCR2_DAPS) >> BP_EIM_CS0GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR20_DAPS(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR20_DAPS)
+//! @brief Format value for bitfield EIM_CS0GCR2_DAPS.
+#define BF_EIM_CS0GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_DAPS) & BM_EIM_CS0GCR2_DAPS)
 #else
-#define BF_EIM_CSGCR20_DAPS(v)   (((v) << 4) & BM_EIM_CSGCR20_DAPS)
+//! @brief Format value for bitfield EIM_CS0GCR2_DAPS.
+#define BF_EIM_CS0GCR2_DAPS(v)   (((v) << BP_EIM_CS0GCR2_DAPS) & BM_EIM_CS0GCR2_DAPS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
-#define BW_EIM_CSGCR20_DAPS(v)   BF_CS1(EIM_CSGCR20, DAPS, v)
+#define BW_EIM_CS0GCR2_DAPS(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_DAPS) | BF_EIM_CS0GCR2_DAPS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR20, field DAE[8:8] (RW)
+/* --- Register HW_EIM_CS0GCR2, field DAE[8] (RW)
  *
  * Data Acknowledge Enable. This bit indicates external device is using DTACK pin as
  * strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read
@@ -754,21 +884,27 @@ typedef union
  * 1 - DTACK signal use is enable
  */
 
-#define BP_EIM_CSGCR20_DAE      (8)
-#define BM_EIM_CSGCR20_DAE      (0x00000100)
+#define BP_EIM_CS0GCR2_DAE      (8)      //!< Bit position for EIM_CS0GCR2_DAE.
+#define BM_EIM_CS0GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS0GCR2_DAE.
+
+//! @brief Get value of EIM_CS0GCR2_DAE from a register value.
+#define BG_EIM_CS0GCR2_DAE(r)   (((r) & BM_EIM_CS0GCR2_DAE) >> BP_EIM_CS0GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR20_DAE(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR20_DAE)
+//! @brief Format value for bitfield EIM_CS0GCR2_DAE.
+#define BF_EIM_CS0GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_DAE) & BM_EIM_CS0GCR2_DAE)
 #else
-#define BF_EIM_CSGCR20_DAE(v)   (((v) << 8) & BM_EIM_CSGCR20_DAE)
+//! @brief Format value for bitfield EIM_CS0GCR2_DAE.
+#define BF_EIM_CS0GCR2_DAE(v)   (((v) << BP_EIM_CS0GCR2_DAE) & BM_EIM_CS0GCR2_DAE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
-#define BW_EIM_CSGCR20_DAE(v)   BF_CS1(EIM_CSGCR20, DAE, v)
+#define BW_EIM_CS0GCR2_DAE(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_DAE) | BF_EIM_CS0GCR2_DAE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR20, field DAP[9:9] (RW)
+/* --- Register HW_EIM_CS0GCR2, field DAP[9] (RW)
  *
  * Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or
  * active-high, while executing an async access using DTACK signal from the external device. DAP is
@@ -779,21 +915,27 @@ typedef union
  * 1 - DTACK signal is active low
  */
 
-#define BP_EIM_CSGCR20_DAP      (9)
-#define BM_EIM_CSGCR20_DAP      (0x00000200)
+#define BP_EIM_CS0GCR2_DAP      (9)      //!< Bit position for EIM_CS0GCR2_DAP.
+#define BM_EIM_CS0GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS0GCR2_DAP.
+
+//! @brief Get value of EIM_CS0GCR2_DAP from a register value.
+#define BG_EIM_CS0GCR2_DAP(r)   (((r) & BM_EIM_CS0GCR2_DAP) >> BP_EIM_CS0GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR20_DAP(v)   ((((reg32_t) v) << 9) & BM_EIM_CSGCR20_DAP)
+//! @brief Format value for bitfield EIM_CS0GCR2_DAP.
+#define BF_EIM_CS0GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_DAP) & BM_EIM_CS0GCR2_DAP)
 #else
-#define BF_EIM_CSGCR20_DAP(v)   (((v) << 9) & BM_EIM_CSGCR20_DAP)
+//! @brief Format value for bitfield EIM_CS0GCR2_DAP.
+#define BF_EIM_CS0GCR2_DAP(v)   (((v) << BP_EIM_CS0GCR2_DAP) & BM_EIM_CS0GCR2_DAP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
-#define BW_EIM_CSGCR20_DAP(v)   BF_CS1(EIM_CSGCR20, DAP, v)
+#define BW_EIM_CS0GCR2_DAP(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_DAP) | BF_EIM_CS0GCR2_DAP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR20, field MUX16_BYP_GRANT[12:12] (RW)
+/* --- Register HW_EIM_CS0GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
  * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
@@ -804,68 +946,76 @@ typedef union
  * 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 
-#define BP_EIM_CSGCR20_MUX16_BYP_GRANT      (12)
-#define BM_EIM_CSGCR20_MUX16_BYP_GRANT      (0x00001000)
+#define BP_EIM_CS0GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS0GCR2_MUX16_BYP_GRANT.
+#define BM_EIM_CS0GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS0GCR2_MUX16_BYP_GRANT.
+
+//! @brief Get value of EIM_CS0GCR2_MUX16_BYP_GRANT from a register value.
+#define BG_EIM_CS0GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS0GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR20_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR20_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS0GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_MUX16_BYP_GRANT) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT)
 #else
-#define BF_EIM_CSGCR20_MUX16_BYP_GRANT(v)   (((v) << 12) & BM_EIM_CSGCR20_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS0GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS0GCR2_MUX16_BYP_GRANT) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
-#define BW_EIM_CSGCR20_MUX16_BYP_GRANT(v)   BF_CS1(EIM_CSGCR20, MUX16_BYP_GRANT, v)
+#define BW_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_MUX16_BYP_GRANT) | BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR10 - Chip Select n Read Configuration Register 1 0 (RW)
+ * @brief HW_EIM_CS0RCR1 - Chip Select n Read Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs0rcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs0rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RCSA : 3; //!< Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned OEN : 3; //!< OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned OEA : 3; //!< OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED4 : 1; //!< Reserved
-        unsigned RWSC : 6; //!< Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
-        unsigned RESERVED5 : 2; //!< Reserved
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [3] Reserved
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED1 : 1; //!< [7] Reserved
+        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED2 : 1; //!< [11] Reserved
+        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned RESERVED3 : 1; //!< [15] Reserved
+        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
+        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED4 : 1; //!< [23] Reserved
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
-} hw_eim_csrcr10_t;
+} hw_eim_cs0rcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR10 register
+ * constants & macros for entire EIM_CS0RCR1 register
  */
-#define HW_EIM_CSRCR10_ADDR      (REGS_EIM_BASE + 0x8)
+#define HW_EIM_CS0RCR1_ADDR      (REGS_EIM_BASE + 0x8)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR10           (*(volatile hw_eim_csrcr10_t *) HW_EIM_CSRCR10_ADDR)
-#define HW_EIM_CSRCR10_RD()      (HW_EIM_CSRCR10.U)
-#define HW_EIM_CSRCR10_WR(v)     (HW_EIM_CSRCR10.U = (v))
-#define HW_EIM_CSRCR10_SET(v)    (HW_EIM_CSRCR10_WR(HW_EIM_CSRCR10_RD() |  (v)))
-#define HW_EIM_CSRCR10_CLR(v)    (HW_EIM_CSRCR10_WR(HW_EIM_CSRCR10_RD() & ~(v)))
-#define HW_EIM_CSRCR10_TOG(v)    (HW_EIM_CSRCR10_WR(HW_EIM_CSRCR10_RD() ^  (v)))
+#define HW_EIM_CS0RCR1           (*(volatile hw_eim_cs0rcr1_t *) HW_EIM_CS0RCR1_ADDR)
+#define HW_EIM_CS0RCR1_RD()      (HW_EIM_CS0RCR1.U)
+#define HW_EIM_CS0RCR1_WR(v)     (HW_EIM_CS0RCR1.U = (v))
+#define HW_EIM_CS0RCR1_SET(v)    (HW_EIM_CS0RCR1_WR(HW_EIM_CS0RCR1_RD() |  (v)))
+#define HW_EIM_CS0RCR1_CLR(v)    (HW_EIM_CS0RCR1_WR(HW_EIM_CS0RCR1_RD() & ~(v)))
+#define HW_EIM_CS0RCR1_TOG(v)    (HW_EIM_CS0RCR1_WR(HW_EIM_CS0RCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR10 bitfields
+ * constants & macros for individual EIM_CS0RCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR10, field RCSN[2:0] (RW)
+/* --- Register HW_EIM_CS0RCR1, field RCSN[2:0] (RW)
  *
  * Read CS Negation. This bit field determines when CS signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -878,21 +1028,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSRCR10_RCSN      (0)
-#define BM_EIM_CSRCR10_RCSN      (0x00000007)
+#define BP_EIM_CS0RCR1_RCSN      (0)      //!< Bit position for EIM_CS0RCR1_RCSN.
+#define BM_EIM_CS0RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS0RCR1_RCSN.
+
+//! @brief Get value of EIM_CS0RCR1_RCSN from a register value.
+#define BG_EIM_CS0RCR1_RCSN(r)   (((r) & BM_EIM_CS0RCR1_RCSN) >> BP_EIM_CS0RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_RCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR10_RCSN)
+//! @brief Format value for bitfield EIM_CS0RCR1_RCSN.
+#define BF_EIM_CS0RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RCSN) & BM_EIM_CS0RCR1_RCSN)
 #else
-#define BF_EIM_CSRCR10_RCSN(v)   (((v) << 0) & BM_EIM_CSRCR10_RCSN)
+//! @brief Format value for bitfield EIM_CS0RCR1_RCSN.
+#define BF_EIM_CS0RCR1_RCSN(v)   (((v) << BP_EIM_CS0RCR1_RCSN) & BM_EIM_CS0RCR1_RCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
-#define BW_EIM_CSRCR10_RCSN(v)   BF_CS1(EIM_CSRCR10, RCSN, v)
+#define BW_EIM_CS0RCR1_RCSN(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RCSN) | BF_EIM_CS0RCR1_RCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR10, field RCSA[6:4] (RW)
+/* --- Register HW_EIM_CS0RCR1, field RCSA[6:4] (RW)
  *
  * Read CS Assertion. This bit field determines when CS signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a
@@ -905,21 +1061,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 
-#define BP_EIM_CSRCR10_RCSA      (4)
-#define BM_EIM_CSRCR10_RCSA      (0x00000070)
+#define BP_EIM_CS0RCR1_RCSA      (4)      //!< Bit position for EIM_CS0RCR1_RCSA.
+#define BM_EIM_CS0RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS0RCR1_RCSA.
+
+//! @brief Get value of EIM_CS0RCR1_RCSA from a register value.
+#define BG_EIM_CS0RCR1_RCSA(r)   (((r) & BM_EIM_CS0RCR1_RCSA) >> BP_EIM_CS0RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_RCSA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR10_RCSA)
+//! @brief Format value for bitfield EIM_CS0RCR1_RCSA.
+#define BF_EIM_CS0RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RCSA) & BM_EIM_CS0RCR1_RCSA)
 #else
-#define BF_EIM_CSRCR10_RCSA(v)   (((v) << 4) & BM_EIM_CSRCR10_RCSA)
+//! @brief Format value for bitfield EIM_CS0RCR1_RCSA.
+#define BF_EIM_CS0RCR1_RCSA(v)   (((v) << BP_EIM_CS0RCR1_RCSA) & BM_EIM_CS0RCR1_RCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
-#define BW_EIM_CSRCR10_RCSA(v)   BF_CS1(EIM_CSRCR10, RCSA, v)
+#define BW_EIM_CS0RCR1_RCSA(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RCSA) | BF_EIM_CS0RCR1_RCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR10, field OEN[10:8] (RW)
+/* --- Register HW_EIM_CS0RCR1, field OEN[10:8] (RW)
  *
  * OE Negation. This bit field determines when OE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -932,21 +1094,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of access and OE negation
  */
 
-#define BP_EIM_CSRCR10_OEN      (8)
-#define BM_EIM_CSRCR10_OEN      (0x00000700)
+#define BP_EIM_CS0RCR1_OEN      (8)      //!< Bit position for EIM_CS0RCR1_OEN.
+#define BM_EIM_CS0RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS0RCR1_OEN.
+
+//! @brief Get value of EIM_CS0RCR1_OEN from a register value.
+#define BG_EIM_CS0RCR1_OEN(r)   (((r) & BM_EIM_CS0RCR1_OEN) >> BP_EIM_CS0RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_OEN(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR10_OEN)
+//! @brief Format value for bitfield EIM_CS0RCR1_OEN.
+#define BF_EIM_CS0RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_OEN) & BM_EIM_CS0RCR1_OEN)
 #else
-#define BF_EIM_CSRCR10_OEN(v)   (((v) << 8) & BM_EIM_CSRCR10_OEN)
+//! @brief Format value for bitfield EIM_CS0RCR1_OEN.
+#define BF_EIM_CS0RCR1_OEN(v)   (((v) << BP_EIM_CS0RCR1_OEN) & BM_EIM_CS0RCR1_OEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
-#define BW_EIM_CSRCR10_OEN(v)   BF_CS1(EIM_CSRCR10, OEN, v)
+#define BW_EIM_CS0RCR1_OEN(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_OEN) | BF_EIM_CS0RCR1_OEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR10, field OEA[14:12] (RW)
+/* --- Register HW_EIM_CS0RCR1, field OEA[14:12] (RW)
  *
  * OE Assertion. This bit field determines when OE signal are asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a
@@ -962,21 +1130,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 
-#define BP_EIM_CSRCR10_OEA      (12)
-#define BM_EIM_CSRCR10_OEA      (0x00007000)
+#define BP_EIM_CS0RCR1_OEA      (12)      //!< Bit position for EIM_CS0RCR1_OEA.
+#define BM_EIM_CS0RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS0RCR1_OEA.
+
+//! @brief Get value of EIM_CS0RCR1_OEA from a register value.
+#define BG_EIM_CS0RCR1_OEA(r)   (((r) & BM_EIM_CS0RCR1_OEA) >> BP_EIM_CS0RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_OEA(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR10_OEA)
+//! @brief Format value for bitfield EIM_CS0RCR1_OEA.
+#define BF_EIM_CS0RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_OEA) & BM_EIM_CS0RCR1_OEA)
 #else
-#define BF_EIM_CSRCR10_OEA(v)   (((v) << 12) & BM_EIM_CSRCR10_OEA)
+//! @brief Format value for bitfield EIM_CS0RCR1_OEA.
+#define BF_EIM_CS0RCR1_OEA(v)   (((v) << BP_EIM_CS0RCR1_OEA) & BM_EIM_CS0RCR1_OEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
-#define BW_EIM_CSRCR10_OEA(v)   BF_CS1(EIM_CSRCR10, OEA, v)
+#define BW_EIM_CS0RCR1_OEA(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_OEA) | BF_EIM_CS0RCR1_OEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR10, field RADVN[18:16] (RW)
+/* --- Register HW_EIM_CS0RCR1, field RADVN[18:16] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during read
  * accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following
@@ -988,20 +1162,26 @@ typedef union
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 
-#define BP_EIM_CSRCR10_RADVN      (16)
-#define BM_EIM_CSRCR10_RADVN      (0x00070000)
+#define BP_EIM_CS0RCR1_RADVN      (16)      //!< Bit position for EIM_CS0RCR1_RADVN.
+#define BM_EIM_CS0RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS0RCR1_RADVN.
+
+//! @brief Get value of EIM_CS0RCR1_RADVN from a register value.
+#define BG_EIM_CS0RCR1_RADVN(r)   (((r) & BM_EIM_CS0RCR1_RADVN) >> BP_EIM_CS0RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_RADVN(v)   ((((reg32_t) v) << 16) & BM_EIM_CSRCR10_RADVN)
+//! @brief Format value for bitfield EIM_CS0RCR1_RADVN.
+#define BF_EIM_CS0RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RADVN) & BM_EIM_CS0RCR1_RADVN)
 #else
-#define BF_EIM_CSRCR10_RADVN(v)   (((v) << 16) & BM_EIM_CSRCR10_RADVN)
+//! @brief Format value for bitfield EIM_CS0RCR1_RADVN.
+#define BF_EIM_CS0RCR1_RADVN(v)   (((v) << BP_EIM_CS0RCR1_RADVN) & BM_EIM_CS0RCR1_RADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
-#define BW_EIM_CSRCR10_RADVN(v)   BF_CS1(EIM_CSRCR10, RADVN, v)
+#define BW_EIM_CS0RCR1_RADVN(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RADVN) | BF_EIM_CS0RCR1_RADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR10, field RAL[19:19] (RW)
+/* --- Register HW_EIM_CS0RCR1, field RAL[19] (RW)
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
@@ -1009,20 +1189,26 @@ typedef union
  * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
  */
 
-#define BP_EIM_CSRCR10_RAL      (19)
-#define BM_EIM_CSRCR10_RAL      (0x00080000)
+#define BP_EIM_CS0RCR1_RAL      (19)      //!< Bit position for EIM_CS0RCR1_RAL.
+#define BM_EIM_CS0RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS0RCR1_RAL.
+
+//! @brief Get value of EIM_CS0RCR1_RAL from a register value.
+#define BG_EIM_CS0RCR1_RAL(r)   (((r) & BM_EIM_CS0RCR1_RAL) >> BP_EIM_CS0RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_RAL(v)   ((((reg32_t) v) << 19) & BM_EIM_CSRCR10_RAL)
+//! @brief Format value for bitfield EIM_CS0RCR1_RAL.
+#define BF_EIM_CS0RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RAL) & BM_EIM_CS0RCR1_RAL)
 #else
-#define BF_EIM_CSRCR10_RAL(v)   (((v) << 19) & BM_EIM_CSRCR10_RAL)
+//! @brief Format value for bitfield EIM_CS0RCR1_RAL.
+#define BF_EIM_CS0RCR1_RAL(v)   (((v) << BP_EIM_CS0RCR1_RAL) & BM_EIM_CS0RCR1_RAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
-#define BW_EIM_CSRCR10_RAL(v)   BF_CS1(EIM_CSRCR10, RAL, v)
+#define BW_EIM_CS0RCR1_RAL(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RAL) | BF_EIM_CS0RCR1_RAL(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR10, field RADVA[22:20] (RW)
+/* --- Register HW_EIM_CS0RCR1, field RADVA[22:20] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware
@@ -1035,21 +1221,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSRCR10_RADVA      (20)
-#define BM_EIM_CSRCR10_RADVA      (0x00700000)
+#define BP_EIM_CS0RCR1_RADVA      (20)      //!< Bit position for EIM_CS0RCR1_RADVA.
+#define BM_EIM_CS0RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS0RCR1_RADVA.
+
+//! @brief Get value of EIM_CS0RCR1_RADVA from a register value.
+#define BG_EIM_CS0RCR1_RADVA(r)   (((r) & BM_EIM_CS0RCR1_RADVA) >> BP_EIM_CS0RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_RADVA(v)   ((((reg32_t) v) << 20) & BM_EIM_CSRCR10_RADVA)
+//! @brief Format value for bitfield EIM_CS0RCR1_RADVA.
+#define BF_EIM_CS0RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RADVA) & BM_EIM_CS0RCR1_RADVA)
 #else
-#define BF_EIM_CSRCR10_RADVA(v)   (((v) << 20) & BM_EIM_CSRCR10_RADVA)
+//! @brief Format value for bitfield EIM_CS0RCR1_RADVA.
+#define BF_EIM_CS0RCR1_RADVA(v)   (((v) << BP_EIM_CS0RCR1_RADVA) & BM_EIM_CS0RCR1_RADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
-#define BW_EIM_CSRCR10_RADVA(v)   BF_CS1(EIM_CSRCR10, RADVA, v)
+#define BW_EIM_CS0RCR1_RADVA(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RADVA) | BF_EIM_CS0RCR1_RADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR10, field RWSC[29:24] (RW)
+/* --- Register HW_EIM_CS0RCR1, field RWSC[29:24] (RW)
  *
  * Read Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous read access to the external device
@@ -1075,63 +1267,71 @@ typedef union
  * 111111 - RWSC value is 63
  */
 
-#define BP_EIM_CSRCR10_RWSC      (24)
-#define BM_EIM_CSRCR10_RWSC      (0x3f000000)
+#define BP_EIM_CS0RCR1_RWSC      (24)      //!< Bit position for EIM_CS0RCR1_RWSC.
+#define BM_EIM_CS0RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS0RCR1_RWSC.
+
+//! @brief Get value of EIM_CS0RCR1_RWSC from a register value.
+#define BG_EIM_CS0RCR1_RWSC(r)   (((r) & BM_EIM_CS0RCR1_RWSC) >> BP_EIM_CS0RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR10_RWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSRCR10_RWSC)
+//! @brief Format value for bitfield EIM_CS0RCR1_RWSC.
+#define BF_EIM_CS0RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RWSC) & BM_EIM_CS0RCR1_RWSC)
 #else
-#define BF_EIM_CSRCR10_RWSC(v)   (((v) << 24) & BM_EIM_CSRCR10_RWSC)
+//! @brief Format value for bitfield EIM_CS0RCR1_RWSC.
+#define BF_EIM_CS0RCR1_RWSC(v)   (((v) << BP_EIM_CS0RCR1_RWSC) & BM_EIM_CS0RCR1_RWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
-#define BW_EIM_CSRCR10_RWSC(v)   BF_CS1(EIM_CSRCR10, RWSC, v)
+#define BW_EIM_CS0RCR1_RWSC(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RWSC) | BF_EIM_CS0RCR1_RWSC(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR20 - Chip Select n Read Configuration Register 2 0 (RW)
+ * @brief HW_EIM_CS0RCR2 - Chip Select n Read Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs0rcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs0rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RL : 2; //!< Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned PAT : 3; //!< Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
-        unsigned RESERVED2 : 16; //!< Reserved
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
+        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
-} hw_eim_csrcr20_t;
+} hw_eim_cs0rcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR20 register
+ * constants & macros for entire EIM_CS0RCR2 register
  */
-#define HW_EIM_CSRCR20_ADDR      (REGS_EIM_BASE + 0xc)
+#define HW_EIM_CS0RCR2_ADDR      (REGS_EIM_BASE + 0xc)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR20           (*(volatile hw_eim_csrcr20_t *) HW_EIM_CSRCR20_ADDR)
-#define HW_EIM_CSRCR20_RD()      (HW_EIM_CSRCR20.U)
-#define HW_EIM_CSRCR20_WR(v)     (HW_EIM_CSRCR20.U = (v))
-#define HW_EIM_CSRCR20_SET(v)    (HW_EIM_CSRCR20_WR(HW_EIM_CSRCR20_RD() |  (v)))
-#define HW_EIM_CSRCR20_CLR(v)    (HW_EIM_CSRCR20_WR(HW_EIM_CSRCR20_RD() & ~(v)))
-#define HW_EIM_CSRCR20_TOG(v)    (HW_EIM_CSRCR20_WR(HW_EIM_CSRCR20_RD() ^  (v)))
+#define HW_EIM_CS0RCR2           (*(volatile hw_eim_cs0rcr2_t *) HW_EIM_CS0RCR2_ADDR)
+#define HW_EIM_CS0RCR2_RD()      (HW_EIM_CS0RCR2.U)
+#define HW_EIM_CS0RCR2_WR(v)     (HW_EIM_CS0RCR2.U = (v))
+#define HW_EIM_CS0RCR2_SET(v)    (HW_EIM_CS0RCR2_WR(HW_EIM_CS0RCR2_RD() |  (v)))
+#define HW_EIM_CS0RCR2_CLR(v)    (HW_EIM_CS0RCR2_WR(HW_EIM_CS0RCR2_RD() & ~(v)))
+#define HW_EIM_CS0RCR2_TOG(v)    (HW_EIM_CS0RCR2_WR(HW_EIM_CS0RCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR20 bitfields
+ * constants & macros for individual EIM_CS0RCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR20, field RBEN[2:0] (RW)
+/* --- Register HW_EIM_CS0RCR2, field RBEN[2:0] (RW)
  *
  * Read BE Negation. This bit field determines when BE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit
@@ -1144,21 +1344,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 
-#define BP_EIM_CSRCR20_RBEN      (0)
-#define BM_EIM_CSRCR20_RBEN      (0x00000007)
+#define BP_EIM_CS0RCR2_RBEN      (0)      //!< Bit position for EIM_CS0RCR2_RBEN.
+#define BM_EIM_CS0RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS0RCR2_RBEN.
+
+//! @brief Get value of EIM_CS0RCR2_RBEN from a register value.
+#define BG_EIM_CS0RCR2_RBEN(r)   (((r) & BM_EIM_CS0RCR2_RBEN) >> BP_EIM_CS0RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR20_RBEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR20_RBEN)
+//! @brief Format value for bitfield EIM_CS0RCR2_RBEN.
+#define BF_EIM_CS0RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RBEN) & BM_EIM_CS0RCR2_RBEN)
 #else
-#define BF_EIM_CSRCR20_RBEN(v)   (((v) << 0) & BM_EIM_CSRCR20_RBEN)
+//! @brief Format value for bitfield EIM_CS0RCR2_RBEN.
+#define BF_EIM_CS0RCR2_RBEN(v)   (((v) << BP_EIM_CS0RCR2_RBEN) & BM_EIM_CS0RCR2_RBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
-#define BW_EIM_CSRCR20_RBEN(v)   BF_CS1(EIM_CSRCR20, RBEN, v)
+#define BW_EIM_CS0RCR2_RBEN(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RBEN) | BF_EIM_CS0RCR2_RBEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR20, field RBE[3:3] (RW)
+/* --- Register HW_EIM_CS0RCR2, field RBE[3] (RW)
  *
  * Read BE enable. This bit field determines if BE will be asserted during read access.
  *
@@ -1167,21 +1373,27 @@ typedef union
  * 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 
-#define BP_EIM_CSRCR20_RBE      (3)
-#define BM_EIM_CSRCR20_RBE      (0x00000008)
+#define BP_EIM_CS0RCR2_RBE      (3)      //!< Bit position for EIM_CS0RCR2_RBE.
+#define BM_EIM_CS0RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS0RCR2_RBE.
+
+//! @brief Get value of EIM_CS0RCR2_RBE from a register value.
+#define BG_EIM_CS0RCR2_RBE(r)   (((r) & BM_EIM_CS0RCR2_RBE) >> BP_EIM_CS0RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR20_RBE(v)   ((((reg32_t) v) << 3) & BM_EIM_CSRCR20_RBE)
+//! @brief Format value for bitfield EIM_CS0RCR2_RBE.
+#define BF_EIM_CS0RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RBE) & BM_EIM_CS0RCR2_RBE)
 #else
-#define BF_EIM_CSRCR20_RBE(v)   (((v) << 3) & BM_EIM_CSRCR20_RBE)
+//! @brief Format value for bitfield EIM_CS0RCR2_RBE.
+#define BF_EIM_CS0RCR2_RBE(v)   (((v) << BP_EIM_CS0RCR2_RBE) & BM_EIM_CS0RCR2_RBE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
-#define BW_EIM_CSRCR20_RBE(v)   BF_CS1(EIM_CSRCR20, RBE, v)
+#define BW_EIM_CS0RCR2_RBE(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RBE) | BF_EIM_CS0RCR2_RBE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR20, field RBEA[6:4] (RW)
+/* --- Register HW_EIM_CS0RCR2, field RBEA[6:4] (RW)
  *
  * Read BE Assertion. This bit field determines when BE signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a
@@ -1194,21 +1406,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 
-#define BP_EIM_CSRCR20_RBEA      (4)
-#define BM_EIM_CSRCR20_RBEA      (0x00000070)
+#define BP_EIM_CS0RCR2_RBEA      (4)      //!< Bit position for EIM_CS0RCR2_RBEA.
+#define BM_EIM_CS0RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS0RCR2_RBEA.
+
+//! @brief Get value of EIM_CS0RCR2_RBEA from a register value.
+#define BG_EIM_CS0RCR2_RBEA(r)   (((r) & BM_EIM_CS0RCR2_RBEA) >> BP_EIM_CS0RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR20_RBEA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR20_RBEA)
+//! @brief Format value for bitfield EIM_CS0RCR2_RBEA.
+#define BF_EIM_CS0RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RBEA) & BM_EIM_CS0RCR2_RBEA)
 #else
-#define BF_EIM_CSRCR20_RBEA(v)   (((v) << 4) & BM_EIM_CSRCR20_RBEA)
+//! @brief Format value for bitfield EIM_CS0RCR2_RBEA.
+#define BF_EIM_CS0RCR2_RBEA(v)   (((v) << BP_EIM_CS0RCR2_RBEA) & BM_EIM_CS0RCR2_RBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
-#define BW_EIM_CSRCR20_RBEA(v)   BF_CS1(EIM_CSRCR20, RBEA, v)
+#define BW_EIM_CS0RCR2_RBEA(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RBEA) | BF_EIM_CS0RCR2_RBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR20, field RL[9:8] (RW)
+/* --- Register HW_EIM_CS0RCR2, field RL[9:8] (RW)
  *
  * Read Latency. This bit field indicates cycle latency when executing a synchronous read operation.
  * The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a
@@ -1221,21 +1439,27 @@ typedef union
  * 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 
-#define BP_EIM_CSRCR20_RL      (8)
-#define BM_EIM_CSRCR20_RL      (0x00000300)
+#define BP_EIM_CS0RCR2_RL      (8)      //!< Bit position for EIM_CS0RCR2_RL.
+#define BM_EIM_CS0RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS0RCR2_RL.
+
+//! @brief Get value of EIM_CS0RCR2_RL from a register value.
+#define BG_EIM_CS0RCR2_RL(r)   (((r) & BM_EIM_CS0RCR2_RL) >> BP_EIM_CS0RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR20_RL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR20_RL)
+//! @brief Format value for bitfield EIM_CS0RCR2_RL.
+#define BF_EIM_CS0RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RL) & BM_EIM_CS0RCR2_RL)
 #else
-#define BF_EIM_CSRCR20_RL(v)   (((v) << 8) & BM_EIM_CSRCR20_RL)
+//! @brief Format value for bitfield EIM_CS0RCR2_RL.
+#define BF_EIM_CS0RCR2_RL(v)   (((v) << BP_EIM_CS0RCR2_RL) & BM_EIM_CS0RCR2_RL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
-#define BW_EIM_CSRCR20_RL(v)   BF_CS1(EIM_CSRCR20, RL, v)
+#define BW_EIM_CS0RCR2_RL(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RL) | BF_EIM_CS0RCR2_RL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR20, field PAT[14:12] (RW)
+/* --- Register HW_EIM_CS0RCR2, field PAT[14:12] (RW)
  *
  * Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial
  * access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width
@@ -1253,21 +1477,27 @@ typedef union
  * 111 - Address width is 9 EIM clock cycles
  */
 
-#define BP_EIM_CSRCR20_PAT      (12)
-#define BM_EIM_CSRCR20_PAT      (0x00007000)
+#define BP_EIM_CS0RCR2_PAT      (12)      //!< Bit position for EIM_CS0RCR2_PAT.
+#define BM_EIM_CS0RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS0RCR2_PAT.
+
+//! @brief Get value of EIM_CS0RCR2_PAT from a register value.
+#define BG_EIM_CS0RCR2_PAT(r)   (((r) & BM_EIM_CS0RCR2_PAT) >> BP_EIM_CS0RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR20_PAT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR20_PAT)
+//! @brief Format value for bitfield EIM_CS0RCR2_PAT.
+#define BF_EIM_CS0RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_PAT) & BM_EIM_CS0RCR2_PAT)
 #else
-#define BF_EIM_CSRCR20_PAT(v)   (((v) << 12) & BM_EIM_CSRCR20_PAT)
+//! @brief Format value for bitfield EIM_CS0RCR2_PAT.
+#define BF_EIM_CS0RCR2_PAT(v)   (((v) << BP_EIM_CS0RCR2_PAT) & BM_EIM_CS0RCR2_PAT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
-#define BW_EIM_CSRCR20_PAT(v)   BF_CS1(EIM_CSRCR20, PAT, v)
+#define BW_EIM_CS0RCR2_PAT(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_PAT) | BF_EIM_CS0RCR2_PAT(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR20, field APR[15:15] (RW)
+/* --- Register HW_EIM_CS0RCR2, field APR[15] (RW)
  *
  * Asynchronous Page Read. This bit field determine the asynchronous read mode to the external
  * device. When APR=0, the async. read access is done as single word (where word is defined by the
@@ -1276,64 +1506,72 @@ typedef union
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 
-#define BP_EIM_CSRCR20_APR      (15)
-#define BM_EIM_CSRCR20_APR      (0x00008000)
+#define BP_EIM_CS0RCR2_APR      (15)      //!< Bit position for EIM_CS0RCR2_APR.
+#define BM_EIM_CS0RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS0RCR2_APR.
+
+//! @brief Get value of EIM_CS0RCR2_APR from a register value.
+#define BG_EIM_CS0RCR2_APR(r)   (((r) & BM_EIM_CS0RCR2_APR) >> BP_EIM_CS0RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR20_APR(v)   ((((reg32_t) v) << 15) & BM_EIM_CSRCR20_APR)
+//! @brief Format value for bitfield EIM_CS0RCR2_APR.
+#define BF_EIM_CS0RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_APR) & BM_EIM_CS0RCR2_APR)
 #else
-#define BF_EIM_CSRCR20_APR(v)   (((v) << 15) & BM_EIM_CSRCR20_APR)
+//! @brief Format value for bitfield EIM_CS0RCR2_APR.
+#define BF_EIM_CS0RCR2_APR(v)   (((v) << BP_EIM_CS0RCR2_APR) & BM_EIM_CS0RCR2_APR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
-#define BW_EIM_CSRCR20_APR(v)   BF_CS1(EIM_CSRCR20, APR, v)
+#define BW_EIM_CS0RCR2_APR(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_APR) | BF_EIM_CS0RCR2_APR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR10 - Chip Select n Write Configuration Register 1 0 (RW)
+ * @brief HW_EIM_CS0WCR1 - Chip Select n Write Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs0wcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs0wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
+        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
+        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
+        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
     } B;
-} hw_eim_cswcr10_t;
+} hw_eim_cs0wcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR10 register
+ * constants & macros for entire EIM_CS0WCR1 register
  */
-#define HW_EIM_CSWCR10_ADDR      (REGS_EIM_BASE + 0x10)
+#define HW_EIM_CS0WCR1_ADDR      (REGS_EIM_BASE + 0x10)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR10           (*(volatile hw_eim_cswcr10_t *) HW_EIM_CSWCR10_ADDR)
-#define HW_EIM_CSWCR10_RD()      (HW_EIM_CSWCR10.U)
-#define HW_EIM_CSWCR10_WR(v)     (HW_EIM_CSWCR10.U = (v))
-#define HW_EIM_CSWCR10_SET(v)    (HW_EIM_CSWCR10_WR(HW_EIM_CSWCR10_RD() |  (v)))
-#define HW_EIM_CSWCR10_CLR(v)    (HW_EIM_CSWCR10_WR(HW_EIM_CSWCR10_RD() & ~(v)))
-#define HW_EIM_CSWCR10_TOG(v)    (HW_EIM_CSWCR10_WR(HW_EIM_CSWCR10_RD() ^  (v)))
+#define HW_EIM_CS0WCR1           (*(volatile hw_eim_cs0wcr1_t *) HW_EIM_CS0WCR1_ADDR)
+#define HW_EIM_CS0WCR1_RD()      (HW_EIM_CS0WCR1.U)
+#define HW_EIM_CS0WCR1_WR(v)     (HW_EIM_CS0WCR1.U = (v))
+#define HW_EIM_CS0WCR1_SET(v)    (HW_EIM_CS0WCR1_WR(HW_EIM_CS0WCR1_RD() |  (v)))
+#define HW_EIM_CS0WCR1_CLR(v)    (HW_EIM_CS0WCR1_WR(HW_EIM_CS0WCR1_RD() & ~(v)))
+#define HW_EIM_CS0WCR1_TOG(v)    (HW_EIM_CS0WCR1_WR(HW_EIM_CS0WCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR10 bitfields
+ * constants & macros for individual EIM_CS0WCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR10, field WCSN[2:0] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WCSN[2:0] (RW)
  *
  * Write CS Negation. This bit field determines when CS signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -1346,21 +1584,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSWCR10_WCSN      (0)
-#define BM_EIM_CSWCR10_WCSN      (0x00000007)
+#define BP_EIM_CS0WCR1_WCSN      (0)      //!< Bit position for EIM_CS0WCR1_WCSN.
+#define BM_EIM_CS0WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS0WCR1_WCSN.
+
+//! @brief Get value of EIM_CS0WCR1_WCSN from a register value.
+#define BG_EIM_CS0WCR1_WCSN(r)   (((r) & BM_EIM_CS0WCR1_WCSN) >> BP_EIM_CS0WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR10_WCSN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WCSN.
+#define BF_EIM_CS0WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WCSN) & BM_EIM_CS0WCR1_WCSN)
 #else
-#define BF_EIM_CSWCR10_WCSN(v)   (((v) << 0) & BM_EIM_CSWCR10_WCSN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WCSN.
+#define BF_EIM_CS0WCR1_WCSN(v)   (((v) << BP_EIM_CS0WCR1_WCSN) & BM_EIM_CS0WCR1_WCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
-#define BW_EIM_CSWCR10_WCSN(v)   BF_CS1(EIM_CSWCR10, WCSN, v)
+#define BW_EIM_CS0WCR1_WCSN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WCSN) | BF_EIM_CS0WCR1_WCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR10, field WCSA[5:3] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WCSA[5:3] (RW)
  *
  * Write CS Assertion. This bit field determines when CS signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below.this bit field is
@@ -1374,21 +1618,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 
-#define BP_EIM_CSWCR10_WCSA      (3)
-#define BM_EIM_CSWCR10_WCSA      (0x00000038)
+#define BP_EIM_CS0WCR1_WCSA      (3)      //!< Bit position for EIM_CS0WCR1_WCSA.
+#define BM_EIM_CS0WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS0WCR1_WCSA.
+
+//! @brief Get value of EIM_CS0WCR1_WCSA from a register value.
+#define BG_EIM_CS0WCR1_WCSA(r)   (((r) & BM_EIM_CS0WCR1_WCSA) >> BP_EIM_CS0WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WCSA(v)   ((((reg32_t) v) << 3) & BM_EIM_CSWCR10_WCSA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WCSA.
+#define BF_EIM_CS0WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WCSA) & BM_EIM_CS0WCR1_WCSA)
 #else
-#define BF_EIM_CSWCR10_WCSA(v)   (((v) << 3) & BM_EIM_CSWCR10_WCSA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WCSA.
+#define BF_EIM_CS0WCR1_WCSA(v)   (((v) << BP_EIM_CS0WCR1_WCSA) & BM_EIM_CS0WCR1_WCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
-#define BW_EIM_CSWCR10_WCSA(v)   BF_CS1(EIM_CSWCR10, WCSA, v)
+#define BW_EIM_CS0WCR1_WCSA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WCSA) | BF_EIM_CS0WCR1_WCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR10, field WEN[8:6] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WEN[8:6] (RW)
  *
  * WE Negation. This bit field determines when WE signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -1402,21 +1652,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR10_WEN      (6)
-#define BM_EIM_CSWCR10_WEN      (0x000001c0)
+#define BP_EIM_CS0WCR1_WEN      (6)      //!< Bit position for EIM_CS0WCR1_WEN.
+#define BM_EIM_CS0WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS0WCR1_WEN.
+
+//! @brief Get value of EIM_CS0WCR1_WEN from a register value.
+#define BG_EIM_CS0WCR1_WEN(r)   (((r) & BM_EIM_CS0WCR1_WEN) >> BP_EIM_CS0WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WEN(v)   ((((reg32_t) v) << 6) & BM_EIM_CSWCR10_WEN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WEN.
+#define BF_EIM_CS0WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WEN) & BM_EIM_CS0WCR1_WEN)
 #else
-#define BF_EIM_CSWCR10_WEN(v)   (((v) << 6) & BM_EIM_CSWCR10_WEN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WEN.
+#define BF_EIM_CS0WCR1_WEN(v)   (((v) << BP_EIM_CS0WCR1_WEN) & BM_EIM_CS0WCR1_WEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
-#define BW_EIM_CSWCR10_WEN(v)   BF_CS1(EIM_CSWCR10, WEN, v)
+#define BW_EIM_CS0WCR1_WEN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WEN) | BF_EIM_CS0WCR1_WEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR10, field WEA[11:9] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WEA[11:9] (RW)
  *
  * WE Assertion. This bit field determines when WE signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below. This bit field is
@@ -1431,21 +1687,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR10_WEA      (9)
-#define BM_EIM_CSWCR10_WEA      (0x00000e00)
+#define BP_EIM_CS0WCR1_WEA      (9)      //!< Bit position for EIM_CS0WCR1_WEA.
+#define BM_EIM_CS0WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS0WCR1_WEA.
+
+//! @brief Get value of EIM_CS0WCR1_WEA from a register value.
+#define BG_EIM_CS0WCR1_WEA(r)   (((r) & BM_EIM_CS0WCR1_WEA) >> BP_EIM_CS0WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WEA(v)   ((((reg32_t) v) << 9) & BM_EIM_CSWCR10_WEA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WEA.
+#define BF_EIM_CS0WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WEA) & BM_EIM_CS0WCR1_WEA)
 #else
-#define BF_EIM_CSWCR10_WEA(v)   (((v) << 9) & BM_EIM_CSWCR10_WEA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WEA.
+#define BF_EIM_CS0WCR1_WEA(v)   (((v) << BP_EIM_CS0WCR1_WEA) & BM_EIM_CS0WCR1_WEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
-#define BW_EIM_CSWCR10_WEA(v)   BF_CS1(EIM_CSWCR10, WEA, v)
+#define BW_EIM_CS0WCR1_WEA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WEA) | BF_EIM_CS0WCR1_WEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR10, field WBEN[14:12] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WBEN[14:12] (RW)
  *
  * BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write
  * cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is
@@ -1456,20 +1718,26 @@ typedef union
  * access and WE negation
  */
 
-#define BP_EIM_CSWCR10_WBEN      (12)
-#define BM_EIM_CSWCR10_WBEN      (0x00007000)
+#define BP_EIM_CS0WCR1_WBEN      (12)      //!< Bit position for EIM_CS0WCR1_WBEN.
+#define BM_EIM_CS0WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS0WCR1_WBEN.
+
+//! @brief Get value of EIM_CS0WCR1_WBEN from a register value.
+#define BG_EIM_CS0WCR1_WBEN(r)   (((r) & BM_EIM_CS0WCR1_WBEN) >> BP_EIM_CS0WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WBEN(v)   ((((reg32_t) v) << 12) & BM_EIM_CSWCR10_WBEN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WBEN.
+#define BF_EIM_CS0WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WBEN) & BM_EIM_CS0WCR1_WBEN)
 #else
-#define BF_EIM_CSWCR10_WBEN(v)   (((v) << 12) & BM_EIM_CSWCR10_WBEN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WBEN.
+#define BF_EIM_CS0WCR1_WBEN(v)   (((v) << BP_EIM_CS0WCR1_WBEN) & BM_EIM_CS0WCR1_WBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
-#define BW_EIM_CSWCR10_WBEN(v)   BF_CS1(EIM_CSWCR10, WBEN, v)
+#define BW_EIM_CS0WCR1_WBEN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WBEN) | BF_EIM_CS0WCR1_WBEN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR10, field WBEA[17:15] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WBEA[17:15] (RW)
  *
  * BE Assertion. This bit field determines when BE signal is asserted during write cycles in async.
  * mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset.
@@ -1483,21 +1751,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 
-#define BP_EIM_CSWCR10_WBEA      (15)
-#define BM_EIM_CSWCR10_WBEA      (0x00038000)
+#define BP_EIM_CS0WCR1_WBEA      (15)      //!< Bit position for EIM_CS0WCR1_WBEA.
+#define BM_EIM_CS0WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS0WCR1_WBEA.
+
+//! @brief Get value of EIM_CS0WCR1_WBEA from a register value.
+#define BG_EIM_CS0WCR1_WBEA(r)   (((r) & BM_EIM_CS0WCR1_WBEA) >> BP_EIM_CS0WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WBEA(v)   ((((reg32_t) v) << 15) & BM_EIM_CSWCR10_WBEA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WBEA.
+#define BF_EIM_CS0WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WBEA) & BM_EIM_CS0WCR1_WBEA)
 #else
-#define BF_EIM_CSWCR10_WBEA(v)   (((v) << 15) & BM_EIM_CSWCR10_WBEA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WBEA.
+#define BF_EIM_CS0WCR1_WBEA(v)   (((v) << BP_EIM_CS0WCR1_WBEA) & BM_EIM_CS0WCR1_WBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
-#define BW_EIM_CSWCR10_WBEA(v)   BF_CS1(EIM_CSWCR10, WBEA, v)
+#define BW_EIM_CS0WCR1_WBEA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WBEA) | BF_EIM_CS0WCR1_WBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR10, field WADVN[20:18] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WADVN[20:18] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during write
  * accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following
@@ -1508,20 +1782,26 @@ typedef union
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 
-#define BP_EIM_CSWCR10_WADVN      (18)
-#define BM_EIM_CSWCR10_WADVN      (0x001c0000)
+#define BP_EIM_CS0WCR1_WADVN      (18)      //!< Bit position for EIM_CS0WCR1_WADVN.
+#define BM_EIM_CS0WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS0WCR1_WADVN.
+
+//! @brief Get value of EIM_CS0WCR1_WADVN from a register value.
+#define BG_EIM_CS0WCR1_WADVN(r)   (((r) & BM_EIM_CS0WCR1_WADVN) >> BP_EIM_CS0WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WADVN(v)   ((((reg32_t) v) << 18) & BM_EIM_CSWCR10_WADVN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WADVN.
+#define BF_EIM_CS0WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WADVN) & BM_EIM_CS0WCR1_WADVN)
 #else
-#define BF_EIM_CSWCR10_WADVN(v)   (((v) << 18) & BM_EIM_CSWCR10_WADVN)
+//! @brief Format value for bitfield EIM_CS0WCR1_WADVN.
+#define BF_EIM_CS0WCR1_WADVN(v)   (((v) << BP_EIM_CS0WCR1_WADVN) & BM_EIM_CS0WCR1_WADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
-#define BW_EIM_CSWCR10_WADVN(v)   BF_CS1(EIM_CSWCR10, WADVN, v)
+#define BW_EIM_CS0WCR1_WADVN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WADVN) | BF_EIM_CS0WCR1_WADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR10, field WADVA[23:21] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WADVA[23:21] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware
@@ -1534,21 +1814,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSWCR10_WADVA      (21)
-#define BM_EIM_CSWCR10_WADVA      (0x00e00000)
+#define BP_EIM_CS0WCR1_WADVA      (21)      //!< Bit position for EIM_CS0WCR1_WADVA.
+#define BM_EIM_CS0WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS0WCR1_WADVA.
+
+//! @brief Get value of EIM_CS0WCR1_WADVA from a register value.
+#define BG_EIM_CS0WCR1_WADVA(r)   (((r) & BM_EIM_CS0WCR1_WADVA) >> BP_EIM_CS0WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WADVA(v)   ((((reg32_t) v) << 21) & BM_EIM_CSWCR10_WADVA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WADVA.
+#define BF_EIM_CS0WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WADVA) & BM_EIM_CS0WCR1_WADVA)
 #else
-#define BF_EIM_CSWCR10_WADVA(v)   (((v) << 21) & BM_EIM_CSWCR10_WADVA)
+//! @brief Format value for bitfield EIM_CS0WCR1_WADVA.
+#define BF_EIM_CS0WCR1_WADVA(v)   (((v) << BP_EIM_CS0WCR1_WADVA) & BM_EIM_CS0WCR1_WADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
-#define BW_EIM_CSWCR10_WADVA(v)   BF_CS1(EIM_CSWCR10, WADVA, v)
+#define BW_EIM_CS0WCR1_WADVA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WADVA) | BF_EIM_CS0WCR1_WADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR10, field WWSC[29:24] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WWSC[29:24] (RW)
  *
  * Write Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous write access to the external device
@@ -1573,40 +1859,52 @@ typedef union
  * 111111 - WWSC value is 63
  */
 
-#define BP_EIM_CSWCR10_WWSC      (24)
-#define BM_EIM_CSWCR10_WWSC      (0x3f000000)
+#define BP_EIM_CS0WCR1_WWSC      (24)      //!< Bit position for EIM_CS0WCR1_WWSC.
+#define BM_EIM_CS0WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS0WCR1_WWSC.
+
+//! @brief Get value of EIM_CS0WCR1_WWSC from a register value.
+#define BG_EIM_CS0WCR1_WWSC(r)   (((r) & BM_EIM_CS0WCR1_WWSC) >> BP_EIM_CS0WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSWCR10_WWSC)
+//! @brief Format value for bitfield EIM_CS0WCR1_WWSC.
+#define BF_EIM_CS0WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WWSC) & BM_EIM_CS0WCR1_WWSC)
 #else
-#define BF_EIM_CSWCR10_WWSC(v)   (((v) << 24) & BM_EIM_CSWCR10_WWSC)
+//! @brief Format value for bitfield EIM_CS0WCR1_WWSC.
+#define BF_EIM_CS0WCR1_WWSC(v)   (((v) << BP_EIM_CS0WCR1_WWSC) & BM_EIM_CS0WCR1_WWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
-#define BW_EIM_CSWCR10_WWSC(v)   BF_CS1(EIM_CSWCR10, WWSC, v)
+#define BW_EIM_CS0WCR1_WWSC(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WWSC) | BF_EIM_CS0WCR1_WWSC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR10, field WBED[30:30] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WBED[30] (RW)
  *
  * Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted
  * during write accesses.This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR10_WBED      (30)
-#define BM_EIM_CSWCR10_WBED      (0x40000000)
+#define BP_EIM_CS0WCR1_WBED      (30)      //!< Bit position for EIM_CS0WCR1_WBED.
+#define BM_EIM_CS0WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS0WCR1_WBED.
+
+//! @brief Get value of EIM_CS0WCR1_WBED from a register value.
+#define BG_EIM_CS0WCR1_WBED(r)   (((r) & BM_EIM_CS0WCR1_WBED) >> BP_EIM_CS0WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WBED(v)   ((((reg32_t) v) << 30) & BM_EIM_CSWCR10_WBED)
+//! @brief Format value for bitfield EIM_CS0WCR1_WBED.
+#define BF_EIM_CS0WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WBED) & BM_EIM_CS0WCR1_WBED)
 #else
-#define BF_EIM_CSWCR10_WBED(v)   (((v) << 30) & BM_EIM_CSWCR10_WBED)
+//! @brief Format value for bitfield EIM_CS0WCR1_WBED.
+#define BF_EIM_CS0WCR1_WBED(v)   (((v) << BP_EIM_CS0WCR1_WBED) & BM_EIM_CS0WCR1_WBED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
-#define BW_EIM_CSWCR10_WBED(v)   BF_CS1(EIM_CSWCR10, WBED, v)
+#define BW_EIM_CS0WCR1_WBED(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WBED) | BF_EIM_CS0WCR1_WBED(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR10, field WAL[31:31] (RW)
+/* --- Register HW_EIM_CS0WCR1, field WAL[31] (RW)
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
@@ -1614,127 +1912,143 @@ typedef union
  * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
  */
 
-#define BP_EIM_CSWCR10_WAL      (31)
-#define BM_EIM_CSWCR10_WAL      (0x80000000)
+#define BP_EIM_CS0WCR1_WAL      (31)      //!< Bit position for EIM_CS0WCR1_WAL.
+#define BM_EIM_CS0WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS0WCR1_WAL.
+
+//! @brief Get value of EIM_CS0WCR1_WAL from a register value.
+#define BG_EIM_CS0WCR1_WAL(r)   (((r) & BM_EIM_CS0WCR1_WAL) >> BP_EIM_CS0WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR10_WAL(v)   ((((reg32_t) v) << 31) & BM_EIM_CSWCR10_WAL)
+//! @brief Format value for bitfield EIM_CS0WCR1_WAL.
+#define BF_EIM_CS0WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WAL) & BM_EIM_CS0WCR1_WAL)
 #else
-#define BF_EIM_CSWCR10_WAL(v)   (((v) << 31) & BM_EIM_CSWCR10_WAL)
+//! @brief Format value for bitfield EIM_CS0WCR1_WAL.
+#define BF_EIM_CS0WCR1_WAL(v)   (((v) << BP_EIM_CS0WCR1_WAL) & BM_EIM_CS0WCR1_WAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
-#define BW_EIM_CSWCR10_WAL(v)   BF_CS1(EIM_CSWCR10, WAL, v)
+#define BW_EIM_CS0WCR1_WAL(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WAL) | BF_EIM_CS0WCR1_WAL(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR20 - Chip Select n Write Configuration Register 2 0 (RW)
+ * @brief HW_EIM_CS0WCR2 - Chip Select n Write Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs0wcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs0wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
-} hw_eim_cswcr20_t;
+} hw_eim_cs0wcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR20 register
+ * constants & macros for entire EIM_CS0WCR2 register
  */
-#define HW_EIM_CSWCR20_ADDR      (REGS_EIM_BASE + 0x14)
+#define HW_EIM_CS0WCR2_ADDR      (REGS_EIM_BASE + 0x14)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR20           (*(volatile hw_eim_cswcr20_t *) HW_EIM_CSWCR20_ADDR)
-#define HW_EIM_CSWCR20_RD()      (HW_EIM_CSWCR20.U)
-#define HW_EIM_CSWCR20_WR(v)     (HW_EIM_CSWCR20.U = (v))
-#define HW_EIM_CSWCR20_SET(v)    (HW_EIM_CSWCR20_WR(HW_EIM_CSWCR20_RD() |  (v)))
-#define HW_EIM_CSWCR20_CLR(v)    (HW_EIM_CSWCR20_WR(HW_EIM_CSWCR20_RD() & ~(v)))
-#define HW_EIM_CSWCR20_TOG(v)    (HW_EIM_CSWCR20_WR(HW_EIM_CSWCR20_RD() ^  (v)))
+#define HW_EIM_CS0WCR2           (*(volatile hw_eim_cs0wcr2_t *) HW_EIM_CS0WCR2_ADDR)
+#define HW_EIM_CS0WCR2_RD()      (HW_EIM_CS0WCR2.U)
+#define HW_EIM_CS0WCR2_WR(v)     (HW_EIM_CS0WCR2.U = (v))
+#define HW_EIM_CS0WCR2_SET(v)    (HW_EIM_CS0WCR2_WR(HW_EIM_CS0WCR2_RD() |  (v)))
+#define HW_EIM_CS0WCR2_CLR(v)    (HW_EIM_CS0WCR2_WR(HW_EIM_CS0WCR2_RD() & ~(v)))
+#define HW_EIM_CS0WCR2_TOG(v)    (HW_EIM_CS0WCR2_WR(HW_EIM_CS0WCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR20 bitfields
+ * constants & macros for individual EIM_CS0WCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR20, field WBCDD[0:0] (RW)
+/* --- Register HW_EIM_CS0WCR2, field WBCDD[0] (RW)
  *
  * Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write
  * access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this
  * bit has no affect. This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR20_WBCDD      (0)
-#define BM_EIM_CSWCR20_WBCDD      (0x00000001)
+#define BP_EIM_CS0WCR2_WBCDD      (0)      //!< Bit position for EIM_CS0WCR2_WBCDD.
+#define BM_EIM_CS0WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS0WCR2_WBCDD.
+
+//! @brief Get value of EIM_CS0WCR2_WBCDD from a register value.
+#define BG_EIM_CS0WCR2_WBCDD(r)   (((r) & BM_EIM_CS0WCR2_WBCDD) >> BP_EIM_CS0WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR20_WBCDD(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR20_WBCDD)
+//! @brief Format value for bitfield EIM_CS0WCR2_WBCDD.
+#define BF_EIM_CS0WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS0WCR2_WBCDD) & BM_EIM_CS0WCR2_WBCDD)
 #else
-#define BF_EIM_CSWCR20_WBCDD(v)   (((v) << 0) & BM_EIM_CSWCR20_WBCDD)
+//! @brief Format value for bitfield EIM_CS0WCR2_WBCDD.
+#define BF_EIM_CS0WCR2_WBCDD(v)   (((v) << BP_EIM_CS0WCR2_WBCDD) & BM_EIM_CS0WCR2_WBCDD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
-#define BW_EIM_CSWCR20_WBCDD(v)   BF_CS1(EIM_CSWCR20, WBCDD, v)
+#define BW_EIM_CS0WCR2_WBCDD(v)   (HW_EIM_CS0WCR2_WR((HW_EIM_CS0WCR2_RD() & ~BM_EIM_CS0WCR2_WBCDD) | BF_EIM_CS0WCR2_WBCDD(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR11 - Chip Select n General Configuration Register 1 1 (RW)
+ * @brief HW_EIM_CS1GCR1 - Chip Select n General Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00010080
  *
 
  */
-typedef union
+typedef union _hw_eim_cs1gcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs1gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
+        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
+        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
+        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
+        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
+        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
+        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
+        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
+        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
     } B;
-} hw_eim_csgcr11_t;
+} hw_eim_cs1gcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR11 register
+ * constants & macros for entire EIM_CS1GCR1 register
  */
-#define HW_EIM_CSGCR11_ADDR      (REGS_EIM_BASE + 0x18)
+#define HW_EIM_CS1GCR1_ADDR      (REGS_EIM_BASE + 0x18)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR11           (*(volatile hw_eim_csgcr11_t *) HW_EIM_CSGCR11_ADDR)
-#define HW_EIM_CSGCR11_RD()      (HW_EIM_CSGCR11.U)
-#define HW_EIM_CSGCR11_WR(v)     (HW_EIM_CSGCR11.U = (v))
-#define HW_EIM_CSGCR11_SET(v)    (HW_EIM_CSGCR11_WR(HW_EIM_CSGCR11_RD() |  (v)))
-#define HW_EIM_CSGCR11_CLR(v)    (HW_EIM_CSGCR11_WR(HW_EIM_CSGCR11_RD() & ~(v)))
-#define HW_EIM_CSGCR11_TOG(v)    (HW_EIM_CSGCR11_WR(HW_EIM_CSGCR11_RD() ^  (v)))
+#define HW_EIM_CS1GCR1           (*(volatile hw_eim_cs1gcr1_t *) HW_EIM_CS1GCR1_ADDR)
+#define HW_EIM_CS1GCR1_RD()      (HW_EIM_CS1GCR1.U)
+#define HW_EIM_CS1GCR1_WR(v)     (HW_EIM_CS1GCR1.U = (v))
+#define HW_EIM_CS1GCR1_SET(v)    (HW_EIM_CS1GCR1_WR(HW_EIM_CS1GCR1_RD() |  (v)))
+#define HW_EIM_CS1GCR1_CLR(v)    (HW_EIM_CS1GCR1_WR(HW_EIM_CS1GCR1_RD() & ~(v)))
+#define HW_EIM_CS1GCR1_TOG(v)    (HW_EIM_CS1GCR1_WR(HW_EIM_CS1GCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR11 bitfields
+ * constants & macros for individual EIM_CS1GCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR11, field CSEN[0:0] (RW)
+/* --- Register HW_EIM_CS1GCR1, field CSEN[0] (RW)
  *
  * CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware
  * reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to
@@ -1747,21 +2061,27 @@ typedef union
  * 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 
-#define BP_EIM_CSGCR11_CSEN      (0)
-#define BM_EIM_CSGCR11_CSEN      (0x00000001)
+#define BP_EIM_CS1GCR1_CSEN      (0)      //!< Bit position for EIM_CS1GCR1_CSEN.
+#define BM_EIM_CS1GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS1GCR1_CSEN.
+
+//! @brief Get value of EIM_CS1GCR1_CSEN from a register value.
+#define BG_EIM_CS1GCR1_CSEN(r)   (((r) & BM_EIM_CS1GCR1_CSEN) >> BP_EIM_CS1GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_CSEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR11_CSEN)
+//! @brief Format value for bitfield EIM_CS1GCR1_CSEN.
+#define BF_EIM_CS1GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CSEN) & BM_EIM_CS1GCR1_CSEN)
 #else
-#define BF_EIM_CSGCR11_CSEN(v)   (((v) << 0) & BM_EIM_CSGCR11_CSEN)
+//! @brief Format value for bitfield EIM_CS1GCR1_CSEN.
+#define BF_EIM_CS1GCR1_CSEN(v)   (((v) << BP_EIM_CS1GCR1_CSEN) & BM_EIM_CS1GCR1_CSEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
-#define BW_EIM_CSGCR11_CSEN(v)   BF_CS1(EIM_CSGCR11, CSEN, v)
+#define BW_EIM_CS1GCR1_CSEN(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CSEN) | BF_EIM_CS1GCR1_CSEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field SWR[1:1] (RW)
+/* --- Register HW_EIM_CS1GCR1, field SWR[1] (RW)
  *
  * Synchronous Write Data. This bit field determine the write accesses mode to the External device
  * of the chip select. The External device should be configured to the same mode as this bit
@@ -1772,21 +2092,27 @@ typedef union
  * 1 - write accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR11_SWR      (1)
-#define BM_EIM_CSGCR11_SWR      (0x00000002)
+#define BP_EIM_CS1GCR1_SWR      (1)      //!< Bit position for EIM_CS1GCR1_SWR.
+#define BM_EIM_CS1GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS1GCR1_SWR.
+
+//! @brief Get value of EIM_CS1GCR1_SWR from a register value.
+#define BG_EIM_CS1GCR1_SWR(r)   (((r) & BM_EIM_CS1GCR1_SWR) >> BP_EIM_CS1GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_SWR(v)   ((((reg32_t) v) << 1) & BM_EIM_CSGCR11_SWR)
+//! @brief Format value for bitfield EIM_CS1GCR1_SWR.
+#define BF_EIM_CS1GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_SWR) & BM_EIM_CS1GCR1_SWR)
 #else
-#define BF_EIM_CSGCR11_SWR(v)   (((v) << 1) & BM_EIM_CSGCR11_SWR)
+//! @brief Format value for bitfield EIM_CS1GCR1_SWR.
+#define BF_EIM_CS1GCR1_SWR(v)   (((v) << BP_EIM_CS1GCR1_SWR) & BM_EIM_CS1GCR1_SWR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
-#define BW_EIM_CSGCR11_SWR(v)   BF_CS1(EIM_CSGCR11, SWR, v)
+#define BW_EIM_CS1GCR1_SWR(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_SWR) | BF_EIM_CS1GCR1_SWR(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field SRD[2:2] (RW)
+/* --- Register HW_EIM_CS1GCR1, field SRD[2] (RW)
  *
  * Synchronous Read Data. This bit field determine the read accesses mode to the External device of
  * the chip select. The External device should be configured to the same mode as this bit
@@ -1797,21 +2123,27 @@ typedef union
  * 1 - read accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR11_SRD      (2)
-#define BM_EIM_CSGCR11_SRD      (0x00000004)
+#define BP_EIM_CS1GCR1_SRD      (2)      //!< Bit position for EIM_CS1GCR1_SRD.
+#define BM_EIM_CS1GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS1GCR1_SRD.
+
+//! @brief Get value of EIM_CS1GCR1_SRD from a register value.
+#define BG_EIM_CS1GCR1_SRD(r)   (((r) & BM_EIM_CS1GCR1_SRD) >> BP_EIM_CS1GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_SRD(v)   ((((reg32_t) v) << 2) & BM_EIM_CSGCR11_SRD)
+//! @brief Format value for bitfield EIM_CS1GCR1_SRD.
+#define BF_EIM_CS1GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_SRD) & BM_EIM_CS1GCR1_SRD)
 #else
-#define BF_EIM_CSGCR11_SRD(v)   (((v) << 2) & BM_EIM_CSGCR11_SRD)
+//! @brief Format value for bitfield EIM_CS1GCR1_SRD.
+#define BF_EIM_CS1GCR1_SRD(v)   (((v) << BP_EIM_CS1GCR1_SRD) & BM_EIM_CS1GCR1_SRD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
-#define BW_EIM_CSGCR11_SRD(v)   BF_CS1(EIM_CSGCR11, SRD, v)
+#define BW_EIM_CS1GCR1_SRD(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_SRD) | BF_EIM_CS1GCR1_SRD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field MUM[3:3] (RW)
+/* --- Register HW_EIM_CS1GCR1, field MUM[3] (RW)
  *
  * Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and
  * synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value
@@ -1822,21 +2154,27 @@ typedef union
  * 1 - Multiplexed Mode enable
  */
 
-#define BP_EIM_CSGCR11_MUM      (3)
-#define BM_EIM_CSGCR11_MUM      (0x00000008)
+#define BP_EIM_CS1GCR1_MUM      (3)      //!< Bit position for EIM_CS1GCR1_MUM.
+#define BM_EIM_CS1GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS1GCR1_MUM.
+
+//! @brief Get value of EIM_CS1GCR1_MUM from a register value.
+#define BG_EIM_CS1GCR1_MUM(r)   (((r) & BM_EIM_CS1GCR1_MUM) >> BP_EIM_CS1GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_MUM(v)   ((((reg32_t) v) << 3) & BM_EIM_CSGCR11_MUM)
+//! @brief Format value for bitfield EIM_CS1GCR1_MUM.
+#define BF_EIM_CS1GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_MUM) & BM_EIM_CS1GCR1_MUM)
 #else
-#define BF_EIM_CSGCR11_MUM(v)   (((v) << 3) & BM_EIM_CSGCR11_MUM)
+//! @brief Format value for bitfield EIM_CS1GCR1_MUM.
+#define BF_EIM_CS1GCR1_MUM(v)   (((v) << BP_EIM_CS1GCR1_MUM) & BM_EIM_CS1GCR1_MUM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
-#define BW_EIM_CSGCR11_MUM(v)   BF_CS1(EIM_CSGCR11, MUM, v)
+#define BW_EIM_CS1GCR1_MUM(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_MUM) | BF_EIM_CS1GCR1_MUM(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field WFL[4:4] (RW)
+/* --- Register HW_EIM_CS1GCR1, field WFL[4] (RW)
  *
  * Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -1850,21 +2188,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR11_WFL      (4)
-#define BM_EIM_CSGCR11_WFL      (0x00000010)
+#define BP_EIM_CS1GCR1_WFL      (4)      //!< Bit position for EIM_CS1GCR1_WFL.
+#define BM_EIM_CS1GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS1GCR1_WFL.
+
+//! @brief Get value of EIM_CS1GCR1_WFL from a register value.
+#define BG_EIM_CS1GCR1_WFL(r)   (((r) & BM_EIM_CS1GCR1_WFL) >> BP_EIM_CS1GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_WFL(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR11_WFL)
+//! @brief Format value for bitfield EIM_CS1GCR1_WFL.
+#define BF_EIM_CS1GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_WFL) & BM_EIM_CS1GCR1_WFL)
 #else
-#define BF_EIM_CSGCR11_WFL(v)   (((v) << 4) & BM_EIM_CSGCR11_WFL)
+//! @brief Format value for bitfield EIM_CS1GCR1_WFL.
+#define BF_EIM_CS1GCR1_WFL(v)   (((v) << BP_EIM_CS1GCR1_WFL) & BM_EIM_CS1GCR1_WFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
-#define BW_EIM_CSGCR11_WFL(v)   BF_CS1(EIM_CSGCR11, WFL, v)
+#define BW_EIM_CS1GCR1_WFL(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_WFL) | BF_EIM_CS1GCR1_WFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field RFL[5:5] (RW)
+/* --- Register HW_EIM_CS1GCR1, field RFL[5] (RW)
  *
  * Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -1878,21 +2222,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR11_RFL      (5)
-#define BM_EIM_CSGCR11_RFL      (0x00000020)
+#define BP_EIM_CS1GCR1_RFL      (5)      //!< Bit position for EIM_CS1GCR1_RFL.
+#define BM_EIM_CS1GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS1GCR1_RFL.
+
+//! @brief Get value of EIM_CS1GCR1_RFL from a register value.
+#define BG_EIM_CS1GCR1_RFL(r)   (((r) & BM_EIM_CS1GCR1_RFL) >> BP_EIM_CS1GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_RFL(v)   ((((reg32_t) v) << 5) & BM_EIM_CSGCR11_RFL)
+//! @brief Format value for bitfield EIM_CS1GCR1_RFL.
+#define BF_EIM_CS1GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_RFL) & BM_EIM_CS1GCR1_RFL)
 #else
-#define BF_EIM_CSGCR11_RFL(v)   (((v) << 5) & BM_EIM_CSGCR11_RFL)
+//! @brief Format value for bitfield EIM_CS1GCR1_RFL.
+#define BF_EIM_CS1GCR1_RFL(v)   (((v) << BP_EIM_CS1GCR1_RFL) & BM_EIM_CS1GCR1_RFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
-#define BW_EIM_CSGCR11_RFL(v)   BF_CS1(EIM_CSGCR11, RFL, v)
+#define BW_EIM_CS1GCR1_RFL(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_RFL) | BF_EIM_CS1GCR1_RFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field CRE[6:6] (RW)
+/* --- Register HW_EIM_CS1GCR1, field CRE[6] (RW)
  *
  * Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory
  * register set command to PSRAM external device. CRE is cleared by a hardware reset.
@@ -1902,21 +2252,27 @@ typedef union
  * 1 - CRE signal use is enable
  */
 
-#define BP_EIM_CSGCR11_CRE      (6)
-#define BM_EIM_CSGCR11_CRE      (0x00000040)
+#define BP_EIM_CS1GCR1_CRE      (6)      //!< Bit position for EIM_CS1GCR1_CRE.
+#define BM_EIM_CS1GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS1GCR1_CRE.
+
+//! @brief Get value of EIM_CS1GCR1_CRE from a register value.
+#define BG_EIM_CS1GCR1_CRE(r)   (((r) & BM_EIM_CS1GCR1_CRE) >> BP_EIM_CS1GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_CRE(v)   ((((reg32_t) v) << 6) & BM_EIM_CSGCR11_CRE)
+//! @brief Format value for bitfield EIM_CS1GCR1_CRE.
+#define BF_EIM_CS1GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CRE) & BM_EIM_CS1GCR1_CRE)
 #else
-#define BF_EIM_CSGCR11_CRE(v)   (((v) << 6) & BM_EIM_CSGCR11_CRE)
+//! @brief Format value for bitfield EIM_CS1GCR1_CRE.
+#define BF_EIM_CS1GCR1_CRE(v)   (((v) << BP_EIM_CS1GCR1_CRE) & BM_EIM_CS1GCR1_CRE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
-#define BW_EIM_CSGCR11_CRE(v)   BF_CS1(EIM_CSGCR11, CRE, v)
+#define BW_EIM_CS1GCR1_CRE(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CRE) | BF_EIM_CS1GCR1_CRE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field CREP[7:7] (RW)
+/* --- Register HW_EIM_CS1GCR1, field CREP[7] (RW)
  *
  * Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state,
  * active-low or active-high, while executing a memory register set command to the external device
@@ -1929,21 +2285,27 @@ typedef union
  * 1 - CRE signal is active high
  */
 
-#define BP_EIM_CSGCR11_CREP      (7)
-#define BM_EIM_CSGCR11_CREP      (0x00000080)
+#define BP_EIM_CS1GCR1_CREP      (7)      //!< Bit position for EIM_CS1GCR1_CREP.
+#define BM_EIM_CS1GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS1GCR1_CREP.
+
+//! @brief Get value of EIM_CS1GCR1_CREP from a register value.
+#define BG_EIM_CS1GCR1_CREP(r)   (((r) & BM_EIM_CS1GCR1_CREP) >> BP_EIM_CS1GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_CREP(v)   ((((reg32_t) v) << 7) & BM_EIM_CSGCR11_CREP)
+//! @brief Format value for bitfield EIM_CS1GCR1_CREP.
+#define BF_EIM_CS1GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CREP) & BM_EIM_CS1GCR1_CREP)
 #else
-#define BF_EIM_CSGCR11_CREP(v)   (((v) << 7) & BM_EIM_CSGCR11_CREP)
+//! @brief Format value for bitfield EIM_CS1GCR1_CREP.
+#define BF_EIM_CS1GCR1_CREP(v)   (((v) << BP_EIM_CS1GCR1_CREP) & BM_EIM_CS1GCR1_CREP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
-#define BW_EIM_CSGCR11_CREP(v)   BF_CS1(EIM_CSGCR11, CREP, v)
+#define BW_EIM_CS1GCR1_CREP(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CREP) | BF_EIM_CS1GCR1_CREP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field BL[10:8] (RW)
+/* --- Register HW_EIM_CS1GCR1, field BL[10:8] (RW)
  *
  * Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ
  * field) and should be properly initialized for mixed wrap/increment accesses support. Continuous
@@ -1965,21 +2327,27 @@ typedef union
  * 111 - Reserved
  */
 
-#define BP_EIM_CSGCR11_BL      (8)
-#define BM_EIM_CSGCR11_BL      (0x00000700)
+#define BP_EIM_CS1GCR1_BL      (8)      //!< Bit position for EIM_CS1GCR1_BL.
+#define BM_EIM_CS1GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS1GCR1_BL.
+
+//! @brief Get value of EIM_CS1GCR1_BL from a register value.
+#define BG_EIM_CS1GCR1_BL(r)   (((r) & BM_EIM_CS1GCR1_BL) >> BP_EIM_CS1GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_BL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR11_BL)
+//! @brief Format value for bitfield EIM_CS1GCR1_BL.
+#define BF_EIM_CS1GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_BL) & BM_EIM_CS1GCR1_BL)
 #else
-#define BF_EIM_CSGCR11_BL(v)   (((v) << 8) & BM_EIM_CSGCR11_BL)
+//! @brief Format value for bitfield EIM_CS1GCR1_BL.
+#define BF_EIM_CS1GCR1_BL(v)   (((v) << BP_EIM_CS1GCR1_BL) & BM_EIM_CS1GCR1_BL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
-#define BW_EIM_CSGCR11_BL(v)   BF_CS1(EIM_CSGCR11, BL, v)
+#define BW_EIM_CS1GCR1_BL(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_BL) | BF_EIM_CS1GCR1_BL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field WC[11:11] (RW)
+/* --- Register HW_EIM_CS1GCR1, field WC[11] (RW)
  *
  * Write Continuous. The WI bit indicates that write access to the memory are always continuous
  * accesses regardless of the BL field value. WI is cleared by hardware reset.
@@ -1989,21 +2357,27 @@ typedef union
  * 1 - Write access burst length is continuous.
  */
 
-#define BP_EIM_CSGCR11_WC      (11)
-#define BM_EIM_CSGCR11_WC      (0x00000800)
+#define BP_EIM_CS1GCR1_WC      (11)      //!< Bit position for EIM_CS1GCR1_WC.
+#define BM_EIM_CS1GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS1GCR1_WC.
+
+//! @brief Get value of EIM_CS1GCR1_WC from a register value.
+#define BG_EIM_CS1GCR1_WC(r)   (((r) & BM_EIM_CS1GCR1_WC) >> BP_EIM_CS1GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_WC(v)   ((((reg32_t) v) << 11) & BM_EIM_CSGCR11_WC)
+//! @brief Format value for bitfield EIM_CS1GCR1_WC.
+#define BF_EIM_CS1GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_WC) & BM_EIM_CS1GCR1_WC)
 #else
-#define BF_EIM_CSGCR11_WC(v)   (((v) << 11) & BM_EIM_CSGCR11_WC)
+//! @brief Format value for bitfield EIM_CS1GCR1_WC.
+#define BF_EIM_CS1GCR1_WC(v)   (((v) << BP_EIM_CS1GCR1_WC) & BM_EIM_CS1GCR1_WC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
-#define BW_EIM_CSGCR11_WC(v)   BF_CS1(EIM_CSGCR11, WC, v)
+#define BW_EIM_CS1GCR1_WC(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_WC) | BF_EIM_CS1GCR1_WC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field BCD[13:12] (RW)
+/* --- Register HW_EIM_CS1GCR1, field BCD[13:12] (RW)
  *
  * Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor
  * for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a
@@ -2017,21 +2391,27 @@ typedef union
  * 11 - Divide EIM clock by 4
  */
 
-#define BP_EIM_CSGCR11_BCD      (12)
-#define BM_EIM_CSGCR11_BCD      (0x00003000)
+#define BP_EIM_CS1GCR1_BCD      (12)      //!< Bit position for EIM_CS1GCR1_BCD.
+#define BM_EIM_CS1GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS1GCR1_BCD.
+
+//! @brief Get value of EIM_CS1GCR1_BCD from a register value.
+#define BG_EIM_CS1GCR1_BCD(r)   (((r) & BM_EIM_CS1GCR1_BCD) >> BP_EIM_CS1GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_BCD(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR11_BCD)
+//! @brief Format value for bitfield EIM_CS1GCR1_BCD.
+#define BF_EIM_CS1GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_BCD) & BM_EIM_CS1GCR1_BCD)
 #else
-#define BF_EIM_CSGCR11_BCD(v)   (((v) << 12) & BM_EIM_CSGCR11_BCD)
+//! @brief Format value for bitfield EIM_CS1GCR1_BCD.
+#define BF_EIM_CS1GCR1_BCD(v)   (((v) << BP_EIM_CS1GCR1_BCD) & BM_EIM_CS1GCR1_BCD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
-#define BW_EIM_CSGCR11_BCD(v)   BF_CS1(EIM_CSGCR11, BCD, v)
+#define BW_EIM_CS1GCR1_BCD(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_BCD) | BF_EIM_CS1GCR1_BCD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field BCS[15:14] (RW)
+/* --- Register HW_EIM_CS1GCR1, field BCS[15:14] (RW)
  *
  * Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles
  * delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of
@@ -2046,21 +2426,27 @@ typedef union
  * 11 - 3 EIM clock cycle additional delay
  */
 
-#define BP_EIM_CSGCR11_BCS      (14)
-#define BM_EIM_CSGCR11_BCS      (0x0000c000)
+#define BP_EIM_CS1GCR1_BCS      (14)      //!< Bit position for EIM_CS1GCR1_BCS.
+#define BM_EIM_CS1GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS1GCR1_BCS.
+
+//! @brief Get value of EIM_CS1GCR1_BCS from a register value.
+#define BG_EIM_CS1GCR1_BCS(r)   (((r) & BM_EIM_CS1GCR1_BCS) >> BP_EIM_CS1GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_BCS(v)   ((((reg32_t) v) << 14) & BM_EIM_CSGCR11_BCS)
+//! @brief Format value for bitfield EIM_CS1GCR1_BCS.
+#define BF_EIM_CS1GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_BCS) & BM_EIM_CS1GCR1_BCS)
 #else
-#define BF_EIM_CSGCR11_BCS(v)   (((v) << 14) & BM_EIM_CSGCR11_BCS)
+//! @brief Format value for bitfield EIM_CS1GCR1_BCS.
+#define BF_EIM_CS1GCR1_BCS(v)   (((v) << BP_EIM_CS1GCR1_BCS) & BM_EIM_CS1GCR1_BCS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
-#define BW_EIM_CSGCR11_BCS(v)   BF_CS1(EIM_CSGCR11, BCS, v)
+#define BW_EIM_CS1GCR1_BCS(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_BCS) | BF_EIM_CS1GCR1_BCS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field DSZ[18:16] (RW)
+/* --- Register HW_EIM_CS1GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
  * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
@@ -2078,21 +2464,27 @@ typedef union
  * 111 - 8 bit port resides on DATA[31:24]
  */
 
-#define BP_EIM_CSGCR11_DSZ      (16)
-#define BM_EIM_CSGCR11_DSZ      (0x00070000)
+#define BP_EIM_CS1GCR1_DSZ      (16)      //!< Bit position for EIM_CS1GCR1_DSZ.
+#define BM_EIM_CS1GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS1GCR1_DSZ.
+
+//! @brief Get value of EIM_CS1GCR1_DSZ from a register value.
+#define BG_EIM_CS1GCR1_DSZ(r)   (((r) & BM_EIM_CS1GCR1_DSZ) >> BP_EIM_CS1GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_DSZ(v)   ((((reg32_t) v) << 16) & BM_EIM_CSGCR11_DSZ)
+//! @brief Format value for bitfield EIM_CS1GCR1_DSZ.
+#define BF_EIM_CS1GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_DSZ) & BM_EIM_CS1GCR1_DSZ)
 #else
-#define BF_EIM_CSGCR11_DSZ(v)   (((v) << 16) & BM_EIM_CSGCR11_DSZ)
+//! @brief Format value for bitfield EIM_CS1GCR1_DSZ.
+#define BF_EIM_CS1GCR1_DSZ(v)   (((v) << BP_EIM_CS1GCR1_DSZ) & BM_EIM_CS1GCR1_DSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
-#define BW_EIM_CSGCR11_DSZ(v)   BF_CS1(EIM_CSGCR11, DSZ, v)
+#define BW_EIM_CS1GCR1_DSZ(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_DSZ) | BF_EIM_CS1GCR1_DSZ(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field SP[19:19] (RW)
+/* --- Register HW_EIM_CS1GCR1, field SP[19] (RW)
  *
  * Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding
  * chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
@@ -2103,21 +2495,27 @@ typedef union
  *     User mode results in an error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR11_SP      (19)
-#define BM_EIM_CSGCR11_SP      (0x00080000)
+#define BP_EIM_CS1GCR1_SP      (19)      //!< Bit position for EIM_CS1GCR1_SP.
+#define BM_EIM_CS1GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS1GCR1_SP.
+
+//! @brief Get value of EIM_CS1GCR1_SP from a register value.
+#define BG_EIM_CS1GCR1_SP(r)   (((r) & BM_EIM_CS1GCR1_SP) >> BP_EIM_CS1GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_SP(v)   ((((reg32_t) v) << 19) & BM_EIM_CSGCR11_SP)
+//! @brief Format value for bitfield EIM_CS1GCR1_SP.
+#define BF_EIM_CS1GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_SP) & BM_EIM_CS1GCR1_SP)
 #else
-#define BF_EIM_CSGCR11_SP(v)   (((v) << 19) & BM_EIM_CSGCR11_SP)
+//! @brief Format value for bitfield EIM_CS1GCR1_SP.
+#define BF_EIM_CS1GCR1_SP(v)   (((v) << BP_EIM_CS1GCR1_SP) & BM_EIM_CS1GCR1_SP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
-#define BW_EIM_CSGCR11_SP(v)   BF_CS1(EIM_CSGCR11, SP, v)
+#define BW_EIM_CS1GCR1_SP(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_SP) | BF_EIM_CS1GCR1_SP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field CSREC[22:20] (RW)
+/* --- Register HW_EIM_CS1GCR1, field CSREC[22:20] (RW)
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
@@ -2132,21 +2530,27 @@ typedef union
  * 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 
-#define BP_EIM_CSGCR11_CSREC      (20)
-#define BM_EIM_CSGCR11_CSREC      (0x00700000)
+#define BP_EIM_CS1GCR1_CSREC      (20)      //!< Bit position for EIM_CS1GCR1_CSREC.
+#define BM_EIM_CS1GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS1GCR1_CSREC.
+
+//! @brief Get value of EIM_CS1GCR1_CSREC from a register value.
+#define BG_EIM_CS1GCR1_CSREC(r)   (((r) & BM_EIM_CS1GCR1_CSREC) >> BP_EIM_CS1GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_CSREC(v)   ((((reg32_t) v) << 20) & BM_EIM_CSGCR11_CSREC)
+//! @brief Format value for bitfield EIM_CS1GCR1_CSREC.
+#define BF_EIM_CS1GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CSREC) & BM_EIM_CS1GCR1_CSREC)
 #else
-#define BF_EIM_CSGCR11_CSREC(v)   (((v) << 20) & BM_EIM_CSGCR11_CSREC)
+//! @brief Format value for bitfield EIM_CS1GCR1_CSREC.
+#define BF_EIM_CS1GCR1_CSREC(v)   (((v) << BP_EIM_CS1GCR1_CSREC) & BM_EIM_CS1GCR1_CSREC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
-#define BW_EIM_CSGCR11_CSREC(v)   BF_CS1(EIM_CSGCR11, CSREC, v)
+#define BW_EIM_CS1GCR1_CSREC(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CSREC) | BF_EIM_CS1GCR1_CSREC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field AUS[23:23] (RW)
+/* --- Register HW_EIM_CS1GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
  * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
@@ -2157,21 +2561,27 @@ typedef union
  * 1 - Address unshifted
  */
 
-#define BP_EIM_CSGCR11_AUS      (23)
-#define BM_EIM_CSGCR11_AUS      (0x00800000)
+#define BP_EIM_CS1GCR1_AUS      (23)      //!< Bit position for EIM_CS1GCR1_AUS.
+#define BM_EIM_CS1GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS1GCR1_AUS.
+
+//! @brief Get value of EIM_CS1GCR1_AUS from a register value.
+#define BG_EIM_CS1GCR1_AUS(r)   (((r) & BM_EIM_CS1GCR1_AUS) >> BP_EIM_CS1GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_AUS(v)   ((((reg32_t) v) << 23) & BM_EIM_CSGCR11_AUS)
+//! @brief Format value for bitfield EIM_CS1GCR1_AUS.
+#define BF_EIM_CS1GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_AUS) & BM_EIM_CS1GCR1_AUS)
 #else
-#define BF_EIM_CSGCR11_AUS(v)   (((v) << 23) & BM_EIM_CSGCR11_AUS)
+//! @brief Format value for bitfield EIM_CS1GCR1_AUS.
+#define BF_EIM_CS1GCR1_AUS(v)   (((v) << BP_EIM_CS1GCR1_AUS) & BM_EIM_CS1GCR1_AUS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
-#define BW_EIM_CSGCR11_AUS(v)   BF_CS1(EIM_CSGCR11, AUS, v)
+#define BW_EIM_CS1GCR1_AUS(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_AUS) | BF_EIM_CS1GCR1_AUS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field GBC[26:24] (RW)
+/* --- Register HW_EIM_CS1GCR1, field GBC[26:24] (RW)
  *
  * Gap Between Chip Selects. This bit field, according to the settings shown below, determines the
  * minimum time between end of access to the current chip select and start of access to different
@@ -2184,21 +2594,27 @@ typedef union
  * 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 
-#define BP_EIM_CSGCR11_GBC      (24)
-#define BM_EIM_CSGCR11_GBC      (0x07000000)
+#define BP_EIM_CS1GCR1_GBC      (24)      //!< Bit position for EIM_CS1GCR1_GBC.
+#define BM_EIM_CS1GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS1GCR1_GBC.
+
+//! @brief Get value of EIM_CS1GCR1_GBC from a register value.
+#define BG_EIM_CS1GCR1_GBC(r)   (((r) & BM_EIM_CS1GCR1_GBC) >> BP_EIM_CS1GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_GBC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSGCR11_GBC)
+//! @brief Format value for bitfield EIM_CS1GCR1_GBC.
+#define BF_EIM_CS1GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_GBC) & BM_EIM_CS1GCR1_GBC)
 #else
-#define BF_EIM_CSGCR11_GBC(v)   (((v) << 24) & BM_EIM_CSGCR11_GBC)
+//! @brief Format value for bitfield EIM_CS1GCR1_GBC.
+#define BF_EIM_CS1GCR1_GBC(v)   (((v) << BP_EIM_CS1GCR1_GBC) & BM_EIM_CS1GCR1_GBC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
-#define BW_EIM_CSGCR11_GBC(v)   BF_CS1(EIM_CSGCR11, GBC, v)
+#define BW_EIM_CS1GCR1_GBC(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_GBC) | BF_EIM_CS1GCR1_GBC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field WP[27:27] (RW)
+/* --- Register HW_EIM_CS1GCR1, field WP[27] (RW)
  *
  * Write Protect. This bit prevents writes to the address range defined by the corresponding chip
  * select. WP is cleared by a hardware reset.
@@ -2209,21 +2625,27 @@ typedef union
  *     error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR11_WP      (27)
-#define BM_EIM_CSGCR11_WP      (0x08000000)
+#define BP_EIM_CS1GCR1_WP      (27)      //!< Bit position for EIM_CS1GCR1_WP.
+#define BM_EIM_CS1GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS1GCR1_WP.
+
+//! @brief Get value of EIM_CS1GCR1_WP from a register value.
+#define BG_EIM_CS1GCR1_WP(r)   (((r) & BM_EIM_CS1GCR1_WP) >> BP_EIM_CS1GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_WP(v)   ((((reg32_t) v) << 27) & BM_EIM_CSGCR11_WP)
+//! @brief Format value for bitfield EIM_CS1GCR1_WP.
+#define BF_EIM_CS1GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_WP) & BM_EIM_CS1GCR1_WP)
 #else
-#define BF_EIM_CSGCR11_WP(v)   (((v) << 27) & BM_EIM_CSGCR11_WP)
+//! @brief Format value for bitfield EIM_CS1GCR1_WP.
+#define BF_EIM_CS1GCR1_WP(v)   (((v) << BP_EIM_CS1GCR1_WP) & BM_EIM_CS1GCR1_WP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
-#define BW_EIM_CSGCR11_WP(v)   BF_CS1(EIM_CSGCR11, WP, v)
+#define BW_EIM_CS1GCR1_WP(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_WP) | BF_EIM_CS1GCR1_WP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR11, field PSZ[31:28] (RW)
+/* --- Register HW_EIM_CS1GCR1, field PSZ[31:28] (RW)
  *
  * Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field).
  * PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync.
@@ -2246,62 +2668,70 @@ typedef union
  * 1001 - - 1111 Reserved
  */
 
-#define BP_EIM_CSGCR11_PSZ      (28)
-#define BM_EIM_CSGCR11_PSZ      (0xf0000000)
+#define BP_EIM_CS1GCR1_PSZ      (28)      //!< Bit position for EIM_CS1GCR1_PSZ.
+#define BM_EIM_CS1GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS1GCR1_PSZ.
+
+//! @brief Get value of EIM_CS1GCR1_PSZ from a register value.
+#define BG_EIM_CS1GCR1_PSZ(r)   (((r) & BM_EIM_CS1GCR1_PSZ) >> BP_EIM_CS1GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR11_PSZ(v)   ((((reg32_t) v) << 28) & BM_EIM_CSGCR11_PSZ)
+//! @brief Format value for bitfield EIM_CS1GCR1_PSZ.
+#define BF_EIM_CS1GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_PSZ) & BM_EIM_CS1GCR1_PSZ)
 #else
-#define BF_EIM_CSGCR11_PSZ(v)   (((v) << 28) & BM_EIM_CSGCR11_PSZ)
+//! @brief Format value for bitfield EIM_CS1GCR1_PSZ.
+#define BF_EIM_CS1GCR1_PSZ(v)   (((v) << BP_EIM_CS1GCR1_PSZ) & BM_EIM_CS1GCR1_PSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
-#define BW_EIM_CSGCR11_PSZ(v)   BF_CS1(EIM_CSGCR11, PSZ, v)
+#define BW_EIM_CS1GCR1_PSZ(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_PSZ) | BF_EIM_CS1GCR1_PSZ(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR21 - Chip Select n General Configuration Register 2 1 (RW)
+ * @brief HW_EIM_CS1GCR2 - Chip Select n General Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00001000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs1gcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs1gcr2_bitfields
     {
-        unsigned ADH : 2; //!< Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned DAPS : 4; //!< Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
-        unsigned RESERVED2 : 19; //!< Reserved
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
-} hw_eim_csgcr21_t;
+} hw_eim_cs1gcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR21 register
+ * constants & macros for entire EIM_CS1GCR2 register
  */
-#define HW_EIM_CSGCR21_ADDR      (REGS_EIM_BASE + 0x1c)
+#define HW_EIM_CS1GCR2_ADDR      (REGS_EIM_BASE + 0x1c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR21           (*(volatile hw_eim_csgcr21_t *) HW_EIM_CSGCR21_ADDR)
-#define HW_EIM_CSGCR21_RD()      (HW_EIM_CSGCR21.U)
-#define HW_EIM_CSGCR21_WR(v)     (HW_EIM_CSGCR21.U = (v))
-#define HW_EIM_CSGCR21_SET(v)    (HW_EIM_CSGCR21_WR(HW_EIM_CSGCR21_RD() |  (v)))
-#define HW_EIM_CSGCR21_CLR(v)    (HW_EIM_CSGCR21_WR(HW_EIM_CSGCR21_RD() & ~(v)))
-#define HW_EIM_CSGCR21_TOG(v)    (HW_EIM_CSGCR21_WR(HW_EIM_CSGCR21_RD() ^  (v)))
+#define HW_EIM_CS1GCR2           (*(volatile hw_eim_cs1gcr2_t *) HW_EIM_CS1GCR2_ADDR)
+#define HW_EIM_CS1GCR2_RD()      (HW_EIM_CS1GCR2.U)
+#define HW_EIM_CS1GCR2_WR(v)     (HW_EIM_CS1GCR2.U = (v))
+#define HW_EIM_CS1GCR2_SET(v)    (HW_EIM_CS1GCR2_WR(HW_EIM_CS1GCR2_RD() |  (v)))
+#define HW_EIM_CS1GCR2_CLR(v)    (HW_EIM_CS1GCR2_WR(HW_EIM_CS1GCR2_RD() & ~(v)))
+#define HW_EIM_CS1GCR2_TOG(v)    (HW_EIM_CS1GCR2_WR(HW_EIM_CS1GCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR21 bitfields
+ * constants & macros for individual EIM_CS1GCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR21, field ADH[1:0] (RW)
+/* --- Register HW_EIM_CS1GCR2, field ADH[1:0] (RW)
  *
  * Address hold time - This bit field determine the address hold time after ADV negation when mum =
  * 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when
@@ -2315,21 +2745,27 @@ typedef union
  * 11 - Reserved
  */
 
-#define BP_EIM_CSGCR21_ADH      (0)
-#define BM_EIM_CSGCR21_ADH      (0x00000003)
+#define BP_EIM_CS1GCR2_ADH      (0)      //!< Bit position for EIM_CS1GCR2_ADH.
+#define BM_EIM_CS1GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS1GCR2_ADH.
+
+//! @brief Get value of EIM_CS1GCR2_ADH from a register value.
+#define BG_EIM_CS1GCR2_ADH(r)   (((r) & BM_EIM_CS1GCR2_ADH) >> BP_EIM_CS1GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR21_ADH(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR21_ADH)
+//! @brief Format value for bitfield EIM_CS1GCR2_ADH.
+#define BF_EIM_CS1GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_ADH) & BM_EIM_CS1GCR2_ADH)
 #else
-#define BF_EIM_CSGCR21_ADH(v)   (((v) << 0) & BM_EIM_CSGCR21_ADH)
+//! @brief Format value for bitfield EIM_CS1GCR2_ADH.
+#define BF_EIM_CS1GCR2_ADH(v)   (((v) << BP_EIM_CS1GCR2_ADH) & BM_EIM_CS1GCR2_ADH)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
-#define BW_EIM_CSGCR21_ADH(v)   BF_CS1(EIM_CSGCR21, ADH, v)
+#define BW_EIM_CS1GCR2_ADH(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_ADH) | BF_EIM_CS1GCR2_ADH(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR21, field DAPS[7:4] (RW)
+/* --- Register HW_EIM_CS1GCR2, field DAPS[7:4] (RW)
  *
  * Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal
  * polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an
@@ -2345,21 +2781,27 @@ typedef union
  * 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 
-#define BP_EIM_CSGCR21_DAPS      (4)
-#define BM_EIM_CSGCR21_DAPS      (0x000000f0)
+#define BP_EIM_CS1GCR2_DAPS      (4)      //!< Bit position for EIM_CS1GCR2_DAPS.
+#define BM_EIM_CS1GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS1GCR2_DAPS.
+
+//! @brief Get value of EIM_CS1GCR2_DAPS from a register value.
+#define BG_EIM_CS1GCR2_DAPS(r)   (((r) & BM_EIM_CS1GCR2_DAPS) >> BP_EIM_CS1GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR21_DAPS(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR21_DAPS)
+//! @brief Format value for bitfield EIM_CS1GCR2_DAPS.
+#define BF_EIM_CS1GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_DAPS) & BM_EIM_CS1GCR2_DAPS)
 #else
-#define BF_EIM_CSGCR21_DAPS(v)   (((v) << 4) & BM_EIM_CSGCR21_DAPS)
+//! @brief Format value for bitfield EIM_CS1GCR2_DAPS.
+#define BF_EIM_CS1GCR2_DAPS(v)   (((v) << BP_EIM_CS1GCR2_DAPS) & BM_EIM_CS1GCR2_DAPS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
-#define BW_EIM_CSGCR21_DAPS(v)   BF_CS1(EIM_CSGCR21, DAPS, v)
+#define BW_EIM_CS1GCR2_DAPS(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_DAPS) | BF_EIM_CS1GCR2_DAPS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR21, field DAE[8:8] (RW)
+/* --- Register HW_EIM_CS1GCR2, field DAE[8] (RW)
  *
  * Data Acknowledge Enable. This bit indicates external device is using DTACK pin as
  * strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read
@@ -2371,21 +2813,27 @@ typedef union
  * 1 - DTACK signal use is enable
  */
 
-#define BP_EIM_CSGCR21_DAE      (8)
-#define BM_EIM_CSGCR21_DAE      (0x00000100)
+#define BP_EIM_CS1GCR2_DAE      (8)      //!< Bit position for EIM_CS1GCR2_DAE.
+#define BM_EIM_CS1GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS1GCR2_DAE.
+
+//! @brief Get value of EIM_CS1GCR2_DAE from a register value.
+#define BG_EIM_CS1GCR2_DAE(r)   (((r) & BM_EIM_CS1GCR2_DAE) >> BP_EIM_CS1GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR21_DAE(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR21_DAE)
+//! @brief Format value for bitfield EIM_CS1GCR2_DAE.
+#define BF_EIM_CS1GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_DAE) & BM_EIM_CS1GCR2_DAE)
 #else
-#define BF_EIM_CSGCR21_DAE(v)   (((v) << 8) & BM_EIM_CSGCR21_DAE)
+//! @brief Format value for bitfield EIM_CS1GCR2_DAE.
+#define BF_EIM_CS1GCR2_DAE(v)   (((v) << BP_EIM_CS1GCR2_DAE) & BM_EIM_CS1GCR2_DAE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
-#define BW_EIM_CSGCR21_DAE(v)   BF_CS1(EIM_CSGCR21, DAE, v)
+#define BW_EIM_CS1GCR2_DAE(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_DAE) | BF_EIM_CS1GCR2_DAE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR21, field DAP[9:9] (RW)
+/* --- Register HW_EIM_CS1GCR2, field DAP[9] (RW)
  *
  * Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or
  * active-high, while executing an async access using DTACK signal from the external device. DAP is
@@ -2396,21 +2844,27 @@ typedef union
  * 1 - DTACK signal is active low
  */
 
-#define BP_EIM_CSGCR21_DAP      (9)
-#define BM_EIM_CSGCR21_DAP      (0x00000200)
+#define BP_EIM_CS1GCR2_DAP      (9)      //!< Bit position for EIM_CS1GCR2_DAP.
+#define BM_EIM_CS1GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS1GCR2_DAP.
+
+//! @brief Get value of EIM_CS1GCR2_DAP from a register value.
+#define BG_EIM_CS1GCR2_DAP(r)   (((r) & BM_EIM_CS1GCR2_DAP) >> BP_EIM_CS1GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR21_DAP(v)   ((((reg32_t) v) << 9) & BM_EIM_CSGCR21_DAP)
+//! @brief Format value for bitfield EIM_CS1GCR2_DAP.
+#define BF_EIM_CS1GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_DAP) & BM_EIM_CS1GCR2_DAP)
 #else
-#define BF_EIM_CSGCR21_DAP(v)   (((v) << 9) & BM_EIM_CSGCR21_DAP)
+//! @brief Format value for bitfield EIM_CS1GCR2_DAP.
+#define BF_EIM_CS1GCR2_DAP(v)   (((v) << BP_EIM_CS1GCR2_DAP) & BM_EIM_CS1GCR2_DAP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
-#define BW_EIM_CSGCR21_DAP(v)   BF_CS1(EIM_CSGCR21, DAP, v)
+#define BW_EIM_CS1GCR2_DAP(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_DAP) | BF_EIM_CS1GCR2_DAP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR21, field MUX16_BYP_GRANT[12:12] (RW)
+/* --- Register HW_EIM_CS1GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
  * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
@@ -2421,68 +2875,76 @@ typedef union
  * 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 
-#define BP_EIM_CSGCR21_MUX16_BYP_GRANT      (12)
-#define BM_EIM_CSGCR21_MUX16_BYP_GRANT      (0x00001000)
+#define BP_EIM_CS1GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS1GCR2_MUX16_BYP_GRANT.
+#define BM_EIM_CS1GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS1GCR2_MUX16_BYP_GRANT.
+
+//! @brief Get value of EIM_CS1GCR2_MUX16_BYP_GRANT from a register value.
+#define BG_EIM_CS1GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS1GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR21_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR21_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS1GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_MUX16_BYP_GRANT) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT)
 #else
-#define BF_EIM_CSGCR21_MUX16_BYP_GRANT(v)   (((v) << 12) & BM_EIM_CSGCR21_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS1GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS1GCR2_MUX16_BYP_GRANT) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
-#define BW_EIM_CSGCR21_MUX16_BYP_GRANT(v)   BF_CS1(EIM_CSGCR21, MUX16_BYP_GRANT, v)
+#define BW_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_MUX16_BYP_GRANT) | BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR11 - Chip Select n Read Configuration Register 1 1 (RW)
+ * @brief HW_EIM_CS1RCR1 - Chip Select n Read Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs1rcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs1rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RCSA : 3; //!< Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned OEN : 3; //!< OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned OEA : 3; //!< OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED4 : 1; //!< Reserved
-        unsigned RWSC : 6; //!< Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
-        unsigned RESERVED5 : 2; //!< Reserved
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [3] Reserved
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED1 : 1; //!< [7] Reserved
+        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED2 : 1; //!< [11] Reserved
+        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned RESERVED3 : 1; //!< [15] Reserved
+        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
+        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED4 : 1; //!< [23] Reserved
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
-} hw_eim_csrcr11_t;
+} hw_eim_cs1rcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR11 register
+ * constants & macros for entire EIM_CS1RCR1 register
  */
-#define HW_EIM_CSRCR11_ADDR      (REGS_EIM_BASE + 0x20)
+#define HW_EIM_CS1RCR1_ADDR      (REGS_EIM_BASE + 0x20)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR11           (*(volatile hw_eim_csrcr11_t *) HW_EIM_CSRCR11_ADDR)
-#define HW_EIM_CSRCR11_RD()      (HW_EIM_CSRCR11.U)
-#define HW_EIM_CSRCR11_WR(v)     (HW_EIM_CSRCR11.U = (v))
-#define HW_EIM_CSRCR11_SET(v)    (HW_EIM_CSRCR11_WR(HW_EIM_CSRCR11_RD() |  (v)))
-#define HW_EIM_CSRCR11_CLR(v)    (HW_EIM_CSRCR11_WR(HW_EIM_CSRCR11_RD() & ~(v)))
-#define HW_EIM_CSRCR11_TOG(v)    (HW_EIM_CSRCR11_WR(HW_EIM_CSRCR11_RD() ^  (v)))
+#define HW_EIM_CS1RCR1           (*(volatile hw_eim_cs1rcr1_t *) HW_EIM_CS1RCR1_ADDR)
+#define HW_EIM_CS1RCR1_RD()      (HW_EIM_CS1RCR1.U)
+#define HW_EIM_CS1RCR1_WR(v)     (HW_EIM_CS1RCR1.U = (v))
+#define HW_EIM_CS1RCR1_SET(v)    (HW_EIM_CS1RCR1_WR(HW_EIM_CS1RCR1_RD() |  (v)))
+#define HW_EIM_CS1RCR1_CLR(v)    (HW_EIM_CS1RCR1_WR(HW_EIM_CS1RCR1_RD() & ~(v)))
+#define HW_EIM_CS1RCR1_TOG(v)    (HW_EIM_CS1RCR1_WR(HW_EIM_CS1RCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR11 bitfields
+ * constants & macros for individual EIM_CS1RCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR11, field RCSN[2:0] (RW)
+/* --- Register HW_EIM_CS1RCR1, field RCSN[2:0] (RW)
  *
  * Read CS Negation. This bit field determines when CS signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -2495,21 +2957,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSRCR11_RCSN      (0)
-#define BM_EIM_CSRCR11_RCSN      (0x00000007)
+#define BP_EIM_CS1RCR1_RCSN      (0)      //!< Bit position for EIM_CS1RCR1_RCSN.
+#define BM_EIM_CS1RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS1RCR1_RCSN.
+
+//! @brief Get value of EIM_CS1RCR1_RCSN from a register value.
+#define BG_EIM_CS1RCR1_RCSN(r)   (((r) & BM_EIM_CS1RCR1_RCSN) >> BP_EIM_CS1RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_RCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR11_RCSN)
+//! @brief Format value for bitfield EIM_CS1RCR1_RCSN.
+#define BF_EIM_CS1RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RCSN) & BM_EIM_CS1RCR1_RCSN)
 #else
-#define BF_EIM_CSRCR11_RCSN(v)   (((v) << 0) & BM_EIM_CSRCR11_RCSN)
+//! @brief Format value for bitfield EIM_CS1RCR1_RCSN.
+#define BF_EIM_CS1RCR1_RCSN(v)   (((v) << BP_EIM_CS1RCR1_RCSN) & BM_EIM_CS1RCR1_RCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
-#define BW_EIM_CSRCR11_RCSN(v)   BF_CS1(EIM_CSRCR11, RCSN, v)
+#define BW_EIM_CS1RCR1_RCSN(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RCSN) | BF_EIM_CS1RCR1_RCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR11, field RCSA[6:4] (RW)
+/* --- Register HW_EIM_CS1RCR1, field RCSA[6:4] (RW)
  *
  * Read CS Assertion. This bit field determines when CS signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a
@@ -2522,21 +2990,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 
-#define BP_EIM_CSRCR11_RCSA      (4)
-#define BM_EIM_CSRCR11_RCSA      (0x00000070)
+#define BP_EIM_CS1RCR1_RCSA      (4)      //!< Bit position for EIM_CS1RCR1_RCSA.
+#define BM_EIM_CS1RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS1RCR1_RCSA.
+
+//! @brief Get value of EIM_CS1RCR1_RCSA from a register value.
+#define BG_EIM_CS1RCR1_RCSA(r)   (((r) & BM_EIM_CS1RCR1_RCSA) >> BP_EIM_CS1RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_RCSA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR11_RCSA)
+//! @brief Format value for bitfield EIM_CS1RCR1_RCSA.
+#define BF_EIM_CS1RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RCSA) & BM_EIM_CS1RCR1_RCSA)
 #else
-#define BF_EIM_CSRCR11_RCSA(v)   (((v) << 4) & BM_EIM_CSRCR11_RCSA)
+//! @brief Format value for bitfield EIM_CS1RCR1_RCSA.
+#define BF_EIM_CS1RCR1_RCSA(v)   (((v) << BP_EIM_CS1RCR1_RCSA) & BM_EIM_CS1RCR1_RCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
-#define BW_EIM_CSRCR11_RCSA(v)   BF_CS1(EIM_CSRCR11, RCSA, v)
+#define BW_EIM_CS1RCR1_RCSA(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RCSA) | BF_EIM_CS1RCR1_RCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR11, field OEN[10:8] (RW)
+/* --- Register HW_EIM_CS1RCR1, field OEN[10:8] (RW)
  *
  * OE Negation. This bit field determines when OE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -2549,21 +3023,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of access and OE negation
  */
 
-#define BP_EIM_CSRCR11_OEN      (8)
-#define BM_EIM_CSRCR11_OEN      (0x00000700)
+#define BP_EIM_CS1RCR1_OEN      (8)      //!< Bit position for EIM_CS1RCR1_OEN.
+#define BM_EIM_CS1RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS1RCR1_OEN.
+
+//! @brief Get value of EIM_CS1RCR1_OEN from a register value.
+#define BG_EIM_CS1RCR1_OEN(r)   (((r) & BM_EIM_CS1RCR1_OEN) >> BP_EIM_CS1RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_OEN(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR11_OEN)
+//! @brief Format value for bitfield EIM_CS1RCR1_OEN.
+#define BF_EIM_CS1RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_OEN) & BM_EIM_CS1RCR1_OEN)
 #else
-#define BF_EIM_CSRCR11_OEN(v)   (((v) << 8) & BM_EIM_CSRCR11_OEN)
+//! @brief Format value for bitfield EIM_CS1RCR1_OEN.
+#define BF_EIM_CS1RCR1_OEN(v)   (((v) << BP_EIM_CS1RCR1_OEN) & BM_EIM_CS1RCR1_OEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
-#define BW_EIM_CSRCR11_OEN(v)   BF_CS1(EIM_CSRCR11, OEN, v)
+#define BW_EIM_CS1RCR1_OEN(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_OEN) | BF_EIM_CS1RCR1_OEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR11, field OEA[14:12] (RW)
+/* --- Register HW_EIM_CS1RCR1, field OEA[14:12] (RW)
  *
  * OE Assertion. This bit field determines when OE signal are asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a
@@ -2579,21 +3059,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 
-#define BP_EIM_CSRCR11_OEA      (12)
-#define BM_EIM_CSRCR11_OEA      (0x00007000)
+#define BP_EIM_CS1RCR1_OEA      (12)      //!< Bit position for EIM_CS1RCR1_OEA.
+#define BM_EIM_CS1RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS1RCR1_OEA.
+
+//! @brief Get value of EIM_CS1RCR1_OEA from a register value.
+#define BG_EIM_CS1RCR1_OEA(r)   (((r) & BM_EIM_CS1RCR1_OEA) >> BP_EIM_CS1RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_OEA(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR11_OEA)
+//! @brief Format value for bitfield EIM_CS1RCR1_OEA.
+#define BF_EIM_CS1RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_OEA) & BM_EIM_CS1RCR1_OEA)
 #else
-#define BF_EIM_CSRCR11_OEA(v)   (((v) << 12) & BM_EIM_CSRCR11_OEA)
+//! @brief Format value for bitfield EIM_CS1RCR1_OEA.
+#define BF_EIM_CS1RCR1_OEA(v)   (((v) << BP_EIM_CS1RCR1_OEA) & BM_EIM_CS1RCR1_OEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
-#define BW_EIM_CSRCR11_OEA(v)   BF_CS1(EIM_CSRCR11, OEA, v)
+#define BW_EIM_CS1RCR1_OEA(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_OEA) | BF_EIM_CS1RCR1_OEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR11, field RADVN[18:16] (RW)
+/* --- Register HW_EIM_CS1RCR1, field RADVN[18:16] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during read
  * accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following
@@ -2605,20 +3091,26 @@ typedef union
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 
-#define BP_EIM_CSRCR11_RADVN      (16)
-#define BM_EIM_CSRCR11_RADVN      (0x00070000)
+#define BP_EIM_CS1RCR1_RADVN      (16)      //!< Bit position for EIM_CS1RCR1_RADVN.
+#define BM_EIM_CS1RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS1RCR1_RADVN.
+
+//! @brief Get value of EIM_CS1RCR1_RADVN from a register value.
+#define BG_EIM_CS1RCR1_RADVN(r)   (((r) & BM_EIM_CS1RCR1_RADVN) >> BP_EIM_CS1RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_RADVN(v)   ((((reg32_t) v) << 16) & BM_EIM_CSRCR11_RADVN)
+//! @brief Format value for bitfield EIM_CS1RCR1_RADVN.
+#define BF_EIM_CS1RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RADVN) & BM_EIM_CS1RCR1_RADVN)
 #else
-#define BF_EIM_CSRCR11_RADVN(v)   (((v) << 16) & BM_EIM_CSRCR11_RADVN)
+//! @brief Format value for bitfield EIM_CS1RCR1_RADVN.
+#define BF_EIM_CS1RCR1_RADVN(v)   (((v) << BP_EIM_CS1RCR1_RADVN) & BM_EIM_CS1RCR1_RADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
-#define BW_EIM_CSRCR11_RADVN(v)   BF_CS1(EIM_CSRCR11, RADVN, v)
+#define BW_EIM_CS1RCR1_RADVN(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RADVN) | BF_EIM_CS1RCR1_RADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR11, field RAL[19:19] (RW)
+/* --- Register HW_EIM_CS1RCR1, field RAL[19] (RW)
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
@@ -2626,20 +3118,26 @@ typedef union
  * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
  */
 
-#define BP_EIM_CSRCR11_RAL      (19)
-#define BM_EIM_CSRCR11_RAL      (0x00080000)
+#define BP_EIM_CS1RCR1_RAL      (19)      //!< Bit position for EIM_CS1RCR1_RAL.
+#define BM_EIM_CS1RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS1RCR1_RAL.
+
+//! @brief Get value of EIM_CS1RCR1_RAL from a register value.
+#define BG_EIM_CS1RCR1_RAL(r)   (((r) & BM_EIM_CS1RCR1_RAL) >> BP_EIM_CS1RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_RAL(v)   ((((reg32_t) v) << 19) & BM_EIM_CSRCR11_RAL)
+//! @brief Format value for bitfield EIM_CS1RCR1_RAL.
+#define BF_EIM_CS1RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RAL) & BM_EIM_CS1RCR1_RAL)
 #else
-#define BF_EIM_CSRCR11_RAL(v)   (((v) << 19) & BM_EIM_CSRCR11_RAL)
+//! @brief Format value for bitfield EIM_CS1RCR1_RAL.
+#define BF_EIM_CS1RCR1_RAL(v)   (((v) << BP_EIM_CS1RCR1_RAL) & BM_EIM_CS1RCR1_RAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
-#define BW_EIM_CSRCR11_RAL(v)   BF_CS1(EIM_CSRCR11, RAL, v)
+#define BW_EIM_CS1RCR1_RAL(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RAL) | BF_EIM_CS1RCR1_RAL(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR11, field RADVA[22:20] (RW)
+/* --- Register HW_EIM_CS1RCR1, field RADVA[22:20] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware
@@ -2652,21 +3150,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSRCR11_RADVA      (20)
-#define BM_EIM_CSRCR11_RADVA      (0x00700000)
+#define BP_EIM_CS1RCR1_RADVA      (20)      //!< Bit position for EIM_CS1RCR1_RADVA.
+#define BM_EIM_CS1RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS1RCR1_RADVA.
+
+//! @brief Get value of EIM_CS1RCR1_RADVA from a register value.
+#define BG_EIM_CS1RCR1_RADVA(r)   (((r) & BM_EIM_CS1RCR1_RADVA) >> BP_EIM_CS1RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_RADVA(v)   ((((reg32_t) v) << 20) & BM_EIM_CSRCR11_RADVA)
+//! @brief Format value for bitfield EIM_CS1RCR1_RADVA.
+#define BF_EIM_CS1RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RADVA) & BM_EIM_CS1RCR1_RADVA)
 #else
-#define BF_EIM_CSRCR11_RADVA(v)   (((v) << 20) & BM_EIM_CSRCR11_RADVA)
+//! @brief Format value for bitfield EIM_CS1RCR1_RADVA.
+#define BF_EIM_CS1RCR1_RADVA(v)   (((v) << BP_EIM_CS1RCR1_RADVA) & BM_EIM_CS1RCR1_RADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
-#define BW_EIM_CSRCR11_RADVA(v)   BF_CS1(EIM_CSRCR11, RADVA, v)
+#define BW_EIM_CS1RCR1_RADVA(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RADVA) | BF_EIM_CS1RCR1_RADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR11, field RWSC[29:24] (RW)
+/* --- Register HW_EIM_CS1RCR1, field RWSC[29:24] (RW)
  *
  * Read Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous read access to the external device
@@ -2692,63 +3196,71 @@ typedef union
  * 111111 - RWSC value is 63
  */
 
-#define BP_EIM_CSRCR11_RWSC      (24)
-#define BM_EIM_CSRCR11_RWSC      (0x3f000000)
+#define BP_EIM_CS1RCR1_RWSC      (24)      //!< Bit position for EIM_CS1RCR1_RWSC.
+#define BM_EIM_CS1RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS1RCR1_RWSC.
+
+//! @brief Get value of EIM_CS1RCR1_RWSC from a register value.
+#define BG_EIM_CS1RCR1_RWSC(r)   (((r) & BM_EIM_CS1RCR1_RWSC) >> BP_EIM_CS1RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR11_RWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSRCR11_RWSC)
+//! @brief Format value for bitfield EIM_CS1RCR1_RWSC.
+#define BF_EIM_CS1RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RWSC) & BM_EIM_CS1RCR1_RWSC)
 #else
-#define BF_EIM_CSRCR11_RWSC(v)   (((v) << 24) & BM_EIM_CSRCR11_RWSC)
+//! @brief Format value for bitfield EIM_CS1RCR1_RWSC.
+#define BF_EIM_CS1RCR1_RWSC(v)   (((v) << BP_EIM_CS1RCR1_RWSC) & BM_EIM_CS1RCR1_RWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
-#define BW_EIM_CSRCR11_RWSC(v)   BF_CS1(EIM_CSRCR11, RWSC, v)
+#define BW_EIM_CS1RCR1_RWSC(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RWSC) | BF_EIM_CS1RCR1_RWSC(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR21 - Chip Select n Read Configuration Register 2 1 (RW)
+ * @brief HW_EIM_CS1RCR2 - Chip Select n Read Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs1rcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs1rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RL : 2; //!< Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned PAT : 3; //!< Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
-        unsigned RESERVED2 : 16; //!< Reserved
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
+        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
-} hw_eim_csrcr21_t;
+} hw_eim_cs1rcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR21 register
+ * constants & macros for entire EIM_CS1RCR2 register
  */
-#define HW_EIM_CSRCR21_ADDR      (REGS_EIM_BASE + 0x24)
+#define HW_EIM_CS1RCR2_ADDR      (REGS_EIM_BASE + 0x24)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR21           (*(volatile hw_eim_csrcr21_t *) HW_EIM_CSRCR21_ADDR)
-#define HW_EIM_CSRCR21_RD()      (HW_EIM_CSRCR21.U)
-#define HW_EIM_CSRCR21_WR(v)     (HW_EIM_CSRCR21.U = (v))
-#define HW_EIM_CSRCR21_SET(v)    (HW_EIM_CSRCR21_WR(HW_EIM_CSRCR21_RD() |  (v)))
-#define HW_EIM_CSRCR21_CLR(v)    (HW_EIM_CSRCR21_WR(HW_EIM_CSRCR21_RD() & ~(v)))
-#define HW_EIM_CSRCR21_TOG(v)    (HW_EIM_CSRCR21_WR(HW_EIM_CSRCR21_RD() ^  (v)))
+#define HW_EIM_CS1RCR2           (*(volatile hw_eim_cs1rcr2_t *) HW_EIM_CS1RCR2_ADDR)
+#define HW_EIM_CS1RCR2_RD()      (HW_EIM_CS1RCR2.U)
+#define HW_EIM_CS1RCR2_WR(v)     (HW_EIM_CS1RCR2.U = (v))
+#define HW_EIM_CS1RCR2_SET(v)    (HW_EIM_CS1RCR2_WR(HW_EIM_CS1RCR2_RD() |  (v)))
+#define HW_EIM_CS1RCR2_CLR(v)    (HW_EIM_CS1RCR2_WR(HW_EIM_CS1RCR2_RD() & ~(v)))
+#define HW_EIM_CS1RCR2_TOG(v)    (HW_EIM_CS1RCR2_WR(HW_EIM_CS1RCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR21 bitfields
+ * constants & macros for individual EIM_CS1RCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR21, field RBEN[2:0] (RW)
+/* --- Register HW_EIM_CS1RCR2, field RBEN[2:0] (RW)
  *
  * Read BE Negation. This bit field determines when BE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit
@@ -2761,21 +3273,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 
-#define BP_EIM_CSRCR21_RBEN      (0)
-#define BM_EIM_CSRCR21_RBEN      (0x00000007)
+#define BP_EIM_CS1RCR2_RBEN      (0)      //!< Bit position for EIM_CS1RCR2_RBEN.
+#define BM_EIM_CS1RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS1RCR2_RBEN.
+
+//! @brief Get value of EIM_CS1RCR2_RBEN from a register value.
+#define BG_EIM_CS1RCR2_RBEN(r)   (((r) & BM_EIM_CS1RCR2_RBEN) >> BP_EIM_CS1RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR21_RBEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR21_RBEN)
+//! @brief Format value for bitfield EIM_CS1RCR2_RBEN.
+#define BF_EIM_CS1RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RBEN) & BM_EIM_CS1RCR2_RBEN)
 #else
-#define BF_EIM_CSRCR21_RBEN(v)   (((v) << 0) & BM_EIM_CSRCR21_RBEN)
+//! @brief Format value for bitfield EIM_CS1RCR2_RBEN.
+#define BF_EIM_CS1RCR2_RBEN(v)   (((v) << BP_EIM_CS1RCR2_RBEN) & BM_EIM_CS1RCR2_RBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
-#define BW_EIM_CSRCR21_RBEN(v)   BF_CS1(EIM_CSRCR21, RBEN, v)
+#define BW_EIM_CS1RCR2_RBEN(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RBEN) | BF_EIM_CS1RCR2_RBEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR21, field RBE[3:3] (RW)
+/* --- Register HW_EIM_CS1RCR2, field RBE[3] (RW)
  *
  * Read BE enable. This bit field determines if BE will be asserted during read access.
  *
@@ -2784,21 +3302,27 @@ typedef union
  * 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 
-#define BP_EIM_CSRCR21_RBE      (3)
-#define BM_EIM_CSRCR21_RBE      (0x00000008)
+#define BP_EIM_CS1RCR2_RBE      (3)      //!< Bit position for EIM_CS1RCR2_RBE.
+#define BM_EIM_CS1RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS1RCR2_RBE.
+
+//! @brief Get value of EIM_CS1RCR2_RBE from a register value.
+#define BG_EIM_CS1RCR2_RBE(r)   (((r) & BM_EIM_CS1RCR2_RBE) >> BP_EIM_CS1RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR21_RBE(v)   ((((reg32_t) v) << 3) & BM_EIM_CSRCR21_RBE)
+//! @brief Format value for bitfield EIM_CS1RCR2_RBE.
+#define BF_EIM_CS1RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RBE) & BM_EIM_CS1RCR2_RBE)
 #else
-#define BF_EIM_CSRCR21_RBE(v)   (((v) << 3) & BM_EIM_CSRCR21_RBE)
+//! @brief Format value for bitfield EIM_CS1RCR2_RBE.
+#define BF_EIM_CS1RCR2_RBE(v)   (((v) << BP_EIM_CS1RCR2_RBE) & BM_EIM_CS1RCR2_RBE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
-#define BW_EIM_CSRCR21_RBE(v)   BF_CS1(EIM_CSRCR21, RBE, v)
+#define BW_EIM_CS1RCR2_RBE(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RBE) | BF_EIM_CS1RCR2_RBE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR21, field RBEA[6:4] (RW)
+/* --- Register HW_EIM_CS1RCR2, field RBEA[6:4] (RW)
  *
  * Read BE Assertion. This bit field determines when BE signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a
@@ -2811,21 +3335,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 
-#define BP_EIM_CSRCR21_RBEA      (4)
-#define BM_EIM_CSRCR21_RBEA      (0x00000070)
+#define BP_EIM_CS1RCR2_RBEA      (4)      //!< Bit position for EIM_CS1RCR2_RBEA.
+#define BM_EIM_CS1RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS1RCR2_RBEA.
+
+//! @brief Get value of EIM_CS1RCR2_RBEA from a register value.
+#define BG_EIM_CS1RCR2_RBEA(r)   (((r) & BM_EIM_CS1RCR2_RBEA) >> BP_EIM_CS1RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR21_RBEA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR21_RBEA)
+//! @brief Format value for bitfield EIM_CS1RCR2_RBEA.
+#define BF_EIM_CS1RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RBEA) & BM_EIM_CS1RCR2_RBEA)
 #else
-#define BF_EIM_CSRCR21_RBEA(v)   (((v) << 4) & BM_EIM_CSRCR21_RBEA)
+//! @brief Format value for bitfield EIM_CS1RCR2_RBEA.
+#define BF_EIM_CS1RCR2_RBEA(v)   (((v) << BP_EIM_CS1RCR2_RBEA) & BM_EIM_CS1RCR2_RBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
-#define BW_EIM_CSRCR21_RBEA(v)   BF_CS1(EIM_CSRCR21, RBEA, v)
+#define BW_EIM_CS1RCR2_RBEA(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RBEA) | BF_EIM_CS1RCR2_RBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR21, field RL[9:8] (RW)
+/* --- Register HW_EIM_CS1RCR2, field RL[9:8] (RW)
  *
  * Read Latency. This bit field indicates cycle latency when executing a synchronous read operation.
  * The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a
@@ -2838,21 +3368,27 @@ typedef union
  * 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 
-#define BP_EIM_CSRCR21_RL      (8)
-#define BM_EIM_CSRCR21_RL      (0x00000300)
+#define BP_EIM_CS1RCR2_RL      (8)      //!< Bit position for EIM_CS1RCR2_RL.
+#define BM_EIM_CS1RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS1RCR2_RL.
+
+//! @brief Get value of EIM_CS1RCR2_RL from a register value.
+#define BG_EIM_CS1RCR2_RL(r)   (((r) & BM_EIM_CS1RCR2_RL) >> BP_EIM_CS1RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR21_RL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR21_RL)
+//! @brief Format value for bitfield EIM_CS1RCR2_RL.
+#define BF_EIM_CS1RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RL) & BM_EIM_CS1RCR2_RL)
 #else
-#define BF_EIM_CSRCR21_RL(v)   (((v) << 8) & BM_EIM_CSRCR21_RL)
+//! @brief Format value for bitfield EIM_CS1RCR2_RL.
+#define BF_EIM_CS1RCR2_RL(v)   (((v) << BP_EIM_CS1RCR2_RL) & BM_EIM_CS1RCR2_RL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
-#define BW_EIM_CSRCR21_RL(v)   BF_CS1(EIM_CSRCR21, RL, v)
+#define BW_EIM_CS1RCR2_RL(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RL) | BF_EIM_CS1RCR2_RL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR21, field PAT[14:12] (RW)
+/* --- Register HW_EIM_CS1RCR2, field PAT[14:12] (RW)
  *
  * Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial
  * access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width
@@ -2870,21 +3406,27 @@ typedef union
  * 111 - Address width is 9 EIM clock cycles
  */
 
-#define BP_EIM_CSRCR21_PAT      (12)
-#define BM_EIM_CSRCR21_PAT      (0x00007000)
+#define BP_EIM_CS1RCR2_PAT      (12)      //!< Bit position for EIM_CS1RCR2_PAT.
+#define BM_EIM_CS1RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS1RCR2_PAT.
+
+//! @brief Get value of EIM_CS1RCR2_PAT from a register value.
+#define BG_EIM_CS1RCR2_PAT(r)   (((r) & BM_EIM_CS1RCR2_PAT) >> BP_EIM_CS1RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR21_PAT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR21_PAT)
+//! @brief Format value for bitfield EIM_CS1RCR2_PAT.
+#define BF_EIM_CS1RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_PAT) & BM_EIM_CS1RCR2_PAT)
 #else
-#define BF_EIM_CSRCR21_PAT(v)   (((v) << 12) & BM_EIM_CSRCR21_PAT)
+//! @brief Format value for bitfield EIM_CS1RCR2_PAT.
+#define BF_EIM_CS1RCR2_PAT(v)   (((v) << BP_EIM_CS1RCR2_PAT) & BM_EIM_CS1RCR2_PAT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
-#define BW_EIM_CSRCR21_PAT(v)   BF_CS1(EIM_CSRCR21, PAT, v)
+#define BW_EIM_CS1RCR2_PAT(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_PAT) | BF_EIM_CS1RCR2_PAT(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR21, field APR[15:15] (RW)
+/* --- Register HW_EIM_CS1RCR2, field APR[15] (RW)
  *
  * Asynchronous Page Read. This bit field determine the asynchronous read mode to the external
  * device. When APR=0, the async. read access is done as single word (where word is defined by the
@@ -2893,64 +3435,72 @@ typedef union
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 
-#define BP_EIM_CSRCR21_APR      (15)
-#define BM_EIM_CSRCR21_APR      (0x00008000)
+#define BP_EIM_CS1RCR2_APR      (15)      //!< Bit position for EIM_CS1RCR2_APR.
+#define BM_EIM_CS1RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS1RCR2_APR.
+
+//! @brief Get value of EIM_CS1RCR2_APR from a register value.
+#define BG_EIM_CS1RCR2_APR(r)   (((r) & BM_EIM_CS1RCR2_APR) >> BP_EIM_CS1RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR21_APR(v)   ((((reg32_t) v) << 15) & BM_EIM_CSRCR21_APR)
+//! @brief Format value for bitfield EIM_CS1RCR2_APR.
+#define BF_EIM_CS1RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_APR) & BM_EIM_CS1RCR2_APR)
 #else
-#define BF_EIM_CSRCR21_APR(v)   (((v) << 15) & BM_EIM_CSRCR21_APR)
+//! @brief Format value for bitfield EIM_CS1RCR2_APR.
+#define BF_EIM_CS1RCR2_APR(v)   (((v) << BP_EIM_CS1RCR2_APR) & BM_EIM_CS1RCR2_APR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
-#define BW_EIM_CSRCR21_APR(v)   BF_CS1(EIM_CSRCR21, APR, v)
+#define BW_EIM_CS1RCR2_APR(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_APR) | BF_EIM_CS1RCR2_APR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR11 - Chip Select n Write Configuration Register 1 1 (RW)
+ * @brief HW_EIM_CS1WCR1 - Chip Select n Write Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs1wcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs1wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
+        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
+        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
+        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
     } B;
-} hw_eim_cswcr11_t;
+} hw_eim_cs1wcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR11 register
+ * constants & macros for entire EIM_CS1WCR1 register
  */
-#define HW_EIM_CSWCR11_ADDR      (REGS_EIM_BASE + 0x28)
+#define HW_EIM_CS1WCR1_ADDR      (REGS_EIM_BASE + 0x28)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR11           (*(volatile hw_eim_cswcr11_t *) HW_EIM_CSWCR11_ADDR)
-#define HW_EIM_CSWCR11_RD()      (HW_EIM_CSWCR11.U)
-#define HW_EIM_CSWCR11_WR(v)     (HW_EIM_CSWCR11.U = (v))
-#define HW_EIM_CSWCR11_SET(v)    (HW_EIM_CSWCR11_WR(HW_EIM_CSWCR11_RD() |  (v)))
-#define HW_EIM_CSWCR11_CLR(v)    (HW_EIM_CSWCR11_WR(HW_EIM_CSWCR11_RD() & ~(v)))
-#define HW_EIM_CSWCR11_TOG(v)    (HW_EIM_CSWCR11_WR(HW_EIM_CSWCR11_RD() ^  (v)))
+#define HW_EIM_CS1WCR1           (*(volatile hw_eim_cs1wcr1_t *) HW_EIM_CS1WCR1_ADDR)
+#define HW_EIM_CS1WCR1_RD()      (HW_EIM_CS1WCR1.U)
+#define HW_EIM_CS1WCR1_WR(v)     (HW_EIM_CS1WCR1.U = (v))
+#define HW_EIM_CS1WCR1_SET(v)    (HW_EIM_CS1WCR1_WR(HW_EIM_CS1WCR1_RD() |  (v)))
+#define HW_EIM_CS1WCR1_CLR(v)    (HW_EIM_CS1WCR1_WR(HW_EIM_CS1WCR1_RD() & ~(v)))
+#define HW_EIM_CS1WCR1_TOG(v)    (HW_EIM_CS1WCR1_WR(HW_EIM_CS1WCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR11 bitfields
+ * constants & macros for individual EIM_CS1WCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR11, field WCSN[2:0] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WCSN[2:0] (RW)
  *
  * Write CS Negation. This bit field determines when CS signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -2963,21 +3513,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSWCR11_WCSN      (0)
-#define BM_EIM_CSWCR11_WCSN      (0x00000007)
+#define BP_EIM_CS1WCR1_WCSN      (0)      //!< Bit position for EIM_CS1WCR1_WCSN.
+#define BM_EIM_CS1WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS1WCR1_WCSN.
+
+//! @brief Get value of EIM_CS1WCR1_WCSN from a register value.
+#define BG_EIM_CS1WCR1_WCSN(r)   (((r) & BM_EIM_CS1WCR1_WCSN) >> BP_EIM_CS1WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR11_WCSN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WCSN.
+#define BF_EIM_CS1WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WCSN) & BM_EIM_CS1WCR1_WCSN)
 #else
-#define BF_EIM_CSWCR11_WCSN(v)   (((v) << 0) & BM_EIM_CSWCR11_WCSN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WCSN.
+#define BF_EIM_CS1WCR1_WCSN(v)   (((v) << BP_EIM_CS1WCR1_WCSN) & BM_EIM_CS1WCR1_WCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
-#define BW_EIM_CSWCR11_WCSN(v)   BF_CS1(EIM_CSWCR11, WCSN, v)
+#define BW_EIM_CS1WCR1_WCSN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WCSN) | BF_EIM_CS1WCR1_WCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR11, field WCSA[5:3] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WCSA[5:3] (RW)
  *
  * Write CS Assertion. This bit field determines when CS signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below.this bit field is
@@ -2991,21 +3547,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 
-#define BP_EIM_CSWCR11_WCSA      (3)
-#define BM_EIM_CSWCR11_WCSA      (0x00000038)
+#define BP_EIM_CS1WCR1_WCSA      (3)      //!< Bit position for EIM_CS1WCR1_WCSA.
+#define BM_EIM_CS1WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS1WCR1_WCSA.
+
+//! @brief Get value of EIM_CS1WCR1_WCSA from a register value.
+#define BG_EIM_CS1WCR1_WCSA(r)   (((r) & BM_EIM_CS1WCR1_WCSA) >> BP_EIM_CS1WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WCSA(v)   ((((reg32_t) v) << 3) & BM_EIM_CSWCR11_WCSA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WCSA.
+#define BF_EIM_CS1WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WCSA) & BM_EIM_CS1WCR1_WCSA)
 #else
-#define BF_EIM_CSWCR11_WCSA(v)   (((v) << 3) & BM_EIM_CSWCR11_WCSA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WCSA.
+#define BF_EIM_CS1WCR1_WCSA(v)   (((v) << BP_EIM_CS1WCR1_WCSA) & BM_EIM_CS1WCR1_WCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
-#define BW_EIM_CSWCR11_WCSA(v)   BF_CS1(EIM_CSWCR11, WCSA, v)
+#define BW_EIM_CS1WCR1_WCSA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WCSA) | BF_EIM_CS1WCR1_WCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR11, field WEN[8:6] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WEN[8:6] (RW)
  *
  * WE Negation. This bit field determines when WE signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -3019,21 +3581,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR11_WEN      (6)
-#define BM_EIM_CSWCR11_WEN      (0x000001c0)
+#define BP_EIM_CS1WCR1_WEN      (6)      //!< Bit position for EIM_CS1WCR1_WEN.
+#define BM_EIM_CS1WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS1WCR1_WEN.
+
+//! @brief Get value of EIM_CS1WCR1_WEN from a register value.
+#define BG_EIM_CS1WCR1_WEN(r)   (((r) & BM_EIM_CS1WCR1_WEN) >> BP_EIM_CS1WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WEN(v)   ((((reg32_t) v) << 6) & BM_EIM_CSWCR11_WEN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WEN.
+#define BF_EIM_CS1WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WEN) & BM_EIM_CS1WCR1_WEN)
 #else
-#define BF_EIM_CSWCR11_WEN(v)   (((v) << 6) & BM_EIM_CSWCR11_WEN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WEN.
+#define BF_EIM_CS1WCR1_WEN(v)   (((v) << BP_EIM_CS1WCR1_WEN) & BM_EIM_CS1WCR1_WEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
-#define BW_EIM_CSWCR11_WEN(v)   BF_CS1(EIM_CSWCR11, WEN, v)
+#define BW_EIM_CS1WCR1_WEN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WEN) | BF_EIM_CS1WCR1_WEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR11, field WEA[11:9] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WEA[11:9] (RW)
  *
  * WE Assertion. This bit field determines when WE signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below. This bit field is
@@ -3048,21 +3616,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR11_WEA      (9)
-#define BM_EIM_CSWCR11_WEA      (0x00000e00)
+#define BP_EIM_CS1WCR1_WEA      (9)      //!< Bit position for EIM_CS1WCR1_WEA.
+#define BM_EIM_CS1WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS1WCR1_WEA.
+
+//! @brief Get value of EIM_CS1WCR1_WEA from a register value.
+#define BG_EIM_CS1WCR1_WEA(r)   (((r) & BM_EIM_CS1WCR1_WEA) >> BP_EIM_CS1WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WEA(v)   ((((reg32_t) v) << 9) & BM_EIM_CSWCR11_WEA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WEA.
+#define BF_EIM_CS1WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WEA) & BM_EIM_CS1WCR1_WEA)
 #else
-#define BF_EIM_CSWCR11_WEA(v)   (((v) << 9) & BM_EIM_CSWCR11_WEA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WEA.
+#define BF_EIM_CS1WCR1_WEA(v)   (((v) << BP_EIM_CS1WCR1_WEA) & BM_EIM_CS1WCR1_WEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
-#define BW_EIM_CSWCR11_WEA(v)   BF_CS1(EIM_CSWCR11, WEA, v)
+#define BW_EIM_CS1WCR1_WEA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WEA) | BF_EIM_CS1WCR1_WEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR11, field WBEN[14:12] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WBEN[14:12] (RW)
  *
  * BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write
  * cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is
@@ -3073,20 +3647,26 @@ typedef union
  * access and WE negation
  */
 
-#define BP_EIM_CSWCR11_WBEN      (12)
-#define BM_EIM_CSWCR11_WBEN      (0x00007000)
+#define BP_EIM_CS1WCR1_WBEN      (12)      //!< Bit position for EIM_CS1WCR1_WBEN.
+#define BM_EIM_CS1WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS1WCR1_WBEN.
+
+//! @brief Get value of EIM_CS1WCR1_WBEN from a register value.
+#define BG_EIM_CS1WCR1_WBEN(r)   (((r) & BM_EIM_CS1WCR1_WBEN) >> BP_EIM_CS1WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WBEN(v)   ((((reg32_t) v) << 12) & BM_EIM_CSWCR11_WBEN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WBEN.
+#define BF_EIM_CS1WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WBEN) & BM_EIM_CS1WCR1_WBEN)
 #else
-#define BF_EIM_CSWCR11_WBEN(v)   (((v) << 12) & BM_EIM_CSWCR11_WBEN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WBEN.
+#define BF_EIM_CS1WCR1_WBEN(v)   (((v) << BP_EIM_CS1WCR1_WBEN) & BM_EIM_CS1WCR1_WBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
-#define BW_EIM_CSWCR11_WBEN(v)   BF_CS1(EIM_CSWCR11, WBEN, v)
+#define BW_EIM_CS1WCR1_WBEN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WBEN) | BF_EIM_CS1WCR1_WBEN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR11, field WBEA[17:15] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WBEA[17:15] (RW)
  *
  * BE Assertion. This bit field determines when BE signal is asserted during write cycles in async.
  * mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset.
@@ -3100,21 +3680,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 
-#define BP_EIM_CSWCR11_WBEA      (15)
-#define BM_EIM_CSWCR11_WBEA      (0x00038000)
+#define BP_EIM_CS1WCR1_WBEA      (15)      //!< Bit position for EIM_CS1WCR1_WBEA.
+#define BM_EIM_CS1WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS1WCR1_WBEA.
+
+//! @brief Get value of EIM_CS1WCR1_WBEA from a register value.
+#define BG_EIM_CS1WCR1_WBEA(r)   (((r) & BM_EIM_CS1WCR1_WBEA) >> BP_EIM_CS1WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WBEA(v)   ((((reg32_t) v) << 15) & BM_EIM_CSWCR11_WBEA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WBEA.
+#define BF_EIM_CS1WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WBEA) & BM_EIM_CS1WCR1_WBEA)
 #else
-#define BF_EIM_CSWCR11_WBEA(v)   (((v) << 15) & BM_EIM_CSWCR11_WBEA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WBEA.
+#define BF_EIM_CS1WCR1_WBEA(v)   (((v) << BP_EIM_CS1WCR1_WBEA) & BM_EIM_CS1WCR1_WBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
-#define BW_EIM_CSWCR11_WBEA(v)   BF_CS1(EIM_CSWCR11, WBEA, v)
+#define BW_EIM_CS1WCR1_WBEA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WBEA) | BF_EIM_CS1WCR1_WBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR11, field WADVN[20:18] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WADVN[20:18] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during write
  * accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following
@@ -3125,20 +3711,26 @@ typedef union
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 
-#define BP_EIM_CSWCR11_WADVN      (18)
-#define BM_EIM_CSWCR11_WADVN      (0x001c0000)
+#define BP_EIM_CS1WCR1_WADVN      (18)      //!< Bit position for EIM_CS1WCR1_WADVN.
+#define BM_EIM_CS1WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS1WCR1_WADVN.
+
+//! @brief Get value of EIM_CS1WCR1_WADVN from a register value.
+#define BG_EIM_CS1WCR1_WADVN(r)   (((r) & BM_EIM_CS1WCR1_WADVN) >> BP_EIM_CS1WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WADVN(v)   ((((reg32_t) v) << 18) & BM_EIM_CSWCR11_WADVN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WADVN.
+#define BF_EIM_CS1WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WADVN) & BM_EIM_CS1WCR1_WADVN)
 #else
-#define BF_EIM_CSWCR11_WADVN(v)   (((v) << 18) & BM_EIM_CSWCR11_WADVN)
+//! @brief Format value for bitfield EIM_CS1WCR1_WADVN.
+#define BF_EIM_CS1WCR1_WADVN(v)   (((v) << BP_EIM_CS1WCR1_WADVN) & BM_EIM_CS1WCR1_WADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
-#define BW_EIM_CSWCR11_WADVN(v)   BF_CS1(EIM_CSWCR11, WADVN, v)
+#define BW_EIM_CS1WCR1_WADVN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WADVN) | BF_EIM_CS1WCR1_WADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR11, field WADVA[23:21] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WADVA[23:21] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware
@@ -3151,21 +3743,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSWCR11_WADVA      (21)
-#define BM_EIM_CSWCR11_WADVA      (0x00e00000)
+#define BP_EIM_CS1WCR1_WADVA      (21)      //!< Bit position for EIM_CS1WCR1_WADVA.
+#define BM_EIM_CS1WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS1WCR1_WADVA.
+
+//! @brief Get value of EIM_CS1WCR1_WADVA from a register value.
+#define BG_EIM_CS1WCR1_WADVA(r)   (((r) & BM_EIM_CS1WCR1_WADVA) >> BP_EIM_CS1WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WADVA(v)   ((((reg32_t) v) << 21) & BM_EIM_CSWCR11_WADVA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WADVA.
+#define BF_EIM_CS1WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WADVA) & BM_EIM_CS1WCR1_WADVA)
 #else
-#define BF_EIM_CSWCR11_WADVA(v)   (((v) << 21) & BM_EIM_CSWCR11_WADVA)
+//! @brief Format value for bitfield EIM_CS1WCR1_WADVA.
+#define BF_EIM_CS1WCR1_WADVA(v)   (((v) << BP_EIM_CS1WCR1_WADVA) & BM_EIM_CS1WCR1_WADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
-#define BW_EIM_CSWCR11_WADVA(v)   BF_CS1(EIM_CSWCR11, WADVA, v)
+#define BW_EIM_CS1WCR1_WADVA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WADVA) | BF_EIM_CS1WCR1_WADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR11, field WWSC[29:24] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WWSC[29:24] (RW)
  *
  * Write Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous write access to the external device
@@ -3190,40 +3788,52 @@ typedef union
  * 111111 - WWSC value is 63
  */
 
-#define BP_EIM_CSWCR11_WWSC      (24)
-#define BM_EIM_CSWCR11_WWSC      (0x3f000000)
+#define BP_EIM_CS1WCR1_WWSC      (24)      //!< Bit position for EIM_CS1WCR1_WWSC.
+#define BM_EIM_CS1WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS1WCR1_WWSC.
+
+//! @brief Get value of EIM_CS1WCR1_WWSC from a register value.
+#define BG_EIM_CS1WCR1_WWSC(r)   (((r) & BM_EIM_CS1WCR1_WWSC) >> BP_EIM_CS1WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSWCR11_WWSC)
+//! @brief Format value for bitfield EIM_CS1WCR1_WWSC.
+#define BF_EIM_CS1WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WWSC) & BM_EIM_CS1WCR1_WWSC)
 #else
-#define BF_EIM_CSWCR11_WWSC(v)   (((v) << 24) & BM_EIM_CSWCR11_WWSC)
+//! @brief Format value for bitfield EIM_CS1WCR1_WWSC.
+#define BF_EIM_CS1WCR1_WWSC(v)   (((v) << BP_EIM_CS1WCR1_WWSC) & BM_EIM_CS1WCR1_WWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
-#define BW_EIM_CSWCR11_WWSC(v)   BF_CS1(EIM_CSWCR11, WWSC, v)
+#define BW_EIM_CS1WCR1_WWSC(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WWSC) | BF_EIM_CS1WCR1_WWSC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR11, field WBED[30:30] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WBED[30] (RW)
  *
  * Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted
  * during write accesses.This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR11_WBED      (30)
-#define BM_EIM_CSWCR11_WBED      (0x40000000)
+#define BP_EIM_CS1WCR1_WBED      (30)      //!< Bit position for EIM_CS1WCR1_WBED.
+#define BM_EIM_CS1WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS1WCR1_WBED.
+
+//! @brief Get value of EIM_CS1WCR1_WBED from a register value.
+#define BG_EIM_CS1WCR1_WBED(r)   (((r) & BM_EIM_CS1WCR1_WBED) >> BP_EIM_CS1WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WBED(v)   ((((reg32_t) v) << 30) & BM_EIM_CSWCR11_WBED)
+//! @brief Format value for bitfield EIM_CS1WCR1_WBED.
+#define BF_EIM_CS1WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WBED) & BM_EIM_CS1WCR1_WBED)
 #else
-#define BF_EIM_CSWCR11_WBED(v)   (((v) << 30) & BM_EIM_CSWCR11_WBED)
+//! @brief Format value for bitfield EIM_CS1WCR1_WBED.
+#define BF_EIM_CS1WCR1_WBED(v)   (((v) << BP_EIM_CS1WCR1_WBED) & BM_EIM_CS1WCR1_WBED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
-#define BW_EIM_CSWCR11_WBED(v)   BF_CS1(EIM_CSWCR11, WBED, v)
+#define BW_EIM_CS1WCR1_WBED(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WBED) | BF_EIM_CS1WCR1_WBED(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR11, field WAL[31:31] (RW)
+/* --- Register HW_EIM_CS1WCR1, field WAL[31] (RW)
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
@@ -3231,127 +3841,143 @@ typedef union
  * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
  */
 
-#define BP_EIM_CSWCR11_WAL      (31)
-#define BM_EIM_CSWCR11_WAL      (0x80000000)
+#define BP_EIM_CS1WCR1_WAL      (31)      //!< Bit position for EIM_CS1WCR1_WAL.
+#define BM_EIM_CS1WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS1WCR1_WAL.
+
+//! @brief Get value of EIM_CS1WCR1_WAL from a register value.
+#define BG_EIM_CS1WCR1_WAL(r)   (((r) & BM_EIM_CS1WCR1_WAL) >> BP_EIM_CS1WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR11_WAL(v)   ((((reg32_t) v) << 31) & BM_EIM_CSWCR11_WAL)
+//! @brief Format value for bitfield EIM_CS1WCR1_WAL.
+#define BF_EIM_CS1WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WAL) & BM_EIM_CS1WCR1_WAL)
 #else
-#define BF_EIM_CSWCR11_WAL(v)   (((v) << 31) & BM_EIM_CSWCR11_WAL)
+//! @brief Format value for bitfield EIM_CS1WCR1_WAL.
+#define BF_EIM_CS1WCR1_WAL(v)   (((v) << BP_EIM_CS1WCR1_WAL) & BM_EIM_CS1WCR1_WAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
-#define BW_EIM_CSWCR11_WAL(v)   BF_CS1(EIM_CSWCR11, WAL, v)
+#define BW_EIM_CS1WCR1_WAL(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WAL) | BF_EIM_CS1WCR1_WAL(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR21 - Chip Select n Write Configuration Register 2 1 (RW)
+ * @brief HW_EIM_CS1WCR2 - Chip Select n Write Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs1wcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs1wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
-} hw_eim_cswcr21_t;
+} hw_eim_cs1wcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR21 register
+ * constants & macros for entire EIM_CS1WCR2 register
  */
-#define HW_EIM_CSWCR21_ADDR      (REGS_EIM_BASE + 0x2c)
+#define HW_EIM_CS1WCR2_ADDR      (REGS_EIM_BASE + 0x2c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR21           (*(volatile hw_eim_cswcr21_t *) HW_EIM_CSWCR21_ADDR)
-#define HW_EIM_CSWCR21_RD()      (HW_EIM_CSWCR21.U)
-#define HW_EIM_CSWCR21_WR(v)     (HW_EIM_CSWCR21.U = (v))
-#define HW_EIM_CSWCR21_SET(v)    (HW_EIM_CSWCR21_WR(HW_EIM_CSWCR21_RD() |  (v)))
-#define HW_EIM_CSWCR21_CLR(v)    (HW_EIM_CSWCR21_WR(HW_EIM_CSWCR21_RD() & ~(v)))
-#define HW_EIM_CSWCR21_TOG(v)    (HW_EIM_CSWCR21_WR(HW_EIM_CSWCR21_RD() ^  (v)))
+#define HW_EIM_CS1WCR2           (*(volatile hw_eim_cs1wcr2_t *) HW_EIM_CS1WCR2_ADDR)
+#define HW_EIM_CS1WCR2_RD()      (HW_EIM_CS1WCR2.U)
+#define HW_EIM_CS1WCR2_WR(v)     (HW_EIM_CS1WCR2.U = (v))
+#define HW_EIM_CS1WCR2_SET(v)    (HW_EIM_CS1WCR2_WR(HW_EIM_CS1WCR2_RD() |  (v)))
+#define HW_EIM_CS1WCR2_CLR(v)    (HW_EIM_CS1WCR2_WR(HW_EIM_CS1WCR2_RD() & ~(v)))
+#define HW_EIM_CS1WCR2_TOG(v)    (HW_EIM_CS1WCR2_WR(HW_EIM_CS1WCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR21 bitfields
+ * constants & macros for individual EIM_CS1WCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR21, field WBCDD[0:0] (RW)
+/* --- Register HW_EIM_CS1WCR2, field WBCDD[0] (RW)
  *
  * Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write
  * access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this
  * bit has no affect. This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR21_WBCDD      (0)
-#define BM_EIM_CSWCR21_WBCDD      (0x00000001)
+#define BP_EIM_CS1WCR2_WBCDD      (0)      //!< Bit position for EIM_CS1WCR2_WBCDD.
+#define BM_EIM_CS1WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS1WCR2_WBCDD.
+
+//! @brief Get value of EIM_CS1WCR2_WBCDD from a register value.
+#define BG_EIM_CS1WCR2_WBCDD(r)   (((r) & BM_EIM_CS1WCR2_WBCDD) >> BP_EIM_CS1WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR21_WBCDD(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR21_WBCDD)
+//! @brief Format value for bitfield EIM_CS1WCR2_WBCDD.
+#define BF_EIM_CS1WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS1WCR2_WBCDD) & BM_EIM_CS1WCR2_WBCDD)
 #else
-#define BF_EIM_CSWCR21_WBCDD(v)   (((v) << 0) & BM_EIM_CSWCR21_WBCDD)
+//! @brief Format value for bitfield EIM_CS1WCR2_WBCDD.
+#define BF_EIM_CS1WCR2_WBCDD(v)   (((v) << BP_EIM_CS1WCR2_WBCDD) & BM_EIM_CS1WCR2_WBCDD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
-#define BW_EIM_CSWCR21_WBCDD(v)   BF_CS1(EIM_CSWCR21, WBCDD, v)
+#define BW_EIM_CS1WCR2_WBCDD(v)   (HW_EIM_CS1WCR2_WR((HW_EIM_CS1WCR2_RD() & ~BM_EIM_CS1WCR2_WBCDD) | BF_EIM_CS1WCR2_WBCDD(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR12 - Chip Select n General Configuration Register 1 2 (RW)
+ * @brief HW_EIM_CS2GCR1 - Chip Select n General Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00010080
  *
 
  */
-typedef union
+typedef union _hw_eim_cs2gcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs2gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
+        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
+        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
+        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
+        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
+        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
+        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
+        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
+        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
     } B;
-} hw_eim_csgcr12_t;
+} hw_eim_cs2gcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR12 register
+ * constants & macros for entire EIM_CS2GCR1 register
  */
-#define HW_EIM_CSGCR12_ADDR      (REGS_EIM_BASE + 0x30)
+#define HW_EIM_CS2GCR1_ADDR      (REGS_EIM_BASE + 0x30)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR12           (*(volatile hw_eim_csgcr12_t *) HW_EIM_CSGCR12_ADDR)
-#define HW_EIM_CSGCR12_RD()      (HW_EIM_CSGCR12.U)
-#define HW_EIM_CSGCR12_WR(v)     (HW_EIM_CSGCR12.U = (v))
-#define HW_EIM_CSGCR12_SET(v)    (HW_EIM_CSGCR12_WR(HW_EIM_CSGCR12_RD() |  (v)))
-#define HW_EIM_CSGCR12_CLR(v)    (HW_EIM_CSGCR12_WR(HW_EIM_CSGCR12_RD() & ~(v)))
-#define HW_EIM_CSGCR12_TOG(v)    (HW_EIM_CSGCR12_WR(HW_EIM_CSGCR12_RD() ^  (v)))
+#define HW_EIM_CS2GCR1           (*(volatile hw_eim_cs2gcr1_t *) HW_EIM_CS2GCR1_ADDR)
+#define HW_EIM_CS2GCR1_RD()      (HW_EIM_CS2GCR1.U)
+#define HW_EIM_CS2GCR1_WR(v)     (HW_EIM_CS2GCR1.U = (v))
+#define HW_EIM_CS2GCR1_SET(v)    (HW_EIM_CS2GCR1_WR(HW_EIM_CS2GCR1_RD() |  (v)))
+#define HW_EIM_CS2GCR1_CLR(v)    (HW_EIM_CS2GCR1_WR(HW_EIM_CS2GCR1_RD() & ~(v)))
+#define HW_EIM_CS2GCR1_TOG(v)    (HW_EIM_CS2GCR1_WR(HW_EIM_CS2GCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR12 bitfields
+ * constants & macros for individual EIM_CS2GCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR12, field CSEN[0:0] (RW)
+/* --- Register HW_EIM_CS2GCR1, field CSEN[0] (RW)
  *
  * CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware
  * reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to
@@ -3364,21 +3990,27 @@ typedef union
  * 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 
-#define BP_EIM_CSGCR12_CSEN      (0)
-#define BM_EIM_CSGCR12_CSEN      (0x00000001)
+#define BP_EIM_CS2GCR1_CSEN      (0)      //!< Bit position for EIM_CS2GCR1_CSEN.
+#define BM_EIM_CS2GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS2GCR1_CSEN.
+
+//! @brief Get value of EIM_CS2GCR1_CSEN from a register value.
+#define BG_EIM_CS2GCR1_CSEN(r)   (((r) & BM_EIM_CS2GCR1_CSEN) >> BP_EIM_CS2GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_CSEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR12_CSEN)
+//! @brief Format value for bitfield EIM_CS2GCR1_CSEN.
+#define BF_EIM_CS2GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CSEN) & BM_EIM_CS2GCR1_CSEN)
 #else
-#define BF_EIM_CSGCR12_CSEN(v)   (((v) << 0) & BM_EIM_CSGCR12_CSEN)
+//! @brief Format value for bitfield EIM_CS2GCR1_CSEN.
+#define BF_EIM_CS2GCR1_CSEN(v)   (((v) << BP_EIM_CS2GCR1_CSEN) & BM_EIM_CS2GCR1_CSEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
-#define BW_EIM_CSGCR12_CSEN(v)   BF_CS1(EIM_CSGCR12, CSEN, v)
+#define BW_EIM_CS2GCR1_CSEN(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CSEN) | BF_EIM_CS2GCR1_CSEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field SWR[1:1] (RW)
+/* --- Register HW_EIM_CS2GCR1, field SWR[1] (RW)
  *
  * Synchronous Write Data. This bit field determine the write accesses mode to the External device
  * of the chip select. The External device should be configured to the same mode as this bit
@@ -3389,21 +4021,27 @@ typedef union
  * 1 - write accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR12_SWR      (1)
-#define BM_EIM_CSGCR12_SWR      (0x00000002)
+#define BP_EIM_CS2GCR1_SWR      (1)      //!< Bit position for EIM_CS2GCR1_SWR.
+#define BM_EIM_CS2GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS2GCR1_SWR.
+
+//! @brief Get value of EIM_CS2GCR1_SWR from a register value.
+#define BG_EIM_CS2GCR1_SWR(r)   (((r) & BM_EIM_CS2GCR1_SWR) >> BP_EIM_CS2GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_SWR(v)   ((((reg32_t) v) << 1) & BM_EIM_CSGCR12_SWR)
+//! @brief Format value for bitfield EIM_CS2GCR1_SWR.
+#define BF_EIM_CS2GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_SWR) & BM_EIM_CS2GCR1_SWR)
 #else
-#define BF_EIM_CSGCR12_SWR(v)   (((v) << 1) & BM_EIM_CSGCR12_SWR)
+//! @brief Format value for bitfield EIM_CS2GCR1_SWR.
+#define BF_EIM_CS2GCR1_SWR(v)   (((v) << BP_EIM_CS2GCR1_SWR) & BM_EIM_CS2GCR1_SWR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
-#define BW_EIM_CSGCR12_SWR(v)   BF_CS1(EIM_CSGCR12, SWR, v)
+#define BW_EIM_CS2GCR1_SWR(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_SWR) | BF_EIM_CS2GCR1_SWR(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field SRD[2:2] (RW)
+/* --- Register HW_EIM_CS2GCR1, field SRD[2] (RW)
  *
  * Synchronous Read Data. This bit field determine the read accesses mode to the External device of
  * the chip select. The External device should be configured to the same mode as this bit
@@ -3414,21 +4052,27 @@ typedef union
  * 1 - read accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR12_SRD      (2)
-#define BM_EIM_CSGCR12_SRD      (0x00000004)
+#define BP_EIM_CS2GCR1_SRD      (2)      //!< Bit position for EIM_CS2GCR1_SRD.
+#define BM_EIM_CS2GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS2GCR1_SRD.
+
+//! @brief Get value of EIM_CS2GCR1_SRD from a register value.
+#define BG_EIM_CS2GCR1_SRD(r)   (((r) & BM_EIM_CS2GCR1_SRD) >> BP_EIM_CS2GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_SRD(v)   ((((reg32_t) v) << 2) & BM_EIM_CSGCR12_SRD)
+//! @brief Format value for bitfield EIM_CS2GCR1_SRD.
+#define BF_EIM_CS2GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_SRD) & BM_EIM_CS2GCR1_SRD)
 #else
-#define BF_EIM_CSGCR12_SRD(v)   (((v) << 2) & BM_EIM_CSGCR12_SRD)
+//! @brief Format value for bitfield EIM_CS2GCR1_SRD.
+#define BF_EIM_CS2GCR1_SRD(v)   (((v) << BP_EIM_CS2GCR1_SRD) & BM_EIM_CS2GCR1_SRD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
-#define BW_EIM_CSGCR12_SRD(v)   BF_CS1(EIM_CSGCR12, SRD, v)
+#define BW_EIM_CS2GCR1_SRD(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_SRD) | BF_EIM_CS2GCR1_SRD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field MUM[3:3] (RW)
+/* --- Register HW_EIM_CS2GCR1, field MUM[3] (RW)
  *
  * Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and
  * synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value
@@ -3439,21 +4083,27 @@ typedef union
  * 1 - Multiplexed Mode enable
  */
 
-#define BP_EIM_CSGCR12_MUM      (3)
-#define BM_EIM_CSGCR12_MUM      (0x00000008)
+#define BP_EIM_CS2GCR1_MUM      (3)      //!< Bit position for EIM_CS2GCR1_MUM.
+#define BM_EIM_CS2GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS2GCR1_MUM.
+
+//! @brief Get value of EIM_CS2GCR1_MUM from a register value.
+#define BG_EIM_CS2GCR1_MUM(r)   (((r) & BM_EIM_CS2GCR1_MUM) >> BP_EIM_CS2GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_MUM(v)   ((((reg32_t) v) << 3) & BM_EIM_CSGCR12_MUM)
+//! @brief Format value for bitfield EIM_CS2GCR1_MUM.
+#define BF_EIM_CS2GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_MUM) & BM_EIM_CS2GCR1_MUM)
 #else
-#define BF_EIM_CSGCR12_MUM(v)   (((v) << 3) & BM_EIM_CSGCR12_MUM)
+//! @brief Format value for bitfield EIM_CS2GCR1_MUM.
+#define BF_EIM_CS2GCR1_MUM(v)   (((v) << BP_EIM_CS2GCR1_MUM) & BM_EIM_CS2GCR1_MUM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
-#define BW_EIM_CSGCR12_MUM(v)   BF_CS1(EIM_CSGCR12, MUM, v)
+#define BW_EIM_CS2GCR1_MUM(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_MUM) | BF_EIM_CS2GCR1_MUM(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field WFL[4:4] (RW)
+/* --- Register HW_EIM_CS2GCR1, field WFL[4] (RW)
  *
  * Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -3467,21 +4117,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR12_WFL      (4)
-#define BM_EIM_CSGCR12_WFL      (0x00000010)
+#define BP_EIM_CS2GCR1_WFL      (4)      //!< Bit position for EIM_CS2GCR1_WFL.
+#define BM_EIM_CS2GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS2GCR1_WFL.
+
+//! @brief Get value of EIM_CS2GCR1_WFL from a register value.
+#define BG_EIM_CS2GCR1_WFL(r)   (((r) & BM_EIM_CS2GCR1_WFL) >> BP_EIM_CS2GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_WFL(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR12_WFL)
+//! @brief Format value for bitfield EIM_CS2GCR1_WFL.
+#define BF_EIM_CS2GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_WFL) & BM_EIM_CS2GCR1_WFL)
 #else
-#define BF_EIM_CSGCR12_WFL(v)   (((v) << 4) & BM_EIM_CSGCR12_WFL)
+//! @brief Format value for bitfield EIM_CS2GCR1_WFL.
+#define BF_EIM_CS2GCR1_WFL(v)   (((v) << BP_EIM_CS2GCR1_WFL) & BM_EIM_CS2GCR1_WFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
-#define BW_EIM_CSGCR12_WFL(v)   BF_CS1(EIM_CSGCR12, WFL, v)
+#define BW_EIM_CS2GCR1_WFL(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_WFL) | BF_EIM_CS2GCR1_WFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field RFL[5:5] (RW)
+/* --- Register HW_EIM_CS2GCR1, field RFL[5] (RW)
  *
  * Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -3495,21 +4151,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR12_RFL      (5)
-#define BM_EIM_CSGCR12_RFL      (0x00000020)
+#define BP_EIM_CS2GCR1_RFL      (5)      //!< Bit position for EIM_CS2GCR1_RFL.
+#define BM_EIM_CS2GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS2GCR1_RFL.
+
+//! @brief Get value of EIM_CS2GCR1_RFL from a register value.
+#define BG_EIM_CS2GCR1_RFL(r)   (((r) & BM_EIM_CS2GCR1_RFL) >> BP_EIM_CS2GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_RFL(v)   ((((reg32_t) v) << 5) & BM_EIM_CSGCR12_RFL)
+//! @brief Format value for bitfield EIM_CS2GCR1_RFL.
+#define BF_EIM_CS2GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_RFL) & BM_EIM_CS2GCR1_RFL)
 #else
-#define BF_EIM_CSGCR12_RFL(v)   (((v) << 5) & BM_EIM_CSGCR12_RFL)
+//! @brief Format value for bitfield EIM_CS2GCR1_RFL.
+#define BF_EIM_CS2GCR1_RFL(v)   (((v) << BP_EIM_CS2GCR1_RFL) & BM_EIM_CS2GCR1_RFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
-#define BW_EIM_CSGCR12_RFL(v)   BF_CS1(EIM_CSGCR12, RFL, v)
+#define BW_EIM_CS2GCR1_RFL(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_RFL) | BF_EIM_CS2GCR1_RFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field CRE[6:6] (RW)
+/* --- Register HW_EIM_CS2GCR1, field CRE[6] (RW)
  *
  * Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory
  * register set command to PSRAM external device. CRE is cleared by a hardware reset.
@@ -3519,21 +4181,27 @@ typedef union
  * 1 - CRE signal use is enable
  */
 
-#define BP_EIM_CSGCR12_CRE      (6)
-#define BM_EIM_CSGCR12_CRE      (0x00000040)
+#define BP_EIM_CS2GCR1_CRE      (6)      //!< Bit position for EIM_CS2GCR1_CRE.
+#define BM_EIM_CS2GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS2GCR1_CRE.
+
+//! @brief Get value of EIM_CS2GCR1_CRE from a register value.
+#define BG_EIM_CS2GCR1_CRE(r)   (((r) & BM_EIM_CS2GCR1_CRE) >> BP_EIM_CS2GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_CRE(v)   ((((reg32_t) v) << 6) & BM_EIM_CSGCR12_CRE)
+//! @brief Format value for bitfield EIM_CS2GCR1_CRE.
+#define BF_EIM_CS2GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CRE) & BM_EIM_CS2GCR1_CRE)
 #else
-#define BF_EIM_CSGCR12_CRE(v)   (((v) << 6) & BM_EIM_CSGCR12_CRE)
+//! @brief Format value for bitfield EIM_CS2GCR1_CRE.
+#define BF_EIM_CS2GCR1_CRE(v)   (((v) << BP_EIM_CS2GCR1_CRE) & BM_EIM_CS2GCR1_CRE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
-#define BW_EIM_CSGCR12_CRE(v)   BF_CS1(EIM_CSGCR12, CRE, v)
+#define BW_EIM_CS2GCR1_CRE(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CRE) | BF_EIM_CS2GCR1_CRE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field CREP[7:7] (RW)
+/* --- Register HW_EIM_CS2GCR1, field CREP[7] (RW)
  *
  * Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state,
  * active-low or active-high, while executing a memory register set command to the external device
@@ -3546,21 +4214,27 @@ typedef union
  * 1 - CRE signal is active high
  */
 
-#define BP_EIM_CSGCR12_CREP      (7)
-#define BM_EIM_CSGCR12_CREP      (0x00000080)
+#define BP_EIM_CS2GCR1_CREP      (7)      //!< Bit position for EIM_CS2GCR1_CREP.
+#define BM_EIM_CS2GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS2GCR1_CREP.
+
+//! @brief Get value of EIM_CS2GCR1_CREP from a register value.
+#define BG_EIM_CS2GCR1_CREP(r)   (((r) & BM_EIM_CS2GCR1_CREP) >> BP_EIM_CS2GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_CREP(v)   ((((reg32_t) v) << 7) & BM_EIM_CSGCR12_CREP)
+//! @brief Format value for bitfield EIM_CS2GCR1_CREP.
+#define BF_EIM_CS2GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CREP) & BM_EIM_CS2GCR1_CREP)
 #else
-#define BF_EIM_CSGCR12_CREP(v)   (((v) << 7) & BM_EIM_CSGCR12_CREP)
+//! @brief Format value for bitfield EIM_CS2GCR1_CREP.
+#define BF_EIM_CS2GCR1_CREP(v)   (((v) << BP_EIM_CS2GCR1_CREP) & BM_EIM_CS2GCR1_CREP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
-#define BW_EIM_CSGCR12_CREP(v)   BF_CS1(EIM_CSGCR12, CREP, v)
+#define BW_EIM_CS2GCR1_CREP(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CREP) | BF_EIM_CS2GCR1_CREP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field BL[10:8] (RW)
+/* --- Register HW_EIM_CS2GCR1, field BL[10:8] (RW)
  *
  * Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ
  * field) and should be properly initialized for mixed wrap/increment accesses support. Continuous
@@ -3582,21 +4256,27 @@ typedef union
  * 111 - Reserved
  */
 
-#define BP_EIM_CSGCR12_BL      (8)
-#define BM_EIM_CSGCR12_BL      (0x00000700)
+#define BP_EIM_CS2GCR1_BL      (8)      //!< Bit position for EIM_CS2GCR1_BL.
+#define BM_EIM_CS2GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS2GCR1_BL.
+
+//! @brief Get value of EIM_CS2GCR1_BL from a register value.
+#define BG_EIM_CS2GCR1_BL(r)   (((r) & BM_EIM_CS2GCR1_BL) >> BP_EIM_CS2GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_BL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR12_BL)
+//! @brief Format value for bitfield EIM_CS2GCR1_BL.
+#define BF_EIM_CS2GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_BL) & BM_EIM_CS2GCR1_BL)
 #else
-#define BF_EIM_CSGCR12_BL(v)   (((v) << 8) & BM_EIM_CSGCR12_BL)
+//! @brief Format value for bitfield EIM_CS2GCR1_BL.
+#define BF_EIM_CS2GCR1_BL(v)   (((v) << BP_EIM_CS2GCR1_BL) & BM_EIM_CS2GCR1_BL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
-#define BW_EIM_CSGCR12_BL(v)   BF_CS1(EIM_CSGCR12, BL, v)
+#define BW_EIM_CS2GCR1_BL(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_BL) | BF_EIM_CS2GCR1_BL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field WC[11:11] (RW)
+/* --- Register HW_EIM_CS2GCR1, field WC[11] (RW)
  *
  * Write Continuous. The WI bit indicates that write access to the memory are always continuous
  * accesses regardless of the BL field value. WI is cleared by hardware reset.
@@ -3606,21 +4286,27 @@ typedef union
  * 1 - Write access burst length is continuous.
  */
 
-#define BP_EIM_CSGCR12_WC      (11)
-#define BM_EIM_CSGCR12_WC      (0x00000800)
+#define BP_EIM_CS2GCR1_WC      (11)      //!< Bit position for EIM_CS2GCR1_WC.
+#define BM_EIM_CS2GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS2GCR1_WC.
+
+//! @brief Get value of EIM_CS2GCR1_WC from a register value.
+#define BG_EIM_CS2GCR1_WC(r)   (((r) & BM_EIM_CS2GCR1_WC) >> BP_EIM_CS2GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_WC(v)   ((((reg32_t) v) << 11) & BM_EIM_CSGCR12_WC)
+//! @brief Format value for bitfield EIM_CS2GCR1_WC.
+#define BF_EIM_CS2GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_WC) & BM_EIM_CS2GCR1_WC)
 #else
-#define BF_EIM_CSGCR12_WC(v)   (((v) << 11) & BM_EIM_CSGCR12_WC)
+//! @brief Format value for bitfield EIM_CS2GCR1_WC.
+#define BF_EIM_CS2GCR1_WC(v)   (((v) << BP_EIM_CS2GCR1_WC) & BM_EIM_CS2GCR1_WC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
-#define BW_EIM_CSGCR12_WC(v)   BF_CS1(EIM_CSGCR12, WC, v)
+#define BW_EIM_CS2GCR1_WC(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_WC) | BF_EIM_CS2GCR1_WC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field BCD[13:12] (RW)
+/* --- Register HW_EIM_CS2GCR1, field BCD[13:12] (RW)
  *
  * Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor
  * for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a
@@ -3634,21 +4320,27 @@ typedef union
  * 11 - Divide EIM clock by 4
  */
 
-#define BP_EIM_CSGCR12_BCD      (12)
-#define BM_EIM_CSGCR12_BCD      (0x00003000)
+#define BP_EIM_CS2GCR1_BCD      (12)      //!< Bit position for EIM_CS2GCR1_BCD.
+#define BM_EIM_CS2GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS2GCR1_BCD.
+
+//! @brief Get value of EIM_CS2GCR1_BCD from a register value.
+#define BG_EIM_CS2GCR1_BCD(r)   (((r) & BM_EIM_CS2GCR1_BCD) >> BP_EIM_CS2GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_BCD(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR12_BCD)
+//! @brief Format value for bitfield EIM_CS2GCR1_BCD.
+#define BF_EIM_CS2GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_BCD) & BM_EIM_CS2GCR1_BCD)
 #else
-#define BF_EIM_CSGCR12_BCD(v)   (((v) << 12) & BM_EIM_CSGCR12_BCD)
+//! @brief Format value for bitfield EIM_CS2GCR1_BCD.
+#define BF_EIM_CS2GCR1_BCD(v)   (((v) << BP_EIM_CS2GCR1_BCD) & BM_EIM_CS2GCR1_BCD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
-#define BW_EIM_CSGCR12_BCD(v)   BF_CS1(EIM_CSGCR12, BCD, v)
+#define BW_EIM_CS2GCR1_BCD(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_BCD) | BF_EIM_CS2GCR1_BCD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field BCS[15:14] (RW)
+/* --- Register HW_EIM_CS2GCR1, field BCS[15:14] (RW)
  *
  * Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles
  * delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of
@@ -3663,21 +4355,27 @@ typedef union
  * 11 - 3 EIM clock cycle additional delay
  */
 
-#define BP_EIM_CSGCR12_BCS      (14)
-#define BM_EIM_CSGCR12_BCS      (0x0000c000)
+#define BP_EIM_CS2GCR1_BCS      (14)      //!< Bit position for EIM_CS2GCR1_BCS.
+#define BM_EIM_CS2GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS2GCR1_BCS.
+
+//! @brief Get value of EIM_CS2GCR1_BCS from a register value.
+#define BG_EIM_CS2GCR1_BCS(r)   (((r) & BM_EIM_CS2GCR1_BCS) >> BP_EIM_CS2GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_BCS(v)   ((((reg32_t) v) << 14) & BM_EIM_CSGCR12_BCS)
+//! @brief Format value for bitfield EIM_CS2GCR1_BCS.
+#define BF_EIM_CS2GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_BCS) & BM_EIM_CS2GCR1_BCS)
 #else
-#define BF_EIM_CSGCR12_BCS(v)   (((v) << 14) & BM_EIM_CSGCR12_BCS)
+//! @brief Format value for bitfield EIM_CS2GCR1_BCS.
+#define BF_EIM_CS2GCR1_BCS(v)   (((v) << BP_EIM_CS2GCR1_BCS) & BM_EIM_CS2GCR1_BCS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
-#define BW_EIM_CSGCR12_BCS(v)   BF_CS1(EIM_CSGCR12, BCS, v)
+#define BW_EIM_CS2GCR1_BCS(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_BCS) | BF_EIM_CS2GCR1_BCS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field DSZ[18:16] (RW)
+/* --- Register HW_EIM_CS2GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
  * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
@@ -3695,21 +4393,27 @@ typedef union
  * 111 - 8 bit port resides on DATA[31:24]
  */
 
-#define BP_EIM_CSGCR12_DSZ      (16)
-#define BM_EIM_CSGCR12_DSZ      (0x00070000)
+#define BP_EIM_CS2GCR1_DSZ      (16)      //!< Bit position for EIM_CS2GCR1_DSZ.
+#define BM_EIM_CS2GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS2GCR1_DSZ.
+
+//! @brief Get value of EIM_CS2GCR1_DSZ from a register value.
+#define BG_EIM_CS2GCR1_DSZ(r)   (((r) & BM_EIM_CS2GCR1_DSZ) >> BP_EIM_CS2GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_DSZ(v)   ((((reg32_t) v) << 16) & BM_EIM_CSGCR12_DSZ)
+//! @brief Format value for bitfield EIM_CS2GCR1_DSZ.
+#define BF_EIM_CS2GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_DSZ) & BM_EIM_CS2GCR1_DSZ)
 #else
-#define BF_EIM_CSGCR12_DSZ(v)   (((v) << 16) & BM_EIM_CSGCR12_DSZ)
+//! @brief Format value for bitfield EIM_CS2GCR1_DSZ.
+#define BF_EIM_CS2GCR1_DSZ(v)   (((v) << BP_EIM_CS2GCR1_DSZ) & BM_EIM_CS2GCR1_DSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
-#define BW_EIM_CSGCR12_DSZ(v)   BF_CS1(EIM_CSGCR12, DSZ, v)
+#define BW_EIM_CS2GCR1_DSZ(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_DSZ) | BF_EIM_CS2GCR1_DSZ(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field SP[19:19] (RW)
+/* --- Register HW_EIM_CS2GCR1, field SP[19] (RW)
  *
  * Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding
  * chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
@@ -3720,21 +4424,27 @@ typedef union
  *     User mode results in an error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR12_SP      (19)
-#define BM_EIM_CSGCR12_SP      (0x00080000)
+#define BP_EIM_CS2GCR1_SP      (19)      //!< Bit position for EIM_CS2GCR1_SP.
+#define BM_EIM_CS2GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS2GCR1_SP.
+
+//! @brief Get value of EIM_CS2GCR1_SP from a register value.
+#define BG_EIM_CS2GCR1_SP(r)   (((r) & BM_EIM_CS2GCR1_SP) >> BP_EIM_CS2GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_SP(v)   ((((reg32_t) v) << 19) & BM_EIM_CSGCR12_SP)
+//! @brief Format value for bitfield EIM_CS2GCR1_SP.
+#define BF_EIM_CS2GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_SP) & BM_EIM_CS2GCR1_SP)
 #else
-#define BF_EIM_CSGCR12_SP(v)   (((v) << 19) & BM_EIM_CSGCR12_SP)
+//! @brief Format value for bitfield EIM_CS2GCR1_SP.
+#define BF_EIM_CS2GCR1_SP(v)   (((v) << BP_EIM_CS2GCR1_SP) & BM_EIM_CS2GCR1_SP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
-#define BW_EIM_CSGCR12_SP(v)   BF_CS1(EIM_CSGCR12, SP, v)
+#define BW_EIM_CS2GCR1_SP(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_SP) | BF_EIM_CS2GCR1_SP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field CSREC[22:20] (RW)
+/* --- Register HW_EIM_CS2GCR1, field CSREC[22:20] (RW)
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
@@ -3749,21 +4459,27 @@ typedef union
  * 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 
-#define BP_EIM_CSGCR12_CSREC      (20)
-#define BM_EIM_CSGCR12_CSREC      (0x00700000)
+#define BP_EIM_CS2GCR1_CSREC      (20)      //!< Bit position for EIM_CS2GCR1_CSREC.
+#define BM_EIM_CS2GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS2GCR1_CSREC.
+
+//! @brief Get value of EIM_CS2GCR1_CSREC from a register value.
+#define BG_EIM_CS2GCR1_CSREC(r)   (((r) & BM_EIM_CS2GCR1_CSREC) >> BP_EIM_CS2GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_CSREC(v)   ((((reg32_t) v) << 20) & BM_EIM_CSGCR12_CSREC)
+//! @brief Format value for bitfield EIM_CS2GCR1_CSREC.
+#define BF_EIM_CS2GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CSREC) & BM_EIM_CS2GCR1_CSREC)
 #else
-#define BF_EIM_CSGCR12_CSREC(v)   (((v) << 20) & BM_EIM_CSGCR12_CSREC)
+//! @brief Format value for bitfield EIM_CS2GCR1_CSREC.
+#define BF_EIM_CS2GCR1_CSREC(v)   (((v) << BP_EIM_CS2GCR1_CSREC) & BM_EIM_CS2GCR1_CSREC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
-#define BW_EIM_CSGCR12_CSREC(v)   BF_CS1(EIM_CSGCR12, CSREC, v)
+#define BW_EIM_CS2GCR1_CSREC(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CSREC) | BF_EIM_CS2GCR1_CSREC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field AUS[23:23] (RW)
+/* --- Register HW_EIM_CS2GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
  * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
@@ -3774,21 +4490,27 @@ typedef union
  * 1 - Address unshifted
  */
 
-#define BP_EIM_CSGCR12_AUS      (23)
-#define BM_EIM_CSGCR12_AUS      (0x00800000)
+#define BP_EIM_CS2GCR1_AUS      (23)      //!< Bit position for EIM_CS2GCR1_AUS.
+#define BM_EIM_CS2GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS2GCR1_AUS.
+
+//! @brief Get value of EIM_CS2GCR1_AUS from a register value.
+#define BG_EIM_CS2GCR1_AUS(r)   (((r) & BM_EIM_CS2GCR1_AUS) >> BP_EIM_CS2GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_AUS(v)   ((((reg32_t) v) << 23) & BM_EIM_CSGCR12_AUS)
+//! @brief Format value for bitfield EIM_CS2GCR1_AUS.
+#define BF_EIM_CS2GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_AUS) & BM_EIM_CS2GCR1_AUS)
 #else
-#define BF_EIM_CSGCR12_AUS(v)   (((v) << 23) & BM_EIM_CSGCR12_AUS)
+//! @brief Format value for bitfield EIM_CS2GCR1_AUS.
+#define BF_EIM_CS2GCR1_AUS(v)   (((v) << BP_EIM_CS2GCR1_AUS) & BM_EIM_CS2GCR1_AUS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
-#define BW_EIM_CSGCR12_AUS(v)   BF_CS1(EIM_CSGCR12, AUS, v)
+#define BW_EIM_CS2GCR1_AUS(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_AUS) | BF_EIM_CS2GCR1_AUS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field GBC[26:24] (RW)
+/* --- Register HW_EIM_CS2GCR1, field GBC[26:24] (RW)
  *
  * Gap Between Chip Selects. This bit field, according to the settings shown below, determines the
  * minimum time between end of access to the current chip select and start of access to different
@@ -3801,21 +4523,27 @@ typedef union
  * 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 
-#define BP_EIM_CSGCR12_GBC      (24)
-#define BM_EIM_CSGCR12_GBC      (0x07000000)
+#define BP_EIM_CS2GCR1_GBC      (24)      //!< Bit position for EIM_CS2GCR1_GBC.
+#define BM_EIM_CS2GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS2GCR1_GBC.
+
+//! @brief Get value of EIM_CS2GCR1_GBC from a register value.
+#define BG_EIM_CS2GCR1_GBC(r)   (((r) & BM_EIM_CS2GCR1_GBC) >> BP_EIM_CS2GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_GBC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSGCR12_GBC)
+//! @brief Format value for bitfield EIM_CS2GCR1_GBC.
+#define BF_EIM_CS2GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_GBC) & BM_EIM_CS2GCR1_GBC)
 #else
-#define BF_EIM_CSGCR12_GBC(v)   (((v) << 24) & BM_EIM_CSGCR12_GBC)
+//! @brief Format value for bitfield EIM_CS2GCR1_GBC.
+#define BF_EIM_CS2GCR1_GBC(v)   (((v) << BP_EIM_CS2GCR1_GBC) & BM_EIM_CS2GCR1_GBC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
-#define BW_EIM_CSGCR12_GBC(v)   BF_CS1(EIM_CSGCR12, GBC, v)
+#define BW_EIM_CS2GCR1_GBC(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_GBC) | BF_EIM_CS2GCR1_GBC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field WP[27:27] (RW)
+/* --- Register HW_EIM_CS2GCR1, field WP[27] (RW)
  *
  * Write Protect. This bit prevents writes to the address range defined by the corresponding chip
  * select. WP is cleared by a hardware reset.
@@ -3826,21 +4554,27 @@ typedef union
  *     error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR12_WP      (27)
-#define BM_EIM_CSGCR12_WP      (0x08000000)
+#define BP_EIM_CS2GCR1_WP      (27)      //!< Bit position for EIM_CS2GCR1_WP.
+#define BM_EIM_CS2GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS2GCR1_WP.
+
+//! @brief Get value of EIM_CS2GCR1_WP from a register value.
+#define BG_EIM_CS2GCR1_WP(r)   (((r) & BM_EIM_CS2GCR1_WP) >> BP_EIM_CS2GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_WP(v)   ((((reg32_t) v) << 27) & BM_EIM_CSGCR12_WP)
+//! @brief Format value for bitfield EIM_CS2GCR1_WP.
+#define BF_EIM_CS2GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_WP) & BM_EIM_CS2GCR1_WP)
 #else
-#define BF_EIM_CSGCR12_WP(v)   (((v) << 27) & BM_EIM_CSGCR12_WP)
+//! @brief Format value for bitfield EIM_CS2GCR1_WP.
+#define BF_EIM_CS2GCR1_WP(v)   (((v) << BP_EIM_CS2GCR1_WP) & BM_EIM_CS2GCR1_WP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
-#define BW_EIM_CSGCR12_WP(v)   BF_CS1(EIM_CSGCR12, WP, v)
+#define BW_EIM_CS2GCR1_WP(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_WP) | BF_EIM_CS2GCR1_WP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR12, field PSZ[31:28] (RW)
+/* --- Register HW_EIM_CS2GCR1, field PSZ[31:28] (RW)
  *
  * Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field).
  * PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync.
@@ -3863,62 +4597,70 @@ typedef union
  * 1001 - - 1111 Reserved
  */
 
-#define BP_EIM_CSGCR12_PSZ      (28)
-#define BM_EIM_CSGCR12_PSZ      (0xf0000000)
+#define BP_EIM_CS2GCR1_PSZ      (28)      //!< Bit position for EIM_CS2GCR1_PSZ.
+#define BM_EIM_CS2GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS2GCR1_PSZ.
+
+//! @brief Get value of EIM_CS2GCR1_PSZ from a register value.
+#define BG_EIM_CS2GCR1_PSZ(r)   (((r) & BM_EIM_CS2GCR1_PSZ) >> BP_EIM_CS2GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR12_PSZ(v)   ((((reg32_t) v) << 28) & BM_EIM_CSGCR12_PSZ)
+//! @brief Format value for bitfield EIM_CS2GCR1_PSZ.
+#define BF_EIM_CS2GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_PSZ) & BM_EIM_CS2GCR1_PSZ)
 #else
-#define BF_EIM_CSGCR12_PSZ(v)   (((v) << 28) & BM_EIM_CSGCR12_PSZ)
+//! @brief Format value for bitfield EIM_CS2GCR1_PSZ.
+#define BF_EIM_CS2GCR1_PSZ(v)   (((v) << BP_EIM_CS2GCR1_PSZ) & BM_EIM_CS2GCR1_PSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
-#define BW_EIM_CSGCR12_PSZ(v)   BF_CS1(EIM_CSGCR12, PSZ, v)
+#define BW_EIM_CS2GCR1_PSZ(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_PSZ) | BF_EIM_CS2GCR1_PSZ(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR22 - Chip Select n General Configuration Register 2 2 (RW)
+ * @brief HW_EIM_CS2GCR2 - Chip Select n General Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00001000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs2gcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs2gcr2_bitfields
     {
-        unsigned ADH : 2; //!< Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned DAPS : 4; //!< Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
-        unsigned RESERVED2 : 19; //!< Reserved
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
-} hw_eim_csgcr22_t;
+} hw_eim_cs2gcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR22 register
+ * constants & macros for entire EIM_CS2GCR2 register
  */
-#define HW_EIM_CSGCR22_ADDR      (REGS_EIM_BASE + 0x34)
+#define HW_EIM_CS2GCR2_ADDR      (REGS_EIM_BASE + 0x34)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR22           (*(volatile hw_eim_csgcr22_t *) HW_EIM_CSGCR22_ADDR)
-#define HW_EIM_CSGCR22_RD()      (HW_EIM_CSGCR22.U)
-#define HW_EIM_CSGCR22_WR(v)     (HW_EIM_CSGCR22.U = (v))
-#define HW_EIM_CSGCR22_SET(v)    (HW_EIM_CSGCR22_WR(HW_EIM_CSGCR22_RD() |  (v)))
-#define HW_EIM_CSGCR22_CLR(v)    (HW_EIM_CSGCR22_WR(HW_EIM_CSGCR22_RD() & ~(v)))
-#define HW_EIM_CSGCR22_TOG(v)    (HW_EIM_CSGCR22_WR(HW_EIM_CSGCR22_RD() ^  (v)))
+#define HW_EIM_CS2GCR2           (*(volatile hw_eim_cs2gcr2_t *) HW_EIM_CS2GCR2_ADDR)
+#define HW_EIM_CS2GCR2_RD()      (HW_EIM_CS2GCR2.U)
+#define HW_EIM_CS2GCR2_WR(v)     (HW_EIM_CS2GCR2.U = (v))
+#define HW_EIM_CS2GCR2_SET(v)    (HW_EIM_CS2GCR2_WR(HW_EIM_CS2GCR2_RD() |  (v)))
+#define HW_EIM_CS2GCR2_CLR(v)    (HW_EIM_CS2GCR2_WR(HW_EIM_CS2GCR2_RD() & ~(v)))
+#define HW_EIM_CS2GCR2_TOG(v)    (HW_EIM_CS2GCR2_WR(HW_EIM_CS2GCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR22 bitfields
+ * constants & macros for individual EIM_CS2GCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR22, field ADH[1:0] (RW)
+/* --- Register HW_EIM_CS2GCR2, field ADH[1:0] (RW)
  *
  * Address hold time - This bit field determine the address hold time after ADV negation when mum =
  * 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when
@@ -3932,21 +4674,27 @@ typedef union
  * 11 - Reserved
  */
 
-#define BP_EIM_CSGCR22_ADH      (0)
-#define BM_EIM_CSGCR22_ADH      (0x00000003)
+#define BP_EIM_CS2GCR2_ADH      (0)      //!< Bit position for EIM_CS2GCR2_ADH.
+#define BM_EIM_CS2GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS2GCR2_ADH.
+
+//! @brief Get value of EIM_CS2GCR2_ADH from a register value.
+#define BG_EIM_CS2GCR2_ADH(r)   (((r) & BM_EIM_CS2GCR2_ADH) >> BP_EIM_CS2GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR22_ADH(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR22_ADH)
+//! @brief Format value for bitfield EIM_CS2GCR2_ADH.
+#define BF_EIM_CS2GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_ADH) & BM_EIM_CS2GCR2_ADH)
 #else
-#define BF_EIM_CSGCR22_ADH(v)   (((v) << 0) & BM_EIM_CSGCR22_ADH)
+//! @brief Format value for bitfield EIM_CS2GCR2_ADH.
+#define BF_EIM_CS2GCR2_ADH(v)   (((v) << BP_EIM_CS2GCR2_ADH) & BM_EIM_CS2GCR2_ADH)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
-#define BW_EIM_CSGCR22_ADH(v)   BF_CS1(EIM_CSGCR22, ADH, v)
+#define BW_EIM_CS2GCR2_ADH(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_ADH) | BF_EIM_CS2GCR2_ADH(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR22, field DAPS[7:4] (RW)
+/* --- Register HW_EIM_CS2GCR2, field DAPS[7:4] (RW)
  *
  * Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal
  * polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an
@@ -3962,21 +4710,27 @@ typedef union
  * 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 
-#define BP_EIM_CSGCR22_DAPS      (4)
-#define BM_EIM_CSGCR22_DAPS      (0x000000f0)
+#define BP_EIM_CS2GCR2_DAPS      (4)      //!< Bit position for EIM_CS2GCR2_DAPS.
+#define BM_EIM_CS2GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS2GCR2_DAPS.
+
+//! @brief Get value of EIM_CS2GCR2_DAPS from a register value.
+#define BG_EIM_CS2GCR2_DAPS(r)   (((r) & BM_EIM_CS2GCR2_DAPS) >> BP_EIM_CS2GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR22_DAPS(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR22_DAPS)
+//! @brief Format value for bitfield EIM_CS2GCR2_DAPS.
+#define BF_EIM_CS2GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_DAPS) & BM_EIM_CS2GCR2_DAPS)
 #else
-#define BF_EIM_CSGCR22_DAPS(v)   (((v) << 4) & BM_EIM_CSGCR22_DAPS)
+//! @brief Format value for bitfield EIM_CS2GCR2_DAPS.
+#define BF_EIM_CS2GCR2_DAPS(v)   (((v) << BP_EIM_CS2GCR2_DAPS) & BM_EIM_CS2GCR2_DAPS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
-#define BW_EIM_CSGCR22_DAPS(v)   BF_CS1(EIM_CSGCR22, DAPS, v)
+#define BW_EIM_CS2GCR2_DAPS(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_DAPS) | BF_EIM_CS2GCR2_DAPS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR22, field DAE[8:8] (RW)
+/* --- Register HW_EIM_CS2GCR2, field DAE[8] (RW)
  *
  * Data Acknowledge Enable. This bit indicates external device is using DTACK pin as
  * strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read
@@ -3988,21 +4742,27 @@ typedef union
  * 1 - DTACK signal use is enable
  */
 
-#define BP_EIM_CSGCR22_DAE      (8)
-#define BM_EIM_CSGCR22_DAE      (0x00000100)
+#define BP_EIM_CS2GCR2_DAE      (8)      //!< Bit position for EIM_CS2GCR2_DAE.
+#define BM_EIM_CS2GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS2GCR2_DAE.
+
+//! @brief Get value of EIM_CS2GCR2_DAE from a register value.
+#define BG_EIM_CS2GCR2_DAE(r)   (((r) & BM_EIM_CS2GCR2_DAE) >> BP_EIM_CS2GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR22_DAE(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR22_DAE)
+//! @brief Format value for bitfield EIM_CS2GCR2_DAE.
+#define BF_EIM_CS2GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_DAE) & BM_EIM_CS2GCR2_DAE)
 #else
-#define BF_EIM_CSGCR22_DAE(v)   (((v) << 8) & BM_EIM_CSGCR22_DAE)
+//! @brief Format value for bitfield EIM_CS2GCR2_DAE.
+#define BF_EIM_CS2GCR2_DAE(v)   (((v) << BP_EIM_CS2GCR2_DAE) & BM_EIM_CS2GCR2_DAE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
-#define BW_EIM_CSGCR22_DAE(v)   BF_CS1(EIM_CSGCR22, DAE, v)
+#define BW_EIM_CS2GCR2_DAE(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_DAE) | BF_EIM_CS2GCR2_DAE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR22, field DAP[9:9] (RW)
+/* --- Register HW_EIM_CS2GCR2, field DAP[9] (RW)
  *
  * Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or
  * active-high, while executing an async access using DTACK signal from the external device. DAP is
@@ -4013,21 +4773,27 @@ typedef union
  * 1 - DTACK signal is active low
  */
 
-#define BP_EIM_CSGCR22_DAP      (9)
-#define BM_EIM_CSGCR22_DAP      (0x00000200)
+#define BP_EIM_CS2GCR2_DAP      (9)      //!< Bit position for EIM_CS2GCR2_DAP.
+#define BM_EIM_CS2GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS2GCR2_DAP.
+
+//! @brief Get value of EIM_CS2GCR2_DAP from a register value.
+#define BG_EIM_CS2GCR2_DAP(r)   (((r) & BM_EIM_CS2GCR2_DAP) >> BP_EIM_CS2GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR22_DAP(v)   ((((reg32_t) v) << 9) & BM_EIM_CSGCR22_DAP)
+//! @brief Format value for bitfield EIM_CS2GCR2_DAP.
+#define BF_EIM_CS2GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_DAP) & BM_EIM_CS2GCR2_DAP)
 #else
-#define BF_EIM_CSGCR22_DAP(v)   (((v) << 9) & BM_EIM_CSGCR22_DAP)
+//! @brief Format value for bitfield EIM_CS2GCR2_DAP.
+#define BF_EIM_CS2GCR2_DAP(v)   (((v) << BP_EIM_CS2GCR2_DAP) & BM_EIM_CS2GCR2_DAP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
-#define BW_EIM_CSGCR22_DAP(v)   BF_CS1(EIM_CSGCR22, DAP, v)
+#define BW_EIM_CS2GCR2_DAP(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_DAP) | BF_EIM_CS2GCR2_DAP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR22, field MUX16_BYP_GRANT[12:12] (RW)
+/* --- Register HW_EIM_CS2GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
  * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
@@ -4038,68 +4804,76 @@ typedef union
  * 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 
-#define BP_EIM_CSGCR22_MUX16_BYP_GRANT      (12)
-#define BM_EIM_CSGCR22_MUX16_BYP_GRANT      (0x00001000)
+#define BP_EIM_CS2GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS2GCR2_MUX16_BYP_GRANT.
+#define BM_EIM_CS2GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS2GCR2_MUX16_BYP_GRANT.
+
+//! @brief Get value of EIM_CS2GCR2_MUX16_BYP_GRANT from a register value.
+#define BG_EIM_CS2GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS2GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR22_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR22_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS2GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_MUX16_BYP_GRANT) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT)
 #else
-#define BF_EIM_CSGCR22_MUX16_BYP_GRANT(v)   (((v) << 12) & BM_EIM_CSGCR22_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS2GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS2GCR2_MUX16_BYP_GRANT) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
-#define BW_EIM_CSGCR22_MUX16_BYP_GRANT(v)   BF_CS1(EIM_CSGCR22, MUX16_BYP_GRANT, v)
+#define BW_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_MUX16_BYP_GRANT) | BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR12 - Chip Select n Read Configuration Register 1 2 (RW)
+ * @brief HW_EIM_CS2RCR1 - Chip Select n Read Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs2rcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs2rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RCSA : 3; //!< Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned OEN : 3; //!< OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned OEA : 3; //!< OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED4 : 1; //!< Reserved
-        unsigned RWSC : 6; //!< Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
-        unsigned RESERVED5 : 2; //!< Reserved
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [3] Reserved
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED1 : 1; //!< [7] Reserved
+        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED2 : 1; //!< [11] Reserved
+        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned RESERVED3 : 1; //!< [15] Reserved
+        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
+        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED4 : 1; //!< [23] Reserved
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
-} hw_eim_csrcr12_t;
+} hw_eim_cs2rcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR12 register
+ * constants & macros for entire EIM_CS2RCR1 register
  */
-#define HW_EIM_CSRCR12_ADDR      (REGS_EIM_BASE + 0x38)
+#define HW_EIM_CS2RCR1_ADDR      (REGS_EIM_BASE + 0x38)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR12           (*(volatile hw_eim_csrcr12_t *) HW_EIM_CSRCR12_ADDR)
-#define HW_EIM_CSRCR12_RD()      (HW_EIM_CSRCR12.U)
-#define HW_EIM_CSRCR12_WR(v)     (HW_EIM_CSRCR12.U = (v))
-#define HW_EIM_CSRCR12_SET(v)    (HW_EIM_CSRCR12_WR(HW_EIM_CSRCR12_RD() |  (v)))
-#define HW_EIM_CSRCR12_CLR(v)    (HW_EIM_CSRCR12_WR(HW_EIM_CSRCR12_RD() & ~(v)))
-#define HW_EIM_CSRCR12_TOG(v)    (HW_EIM_CSRCR12_WR(HW_EIM_CSRCR12_RD() ^  (v)))
+#define HW_EIM_CS2RCR1           (*(volatile hw_eim_cs2rcr1_t *) HW_EIM_CS2RCR1_ADDR)
+#define HW_EIM_CS2RCR1_RD()      (HW_EIM_CS2RCR1.U)
+#define HW_EIM_CS2RCR1_WR(v)     (HW_EIM_CS2RCR1.U = (v))
+#define HW_EIM_CS2RCR1_SET(v)    (HW_EIM_CS2RCR1_WR(HW_EIM_CS2RCR1_RD() |  (v)))
+#define HW_EIM_CS2RCR1_CLR(v)    (HW_EIM_CS2RCR1_WR(HW_EIM_CS2RCR1_RD() & ~(v)))
+#define HW_EIM_CS2RCR1_TOG(v)    (HW_EIM_CS2RCR1_WR(HW_EIM_CS2RCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR12 bitfields
+ * constants & macros for individual EIM_CS2RCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR12, field RCSN[2:0] (RW)
+/* --- Register HW_EIM_CS2RCR1, field RCSN[2:0] (RW)
  *
  * Read CS Negation. This bit field determines when CS signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -4112,21 +4886,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSRCR12_RCSN      (0)
-#define BM_EIM_CSRCR12_RCSN      (0x00000007)
+#define BP_EIM_CS2RCR1_RCSN      (0)      //!< Bit position for EIM_CS2RCR1_RCSN.
+#define BM_EIM_CS2RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS2RCR1_RCSN.
+
+//! @brief Get value of EIM_CS2RCR1_RCSN from a register value.
+#define BG_EIM_CS2RCR1_RCSN(r)   (((r) & BM_EIM_CS2RCR1_RCSN) >> BP_EIM_CS2RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_RCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR12_RCSN)
+//! @brief Format value for bitfield EIM_CS2RCR1_RCSN.
+#define BF_EIM_CS2RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RCSN) & BM_EIM_CS2RCR1_RCSN)
 #else
-#define BF_EIM_CSRCR12_RCSN(v)   (((v) << 0) & BM_EIM_CSRCR12_RCSN)
+//! @brief Format value for bitfield EIM_CS2RCR1_RCSN.
+#define BF_EIM_CS2RCR1_RCSN(v)   (((v) << BP_EIM_CS2RCR1_RCSN) & BM_EIM_CS2RCR1_RCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
-#define BW_EIM_CSRCR12_RCSN(v)   BF_CS1(EIM_CSRCR12, RCSN, v)
+#define BW_EIM_CS2RCR1_RCSN(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RCSN) | BF_EIM_CS2RCR1_RCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR12, field RCSA[6:4] (RW)
+/* --- Register HW_EIM_CS2RCR1, field RCSA[6:4] (RW)
  *
  * Read CS Assertion. This bit field determines when CS signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a
@@ -4139,21 +4919,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 
-#define BP_EIM_CSRCR12_RCSA      (4)
-#define BM_EIM_CSRCR12_RCSA      (0x00000070)
+#define BP_EIM_CS2RCR1_RCSA      (4)      //!< Bit position for EIM_CS2RCR1_RCSA.
+#define BM_EIM_CS2RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS2RCR1_RCSA.
+
+//! @brief Get value of EIM_CS2RCR1_RCSA from a register value.
+#define BG_EIM_CS2RCR1_RCSA(r)   (((r) & BM_EIM_CS2RCR1_RCSA) >> BP_EIM_CS2RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_RCSA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR12_RCSA)
+//! @brief Format value for bitfield EIM_CS2RCR1_RCSA.
+#define BF_EIM_CS2RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RCSA) & BM_EIM_CS2RCR1_RCSA)
 #else
-#define BF_EIM_CSRCR12_RCSA(v)   (((v) << 4) & BM_EIM_CSRCR12_RCSA)
+//! @brief Format value for bitfield EIM_CS2RCR1_RCSA.
+#define BF_EIM_CS2RCR1_RCSA(v)   (((v) << BP_EIM_CS2RCR1_RCSA) & BM_EIM_CS2RCR1_RCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
-#define BW_EIM_CSRCR12_RCSA(v)   BF_CS1(EIM_CSRCR12, RCSA, v)
+#define BW_EIM_CS2RCR1_RCSA(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RCSA) | BF_EIM_CS2RCR1_RCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR12, field OEN[10:8] (RW)
+/* --- Register HW_EIM_CS2RCR1, field OEN[10:8] (RW)
  *
  * OE Negation. This bit field determines when OE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -4166,21 +4952,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of access and OE negation
  */
 
-#define BP_EIM_CSRCR12_OEN      (8)
-#define BM_EIM_CSRCR12_OEN      (0x00000700)
+#define BP_EIM_CS2RCR1_OEN      (8)      //!< Bit position for EIM_CS2RCR1_OEN.
+#define BM_EIM_CS2RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS2RCR1_OEN.
+
+//! @brief Get value of EIM_CS2RCR1_OEN from a register value.
+#define BG_EIM_CS2RCR1_OEN(r)   (((r) & BM_EIM_CS2RCR1_OEN) >> BP_EIM_CS2RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_OEN(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR12_OEN)
+//! @brief Format value for bitfield EIM_CS2RCR1_OEN.
+#define BF_EIM_CS2RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_OEN) & BM_EIM_CS2RCR1_OEN)
 #else
-#define BF_EIM_CSRCR12_OEN(v)   (((v) << 8) & BM_EIM_CSRCR12_OEN)
+//! @brief Format value for bitfield EIM_CS2RCR1_OEN.
+#define BF_EIM_CS2RCR1_OEN(v)   (((v) << BP_EIM_CS2RCR1_OEN) & BM_EIM_CS2RCR1_OEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
-#define BW_EIM_CSRCR12_OEN(v)   BF_CS1(EIM_CSRCR12, OEN, v)
+#define BW_EIM_CS2RCR1_OEN(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_OEN) | BF_EIM_CS2RCR1_OEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR12, field OEA[14:12] (RW)
+/* --- Register HW_EIM_CS2RCR1, field OEA[14:12] (RW)
  *
  * OE Assertion. This bit field determines when OE signal are asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a
@@ -4196,21 +4988,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 
-#define BP_EIM_CSRCR12_OEA      (12)
-#define BM_EIM_CSRCR12_OEA      (0x00007000)
+#define BP_EIM_CS2RCR1_OEA      (12)      //!< Bit position for EIM_CS2RCR1_OEA.
+#define BM_EIM_CS2RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS2RCR1_OEA.
+
+//! @brief Get value of EIM_CS2RCR1_OEA from a register value.
+#define BG_EIM_CS2RCR1_OEA(r)   (((r) & BM_EIM_CS2RCR1_OEA) >> BP_EIM_CS2RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_OEA(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR12_OEA)
+//! @brief Format value for bitfield EIM_CS2RCR1_OEA.
+#define BF_EIM_CS2RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_OEA) & BM_EIM_CS2RCR1_OEA)
 #else
-#define BF_EIM_CSRCR12_OEA(v)   (((v) << 12) & BM_EIM_CSRCR12_OEA)
+//! @brief Format value for bitfield EIM_CS2RCR1_OEA.
+#define BF_EIM_CS2RCR1_OEA(v)   (((v) << BP_EIM_CS2RCR1_OEA) & BM_EIM_CS2RCR1_OEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
-#define BW_EIM_CSRCR12_OEA(v)   BF_CS1(EIM_CSRCR12, OEA, v)
+#define BW_EIM_CS2RCR1_OEA(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_OEA) | BF_EIM_CS2RCR1_OEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR12, field RADVN[18:16] (RW)
+/* --- Register HW_EIM_CS2RCR1, field RADVN[18:16] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during read
  * accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following
@@ -4222,20 +5020,26 @@ typedef union
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 
-#define BP_EIM_CSRCR12_RADVN      (16)
-#define BM_EIM_CSRCR12_RADVN      (0x00070000)
+#define BP_EIM_CS2RCR1_RADVN      (16)      //!< Bit position for EIM_CS2RCR1_RADVN.
+#define BM_EIM_CS2RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS2RCR1_RADVN.
+
+//! @brief Get value of EIM_CS2RCR1_RADVN from a register value.
+#define BG_EIM_CS2RCR1_RADVN(r)   (((r) & BM_EIM_CS2RCR1_RADVN) >> BP_EIM_CS2RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_RADVN(v)   ((((reg32_t) v) << 16) & BM_EIM_CSRCR12_RADVN)
+//! @brief Format value for bitfield EIM_CS2RCR1_RADVN.
+#define BF_EIM_CS2RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RADVN) & BM_EIM_CS2RCR1_RADVN)
 #else
-#define BF_EIM_CSRCR12_RADVN(v)   (((v) << 16) & BM_EIM_CSRCR12_RADVN)
+//! @brief Format value for bitfield EIM_CS2RCR1_RADVN.
+#define BF_EIM_CS2RCR1_RADVN(v)   (((v) << BP_EIM_CS2RCR1_RADVN) & BM_EIM_CS2RCR1_RADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
-#define BW_EIM_CSRCR12_RADVN(v)   BF_CS1(EIM_CSRCR12, RADVN, v)
+#define BW_EIM_CS2RCR1_RADVN(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RADVN) | BF_EIM_CS2RCR1_RADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR12, field RAL[19:19] (RW)
+/* --- Register HW_EIM_CS2RCR1, field RAL[19] (RW)
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
@@ -4243,20 +5047,26 @@ typedef union
  * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
  */
 
-#define BP_EIM_CSRCR12_RAL      (19)
-#define BM_EIM_CSRCR12_RAL      (0x00080000)
+#define BP_EIM_CS2RCR1_RAL      (19)      //!< Bit position for EIM_CS2RCR1_RAL.
+#define BM_EIM_CS2RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS2RCR1_RAL.
+
+//! @brief Get value of EIM_CS2RCR1_RAL from a register value.
+#define BG_EIM_CS2RCR1_RAL(r)   (((r) & BM_EIM_CS2RCR1_RAL) >> BP_EIM_CS2RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_RAL(v)   ((((reg32_t) v) << 19) & BM_EIM_CSRCR12_RAL)
+//! @brief Format value for bitfield EIM_CS2RCR1_RAL.
+#define BF_EIM_CS2RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RAL) & BM_EIM_CS2RCR1_RAL)
 #else
-#define BF_EIM_CSRCR12_RAL(v)   (((v) << 19) & BM_EIM_CSRCR12_RAL)
+//! @brief Format value for bitfield EIM_CS2RCR1_RAL.
+#define BF_EIM_CS2RCR1_RAL(v)   (((v) << BP_EIM_CS2RCR1_RAL) & BM_EIM_CS2RCR1_RAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
-#define BW_EIM_CSRCR12_RAL(v)   BF_CS1(EIM_CSRCR12, RAL, v)
+#define BW_EIM_CS2RCR1_RAL(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RAL) | BF_EIM_CS2RCR1_RAL(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR12, field RADVA[22:20] (RW)
+/* --- Register HW_EIM_CS2RCR1, field RADVA[22:20] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware
@@ -4269,21 +5079,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSRCR12_RADVA      (20)
-#define BM_EIM_CSRCR12_RADVA      (0x00700000)
+#define BP_EIM_CS2RCR1_RADVA      (20)      //!< Bit position for EIM_CS2RCR1_RADVA.
+#define BM_EIM_CS2RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS2RCR1_RADVA.
+
+//! @brief Get value of EIM_CS2RCR1_RADVA from a register value.
+#define BG_EIM_CS2RCR1_RADVA(r)   (((r) & BM_EIM_CS2RCR1_RADVA) >> BP_EIM_CS2RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_RADVA(v)   ((((reg32_t) v) << 20) & BM_EIM_CSRCR12_RADVA)
+//! @brief Format value for bitfield EIM_CS2RCR1_RADVA.
+#define BF_EIM_CS2RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RADVA) & BM_EIM_CS2RCR1_RADVA)
 #else
-#define BF_EIM_CSRCR12_RADVA(v)   (((v) << 20) & BM_EIM_CSRCR12_RADVA)
+//! @brief Format value for bitfield EIM_CS2RCR1_RADVA.
+#define BF_EIM_CS2RCR1_RADVA(v)   (((v) << BP_EIM_CS2RCR1_RADVA) & BM_EIM_CS2RCR1_RADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
-#define BW_EIM_CSRCR12_RADVA(v)   BF_CS1(EIM_CSRCR12, RADVA, v)
+#define BW_EIM_CS2RCR1_RADVA(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RADVA) | BF_EIM_CS2RCR1_RADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR12, field RWSC[29:24] (RW)
+/* --- Register HW_EIM_CS2RCR1, field RWSC[29:24] (RW)
  *
  * Read Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous read access to the external device
@@ -4309,63 +5125,71 @@ typedef union
  * 111111 - RWSC value is 63
  */
 
-#define BP_EIM_CSRCR12_RWSC      (24)
-#define BM_EIM_CSRCR12_RWSC      (0x3f000000)
+#define BP_EIM_CS2RCR1_RWSC      (24)      //!< Bit position for EIM_CS2RCR1_RWSC.
+#define BM_EIM_CS2RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS2RCR1_RWSC.
+
+//! @brief Get value of EIM_CS2RCR1_RWSC from a register value.
+#define BG_EIM_CS2RCR1_RWSC(r)   (((r) & BM_EIM_CS2RCR1_RWSC) >> BP_EIM_CS2RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR12_RWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSRCR12_RWSC)
+//! @brief Format value for bitfield EIM_CS2RCR1_RWSC.
+#define BF_EIM_CS2RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RWSC) & BM_EIM_CS2RCR1_RWSC)
 #else
-#define BF_EIM_CSRCR12_RWSC(v)   (((v) << 24) & BM_EIM_CSRCR12_RWSC)
+//! @brief Format value for bitfield EIM_CS2RCR1_RWSC.
+#define BF_EIM_CS2RCR1_RWSC(v)   (((v) << BP_EIM_CS2RCR1_RWSC) & BM_EIM_CS2RCR1_RWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
-#define BW_EIM_CSRCR12_RWSC(v)   BF_CS1(EIM_CSRCR12, RWSC, v)
+#define BW_EIM_CS2RCR1_RWSC(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RWSC) | BF_EIM_CS2RCR1_RWSC(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR22 - Chip Select n Read Configuration Register 2 2 (RW)
+ * @brief HW_EIM_CS2RCR2 - Chip Select n Read Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs2rcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs2rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RL : 2; //!< Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned PAT : 3; //!< Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
-        unsigned RESERVED2 : 16; //!< Reserved
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
+        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
-} hw_eim_csrcr22_t;
+} hw_eim_cs2rcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR22 register
+ * constants & macros for entire EIM_CS2RCR2 register
  */
-#define HW_EIM_CSRCR22_ADDR      (REGS_EIM_BASE + 0x3c)
+#define HW_EIM_CS2RCR2_ADDR      (REGS_EIM_BASE + 0x3c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR22           (*(volatile hw_eim_csrcr22_t *) HW_EIM_CSRCR22_ADDR)
-#define HW_EIM_CSRCR22_RD()      (HW_EIM_CSRCR22.U)
-#define HW_EIM_CSRCR22_WR(v)     (HW_EIM_CSRCR22.U = (v))
-#define HW_EIM_CSRCR22_SET(v)    (HW_EIM_CSRCR22_WR(HW_EIM_CSRCR22_RD() |  (v)))
-#define HW_EIM_CSRCR22_CLR(v)    (HW_EIM_CSRCR22_WR(HW_EIM_CSRCR22_RD() & ~(v)))
-#define HW_EIM_CSRCR22_TOG(v)    (HW_EIM_CSRCR22_WR(HW_EIM_CSRCR22_RD() ^  (v)))
+#define HW_EIM_CS2RCR2           (*(volatile hw_eim_cs2rcr2_t *) HW_EIM_CS2RCR2_ADDR)
+#define HW_EIM_CS2RCR2_RD()      (HW_EIM_CS2RCR2.U)
+#define HW_EIM_CS2RCR2_WR(v)     (HW_EIM_CS2RCR2.U = (v))
+#define HW_EIM_CS2RCR2_SET(v)    (HW_EIM_CS2RCR2_WR(HW_EIM_CS2RCR2_RD() |  (v)))
+#define HW_EIM_CS2RCR2_CLR(v)    (HW_EIM_CS2RCR2_WR(HW_EIM_CS2RCR2_RD() & ~(v)))
+#define HW_EIM_CS2RCR2_TOG(v)    (HW_EIM_CS2RCR2_WR(HW_EIM_CS2RCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR22 bitfields
+ * constants & macros for individual EIM_CS2RCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR22, field RBEN[2:0] (RW)
+/* --- Register HW_EIM_CS2RCR2, field RBEN[2:0] (RW)
  *
  * Read BE Negation. This bit field determines when BE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit
@@ -4378,21 +5202,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 
-#define BP_EIM_CSRCR22_RBEN      (0)
-#define BM_EIM_CSRCR22_RBEN      (0x00000007)
+#define BP_EIM_CS2RCR2_RBEN      (0)      //!< Bit position for EIM_CS2RCR2_RBEN.
+#define BM_EIM_CS2RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS2RCR2_RBEN.
+
+//! @brief Get value of EIM_CS2RCR2_RBEN from a register value.
+#define BG_EIM_CS2RCR2_RBEN(r)   (((r) & BM_EIM_CS2RCR2_RBEN) >> BP_EIM_CS2RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR22_RBEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR22_RBEN)
+//! @brief Format value for bitfield EIM_CS2RCR2_RBEN.
+#define BF_EIM_CS2RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RBEN) & BM_EIM_CS2RCR2_RBEN)
 #else
-#define BF_EIM_CSRCR22_RBEN(v)   (((v) << 0) & BM_EIM_CSRCR22_RBEN)
+//! @brief Format value for bitfield EIM_CS2RCR2_RBEN.
+#define BF_EIM_CS2RCR2_RBEN(v)   (((v) << BP_EIM_CS2RCR2_RBEN) & BM_EIM_CS2RCR2_RBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
-#define BW_EIM_CSRCR22_RBEN(v)   BF_CS1(EIM_CSRCR22, RBEN, v)
+#define BW_EIM_CS2RCR2_RBEN(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RBEN) | BF_EIM_CS2RCR2_RBEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR22, field RBE[3:3] (RW)
+/* --- Register HW_EIM_CS2RCR2, field RBE[3] (RW)
  *
  * Read BE enable. This bit field determines if BE will be asserted during read access.
  *
@@ -4401,21 +5231,27 @@ typedef union
  * 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 
-#define BP_EIM_CSRCR22_RBE      (3)
-#define BM_EIM_CSRCR22_RBE      (0x00000008)
+#define BP_EIM_CS2RCR2_RBE      (3)      //!< Bit position for EIM_CS2RCR2_RBE.
+#define BM_EIM_CS2RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS2RCR2_RBE.
+
+//! @brief Get value of EIM_CS2RCR2_RBE from a register value.
+#define BG_EIM_CS2RCR2_RBE(r)   (((r) & BM_EIM_CS2RCR2_RBE) >> BP_EIM_CS2RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR22_RBE(v)   ((((reg32_t) v) << 3) & BM_EIM_CSRCR22_RBE)
+//! @brief Format value for bitfield EIM_CS2RCR2_RBE.
+#define BF_EIM_CS2RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RBE) & BM_EIM_CS2RCR2_RBE)
 #else
-#define BF_EIM_CSRCR22_RBE(v)   (((v) << 3) & BM_EIM_CSRCR22_RBE)
+//! @brief Format value for bitfield EIM_CS2RCR2_RBE.
+#define BF_EIM_CS2RCR2_RBE(v)   (((v) << BP_EIM_CS2RCR2_RBE) & BM_EIM_CS2RCR2_RBE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
-#define BW_EIM_CSRCR22_RBE(v)   BF_CS1(EIM_CSRCR22, RBE, v)
+#define BW_EIM_CS2RCR2_RBE(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RBE) | BF_EIM_CS2RCR2_RBE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR22, field RBEA[6:4] (RW)
+/* --- Register HW_EIM_CS2RCR2, field RBEA[6:4] (RW)
  *
  * Read BE Assertion. This bit field determines when BE signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a
@@ -4428,21 +5264,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 
-#define BP_EIM_CSRCR22_RBEA      (4)
-#define BM_EIM_CSRCR22_RBEA      (0x00000070)
+#define BP_EIM_CS2RCR2_RBEA      (4)      //!< Bit position for EIM_CS2RCR2_RBEA.
+#define BM_EIM_CS2RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS2RCR2_RBEA.
+
+//! @brief Get value of EIM_CS2RCR2_RBEA from a register value.
+#define BG_EIM_CS2RCR2_RBEA(r)   (((r) & BM_EIM_CS2RCR2_RBEA) >> BP_EIM_CS2RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR22_RBEA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR22_RBEA)
+//! @brief Format value for bitfield EIM_CS2RCR2_RBEA.
+#define BF_EIM_CS2RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RBEA) & BM_EIM_CS2RCR2_RBEA)
 #else
-#define BF_EIM_CSRCR22_RBEA(v)   (((v) << 4) & BM_EIM_CSRCR22_RBEA)
+//! @brief Format value for bitfield EIM_CS2RCR2_RBEA.
+#define BF_EIM_CS2RCR2_RBEA(v)   (((v) << BP_EIM_CS2RCR2_RBEA) & BM_EIM_CS2RCR2_RBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
-#define BW_EIM_CSRCR22_RBEA(v)   BF_CS1(EIM_CSRCR22, RBEA, v)
+#define BW_EIM_CS2RCR2_RBEA(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RBEA) | BF_EIM_CS2RCR2_RBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR22, field RL[9:8] (RW)
+/* --- Register HW_EIM_CS2RCR2, field RL[9:8] (RW)
  *
  * Read Latency. This bit field indicates cycle latency when executing a synchronous read operation.
  * The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a
@@ -4455,21 +5297,27 @@ typedef union
  * 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 
-#define BP_EIM_CSRCR22_RL      (8)
-#define BM_EIM_CSRCR22_RL      (0x00000300)
+#define BP_EIM_CS2RCR2_RL      (8)      //!< Bit position for EIM_CS2RCR2_RL.
+#define BM_EIM_CS2RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS2RCR2_RL.
+
+//! @brief Get value of EIM_CS2RCR2_RL from a register value.
+#define BG_EIM_CS2RCR2_RL(r)   (((r) & BM_EIM_CS2RCR2_RL) >> BP_EIM_CS2RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR22_RL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR22_RL)
+//! @brief Format value for bitfield EIM_CS2RCR2_RL.
+#define BF_EIM_CS2RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RL) & BM_EIM_CS2RCR2_RL)
 #else
-#define BF_EIM_CSRCR22_RL(v)   (((v) << 8) & BM_EIM_CSRCR22_RL)
+//! @brief Format value for bitfield EIM_CS2RCR2_RL.
+#define BF_EIM_CS2RCR2_RL(v)   (((v) << BP_EIM_CS2RCR2_RL) & BM_EIM_CS2RCR2_RL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
-#define BW_EIM_CSRCR22_RL(v)   BF_CS1(EIM_CSRCR22, RL, v)
+#define BW_EIM_CS2RCR2_RL(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RL) | BF_EIM_CS2RCR2_RL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR22, field PAT[14:12] (RW)
+/* --- Register HW_EIM_CS2RCR2, field PAT[14:12] (RW)
  *
  * Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial
  * access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width
@@ -4487,21 +5335,27 @@ typedef union
  * 111 - Address width is 9 EIM clock cycles
  */
 
-#define BP_EIM_CSRCR22_PAT      (12)
-#define BM_EIM_CSRCR22_PAT      (0x00007000)
+#define BP_EIM_CS2RCR2_PAT      (12)      //!< Bit position for EIM_CS2RCR2_PAT.
+#define BM_EIM_CS2RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS2RCR2_PAT.
+
+//! @brief Get value of EIM_CS2RCR2_PAT from a register value.
+#define BG_EIM_CS2RCR2_PAT(r)   (((r) & BM_EIM_CS2RCR2_PAT) >> BP_EIM_CS2RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR22_PAT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR22_PAT)
+//! @brief Format value for bitfield EIM_CS2RCR2_PAT.
+#define BF_EIM_CS2RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_PAT) & BM_EIM_CS2RCR2_PAT)
 #else
-#define BF_EIM_CSRCR22_PAT(v)   (((v) << 12) & BM_EIM_CSRCR22_PAT)
+//! @brief Format value for bitfield EIM_CS2RCR2_PAT.
+#define BF_EIM_CS2RCR2_PAT(v)   (((v) << BP_EIM_CS2RCR2_PAT) & BM_EIM_CS2RCR2_PAT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
-#define BW_EIM_CSRCR22_PAT(v)   BF_CS1(EIM_CSRCR22, PAT, v)
+#define BW_EIM_CS2RCR2_PAT(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_PAT) | BF_EIM_CS2RCR2_PAT(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR22, field APR[15:15] (RW)
+/* --- Register HW_EIM_CS2RCR2, field APR[15] (RW)
  *
  * Asynchronous Page Read. This bit field determine the asynchronous read mode to the external
  * device. When APR=0, the async. read access is done as single word (where word is defined by the
@@ -4510,64 +5364,72 @@ typedef union
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 
-#define BP_EIM_CSRCR22_APR      (15)
-#define BM_EIM_CSRCR22_APR      (0x00008000)
+#define BP_EIM_CS2RCR2_APR      (15)      //!< Bit position for EIM_CS2RCR2_APR.
+#define BM_EIM_CS2RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS2RCR2_APR.
+
+//! @brief Get value of EIM_CS2RCR2_APR from a register value.
+#define BG_EIM_CS2RCR2_APR(r)   (((r) & BM_EIM_CS2RCR2_APR) >> BP_EIM_CS2RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR22_APR(v)   ((((reg32_t) v) << 15) & BM_EIM_CSRCR22_APR)
+//! @brief Format value for bitfield EIM_CS2RCR2_APR.
+#define BF_EIM_CS2RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_APR) & BM_EIM_CS2RCR2_APR)
 #else
-#define BF_EIM_CSRCR22_APR(v)   (((v) << 15) & BM_EIM_CSRCR22_APR)
+//! @brief Format value for bitfield EIM_CS2RCR2_APR.
+#define BF_EIM_CS2RCR2_APR(v)   (((v) << BP_EIM_CS2RCR2_APR) & BM_EIM_CS2RCR2_APR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
-#define BW_EIM_CSRCR22_APR(v)   BF_CS1(EIM_CSRCR22, APR, v)
+#define BW_EIM_CS2RCR2_APR(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_APR) | BF_EIM_CS2RCR2_APR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR12 - Chip Select n Write Configuration Register 1 2 (RW)
+ * @brief HW_EIM_CS2WCR1 - Chip Select n Write Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs2wcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs2wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
+        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
+        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
+        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
     } B;
-} hw_eim_cswcr12_t;
+} hw_eim_cs2wcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR12 register
+ * constants & macros for entire EIM_CS2WCR1 register
  */
-#define HW_EIM_CSWCR12_ADDR      (REGS_EIM_BASE + 0x40)
+#define HW_EIM_CS2WCR1_ADDR      (REGS_EIM_BASE + 0x40)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR12           (*(volatile hw_eim_cswcr12_t *) HW_EIM_CSWCR12_ADDR)
-#define HW_EIM_CSWCR12_RD()      (HW_EIM_CSWCR12.U)
-#define HW_EIM_CSWCR12_WR(v)     (HW_EIM_CSWCR12.U = (v))
-#define HW_EIM_CSWCR12_SET(v)    (HW_EIM_CSWCR12_WR(HW_EIM_CSWCR12_RD() |  (v)))
-#define HW_EIM_CSWCR12_CLR(v)    (HW_EIM_CSWCR12_WR(HW_EIM_CSWCR12_RD() & ~(v)))
-#define HW_EIM_CSWCR12_TOG(v)    (HW_EIM_CSWCR12_WR(HW_EIM_CSWCR12_RD() ^  (v)))
+#define HW_EIM_CS2WCR1           (*(volatile hw_eim_cs2wcr1_t *) HW_EIM_CS2WCR1_ADDR)
+#define HW_EIM_CS2WCR1_RD()      (HW_EIM_CS2WCR1.U)
+#define HW_EIM_CS2WCR1_WR(v)     (HW_EIM_CS2WCR1.U = (v))
+#define HW_EIM_CS2WCR1_SET(v)    (HW_EIM_CS2WCR1_WR(HW_EIM_CS2WCR1_RD() |  (v)))
+#define HW_EIM_CS2WCR1_CLR(v)    (HW_EIM_CS2WCR1_WR(HW_EIM_CS2WCR1_RD() & ~(v)))
+#define HW_EIM_CS2WCR1_TOG(v)    (HW_EIM_CS2WCR1_WR(HW_EIM_CS2WCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR12 bitfields
+ * constants & macros for individual EIM_CS2WCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR12, field WCSN[2:0] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WCSN[2:0] (RW)
  *
  * Write CS Negation. This bit field determines when CS signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -4580,21 +5442,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSWCR12_WCSN      (0)
-#define BM_EIM_CSWCR12_WCSN      (0x00000007)
+#define BP_EIM_CS2WCR1_WCSN      (0)      //!< Bit position for EIM_CS2WCR1_WCSN.
+#define BM_EIM_CS2WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS2WCR1_WCSN.
+
+//! @brief Get value of EIM_CS2WCR1_WCSN from a register value.
+#define BG_EIM_CS2WCR1_WCSN(r)   (((r) & BM_EIM_CS2WCR1_WCSN) >> BP_EIM_CS2WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR12_WCSN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WCSN.
+#define BF_EIM_CS2WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WCSN) & BM_EIM_CS2WCR1_WCSN)
 #else
-#define BF_EIM_CSWCR12_WCSN(v)   (((v) << 0) & BM_EIM_CSWCR12_WCSN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WCSN.
+#define BF_EIM_CS2WCR1_WCSN(v)   (((v) << BP_EIM_CS2WCR1_WCSN) & BM_EIM_CS2WCR1_WCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
-#define BW_EIM_CSWCR12_WCSN(v)   BF_CS1(EIM_CSWCR12, WCSN, v)
+#define BW_EIM_CS2WCR1_WCSN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WCSN) | BF_EIM_CS2WCR1_WCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR12, field WCSA[5:3] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WCSA[5:3] (RW)
  *
  * Write CS Assertion. This bit field determines when CS signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below.this bit field is
@@ -4608,21 +5476,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 
-#define BP_EIM_CSWCR12_WCSA      (3)
-#define BM_EIM_CSWCR12_WCSA      (0x00000038)
+#define BP_EIM_CS2WCR1_WCSA      (3)      //!< Bit position for EIM_CS2WCR1_WCSA.
+#define BM_EIM_CS2WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS2WCR1_WCSA.
+
+//! @brief Get value of EIM_CS2WCR1_WCSA from a register value.
+#define BG_EIM_CS2WCR1_WCSA(r)   (((r) & BM_EIM_CS2WCR1_WCSA) >> BP_EIM_CS2WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WCSA(v)   ((((reg32_t) v) << 3) & BM_EIM_CSWCR12_WCSA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WCSA.
+#define BF_EIM_CS2WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WCSA) & BM_EIM_CS2WCR1_WCSA)
 #else
-#define BF_EIM_CSWCR12_WCSA(v)   (((v) << 3) & BM_EIM_CSWCR12_WCSA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WCSA.
+#define BF_EIM_CS2WCR1_WCSA(v)   (((v) << BP_EIM_CS2WCR1_WCSA) & BM_EIM_CS2WCR1_WCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
-#define BW_EIM_CSWCR12_WCSA(v)   BF_CS1(EIM_CSWCR12, WCSA, v)
+#define BW_EIM_CS2WCR1_WCSA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WCSA) | BF_EIM_CS2WCR1_WCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR12, field WEN[8:6] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WEN[8:6] (RW)
  *
  * WE Negation. This bit field determines when WE signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -4636,21 +5510,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR12_WEN      (6)
-#define BM_EIM_CSWCR12_WEN      (0x000001c0)
+#define BP_EIM_CS2WCR1_WEN      (6)      //!< Bit position for EIM_CS2WCR1_WEN.
+#define BM_EIM_CS2WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS2WCR1_WEN.
+
+//! @brief Get value of EIM_CS2WCR1_WEN from a register value.
+#define BG_EIM_CS2WCR1_WEN(r)   (((r) & BM_EIM_CS2WCR1_WEN) >> BP_EIM_CS2WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WEN(v)   ((((reg32_t) v) << 6) & BM_EIM_CSWCR12_WEN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WEN.
+#define BF_EIM_CS2WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WEN) & BM_EIM_CS2WCR1_WEN)
 #else
-#define BF_EIM_CSWCR12_WEN(v)   (((v) << 6) & BM_EIM_CSWCR12_WEN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WEN.
+#define BF_EIM_CS2WCR1_WEN(v)   (((v) << BP_EIM_CS2WCR1_WEN) & BM_EIM_CS2WCR1_WEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
-#define BW_EIM_CSWCR12_WEN(v)   BF_CS1(EIM_CSWCR12, WEN, v)
+#define BW_EIM_CS2WCR1_WEN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WEN) | BF_EIM_CS2WCR1_WEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR12, field WEA[11:9] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WEA[11:9] (RW)
  *
  * WE Assertion. This bit field determines when WE signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below. This bit field is
@@ -4665,21 +5545,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR12_WEA      (9)
-#define BM_EIM_CSWCR12_WEA      (0x00000e00)
+#define BP_EIM_CS2WCR1_WEA      (9)      //!< Bit position for EIM_CS2WCR1_WEA.
+#define BM_EIM_CS2WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS2WCR1_WEA.
+
+//! @brief Get value of EIM_CS2WCR1_WEA from a register value.
+#define BG_EIM_CS2WCR1_WEA(r)   (((r) & BM_EIM_CS2WCR1_WEA) >> BP_EIM_CS2WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WEA(v)   ((((reg32_t) v) << 9) & BM_EIM_CSWCR12_WEA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WEA.
+#define BF_EIM_CS2WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WEA) & BM_EIM_CS2WCR1_WEA)
 #else
-#define BF_EIM_CSWCR12_WEA(v)   (((v) << 9) & BM_EIM_CSWCR12_WEA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WEA.
+#define BF_EIM_CS2WCR1_WEA(v)   (((v) << BP_EIM_CS2WCR1_WEA) & BM_EIM_CS2WCR1_WEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
-#define BW_EIM_CSWCR12_WEA(v)   BF_CS1(EIM_CSWCR12, WEA, v)
+#define BW_EIM_CS2WCR1_WEA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WEA) | BF_EIM_CS2WCR1_WEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR12, field WBEN[14:12] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WBEN[14:12] (RW)
  *
  * BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write
  * cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is
@@ -4690,20 +5576,26 @@ typedef union
  * access and WE negation
  */
 
-#define BP_EIM_CSWCR12_WBEN      (12)
-#define BM_EIM_CSWCR12_WBEN      (0x00007000)
+#define BP_EIM_CS2WCR1_WBEN      (12)      //!< Bit position for EIM_CS2WCR1_WBEN.
+#define BM_EIM_CS2WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS2WCR1_WBEN.
+
+//! @brief Get value of EIM_CS2WCR1_WBEN from a register value.
+#define BG_EIM_CS2WCR1_WBEN(r)   (((r) & BM_EIM_CS2WCR1_WBEN) >> BP_EIM_CS2WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WBEN(v)   ((((reg32_t) v) << 12) & BM_EIM_CSWCR12_WBEN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WBEN.
+#define BF_EIM_CS2WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WBEN) & BM_EIM_CS2WCR1_WBEN)
 #else
-#define BF_EIM_CSWCR12_WBEN(v)   (((v) << 12) & BM_EIM_CSWCR12_WBEN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WBEN.
+#define BF_EIM_CS2WCR1_WBEN(v)   (((v) << BP_EIM_CS2WCR1_WBEN) & BM_EIM_CS2WCR1_WBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
-#define BW_EIM_CSWCR12_WBEN(v)   BF_CS1(EIM_CSWCR12, WBEN, v)
+#define BW_EIM_CS2WCR1_WBEN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WBEN) | BF_EIM_CS2WCR1_WBEN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR12, field WBEA[17:15] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WBEA[17:15] (RW)
  *
  * BE Assertion. This bit field determines when BE signal is asserted during write cycles in async.
  * mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset.
@@ -4717,21 +5609,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 
-#define BP_EIM_CSWCR12_WBEA      (15)
-#define BM_EIM_CSWCR12_WBEA      (0x00038000)
+#define BP_EIM_CS2WCR1_WBEA      (15)      //!< Bit position for EIM_CS2WCR1_WBEA.
+#define BM_EIM_CS2WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS2WCR1_WBEA.
+
+//! @brief Get value of EIM_CS2WCR1_WBEA from a register value.
+#define BG_EIM_CS2WCR1_WBEA(r)   (((r) & BM_EIM_CS2WCR1_WBEA) >> BP_EIM_CS2WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WBEA(v)   ((((reg32_t) v) << 15) & BM_EIM_CSWCR12_WBEA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WBEA.
+#define BF_EIM_CS2WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WBEA) & BM_EIM_CS2WCR1_WBEA)
 #else
-#define BF_EIM_CSWCR12_WBEA(v)   (((v) << 15) & BM_EIM_CSWCR12_WBEA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WBEA.
+#define BF_EIM_CS2WCR1_WBEA(v)   (((v) << BP_EIM_CS2WCR1_WBEA) & BM_EIM_CS2WCR1_WBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
-#define BW_EIM_CSWCR12_WBEA(v)   BF_CS1(EIM_CSWCR12, WBEA, v)
+#define BW_EIM_CS2WCR1_WBEA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WBEA) | BF_EIM_CS2WCR1_WBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR12, field WADVN[20:18] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WADVN[20:18] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during write
  * accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following
@@ -4742,20 +5640,26 @@ typedef union
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 
-#define BP_EIM_CSWCR12_WADVN      (18)
-#define BM_EIM_CSWCR12_WADVN      (0x001c0000)
+#define BP_EIM_CS2WCR1_WADVN      (18)      //!< Bit position for EIM_CS2WCR1_WADVN.
+#define BM_EIM_CS2WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS2WCR1_WADVN.
+
+//! @brief Get value of EIM_CS2WCR1_WADVN from a register value.
+#define BG_EIM_CS2WCR1_WADVN(r)   (((r) & BM_EIM_CS2WCR1_WADVN) >> BP_EIM_CS2WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WADVN(v)   ((((reg32_t) v) << 18) & BM_EIM_CSWCR12_WADVN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WADVN.
+#define BF_EIM_CS2WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WADVN) & BM_EIM_CS2WCR1_WADVN)
 #else
-#define BF_EIM_CSWCR12_WADVN(v)   (((v) << 18) & BM_EIM_CSWCR12_WADVN)
+//! @brief Format value for bitfield EIM_CS2WCR1_WADVN.
+#define BF_EIM_CS2WCR1_WADVN(v)   (((v) << BP_EIM_CS2WCR1_WADVN) & BM_EIM_CS2WCR1_WADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
-#define BW_EIM_CSWCR12_WADVN(v)   BF_CS1(EIM_CSWCR12, WADVN, v)
+#define BW_EIM_CS2WCR1_WADVN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WADVN) | BF_EIM_CS2WCR1_WADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR12, field WADVA[23:21] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WADVA[23:21] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware
@@ -4768,21 +5672,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSWCR12_WADVA      (21)
-#define BM_EIM_CSWCR12_WADVA      (0x00e00000)
+#define BP_EIM_CS2WCR1_WADVA      (21)      //!< Bit position for EIM_CS2WCR1_WADVA.
+#define BM_EIM_CS2WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS2WCR1_WADVA.
+
+//! @brief Get value of EIM_CS2WCR1_WADVA from a register value.
+#define BG_EIM_CS2WCR1_WADVA(r)   (((r) & BM_EIM_CS2WCR1_WADVA) >> BP_EIM_CS2WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WADVA(v)   ((((reg32_t) v) << 21) & BM_EIM_CSWCR12_WADVA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WADVA.
+#define BF_EIM_CS2WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WADVA) & BM_EIM_CS2WCR1_WADVA)
 #else
-#define BF_EIM_CSWCR12_WADVA(v)   (((v) << 21) & BM_EIM_CSWCR12_WADVA)
+//! @brief Format value for bitfield EIM_CS2WCR1_WADVA.
+#define BF_EIM_CS2WCR1_WADVA(v)   (((v) << BP_EIM_CS2WCR1_WADVA) & BM_EIM_CS2WCR1_WADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
-#define BW_EIM_CSWCR12_WADVA(v)   BF_CS1(EIM_CSWCR12, WADVA, v)
+#define BW_EIM_CS2WCR1_WADVA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WADVA) | BF_EIM_CS2WCR1_WADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR12, field WWSC[29:24] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WWSC[29:24] (RW)
  *
  * Write Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous write access to the external device
@@ -4807,40 +5717,52 @@ typedef union
  * 111111 - WWSC value is 63
  */
 
-#define BP_EIM_CSWCR12_WWSC      (24)
-#define BM_EIM_CSWCR12_WWSC      (0x3f000000)
+#define BP_EIM_CS2WCR1_WWSC      (24)      //!< Bit position for EIM_CS2WCR1_WWSC.
+#define BM_EIM_CS2WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS2WCR1_WWSC.
+
+//! @brief Get value of EIM_CS2WCR1_WWSC from a register value.
+#define BG_EIM_CS2WCR1_WWSC(r)   (((r) & BM_EIM_CS2WCR1_WWSC) >> BP_EIM_CS2WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSWCR12_WWSC)
+//! @brief Format value for bitfield EIM_CS2WCR1_WWSC.
+#define BF_EIM_CS2WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WWSC) & BM_EIM_CS2WCR1_WWSC)
 #else
-#define BF_EIM_CSWCR12_WWSC(v)   (((v) << 24) & BM_EIM_CSWCR12_WWSC)
+//! @brief Format value for bitfield EIM_CS2WCR1_WWSC.
+#define BF_EIM_CS2WCR1_WWSC(v)   (((v) << BP_EIM_CS2WCR1_WWSC) & BM_EIM_CS2WCR1_WWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
-#define BW_EIM_CSWCR12_WWSC(v)   BF_CS1(EIM_CSWCR12, WWSC, v)
+#define BW_EIM_CS2WCR1_WWSC(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WWSC) | BF_EIM_CS2WCR1_WWSC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR12, field WBED[30:30] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WBED[30] (RW)
  *
  * Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted
  * during write accesses.This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR12_WBED      (30)
-#define BM_EIM_CSWCR12_WBED      (0x40000000)
+#define BP_EIM_CS2WCR1_WBED      (30)      //!< Bit position for EIM_CS2WCR1_WBED.
+#define BM_EIM_CS2WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS2WCR1_WBED.
+
+//! @brief Get value of EIM_CS2WCR1_WBED from a register value.
+#define BG_EIM_CS2WCR1_WBED(r)   (((r) & BM_EIM_CS2WCR1_WBED) >> BP_EIM_CS2WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WBED(v)   ((((reg32_t) v) << 30) & BM_EIM_CSWCR12_WBED)
+//! @brief Format value for bitfield EIM_CS2WCR1_WBED.
+#define BF_EIM_CS2WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WBED) & BM_EIM_CS2WCR1_WBED)
 #else
-#define BF_EIM_CSWCR12_WBED(v)   (((v) << 30) & BM_EIM_CSWCR12_WBED)
+//! @brief Format value for bitfield EIM_CS2WCR1_WBED.
+#define BF_EIM_CS2WCR1_WBED(v)   (((v) << BP_EIM_CS2WCR1_WBED) & BM_EIM_CS2WCR1_WBED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
-#define BW_EIM_CSWCR12_WBED(v)   BF_CS1(EIM_CSWCR12, WBED, v)
+#define BW_EIM_CS2WCR1_WBED(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WBED) | BF_EIM_CS2WCR1_WBED(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR12, field WAL[31:31] (RW)
+/* --- Register HW_EIM_CS2WCR1, field WAL[31] (RW)
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
@@ -4848,127 +5770,143 @@ typedef union
  * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
  */
 
-#define BP_EIM_CSWCR12_WAL      (31)
-#define BM_EIM_CSWCR12_WAL      (0x80000000)
+#define BP_EIM_CS2WCR1_WAL      (31)      //!< Bit position for EIM_CS2WCR1_WAL.
+#define BM_EIM_CS2WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS2WCR1_WAL.
+
+//! @brief Get value of EIM_CS2WCR1_WAL from a register value.
+#define BG_EIM_CS2WCR1_WAL(r)   (((r) & BM_EIM_CS2WCR1_WAL) >> BP_EIM_CS2WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR12_WAL(v)   ((((reg32_t) v) << 31) & BM_EIM_CSWCR12_WAL)
+//! @brief Format value for bitfield EIM_CS2WCR1_WAL.
+#define BF_EIM_CS2WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WAL) & BM_EIM_CS2WCR1_WAL)
 #else
-#define BF_EIM_CSWCR12_WAL(v)   (((v) << 31) & BM_EIM_CSWCR12_WAL)
+//! @brief Format value for bitfield EIM_CS2WCR1_WAL.
+#define BF_EIM_CS2WCR1_WAL(v)   (((v) << BP_EIM_CS2WCR1_WAL) & BM_EIM_CS2WCR1_WAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
-#define BW_EIM_CSWCR12_WAL(v)   BF_CS1(EIM_CSWCR12, WAL, v)
+#define BW_EIM_CS2WCR1_WAL(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WAL) | BF_EIM_CS2WCR1_WAL(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR22 - Chip Select n Write Configuration Register 2 2 (RW)
+ * @brief HW_EIM_CS2WCR2 - Chip Select n Write Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs2wcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs2wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
-} hw_eim_cswcr22_t;
+} hw_eim_cs2wcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR22 register
+ * constants & macros for entire EIM_CS2WCR2 register
  */
-#define HW_EIM_CSWCR22_ADDR      (REGS_EIM_BASE + 0x44)
+#define HW_EIM_CS2WCR2_ADDR      (REGS_EIM_BASE + 0x44)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR22           (*(volatile hw_eim_cswcr22_t *) HW_EIM_CSWCR22_ADDR)
-#define HW_EIM_CSWCR22_RD()      (HW_EIM_CSWCR22.U)
-#define HW_EIM_CSWCR22_WR(v)     (HW_EIM_CSWCR22.U = (v))
-#define HW_EIM_CSWCR22_SET(v)    (HW_EIM_CSWCR22_WR(HW_EIM_CSWCR22_RD() |  (v)))
-#define HW_EIM_CSWCR22_CLR(v)    (HW_EIM_CSWCR22_WR(HW_EIM_CSWCR22_RD() & ~(v)))
-#define HW_EIM_CSWCR22_TOG(v)    (HW_EIM_CSWCR22_WR(HW_EIM_CSWCR22_RD() ^  (v)))
+#define HW_EIM_CS2WCR2           (*(volatile hw_eim_cs2wcr2_t *) HW_EIM_CS2WCR2_ADDR)
+#define HW_EIM_CS2WCR2_RD()      (HW_EIM_CS2WCR2.U)
+#define HW_EIM_CS2WCR2_WR(v)     (HW_EIM_CS2WCR2.U = (v))
+#define HW_EIM_CS2WCR2_SET(v)    (HW_EIM_CS2WCR2_WR(HW_EIM_CS2WCR2_RD() |  (v)))
+#define HW_EIM_CS2WCR2_CLR(v)    (HW_EIM_CS2WCR2_WR(HW_EIM_CS2WCR2_RD() & ~(v)))
+#define HW_EIM_CS2WCR2_TOG(v)    (HW_EIM_CS2WCR2_WR(HW_EIM_CS2WCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR22 bitfields
+ * constants & macros for individual EIM_CS2WCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR22, field WBCDD[0:0] (RW)
+/* --- Register HW_EIM_CS2WCR2, field WBCDD[0] (RW)
  *
  * Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write
  * access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this
  * bit has no affect. This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR22_WBCDD      (0)
-#define BM_EIM_CSWCR22_WBCDD      (0x00000001)
+#define BP_EIM_CS2WCR2_WBCDD      (0)      //!< Bit position for EIM_CS2WCR2_WBCDD.
+#define BM_EIM_CS2WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS2WCR2_WBCDD.
+
+//! @brief Get value of EIM_CS2WCR2_WBCDD from a register value.
+#define BG_EIM_CS2WCR2_WBCDD(r)   (((r) & BM_EIM_CS2WCR2_WBCDD) >> BP_EIM_CS2WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR22_WBCDD(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR22_WBCDD)
+//! @brief Format value for bitfield EIM_CS2WCR2_WBCDD.
+#define BF_EIM_CS2WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS2WCR2_WBCDD) & BM_EIM_CS2WCR2_WBCDD)
 #else
-#define BF_EIM_CSWCR22_WBCDD(v)   (((v) << 0) & BM_EIM_CSWCR22_WBCDD)
+//! @brief Format value for bitfield EIM_CS2WCR2_WBCDD.
+#define BF_EIM_CS2WCR2_WBCDD(v)   (((v) << BP_EIM_CS2WCR2_WBCDD) & BM_EIM_CS2WCR2_WBCDD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
-#define BW_EIM_CSWCR22_WBCDD(v)   BF_CS1(EIM_CSWCR22, WBCDD, v)
+#define BW_EIM_CS2WCR2_WBCDD(v)   (HW_EIM_CS2WCR2_WR((HW_EIM_CS2WCR2_RD() & ~BM_EIM_CS2WCR2_WBCDD) | BF_EIM_CS2WCR2_WBCDD(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR13 - Chip Select n General Configuration Register 1 3 (RW)
+ * @brief HW_EIM_CS3GCR1 - Chip Select n General Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00010080
  *
 
  */
-typedef union
+typedef union _hw_eim_cs3gcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs3gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
+        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
+        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
+        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
+        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
+        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
+        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
+        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
+        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
     } B;
-} hw_eim_csgcr13_t;
+} hw_eim_cs3gcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR13 register
+ * constants & macros for entire EIM_CS3GCR1 register
  */
-#define HW_EIM_CSGCR13_ADDR      (REGS_EIM_BASE + 0x48)
+#define HW_EIM_CS3GCR1_ADDR      (REGS_EIM_BASE + 0x48)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR13           (*(volatile hw_eim_csgcr13_t *) HW_EIM_CSGCR13_ADDR)
-#define HW_EIM_CSGCR13_RD()      (HW_EIM_CSGCR13.U)
-#define HW_EIM_CSGCR13_WR(v)     (HW_EIM_CSGCR13.U = (v))
-#define HW_EIM_CSGCR13_SET(v)    (HW_EIM_CSGCR13_WR(HW_EIM_CSGCR13_RD() |  (v)))
-#define HW_EIM_CSGCR13_CLR(v)    (HW_EIM_CSGCR13_WR(HW_EIM_CSGCR13_RD() & ~(v)))
-#define HW_EIM_CSGCR13_TOG(v)    (HW_EIM_CSGCR13_WR(HW_EIM_CSGCR13_RD() ^  (v)))
+#define HW_EIM_CS3GCR1           (*(volatile hw_eim_cs3gcr1_t *) HW_EIM_CS3GCR1_ADDR)
+#define HW_EIM_CS3GCR1_RD()      (HW_EIM_CS3GCR1.U)
+#define HW_EIM_CS3GCR1_WR(v)     (HW_EIM_CS3GCR1.U = (v))
+#define HW_EIM_CS3GCR1_SET(v)    (HW_EIM_CS3GCR1_WR(HW_EIM_CS3GCR1_RD() |  (v)))
+#define HW_EIM_CS3GCR1_CLR(v)    (HW_EIM_CS3GCR1_WR(HW_EIM_CS3GCR1_RD() & ~(v)))
+#define HW_EIM_CS3GCR1_TOG(v)    (HW_EIM_CS3GCR1_WR(HW_EIM_CS3GCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR13 bitfields
+ * constants & macros for individual EIM_CS3GCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR13, field CSEN[0:0] (RW)
+/* --- Register HW_EIM_CS3GCR1, field CSEN[0] (RW)
  *
  * CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware
  * reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to
@@ -4981,21 +5919,27 @@ typedef union
  * 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 
-#define BP_EIM_CSGCR13_CSEN      (0)
-#define BM_EIM_CSGCR13_CSEN      (0x00000001)
+#define BP_EIM_CS3GCR1_CSEN      (0)      //!< Bit position for EIM_CS3GCR1_CSEN.
+#define BM_EIM_CS3GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS3GCR1_CSEN.
+
+//! @brief Get value of EIM_CS3GCR1_CSEN from a register value.
+#define BG_EIM_CS3GCR1_CSEN(r)   (((r) & BM_EIM_CS3GCR1_CSEN) >> BP_EIM_CS3GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_CSEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR13_CSEN)
+//! @brief Format value for bitfield EIM_CS3GCR1_CSEN.
+#define BF_EIM_CS3GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CSEN) & BM_EIM_CS3GCR1_CSEN)
 #else
-#define BF_EIM_CSGCR13_CSEN(v)   (((v) << 0) & BM_EIM_CSGCR13_CSEN)
+//! @brief Format value for bitfield EIM_CS3GCR1_CSEN.
+#define BF_EIM_CS3GCR1_CSEN(v)   (((v) << BP_EIM_CS3GCR1_CSEN) & BM_EIM_CS3GCR1_CSEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
-#define BW_EIM_CSGCR13_CSEN(v)   BF_CS1(EIM_CSGCR13, CSEN, v)
+#define BW_EIM_CS3GCR1_CSEN(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CSEN) | BF_EIM_CS3GCR1_CSEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field SWR[1:1] (RW)
+/* --- Register HW_EIM_CS3GCR1, field SWR[1] (RW)
  *
  * Synchronous Write Data. This bit field determine the write accesses mode to the External device
  * of the chip select. The External device should be configured to the same mode as this bit
@@ -5006,21 +5950,27 @@ typedef union
  * 1 - write accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR13_SWR      (1)
-#define BM_EIM_CSGCR13_SWR      (0x00000002)
+#define BP_EIM_CS3GCR1_SWR      (1)      //!< Bit position for EIM_CS3GCR1_SWR.
+#define BM_EIM_CS3GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS3GCR1_SWR.
+
+//! @brief Get value of EIM_CS3GCR1_SWR from a register value.
+#define BG_EIM_CS3GCR1_SWR(r)   (((r) & BM_EIM_CS3GCR1_SWR) >> BP_EIM_CS3GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_SWR(v)   ((((reg32_t) v) << 1) & BM_EIM_CSGCR13_SWR)
+//! @brief Format value for bitfield EIM_CS3GCR1_SWR.
+#define BF_EIM_CS3GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_SWR) & BM_EIM_CS3GCR1_SWR)
 #else
-#define BF_EIM_CSGCR13_SWR(v)   (((v) << 1) & BM_EIM_CSGCR13_SWR)
+//! @brief Format value for bitfield EIM_CS3GCR1_SWR.
+#define BF_EIM_CS3GCR1_SWR(v)   (((v) << BP_EIM_CS3GCR1_SWR) & BM_EIM_CS3GCR1_SWR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
-#define BW_EIM_CSGCR13_SWR(v)   BF_CS1(EIM_CSGCR13, SWR, v)
+#define BW_EIM_CS3GCR1_SWR(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_SWR) | BF_EIM_CS3GCR1_SWR(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field SRD[2:2] (RW)
+/* --- Register HW_EIM_CS3GCR1, field SRD[2] (RW)
  *
  * Synchronous Read Data. This bit field determine the read accesses mode to the External device of
  * the chip select. The External device should be configured to the same mode as this bit
@@ -5031,21 +5981,27 @@ typedef union
  * 1 - read accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR13_SRD      (2)
-#define BM_EIM_CSGCR13_SRD      (0x00000004)
+#define BP_EIM_CS3GCR1_SRD      (2)      //!< Bit position for EIM_CS3GCR1_SRD.
+#define BM_EIM_CS3GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS3GCR1_SRD.
+
+//! @brief Get value of EIM_CS3GCR1_SRD from a register value.
+#define BG_EIM_CS3GCR1_SRD(r)   (((r) & BM_EIM_CS3GCR1_SRD) >> BP_EIM_CS3GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_SRD(v)   ((((reg32_t) v) << 2) & BM_EIM_CSGCR13_SRD)
+//! @brief Format value for bitfield EIM_CS3GCR1_SRD.
+#define BF_EIM_CS3GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_SRD) & BM_EIM_CS3GCR1_SRD)
 #else
-#define BF_EIM_CSGCR13_SRD(v)   (((v) << 2) & BM_EIM_CSGCR13_SRD)
+//! @brief Format value for bitfield EIM_CS3GCR1_SRD.
+#define BF_EIM_CS3GCR1_SRD(v)   (((v) << BP_EIM_CS3GCR1_SRD) & BM_EIM_CS3GCR1_SRD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
-#define BW_EIM_CSGCR13_SRD(v)   BF_CS1(EIM_CSGCR13, SRD, v)
+#define BW_EIM_CS3GCR1_SRD(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_SRD) | BF_EIM_CS3GCR1_SRD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field MUM[3:3] (RW)
+/* --- Register HW_EIM_CS3GCR1, field MUM[3] (RW)
  *
  * Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and
  * synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value
@@ -5056,21 +6012,27 @@ typedef union
  * 1 - Multiplexed Mode enable
  */
 
-#define BP_EIM_CSGCR13_MUM      (3)
-#define BM_EIM_CSGCR13_MUM      (0x00000008)
+#define BP_EIM_CS3GCR1_MUM      (3)      //!< Bit position for EIM_CS3GCR1_MUM.
+#define BM_EIM_CS3GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS3GCR1_MUM.
+
+//! @brief Get value of EIM_CS3GCR1_MUM from a register value.
+#define BG_EIM_CS3GCR1_MUM(r)   (((r) & BM_EIM_CS3GCR1_MUM) >> BP_EIM_CS3GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_MUM(v)   ((((reg32_t) v) << 3) & BM_EIM_CSGCR13_MUM)
+//! @brief Format value for bitfield EIM_CS3GCR1_MUM.
+#define BF_EIM_CS3GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_MUM) & BM_EIM_CS3GCR1_MUM)
 #else
-#define BF_EIM_CSGCR13_MUM(v)   (((v) << 3) & BM_EIM_CSGCR13_MUM)
+//! @brief Format value for bitfield EIM_CS3GCR1_MUM.
+#define BF_EIM_CS3GCR1_MUM(v)   (((v) << BP_EIM_CS3GCR1_MUM) & BM_EIM_CS3GCR1_MUM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
-#define BW_EIM_CSGCR13_MUM(v)   BF_CS1(EIM_CSGCR13, MUM, v)
+#define BW_EIM_CS3GCR1_MUM(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_MUM) | BF_EIM_CS3GCR1_MUM(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field WFL[4:4] (RW)
+/* --- Register HW_EIM_CS3GCR1, field WFL[4] (RW)
  *
  * Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -5084,21 +6046,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR13_WFL      (4)
-#define BM_EIM_CSGCR13_WFL      (0x00000010)
+#define BP_EIM_CS3GCR1_WFL      (4)      //!< Bit position for EIM_CS3GCR1_WFL.
+#define BM_EIM_CS3GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS3GCR1_WFL.
+
+//! @brief Get value of EIM_CS3GCR1_WFL from a register value.
+#define BG_EIM_CS3GCR1_WFL(r)   (((r) & BM_EIM_CS3GCR1_WFL) >> BP_EIM_CS3GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_WFL(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR13_WFL)
+//! @brief Format value for bitfield EIM_CS3GCR1_WFL.
+#define BF_EIM_CS3GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_WFL) & BM_EIM_CS3GCR1_WFL)
 #else
-#define BF_EIM_CSGCR13_WFL(v)   (((v) << 4) & BM_EIM_CSGCR13_WFL)
+//! @brief Format value for bitfield EIM_CS3GCR1_WFL.
+#define BF_EIM_CS3GCR1_WFL(v)   (((v) << BP_EIM_CS3GCR1_WFL) & BM_EIM_CS3GCR1_WFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
-#define BW_EIM_CSGCR13_WFL(v)   BF_CS1(EIM_CSGCR13, WFL, v)
+#define BW_EIM_CS3GCR1_WFL(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_WFL) | BF_EIM_CS3GCR1_WFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field RFL[5:5] (RW)
+/* --- Register HW_EIM_CS3GCR1, field RFL[5] (RW)
  *
  * Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -5112,21 +6080,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR13_RFL      (5)
-#define BM_EIM_CSGCR13_RFL      (0x00000020)
+#define BP_EIM_CS3GCR1_RFL      (5)      //!< Bit position for EIM_CS3GCR1_RFL.
+#define BM_EIM_CS3GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS3GCR1_RFL.
+
+//! @brief Get value of EIM_CS3GCR1_RFL from a register value.
+#define BG_EIM_CS3GCR1_RFL(r)   (((r) & BM_EIM_CS3GCR1_RFL) >> BP_EIM_CS3GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_RFL(v)   ((((reg32_t) v) << 5) & BM_EIM_CSGCR13_RFL)
+//! @brief Format value for bitfield EIM_CS3GCR1_RFL.
+#define BF_EIM_CS3GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_RFL) & BM_EIM_CS3GCR1_RFL)
 #else
-#define BF_EIM_CSGCR13_RFL(v)   (((v) << 5) & BM_EIM_CSGCR13_RFL)
+//! @brief Format value for bitfield EIM_CS3GCR1_RFL.
+#define BF_EIM_CS3GCR1_RFL(v)   (((v) << BP_EIM_CS3GCR1_RFL) & BM_EIM_CS3GCR1_RFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
-#define BW_EIM_CSGCR13_RFL(v)   BF_CS1(EIM_CSGCR13, RFL, v)
+#define BW_EIM_CS3GCR1_RFL(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_RFL) | BF_EIM_CS3GCR1_RFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field CRE[6:6] (RW)
+/* --- Register HW_EIM_CS3GCR1, field CRE[6] (RW)
  *
  * Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory
  * register set command to PSRAM external device. CRE is cleared by a hardware reset.
@@ -5136,21 +6110,27 @@ typedef union
  * 1 - CRE signal use is enable
  */
 
-#define BP_EIM_CSGCR13_CRE      (6)
-#define BM_EIM_CSGCR13_CRE      (0x00000040)
+#define BP_EIM_CS3GCR1_CRE      (6)      //!< Bit position for EIM_CS3GCR1_CRE.
+#define BM_EIM_CS3GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS3GCR1_CRE.
+
+//! @brief Get value of EIM_CS3GCR1_CRE from a register value.
+#define BG_EIM_CS3GCR1_CRE(r)   (((r) & BM_EIM_CS3GCR1_CRE) >> BP_EIM_CS3GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_CRE(v)   ((((reg32_t) v) << 6) & BM_EIM_CSGCR13_CRE)
+//! @brief Format value for bitfield EIM_CS3GCR1_CRE.
+#define BF_EIM_CS3GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CRE) & BM_EIM_CS3GCR1_CRE)
 #else
-#define BF_EIM_CSGCR13_CRE(v)   (((v) << 6) & BM_EIM_CSGCR13_CRE)
+//! @brief Format value for bitfield EIM_CS3GCR1_CRE.
+#define BF_EIM_CS3GCR1_CRE(v)   (((v) << BP_EIM_CS3GCR1_CRE) & BM_EIM_CS3GCR1_CRE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
-#define BW_EIM_CSGCR13_CRE(v)   BF_CS1(EIM_CSGCR13, CRE, v)
+#define BW_EIM_CS3GCR1_CRE(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CRE) | BF_EIM_CS3GCR1_CRE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field CREP[7:7] (RW)
+/* --- Register HW_EIM_CS3GCR1, field CREP[7] (RW)
  *
  * Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state,
  * active-low or active-high, while executing a memory register set command to the external device
@@ -5163,21 +6143,27 @@ typedef union
  * 1 - CRE signal is active high
  */
 
-#define BP_EIM_CSGCR13_CREP      (7)
-#define BM_EIM_CSGCR13_CREP      (0x00000080)
+#define BP_EIM_CS3GCR1_CREP      (7)      //!< Bit position for EIM_CS3GCR1_CREP.
+#define BM_EIM_CS3GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS3GCR1_CREP.
+
+//! @brief Get value of EIM_CS3GCR1_CREP from a register value.
+#define BG_EIM_CS3GCR1_CREP(r)   (((r) & BM_EIM_CS3GCR1_CREP) >> BP_EIM_CS3GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_CREP(v)   ((((reg32_t) v) << 7) & BM_EIM_CSGCR13_CREP)
+//! @brief Format value for bitfield EIM_CS3GCR1_CREP.
+#define BF_EIM_CS3GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CREP) & BM_EIM_CS3GCR1_CREP)
 #else
-#define BF_EIM_CSGCR13_CREP(v)   (((v) << 7) & BM_EIM_CSGCR13_CREP)
+//! @brief Format value for bitfield EIM_CS3GCR1_CREP.
+#define BF_EIM_CS3GCR1_CREP(v)   (((v) << BP_EIM_CS3GCR1_CREP) & BM_EIM_CS3GCR1_CREP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
-#define BW_EIM_CSGCR13_CREP(v)   BF_CS1(EIM_CSGCR13, CREP, v)
+#define BW_EIM_CS3GCR1_CREP(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CREP) | BF_EIM_CS3GCR1_CREP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field BL[10:8] (RW)
+/* --- Register HW_EIM_CS3GCR1, field BL[10:8] (RW)
  *
  * Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ
  * field) and should be properly initialized for mixed wrap/increment accesses support. Continuous
@@ -5199,21 +6185,27 @@ typedef union
  * 111 - Reserved
  */
 
-#define BP_EIM_CSGCR13_BL      (8)
-#define BM_EIM_CSGCR13_BL      (0x00000700)
+#define BP_EIM_CS3GCR1_BL      (8)      //!< Bit position for EIM_CS3GCR1_BL.
+#define BM_EIM_CS3GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS3GCR1_BL.
+
+//! @brief Get value of EIM_CS3GCR1_BL from a register value.
+#define BG_EIM_CS3GCR1_BL(r)   (((r) & BM_EIM_CS3GCR1_BL) >> BP_EIM_CS3GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_BL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR13_BL)
+//! @brief Format value for bitfield EIM_CS3GCR1_BL.
+#define BF_EIM_CS3GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_BL) & BM_EIM_CS3GCR1_BL)
 #else
-#define BF_EIM_CSGCR13_BL(v)   (((v) << 8) & BM_EIM_CSGCR13_BL)
+//! @brief Format value for bitfield EIM_CS3GCR1_BL.
+#define BF_EIM_CS3GCR1_BL(v)   (((v) << BP_EIM_CS3GCR1_BL) & BM_EIM_CS3GCR1_BL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
-#define BW_EIM_CSGCR13_BL(v)   BF_CS1(EIM_CSGCR13, BL, v)
+#define BW_EIM_CS3GCR1_BL(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_BL) | BF_EIM_CS3GCR1_BL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field WC[11:11] (RW)
+/* --- Register HW_EIM_CS3GCR1, field WC[11] (RW)
  *
  * Write Continuous. The WI bit indicates that write access to the memory are always continuous
  * accesses regardless of the BL field value. WI is cleared by hardware reset.
@@ -5223,21 +6215,27 @@ typedef union
  * 1 - Write access burst length is continuous.
  */
 
-#define BP_EIM_CSGCR13_WC      (11)
-#define BM_EIM_CSGCR13_WC      (0x00000800)
+#define BP_EIM_CS3GCR1_WC      (11)      //!< Bit position for EIM_CS3GCR1_WC.
+#define BM_EIM_CS3GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS3GCR1_WC.
+
+//! @brief Get value of EIM_CS3GCR1_WC from a register value.
+#define BG_EIM_CS3GCR1_WC(r)   (((r) & BM_EIM_CS3GCR1_WC) >> BP_EIM_CS3GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_WC(v)   ((((reg32_t) v) << 11) & BM_EIM_CSGCR13_WC)
+//! @brief Format value for bitfield EIM_CS3GCR1_WC.
+#define BF_EIM_CS3GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_WC) & BM_EIM_CS3GCR1_WC)
 #else
-#define BF_EIM_CSGCR13_WC(v)   (((v) << 11) & BM_EIM_CSGCR13_WC)
+//! @brief Format value for bitfield EIM_CS3GCR1_WC.
+#define BF_EIM_CS3GCR1_WC(v)   (((v) << BP_EIM_CS3GCR1_WC) & BM_EIM_CS3GCR1_WC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
-#define BW_EIM_CSGCR13_WC(v)   BF_CS1(EIM_CSGCR13, WC, v)
+#define BW_EIM_CS3GCR1_WC(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_WC) | BF_EIM_CS3GCR1_WC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field BCD[13:12] (RW)
+/* --- Register HW_EIM_CS3GCR1, field BCD[13:12] (RW)
  *
  * Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor
  * for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a
@@ -5251,21 +6249,27 @@ typedef union
  * 11 - Divide EIM clock by 4
  */
 
-#define BP_EIM_CSGCR13_BCD      (12)
-#define BM_EIM_CSGCR13_BCD      (0x00003000)
+#define BP_EIM_CS3GCR1_BCD      (12)      //!< Bit position for EIM_CS3GCR1_BCD.
+#define BM_EIM_CS3GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS3GCR1_BCD.
+
+//! @brief Get value of EIM_CS3GCR1_BCD from a register value.
+#define BG_EIM_CS3GCR1_BCD(r)   (((r) & BM_EIM_CS3GCR1_BCD) >> BP_EIM_CS3GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_BCD(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR13_BCD)
+//! @brief Format value for bitfield EIM_CS3GCR1_BCD.
+#define BF_EIM_CS3GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_BCD) & BM_EIM_CS3GCR1_BCD)
 #else
-#define BF_EIM_CSGCR13_BCD(v)   (((v) << 12) & BM_EIM_CSGCR13_BCD)
+//! @brief Format value for bitfield EIM_CS3GCR1_BCD.
+#define BF_EIM_CS3GCR1_BCD(v)   (((v) << BP_EIM_CS3GCR1_BCD) & BM_EIM_CS3GCR1_BCD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
-#define BW_EIM_CSGCR13_BCD(v)   BF_CS1(EIM_CSGCR13, BCD, v)
+#define BW_EIM_CS3GCR1_BCD(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_BCD) | BF_EIM_CS3GCR1_BCD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field BCS[15:14] (RW)
+/* --- Register HW_EIM_CS3GCR1, field BCS[15:14] (RW)
  *
  * Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles
  * delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of
@@ -5280,21 +6284,27 @@ typedef union
  * 11 - 3 EIM clock cycle additional delay
  */
 
-#define BP_EIM_CSGCR13_BCS      (14)
-#define BM_EIM_CSGCR13_BCS      (0x0000c000)
+#define BP_EIM_CS3GCR1_BCS      (14)      //!< Bit position for EIM_CS3GCR1_BCS.
+#define BM_EIM_CS3GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS3GCR1_BCS.
+
+//! @brief Get value of EIM_CS3GCR1_BCS from a register value.
+#define BG_EIM_CS3GCR1_BCS(r)   (((r) & BM_EIM_CS3GCR1_BCS) >> BP_EIM_CS3GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_BCS(v)   ((((reg32_t) v) << 14) & BM_EIM_CSGCR13_BCS)
+//! @brief Format value for bitfield EIM_CS3GCR1_BCS.
+#define BF_EIM_CS3GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_BCS) & BM_EIM_CS3GCR1_BCS)
 #else
-#define BF_EIM_CSGCR13_BCS(v)   (((v) << 14) & BM_EIM_CSGCR13_BCS)
+//! @brief Format value for bitfield EIM_CS3GCR1_BCS.
+#define BF_EIM_CS3GCR1_BCS(v)   (((v) << BP_EIM_CS3GCR1_BCS) & BM_EIM_CS3GCR1_BCS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
-#define BW_EIM_CSGCR13_BCS(v)   BF_CS1(EIM_CSGCR13, BCS, v)
+#define BW_EIM_CS3GCR1_BCS(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_BCS) | BF_EIM_CS3GCR1_BCS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field DSZ[18:16] (RW)
+/* --- Register HW_EIM_CS3GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
  * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
@@ -5312,21 +6322,27 @@ typedef union
  * 111 - 8 bit port resides on DATA[31:24]
  */
 
-#define BP_EIM_CSGCR13_DSZ      (16)
-#define BM_EIM_CSGCR13_DSZ      (0x00070000)
+#define BP_EIM_CS3GCR1_DSZ      (16)      //!< Bit position for EIM_CS3GCR1_DSZ.
+#define BM_EIM_CS3GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS3GCR1_DSZ.
+
+//! @brief Get value of EIM_CS3GCR1_DSZ from a register value.
+#define BG_EIM_CS3GCR1_DSZ(r)   (((r) & BM_EIM_CS3GCR1_DSZ) >> BP_EIM_CS3GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_DSZ(v)   ((((reg32_t) v) << 16) & BM_EIM_CSGCR13_DSZ)
+//! @brief Format value for bitfield EIM_CS3GCR1_DSZ.
+#define BF_EIM_CS3GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_DSZ) & BM_EIM_CS3GCR1_DSZ)
 #else
-#define BF_EIM_CSGCR13_DSZ(v)   (((v) << 16) & BM_EIM_CSGCR13_DSZ)
+//! @brief Format value for bitfield EIM_CS3GCR1_DSZ.
+#define BF_EIM_CS3GCR1_DSZ(v)   (((v) << BP_EIM_CS3GCR1_DSZ) & BM_EIM_CS3GCR1_DSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
-#define BW_EIM_CSGCR13_DSZ(v)   BF_CS1(EIM_CSGCR13, DSZ, v)
+#define BW_EIM_CS3GCR1_DSZ(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_DSZ) | BF_EIM_CS3GCR1_DSZ(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field SP[19:19] (RW)
+/* --- Register HW_EIM_CS3GCR1, field SP[19] (RW)
  *
  * Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding
  * chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
@@ -5337,21 +6353,27 @@ typedef union
  *     User mode results in an error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR13_SP      (19)
-#define BM_EIM_CSGCR13_SP      (0x00080000)
+#define BP_EIM_CS3GCR1_SP      (19)      //!< Bit position for EIM_CS3GCR1_SP.
+#define BM_EIM_CS3GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS3GCR1_SP.
+
+//! @brief Get value of EIM_CS3GCR1_SP from a register value.
+#define BG_EIM_CS3GCR1_SP(r)   (((r) & BM_EIM_CS3GCR1_SP) >> BP_EIM_CS3GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_SP(v)   ((((reg32_t) v) << 19) & BM_EIM_CSGCR13_SP)
+//! @brief Format value for bitfield EIM_CS3GCR1_SP.
+#define BF_EIM_CS3GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_SP) & BM_EIM_CS3GCR1_SP)
 #else
-#define BF_EIM_CSGCR13_SP(v)   (((v) << 19) & BM_EIM_CSGCR13_SP)
+//! @brief Format value for bitfield EIM_CS3GCR1_SP.
+#define BF_EIM_CS3GCR1_SP(v)   (((v) << BP_EIM_CS3GCR1_SP) & BM_EIM_CS3GCR1_SP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
-#define BW_EIM_CSGCR13_SP(v)   BF_CS1(EIM_CSGCR13, SP, v)
+#define BW_EIM_CS3GCR1_SP(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_SP) | BF_EIM_CS3GCR1_SP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field CSREC[22:20] (RW)
+/* --- Register HW_EIM_CS3GCR1, field CSREC[22:20] (RW)
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
@@ -5366,21 +6388,27 @@ typedef union
  * 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 
-#define BP_EIM_CSGCR13_CSREC      (20)
-#define BM_EIM_CSGCR13_CSREC      (0x00700000)
+#define BP_EIM_CS3GCR1_CSREC      (20)      //!< Bit position for EIM_CS3GCR1_CSREC.
+#define BM_EIM_CS3GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS3GCR1_CSREC.
+
+//! @brief Get value of EIM_CS3GCR1_CSREC from a register value.
+#define BG_EIM_CS3GCR1_CSREC(r)   (((r) & BM_EIM_CS3GCR1_CSREC) >> BP_EIM_CS3GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_CSREC(v)   ((((reg32_t) v) << 20) & BM_EIM_CSGCR13_CSREC)
+//! @brief Format value for bitfield EIM_CS3GCR1_CSREC.
+#define BF_EIM_CS3GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CSREC) & BM_EIM_CS3GCR1_CSREC)
 #else
-#define BF_EIM_CSGCR13_CSREC(v)   (((v) << 20) & BM_EIM_CSGCR13_CSREC)
+//! @brief Format value for bitfield EIM_CS3GCR1_CSREC.
+#define BF_EIM_CS3GCR1_CSREC(v)   (((v) << BP_EIM_CS3GCR1_CSREC) & BM_EIM_CS3GCR1_CSREC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
-#define BW_EIM_CSGCR13_CSREC(v)   BF_CS1(EIM_CSGCR13, CSREC, v)
+#define BW_EIM_CS3GCR1_CSREC(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CSREC) | BF_EIM_CS3GCR1_CSREC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field AUS[23:23] (RW)
+/* --- Register HW_EIM_CS3GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
  * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
@@ -5391,21 +6419,27 @@ typedef union
  * 1 - Address unshifted
  */
 
-#define BP_EIM_CSGCR13_AUS      (23)
-#define BM_EIM_CSGCR13_AUS      (0x00800000)
+#define BP_EIM_CS3GCR1_AUS      (23)      //!< Bit position for EIM_CS3GCR1_AUS.
+#define BM_EIM_CS3GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS3GCR1_AUS.
+
+//! @brief Get value of EIM_CS3GCR1_AUS from a register value.
+#define BG_EIM_CS3GCR1_AUS(r)   (((r) & BM_EIM_CS3GCR1_AUS) >> BP_EIM_CS3GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_AUS(v)   ((((reg32_t) v) << 23) & BM_EIM_CSGCR13_AUS)
+//! @brief Format value for bitfield EIM_CS3GCR1_AUS.
+#define BF_EIM_CS3GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_AUS) & BM_EIM_CS3GCR1_AUS)
 #else
-#define BF_EIM_CSGCR13_AUS(v)   (((v) << 23) & BM_EIM_CSGCR13_AUS)
+//! @brief Format value for bitfield EIM_CS3GCR1_AUS.
+#define BF_EIM_CS3GCR1_AUS(v)   (((v) << BP_EIM_CS3GCR1_AUS) & BM_EIM_CS3GCR1_AUS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
-#define BW_EIM_CSGCR13_AUS(v)   BF_CS1(EIM_CSGCR13, AUS, v)
+#define BW_EIM_CS3GCR1_AUS(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_AUS) | BF_EIM_CS3GCR1_AUS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field GBC[26:24] (RW)
+/* --- Register HW_EIM_CS3GCR1, field GBC[26:24] (RW)
  *
  * Gap Between Chip Selects. This bit field, according to the settings shown below, determines the
  * minimum time between end of access to the current chip select and start of access to different
@@ -5418,21 +6452,27 @@ typedef union
  * 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 
-#define BP_EIM_CSGCR13_GBC      (24)
-#define BM_EIM_CSGCR13_GBC      (0x07000000)
+#define BP_EIM_CS3GCR1_GBC      (24)      //!< Bit position for EIM_CS3GCR1_GBC.
+#define BM_EIM_CS3GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS3GCR1_GBC.
+
+//! @brief Get value of EIM_CS3GCR1_GBC from a register value.
+#define BG_EIM_CS3GCR1_GBC(r)   (((r) & BM_EIM_CS3GCR1_GBC) >> BP_EIM_CS3GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_GBC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSGCR13_GBC)
+//! @brief Format value for bitfield EIM_CS3GCR1_GBC.
+#define BF_EIM_CS3GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_GBC) & BM_EIM_CS3GCR1_GBC)
 #else
-#define BF_EIM_CSGCR13_GBC(v)   (((v) << 24) & BM_EIM_CSGCR13_GBC)
+//! @brief Format value for bitfield EIM_CS3GCR1_GBC.
+#define BF_EIM_CS3GCR1_GBC(v)   (((v) << BP_EIM_CS3GCR1_GBC) & BM_EIM_CS3GCR1_GBC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
-#define BW_EIM_CSGCR13_GBC(v)   BF_CS1(EIM_CSGCR13, GBC, v)
+#define BW_EIM_CS3GCR1_GBC(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_GBC) | BF_EIM_CS3GCR1_GBC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field WP[27:27] (RW)
+/* --- Register HW_EIM_CS3GCR1, field WP[27] (RW)
  *
  * Write Protect. This bit prevents writes to the address range defined by the corresponding chip
  * select. WP is cleared by a hardware reset.
@@ -5443,21 +6483,27 @@ typedef union
  *     error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR13_WP      (27)
-#define BM_EIM_CSGCR13_WP      (0x08000000)
+#define BP_EIM_CS3GCR1_WP      (27)      //!< Bit position for EIM_CS3GCR1_WP.
+#define BM_EIM_CS3GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS3GCR1_WP.
+
+//! @brief Get value of EIM_CS3GCR1_WP from a register value.
+#define BG_EIM_CS3GCR1_WP(r)   (((r) & BM_EIM_CS3GCR1_WP) >> BP_EIM_CS3GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_WP(v)   ((((reg32_t) v) << 27) & BM_EIM_CSGCR13_WP)
+//! @brief Format value for bitfield EIM_CS3GCR1_WP.
+#define BF_EIM_CS3GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_WP) & BM_EIM_CS3GCR1_WP)
 #else
-#define BF_EIM_CSGCR13_WP(v)   (((v) << 27) & BM_EIM_CSGCR13_WP)
+//! @brief Format value for bitfield EIM_CS3GCR1_WP.
+#define BF_EIM_CS3GCR1_WP(v)   (((v) << BP_EIM_CS3GCR1_WP) & BM_EIM_CS3GCR1_WP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
-#define BW_EIM_CSGCR13_WP(v)   BF_CS1(EIM_CSGCR13, WP, v)
+#define BW_EIM_CS3GCR1_WP(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_WP) | BF_EIM_CS3GCR1_WP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR13, field PSZ[31:28] (RW)
+/* --- Register HW_EIM_CS3GCR1, field PSZ[31:28] (RW)
  *
  * Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field).
  * PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync.
@@ -5480,62 +6526,70 @@ typedef union
  * 1001 - - 1111 Reserved
  */
 
-#define BP_EIM_CSGCR13_PSZ      (28)
-#define BM_EIM_CSGCR13_PSZ      (0xf0000000)
+#define BP_EIM_CS3GCR1_PSZ      (28)      //!< Bit position for EIM_CS3GCR1_PSZ.
+#define BM_EIM_CS3GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS3GCR1_PSZ.
+
+//! @brief Get value of EIM_CS3GCR1_PSZ from a register value.
+#define BG_EIM_CS3GCR1_PSZ(r)   (((r) & BM_EIM_CS3GCR1_PSZ) >> BP_EIM_CS3GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR13_PSZ(v)   ((((reg32_t) v) << 28) & BM_EIM_CSGCR13_PSZ)
+//! @brief Format value for bitfield EIM_CS3GCR1_PSZ.
+#define BF_EIM_CS3GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_PSZ) & BM_EIM_CS3GCR1_PSZ)
 #else
-#define BF_EIM_CSGCR13_PSZ(v)   (((v) << 28) & BM_EIM_CSGCR13_PSZ)
+//! @brief Format value for bitfield EIM_CS3GCR1_PSZ.
+#define BF_EIM_CS3GCR1_PSZ(v)   (((v) << BP_EIM_CS3GCR1_PSZ) & BM_EIM_CS3GCR1_PSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
-#define BW_EIM_CSGCR13_PSZ(v)   BF_CS1(EIM_CSGCR13, PSZ, v)
+#define BW_EIM_CS3GCR1_PSZ(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_PSZ) | BF_EIM_CS3GCR1_PSZ(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR23 - Chip Select n General Configuration Register 2 3 (RW)
+ * @brief HW_EIM_CS3GCR2 - Chip Select n General Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00001000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs3gcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs3gcr2_bitfields
     {
-        unsigned ADH : 2; //!< Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned DAPS : 4; //!< Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
-        unsigned RESERVED2 : 19; //!< Reserved
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
-} hw_eim_csgcr23_t;
+} hw_eim_cs3gcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR23 register
+ * constants & macros for entire EIM_CS3GCR2 register
  */
-#define HW_EIM_CSGCR23_ADDR      (REGS_EIM_BASE + 0x4c)
+#define HW_EIM_CS3GCR2_ADDR      (REGS_EIM_BASE + 0x4c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR23           (*(volatile hw_eim_csgcr23_t *) HW_EIM_CSGCR23_ADDR)
-#define HW_EIM_CSGCR23_RD()      (HW_EIM_CSGCR23.U)
-#define HW_EIM_CSGCR23_WR(v)     (HW_EIM_CSGCR23.U = (v))
-#define HW_EIM_CSGCR23_SET(v)    (HW_EIM_CSGCR23_WR(HW_EIM_CSGCR23_RD() |  (v)))
-#define HW_EIM_CSGCR23_CLR(v)    (HW_EIM_CSGCR23_WR(HW_EIM_CSGCR23_RD() & ~(v)))
-#define HW_EIM_CSGCR23_TOG(v)    (HW_EIM_CSGCR23_WR(HW_EIM_CSGCR23_RD() ^  (v)))
+#define HW_EIM_CS3GCR2           (*(volatile hw_eim_cs3gcr2_t *) HW_EIM_CS3GCR2_ADDR)
+#define HW_EIM_CS3GCR2_RD()      (HW_EIM_CS3GCR2.U)
+#define HW_EIM_CS3GCR2_WR(v)     (HW_EIM_CS3GCR2.U = (v))
+#define HW_EIM_CS3GCR2_SET(v)    (HW_EIM_CS3GCR2_WR(HW_EIM_CS3GCR2_RD() |  (v)))
+#define HW_EIM_CS3GCR2_CLR(v)    (HW_EIM_CS3GCR2_WR(HW_EIM_CS3GCR2_RD() & ~(v)))
+#define HW_EIM_CS3GCR2_TOG(v)    (HW_EIM_CS3GCR2_WR(HW_EIM_CS3GCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR23 bitfields
+ * constants & macros for individual EIM_CS3GCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR23, field ADH[1:0] (RW)
+/* --- Register HW_EIM_CS3GCR2, field ADH[1:0] (RW)
  *
  * Address hold time - This bit field determine the address hold time after ADV negation when mum =
  * 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when
@@ -5549,21 +6603,27 @@ typedef union
  * 11 - Reserved
  */
 
-#define BP_EIM_CSGCR23_ADH      (0)
-#define BM_EIM_CSGCR23_ADH      (0x00000003)
+#define BP_EIM_CS3GCR2_ADH      (0)      //!< Bit position for EIM_CS3GCR2_ADH.
+#define BM_EIM_CS3GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS3GCR2_ADH.
+
+//! @brief Get value of EIM_CS3GCR2_ADH from a register value.
+#define BG_EIM_CS3GCR2_ADH(r)   (((r) & BM_EIM_CS3GCR2_ADH) >> BP_EIM_CS3GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR23_ADH(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR23_ADH)
+//! @brief Format value for bitfield EIM_CS3GCR2_ADH.
+#define BF_EIM_CS3GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_ADH) & BM_EIM_CS3GCR2_ADH)
 #else
-#define BF_EIM_CSGCR23_ADH(v)   (((v) << 0) & BM_EIM_CSGCR23_ADH)
+//! @brief Format value for bitfield EIM_CS3GCR2_ADH.
+#define BF_EIM_CS3GCR2_ADH(v)   (((v) << BP_EIM_CS3GCR2_ADH) & BM_EIM_CS3GCR2_ADH)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
-#define BW_EIM_CSGCR23_ADH(v)   BF_CS1(EIM_CSGCR23, ADH, v)
+#define BW_EIM_CS3GCR2_ADH(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_ADH) | BF_EIM_CS3GCR2_ADH(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR23, field DAPS[7:4] (RW)
+/* --- Register HW_EIM_CS3GCR2, field DAPS[7:4] (RW)
  *
  * Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal
  * polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an
@@ -5579,21 +6639,27 @@ typedef union
  * 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 
-#define BP_EIM_CSGCR23_DAPS      (4)
-#define BM_EIM_CSGCR23_DAPS      (0x000000f0)
+#define BP_EIM_CS3GCR2_DAPS      (4)      //!< Bit position for EIM_CS3GCR2_DAPS.
+#define BM_EIM_CS3GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS3GCR2_DAPS.
+
+//! @brief Get value of EIM_CS3GCR2_DAPS from a register value.
+#define BG_EIM_CS3GCR2_DAPS(r)   (((r) & BM_EIM_CS3GCR2_DAPS) >> BP_EIM_CS3GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR23_DAPS(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR23_DAPS)
+//! @brief Format value for bitfield EIM_CS3GCR2_DAPS.
+#define BF_EIM_CS3GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_DAPS) & BM_EIM_CS3GCR2_DAPS)
 #else
-#define BF_EIM_CSGCR23_DAPS(v)   (((v) << 4) & BM_EIM_CSGCR23_DAPS)
+//! @brief Format value for bitfield EIM_CS3GCR2_DAPS.
+#define BF_EIM_CS3GCR2_DAPS(v)   (((v) << BP_EIM_CS3GCR2_DAPS) & BM_EIM_CS3GCR2_DAPS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
-#define BW_EIM_CSGCR23_DAPS(v)   BF_CS1(EIM_CSGCR23, DAPS, v)
+#define BW_EIM_CS3GCR2_DAPS(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_DAPS) | BF_EIM_CS3GCR2_DAPS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR23, field DAE[8:8] (RW)
+/* --- Register HW_EIM_CS3GCR2, field DAE[8] (RW)
  *
  * Data Acknowledge Enable. This bit indicates external device is using DTACK pin as
  * strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read
@@ -5605,21 +6671,27 @@ typedef union
  * 1 - DTACK signal use is enable
  */
 
-#define BP_EIM_CSGCR23_DAE      (8)
-#define BM_EIM_CSGCR23_DAE      (0x00000100)
+#define BP_EIM_CS3GCR2_DAE      (8)      //!< Bit position for EIM_CS3GCR2_DAE.
+#define BM_EIM_CS3GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS3GCR2_DAE.
+
+//! @brief Get value of EIM_CS3GCR2_DAE from a register value.
+#define BG_EIM_CS3GCR2_DAE(r)   (((r) & BM_EIM_CS3GCR2_DAE) >> BP_EIM_CS3GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR23_DAE(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR23_DAE)
+//! @brief Format value for bitfield EIM_CS3GCR2_DAE.
+#define BF_EIM_CS3GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_DAE) & BM_EIM_CS3GCR2_DAE)
 #else
-#define BF_EIM_CSGCR23_DAE(v)   (((v) << 8) & BM_EIM_CSGCR23_DAE)
+//! @brief Format value for bitfield EIM_CS3GCR2_DAE.
+#define BF_EIM_CS3GCR2_DAE(v)   (((v) << BP_EIM_CS3GCR2_DAE) & BM_EIM_CS3GCR2_DAE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
-#define BW_EIM_CSGCR23_DAE(v)   BF_CS1(EIM_CSGCR23, DAE, v)
+#define BW_EIM_CS3GCR2_DAE(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_DAE) | BF_EIM_CS3GCR2_DAE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR23, field DAP[9:9] (RW)
+/* --- Register HW_EIM_CS3GCR2, field DAP[9] (RW)
  *
  * Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or
  * active-high, while executing an async access using DTACK signal from the external device. DAP is
@@ -5630,21 +6702,27 @@ typedef union
  * 1 - DTACK signal is active low
  */
 
-#define BP_EIM_CSGCR23_DAP      (9)
-#define BM_EIM_CSGCR23_DAP      (0x00000200)
+#define BP_EIM_CS3GCR2_DAP      (9)      //!< Bit position for EIM_CS3GCR2_DAP.
+#define BM_EIM_CS3GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS3GCR2_DAP.
+
+//! @brief Get value of EIM_CS3GCR2_DAP from a register value.
+#define BG_EIM_CS3GCR2_DAP(r)   (((r) & BM_EIM_CS3GCR2_DAP) >> BP_EIM_CS3GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR23_DAP(v)   ((((reg32_t) v) << 9) & BM_EIM_CSGCR23_DAP)
+//! @brief Format value for bitfield EIM_CS3GCR2_DAP.
+#define BF_EIM_CS3GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_DAP) & BM_EIM_CS3GCR2_DAP)
 #else
-#define BF_EIM_CSGCR23_DAP(v)   (((v) << 9) & BM_EIM_CSGCR23_DAP)
+//! @brief Format value for bitfield EIM_CS3GCR2_DAP.
+#define BF_EIM_CS3GCR2_DAP(v)   (((v) << BP_EIM_CS3GCR2_DAP) & BM_EIM_CS3GCR2_DAP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
-#define BW_EIM_CSGCR23_DAP(v)   BF_CS1(EIM_CSGCR23, DAP, v)
+#define BW_EIM_CS3GCR2_DAP(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_DAP) | BF_EIM_CS3GCR2_DAP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR23, field MUX16_BYP_GRANT[12:12] (RW)
+/* --- Register HW_EIM_CS3GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
  * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
@@ -5655,68 +6733,76 @@ typedef union
  * 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 
-#define BP_EIM_CSGCR23_MUX16_BYP_GRANT      (12)
-#define BM_EIM_CSGCR23_MUX16_BYP_GRANT      (0x00001000)
+#define BP_EIM_CS3GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS3GCR2_MUX16_BYP_GRANT.
+#define BM_EIM_CS3GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS3GCR2_MUX16_BYP_GRANT.
+
+//! @brief Get value of EIM_CS3GCR2_MUX16_BYP_GRANT from a register value.
+#define BG_EIM_CS3GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS3GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR23_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR23_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS3GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_MUX16_BYP_GRANT) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT)
 #else
-#define BF_EIM_CSGCR23_MUX16_BYP_GRANT(v)   (((v) << 12) & BM_EIM_CSGCR23_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS3GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS3GCR2_MUX16_BYP_GRANT) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
-#define BW_EIM_CSGCR23_MUX16_BYP_GRANT(v)   BF_CS1(EIM_CSGCR23, MUX16_BYP_GRANT, v)
+#define BW_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_MUX16_BYP_GRANT) | BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR13 - Chip Select n Read Configuration Register 1 3 (RW)
+ * @brief HW_EIM_CS3RCR1 - Chip Select n Read Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs3rcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs3rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RCSA : 3; //!< Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned OEN : 3; //!< OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned OEA : 3; //!< OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED4 : 1; //!< Reserved
-        unsigned RWSC : 6; //!< Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
-        unsigned RESERVED5 : 2; //!< Reserved
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [3] Reserved
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED1 : 1; //!< [7] Reserved
+        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED2 : 1; //!< [11] Reserved
+        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned RESERVED3 : 1; //!< [15] Reserved
+        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
+        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED4 : 1; //!< [23] Reserved
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
-} hw_eim_csrcr13_t;
+} hw_eim_cs3rcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR13 register
+ * constants & macros for entire EIM_CS3RCR1 register
  */
-#define HW_EIM_CSRCR13_ADDR      (REGS_EIM_BASE + 0x50)
+#define HW_EIM_CS3RCR1_ADDR      (REGS_EIM_BASE + 0x50)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR13           (*(volatile hw_eim_csrcr13_t *) HW_EIM_CSRCR13_ADDR)
-#define HW_EIM_CSRCR13_RD()      (HW_EIM_CSRCR13.U)
-#define HW_EIM_CSRCR13_WR(v)     (HW_EIM_CSRCR13.U = (v))
-#define HW_EIM_CSRCR13_SET(v)    (HW_EIM_CSRCR13_WR(HW_EIM_CSRCR13_RD() |  (v)))
-#define HW_EIM_CSRCR13_CLR(v)    (HW_EIM_CSRCR13_WR(HW_EIM_CSRCR13_RD() & ~(v)))
-#define HW_EIM_CSRCR13_TOG(v)    (HW_EIM_CSRCR13_WR(HW_EIM_CSRCR13_RD() ^  (v)))
+#define HW_EIM_CS3RCR1           (*(volatile hw_eim_cs3rcr1_t *) HW_EIM_CS3RCR1_ADDR)
+#define HW_EIM_CS3RCR1_RD()      (HW_EIM_CS3RCR1.U)
+#define HW_EIM_CS3RCR1_WR(v)     (HW_EIM_CS3RCR1.U = (v))
+#define HW_EIM_CS3RCR1_SET(v)    (HW_EIM_CS3RCR1_WR(HW_EIM_CS3RCR1_RD() |  (v)))
+#define HW_EIM_CS3RCR1_CLR(v)    (HW_EIM_CS3RCR1_WR(HW_EIM_CS3RCR1_RD() & ~(v)))
+#define HW_EIM_CS3RCR1_TOG(v)    (HW_EIM_CS3RCR1_WR(HW_EIM_CS3RCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR13 bitfields
+ * constants & macros for individual EIM_CS3RCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR13, field RCSN[2:0] (RW)
+/* --- Register HW_EIM_CS3RCR1, field RCSN[2:0] (RW)
  *
  * Read CS Negation. This bit field determines when CS signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -5729,21 +6815,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSRCR13_RCSN      (0)
-#define BM_EIM_CSRCR13_RCSN      (0x00000007)
+#define BP_EIM_CS3RCR1_RCSN      (0)      //!< Bit position for EIM_CS3RCR1_RCSN.
+#define BM_EIM_CS3RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS3RCR1_RCSN.
+
+//! @brief Get value of EIM_CS3RCR1_RCSN from a register value.
+#define BG_EIM_CS3RCR1_RCSN(r)   (((r) & BM_EIM_CS3RCR1_RCSN) >> BP_EIM_CS3RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_RCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR13_RCSN)
+//! @brief Format value for bitfield EIM_CS3RCR1_RCSN.
+#define BF_EIM_CS3RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RCSN) & BM_EIM_CS3RCR1_RCSN)
 #else
-#define BF_EIM_CSRCR13_RCSN(v)   (((v) << 0) & BM_EIM_CSRCR13_RCSN)
+//! @brief Format value for bitfield EIM_CS3RCR1_RCSN.
+#define BF_EIM_CS3RCR1_RCSN(v)   (((v) << BP_EIM_CS3RCR1_RCSN) & BM_EIM_CS3RCR1_RCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
-#define BW_EIM_CSRCR13_RCSN(v)   BF_CS1(EIM_CSRCR13, RCSN, v)
+#define BW_EIM_CS3RCR1_RCSN(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RCSN) | BF_EIM_CS3RCR1_RCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR13, field RCSA[6:4] (RW)
+/* --- Register HW_EIM_CS3RCR1, field RCSA[6:4] (RW)
  *
  * Read CS Assertion. This bit field determines when CS signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a
@@ -5756,21 +6848,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 
-#define BP_EIM_CSRCR13_RCSA      (4)
-#define BM_EIM_CSRCR13_RCSA      (0x00000070)
+#define BP_EIM_CS3RCR1_RCSA      (4)      //!< Bit position for EIM_CS3RCR1_RCSA.
+#define BM_EIM_CS3RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS3RCR1_RCSA.
+
+//! @brief Get value of EIM_CS3RCR1_RCSA from a register value.
+#define BG_EIM_CS3RCR1_RCSA(r)   (((r) & BM_EIM_CS3RCR1_RCSA) >> BP_EIM_CS3RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_RCSA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR13_RCSA)
+//! @brief Format value for bitfield EIM_CS3RCR1_RCSA.
+#define BF_EIM_CS3RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RCSA) & BM_EIM_CS3RCR1_RCSA)
 #else
-#define BF_EIM_CSRCR13_RCSA(v)   (((v) << 4) & BM_EIM_CSRCR13_RCSA)
+//! @brief Format value for bitfield EIM_CS3RCR1_RCSA.
+#define BF_EIM_CS3RCR1_RCSA(v)   (((v) << BP_EIM_CS3RCR1_RCSA) & BM_EIM_CS3RCR1_RCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
-#define BW_EIM_CSRCR13_RCSA(v)   BF_CS1(EIM_CSRCR13, RCSA, v)
+#define BW_EIM_CS3RCR1_RCSA(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RCSA) | BF_EIM_CS3RCR1_RCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR13, field OEN[10:8] (RW)
+/* --- Register HW_EIM_CS3RCR1, field OEN[10:8] (RW)
  *
  * OE Negation. This bit field determines when OE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -5783,21 +6881,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of access and OE negation
  */
 
-#define BP_EIM_CSRCR13_OEN      (8)
-#define BM_EIM_CSRCR13_OEN      (0x00000700)
+#define BP_EIM_CS3RCR1_OEN      (8)      //!< Bit position for EIM_CS3RCR1_OEN.
+#define BM_EIM_CS3RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS3RCR1_OEN.
+
+//! @brief Get value of EIM_CS3RCR1_OEN from a register value.
+#define BG_EIM_CS3RCR1_OEN(r)   (((r) & BM_EIM_CS3RCR1_OEN) >> BP_EIM_CS3RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_OEN(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR13_OEN)
+//! @brief Format value for bitfield EIM_CS3RCR1_OEN.
+#define BF_EIM_CS3RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_OEN) & BM_EIM_CS3RCR1_OEN)
 #else
-#define BF_EIM_CSRCR13_OEN(v)   (((v) << 8) & BM_EIM_CSRCR13_OEN)
+//! @brief Format value for bitfield EIM_CS3RCR1_OEN.
+#define BF_EIM_CS3RCR1_OEN(v)   (((v) << BP_EIM_CS3RCR1_OEN) & BM_EIM_CS3RCR1_OEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
-#define BW_EIM_CSRCR13_OEN(v)   BF_CS1(EIM_CSRCR13, OEN, v)
+#define BW_EIM_CS3RCR1_OEN(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_OEN) | BF_EIM_CS3RCR1_OEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR13, field OEA[14:12] (RW)
+/* --- Register HW_EIM_CS3RCR1, field OEA[14:12] (RW)
  *
  * OE Assertion. This bit field determines when OE signal are asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a
@@ -5813,21 +6917,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 
-#define BP_EIM_CSRCR13_OEA      (12)
-#define BM_EIM_CSRCR13_OEA      (0x00007000)
+#define BP_EIM_CS3RCR1_OEA      (12)      //!< Bit position for EIM_CS3RCR1_OEA.
+#define BM_EIM_CS3RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS3RCR1_OEA.
+
+//! @brief Get value of EIM_CS3RCR1_OEA from a register value.
+#define BG_EIM_CS3RCR1_OEA(r)   (((r) & BM_EIM_CS3RCR1_OEA) >> BP_EIM_CS3RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_OEA(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR13_OEA)
+//! @brief Format value for bitfield EIM_CS3RCR1_OEA.
+#define BF_EIM_CS3RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_OEA) & BM_EIM_CS3RCR1_OEA)
 #else
-#define BF_EIM_CSRCR13_OEA(v)   (((v) << 12) & BM_EIM_CSRCR13_OEA)
+//! @brief Format value for bitfield EIM_CS3RCR1_OEA.
+#define BF_EIM_CS3RCR1_OEA(v)   (((v) << BP_EIM_CS3RCR1_OEA) & BM_EIM_CS3RCR1_OEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
-#define BW_EIM_CSRCR13_OEA(v)   BF_CS1(EIM_CSRCR13, OEA, v)
+#define BW_EIM_CS3RCR1_OEA(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_OEA) | BF_EIM_CS3RCR1_OEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR13, field RADVN[18:16] (RW)
+/* --- Register HW_EIM_CS3RCR1, field RADVN[18:16] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during read
  * accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following
@@ -5839,20 +6949,26 @@ typedef union
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 
-#define BP_EIM_CSRCR13_RADVN      (16)
-#define BM_EIM_CSRCR13_RADVN      (0x00070000)
+#define BP_EIM_CS3RCR1_RADVN      (16)      //!< Bit position for EIM_CS3RCR1_RADVN.
+#define BM_EIM_CS3RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS3RCR1_RADVN.
+
+//! @brief Get value of EIM_CS3RCR1_RADVN from a register value.
+#define BG_EIM_CS3RCR1_RADVN(r)   (((r) & BM_EIM_CS3RCR1_RADVN) >> BP_EIM_CS3RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_RADVN(v)   ((((reg32_t) v) << 16) & BM_EIM_CSRCR13_RADVN)
+//! @brief Format value for bitfield EIM_CS3RCR1_RADVN.
+#define BF_EIM_CS3RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RADVN) & BM_EIM_CS3RCR1_RADVN)
 #else
-#define BF_EIM_CSRCR13_RADVN(v)   (((v) << 16) & BM_EIM_CSRCR13_RADVN)
+//! @brief Format value for bitfield EIM_CS3RCR1_RADVN.
+#define BF_EIM_CS3RCR1_RADVN(v)   (((v) << BP_EIM_CS3RCR1_RADVN) & BM_EIM_CS3RCR1_RADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
-#define BW_EIM_CSRCR13_RADVN(v)   BF_CS1(EIM_CSRCR13, RADVN, v)
+#define BW_EIM_CS3RCR1_RADVN(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RADVN) | BF_EIM_CS3RCR1_RADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR13, field RAL[19:19] (RW)
+/* --- Register HW_EIM_CS3RCR1, field RAL[19] (RW)
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
@@ -5860,20 +6976,26 @@ typedef union
  * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
  */
 
-#define BP_EIM_CSRCR13_RAL      (19)
-#define BM_EIM_CSRCR13_RAL      (0x00080000)
+#define BP_EIM_CS3RCR1_RAL      (19)      //!< Bit position for EIM_CS3RCR1_RAL.
+#define BM_EIM_CS3RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS3RCR1_RAL.
+
+//! @brief Get value of EIM_CS3RCR1_RAL from a register value.
+#define BG_EIM_CS3RCR1_RAL(r)   (((r) & BM_EIM_CS3RCR1_RAL) >> BP_EIM_CS3RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_RAL(v)   ((((reg32_t) v) << 19) & BM_EIM_CSRCR13_RAL)
+//! @brief Format value for bitfield EIM_CS3RCR1_RAL.
+#define BF_EIM_CS3RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RAL) & BM_EIM_CS3RCR1_RAL)
 #else
-#define BF_EIM_CSRCR13_RAL(v)   (((v) << 19) & BM_EIM_CSRCR13_RAL)
+//! @brief Format value for bitfield EIM_CS3RCR1_RAL.
+#define BF_EIM_CS3RCR1_RAL(v)   (((v) << BP_EIM_CS3RCR1_RAL) & BM_EIM_CS3RCR1_RAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
-#define BW_EIM_CSRCR13_RAL(v)   BF_CS1(EIM_CSRCR13, RAL, v)
+#define BW_EIM_CS3RCR1_RAL(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RAL) | BF_EIM_CS3RCR1_RAL(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR13, field RADVA[22:20] (RW)
+/* --- Register HW_EIM_CS3RCR1, field RADVA[22:20] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware
@@ -5886,21 +7008,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSRCR13_RADVA      (20)
-#define BM_EIM_CSRCR13_RADVA      (0x00700000)
+#define BP_EIM_CS3RCR1_RADVA      (20)      //!< Bit position for EIM_CS3RCR1_RADVA.
+#define BM_EIM_CS3RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS3RCR1_RADVA.
+
+//! @brief Get value of EIM_CS3RCR1_RADVA from a register value.
+#define BG_EIM_CS3RCR1_RADVA(r)   (((r) & BM_EIM_CS3RCR1_RADVA) >> BP_EIM_CS3RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_RADVA(v)   ((((reg32_t) v) << 20) & BM_EIM_CSRCR13_RADVA)
+//! @brief Format value for bitfield EIM_CS3RCR1_RADVA.
+#define BF_EIM_CS3RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RADVA) & BM_EIM_CS3RCR1_RADVA)
 #else
-#define BF_EIM_CSRCR13_RADVA(v)   (((v) << 20) & BM_EIM_CSRCR13_RADVA)
+//! @brief Format value for bitfield EIM_CS3RCR1_RADVA.
+#define BF_EIM_CS3RCR1_RADVA(v)   (((v) << BP_EIM_CS3RCR1_RADVA) & BM_EIM_CS3RCR1_RADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
-#define BW_EIM_CSRCR13_RADVA(v)   BF_CS1(EIM_CSRCR13, RADVA, v)
+#define BW_EIM_CS3RCR1_RADVA(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RADVA) | BF_EIM_CS3RCR1_RADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR13, field RWSC[29:24] (RW)
+/* --- Register HW_EIM_CS3RCR1, field RWSC[29:24] (RW)
  *
  * Read Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous read access to the external device
@@ -5926,63 +7054,71 @@ typedef union
  * 111111 - RWSC value is 63
  */
 
-#define BP_EIM_CSRCR13_RWSC      (24)
-#define BM_EIM_CSRCR13_RWSC      (0x3f000000)
+#define BP_EIM_CS3RCR1_RWSC      (24)      //!< Bit position for EIM_CS3RCR1_RWSC.
+#define BM_EIM_CS3RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS3RCR1_RWSC.
+
+//! @brief Get value of EIM_CS3RCR1_RWSC from a register value.
+#define BG_EIM_CS3RCR1_RWSC(r)   (((r) & BM_EIM_CS3RCR1_RWSC) >> BP_EIM_CS3RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR13_RWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSRCR13_RWSC)
+//! @brief Format value for bitfield EIM_CS3RCR1_RWSC.
+#define BF_EIM_CS3RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RWSC) & BM_EIM_CS3RCR1_RWSC)
 #else
-#define BF_EIM_CSRCR13_RWSC(v)   (((v) << 24) & BM_EIM_CSRCR13_RWSC)
+//! @brief Format value for bitfield EIM_CS3RCR1_RWSC.
+#define BF_EIM_CS3RCR1_RWSC(v)   (((v) << BP_EIM_CS3RCR1_RWSC) & BM_EIM_CS3RCR1_RWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
-#define BW_EIM_CSRCR13_RWSC(v)   BF_CS1(EIM_CSRCR13, RWSC, v)
+#define BW_EIM_CS3RCR1_RWSC(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RWSC) | BF_EIM_CS3RCR1_RWSC(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR23 - Chip Select n Read Configuration Register 2 3 (RW)
+ * @brief HW_EIM_CS3RCR2 - Chip Select n Read Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs3rcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs3rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RL : 2; //!< Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned PAT : 3; //!< Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
-        unsigned RESERVED2 : 16; //!< Reserved
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
+        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
-} hw_eim_csrcr23_t;
+} hw_eim_cs3rcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR23 register
+ * constants & macros for entire EIM_CS3RCR2 register
  */
-#define HW_EIM_CSRCR23_ADDR      (REGS_EIM_BASE + 0x54)
+#define HW_EIM_CS3RCR2_ADDR      (REGS_EIM_BASE + 0x54)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR23           (*(volatile hw_eim_csrcr23_t *) HW_EIM_CSRCR23_ADDR)
-#define HW_EIM_CSRCR23_RD()      (HW_EIM_CSRCR23.U)
-#define HW_EIM_CSRCR23_WR(v)     (HW_EIM_CSRCR23.U = (v))
-#define HW_EIM_CSRCR23_SET(v)    (HW_EIM_CSRCR23_WR(HW_EIM_CSRCR23_RD() |  (v)))
-#define HW_EIM_CSRCR23_CLR(v)    (HW_EIM_CSRCR23_WR(HW_EIM_CSRCR23_RD() & ~(v)))
-#define HW_EIM_CSRCR23_TOG(v)    (HW_EIM_CSRCR23_WR(HW_EIM_CSRCR23_RD() ^  (v)))
+#define HW_EIM_CS3RCR2           (*(volatile hw_eim_cs3rcr2_t *) HW_EIM_CS3RCR2_ADDR)
+#define HW_EIM_CS3RCR2_RD()      (HW_EIM_CS3RCR2.U)
+#define HW_EIM_CS3RCR2_WR(v)     (HW_EIM_CS3RCR2.U = (v))
+#define HW_EIM_CS3RCR2_SET(v)    (HW_EIM_CS3RCR2_WR(HW_EIM_CS3RCR2_RD() |  (v)))
+#define HW_EIM_CS3RCR2_CLR(v)    (HW_EIM_CS3RCR2_WR(HW_EIM_CS3RCR2_RD() & ~(v)))
+#define HW_EIM_CS3RCR2_TOG(v)    (HW_EIM_CS3RCR2_WR(HW_EIM_CS3RCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR23 bitfields
+ * constants & macros for individual EIM_CS3RCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR23, field RBEN[2:0] (RW)
+/* --- Register HW_EIM_CS3RCR2, field RBEN[2:0] (RW)
  *
  * Read BE Negation. This bit field determines when BE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit
@@ -5995,21 +7131,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 
-#define BP_EIM_CSRCR23_RBEN      (0)
-#define BM_EIM_CSRCR23_RBEN      (0x00000007)
+#define BP_EIM_CS3RCR2_RBEN      (0)      //!< Bit position for EIM_CS3RCR2_RBEN.
+#define BM_EIM_CS3RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS3RCR2_RBEN.
+
+//! @brief Get value of EIM_CS3RCR2_RBEN from a register value.
+#define BG_EIM_CS3RCR2_RBEN(r)   (((r) & BM_EIM_CS3RCR2_RBEN) >> BP_EIM_CS3RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR23_RBEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR23_RBEN)
+//! @brief Format value for bitfield EIM_CS3RCR2_RBEN.
+#define BF_EIM_CS3RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RBEN) & BM_EIM_CS3RCR2_RBEN)
 #else
-#define BF_EIM_CSRCR23_RBEN(v)   (((v) << 0) & BM_EIM_CSRCR23_RBEN)
+//! @brief Format value for bitfield EIM_CS3RCR2_RBEN.
+#define BF_EIM_CS3RCR2_RBEN(v)   (((v) << BP_EIM_CS3RCR2_RBEN) & BM_EIM_CS3RCR2_RBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
-#define BW_EIM_CSRCR23_RBEN(v)   BF_CS1(EIM_CSRCR23, RBEN, v)
+#define BW_EIM_CS3RCR2_RBEN(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RBEN) | BF_EIM_CS3RCR2_RBEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR23, field RBE[3:3] (RW)
+/* --- Register HW_EIM_CS3RCR2, field RBE[3] (RW)
  *
  * Read BE enable. This bit field determines if BE will be asserted during read access.
  *
@@ -6018,21 +7160,27 @@ typedef union
  * 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 
-#define BP_EIM_CSRCR23_RBE      (3)
-#define BM_EIM_CSRCR23_RBE      (0x00000008)
+#define BP_EIM_CS3RCR2_RBE      (3)      //!< Bit position for EIM_CS3RCR2_RBE.
+#define BM_EIM_CS3RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS3RCR2_RBE.
+
+//! @brief Get value of EIM_CS3RCR2_RBE from a register value.
+#define BG_EIM_CS3RCR2_RBE(r)   (((r) & BM_EIM_CS3RCR2_RBE) >> BP_EIM_CS3RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR23_RBE(v)   ((((reg32_t) v) << 3) & BM_EIM_CSRCR23_RBE)
+//! @brief Format value for bitfield EIM_CS3RCR2_RBE.
+#define BF_EIM_CS3RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RBE) & BM_EIM_CS3RCR2_RBE)
 #else
-#define BF_EIM_CSRCR23_RBE(v)   (((v) << 3) & BM_EIM_CSRCR23_RBE)
+//! @brief Format value for bitfield EIM_CS3RCR2_RBE.
+#define BF_EIM_CS3RCR2_RBE(v)   (((v) << BP_EIM_CS3RCR2_RBE) & BM_EIM_CS3RCR2_RBE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
-#define BW_EIM_CSRCR23_RBE(v)   BF_CS1(EIM_CSRCR23, RBE, v)
+#define BW_EIM_CS3RCR2_RBE(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RBE) | BF_EIM_CS3RCR2_RBE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR23, field RBEA[6:4] (RW)
+/* --- Register HW_EIM_CS3RCR2, field RBEA[6:4] (RW)
  *
  * Read BE Assertion. This bit field determines when BE signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a
@@ -6045,21 +7193,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 
-#define BP_EIM_CSRCR23_RBEA      (4)
-#define BM_EIM_CSRCR23_RBEA      (0x00000070)
+#define BP_EIM_CS3RCR2_RBEA      (4)      //!< Bit position for EIM_CS3RCR2_RBEA.
+#define BM_EIM_CS3RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS3RCR2_RBEA.
+
+//! @brief Get value of EIM_CS3RCR2_RBEA from a register value.
+#define BG_EIM_CS3RCR2_RBEA(r)   (((r) & BM_EIM_CS3RCR2_RBEA) >> BP_EIM_CS3RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR23_RBEA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR23_RBEA)
+//! @brief Format value for bitfield EIM_CS3RCR2_RBEA.
+#define BF_EIM_CS3RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RBEA) & BM_EIM_CS3RCR2_RBEA)
 #else
-#define BF_EIM_CSRCR23_RBEA(v)   (((v) << 4) & BM_EIM_CSRCR23_RBEA)
+//! @brief Format value for bitfield EIM_CS3RCR2_RBEA.
+#define BF_EIM_CS3RCR2_RBEA(v)   (((v) << BP_EIM_CS3RCR2_RBEA) & BM_EIM_CS3RCR2_RBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
-#define BW_EIM_CSRCR23_RBEA(v)   BF_CS1(EIM_CSRCR23, RBEA, v)
+#define BW_EIM_CS3RCR2_RBEA(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RBEA) | BF_EIM_CS3RCR2_RBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR23, field RL[9:8] (RW)
+/* --- Register HW_EIM_CS3RCR2, field RL[9:8] (RW)
  *
  * Read Latency. This bit field indicates cycle latency when executing a synchronous read operation.
  * The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a
@@ -6072,21 +7226,27 @@ typedef union
  * 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 
-#define BP_EIM_CSRCR23_RL      (8)
-#define BM_EIM_CSRCR23_RL      (0x00000300)
+#define BP_EIM_CS3RCR2_RL      (8)      //!< Bit position for EIM_CS3RCR2_RL.
+#define BM_EIM_CS3RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS3RCR2_RL.
+
+//! @brief Get value of EIM_CS3RCR2_RL from a register value.
+#define BG_EIM_CS3RCR2_RL(r)   (((r) & BM_EIM_CS3RCR2_RL) >> BP_EIM_CS3RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR23_RL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR23_RL)
+//! @brief Format value for bitfield EIM_CS3RCR2_RL.
+#define BF_EIM_CS3RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RL) & BM_EIM_CS3RCR2_RL)
 #else
-#define BF_EIM_CSRCR23_RL(v)   (((v) << 8) & BM_EIM_CSRCR23_RL)
+//! @brief Format value for bitfield EIM_CS3RCR2_RL.
+#define BF_EIM_CS3RCR2_RL(v)   (((v) << BP_EIM_CS3RCR2_RL) & BM_EIM_CS3RCR2_RL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
-#define BW_EIM_CSRCR23_RL(v)   BF_CS1(EIM_CSRCR23, RL, v)
+#define BW_EIM_CS3RCR2_RL(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RL) | BF_EIM_CS3RCR2_RL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR23, field PAT[14:12] (RW)
+/* --- Register HW_EIM_CS3RCR2, field PAT[14:12] (RW)
  *
  * Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial
  * access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width
@@ -6104,21 +7264,27 @@ typedef union
  * 111 - Address width is 9 EIM clock cycles
  */
 
-#define BP_EIM_CSRCR23_PAT      (12)
-#define BM_EIM_CSRCR23_PAT      (0x00007000)
+#define BP_EIM_CS3RCR2_PAT      (12)      //!< Bit position for EIM_CS3RCR2_PAT.
+#define BM_EIM_CS3RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS3RCR2_PAT.
+
+//! @brief Get value of EIM_CS3RCR2_PAT from a register value.
+#define BG_EIM_CS3RCR2_PAT(r)   (((r) & BM_EIM_CS3RCR2_PAT) >> BP_EIM_CS3RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR23_PAT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR23_PAT)
+//! @brief Format value for bitfield EIM_CS3RCR2_PAT.
+#define BF_EIM_CS3RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_PAT) & BM_EIM_CS3RCR2_PAT)
 #else
-#define BF_EIM_CSRCR23_PAT(v)   (((v) << 12) & BM_EIM_CSRCR23_PAT)
+//! @brief Format value for bitfield EIM_CS3RCR2_PAT.
+#define BF_EIM_CS3RCR2_PAT(v)   (((v) << BP_EIM_CS3RCR2_PAT) & BM_EIM_CS3RCR2_PAT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
-#define BW_EIM_CSRCR23_PAT(v)   BF_CS1(EIM_CSRCR23, PAT, v)
+#define BW_EIM_CS3RCR2_PAT(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_PAT) | BF_EIM_CS3RCR2_PAT(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR23, field APR[15:15] (RW)
+/* --- Register HW_EIM_CS3RCR2, field APR[15] (RW)
  *
  * Asynchronous Page Read. This bit field determine the asynchronous read mode to the external
  * device. When APR=0, the async. read access is done as single word (where word is defined by the
@@ -6127,64 +7293,72 @@ typedef union
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 
-#define BP_EIM_CSRCR23_APR      (15)
-#define BM_EIM_CSRCR23_APR      (0x00008000)
+#define BP_EIM_CS3RCR2_APR      (15)      //!< Bit position for EIM_CS3RCR2_APR.
+#define BM_EIM_CS3RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS3RCR2_APR.
+
+//! @brief Get value of EIM_CS3RCR2_APR from a register value.
+#define BG_EIM_CS3RCR2_APR(r)   (((r) & BM_EIM_CS3RCR2_APR) >> BP_EIM_CS3RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR23_APR(v)   ((((reg32_t) v) << 15) & BM_EIM_CSRCR23_APR)
+//! @brief Format value for bitfield EIM_CS3RCR2_APR.
+#define BF_EIM_CS3RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_APR) & BM_EIM_CS3RCR2_APR)
 #else
-#define BF_EIM_CSRCR23_APR(v)   (((v) << 15) & BM_EIM_CSRCR23_APR)
+//! @brief Format value for bitfield EIM_CS3RCR2_APR.
+#define BF_EIM_CS3RCR2_APR(v)   (((v) << BP_EIM_CS3RCR2_APR) & BM_EIM_CS3RCR2_APR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
-#define BW_EIM_CSRCR23_APR(v)   BF_CS1(EIM_CSRCR23, APR, v)
+#define BW_EIM_CS3RCR2_APR(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_APR) | BF_EIM_CS3RCR2_APR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR13 - Chip Select n Write Configuration Register 1 3 (RW)
+ * @brief HW_EIM_CS3WCR1 - Chip Select n Write Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs3wcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs3wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
+        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
+        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
+        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
     } B;
-} hw_eim_cswcr13_t;
+} hw_eim_cs3wcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR13 register
+ * constants & macros for entire EIM_CS3WCR1 register
  */
-#define HW_EIM_CSWCR13_ADDR      (REGS_EIM_BASE + 0x58)
+#define HW_EIM_CS3WCR1_ADDR      (REGS_EIM_BASE + 0x58)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR13           (*(volatile hw_eim_cswcr13_t *) HW_EIM_CSWCR13_ADDR)
-#define HW_EIM_CSWCR13_RD()      (HW_EIM_CSWCR13.U)
-#define HW_EIM_CSWCR13_WR(v)     (HW_EIM_CSWCR13.U = (v))
-#define HW_EIM_CSWCR13_SET(v)    (HW_EIM_CSWCR13_WR(HW_EIM_CSWCR13_RD() |  (v)))
-#define HW_EIM_CSWCR13_CLR(v)    (HW_EIM_CSWCR13_WR(HW_EIM_CSWCR13_RD() & ~(v)))
-#define HW_EIM_CSWCR13_TOG(v)    (HW_EIM_CSWCR13_WR(HW_EIM_CSWCR13_RD() ^  (v)))
+#define HW_EIM_CS3WCR1           (*(volatile hw_eim_cs3wcr1_t *) HW_EIM_CS3WCR1_ADDR)
+#define HW_EIM_CS3WCR1_RD()      (HW_EIM_CS3WCR1.U)
+#define HW_EIM_CS3WCR1_WR(v)     (HW_EIM_CS3WCR1.U = (v))
+#define HW_EIM_CS3WCR1_SET(v)    (HW_EIM_CS3WCR1_WR(HW_EIM_CS3WCR1_RD() |  (v)))
+#define HW_EIM_CS3WCR1_CLR(v)    (HW_EIM_CS3WCR1_WR(HW_EIM_CS3WCR1_RD() & ~(v)))
+#define HW_EIM_CS3WCR1_TOG(v)    (HW_EIM_CS3WCR1_WR(HW_EIM_CS3WCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR13 bitfields
+ * constants & macros for individual EIM_CS3WCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR13, field WCSN[2:0] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WCSN[2:0] (RW)
  *
  * Write CS Negation. This bit field determines when CS signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -6197,21 +7371,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSWCR13_WCSN      (0)
-#define BM_EIM_CSWCR13_WCSN      (0x00000007)
+#define BP_EIM_CS3WCR1_WCSN      (0)      //!< Bit position for EIM_CS3WCR1_WCSN.
+#define BM_EIM_CS3WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS3WCR1_WCSN.
+
+//! @brief Get value of EIM_CS3WCR1_WCSN from a register value.
+#define BG_EIM_CS3WCR1_WCSN(r)   (((r) & BM_EIM_CS3WCR1_WCSN) >> BP_EIM_CS3WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR13_WCSN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WCSN.
+#define BF_EIM_CS3WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WCSN) & BM_EIM_CS3WCR1_WCSN)
 #else
-#define BF_EIM_CSWCR13_WCSN(v)   (((v) << 0) & BM_EIM_CSWCR13_WCSN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WCSN.
+#define BF_EIM_CS3WCR1_WCSN(v)   (((v) << BP_EIM_CS3WCR1_WCSN) & BM_EIM_CS3WCR1_WCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
-#define BW_EIM_CSWCR13_WCSN(v)   BF_CS1(EIM_CSWCR13, WCSN, v)
+#define BW_EIM_CS3WCR1_WCSN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WCSN) | BF_EIM_CS3WCR1_WCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR13, field WCSA[5:3] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WCSA[5:3] (RW)
  *
  * Write CS Assertion. This bit field determines when CS signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below.this bit field is
@@ -6225,21 +7405,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 
-#define BP_EIM_CSWCR13_WCSA      (3)
-#define BM_EIM_CSWCR13_WCSA      (0x00000038)
+#define BP_EIM_CS3WCR1_WCSA      (3)      //!< Bit position for EIM_CS3WCR1_WCSA.
+#define BM_EIM_CS3WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS3WCR1_WCSA.
+
+//! @brief Get value of EIM_CS3WCR1_WCSA from a register value.
+#define BG_EIM_CS3WCR1_WCSA(r)   (((r) & BM_EIM_CS3WCR1_WCSA) >> BP_EIM_CS3WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WCSA(v)   ((((reg32_t) v) << 3) & BM_EIM_CSWCR13_WCSA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WCSA.
+#define BF_EIM_CS3WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WCSA) & BM_EIM_CS3WCR1_WCSA)
 #else
-#define BF_EIM_CSWCR13_WCSA(v)   (((v) << 3) & BM_EIM_CSWCR13_WCSA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WCSA.
+#define BF_EIM_CS3WCR1_WCSA(v)   (((v) << BP_EIM_CS3WCR1_WCSA) & BM_EIM_CS3WCR1_WCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
-#define BW_EIM_CSWCR13_WCSA(v)   BF_CS1(EIM_CSWCR13, WCSA, v)
+#define BW_EIM_CS3WCR1_WCSA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WCSA) | BF_EIM_CS3WCR1_WCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR13, field WEN[8:6] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WEN[8:6] (RW)
  *
  * WE Negation. This bit field determines when WE signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -6253,21 +7439,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR13_WEN      (6)
-#define BM_EIM_CSWCR13_WEN      (0x000001c0)
+#define BP_EIM_CS3WCR1_WEN      (6)      //!< Bit position for EIM_CS3WCR1_WEN.
+#define BM_EIM_CS3WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS3WCR1_WEN.
+
+//! @brief Get value of EIM_CS3WCR1_WEN from a register value.
+#define BG_EIM_CS3WCR1_WEN(r)   (((r) & BM_EIM_CS3WCR1_WEN) >> BP_EIM_CS3WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WEN(v)   ((((reg32_t) v) << 6) & BM_EIM_CSWCR13_WEN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WEN.
+#define BF_EIM_CS3WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WEN) & BM_EIM_CS3WCR1_WEN)
 #else
-#define BF_EIM_CSWCR13_WEN(v)   (((v) << 6) & BM_EIM_CSWCR13_WEN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WEN.
+#define BF_EIM_CS3WCR1_WEN(v)   (((v) << BP_EIM_CS3WCR1_WEN) & BM_EIM_CS3WCR1_WEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
-#define BW_EIM_CSWCR13_WEN(v)   BF_CS1(EIM_CSWCR13, WEN, v)
+#define BW_EIM_CS3WCR1_WEN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WEN) | BF_EIM_CS3WCR1_WEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR13, field WEA[11:9] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WEA[11:9] (RW)
  *
  * WE Assertion. This bit field determines when WE signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below. This bit field is
@@ -6282,21 +7474,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR13_WEA      (9)
-#define BM_EIM_CSWCR13_WEA      (0x00000e00)
+#define BP_EIM_CS3WCR1_WEA      (9)      //!< Bit position for EIM_CS3WCR1_WEA.
+#define BM_EIM_CS3WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS3WCR1_WEA.
+
+//! @brief Get value of EIM_CS3WCR1_WEA from a register value.
+#define BG_EIM_CS3WCR1_WEA(r)   (((r) & BM_EIM_CS3WCR1_WEA) >> BP_EIM_CS3WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WEA(v)   ((((reg32_t) v) << 9) & BM_EIM_CSWCR13_WEA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WEA.
+#define BF_EIM_CS3WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WEA) & BM_EIM_CS3WCR1_WEA)
 #else
-#define BF_EIM_CSWCR13_WEA(v)   (((v) << 9) & BM_EIM_CSWCR13_WEA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WEA.
+#define BF_EIM_CS3WCR1_WEA(v)   (((v) << BP_EIM_CS3WCR1_WEA) & BM_EIM_CS3WCR1_WEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
-#define BW_EIM_CSWCR13_WEA(v)   BF_CS1(EIM_CSWCR13, WEA, v)
+#define BW_EIM_CS3WCR1_WEA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WEA) | BF_EIM_CS3WCR1_WEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR13, field WBEN[14:12] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WBEN[14:12] (RW)
  *
  * BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write
  * cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is
@@ -6307,20 +7505,26 @@ typedef union
  * access and WE negation
  */
 
-#define BP_EIM_CSWCR13_WBEN      (12)
-#define BM_EIM_CSWCR13_WBEN      (0x00007000)
+#define BP_EIM_CS3WCR1_WBEN      (12)      //!< Bit position for EIM_CS3WCR1_WBEN.
+#define BM_EIM_CS3WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS3WCR1_WBEN.
+
+//! @brief Get value of EIM_CS3WCR1_WBEN from a register value.
+#define BG_EIM_CS3WCR1_WBEN(r)   (((r) & BM_EIM_CS3WCR1_WBEN) >> BP_EIM_CS3WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WBEN(v)   ((((reg32_t) v) << 12) & BM_EIM_CSWCR13_WBEN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WBEN.
+#define BF_EIM_CS3WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WBEN) & BM_EIM_CS3WCR1_WBEN)
 #else
-#define BF_EIM_CSWCR13_WBEN(v)   (((v) << 12) & BM_EIM_CSWCR13_WBEN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WBEN.
+#define BF_EIM_CS3WCR1_WBEN(v)   (((v) << BP_EIM_CS3WCR1_WBEN) & BM_EIM_CS3WCR1_WBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
-#define BW_EIM_CSWCR13_WBEN(v)   BF_CS1(EIM_CSWCR13, WBEN, v)
+#define BW_EIM_CS3WCR1_WBEN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WBEN) | BF_EIM_CS3WCR1_WBEN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR13, field WBEA[17:15] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WBEA[17:15] (RW)
  *
  * BE Assertion. This bit field determines when BE signal is asserted during write cycles in async.
  * mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset.
@@ -6334,21 +7538,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 
-#define BP_EIM_CSWCR13_WBEA      (15)
-#define BM_EIM_CSWCR13_WBEA      (0x00038000)
+#define BP_EIM_CS3WCR1_WBEA      (15)      //!< Bit position for EIM_CS3WCR1_WBEA.
+#define BM_EIM_CS3WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS3WCR1_WBEA.
+
+//! @brief Get value of EIM_CS3WCR1_WBEA from a register value.
+#define BG_EIM_CS3WCR1_WBEA(r)   (((r) & BM_EIM_CS3WCR1_WBEA) >> BP_EIM_CS3WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WBEA(v)   ((((reg32_t) v) << 15) & BM_EIM_CSWCR13_WBEA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WBEA.
+#define BF_EIM_CS3WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WBEA) & BM_EIM_CS3WCR1_WBEA)
 #else
-#define BF_EIM_CSWCR13_WBEA(v)   (((v) << 15) & BM_EIM_CSWCR13_WBEA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WBEA.
+#define BF_EIM_CS3WCR1_WBEA(v)   (((v) << BP_EIM_CS3WCR1_WBEA) & BM_EIM_CS3WCR1_WBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
-#define BW_EIM_CSWCR13_WBEA(v)   BF_CS1(EIM_CSWCR13, WBEA, v)
+#define BW_EIM_CS3WCR1_WBEA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WBEA) | BF_EIM_CS3WCR1_WBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR13, field WADVN[20:18] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WADVN[20:18] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during write
  * accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following
@@ -6359,20 +7569,26 @@ typedef union
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 
-#define BP_EIM_CSWCR13_WADVN      (18)
-#define BM_EIM_CSWCR13_WADVN      (0x001c0000)
+#define BP_EIM_CS3WCR1_WADVN      (18)      //!< Bit position for EIM_CS3WCR1_WADVN.
+#define BM_EIM_CS3WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS3WCR1_WADVN.
+
+//! @brief Get value of EIM_CS3WCR1_WADVN from a register value.
+#define BG_EIM_CS3WCR1_WADVN(r)   (((r) & BM_EIM_CS3WCR1_WADVN) >> BP_EIM_CS3WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WADVN(v)   ((((reg32_t) v) << 18) & BM_EIM_CSWCR13_WADVN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WADVN.
+#define BF_EIM_CS3WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WADVN) & BM_EIM_CS3WCR1_WADVN)
 #else
-#define BF_EIM_CSWCR13_WADVN(v)   (((v) << 18) & BM_EIM_CSWCR13_WADVN)
+//! @brief Format value for bitfield EIM_CS3WCR1_WADVN.
+#define BF_EIM_CS3WCR1_WADVN(v)   (((v) << BP_EIM_CS3WCR1_WADVN) & BM_EIM_CS3WCR1_WADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
-#define BW_EIM_CSWCR13_WADVN(v)   BF_CS1(EIM_CSWCR13, WADVN, v)
+#define BW_EIM_CS3WCR1_WADVN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WADVN) | BF_EIM_CS3WCR1_WADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR13, field WADVA[23:21] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WADVA[23:21] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware
@@ -6385,21 +7601,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSWCR13_WADVA      (21)
-#define BM_EIM_CSWCR13_WADVA      (0x00e00000)
+#define BP_EIM_CS3WCR1_WADVA      (21)      //!< Bit position for EIM_CS3WCR1_WADVA.
+#define BM_EIM_CS3WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS3WCR1_WADVA.
+
+//! @brief Get value of EIM_CS3WCR1_WADVA from a register value.
+#define BG_EIM_CS3WCR1_WADVA(r)   (((r) & BM_EIM_CS3WCR1_WADVA) >> BP_EIM_CS3WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WADVA(v)   ((((reg32_t) v) << 21) & BM_EIM_CSWCR13_WADVA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WADVA.
+#define BF_EIM_CS3WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WADVA) & BM_EIM_CS3WCR1_WADVA)
 #else
-#define BF_EIM_CSWCR13_WADVA(v)   (((v) << 21) & BM_EIM_CSWCR13_WADVA)
+//! @brief Format value for bitfield EIM_CS3WCR1_WADVA.
+#define BF_EIM_CS3WCR1_WADVA(v)   (((v) << BP_EIM_CS3WCR1_WADVA) & BM_EIM_CS3WCR1_WADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
-#define BW_EIM_CSWCR13_WADVA(v)   BF_CS1(EIM_CSWCR13, WADVA, v)
+#define BW_EIM_CS3WCR1_WADVA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WADVA) | BF_EIM_CS3WCR1_WADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR13, field WWSC[29:24] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WWSC[29:24] (RW)
  *
  * Write Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous write access to the external device
@@ -6424,40 +7646,52 @@ typedef union
  * 111111 - WWSC value is 63
  */
 
-#define BP_EIM_CSWCR13_WWSC      (24)
-#define BM_EIM_CSWCR13_WWSC      (0x3f000000)
+#define BP_EIM_CS3WCR1_WWSC      (24)      //!< Bit position for EIM_CS3WCR1_WWSC.
+#define BM_EIM_CS3WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS3WCR1_WWSC.
+
+//! @brief Get value of EIM_CS3WCR1_WWSC from a register value.
+#define BG_EIM_CS3WCR1_WWSC(r)   (((r) & BM_EIM_CS3WCR1_WWSC) >> BP_EIM_CS3WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSWCR13_WWSC)
+//! @brief Format value for bitfield EIM_CS3WCR1_WWSC.
+#define BF_EIM_CS3WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WWSC) & BM_EIM_CS3WCR1_WWSC)
 #else
-#define BF_EIM_CSWCR13_WWSC(v)   (((v) << 24) & BM_EIM_CSWCR13_WWSC)
+//! @brief Format value for bitfield EIM_CS3WCR1_WWSC.
+#define BF_EIM_CS3WCR1_WWSC(v)   (((v) << BP_EIM_CS3WCR1_WWSC) & BM_EIM_CS3WCR1_WWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
-#define BW_EIM_CSWCR13_WWSC(v)   BF_CS1(EIM_CSWCR13, WWSC, v)
+#define BW_EIM_CS3WCR1_WWSC(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WWSC) | BF_EIM_CS3WCR1_WWSC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR13, field WBED[30:30] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WBED[30] (RW)
  *
  * Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted
  * during write accesses.This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR13_WBED      (30)
-#define BM_EIM_CSWCR13_WBED      (0x40000000)
+#define BP_EIM_CS3WCR1_WBED      (30)      //!< Bit position for EIM_CS3WCR1_WBED.
+#define BM_EIM_CS3WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS3WCR1_WBED.
+
+//! @brief Get value of EIM_CS3WCR1_WBED from a register value.
+#define BG_EIM_CS3WCR1_WBED(r)   (((r) & BM_EIM_CS3WCR1_WBED) >> BP_EIM_CS3WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WBED(v)   ((((reg32_t) v) << 30) & BM_EIM_CSWCR13_WBED)
+//! @brief Format value for bitfield EIM_CS3WCR1_WBED.
+#define BF_EIM_CS3WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WBED) & BM_EIM_CS3WCR1_WBED)
 #else
-#define BF_EIM_CSWCR13_WBED(v)   (((v) << 30) & BM_EIM_CSWCR13_WBED)
+//! @brief Format value for bitfield EIM_CS3WCR1_WBED.
+#define BF_EIM_CS3WCR1_WBED(v)   (((v) << BP_EIM_CS3WCR1_WBED) & BM_EIM_CS3WCR1_WBED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
-#define BW_EIM_CSWCR13_WBED(v)   BF_CS1(EIM_CSWCR13, WBED, v)
+#define BW_EIM_CS3WCR1_WBED(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WBED) | BF_EIM_CS3WCR1_WBED(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR13, field WAL[31:31] (RW)
+/* --- Register HW_EIM_CS3WCR1, field WAL[31] (RW)
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
@@ -6465,127 +7699,143 @@ typedef union
  * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
  */
 
-#define BP_EIM_CSWCR13_WAL      (31)
-#define BM_EIM_CSWCR13_WAL      (0x80000000)
+#define BP_EIM_CS3WCR1_WAL      (31)      //!< Bit position for EIM_CS3WCR1_WAL.
+#define BM_EIM_CS3WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS3WCR1_WAL.
+
+//! @brief Get value of EIM_CS3WCR1_WAL from a register value.
+#define BG_EIM_CS3WCR1_WAL(r)   (((r) & BM_EIM_CS3WCR1_WAL) >> BP_EIM_CS3WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR13_WAL(v)   ((((reg32_t) v) << 31) & BM_EIM_CSWCR13_WAL)
+//! @brief Format value for bitfield EIM_CS3WCR1_WAL.
+#define BF_EIM_CS3WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WAL) & BM_EIM_CS3WCR1_WAL)
 #else
-#define BF_EIM_CSWCR13_WAL(v)   (((v) << 31) & BM_EIM_CSWCR13_WAL)
+//! @brief Format value for bitfield EIM_CS3WCR1_WAL.
+#define BF_EIM_CS3WCR1_WAL(v)   (((v) << BP_EIM_CS3WCR1_WAL) & BM_EIM_CS3WCR1_WAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
-#define BW_EIM_CSWCR13_WAL(v)   BF_CS1(EIM_CSWCR13, WAL, v)
+#define BW_EIM_CS3WCR1_WAL(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WAL) | BF_EIM_CS3WCR1_WAL(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR23 - Chip Select n Write Configuration Register 2 3 (RW)
+ * @brief HW_EIM_CS3WCR2 - Chip Select n Write Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs3wcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs3wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
-} hw_eim_cswcr23_t;
+} hw_eim_cs3wcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR23 register
+ * constants & macros for entire EIM_CS3WCR2 register
  */
-#define HW_EIM_CSWCR23_ADDR      (REGS_EIM_BASE + 0x5c)
+#define HW_EIM_CS3WCR2_ADDR      (REGS_EIM_BASE + 0x5c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR23           (*(volatile hw_eim_cswcr23_t *) HW_EIM_CSWCR23_ADDR)
-#define HW_EIM_CSWCR23_RD()      (HW_EIM_CSWCR23.U)
-#define HW_EIM_CSWCR23_WR(v)     (HW_EIM_CSWCR23.U = (v))
-#define HW_EIM_CSWCR23_SET(v)    (HW_EIM_CSWCR23_WR(HW_EIM_CSWCR23_RD() |  (v)))
-#define HW_EIM_CSWCR23_CLR(v)    (HW_EIM_CSWCR23_WR(HW_EIM_CSWCR23_RD() & ~(v)))
-#define HW_EIM_CSWCR23_TOG(v)    (HW_EIM_CSWCR23_WR(HW_EIM_CSWCR23_RD() ^  (v)))
+#define HW_EIM_CS3WCR2           (*(volatile hw_eim_cs3wcr2_t *) HW_EIM_CS3WCR2_ADDR)
+#define HW_EIM_CS3WCR2_RD()      (HW_EIM_CS3WCR2.U)
+#define HW_EIM_CS3WCR2_WR(v)     (HW_EIM_CS3WCR2.U = (v))
+#define HW_EIM_CS3WCR2_SET(v)    (HW_EIM_CS3WCR2_WR(HW_EIM_CS3WCR2_RD() |  (v)))
+#define HW_EIM_CS3WCR2_CLR(v)    (HW_EIM_CS3WCR2_WR(HW_EIM_CS3WCR2_RD() & ~(v)))
+#define HW_EIM_CS3WCR2_TOG(v)    (HW_EIM_CS3WCR2_WR(HW_EIM_CS3WCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR23 bitfields
+ * constants & macros for individual EIM_CS3WCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR23, field WBCDD[0:0] (RW)
+/* --- Register HW_EIM_CS3WCR2, field WBCDD[0] (RW)
  *
  * Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write
  * access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this
  * bit has no affect. This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR23_WBCDD      (0)
-#define BM_EIM_CSWCR23_WBCDD      (0x00000001)
+#define BP_EIM_CS3WCR2_WBCDD      (0)      //!< Bit position for EIM_CS3WCR2_WBCDD.
+#define BM_EIM_CS3WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS3WCR2_WBCDD.
+
+//! @brief Get value of EIM_CS3WCR2_WBCDD from a register value.
+#define BG_EIM_CS3WCR2_WBCDD(r)   (((r) & BM_EIM_CS3WCR2_WBCDD) >> BP_EIM_CS3WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR23_WBCDD(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR23_WBCDD)
+//! @brief Format value for bitfield EIM_CS3WCR2_WBCDD.
+#define BF_EIM_CS3WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS3WCR2_WBCDD) & BM_EIM_CS3WCR2_WBCDD)
 #else
-#define BF_EIM_CSWCR23_WBCDD(v)   (((v) << 0) & BM_EIM_CSWCR23_WBCDD)
+//! @brief Format value for bitfield EIM_CS3WCR2_WBCDD.
+#define BF_EIM_CS3WCR2_WBCDD(v)   (((v) << BP_EIM_CS3WCR2_WBCDD) & BM_EIM_CS3WCR2_WBCDD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
-#define BW_EIM_CSWCR23_WBCDD(v)   BF_CS1(EIM_CSWCR23, WBCDD, v)
+#define BW_EIM_CS3WCR2_WBCDD(v)   (HW_EIM_CS3WCR2_WR((HW_EIM_CS3WCR2_RD() & ~BM_EIM_CS3WCR2_WBCDD) | BF_EIM_CS3WCR2_WBCDD(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR14 - Chip Select n General Configuration Register 1 4 (RW)
+ * @brief HW_EIM_CS4GCR1 - Chip Select n General Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00010080
  *
 
  */
-typedef union
+typedef union _hw_eim_cs4gcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs4gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
+        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
+        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
+        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
+        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
+        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
+        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
+        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
+        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
     } B;
-} hw_eim_csgcr14_t;
+} hw_eim_cs4gcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR14 register
+ * constants & macros for entire EIM_CS4GCR1 register
  */
-#define HW_EIM_CSGCR14_ADDR      (REGS_EIM_BASE + 0x60)
+#define HW_EIM_CS4GCR1_ADDR      (REGS_EIM_BASE + 0x60)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR14           (*(volatile hw_eim_csgcr14_t *) HW_EIM_CSGCR14_ADDR)
-#define HW_EIM_CSGCR14_RD()      (HW_EIM_CSGCR14.U)
-#define HW_EIM_CSGCR14_WR(v)     (HW_EIM_CSGCR14.U = (v))
-#define HW_EIM_CSGCR14_SET(v)    (HW_EIM_CSGCR14_WR(HW_EIM_CSGCR14_RD() |  (v)))
-#define HW_EIM_CSGCR14_CLR(v)    (HW_EIM_CSGCR14_WR(HW_EIM_CSGCR14_RD() & ~(v)))
-#define HW_EIM_CSGCR14_TOG(v)    (HW_EIM_CSGCR14_WR(HW_EIM_CSGCR14_RD() ^  (v)))
+#define HW_EIM_CS4GCR1           (*(volatile hw_eim_cs4gcr1_t *) HW_EIM_CS4GCR1_ADDR)
+#define HW_EIM_CS4GCR1_RD()      (HW_EIM_CS4GCR1.U)
+#define HW_EIM_CS4GCR1_WR(v)     (HW_EIM_CS4GCR1.U = (v))
+#define HW_EIM_CS4GCR1_SET(v)    (HW_EIM_CS4GCR1_WR(HW_EIM_CS4GCR1_RD() |  (v)))
+#define HW_EIM_CS4GCR1_CLR(v)    (HW_EIM_CS4GCR1_WR(HW_EIM_CS4GCR1_RD() & ~(v)))
+#define HW_EIM_CS4GCR1_TOG(v)    (HW_EIM_CS4GCR1_WR(HW_EIM_CS4GCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR14 bitfields
+ * constants & macros for individual EIM_CS4GCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR14, field CSEN[0:0] (RW)
+/* --- Register HW_EIM_CS4GCR1, field CSEN[0] (RW)
  *
  * CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware
  * reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to
@@ -6598,21 +7848,27 @@ typedef union
  * 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 
-#define BP_EIM_CSGCR14_CSEN      (0)
-#define BM_EIM_CSGCR14_CSEN      (0x00000001)
+#define BP_EIM_CS4GCR1_CSEN      (0)      //!< Bit position for EIM_CS4GCR1_CSEN.
+#define BM_EIM_CS4GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS4GCR1_CSEN.
+
+//! @brief Get value of EIM_CS4GCR1_CSEN from a register value.
+#define BG_EIM_CS4GCR1_CSEN(r)   (((r) & BM_EIM_CS4GCR1_CSEN) >> BP_EIM_CS4GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_CSEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR14_CSEN)
+//! @brief Format value for bitfield EIM_CS4GCR1_CSEN.
+#define BF_EIM_CS4GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_CSEN) & BM_EIM_CS4GCR1_CSEN)
 #else
-#define BF_EIM_CSGCR14_CSEN(v)   (((v) << 0) & BM_EIM_CSGCR14_CSEN)
+//! @brief Format value for bitfield EIM_CS4GCR1_CSEN.
+#define BF_EIM_CS4GCR1_CSEN(v)   (((v) << BP_EIM_CS4GCR1_CSEN) & BM_EIM_CS4GCR1_CSEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
-#define BW_EIM_CSGCR14_CSEN(v)   BF_CS1(EIM_CSGCR14, CSEN, v)
+#define BW_EIM_CS4GCR1_CSEN(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CSEN) | BF_EIM_CS4GCR1_CSEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field SWR[1:1] (RW)
+/* --- Register HW_EIM_CS4GCR1, field SWR[1] (RW)
  *
  * Synchronous Write Data. This bit field determine the write accesses mode to the External device
  * of the chip select. The External device should be configured to the same mode as this bit
@@ -6623,21 +7879,27 @@ typedef union
  * 1 - write accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR14_SWR      (1)
-#define BM_EIM_CSGCR14_SWR      (0x00000002)
+#define BP_EIM_CS4GCR1_SWR      (1)      //!< Bit position for EIM_CS4GCR1_SWR.
+#define BM_EIM_CS4GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS4GCR1_SWR.
+
+//! @brief Get value of EIM_CS4GCR1_SWR from a register value.
+#define BG_EIM_CS4GCR1_SWR(r)   (((r) & BM_EIM_CS4GCR1_SWR) >> BP_EIM_CS4GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_SWR(v)   ((((reg32_t) v) << 1) & BM_EIM_CSGCR14_SWR)
+//! @brief Format value for bitfield EIM_CS4GCR1_SWR.
+#define BF_EIM_CS4GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_SWR) & BM_EIM_CS4GCR1_SWR)
 #else
-#define BF_EIM_CSGCR14_SWR(v)   (((v) << 1) & BM_EIM_CSGCR14_SWR)
+//! @brief Format value for bitfield EIM_CS4GCR1_SWR.
+#define BF_EIM_CS4GCR1_SWR(v)   (((v) << BP_EIM_CS4GCR1_SWR) & BM_EIM_CS4GCR1_SWR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
-#define BW_EIM_CSGCR14_SWR(v)   BF_CS1(EIM_CSGCR14, SWR, v)
+#define BW_EIM_CS4GCR1_SWR(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_SWR) | BF_EIM_CS4GCR1_SWR(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field SRD[2:2] (RW)
+/* --- Register HW_EIM_CS4GCR1, field SRD[2] (RW)
  *
  * Synchronous Read Data. This bit field determine the read accesses mode to the External device of
  * the chip select. The External device should be configured to the same mode as this bit
@@ -6648,21 +7910,27 @@ typedef union
  * 1 - read accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR14_SRD      (2)
-#define BM_EIM_CSGCR14_SRD      (0x00000004)
+#define BP_EIM_CS4GCR1_SRD      (2)      //!< Bit position for EIM_CS4GCR1_SRD.
+#define BM_EIM_CS4GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS4GCR1_SRD.
+
+//! @brief Get value of EIM_CS4GCR1_SRD from a register value.
+#define BG_EIM_CS4GCR1_SRD(r)   (((r) & BM_EIM_CS4GCR1_SRD) >> BP_EIM_CS4GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_SRD(v)   ((((reg32_t) v) << 2) & BM_EIM_CSGCR14_SRD)
+//! @brief Format value for bitfield EIM_CS4GCR1_SRD.
+#define BF_EIM_CS4GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_SRD) & BM_EIM_CS4GCR1_SRD)
 #else
-#define BF_EIM_CSGCR14_SRD(v)   (((v) << 2) & BM_EIM_CSGCR14_SRD)
+//! @brief Format value for bitfield EIM_CS4GCR1_SRD.
+#define BF_EIM_CS4GCR1_SRD(v)   (((v) << BP_EIM_CS4GCR1_SRD) & BM_EIM_CS4GCR1_SRD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
-#define BW_EIM_CSGCR14_SRD(v)   BF_CS1(EIM_CSGCR14, SRD, v)
+#define BW_EIM_CS4GCR1_SRD(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_SRD) | BF_EIM_CS4GCR1_SRD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field MUM[3:3] (RW)
+/* --- Register HW_EIM_CS4GCR1, field MUM[3] (RW)
  *
  * Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and
  * synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value
@@ -6673,21 +7941,27 @@ typedef union
  * 1 - Multiplexed Mode enable
  */
 
-#define BP_EIM_CSGCR14_MUM      (3)
-#define BM_EIM_CSGCR14_MUM      (0x00000008)
+#define BP_EIM_CS4GCR1_MUM      (3)      //!< Bit position for EIM_CS4GCR1_MUM.
+#define BM_EIM_CS4GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS4GCR1_MUM.
+
+//! @brief Get value of EIM_CS4GCR1_MUM from a register value.
+#define BG_EIM_CS4GCR1_MUM(r)   (((r) & BM_EIM_CS4GCR1_MUM) >> BP_EIM_CS4GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_MUM(v)   ((((reg32_t) v) << 3) & BM_EIM_CSGCR14_MUM)
+//! @brief Format value for bitfield EIM_CS4GCR1_MUM.
+#define BF_EIM_CS4GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_MUM) & BM_EIM_CS4GCR1_MUM)
 #else
-#define BF_EIM_CSGCR14_MUM(v)   (((v) << 3) & BM_EIM_CSGCR14_MUM)
+//! @brief Format value for bitfield EIM_CS4GCR1_MUM.
+#define BF_EIM_CS4GCR1_MUM(v)   (((v) << BP_EIM_CS4GCR1_MUM) & BM_EIM_CS4GCR1_MUM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
-#define BW_EIM_CSGCR14_MUM(v)   BF_CS1(EIM_CSGCR14, MUM, v)
+#define BW_EIM_CS4GCR1_MUM(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_MUM) | BF_EIM_CS4GCR1_MUM(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field WFL[4:4] (RW)
+/* --- Register HW_EIM_CS4GCR1, field WFL[4] (RW)
  *
  * Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -6701,21 +7975,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR14_WFL      (4)
-#define BM_EIM_CSGCR14_WFL      (0x00000010)
+#define BP_EIM_CS4GCR1_WFL      (4)      //!< Bit position for EIM_CS4GCR1_WFL.
+#define BM_EIM_CS4GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS4GCR1_WFL.
+
+//! @brief Get value of EIM_CS4GCR1_WFL from a register value.
+#define BG_EIM_CS4GCR1_WFL(r)   (((r) & BM_EIM_CS4GCR1_WFL) >> BP_EIM_CS4GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_WFL(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR14_WFL)
+//! @brief Format value for bitfield EIM_CS4GCR1_WFL.
+#define BF_EIM_CS4GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_WFL) & BM_EIM_CS4GCR1_WFL)
 #else
-#define BF_EIM_CSGCR14_WFL(v)   (((v) << 4) & BM_EIM_CSGCR14_WFL)
+//! @brief Format value for bitfield EIM_CS4GCR1_WFL.
+#define BF_EIM_CS4GCR1_WFL(v)   (((v) << BP_EIM_CS4GCR1_WFL) & BM_EIM_CS4GCR1_WFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
-#define BW_EIM_CSGCR14_WFL(v)   BF_CS1(EIM_CSGCR14, WFL, v)
+#define BW_EIM_CS4GCR1_WFL(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_WFL) | BF_EIM_CS4GCR1_WFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field RFL[5:5] (RW)
+/* --- Register HW_EIM_CS4GCR1, field RFL[5] (RW)
  *
  * Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -6729,21 +8009,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR14_RFL      (5)
-#define BM_EIM_CSGCR14_RFL      (0x00000020)
+#define BP_EIM_CS4GCR1_RFL      (5)      //!< Bit position for EIM_CS4GCR1_RFL.
+#define BM_EIM_CS4GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS4GCR1_RFL.
+
+//! @brief Get value of EIM_CS4GCR1_RFL from a register value.
+#define BG_EIM_CS4GCR1_RFL(r)   (((r) & BM_EIM_CS4GCR1_RFL) >> BP_EIM_CS4GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_RFL(v)   ((((reg32_t) v) << 5) & BM_EIM_CSGCR14_RFL)
+//! @brief Format value for bitfield EIM_CS4GCR1_RFL.
+#define BF_EIM_CS4GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_RFL) & BM_EIM_CS4GCR1_RFL)
 #else
-#define BF_EIM_CSGCR14_RFL(v)   (((v) << 5) & BM_EIM_CSGCR14_RFL)
+//! @brief Format value for bitfield EIM_CS4GCR1_RFL.
+#define BF_EIM_CS4GCR1_RFL(v)   (((v) << BP_EIM_CS4GCR1_RFL) & BM_EIM_CS4GCR1_RFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
-#define BW_EIM_CSGCR14_RFL(v)   BF_CS1(EIM_CSGCR14, RFL, v)
+#define BW_EIM_CS4GCR1_RFL(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_RFL) | BF_EIM_CS4GCR1_RFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field CRE[6:6] (RW)
+/* --- Register HW_EIM_CS4GCR1, field CRE[6] (RW)
  *
  * Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory
  * register set command to PSRAM external device. CRE is cleared by a hardware reset.
@@ -6753,21 +8039,27 @@ typedef union
  * 1 - CRE signal use is enable
  */
 
-#define BP_EIM_CSGCR14_CRE      (6)
-#define BM_EIM_CSGCR14_CRE      (0x00000040)
+#define BP_EIM_CS4GCR1_CRE      (6)      //!< Bit position for EIM_CS4GCR1_CRE.
+#define BM_EIM_CS4GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS4GCR1_CRE.
+
+//! @brief Get value of EIM_CS4GCR1_CRE from a register value.
+#define BG_EIM_CS4GCR1_CRE(r)   (((r) & BM_EIM_CS4GCR1_CRE) >> BP_EIM_CS4GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_CRE(v)   ((((reg32_t) v) << 6) & BM_EIM_CSGCR14_CRE)
+//! @brief Format value for bitfield EIM_CS4GCR1_CRE.
+#define BF_EIM_CS4GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_CRE) & BM_EIM_CS4GCR1_CRE)
 #else
-#define BF_EIM_CSGCR14_CRE(v)   (((v) << 6) & BM_EIM_CSGCR14_CRE)
+//! @brief Format value for bitfield EIM_CS4GCR1_CRE.
+#define BF_EIM_CS4GCR1_CRE(v)   (((v) << BP_EIM_CS4GCR1_CRE) & BM_EIM_CS4GCR1_CRE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
-#define BW_EIM_CSGCR14_CRE(v)   BF_CS1(EIM_CSGCR14, CRE, v)
+#define BW_EIM_CS4GCR1_CRE(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CRE) | BF_EIM_CS4GCR1_CRE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field CREP[7:7] (RW)
+/* --- Register HW_EIM_CS4GCR1, field CREP[7] (RW)
  *
  * Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state,
  * active-low or active-high, while executing a memory register set command to the external device
@@ -6780,21 +8072,27 @@ typedef union
  * 1 - CRE signal is active high
  */
 
-#define BP_EIM_CSGCR14_CREP      (7)
-#define BM_EIM_CSGCR14_CREP      (0x00000080)
+#define BP_EIM_CS4GCR1_CREP      (7)      //!< Bit position for EIM_CS4GCR1_CREP.
+#define BM_EIM_CS4GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS4GCR1_CREP.
+
+//! @brief Get value of EIM_CS4GCR1_CREP from a register value.
+#define BG_EIM_CS4GCR1_CREP(r)   (((r) & BM_EIM_CS4GCR1_CREP) >> BP_EIM_CS4GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_CREP(v)   ((((reg32_t) v) << 7) & BM_EIM_CSGCR14_CREP)
+//! @brief Format value for bitfield EIM_CS4GCR1_CREP.
+#define BF_EIM_CS4GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_CREP) & BM_EIM_CS4GCR1_CREP)
 #else
-#define BF_EIM_CSGCR14_CREP(v)   (((v) << 7) & BM_EIM_CSGCR14_CREP)
+//! @brief Format value for bitfield EIM_CS4GCR1_CREP.
+#define BF_EIM_CS4GCR1_CREP(v)   (((v) << BP_EIM_CS4GCR1_CREP) & BM_EIM_CS4GCR1_CREP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
-#define BW_EIM_CSGCR14_CREP(v)   BF_CS1(EIM_CSGCR14, CREP, v)
+#define BW_EIM_CS4GCR1_CREP(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CREP) | BF_EIM_CS4GCR1_CREP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field BL[10:8] (RW)
+/* --- Register HW_EIM_CS4GCR1, field BL[10:8] (RW)
  *
  * Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ
  * field) and should be properly initialized for mixed wrap/increment accesses support. Continuous
@@ -6816,21 +8114,27 @@ typedef union
  * 111 - Reserved
  */
 
-#define BP_EIM_CSGCR14_BL      (8)
-#define BM_EIM_CSGCR14_BL      (0x00000700)
+#define BP_EIM_CS4GCR1_BL      (8)      //!< Bit position for EIM_CS4GCR1_BL.
+#define BM_EIM_CS4GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS4GCR1_BL.
+
+//! @brief Get value of EIM_CS4GCR1_BL from a register value.
+#define BG_EIM_CS4GCR1_BL(r)   (((r) & BM_EIM_CS4GCR1_BL) >> BP_EIM_CS4GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_BL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR14_BL)
+//! @brief Format value for bitfield EIM_CS4GCR1_BL.
+#define BF_EIM_CS4GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_BL) & BM_EIM_CS4GCR1_BL)
 #else
-#define BF_EIM_CSGCR14_BL(v)   (((v) << 8) & BM_EIM_CSGCR14_BL)
+//! @brief Format value for bitfield EIM_CS4GCR1_BL.
+#define BF_EIM_CS4GCR1_BL(v)   (((v) << BP_EIM_CS4GCR1_BL) & BM_EIM_CS4GCR1_BL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
-#define BW_EIM_CSGCR14_BL(v)   BF_CS1(EIM_CSGCR14, BL, v)
+#define BW_EIM_CS4GCR1_BL(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_BL) | BF_EIM_CS4GCR1_BL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field WC[11:11] (RW)
+/* --- Register HW_EIM_CS4GCR1, field WC[11] (RW)
  *
  * Write Continuous. The WI bit indicates that write access to the memory are always continuous
  * accesses regardless of the BL field value. WI is cleared by hardware reset.
@@ -6840,21 +8144,27 @@ typedef union
  * 1 - Write access burst length is continuous.
  */
 
-#define BP_EIM_CSGCR14_WC      (11)
-#define BM_EIM_CSGCR14_WC      (0x00000800)
+#define BP_EIM_CS4GCR1_WC      (11)      //!< Bit position for EIM_CS4GCR1_WC.
+#define BM_EIM_CS4GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS4GCR1_WC.
+
+//! @brief Get value of EIM_CS4GCR1_WC from a register value.
+#define BG_EIM_CS4GCR1_WC(r)   (((r) & BM_EIM_CS4GCR1_WC) >> BP_EIM_CS4GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_WC(v)   ((((reg32_t) v) << 11) & BM_EIM_CSGCR14_WC)
+//! @brief Format value for bitfield EIM_CS4GCR1_WC.
+#define BF_EIM_CS4GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_WC) & BM_EIM_CS4GCR1_WC)
 #else
-#define BF_EIM_CSGCR14_WC(v)   (((v) << 11) & BM_EIM_CSGCR14_WC)
+//! @brief Format value for bitfield EIM_CS4GCR1_WC.
+#define BF_EIM_CS4GCR1_WC(v)   (((v) << BP_EIM_CS4GCR1_WC) & BM_EIM_CS4GCR1_WC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
-#define BW_EIM_CSGCR14_WC(v)   BF_CS1(EIM_CSGCR14, WC, v)
+#define BW_EIM_CS4GCR1_WC(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_WC) | BF_EIM_CS4GCR1_WC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field BCD[13:12] (RW)
+/* --- Register HW_EIM_CS4GCR1, field BCD[13:12] (RW)
  *
  * Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor
  * for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a
@@ -6868,21 +8178,27 @@ typedef union
  * 11 - Divide EIM clock by 4
  */
 
-#define BP_EIM_CSGCR14_BCD      (12)
-#define BM_EIM_CSGCR14_BCD      (0x00003000)
+#define BP_EIM_CS4GCR1_BCD      (12)      //!< Bit position for EIM_CS4GCR1_BCD.
+#define BM_EIM_CS4GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS4GCR1_BCD.
+
+//! @brief Get value of EIM_CS4GCR1_BCD from a register value.
+#define BG_EIM_CS4GCR1_BCD(r)   (((r) & BM_EIM_CS4GCR1_BCD) >> BP_EIM_CS4GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_BCD(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR14_BCD)
+//! @brief Format value for bitfield EIM_CS4GCR1_BCD.
+#define BF_EIM_CS4GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_BCD) & BM_EIM_CS4GCR1_BCD)
 #else
-#define BF_EIM_CSGCR14_BCD(v)   (((v) << 12) & BM_EIM_CSGCR14_BCD)
+//! @brief Format value for bitfield EIM_CS4GCR1_BCD.
+#define BF_EIM_CS4GCR1_BCD(v)   (((v) << BP_EIM_CS4GCR1_BCD) & BM_EIM_CS4GCR1_BCD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
-#define BW_EIM_CSGCR14_BCD(v)   BF_CS1(EIM_CSGCR14, BCD, v)
+#define BW_EIM_CS4GCR1_BCD(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_BCD) | BF_EIM_CS4GCR1_BCD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field BCS[15:14] (RW)
+/* --- Register HW_EIM_CS4GCR1, field BCS[15:14] (RW)
  *
  * Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles
  * delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of
@@ -6897,21 +8213,27 @@ typedef union
  * 11 - 3 EIM clock cycle additional delay
  */
 
-#define BP_EIM_CSGCR14_BCS      (14)
-#define BM_EIM_CSGCR14_BCS      (0x0000c000)
+#define BP_EIM_CS4GCR1_BCS      (14)      //!< Bit position for EIM_CS4GCR1_BCS.
+#define BM_EIM_CS4GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS4GCR1_BCS.
+
+//! @brief Get value of EIM_CS4GCR1_BCS from a register value.
+#define BG_EIM_CS4GCR1_BCS(r)   (((r) & BM_EIM_CS4GCR1_BCS) >> BP_EIM_CS4GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_BCS(v)   ((((reg32_t) v) << 14) & BM_EIM_CSGCR14_BCS)
+//! @brief Format value for bitfield EIM_CS4GCR1_BCS.
+#define BF_EIM_CS4GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_BCS) & BM_EIM_CS4GCR1_BCS)
 #else
-#define BF_EIM_CSGCR14_BCS(v)   (((v) << 14) & BM_EIM_CSGCR14_BCS)
+//! @brief Format value for bitfield EIM_CS4GCR1_BCS.
+#define BF_EIM_CS4GCR1_BCS(v)   (((v) << BP_EIM_CS4GCR1_BCS) & BM_EIM_CS4GCR1_BCS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
-#define BW_EIM_CSGCR14_BCS(v)   BF_CS1(EIM_CSGCR14, BCS, v)
+#define BW_EIM_CS4GCR1_BCS(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_BCS) | BF_EIM_CS4GCR1_BCS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field DSZ[18:16] (RW)
+/* --- Register HW_EIM_CS4GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
  * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
@@ -6929,21 +8251,27 @@ typedef union
  * 111 - 8 bit port resides on DATA[31:24]
  */
 
-#define BP_EIM_CSGCR14_DSZ      (16)
-#define BM_EIM_CSGCR14_DSZ      (0x00070000)
+#define BP_EIM_CS4GCR1_DSZ      (16)      //!< Bit position for EIM_CS4GCR1_DSZ.
+#define BM_EIM_CS4GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS4GCR1_DSZ.
+
+//! @brief Get value of EIM_CS4GCR1_DSZ from a register value.
+#define BG_EIM_CS4GCR1_DSZ(r)   (((r) & BM_EIM_CS4GCR1_DSZ) >> BP_EIM_CS4GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_DSZ(v)   ((((reg32_t) v) << 16) & BM_EIM_CSGCR14_DSZ)
+//! @brief Format value for bitfield EIM_CS4GCR1_DSZ.
+#define BF_EIM_CS4GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_DSZ) & BM_EIM_CS4GCR1_DSZ)
 #else
-#define BF_EIM_CSGCR14_DSZ(v)   (((v) << 16) & BM_EIM_CSGCR14_DSZ)
+//! @brief Format value for bitfield EIM_CS4GCR1_DSZ.
+#define BF_EIM_CS4GCR1_DSZ(v)   (((v) << BP_EIM_CS4GCR1_DSZ) & BM_EIM_CS4GCR1_DSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
-#define BW_EIM_CSGCR14_DSZ(v)   BF_CS1(EIM_CSGCR14, DSZ, v)
+#define BW_EIM_CS4GCR1_DSZ(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_DSZ) | BF_EIM_CS4GCR1_DSZ(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field SP[19:19] (RW)
+/* --- Register HW_EIM_CS4GCR1, field SP[19] (RW)
  *
  * Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding
  * chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
@@ -6954,21 +8282,27 @@ typedef union
  *     User mode results in an error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR14_SP      (19)
-#define BM_EIM_CSGCR14_SP      (0x00080000)
+#define BP_EIM_CS4GCR1_SP      (19)      //!< Bit position for EIM_CS4GCR1_SP.
+#define BM_EIM_CS4GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS4GCR1_SP.
+
+//! @brief Get value of EIM_CS4GCR1_SP from a register value.
+#define BG_EIM_CS4GCR1_SP(r)   (((r) & BM_EIM_CS4GCR1_SP) >> BP_EIM_CS4GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_SP(v)   ((((reg32_t) v) << 19) & BM_EIM_CSGCR14_SP)
+//! @brief Format value for bitfield EIM_CS4GCR1_SP.
+#define BF_EIM_CS4GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_SP) & BM_EIM_CS4GCR1_SP)
 #else
-#define BF_EIM_CSGCR14_SP(v)   (((v) << 19) & BM_EIM_CSGCR14_SP)
+//! @brief Format value for bitfield EIM_CS4GCR1_SP.
+#define BF_EIM_CS4GCR1_SP(v)   (((v) << BP_EIM_CS4GCR1_SP) & BM_EIM_CS4GCR1_SP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
-#define BW_EIM_CSGCR14_SP(v)   BF_CS1(EIM_CSGCR14, SP, v)
+#define BW_EIM_CS4GCR1_SP(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_SP) | BF_EIM_CS4GCR1_SP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field CSREC[22:20] (RW)
+/* --- Register HW_EIM_CS4GCR1, field CSREC[22:20] (RW)
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
@@ -6983,21 +8317,27 @@ typedef union
  * 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 
-#define BP_EIM_CSGCR14_CSREC      (20)
-#define BM_EIM_CSGCR14_CSREC      (0x00700000)
+#define BP_EIM_CS4GCR1_CSREC      (20)      //!< Bit position for EIM_CS4GCR1_CSREC.
+#define BM_EIM_CS4GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS4GCR1_CSREC.
+
+//! @brief Get value of EIM_CS4GCR1_CSREC from a register value.
+#define BG_EIM_CS4GCR1_CSREC(r)   (((r) & BM_EIM_CS4GCR1_CSREC) >> BP_EIM_CS4GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_CSREC(v)   ((((reg32_t) v) << 20) & BM_EIM_CSGCR14_CSREC)
+//! @brief Format value for bitfield EIM_CS4GCR1_CSREC.
+#define BF_EIM_CS4GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_CSREC) & BM_EIM_CS4GCR1_CSREC)
 #else
-#define BF_EIM_CSGCR14_CSREC(v)   (((v) << 20) & BM_EIM_CSGCR14_CSREC)
+//! @brief Format value for bitfield EIM_CS4GCR1_CSREC.
+#define BF_EIM_CS4GCR1_CSREC(v)   (((v) << BP_EIM_CS4GCR1_CSREC) & BM_EIM_CS4GCR1_CSREC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
-#define BW_EIM_CSGCR14_CSREC(v)   BF_CS1(EIM_CSGCR14, CSREC, v)
+#define BW_EIM_CS4GCR1_CSREC(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CSREC) | BF_EIM_CS4GCR1_CSREC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field AUS[23:23] (RW)
+/* --- Register HW_EIM_CS4GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
  * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
@@ -7008,21 +8348,27 @@ typedef union
  * 1 - Address unshifted
  */
 
-#define BP_EIM_CSGCR14_AUS      (23)
-#define BM_EIM_CSGCR14_AUS      (0x00800000)
+#define BP_EIM_CS4GCR1_AUS      (23)      //!< Bit position for EIM_CS4GCR1_AUS.
+#define BM_EIM_CS4GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS4GCR1_AUS.
+
+//! @brief Get value of EIM_CS4GCR1_AUS from a register value.
+#define BG_EIM_CS4GCR1_AUS(r)   (((r) & BM_EIM_CS4GCR1_AUS) >> BP_EIM_CS4GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_AUS(v)   ((((reg32_t) v) << 23) & BM_EIM_CSGCR14_AUS)
+//! @brief Format value for bitfield EIM_CS4GCR1_AUS.
+#define BF_EIM_CS4GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_AUS) & BM_EIM_CS4GCR1_AUS)
 #else
-#define BF_EIM_CSGCR14_AUS(v)   (((v) << 23) & BM_EIM_CSGCR14_AUS)
+//! @brief Format value for bitfield EIM_CS4GCR1_AUS.
+#define BF_EIM_CS4GCR1_AUS(v)   (((v) << BP_EIM_CS4GCR1_AUS) & BM_EIM_CS4GCR1_AUS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
-#define BW_EIM_CSGCR14_AUS(v)   BF_CS1(EIM_CSGCR14, AUS, v)
+#define BW_EIM_CS4GCR1_AUS(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_AUS) | BF_EIM_CS4GCR1_AUS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field GBC[26:24] (RW)
+/* --- Register HW_EIM_CS4GCR1, field GBC[26:24] (RW)
  *
  * Gap Between Chip Selects. This bit field, according to the settings shown below, determines the
  * minimum time between end of access to the current chip select and start of access to different
@@ -7035,21 +8381,27 @@ typedef union
  * 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 
-#define BP_EIM_CSGCR14_GBC      (24)
-#define BM_EIM_CSGCR14_GBC      (0x07000000)
+#define BP_EIM_CS4GCR1_GBC      (24)      //!< Bit position for EIM_CS4GCR1_GBC.
+#define BM_EIM_CS4GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS4GCR1_GBC.
+
+//! @brief Get value of EIM_CS4GCR1_GBC from a register value.
+#define BG_EIM_CS4GCR1_GBC(r)   (((r) & BM_EIM_CS4GCR1_GBC) >> BP_EIM_CS4GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_GBC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSGCR14_GBC)
+//! @brief Format value for bitfield EIM_CS4GCR1_GBC.
+#define BF_EIM_CS4GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_GBC) & BM_EIM_CS4GCR1_GBC)
 #else
-#define BF_EIM_CSGCR14_GBC(v)   (((v) << 24) & BM_EIM_CSGCR14_GBC)
+//! @brief Format value for bitfield EIM_CS4GCR1_GBC.
+#define BF_EIM_CS4GCR1_GBC(v)   (((v) << BP_EIM_CS4GCR1_GBC) & BM_EIM_CS4GCR1_GBC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
-#define BW_EIM_CSGCR14_GBC(v)   BF_CS1(EIM_CSGCR14, GBC, v)
+#define BW_EIM_CS4GCR1_GBC(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_GBC) | BF_EIM_CS4GCR1_GBC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field WP[27:27] (RW)
+/* --- Register HW_EIM_CS4GCR1, field WP[27] (RW)
  *
  * Write Protect. This bit prevents writes to the address range defined by the corresponding chip
  * select. WP is cleared by a hardware reset.
@@ -7060,21 +8412,27 @@ typedef union
  *     error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR14_WP      (27)
-#define BM_EIM_CSGCR14_WP      (0x08000000)
+#define BP_EIM_CS4GCR1_WP      (27)      //!< Bit position for EIM_CS4GCR1_WP.
+#define BM_EIM_CS4GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS4GCR1_WP.
+
+//! @brief Get value of EIM_CS4GCR1_WP from a register value.
+#define BG_EIM_CS4GCR1_WP(r)   (((r) & BM_EIM_CS4GCR1_WP) >> BP_EIM_CS4GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_WP(v)   ((((reg32_t) v) << 27) & BM_EIM_CSGCR14_WP)
+//! @brief Format value for bitfield EIM_CS4GCR1_WP.
+#define BF_EIM_CS4GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_WP) & BM_EIM_CS4GCR1_WP)
 #else
-#define BF_EIM_CSGCR14_WP(v)   (((v) << 27) & BM_EIM_CSGCR14_WP)
+//! @brief Format value for bitfield EIM_CS4GCR1_WP.
+#define BF_EIM_CS4GCR1_WP(v)   (((v) << BP_EIM_CS4GCR1_WP) & BM_EIM_CS4GCR1_WP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
-#define BW_EIM_CSGCR14_WP(v)   BF_CS1(EIM_CSGCR14, WP, v)
+#define BW_EIM_CS4GCR1_WP(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_WP) | BF_EIM_CS4GCR1_WP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR14, field PSZ[31:28] (RW)
+/* --- Register HW_EIM_CS4GCR1, field PSZ[31:28] (RW)
  *
  * Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field).
  * PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync.
@@ -7097,62 +8455,70 @@ typedef union
  * 1001 - - 1111 Reserved
  */
 
-#define BP_EIM_CSGCR14_PSZ      (28)
-#define BM_EIM_CSGCR14_PSZ      (0xf0000000)
+#define BP_EIM_CS4GCR1_PSZ      (28)      //!< Bit position for EIM_CS4GCR1_PSZ.
+#define BM_EIM_CS4GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS4GCR1_PSZ.
+
+//! @brief Get value of EIM_CS4GCR1_PSZ from a register value.
+#define BG_EIM_CS4GCR1_PSZ(r)   (((r) & BM_EIM_CS4GCR1_PSZ) >> BP_EIM_CS4GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR14_PSZ(v)   ((((reg32_t) v) << 28) & BM_EIM_CSGCR14_PSZ)
+//! @brief Format value for bitfield EIM_CS4GCR1_PSZ.
+#define BF_EIM_CS4GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS4GCR1_PSZ) & BM_EIM_CS4GCR1_PSZ)
 #else
-#define BF_EIM_CSGCR14_PSZ(v)   (((v) << 28) & BM_EIM_CSGCR14_PSZ)
+//! @brief Format value for bitfield EIM_CS4GCR1_PSZ.
+#define BF_EIM_CS4GCR1_PSZ(v)   (((v) << BP_EIM_CS4GCR1_PSZ) & BM_EIM_CS4GCR1_PSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
-#define BW_EIM_CSGCR14_PSZ(v)   BF_CS1(EIM_CSGCR14, PSZ, v)
+#define BW_EIM_CS4GCR1_PSZ(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_PSZ) | BF_EIM_CS4GCR1_PSZ(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR24 - Chip Select n General Configuration Register 2 4 (RW)
+ * @brief HW_EIM_CS4GCR2 - Chip Select n General Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00001000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs4gcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs4gcr2_bitfields
     {
-        unsigned ADH : 2; //!< Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned DAPS : 4; //!< Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
-        unsigned RESERVED2 : 19; //!< Reserved
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
-} hw_eim_csgcr24_t;
+} hw_eim_cs4gcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR24 register
+ * constants & macros for entire EIM_CS4GCR2 register
  */
-#define HW_EIM_CSGCR24_ADDR      (REGS_EIM_BASE + 0x64)
+#define HW_EIM_CS4GCR2_ADDR      (REGS_EIM_BASE + 0x64)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR24           (*(volatile hw_eim_csgcr24_t *) HW_EIM_CSGCR24_ADDR)
-#define HW_EIM_CSGCR24_RD()      (HW_EIM_CSGCR24.U)
-#define HW_EIM_CSGCR24_WR(v)     (HW_EIM_CSGCR24.U = (v))
-#define HW_EIM_CSGCR24_SET(v)    (HW_EIM_CSGCR24_WR(HW_EIM_CSGCR24_RD() |  (v)))
-#define HW_EIM_CSGCR24_CLR(v)    (HW_EIM_CSGCR24_WR(HW_EIM_CSGCR24_RD() & ~(v)))
-#define HW_EIM_CSGCR24_TOG(v)    (HW_EIM_CSGCR24_WR(HW_EIM_CSGCR24_RD() ^  (v)))
+#define HW_EIM_CS4GCR2           (*(volatile hw_eim_cs4gcr2_t *) HW_EIM_CS4GCR2_ADDR)
+#define HW_EIM_CS4GCR2_RD()      (HW_EIM_CS4GCR2.U)
+#define HW_EIM_CS4GCR2_WR(v)     (HW_EIM_CS4GCR2.U = (v))
+#define HW_EIM_CS4GCR2_SET(v)    (HW_EIM_CS4GCR2_WR(HW_EIM_CS4GCR2_RD() |  (v)))
+#define HW_EIM_CS4GCR2_CLR(v)    (HW_EIM_CS4GCR2_WR(HW_EIM_CS4GCR2_RD() & ~(v)))
+#define HW_EIM_CS4GCR2_TOG(v)    (HW_EIM_CS4GCR2_WR(HW_EIM_CS4GCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR24 bitfields
+ * constants & macros for individual EIM_CS4GCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR24, field ADH[1:0] (RW)
+/* --- Register HW_EIM_CS4GCR2, field ADH[1:0] (RW)
  *
  * Address hold time - This bit field determine the address hold time after ADV negation when mum =
  * 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when
@@ -7166,21 +8532,27 @@ typedef union
  * 11 - Reserved
  */
 
-#define BP_EIM_CSGCR24_ADH      (0)
-#define BM_EIM_CSGCR24_ADH      (0x00000003)
+#define BP_EIM_CS4GCR2_ADH      (0)      //!< Bit position for EIM_CS4GCR2_ADH.
+#define BM_EIM_CS4GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS4GCR2_ADH.
+
+//! @brief Get value of EIM_CS4GCR2_ADH from a register value.
+#define BG_EIM_CS4GCR2_ADH(r)   (((r) & BM_EIM_CS4GCR2_ADH) >> BP_EIM_CS4GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR24_ADH(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR24_ADH)
+//! @brief Format value for bitfield EIM_CS4GCR2_ADH.
+#define BF_EIM_CS4GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS4GCR2_ADH) & BM_EIM_CS4GCR2_ADH)
 #else
-#define BF_EIM_CSGCR24_ADH(v)   (((v) << 0) & BM_EIM_CSGCR24_ADH)
+//! @brief Format value for bitfield EIM_CS4GCR2_ADH.
+#define BF_EIM_CS4GCR2_ADH(v)   (((v) << BP_EIM_CS4GCR2_ADH) & BM_EIM_CS4GCR2_ADH)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
-#define BW_EIM_CSGCR24_ADH(v)   BF_CS1(EIM_CSGCR24, ADH, v)
+#define BW_EIM_CS4GCR2_ADH(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_ADH) | BF_EIM_CS4GCR2_ADH(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR24, field DAPS[7:4] (RW)
+/* --- Register HW_EIM_CS4GCR2, field DAPS[7:4] (RW)
  *
  * Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal
  * polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an
@@ -7196,21 +8568,27 @@ typedef union
  * 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 
-#define BP_EIM_CSGCR24_DAPS      (4)
-#define BM_EIM_CSGCR24_DAPS      (0x000000f0)
+#define BP_EIM_CS4GCR2_DAPS      (4)      //!< Bit position for EIM_CS4GCR2_DAPS.
+#define BM_EIM_CS4GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS4GCR2_DAPS.
+
+//! @brief Get value of EIM_CS4GCR2_DAPS from a register value.
+#define BG_EIM_CS4GCR2_DAPS(r)   (((r) & BM_EIM_CS4GCR2_DAPS) >> BP_EIM_CS4GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR24_DAPS(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR24_DAPS)
+//! @brief Format value for bitfield EIM_CS4GCR2_DAPS.
+#define BF_EIM_CS4GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS4GCR2_DAPS) & BM_EIM_CS4GCR2_DAPS)
 #else
-#define BF_EIM_CSGCR24_DAPS(v)   (((v) << 4) & BM_EIM_CSGCR24_DAPS)
+//! @brief Format value for bitfield EIM_CS4GCR2_DAPS.
+#define BF_EIM_CS4GCR2_DAPS(v)   (((v) << BP_EIM_CS4GCR2_DAPS) & BM_EIM_CS4GCR2_DAPS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
-#define BW_EIM_CSGCR24_DAPS(v)   BF_CS1(EIM_CSGCR24, DAPS, v)
+#define BW_EIM_CS4GCR2_DAPS(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_DAPS) | BF_EIM_CS4GCR2_DAPS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR24, field DAE[8:8] (RW)
+/* --- Register HW_EIM_CS4GCR2, field DAE[8] (RW)
  *
  * Data Acknowledge Enable. This bit indicates external device is using DTACK pin as
  * strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read
@@ -7222,21 +8600,27 @@ typedef union
  * 1 - DTACK signal use is enable
  */
 
-#define BP_EIM_CSGCR24_DAE      (8)
-#define BM_EIM_CSGCR24_DAE      (0x00000100)
+#define BP_EIM_CS4GCR2_DAE      (8)      //!< Bit position for EIM_CS4GCR2_DAE.
+#define BM_EIM_CS4GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS4GCR2_DAE.
+
+//! @brief Get value of EIM_CS4GCR2_DAE from a register value.
+#define BG_EIM_CS4GCR2_DAE(r)   (((r) & BM_EIM_CS4GCR2_DAE) >> BP_EIM_CS4GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR24_DAE(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR24_DAE)
+//! @brief Format value for bitfield EIM_CS4GCR2_DAE.
+#define BF_EIM_CS4GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS4GCR2_DAE) & BM_EIM_CS4GCR2_DAE)
 #else
-#define BF_EIM_CSGCR24_DAE(v)   (((v) << 8) & BM_EIM_CSGCR24_DAE)
+//! @brief Format value for bitfield EIM_CS4GCR2_DAE.
+#define BF_EIM_CS4GCR2_DAE(v)   (((v) << BP_EIM_CS4GCR2_DAE) & BM_EIM_CS4GCR2_DAE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
-#define BW_EIM_CSGCR24_DAE(v)   BF_CS1(EIM_CSGCR24, DAE, v)
+#define BW_EIM_CS4GCR2_DAE(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_DAE) | BF_EIM_CS4GCR2_DAE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR24, field DAP[9:9] (RW)
+/* --- Register HW_EIM_CS4GCR2, field DAP[9] (RW)
  *
  * Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or
  * active-high, while executing an async access using DTACK signal from the external device. DAP is
@@ -7247,21 +8631,27 @@ typedef union
  * 1 - DTACK signal is active low
  */
 
-#define BP_EIM_CSGCR24_DAP      (9)
-#define BM_EIM_CSGCR24_DAP      (0x00000200)
+#define BP_EIM_CS4GCR2_DAP      (9)      //!< Bit position for EIM_CS4GCR2_DAP.
+#define BM_EIM_CS4GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS4GCR2_DAP.
+
+//! @brief Get value of EIM_CS4GCR2_DAP from a register value.
+#define BG_EIM_CS4GCR2_DAP(r)   (((r) & BM_EIM_CS4GCR2_DAP) >> BP_EIM_CS4GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR24_DAP(v)   ((((reg32_t) v) << 9) & BM_EIM_CSGCR24_DAP)
+//! @brief Format value for bitfield EIM_CS4GCR2_DAP.
+#define BF_EIM_CS4GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS4GCR2_DAP) & BM_EIM_CS4GCR2_DAP)
 #else
-#define BF_EIM_CSGCR24_DAP(v)   (((v) << 9) & BM_EIM_CSGCR24_DAP)
+//! @brief Format value for bitfield EIM_CS4GCR2_DAP.
+#define BF_EIM_CS4GCR2_DAP(v)   (((v) << BP_EIM_CS4GCR2_DAP) & BM_EIM_CS4GCR2_DAP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
-#define BW_EIM_CSGCR24_DAP(v)   BF_CS1(EIM_CSGCR24, DAP, v)
+#define BW_EIM_CS4GCR2_DAP(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_DAP) | BF_EIM_CS4GCR2_DAP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR24, field MUX16_BYP_GRANT[12:12] (RW)
+/* --- Register HW_EIM_CS4GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
  * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
@@ -7272,68 +8662,76 @@ typedef union
  * 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 
-#define BP_EIM_CSGCR24_MUX16_BYP_GRANT      (12)
-#define BM_EIM_CSGCR24_MUX16_BYP_GRANT      (0x00001000)
+#define BP_EIM_CS4GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS4GCR2_MUX16_BYP_GRANT.
+#define BM_EIM_CS4GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS4GCR2_MUX16_BYP_GRANT.
+
+//! @brief Get value of EIM_CS4GCR2_MUX16_BYP_GRANT from a register value.
+#define BG_EIM_CS4GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS4GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS4GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR24_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR24_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS4GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS4GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS4GCR2_MUX16_BYP_GRANT) & BM_EIM_CS4GCR2_MUX16_BYP_GRANT)
 #else
-#define BF_EIM_CSGCR24_MUX16_BYP_GRANT(v)   (((v) << 12) & BM_EIM_CSGCR24_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS4GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS4GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS4GCR2_MUX16_BYP_GRANT) & BM_EIM_CS4GCR2_MUX16_BYP_GRANT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
-#define BW_EIM_CSGCR24_MUX16_BYP_GRANT(v)   BF_CS1(EIM_CSGCR24, MUX16_BYP_GRANT, v)
+#define BW_EIM_CS4GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_MUX16_BYP_GRANT) | BF_EIM_CS4GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR14 - Chip Select n Read Configuration Register 1 4 (RW)
+ * @brief HW_EIM_CS4RCR1 - Chip Select n Read Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs4rcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs4rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RCSA : 3; //!< Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned OEN : 3; //!< OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned OEA : 3; //!< OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED4 : 1; //!< Reserved
-        unsigned RWSC : 6; //!< Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
-        unsigned RESERVED5 : 2; //!< Reserved
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [3] Reserved
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED1 : 1; //!< [7] Reserved
+        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED2 : 1; //!< [11] Reserved
+        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned RESERVED3 : 1; //!< [15] Reserved
+        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
+        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED4 : 1; //!< [23] Reserved
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
-} hw_eim_csrcr14_t;
+} hw_eim_cs4rcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR14 register
+ * constants & macros for entire EIM_CS4RCR1 register
  */
-#define HW_EIM_CSRCR14_ADDR      (REGS_EIM_BASE + 0x68)
+#define HW_EIM_CS4RCR1_ADDR      (REGS_EIM_BASE + 0x68)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR14           (*(volatile hw_eim_csrcr14_t *) HW_EIM_CSRCR14_ADDR)
-#define HW_EIM_CSRCR14_RD()      (HW_EIM_CSRCR14.U)
-#define HW_EIM_CSRCR14_WR(v)     (HW_EIM_CSRCR14.U = (v))
-#define HW_EIM_CSRCR14_SET(v)    (HW_EIM_CSRCR14_WR(HW_EIM_CSRCR14_RD() |  (v)))
-#define HW_EIM_CSRCR14_CLR(v)    (HW_EIM_CSRCR14_WR(HW_EIM_CSRCR14_RD() & ~(v)))
-#define HW_EIM_CSRCR14_TOG(v)    (HW_EIM_CSRCR14_WR(HW_EIM_CSRCR14_RD() ^  (v)))
+#define HW_EIM_CS4RCR1           (*(volatile hw_eim_cs4rcr1_t *) HW_EIM_CS4RCR1_ADDR)
+#define HW_EIM_CS4RCR1_RD()      (HW_EIM_CS4RCR1.U)
+#define HW_EIM_CS4RCR1_WR(v)     (HW_EIM_CS4RCR1.U = (v))
+#define HW_EIM_CS4RCR1_SET(v)    (HW_EIM_CS4RCR1_WR(HW_EIM_CS4RCR1_RD() |  (v)))
+#define HW_EIM_CS4RCR1_CLR(v)    (HW_EIM_CS4RCR1_WR(HW_EIM_CS4RCR1_RD() & ~(v)))
+#define HW_EIM_CS4RCR1_TOG(v)    (HW_EIM_CS4RCR1_WR(HW_EIM_CS4RCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR14 bitfields
+ * constants & macros for individual EIM_CS4RCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR14, field RCSN[2:0] (RW)
+/* --- Register HW_EIM_CS4RCR1, field RCSN[2:0] (RW)
  *
  * Read CS Negation. This bit field determines when CS signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -7346,21 +8744,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSRCR14_RCSN      (0)
-#define BM_EIM_CSRCR14_RCSN      (0x00000007)
+#define BP_EIM_CS4RCR1_RCSN      (0)      //!< Bit position for EIM_CS4RCR1_RCSN.
+#define BM_EIM_CS4RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS4RCR1_RCSN.
+
+//! @brief Get value of EIM_CS4RCR1_RCSN from a register value.
+#define BG_EIM_CS4RCR1_RCSN(r)   (((r) & BM_EIM_CS4RCR1_RCSN) >> BP_EIM_CS4RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_RCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR14_RCSN)
+//! @brief Format value for bitfield EIM_CS4RCR1_RCSN.
+#define BF_EIM_CS4RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_RCSN) & BM_EIM_CS4RCR1_RCSN)
 #else
-#define BF_EIM_CSRCR14_RCSN(v)   (((v) << 0) & BM_EIM_CSRCR14_RCSN)
+//! @brief Format value for bitfield EIM_CS4RCR1_RCSN.
+#define BF_EIM_CS4RCR1_RCSN(v)   (((v) << BP_EIM_CS4RCR1_RCSN) & BM_EIM_CS4RCR1_RCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
-#define BW_EIM_CSRCR14_RCSN(v)   BF_CS1(EIM_CSRCR14, RCSN, v)
+#define BW_EIM_CS4RCR1_RCSN(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RCSN) | BF_EIM_CS4RCR1_RCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR14, field RCSA[6:4] (RW)
+/* --- Register HW_EIM_CS4RCR1, field RCSA[6:4] (RW)
  *
  * Read CS Assertion. This bit field determines when CS signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a
@@ -7373,21 +8777,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 
-#define BP_EIM_CSRCR14_RCSA      (4)
-#define BM_EIM_CSRCR14_RCSA      (0x00000070)
+#define BP_EIM_CS4RCR1_RCSA      (4)      //!< Bit position for EIM_CS4RCR1_RCSA.
+#define BM_EIM_CS4RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS4RCR1_RCSA.
+
+//! @brief Get value of EIM_CS4RCR1_RCSA from a register value.
+#define BG_EIM_CS4RCR1_RCSA(r)   (((r) & BM_EIM_CS4RCR1_RCSA) >> BP_EIM_CS4RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_RCSA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR14_RCSA)
+//! @brief Format value for bitfield EIM_CS4RCR1_RCSA.
+#define BF_EIM_CS4RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_RCSA) & BM_EIM_CS4RCR1_RCSA)
 #else
-#define BF_EIM_CSRCR14_RCSA(v)   (((v) << 4) & BM_EIM_CSRCR14_RCSA)
+//! @brief Format value for bitfield EIM_CS4RCR1_RCSA.
+#define BF_EIM_CS4RCR1_RCSA(v)   (((v) << BP_EIM_CS4RCR1_RCSA) & BM_EIM_CS4RCR1_RCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
-#define BW_EIM_CSRCR14_RCSA(v)   BF_CS1(EIM_CSRCR14, RCSA, v)
+#define BW_EIM_CS4RCR1_RCSA(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RCSA) | BF_EIM_CS4RCR1_RCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR14, field OEN[10:8] (RW)
+/* --- Register HW_EIM_CS4RCR1, field OEN[10:8] (RW)
  *
  * OE Negation. This bit field determines when OE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -7400,21 +8810,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of access and OE negation
  */
 
-#define BP_EIM_CSRCR14_OEN      (8)
-#define BM_EIM_CSRCR14_OEN      (0x00000700)
+#define BP_EIM_CS4RCR1_OEN      (8)      //!< Bit position for EIM_CS4RCR1_OEN.
+#define BM_EIM_CS4RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS4RCR1_OEN.
+
+//! @brief Get value of EIM_CS4RCR1_OEN from a register value.
+#define BG_EIM_CS4RCR1_OEN(r)   (((r) & BM_EIM_CS4RCR1_OEN) >> BP_EIM_CS4RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_OEN(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR14_OEN)
+//! @brief Format value for bitfield EIM_CS4RCR1_OEN.
+#define BF_EIM_CS4RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_OEN) & BM_EIM_CS4RCR1_OEN)
 #else
-#define BF_EIM_CSRCR14_OEN(v)   (((v) << 8) & BM_EIM_CSRCR14_OEN)
+//! @brief Format value for bitfield EIM_CS4RCR1_OEN.
+#define BF_EIM_CS4RCR1_OEN(v)   (((v) << BP_EIM_CS4RCR1_OEN) & BM_EIM_CS4RCR1_OEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
-#define BW_EIM_CSRCR14_OEN(v)   BF_CS1(EIM_CSRCR14, OEN, v)
+#define BW_EIM_CS4RCR1_OEN(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_OEN) | BF_EIM_CS4RCR1_OEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR14, field OEA[14:12] (RW)
+/* --- Register HW_EIM_CS4RCR1, field OEA[14:12] (RW)
  *
  * OE Assertion. This bit field determines when OE signal are asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a
@@ -7430,21 +8846,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 
-#define BP_EIM_CSRCR14_OEA      (12)
-#define BM_EIM_CSRCR14_OEA      (0x00007000)
+#define BP_EIM_CS4RCR1_OEA      (12)      //!< Bit position for EIM_CS4RCR1_OEA.
+#define BM_EIM_CS4RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS4RCR1_OEA.
+
+//! @brief Get value of EIM_CS4RCR1_OEA from a register value.
+#define BG_EIM_CS4RCR1_OEA(r)   (((r) & BM_EIM_CS4RCR1_OEA) >> BP_EIM_CS4RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_OEA(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR14_OEA)
+//! @brief Format value for bitfield EIM_CS4RCR1_OEA.
+#define BF_EIM_CS4RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_OEA) & BM_EIM_CS4RCR1_OEA)
 #else
-#define BF_EIM_CSRCR14_OEA(v)   (((v) << 12) & BM_EIM_CSRCR14_OEA)
+//! @brief Format value for bitfield EIM_CS4RCR1_OEA.
+#define BF_EIM_CS4RCR1_OEA(v)   (((v) << BP_EIM_CS4RCR1_OEA) & BM_EIM_CS4RCR1_OEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
-#define BW_EIM_CSRCR14_OEA(v)   BF_CS1(EIM_CSRCR14, OEA, v)
+#define BW_EIM_CS4RCR1_OEA(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_OEA) | BF_EIM_CS4RCR1_OEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR14, field RADVN[18:16] (RW)
+/* --- Register HW_EIM_CS4RCR1, field RADVN[18:16] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during read
  * accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following
@@ -7456,20 +8878,26 @@ typedef union
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 
-#define BP_EIM_CSRCR14_RADVN      (16)
-#define BM_EIM_CSRCR14_RADVN      (0x00070000)
+#define BP_EIM_CS4RCR1_RADVN      (16)      //!< Bit position for EIM_CS4RCR1_RADVN.
+#define BM_EIM_CS4RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS4RCR1_RADVN.
+
+//! @brief Get value of EIM_CS4RCR1_RADVN from a register value.
+#define BG_EIM_CS4RCR1_RADVN(r)   (((r) & BM_EIM_CS4RCR1_RADVN) >> BP_EIM_CS4RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_RADVN(v)   ((((reg32_t) v) << 16) & BM_EIM_CSRCR14_RADVN)
+//! @brief Format value for bitfield EIM_CS4RCR1_RADVN.
+#define BF_EIM_CS4RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_RADVN) & BM_EIM_CS4RCR1_RADVN)
 #else
-#define BF_EIM_CSRCR14_RADVN(v)   (((v) << 16) & BM_EIM_CSRCR14_RADVN)
+//! @brief Format value for bitfield EIM_CS4RCR1_RADVN.
+#define BF_EIM_CS4RCR1_RADVN(v)   (((v) << BP_EIM_CS4RCR1_RADVN) & BM_EIM_CS4RCR1_RADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
-#define BW_EIM_CSRCR14_RADVN(v)   BF_CS1(EIM_CSRCR14, RADVN, v)
+#define BW_EIM_CS4RCR1_RADVN(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RADVN) | BF_EIM_CS4RCR1_RADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR14, field RAL[19:19] (RW)
+/* --- Register HW_EIM_CS4RCR1, field RAL[19] (RW)
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
@@ -7477,20 +8905,26 @@ typedef union
  * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
  */
 
-#define BP_EIM_CSRCR14_RAL      (19)
-#define BM_EIM_CSRCR14_RAL      (0x00080000)
+#define BP_EIM_CS4RCR1_RAL      (19)      //!< Bit position for EIM_CS4RCR1_RAL.
+#define BM_EIM_CS4RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS4RCR1_RAL.
+
+//! @brief Get value of EIM_CS4RCR1_RAL from a register value.
+#define BG_EIM_CS4RCR1_RAL(r)   (((r) & BM_EIM_CS4RCR1_RAL) >> BP_EIM_CS4RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_RAL(v)   ((((reg32_t) v) << 19) & BM_EIM_CSRCR14_RAL)
+//! @brief Format value for bitfield EIM_CS4RCR1_RAL.
+#define BF_EIM_CS4RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_RAL) & BM_EIM_CS4RCR1_RAL)
 #else
-#define BF_EIM_CSRCR14_RAL(v)   (((v) << 19) & BM_EIM_CSRCR14_RAL)
+//! @brief Format value for bitfield EIM_CS4RCR1_RAL.
+#define BF_EIM_CS4RCR1_RAL(v)   (((v) << BP_EIM_CS4RCR1_RAL) & BM_EIM_CS4RCR1_RAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
-#define BW_EIM_CSRCR14_RAL(v)   BF_CS1(EIM_CSRCR14, RAL, v)
+#define BW_EIM_CS4RCR1_RAL(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RAL) | BF_EIM_CS4RCR1_RAL(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR14, field RADVA[22:20] (RW)
+/* --- Register HW_EIM_CS4RCR1, field RADVA[22:20] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware
@@ -7503,21 +8937,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSRCR14_RADVA      (20)
-#define BM_EIM_CSRCR14_RADVA      (0x00700000)
+#define BP_EIM_CS4RCR1_RADVA      (20)      //!< Bit position for EIM_CS4RCR1_RADVA.
+#define BM_EIM_CS4RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS4RCR1_RADVA.
+
+//! @brief Get value of EIM_CS4RCR1_RADVA from a register value.
+#define BG_EIM_CS4RCR1_RADVA(r)   (((r) & BM_EIM_CS4RCR1_RADVA) >> BP_EIM_CS4RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_RADVA(v)   ((((reg32_t) v) << 20) & BM_EIM_CSRCR14_RADVA)
+//! @brief Format value for bitfield EIM_CS4RCR1_RADVA.
+#define BF_EIM_CS4RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_RADVA) & BM_EIM_CS4RCR1_RADVA)
 #else
-#define BF_EIM_CSRCR14_RADVA(v)   (((v) << 20) & BM_EIM_CSRCR14_RADVA)
+//! @brief Format value for bitfield EIM_CS4RCR1_RADVA.
+#define BF_EIM_CS4RCR1_RADVA(v)   (((v) << BP_EIM_CS4RCR1_RADVA) & BM_EIM_CS4RCR1_RADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
-#define BW_EIM_CSRCR14_RADVA(v)   BF_CS1(EIM_CSRCR14, RADVA, v)
+#define BW_EIM_CS4RCR1_RADVA(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RADVA) | BF_EIM_CS4RCR1_RADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR14, field RWSC[29:24] (RW)
+/* --- Register HW_EIM_CS4RCR1, field RWSC[29:24] (RW)
  *
  * Read Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous read access to the external device
@@ -7543,63 +8983,71 @@ typedef union
  * 111111 - RWSC value is 63
  */
 
-#define BP_EIM_CSRCR14_RWSC      (24)
-#define BM_EIM_CSRCR14_RWSC      (0x3f000000)
+#define BP_EIM_CS4RCR1_RWSC      (24)      //!< Bit position for EIM_CS4RCR1_RWSC.
+#define BM_EIM_CS4RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS4RCR1_RWSC.
+
+//! @brief Get value of EIM_CS4RCR1_RWSC from a register value.
+#define BG_EIM_CS4RCR1_RWSC(r)   (((r) & BM_EIM_CS4RCR1_RWSC) >> BP_EIM_CS4RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR14_RWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSRCR14_RWSC)
+//! @brief Format value for bitfield EIM_CS4RCR1_RWSC.
+#define BF_EIM_CS4RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS4RCR1_RWSC) & BM_EIM_CS4RCR1_RWSC)
 #else
-#define BF_EIM_CSRCR14_RWSC(v)   (((v) << 24) & BM_EIM_CSRCR14_RWSC)
+//! @brief Format value for bitfield EIM_CS4RCR1_RWSC.
+#define BF_EIM_CS4RCR1_RWSC(v)   (((v) << BP_EIM_CS4RCR1_RWSC) & BM_EIM_CS4RCR1_RWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
-#define BW_EIM_CSRCR14_RWSC(v)   BF_CS1(EIM_CSRCR14, RWSC, v)
+#define BW_EIM_CS4RCR1_RWSC(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RWSC) | BF_EIM_CS4RCR1_RWSC(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR24 - Chip Select n Read Configuration Register 2 4 (RW)
+ * @brief HW_EIM_CS4RCR2 - Chip Select n Read Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs4rcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs4rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RL : 2; //!< Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned PAT : 3; //!< Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
-        unsigned RESERVED2 : 16; //!< Reserved
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
+        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
-} hw_eim_csrcr24_t;
+} hw_eim_cs4rcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR24 register
+ * constants & macros for entire EIM_CS4RCR2 register
  */
-#define HW_EIM_CSRCR24_ADDR      (REGS_EIM_BASE + 0x6c)
+#define HW_EIM_CS4RCR2_ADDR      (REGS_EIM_BASE + 0x6c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR24           (*(volatile hw_eim_csrcr24_t *) HW_EIM_CSRCR24_ADDR)
-#define HW_EIM_CSRCR24_RD()      (HW_EIM_CSRCR24.U)
-#define HW_EIM_CSRCR24_WR(v)     (HW_EIM_CSRCR24.U = (v))
-#define HW_EIM_CSRCR24_SET(v)    (HW_EIM_CSRCR24_WR(HW_EIM_CSRCR24_RD() |  (v)))
-#define HW_EIM_CSRCR24_CLR(v)    (HW_EIM_CSRCR24_WR(HW_EIM_CSRCR24_RD() & ~(v)))
-#define HW_EIM_CSRCR24_TOG(v)    (HW_EIM_CSRCR24_WR(HW_EIM_CSRCR24_RD() ^  (v)))
+#define HW_EIM_CS4RCR2           (*(volatile hw_eim_cs4rcr2_t *) HW_EIM_CS4RCR2_ADDR)
+#define HW_EIM_CS4RCR2_RD()      (HW_EIM_CS4RCR2.U)
+#define HW_EIM_CS4RCR2_WR(v)     (HW_EIM_CS4RCR2.U = (v))
+#define HW_EIM_CS4RCR2_SET(v)    (HW_EIM_CS4RCR2_WR(HW_EIM_CS4RCR2_RD() |  (v)))
+#define HW_EIM_CS4RCR2_CLR(v)    (HW_EIM_CS4RCR2_WR(HW_EIM_CS4RCR2_RD() & ~(v)))
+#define HW_EIM_CS4RCR2_TOG(v)    (HW_EIM_CS4RCR2_WR(HW_EIM_CS4RCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR24 bitfields
+ * constants & macros for individual EIM_CS4RCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR24, field RBEN[2:0] (RW)
+/* --- Register HW_EIM_CS4RCR2, field RBEN[2:0] (RW)
  *
  * Read BE Negation. This bit field determines when BE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit
@@ -7612,21 +9060,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 
-#define BP_EIM_CSRCR24_RBEN      (0)
-#define BM_EIM_CSRCR24_RBEN      (0x00000007)
+#define BP_EIM_CS4RCR2_RBEN      (0)      //!< Bit position for EIM_CS4RCR2_RBEN.
+#define BM_EIM_CS4RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS4RCR2_RBEN.
+
+//! @brief Get value of EIM_CS4RCR2_RBEN from a register value.
+#define BG_EIM_CS4RCR2_RBEN(r)   (((r) & BM_EIM_CS4RCR2_RBEN) >> BP_EIM_CS4RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR24_RBEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR24_RBEN)
+//! @brief Format value for bitfield EIM_CS4RCR2_RBEN.
+#define BF_EIM_CS4RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS4RCR2_RBEN) & BM_EIM_CS4RCR2_RBEN)
 #else
-#define BF_EIM_CSRCR24_RBEN(v)   (((v) << 0) & BM_EIM_CSRCR24_RBEN)
+//! @brief Format value for bitfield EIM_CS4RCR2_RBEN.
+#define BF_EIM_CS4RCR2_RBEN(v)   (((v) << BP_EIM_CS4RCR2_RBEN) & BM_EIM_CS4RCR2_RBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
-#define BW_EIM_CSRCR24_RBEN(v)   BF_CS1(EIM_CSRCR24, RBEN, v)
+#define BW_EIM_CS4RCR2_RBEN(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RBEN) | BF_EIM_CS4RCR2_RBEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR24, field RBE[3:3] (RW)
+/* --- Register HW_EIM_CS4RCR2, field RBE[3] (RW)
  *
  * Read BE enable. This bit field determines if BE will be asserted during read access.
  *
@@ -7635,21 +9089,27 @@ typedef union
  * 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 
-#define BP_EIM_CSRCR24_RBE      (3)
-#define BM_EIM_CSRCR24_RBE      (0x00000008)
+#define BP_EIM_CS4RCR2_RBE      (3)      //!< Bit position for EIM_CS4RCR2_RBE.
+#define BM_EIM_CS4RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS4RCR2_RBE.
+
+//! @brief Get value of EIM_CS4RCR2_RBE from a register value.
+#define BG_EIM_CS4RCR2_RBE(r)   (((r) & BM_EIM_CS4RCR2_RBE) >> BP_EIM_CS4RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR24_RBE(v)   ((((reg32_t) v) << 3) & BM_EIM_CSRCR24_RBE)
+//! @brief Format value for bitfield EIM_CS4RCR2_RBE.
+#define BF_EIM_CS4RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS4RCR2_RBE) & BM_EIM_CS4RCR2_RBE)
 #else
-#define BF_EIM_CSRCR24_RBE(v)   (((v) << 3) & BM_EIM_CSRCR24_RBE)
+//! @brief Format value for bitfield EIM_CS4RCR2_RBE.
+#define BF_EIM_CS4RCR2_RBE(v)   (((v) << BP_EIM_CS4RCR2_RBE) & BM_EIM_CS4RCR2_RBE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
-#define BW_EIM_CSRCR24_RBE(v)   BF_CS1(EIM_CSRCR24, RBE, v)
+#define BW_EIM_CS4RCR2_RBE(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RBE) | BF_EIM_CS4RCR2_RBE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR24, field RBEA[6:4] (RW)
+/* --- Register HW_EIM_CS4RCR2, field RBEA[6:4] (RW)
  *
  * Read BE Assertion. This bit field determines when BE signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a
@@ -7662,21 +9122,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 
-#define BP_EIM_CSRCR24_RBEA      (4)
-#define BM_EIM_CSRCR24_RBEA      (0x00000070)
+#define BP_EIM_CS4RCR2_RBEA      (4)      //!< Bit position for EIM_CS4RCR2_RBEA.
+#define BM_EIM_CS4RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS4RCR2_RBEA.
+
+//! @brief Get value of EIM_CS4RCR2_RBEA from a register value.
+#define BG_EIM_CS4RCR2_RBEA(r)   (((r) & BM_EIM_CS4RCR2_RBEA) >> BP_EIM_CS4RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR24_RBEA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR24_RBEA)
+//! @brief Format value for bitfield EIM_CS4RCR2_RBEA.
+#define BF_EIM_CS4RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS4RCR2_RBEA) & BM_EIM_CS4RCR2_RBEA)
 #else
-#define BF_EIM_CSRCR24_RBEA(v)   (((v) << 4) & BM_EIM_CSRCR24_RBEA)
+//! @brief Format value for bitfield EIM_CS4RCR2_RBEA.
+#define BF_EIM_CS4RCR2_RBEA(v)   (((v) << BP_EIM_CS4RCR2_RBEA) & BM_EIM_CS4RCR2_RBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
-#define BW_EIM_CSRCR24_RBEA(v)   BF_CS1(EIM_CSRCR24, RBEA, v)
+#define BW_EIM_CS4RCR2_RBEA(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RBEA) | BF_EIM_CS4RCR2_RBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR24, field RL[9:8] (RW)
+/* --- Register HW_EIM_CS4RCR2, field RL[9:8] (RW)
  *
  * Read Latency. This bit field indicates cycle latency when executing a synchronous read operation.
  * The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a
@@ -7689,21 +9155,27 @@ typedef union
  * 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 
-#define BP_EIM_CSRCR24_RL      (8)
-#define BM_EIM_CSRCR24_RL      (0x00000300)
+#define BP_EIM_CS4RCR2_RL      (8)      //!< Bit position for EIM_CS4RCR2_RL.
+#define BM_EIM_CS4RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS4RCR2_RL.
+
+//! @brief Get value of EIM_CS4RCR2_RL from a register value.
+#define BG_EIM_CS4RCR2_RL(r)   (((r) & BM_EIM_CS4RCR2_RL) >> BP_EIM_CS4RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR24_RL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR24_RL)
+//! @brief Format value for bitfield EIM_CS4RCR2_RL.
+#define BF_EIM_CS4RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS4RCR2_RL) & BM_EIM_CS4RCR2_RL)
 #else
-#define BF_EIM_CSRCR24_RL(v)   (((v) << 8) & BM_EIM_CSRCR24_RL)
+//! @brief Format value for bitfield EIM_CS4RCR2_RL.
+#define BF_EIM_CS4RCR2_RL(v)   (((v) << BP_EIM_CS4RCR2_RL) & BM_EIM_CS4RCR2_RL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
-#define BW_EIM_CSRCR24_RL(v)   BF_CS1(EIM_CSRCR24, RL, v)
+#define BW_EIM_CS4RCR2_RL(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RL) | BF_EIM_CS4RCR2_RL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR24, field PAT[14:12] (RW)
+/* --- Register HW_EIM_CS4RCR2, field PAT[14:12] (RW)
  *
  * Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial
  * access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width
@@ -7721,21 +9193,27 @@ typedef union
  * 111 - Address width is 9 EIM clock cycles
  */
 
-#define BP_EIM_CSRCR24_PAT      (12)
-#define BM_EIM_CSRCR24_PAT      (0x00007000)
+#define BP_EIM_CS4RCR2_PAT      (12)      //!< Bit position for EIM_CS4RCR2_PAT.
+#define BM_EIM_CS4RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS4RCR2_PAT.
+
+//! @brief Get value of EIM_CS4RCR2_PAT from a register value.
+#define BG_EIM_CS4RCR2_PAT(r)   (((r) & BM_EIM_CS4RCR2_PAT) >> BP_EIM_CS4RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR24_PAT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR24_PAT)
+//! @brief Format value for bitfield EIM_CS4RCR2_PAT.
+#define BF_EIM_CS4RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS4RCR2_PAT) & BM_EIM_CS4RCR2_PAT)
 #else
-#define BF_EIM_CSRCR24_PAT(v)   (((v) << 12) & BM_EIM_CSRCR24_PAT)
+//! @brief Format value for bitfield EIM_CS4RCR2_PAT.
+#define BF_EIM_CS4RCR2_PAT(v)   (((v) << BP_EIM_CS4RCR2_PAT) & BM_EIM_CS4RCR2_PAT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
-#define BW_EIM_CSRCR24_PAT(v)   BF_CS1(EIM_CSRCR24, PAT, v)
+#define BW_EIM_CS4RCR2_PAT(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_PAT) | BF_EIM_CS4RCR2_PAT(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR24, field APR[15:15] (RW)
+/* --- Register HW_EIM_CS4RCR2, field APR[15] (RW)
  *
  * Asynchronous Page Read. This bit field determine the asynchronous read mode to the external
  * device. When APR=0, the async. read access is done as single word (where word is defined by the
@@ -7744,64 +9222,72 @@ typedef union
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 
-#define BP_EIM_CSRCR24_APR      (15)
-#define BM_EIM_CSRCR24_APR      (0x00008000)
+#define BP_EIM_CS4RCR2_APR      (15)      //!< Bit position for EIM_CS4RCR2_APR.
+#define BM_EIM_CS4RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS4RCR2_APR.
+
+//! @brief Get value of EIM_CS4RCR2_APR from a register value.
+#define BG_EIM_CS4RCR2_APR(r)   (((r) & BM_EIM_CS4RCR2_APR) >> BP_EIM_CS4RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR24_APR(v)   ((((reg32_t) v) << 15) & BM_EIM_CSRCR24_APR)
+//! @brief Format value for bitfield EIM_CS4RCR2_APR.
+#define BF_EIM_CS4RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS4RCR2_APR) & BM_EIM_CS4RCR2_APR)
 #else
-#define BF_EIM_CSRCR24_APR(v)   (((v) << 15) & BM_EIM_CSRCR24_APR)
+//! @brief Format value for bitfield EIM_CS4RCR2_APR.
+#define BF_EIM_CS4RCR2_APR(v)   (((v) << BP_EIM_CS4RCR2_APR) & BM_EIM_CS4RCR2_APR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
-#define BW_EIM_CSRCR24_APR(v)   BF_CS1(EIM_CSRCR24, APR, v)
+#define BW_EIM_CS4RCR2_APR(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_APR) | BF_EIM_CS4RCR2_APR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR14 - Chip Select n Write Configuration Register 1 4 (RW)
+ * @brief HW_EIM_CS4WCR1 - Chip Select n Write Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs4wcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs4wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
+        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
+        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
+        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
     } B;
-} hw_eim_cswcr14_t;
+} hw_eim_cs4wcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR14 register
+ * constants & macros for entire EIM_CS4WCR1 register
  */
-#define HW_EIM_CSWCR14_ADDR      (REGS_EIM_BASE + 0x70)
+#define HW_EIM_CS4WCR1_ADDR      (REGS_EIM_BASE + 0x70)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR14           (*(volatile hw_eim_cswcr14_t *) HW_EIM_CSWCR14_ADDR)
-#define HW_EIM_CSWCR14_RD()      (HW_EIM_CSWCR14.U)
-#define HW_EIM_CSWCR14_WR(v)     (HW_EIM_CSWCR14.U = (v))
-#define HW_EIM_CSWCR14_SET(v)    (HW_EIM_CSWCR14_WR(HW_EIM_CSWCR14_RD() |  (v)))
-#define HW_EIM_CSWCR14_CLR(v)    (HW_EIM_CSWCR14_WR(HW_EIM_CSWCR14_RD() & ~(v)))
-#define HW_EIM_CSWCR14_TOG(v)    (HW_EIM_CSWCR14_WR(HW_EIM_CSWCR14_RD() ^  (v)))
+#define HW_EIM_CS4WCR1           (*(volatile hw_eim_cs4wcr1_t *) HW_EIM_CS4WCR1_ADDR)
+#define HW_EIM_CS4WCR1_RD()      (HW_EIM_CS4WCR1.U)
+#define HW_EIM_CS4WCR1_WR(v)     (HW_EIM_CS4WCR1.U = (v))
+#define HW_EIM_CS4WCR1_SET(v)    (HW_EIM_CS4WCR1_WR(HW_EIM_CS4WCR1_RD() |  (v)))
+#define HW_EIM_CS4WCR1_CLR(v)    (HW_EIM_CS4WCR1_WR(HW_EIM_CS4WCR1_RD() & ~(v)))
+#define HW_EIM_CS4WCR1_TOG(v)    (HW_EIM_CS4WCR1_WR(HW_EIM_CS4WCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR14 bitfields
+ * constants & macros for individual EIM_CS4WCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR14, field WCSN[2:0] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WCSN[2:0] (RW)
  *
  * Write CS Negation. This bit field determines when CS signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -7814,21 +9300,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSWCR14_WCSN      (0)
-#define BM_EIM_CSWCR14_WCSN      (0x00000007)
+#define BP_EIM_CS4WCR1_WCSN      (0)      //!< Bit position for EIM_CS4WCR1_WCSN.
+#define BM_EIM_CS4WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS4WCR1_WCSN.
+
+//! @brief Get value of EIM_CS4WCR1_WCSN from a register value.
+#define BG_EIM_CS4WCR1_WCSN(r)   (((r) & BM_EIM_CS4WCR1_WCSN) >> BP_EIM_CS4WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR14_WCSN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WCSN.
+#define BF_EIM_CS4WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WCSN) & BM_EIM_CS4WCR1_WCSN)
 #else
-#define BF_EIM_CSWCR14_WCSN(v)   (((v) << 0) & BM_EIM_CSWCR14_WCSN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WCSN.
+#define BF_EIM_CS4WCR1_WCSN(v)   (((v) << BP_EIM_CS4WCR1_WCSN) & BM_EIM_CS4WCR1_WCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
-#define BW_EIM_CSWCR14_WCSN(v)   BF_CS1(EIM_CSWCR14, WCSN, v)
+#define BW_EIM_CS4WCR1_WCSN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WCSN) | BF_EIM_CS4WCR1_WCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR14, field WCSA[5:3] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WCSA[5:3] (RW)
  *
  * Write CS Assertion. This bit field determines when CS signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below.this bit field is
@@ -7842,21 +9334,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 
-#define BP_EIM_CSWCR14_WCSA      (3)
-#define BM_EIM_CSWCR14_WCSA      (0x00000038)
+#define BP_EIM_CS4WCR1_WCSA      (3)      //!< Bit position for EIM_CS4WCR1_WCSA.
+#define BM_EIM_CS4WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS4WCR1_WCSA.
+
+//! @brief Get value of EIM_CS4WCR1_WCSA from a register value.
+#define BG_EIM_CS4WCR1_WCSA(r)   (((r) & BM_EIM_CS4WCR1_WCSA) >> BP_EIM_CS4WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WCSA(v)   ((((reg32_t) v) << 3) & BM_EIM_CSWCR14_WCSA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WCSA.
+#define BF_EIM_CS4WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WCSA) & BM_EIM_CS4WCR1_WCSA)
 #else
-#define BF_EIM_CSWCR14_WCSA(v)   (((v) << 3) & BM_EIM_CSWCR14_WCSA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WCSA.
+#define BF_EIM_CS4WCR1_WCSA(v)   (((v) << BP_EIM_CS4WCR1_WCSA) & BM_EIM_CS4WCR1_WCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
-#define BW_EIM_CSWCR14_WCSA(v)   BF_CS1(EIM_CSWCR14, WCSA, v)
+#define BW_EIM_CS4WCR1_WCSA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WCSA) | BF_EIM_CS4WCR1_WCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR14, field WEN[8:6] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WEN[8:6] (RW)
  *
  * WE Negation. This bit field determines when WE signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -7870,21 +9368,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR14_WEN      (6)
-#define BM_EIM_CSWCR14_WEN      (0x000001c0)
+#define BP_EIM_CS4WCR1_WEN      (6)      //!< Bit position for EIM_CS4WCR1_WEN.
+#define BM_EIM_CS4WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS4WCR1_WEN.
+
+//! @brief Get value of EIM_CS4WCR1_WEN from a register value.
+#define BG_EIM_CS4WCR1_WEN(r)   (((r) & BM_EIM_CS4WCR1_WEN) >> BP_EIM_CS4WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WEN(v)   ((((reg32_t) v) << 6) & BM_EIM_CSWCR14_WEN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WEN.
+#define BF_EIM_CS4WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WEN) & BM_EIM_CS4WCR1_WEN)
 #else
-#define BF_EIM_CSWCR14_WEN(v)   (((v) << 6) & BM_EIM_CSWCR14_WEN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WEN.
+#define BF_EIM_CS4WCR1_WEN(v)   (((v) << BP_EIM_CS4WCR1_WEN) & BM_EIM_CS4WCR1_WEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
-#define BW_EIM_CSWCR14_WEN(v)   BF_CS1(EIM_CSWCR14, WEN, v)
+#define BW_EIM_CS4WCR1_WEN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WEN) | BF_EIM_CS4WCR1_WEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR14, field WEA[11:9] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WEA[11:9] (RW)
  *
  * WE Assertion. This bit field determines when WE signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below. This bit field is
@@ -7899,21 +9403,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR14_WEA      (9)
-#define BM_EIM_CSWCR14_WEA      (0x00000e00)
+#define BP_EIM_CS4WCR1_WEA      (9)      //!< Bit position for EIM_CS4WCR1_WEA.
+#define BM_EIM_CS4WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS4WCR1_WEA.
+
+//! @brief Get value of EIM_CS4WCR1_WEA from a register value.
+#define BG_EIM_CS4WCR1_WEA(r)   (((r) & BM_EIM_CS4WCR1_WEA) >> BP_EIM_CS4WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WEA(v)   ((((reg32_t) v) << 9) & BM_EIM_CSWCR14_WEA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WEA.
+#define BF_EIM_CS4WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WEA) & BM_EIM_CS4WCR1_WEA)
 #else
-#define BF_EIM_CSWCR14_WEA(v)   (((v) << 9) & BM_EIM_CSWCR14_WEA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WEA.
+#define BF_EIM_CS4WCR1_WEA(v)   (((v) << BP_EIM_CS4WCR1_WEA) & BM_EIM_CS4WCR1_WEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
-#define BW_EIM_CSWCR14_WEA(v)   BF_CS1(EIM_CSWCR14, WEA, v)
+#define BW_EIM_CS4WCR1_WEA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WEA) | BF_EIM_CS4WCR1_WEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR14, field WBEN[14:12] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WBEN[14:12] (RW)
  *
  * BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write
  * cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is
@@ -7924,20 +9434,26 @@ typedef union
  * access and WE negation
  */
 
-#define BP_EIM_CSWCR14_WBEN      (12)
-#define BM_EIM_CSWCR14_WBEN      (0x00007000)
+#define BP_EIM_CS4WCR1_WBEN      (12)      //!< Bit position for EIM_CS4WCR1_WBEN.
+#define BM_EIM_CS4WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS4WCR1_WBEN.
+
+//! @brief Get value of EIM_CS4WCR1_WBEN from a register value.
+#define BG_EIM_CS4WCR1_WBEN(r)   (((r) & BM_EIM_CS4WCR1_WBEN) >> BP_EIM_CS4WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WBEN(v)   ((((reg32_t) v) << 12) & BM_EIM_CSWCR14_WBEN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WBEN.
+#define BF_EIM_CS4WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WBEN) & BM_EIM_CS4WCR1_WBEN)
 #else
-#define BF_EIM_CSWCR14_WBEN(v)   (((v) << 12) & BM_EIM_CSWCR14_WBEN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WBEN.
+#define BF_EIM_CS4WCR1_WBEN(v)   (((v) << BP_EIM_CS4WCR1_WBEN) & BM_EIM_CS4WCR1_WBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
-#define BW_EIM_CSWCR14_WBEN(v)   BF_CS1(EIM_CSWCR14, WBEN, v)
+#define BW_EIM_CS4WCR1_WBEN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WBEN) | BF_EIM_CS4WCR1_WBEN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR14, field WBEA[17:15] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WBEA[17:15] (RW)
  *
  * BE Assertion. This bit field determines when BE signal is asserted during write cycles in async.
  * mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset.
@@ -7951,21 +9467,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 
-#define BP_EIM_CSWCR14_WBEA      (15)
-#define BM_EIM_CSWCR14_WBEA      (0x00038000)
+#define BP_EIM_CS4WCR1_WBEA      (15)      //!< Bit position for EIM_CS4WCR1_WBEA.
+#define BM_EIM_CS4WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS4WCR1_WBEA.
+
+//! @brief Get value of EIM_CS4WCR1_WBEA from a register value.
+#define BG_EIM_CS4WCR1_WBEA(r)   (((r) & BM_EIM_CS4WCR1_WBEA) >> BP_EIM_CS4WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WBEA(v)   ((((reg32_t) v) << 15) & BM_EIM_CSWCR14_WBEA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WBEA.
+#define BF_EIM_CS4WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WBEA) & BM_EIM_CS4WCR1_WBEA)
 #else
-#define BF_EIM_CSWCR14_WBEA(v)   (((v) << 15) & BM_EIM_CSWCR14_WBEA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WBEA.
+#define BF_EIM_CS4WCR1_WBEA(v)   (((v) << BP_EIM_CS4WCR1_WBEA) & BM_EIM_CS4WCR1_WBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
-#define BW_EIM_CSWCR14_WBEA(v)   BF_CS1(EIM_CSWCR14, WBEA, v)
+#define BW_EIM_CS4WCR1_WBEA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WBEA) | BF_EIM_CS4WCR1_WBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR14, field WADVN[20:18] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WADVN[20:18] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during write
  * accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following
@@ -7976,20 +9498,26 @@ typedef union
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 
-#define BP_EIM_CSWCR14_WADVN      (18)
-#define BM_EIM_CSWCR14_WADVN      (0x001c0000)
+#define BP_EIM_CS4WCR1_WADVN      (18)      //!< Bit position for EIM_CS4WCR1_WADVN.
+#define BM_EIM_CS4WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS4WCR1_WADVN.
+
+//! @brief Get value of EIM_CS4WCR1_WADVN from a register value.
+#define BG_EIM_CS4WCR1_WADVN(r)   (((r) & BM_EIM_CS4WCR1_WADVN) >> BP_EIM_CS4WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WADVN(v)   ((((reg32_t) v) << 18) & BM_EIM_CSWCR14_WADVN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WADVN.
+#define BF_EIM_CS4WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WADVN) & BM_EIM_CS4WCR1_WADVN)
 #else
-#define BF_EIM_CSWCR14_WADVN(v)   (((v) << 18) & BM_EIM_CSWCR14_WADVN)
+//! @brief Format value for bitfield EIM_CS4WCR1_WADVN.
+#define BF_EIM_CS4WCR1_WADVN(v)   (((v) << BP_EIM_CS4WCR1_WADVN) & BM_EIM_CS4WCR1_WADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
-#define BW_EIM_CSWCR14_WADVN(v)   BF_CS1(EIM_CSWCR14, WADVN, v)
+#define BW_EIM_CS4WCR1_WADVN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WADVN) | BF_EIM_CS4WCR1_WADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR14, field WADVA[23:21] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WADVA[23:21] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware
@@ -8002,21 +9530,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSWCR14_WADVA      (21)
-#define BM_EIM_CSWCR14_WADVA      (0x00e00000)
+#define BP_EIM_CS4WCR1_WADVA      (21)      //!< Bit position for EIM_CS4WCR1_WADVA.
+#define BM_EIM_CS4WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS4WCR1_WADVA.
+
+//! @brief Get value of EIM_CS4WCR1_WADVA from a register value.
+#define BG_EIM_CS4WCR1_WADVA(r)   (((r) & BM_EIM_CS4WCR1_WADVA) >> BP_EIM_CS4WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WADVA(v)   ((((reg32_t) v) << 21) & BM_EIM_CSWCR14_WADVA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WADVA.
+#define BF_EIM_CS4WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WADVA) & BM_EIM_CS4WCR1_WADVA)
 #else
-#define BF_EIM_CSWCR14_WADVA(v)   (((v) << 21) & BM_EIM_CSWCR14_WADVA)
+//! @brief Format value for bitfield EIM_CS4WCR1_WADVA.
+#define BF_EIM_CS4WCR1_WADVA(v)   (((v) << BP_EIM_CS4WCR1_WADVA) & BM_EIM_CS4WCR1_WADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
-#define BW_EIM_CSWCR14_WADVA(v)   BF_CS1(EIM_CSWCR14, WADVA, v)
+#define BW_EIM_CS4WCR1_WADVA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WADVA) | BF_EIM_CS4WCR1_WADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR14, field WWSC[29:24] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WWSC[29:24] (RW)
  *
  * Write Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous write access to the external device
@@ -8041,40 +9575,52 @@ typedef union
  * 111111 - WWSC value is 63
  */
 
-#define BP_EIM_CSWCR14_WWSC      (24)
-#define BM_EIM_CSWCR14_WWSC      (0x3f000000)
+#define BP_EIM_CS4WCR1_WWSC      (24)      //!< Bit position for EIM_CS4WCR1_WWSC.
+#define BM_EIM_CS4WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS4WCR1_WWSC.
+
+//! @brief Get value of EIM_CS4WCR1_WWSC from a register value.
+#define BG_EIM_CS4WCR1_WWSC(r)   (((r) & BM_EIM_CS4WCR1_WWSC) >> BP_EIM_CS4WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSWCR14_WWSC)
+//! @brief Format value for bitfield EIM_CS4WCR1_WWSC.
+#define BF_EIM_CS4WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WWSC) & BM_EIM_CS4WCR1_WWSC)
 #else
-#define BF_EIM_CSWCR14_WWSC(v)   (((v) << 24) & BM_EIM_CSWCR14_WWSC)
+//! @brief Format value for bitfield EIM_CS4WCR1_WWSC.
+#define BF_EIM_CS4WCR1_WWSC(v)   (((v) << BP_EIM_CS4WCR1_WWSC) & BM_EIM_CS4WCR1_WWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
-#define BW_EIM_CSWCR14_WWSC(v)   BF_CS1(EIM_CSWCR14, WWSC, v)
+#define BW_EIM_CS4WCR1_WWSC(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WWSC) | BF_EIM_CS4WCR1_WWSC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR14, field WBED[30:30] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WBED[30] (RW)
  *
  * Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted
  * during write accesses.This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR14_WBED      (30)
-#define BM_EIM_CSWCR14_WBED      (0x40000000)
+#define BP_EIM_CS4WCR1_WBED      (30)      //!< Bit position for EIM_CS4WCR1_WBED.
+#define BM_EIM_CS4WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS4WCR1_WBED.
+
+//! @brief Get value of EIM_CS4WCR1_WBED from a register value.
+#define BG_EIM_CS4WCR1_WBED(r)   (((r) & BM_EIM_CS4WCR1_WBED) >> BP_EIM_CS4WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WBED(v)   ((((reg32_t) v) << 30) & BM_EIM_CSWCR14_WBED)
+//! @brief Format value for bitfield EIM_CS4WCR1_WBED.
+#define BF_EIM_CS4WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WBED) & BM_EIM_CS4WCR1_WBED)
 #else
-#define BF_EIM_CSWCR14_WBED(v)   (((v) << 30) & BM_EIM_CSWCR14_WBED)
+//! @brief Format value for bitfield EIM_CS4WCR1_WBED.
+#define BF_EIM_CS4WCR1_WBED(v)   (((v) << BP_EIM_CS4WCR1_WBED) & BM_EIM_CS4WCR1_WBED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
-#define BW_EIM_CSWCR14_WBED(v)   BF_CS1(EIM_CSWCR14, WBED, v)
+#define BW_EIM_CS4WCR1_WBED(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WBED) | BF_EIM_CS4WCR1_WBED(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR14, field WAL[31:31] (RW)
+/* --- Register HW_EIM_CS4WCR1, field WAL[31] (RW)
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
@@ -8082,127 +9628,143 @@ typedef union
  * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
  */
 
-#define BP_EIM_CSWCR14_WAL      (31)
-#define BM_EIM_CSWCR14_WAL      (0x80000000)
+#define BP_EIM_CS4WCR1_WAL      (31)      //!< Bit position for EIM_CS4WCR1_WAL.
+#define BM_EIM_CS4WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS4WCR1_WAL.
+
+//! @brief Get value of EIM_CS4WCR1_WAL from a register value.
+#define BG_EIM_CS4WCR1_WAL(r)   (((r) & BM_EIM_CS4WCR1_WAL) >> BP_EIM_CS4WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR14_WAL(v)   ((((reg32_t) v) << 31) & BM_EIM_CSWCR14_WAL)
+//! @brief Format value for bitfield EIM_CS4WCR1_WAL.
+#define BF_EIM_CS4WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS4WCR1_WAL) & BM_EIM_CS4WCR1_WAL)
 #else
-#define BF_EIM_CSWCR14_WAL(v)   (((v) << 31) & BM_EIM_CSWCR14_WAL)
+//! @brief Format value for bitfield EIM_CS4WCR1_WAL.
+#define BF_EIM_CS4WCR1_WAL(v)   (((v) << BP_EIM_CS4WCR1_WAL) & BM_EIM_CS4WCR1_WAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
-#define BW_EIM_CSWCR14_WAL(v)   BF_CS1(EIM_CSWCR14, WAL, v)
+#define BW_EIM_CS4WCR1_WAL(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WAL) | BF_EIM_CS4WCR1_WAL(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR24 - Chip Select n Write Configuration Register 2 4 (RW)
+ * @brief HW_EIM_CS4WCR2 - Chip Select n Write Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs4wcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs4wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
-} hw_eim_cswcr24_t;
+} hw_eim_cs4wcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR24 register
+ * constants & macros for entire EIM_CS4WCR2 register
  */
-#define HW_EIM_CSWCR24_ADDR      (REGS_EIM_BASE + 0x74)
+#define HW_EIM_CS4WCR2_ADDR      (REGS_EIM_BASE + 0x74)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR24           (*(volatile hw_eim_cswcr24_t *) HW_EIM_CSWCR24_ADDR)
-#define HW_EIM_CSWCR24_RD()      (HW_EIM_CSWCR24.U)
-#define HW_EIM_CSWCR24_WR(v)     (HW_EIM_CSWCR24.U = (v))
-#define HW_EIM_CSWCR24_SET(v)    (HW_EIM_CSWCR24_WR(HW_EIM_CSWCR24_RD() |  (v)))
-#define HW_EIM_CSWCR24_CLR(v)    (HW_EIM_CSWCR24_WR(HW_EIM_CSWCR24_RD() & ~(v)))
-#define HW_EIM_CSWCR24_TOG(v)    (HW_EIM_CSWCR24_WR(HW_EIM_CSWCR24_RD() ^  (v)))
+#define HW_EIM_CS4WCR2           (*(volatile hw_eim_cs4wcr2_t *) HW_EIM_CS4WCR2_ADDR)
+#define HW_EIM_CS4WCR2_RD()      (HW_EIM_CS4WCR2.U)
+#define HW_EIM_CS4WCR2_WR(v)     (HW_EIM_CS4WCR2.U = (v))
+#define HW_EIM_CS4WCR2_SET(v)    (HW_EIM_CS4WCR2_WR(HW_EIM_CS4WCR2_RD() |  (v)))
+#define HW_EIM_CS4WCR2_CLR(v)    (HW_EIM_CS4WCR2_WR(HW_EIM_CS4WCR2_RD() & ~(v)))
+#define HW_EIM_CS4WCR2_TOG(v)    (HW_EIM_CS4WCR2_WR(HW_EIM_CS4WCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR24 bitfields
+ * constants & macros for individual EIM_CS4WCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR24, field WBCDD[0:0] (RW)
+/* --- Register HW_EIM_CS4WCR2, field WBCDD[0] (RW)
  *
  * Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write
  * access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this
  * bit has no affect. This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR24_WBCDD      (0)
-#define BM_EIM_CSWCR24_WBCDD      (0x00000001)
+#define BP_EIM_CS4WCR2_WBCDD      (0)      //!< Bit position for EIM_CS4WCR2_WBCDD.
+#define BM_EIM_CS4WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS4WCR2_WBCDD.
+
+//! @brief Get value of EIM_CS4WCR2_WBCDD from a register value.
+#define BG_EIM_CS4WCR2_WBCDD(r)   (((r) & BM_EIM_CS4WCR2_WBCDD) >> BP_EIM_CS4WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR24_WBCDD(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR24_WBCDD)
+//! @brief Format value for bitfield EIM_CS4WCR2_WBCDD.
+#define BF_EIM_CS4WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS4WCR2_WBCDD) & BM_EIM_CS4WCR2_WBCDD)
 #else
-#define BF_EIM_CSWCR24_WBCDD(v)   (((v) << 0) & BM_EIM_CSWCR24_WBCDD)
+//! @brief Format value for bitfield EIM_CS4WCR2_WBCDD.
+#define BF_EIM_CS4WCR2_WBCDD(v)   (((v) << BP_EIM_CS4WCR2_WBCDD) & BM_EIM_CS4WCR2_WBCDD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
-#define BW_EIM_CSWCR24_WBCDD(v)   BF_CS1(EIM_CSWCR24, WBCDD, v)
+#define BW_EIM_CS4WCR2_WBCDD(v)   (HW_EIM_CS4WCR2_WR((HW_EIM_CS4WCR2_RD() & ~BM_EIM_CS4WCR2_WBCDD) | BF_EIM_CS4WCR2_WBCDD(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR15 - Chip Select n General Configuration Register 1 5 (RW)
+ * @brief HW_EIM_CS5GCR1 - Chip Select n General Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00010080
  *
 
  */
-typedef union
+typedef union _hw_eim_cs5gcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs5gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
+        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
+        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
+        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
+        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
+        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
+        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
+        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
+        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
     } B;
-} hw_eim_csgcr15_t;
+} hw_eim_cs5gcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR15 register
+ * constants & macros for entire EIM_CS5GCR1 register
  */
-#define HW_EIM_CSGCR15_ADDR      (REGS_EIM_BASE + 0x78)
+#define HW_EIM_CS5GCR1_ADDR      (REGS_EIM_BASE + 0x78)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR15           (*(volatile hw_eim_csgcr15_t *) HW_EIM_CSGCR15_ADDR)
-#define HW_EIM_CSGCR15_RD()      (HW_EIM_CSGCR15.U)
-#define HW_EIM_CSGCR15_WR(v)     (HW_EIM_CSGCR15.U = (v))
-#define HW_EIM_CSGCR15_SET(v)    (HW_EIM_CSGCR15_WR(HW_EIM_CSGCR15_RD() |  (v)))
-#define HW_EIM_CSGCR15_CLR(v)    (HW_EIM_CSGCR15_WR(HW_EIM_CSGCR15_RD() & ~(v)))
-#define HW_EIM_CSGCR15_TOG(v)    (HW_EIM_CSGCR15_WR(HW_EIM_CSGCR15_RD() ^  (v)))
+#define HW_EIM_CS5GCR1           (*(volatile hw_eim_cs5gcr1_t *) HW_EIM_CS5GCR1_ADDR)
+#define HW_EIM_CS5GCR1_RD()      (HW_EIM_CS5GCR1.U)
+#define HW_EIM_CS5GCR1_WR(v)     (HW_EIM_CS5GCR1.U = (v))
+#define HW_EIM_CS5GCR1_SET(v)    (HW_EIM_CS5GCR1_WR(HW_EIM_CS5GCR1_RD() |  (v)))
+#define HW_EIM_CS5GCR1_CLR(v)    (HW_EIM_CS5GCR1_WR(HW_EIM_CS5GCR1_RD() & ~(v)))
+#define HW_EIM_CS5GCR1_TOG(v)    (HW_EIM_CS5GCR1_WR(HW_EIM_CS5GCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR15 bitfields
+ * constants & macros for individual EIM_CS5GCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR15, field CSEN[0:0] (RW)
+/* --- Register HW_EIM_CS5GCR1, field CSEN[0] (RW)
  *
  * CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware
  * reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to
@@ -8215,21 +9777,27 @@ typedef union
  * 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 
-#define BP_EIM_CSGCR15_CSEN      (0)
-#define BM_EIM_CSGCR15_CSEN      (0x00000001)
+#define BP_EIM_CS5GCR1_CSEN      (0)      //!< Bit position for EIM_CS5GCR1_CSEN.
+#define BM_EIM_CS5GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS5GCR1_CSEN.
+
+//! @brief Get value of EIM_CS5GCR1_CSEN from a register value.
+#define BG_EIM_CS5GCR1_CSEN(r)   (((r) & BM_EIM_CS5GCR1_CSEN) >> BP_EIM_CS5GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_CSEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR15_CSEN)
+//! @brief Format value for bitfield EIM_CS5GCR1_CSEN.
+#define BF_EIM_CS5GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_CSEN) & BM_EIM_CS5GCR1_CSEN)
 #else
-#define BF_EIM_CSGCR15_CSEN(v)   (((v) << 0) & BM_EIM_CSGCR15_CSEN)
+//! @brief Format value for bitfield EIM_CS5GCR1_CSEN.
+#define BF_EIM_CS5GCR1_CSEN(v)   (((v) << BP_EIM_CS5GCR1_CSEN) & BM_EIM_CS5GCR1_CSEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
-#define BW_EIM_CSGCR15_CSEN(v)   BF_CS1(EIM_CSGCR15, CSEN, v)
+#define BW_EIM_CS5GCR1_CSEN(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CSEN) | BF_EIM_CS5GCR1_CSEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field SWR[1:1] (RW)
+/* --- Register HW_EIM_CS5GCR1, field SWR[1] (RW)
  *
  * Synchronous Write Data. This bit field determine the write accesses mode to the External device
  * of the chip select. The External device should be configured to the same mode as this bit
@@ -8240,21 +9808,27 @@ typedef union
  * 1 - write accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR15_SWR      (1)
-#define BM_EIM_CSGCR15_SWR      (0x00000002)
+#define BP_EIM_CS5GCR1_SWR      (1)      //!< Bit position for EIM_CS5GCR1_SWR.
+#define BM_EIM_CS5GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS5GCR1_SWR.
+
+//! @brief Get value of EIM_CS5GCR1_SWR from a register value.
+#define BG_EIM_CS5GCR1_SWR(r)   (((r) & BM_EIM_CS5GCR1_SWR) >> BP_EIM_CS5GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_SWR(v)   ((((reg32_t) v) << 1) & BM_EIM_CSGCR15_SWR)
+//! @brief Format value for bitfield EIM_CS5GCR1_SWR.
+#define BF_EIM_CS5GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_SWR) & BM_EIM_CS5GCR1_SWR)
 #else
-#define BF_EIM_CSGCR15_SWR(v)   (((v) << 1) & BM_EIM_CSGCR15_SWR)
+//! @brief Format value for bitfield EIM_CS5GCR1_SWR.
+#define BF_EIM_CS5GCR1_SWR(v)   (((v) << BP_EIM_CS5GCR1_SWR) & BM_EIM_CS5GCR1_SWR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
-#define BW_EIM_CSGCR15_SWR(v)   BF_CS1(EIM_CSGCR15, SWR, v)
+#define BW_EIM_CS5GCR1_SWR(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_SWR) | BF_EIM_CS5GCR1_SWR(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field SRD[2:2] (RW)
+/* --- Register HW_EIM_CS5GCR1, field SRD[2] (RW)
  *
  * Synchronous Read Data. This bit field determine the read accesses mode to the External device of
  * the chip select. The External device should be configured to the same mode as this bit
@@ -8265,21 +9839,27 @@ typedef union
  * 1 - read accesses are in Synchronous mode
  */
 
-#define BP_EIM_CSGCR15_SRD      (2)
-#define BM_EIM_CSGCR15_SRD      (0x00000004)
+#define BP_EIM_CS5GCR1_SRD      (2)      //!< Bit position for EIM_CS5GCR1_SRD.
+#define BM_EIM_CS5GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS5GCR1_SRD.
+
+//! @brief Get value of EIM_CS5GCR1_SRD from a register value.
+#define BG_EIM_CS5GCR1_SRD(r)   (((r) & BM_EIM_CS5GCR1_SRD) >> BP_EIM_CS5GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_SRD(v)   ((((reg32_t) v) << 2) & BM_EIM_CSGCR15_SRD)
+//! @brief Format value for bitfield EIM_CS5GCR1_SRD.
+#define BF_EIM_CS5GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_SRD) & BM_EIM_CS5GCR1_SRD)
 #else
-#define BF_EIM_CSGCR15_SRD(v)   (((v) << 2) & BM_EIM_CSGCR15_SRD)
+//! @brief Format value for bitfield EIM_CS5GCR1_SRD.
+#define BF_EIM_CS5GCR1_SRD(v)   (((v) << BP_EIM_CS5GCR1_SRD) & BM_EIM_CS5GCR1_SRD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
-#define BW_EIM_CSGCR15_SRD(v)   BF_CS1(EIM_CSGCR15, SRD, v)
+#define BW_EIM_CS5GCR1_SRD(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_SRD) | BF_EIM_CS5GCR1_SRD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field MUM[3:3] (RW)
+/* --- Register HW_EIM_CS5GCR1, field MUM[3] (RW)
  *
  * Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and
  * synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value
@@ -8290,21 +9870,27 @@ typedef union
  * 1 - Multiplexed Mode enable
  */
 
-#define BP_EIM_CSGCR15_MUM      (3)
-#define BM_EIM_CSGCR15_MUM      (0x00000008)
+#define BP_EIM_CS5GCR1_MUM      (3)      //!< Bit position for EIM_CS5GCR1_MUM.
+#define BM_EIM_CS5GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS5GCR1_MUM.
+
+//! @brief Get value of EIM_CS5GCR1_MUM from a register value.
+#define BG_EIM_CS5GCR1_MUM(r)   (((r) & BM_EIM_CS5GCR1_MUM) >> BP_EIM_CS5GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_MUM(v)   ((((reg32_t) v) << 3) & BM_EIM_CSGCR15_MUM)
+//! @brief Format value for bitfield EIM_CS5GCR1_MUM.
+#define BF_EIM_CS5GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_MUM) & BM_EIM_CS5GCR1_MUM)
 #else
-#define BF_EIM_CSGCR15_MUM(v)   (((v) << 3) & BM_EIM_CSGCR15_MUM)
+//! @brief Format value for bitfield EIM_CS5GCR1_MUM.
+#define BF_EIM_CS5GCR1_MUM(v)   (((v) << BP_EIM_CS5GCR1_MUM) & BM_EIM_CS5GCR1_MUM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
-#define BW_EIM_CSGCR15_MUM(v)   BF_CS1(EIM_CSGCR15, MUM, v)
+#define BW_EIM_CS5GCR1_MUM(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_MUM) | BF_EIM_CS5GCR1_MUM(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field WFL[4:4] (RW)
+/* --- Register HW_EIM_CS5GCR1, field WFL[4] (RW)
  *
  * Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -8318,21 +9904,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR15_WFL      (4)
-#define BM_EIM_CSGCR15_WFL      (0x00000010)
+#define BP_EIM_CS5GCR1_WFL      (4)      //!< Bit position for EIM_CS5GCR1_WFL.
+#define BM_EIM_CS5GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS5GCR1_WFL.
+
+//! @brief Get value of EIM_CS5GCR1_WFL from a register value.
+#define BG_EIM_CS5GCR1_WFL(r)   (((r) & BM_EIM_CS5GCR1_WFL) >> BP_EIM_CS5GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_WFL(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR15_WFL)
+//! @brief Format value for bitfield EIM_CS5GCR1_WFL.
+#define BF_EIM_CS5GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_WFL) & BM_EIM_CS5GCR1_WFL)
 #else
-#define BF_EIM_CSGCR15_WFL(v)   (((v) << 4) & BM_EIM_CSGCR15_WFL)
+//! @brief Format value for bitfield EIM_CS5GCR1_WFL.
+#define BF_EIM_CS5GCR1_WFL(v)   (((v) << BP_EIM_CS5GCR1_WFL) & BM_EIM_CS5GCR1_WFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
-#define BW_EIM_CSGCR15_WFL(v)   BF_CS1(EIM_CSGCR15, WFL, v)
+#define BW_EIM_CS5GCR1_WFL(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_WFL) | BF_EIM_CS5GCR1_WFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field RFL[5:5] (RW)
+/* --- Register HW_EIM_CS5GCR1, field RFL[5] (RW)
  *
  * Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from
  * the External device connected to the chip select (handshake mode - fix or variable data latency)
@@ -8346,21 +9938,27 @@ typedef union
  * 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 
-#define BP_EIM_CSGCR15_RFL      (5)
-#define BM_EIM_CSGCR15_RFL      (0x00000020)
+#define BP_EIM_CS5GCR1_RFL      (5)      //!< Bit position for EIM_CS5GCR1_RFL.
+#define BM_EIM_CS5GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS5GCR1_RFL.
+
+//! @brief Get value of EIM_CS5GCR1_RFL from a register value.
+#define BG_EIM_CS5GCR1_RFL(r)   (((r) & BM_EIM_CS5GCR1_RFL) >> BP_EIM_CS5GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_RFL(v)   ((((reg32_t) v) << 5) & BM_EIM_CSGCR15_RFL)
+//! @brief Format value for bitfield EIM_CS5GCR1_RFL.
+#define BF_EIM_CS5GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_RFL) & BM_EIM_CS5GCR1_RFL)
 #else
-#define BF_EIM_CSGCR15_RFL(v)   (((v) << 5) & BM_EIM_CSGCR15_RFL)
+//! @brief Format value for bitfield EIM_CS5GCR1_RFL.
+#define BF_EIM_CS5GCR1_RFL(v)   (((v) << BP_EIM_CS5GCR1_RFL) & BM_EIM_CS5GCR1_RFL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
-#define BW_EIM_CSGCR15_RFL(v)   BF_CS1(EIM_CSGCR15, RFL, v)
+#define BW_EIM_CS5GCR1_RFL(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_RFL) | BF_EIM_CS5GCR1_RFL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field CRE[6:6] (RW)
+/* --- Register HW_EIM_CS5GCR1, field CRE[6] (RW)
  *
  * Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory
  * register set command to PSRAM external device. CRE is cleared by a hardware reset.
@@ -8370,21 +9968,27 @@ typedef union
  * 1 - CRE signal use is enable
  */
 
-#define BP_EIM_CSGCR15_CRE      (6)
-#define BM_EIM_CSGCR15_CRE      (0x00000040)
+#define BP_EIM_CS5GCR1_CRE      (6)      //!< Bit position for EIM_CS5GCR1_CRE.
+#define BM_EIM_CS5GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS5GCR1_CRE.
+
+//! @brief Get value of EIM_CS5GCR1_CRE from a register value.
+#define BG_EIM_CS5GCR1_CRE(r)   (((r) & BM_EIM_CS5GCR1_CRE) >> BP_EIM_CS5GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_CRE(v)   ((((reg32_t) v) << 6) & BM_EIM_CSGCR15_CRE)
+//! @brief Format value for bitfield EIM_CS5GCR1_CRE.
+#define BF_EIM_CS5GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_CRE) & BM_EIM_CS5GCR1_CRE)
 #else
-#define BF_EIM_CSGCR15_CRE(v)   (((v) << 6) & BM_EIM_CSGCR15_CRE)
+//! @brief Format value for bitfield EIM_CS5GCR1_CRE.
+#define BF_EIM_CS5GCR1_CRE(v)   (((v) << BP_EIM_CS5GCR1_CRE) & BM_EIM_CS5GCR1_CRE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
-#define BW_EIM_CSGCR15_CRE(v)   BF_CS1(EIM_CSGCR15, CRE, v)
+#define BW_EIM_CS5GCR1_CRE(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CRE) | BF_EIM_CS5GCR1_CRE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field CREP[7:7] (RW)
+/* --- Register HW_EIM_CS5GCR1, field CREP[7] (RW)
  *
  * Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state,
  * active-low or active-high, while executing a memory register set command to the external device
@@ -8397,21 +10001,27 @@ typedef union
  * 1 - CRE signal is active high
  */
 
-#define BP_EIM_CSGCR15_CREP      (7)
-#define BM_EIM_CSGCR15_CREP      (0x00000080)
+#define BP_EIM_CS5GCR1_CREP      (7)      //!< Bit position for EIM_CS5GCR1_CREP.
+#define BM_EIM_CS5GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS5GCR1_CREP.
+
+//! @brief Get value of EIM_CS5GCR1_CREP from a register value.
+#define BG_EIM_CS5GCR1_CREP(r)   (((r) & BM_EIM_CS5GCR1_CREP) >> BP_EIM_CS5GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_CREP(v)   ((((reg32_t) v) << 7) & BM_EIM_CSGCR15_CREP)
+//! @brief Format value for bitfield EIM_CS5GCR1_CREP.
+#define BF_EIM_CS5GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_CREP) & BM_EIM_CS5GCR1_CREP)
 #else
-#define BF_EIM_CSGCR15_CREP(v)   (((v) << 7) & BM_EIM_CSGCR15_CREP)
+//! @brief Format value for bitfield EIM_CS5GCR1_CREP.
+#define BF_EIM_CS5GCR1_CREP(v)   (((v) << BP_EIM_CS5GCR1_CREP) & BM_EIM_CS5GCR1_CREP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
-#define BW_EIM_CSGCR15_CREP(v)   BF_CS1(EIM_CSGCR15, CREP, v)
+#define BW_EIM_CS5GCR1_CREP(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CREP) | BF_EIM_CS5GCR1_CREP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field BL[10:8] (RW)
+/* --- Register HW_EIM_CS5GCR1, field BL[10:8] (RW)
  *
  * Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ
  * field) and should be properly initialized for mixed wrap/increment accesses support. Continuous
@@ -8433,21 +10043,27 @@ typedef union
  * 111 - Reserved
  */
 
-#define BP_EIM_CSGCR15_BL      (8)
-#define BM_EIM_CSGCR15_BL      (0x00000700)
+#define BP_EIM_CS5GCR1_BL      (8)      //!< Bit position for EIM_CS5GCR1_BL.
+#define BM_EIM_CS5GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS5GCR1_BL.
+
+//! @brief Get value of EIM_CS5GCR1_BL from a register value.
+#define BG_EIM_CS5GCR1_BL(r)   (((r) & BM_EIM_CS5GCR1_BL) >> BP_EIM_CS5GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_BL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR15_BL)
+//! @brief Format value for bitfield EIM_CS5GCR1_BL.
+#define BF_EIM_CS5GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_BL) & BM_EIM_CS5GCR1_BL)
 #else
-#define BF_EIM_CSGCR15_BL(v)   (((v) << 8) & BM_EIM_CSGCR15_BL)
+//! @brief Format value for bitfield EIM_CS5GCR1_BL.
+#define BF_EIM_CS5GCR1_BL(v)   (((v) << BP_EIM_CS5GCR1_BL) & BM_EIM_CS5GCR1_BL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
-#define BW_EIM_CSGCR15_BL(v)   BF_CS1(EIM_CSGCR15, BL, v)
+#define BW_EIM_CS5GCR1_BL(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_BL) | BF_EIM_CS5GCR1_BL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field WC[11:11] (RW)
+/* --- Register HW_EIM_CS5GCR1, field WC[11] (RW)
  *
  * Write Continuous. The WI bit indicates that write access to the memory are always continuous
  * accesses regardless of the BL field value. WI is cleared by hardware reset.
@@ -8457,21 +10073,27 @@ typedef union
  * 1 - Write access burst length is continuous.
  */
 
-#define BP_EIM_CSGCR15_WC      (11)
-#define BM_EIM_CSGCR15_WC      (0x00000800)
+#define BP_EIM_CS5GCR1_WC      (11)      //!< Bit position for EIM_CS5GCR1_WC.
+#define BM_EIM_CS5GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS5GCR1_WC.
+
+//! @brief Get value of EIM_CS5GCR1_WC from a register value.
+#define BG_EIM_CS5GCR1_WC(r)   (((r) & BM_EIM_CS5GCR1_WC) >> BP_EIM_CS5GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_WC(v)   ((((reg32_t) v) << 11) & BM_EIM_CSGCR15_WC)
+//! @brief Format value for bitfield EIM_CS5GCR1_WC.
+#define BF_EIM_CS5GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_WC) & BM_EIM_CS5GCR1_WC)
 #else
-#define BF_EIM_CSGCR15_WC(v)   (((v) << 11) & BM_EIM_CSGCR15_WC)
+//! @brief Format value for bitfield EIM_CS5GCR1_WC.
+#define BF_EIM_CS5GCR1_WC(v)   (((v) << BP_EIM_CS5GCR1_WC) & BM_EIM_CS5GCR1_WC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
-#define BW_EIM_CSGCR15_WC(v)   BF_CS1(EIM_CSGCR15, WC, v)
+#define BW_EIM_CS5GCR1_WC(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_WC) | BF_EIM_CS5GCR1_WC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field BCD[13:12] (RW)
+/* --- Register HW_EIM_CS5GCR1, field BCD[13:12] (RW)
  *
  * Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor
  * for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a
@@ -8485,21 +10107,27 @@ typedef union
  * 11 - Divide EIM clock by 4
  */
 
-#define BP_EIM_CSGCR15_BCD      (12)
-#define BM_EIM_CSGCR15_BCD      (0x00003000)
+#define BP_EIM_CS5GCR1_BCD      (12)      //!< Bit position for EIM_CS5GCR1_BCD.
+#define BM_EIM_CS5GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS5GCR1_BCD.
+
+//! @brief Get value of EIM_CS5GCR1_BCD from a register value.
+#define BG_EIM_CS5GCR1_BCD(r)   (((r) & BM_EIM_CS5GCR1_BCD) >> BP_EIM_CS5GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_BCD(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR15_BCD)
+//! @brief Format value for bitfield EIM_CS5GCR1_BCD.
+#define BF_EIM_CS5GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_BCD) & BM_EIM_CS5GCR1_BCD)
 #else
-#define BF_EIM_CSGCR15_BCD(v)   (((v) << 12) & BM_EIM_CSGCR15_BCD)
+//! @brief Format value for bitfield EIM_CS5GCR1_BCD.
+#define BF_EIM_CS5GCR1_BCD(v)   (((v) << BP_EIM_CS5GCR1_BCD) & BM_EIM_CS5GCR1_BCD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
-#define BW_EIM_CSGCR15_BCD(v)   BF_CS1(EIM_CSGCR15, BCD, v)
+#define BW_EIM_CS5GCR1_BCD(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_BCD) | BF_EIM_CS5GCR1_BCD(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field BCS[15:14] (RW)
+/* --- Register HW_EIM_CS5GCR1, field BCS[15:14] (RW)
  *
  * Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles
  * delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of
@@ -8514,21 +10142,27 @@ typedef union
  * 11 - 3 EIM clock cycle additional delay
  */
 
-#define BP_EIM_CSGCR15_BCS      (14)
-#define BM_EIM_CSGCR15_BCS      (0x0000c000)
+#define BP_EIM_CS5GCR1_BCS      (14)      //!< Bit position for EIM_CS5GCR1_BCS.
+#define BM_EIM_CS5GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS5GCR1_BCS.
+
+//! @brief Get value of EIM_CS5GCR1_BCS from a register value.
+#define BG_EIM_CS5GCR1_BCS(r)   (((r) & BM_EIM_CS5GCR1_BCS) >> BP_EIM_CS5GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_BCS(v)   ((((reg32_t) v) << 14) & BM_EIM_CSGCR15_BCS)
+//! @brief Format value for bitfield EIM_CS5GCR1_BCS.
+#define BF_EIM_CS5GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_BCS) & BM_EIM_CS5GCR1_BCS)
 #else
-#define BF_EIM_CSGCR15_BCS(v)   (((v) << 14) & BM_EIM_CSGCR15_BCS)
+//! @brief Format value for bitfield EIM_CS5GCR1_BCS.
+#define BF_EIM_CS5GCR1_BCS(v)   (((v) << BP_EIM_CS5GCR1_BCS) & BM_EIM_CS5GCR1_BCS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
-#define BW_EIM_CSGCR15_BCS(v)   BF_CS1(EIM_CSGCR15, BCS, v)
+#define BW_EIM_CS5GCR1_BCS(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_BCS) | BF_EIM_CS5GCR1_BCS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field DSZ[18:16] (RW)
+/* --- Register HW_EIM_CS5GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
  * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
@@ -8546,21 +10180,27 @@ typedef union
  * 111 - 8 bit port resides on DATA[31:24]
  */
 
-#define BP_EIM_CSGCR15_DSZ      (16)
-#define BM_EIM_CSGCR15_DSZ      (0x00070000)
+#define BP_EIM_CS5GCR1_DSZ      (16)      //!< Bit position for EIM_CS5GCR1_DSZ.
+#define BM_EIM_CS5GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS5GCR1_DSZ.
+
+//! @brief Get value of EIM_CS5GCR1_DSZ from a register value.
+#define BG_EIM_CS5GCR1_DSZ(r)   (((r) & BM_EIM_CS5GCR1_DSZ) >> BP_EIM_CS5GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_DSZ(v)   ((((reg32_t) v) << 16) & BM_EIM_CSGCR15_DSZ)
+//! @brief Format value for bitfield EIM_CS5GCR1_DSZ.
+#define BF_EIM_CS5GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_DSZ) & BM_EIM_CS5GCR1_DSZ)
 #else
-#define BF_EIM_CSGCR15_DSZ(v)   (((v) << 16) & BM_EIM_CSGCR15_DSZ)
+//! @brief Format value for bitfield EIM_CS5GCR1_DSZ.
+#define BF_EIM_CS5GCR1_DSZ(v)   (((v) << BP_EIM_CS5GCR1_DSZ) & BM_EIM_CS5GCR1_DSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
-#define BW_EIM_CSGCR15_DSZ(v)   BF_CS1(EIM_CSGCR15, DSZ, v)
+#define BW_EIM_CS5GCR1_DSZ(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_DSZ) | BF_EIM_CS5GCR1_DSZ(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field SP[19:19] (RW)
+/* --- Register HW_EIM_CS5GCR1, field SP[19] (RW)
  *
  * Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding
  * chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
@@ -8571,21 +10211,27 @@ typedef union
  *     User mode results in an error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR15_SP      (19)
-#define BM_EIM_CSGCR15_SP      (0x00080000)
+#define BP_EIM_CS5GCR1_SP      (19)      //!< Bit position for EIM_CS5GCR1_SP.
+#define BM_EIM_CS5GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS5GCR1_SP.
+
+//! @brief Get value of EIM_CS5GCR1_SP from a register value.
+#define BG_EIM_CS5GCR1_SP(r)   (((r) & BM_EIM_CS5GCR1_SP) >> BP_EIM_CS5GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_SP(v)   ((((reg32_t) v) << 19) & BM_EIM_CSGCR15_SP)
+//! @brief Format value for bitfield EIM_CS5GCR1_SP.
+#define BF_EIM_CS5GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_SP) & BM_EIM_CS5GCR1_SP)
 #else
-#define BF_EIM_CSGCR15_SP(v)   (((v) << 19) & BM_EIM_CSGCR15_SP)
+//! @brief Format value for bitfield EIM_CS5GCR1_SP.
+#define BF_EIM_CS5GCR1_SP(v)   (((v) << BP_EIM_CS5GCR1_SP) & BM_EIM_CS5GCR1_SP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
-#define BW_EIM_CSGCR15_SP(v)   BF_CS1(EIM_CSGCR15, SP, v)
+#define BW_EIM_CS5GCR1_SP(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_SP) | BF_EIM_CS5GCR1_SP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field CSREC[22:20] (RW)
+/* --- Register HW_EIM_CS5GCR1, field CSREC[22:20] (RW)
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
@@ -8600,21 +10246,27 @@ typedef union
  * 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 
-#define BP_EIM_CSGCR15_CSREC      (20)
-#define BM_EIM_CSGCR15_CSREC      (0x00700000)
+#define BP_EIM_CS5GCR1_CSREC      (20)      //!< Bit position for EIM_CS5GCR1_CSREC.
+#define BM_EIM_CS5GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS5GCR1_CSREC.
+
+//! @brief Get value of EIM_CS5GCR1_CSREC from a register value.
+#define BG_EIM_CS5GCR1_CSREC(r)   (((r) & BM_EIM_CS5GCR1_CSREC) >> BP_EIM_CS5GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_CSREC(v)   ((((reg32_t) v) << 20) & BM_EIM_CSGCR15_CSREC)
+//! @brief Format value for bitfield EIM_CS5GCR1_CSREC.
+#define BF_EIM_CS5GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_CSREC) & BM_EIM_CS5GCR1_CSREC)
 #else
-#define BF_EIM_CSGCR15_CSREC(v)   (((v) << 20) & BM_EIM_CSGCR15_CSREC)
+//! @brief Format value for bitfield EIM_CS5GCR1_CSREC.
+#define BF_EIM_CS5GCR1_CSREC(v)   (((v) << BP_EIM_CS5GCR1_CSREC) & BM_EIM_CS5GCR1_CSREC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
-#define BW_EIM_CSGCR15_CSREC(v)   BF_CS1(EIM_CSGCR15, CSREC, v)
+#define BW_EIM_CS5GCR1_CSREC(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CSREC) | BF_EIM_CS5GCR1_CSREC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field AUS[23:23] (RW)
+/* --- Register HW_EIM_CS5GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
  * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
@@ -8625,21 +10277,27 @@ typedef union
  * 1 - Address unshifted
  */
 
-#define BP_EIM_CSGCR15_AUS      (23)
-#define BM_EIM_CSGCR15_AUS      (0x00800000)
+#define BP_EIM_CS5GCR1_AUS      (23)      //!< Bit position for EIM_CS5GCR1_AUS.
+#define BM_EIM_CS5GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS5GCR1_AUS.
+
+//! @brief Get value of EIM_CS5GCR1_AUS from a register value.
+#define BG_EIM_CS5GCR1_AUS(r)   (((r) & BM_EIM_CS5GCR1_AUS) >> BP_EIM_CS5GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_AUS(v)   ((((reg32_t) v) << 23) & BM_EIM_CSGCR15_AUS)
+//! @brief Format value for bitfield EIM_CS5GCR1_AUS.
+#define BF_EIM_CS5GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_AUS) & BM_EIM_CS5GCR1_AUS)
 #else
-#define BF_EIM_CSGCR15_AUS(v)   (((v) << 23) & BM_EIM_CSGCR15_AUS)
+//! @brief Format value for bitfield EIM_CS5GCR1_AUS.
+#define BF_EIM_CS5GCR1_AUS(v)   (((v) << BP_EIM_CS5GCR1_AUS) & BM_EIM_CS5GCR1_AUS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
-#define BW_EIM_CSGCR15_AUS(v)   BF_CS1(EIM_CSGCR15, AUS, v)
+#define BW_EIM_CS5GCR1_AUS(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_AUS) | BF_EIM_CS5GCR1_AUS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field GBC[26:24] (RW)
+/* --- Register HW_EIM_CS5GCR1, field GBC[26:24] (RW)
  *
  * Gap Between Chip Selects. This bit field, according to the settings shown below, determines the
  * minimum time between end of access to the current chip select and start of access to different
@@ -8652,21 +10310,27 @@ typedef union
  * 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 
-#define BP_EIM_CSGCR15_GBC      (24)
-#define BM_EIM_CSGCR15_GBC      (0x07000000)
+#define BP_EIM_CS5GCR1_GBC      (24)      //!< Bit position for EIM_CS5GCR1_GBC.
+#define BM_EIM_CS5GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS5GCR1_GBC.
+
+//! @brief Get value of EIM_CS5GCR1_GBC from a register value.
+#define BG_EIM_CS5GCR1_GBC(r)   (((r) & BM_EIM_CS5GCR1_GBC) >> BP_EIM_CS5GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_GBC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSGCR15_GBC)
+//! @brief Format value for bitfield EIM_CS5GCR1_GBC.
+#define BF_EIM_CS5GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_GBC) & BM_EIM_CS5GCR1_GBC)
 #else
-#define BF_EIM_CSGCR15_GBC(v)   (((v) << 24) & BM_EIM_CSGCR15_GBC)
+//! @brief Format value for bitfield EIM_CS5GCR1_GBC.
+#define BF_EIM_CS5GCR1_GBC(v)   (((v) << BP_EIM_CS5GCR1_GBC) & BM_EIM_CS5GCR1_GBC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
-#define BW_EIM_CSGCR15_GBC(v)   BF_CS1(EIM_CSGCR15, GBC, v)
+#define BW_EIM_CS5GCR1_GBC(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_GBC) | BF_EIM_CS5GCR1_GBC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field WP[27:27] (RW)
+/* --- Register HW_EIM_CS5GCR1, field WP[27] (RW)
  *
  * Write Protect. This bit prevents writes to the address range defined by the corresponding chip
  * select. WP is cleared by a hardware reset.
@@ -8677,21 +10341,27 @@ typedef union
  *     error response and no assertion of the chip select output.
  */
 
-#define BP_EIM_CSGCR15_WP      (27)
-#define BM_EIM_CSGCR15_WP      (0x08000000)
+#define BP_EIM_CS5GCR1_WP      (27)      //!< Bit position for EIM_CS5GCR1_WP.
+#define BM_EIM_CS5GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS5GCR1_WP.
+
+//! @brief Get value of EIM_CS5GCR1_WP from a register value.
+#define BG_EIM_CS5GCR1_WP(r)   (((r) & BM_EIM_CS5GCR1_WP) >> BP_EIM_CS5GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_WP(v)   ((((reg32_t) v) << 27) & BM_EIM_CSGCR15_WP)
+//! @brief Format value for bitfield EIM_CS5GCR1_WP.
+#define BF_EIM_CS5GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_WP) & BM_EIM_CS5GCR1_WP)
 #else
-#define BF_EIM_CSGCR15_WP(v)   (((v) << 27) & BM_EIM_CSGCR15_WP)
+//! @brief Format value for bitfield EIM_CS5GCR1_WP.
+#define BF_EIM_CS5GCR1_WP(v)   (((v) << BP_EIM_CS5GCR1_WP) & BM_EIM_CS5GCR1_WP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
-#define BW_EIM_CSGCR15_WP(v)   BF_CS1(EIM_CSGCR15, WP, v)
+#define BW_EIM_CS5GCR1_WP(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_WP) | BF_EIM_CS5GCR1_WP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR15, field PSZ[31:28] (RW)
+/* --- Register HW_EIM_CS5GCR1, field PSZ[31:28] (RW)
  *
  * Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field).
  * PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync.
@@ -8714,62 +10384,70 @@ typedef union
  * 1001 - - 1111 Reserved
  */
 
-#define BP_EIM_CSGCR15_PSZ      (28)
-#define BM_EIM_CSGCR15_PSZ      (0xf0000000)
+#define BP_EIM_CS5GCR1_PSZ      (28)      //!< Bit position for EIM_CS5GCR1_PSZ.
+#define BM_EIM_CS5GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS5GCR1_PSZ.
+
+//! @brief Get value of EIM_CS5GCR1_PSZ from a register value.
+#define BG_EIM_CS5GCR1_PSZ(r)   (((r) & BM_EIM_CS5GCR1_PSZ) >> BP_EIM_CS5GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR15_PSZ(v)   ((((reg32_t) v) << 28) & BM_EIM_CSGCR15_PSZ)
+//! @brief Format value for bitfield EIM_CS5GCR1_PSZ.
+#define BF_EIM_CS5GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS5GCR1_PSZ) & BM_EIM_CS5GCR1_PSZ)
 #else
-#define BF_EIM_CSGCR15_PSZ(v)   (((v) << 28) & BM_EIM_CSGCR15_PSZ)
+//! @brief Format value for bitfield EIM_CS5GCR1_PSZ.
+#define BF_EIM_CS5GCR1_PSZ(v)   (((v) << BP_EIM_CS5GCR1_PSZ) & BM_EIM_CS5GCR1_PSZ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
-#define BW_EIM_CSGCR15_PSZ(v)   BF_CS1(EIM_CSGCR15, PSZ, v)
+#define BW_EIM_CS5GCR1_PSZ(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_PSZ) | BF_EIM_CS5GCR1_PSZ(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSGCR25 - Chip Select n General Configuration Register 2 5 (RW)
+ * @brief HW_EIM_CS5GCR2 - Chip Select n General Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00001000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs5gcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs5gcr2_bitfields
     {
-        unsigned ADH : 2; //!< Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned DAPS : 4; //!< Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
-        unsigned RESERVED2 : 19; //!< Reserved
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
-} hw_eim_csgcr25_t;
+} hw_eim_cs5gcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSGCR25 register
+ * constants & macros for entire EIM_CS5GCR2 register
  */
-#define HW_EIM_CSGCR25_ADDR      (REGS_EIM_BASE + 0x7c)
+#define HW_EIM_CS5GCR2_ADDR      (REGS_EIM_BASE + 0x7c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSGCR25           (*(volatile hw_eim_csgcr25_t *) HW_EIM_CSGCR25_ADDR)
-#define HW_EIM_CSGCR25_RD()      (HW_EIM_CSGCR25.U)
-#define HW_EIM_CSGCR25_WR(v)     (HW_EIM_CSGCR25.U = (v))
-#define HW_EIM_CSGCR25_SET(v)    (HW_EIM_CSGCR25_WR(HW_EIM_CSGCR25_RD() |  (v)))
-#define HW_EIM_CSGCR25_CLR(v)    (HW_EIM_CSGCR25_WR(HW_EIM_CSGCR25_RD() & ~(v)))
-#define HW_EIM_CSGCR25_TOG(v)    (HW_EIM_CSGCR25_WR(HW_EIM_CSGCR25_RD() ^  (v)))
+#define HW_EIM_CS5GCR2           (*(volatile hw_eim_cs5gcr2_t *) HW_EIM_CS5GCR2_ADDR)
+#define HW_EIM_CS5GCR2_RD()      (HW_EIM_CS5GCR2.U)
+#define HW_EIM_CS5GCR2_WR(v)     (HW_EIM_CS5GCR2.U = (v))
+#define HW_EIM_CS5GCR2_SET(v)    (HW_EIM_CS5GCR2_WR(HW_EIM_CS5GCR2_RD() |  (v)))
+#define HW_EIM_CS5GCR2_CLR(v)    (HW_EIM_CS5GCR2_WR(HW_EIM_CS5GCR2_RD() & ~(v)))
+#define HW_EIM_CS5GCR2_TOG(v)    (HW_EIM_CS5GCR2_WR(HW_EIM_CS5GCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSGCR25 bitfields
+ * constants & macros for individual EIM_CS5GCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSGCR25, field ADH[1:0] (RW)
+/* --- Register HW_EIM_CS5GCR2, field ADH[1:0] (RW)
  *
  * Address hold time - This bit field determine the address hold time after ADV negation when mum =
  * 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when
@@ -8783,21 +10461,27 @@ typedef union
  * 11 - Reserved
  */
 
-#define BP_EIM_CSGCR25_ADH      (0)
-#define BM_EIM_CSGCR25_ADH      (0x00000003)
+#define BP_EIM_CS5GCR2_ADH      (0)      //!< Bit position for EIM_CS5GCR2_ADH.
+#define BM_EIM_CS5GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS5GCR2_ADH.
+
+//! @brief Get value of EIM_CS5GCR2_ADH from a register value.
+#define BG_EIM_CS5GCR2_ADH(r)   (((r) & BM_EIM_CS5GCR2_ADH) >> BP_EIM_CS5GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR25_ADH(v)   ((((reg32_t) v) << 0) & BM_EIM_CSGCR25_ADH)
+//! @brief Format value for bitfield EIM_CS5GCR2_ADH.
+#define BF_EIM_CS5GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS5GCR2_ADH) & BM_EIM_CS5GCR2_ADH)
 #else
-#define BF_EIM_CSGCR25_ADH(v)   (((v) << 0) & BM_EIM_CSGCR25_ADH)
+//! @brief Format value for bitfield EIM_CS5GCR2_ADH.
+#define BF_EIM_CS5GCR2_ADH(v)   (((v) << BP_EIM_CS5GCR2_ADH) & BM_EIM_CS5GCR2_ADH)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
-#define BW_EIM_CSGCR25_ADH(v)   BF_CS1(EIM_CSGCR25, ADH, v)
+#define BW_EIM_CS5GCR2_ADH(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_ADH) | BF_EIM_CS5GCR2_ADH(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR25, field DAPS[7:4] (RW)
+/* --- Register HW_EIM_CS5GCR2, field DAPS[7:4] (RW)
  *
  * Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal
  * polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an
@@ -8813,21 +10497,27 @@ typedef union
  * 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 
-#define BP_EIM_CSGCR25_DAPS      (4)
-#define BM_EIM_CSGCR25_DAPS      (0x000000f0)
+#define BP_EIM_CS5GCR2_DAPS      (4)      //!< Bit position for EIM_CS5GCR2_DAPS.
+#define BM_EIM_CS5GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS5GCR2_DAPS.
+
+//! @brief Get value of EIM_CS5GCR2_DAPS from a register value.
+#define BG_EIM_CS5GCR2_DAPS(r)   (((r) & BM_EIM_CS5GCR2_DAPS) >> BP_EIM_CS5GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR25_DAPS(v)   ((((reg32_t) v) << 4) & BM_EIM_CSGCR25_DAPS)
+//! @brief Format value for bitfield EIM_CS5GCR2_DAPS.
+#define BF_EIM_CS5GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS5GCR2_DAPS) & BM_EIM_CS5GCR2_DAPS)
 #else
-#define BF_EIM_CSGCR25_DAPS(v)   (((v) << 4) & BM_EIM_CSGCR25_DAPS)
+//! @brief Format value for bitfield EIM_CS5GCR2_DAPS.
+#define BF_EIM_CS5GCR2_DAPS(v)   (((v) << BP_EIM_CS5GCR2_DAPS) & BM_EIM_CS5GCR2_DAPS)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
-#define BW_EIM_CSGCR25_DAPS(v)   BF_CS1(EIM_CSGCR25, DAPS, v)
+#define BW_EIM_CS5GCR2_DAPS(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_DAPS) | BF_EIM_CS5GCR2_DAPS(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR25, field DAE[8:8] (RW)
+/* --- Register HW_EIM_CS5GCR2, field DAE[8] (RW)
  *
  * Data Acknowledge Enable. This bit indicates external device is using DTACK pin as
  * strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read
@@ -8839,21 +10529,27 @@ typedef union
  * 1 - DTACK signal use is enable
  */
 
-#define BP_EIM_CSGCR25_DAE      (8)
-#define BM_EIM_CSGCR25_DAE      (0x00000100)
+#define BP_EIM_CS5GCR2_DAE      (8)      //!< Bit position for EIM_CS5GCR2_DAE.
+#define BM_EIM_CS5GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS5GCR2_DAE.
+
+//! @brief Get value of EIM_CS5GCR2_DAE from a register value.
+#define BG_EIM_CS5GCR2_DAE(r)   (((r) & BM_EIM_CS5GCR2_DAE) >> BP_EIM_CS5GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR25_DAE(v)   ((((reg32_t) v) << 8) & BM_EIM_CSGCR25_DAE)
+//! @brief Format value for bitfield EIM_CS5GCR2_DAE.
+#define BF_EIM_CS5GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS5GCR2_DAE) & BM_EIM_CS5GCR2_DAE)
 #else
-#define BF_EIM_CSGCR25_DAE(v)   (((v) << 8) & BM_EIM_CSGCR25_DAE)
+//! @brief Format value for bitfield EIM_CS5GCR2_DAE.
+#define BF_EIM_CS5GCR2_DAE(v)   (((v) << BP_EIM_CS5GCR2_DAE) & BM_EIM_CS5GCR2_DAE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
-#define BW_EIM_CSGCR25_DAE(v)   BF_CS1(EIM_CSGCR25, DAE, v)
+#define BW_EIM_CS5GCR2_DAE(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_DAE) | BF_EIM_CS5GCR2_DAE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR25, field DAP[9:9] (RW)
+/* --- Register HW_EIM_CS5GCR2, field DAP[9] (RW)
  *
  * Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or
  * active-high, while executing an async access using DTACK signal from the external device. DAP is
@@ -8864,21 +10560,27 @@ typedef union
  * 1 - DTACK signal is active low
  */
 
-#define BP_EIM_CSGCR25_DAP      (9)
-#define BM_EIM_CSGCR25_DAP      (0x00000200)
+#define BP_EIM_CS5GCR2_DAP      (9)      //!< Bit position for EIM_CS5GCR2_DAP.
+#define BM_EIM_CS5GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS5GCR2_DAP.
+
+//! @brief Get value of EIM_CS5GCR2_DAP from a register value.
+#define BG_EIM_CS5GCR2_DAP(r)   (((r) & BM_EIM_CS5GCR2_DAP) >> BP_EIM_CS5GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR25_DAP(v)   ((((reg32_t) v) << 9) & BM_EIM_CSGCR25_DAP)
+//! @brief Format value for bitfield EIM_CS5GCR2_DAP.
+#define BF_EIM_CS5GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS5GCR2_DAP) & BM_EIM_CS5GCR2_DAP)
 #else
-#define BF_EIM_CSGCR25_DAP(v)   (((v) << 9) & BM_EIM_CSGCR25_DAP)
+//! @brief Format value for bitfield EIM_CS5GCR2_DAP.
+#define BF_EIM_CS5GCR2_DAP(v)   (((v) << BP_EIM_CS5GCR2_DAP) & BM_EIM_CS5GCR2_DAP)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
-#define BW_EIM_CSGCR25_DAP(v)   BF_CS1(EIM_CSGCR25, DAP, v)
+#define BW_EIM_CS5GCR2_DAP(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_DAP) | BF_EIM_CS5GCR2_DAP(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSGCR25, field MUX16_BYP_GRANT[12:12] (RW)
+/* --- Register HW_EIM_CS5GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
  * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
@@ -8889,68 +10591,76 @@ typedef union
  * 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 
-#define BP_EIM_CSGCR25_MUX16_BYP_GRANT      (12)
-#define BM_EIM_CSGCR25_MUX16_BYP_GRANT      (0x00001000)
+#define BP_EIM_CS5GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS5GCR2_MUX16_BYP_GRANT.
+#define BM_EIM_CS5GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS5GCR2_MUX16_BYP_GRANT.
+
+//! @brief Get value of EIM_CS5GCR2_MUX16_BYP_GRANT from a register value.
+#define BG_EIM_CS5GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS5GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS5GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSGCR25_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSGCR25_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS5GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS5GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS5GCR2_MUX16_BYP_GRANT) & BM_EIM_CS5GCR2_MUX16_BYP_GRANT)
 #else
-#define BF_EIM_CSGCR25_MUX16_BYP_GRANT(v)   (((v) << 12) & BM_EIM_CSGCR25_MUX16_BYP_GRANT)
+//! @brief Format value for bitfield EIM_CS5GCR2_MUX16_BYP_GRANT.
+#define BF_EIM_CS5GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS5GCR2_MUX16_BYP_GRANT) & BM_EIM_CS5GCR2_MUX16_BYP_GRANT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
-#define BW_EIM_CSGCR25_MUX16_BYP_GRANT(v)   BF_CS1(EIM_CSGCR25, MUX16_BYP_GRANT, v)
+#define BW_EIM_CS5GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_MUX16_BYP_GRANT) | BF_EIM_CS5GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR15 - Chip Select n Read Configuration Register 1 5 (RW)
+ * @brief HW_EIM_CS5RCR1 - Chip Select n Read Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs5rcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs5rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RCSA : 3; //!< Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED1 : 1; //!< Reserved
-        unsigned OEN : 3; //!< OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
-        unsigned RESERVED2 : 1; //!< Reserved
-        unsigned OEA : 3; //!< OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
-        unsigned RESERVED3 : 1; //!< Reserved
-        unsigned RADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED4 : 1; //!< Reserved
-        unsigned RWSC : 6; //!< Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
-        unsigned RESERVED5 : 2; //!< Reserved
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [3] Reserved
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED1 : 1; //!< [7] Reserved
+        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned RESERVED2 : 1; //!< [11] Reserved
+        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned RESERVED3 : 1; //!< [15] Reserved
+        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
+        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED4 : 1; //!< [23] Reserved
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
-} hw_eim_csrcr15_t;
+} hw_eim_cs5rcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR15 register
+ * constants & macros for entire EIM_CS5RCR1 register
  */
-#define HW_EIM_CSRCR15_ADDR      (REGS_EIM_BASE + 0x80)
+#define HW_EIM_CS5RCR1_ADDR      (REGS_EIM_BASE + 0x80)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR15           (*(volatile hw_eim_csrcr15_t *) HW_EIM_CSRCR15_ADDR)
-#define HW_EIM_CSRCR15_RD()      (HW_EIM_CSRCR15.U)
-#define HW_EIM_CSRCR15_WR(v)     (HW_EIM_CSRCR15.U = (v))
-#define HW_EIM_CSRCR15_SET(v)    (HW_EIM_CSRCR15_WR(HW_EIM_CSRCR15_RD() |  (v)))
-#define HW_EIM_CSRCR15_CLR(v)    (HW_EIM_CSRCR15_WR(HW_EIM_CSRCR15_RD() & ~(v)))
-#define HW_EIM_CSRCR15_TOG(v)    (HW_EIM_CSRCR15_WR(HW_EIM_CSRCR15_RD() ^  (v)))
+#define HW_EIM_CS5RCR1           (*(volatile hw_eim_cs5rcr1_t *) HW_EIM_CS5RCR1_ADDR)
+#define HW_EIM_CS5RCR1_RD()      (HW_EIM_CS5RCR1.U)
+#define HW_EIM_CS5RCR1_WR(v)     (HW_EIM_CS5RCR1.U = (v))
+#define HW_EIM_CS5RCR1_SET(v)    (HW_EIM_CS5RCR1_WR(HW_EIM_CS5RCR1_RD() |  (v)))
+#define HW_EIM_CS5RCR1_CLR(v)    (HW_EIM_CS5RCR1_WR(HW_EIM_CS5RCR1_RD() & ~(v)))
+#define HW_EIM_CS5RCR1_TOG(v)    (HW_EIM_CS5RCR1_WR(HW_EIM_CS5RCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR15 bitfields
+ * constants & macros for individual EIM_CS5RCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR15, field RCSN[2:0] (RW)
+/* --- Register HW_EIM_CS5RCR1, field RCSN[2:0] (RW)
  *
  * Read CS Negation. This bit field determines when CS signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -8963,21 +10673,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSRCR15_RCSN      (0)
-#define BM_EIM_CSRCR15_RCSN      (0x00000007)
+#define BP_EIM_CS5RCR1_RCSN      (0)      //!< Bit position for EIM_CS5RCR1_RCSN.
+#define BM_EIM_CS5RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS5RCR1_RCSN.
+
+//! @brief Get value of EIM_CS5RCR1_RCSN from a register value.
+#define BG_EIM_CS5RCR1_RCSN(r)   (((r) & BM_EIM_CS5RCR1_RCSN) >> BP_EIM_CS5RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_RCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR15_RCSN)
+//! @brief Format value for bitfield EIM_CS5RCR1_RCSN.
+#define BF_EIM_CS5RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_RCSN) & BM_EIM_CS5RCR1_RCSN)
 #else
-#define BF_EIM_CSRCR15_RCSN(v)   (((v) << 0) & BM_EIM_CSRCR15_RCSN)
+//! @brief Format value for bitfield EIM_CS5RCR1_RCSN.
+#define BF_EIM_CS5RCR1_RCSN(v)   (((v) << BP_EIM_CS5RCR1_RCSN) & BM_EIM_CS5RCR1_RCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
-#define BW_EIM_CSRCR15_RCSN(v)   BF_CS1(EIM_CSRCR15, RCSN, v)
+#define BW_EIM_CS5RCR1_RCSN(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RCSN) | BF_EIM_CS5RCR1_RCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR15, field RCSA[6:4] (RW)
+/* --- Register HW_EIM_CS5RCR1, field RCSA[6:4] (RW)
  *
  * Read CS Assertion. This bit field determines when CS signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a
@@ -8990,21 +10706,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 
-#define BP_EIM_CSRCR15_RCSA      (4)
-#define BM_EIM_CSRCR15_RCSA      (0x00000070)
+#define BP_EIM_CS5RCR1_RCSA      (4)      //!< Bit position for EIM_CS5RCR1_RCSA.
+#define BM_EIM_CS5RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS5RCR1_RCSA.
+
+//! @brief Get value of EIM_CS5RCR1_RCSA from a register value.
+#define BG_EIM_CS5RCR1_RCSA(r)   (((r) & BM_EIM_CS5RCR1_RCSA) >> BP_EIM_CS5RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_RCSA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR15_RCSA)
+//! @brief Format value for bitfield EIM_CS5RCR1_RCSA.
+#define BF_EIM_CS5RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_RCSA) & BM_EIM_CS5RCR1_RCSA)
 #else
-#define BF_EIM_CSRCR15_RCSA(v)   (((v) << 4) & BM_EIM_CSRCR15_RCSA)
+//! @brief Format value for bitfield EIM_CS5RCR1_RCSA.
+#define BF_EIM_CS5RCR1_RCSA(v)   (((v) << BP_EIM_CS5RCR1_RCSA) & BM_EIM_CS5RCR1_RCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
-#define BW_EIM_CSRCR15_RCSA(v)   BF_CS1(EIM_CSRCR15, RCSA, v)
+#define BW_EIM_CS5RCR1_RCSA(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RCSA) | BF_EIM_CS5RCR1_RCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR15, field OEN[10:8] (RW)
+/* --- Register HW_EIM_CS5RCR1, field OEN[10:8] (RW)
  *
  * OE Negation. This bit field determines when OE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit
@@ -9017,21 +10739,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of access and OE negation
  */
 
-#define BP_EIM_CSRCR15_OEN      (8)
-#define BM_EIM_CSRCR15_OEN      (0x00000700)
+#define BP_EIM_CS5RCR1_OEN      (8)      //!< Bit position for EIM_CS5RCR1_OEN.
+#define BM_EIM_CS5RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS5RCR1_OEN.
+
+//! @brief Get value of EIM_CS5RCR1_OEN from a register value.
+#define BG_EIM_CS5RCR1_OEN(r)   (((r) & BM_EIM_CS5RCR1_OEN) >> BP_EIM_CS5RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_OEN(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR15_OEN)
+//! @brief Format value for bitfield EIM_CS5RCR1_OEN.
+#define BF_EIM_CS5RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_OEN) & BM_EIM_CS5RCR1_OEN)
 #else
-#define BF_EIM_CSRCR15_OEN(v)   (((v) << 8) & BM_EIM_CSRCR15_OEN)
+//! @brief Format value for bitfield EIM_CS5RCR1_OEN.
+#define BF_EIM_CS5RCR1_OEN(v)   (((v) << BP_EIM_CS5RCR1_OEN) & BM_EIM_CS5RCR1_OEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
-#define BW_EIM_CSRCR15_OEN(v)   BF_CS1(EIM_CSRCR15, OEN, v)
+#define BW_EIM_CS5RCR1_OEN(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_OEN) | BF_EIM_CS5RCR1_OEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR15, field OEA[14:12] (RW)
+/* --- Register HW_EIM_CS5RCR1, field OEA[14:12] (RW)
  *
  * OE Assertion. This bit field determines when OE signal are asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a
@@ -9047,21 +10775,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 
-#define BP_EIM_CSRCR15_OEA      (12)
-#define BM_EIM_CSRCR15_OEA      (0x00007000)
+#define BP_EIM_CS5RCR1_OEA      (12)      //!< Bit position for EIM_CS5RCR1_OEA.
+#define BM_EIM_CS5RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS5RCR1_OEA.
+
+//! @brief Get value of EIM_CS5RCR1_OEA from a register value.
+#define BG_EIM_CS5RCR1_OEA(r)   (((r) & BM_EIM_CS5RCR1_OEA) >> BP_EIM_CS5RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_OEA(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR15_OEA)
+//! @brief Format value for bitfield EIM_CS5RCR1_OEA.
+#define BF_EIM_CS5RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_OEA) & BM_EIM_CS5RCR1_OEA)
 #else
-#define BF_EIM_CSRCR15_OEA(v)   (((v) << 12) & BM_EIM_CSRCR15_OEA)
+//! @brief Format value for bitfield EIM_CS5RCR1_OEA.
+#define BF_EIM_CS5RCR1_OEA(v)   (((v) << BP_EIM_CS5RCR1_OEA) & BM_EIM_CS5RCR1_OEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
-#define BW_EIM_CSRCR15_OEA(v)   BF_CS1(EIM_CSRCR15, OEA, v)
+#define BW_EIM_CS5RCR1_OEA(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_OEA) | BF_EIM_CS5RCR1_OEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR15, field RADVN[18:16] (RW)
+/* --- Register HW_EIM_CS5RCR1, field RADVN[18:16] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during read
  * accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following
@@ -9073,20 +10807,26 @@ typedef union
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 
-#define BP_EIM_CSRCR15_RADVN      (16)
-#define BM_EIM_CSRCR15_RADVN      (0x00070000)
+#define BP_EIM_CS5RCR1_RADVN      (16)      //!< Bit position for EIM_CS5RCR1_RADVN.
+#define BM_EIM_CS5RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS5RCR1_RADVN.
+
+//! @brief Get value of EIM_CS5RCR1_RADVN from a register value.
+#define BG_EIM_CS5RCR1_RADVN(r)   (((r) & BM_EIM_CS5RCR1_RADVN) >> BP_EIM_CS5RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_RADVN(v)   ((((reg32_t) v) << 16) & BM_EIM_CSRCR15_RADVN)
+//! @brief Format value for bitfield EIM_CS5RCR1_RADVN.
+#define BF_EIM_CS5RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_RADVN) & BM_EIM_CS5RCR1_RADVN)
 #else
-#define BF_EIM_CSRCR15_RADVN(v)   (((v) << 16) & BM_EIM_CSRCR15_RADVN)
+//! @brief Format value for bitfield EIM_CS5RCR1_RADVN.
+#define BF_EIM_CS5RCR1_RADVN(v)   (((v) << BP_EIM_CS5RCR1_RADVN) & BM_EIM_CS5RCR1_RADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
-#define BW_EIM_CSRCR15_RADVN(v)   BF_CS1(EIM_CSRCR15, RADVN, v)
+#define BW_EIM_CS5RCR1_RADVN(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RADVN) | BF_EIM_CS5RCR1_RADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR15, field RAL[19:19] (RW)
+/* --- Register HW_EIM_CS5RCR1, field RAL[19] (RW)
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
@@ -9094,20 +10834,26 @@ typedef union
  * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
  */
 
-#define BP_EIM_CSRCR15_RAL      (19)
-#define BM_EIM_CSRCR15_RAL      (0x00080000)
+#define BP_EIM_CS5RCR1_RAL      (19)      //!< Bit position for EIM_CS5RCR1_RAL.
+#define BM_EIM_CS5RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS5RCR1_RAL.
+
+//! @brief Get value of EIM_CS5RCR1_RAL from a register value.
+#define BG_EIM_CS5RCR1_RAL(r)   (((r) & BM_EIM_CS5RCR1_RAL) >> BP_EIM_CS5RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_RAL(v)   ((((reg32_t) v) << 19) & BM_EIM_CSRCR15_RAL)
+//! @brief Format value for bitfield EIM_CS5RCR1_RAL.
+#define BF_EIM_CS5RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_RAL) & BM_EIM_CS5RCR1_RAL)
 #else
-#define BF_EIM_CSRCR15_RAL(v)   (((v) << 19) & BM_EIM_CSRCR15_RAL)
+//! @brief Format value for bitfield EIM_CS5RCR1_RAL.
+#define BF_EIM_CS5RCR1_RAL(v)   (((v) << BP_EIM_CS5RCR1_RAL) & BM_EIM_CS5RCR1_RAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
-#define BW_EIM_CSRCR15_RAL(v)   BF_CS1(EIM_CSRCR15, RAL, v)
+#define BW_EIM_CS5RCR1_RAL(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RAL) | BF_EIM_CS5RCR1_RAL(v)))
 #endif
 
-/* --- Register HW_EIM_CSRCR15, field RADVA[22:20] (RW)
+/* --- Register HW_EIM_CS5RCR1, field RADVA[22:20] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware
@@ -9120,21 +10866,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSRCR15_RADVA      (20)
-#define BM_EIM_CSRCR15_RADVA      (0x00700000)
+#define BP_EIM_CS5RCR1_RADVA      (20)      //!< Bit position for EIM_CS5RCR1_RADVA.
+#define BM_EIM_CS5RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS5RCR1_RADVA.
+
+//! @brief Get value of EIM_CS5RCR1_RADVA from a register value.
+#define BG_EIM_CS5RCR1_RADVA(r)   (((r) & BM_EIM_CS5RCR1_RADVA) >> BP_EIM_CS5RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_RADVA(v)   ((((reg32_t) v) << 20) & BM_EIM_CSRCR15_RADVA)
+//! @brief Format value for bitfield EIM_CS5RCR1_RADVA.
+#define BF_EIM_CS5RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_RADVA) & BM_EIM_CS5RCR1_RADVA)
 #else
-#define BF_EIM_CSRCR15_RADVA(v)   (((v) << 20) & BM_EIM_CSRCR15_RADVA)
+//! @brief Format value for bitfield EIM_CS5RCR1_RADVA.
+#define BF_EIM_CS5RCR1_RADVA(v)   (((v) << BP_EIM_CS5RCR1_RADVA) & BM_EIM_CS5RCR1_RADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
-#define BW_EIM_CSRCR15_RADVA(v)   BF_CS1(EIM_CSRCR15, RADVA, v)
+#define BW_EIM_CS5RCR1_RADVA(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RADVA) | BF_EIM_CS5RCR1_RADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR15, field RWSC[29:24] (RW)
+/* --- Register HW_EIM_CS5RCR1, field RWSC[29:24] (RW)
  *
  * Read Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous read access to the external device
@@ -9160,63 +10912,71 @@ typedef union
  * 111111 - RWSC value is 63
  */
 
-#define BP_EIM_CSRCR15_RWSC      (24)
-#define BM_EIM_CSRCR15_RWSC      (0x3f000000)
+#define BP_EIM_CS5RCR1_RWSC      (24)      //!< Bit position for EIM_CS5RCR1_RWSC.
+#define BM_EIM_CS5RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS5RCR1_RWSC.
+
+//! @brief Get value of EIM_CS5RCR1_RWSC from a register value.
+#define BG_EIM_CS5RCR1_RWSC(r)   (((r) & BM_EIM_CS5RCR1_RWSC) >> BP_EIM_CS5RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR15_RWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSRCR15_RWSC)
+//! @brief Format value for bitfield EIM_CS5RCR1_RWSC.
+#define BF_EIM_CS5RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS5RCR1_RWSC) & BM_EIM_CS5RCR1_RWSC)
 #else
-#define BF_EIM_CSRCR15_RWSC(v)   (((v) << 24) & BM_EIM_CSRCR15_RWSC)
+//! @brief Format value for bitfield EIM_CS5RCR1_RWSC.
+#define BF_EIM_CS5RCR1_RWSC(v)   (((v) << BP_EIM_CS5RCR1_RWSC) & BM_EIM_CS5RCR1_RWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
-#define BW_EIM_CSRCR15_RWSC(v)   BF_CS1(EIM_CSRCR15, RWSC, v)
+#define BW_EIM_CS5RCR1_RWSC(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RWSC) | BF_EIM_CS5RCR1_RWSC(v)))
 #endif
 
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSRCR25 - Chip Select n Read Configuration Register 2 5 (RW)
+ * @brief HW_EIM_CS5RCR2 - Chip Select n Read Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs5rcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs5rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
-        unsigned RESERVED0 : 1; //!< Reserved
-        unsigned RL : 2; //!< Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
-        unsigned RESERVED1 : 2; //!< Reserved
-        unsigned PAT : 3; //!< Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
-        unsigned RESERVED2 : 16; //!< Reserved
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
+        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RESERVED0 : 1; //!< [7] Reserved
+        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RESERVED1 : 2; //!< [11:10] Reserved
+        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
-} hw_eim_csrcr25_t;
+} hw_eim_cs5rcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSRCR25 register
+ * constants & macros for entire EIM_CS5RCR2 register
  */
-#define HW_EIM_CSRCR25_ADDR      (REGS_EIM_BASE + 0x84)
+#define HW_EIM_CS5RCR2_ADDR      (REGS_EIM_BASE + 0x84)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSRCR25           (*(volatile hw_eim_csrcr25_t *) HW_EIM_CSRCR25_ADDR)
-#define HW_EIM_CSRCR25_RD()      (HW_EIM_CSRCR25.U)
-#define HW_EIM_CSRCR25_WR(v)     (HW_EIM_CSRCR25.U = (v))
-#define HW_EIM_CSRCR25_SET(v)    (HW_EIM_CSRCR25_WR(HW_EIM_CSRCR25_RD() |  (v)))
-#define HW_EIM_CSRCR25_CLR(v)    (HW_EIM_CSRCR25_WR(HW_EIM_CSRCR25_RD() & ~(v)))
-#define HW_EIM_CSRCR25_TOG(v)    (HW_EIM_CSRCR25_WR(HW_EIM_CSRCR25_RD() ^  (v)))
+#define HW_EIM_CS5RCR2           (*(volatile hw_eim_cs5rcr2_t *) HW_EIM_CS5RCR2_ADDR)
+#define HW_EIM_CS5RCR2_RD()      (HW_EIM_CS5RCR2.U)
+#define HW_EIM_CS5RCR2_WR(v)     (HW_EIM_CS5RCR2.U = (v))
+#define HW_EIM_CS5RCR2_SET(v)    (HW_EIM_CS5RCR2_WR(HW_EIM_CS5RCR2_RD() |  (v)))
+#define HW_EIM_CS5RCR2_CLR(v)    (HW_EIM_CS5RCR2_WR(HW_EIM_CS5RCR2_RD() & ~(v)))
+#define HW_EIM_CS5RCR2_TOG(v)    (HW_EIM_CS5RCR2_WR(HW_EIM_CS5RCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSRCR25 bitfields
+ * constants & macros for individual EIM_CS5RCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSRCR25, field RBEN[2:0] (RW)
+/* --- Register HW_EIM_CS5RCR2, field RBEN[2:0] (RW)
  *
  * Read BE Negation. This bit field determines when BE signal is negated during read cycles in
  * asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit
@@ -9229,21 +10989,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 
-#define BP_EIM_CSRCR25_RBEN      (0)
-#define BM_EIM_CSRCR25_RBEN      (0x00000007)
+#define BP_EIM_CS5RCR2_RBEN      (0)      //!< Bit position for EIM_CS5RCR2_RBEN.
+#define BM_EIM_CS5RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS5RCR2_RBEN.
+
+//! @brief Get value of EIM_CS5RCR2_RBEN from a register value.
+#define BG_EIM_CS5RCR2_RBEN(r)   (((r) & BM_EIM_CS5RCR2_RBEN) >> BP_EIM_CS5RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR25_RBEN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSRCR25_RBEN)
+//! @brief Format value for bitfield EIM_CS5RCR2_RBEN.
+#define BF_EIM_CS5RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS5RCR2_RBEN) & BM_EIM_CS5RCR2_RBEN)
 #else
-#define BF_EIM_CSRCR25_RBEN(v)   (((v) << 0) & BM_EIM_CSRCR25_RBEN)
+//! @brief Format value for bitfield EIM_CS5RCR2_RBEN.
+#define BF_EIM_CS5RCR2_RBEN(v)   (((v) << BP_EIM_CS5RCR2_RBEN) & BM_EIM_CS5RCR2_RBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
-#define BW_EIM_CSRCR25_RBEN(v)   BF_CS1(EIM_CSRCR25, RBEN, v)
+#define BW_EIM_CS5RCR2_RBEN(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RBEN) | BF_EIM_CS5RCR2_RBEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR25, field RBE[3:3] (RW)
+/* --- Register HW_EIM_CS5RCR2, field RBE[3] (RW)
  *
  * Read BE enable. This bit field determines if BE will be asserted during read access.
  *
@@ -9252,21 +11018,27 @@ typedef union
  * 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 
-#define BP_EIM_CSRCR25_RBE      (3)
-#define BM_EIM_CSRCR25_RBE      (0x00000008)
+#define BP_EIM_CS5RCR2_RBE      (3)      //!< Bit position for EIM_CS5RCR2_RBE.
+#define BM_EIM_CS5RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS5RCR2_RBE.
+
+//! @brief Get value of EIM_CS5RCR2_RBE from a register value.
+#define BG_EIM_CS5RCR2_RBE(r)   (((r) & BM_EIM_CS5RCR2_RBE) >> BP_EIM_CS5RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR25_RBE(v)   ((((reg32_t) v) << 3) & BM_EIM_CSRCR25_RBE)
+//! @brief Format value for bitfield EIM_CS5RCR2_RBE.
+#define BF_EIM_CS5RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS5RCR2_RBE) & BM_EIM_CS5RCR2_RBE)
 #else
-#define BF_EIM_CSRCR25_RBE(v)   (((v) << 3) & BM_EIM_CSRCR25_RBE)
+//! @brief Format value for bitfield EIM_CS5RCR2_RBE.
+#define BF_EIM_CS5RCR2_RBE(v)   (((v) << BP_EIM_CS5RCR2_RBE) & BM_EIM_CS5RCR2_RBE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
-#define BW_EIM_CSRCR25_RBE(v)   BF_CS1(EIM_CSRCR25, RBE, v)
+#define BW_EIM_CS5RCR2_RBE(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RBE) | BF_EIM_CS5RCR2_RBE(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR25, field RBEA[6:4] (RW)
+/* --- Register HW_EIM_CS5RCR2, field RBEA[6:4] (RW)
  *
  * Read BE Assertion. This bit field determines when BE signal is asserted during read cycles
  * (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a
@@ -9279,21 +11051,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 
-#define BP_EIM_CSRCR25_RBEA      (4)
-#define BM_EIM_CSRCR25_RBEA      (0x00000070)
+#define BP_EIM_CS5RCR2_RBEA      (4)      //!< Bit position for EIM_CS5RCR2_RBEA.
+#define BM_EIM_CS5RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS5RCR2_RBEA.
+
+//! @brief Get value of EIM_CS5RCR2_RBEA from a register value.
+#define BG_EIM_CS5RCR2_RBEA(r)   (((r) & BM_EIM_CS5RCR2_RBEA) >> BP_EIM_CS5RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR25_RBEA(v)   ((((reg32_t) v) << 4) & BM_EIM_CSRCR25_RBEA)
+//! @brief Format value for bitfield EIM_CS5RCR2_RBEA.
+#define BF_EIM_CS5RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS5RCR2_RBEA) & BM_EIM_CS5RCR2_RBEA)
 #else
-#define BF_EIM_CSRCR25_RBEA(v)   (((v) << 4) & BM_EIM_CSRCR25_RBEA)
+//! @brief Format value for bitfield EIM_CS5RCR2_RBEA.
+#define BF_EIM_CS5RCR2_RBEA(v)   (((v) << BP_EIM_CS5RCR2_RBEA) & BM_EIM_CS5RCR2_RBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
-#define BW_EIM_CSRCR25_RBEA(v)   BF_CS1(EIM_CSRCR25, RBEA, v)
+#define BW_EIM_CS5RCR2_RBEA(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RBEA) | BF_EIM_CS5RCR2_RBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR25, field RL[9:8] (RW)
+/* --- Register HW_EIM_CS5RCR2, field RL[9:8] (RW)
  *
  * Read Latency. This bit field indicates cycle latency when executing a synchronous read operation.
  * The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a
@@ -9306,21 +11084,27 @@ typedef union
  * 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 
-#define BP_EIM_CSRCR25_RL      (8)
-#define BM_EIM_CSRCR25_RL      (0x00000300)
+#define BP_EIM_CS5RCR2_RL      (8)      //!< Bit position for EIM_CS5RCR2_RL.
+#define BM_EIM_CS5RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS5RCR2_RL.
+
+//! @brief Get value of EIM_CS5RCR2_RL from a register value.
+#define BG_EIM_CS5RCR2_RL(r)   (((r) & BM_EIM_CS5RCR2_RL) >> BP_EIM_CS5RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR25_RL(v)   ((((reg32_t) v) << 8) & BM_EIM_CSRCR25_RL)
+//! @brief Format value for bitfield EIM_CS5RCR2_RL.
+#define BF_EIM_CS5RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS5RCR2_RL) & BM_EIM_CS5RCR2_RL)
 #else
-#define BF_EIM_CSRCR25_RL(v)   (((v) << 8) & BM_EIM_CSRCR25_RL)
+//! @brief Format value for bitfield EIM_CS5RCR2_RL.
+#define BF_EIM_CS5RCR2_RL(v)   (((v) << BP_EIM_CS5RCR2_RL) & BM_EIM_CS5RCR2_RL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
-#define BW_EIM_CSRCR25_RL(v)   BF_CS1(EIM_CSRCR25, RL, v)
+#define BW_EIM_CS5RCR2_RL(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RL) | BF_EIM_CS5RCR2_RL(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR25, field PAT[14:12] (RW)
+/* --- Register HW_EIM_CS5RCR2, field PAT[14:12] (RW)
  *
  * Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial
  * access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width
@@ -9338,21 +11122,27 @@ typedef union
  * 111 - Address width is 9 EIM clock cycles
  */
 
-#define BP_EIM_CSRCR25_PAT      (12)
-#define BM_EIM_CSRCR25_PAT      (0x00007000)
+#define BP_EIM_CS5RCR2_PAT      (12)      //!< Bit position for EIM_CS5RCR2_PAT.
+#define BM_EIM_CS5RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS5RCR2_PAT.
+
+//! @brief Get value of EIM_CS5RCR2_PAT from a register value.
+#define BG_EIM_CS5RCR2_PAT(r)   (((r) & BM_EIM_CS5RCR2_PAT) >> BP_EIM_CS5RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR25_PAT(v)   ((((reg32_t) v) << 12) & BM_EIM_CSRCR25_PAT)
+//! @brief Format value for bitfield EIM_CS5RCR2_PAT.
+#define BF_EIM_CS5RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS5RCR2_PAT) & BM_EIM_CS5RCR2_PAT)
 #else
-#define BF_EIM_CSRCR25_PAT(v)   (((v) << 12) & BM_EIM_CSRCR25_PAT)
+//! @brief Format value for bitfield EIM_CS5RCR2_PAT.
+#define BF_EIM_CS5RCR2_PAT(v)   (((v) << BP_EIM_CS5RCR2_PAT) & BM_EIM_CS5RCR2_PAT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
-#define BW_EIM_CSRCR25_PAT(v)   BF_CS1(EIM_CSRCR25, PAT, v)
+#define BW_EIM_CS5RCR2_PAT(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_PAT) | BF_EIM_CS5RCR2_PAT(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSRCR25, field APR[15:15] (RW)
+/* --- Register HW_EIM_CS5RCR2, field APR[15] (RW)
  *
  * Asynchronous Page Read. This bit field determine the asynchronous read mode to the external
  * device. When APR=0, the async. read access is done as single word (where word is defined by the
@@ -9361,64 +11151,72 @@ typedef union
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 
-#define BP_EIM_CSRCR25_APR      (15)
-#define BM_EIM_CSRCR25_APR      (0x00008000)
+#define BP_EIM_CS5RCR2_APR      (15)      //!< Bit position for EIM_CS5RCR2_APR.
+#define BM_EIM_CS5RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS5RCR2_APR.
+
+//! @brief Get value of EIM_CS5RCR2_APR from a register value.
+#define BG_EIM_CS5RCR2_APR(r)   (((r) & BM_EIM_CS5RCR2_APR) >> BP_EIM_CS5RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSRCR25_APR(v)   ((((reg32_t) v) << 15) & BM_EIM_CSRCR25_APR)
+//! @brief Format value for bitfield EIM_CS5RCR2_APR.
+#define BF_EIM_CS5RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS5RCR2_APR) & BM_EIM_CS5RCR2_APR)
 #else
-#define BF_EIM_CSRCR25_APR(v)   (((v) << 15) & BM_EIM_CSRCR25_APR)
+//! @brief Format value for bitfield EIM_CS5RCR2_APR.
+#define BF_EIM_CS5RCR2_APR(v)   (((v) << BP_EIM_CS5RCR2_APR) & BM_EIM_CS5RCR2_APR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
-#define BW_EIM_CSRCR25_APR(v)   BF_CS1(EIM_CSRCR25, APR, v)
+#define BW_EIM_CS5RCR2_APR(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_APR) | BF_EIM_CS5RCR2_APR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR15 - Chip Select n Write Configuration Register 1 5 (RW)
+ * @brief HW_EIM_CS5WCR1 - Chip Select n Write Configuration Register 1 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs5wcr1
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs5wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
+        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
+        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
+        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
+        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
     } B;
-} hw_eim_cswcr15_t;
+} hw_eim_cs5wcr1_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR15 register
+ * constants & macros for entire EIM_CS5WCR1 register
  */
-#define HW_EIM_CSWCR15_ADDR      (REGS_EIM_BASE + 0x88)
+#define HW_EIM_CS5WCR1_ADDR      (REGS_EIM_BASE + 0x88)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR15           (*(volatile hw_eim_cswcr15_t *) HW_EIM_CSWCR15_ADDR)
-#define HW_EIM_CSWCR15_RD()      (HW_EIM_CSWCR15.U)
-#define HW_EIM_CSWCR15_WR(v)     (HW_EIM_CSWCR15.U = (v))
-#define HW_EIM_CSWCR15_SET(v)    (HW_EIM_CSWCR15_WR(HW_EIM_CSWCR15_RD() |  (v)))
-#define HW_EIM_CSWCR15_CLR(v)    (HW_EIM_CSWCR15_WR(HW_EIM_CSWCR15_RD() & ~(v)))
-#define HW_EIM_CSWCR15_TOG(v)    (HW_EIM_CSWCR15_WR(HW_EIM_CSWCR15_RD() ^  (v)))
+#define HW_EIM_CS5WCR1           (*(volatile hw_eim_cs5wcr1_t *) HW_EIM_CS5WCR1_ADDR)
+#define HW_EIM_CS5WCR1_RD()      (HW_EIM_CS5WCR1.U)
+#define HW_EIM_CS5WCR1_WR(v)     (HW_EIM_CS5WCR1.U = (v))
+#define HW_EIM_CS5WCR1_SET(v)    (HW_EIM_CS5WCR1_WR(HW_EIM_CS5WCR1_RD() |  (v)))
+#define HW_EIM_CS5WCR1_CLR(v)    (HW_EIM_CS5WCR1_WR(HW_EIM_CS5WCR1_RD() & ~(v)))
+#define HW_EIM_CS5WCR1_TOG(v)    (HW_EIM_CS5WCR1_WR(HW_EIM_CS5WCR1_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR15 bitfields
+ * constants & macros for individual EIM_CS5WCR1 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR15, field WCSN[2:0] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WCSN[2:0] (RW)
  *
  * Write CS Negation. This bit field determines when CS signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -9431,21 +11229,27 @@ typedef union
  * 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 
-#define BP_EIM_CSWCR15_WCSN      (0)
-#define BM_EIM_CSWCR15_WCSN      (0x00000007)
+#define BP_EIM_CS5WCR1_WCSN      (0)      //!< Bit position for EIM_CS5WCR1_WCSN.
+#define BM_EIM_CS5WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS5WCR1_WCSN.
+
+//! @brief Get value of EIM_CS5WCR1_WCSN from a register value.
+#define BG_EIM_CS5WCR1_WCSN(r)   (((r) & BM_EIM_CS5WCR1_WCSN) >> BP_EIM_CS5WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WCSN(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR15_WCSN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WCSN.
+#define BF_EIM_CS5WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WCSN) & BM_EIM_CS5WCR1_WCSN)
 #else
-#define BF_EIM_CSWCR15_WCSN(v)   (((v) << 0) & BM_EIM_CSWCR15_WCSN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WCSN.
+#define BF_EIM_CS5WCR1_WCSN(v)   (((v) << BP_EIM_CS5WCR1_WCSN) & BM_EIM_CS5WCR1_WCSN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
-#define BW_EIM_CSWCR15_WCSN(v)   BF_CS1(EIM_CSWCR15, WCSN, v)
+#define BW_EIM_CS5WCR1_WCSN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WCSN) | BF_EIM_CS5WCR1_WCSN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR15, field WCSA[5:3] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WCSA[5:3] (RW)
  *
  * Write CS Assertion. This bit field determines when CS signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below.this bit field is
@@ -9459,21 +11263,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 
-#define BP_EIM_CSWCR15_WCSA      (3)
-#define BM_EIM_CSWCR15_WCSA      (0x00000038)
+#define BP_EIM_CS5WCR1_WCSA      (3)      //!< Bit position for EIM_CS5WCR1_WCSA.
+#define BM_EIM_CS5WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS5WCR1_WCSA.
+
+//! @brief Get value of EIM_CS5WCR1_WCSA from a register value.
+#define BG_EIM_CS5WCR1_WCSA(r)   (((r) & BM_EIM_CS5WCR1_WCSA) >> BP_EIM_CS5WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WCSA(v)   ((((reg32_t) v) << 3) & BM_EIM_CSWCR15_WCSA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WCSA.
+#define BF_EIM_CS5WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WCSA) & BM_EIM_CS5WCR1_WCSA)
 #else
-#define BF_EIM_CSWCR15_WCSA(v)   (((v) << 3) & BM_EIM_CSWCR15_WCSA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WCSA.
+#define BF_EIM_CS5WCR1_WCSA(v)   (((v) << BP_EIM_CS5WCR1_WCSA) & BM_EIM_CS5WCR1_WCSA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
-#define BW_EIM_CSWCR15_WCSA(v)   BF_CS1(EIM_CSWCR15, WCSA, v)
+#define BW_EIM_CS5WCR1_WCSA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WCSA) | BF_EIM_CS5WCR1_WCSA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR15, field WEN[8:6] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WEN[8:6] (RW)
  *
  * WE Negation. This bit field determines when WE signal is negated during write cycles in
  * asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored
@@ -9487,21 +11297,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR15_WEN      (6)
-#define BM_EIM_CSWCR15_WEN      (0x000001c0)
+#define BP_EIM_CS5WCR1_WEN      (6)      //!< Bit position for EIM_CS5WCR1_WEN.
+#define BM_EIM_CS5WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS5WCR1_WEN.
+
+//! @brief Get value of EIM_CS5WCR1_WEN from a register value.
+#define BG_EIM_CS5WCR1_WEN(r)   (((r) & BM_EIM_CS5WCR1_WEN) >> BP_EIM_CS5WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WEN(v)   ((((reg32_t) v) << 6) & BM_EIM_CSWCR15_WEN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WEN.
+#define BF_EIM_CS5WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WEN) & BM_EIM_CS5WCR1_WEN)
 #else
-#define BF_EIM_CSWCR15_WEN(v)   (((v) << 6) & BM_EIM_CSWCR15_WEN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WEN.
+#define BF_EIM_CS5WCR1_WEN(v)   (((v) << BP_EIM_CS5WCR1_WEN) & BM_EIM_CS5WCR1_WEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
-#define BW_EIM_CSWCR15_WEN(v)   BF_CS1(EIM_CSWCR15, WEN, v)
+#define BW_EIM_CS5WCR1_WEN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WEN) | BF_EIM_CS5WCR1_WEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR15, field WEA[11:9] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WEA[11:9] (RW)
  *
  * WE Assertion. This bit field determines when WE signal is asserted during write cycles
  * (synchronous or asynchronous mode), according to the settings shown below. This bit field is
@@ -9516,21 +11332,27 @@ typedef union
  * 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 
-#define BP_EIM_CSWCR15_WEA      (9)
-#define BM_EIM_CSWCR15_WEA      (0x00000e00)
+#define BP_EIM_CS5WCR1_WEA      (9)      //!< Bit position for EIM_CS5WCR1_WEA.
+#define BM_EIM_CS5WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS5WCR1_WEA.
+
+//! @brief Get value of EIM_CS5WCR1_WEA from a register value.
+#define BG_EIM_CS5WCR1_WEA(r)   (((r) & BM_EIM_CS5WCR1_WEA) >> BP_EIM_CS5WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WEA(v)   ((((reg32_t) v) << 9) & BM_EIM_CSWCR15_WEA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WEA.
+#define BF_EIM_CS5WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WEA) & BM_EIM_CS5WCR1_WEA)
 #else
-#define BF_EIM_CSWCR15_WEA(v)   (((v) << 9) & BM_EIM_CSWCR15_WEA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WEA.
+#define BF_EIM_CS5WCR1_WEA(v)   (((v) << BP_EIM_CS5WCR1_WEA) & BM_EIM_CS5WCR1_WEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
-#define BW_EIM_CSWCR15_WEA(v)   BF_CS1(EIM_CSWCR15, WEA, v)
+#define BW_EIM_CS5WCR1_WEA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WEA) | BF_EIM_CS5WCR1_WEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR15, field WBEN[14:12] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WBEN[14:12] (RW)
  *
  * BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write
  * cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is
@@ -9541,20 +11363,26 @@ typedef union
  * access and WE negation
  */
 
-#define BP_EIM_CSWCR15_WBEN      (12)
-#define BM_EIM_CSWCR15_WBEN      (0x00007000)
+#define BP_EIM_CS5WCR1_WBEN      (12)      //!< Bit position for EIM_CS5WCR1_WBEN.
+#define BM_EIM_CS5WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS5WCR1_WBEN.
+
+//! @brief Get value of EIM_CS5WCR1_WBEN from a register value.
+#define BG_EIM_CS5WCR1_WBEN(r)   (((r) & BM_EIM_CS5WCR1_WBEN) >> BP_EIM_CS5WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WBEN(v)   ((((reg32_t) v) << 12) & BM_EIM_CSWCR15_WBEN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WBEN.
+#define BF_EIM_CS5WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WBEN) & BM_EIM_CS5WCR1_WBEN)
 #else
-#define BF_EIM_CSWCR15_WBEN(v)   (((v) << 12) & BM_EIM_CSWCR15_WBEN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WBEN.
+#define BF_EIM_CS5WCR1_WBEN(v)   (((v) << BP_EIM_CS5WCR1_WBEN) & BM_EIM_CS5WCR1_WBEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
-#define BW_EIM_CSWCR15_WBEN(v)   BF_CS1(EIM_CSWCR15, WBEN, v)
+#define BW_EIM_CS5WCR1_WBEN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WBEN) | BF_EIM_CS5WCR1_WBEN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR15, field WBEA[17:15] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WBEA[17:15] (RW)
  *
  * BE Assertion. This bit field determines when BE signal is asserted during write cycles in async.
  * mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset.
@@ -9568,21 +11396,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 
-#define BP_EIM_CSWCR15_WBEA      (15)
-#define BM_EIM_CSWCR15_WBEA      (0x00038000)
+#define BP_EIM_CS5WCR1_WBEA      (15)      //!< Bit position for EIM_CS5WCR1_WBEA.
+#define BM_EIM_CS5WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS5WCR1_WBEA.
+
+//! @brief Get value of EIM_CS5WCR1_WBEA from a register value.
+#define BG_EIM_CS5WCR1_WBEA(r)   (((r) & BM_EIM_CS5WCR1_WBEA) >> BP_EIM_CS5WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WBEA(v)   ((((reg32_t) v) << 15) & BM_EIM_CSWCR15_WBEA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WBEA.
+#define BF_EIM_CS5WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WBEA) & BM_EIM_CS5WCR1_WBEA)
 #else
-#define BF_EIM_CSWCR15_WBEA(v)   (((v) << 15) & BM_EIM_CSWCR15_WBEA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WBEA.
+#define BF_EIM_CS5WCR1_WBEA(v)   (((v) << BP_EIM_CS5WCR1_WBEA) & BM_EIM_CS5WCR1_WBEA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
-#define BW_EIM_CSWCR15_WBEA(v)   BF_CS1(EIM_CSWCR15, WBEA, v)
+#define BW_EIM_CS5WCR1_WBEA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WBEA) | BF_EIM_CS5WCR1_WBEA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR15, field WADVN[20:18] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WADVN[20:18] (RW)
  *
  * ADV Negation. This bit field determines when ADV signal to memory is negated during write
  * accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following
@@ -9593,20 +11427,26 @@ typedef union
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 
-#define BP_EIM_CSWCR15_WADVN      (18)
-#define BM_EIM_CSWCR15_WADVN      (0x001c0000)
+#define BP_EIM_CS5WCR1_WADVN      (18)      //!< Bit position for EIM_CS5WCR1_WADVN.
+#define BM_EIM_CS5WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS5WCR1_WADVN.
+
+//! @brief Get value of EIM_CS5WCR1_WADVN from a register value.
+#define BG_EIM_CS5WCR1_WADVN(r)   (((r) & BM_EIM_CS5WCR1_WADVN) >> BP_EIM_CS5WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WADVN(v)   ((((reg32_t) v) << 18) & BM_EIM_CSWCR15_WADVN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WADVN.
+#define BF_EIM_CS5WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WADVN) & BM_EIM_CS5WCR1_WADVN)
 #else
-#define BF_EIM_CSWCR15_WADVN(v)   (((v) << 18) & BM_EIM_CSWCR15_WADVN)
+//! @brief Format value for bitfield EIM_CS5WCR1_WADVN.
+#define BF_EIM_CS5WCR1_WADVN(v)   (((v) << BP_EIM_CS5WCR1_WADVN) & BM_EIM_CS5WCR1_WADVN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
-#define BW_EIM_CSWCR15_WADVN(v)   BF_CS1(EIM_CSWCR15, WADVN, v)
+#define BW_EIM_CS5WCR1_WADVN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WADVN) | BF_EIM_CS5WCR1_WADVN(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR15, field WADVA[23:21] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WADVA[23:21] (RW)
  *
  * ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or
  * asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware
@@ -9619,21 +11459,27 @@ typedef union
  * 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 
-#define BP_EIM_CSWCR15_WADVA      (21)
-#define BM_EIM_CSWCR15_WADVA      (0x00e00000)
+#define BP_EIM_CS5WCR1_WADVA      (21)      //!< Bit position for EIM_CS5WCR1_WADVA.
+#define BM_EIM_CS5WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS5WCR1_WADVA.
+
+//! @brief Get value of EIM_CS5WCR1_WADVA from a register value.
+#define BG_EIM_CS5WCR1_WADVA(r)   (((r) & BM_EIM_CS5WCR1_WADVA) >> BP_EIM_CS5WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WADVA(v)   ((((reg32_t) v) << 21) & BM_EIM_CSWCR15_WADVA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WADVA.
+#define BF_EIM_CS5WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WADVA) & BM_EIM_CS5WCR1_WADVA)
 #else
-#define BF_EIM_CSWCR15_WADVA(v)   (((v) << 21) & BM_EIM_CSWCR15_WADVA)
+//! @brief Format value for bitfield EIM_CS5WCR1_WADVA.
+#define BF_EIM_CS5WCR1_WADVA(v)   (((v) << BP_EIM_CS5WCR1_WADVA) & BM_EIM_CS5WCR1_WADVA)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
-#define BW_EIM_CSWCR15_WADVA(v)   BF_CS1(EIM_CSWCR15, WADVA, v)
+#define BW_EIM_CS5WCR1_WADVA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WADVA) | BF_EIM_CS5WCR1_WADVA(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR15, field WWSC[29:24] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WWSC[29:24] (RW)
  *
  * Write Wait State Control. This bit field programs the number of wait-states, according to the
  * settings shown below, for synchronous or asynchronous write access to the external device
@@ -9658,40 +11504,52 @@ typedef union
  * 111111 - WWSC value is 63
  */
 
-#define BP_EIM_CSWCR15_WWSC      (24)
-#define BM_EIM_CSWCR15_WWSC      (0x3f000000)
+#define BP_EIM_CS5WCR1_WWSC      (24)      //!< Bit position for EIM_CS5WCR1_WWSC.
+#define BM_EIM_CS5WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS5WCR1_WWSC.
+
+//! @brief Get value of EIM_CS5WCR1_WWSC from a register value.
+#define BG_EIM_CS5WCR1_WWSC(r)   (((r) & BM_EIM_CS5WCR1_WWSC) >> BP_EIM_CS5WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WWSC(v)   ((((reg32_t) v) << 24) & BM_EIM_CSWCR15_WWSC)
+//! @brief Format value for bitfield EIM_CS5WCR1_WWSC.
+#define BF_EIM_CS5WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WWSC) & BM_EIM_CS5WCR1_WWSC)
 #else
-#define BF_EIM_CSWCR15_WWSC(v)   (((v) << 24) & BM_EIM_CSWCR15_WWSC)
+//! @brief Format value for bitfield EIM_CS5WCR1_WWSC.
+#define BF_EIM_CS5WCR1_WWSC(v)   (((v) << BP_EIM_CS5WCR1_WWSC) & BM_EIM_CS5WCR1_WWSC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
-#define BW_EIM_CSWCR15_WWSC(v)   BF_CS1(EIM_CSWCR15, WWSC, v)
+#define BW_EIM_CS5WCR1_WWSC(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WWSC) | BF_EIM_CS5WCR1_WWSC(v)))
 #endif
 
 
-/* --- Register HW_EIM_CSWCR15, field WBED[30:30] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WBED[30] (RW)
  *
  * Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted
  * during write accesses.This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR15_WBED      (30)
-#define BM_EIM_CSWCR15_WBED      (0x40000000)
+#define BP_EIM_CS5WCR1_WBED      (30)      //!< Bit position for EIM_CS5WCR1_WBED.
+#define BM_EIM_CS5WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS5WCR1_WBED.
+
+//! @brief Get value of EIM_CS5WCR1_WBED from a register value.
+#define BG_EIM_CS5WCR1_WBED(r)   (((r) & BM_EIM_CS5WCR1_WBED) >> BP_EIM_CS5WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WBED(v)   ((((reg32_t) v) << 30) & BM_EIM_CSWCR15_WBED)
+//! @brief Format value for bitfield EIM_CS5WCR1_WBED.
+#define BF_EIM_CS5WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WBED) & BM_EIM_CS5WCR1_WBED)
 #else
-#define BF_EIM_CSWCR15_WBED(v)   (((v) << 30) & BM_EIM_CSWCR15_WBED)
+//! @brief Format value for bitfield EIM_CS5WCR1_WBED.
+#define BF_EIM_CS5WCR1_WBED(v)   (((v) << BP_EIM_CS5WCR1_WBED) & BM_EIM_CS5WCR1_WBED)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
-#define BW_EIM_CSWCR15_WBED(v)   BF_CS1(EIM_CSWCR15, WBED, v)
+#define BW_EIM_CS5WCR1_WBED(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WBED) | BF_EIM_CS5WCR1_WBED(v)))
 #endif
 
-/* --- Register HW_EIM_CSWCR15, field WAL[31:31] (RW)
+/* --- Register HW_EIM_CS5WCR1, field WAL[31] (RW)
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
@@ -9699,95 +11557,111 @@ typedef union
  * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
  */
 
-#define BP_EIM_CSWCR15_WAL      (31)
-#define BM_EIM_CSWCR15_WAL      (0x80000000)
+#define BP_EIM_CS5WCR1_WAL      (31)      //!< Bit position for EIM_CS5WCR1_WAL.
+#define BM_EIM_CS5WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS5WCR1_WAL.
+
+//! @brief Get value of EIM_CS5WCR1_WAL from a register value.
+#define BG_EIM_CS5WCR1_WAL(r)   (((r) & BM_EIM_CS5WCR1_WAL) >> BP_EIM_CS5WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR15_WAL(v)   ((((reg32_t) v) << 31) & BM_EIM_CSWCR15_WAL)
+//! @brief Format value for bitfield EIM_CS5WCR1_WAL.
+#define BF_EIM_CS5WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS5WCR1_WAL) & BM_EIM_CS5WCR1_WAL)
 #else
-#define BF_EIM_CSWCR15_WAL(v)   (((v) << 31) & BM_EIM_CSWCR15_WAL)
+//! @brief Format value for bitfield EIM_CS5WCR1_WAL.
+#define BF_EIM_CS5WCR1_WAL(v)   (((v) << BP_EIM_CS5WCR1_WAL) & BM_EIM_CS5WCR1_WAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
-#define BW_EIM_CSWCR15_WAL(v)   BF_CS1(EIM_CSWCR15, WAL, v)
+#define BW_EIM_CS5WCR1_WAL(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WAL) | BF_EIM_CS5WCR1_WAL(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_EIM_CSWCR25 - Chip Select n Write Configuration Register 2 5 (RW)
+ * @brief HW_EIM_CS5WCR2 - Chip Select n Write Configuration Register 2 (RW)
+ *
+ * Reset value: 0x00000000
  *
 
  */
-typedef union
+typedef union _hw_eim_cs5wcr2
 {
     reg32_t U;
-    struct
+    struct _hw_eim_cs5wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
-        unsigned RESERVED0 : 31; //!< Reserved
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
-} hw_eim_cswcr25_t;
+} hw_eim_cs5wcr2_t;
 #endif
 
 /*
- * constants & macros for entire EIM_CSWCR25 register
+ * constants & macros for entire EIM_CS5WCR2 register
  */
-#define HW_EIM_CSWCR25_ADDR      (REGS_EIM_BASE + 0x8c)
+#define HW_EIM_CS5WCR2_ADDR      (REGS_EIM_BASE + 0x8c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_EIM_CSWCR25           (*(volatile hw_eim_cswcr25_t *) HW_EIM_CSWCR25_ADDR)
-#define HW_EIM_CSWCR25_RD()      (HW_EIM_CSWCR25.U)
-#define HW_EIM_CSWCR25_WR(v)     (HW_EIM_CSWCR25.U = (v))
-#define HW_EIM_CSWCR25_SET(v)    (HW_EIM_CSWCR25_WR(HW_EIM_CSWCR25_RD() |  (v)))
-#define HW_EIM_CSWCR25_CLR(v)    (HW_EIM_CSWCR25_WR(HW_EIM_CSWCR25_RD() & ~(v)))
-#define HW_EIM_CSWCR25_TOG(v)    (HW_EIM_CSWCR25_WR(HW_EIM_CSWCR25_RD() ^  (v)))
+#define HW_EIM_CS5WCR2           (*(volatile hw_eim_cs5wcr2_t *) HW_EIM_CS5WCR2_ADDR)
+#define HW_EIM_CS5WCR2_RD()      (HW_EIM_CS5WCR2.U)
+#define HW_EIM_CS5WCR2_WR(v)     (HW_EIM_CS5WCR2.U = (v))
+#define HW_EIM_CS5WCR2_SET(v)    (HW_EIM_CS5WCR2_WR(HW_EIM_CS5WCR2_RD() |  (v)))
+#define HW_EIM_CS5WCR2_CLR(v)    (HW_EIM_CS5WCR2_WR(HW_EIM_CS5WCR2_RD() & ~(v)))
+#define HW_EIM_CS5WCR2_TOG(v)    (HW_EIM_CS5WCR2_WR(HW_EIM_CS5WCR2_RD() ^  (v)))
 #endif
 
 /*
- * constants & macros for individual EIM_CSWCR25 bitfields
+ * constants & macros for individual EIM_CS5WCR2 bitfields
  */
 
-/* --- Register HW_EIM_CSWCR25, field WBCDD[0:0] (RW)
+/* --- Register HW_EIM_CS5WCR2, field WBCDD[0] (RW)
  *
  * Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write
  * access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this
  * bit has no affect. This bit is cleared by hardware reset.
  */
 
-#define BP_EIM_CSWCR25_WBCDD      (0)
-#define BM_EIM_CSWCR25_WBCDD      (0x00000001)
+#define BP_EIM_CS5WCR2_WBCDD      (0)      //!< Bit position for EIM_CS5WCR2_WBCDD.
+#define BM_EIM_CS5WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS5WCR2_WBCDD.
+
+//! @brief Get value of EIM_CS5WCR2_WBCDD from a register value.
+#define BG_EIM_CS5WCR2_WBCDD(r)   (((r) & BM_EIM_CS5WCR2_WBCDD) >> BP_EIM_CS5WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_CSWCR25_WBCDD(v)   ((((reg32_t) v) << 0) & BM_EIM_CSWCR25_WBCDD)
+//! @brief Format value for bitfield EIM_CS5WCR2_WBCDD.
+#define BF_EIM_CS5WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS5WCR2_WBCDD) & BM_EIM_CS5WCR2_WBCDD)
 #else
-#define BF_EIM_CSWCR25_WBCDD(v)   (((v) << 0) & BM_EIM_CSWCR25_WBCDD)
+//! @brief Format value for bitfield EIM_CS5WCR2_WBCDD.
+#define BF_EIM_CS5WCR2_WBCDD(v)   (((v) << BP_EIM_CS5WCR2_WBCDD) & BM_EIM_CS5WCR2_WBCDD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
-#define BW_EIM_CSWCR25_WBCDD(v)   BF_CS1(EIM_CSWCR25, WBCDD, v)
+#define BW_EIM_CS5WCR2_WBCDD(v)   (HW_EIM_CS5WCR2_WR((HW_EIM_CS5WCR2_RD() & ~BM_EIM_CS5WCR2_WBCDD) | BF_EIM_CS5WCR2_WBCDD(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_EIM_WCR - EIM Configuration Register (RW)
  *
+ * Reset value: 0x00000020
+ *
 
  */
-typedef union
+typedef union _hw_eim_wcr
 {
     reg32_t U;
-    struct
+    struct _hw_eim_wcr_bitfields
     {
-        unsigned BCM : 1; //!< Burst Clock Mode. This bit selects the burst clock mode of operation. It is used for system debug mode. BCM is cleared by a hardware reset. The BCLK frequency in this mode is according to GBCD bit field. The BCLK phase is opposite to the EIM clock in this mode if GBCD is 0. This bit should be used only in async. accesses. No sync access can be executed if this bit is set. When this bit is set bcd field shouldn't be configured to 0.
-        unsigned GBCD : 2; //!< General Burst Clock Divisor. When BCM bit is set, this bit field contains the value used to program the burst clock divisor for Continuous BCLK generation. The other BCD bit fields for each chip select are ignored. It is used to divide the internal AXI bus frequency. When BCM=0 GBCD bit field has no influence. GBCD is cleared by a hardware reset.
-        unsigned CONT_BCLK_SEL : 1; //!< When this bit is set BCLK pin output continuous clock. Otherwize, BCLK will output clock only when nesserary.
-        unsigned INTEN : 1; //!< Interrupt Enable. When this bit is set the External signal RDY_INT as active interrupt. When interrupt occurs, INT bit at the WCR will be set and t EIM_EXT_INT signal will be asserted correspondingly. This bit is cleared by a hardware reset.
-        unsigned INTPOL : 1; //!< Interrupt Polarity. This bit field determines the polarity of the external device interrupt.
-        unsigned RESERVED0 : 2; //!< Reserved
-        unsigned WDOG_EN : 1; //!< Memory WDog enable. This bit controls the operation of the wdog counter that terminates the EIM access.
-        unsigned WDOG_LIMIT : 2; //!< Memory Watch Dog (WDog) cycle limit. This bit field determines the number of BCLK cycles (ACLK cycles in dtack mode) before the wdog counter terminates the access and send an error response to the master.
-        unsigned FRUN_ACLK_EN : 1; //!< 
-        unsigned RESERVED1 : 20; //!< 
+        unsigned BCM : 1; //!< [0] Burst Clock Mode. This bit selects the burst clock mode of operation. It is used for system debug mode. BCM is cleared by a hardware reset. The BCLK frequency in this mode is according to GBCD bit field. The BCLK phase is opposite to the EIM clock in this mode if GBCD is 0. This bit should be used only in async. accesses. No sync access can be executed if this bit is set. When this bit is set bcd field shouldn't be configured to 0.
+        unsigned GBCD : 2; //!< [2:1] General Burst Clock Divisor. When BCM bit is set, this bit field contains the value used to program the burst clock divisor for Continuous BCLK generation. The other BCD bit fields for each chip select are ignored. It is used to divide the internal AXI bus frequency. When BCM=0 GBCD bit field has no influence. GBCD is cleared by a hardware reset.
+        unsigned CONT_BCLK_SEL : 1; //!< [3] When this bit is set BCLK pin output continuous clock. Otherwize, BCLK will output clock only when nesserary.
+        unsigned INTEN : 1; //!< [4] Interrupt Enable. When this bit is set the External signal RDY_INT as active interrupt. When interrupt occurs, INT bit at the WCR will be set and t EIM_EXT_INT signal will be asserted correspondingly. This bit is cleared by a hardware reset.
+        unsigned INTPOL : 1; //!< [5] Interrupt Polarity. This bit field determines the polarity of the external device interrupt.
+        unsigned RESERVED0 : 2; //!< [7:6] Reserved
+        unsigned WDOG_EN : 1; //!< [8] Memory WDog enable. This bit controls the operation of the wdog counter that terminates the EIM access.
+        unsigned WDOG_LIMIT : 2; //!< [10:9] Memory Watch Dog (WDog) cycle limit. This bit field determines the number of BCLK cycles (ACLK cycles in dtack mode) before the wdog counter terminates the access and send an error response to the master.
+        unsigned FRUN_ACLK_EN : 1; //!< [11] 
+        unsigned RESERVED1 : 20; //!< [31:12] 
     } B;
 } hw_eim_wcr_t;
 #endif
@@ -9810,7 +11684,7 @@ typedef union
  * constants & macros for individual EIM_WCR bitfields
  */
 
-/* --- Register HW_EIM_WCR, field BCM[0:0] (RW)
+/* --- Register HW_EIM_WCR, field BCM[0] (RW)
  *
  * Burst Clock Mode. This bit selects the burst clock mode of operation. It is used for system debug
  * mode. BCM is cleared by a hardware reset. The BCLK frequency in this mode is according to GBCD
@@ -9825,17 +11699,23 @@ typedef union
  * 1 - The burst clock runs whenever ACLK is active (independent of chip select configuration)
  */
 
-#define BP_EIM_WCR_BCM      (0)
-#define BM_EIM_WCR_BCM      (0x00000001)
+#define BP_EIM_WCR_BCM      (0)      //!< Bit position for EIM_WCR_BCM.
+#define BM_EIM_WCR_BCM      (0x00000001)  //!< Bit mask for EIM_WCR_BCM.
+
+//! @brief Get value of EIM_WCR_BCM from a register value.
+#define BG_EIM_WCR_BCM(r)   (((r) & BM_EIM_WCR_BCM) >> BP_EIM_WCR_BCM)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_BCM(v)   ((((reg32_t) v) << 0) & BM_EIM_WCR_BCM)
+//! @brief Format value for bitfield EIM_WCR_BCM.
+#define BF_EIM_WCR_BCM(v)   ((((reg32_t) v) << BP_EIM_WCR_BCM) & BM_EIM_WCR_BCM)
 #else
-#define BF_EIM_WCR_BCM(v)   (((v) << 0) & BM_EIM_WCR_BCM)
+//! @brief Format value for bitfield EIM_WCR_BCM.
+#define BF_EIM_WCR_BCM(v)   (((v) << BP_EIM_WCR_BCM) & BM_EIM_WCR_BCM)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCM field to a new value.
-#define BW_EIM_WCR_BCM(v)   BF_CS1(EIM_WCR, BCM, v)
+#define BW_EIM_WCR_BCM(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_BCM) | BF_EIM_WCR_BCM(v)))
 #endif
 
 
@@ -9853,21 +11733,27 @@ typedef union
  * 11 - Divide EIM clock by 4
  */
 
-#define BP_EIM_WCR_GBCD      (1)
-#define BM_EIM_WCR_GBCD      (0x00000006)
+#define BP_EIM_WCR_GBCD      (1)      //!< Bit position for EIM_WCR_GBCD.
+#define BM_EIM_WCR_GBCD      (0x00000006)  //!< Bit mask for EIM_WCR_GBCD.
+
+//! @brief Get value of EIM_WCR_GBCD from a register value.
+#define BG_EIM_WCR_GBCD(r)   (((r) & BM_EIM_WCR_GBCD) >> BP_EIM_WCR_GBCD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_GBCD(v)   ((((reg32_t) v) << 1) & BM_EIM_WCR_GBCD)
+//! @brief Format value for bitfield EIM_WCR_GBCD.
+#define BF_EIM_WCR_GBCD(v)   ((((reg32_t) v) << BP_EIM_WCR_GBCD) & BM_EIM_WCR_GBCD)
 #else
-#define BF_EIM_WCR_GBCD(v)   (((v) << 1) & BM_EIM_WCR_GBCD)
+//! @brief Format value for bitfield EIM_WCR_GBCD.
+#define BF_EIM_WCR_GBCD(v)   (((v) << BP_EIM_WCR_GBCD) & BM_EIM_WCR_GBCD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBCD field to a new value.
-#define BW_EIM_WCR_GBCD(v)   BF_CS1(EIM_WCR, GBCD, v)
+#define BW_EIM_WCR_GBCD(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_GBCD) | BF_EIM_WCR_GBCD(v)))
 #endif
 
 
-/* --- Register HW_EIM_WCR, field CONT_BCLK_SEL[3:3] (RW)
+/* --- Register HW_EIM_WCR, field CONT_BCLK_SEL[3] (RW)
  *
  * When this bit is set BCLK pin output continuous clock. Otherwize, BCLK will output clock only
  * when nesserary.
@@ -9877,21 +11763,27 @@ typedef union
  * 1 - BCLK Continuous
  */
 
-#define BP_EIM_WCR_CONT_BCLK_SEL      (3)
-#define BM_EIM_WCR_CONT_BCLK_SEL      (0x00000008)
+#define BP_EIM_WCR_CONT_BCLK_SEL      (3)      //!< Bit position for EIM_WCR_CONT_BCLK_SEL.
+#define BM_EIM_WCR_CONT_BCLK_SEL      (0x00000008)  //!< Bit mask for EIM_WCR_CONT_BCLK_SEL.
+
+//! @brief Get value of EIM_WCR_CONT_BCLK_SEL from a register value.
+#define BG_EIM_WCR_CONT_BCLK_SEL(r)   (((r) & BM_EIM_WCR_CONT_BCLK_SEL) >> BP_EIM_WCR_CONT_BCLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_CONT_BCLK_SEL(v)   ((((reg32_t) v) << 3) & BM_EIM_WCR_CONT_BCLK_SEL)
+//! @brief Format value for bitfield EIM_WCR_CONT_BCLK_SEL.
+#define BF_EIM_WCR_CONT_BCLK_SEL(v)   ((((reg32_t) v) << BP_EIM_WCR_CONT_BCLK_SEL) & BM_EIM_WCR_CONT_BCLK_SEL)
 #else
-#define BF_EIM_WCR_CONT_BCLK_SEL(v)   (((v) << 3) & BM_EIM_WCR_CONT_BCLK_SEL)
+//! @brief Format value for bitfield EIM_WCR_CONT_BCLK_SEL.
+#define BF_EIM_WCR_CONT_BCLK_SEL(v)   (((v) << BP_EIM_WCR_CONT_BCLK_SEL) & BM_EIM_WCR_CONT_BCLK_SEL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CONT_BCLK_SEL field to a new value.
-#define BW_EIM_WCR_CONT_BCLK_SEL(v)   BF_CS1(EIM_WCR, CONT_BCLK_SEL, v)
+#define BW_EIM_WCR_CONT_BCLK_SEL(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_CONT_BCLK_SEL) | BF_EIM_WCR_CONT_BCLK_SEL(v)))
 #endif
 
 
-/* --- Register HW_EIM_WCR, field INTEN[4:4] (RW)
+/* --- Register HW_EIM_WCR, field INTEN[4] (RW)
  *
  * Interrupt Enable. When this bit is set the External signal RDY_INT as active interrupt. When
  * interrupt occurs, INT bit at the WCR will be set and t EIM_EXT_INT signal will be asserted
@@ -9902,21 +11794,27 @@ typedef union
  * 1 - External interrupt Enable
  */
 
-#define BP_EIM_WCR_INTEN      (4)
-#define BM_EIM_WCR_INTEN      (0x00000010)
+#define BP_EIM_WCR_INTEN      (4)      //!< Bit position for EIM_WCR_INTEN.
+#define BM_EIM_WCR_INTEN      (0x00000010)  //!< Bit mask for EIM_WCR_INTEN.
+
+//! @brief Get value of EIM_WCR_INTEN from a register value.
+#define BG_EIM_WCR_INTEN(r)   (((r) & BM_EIM_WCR_INTEN) >> BP_EIM_WCR_INTEN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_INTEN(v)   ((((reg32_t) v) << 4) & BM_EIM_WCR_INTEN)
+//! @brief Format value for bitfield EIM_WCR_INTEN.
+#define BF_EIM_WCR_INTEN(v)   ((((reg32_t) v) << BP_EIM_WCR_INTEN) & BM_EIM_WCR_INTEN)
 #else
-#define BF_EIM_WCR_INTEN(v)   (((v) << 4) & BM_EIM_WCR_INTEN)
+//! @brief Format value for bitfield EIM_WCR_INTEN.
+#define BF_EIM_WCR_INTEN(v)   (((v) << BP_EIM_WCR_INTEN) & BM_EIM_WCR_INTEN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INTEN field to a new value.
-#define BW_EIM_WCR_INTEN(v)   BF_CS1(EIM_WCR, INTEN, v)
+#define BW_EIM_WCR_INTEN(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_INTEN) | BF_EIM_WCR_INTEN(v)))
 #endif
 
 
-/* --- Register HW_EIM_WCR, field INTPOL[5:5] (RW)
+/* --- Register HW_EIM_WCR, field INTPOL[5] (RW)
  *
  * Interrupt Polarity. This bit field determines the polarity of the external device interrupt.
  *
@@ -9925,21 +11823,27 @@ typedef union
  * 1 - External interrupt polarity is active high
  */
 
-#define BP_EIM_WCR_INTPOL      (5)
-#define BM_EIM_WCR_INTPOL      (0x00000020)
+#define BP_EIM_WCR_INTPOL      (5)      //!< Bit position for EIM_WCR_INTPOL.
+#define BM_EIM_WCR_INTPOL      (0x00000020)  //!< Bit mask for EIM_WCR_INTPOL.
+
+//! @brief Get value of EIM_WCR_INTPOL from a register value.
+#define BG_EIM_WCR_INTPOL(r)   (((r) & BM_EIM_WCR_INTPOL) >> BP_EIM_WCR_INTPOL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_INTPOL(v)   ((((reg32_t) v) << 5) & BM_EIM_WCR_INTPOL)
+//! @brief Format value for bitfield EIM_WCR_INTPOL.
+#define BF_EIM_WCR_INTPOL(v)   ((((reg32_t) v) << BP_EIM_WCR_INTPOL) & BM_EIM_WCR_INTPOL)
 #else
-#define BF_EIM_WCR_INTPOL(v)   (((v) << 5) & BM_EIM_WCR_INTPOL)
+//! @brief Format value for bitfield EIM_WCR_INTPOL.
+#define BF_EIM_WCR_INTPOL(v)   (((v) << BP_EIM_WCR_INTPOL) & BM_EIM_WCR_INTPOL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INTPOL field to a new value.
-#define BW_EIM_WCR_INTPOL(v)   BF_CS1(EIM_WCR, INTPOL, v)
+#define BW_EIM_WCR_INTPOL(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_INTPOL) | BF_EIM_WCR_INTPOL(v)))
 #endif
 
 
-/* --- Register HW_EIM_WCR, field WDOG_EN[8:8] (RW)
+/* --- Register HW_EIM_WCR, field WDOG_EN[8] (RW)
  *
  * Memory WDog enable. This bit controls the operation of the wdog counter that terminates the EIM
  * access.
@@ -9949,17 +11853,23 @@ typedef union
  * 1 - Memory WDog is Enabled
  */
 
-#define BP_EIM_WCR_WDOG_EN      (8)
-#define BM_EIM_WCR_WDOG_EN      (0x00000100)
+#define BP_EIM_WCR_WDOG_EN      (8)      //!< Bit position for EIM_WCR_WDOG_EN.
+#define BM_EIM_WCR_WDOG_EN      (0x00000100)  //!< Bit mask for EIM_WCR_WDOG_EN.
+
+//! @brief Get value of EIM_WCR_WDOG_EN from a register value.
+#define BG_EIM_WCR_WDOG_EN(r)   (((r) & BM_EIM_WCR_WDOG_EN) >> BP_EIM_WCR_WDOG_EN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_WDOG_EN(v)   ((((reg32_t) v) << 8) & BM_EIM_WCR_WDOG_EN)
+//! @brief Format value for bitfield EIM_WCR_WDOG_EN.
+#define BF_EIM_WCR_WDOG_EN(v)   ((((reg32_t) v) << BP_EIM_WCR_WDOG_EN) & BM_EIM_WCR_WDOG_EN)
 #else
-#define BF_EIM_WCR_WDOG_EN(v)   (((v) << 8) & BM_EIM_WCR_WDOG_EN)
+//! @brief Format value for bitfield EIM_WCR_WDOG_EN.
+#define BF_EIM_WCR_WDOG_EN(v)   (((v) << BP_EIM_WCR_WDOG_EN) & BM_EIM_WCR_WDOG_EN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDOG_EN field to a new value.
-#define BW_EIM_WCR_WDOG_EN(v)   BF_CS1(EIM_WCR, WDOG_EN, v)
+#define BW_EIM_WCR_WDOG_EN(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_WDOG_EN) | BF_EIM_WCR_WDOG_EN(v)))
 #endif
 
 
@@ -9976,60 +11886,74 @@ typedef union
  * 11 - 1024 BCLK cycles
  */
 
-#define BP_EIM_WCR_WDOG_LIMIT      (9)
-#define BM_EIM_WCR_WDOG_LIMIT      (0x00000600)
+#define BP_EIM_WCR_WDOG_LIMIT      (9)      //!< Bit position for EIM_WCR_WDOG_LIMIT.
+#define BM_EIM_WCR_WDOG_LIMIT      (0x00000600)  //!< Bit mask for EIM_WCR_WDOG_LIMIT.
+
+//! @brief Get value of EIM_WCR_WDOG_LIMIT from a register value.
+#define BG_EIM_WCR_WDOG_LIMIT(r)   (((r) & BM_EIM_WCR_WDOG_LIMIT) >> BP_EIM_WCR_WDOG_LIMIT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_WDOG_LIMIT(v)   ((((reg32_t) v) << 9) & BM_EIM_WCR_WDOG_LIMIT)
+//! @brief Format value for bitfield EIM_WCR_WDOG_LIMIT.
+#define BF_EIM_WCR_WDOG_LIMIT(v)   ((((reg32_t) v) << BP_EIM_WCR_WDOG_LIMIT) & BM_EIM_WCR_WDOG_LIMIT)
 #else
-#define BF_EIM_WCR_WDOG_LIMIT(v)   (((v) << 9) & BM_EIM_WCR_WDOG_LIMIT)
+//! @brief Format value for bitfield EIM_WCR_WDOG_LIMIT.
+#define BF_EIM_WCR_WDOG_LIMIT(v)   (((v) << BP_EIM_WCR_WDOG_LIMIT) & BM_EIM_WCR_WDOG_LIMIT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDOG_LIMIT field to a new value.
-#define BW_EIM_WCR_WDOG_LIMIT(v)   BF_CS1(EIM_WCR, WDOG_LIMIT, v)
+#define BW_EIM_WCR_WDOG_LIMIT(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_WDOG_LIMIT) | BF_EIM_WCR_WDOG_LIMIT(v)))
 #endif
 
 
-/* --- Register HW_EIM_WCR, field FRUN_ACLK_EN[11:11] (RW)
+/* --- Register HW_EIM_WCR, field FRUN_ACLK_EN[11] (RW)
  *
 
  */
 
-#define BP_EIM_WCR_FRUN_ACLK_EN      (11)
-#define BM_EIM_WCR_FRUN_ACLK_EN      (0x00000800)
+#define BP_EIM_WCR_FRUN_ACLK_EN      (11)      //!< Bit position for EIM_WCR_FRUN_ACLK_EN.
+#define BM_EIM_WCR_FRUN_ACLK_EN      (0x00000800)  //!< Bit mask for EIM_WCR_FRUN_ACLK_EN.
+
+//! @brief Get value of EIM_WCR_FRUN_ACLK_EN from a register value.
+#define BG_EIM_WCR_FRUN_ACLK_EN(r)   (((r) & BM_EIM_WCR_FRUN_ACLK_EN) >> BP_EIM_WCR_FRUN_ACLK_EN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WCR_FRUN_ACLK_EN(v)   ((((reg32_t) v) << 11) & BM_EIM_WCR_FRUN_ACLK_EN)
+//! @brief Format value for bitfield EIM_WCR_FRUN_ACLK_EN.
+#define BF_EIM_WCR_FRUN_ACLK_EN(v)   ((((reg32_t) v) << BP_EIM_WCR_FRUN_ACLK_EN) & BM_EIM_WCR_FRUN_ACLK_EN)
 #else
-#define BF_EIM_WCR_FRUN_ACLK_EN(v)   (((v) << 11) & BM_EIM_WCR_FRUN_ACLK_EN)
+//! @brief Format value for bitfield EIM_WCR_FRUN_ACLK_EN.
+#define BF_EIM_WCR_FRUN_ACLK_EN(v)   (((v) << BP_EIM_WCR_FRUN_ACLK_EN) & BM_EIM_WCR_FRUN_ACLK_EN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRUN_ACLK_EN field to a new value.
-#define BW_EIM_WCR_FRUN_ACLK_EN(v)   BF_CS1(EIM_WCR, FRUN_ACLK_EN, v)
+#define BW_EIM_WCR_FRUN_ACLK_EN(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_FRUN_ACLK_EN) | BF_EIM_WCR_FRUN_ACLK_EN(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_EIM_DCR - DLL Control Register (RW)
  *
+ * Reset value: 0x14000000
+ *
 
  */
-typedef union
+typedef union _hw_eim_dcr
 {
     reg32_t U;
-    struct
+    struct _hw_eim_dcr_bitfields
     {
-        unsigned DLL_CTRL_ENABLE : 1; //!< 
-        unsigned DLL_CTRL_RESET : 1; //!< 
-        unsigned DLL_CTRL_SLV_FORCE_UPD : 1; //!< 
-        unsigned DLL_CTRL_SLV_OFFSET_DEC : 1; //!< 
-        unsigned DLL_CTRL_SLV_OFFSET : 3; //!< 
-        unsigned DLL_CTRL_GATE_UPDATE : 1; //!< 
-        unsigned DLL_CTRL_SLV_OVERRIDE : 1; //!< Use override value in DLL_CTRL_SLV_OVERRIDE_VAL bit field instead of DLL locked value as delay.
-        unsigned DLL_CTRL_SLV_OVERRIDE_VAL : 7; //!< 
-        unsigned DLL_CTRL_REF_INITIAL_VAL : 7; //!< 
-        unsigned DLL_CTRL_SLV_UPDATE_INT : 5; //!< Update interval of slave DLL.
-        unsigned DLL_CTRL_REF_UPDATE_INT : 4; //!< Update interval of reference DLL.
+        unsigned DLL_CTRL_ENABLE : 1; //!< [0] 
+        unsigned DLL_CTRL_RESET : 1; //!< [1] 
+        unsigned DLL_CTRL_SLV_FORCE_UPD : 1; //!< [2] 
+        unsigned DLL_CTRL_SLV_OFFSET_DEC : 1; //!< [3] 
+        unsigned DLL_CTRL_SLV_OFFSET : 3; //!< [6:4] 
+        unsigned DLL_CTRL_GATE_UPDATE : 1; //!< [7] 
+        unsigned DLL_CTRL_SLV_OVERRIDE : 1; //!< [8] Use override value in DLL_CTRL_SLV_OVERRIDE_VAL bit field instead of DLL locked value as delay.
+        unsigned DLL_CTRL_SLV_OVERRIDE_VAL : 7; //!< [15:9] 
+        unsigned DLL_CTRL_REF_INITIAL_VAL : 7; //!< [22:16] 
+        unsigned DLL_CTRL_SLV_UPDATE_INT : 5; //!< [27:23] Update interval of slave DLL.
+        unsigned DLL_CTRL_REF_UPDATE_INT : 4; //!< [31:28] Update interval of reference DLL.
     } B;
 } hw_eim_dcr_t;
 #endif
@@ -10052,76 +11976,100 @@ typedef union
  * constants & macros for individual EIM_DCR bitfields
  */
 
-/* --- Register HW_EIM_DCR, field DLL_CTRL_ENABLE[0:0] (RW)
+/* --- Register HW_EIM_DCR, field DLL_CTRL_ENABLE[0] (RW)
  *
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_ENABLE      (0)
-#define BM_EIM_DCR_DLL_CTRL_ENABLE      (0x00000001)
+#define BP_EIM_DCR_DLL_CTRL_ENABLE      (0)      //!< Bit position for EIM_DCR_DLL_CTRL_ENABLE.
+#define BM_EIM_DCR_DLL_CTRL_ENABLE      (0x00000001)  //!< Bit mask for EIM_DCR_DLL_CTRL_ENABLE.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_ENABLE from a register value.
+#define BG_EIM_DCR_DLL_CTRL_ENABLE(r)   (((r) & BM_EIM_DCR_DLL_CTRL_ENABLE) >> BP_EIM_DCR_DLL_CTRL_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_ENABLE(v)   ((((reg32_t) v) << 0) & BM_EIM_DCR_DLL_CTRL_ENABLE)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_ENABLE.
+#define BF_EIM_DCR_DLL_CTRL_ENABLE(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_ENABLE) & BM_EIM_DCR_DLL_CTRL_ENABLE)
 #else
-#define BF_EIM_DCR_DLL_CTRL_ENABLE(v)   (((v) << 0) & BM_EIM_DCR_DLL_CTRL_ENABLE)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_ENABLE.
+#define BF_EIM_DCR_DLL_CTRL_ENABLE(v)   (((v) << BP_EIM_DCR_DLL_CTRL_ENABLE) & BM_EIM_DCR_DLL_CTRL_ENABLE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_ENABLE field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_ENABLE(v)   BF_CS1(EIM_DCR, DLL_CTRL_ENABLE, v)
+#define BW_EIM_DCR_DLL_CTRL_ENABLE(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_ENABLE) | BF_EIM_DCR_DLL_CTRL_ENABLE(v)))
 #endif
 
-/* --- Register HW_EIM_DCR, field DLL_CTRL_RESET[1:1] (RW)
+/* --- Register HW_EIM_DCR, field DLL_CTRL_RESET[1] (RW)
  *
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_RESET      (1)
-#define BM_EIM_DCR_DLL_CTRL_RESET      (0x00000002)
+#define BP_EIM_DCR_DLL_CTRL_RESET      (1)      //!< Bit position for EIM_DCR_DLL_CTRL_RESET.
+#define BM_EIM_DCR_DLL_CTRL_RESET      (0x00000002)  //!< Bit mask for EIM_DCR_DLL_CTRL_RESET.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_RESET from a register value.
+#define BG_EIM_DCR_DLL_CTRL_RESET(r)   (((r) & BM_EIM_DCR_DLL_CTRL_RESET) >> BP_EIM_DCR_DLL_CTRL_RESET)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_RESET(v)   ((((reg32_t) v) << 1) & BM_EIM_DCR_DLL_CTRL_RESET)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_RESET.
+#define BF_EIM_DCR_DLL_CTRL_RESET(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_RESET) & BM_EIM_DCR_DLL_CTRL_RESET)
 #else
-#define BF_EIM_DCR_DLL_CTRL_RESET(v)   (((v) << 1) & BM_EIM_DCR_DLL_CTRL_RESET)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_RESET.
+#define BF_EIM_DCR_DLL_CTRL_RESET(v)   (((v) << BP_EIM_DCR_DLL_CTRL_RESET) & BM_EIM_DCR_DLL_CTRL_RESET)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_RESET field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_RESET(v)   BF_CS1(EIM_DCR, DLL_CTRL_RESET, v)
+#define BW_EIM_DCR_DLL_CTRL_RESET(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_RESET) | BF_EIM_DCR_DLL_CTRL_RESET(v)))
 #endif
 
-/* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_FORCE_UPD[2:2] (RW)
+/* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_FORCE_UPD[2] (RW)
  *
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD      (2)
-#define BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD      (0x00000004)
+#define BP_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD      (2)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_FORCE_UPD.
+#define BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD      (0x00000004)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_FORCE_UPD.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_SLV_FORCE_UPD from a register value.
+#define BG_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(r)   (((r) & BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD) >> BP_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)   ((((reg32_t) v) << 2) & BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_FORCE_UPD.
+#define BF_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD) & BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD)
 #else
-#define BF_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)   (((v) << 2) & BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_FORCE_UPD.
+#define BF_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)   (((v) << BP_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD) & BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_FORCE_UPD field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)   BF_CS1(EIM_DCR, DLL_CTRL_SLV_FORCE_UPD, v)
+#define BW_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD) | BF_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)))
 #endif
 
-/* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_OFFSET_DEC[3:3] (RW)
+/* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_OFFSET_DEC[3] (RW)
  *
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC      (3)
-#define BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC      (0x00000008)
+#define BP_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC      (3)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC.
+#define BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC      (0x00000008)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC from a register value.
+#define BG_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(r)   (((r) & BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC) >> BP_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)   ((((reg32_t) v) << 3) & BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC.
+#define BF_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC) & BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC)
 #else
-#define BF_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)   (((v) << 3) & BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC.
+#define BF_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)   (((v) << BP_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC) & BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_OFFSET_DEC field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)   BF_CS1(EIM_DCR, DLL_CTRL_SLV_OFFSET_DEC, v)
+#define BW_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC) | BF_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)))
 #endif
 
 /* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_OFFSET[6:4] (RO)
@@ -10129,28 +12077,37 @@ typedef union
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_SLV_OFFSET      (4)
-#define BM_EIM_DCR_DLL_CTRL_SLV_OFFSET      (0x00000070)
+#define BP_EIM_DCR_DLL_CTRL_SLV_OFFSET      (4)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OFFSET.
+#define BM_EIM_DCR_DLL_CTRL_SLV_OFFSET      (0x00000070)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OFFSET.
 
-/* --- Register HW_EIM_DCR, field DLL_CTRL_GATE_UPDATE[7:7] (RW)
+//! @brief Get value of EIM_DCR_DLL_CTRL_SLV_OFFSET from a register value.
+#define BG_EIM_DCR_DLL_CTRL_SLV_OFFSET(r)   (((r) & BM_EIM_DCR_DLL_CTRL_SLV_OFFSET) >> BP_EIM_DCR_DLL_CTRL_SLV_OFFSET)
+
+/* --- Register HW_EIM_DCR, field DLL_CTRL_GATE_UPDATE[7] (RW)
  *
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_GATE_UPDATE      (7)
-#define BM_EIM_DCR_DLL_CTRL_GATE_UPDATE      (0x00000080)
+#define BP_EIM_DCR_DLL_CTRL_GATE_UPDATE      (7)      //!< Bit position for EIM_DCR_DLL_CTRL_GATE_UPDATE.
+#define BM_EIM_DCR_DLL_CTRL_GATE_UPDATE      (0x00000080)  //!< Bit mask for EIM_DCR_DLL_CTRL_GATE_UPDATE.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_GATE_UPDATE from a register value.
+#define BG_EIM_DCR_DLL_CTRL_GATE_UPDATE(r)   (((r) & BM_EIM_DCR_DLL_CTRL_GATE_UPDATE) >> BP_EIM_DCR_DLL_CTRL_GATE_UPDATE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)   ((((reg32_t) v) << 7) & BM_EIM_DCR_DLL_CTRL_GATE_UPDATE)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_GATE_UPDATE.
+#define BF_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_GATE_UPDATE) & BM_EIM_DCR_DLL_CTRL_GATE_UPDATE)
 #else
-#define BF_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)   (((v) << 7) & BM_EIM_DCR_DLL_CTRL_GATE_UPDATE)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_GATE_UPDATE.
+#define BF_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)   (((v) << BP_EIM_DCR_DLL_CTRL_GATE_UPDATE) & BM_EIM_DCR_DLL_CTRL_GATE_UPDATE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_GATE_UPDATE field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)   BF_CS1(EIM_DCR, DLL_CTRL_GATE_UPDATE, v)
+#define BW_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_GATE_UPDATE) | BF_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)))
 #endif
 
-/* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_OVERRIDE[8:8] (RW)
+/* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_OVERRIDE[8] (RW)
  *
  * Use override value in DLL_CTRL_SLV_OVERRIDE_VAL bit field instead of DLL locked value as delay.
  *
@@ -10159,17 +12116,23 @@ typedef union
  * 1 - Slave delay use DLL_CTRL_SLV_OVERRIDE_VAL
  */
 
-#define BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE      (8)
-#define BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE      (0x00000100)
+#define BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE      (8)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OVERRIDE.
+#define BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE      (0x00000100)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OVERRIDE.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_SLV_OVERRIDE from a register value.
+#define BG_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(r)   (((r) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE) >> BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)   ((((reg32_t) v) << 8) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_OVERRIDE.
+#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE)
 #else
-#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)   (((v) << 8) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_OVERRIDE.
+#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)   (((v) << BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_OVERRIDE field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)   BF_CS1(EIM_DCR, DLL_CTRL_SLV_OVERRIDE, v)
+#define BW_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE) | BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)))
 #endif
 
 
@@ -10178,17 +12141,23 @@ typedef union
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL      (9)
-#define BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL      (0x0000fe00)
+#define BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL      (9)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL.
+#define BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL      (0x0000fe00)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL from a register value.
+#define BG_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(r)   (((r) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL) >> BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)   ((((reg32_t) v) << 9) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL.
+#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL)
 #else
-#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)   (((v) << 9) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL.
+#define BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)   (((v) << BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL) & BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_OVERRIDE_VAL field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)   BF_CS1(EIM_DCR, DLL_CTRL_SLV_OVERRIDE_VAL, v)
+#define BW_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL) | BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)))
 #endif
 
 /* --- Register HW_EIM_DCR, field DLL_CTRL_REF_INITIAL_VAL[22:16] (RW)
@@ -10196,17 +12165,23 @@ typedef union
 
  */
 
-#define BP_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL      (16)
-#define BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL      (0x007f0000)
+#define BP_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL      (16)      //!< Bit position for EIM_DCR_DLL_CTRL_REF_INITIAL_VAL.
+#define BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL      (0x007f0000)  //!< Bit mask for EIM_DCR_DLL_CTRL_REF_INITIAL_VAL.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_REF_INITIAL_VAL from a register value.
+#define BG_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(r)   (((r) & BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL) >> BP_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)   ((((reg32_t) v) << 16) & BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_REF_INITIAL_VAL.
+#define BF_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL) & BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL)
 #else
-#define BF_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)   (((v) << 16) & BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_REF_INITIAL_VAL.
+#define BF_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)   (((v) << BP_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL) & BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_REF_INITIAL_VAL field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)   BF_CS1(EIM_DCR, DLL_CTRL_REF_INITIAL_VAL, v)
+#define BW_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL) | BF_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)))
 #endif
 
 /* --- Register HW_EIM_DCR, field DLL_CTRL_SLV_UPDATE_INT[27:23] (RW)
@@ -10214,17 +12189,23 @@ typedef union
  * Update interval of slave DLL.
  */
 
-#define BP_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT      (23)
-#define BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT      (0x0f800000)
+#define BP_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT      (23)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_UPDATE_INT.
+#define BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT      (0x0f800000)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_UPDATE_INT.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_SLV_UPDATE_INT from a register value.
+#define BG_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(r)   (((r) & BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT) >> BP_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)   ((((reg32_t) v) << 23) & BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_UPDATE_INT.
+#define BF_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT) & BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT)
 #else
-#define BF_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)   (((v) << 23) & BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_SLV_UPDATE_INT.
+#define BF_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)   (((v) << BP_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT) & BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_UPDATE_INT field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)   BF_CS1(EIM_DCR, DLL_CTRL_SLV_UPDATE_INT, v)
+#define BW_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT) | BF_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)))
 #endif
 
 /* --- Register HW_EIM_DCR, field DLL_CTRL_REF_UPDATE_INT[31:28] (RW)
@@ -10232,35 +12213,43 @@ typedef union
  * Update interval of reference DLL.
  */
 
-#define BP_EIM_DCR_DLL_CTRL_REF_UPDATE_INT      (28)
-#define BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT      (0xf0000000)
+#define BP_EIM_DCR_DLL_CTRL_REF_UPDATE_INT      (28)      //!< Bit position for EIM_DCR_DLL_CTRL_REF_UPDATE_INT.
+#define BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT      (0xf0000000)  //!< Bit mask for EIM_DCR_DLL_CTRL_REF_UPDATE_INT.
+
+//! @brief Get value of EIM_DCR_DLL_CTRL_REF_UPDATE_INT from a register value.
+#define BG_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(r)   (((r) & BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT) >> BP_EIM_DCR_DLL_CTRL_REF_UPDATE_INT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)   ((((reg32_t) v) << 28) & BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_REF_UPDATE_INT.
+#define BF_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)   ((((reg32_t) v) << BP_EIM_DCR_DLL_CTRL_REF_UPDATE_INT) & BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT)
 #else
-#define BF_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)   (((v) << 28) & BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT)
+//! @brief Format value for bitfield EIM_DCR_DLL_CTRL_REF_UPDATE_INT.
+#define BF_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)   (((v) << BP_EIM_DCR_DLL_CTRL_REF_UPDATE_INT) & BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_REF_UPDATE_INT field to a new value.
-#define BW_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)   BF_CS1(EIM_DCR, DLL_CTRL_REF_UPDATE_INT, v)
+#define BW_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT) | BF_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_EIM_DSR - DLL Status Register (RO)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_eim_dsr
 {
     reg32_t U;
-    struct
+    struct _hw_eim_dsr_bitfields
     {
-        unsigned DLL_STS_SLV_LOCK : 1; //!< 
-        unsigned DLL_STS_REF_LOCK : 1; //!< 
-        unsigned DLL_STS_SLV_SEL : 7; //!< 
-        unsigned DLL_STS_REF_SEL : 7; //!< 
-        unsigned RESERVED0 : 16; //!< 
+        unsigned DLL_STS_SLV_LOCK : 1; //!< [0] 
+        unsigned DLL_STS_REF_LOCK : 1; //!< [1] 
+        unsigned DLL_STS_SLV_SEL : 7; //!< [8:2] 
+        unsigned DLL_STS_REF_SEL : 7; //!< [15:9] 
+        unsigned RESERVED0 : 16; //!< [31:16] 
     } B;
 } hw_eim_dsr_t;
 #endif
@@ -10279,55 +12268,69 @@ typedef union
  * constants & macros for individual EIM_DSR bitfields
  */
 
-/* --- Register HW_EIM_DSR, field DLL_STS_SLV_LOCK[0:0] (RW)
+/* --- Register HW_EIM_DSR, field DLL_STS_SLV_LOCK[0] (RW)
  *
 
  */
 
-#define BP_EIM_DSR_DLL_STS_SLV_LOCK      (0)
-#define BM_EIM_DSR_DLL_STS_SLV_LOCK      (0x00000001)
+#define BP_EIM_DSR_DLL_STS_SLV_LOCK      (0)      //!< Bit position for EIM_DSR_DLL_STS_SLV_LOCK.
+#define BM_EIM_DSR_DLL_STS_SLV_LOCK      (0x00000001)  //!< Bit mask for EIM_DSR_DLL_STS_SLV_LOCK.
 
-/* --- Register HW_EIM_DSR, field DLL_STS_REF_LOCK[1:1] (RW)
+//! @brief Get value of EIM_DSR_DLL_STS_SLV_LOCK from a register value.
+#define BG_EIM_DSR_DLL_STS_SLV_LOCK(r)   (((r) & BM_EIM_DSR_DLL_STS_SLV_LOCK) >> BP_EIM_DSR_DLL_STS_SLV_LOCK)
+
+/* --- Register HW_EIM_DSR, field DLL_STS_REF_LOCK[1] (RW)
  *
 
  */
 
-#define BP_EIM_DSR_DLL_STS_REF_LOCK      (1)
-#define BM_EIM_DSR_DLL_STS_REF_LOCK      (0x00000002)
+#define BP_EIM_DSR_DLL_STS_REF_LOCK      (1)      //!< Bit position for EIM_DSR_DLL_STS_REF_LOCK.
+#define BM_EIM_DSR_DLL_STS_REF_LOCK      (0x00000002)  //!< Bit mask for EIM_DSR_DLL_STS_REF_LOCK.
+
+//! @brief Get value of EIM_DSR_DLL_STS_REF_LOCK from a register value.
+#define BG_EIM_DSR_DLL_STS_REF_LOCK(r)   (((r) & BM_EIM_DSR_DLL_STS_REF_LOCK) >> BP_EIM_DSR_DLL_STS_REF_LOCK)
 
 /* --- Register HW_EIM_DSR, field DLL_STS_SLV_SEL[8:2] (RW)
  *
 
  */
 
-#define BP_EIM_DSR_DLL_STS_SLV_SEL      (2)
-#define BM_EIM_DSR_DLL_STS_SLV_SEL      (0x000001fc)
+#define BP_EIM_DSR_DLL_STS_SLV_SEL      (2)      //!< Bit position for EIM_DSR_DLL_STS_SLV_SEL.
+#define BM_EIM_DSR_DLL_STS_SLV_SEL      (0x000001fc)  //!< Bit mask for EIM_DSR_DLL_STS_SLV_SEL.
+
+//! @brief Get value of EIM_DSR_DLL_STS_SLV_SEL from a register value.
+#define BG_EIM_DSR_DLL_STS_SLV_SEL(r)   (((r) & BM_EIM_DSR_DLL_STS_SLV_SEL) >> BP_EIM_DSR_DLL_STS_SLV_SEL)
 
 /* --- Register HW_EIM_DSR, field DLL_STS_REF_SEL[15:9] (RW)
  *
 
  */
 
-#define BP_EIM_DSR_DLL_STS_REF_SEL      (9)
-#define BM_EIM_DSR_DLL_STS_REF_SEL      (0x0000fe00)
+#define BP_EIM_DSR_DLL_STS_REF_SEL      (9)      //!< Bit position for EIM_DSR_DLL_STS_REF_SEL.
+#define BM_EIM_DSR_DLL_STS_REF_SEL      (0x0000fe00)  //!< Bit mask for EIM_DSR_DLL_STS_REF_SEL.
+
+//! @brief Get value of EIM_DSR_DLL_STS_REF_SEL from a register value.
+#define BG_EIM_DSR_DLL_STS_REF_SEL(r)   (((r) & BM_EIM_DSR_DLL_STS_REF_SEL) >> BP_EIM_DSR_DLL_STS_REF_SEL)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_EIM_WIAR - EIM IP Access Register (RW)
  *
+ * Reset value: 0x00000010
+ *
 
  */
-typedef union
+typedef union _hw_eim_wiar
 {
     reg32_t U;
-    struct
+    struct _hw_eim_wiar_bitfields
     {
-        unsigned IPS_REQ : 1; //!< IPS request. The Master requests to access one of the IPS registers.Dutring such access the EIM should not preform any AXI/memory accesses. The EIM finishes the AXI accesses that already starts and asserts the IPS_ACK bit.
-        unsigned IPS_ACK : 1; //!< IPS ACK. The EIM is ready for ips access. There is no active AXI access and no new AXI access is accepted till this bit is cleared. This bit is cleared by the master after it completes the ips accesses.
-        unsigned INT : 1; //!< Interrupt. This bit indicates interrupt assertion by an external device according to RDY_INT signal. When polling this bit, INT=0 indicates interrupt not occurred and INT=1 indicates assertion of the external device interrupt. This bit is cleared by a hardware reset.
-        unsigned ERRST : 1; //!< READY After Reset. This bit controls the initial ready/busy status for external devices on CS0 immediately after hardware reset. This is a sticky bit which is cleared once the RDY_INT signal is asserted by the external device. When ERRST = 1 the first fetch access from EIM to the external device located on CS0 will be pending until RDY_INT signal indicates that the external device is ready, then EIM will execute the access. Reset value for ERRST is EIM_BOOT[4].
-        unsigned ACLK_EN : 1; //!< ACLK enable. This bit gates the ACLK for the EIM except from FFs that get ipg_aclk_s. After reset ACLK is enabled.
-        unsigned RESERVED0 : 27; //!< Reserved
+        unsigned IPS_REQ : 1; //!< [0] IPS request. The Master requests to access one of the IPS registers.Dutring such access the EIM should not preform any AXI/memory accesses. The EIM finishes the AXI accesses that already starts and asserts the IPS_ACK bit.
+        unsigned IPS_ACK : 1; //!< [1] IPS ACK. The EIM is ready for ips access. There is no active AXI access and no new AXI access is accepted till this bit is cleared. This bit is cleared by the master after it completes the ips accesses.
+        unsigned INT : 1; //!< [2] Interrupt. This bit indicates interrupt assertion by an external device according to RDY_INT signal. When polling this bit, INT=0 indicates interrupt not occurred and INT=1 indicates assertion of the external device interrupt. This bit is cleared by a hardware reset.
+        unsigned ERRST : 1; //!< [3] READY After Reset. This bit controls the initial ready/busy status for external devices on CS0 immediately after hardware reset. This is a sticky bit which is cleared once the RDY_INT signal is asserted by the external device. When ERRST = 1 the first fetch access from EIM to the external device located on CS0 will be pending until RDY_INT signal indicates that the external device is ready, then EIM will execute the access. Reset value for ERRST is EIM_BOOT[4].
+        unsigned ACLK_EN : 1; //!< [4] ACLK enable. This bit gates the ACLK for the EIM except from FFs that get ipg_aclk_s. After reset ACLK is enabled.
+        unsigned RESERVED0 : 27; //!< [31:5] Reserved
     } B;
 } hw_eim_wiar_t;
 #endif
@@ -10350,7 +12353,7 @@ typedef union
  * constants & macros for individual EIM_WIAR bitfields
  */
 
-/* --- Register HW_EIM_WIAR, field IPS_REQ[0:0] (RW)
+/* --- Register HW_EIM_WIAR, field IPS_REQ[0] (RW)
  *
  * IPS request. The Master requests to access one of the IPS registers.Dutring such access the EIM
  * should not preform any AXI/memory accesses. The EIM finishes the AXI accesses that already starts
@@ -10361,21 +12364,27 @@ typedef union
  * 1 - Master requests ips access
  */
 
-#define BP_EIM_WIAR_IPS_REQ      (0)
-#define BM_EIM_WIAR_IPS_REQ      (0x00000001)
+#define BP_EIM_WIAR_IPS_REQ      (0)      //!< Bit position for EIM_WIAR_IPS_REQ.
+#define BM_EIM_WIAR_IPS_REQ      (0x00000001)  //!< Bit mask for EIM_WIAR_IPS_REQ.
+
+//! @brief Get value of EIM_WIAR_IPS_REQ from a register value.
+#define BG_EIM_WIAR_IPS_REQ(r)   (((r) & BM_EIM_WIAR_IPS_REQ) >> BP_EIM_WIAR_IPS_REQ)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WIAR_IPS_REQ(v)   ((((reg32_t) v) << 0) & BM_EIM_WIAR_IPS_REQ)
+//! @brief Format value for bitfield EIM_WIAR_IPS_REQ.
+#define BF_EIM_WIAR_IPS_REQ(v)   ((((reg32_t) v) << BP_EIM_WIAR_IPS_REQ) & BM_EIM_WIAR_IPS_REQ)
 #else
-#define BF_EIM_WIAR_IPS_REQ(v)   (((v) << 0) & BM_EIM_WIAR_IPS_REQ)
+//! @brief Format value for bitfield EIM_WIAR_IPS_REQ.
+#define BF_EIM_WIAR_IPS_REQ(v)   (((v) << BP_EIM_WIAR_IPS_REQ) & BM_EIM_WIAR_IPS_REQ)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPS_REQ field to a new value.
-#define BW_EIM_WIAR_IPS_REQ(v)   BF_CS1(EIM_WIAR, IPS_REQ, v)
+#define BW_EIM_WIAR_IPS_REQ(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_IPS_REQ) | BF_EIM_WIAR_IPS_REQ(v)))
 #endif
 
 
-/* --- Register HW_EIM_WIAR, field IPS_ACK[1:1] (RW)
+/* --- Register HW_EIM_WIAR, field IPS_ACK[1] (RW)
  *
  * IPS ACK. The EIM is ready for ips access. There is no active AXI access and no new AXI access is
  * accepted till this bit is cleared. This bit is cleared by the master after it completes the ips
@@ -10386,41 +12395,53 @@ typedef union
  * 1 - Master can access ips.
  */
 
-#define BP_EIM_WIAR_IPS_ACK      (1)
-#define BM_EIM_WIAR_IPS_ACK      (0x00000002)
+#define BP_EIM_WIAR_IPS_ACK      (1)      //!< Bit position for EIM_WIAR_IPS_ACK.
+#define BM_EIM_WIAR_IPS_ACK      (0x00000002)  //!< Bit mask for EIM_WIAR_IPS_ACK.
+
+//! @brief Get value of EIM_WIAR_IPS_ACK from a register value.
+#define BG_EIM_WIAR_IPS_ACK(r)   (((r) & BM_EIM_WIAR_IPS_ACK) >> BP_EIM_WIAR_IPS_ACK)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WIAR_IPS_ACK(v)   ((((reg32_t) v) << 1) & BM_EIM_WIAR_IPS_ACK)
+//! @brief Format value for bitfield EIM_WIAR_IPS_ACK.
+#define BF_EIM_WIAR_IPS_ACK(v)   ((((reg32_t) v) << BP_EIM_WIAR_IPS_ACK) & BM_EIM_WIAR_IPS_ACK)
 #else
-#define BF_EIM_WIAR_IPS_ACK(v)   (((v) << 1) & BM_EIM_WIAR_IPS_ACK)
+//! @brief Format value for bitfield EIM_WIAR_IPS_ACK.
+#define BF_EIM_WIAR_IPS_ACK(v)   (((v) << BP_EIM_WIAR_IPS_ACK) & BM_EIM_WIAR_IPS_ACK)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPS_ACK field to a new value.
-#define BW_EIM_WIAR_IPS_ACK(v)   BF_CS1(EIM_WIAR, IPS_ACK, v)
+#define BW_EIM_WIAR_IPS_ACK(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_IPS_ACK) | BF_EIM_WIAR_IPS_ACK(v)))
 #endif
 
 
-/* --- Register HW_EIM_WIAR, field INT[2:2] (RW)
+/* --- Register HW_EIM_WIAR, field INT[2] (RW)
  *
  * Interrupt. This bit indicates interrupt assertion by an external device according to RDY_INT
  * signal. When polling this bit, INT=0 indicates interrupt not occurred and INT=1 indicates
  * assertion of the external device interrupt. This bit is cleared by a hardware reset.
  */
 
-#define BP_EIM_WIAR_INT      (2)
-#define BM_EIM_WIAR_INT      (0x00000004)
+#define BP_EIM_WIAR_INT      (2)      //!< Bit position for EIM_WIAR_INT.
+#define BM_EIM_WIAR_INT      (0x00000004)  //!< Bit mask for EIM_WIAR_INT.
+
+//! @brief Get value of EIM_WIAR_INT from a register value.
+#define BG_EIM_WIAR_INT(r)   (((r) & BM_EIM_WIAR_INT) >> BP_EIM_WIAR_INT)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WIAR_INT(v)   ((((reg32_t) v) << 2) & BM_EIM_WIAR_INT)
+//! @brief Format value for bitfield EIM_WIAR_INT.
+#define BF_EIM_WIAR_INT(v)   ((((reg32_t) v) << BP_EIM_WIAR_INT) & BM_EIM_WIAR_INT)
 #else
-#define BF_EIM_WIAR_INT(v)   (((v) << 2) & BM_EIM_WIAR_INT)
+//! @brief Format value for bitfield EIM_WIAR_INT.
+#define BF_EIM_WIAR_INT(v)   (((v) << BP_EIM_WIAR_INT) & BM_EIM_WIAR_INT)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INT field to a new value.
-#define BW_EIM_WIAR_INT(v)   BF_CS1(EIM_WIAR, INT, v)
+#define BW_EIM_WIAR_INT(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_INT) | BF_EIM_WIAR_INT(v)))
 #endif
 
-/* --- Register HW_EIM_WIAR, field ERRST[3:3] (RW)
+/* --- Register HW_EIM_WIAR, field ERRST[3] (RW)
  *
  * READY After Reset. This bit controls the initial ready/busy status for external devices on CS0
  * immediately after hardware reset. This is a sticky bit which is cleared once the RDY_INT signal
@@ -10433,21 +12454,27 @@ typedef union
  * 1 - RDY_INT After Reset Enable
  */
 
-#define BP_EIM_WIAR_ERRST      (3)
-#define BM_EIM_WIAR_ERRST      (0x00000008)
+#define BP_EIM_WIAR_ERRST      (3)      //!< Bit position for EIM_WIAR_ERRST.
+#define BM_EIM_WIAR_ERRST      (0x00000008)  //!< Bit mask for EIM_WIAR_ERRST.
+
+//! @brief Get value of EIM_WIAR_ERRST from a register value.
+#define BG_EIM_WIAR_ERRST(r)   (((r) & BM_EIM_WIAR_ERRST) >> BP_EIM_WIAR_ERRST)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WIAR_ERRST(v)   ((((reg32_t) v) << 3) & BM_EIM_WIAR_ERRST)
+//! @brief Format value for bitfield EIM_WIAR_ERRST.
+#define BF_EIM_WIAR_ERRST(v)   ((((reg32_t) v) << BP_EIM_WIAR_ERRST) & BM_EIM_WIAR_ERRST)
 #else
-#define BF_EIM_WIAR_ERRST(v)   (((v) << 3) & BM_EIM_WIAR_ERRST)
+//! @brief Format value for bitfield EIM_WIAR_ERRST.
+#define BF_EIM_WIAR_ERRST(v)   (((v) << BP_EIM_WIAR_ERRST) & BM_EIM_WIAR_ERRST)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERRST field to a new value.
-#define BW_EIM_WIAR_ERRST(v)   BF_CS1(EIM_WIAR, ERRST, v)
+#define BW_EIM_WIAR_ERRST(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_ERRST) | BF_EIM_WIAR_ERRST(v)))
 #endif
 
 
-/* --- Register HW_EIM_WIAR, field ACLK_EN[4:4] (RW)
+/* --- Register HW_EIM_WIAR, field ACLK_EN[4] (RW)
  *
  * ACLK enable. This bit gates the ACLK for the EIM except from FFs that get ipg_aclk_s. After reset
  * ACLK is enabled.
@@ -10457,17 +12484,23 @@ typedef union
  * 1 - ACLK is enabled
  */
 
-#define BP_EIM_WIAR_ACLK_EN      (4)
-#define BM_EIM_WIAR_ACLK_EN      (0x00000010)
+#define BP_EIM_WIAR_ACLK_EN      (4)      //!< Bit position for EIM_WIAR_ACLK_EN.
+#define BM_EIM_WIAR_ACLK_EN      (0x00000010)  //!< Bit mask for EIM_WIAR_ACLK_EN.
+
+//! @brief Get value of EIM_WIAR_ACLK_EN from a register value.
+#define BG_EIM_WIAR_ACLK_EN(r)   (((r) & BM_EIM_WIAR_ACLK_EN) >> BP_EIM_WIAR_ACLK_EN)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_WIAR_ACLK_EN(v)   ((((reg32_t) v) << 4) & BM_EIM_WIAR_ACLK_EN)
+//! @brief Format value for bitfield EIM_WIAR_ACLK_EN.
+#define BF_EIM_WIAR_ACLK_EN(v)   ((((reg32_t) v) << BP_EIM_WIAR_ACLK_EN) & BM_EIM_WIAR_ACLK_EN)
 #else
-#define BF_EIM_WIAR_ACLK_EN(v)   (((v) << 4) & BM_EIM_WIAR_ACLK_EN)
+//! @brief Format value for bitfield EIM_WIAR_ACLK_EN.
+#define BF_EIM_WIAR_ACLK_EN(v)   (((v) << BP_EIM_WIAR_ACLK_EN) & BM_EIM_WIAR_ACLK_EN)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACLK_EN field to a new value.
-#define BW_EIM_WIAR_ACLK_EN(v)   BF_CS1(EIM_WIAR, ACLK_EN, v)
+#define BW_EIM_WIAR_ACLK_EN(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_ACLK_EN) | BF_EIM_WIAR_ACLK_EN(v)))
 #endif
 
 
@@ -10475,14 +12508,16 @@ typedef union
 /*!
  * @brief HW_EIM_EAR - Error Address Register (RW)
  *
+ * Reset value: 0x00000000
+ *
 
  */
-typedef union
+typedef union _hw_eim_ear
 {
     reg32_t U;
-    struct
+    struct _hw_eim_ear_bitfields
     {
-        unsigned ERROR_ADDR : 32; //!< Error Address. This bit field holds the AXI address of the last access that caused error. This register is read only register.
+        unsigned ERROR_ADDR : 32; //!< [31:0] Error Address. This bit field holds the AXI address of the last access that caused error. This register is read only register.
     } B;
 } hw_eim_ear_t;
 #endif
@@ -10511,17 +12546,23 @@ typedef union
  * register is read only register.
  */
 
-#define BP_EIM_EAR_ERROR_ADDR      (0)
-#define BM_EIM_EAR_ERROR_ADDR      (0xffffffff)
+#define BP_EIM_EAR_ERROR_ADDR      (0)      //!< Bit position for EIM_EAR_ERROR_ADDR.
+#define BM_EIM_EAR_ERROR_ADDR      (0xffffffff)  //!< Bit mask for EIM_EAR_ERROR_ADDR.
+
+//! @brief Get value of EIM_EAR_ERROR_ADDR from a register value.
+#define BG_EIM_EAR_ERROR_ADDR(r)   (((r) & BM_EIM_EAR_ERROR_ADDR) >> BP_EIM_EAR_ERROR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_EIM_EAR_ERROR_ADDR(v)   ((((reg32_t) v) << 0) & BM_EIM_EAR_ERROR_ADDR)
+//! @brief Format value for bitfield EIM_EAR_ERROR_ADDR.
+#define BF_EIM_EAR_ERROR_ADDR(v)   ((((reg32_t) v) << BP_EIM_EAR_ERROR_ADDR) & BM_EIM_EAR_ERROR_ADDR)
 #else
-#define BF_EIM_EAR_ERROR_ADDR(v)   (((v) << 0) & BM_EIM_EAR_ERROR_ADDR)
+//! @brief Format value for bitfield EIM_EAR_ERROR_ADDR.
+#define BF_EIM_EAR_ERROR_ADDR(v)   (((v) << BP_EIM_EAR_ERROR_ADDR) & BM_EIM_EAR_ERROR_ADDR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERROR_ADDR field to a new value.
-#define BW_EIM_EAR_ERROR_ADDR(v)   BF_CS1(EIM_EAR, ERROR_ADDR, v)
+#define BW_EIM_EAR_ERROR_ADDR(v)   (HW_EIM_EAR_WR((HW_EIM_EAR_RD() & ~BM_EIM_EAR_ERROR_ADDR) | BF_EIM_EAR_ERROR_ADDR(v)))
 #endif
 
 
@@ -10529,50 +12570,52 @@ typedef union
  * @brief All EIM module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef struct
+#pragma pack(1)
+typedef struct _hw_eim
 {
-    volatile hw_eim_csgcr10_t CSGCR10; //!< Chip Select n General Configuration Register 1 0
-    volatile hw_eim_csgcr20_t CSGCR20; //!< Chip Select n General Configuration Register 2 0
-    volatile hw_eim_csrcr10_t CSRCR10; //!< Chip Select n Read Configuration Register 1 0
-    volatile hw_eim_csrcr20_t CSRCR20; //!< Chip Select n Read Configuration Register 2 0
-    volatile hw_eim_cswcr10_t CSWCR10; //!< Chip Select n Write Configuration Register 1 0
-    volatile hw_eim_cswcr20_t CSWCR20; //!< Chip Select n Write Configuration Register 2 0
-    volatile hw_eim_csgcr11_t CSGCR11; //!< Chip Select n General Configuration Register 1 1
-    volatile hw_eim_csgcr21_t CSGCR21; //!< Chip Select n General Configuration Register 2 1
-    volatile hw_eim_csrcr11_t CSRCR11; //!< Chip Select n Read Configuration Register 1 1
-    volatile hw_eim_csrcr21_t CSRCR21; //!< Chip Select n Read Configuration Register 2 1
-    volatile hw_eim_cswcr11_t CSWCR11; //!< Chip Select n Write Configuration Register 1 1
-    volatile hw_eim_cswcr21_t CSWCR21; //!< Chip Select n Write Configuration Register 2 1
-    volatile hw_eim_csgcr12_t CSGCR12; //!< Chip Select n General Configuration Register 1 2
-    volatile hw_eim_csgcr22_t CSGCR22; //!< Chip Select n General Configuration Register 2 2
-    volatile hw_eim_csrcr12_t CSRCR12; //!< Chip Select n Read Configuration Register 1 2
-    volatile hw_eim_csrcr22_t CSRCR22; //!< Chip Select n Read Configuration Register 2 2
-    volatile hw_eim_cswcr12_t CSWCR12; //!< Chip Select n Write Configuration Register 1 2
-    volatile hw_eim_cswcr22_t CSWCR22; //!< Chip Select n Write Configuration Register 2 2
-    volatile hw_eim_csgcr13_t CSGCR13; //!< Chip Select n General Configuration Register 1 3
-    volatile hw_eim_csgcr23_t CSGCR23; //!< Chip Select n General Configuration Register 2 3
-    volatile hw_eim_csrcr13_t CSRCR13; //!< Chip Select n Read Configuration Register 1 3
-    volatile hw_eim_csrcr23_t CSRCR23; //!< Chip Select n Read Configuration Register 2 3
-    volatile hw_eim_cswcr13_t CSWCR13; //!< Chip Select n Write Configuration Register 1 3
-    volatile hw_eim_cswcr23_t CSWCR23; //!< Chip Select n Write Configuration Register 2 3
-    volatile hw_eim_csgcr14_t CSGCR14; //!< Chip Select n General Configuration Register 1 4
-    volatile hw_eim_csgcr24_t CSGCR24; //!< Chip Select n General Configuration Register 2 4
-    volatile hw_eim_csrcr14_t CSRCR14; //!< Chip Select n Read Configuration Register 1 4
-    volatile hw_eim_csrcr24_t CSRCR24; //!< Chip Select n Read Configuration Register 2 4
-    volatile hw_eim_cswcr14_t CSWCR14; //!< Chip Select n Write Configuration Register 1 4
-    volatile hw_eim_cswcr24_t CSWCR24; //!< Chip Select n Write Configuration Register 2 4
-    volatile hw_eim_csgcr15_t CSGCR15; //!< Chip Select n General Configuration Register 1 5
-    volatile hw_eim_csgcr25_t CSGCR25; //!< Chip Select n General Configuration Register 2 5
-    volatile hw_eim_csrcr15_t CSRCR15; //!< Chip Select n Read Configuration Register 1 5
-    volatile hw_eim_csrcr25_t CSRCR25; //!< Chip Select n Read Configuration Register 2 5
-    volatile hw_eim_cswcr15_t CSWCR15; //!< Chip Select n Write Configuration Register 1 5
-    volatile hw_eim_cswcr25_t CSWCR25; //!< Chip Select n Write Configuration Register 2 5
+    volatile hw_eim_cs0gcr1_t CS0GCR1; //!< Chip Select n General Configuration Register 1
+    volatile hw_eim_cs0gcr2_t CS0GCR2; //!< Chip Select n General Configuration Register 2
+    volatile hw_eim_cs0rcr1_t CS0RCR1; //!< Chip Select n Read Configuration Register 1
+    volatile hw_eim_cs0rcr2_t CS0RCR2; //!< Chip Select n Read Configuration Register 2
+    volatile hw_eim_cs0wcr1_t CS0WCR1; //!< Chip Select n Write Configuration Register 1
+    volatile hw_eim_cs0wcr2_t CS0WCR2; //!< Chip Select n Write Configuration Register 2
+    volatile hw_eim_cs1gcr1_t CS1GCR1; //!< Chip Select n General Configuration Register 1
+    volatile hw_eim_cs1gcr2_t CS1GCR2; //!< Chip Select n General Configuration Register 2
+    volatile hw_eim_cs1rcr1_t CS1RCR1; //!< Chip Select n Read Configuration Register 1
+    volatile hw_eim_cs1rcr2_t CS1RCR2; //!< Chip Select n Read Configuration Register 2
+    volatile hw_eim_cs1wcr1_t CS1WCR1; //!< Chip Select n Write Configuration Register 1
+    volatile hw_eim_cs1wcr2_t CS1WCR2; //!< Chip Select n Write Configuration Register 2
+    volatile hw_eim_cs2gcr1_t CS2GCR1; //!< Chip Select n General Configuration Register 1
+    volatile hw_eim_cs2gcr2_t CS2GCR2; //!< Chip Select n General Configuration Register 2
+    volatile hw_eim_cs2rcr1_t CS2RCR1; //!< Chip Select n Read Configuration Register 1
+    volatile hw_eim_cs2rcr2_t CS2RCR2; //!< Chip Select n Read Configuration Register 2
+    volatile hw_eim_cs2wcr1_t CS2WCR1; //!< Chip Select n Write Configuration Register 1
+    volatile hw_eim_cs2wcr2_t CS2WCR2; //!< Chip Select n Write Configuration Register 2
+    volatile hw_eim_cs3gcr1_t CS3GCR1; //!< Chip Select n General Configuration Register 1
+    volatile hw_eim_cs3gcr2_t CS3GCR2; //!< Chip Select n General Configuration Register 2
+    volatile hw_eim_cs3rcr1_t CS3RCR1; //!< Chip Select n Read Configuration Register 1
+    volatile hw_eim_cs3rcr2_t CS3RCR2; //!< Chip Select n Read Configuration Register 2
+    volatile hw_eim_cs3wcr1_t CS3WCR1; //!< Chip Select n Write Configuration Register 1
+    volatile hw_eim_cs3wcr2_t CS3WCR2; //!< Chip Select n Write Configuration Register 2
+    volatile hw_eim_cs4gcr1_t CS4GCR1; //!< Chip Select n General Configuration Register 1
+    volatile hw_eim_cs4gcr2_t CS4GCR2; //!< Chip Select n General Configuration Register 2
+    volatile hw_eim_cs4rcr1_t CS4RCR1; //!< Chip Select n Read Configuration Register 1
+    volatile hw_eim_cs4rcr2_t CS4RCR2; //!< Chip Select n Read Configuration Register 2
+    volatile hw_eim_cs4wcr1_t CS4WCR1; //!< Chip Select n Write Configuration Register 1
+    volatile hw_eim_cs4wcr2_t CS4WCR2; //!< Chip Select n Write Configuration Register 2
+    volatile hw_eim_cs5gcr1_t CS5GCR1; //!< Chip Select n General Configuration Register 1
+    volatile hw_eim_cs5gcr2_t CS5GCR2; //!< Chip Select n General Configuration Register 2
+    volatile hw_eim_cs5rcr1_t CS5RCR1; //!< Chip Select n Read Configuration Register 1
+    volatile hw_eim_cs5rcr2_t CS5RCR2; //!< Chip Select n Read Configuration Register 2
+    volatile hw_eim_cs5wcr1_t CS5WCR1; //!< Chip Select n Write Configuration Register 1
+    volatile hw_eim_cs5wcr2_t CS5WCR2; //!< Chip Select n Write Configuration Register 2
     volatile hw_eim_wcr_t WCR; //!< EIM Configuration Register
     volatile hw_eim_dcr_t DCR; //!< DLL Control Register
     volatile hw_eim_dsr_t DSR; //!< DLL Status Register
     volatile hw_eim_wiar_t WIAR; //!< EIM IP Access Register
     volatile hw_eim_ear_t EAR; //!< Error Address Register
 } hw_eim_t;
+#pragma pack()
 #endif
 
 //! @brief Macro to access all EIM registers.

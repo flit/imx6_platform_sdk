@@ -11,7 +11,7 @@
 #include "regs.h"
 
 /*
- * Registers defined in this header file.
+ * i.MX6SL GPIO registers defined in this header file.
  *
  * - HW_GPIO_DR - GPIO data register
  * - HW_GPIO_GDIR - GPIO direction register
@@ -46,6 +46,8 @@
 /*!
  * @brief HW_GPIO_DR - GPIO data register (RW)
  *
+ * Reset value: 0x00000000
+ *
  * The 32-bit GPIO_DR register stores data that is ready to be driven to the output lines. If the
  * IOMUXC is in GPIO mode and a given GPIO direction bit is set, then the corresponding DR bit is
  * driven to the output. If a given GPIO direction bit is cleared, then a read of GPIO_DR reflects
@@ -57,12 +59,12 @@
  * set and IOMUXC input mode is not GPIO, then reading DR[ n ] returns the contents of DR[ n ].  If
  * GDIR[ n ] is cleared and IOMUXC input mode is not GPIO, then reading DR[ n ] always returns zero.
  */
-typedef union
+typedef union _hw_gpio_dr
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_dr_bitfields
     {
-        unsigned DR : 32; //!< Data bits. This register defines the value of the GPIO output when the signal is configured as an output (GDIR[n]=1). Writes to this register are stored in a register. Reading GPIO_DR returns the value stored in the register if the signal is configured as an output (GDIR[n]=1), or the input signal's value if configured as an input (GDIR[n]=0). The I/O multiplexer must be configured to GPIO mode for the GPIO_DR value to connect with the signal. Reading the data register with the input path disabled always returns a zero value.
+        unsigned DR : 32; //!< [31:0] Data bits. This register defines the value of the GPIO output when the signal is configured as an output (GDIR[n]=1). Writes to this register are stored in a register. Reading GPIO_DR returns the value stored in the register if the signal is configured as an output (GDIR[n]=1), or the input signal's value if configured as an input (GDIR[n]=0). The I/O multiplexer must be configured to GPIO mode for the GPIO_DR value to connect with the signal. Reading the data register with the input path disabled always returns a zero value.
     } B;
 } hw_gpio_dr_t;
 #endif
@@ -95,34 +97,42 @@ typedef union
  * input path disabled always returns a zero value.
  */
 
-#define BP_GPIO_DR_DR      (0)
-#define BM_GPIO_DR_DR      (0xffffffff)
+#define BP_GPIO_DR_DR      (0)      //!< Bit position for GPIO_DR_DR.
+#define BM_GPIO_DR_DR      (0xffffffff)  //!< Bit mask for GPIO_DR_DR.
+
+//! @brief Get value of GPIO_DR_DR from a register value.
+#define BG_GPIO_DR_DR(r)   (((r) & BM_GPIO_DR_DR) >> BP_GPIO_DR_DR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_DR_DR(v)   ((((reg32_t) v) << 0) & BM_GPIO_DR_DR)
+//! @brief Format value for bitfield GPIO_DR_DR.
+#define BF_GPIO_DR_DR(v)   ((((reg32_t) v) << BP_GPIO_DR_DR) & BM_GPIO_DR_DR)
 #else
-#define BF_GPIO_DR_DR(v)   (((v) << 0) & BM_GPIO_DR_DR)
+//! @brief Format value for bitfield GPIO_DR_DR.
+#define BF_GPIO_DR_DR(v)   (((v) << BP_GPIO_DR_DR) & BM_GPIO_DR_DR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DR field to a new value.
-#define BW_GPIO_DR_DR(v)   BF_CS1(GPIO_DR, DR, v)
+#define BW_GPIO_DR_DR(x, v)   (HW_GPIO_DR_WR(x, (HW_GPIO_DR_RD(x) & ~BM_GPIO_DR_DR) | BF_GPIO_DR_DR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_GPIO_GDIR - GPIO direction register (RW)
  *
+ * Reset value: 0x00000000
+ *
  * GPIO_GDIR functions as direction control when the IOMUXC is in GPIO mode. Each bit specifies the
  * direction of a one-bit signal. The mapping of each DIR bit to a corresponding SoC signal is
  * determined by the SoC's pin assignment and the IOMUX table-for more details consult the IOMUXC
  * chapter.
  */
-typedef union
+typedef union _hw_gpio_gdir
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_gdir_bitfields
     {
-        unsigned GDIR : 32; //!< GPIO direction bits. Bit n of this register defines the direction of the GPIO[n] signal. GPIO_GDIR affects only the direction of the I/O signal when the corresponding bit in the I/O MUX is configured for GPIO.
+        unsigned GDIR : 32; //!< [31:0] GPIO direction bits. Bit n of this register defines the direction of the GPIO[n] signal. GPIO_GDIR affects only the direction of the I/O signal when the corresponding bit in the I/O MUX is configured for GPIO.
     } B;
 } hw_gpio_gdir_t;
 #endif
@@ -156,17 +166,23 @@ typedef union
  * 1 - GPIO is configured as output.
  */
 
-#define BP_GPIO_GDIR_GDIR      (0)
-#define BM_GPIO_GDIR_GDIR      (0xffffffff)
+#define BP_GPIO_GDIR_GDIR      (0)      //!< Bit position for GPIO_GDIR_GDIR.
+#define BM_GPIO_GDIR_GDIR      (0xffffffff)  //!< Bit mask for GPIO_GDIR_GDIR.
+
+//! @brief Get value of GPIO_GDIR_GDIR from a register value.
+#define BG_GPIO_GDIR_GDIR(r)   (((r) & BM_GPIO_GDIR_GDIR) >> BP_GPIO_GDIR_GDIR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_GDIR_GDIR(v)   ((((reg32_t) v) << 0) & BM_GPIO_GDIR_GDIR)
+//! @brief Format value for bitfield GPIO_GDIR_GDIR.
+#define BF_GPIO_GDIR_GDIR(v)   ((((reg32_t) v) << BP_GPIO_GDIR_GDIR) & BM_GPIO_GDIR_GDIR)
 #else
-#define BF_GPIO_GDIR_GDIR(v)   (((v) << 0) & BM_GPIO_GDIR_GDIR)
+//! @brief Format value for bitfield GPIO_GDIR_GDIR.
+#define BF_GPIO_GDIR_GDIR(v)   (((v) << BP_GPIO_GDIR_GDIR) & BM_GPIO_GDIR_GDIR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDIR field to a new value.
-#define BW_GPIO_GDIR_GDIR(v)   BF_CS1(GPIO_GDIR, GDIR, v)
+#define BW_GPIO_GDIR_GDIR(x, v)   (HW_GPIO_GDIR_WR(x, (HW_GPIO_GDIR_RD(x) & ~BM_GPIO_GDIR_GDIR) | BF_GPIO_GDIR_GDIR(v)))
 #endif
 
 
@@ -174,17 +190,19 @@ typedef union
 /*!
  * @brief HW_GPIO_PSR - GPIO pad status register (RO)
  *
+ * Reset value: 0x00000000
+ *
  * GPIO_PSR is a read-only register. Each bit stores the value of the corresponding input signal (as
  * configured in the IOMUX). This register is clocked with the ipg_clk_s clock, meaning that the
  * input signal is sampled only when accessing this location. Two wait states are required any time
  * this register is accessed for synchronization.  PSR[i]-pad sample
  */
-typedef union
+typedef union _hw_gpio_psr
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_psr_bitfields
     {
-        unsigned PSR : 32; //!< GPIO pad status bits (status bits). Reading GPIO_PSR returns the state of the corresponding input signal. Settings: The I/O multiplexer must be configured to GPIO mode for GPIO_PSR to reflect the state of the corresponding signal. [What happens if the IOMUX is not configured to GPIO mode? Does it return 0?-- cpt]
+        unsigned PSR : 32; //!< [31:0] GPIO pad status bits (status bits). Reading GPIO_PSR returns the state of the corresponding input signal. Settings: The I/O multiplexer must be configured to GPIO mode for GPIO_PSR to reflect the state of the corresponding signal. [What happens if the IOMUX is not configured to GPIO mode? Does it return 0?-- cpt]
     } B;
 } hw_gpio_psr_t;
 #endif
@@ -211,37 +229,42 @@ typedef union
  * Does it return 0?-- cpt]
  */
 
-#define BP_GPIO_PSR_PSR      (0)
-#define BM_GPIO_PSR_PSR      (0xffffffff)
+#define BP_GPIO_PSR_PSR      (0)      //!< Bit position for GPIO_PSR_PSR.
+#define BM_GPIO_PSR_PSR      (0xffffffff)  //!< Bit mask for GPIO_PSR_PSR.
+
+//! @brief Get value of GPIO_PSR_PSR from a register value.
+#define BG_GPIO_PSR_PSR(r)   (((r) & BM_GPIO_PSR_PSR) >> BP_GPIO_PSR_PSR)
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_GPIO_ICR1 - GPIO interrupt configuration register1 (RW)
  *
+ * Reset value: 0x00000000
+ *
  * GPIO_ICR1 contains 16 two-bit fields, where each field specifies the interrupt configuration for
  * a different input signal.
  */
-typedef union
+typedef union _hw_gpio_icr1
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_icr1_bitfields
     {
-        unsigned ICR0 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR1 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR2 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR3 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR4 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR5 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR6 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR7 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR8 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR9 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR10 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR11 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR12 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR13 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR14 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR15 : 2; //!< Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR0 : 2; //!< [1:0] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR1 : 2; //!< [3:2] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR2 : 2; //!< [5:4] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR3 : 2; //!< [7:6] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR4 : 2; //!< [9:8] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR5 : 2; //!< [11:10] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR6 : 2; //!< [13:12] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR7 : 2; //!< [15:14] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR8 : 2; //!< [17:16] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR9 : 2; //!< [19:18] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR10 : 2; //!< [21:20] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR11 : 2; //!< [23:22] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR12 : 2; //!< [25:24] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR13 : 2; //!< [27:26] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR14 : 2; //!< [29:28] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR15 : 2; //!< [31:30] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
     } B;
 } hw_gpio_icr1_t;
 #endif
@@ -277,17 +300,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR0      (0)
-#define BM_GPIO_ICR1_ICR0      (0x00000003)
+#define BP_GPIO_ICR1_ICR0      (0)      //!< Bit position for GPIO_ICR1_ICR0.
+#define BM_GPIO_ICR1_ICR0      (0x00000003)  //!< Bit mask for GPIO_ICR1_ICR0.
+
+//! @brief Get value of GPIO_ICR1_ICR0 from a register value.
+#define BG_GPIO_ICR1_ICR0(r)   (((r) & BM_GPIO_ICR1_ICR0) >> BP_GPIO_ICR1_ICR0)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR0(v)   ((((reg32_t) v) << 0) & BM_GPIO_ICR1_ICR0)
+//! @brief Format value for bitfield GPIO_ICR1_ICR0.
+#define BF_GPIO_ICR1_ICR0(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR0) & BM_GPIO_ICR1_ICR0)
 #else
-#define BF_GPIO_ICR1_ICR0(v)   (((v) << 0) & BM_GPIO_ICR1_ICR0)
+//! @brief Format value for bitfield GPIO_ICR1_ICR0.
+#define BF_GPIO_ICR1_ICR0(v)   (((v) << BP_GPIO_ICR1_ICR0) & BM_GPIO_ICR1_ICR0)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR0 field to a new value.
-#define BW_GPIO_ICR1_ICR0(v)   BF_CS1(GPIO_ICR1, ICR0, v)
+#define BW_GPIO_ICR1_ICR0(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR0) | BF_GPIO_ICR1_ICR0(v)))
 #endif
 
 
@@ -304,17 +333,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR1      (2)
-#define BM_GPIO_ICR1_ICR1      (0x0000000c)
+#define BP_GPIO_ICR1_ICR1      (2)      //!< Bit position for GPIO_ICR1_ICR1.
+#define BM_GPIO_ICR1_ICR1      (0x0000000c)  //!< Bit mask for GPIO_ICR1_ICR1.
+
+//! @brief Get value of GPIO_ICR1_ICR1 from a register value.
+#define BG_GPIO_ICR1_ICR1(r)   (((r) & BM_GPIO_ICR1_ICR1) >> BP_GPIO_ICR1_ICR1)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR1(v)   ((((reg32_t) v) << 2) & BM_GPIO_ICR1_ICR1)
+//! @brief Format value for bitfield GPIO_ICR1_ICR1.
+#define BF_GPIO_ICR1_ICR1(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR1) & BM_GPIO_ICR1_ICR1)
 #else
-#define BF_GPIO_ICR1_ICR1(v)   (((v) << 2) & BM_GPIO_ICR1_ICR1)
+//! @brief Format value for bitfield GPIO_ICR1_ICR1.
+#define BF_GPIO_ICR1_ICR1(v)   (((v) << BP_GPIO_ICR1_ICR1) & BM_GPIO_ICR1_ICR1)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR1 field to a new value.
-#define BW_GPIO_ICR1_ICR1(v)   BF_CS1(GPIO_ICR1, ICR1, v)
+#define BW_GPIO_ICR1_ICR1(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR1) | BF_GPIO_ICR1_ICR1(v)))
 #endif
 
 
@@ -331,17 +366,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR2      (4)
-#define BM_GPIO_ICR1_ICR2      (0x00000030)
+#define BP_GPIO_ICR1_ICR2      (4)      //!< Bit position for GPIO_ICR1_ICR2.
+#define BM_GPIO_ICR1_ICR2      (0x00000030)  //!< Bit mask for GPIO_ICR1_ICR2.
+
+//! @brief Get value of GPIO_ICR1_ICR2 from a register value.
+#define BG_GPIO_ICR1_ICR2(r)   (((r) & BM_GPIO_ICR1_ICR2) >> BP_GPIO_ICR1_ICR2)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR2(v)   ((((reg32_t) v) << 4) & BM_GPIO_ICR1_ICR2)
+//! @brief Format value for bitfield GPIO_ICR1_ICR2.
+#define BF_GPIO_ICR1_ICR2(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR2) & BM_GPIO_ICR1_ICR2)
 #else
-#define BF_GPIO_ICR1_ICR2(v)   (((v) << 4) & BM_GPIO_ICR1_ICR2)
+//! @brief Format value for bitfield GPIO_ICR1_ICR2.
+#define BF_GPIO_ICR1_ICR2(v)   (((v) << BP_GPIO_ICR1_ICR2) & BM_GPIO_ICR1_ICR2)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR2 field to a new value.
-#define BW_GPIO_ICR1_ICR2(v)   BF_CS1(GPIO_ICR1, ICR2, v)
+#define BW_GPIO_ICR1_ICR2(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR2) | BF_GPIO_ICR1_ICR2(v)))
 #endif
 
 
@@ -358,17 +399,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR3      (6)
-#define BM_GPIO_ICR1_ICR3      (0x000000c0)
+#define BP_GPIO_ICR1_ICR3      (6)      //!< Bit position for GPIO_ICR1_ICR3.
+#define BM_GPIO_ICR1_ICR3      (0x000000c0)  //!< Bit mask for GPIO_ICR1_ICR3.
+
+//! @brief Get value of GPIO_ICR1_ICR3 from a register value.
+#define BG_GPIO_ICR1_ICR3(r)   (((r) & BM_GPIO_ICR1_ICR3) >> BP_GPIO_ICR1_ICR3)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR3(v)   ((((reg32_t) v) << 6) & BM_GPIO_ICR1_ICR3)
+//! @brief Format value for bitfield GPIO_ICR1_ICR3.
+#define BF_GPIO_ICR1_ICR3(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR3) & BM_GPIO_ICR1_ICR3)
 #else
-#define BF_GPIO_ICR1_ICR3(v)   (((v) << 6) & BM_GPIO_ICR1_ICR3)
+//! @brief Format value for bitfield GPIO_ICR1_ICR3.
+#define BF_GPIO_ICR1_ICR3(v)   (((v) << BP_GPIO_ICR1_ICR3) & BM_GPIO_ICR1_ICR3)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR3 field to a new value.
-#define BW_GPIO_ICR1_ICR3(v)   BF_CS1(GPIO_ICR1, ICR3, v)
+#define BW_GPIO_ICR1_ICR3(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR3) | BF_GPIO_ICR1_ICR3(v)))
 #endif
 
 
@@ -385,17 +432,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR4      (8)
-#define BM_GPIO_ICR1_ICR4      (0x00000300)
+#define BP_GPIO_ICR1_ICR4      (8)      //!< Bit position for GPIO_ICR1_ICR4.
+#define BM_GPIO_ICR1_ICR4      (0x00000300)  //!< Bit mask for GPIO_ICR1_ICR4.
+
+//! @brief Get value of GPIO_ICR1_ICR4 from a register value.
+#define BG_GPIO_ICR1_ICR4(r)   (((r) & BM_GPIO_ICR1_ICR4) >> BP_GPIO_ICR1_ICR4)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR4(v)   ((((reg32_t) v) << 8) & BM_GPIO_ICR1_ICR4)
+//! @brief Format value for bitfield GPIO_ICR1_ICR4.
+#define BF_GPIO_ICR1_ICR4(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR4) & BM_GPIO_ICR1_ICR4)
 #else
-#define BF_GPIO_ICR1_ICR4(v)   (((v) << 8) & BM_GPIO_ICR1_ICR4)
+//! @brief Format value for bitfield GPIO_ICR1_ICR4.
+#define BF_GPIO_ICR1_ICR4(v)   (((v) << BP_GPIO_ICR1_ICR4) & BM_GPIO_ICR1_ICR4)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR4 field to a new value.
-#define BW_GPIO_ICR1_ICR4(v)   BF_CS1(GPIO_ICR1, ICR4, v)
+#define BW_GPIO_ICR1_ICR4(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR4) | BF_GPIO_ICR1_ICR4(v)))
 #endif
 
 
@@ -412,17 +465,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR5      (10)
-#define BM_GPIO_ICR1_ICR5      (0x00000c00)
+#define BP_GPIO_ICR1_ICR5      (10)      //!< Bit position for GPIO_ICR1_ICR5.
+#define BM_GPIO_ICR1_ICR5      (0x00000c00)  //!< Bit mask for GPIO_ICR1_ICR5.
+
+//! @brief Get value of GPIO_ICR1_ICR5 from a register value.
+#define BG_GPIO_ICR1_ICR5(r)   (((r) & BM_GPIO_ICR1_ICR5) >> BP_GPIO_ICR1_ICR5)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR5(v)   ((((reg32_t) v) << 10) & BM_GPIO_ICR1_ICR5)
+//! @brief Format value for bitfield GPIO_ICR1_ICR5.
+#define BF_GPIO_ICR1_ICR5(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR5) & BM_GPIO_ICR1_ICR5)
 #else
-#define BF_GPIO_ICR1_ICR5(v)   (((v) << 10) & BM_GPIO_ICR1_ICR5)
+//! @brief Format value for bitfield GPIO_ICR1_ICR5.
+#define BF_GPIO_ICR1_ICR5(v)   (((v) << BP_GPIO_ICR1_ICR5) & BM_GPIO_ICR1_ICR5)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR5 field to a new value.
-#define BW_GPIO_ICR1_ICR5(v)   BF_CS1(GPIO_ICR1, ICR5, v)
+#define BW_GPIO_ICR1_ICR5(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR5) | BF_GPIO_ICR1_ICR5(v)))
 #endif
 
 
@@ -439,17 +498,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR6      (12)
-#define BM_GPIO_ICR1_ICR6      (0x00003000)
+#define BP_GPIO_ICR1_ICR6      (12)      //!< Bit position for GPIO_ICR1_ICR6.
+#define BM_GPIO_ICR1_ICR6      (0x00003000)  //!< Bit mask for GPIO_ICR1_ICR6.
+
+//! @brief Get value of GPIO_ICR1_ICR6 from a register value.
+#define BG_GPIO_ICR1_ICR6(r)   (((r) & BM_GPIO_ICR1_ICR6) >> BP_GPIO_ICR1_ICR6)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR6(v)   ((((reg32_t) v) << 12) & BM_GPIO_ICR1_ICR6)
+//! @brief Format value for bitfield GPIO_ICR1_ICR6.
+#define BF_GPIO_ICR1_ICR6(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR6) & BM_GPIO_ICR1_ICR6)
 #else
-#define BF_GPIO_ICR1_ICR6(v)   (((v) << 12) & BM_GPIO_ICR1_ICR6)
+//! @brief Format value for bitfield GPIO_ICR1_ICR6.
+#define BF_GPIO_ICR1_ICR6(v)   (((v) << BP_GPIO_ICR1_ICR6) & BM_GPIO_ICR1_ICR6)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR6 field to a new value.
-#define BW_GPIO_ICR1_ICR6(v)   BF_CS1(GPIO_ICR1, ICR6, v)
+#define BW_GPIO_ICR1_ICR6(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR6) | BF_GPIO_ICR1_ICR6(v)))
 #endif
 
 
@@ -466,17 +531,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR7      (14)
-#define BM_GPIO_ICR1_ICR7      (0x0000c000)
+#define BP_GPIO_ICR1_ICR7      (14)      //!< Bit position for GPIO_ICR1_ICR7.
+#define BM_GPIO_ICR1_ICR7      (0x0000c000)  //!< Bit mask for GPIO_ICR1_ICR7.
+
+//! @brief Get value of GPIO_ICR1_ICR7 from a register value.
+#define BG_GPIO_ICR1_ICR7(r)   (((r) & BM_GPIO_ICR1_ICR7) >> BP_GPIO_ICR1_ICR7)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR7(v)   ((((reg32_t) v) << 14) & BM_GPIO_ICR1_ICR7)
+//! @brief Format value for bitfield GPIO_ICR1_ICR7.
+#define BF_GPIO_ICR1_ICR7(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR7) & BM_GPIO_ICR1_ICR7)
 #else
-#define BF_GPIO_ICR1_ICR7(v)   (((v) << 14) & BM_GPIO_ICR1_ICR7)
+//! @brief Format value for bitfield GPIO_ICR1_ICR7.
+#define BF_GPIO_ICR1_ICR7(v)   (((v) << BP_GPIO_ICR1_ICR7) & BM_GPIO_ICR1_ICR7)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR7 field to a new value.
-#define BW_GPIO_ICR1_ICR7(v)   BF_CS1(GPIO_ICR1, ICR7, v)
+#define BW_GPIO_ICR1_ICR7(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR7) | BF_GPIO_ICR1_ICR7(v)))
 #endif
 
 
@@ -493,17 +564,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR8      (16)
-#define BM_GPIO_ICR1_ICR8      (0x00030000)
+#define BP_GPIO_ICR1_ICR8      (16)      //!< Bit position for GPIO_ICR1_ICR8.
+#define BM_GPIO_ICR1_ICR8      (0x00030000)  //!< Bit mask for GPIO_ICR1_ICR8.
+
+//! @brief Get value of GPIO_ICR1_ICR8 from a register value.
+#define BG_GPIO_ICR1_ICR8(r)   (((r) & BM_GPIO_ICR1_ICR8) >> BP_GPIO_ICR1_ICR8)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR8(v)   ((((reg32_t) v) << 16) & BM_GPIO_ICR1_ICR8)
+//! @brief Format value for bitfield GPIO_ICR1_ICR8.
+#define BF_GPIO_ICR1_ICR8(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR8) & BM_GPIO_ICR1_ICR8)
 #else
-#define BF_GPIO_ICR1_ICR8(v)   (((v) << 16) & BM_GPIO_ICR1_ICR8)
+//! @brief Format value for bitfield GPIO_ICR1_ICR8.
+#define BF_GPIO_ICR1_ICR8(v)   (((v) << BP_GPIO_ICR1_ICR8) & BM_GPIO_ICR1_ICR8)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR8 field to a new value.
-#define BW_GPIO_ICR1_ICR8(v)   BF_CS1(GPIO_ICR1, ICR8, v)
+#define BW_GPIO_ICR1_ICR8(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR8) | BF_GPIO_ICR1_ICR8(v)))
 #endif
 
 
@@ -520,17 +597,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR9      (18)
-#define BM_GPIO_ICR1_ICR9      (0x000c0000)
+#define BP_GPIO_ICR1_ICR9      (18)      //!< Bit position for GPIO_ICR1_ICR9.
+#define BM_GPIO_ICR1_ICR9      (0x000c0000)  //!< Bit mask for GPIO_ICR1_ICR9.
+
+//! @brief Get value of GPIO_ICR1_ICR9 from a register value.
+#define BG_GPIO_ICR1_ICR9(r)   (((r) & BM_GPIO_ICR1_ICR9) >> BP_GPIO_ICR1_ICR9)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR9(v)   ((((reg32_t) v) << 18) & BM_GPIO_ICR1_ICR9)
+//! @brief Format value for bitfield GPIO_ICR1_ICR9.
+#define BF_GPIO_ICR1_ICR9(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR9) & BM_GPIO_ICR1_ICR9)
 #else
-#define BF_GPIO_ICR1_ICR9(v)   (((v) << 18) & BM_GPIO_ICR1_ICR9)
+//! @brief Format value for bitfield GPIO_ICR1_ICR9.
+#define BF_GPIO_ICR1_ICR9(v)   (((v) << BP_GPIO_ICR1_ICR9) & BM_GPIO_ICR1_ICR9)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR9 field to a new value.
-#define BW_GPIO_ICR1_ICR9(v)   BF_CS1(GPIO_ICR1, ICR9, v)
+#define BW_GPIO_ICR1_ICR9(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR9) | BF_GPIO_ICR1_ICR9(v)))
 #endif
 
 
@@ -547,17 +630,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR10      (20)
-#define BM_GPIO_ICR1_ICR10      (0x00300000)
+#define BP_GPIO_ICR1_ICR10      (20)      //!< Bit position for GPIO_ICR1_ICR10.
+#define BM_GPIO_ICR1_ICR10      (0x00300000)  //!< Bit mask for GPIO_ICR1_ICR10.
+
+//! @brief Get value of GPIO_ICR1_ICR10 from a register value.
+#define BG_GPIO_ICR1_ICR10(r)   (((r) & BM_GPIO_ICR1_ICR10) >> BP_GPIO_ICR1_ICR10)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR10(v)   ((((reg32_t) v) << 20) & BM_GPIO_ICR1_ICR10)
+//! @brief Format value for bitfield GPIO_ICR1_ICR10.
+#define BF_GPIO_ICR1_ICR10(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR10) & BM_GPIO_ICR1_ICR10)
 #else
-#define BF_GPIO_ICR1_ICR10(v)   (((v) << 20) & BM_GPIO_ICR1_ICR10)
+//! @brief Format value for bitfield GPIO_ICR1_ICR10.
+#define BF_GPIO_ICR1_ICR10(v)   (((v) << BP_GPIO_ICR1_ICR10) & BM_GPIO_ICR1_ICR10)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR10 field to a new value.
-#define BW_GPIO_ICR1_ICR10(v)   BF_CS1(GPIO_ICR1, ICR10, v)
+#define BW_GPIO_ICR1_ICR10(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR10) | BF_GPIO_ICR1_ICR10(v)))
 #endif
 
 
@@ -574,17 +663,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR11      (22)
-#define BM_GPIO_ICR1_ICR11      (0x00c00000)
+#define BP_GPIO_ICR1_ICR11      (22)      //!< Bit position for GPIO_ICR1_ICR11.
+#define BM_GPIO_ICR1_ICR11      (0x00c00000)  //!< Bit mask for GPIO_ICR1_ICR11.
+
+//! @brief Get value of GPIO_ICR1_ICR11 from a register value.
+#define BG_GPIO_ICR1_ICR11(r)   (((r) & BM_GPIO_ICR1_ICR11) >> BP_GPIO_ICR1_ICR11)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR11(v)   ((((reg32_t) v) << 22) & BM_GPIO_ICR1_ICR11)
+//! @brief Format value for bitfield GPIO_ICR1_ICR11.
+#define BF_GPIO_ICR1_ICR11(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR11) & BM_GPIO_ICR1_ICR11)
 #else
-#define BF_GPIO_ICR1_ICR11(v)   (((v) << 22) & BM_GPIO_ICR1_ICR11)
+//! @brief Format value for bitfield GPIO_ICR1_ICR11.
+#define BF_GPIO_ICR1_ICR11(v)   (((v) << BP_GPIO_ICR1_ICR11) & BM_GPIO_ICR1_ICR11)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR11 field to a new value.
-#define BW_GPIO_ICR1_ICR11(v)   BF_CS1(GPIO_ICR1, ICR11, v)
+#define BW_GPIO_ICR1_ICR11(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR11) | BF_GPIO_ICR1_ICR11(v)))
 #endif
 
 
@@ -601,17 +696,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR12      (24)
-#define BM_GPIO_ICR1_ICR12      (0x03000000)
+#define BP_GPIO_ICR1_ICR12      (24)      //!< Bit position for GPIO_ICR1_ICR12.
+#define BM_GPIO_ICR1_ICR12      (0x03000000)  //!< Bit mask for GPIO_ICR1_ICR12.
+
+//! @brief Get value of GPIO_ICR1_ICR12 from a register value.
+#define BG_GPIO_ICR1_ICR12(r)   (((r) & BM_GPIO_ICR1_ICR12) >> BP_GPIO_ICR1_ICR12)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR12(v)   ((((reg32_t) v) << 24) & BM_GPIO_ICR1_ICR12)
+//! @brief Format value for bitfield GPIO_ICR1_ICR12.
+#define BF_GPIO_ICR1_ICR12(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR12) & BM_GPIO_ICR1_ICR12)
 #else
-#define BF_GPIO_ICR1_ICR12(v)   (((v) << 24) & BM_GPIO_ICR1_ICR12)
+//! @brief Format value for bitfield GPIO_ICR1_ICR12.
+#define BF_GPIO_ICR1_ICR12(v)   (((v) << BP_GPIO_ICR1_ICR12) & BM_GPIO_ICR1_ICR12)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR12 field to a new value.
-#define BW_GPIO_ICR1_ICR12(v)   BF_CS1(GPIO_ICR1, ICR12, v)
+#define BW_GPIO_ICR1_ICR12(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR12) | BF_GPIO_ICR1_ICR12(v)))
 #endif
 
 
@@ -628,17 +729,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR13      (26)
-#define BM_GPIO_ICR1_ICR13      (0x0c000000)
+#define BP_GPIO_ICR1_ICR13      (26)      //!< Bit position for GPIO_ICR1_ICR13.
+#define BM_GPIO_ICR1_ICR13      (0x0c000000)  //!< Bit mask for GPIO_ICR1_ICR13.
+
+//! @brief Get value of GPIO_ICR1_ICR13 from a register value.
+#define BG_GPIO_ICR1_ICR13(r)   (((r) & BM_GPIO_ICR1_ICR13) >> BP_GPIO_ICR1_ICR13)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR13(v)   ((((reg32_t) v) << 26) & BM_GPIO_ICR1_ICR13)
+//! @brief Format value for bitfield GPIO_ICR1_ICR13.
+#define BF_GPIO_ICR1_ICR13(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR13) & BM_GPIO_ICR1_ICR13)
 #else
-#define BF_GPIO_ICR1_ICR13(v)   (((v) << 26) & BM_GPIO_ICR1_ICR13)
+//! @brief Format value for bitfield GPIO_ICR1_ICR13.
+#define BF_GPIO_ICR1_ICR13(v)   (((v) << BP_GPIO_ICR1_ICR13) & BM_GPIO_ICR1_ICR13)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR13 field to a new value.
-#define BW_GPIO_ICR1_ICR13(v)   BF_CS1(GPIO_ICR1, ICR13, v)
+#define BW_GPIO_ICR1_ICR13(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR13) | BF_GPIO_ICR1_ICR13(v)))
 #endif
 
 
@@ -655,17 +762,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR14      (28)
-#define BM_GPIO_ICR1_ICR14      (0x30000000)
+#define BP_GPIO_ICR1_ICR14      (28)      //!< Bit position for GPIO_ICR1_ICR14.
+#define BM_GPIO_ICR1_ICR14      (0x30000000)  //!< Bit mask for GPIO_ICR1_ICR14.
+
+//! @brief Get value of GPIO_ICR1_ICR14 from a register value.
+#define BG_GPIO_ICR1_ICR14(r)   (((r) & BM_GPIO_ICR1_ICR14) >> BP_GPIO_ICR1_ICR14)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR14(v)   ((((reg32_t) v) << 28) & BM_GPIO_ICR1_ICR14)
+//! @brief Format value for bitfield GPIO_ICR1_ICR14.
+#define BF_GPIO_ICR1_ICR14(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR14) & BM_GPIO_ICR1_ICR14)
 #else
-#define BF_GPIO_ICR1_ICR14(v)   (((v) << 28) & BM_GPIO_ICR1_ICR14)
+//! @brief Format value for bitfield GPIO_ICR1_ICR14.
+#define BF_GPIO_ICR1_ICR14(v)   (((v) << BP_GPIO_ICR1_ICR14) & BM_GPIO_ICR1_ICR14)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR14 field to a new value.
-#define BW_GPIO_ICR1_ICR14(v)   BF_CS1(GPIO_ICR1, ICR14, v)
+#define BW_GPIO_ICR1_ICR14(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR14) | BF_GPIO_ICR1_ICR14(v)))
 #endif
 
 
@@ -682,17 +795,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR1_ICR15      (30)
-#define BM_GPIO_ICR1_ICR15      (0xc0000000)
+#define BP_GPIO_ICR1_ICR15      (30)      //!< Bit position for GPIO_ICR1_ICR15.
+#define BM_GPIO_ICR1_ICR15      (0xc0000000)  //!< Bit mask for GPIO_ICR1_ICR15.
+
+//! @brief Get value of GPIO_ICR1_ICR15 from a register value.
+#define BG_GPIO_ICR1_ICR15(r)   (((r) & BM_GPIO_ICR1_ICR15) >> BP_GPIO_ICR1_ICR15)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR1_ICR15(v)   ((((reg32_t) v) << 30) & BM_GPIO_ICR1_ICR15)
+//! @brief Format value for bitfield GPIO_ICR1_ICR15.
+#define BF_GPIO_ICR1_ICR15(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR15) & BM_GPIO_ICR1_ICR15)
 #else
-#define BF_GPIO_ICR1_ICR15(v)   (((v) << 30) & BM_GPIO_ICR1_ICR15)
+//! @brief Format value for bitfield GPIO_ICR1_ICR15.
+#define BF_GPIO_ICR1_ICR15(v)   (((v) << BP_GPIO_ICR1_ICR15) & BM_GPIO_ICR1_ICR15)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR15 field to a new value.
-#define BW_GPIO_ICR1_ICR15(v)   BF_CS1(GPIO_ICR1, ICR15, v)
+#define BW_GPIO_ICR1_ICR15(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR15) | BF_GPIO_ICR1_ICR15(v)))
 #endif
 
 
@@ -700,30 +819,32 @@ typedef union
 /*!
  * @brief HW_GPIO_ICR2 - GPIO interrupt configuration register2 (RW)
  *
+ * Reset value: 0x00000000
+ *
  * GPIO_ICR2 contains 16 two-bit fields, where each field specifies the interrupt configuration for
  * a different input signal.
  */
-typedef union
+typedef union _hw_gpio_icr2
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_icr2_bitfields
     {
-        unsigned ICR16 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR17 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR18 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR19 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR20 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR21 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR22 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR23 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR24 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR25 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR26 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR27 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR28 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR29 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR30 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR31 : 2; //!< Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR16 : 2; //!< [1:0] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR17 : 2; //!< [3:2] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR18 : 2; //!< [5:4] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR19 : 2; //!< [7:6] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR20 : 2; //!< [9:8] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR21 : 2; //!< [11:10] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR22 : 2; //!< [13:12] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR23 : 2; //!< [15:14] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR24 : 2; //!< [17:16] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR25 : 2; //!< [19:18] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR26 : 2; //!< [21:20] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR27 : 2; //!< [23:22] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR28 : 2; //!< [25:24] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR29 : 2; //!< [27:26] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR30 : 2; //!< [29:28] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR31 : 2; //!< [31:30] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
     } B;
 } hw_gpio_icr2_t;
 #endif
@@ -759,17 +880,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR16      (0)
-#define BM_GPIO_ICR2_ICR16      (0x00000003)
+#define BP_GPIO_ICR2_ICR16      (0)      //!< Bit position for GPIO_ICR2_ICR16.
+#define BM_GPIO_ICR2_ICR16      (0x00000003)  //!< Bit mask for GPIO_ICR2_ICR16.
+
+//! @brief Get value of GPIO_ICR2_ICR16 from a register value.
+#define BG_GPIO_ICR2_ICR16(r)   (((r) & BM_GPIO_ICR2_ICR16) >> BP_GPIO_ICR2_ICR16)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR16(v)   ((((reg32_t) v) << 0) & BM_GPIO_ICR2_ICR16)
+//! @brief Format value for bitfield GPIO_ICR2_ICR16.
+#define BF_GPIO_ICR2_ICR16(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR16) & BM_GPIO_ICR2_ICR16)
 #else
-#define BF_GPIO_ICR2_ICR16(v)   (((v) << 0) & BM_GPIO_ICR2_ICR16)
+//! @brief Format value for bitfield GPIO_ICR2_ICR16.
+#define BF_GPIO_ICR2_ICR16(v)   (((v) << BP_GPIO_ICR2_ICR16) & BM_GPIO_ICR2_ICR16)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR16 field to a new value.
-#define BW_GPIO_ICR2_ICR16(v)   BF_CS1(GPIO_ICR2, ICR16, v)
+#define BW_GPIO_ICR2_ICR16(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR16) | BF_GPIO_ICR2_ICR16(v)))
 #endif
 
 
@@ -786,17 +913,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR17      (2)
-#define BM_GPIO_ICR2_ICR17      (0x0000000c)
+#define BP_GPIO_ICR2_ICR17      (2)      //!< Bit position for GPIO_ICR2_ICR17.
+#define BM_GPIO_ICR2_ICR17      (0x0000000c)  //!< Bit mask for GPIO_ICR2_ICR17.
+
+//! @brief Get value of GPIO_ICR2_ICR17 from a register value.
+#define BG_GPIO_ICR2_ICR17(r)   (((r) & BM_GPIO_ICR2_ICR17) >> BP_GPIO_ICR2_ICR17)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR17(v)   ((((reg32_t) v) << 2) & BM_GPIO_ICR2_ICR17)
+//! @brief Format value for bitfield GPIO_ICR2_ICR17.
+#define BF_GPIO_ICR2_ICR17(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR17) & BM_GPIO_ICR2_ICR17)
 #else
-#define BF_GPIO_ICR2_ICR17(v)   (((v) << 2) & BM_GPIO_ICR2_ICR17)
+//! @brief Format value for bitfield GPIO_ICR2_ICR17.
+#define BF_GPIO_ICR2_ICR17(v)   (((v) << BP_GPIO_ICR2_ICR17) & BM_GPIO_ICR2_ICR17)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR17 field to a new value.
-#define BW_GPIO_ICR2_ICR17(v)   BF_CS1(GPIO_ICR2, ICR17, v)
+#define BW_GPIO_ICR2_ICR17(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR17) | BF_GPIO_ICR2_ICR17(v)))
 #endif
 
 
@@ -813,17 +946,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR18      (4)
-#define BM_GPIO_ICR2_ICR18      (0x00000030)
+#define BP_GPIO_ICR2_ICR18      (4)      //!< Bit position for GPIO_ICR2_ICR18.
+#define BM_GPIO_ICR2_ICR18      (0x00000030)  //!< Bit mask for GPIO_ICR2_ICR18.
+
+//! @brief Get value of GPIO_ICR2_ICR18 from a register value.
+#define BG_GPIO_ICR2_ICR18(r)   (((r) & BM_GPIO_ICR2_ICR18) >> BP_GPIO_ICR2_ICR18)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR18(v)   ((((reg32_t) v) << 4) & BM_GPIO_ICR2_ICR18)
+//! @brief Format value for bitfield GPIO_ICR2_ICR18.
+#define BF_GPIO_ICR2_ICR18(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR18) & BM_GPIO_ICR2_ICR18)
 #else
-#define BF_GPIO_ICR2_ICR18(v)   (((v) << 4) & BM_GPIO_ICR2_ICR18)
+//! @brief Format value for bitfield GPIO_ICR2_ICR18.
+#define BF_GPIO_ICR2_ICR18(v)   (((v) << BP_GPIO_ICR2_ICR18) & BM_GPIO_ICR2_ICR18)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR18 field to a new value.
-#define BW_GPIO_ICR2_ICR18(v)   BF_CS1(GPIO_ICR2, ICR18, v)
+#define BW_GPIO_ICR2_ICR18(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR18) | BF_GPIO_ICR2_ICR18(v)))
 #endif
 
 
@@ -840,17 +979,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR19      (6)
-#define BM_GPIO_ICR2_ICR19      (0x000000c0)
+#define BP_GPIO_ICR2_ICR19      (6)      //!< Bit position for GPIO_ICR2_ICR19.
+#define BM_GPIO_ICR2_ICR19      (0x000000c0)  //!< Bit mask for GPIO_ICR2_ICR19.
+
+//! @brief Get value of GPIO_ICR2_ICR19 from a register value.
+#define BG_GPIO_ICR2_ICR19(r)   (((r) & BM_GPIO_ICR2_ICR19) >> BP_GPIO_ICR2_ICR19)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR19(v)   ((((reg32_t) v) << 6) & BM_GPIO_ICR2_ICR19)
+//! @brief Format value for bitfield GPIO_ICR2_ICR19.
+#define BF_GPIO_ICR2_ICR19(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR19) & BM_GPIO_ICR2_ICR19)
 #else
-#define BF_GPIO_ICR2_ICR19(v)   (((v) << 6) & BM_GPIO_ICR2_ICR19)
+//! @brief Format value for bitfield GPIO_ICR2_ICR19.
+#define BF_GPIO_ICR2_ICR19(v)   (((v) << BP_GPIO_ICR2_ICR19) & BM_GPIO_ICR2_ICR19)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR19 field to a new value.
-#define BW_GPIO_ICR2_ICR19(v)   BF_CS1(GPIO_ICR2, ICR19, v)
+#define BW_GPIO_ICR2_ICR19(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR19) | BF_GPIO_ICR2_ICR19(v)))
 #endif
 
 
@@ -867,17 +1012,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR20      (8)
-#define BM_GPIO_ICR2_ICR20      (0x00000300)
+#define BP_GPIO_ICR2_ICR20      (8)      //!< Bit position for GPIO_ICR2_ICR20.
+#define BM_GPIO_ICR2_ICR20      (0x00000300)  //!< Bit mask for GPIO_ICR2_ICR20.
+
+//! @brief Get value of GPIO_ICR2_ICR20 from a register value.
+#define BG_GPIO_ICR2_ICR20(r)   (((r) & BM_GPIO_ICR2_ICR20) >> BP_GPIO_ICR2_ICR20)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR20(v)   ((((reg32_t) v) << 8) & BM_GPIO_ICR2_ICR20)
+//! @brief Format value for bitfield GPIO_ICR2_ICR20.
+#define BF_GPIO_ICR2_ICR20(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR20) & BM_GPIO_ICR2_ICR20)
 #else
-#define BF_GPIO_ICR2_ICR20(v)   (((v) << 8) & BM_GPIO_ICR2_ICR20)
+//! @brief Format value for bitfield GPIO_ICR2_ICR20.
+#define BF_GPIO_ICR2_ICR20(v)   (((v) << BP_GPIO_ICR2_ICR20) & BM_GPIO_ICR2_ICR20)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR20 field to a new value.
-#define BW_GPIO_ICR2_ICR20(v)   BF_CS1(GPIO_ICR2, ICR20, v)
+#define BW_GPIO_ICR2_ICR20(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR20) | BF_GPIO_ICR2_ICR20(v)))
 #endif
 
 
@@ -894,17 +1045,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR21      (10)
-#define BM_GPIO_ICR2_ICR21      (0x00000c00)
+#define BP_GPIO_ICR2_ICR21      (10)      //!< Bit position for GPIO_ICR2_ICR21.
+#define BM_GPIO_ICR2_ICR21      (0x00000c00)  //!< Bit mask for GPIO_ICR2_ICR21.
+
+//! @brief Get value of GPIO_ICR2_ICR21 from a register value.
+#define BG_GPIO_ICR2_ICR21(r)   (((r) & BM_GPIO_ICR2_ICR21) >> BP_GPIO_ICR2_ICR21)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR21(v)   ((((reg32_t) v) << 10) & BM_GPIO_ICR2_ICR21)
+//! @brief Format value for bitfield GPIO_ICR2_ICR21.
+#define BF_GPIO_ICR2_ICR21(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR21) & BM_GPIO_ICR2_ICR21)
 #else
-#define BF_GPIO_ICR2_ICR21(v)   (((v) << 10) & BM_GPIO_ICR2_ICR21)
+//! @brief Format value for bitfield GPIO_ICR2_ICR21.
+#define BF_GPIO_ICR2_ICR21(v)   (((v) << BP_GPIO_ICR2_ICR21) & BM_GPIO_ICR2_ICR21)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR21 field to a new value.
-#define BW_GPIO_ICR2_ICR21(v)   BF_CS1(GPIO_ICR2, ICR21, v)
+#define BW_GPIO_ICR2_ICR21(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR21) | BF_GPIO_ICR2_ICR21(v)))
 #endif
 
 
@@ -921,17 +1078,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR22      (12)
-#define BM_GPIO_ICR2_ICR22      (0x00003000)
+#define BP_GPIO_ICR2_ICR22      (12)      //!< Bit position for GPIO_ICR2_ICR22.
+#define BM_GPIO_ICR2_ICR22      (0x00003000)  //!< Bit mask for GPIO_ICR2_ICR22.
+
+//! @brief Get value of GPIO_ICR2_ICR22 from a register value.
+#define BG_GPIO_ICR2_ICR22(r)   (((r) & BM_GPIO_ICR2_ICR22) >> BP_GPIO_ICR2_ICR22)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR22(v)   ((((reg32_t) v) << 12) & BM_GPIO_ICR2_ICR22)
+//! @brief Format value for bitfield GPIO_ICR2_ICR22.
+#define BF_GPIO_ICR2_ICR22(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR22) & BM_GPIO_ICR2_ICR22)
 #else
-#define BF_GPIO_ICR2_ICR22(v)   (((v) << 12) & BM_GPIO_ICR2_ICR22)
+//! @brief Format value for bitfield GPIO_ICR2_ICR22.
+#define BF_GPIO_ICR2_ICR22(v)   (((v) << BP_GPIO_ICR2_ICR22) & BM_GPIO_ICR2_ICR22)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR22 field to a new value.
-#define BW_GPIO_ICR2_ICR22(v)   BF_CS1(GPIO_ICR2, ICR22, v)
+#define BW_GPIO_ICR2_ICR22(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR22) | BF_GPIO_ICR2_ICR22(v)))
 #endif
 
 
@@ -948,17 +1111,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR23      (14)
-#define BM_GPIO_ICR2_ICR23      (0x0000c000)
+#define BP_GPIO_ICR2_ICR23      (14)      //!< Bit position for GPIO_ICR2_ICR23.
+#define BM_GPIO_ICR2_ICR23      (0x0000c000)  //!< Bit mask for GPIO_ICR2_ICR23.
+
+//! @brief Get value of GPIO_ICR2_ICR23 from a register value.
+#define BG_GPIO_ICR2_ICR23(r)   (((r) & BM_GPIO_ICR2_ICR23) >> BP_GPIO_ICR2_ICR23)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR23(v)   ((((reg32_t) v) << 14) & BM_GPIO_ICR2_ICR23)
+//! @brief Format value for bitfield GPIO_ICR2_ICR23.
+#define BF_GPIO_ICR2_ICR23(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR23) & BM_GPIO_ICR2_ICR23)
 #else
-#define BF_GPIO_ICR2_ICR23(v)   (((v) << 14) & BM_GPIO_ICR2_ICR23)
+//! @brief Format value for bitfield GPIO_ICR2_ICR23.
+#define BF_GPIO_ICR2_ICR23(v)   (((v) << BP_GPIO_ICR2_ICR23) & BM_GPIO_ICR2_ICR23)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR23 field to a new value.
-#define BW_GPIO_ICR2_ICR23(v)   BF_CS1(GPIO_ICR2, ICR23, v)
+#define BW_GPIO_ICR2_ICR23(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR23) | BF_GPIO_ICR2_ICR23(v)))
 #endif
 
 
@@ -975,17 +1144,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR24      (16)
-#define BM_GPIO_ICR2_ICR24      (0x00030000)
+#define BP_GPIO_ICR2_ICR24      (16)      //!< Bit position for GPIO_ICR2_ICR24.
+#define BM_GPIO_ICR2_ICR24      (0x00030000)  //!< Bit mask for GPIO_ICR2_ICR24.
+
+//! @brief Get value of GPIO_ICR2_ICR24 from a register value.
+#define BG_GPIO_ICR2_ICR24(r)   (((r) & BM_GPIO_ICR2_ICR24) >> BP_GPIO_ICR2_ICR24)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR24(v)   ((((reg32_t) v) << 16) & BM_GPIO_ICR2_ICR24)
+//! @brief Format value for bitfield GPIO_ICR2_ICR24.
+#define BF_GPIO_ICR2_ICR24(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR24) & BM_GPIO_ICR2_ICR24)
 #else
-#define BF_GPIO_ICR2_ICR24(v)   (((v) << 16) & BM_GPIO_ICR2_ICR24)
+//! @brief Format value for bitfield GPIO_ICR2_ICR24.
+#define BF_GPIO_ICR2_ICR24(v)   (((v) << BP_GPIO_ICR2_ICR24) & BM_GPIO_ICR2_ICR24)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR24 field to a new value.
-#define BW_GPIO_ICR2_ICR24(v)   BF_CS1(GPIO_ICR2, ICR24, v)
+#define BW_GPIO_ICR2_ICR24(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR24) | BF_GPIO_ICR2_ICR24(v)))
 #endif
 
 
@@ -1002,17 +1177,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR25      (18)
-#define BM_GPIO_ICR2_ICR25      (0x000c0000)
+#define BP_GPIO_ICR2_ICR25      (18)      //!< Bit position for GPIO_ICR2_ICR25.
+#define BM_GPIO_ICR2_ICR25      (0x000c0000)  //!< Bit mask for GPIO_ICR2_ICR25.
+
+//! @brief Get value of GPIO_ICR2_ICR25 from a register value.
+#define BG_GPIO_ICR2_ICR25(r)   (((r) & BM_GPIO_ICR2_ICR25) >> BP_GPIO_ICR2_ICR25)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR25(v)   ((((reg32_t) v) << 18) & BM_GPIO_ICR2_ICR25)
+//! @brief Format value for bitfield GPIO_ICR2_ICR25.
+#define BF_GPIO_ICR2_ICR25(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR25) & BM_GPIO_ICR2_ICR25)
 #else
-#define BF_GPIO_ICR2_ICR25(v)   (((v) << 18) & BM_GPIO_ICR2_ICR25)
+//! @brief Format value for bitfield GPIO_ICR2_ICR25.
+#define BF_GPIO_ICR2_ICR25(v)   (((v) << BP_GPIO_ICR2_ICR25) & BM_GPIO_ICR2_ICR25)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR25 field to a new value.
-#define BW_GPIO_ICR2_ICR25(v)   BF_CS1(GPIO_ICR2, ICR25, v)
+#define BW_GPIO_ICR2_ICR25(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR25) | BF_GPIO_ICR2_ICR25(v)))
 #endif
 
 
@@ -1029,17 +1210,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR26      (20)
-#define BM_GPIO_ICR2_ICR26      (0x00300000)
+#define BP_GPIO_ICR2_ICR26      (20)      //!< Bit position for GPIO_ICR2_ICR26.
+#define BM_GPIO_ICR2_ICR26      (0x00300000)  //!< Bit mask for GPIO_ICR2_ICR26.
+
+//! @brief Get value of GPIO_ICR2_ICR26 from a register value.
+#define BG_GPIO_ICR2_ICR26(r)   (((r) & BM_GPIO_ICR2_ICR26) >> BP_GPIO_ICR2_ICR26)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR26(v)   ((((reg32_t) v) << 20) & BM_GPIO_ICR2_ICR26)
+//! @brief Format value for bitfield GPIO_ICR2_ICR26.
+#define BF_GPIO_ICR2_ICR26(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR26) & BM_GPIO_ICR2_ICR26)
 #else
-#define BF_GPIO_ICR2_ICR26(v)   (((v) << 20) & BM_GPIO_ICR2_ICR26)
+//! @brief Format value for bitfield GPIO_ICR2_ICR26.
+#define BF_GPIO_ICR2_ICR26(v)   (((v) << BP_GPIO_ICR2_ICR26) & BM_GPIO_ICR2_ICR26)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR26 field to a new value.
-#define BW_GPIO_ICR2_ICR26(v)   BF_CS1(GPIO_ICR2, ICR26, v)
+#define BW_GPIO_ICR2_ICR26(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR26) | BF_GPIO_ICR2_ICR26(v)))
 #endif
 
 
@@ -1056,17 +1243,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR27      (22)
-#define BM_GPIO_ICR2_ICR27      (0x00c00000)
+#define BP_GPIO_ICR2_ICR27      (22)      //!< Bit position for GPIO_ICR2_ICR27.
+#define BM_GPIO_ICR2_ICR27      (0x00c00000)  //!< Bit mask for GPIO_ICR2_ICR27.
+
+//! @brief Get value of GPIO_ICR2_ICR27 from a register value.
+#define BG_GPIO_ICR2_ICR27(r)   (((r) & BM_GPIO_ICR2_ICR27) >> BP_GPIO_ICR2_ICR27)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR27(v)   ((((reg32_t) v) << 22) & BM_GPIO_ICR2_ICR27)
+//! @brief Format value for bitfield GPIO_ICR2_ICR27.
+#define BF_GPIO_ICR2_ICR27(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR27) & BM_GPIO_ICR2_ICR27)
 #else
-#define BF_GPIO_ICR2_ICR27(v)   (((v) << 22) & BM_GPIO_ICR2_ICR27)
+//! @brief Format value for bitfield GPIO_ICR2_ICR27.
+#define BF_GPIO_ICR2_ICR27(v)   (((v) << BP_GPIO_ICR2_ICR27) & BM_GPIO_ICR2_ICR27)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR27 field to a new value.
-#define BW_GPIO_ICR2_ICR27(v)   BF_CS1(GPIO_ICR2, ICR27, v)
+#define BW_GPIO_ICR2_ICR27(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR27) | BF_GPIO_ICR2_ICR27(v)))
 #endif
 
 
@@ -1083,17 +1276,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR28      (24)
-#define BM_GPIO_ICR2_ICR28      (0x03000000)
+#define BP_GPIO_ICR2_ICR28      (24)      //!< Bit position for GPIO_ICR2_ICR28.
+#define BM_GPIO_ICR2_ICR28      (0x03000000)  //!< Bit mask for GPIO_ICR2_ICR28.
+
+//! @brief Get value of GPIO_ICR2_ICR28 from a register value.
+#define BG_GPIO_ICR2_ICR28(r)   (((r) & BM_GPIO_ICR2_ICR28) >> BP_GPIO_ICR2_ICR28)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR28(v)   ((((reg32_t) v) << 24) & BM_GPIO_ICR2_ICR28)
+//! @brief Format value for bitfield GPIO_ICR2_ICR28.
+#define BF_GPIO_ICR2_ICR28(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR28) & BM_GPIO_ICR2_ICR28)
 #else
-#define BF_GPIO_ICR2_ICR28(v)   (((v) << 24) & BM_GPIO_ICR2_ICR28)
+//! @brief Format value for bitfield GPIO_ICR2_ICR28.
+#define BF_GPIO_ICR2_ICR28(v)   (((v) << BP_GPIO_ICR2_ICR28) & BM_GPIO_ICR2_ICR28)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR28 field to a new value.
-#define BW_GPIO_ICR2_ICR28(v)   BF_CS1(GPIO_ICR2, ICR28, v)
+#define BW_GPIO_ICR2_ICR28(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR28) | BF_GPIO_ICR2_ICR28(v)))
 #endif
 
 
@@ -1110,17 +1309,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR29      (26)
-#define BM_GPIO_ICR2_ICR29      (0x0c000000)
+#define BP_GPIO_ICR2_ICR29      (26)      //!< Bit position for GPIO_ICR2_ICR29.
+#define BM_GPIO_ICR2_ICR29      (0x0c000000)  //!< Bit mask for GPIO_ICR2_ICR29.
+
+//! @brief Get value of GPIO_ICR2_ICR29 from a register value.
+#define BG_GPIO_ICR2_ICR29(r)   (((r) & BM_GPIO_ICR2_ICR29) >> BP_GPIO_ICR2_ICR29)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR29(v)   ((((reg32_t) v) << 26) & BM_GPIO_ICR2_ICR29)
+//! @brief Format value for bitfield GPIO_ICR2_ICR29.
+#define BF_GPIO_ICR2_ICR29(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR29) & BM_GPIO_ICR2_ICR29)
 #else
-#define BF_GPIO_ICR2_ICR29(v)   (((v) << 26) & BM_GPIO_ICR2_ICR29)
+//! @brief Format value for bitfield GPIO_ICR2_ICR29.
+#define BF_GPIO_ICR2_ICR29(v)   (((v) << BP_GPIO_ICR2_ICR29) & BM_GPIO_ICR2_ICR29)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR29 field to a new value.
-#define BW_GPIO_ICR2_ICR29(v)   BF_CS1(GPIO_ICR2, ICR29, v)
+#define BW_GPIO_ICR2_ICR29(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR29) | BF_GPIO_ICR2_ICR29(v)))
 #endif
 
 
@@ -1137,17 +1342,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR30      (28)
-#define BM_GPIO_ICR2_ICR30      (0x30000000)
+#define BP_GPIO_ICR2_ICR30      (28)      //!< Bit position for GPIO_ICR2_ICR30.
+#define BM_GPIO_ICR2_ICR30      (0x30000000)  //!< Bit mask for GPIO_ICR2_ICR30.
+
+//! @brief Get value of GPIO_ICR2_ICR30 from a register value.
+#define BG_GPIO_ICR2_ICR30(r)   (((r) & BM_GPIO_ICR2_ICR30) >> BP_GPIO_ICR2_ICR30)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR30(v)   ((((reg32_t) v) << 28) & BM_GPIO_ICR2_ICR30)
+//! @brief Format value for bitfield GPIO_ICR2_ICR30.
+#define BF_GPIO_ICR2_ICR30(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR30) & BM_GPIO_ICR2_ICR30)
 #else
-#define BF_GPIO_ICR2_ICR30(v)   (((v) << 28) & BM_GPIO_ICR2_ICR30)
+//! @brief Format value for bitfield GPIO_ICR2_ICR30.
+#define BF_GPIO_ICR2_ICR30(v)   (((v) << BP_GPIO_ICR2_ICR30) & BM_GPIO_ICR2_ICR30)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR30 field to a new value.
-#define BW_GPIO_ICR2_ICR30(v)   BF_CS1(GPIO_ICR2, ICR30, v)
+#define BW_GPIO_ICR2_ICR30(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR30) | BF_GPIO_ICR2_ICR30(v)))
 #endif
 
 
@@ -1164,17 +1375,23 @@ typedef union
  * 11 - Interrupt n is falling-edge sensitive.
  */
 
-#define BP_GPIO_ICR2_ICR31      (30)
-#define BM_GPIO_ICR2_ICR31      (0xc0000000)
+#define BP_GPIO_ICR2_ICR31      (30)      //!< Bit position for GPIO_ICR2_ICR31.
+#define BM_GPIO_ICR2_ICR31      (0xc0000000)  //!< Bit mask for GPIO_ICR2_ICR31.
+
+//! @brief Get value of GPIO_ICR2_ICR31 from a register value.
+#define BG_GPIO_ICR2_ICR31(r)   (((r) & BM_GPIO_ICR2_ICR31) >> BP_GPIO_ICR2_ICR31)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ICR2_ICR31(v)   ((((reg32_t) v) << 30) & BM_GPIO_ICR2_ICR31)
+//! @brief Format value for bitfield GPIO_ICR2_ICR31.
+#define BF_GPIO_ICR2_ICR31(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR31) & BM_GPIO_ICR2_ICR31)
 #else
-#define BF_GPIO_ICR2_ICR31(v)   (((v) << 30) & BM_GPIO_ICR2_ICR31)
+//! @brief Format value for bitfield GPIO_ICR2_ICR31.
+#define BF_GPIO_ICR2_ICR31(v)   (((v) << BP_GPIO_ICR2_ICR31) & BM_GPIO_ICR2_ICR31)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR31 field to a new value.
-#define BW_GPIO_ICR2_ICR31(v)   BF_CS1(GPIO_ICR2, ICR31, v)
+#define BW_GPIO_ICR2_ICR31(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR31) | BF_GPIO_ICR2_ICR31(v)))
 #endif
 
 
@@ -1182,14 +1399,16 @@ typedef union
 /*!
  * @brief HW_GPIO_IMR - GPIO interrupt mask register (RW)
  *
+ * Reset value: 0x00000000
+ *
  * GPIO_IMR contains masking bits for each interrupt line.
  */
-typedef union
+typedef union _hw_gpio_imr
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_imr_bitfields
     {
-        unsigned IMR : 32; //!< Interrupt Mask bits. This register is used to enable or disable the interrupt function on each of the 32 GPIO signals. Settings: Bit IMR[n] (n=0...31) controls interrupt n as follows:
+        unsigned IMR : 32; //!< [31:0] Interrupt Mask bits. This register is used to enable or disable the interrupt function on each of the 32 GPIO signals. Settings: Bit IMR[n] (n=0...31) controls interrupt n as follows:
     } B;
 } hw_gpio_imr_t;
 #endif
@@ -1222,17 +1441,23 @@ typedef union
  * 1 - Interrupt n is enabled.
  */
 
-#define BP_GPIO_IMR_IMR      (0)
-#define BM_GPIO_IMR_IMR      (0xffffffff)
+#define BP_GPIO_IMR_IMR      (0)      //!< Bit position for GPIO_IMR_IMR.
+#define BM_GPIO_IMR_IMR      (0xffffffff)  //!< Bit mask for GPIO_IMR_IMR.
+
+//! @brief Get value of GPIO_IMR_IMR from a register value.
+#define BG_GPIO_IMR_IMR(r)   (((r) & BM_GPIO_IMR_IMR) >> BP_GPIO_IMR_IMR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_IMR_IMR(v)   ((((reg32_t) v) << 0) & BM_GPIO_IMR_IMR)
+//! @brief Format value for bitfield GPIO_IMR_IMR.
+#define BF_GPIO_IMR_IMR(v)   ((((reg32_t) v) << BP_GPIO_IMR_IMR) & BM_GPIO_IMR_IMR)
 #else
-#define BF_GPIO_IMR_IMR(v)   (((v) << 0) & BM_GPIO_IMR_IMR)
+//! @brief Format value for bitfield GPIO_IMR_IMR.
+#define BF_GPIO_IMR_IMR(v)   (((v) << BP_GPIO_IMR_IMR) & BM_GPIO_IMR_IMR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMR field to a new value.
-#define BW_GPIO_IMR_IMR(v)   BF_CS1(GPIO_IMR, IMR, v)
+#define BW_GPIO_IMR_IMR(x, v)   (HW_GPIO_IMR_WR(x, (HW_GPIO_IMR_RD(x) & ~BM_GPIO_IMR_IMR) | BF_GPIO_IMR_IMR(v)))
 #endif
 
 
@@ -1240,18 +1465,20 @@ typedef union
 /*!
  * @brief HW_GPIO_ISR - GPIO interrupt status register (W1C)
  *
+ * Reset value: 0x00000000
+ *
  * The GPIO_ISR functions as an interrupt status indicator. Each bit indicates whether an interrupt
  * condition has been met for the corresponding input signal. When an interrupt condition is met (as
  * determined by the corresponding interrupt condition register field), the corresponding bit in
  * this register is set. Two wait states are required in read access for synchronization. One wait
  * state is required for reset.
  */
-typedef union
+typedef union _hw_gpio_isr
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_isr_bitfields
     {
-        unsigned ISR : 32; //!< Interrupt status bits - Bit n of this register is asserted (active high) when the active condition (as determined by the corresponding ICR bit) is detected on the GPIO input and is waiting for service. The value of this register is independent of the value in GPIO_IMR. When the active condition has been detected, the corresponding bit remains set until cleared by software. Status flags are cleared by writing a 1 to the corresponding bit position.
+        unsigned ISR : 32; //!< [31:0] Interrupt status bits - Bit n of this register is asserted (active high) when the active condition (as determined by the corresponding ICR bit) is detected on the GPIO input and is waiting for service. The value of this register is independent of the value in GPIO_IMR. When the active condition has been detected, the corresponding bit remains set until cleared by software. Status flags are cleared by writing a 1 to the corresponding bit position.
     } B;
 } hw_gpio_isr_t;
 #endif
@@ -1283,22 +1510,30 @@ typedef union
  * Status flags are cleared by writing a 1 to the corresponding bit position.
  */
 
-#define BP_GPIO_ISR_ISR      (0)
-#define BM_GPIO_ISR_ISR      (0xffffffff)
+#define BP_GPIO_ISR_ISR      (0)      //!< Bit position for GPIO_ISR_ISR.
+#define BM_GPIO_ISR_ISR      (0xffffffff)  //!< Bit mask for GPIO_ISR_ISR.
+
+//! @brief Get value of GPIO_ISR_ISR from a register value.
+#define BG_GPIO_ISR_ISR(r)   (((r) & BM_GPIO_ISR_ISR) >> BP_GPIO_ISR_ISR)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_ISR_ISR(v)   ((((reg32_t) v) << 0) & BM_GPIO_ISR_ISR)
+//! @brief Format value for bitfield GPIO_ISR_ISR.
+#define BF_GPIO_ISR_ISR(v)   ((((reg32_t) v) << BP_GPIO_ISR_ISR) & BM_GPIO_ISR_ISR)
 #else
-#define BF_GPIO_ISR_ISR(v)   (((v) << 0) & BM_GPIO_ISR_ISR)
+//! @brief Format value for bitfield GPIO_ISR_ISR.
+#define BF_GPIO_ISR_ISR(v)   (((v) << BP_GPIO_ISR_ISR) & BM_GPIO_ISR_ISR)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISR field to a new value.
-#define BW_GPIO_ISR_ISR(v)   BF_CS1(GPIO_ISR, ISR, v)
+#define BW_GPIO_ISR_ISR(x, v)   (HW_GPIO_ISR_WR(x, (HW_GPIO_ISR_RD(x) & ~BM_GPIO_ISR_ISR) | BF_GPIO_ISR_ISR(v)))
 #endif
 
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_GPIO_EDGE_SEL - GPIO edge select register (RW)
+ *
+ * Reset value: 0x00000000
  *
  * GPIO_EDGE_SEL may be used to override the ICR registers' configuration. If the GPIO_EDGE_SEL bit
  * is set, then a rising edge or falling edge in the corresponding signal generates an interrupt.
@@ -1306,12 +1541,12 @@ typedef union
  * overridden). [Is this single EDGE_SEL register valid for all the GPIO's on the SoC? If so, should
  * mention this -- CThron]
  */
-typedef union
+typedef union _hw_gpio_edge_sel
 {
     reg32_t U;
-    struct
+    struct _hw_gpio_edge_sel_bitfields
     {
-        unsigned GPIO_EDGE_SEL : 32; //!< Edge select. When GPIO_EDGE_SEL[ n ] is set, the GPIO disregards the ICR[ n ] setting, and detects any edge on the corresponding input signal.
+        unsigned GPIO_EDGE_SEL : 32; //!< [31:0] Edge select. When GPIO_EDGE_SEL[ n ] is set, the GPIO disregards the ICR[ n ] setting, and detects any edge on the corresponding input signal.
     } B;
 } hw_gpio_edge_sel_t;
 #endif
@@ -1340,17 +1575,23 @@ typedef union
  * detects any edge on the corresponding input signal.
  */
 
-#define BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL      (0)
-#define BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL      (0xffffffff)
+#define BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL      (0)      //!< Bit position for GPIO_EDGE_SEL_GPIO_EDGE_SEL.
+#define BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL      (0xffffffff)  //!< Bit mask for GPIO_EDGE_SEL_GPIO_EDGE_SEL.
+
+//! @brief Get value of GPIO_EDGE_SEL_GPIO_EDGE_SEL from a register value.
+#define BG_GPIO_EDGE_SEL_GPIO_EDGE_SEL(r)   (((r) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL) >> BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
 
 #ifndef __LANGUAGE_ASM__
-#define BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   ((((reg32_t) v) << 0) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
+//! @brief Format value for bitfield GPIO_EDGE_SEL_GPIO_EDGE_SEL.
+#define BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   ((((reg32_t) v) << BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
 #else
-#define BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   (((v) << 0) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
+//! @brief Format value for bitfield GPIO_EDGE_SEL_GPIO_EDGE_SEL.
+#define BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   (((v) << BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
 #endif
+
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPIO_EDGE_SEL field to a new value.
-#define BW_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   BF_CS1(GPIO_EDGE_SEL, GPIO_EDGE_SEL, v)
+#define BW_GPIO_EDGE_SEL_GPIO_EDGE_SEL(x, v)   (HW_GPIO_EDGE_SEL_WR(x, (HW_GPIO_EDGE_SEL_RD(x) & ~BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL) | BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)))
 #endif
 
 
@@ -1358,7 +1599,8 @@ typedef union
  * @brief All GPIO module registers.
  */
 #ifndef __LANGUAGE_ASM__
-typedef struct
+#pragma pack(1)
+typedef struct _hw_gpio
 {
     volatile hw_gpio_dr_t DR; //!< GPIO data register
     volatile hw_gpio_gdir_t GDIR; //!< GPIO direction register
@@ -1369,6 +1611,7 @@ typedef struct
     volatile hw_gpio_isr_t ISR; //!< GPIO interrupt status register
     volatile hw_gpio_edge_sel_t EDGE_SEL; //!< GPIO edge select register
 } hw_gpio_t;
+#pragma pack()
 #endif
 
 //! @brief Macro to access all GPIO registers.

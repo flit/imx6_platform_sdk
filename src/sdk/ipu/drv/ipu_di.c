@@ -73,7 +73,7 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
     if (clk_src == 1)
         ipuClk = panel->pixel_clock;
     else
-        ipuClk = IPU_DEFAULT_WORK_CLOCK;    // for imx61el->pixel_clock;
+        ipuClk = IPU_DEFAULT_WORK_CLOCK;    // for imx6dqel->pixel_clock;
 
     div = (int)((float)ipuClk / (float)typPixClk + 0.5);    // get the nearest value of typical pixel clock
     ipu_di_screen_set(ipu_index, di, vTotal - 1);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -568,7 +568,7 @@
 #define IOMUXC_USBOH3_IPP_IND_UH1_OC_SELECT_INPUT (SELECT_INPUT_BASE_ADDR + 0x170)  // 0x8a0
 #define IOMUXC_USBOH3_IPP_IND_UH2_OC_SELECT_INPUT (SELECT_INPUT_BASE_ADDR + 0x174)  // 0x8a4
 
-/* make some alignment with i.MX61 pad naming */
+/* make some alignment with i.MX6DQ pad naming */
 #define IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1  IOMUXC_SW_MUX_CTL_PAD_SD1_DATA1
 #define IOMUXC_SW_PAD_CTL_PAD_SD1_DAT1  IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1
 

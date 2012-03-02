@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -627,5 +627,5 @@ void ldb_clock_config(int32_t freq)
 
 void hdmi_clock_set(unsigned int pclk)
 {
-/* for compatibility with i.MX61 */
+/* for compatibility with i.MX6DQ */
 }

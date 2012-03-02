@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -36,10 +36,10 @@ static audio_test_t audio_tests[] = {
 #if defined(MX53_SMD)
     {"SSI playback", ssi_playback},
 #endif
-#if defined(MX61_ARD) || defined(MX61_EVB) || defined(MX61_QSB)
+#if defined(MX6DQ_ARD) || defined(MX6SDL_ARD) || defined(MX6DQ_EVB) || defined(MX6SDL_EVB) || defined(MX6DQ_QSB) || defined(MX6SDL_QSB)
     {"ESAI playback", esai_playback},
 #endif
-#if defined(MX61_EVB)
+#if defined(MX6DQ_EVB) || defined(MX6SDL_EVB)
     {"SPDIF playback", spdif_playback},
 #endif
 };

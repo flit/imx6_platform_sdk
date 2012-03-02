@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -131,7 +131,7 @@ int32_t i2c_imx6_slave_test(void)
     int32_t ret = 0;
     uint8_t data_buffer[16];    
 
-    printf("  Starting i.MX61 slave test...\n");
+    printf("  Starting i.MX6DQ/SDL slave test...\n");
 
     // Initialize the request
     imx6_i2c_req.ctl_addr = imx6_i2c_slave_port.base;   /* the I2C controller base address */
@@ -147,7 +147,7 @@ int32_t i2c_imx6_slave_test(void)
 
     ret = i2c_init(imx6_i2c_req.ctl_addr, 170000);
 
-#ifdef MX61_EVB
+#if defined(MX6DQ_EVB) || defined(MX6SDL_EVB)
     /*Set iomux and daisy chain for eeprom test */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D17, ALT6 | 0x10);
     reg32_write(IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT, 0x00);

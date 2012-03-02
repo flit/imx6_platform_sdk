@@ -14,10 +14,10 @@ usage()
     echo "Only files releavant for the platform specified as argument are copied to the release folder."
     echo
     echo "Usage: "
-    echo "   $script [-target <mx61, mx53, ...>] [-board <evb, qsb, ard, smd, ...>]"
+    echo "   $script [-target <mx6dq, mx53, ...>] [-board <evb, qsb, ard, smd, ...>]"
     echo "   Must be executed in the diag-sdk tree. "
     echo
-    echo "For eg: 1. $script -target mx61 -board evb"
+    echo "For eg: 1. $script -target mx6dq -board evb"
     echo "        2. $script -target mx53 -board lcb"
     echo
     exit 1

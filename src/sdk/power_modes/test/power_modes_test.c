@@ -9,7 +9,7 @@
 
 static void tick_timer_interrupt_routine(void);
 
-/* EPIT2 port is free for i.MX61 and i.MX53 SDK as EPIT1 is used
+/* EPIT2 port is free for i.MX6DQ/SDL and i.MX53 SDK as EPIT1 is used
    for a global delay function */
 static struct hw_module g_tick_timer = {
     "EPIT2 for system tick",

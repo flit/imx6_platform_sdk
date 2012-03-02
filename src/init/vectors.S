@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -27,7 +27,7 @@ startup:
 #ifdef PLATFORM_ASM_STARTUP
         PLATFORM_ASM_STARTUP            // start up code in assembly
 #endif
-#ifdef MX61
+#if defined(MX6DQ)||defined(MX6SDL)
         b startup_imx6x
 #endif
         ldr     r0, =top_of_stacks

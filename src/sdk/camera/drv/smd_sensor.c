@@ -28,8 +28,8 @@ void sensor_reset(void)
 
     sensor_standby(0);
 
-#ifdef MX61_SABRE_TABLET
-    /* MX61_SABRE_TABLET: camera reset through GPIO1_17 */
+#if defined(MX6DQ_SMART_DEVICE) || defined(MX6SDL_SMART_DEVICE)
+    /* MX6DQ/SDL_SMART_DEVICE: camera reset through GPIO1_17 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1, 0x5);
     reg32setbit(GPIO1_BASE_ADDR + 0x0004, 17);  //set GPIO1_17 as output
     reg32clrbit(GPIO1_BASE_ADDR, 17);
@@ -57,8 +57,8 @@ int32_t sensor_standby(int32_t enable)
 {
     int32_t ret = 0;
 
-#ifdef MX61_SABRE_TABLET
-    /* MX61_SABRE_TABLET: setting to gpio1_16, power down high active */
+#if defined(MX6DQ_SMART_DEVICE) || defined(MX6SDL_SMART_DEVICE)
+    /* MX6DQ/SDL_SMART_DEVICE: setting to gpio1_16, power down high active */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0, 0x5);
     reg32setbit(GPIO1_BASE_ADDR + 0x0004, 16);  //set GPIO1_16 as output
     if (enable)
@@ -86,10 +86,10 @@ void sensor_clock_setting(void)
 {
     int32_t clock_delay = 1000;
 
-#ifdef MX61_SABRE_TABLET
+#if defined(MX6DQ_SMART_DEVICE) || defined(MX6SDL_SMART_DEVICE)
     /*config gpio_0 to be clko */
     writel(0x0, IOMUXC_SW_MUX_CTL_PAD_GPIO_0);
-    /*MX61_SABRE_TABLET: config clko */
+    /*MX6DQ/SDL_SMART_DEVICE: config clko */
     writel(0x00031, IOMUXC_SW_PAD_CTL_PAD_GPIO_0);  // Set GPIO0
     /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
     writel(0x10e0180, CCM_BASE_ADDR + 0x60);

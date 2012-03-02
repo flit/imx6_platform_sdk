@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -7,7 +7,7 @@
 
 /*!
  * @file ipu_reg_def.h
- * @brief IPU registers definition for MX61(IPUv3m).
+ * @brief IPU registers definition for MX6DQ(IPUv3m).
  * @ingroup diag_ipu
  */
 

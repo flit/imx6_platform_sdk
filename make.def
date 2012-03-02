@@ -45,22 +45,41 @@ C_DEFINES +=-DMX53_SMD
 endif
 endif
 
-ifeq "$(TARGET)" "mx61"
-C_DEFINES +=-DMX61
+ifeq "$(TARGET)" "mx6dq"
+C_DEFINES +=-DMX6DQ
 CPU	=cortex-a9
 INIT_FILE += $(PROJ_DIR)/src/cortex_a9/gic.s $(PROJ_DIR)/src/$(TARGET)/startup.s
 INIT_FILE += $(PROJ_DIR)/src/cortex_a9/cortexA9.s
 ifeq "$(BOARD)" "evb"
-C_DEFINES +=-DMX61_EVB
+C_DEFINES +=-DMX6DQ_EVB
 endif
 ifeq "$(BOARD)" "ard"
-C_DEFINES +=-DMX61_ARD
+C_DEFINES +=-DMX6DQ_ARD
 endif
 ifeq "$(BOARD)" "sabre_lite"
-C_DEFINES +=-DMX61_SABRE_LITE
+C_DEFINES +=-DMX6DQ_SABRE_LITE
 endif
-ifeq "$(BOARD)" "sabre_tablet"
-C_DEFINES +=-DMX61_SABRE_TABLET
+ifeq "$(BOARD)" "smart_device"
+C_DEFINES +=-DMX6DQ_SMART_DEVICE
+endif
+endif
+
+ifeq "$(TARGET)" "mx6sdl"
+C_DEFINES +=-DMX6SDL
+CPU	=cortex-a9
+INIT_FILE += $(PROJ_DIR)/src/cortex_a9/gic.s $(PROJ_DIR)/src/$(TARGET)/startup.s
+INIT_FILE += $(PROJ_DIR)/src/cortex_a9/cortexA9.s
+ifeq "$(BOARD)" "evb"
+C_DEFINES +=-DMX6SDL_EVB
+endif
+ifeq "$(BOARD)" "ard"
+C_DEFINES +=-DMX6SDL_ARD
+endif
+ifeq "$(BOARD)" "sabre_lite"
+C_DEFINES +=-DMX6SDL_SABRE_LITE
+endif
+ifeq "$(BOARD)" "smart_device"
+C_DEFINES +=-DMX6SDL_SMART_DEVICE
 endif
 endif
 

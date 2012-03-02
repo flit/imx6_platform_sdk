@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2010-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -34,7 +34,7 @@ int32_t esai_playback(audio_pcm_p pcm_file)
 
     printf("Please ensure:\n");
     printf
-        (" 1. i.MX61_ARD board and the Automotive Card are both mounted to the ARMADILLO 2 board.\n");
+        (" 1. i.MX6DQ_ARD board and the Automotive Card are both mounted to the ARMADILLO 2 board.\n");
     printf
         (" 2. The converting cable's two plugs were plugged into the Automotive Card's AOUT1 and AOUT2 sockets.\n");
     printf(" 3. The headphone is plugged into the converting cable's socket.\n");

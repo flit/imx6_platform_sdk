@@ -14,8 +14,10 @@
 
 #if defined(MX53)
 #include "sdma_script_code_mx53.h"
-#elif defined (MX61)
-#include "sdma_script_code_mx61.h"
+#elif defined (MX6DQ)
+#include "sdma_script_code_mx6dq.h"
+#elif defined (MX6SDL)
+#include "sdma_script_code_mx6sdl.h"
 #endif
 
 #ifdef MX53

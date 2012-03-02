@@ -36,25 +36,30 @@ usage()
     echo
     echo "Valid target and board combinations:"
     echo
-    echo "  target=mx61 boards:"
-    echo "       ard              rev 1"
+    echo "  target=mx6dq boards:"
+    echo "       ard              rev 1=A, 2=B"
     echo "       evb              rev 1 (MX6QCPUDDR3)"
-    echo "       sabre_tablet     rev 1"
+    echo "       smart_device     rev 1=A, 2=B"
+    echo
+    echo "  target=mx6sdl boards:"
+    echo "       ard              rev 1=A, 2=B"
+    echo "       evb              rev 1 (MX6QCPUDDR3)"
+    echo "       smart_device     rev 1=A, 2=B"
     echo
     echo "Examples:"
     echo
-    echo "  $script -target mx61 -board evb"
+    echo "  $script -target mx6dq -board evb"
     echo
-    echo "      Build for the mx61 evb board with default board rev of 1 and all tests."
+    echo "      Build for the mx6dq evb board with default board rev of 1 and all tests."
     echo
-    echo "  $script -t mx61 -b ard -v 1 -test sdma -clean"
+    echo "  $script -t mx6dq -b ard -v 1 -test sdma -clean"
     echo
-    echo "      Build the mx61 ard board with explicit board rev 1, but only build the sdma test."
+    echo "      Build the mx6dq ard board with explicit board rev 1, but only build the sdma test."
     echo "      Clean before building."
     echo
-    echo "  $script -target=mx61 -board=evb -test=gpmi -no-build"
+    echo "  $script -target=mx6dq -board=evb -test=gpmi -no-build"
     echo
-    echo "      Generate the makefiles for mx61 evb and the gpmi test, but don't actually run make."
+    echo "      Generate the makefiles for mx6dq evb and the gpmi test, but don't actually run make."
     echo
     echo
     exit 1
@@ -154,7 +159,6 @@ fi
 
 # Run make if requested.
 if [ "$build_flag" = y ]; then
-    #Do not include the '_' when calling the make
     make TARGET=$soc_name BOARD=$board_name BOARD_VERSION=$board_version TEST=$test_name
     result=$?
     

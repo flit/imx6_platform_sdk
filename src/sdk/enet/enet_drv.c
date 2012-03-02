@@ -505,7 +505,7 @@ int imx_enet_mii_type(imx_enet_priv_t * dev, enum imx_mii_type mii_type)
     case RGMII:
         hw_reg->rcr &= ~(ENET_RCR_RMII_MODE | ENET_RCR_MII_MODE);
         hw_reg->rcr |= ENET_RCR_RGMII_EN;
-        hw_reg->tfwr = 0x3f;    //for mx61
+        hw_reg->tfwr = 0x3f;    //for mx6dq
         break;
     default:
         printf("BUG:unknow MII type=%x\n", mii_type);

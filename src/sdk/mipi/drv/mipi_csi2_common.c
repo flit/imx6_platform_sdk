@@ -244,7 +244,7 @@ void mipi_csi2_controller_program(void)
  */
 void mipi_cam_power_on(void)
 {
-#ifdef MX61_EVB
+#if defined(MX6DQ_EVB) || defined(MX6SDL_EVB)
     /*reset of camera sensor, pin 27 */
     max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
@@ -257,7 +257,7 @@ void mipi_cam_power_on(void)
 //    max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
 #endif
 
-#ifdef MX61_ARD
+#if defined(MX6DQ_ARD) || defined(MX6SDL_ARD)
     /*power supply through pin25 of connector, direct connected to P3V3_DELAY,
        controlled by CPU_PER_RST_B */
     /*reset of camera sensor, together with the reset button */
@@ -268,7 +268,7 @@ void mipi_cam_power_on(void)
 
 #endif
 
-#ifdef MX61_SABRE_TABLET
+#if defined(MX6DQ_SMART_DEVICE) || defined(MX6SDL_SMART_DEVICE)
     /*power supply through pin25 of connector, for cam_pdown */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);

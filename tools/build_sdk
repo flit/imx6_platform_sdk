@@ -156,15 +156,14 @@ fi
 if [ "$build_flag" = y ]; then
     #Do not include the '_' when calling the make
     make TARGET=$soc_name BOARD=$board_name BOARD_VERSION=$board_version TEST=$test_name
+    result=$?
     
     echo
-    if [ $? -eq 0 ]; then
+    if [ $result -eq 0 ]; then
         echo "Build passed!"
     else
-        echo "Build failed with return code $?!"
+        echo "Build failed with return code $result!"
     fi
+else
+    echo "Done ... Build script completed"
 fi
-
-echo
-echo "Done ... Build script completed"
-echo

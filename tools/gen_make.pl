@@ -47,6 +47,9 @@ dir:\$(SUB_DIRS) all
 
 include \$(PROJ_DIR)/make.rules
 
+# include dependencies files
+-include \$(MODULE_OBJS:.o=.d)
+
 EOF
 
 #Create friendly names

@@ -326,7 +326,9 @@ int fat_scan_root(tVolume * V, tFile * files, int maxFiles, int filter, const ch
                     if (dirEntry->Name[i] != 0x20)  //get rid of space
                         fileNameLen++;
                 }
-                for (i = 0; i < fileNameLen; i++)
+                if(fileNameLen > 7)
+					fileNameLen = 7;
+				for (i = 0; i < fileNameLen; i++)
                     files[fileCnt].fname[7 - fileNameLen + i] = dirEntry->Name[i];
                 files[fileCnt].fname[7] = '.';
                 for (i = 0; i < 3; i++)

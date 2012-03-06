@@ -134,6 +134,8 @@ void hdmi_tx_ISR(void)
 void hdmi_1080P60_video_output(int ipu_index, int ipu_di)
 {
     int hdmi_src = ((ipu_index - 1) << 1) | ipu_di;
+    // configure IPU to output stream for hdmi input
+    ips_hdmi_1080P60_stream(ipu_index);
 
     hdmi_data_info_s myHDMI_info = { 0 };   // declare new hdmi module object instance
     hdmi_vmode_s myHDMI_vmode_info = { 0 }; // declare new hdmi module object instance
@@ -164,6 +166,4 @@ void hdmi_1080P60_video_output(int ipu_index, int ipu_di)
 
     hdmi_config_input_source(hdmi_src); // configure input source to HDMI block
 
-    // configure IPU to output stream for hdmi input
-    ips_hdmi_1080P60_stream(ipu_index);
 }

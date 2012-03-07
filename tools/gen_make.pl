@@ -45,10 +45,12 @@ dir:\$(SUB_DIRS) all
 \$(SUB_DIRS):
 	make -S -C \$@ dir
 
-include \$(PROJ_DIR)/make.rules
-
-# include dependencies files
+# include dependencies files, but only if there are .o files in this dir
+ifneq "$(strip $(MODULE_OBJS))" ""
 -include \$(MODULE_OBJS:.o=.d)
+endif
+
+include \$(PROJ_DIR)/make.rules
 
 EOF
 

@@ -16,6 +16,9 @@
  * @ingroup diag_usb
  */
 
+// For now this must come before hardware.h due to conflict with ENABLE macro.
+#include "registers/regsccmanalog.h"
+
 #include "hardware.h"
 
 /*!
@@ -47,10 +50,10 @@ int usbEnableClocks(usb_module_t *port)
 	case OTG:											// OTG, Host2 and Host3 use the same PLL
 	case Host2:
 	case Host3:
-		usbPllControl = (multiAccess_t *)(HW_ANADIG_USB1_PLL_480_CTRL_RW);
+		usbPllControl = (multiAccess_t *)(HW_CCM_ANALOG_USBPHY0_PLL_480_CTRL_ADDR);
 		break;
 	case Host1:
-		usbPllControl = (multiAccess_t *)(HW_ANADIG_USB2_PLL_480_CTRL_RW);
+		usbPllControl = (multiAccess_t *)(HW_CCM_ANALOG_USBPHY1_PLL_480_CTRL_ADDR);
 		break;
 	default:
 		return (-1);

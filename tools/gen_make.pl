@@ -1,11 +1,12 @@
 #!/usr/bin/perl -w
 
 #Below is a description of arguments required for this perl script
-#ARGV[0]: Path to the SDK config folder e.g:/home/user/diag-sdk/configs
-#ARGV[1]: Path to the Base SDK folder e.g:/home/user/diag-sdk
-#ARGV[2]: SOC Name e.g:mx53, mx6dq, ...
-#ARGV[3]: Board Name e.g:ard, smd, ...
-#ARGV[4]: Test Name e.g:ipu, vpu, sdma, ...
+#ARGV[0]: Path to the SDK config folder e.g.: /home/user/diag-sdk/configs
+#ARGV[1]: Path to the Base SDK folder e.g.: /home/user/diag-sdk
+#ARGV[2]: SOC Name e.g.: mx53, mx6dq, ...
+#ARGV[3]: Board Name e.g.: ard, smd, ...
+#ARGV[4]: Board Rev e.g.: a, b, ...
+#ARGV[5]: Test Name e.g.: ipu, vpu, sdma, ...
 
 use File::Find;
 use File::Copy;
@@ -59,9 +60,11 @@ my $sdk_conf_path = "$ARGV[0]";
 my $sdk_base_path = "$ARGV[1]";
 my $imx_name = "$ARGV[2]";
 my $board_name = "$ARGV[3]";
+my $board_rev = "$ARGV[4]";
+my $full_board_name = "${board_name}_rev_${board_rev}";
 
 #Open the configuration input file
-my $in_file = "$sdk_conf_path/${imx_name}_${board_name}.conf";
+my $in_file = "$sdk_conf_path/${imx_name}_${full_board_name}.conf";
 if (!(open (INP_FH, $in_file))) {
     # Try if the configuration file is common for all boards for this target
     $in_file = "$sdk_conf_path/$imx_name.conf";

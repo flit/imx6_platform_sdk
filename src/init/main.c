@@ -29,7 +29,7 @@ extern void system_memory_arrange(void);
  */
 int main(void)
 {
-#if defined(MX6DQ_EVB)||defined(MX6SDL_EVB)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_AI)||defined(MX6SDL_ARD)
+#if defined(MX6DQ_EVB)||defined(MX6SDL_EVB)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_AI)||defined(MX6SDL_SABRE_AI)
     system_memory_arrange();
     disable_strict_align_check();
 #endif

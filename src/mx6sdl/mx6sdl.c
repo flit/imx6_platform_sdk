@@ -37,10 +37,10 @@ static void mx6sdl_print_ver(void)
         sprintf(chip_name, "i.MX6QD TOx.x");
     }
 
-    if (BOARD_TYPE_ID == BOARD_ID_MX6SDL_ARD)
+    if (BOARD_TYPE_ID == BOARD_ID_MX6SDL_SABRE_AI)
         sprintf(board_name, "SABRE Auto");
     else if (BOARD_TYPE_ID == BOARD_ID_MX6SDL_SMART_DEVICE)
-        sprintf(board_name, "Smart Device");
+        sprintf(board_name, "SABRE Smart Device (SD)");
     else if (BOARD_TYPE_ID == BOARD_ID_MX6SDL_SABRE_LITE)
         sprintf(board_name, "Sabre-Lite Board");
     else if (BOARD_TYPE_ID == BOARD_ID_MX6SDL_EVB)
@@ -121,18 +121,18 @@ void ALL_test(void)
     while (1) {
         printf("Starting the tests suite...\n");
         audio_test();
-#ifdef MX6SDL_ARD
+#ifdef MX6SDL_SABRE_AI
         flexcan_test();
-#endif /* MX6SDL_ARD */
+#endif /* MX6SDL_SABRE_AI */
         epit_test();
 
         gpt_test();
         hdmi_test();
         i2c_test();
         ipu_test();
-#ifndef MX6SDL_SMART_DEVICE
+#if defined(MX6SDL_EVB) || defined(MX6SDL_SABRE_AI)
         mipi_test();
-#endif /* MX6SDL_SMART_DEVICE */
+#endif /* MX6SDL_EVB || MX6SDL_SABRE_AI */
         sata_test();
         sdma_test();
         snvs_rtc_test();

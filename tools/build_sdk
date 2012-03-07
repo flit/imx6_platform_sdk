@@ -12,18 +12,19 @@ script_path=$(dirname $script_full)
 usage()
 {
     echo "Usage: "
-    echo "   $script -t <target> -b <board> [-v <rev>] [-r <test>] [-n] [-c]"
+    echo "   $script [-t <target>] [-b <board>] [-v <rev>] [-r <test>] [-n] [-c] [-l]"
     echo
     echo "Generates makefiles for the i.MX SDK project."
     echo
     echo "Options:"
-    echo "   -t, -target=<target>     Specify the target name. Required."
-    echo "   -b, -board=<brd>         Specify the board name. Required."
-    echo "   -v, -board_rev=<rev>     Sets the board revision. Optional, and the default is 1."
+    echo "   -t, -target=<target>     Specify the target name. Optional, and the default is all."
+    echo "   -b, -board=<brd>         Specify the board name. Optional, and the default is all."
+    echo "   -v, -board_rev=<rev>     Specify the board revision. Optional, and the default is all."
     echo "   -r, -test=<name>         Optional argument to select a single test, or ALL for all tests."
     echo "                            Defaults to ALL."
-    echo "   -c, -clean               Optional flag to force a clean build"
+    echo "   -c, -clean               Optional flag to force a clean build."
     echo "   -n, -no-build            Don't actually run make."
+    echo "   -l, -list-builds         Optional flag to list target, board, board_rev cominations to be built."
     echo
     echo "   Short options take the same arguments as their respective long options."
     echo "   The '=' is optional for long options; arguments can be specified as -arg=value or"
@@ -37,39 +38,96 @@ usage()
     echo "Valid target and board combinations:"
     echo
     echo "  target=mx6dq boards:"
-    echo "       sabre_ai         rev 1=A, 2=B"
-    echo "       evb              rev 1 (MX6QCPUDDR3)"
-    echo "       smart_device     rev 1=A, 2=B"
+    echo "       sabre_ai         rev a, b"
+    echo "       evb              rev a (MX6QCPUDDR3)"
+    echo "       smart_device     rev a, b"
     echo
     echo "  target=mx6sdl boards:"
-    echo "       sabre_ai         rev 1=A, 2=B"
-    echo "       evb              rev 1 (MX6QCPUDDR3)"
-    echo "       smart_device     rev 1=A, 2=B"
+    echo "       sabre_ai         rev a, b"
+    echo "       evb              rev a (MX6QCPUDDR3)"
+    echo "       smart_device     rev a, b"
+    echo
+    echo "  target=all"
+    echo "       builds all valid combinations of target, board, and board_rev"
+    echo "       [-r <test>] is a valid option."
+    echo "       -clean      Only does clean builds."
     echo
     echo "Examples:"
     echo
     echo "  $script -target mx6dq -board evb"
     echo
-    echo "      Build for the mx6dq evb board with default board rev of 1 and all tests."
+    echo "      Build for the mx6dq evb board with default board rev of a and all tests."
     echo
-    echo "  $script -t mx6dq -b sabre_ai -v 1 -test sdma -clean"
+    echo "  $script -t mx6dq -b sabre_ai -v a -test sdma -clean"
     echo
-    echo "      Build the mx6dq sabre_ai board with explicit board rev 1, but only build the sdma test."
+    echo "      Build the mx6dq sabre_ai board with explicit board rev a, but only build the sdma test."
     echo "      Clean before building."
     echo
     echo "  $script -target=mx6dq -board=evb -test=gpmi -no-build"
     echo
     echo "      Generate the makefiles for mx6dq evb and the gpmi test, but don't actually run make."
     echo
+    echo "  $script -target=all -test vpu"
+    echo
+    echo "      Clean build of vpu_test for all valid combinations of target, board, and board_rev."
+    echo
     echo
     exit 1
 }
 
-if [ $# -lt 1 ]; then
-    echo "Need to specify at least -target and -board as arguments"
+valid_builds=( "mx6dq"  "sabre_ai"     "a" "mx6dq"  "sabre_ai"     "b"
+               "mx6dq"  "evb"          "a"
+               "mx6dq"  "sabre_lite"   "a"
+               "mx6dq"  "smart_device" "a" "mx6dq"  "smart_device" "b"
+               "mx6sdl" "sabre_ai"     "a" "mx6sdl" "sabre_ai"     "b"
+               "mx6sdl" "evb"          "a"
+               "mx6sdl" "sabre_lite"   "a"
+               "mx6sdl" "smart_device" "a" "mx6sdl" "smart_device" "b")
+
+do_build()
+{
+# Generate makefile
+echo "Generating makefiles for ${soc_name}_${board_name}_rev_${board_rev} test=${test_name}"
+
+perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $board_rev $test_name
+
+if [ $? -eq 1 ]; then
+    echo
+    echo "Failed to run the gen_make perl script."
+    echo "Please double check the -board & -target arguments passed in"
     echo
     usage
+    exit 1
 fi
+
+# Clean the build first if requested.
+if [ "$clean_flag" = y ]; then
+    make clean TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev
+fi
+
+# Run make if requested.
+if [ "$build_flag" = y ]; then
+    make TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev TEST=$test_name
+    result=$?
+    
+    echo
+    if [ $result -eq 0 ]; then
+        echo "Build passed!"
+    else
+        echo "Build failed with return code $result!"
+		exit 1;
+    fi
+else
+    echo "Done ... Build script completed"
+fi
+}
+
+# ENTRY POINT
+#if [ $# -lt 1 ]; then
+#    echo "Need to specify at least -target and -board as arguments"
+#    echo
+#    usage
+#fi
 
 if echo "$@"|egrep -sq '\-(h|H)'; then
     eval usage
@@ -93,29 +151,32 @@ make_perl_script=$sdk_dir/tools/gen_make.pl
 os_name=$(uname)
 
 # Set default values for optional arguments.
-board_version=1
+soc_name_arg="all"
+board_name_arg="all"
+board_rev_arg="all"
 test_name="ALL"
 clean_flag=n
 build_flag=y
+list_flag=n
 
 while [ $# -gt 0 ]; do
     case $1 in
-    @(-t|-target?(=*)) )    soc_name=${1#-target=}
-                            if [ "$soc_name" = "$1" ]; then
-                                soc_name=$2
+    @(-t|-target?(=*)) )    soc_name_arg=${1#-target=}
+                            if [ "$soc_name_arg" = "$1" ]; then
+                                soc_name_arg=$2
                                 shift
                             fi
             ;;
 
-    @(-b|-board?(=*)) )     board_name=${1#-board=}
-                            if [ "$board_name" = "$1" ]; then
-                                board_name=$2
+    @(-b|-board?(=*)) )     board_name_arg=${1#-board=}
+                            if [ "$board_name_arg" = "$1" ]; then
+                                board_name_arg=$2
                                 shift
                             fi
             ;;
-    @(-v|-board_rev?(=*)) ) board_version=${1#-board_rev=}
-                            if [ "$board_version" = "$1" ]; then
-                                board_version=$2
+    @(-v|-board_rev?(=*)) ) board_rev_arg=${1#-board_rev=}
+                            if [ "$board_rev_arg" = "$1" ]; then
+                                board_rev_arg=$2
                                 shift
                             fi
             ;;
@@ -129,6 +190,8 @@ while [ $# -gt 0 ]; do
             ;;
     -n|-no-build )          build_flag=n
             ;;
+    -l|-list-builds )       list_flag=y
+            ;;
 
     * )     echo "Incorrect parameter: $1"
             echo
@@ -138,36 +201,81 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-# Generate makefile
-echo "Generating makefiles for ${soc_name}_${board_name} rev${board_version} test=${test_name}"
+declare -a specified_builds
+for (( i=0 ; i<${#valid_builds[*]} ; i+=3 )); do
 
-perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $test_name
-
-if [ $? -eq 1 ]; then
-    echo
-    echo "Failed to run the gen_make perl script."
-    echo "Please double check the -board & -target arguments passed in"
-    echo
-    usage
-    exit 1
-fi
-
-# Clean the build first if requested.
-if [ "$clean_flag" = y ]; then
-    make clean TARGET=$soc_name BOARD=$board_name
-fi
-
-# Run make if requested.
-if [ "$build_flag" = y ]; then
-    make TARGET=$soc_name BOARD=$board_name BOARD_VERSION=$board_version TEST=$test_name
-    result=$?
-    
-    echo
-    if [ $result -eq 0 ]; then
-        echo "Build passed!"
-    else
-        echo "Build failed with return code $result!"
+#    soc_name=${valid_builds[i]}
+    if [ ${soc_name_arg} != "all" ]; then
+        if [ ${soc_name_arg} != ${valid_builds[i]} ]; then # continue: not our -target
+            if [ "$list_flag" = y ]; then
+                echo "Not building ${valid_builds[i]}_${valid_builds[i+1]}_rev_${valid_builds[i+2]} test=${test_name}"
+            fi
+            continue
+        fi 
     fi
-else
-    echo "Done ... Build script completed"
+    
+#    board_name=${valid_builds[i+1]}
+    if [ ${board_name_arg} != "all" ]; then
+        if [ ${board_name_arg} != ${valid_builds[i+1]} ]; then # continue: not our -board
+            if [ "$list_flag" = y ]; then
+                echo "Not building ${valid_builds[i]}_${valid_builds[i+1]}_rev_${valid_builds[i+2]} test=${test_name}"
+            fi
+            continue
+        fi 
+    fi
+    
+#    board_rev=${valid_builds[i+2]}
+    if [ ${board_rev_arg} != "all" ]; then
+        if [ ${board_rev_arg} != ${valid_builds[i+2]} ]; then # continue: not our -board_rev
+            if [ "$list_flag" = y ]; then
+                echo "Not building ${valid_builds[i]}_${valid_builds[i+1]}_rev_${valid_builds[i+2]} test=${test_name}"
+            fi
+            continue
+        fi 
+    fi
+
+    if [ "$list_flag" = y ]; then
+        echo "Build ${valid_builds[i]}_${valid_builds[i+1]}_rev_${valid_builds[i+2]} test=${test_name}"
+    fi
+    
+    specified_builds+=(${valid_builds[i]} ${valid_builds[i+1]} ${valid_builds[i+2]})
+
+done
+
+if [ "$list_flag" = n ]; then
+    for (( i=0 ; i<${#specified_builds[*]} ; i+=3 )); do
+        soc_name=${specified_builds[i]}
+        board_name=${specified_builds[i+1]}
+        board_rev=${specified_builds[i+2]}
+        do_build
+#        echo "Build ${soc_name}_${board_name}_rev_${board_rev} test=${test_name}"
+    done
 fi
+#if [ "$soc_name" == "all" ]; then
+#    clean_flag=y
+#    for (( i=0 ; i<${#valid_builds[*]} ; i+=3 )); do
+#        soc_name=${valid_builds[i]}
+#        board_name=${valid_builds[i+1]}
+#        board_version=${valid_builds[i+2]}
+#        do_build
+#    done
+#elif [ "$board_name" == "all" ]; then
+#    clean_flag=y
+#    for (( i=0 ; i<${#valid_builds[*]} ; i+=3 )); do
+#        if [ $"soc_name" != ${valid_builds[i]} ]; then :& # contine
+#            board_name=${valid_builds[i+1]}
+#            board_version=${valid_builds[i+2]}
+#            do_build
+#        fi
+#    done
+#elif [ "$board_version" == "all" ]; then
+#    clean_flag=y
+#    for (( i=0 ; i<${#valid_builds[*]} ; i+=3 )); do
+#        if [ $"soc_name" != ${valid_builds[i]} || $"soc_name" != ${board_name[i+1]} ]; then :& # contine
+#            board_version=${valid_builds[i+2]}
+#            do_build
+#        fi
+#    done
+#else
+#    do_build
+#fi

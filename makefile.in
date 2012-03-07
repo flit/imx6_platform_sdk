@@ -1,4 +1,7 @@
 #make commands:
+# make TARGET=<some soc> BOARD=<some board> BOARD_REVISION=<board revision> TEST=<some test>
+# example:
+# 		make TARGET=mx6dq BOARD=smart_device BOARD_REVISION=b TEST=vpu 
 
 PROJ_DIR := $(shell pwd)
 
@@ -7,13 +10,15 @@ ifneq ($(UNAME), Linux)
 PROJ_DIR := $(shell ./tools/windows/dirpath $(PROJ_DIR))
 endif
 
-PROJ_OUT := $(PROJ_DIR)/output/$(TARGET)/$(BOARD)
+PROJ_OUT := $(PROJ_DIR)/output/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION)
+PROJ_OUT_REL := output/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION)
 TARGET_LIB := $(PROJ_OUT)/lib/libsdk.a
 TARGET_LIB_DIR :=$(PROJ_OUT)/lib
 TARGET_BIN_DIR :=$(PROJ_OUT)/bin
 
 export PROJ_DIR
 export PROJ_OUT
+export PROJ_OUT_REL
 export TARGET_LIB
 export TARGET_LIB_DIR
 export TARGET_BIN_DIR
@@ -29,13 +34,12 @@ default: build_dir $(SUB_DIRS) all bin
 	@echo "  =>" $(TARGET_BIN_DIR)
 
 build_dir:
-	mkdir -p output
-	mkdir -p output/$(TARGET)
+	mkdir -p $(PROJ_OUT_REL)
 ifneq "$(TARGET_LIB_DIR)" ""
-		mkdir -p $(TARGET_LIB_DIR)
+	mkdir -p $(TARGET_LIB_DIR)
 endif
 ifneq "$(TARGET_BIN_DIR)" ""
-		mkdir -p $(TARGET_BIN_DIR)
+	mkdir -p $(TARGET_BIN_DIR)
 endif
 
 $(SUB_DIRS):build_dir
@@ -46,7 +50,7 @@ bin:$(SUB_DIRS)
 	arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
 
 clean:
-	rm -rf output/$(TARGET)/$(BOARD)
+	rm -rf $(PROJ_OUT_REL)
 
 test:
 	@echo aaa = $(aaa)

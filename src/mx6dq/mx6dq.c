@@ -130,9 +130,9 @@ void ALL_test(void)
         hdmi_test();
         i2c_test();
         ipu_test();
-#ifndef MX6DQ_SMART_DEVICE
+#if defined(MX6DQ_EVB) || defined(MX6DQ_SABRE_AI)
         mipi_test();
-#endif /* MX6DQ_SMART_DEVICE */
+#endif /* MX6DQ_EVB || MX6DQ_SABRE_AI */
         sata_test();
         sdma_test();
         snvs_rtc_test();

@@ -10,14 +10,6 @@
 
 #include "io.h"
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
 #define MMC_TEST_BUF_SIZE 8000
 #define MMC_TEST_OFFSET   (1024 * 1024)
 

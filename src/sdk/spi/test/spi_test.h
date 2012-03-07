@@ -9,14 +9,6 @@
 
 #include "io.h"
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
 #define TEST_BUF_SZ 128
 #define TEST_SRC_VAL  0x3569AC00
 #define TEST_ERASE_SZ (64 * 1024)

@@ -33,13 +33,6 @@ typedef struct iram_t {
     unsigned long end;
 } iram_t;
 
-#ifndef	true
-#define true	1
-#endif
-#ifndef	false
-#define false	0
-#endif
-
 int IOSystemInit(void);
 int IOSystemShutdown(void);
 int IOGetMem(vpu_mem_desc * buff);

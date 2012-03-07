@@ -13,19 +13,11 @@
 #ifndef SDMA_PRIV_H
 #define SDMA_PRIV_H
 
+#include "io.h"
 #include "sdma_script_info.h"
-
 #include "../inc/sdma.h"
 
 /*--------------------------------- macros --------------------------------------*/
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
 
 #define SDMA_SCRATCH_ENABLE
 

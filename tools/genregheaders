@@ -33,30 +33,43 @@ from xml.etree import ElementTree
 from UserDict import UserDict
 
 ##
-# @main
+# @mainpage
 #
 # The purpose of this tool is to automatically generate register definition header files from the
 # sidsc-component XML that is used to create the register sections of Freescale reference manuals.
 #
-# @par Remaining tasks:
-#
-# - Do HTML entities need to be converted?
-# - Need to process and filter all elements to build text. Even <bitFieldName> sometimes has more
+# @todo Need to process and filter all elements to build text. Even <bitFieldName> sometimes has more
 #   than one <ph> node within, each with different filter attribtues.
-# - Handle uniqueing of register and bitfield names in those classes, not in HeaderGenerator.
-# - Don't generate BW_ macros for bitfields that belong to a register without SCT macros, such
+# @todo Handle uniqueing of register and bitfield names in those classes, not in HeaderGenerator.
+# @todo Don't generate BW_ macros for bitfields that belong to a register without SCT macros, such
 #   as write-only registers.
-# - Add --enable=x (?) and --disable=x command line options that take a list of sections to include
+# @todo Add --enable=x (?) and --disable=x command line options that take a list of sections to include
 #   or exclude in the output. For instance, to disable the module struct or read/write macros.
-# - Use the relative paths in the sidsc-design file to find the input XML files, so most headers
+# @todo Use the relative paths in the sidsc-design file to find the input XML files, so most headers
 #   for an entire design can be generated in one command. (?)
-# - Use the log package for error output and honour the --quiet command.
-# - Write a real template language with looping and conditionals. (?)
-# - Add check for dimension addressIncrement less than register size in bytes.
-# - Consider adding defs in header to access multi-instance registers with an index parameter to
+# @todo Use the log package for error output and honour the --quiet command.
+# @todo Write a real template language with looping and conditionals. (?)
+# @todo Add check for dimension addressIncrement less than register size in bytes.
+# @todo Consider adding defs in header to access multi-instance registers with an index parameter to
 #   the macro, just like registers of a multi-instance component are accessed.
+# @todo Use only the first sentence of a bitfield's description for the comment in the register struct.
+# @todo Make sure bitfield value names are unique so there are duplicate BV_ macros.
+# @todo Output RVD .bcd files.
 #
-# @par Version history:
+# @page history Version history
+#
+# 1.0b8:
+# - Fixed some doxygen errors.
+# - Added --enable/--disable command line args.
+# - Replaced separate isAccessMode{Read,Write}able() with getAccessModeReadableWriteable().
+# - Added Register._hasOverlappingBitField().
+# - Implemented and using BitField.buildFromXml().
+# - Removed ExcludedByFilterException class and usage. The buildFromXml static methods are now used
+#   instead to filter by attribute.
+# - Fixed bitfield value name generation.
+# - Added support for multiple output formats.
+# - Added Arium config file output format.
+# - Bitfield values beginning with a digit don't have an extra '_' prefix anymore.
 #
 # 1.0b7:
 # - Handle all namePattern types instead of assuming the end. This fixes a number of register names.
@@ -113,26 +126,40 @@ from UserDict import UserDict
 #
 
 # Tool version number and copyright string.
-kToolVersion = "1.0b7"
+kToolVersion = "1.0b8"
 kToolCopyright = "Copyright (c) 2012 Freescale Semiconductor, Inc. All rights reserved."
 
-## Possible access modes for registers and bitfields. This list is just for reference.
+##
+# @brief Possible access modes for registers and bitfields.
 kAccessModes = ['R', 'W', 'RW', 'RO', 'WO', 'WORZ', 'ROZ', 'RORZ', 'ROO', 'RU', 'W1C', 'RC1']
 
-## Standard C library names.
+##
+# @brief Standard C library names.
 #
 # There are a ton more standard C macros, but most aren't likely to cause a conflict.
 kStandardLibNames = [ 'NULL', 'SIZE_MAX' ]
 
 ##
-# @brief Returns true if the access mode allows for reading.
-def isAccessModeReadable(mode):
-    return ('R' in mode or mode == 'W1C') and mode != 'WORZ'
+# @brief Default output features enable/disable configuration.
+#
+# This dictionary also serves as the complete list of available features.
+kDefaultOutputFeatures = {
+        'module-struct' : True,     # Struct with all module registers.
+        'sct' : True,               # Set, Clear, Toggle macros for registers.
+        'bg' : True,                # BG_ macros.
+        'bw' : True,                # BW_ macros.
+        'reg-macro' : True,         # Macro to access the register struct from the address.
+        'reg-rw' : True             # HW_x_RD() and HW_x_WR() macros.
+    }
 
 ##
-# @brief Returns true if the access mode allows for writing.
-def isAccessModeWriteable(mode):
-    return 'W' in mode
+# @brief Determines if the access mode allows for reading and writing.
+# @return A bi-tuple is returned where the first element is the readable flag and the second
+#       element is the writable flag (both Booleans).
+def getAccessModeReadableWritable(mode):
+    isReadable = ('R' in mode or mode == 'W1C') and mode != 'WORZ'
+    isWritable = 'W' in mode
+    return (isReadable, isWritable)
 
 ##
 # @brief Replace runs of whitespace with single space characters.
@@ -155,7 +182,7 @@ def formatText(rootElem):
 
 ##
 # @brief Make text into a valid C identifier.
-def formatIdentifier(text):
+def formatIdentifier(text, leadingUnderscoreForDigits=True):
     if text is None:
         return "_"
     # Find all "words". Allow a few other chars so words like "FOO.BAR" will be matched and
@@ -164,7 +191,8 @@ def formatIdentifier(text):
     if len(matches) == 0:   # Bail if we didn't get any matches.
         return "_"
     result = re.sub('[ \t\n\.\-]+', '_', matches[0].strip())    # Convert some chars to underscores.
-    if result[0] in "0123456789":   # Add underscore prefix if the first char is a digit.
+    # Add underscore prefix if the first char is a digit.
+    if leadingUnderscoreForDigits and result[0] in "0123456789":
         result = '_' + result
     result = re.sub('_+$', '', result) # Remove trailing underscores.
 #     print >> sys.stderr, "ID: %s -> %s" % (text, result)
@@ -321,6 +349,8 @@ def applyNamePattern(baseName, qualifiers, pattern):
     if type(pattern) == types.StringType:
         if pattern.lower() == "end":
             insertPos = len(baseName)
+        elif pattern.lower() == "start":
+            insertPos = 0
         else:
             insertPos = int(pattern)
     else:
@@ -329,9 +359,27 @@ def applyNamePattern(baseName, qualifiers, pattern):
     return [(baseName[:insertPos] + q + baseName[insertPos:]) for q in qualifiers]
 
 ##
-# @brief Exception thrown to indicate a mismatched product.
-class ExcludedByFilterException(Exception):
-    pass
+# @brief Extracts and formats text from an XML element tree.
+class XmlTextFormatter:
+    ##
+    # @brief Constructor.
+    # @param self
+    # @param elem An xml.etree.ElementTree.Element object that is the root of the element tree
+    #   whose text is to be processed.
+    # @param filterAttribs Optional dictionary of attribute values to filter by. If not provided
+    #   or set to None or an empty dictionary, then no filtering will be performed, i.e. all elements
+    #   are processed.
+    def __init__(self, filterAttribs=None):
+        self.paragraphs = []
+        self.filters = filterAttribs
+    
+    def set(self, elem):
+        self.paragraphs = []
+        self.addTextFromElements(elem)
+    
+    def addTextFromElements(self, elem):
+        for e in elem:
+            pass
 
 ##
 # @brief Holds component information.
@@ -485,14 +533,17 @@ class Register:
         self.addressOffset = convertHexValue(getElementText(props, 'addressOffset')) + offsetDelta
         self.sizeInBits = int(getElementText(props, 'registerSize'), 0)
         self.sizeInBytes = self.sizeInBits / 8
-        self.access = getElementText(props, 'registerAccess').upper()
-        if len(self.access) == 0:
-            self.access = 'RO'
-        self.isReadable = isAccessModeReadable(self.access)
-        self.isWritable = isAccessModeWriteable(self.access)
         self.resetValue = convertHexValue(getElementText(props, 'registerResetValue'))
         self.hasSct = hasSct
         self.bitFields = []
+        
+        # Process access mode.
+        self.access = getElementText(props, 'registerAccess', default='RO').upper()
+        if len(self.access) == 0:
+            self.access = 'RO'
+        if self.access not in kAccessModes:
+            print >> sys.stderr, "Warning: unknown access mode '%s' for register %s of %s!" % (self.access, self.name, self.component.name)
+        self.isReadable, self.isWritable = getAccessModeReadableWritable(self.access)
         
         # Validate register size.
         if self.sizeInBits not in [8, 16, 32]:
@@ -505,23 +556,20 @@ class Register:
     ##
     # @brief Create the BitField objects from the register XML node.
     def buildBitfields(self, registerElem, filterAttribs):
-        # Create the BitField objects.
-#         self.bitFields = []
+        # Iterate over all bitField elements in this register.
         for e in registerElem.findall('bitField'):
-            try:
-                newField = BitField(self, e, filterAttribs)
-                
+            # Get a list of new bitfield objects.
+            fieldList = BitField.buildFromXml(self, e, filterAttribs)
+            
+            for newField in fieldList:
                 # Verify that there is not already a bitfield with the same bit range.
-                for bit in range(newField.offset, newField.width):
-                    existingField = self.getBitFieldForBit(bit)
-                    if existingField is not None:
-                        print >> sys.stderr, "Warning: bitfield %s of %s overlaps with bitfield %s!" % (newField.name, self.formattedName, existingField.name)
-                        raise ExcludedByFilterException()
+                doesOverlap, existingField = self._hasOverlappingBitField(newField)
                 
-                self.bitFields.append(newField)
-            except ExcludedByFilterException:
-                # Just ignore this exception
-                pass
+                if doesOverlap:
+                    print >> sys.stderr, "Warning: bitfield %s of %s overlaps with bitfield %s!" % (newField.name, self.formattedName, existingField.name)
+                else:
+                    # No overlap, so add our new field to the list.
+                    self.bitFields.append(newField)
         
         # Make sure all bits have a bitfield.
         self._createMissingBitFields()
@@ -538,6 +586,24 @@ class Register:
             bits += field.width
         if bits > self.sizeInBits:
             print >> sys.stderr, "Warning: register %s of %s has %d total bits!" % (self.name, self.component.name, bits)
+    
+    ##
+    # @brief Checks whether the provided bitfield overlaps with another field.
+    #
+    # The @a testField argument must not already been in the register's list of bitfields. It
+    # will be compared with the bitfield list and True will be returned if there is another field
+    # with an overlapping bit range.
+    #
+    # @return Bi-tuple containing a Boolean indicating whether there is an overlap and the bitfield
+    #   with which @a testField overlaps.
+    def _hasOverlappingBitField(self, testField):
+        for bit in range(testField.offset, testField.width):
+            existingField = self.getBitFieldForBit(bit)
+            if existingField is not None:
+                return (True, existingField)
+        
+        # Nothing overlaps.
+        return (False, None)
     
     ##
     # @brief Create reserved bitfields for missing bits.
@@ -631,17 +697,16 @@ class BitField:
     #
     # @return A list of zero or more BitField objects. 
     @staticmethod
-    def buildFromXml(component, elem, filterAttribs):
-        return None
-    
-    ##
-    # @exception ExcludedByFilterException Raised when the XML element has an attribute that specifies
-    #   that it belongs to a product other than the one passed on @a productName.
-    def __init__(self, reg, elem, filterAttribs):
+    def buildFromXml(reg, elem, filterAttribs):
         # Filter based on attributes.
         if not filterAttributes(elem, filterAttribs):
-            raise ExcludedByFilterException()
+            return []
         
+        return [BitField(reg, elem, filterAttribs)]
+    
+    ##
+    # @brief Constructor.
+    def __init__(self, reg, elem, filterAttribs):
         self.register = reg
         self.element = elem
         self.name = getElementText(elem, 'bitFieldName')
@@ -665,7 +730,7 @@ class BitField:
         if not self.isReserved:
             try:
                 nameMatch = BitField.nameFilter.match(self.name)
-                self.name = nameMatch.group(1).upper()
+                self.name = identName #nameMatch.group(1).upper()
             except:
                 # We couldn't find an identifier leading the name, so mark this field as reserved.
                 self.isReserved = True
@@ -680,16 +745,14 @@ class BitField:
         self.width = int(getElementText(props, 'bitWidth'))
         self.offset = int(getElementText(props, 'bitOffset'))
         self.topBitOffset = self.offset + self.width - 1
-        self.access = getElementText(props, 'bitFieldAccess').upper()
-        if len(self.access) == 0:
-            self.access = 'RO'
-        self.isReadable = isAccessModeReadable(self.access)
-        self.isWritable = isAccessModeWriteable(self.access)
-        
         self._makeBitRangeString()
-        
-        # Build mask.
         self._buildMask()
+        
+        # Process access mode.
+        self.access = getElementText(props, 'bitFieldAccess', default='RO').upper()
+        if self.access not in kAccessModes:
+            print >> sys.stderr, "Warning: unknown access mode '%s' for bitfield %s register %s of %s!" % (self.access, self.name, self.register.name, self.register.component.name)
+        self.isReadable, self.isWritable = getAccessModeReadableWritable(self.access)
         
         # Build values list.
         self._buildValuesList(elem.findall('bitFieldBody/bitFieldValues/bitFieldValueGroup'), filterAttribs)
@@ -728,6 +791,7 @@ class BitField:
             # Build the value info dictionary.
             thisValue = UserDict()
             thisValue.valueText = cleanWhitespace(value.text)
+            thisValue.name = None
             
             # Check for a binary value.
             try:
@@ -740,9 +804,11 @@ class BitField:
                 thisValue.value = 0
             
             if name is not None and filterAttributes(name, filterAttribs):
-                thisValue.name = cleanWhitespace(name.text)
-            else:
-                thisValue.name = None
+                nameText = getElementText(name, default=None)
+                if nameText is not None:
+                    # Convert to identifier with no leading underscore if it starts with a digit.
+                    # This is because the name is only used in the middle of macros.
+                    thisValue.name = formatIdentifier(nameText, False)
             
             # Skip if the name is empty.
             #if len(thisValue.name) == 0:
@@ -904,6 +970,31 @@ class MemoryMap:
             instances.append(instance)
         
         self.components[componentName] = instances
+
+##
+# @brief Base class for output file format generators.
+class OutputGenerator:
+    ##
+    # @brief Constructor.
+    def __init__(self, component):
+        self.chipName = None
+        self.component = component
+        self.featureFlags = kDefaultOutputFeatures
+    
+    ##
+    # @brief Specify the chip name.
+    def setChipName(self, name):
+        self.chipName = name
+    
+    ##
+    # @brief Provide a dictionary containing feature flags.
+    def setFeatures(self, features):
+        self.featureFlags = features
+    
+    ##
+    # @brief Generate output.
+    def generate(self, outputFile=sys.stdout):
+        pass
 
 ##
 # @brief Class to hold template strings for header generation.
@@ -1143,20 +1234,14 @@ typedef struct {component.structName}
 
 ##
 # @brief Generate a header file from a component.
-class HeaderGenerator:
+class HeaderGenerator(OutputGenerator):
     ##
     # @brief Constructor.
     def __init__(self, component):
-        self.chipName = None
-        self.component = component
+        OutputGenerator.__init__(self, component)
         self.templates = CHeaderTemplates
         self.commentWrapper = textwrap.TextWrapper(width=100, initial_indent=" * ", subsequent_indent=" * ")
         self.bitfieldValueCommentWrapper = textwrap.TextWrapper(width=100, subsequent_indent=" *     ")
-    
-    ##
-    # @brief Specify the chip name.
-    def setChipName(self, name):
-        self.chipName = name
     
     ##
     # @brief Generate output.
@@ -1323,7 +1408,6 @@ class HeaderGenerator:
             
             # Clean up field description so it fits on one line.
             cleanDescription = cleanWhitespace(f.description)
-            #" ".join([l.strip() for l in f.description.splitlines()])
             
             # Now generate this struct member definition.
             formatDict = { 'fieldName':fieldName,
@@ -1459,6 +1543,92 @@ class HeaderGenerator:
         return output
 
 ##
+# @brief Generate a register config file for Arium.
+class AriumGenerator(OutputGenerator):
+    devTemplate = u"DEV={component.name} ADDR={component.baseAddress:#010x}\n\n"
+    regTemplate = u'REG={reg.name} OFFSET={reg.addressOffset:#010x} LEN={reg.sizeInBytes} ACCESS={regAccess} DEFAULT={reg.resetValue:#010x}\nDESCR "{regDesc}"\n\n'
+    fieldTemplate = u'BIT={field.name} OFFSET={field.offset} LEN={field.width}\nDESCR "{fieldDesc}"\n'
+    
+    ##
+    # @brief Constructor.
+    def __init__(self, component):
+        OutputGenerator.__init__(self, component)
+    
+    ##
+    # @brief Generate output.
+    def generate(self, outputFile=sys.stdout):
+        output = AriumGenerator.devTemplate.format(component=self.component)
+        
+        # Add register definitions.
+        for reg in self.component.registers:
+            output += self._generateRegister(reg)
+        
+        writer = codecs.getwriter('utf-8')(outputFile)
+        writer.write(output)
+        
+    
+    def _generateRegister(self, reg):
+        # Generate the base register definition.
+        if reg.isReadable and reg.isWritable:
+            regAccess = 'RW'
+        elif reg.isReadable and not reg.isWritable:
+            regAccess = 'R'
+        elif reg.isWritable and not reg.isReadable:
+            regAccess = 'W'
+        else:
+            print >> sys.stdout, "Warning: unexpected r/w combination (r=%d, w=%d) for register %s of %s!)" % (reg.isReadable, reg.isWritable, reg.name, self.component.name)
+            regAccess = 'R' # Just make it readable.
+        
+        # Turn description into a single line no larger than 1000 chars.
+        regDesc = cleanWhitespace(reg.description)[:1000]
+        
+        formatDict = { 'component':self.component,
+                        'reg':reg,
+                        'regAccess':regAccess,
+                        'regDesc':regDesc }
+        output = AriumGenerator.regTemplate.format(**formatDict)
+        
+        # Generate bitfields.
+        for f in reg.bitFields:
+            if not f.isReserved:
+                output += self._generateBitField(reg, f)
+        output += '\n'
+        
+        return output
+    
+    def _generateBitField(self, reg, field):
+        # Turn description into a single line no larger than 1000 chars.
+        fieldDesc = cleanWhitespace(field.description)[:1000]
+        
+        formatDict = { 'component':self.component,
+                        'reg':reg,
+                        'field':field,
+                        'fieldDesc':fieldDesc }
+        return AriumGenerator.fieldTemplate.format(**formatDict)
+
+
+##
+# @brief Generate a register config file for Arium.
+class RealViewDebuggerBCDGenerator(OutputGenerator):
+    ##
+    # @brief Constructor.
+    def __init__(self, component):
+        OutputGenerator.__init__(self, component)
+    
+    ##
+    # @brief Generate output.
+    def generate(self, outputFile=sys.stdout):
+        pass
+
+##
+# @brief Available output file formats.
+kOutputFormats = {
+        'header' : HeaderGenerator,
+        'arium' : AriumGenerator,
+        'realview' : RealViewDebuggerBCDGenerator
+    }
+
+##
 # @brief Tool to generate register header files from XML.
 class HeaderGeneratorTool:
     def _printVersion(self):
@@ -1468,7 +1638,7 @@ class HeaderGeneratorTool:
     ##
     # @brief Create a MemoryMap object from a design XML file.
     # @param self
-    # @param design A file object containing the design XML.
+    # @param designXml A file object containing the design XML.
     # @return A new MemoryMap instance that holds the component information read from the design XML.
     def _buildMap(self, designXml):
         if designXml is None:
@@ -1532,14 +1702,9 @@ class HeaderGeneratorTool:
             registerElements = addrBlock.findall('register')
             
             for regElem in registerElements:
-                try:
-                    newRegs = Register.buildFromXml(component, regElem, self.filterAttribs)
-                    for r in newRegs:
-                        component.addRegister(r)
-                except ExcludedByFilterException:
-                    # Ignore this exception. It simply means that this register doesn't belong to the
-                    # product we're working with.
-                    pass
+                newRegs = Register.buildFromXml(component, regElem, self.filterAttribs)
+                for r in newRegs:
+                    component.addRegister(r)
         
         return component
     
@@ -1558,10 +1723,24 @@ class HeaderGeneratorTool:
         # --output option.
         if not self.args.quiet:
             print >> sys.stderr, "Generating header for %s..." % (component.name)
-        generator = HeaderGenerator(component)
+        
+        # Get the class of the generator to use from the format dict.
+        try:
+            generatorClass = kOutputFormats[self.args.format]
+        except KeyError:
+            print >> sys.stderr, "Error: unknown output format '%s'!" % (self.args.format)
+            return
+            
+        # Create out generator instance.
+        generator = generatorClass(component)
+        
+        # Configure the generator.
         if self.args.chip_name is not None:
             generator.setChipName(self.args.chip_name)
         outputFile = self.args.output if (self.args.output is not None) else sys.stdout
+        generator.setFeatures(self.outputFeatures)
+        
+        # Produce output.
         generator.generate(outputFile)
 
     ##
@@ -1613,12 +1792,27 @@ class HeaderGeneratorTool:
         if args.name is not None:
             args.name = args.name.upper()
         
-        # Read features from a file and add to features list.
+        # Read filters from a file. If no filters file was provided, use an empty dict.
         if args.filters is not None:
             self.filterAttribs = self._readFilterFile(args.filters)
         else:
             self.filterAttribs = { }
-        #print >> sys.stderr, 'filter=' + repr(self.filterAttribs)
+        
+        # Create dict of output features.
+        self.outputFeatures = kDefaultOutputFeatures
+        if args.disable is not None:
+            for feature in [cleanWhitespace(f) for f in args.disable.lower().split(',')]:
+                if feature not in kDefaultOutputFeatures:
+                    print >> sys.stderr, "Warning: unknown feature '%s'!" % (feature)
+                else:
+                    self.outputFeatures[feature] = False
+        if args.enable is not None:
+            for feature in [cleanWhitespace(f) for f in args.enable.lower().split(',')]:
+                if feature not in kDefaultOutputFeatures:
+                    print >> sys.stderr, "Warning: unknown feature '%s'!" % (feature)
+                else:
+                    self.outputFeatures[feature] = True
+        #print repr(self.outputFeatures)
         
         # Generate the header file from the input XML.
         self._generateHeader(args.design, args.components, args.name)
@@ -1629,7 +1823,10 @@ class HeaderGeneratorTool:
     # @return An object is returned that contains the command line options as attributes.
     def _readOptions(self):
         # Build arg parser.
-        parser = argparse.ArgumentParser(description="Generate register headers from XML")
+        parser = argparse.ArgumentParser(
+                    formatter_class=argparse.RawDescriptionHelpFormatter,
+                    description="Generate register headers from XML",
+                    epilog=self._buildHelpEpilog())
 
         parser.add_argument("-V", "--version", action="store_true", dest="showVersion", help="Show version information.")
         parser.add_argument("-q", "--quiet", action="store_true", help="Don't print informational messages.")
@@ -1639,11 +1836,35 @@ class HeaderGeneratorTool:
         parser.add_argument("-n", "--name", help="Override the component name.")
         parser.add_argument("--design-name", metavar="NAME", help="Set the name used to look up the base address in the design file. Defaults to the component name.")
         parser.add_argument("--base-address", metavar="ADDRESS", help="Override component base address.")
-        parser.add_argument("--instance-offsets", metavar="OFFSETS", help="Specify offsets of additional instances of the component. Offsets should be separated by a comma, with no extra whitespace. There will always be one instance with an offset of 0, so passing one offset to this option will result in two instances")
+        parser.add_argument("--instance-offsets", metavar="OFFSETS", help="Specify offsets of additional instances of the component. Offsets should be separated by a comma, with no extra whitespace. There will always be one instance with an offset of 0, so passing one offset to this option will result in two instances.")
         parser.add_argument("-o", "--output", metavar="PATH", type=argparse.FileType('w'), help="Specify the output file.")
+        parser.add_argument("--format", metavar="FORMAT", default="header", help="Select the format of the output file.")
+        parser.add_argument("--enable", metavar="FEATURES", help="Takes a comma separated list of features to enable in the output file.")
+        parser.add_argument("--disable", metavar="FEATURES", help="Takes a comma separated list of features to disable in the output file.")
         parser.add_argument("components", nargs='*', type=argparse.FileType('r'), help="Component XML files. Must be for the same component.")
 
         return parser.parse_args()
+    
+    ##
+    # @brief Construct the epilog help text.
+    def _buildHelpEpilog(self):
+        epilogTemplate = """Available output formats:
+{outFormats}
+
+Available features for --enable/--disable:
+{featuresList}
+"""
+        
+        outFormats = ""
+        for i in kOutputFormats:
+            outFormats += "    " + i + "\n"
+        
+        featuresList = ""
+        for i in kDefaultOutputFeatures:
+            featuresList += "    " + i + "\n"
+        
+        return epilogTemplate.format(outFormats=outFormats, featuresList=featuresList)
+    
 
 # Are we being executed directly?
 if __name__ == '__main__':

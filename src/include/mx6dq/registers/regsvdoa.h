@@ -60,7 +60,7 @@ typedef union _hw_vdoa_vdoac
         unsigned SYNC : 1; //!< [3] SYNC MODE - defines whether the VDOA will transfer a full frame (or 2 frames) continuously or will transfer a band at a time and wait for IPU signal to continue
         unsigned SO : 1; //!< [4] Scan Order
         unsigned PFS : 1; //!< [5] Pixel Format Select - Pixel format of data written to / read from IPU. Note Data from VPU is always assumed to have partial interleaved 4:2:0 format
-        unsigned ISEL : 1; //!< [6] IPU SELECT - detaimains in sync mode which of the two sets of hand shake pins is used
+        unsigned ISEL : 1; //!< [6] IPU SELECT - determines in sync mode which of the two sets of hand shake pins is used
         unsigned RESERVED0 : 25; //!< [31:7] Reserved
     } B;
 } hw_vdoa_vdoac_t;
@@ -246,11 +246,11 @@ typedef union _hw_vdoa_vdoac
 
 /* --- Register HW_VDOA_VDOAC, field ISEL[6] (RW)
  *
- * IPU SELECT - detaimains in sync mode which of the two sets of hand shake pins is used
+ * IPU SELECT - determines in sync mode which of the two sets of hand shake pins is used
  *
  * Values:
- * 0 - Use vdoa_buf_rdy[0] and ipu_buf_eob[0]
- * 1 - Use vdoa_buf_rdy[1] and ipu_buf_eob[1]
+ * VDOA_BUF_RDY_AND_IPU_BUF_EOB_0 = 0 - Use vdoa_buf_rdy[0] and ipu_buf_eob[0]
+ * VDOA_BUF_RDY_AND_IPU_BUF_EOB_1 = 1 - Use vdoa_buf_rdy[1] and ipu_buf_eob[1]
  */
 
 #define BP_VDOA_VDOAC_ISEL      (6)      //!< Bit position for VDOA_VDOAC_ISEL.
@@ -272,6 +272,8 @@ typedef union _hw_vdoa_vdoac
 #define BW_VDOA_VDOAC_ISEL(v)   (HW_VDOA_VDOAC_WR((HW_VDOA_VDOAC_RD() & ~BM_VDOA_VDOAC_ISEL) | BF_VDOA_VDOAC_ISEL(v)))
 #endif
 
+#define BV_VDOA_VDOAC_ISEL__VDOA_BUF_RDY_AND_IPU_BUF_EOB_0 (0x0) //!< Use vdoa_buf_rdy[0] and ipu_buf_eob[0]
+#define BV_VDOA_VDOAC_ISEL__VDOA_BUF_RDY_AND_IPU_BUF_EOB_1 (0x1) //!< Use vdoa_buf_rdy[1] and ipu_buf_eob[1]
 
 #ifndef __LANGUAGE_ASM__
 /*!

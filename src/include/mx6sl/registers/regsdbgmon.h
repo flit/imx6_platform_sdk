@@ -30,7 +30,7 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_DBGMON_BASE
-#define REGS_DBGMON_BASE (0x02900000) //!< Base address for DBGMON.
+#define REGS_DBGMON_BASE (0x02090000) //!< Base address for DBGMON.
 #endif
 //@}
 

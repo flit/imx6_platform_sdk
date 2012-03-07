@@ -232,8 +232,8 @@ typedef union _hw_dcp_ctrl
  * Indicates whether the SHA1/SHA2 functions are present.
  *
  * Values:
- * Absent = 0x0 - 
- * Present = 0x1 - 
+ * ABSENT = 0x0 - 
+ * PRESENT = 0x1 - 
  */
 
 #define BP_DCP_CTRL_PRESENT_SHA      (28)      //!< Bit position for DCP_CTRL_PRESENT_SHA.
@@ -242,16 +242,16 @@ typedef union _hw_dcp_ctrl
 //! @brief Get value of DCP_CTRL_PRESENT_SHA from a register value.
 #define BG_DCP_CTRL_PRESENT_SHA(r)   (((r) & BM_DCP_CTRL_PRESENT_SHA) >> BP_DCP_CTRL_PRESENT_SHA)
 
-#define BV_DCP_CTRL_PRESENT_SHA__Absent (0x0) //!< 
-#define BV_DCP_CTRL_PRESENT_SHA__Present (0x1) //!< 
+#define BV_DCP_CTRL_PRESENT_SHA__ABSENT (0x0) //!< 
+#define BV_DCP_CTRL_PRESENT_SHA__PRESENT (0x1) //!< 
 
 /* --- Register HW_DCP_CTRL, field PRESENT_CRYPTO[29] (RO)
  *
  * Indicates whether the crypto (Cipher/Hash) functions are present.
  *
  * Values:
- * Absent = 0x0 - 
- * Present = 0x1 - 
+ * ABSENT = 0x0 - 
+ * PRESENT = 0x1 - 
  */
 
 #define BP_DCP_CTRL_PRESENT_CRYPTO      (29)      //!< Bit position for DCP_CTRL_PRESENT_CRYPTO.
@@ -260,8 +260,8 @@ typedef union _hw_dcp_ctrl
 //! @brief Get value of DCP_CTRL_PRESENT_CRYPTO from a register value.
 #define BG_DCP_CTRL_PRESENT_CRYPTO(r)   (((r) & BM_DCP_CTRL_PRESENT_CRYPTO) >> BP_DCP_CTRL_PRESENT_CRYPTO)
 
-#define BV_DCP_CTRL_PRESENT_CRYPTO__Absent (0x0) //!< 
-#define BV_DCP_CTRL_PRESENT_CRYPTO__Present (0x1) //!< 
+#define BV_DCP_CTRL_PRESENT_CRYPTO__ABSENT (0x0) //!< 
+#define BV_DCP_CTRL_PRESENT_CRYPTO__PRESENT (0x1) //!< 
 
 /* --- Register HW_DCP_CTRL, field CLKGATE[30] (RW)
  *
@@ -411,7 +411,7 @@ typedef union _hw_dcp_stat
  * Current (active) channel (encoded).
  *
  * Values:
- * None = 0x0 - 
+ * NONE = 0x0 - 
  * CH0 = 0x1 - 
  * CH1 = 0x2 - 
  * CH2 = 0x3 - 
@@ -424,7 +424,7 @@ typedef union _hw_dcp_stat
 //! @brief Get value of DCP_STAT_CUR_CHANNEL from a register value.
 #define BG_DCP_STAT_CUR_CHANNEL(r)   (((r) & BM_DCP_STAT_CUR_CHANNEL) >> BP_DCP_STAT_CUR_CHANNEL)
 
-#define BV_DCP_STAT_CUR_CHANNEL__None (0x0) //!< 
+#define BV_DCP_STAT_CUR_CHANNEL__NONE (0x0) //!< 
 #define BV_DCP_STAT_CUR_CHANNEL__CH0 (0x1) //!< 
 #define BV_DCP_STAT_CUR_CHANNEL__CH1 (0x2) //!< 
 #define BV_DCP_STAT_CUR_CHANNEL__CH2 (0x3) //!< 

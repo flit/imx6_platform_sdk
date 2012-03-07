@@ -2555,13 +2555,13 @@ typedef union _hw_pxp_as_ctrl
  * the ALPHA field should be used instead of the alpha values present in the input pixels.
  *
  * Values:
- * Embedded = 0x0 - Indicates that the AS pixel alpha value will be used to blend the AS with PS. The ALPHA field is
+ * EMBEDDED = 0x0 - Indicates that the AS pixel alpha value will be used to blend the AS with PS. The ALPHA field is
  *     ignored.
- * Override = 0x1 - Indicates that the value in the ALPHA field should be used instead of the alpha values present in
+ * OVERRIDE = 0x1 - Indicates that the value in the ALPHA field should be used instead of the alpha values present in
  *     the input pixels.
- * Multiply = 0x2 - Indicates that the value in the ALPHA field should be used to scale all pixel alpha values. Each
+ * MULTIPLY = 0x2 - Indicates that the value in the ALPHA field should be used to scale all pixel alpha values. Each
  *     pixel alpha is multiplied by the value in the ALPHA field.
- * ROPs = 0x3 - Enable ROPs. The ROP field indicates an operation to be performed on the alpha surface and PS
+ * ROPS = 0x3 - Enable ROPs. The ROP field indicates an operation to be performed on the alpha surface and PS
  *     pixels.
  */
 
@@ -2584,10 +2584,10 @@ typedef union _hw_pxp_as_ctrl
 #define BW_PXP_AS_CTRL_ALPHA_CTRL(v)   BF_CS1(PXP_AS_CTRL, ALPHA_CTRL, v)
 #endif
 
-#define BV_PXP_AS_CTRL_ALPHA_CTRL__Embedded (0x0) //!< Indicates that the AS pixel alpha value will be used to blend the AS with PS. The ALPHA field is ignored.
-#define BV_PXP_AS_CTRL_ALPHA_CTRL__Override (0x1) //!< Indicates that the value in the ALPHA field should be used instead of the alpha values present in the input pixels.
-#define BV_PXP_AS_CTRL_ALPHA_CTRL__Multiply (0x2) //!< Indicates that the value in the ALPHA field should be used to scale all pixel alpha values. Each pixel alpha is multiplied by the value in the ALPHA field.
-#define BV_PXP_AS_CTRL_ALPHA_CTRL__ROPs (0x3) //!< Enable ROPs. The ROP field indicates an operation to be performed on the alpha surface and PS pixels.
+#define BV_PXP_AS_CTRL_ALPHA_CTRL__EMBEDDED (0x0) //!< Indicates that the AS pixel alpha value will be used to blend the AS with PS. The ALPHA field is ignored.
+#define BV_PXP_AS_CTRL_ALPHA_CTRL__OVERRIDE (0x1) //!< Indicates that the value in the ALPHA field should be used instead of the alpha values present in the input pixels.
+#define BV_PXP_AS_CTRL_ALPHA_CTRL__MULTIPLY (0x2) //!< Indicates that the value in the ALPHA field should be used to scale all pixel alpha values. Each pixel alpha is multiplied by the value in the ALPHA field.
+#define BV_PXP_AS_CTRL_ALPHA_CTRL__ROPS (0x3) //!< Enable ROPs. The ROP field indicates an operation to be performed on the alpha surface and PS pixels.
 
 /* --- Register HW_PXP_AS_CTRL, field ENABLE_COLORKEY[3] (RW)
  *
@@ -3485,9 +3485,9 @@ typedef union _hw_pxp_csc2_ctrl
  *
  * Values:
  * YUV2RGB = 0x0 - Convert from YUV to RGB.
- * YCbCr2RGB = 0x1 - Convert from YCbCr to RGB.
+ * YCBCR2RGB = 0x1 - Convert from YCbCr to RGB.
  * RGB2YUV = 0x2 - Convert from RGB to YUV.
- * RGB2YCbCr = 0x3 - Convert from RGB to YCbCr.
+ * RGB2YCBCR = 0x3 - Convert from RGB to YCbCr.
  */
 
 #define BP_PXP_CSC2_CTRL_CSC_MODE      (1)      //!< Bit position for PXP_CSC2_CTRL_CSC_MODE.
@@ -3510,9 +3510,9 @@ typedef union _hw_pxp_csc2_ctrl
 #endif
 
 #define BV_PXP_CSC2_CTRL_CSC_MODE__YUV2RGB (0x0) //!< Convert from YUV to RGB.
-#define BV_PXP_CSC2_CTRL_CSC_MODE__YCbCr2RGB (0x1) //!< Convert from YCbCr to RGB.
+#define BV_PXP_CSC2_CTRL_CSC_MODE__YCBCR2RGB (0x1) //!< Convert from YCbCr to RGB.
 #define BV_PXP_CSC2_CTRL_CSC_MODE__RGB2YUV (0x2) //!< Convert from RGB to YUV.
-#define BV_PXP_CSC2_CTRL_CSC_MODE__RGB2YCbCr (0x3) //!< Convert from RGB to YCbCr.
+#define BV_PXP_CSC2_CTRL_CSC_MODE__RGB2YCBCR (0x3) //!< Convert from RGB to YCbCr.
 
 #ifndef __LANGUAGE_ASM__
 /*!

@@ -372,7 +372,7 @@ void lvds_power_on(void)
     gpio_write_data(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
 #endif
 
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
     /*3.3V power supply through IOexpander */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
 
@@ -396,7 +396,7 @@ void mipi_backlight_en(void)
     gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
 
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
     //default be populated by P3V3_DELAYED
 #endif
 
@@ -424,7 +424,7 @@ void mipi_display_reset(void)
     hal_delay_us(1000);
 #endif
 
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
 /*binded with the board reset button*/
 #endif
 
@@ -527,7 +527,7 @@ void sii9022_power_on(void)
 void can_iomux_config(uint32_t module_base_add)
 {
 
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
     /* CAN_EN active high output */
     max7310_set_gpio_output(1, 7, GPIO_HIGH_LEVEL); //expander b, io7
 
@@ -538,7 +538,7 @@ void can_iomux_config(uint32_t module_base_add)
     switch (module_base_add) {
     case CAN1_BASE_ADDR:
         can1_iomux_config();
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
         /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
         max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3 
         /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
@@ -549,7 +549,7 @@ void can_iomux_config(uint32_t module_base_add)
         break;
     case CAN2_BASE_ADDR:
         can2_iomux_config();
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
         /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
         /* active low input */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
@@ -654,7 +654,7 @@ void SGTL5000PowerUp_and_clockinit(void)
  */
 int esai_codec_power_on(void)
 {
-    //No need to do anything for mx6dq_ard
+    //No need to do anything for MX6DQ_SABRE_AI
     return 0;
 }
 

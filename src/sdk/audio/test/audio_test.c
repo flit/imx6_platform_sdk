@@ -36,7 +36,7 @@ static audio_test_t audio_tests[] = {
 #if defined(MX53_SMD)
     {"SSI playback", ssi_playback},
 #endif
-#if defined(MX6DQ_ARD) || defined(MX6SDL_ARD) || defined(MX6DQ_EVB) || defined(MX6SDL_EVB) || defined(MX6DQ_QSB) || defined(MX6SDL_QSB)
+#if defined(MX6DQ_SABRE_AI) || defined(MX6SDL_ARD) || defined(MX6DQ_EVB) || defined(MX6SDL_EVB) || defined(MX6DQ_QSB) || defined(MX6SDL_QSB)
     {"ESAI playback", esai_playback},
 #endif
 #if defined(MX6DQ_EVB) || defined(MX6SDL_EVB)

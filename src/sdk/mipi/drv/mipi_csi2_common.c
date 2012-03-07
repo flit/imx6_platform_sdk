@@ -257,7 +257,7 @@ void mipi_cam_power_on(void)
 //    max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
 #endif
 
-#if defined(MX6DQ_ARD) || defined(MX6SDL_ARD)
+#if defined(MX6DQ_SABRE_AI) || defined(MX6SDL_ARD)
     /*power supply through pin25 of connector, direct connected to P3V3_DELAY,
        controlled by CPU_PER_RST_B */
     /*reset of camera sensor, together with the reset button */

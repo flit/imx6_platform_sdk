@@ -1,7 +1,4 @@
 #make commands:
-# make TARGET=<some soc> BOARD=<some board>
-# example:
-# 		make TARGET=mx28 BOARD=evk
 
 PROJ_DIR := $(shell pwd)
 
@@ -49,7 +46,7 @@ bin:$(SUB_DIRS)
 	arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
 
 clean:
-	rm -rf output/$(TARGET)
+	rm -rf output/$(TARGET)/$(BOARD)
 
 test:
 	@echo aaa = $(aaa)

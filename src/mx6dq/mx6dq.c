@@ -37,7 +37,7 @@ static void mx6dq_print_ver(void)
         sprintf(chip_name, "i.MX6QD TOx.x");
     }
 
-    if (BOARD_TYPE_ID == BOARD_ID_MX6DQ_ARD)
+    if (BOARD_TYPE_ID == BOARD_ID_MX6DQ_SABRE_AI)
         sprintf(board_name, "SABRE Auto");
     else if (BOARD_TYPE_ID == BOARD_ID_MX6DQ_SMART_DEVICE)
         sprintf(board_name, "SABRE Smart Device (SD)");
@@ -121,9 +121,9 @@ void ALL_test(void)
     while (1) {
         printf("Starting the tests suite...\n");
         audio_test();
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
         flexcan_test();
-#endif /* MX6DQ_ARD */
+#endif /* MX6DQ_SABRE_AI */
         epit_test();
 
         gpt_test();

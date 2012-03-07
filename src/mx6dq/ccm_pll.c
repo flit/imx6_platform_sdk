@@ -354,7 +354,7 @@ void gpmi_nand_clk_setup(void)
 void esai_clk_sel_gate_on()
 {
     uint32_t val = 0;
-#if ((defined MX6DQ_ARD) || (defined MX6DQ_SMART_DEVICE) || (defined MX6DQ_SABRE_LITE) || (defined MX6DQ_EVB))
+#if ((defined MX6DQ_SABRE_AI) || (defined MX6DQ_SMART_DEVICE) || (defined MX6DQ_SABRE_LITE) || (defined MX6DQ_EVB))
     val = readl(CCM_CSCMR2);
     val &= ~(0x03 << 19);
     val |= 0x01 << 19;          //source from PLL3_508

@@ -37,12 +37,12 @@ usage()
     echo "Valid target and board combinations:"
     echo
     echo "  target=mx6dq boards:"
-    echo "       ard              rev 1=A, 2=B"
+    echo "       sabre_ai         rev 1=A, 2=B"
     echo "       evb              rev 1 (MX6QCPUDDR3)"
     echo "       smart_device     rev 1=A, 2=B"
     echo
     echo "  target=mx6sdl boards:"
-    echo "       ard              rev 1=A, 2=B"
+    echo "       sabre_ai         rev 1=A, 2=B"
     echo "       evb              rev 1 (MX6QCPUDDR3)"
     echo "       smart_device     rev 1=A, 2=B"
     echo
@@ -52,9 +52,9 @@ usage()
     echo
     echo "      Build for the mx6dq evb board with default board rev of 1 and all tests."
     echo
-    echo "  $script -t mx6dq -b ard -v 1 -test sdma -clean"
+    echo "  $script -t mx6dq -b sabre_ai -v 1 -test sdma -clean"
     echo
-    echo "      Build the mx6dq ard board with explicit board rev 1, but only build the sdma test."
+    echo "      Build the mx6dq sabre_ai board with explicit board rev 1, but only build the sdma test."
     echo "      Clean before building."
     echo
     echo "  $script -target=mx6dq -board=evb -test=gpmi -no-build"
@@ -154,7 +154,7 @@ fi
 
 # Clean the build first if requested.
 if [ "$clean_flag" = y ]; then
-    make clean TARGET=$soc_name
+    make clean TARGET=$soc_name BOARD=$board_name
 fi
 
 # Run make if requested.

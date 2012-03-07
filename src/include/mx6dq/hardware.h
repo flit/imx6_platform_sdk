@@ -65,7 +65,7 @@
 #define MMDC1_BASE_ADDR			0x50000000
 #define MMDC1_END_ADDR			0x8FFFFFFF
 #endif
-#if defined(MX6DQ_ARD)
+#if defined(MX6DQ_SABRE_AI)
 #define MMDC0_BASE_ADDR			0x10000000
 #define MMDC0_END_ADDR			0x8FFFFFFF  //Maybe should be modified according the ddr init file.
 /*Actually, ARD has no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
@@ -106,34 +106,17 @@
 #define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #define ADV7180_I2C_ID      (0x42 >> 1)
 
-/* MX6DQ_SMART_DEVICE for compile error
- * There is no these macros SMART_DEVICE, just add for compile error.
+/* 
+ * MX6DQ_SMART_DEVICE/MX6DQ_SABRE_LITE for compile error
  */
-#ifdef MX6DQ_SMART_DEVICE
+#if defined(MX6DQ_SMART_DEVICE) || defined(MX6DQ_SABRE_LITE)
 #define MAX7310_NBR 0
-/* I/O expander A */
-#define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID0          (0x30 >> 1)
-#define MAX7310_ID0_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID0_DEF_VAL      0xFF   // init value for the output
-
-/* I/O expander B */
-#define MAX7310_I2C_BASE_ID1  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID1          (0x32 >> 1)
-#define MAX7310_ID1_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID1_DEF_VAL      0xE7   // init value for the output
-
-/* I/O expander C */
-#define MAX7310_I2C_BASE_ID2  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID2          (0x34 >> 1)
-#define MAX7310_ID2_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID2_DEF_VAL      0x57   // init value for the output
 #endif
 /*******************************************************
  *      I/O expander MAX7310 I2C settings
  *******************************************************/
 /* For the ARD board which has 3 MAX7310 */
-#ifdef MX6DQ_ARD
+#ifdef MX6DQ_SABRE_AI
 #define MAX7310_NBR 3
 /* I/O expander A */
 #define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
@@ -294,7 +277,7 @@ extern void camera_power_on(void);
 extern void csi_port0_iomux_config(void);
 /* Board ID */
 #define BOARD_ID_DEFAULT                0x0
-#define BOARD_ID_MX6DQ_ARD              0x1
+#define BOARD_ID_MX6DQ_SABRE_AI         0x1
 #define BOARD_ID_MX6DQ_SMART_DEVICE     0x2
 #define BOARD_ID_MX6DQ_EVB              0x3
 #define BOARD_ID_MX6DQ_SABRE_LITE       0x4
@@ -315,8 +298,8 @@ extern void csi_port0_iomux_config(void);
 #error Need to define a board revision
 #endif
 
-#if defined(MX6DQ_ARD)
-#define BOARD_TYPE_ID           BOARD_ID_MX6DQ_ARD
+#if defined(MX6DQ_SABRE_AI)
+#define BOARD_TYPE_ID           BOARD_ID_MX6DQ_SABRE_AI
 #elif defined(MX6DQ_SMART_DEVICE)
 #define BOARD_TYPE_ID           BOARD_ID_MX6DQ_SMART_DEVICE
 #elif defined(MX6DQ_EVB)

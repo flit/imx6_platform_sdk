@@ -51,6 +51,14 @@ inline void ldb_set_channel_route(int ipu_port, int lvds_port)
         printf("Wrong IPU display port %d input!!\n", ipu_port);
         return;
     }
+
+    if (ipu_port == IPU1_DI0 || ipu_port == IPU1_DI1) {
+        ldb_write_field(LDB_MUX_REG, 6, 2, 0);
+        ldb_write_field(LDB_MUX_REG, 8, 2, 0);
+    } else {
+        ldb_write_field(LDB_MUX_REG, 6, 2, 2);
+        ldb_write_field(LDB_MUX_REG, 8, 2, 2);
+    }
 }
 
 /*!

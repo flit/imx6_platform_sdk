@@ -15,11 +15,12 @@
 bs_mem_t bsmem;
 int gCurrentActiveInstance = 0;
 int gTotalActiveInstance = 0;
-int ipu_initialized[2] = { 0 };
 
 static int isInterlacedMPEG4 = 0;
 
 #define FRAME_TO_DECODE 10000
+#define HDMI_RESOLUTION_720P60
+//#define HDMI_RESOLUTION_1080P60   
 
 /*
  * Fill the bitstream to VPU ring buffer
@@ -147,9 +148,9 @@ int decoder_start(struct decode *dec)
 
     dec->handle->initDone = 1;
 
-	/*Now we can start video decoding...*/
+    /*Now we can start video decoding... */
 
-	return 0;
+    return 0;
 }
 
 void decoder_free_framebuffer(struct decode *dec)
@@ -755,10 +756,10 @@ int decoder_setup(void *arg)
     free(dec);
     return ret;
 }
-
 int decode_test(void *arg)
 {
     int err, i, temp = 0;
+    int primary_disp = 0;
     uint8_t revchar = (uint8_t) 0xFF;
     DecOutputInfo outinfo;
     DecParam decparam = { 0 };
@@ -768,9 +769,9 @@ int decode_test(void *arg)
     struct cmd_line *cmdl;
 
     printf("please select decoder instance:(1 or 2)\n");
-    printf("\t1 - Single decoder with display on Hannstar LVDS panel(resolution@1024x768).\n");
+    printf("\t1 - Single decoder with single display\n");
     printf
-        ("\t2 - Dual decoder with display 1 on Hannstar LVDS panel, display 2 on 1080P60 HDMI Monotor/TV.\n");
+        ("\t2 - Dual decoder with display 1 on Hannstar LVDS panel, display 2 on HDMI Monotor/TV.\n");
     revchar = 0xFF;
     do {
         revchar = getchar();
@@ -780,10 +781,21 @@ int decode_test(void *arg)
     case '1':
         multi_instance = 0;
         err = fat_search_files("264", 1);
+        printf("please choose the display device: (1 for Hannstar LVDS panel, or 2 for HDMI)\n");
+        revchar = 0xFF;
+        do {
+            revchar = getchar();
+        } while (revchar == (uint8_t) 0xFF);
+        if (revchar == '1') {
+            primary_disp = 1;
+        } else {
+            primary_disp = 2;
+        }
         break;
     case '2':
         multi_instance = 1;
         err = fat_search_files("264", 2);
+        primary_disp = 1;
         break;
     default:
         printf("Wrong Input! select 1 as default!\n");
@@ -823,12 +835,17 @@ int decode_test(void *arg)
         map_type = LINEAR_FRAME_MAP;
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 1;
-    SDHC_ADMA_mode = 1;
+    SDHC_ADMA_mode = 0;
 
     /* initialize video streams and configure IPUs */
-    if (ipu_initialized[0] == 0) {
+    if (primary_disp == 1)
         ips_hannstar_xga_yuv_stream(1);
-        ipu_initialized[0] = 1;
+    else {
+#ifdef HDMI_RESOLUTION_1080P60
+        hdmi_1080P60_video_output(1, 0);
+#else
+        hdmi_720P60_video_output(1, 0);
+#endif
     }
     cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
     if (cmdl == NULL) {
@@ -851,10 +868,11 @@ int decode_test(void *arg)
     decoder_setup((void *)cmdl);
 
     if (multi_instance) {
-        if (ipu_initialized[1] == 0) {
-            hdmi_1080P60_video_output(2, 0);
-            ipu_initialized[1] = 1;
-        }
+#ifdef HDMI_RESOLUTION_1080P60
+        hdmi_1080P60_video_output(2, 0);
+#else
+        hdmi_720P60_video_output(2, 0);
+#endif
         cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
         if (cmdl == NULL) {
             err_msg("Failed to allocate command structure\n");

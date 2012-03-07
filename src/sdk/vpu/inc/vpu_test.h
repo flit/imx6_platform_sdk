@@ -314,6 +314,7 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
 extern int config_hdmi_si9022(int ipu_index, int ipu_di);
 extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
 extern int ips_hdmi_1080P60_stream(int ipu_index);
+extern void hdmi_720P60_video_output(int ipu_index, int ipu_di);
 extern void enable_L1_cache(void);
 extern int ips_hannstar_xga_yuv_stream(int ipu_index);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,

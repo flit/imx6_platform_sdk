@@ -54,10 +54,10 @@ void ccm_init(void)
     /* Mask all interrupt sources that could wake up the processor when in
        a low power mode. A source is individually masked/unmasked when the 
        interrupt is enabled/disabled by the GIC/interrupt driver. */
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR1_OFFSET);
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR2_OFFSET);
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR3_OFFSET);
-    writel(0xFFFFFFFF ,GPC_BASE_ADDR + GPC_IMR4_OFFSET);
+    writel(0xFFFFFFFF, GPC_BASE_ADDR + GPC_IMR1_OFFSET);
+    writel(0xFFFFFFFF, GPC_BASE_ADDR + GPC_IMR2_OFFSET);
+    writel(0xFFFFFFFF, GPC_BASE_ADDR + GPC_IMR3_OFFSET);
+    writel(0xFFFFFFFF, GPC_BASE_ADDR + GPC_IMR4_OFFSET);
 }
 
 /*!
@@ -206,19 +206,19 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
         ccm_ccgrx = CCM_CCGR4;
         cgx_offset = CG(1);
         /* specific bit 16 to enable */
-        writel((gating_mode & 0x1) << 16 , IOMUXC_GPR11);
+        writel((gating_mode & 0x1) << 16, IOMUXC_GPR11);
         break;
     case PERFMON2_BASE_ADDR:
         ccm_ccgrx = CCM_CCGR4;
         cgx_offset = CG(2);
         /* specific bit 16 to enable */
-        writel((gating_mode & 0x1) << 16 , IOMUXC_GPR11);
+        writel((gating_mode & 0x1) << 16, IOMUXC_GPR11);
         break;
     case PERFMON3_BASE_ADDR:
         ccm_ccgrx = CCM_CCGR4;
         cgx_offset = CG(3);
         /* specific bit 16 to enable */
-        writel((gating_mode & 0x1) << 16 , IOMUXC_GPR11);
+        writel((gating_mode & 0x1) << 16, IOMUXC_GPR11);
         break;
     case GPMI_BASE_ADDR:
         ccm_ccgrx = CCM_CCGR4;
@@ -233,7 +233,7 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
     }
 
     /* apply changes only if a valid address was found */
-    if(ccm_ccgrx != 0)
+    if (ccm_ccgrx != 0)
         ccm_ccgr_config(ccm_ccgrx, cgx_offset, gating_mode);
 }
 
@@ -253,7 +253,7 @@ void ipu_hsp_clk_config(void)
  *
  * ldb clock is derived from PLL5, ldb on ipu1
  */
-void ldb_clock_config(int freq)
+void ldb_clock_config(int freq, int ipu_index)
 {
     uint32_t regval = 0;
     if (freq == 65000000)       //for XGA resolution
@@ -261,23 +261,37 @@ void ldb_clock_config(int freq)
         /*config pll3 PFD1 to 455M. pll3 is 480M */
         writel(0x1311130C, ANATOP_BASE_ADDR + 0xF0);
 
-        /*set ldb_di0_clk_sel to PLL3 PFD1 */
-        regval = readl(CCM_CS2CDR) & (~0x7E00);
-        regval |= 0x3600;
-        writel(regval, CCM_CS2CDR);
+        if (ipu_index == 1) {
+            /*set ldb_di0_clk_sel to PLL3 PFD1 */
+            regval = readl(CCM_CS2CDR) & (~0x7E00);
+            regval |= 0x3600;
+            writel(regval, CCM_CS2CDR);
 
-        /*set clk_div to 7 */
-        regval = readl(CCM_CSCMR2) & (~0xC00);
-        regval |= 0xC00;
-        writel(regval, CCM_CSCMR2);
+            /*set clk_div to 7 */
+            regval = readl(CCM_CSCMR2) & (~0xC00);
+            regval |= 0xC00;
+            writel(regval, CCM_CSCMR2);
 
-        /*set ipu1_di0_clk_sel from ldb_di0_clk */
-        regval = readl(CCM_CHSCCDR) & (~0x0E07);
-        regval |= 0x0603;
-        writel(regval, CCM_CHSCCDR);
-        regval = readl(CCM_CSCDR2) & (~0x0E00);
-        regval |= 0x0600;
-        writel(regval, CCM_CSCDR2);
+            /*set ipu1_di0_clk_sel from ldb_di0_clk */
+            regval = readl(CCM_CHSCCDR) & (~0x0E07);
+            regval |= 0x0603;
+            writel(regval, CCM_CHSCCDR);
+        } else {
+            /*set ldb_di0_clk_sel to PLL3 PFD1 */
+            regval = readl(CCM_CS2CDR) & (~0x7E00);
+            regval |= 0x3600;
+            writel(regval, CCM_CS2CDR);
+
+            /*set clk_div to 7 */
+            regval = readl(CCM_CSCMR2) & (~0xC00);
+            regval |= 0xC00;
+            writel(regval, CCM_CSCMR2);
+
+            /*set ipu2_di0_clk_sel from ldb_di0_clk */
+            regval = readl(CCM_CSCDR2) & (~0x0E07);
+            regval |= 0x0603;
+            writel(regval, CCM_CSCDR2);
+        }
     } else {
         printf("The frequency %d for LDB is not supported yet.", freq);
     }
@@ -288,7 +302,7 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
     uint32_t regval = 0;
 
     if (pclk == 74250000) {
-        writel(7500000, ANATOP_BASE_ADDR + 0xB0);   //set the nominator
+        writel(750000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
         writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
         writel(0x00012018, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
 
@@ -296,7 +310,7 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
 
         writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
 
-        /*clk output from 540M PFD1 of PLL3 */
+        /*clk output from 594M VIDPLL */
         regval = readl(CCM_CHSCCDR) & (~0x1FF);
         writel(regval | 0xB8, CCM_CHSCCDR);
         regval = readl(CCM_CSCDR2) & (~0x1FF);
@@ -310,7 +324,7 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
 
         writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
 
-        /*clk output from 540M PFD1 of PLL3 */
+        /*clk output from 1188M VIDPLL */
         if (ipu_index == 1) {
             regval = readl(CCM_CHSCCDR) & (~0x1FF);
             writel(regval | 0xB8, CCM_CHSCCDR);
@@ -327,7 +341,7 @@ void gpmi_nand_clk_setup(void)
 {
     *(volatile uint32_t *)(HW_ANADIG_PFD_528_RW) &= ~(0x00800000);
 
-clock_gating_config(GPMI_BASE_ADDR, CLOCK_OFF);
+    clock_gating_config(GPMI_BASE_ADDR, CLOCK_OFF);
 
     *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x00030000);
     *(volatile uint32_t *)(CCM_CS2CDR) |= 0x00020000;
@@ -388,7 +402,7 @@ void sata_clock_disable(void)
 /*!
  * SATA related function to get the PHY source clock
  */
-void sata_get_phy_src_clk(sata_phy_ref_clk_t *phy_ref_clk)
+void sata_get_phy_src_clk(sata_phy_ref_clk_t * phy_ref_clk)
 {
     *phy_ref_clk = ANATOP_ENET_PLL;
 }
@@ -428,7 +442,7 @@ void spdif_clk_cfg(void)
  */
 void ccm_set_lpm_wakeup_source(uint32_t irq_id, uint32_t state)
 {
-    uint32_t reg_offset = 0, bit_offset = 0; 
+    uint32_t reg_offset = 0, bit_offset = 0;
     uint32_t gpc_imr = 0;
 
     /* calculate the offset of the register handling that interrupt ID */
@@ -442,15 +456,12 @@ void ccm_set_lpm_wakeup_source(uint32_t irq_id, uint32_t state)
     /* get the current value of the corresponding GPC_IMRx register */
     gpc_imr = readl(GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
 
-    if(state == ENABLE)
-    {
+    if (state == ENABLE) {
         /* clear the corresponding bit to unmask the interrupt source */
         gpc_imr &= ~(1 << bit_offset);
         /* write the new mask */
         writel(gpc_imr, GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
-    }
-    else if(state == DISABLE)
-    {
+    } else if (state == DISABLE) {
         /* set the corresponding bit to mask the interrupt source */
         gpc_imr |= (1 << bit_offset);
         /* write the new mask */
@@ -470,25 +481,22 @@ void ccm_enter_low_power(enum lp_modes lp_mode)
     /* enable the well-biased mode - set disable core clock in wait - set
        disable oscillator in stop */
     ccm_clpcr = BM_CCM_CLPCR_BYPASS_MMDC_CH1_LPM_HS |
-                BM_CCM_CLPCR_WB_CORE_AT_LPM |
-                BM_CCM_CLPCR_SBYOS |
-                BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM |
-                lp_mode;
+        BM_CCM_CLPCR_WB_CORE_AT_LPM |
+        BM_CCM_CLPCR_SBYOS | BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM | lp_mode;
 
-    if(lp_mode == STOP_MODE)
+    if (lp_mode == STOP_MODE)
         /* enable peripherals well-biased */
         ccm_clpcr |= BM_CCM_CLPCR_WB_PER_AT_LPM;
 
     HW_CCM_CLPCR_WR(ccm_clpcr);
 
     __asm(
-           /* data synchronization barrier (caches, TLB maintenance, ...) */
-            "dsb;"
-            /* wait for interrupt instruction */
-            "wfi;"
-            /* instruction synchronization barrier (flush the pipe-line) */
-            "isb;"
-          );
+             /* data synchronization barrier (caches, TLB maintenance, ...) */
+             "dsb;"
+             /* wait for interrupt instruction */
+             "wfi;"
+             /* instruction synchronization barrier (flush the pipe-line) */
+             "isb;");
 
     return;
 }

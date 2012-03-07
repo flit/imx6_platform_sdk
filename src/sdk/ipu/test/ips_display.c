@@ -63,7 +63,7 @@ int32_t ips_hdmi_stream(void)
     uint8_t revchar;
 
     /*enable panel */
-    panel = search_panel("HDMI 1080P 60Hz");
+    panel = search_panel("HDMI 720P 60Hz");
     panel->panel_init(&ipu_index);
 
     printf("\n-- Single Image Display -- \n");
@@ -91,6 +91,42 @@ int32_t ips_hdmi_stream(void)
 }
 
 /*!
+ * HDMI 700P60 display stream
+ *
+ * @param	ipu_index:	ipu index
+ */
+int32_t ips_hdmi_720P60_stream(int32_t ipu_index)
+{
+    uint32_t disp_mem0 = CH23_EBA0, disp_mem1 = (uint32_t) NULL;
+    ips_dev_panel_t *panel;
+
+    /*enable panel */
+    panel = search_panel("HDMI 720P 60Hz");
+    panel->panel_init(&ipu_index);
+
+    /*reset IPU */
+    ipu_sw_reset(ipu_index, 1000);
+
+    /*setup IPU display channel */
+    ipu_display_setup(ipu_index, disp_mem0, disp_mem1, PARTIAL_INTERLEAVED_YUV420, panel);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_UBO,
+                        FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 8);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLY, FRAME_MAX_WIDTH - 1);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLUV, FRAME_MAX_WIDTH - 1);
+    memset((void *)disp_mem0, 0x10, panel->width * panel->height);
+    memset((void *)disp_mem0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
+           panel->width * panel->height / 2);
+
+    /*realloc the DMFC fifo */
+    ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);
+    ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_NPB, 63);
+
+    /*enable ipu display channel */
+    ipu_enable_display(ipu_index);
+    return 1;
+}
+
+/*!
  * HDMI 1080P60 display stream
  *
  * @param	ipu_index:	ipu index
@@ -113,9 +149,9 @@ int32_t ips_hdmi_1080P60_stream(int32_t ipu_index)
                         FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 8);
     ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLY, FRAME_MAX_WIDTH - 1);
     ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLUV, FRAME_MAX_WIDTH - 1);
-    memset((void *)disp_mem0, 0x10, panel->width * panel->height);
-    memset((void *)disp_mem0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
-           panel->width * panel->height / 2);
+//    memset((void *)disp_mem0, 0x10, panel->width * panel->height);
+//    memset((void *)disp_mem0 + panel->width * FRAME_MAX_HEIGHT, 0x80,
+//           panel->width * panel->height / 2);
 
     /*realloc the DMFC fifo */
     ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);
@@ -166,7 +202,7 @@ int32_t ips_sii9022_1080P60_stream(int32_t ipu_index)
  */
 int32_t ips_hannstar_xga_yuv_stream(int32_t ipu_index)
 {
-    uint32_t disp_mem0 = CH23_EBA0, disp_mem1 = (uint32_t) NULL;
+    uint32_t disp_mem0 = CH23_EBA1, disp_mem1 = (uint32_t) NULL;
     ips_dev_panel_t *panel;
 
     /*enable panel */
@@ -198,7 +234,7 @@ int32_t ips_hannstar_xga_yuv_stream(int32_t ipu_index)
 }
 
 /*!
- * LVDS display stream
+ * MIPI display stream
  *
  * @param	ipu_index:	ipu index
  */
@@ -208,20 +244,20 @@ int32_t ips_mipi_wvga_rgb_stream(int32_t ipu_index)
     ips_dev_panel_t *panel;
 
     panel = search_panel("TRULY MIPI TFT480800");
-    
-	/*reset IPU */
+
+    /*reset IPU */
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
     ipu_display_setup(ipu_index, disp_mem0, disp_mem1, INTERLEAVED_RGB, panel);
-    
-	/*load image */
+
+    /*load image */
     load_centralized_image(disp_mem0, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
-    
-	/*enable panel */
+
+    /*enable panel */
     panel->panel_init(&ipu_index);
 
     return 1;

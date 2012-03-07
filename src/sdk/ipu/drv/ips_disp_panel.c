@@ -24,15 +24,18 @@ static int claa_wvga_panel_deinit(void)
 }
 
 extern void ldb_iomux_config(void);
-extern void ldb_clock_config(int freq);
+extern void ldb_clock_config(int freq, int ipu_index);
 extern void lvds_power_on(void);
 
 static int hannstar_lvds_panel_init(int *ipu_index)
 {
     ldb_iomux_config();
-    ldb_clock_config(65000000);
+    ldb_clock_config(65000000, *ipu_index);
     lvds_power_on();
-    ldb_config(IPU1_DI0, LVDS_DUAL_PORT, SPWG, LVDS_PANEL_18BITS_MODE);
+    if (*ipu_index == 1)
+        ldb_config(IPU1_DI0, LVDS_DUAL_PORT, SPWG, LVDS_PANEL_18BITS_MODE);
+    else
+        ldb_config(IPU2_DI0, LVDS_DUAL_PORT, SPWG, LVDS_PANEL_18BITS_MODE);
     return true;
 }
 
@@ -56,6 +59,18 @@ static int hdmi_1080p60_deinit(void)
     return true;
 }
 
+static int hdmi_720p60_init(int *ipu_index)
+{
+    hdmi_pgm_iomux();
+    hdmi_clock_set(*ipu_index, 74250000);
+    //hdmi_config();
+    return true;
+}
+
+static int hdmi_720p60_deinit(void)
+{
+    return true;
+}
 extern void ipu_iomux_config(void);
 extern void sii9022_power_on(void);
 static int sii9022_1080p60_init(int *ipu_index)
@@ -166,6 +181,32 @@ ips_dev_panel_t disp_dev_list[] = {
      0,                         // data polarity
      &hdmi_1080p60_init,
      &hdmi_1080p60_deinit,
+     }
+    ,
+    {
+     "HDMI 720P 60Hz",          // name
+     HDMI_720P60,               // name flag
+     DCMAP_RGB888,
+     60,                        // refresh rate
+     1280,                      // panel width
+     720,                       //panel height
+     74250000,                  // pixel clock frequency
+     260,                       // hsync start width
+     40,                        // hsync width
+     110,                       // hsyn back width
+     25,                        // vysnc start width
+     5,                         // vsync width
+     5,                         // vsync back width
+     0,                         // delay from hsync to vsync
+     0,                         // interlaced mode
+     1,                         // clock selection
+     0,                         // clock polarity
+     1,                         // hsync selection
+     1,                         // hsync polarity
+     1,                         // drdy polarity
+     0,                         // data polarity
+     &hdmi_720p60_init,         // initialization
+     &hdmi_720p60_deinit,       // deinit
      }
     ,
     {

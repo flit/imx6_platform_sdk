@@ -15,6 +15,7 @@
 #define __LDB_DEF_H__
 
 #define	LDB_CTRL_REG IOMUXC_GPR2
+#define	LDB_MUX_REG	 IOMUXC_GPR3
 
 enum lvds_panel_bit_mode {
     LVDS_PANEL_18BITS_MODE = 0x0,

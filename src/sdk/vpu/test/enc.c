@@ -719,10 +719,7 @@ int encode_test(void *arg)
         multi_instance = 0;
 
         /* initialize video streams and configure IPUs */
-        if (ipu_initialized[0] == 0) {
-            ips_hannstar_xga_yuv_stream(1);
-            ipu_initialized[0] = 1;
-        }
+        ips_hannstar_xga_yuv_stream(1);
         if (cmdl != NULL) {
             free(cmdl);
             cmdl = NULL;

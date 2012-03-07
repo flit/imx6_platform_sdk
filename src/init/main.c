@@ -29,6 +29,8 @@ extern void system_memory_arrange(void);
  */
 int main(void)
 {
+//  int i=0;
+//  while(i==0);
 #if defined(MX6DQ_EVB)||defined(MX6SDL_EVB)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_ARD)||defined(MX6SDL_ARD)
     system_memory_arrange();
     disable_strict_align_check();

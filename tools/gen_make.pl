@@ -33,8 +33,8 @@ C_OBJS := \$(patsubst %c,%o,\$(C_SRCS))
 CPP_OBJS := \$(patsubst %cpp,%o,\$(CPP_SRCS))
 S_OBJS := \$(patsubst %S,%o,\$(S_SRCS))
 A_OBJS :=
-MODULE_OBJS := \$(A_OBJS) \$(C_OBJS) \$(CPP_OBJS) \$(S_OBJS)
-MODULE_OBJS := \$(addprefix \$(MODULE_OUT)/, \$(MODULE_OBJS))
+MODULE_OBJS_NO_DIR := \$(A_OBJS) \$(C_OBJS) \$(CPP_OBJS) \$(S_OBJS)
+MODULE_OBJS := \$(addprefix \$(MODULE_OUT)/, \$(MODULE_OBJS_NO_DIR))
 
 SUB_DIRS := -=SUB_DIRS=-
 
@@ -46,7 +46,7 @@ dir:\$(SUB_DIRS) all
 	make -S -C \$@ dir
 
 # include dependencies files, but only if there are .o files in this dir
-ifneq "$(strip $(MODULE_OBJS))" ""
+ifneq "\$(strip \$(MODULE_OBJS))" ""
 -include \$(MODULE_OBJS:.o=.d)
 endif
 

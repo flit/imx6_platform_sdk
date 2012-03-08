@@ -11,40 +11,6 @@
 #include "registers.h"
 
 //#########################################
-//# DPLLIP peripheral defines
-//#########################################
-#define DPLLIP_DP_CTL_OFFSET	0x000
-#define DPLLIP_DP_CONFIG_OFFSET	0x004
-#define DPLLIP_DP_OP_OFFSET	0x008
-#define DPLLIP_DP_MFD_OFFSET	0x00C
-#define DPLLIP_DP_MFN_OFFSET	0x010
-#define DPLLIP_DP_MFNMINUS_OFFSET	0x014
-#define DPLLIP_DP_MFNPLUS_OFFSET	0x018
-#define DPLLIP_DP_HFS_OP_OFFSET	0x01C
-#define DPLLIP_DP_HFS_MFD_OFFSET	0x020
-#define DPLLIP_DP_HFS_MFN_OFFSET	0x024
-#define DPLLIP_DP_MFN_TOGC_OFFSET	0x028
-#define DPLLIP_DP_DESTAT_OFFSET	0x02C
-
-#define DPLLIP1_DP_CONFIG          DPLLIP1_BASE_ADDR+DPLLIP_DP_CONFIG_OFFSET
-#define DPLLIP1_DP_CTL             DPLLIP1_BASE_ADDR+DPLLIP_DP_CTL_OFFSET
-#define DPLLIP1_DP_OP              DPLLIP1_BASE_ADDR+DPLLIP_DP_OP_OFFSET
-#define DPLLIP1_DP_MFD             DPLLIP1_BASE_ADDR+DPLLIP_DP_MFD_OFFSET
-#define DPLLIP1_DP_MFN             DPLLIP1_BASE_ADDR+DPLLIP_DP_MFN_OFFSET
-
-#define DPLLIP2_DP_CONFIG          DPLLIP2_BASE_ADDR+DPLLIP_DP_CONFIG_OFFSET
-#define DPLLIP2_DP_CTL             DPLLIP2_BASE_ADDR+DPLLIP_DP_CTL_OFFSET
-#define DPLLIP2_DP_OP              DPLLIP2_BASE_ADDR+DPLLIP_DP_OP_OFFSET
-#define DPLLIP2_DP_MFD             DPLLIP2_BASE_ADDR+DPLLIP_DP_MFD_OFFSET
-#define DPLLIP2_DP_MFN             DPLLIP2_BASE_ADDR+DPLLIP_DP_MFN_OFFSET
-
-#define DPLLIP3_DP_CONFIG          DPLLIP3_BASE_ADDR+DPLLIP_DP_CONFIG_OFFSET
-#define DPLLIP3_DP_CTL             DPLLIP3_BASE_ADDR+DPLLIP_DP_CTL_OFFSET
-#define DPLLIP3_DP_OP              DPLLIP3_BASE_ADDR+DPLLIP_DP_OP_OFFSET
-#define DPLLIP3_DP_MFD             DPLLIP3_BASE_ADDR+DPLLIP_DP_MFD_OFFSET
-#define DPLLIP3_DP_MFN             DPLLIP3_BASE_ADDR+DPLLIP_DP_MFN_OFFSET
-
-//#########################################
 //# CCM peripheral defines
 //#########################################
 #define CCM_CCR     CCM_BASE_ADDR+CCM_CCR_OFFSET
@@ -188,7 +154,7 @@ typedef enum _peri_clocks {
     CSI_BAUD,
     MSTICK1_CLK,
     MSTICK2_CLK,
-    NFC_CLK,
+    RAWNAND_CLK,
     USB_CLK,
     VPU_CLK,
     SPI1_CLK = ECSPI1_BASE_ADDR,
@@ -204,21 +170,21 @@ typedef enum plls {
     PLL5,
 } plls_t;
 
-static const uint32_t PLL1_OUTPUT = 792000000;
-static const uint32_t PLL2_OUTPUT[] = { 528000000, 396000000, 352000000, 198000000, 594000000 };
-static const uint32_t PLL3_OUTPUT[] = { 480000000, 720000000, 540000000, 508235294, 454736842 };
-static const uint32_t PLL4_OUTPUT = 650000000;
-static const uint32_t PLL5_OUTPUT = 650000000;
+extern const uint32_t PLL1_OUTPUT;
+extern const uint32_t PLL2_OUTPUT[];
+extern const uint32_t PLL3_OUTPUT[];
+extern const uint32_t PLL4_OUTPUT;
+extern const uint32_t PLL5_OUTPUT;
 
 //! @brief Set/unset clock gating for a peripheral.
 //! @param   base_address configure clock gating for that module from the base address.
 //! @param   gating_mode clock gating mode: CLOCK_ON or CLOCK_OFF.
 void clock_gating_config(uint32_t base_address, uint32_t gating_mode);
 
-//! @brief Returns the frequency of a clock.
+//! @brief Returns the frequency of a clock in megahertz.
 uint32_t get_main_clock(main_clocks_t clk);
 
-//! @brief Returns the frequency of a clock.
+//! @brief Returns the frequency of a clock in megahertz.
 uint32_t get_peri_clock(peri_clocks_t clk);
 
 //! @brief Inits clock sources.

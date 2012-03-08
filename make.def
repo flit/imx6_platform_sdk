@@ -132,6 +132,7 @@ CXX_FLAGS += -fno-exceptions -fno-rtti
 
 C_INCLUDES = \
     -I$(PROJ_DIR)/sdk/include  \
+    -I$(PROJ_DIR)/sdk \
     -I$(PROJ_DIR)/sdk/drivers \
     -I$(PROJ_DIR)/sdk/include/$(TARGET)/ \
     -I$(PROJ_DIR)/sdk/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION)/ \

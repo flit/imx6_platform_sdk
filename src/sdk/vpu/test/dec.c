@@ -846,7 +846,7 @@ int decode_test(void *arg)
 #else
         hdmi_720P60_video_output(1, 0);
 #endif
-    }
+	}
     cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
     if (cmdl == NULL) {
         err_msg("Failed to allocate command structure\n");

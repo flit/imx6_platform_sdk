@@ -509,6 +509,7 @@ void hdmi_tx_phydtb_pgm_iomux(void)
  */
 void hdmi_pgm_iomux(void)
 {
+	ipu_iomux_config();
     hdmi_tx_cec_pgm_iomux();
     hdmi_tx_ddc_pgm_iomux();
     hdmi_tx_phydtb_pgm_iomux();

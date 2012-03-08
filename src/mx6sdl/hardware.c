@@ -13,6 +13,7 @@
  */
 
 #include <math.h>
+#include "registers/regsccmanalog.h"
 #include "hardware.h"
 
 extern int32_t board_id;
@@ -530,7 +531,7 @@ void sii9022_power_on(void)
 void can_iomux_config(uint32_t module_base_add)
 {
 
-#ifdef MX6SDLARD
+#ifdef MX6SDL_ARD
     /* CAN_EN active high output */
     max7310_set_gpio_output(1, 7, GPIO_HIGH_LEVEL); //expander b, io7
 
@@ -687,15 +688,20 @@ void pcie_clk_setup(uint32_t enable)
         reg32_write(CCM_CCGR4, val);
 
         // clear the powerdown bit
-        reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);
+//         reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);
+        HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_POWERDOWN);
         // enable pll
-        reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);
+//         reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE);
         // wait the pll locked
-        while (!(reg32_read(HW_ANADIG_PLL_ETH_CTRL) & (0x01 << 31))) ;
+//         while (!(reg32_read(HW_ANADIG_PLL_ETH_CTRL) & (0x01 << 31))) ;
+        while (!HW_CCM_ANALOG_PLL_ENET.B.LOCK);
         // Disable bypass
-        reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);
+//         reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);
+        HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_BYPASS);
         // enable pci-e ref clk
-        reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 19);
+//         reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 19);
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_PCIE);
     }
 }
 
@@ -731,7 +737,8 @@ void enable_extrn_100mhz_clk(uint32_t enable)
 {
     if (enable) {
         /* Disable SATS clock gating used has external reference */
-        *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
+//         *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
 
         *ANA_MISC1_REG &= ~ANATOP_LVDS_CLK1_IBEN_MASK;
         *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_SRC_SATA;

@@ -153,49 +153,21 @@
 
 #define CLK_SRC_32K         32768
 
-// PLL definitions
-#define HW_ANADIG_USB1_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x10) // Anadig 480MHz PLL Control0 Register
-#define HW_ANADIG_USB2_PLL_480_CTRL_RW  (ANATOP_BASE_ADDR+0x20) // Anadig 480MHz PLL Control0 Register
-#define HW_ANADIG_PLL_528_RW    (ANATOP_BASE_ADDR+0x30) // Anadig 528MHz PLL Control register
-#define HW_ANADIG_PLL_528_NUM   (ANATOP_BASE_ADDR+0x50) // Numerator of 528MHz PLL Fractional Loop Divider Register
-#define HW_ANADIG_PLL_528_DENOM (ANATOP_BASE_ADDR+0x60) // Denominator of 528MHz PLL Fractional Loop Divider Register
-#define HW_ANADIG_PFD_528_RW    (ANATOP_BASE_ADDR+0x100)    // 528MHz Clock Phase Fractional Divider Control Register
-#define HW_ANADIG_PLL_SYS_RW    (ANATOP_BASE_ADDR+0x000)    // "System PLL" "CPU PLL" "PLL1"
-#define HW_ANADIG_PLL_ETH_CTRL  (ANATOP_BASE_ADDR+0x0e0)
-
 /* x=0..15 - CG0 to CG15 */
 #define CG(x) (3 << (x*2))
 #define CLOCK_ON        0x3
 #define CLOCK_ON_RUN    0x1
 #define CLOCK_OFF       0x0
 
-/* defines to extract divider or sel value */
-#define periph_clk2_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 27) + 1)
-#define mmdc_ch0_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 19) + 1)
-#define axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 16) + 1)
-#define ahb_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 10) + 1)
-#define ipg_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 2, 8) + 1)
-#define mmdc_ch1_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 3) + 1)
-#define periph2_clk2_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CBCDR), 3, 0) + 1)
-
-#define perclk_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCMR1),6,0) + 1)
-
-#define pre_periph_clk_sel_ GET_FIELD(*(volatile uint32_t *)(CCM_CBCMR),2,18)
-
-#define vpu_axi_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,25) + 1)
-#define usdhc4_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,22) + 1)
-#define usdhc3_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,19) + 1)
-#define usdhc2_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,16) + 1)
-#define usdhc1_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),3,11) + 1)
-#define uart_clk_podf_ (GET_FIELD(*(volatile uint32_t *)(CCM_CSCDR1),6,0) + 1)
-
-enum lp_modes {
+//! @brief Low power mdoes.
+typedef enum _lp_modes {
     RUN_MODE,
     WAIT_MODE,
     STOP_MODE,
-};
+} lp_modes_t;
 
-enum main_clocks {
+//! @brief Main clock sources.
+typedef enum _main_clocks {
     CPU_CLK,
     AXI_CLK,
     MMDC_CH0_AXI_CLK,
@@ -203,9 +175,10 @@ enum main_clocks {
     IPG_CLK,
     IPG_PER_CLK,
     MMDC_CH1_AXI_CLK,
-};
+} main_clocks_t;
 
-enum peri_clocks {
+//! @brief Peripheral clocks.
+typedef enum _peri_clocks {
     UART1_BAUD,
     UART2_BAUD,
     UART3_BAUD,
@@ -220,15 +193,16 @@ enum peri_clocks {
     VPU_CLK,
     SPI1_CLK = ECSPI1_BASE_ADDR,
     SPI2_CLK = ECSPI2_BASE_ADDR,
-};
+} peri_clocks_t;
 
-enum plls {
+//! @brief Available PLLs.
+typedef enum plls {
     PLL1,
     PLL2,
     PLL3,
     PLL4,
     PLL5,
-};
+} plls_t;
 
 static const uint32_t PLL1_OUTPUT = 792000000;
 static const uint32_t PLL2_OUTPUT[] = { 528000000, 396000000, 352000000, 198000000, 594000000 };
@@ -236,11 +210,29 @@ static const uint32_t PLL3_OUTPUT[] = { 480000000, 720000000, 540000000, 5082352
 static const uint32_t PLL4_OUTPUT = 650000000;
 static const uint32_t PLL5_OUTPUT = 650000000;
 
+//! @brief Set/unset clock gating for a peripheral.
+//! @param   base_address configure clock gating for that module from the base address.
+//! @param   gating_mode clock gating mode: CLOCK_ON or CLOCK_OFF.
 void clock_gating_config(uint32_t base_address, uint32_t gating_mode);
-uint32_t get_main_clock(enum main_clocks clk);
-uint32_t get_peri_clock(enum peri_clocks clk);
+
+//! @brief Returns the frequency of a clock.
+uint32_t get_main_clock(main_clocks_t clk);
+
+//! @brief Returns the frequency of a clock.
+uint32_t get_peri_clock(peri_clocks_t clk);
+
+//! @brief Inits clock sources.
 void ccm_init(void);
-void ccm_enter_low_power(enum lp_modes);
-void ccm_set_lpm_wakeup_source(uint32_t irq_id, uint32_t state);
+
+//! @brief Prepare and enter in a low power mode.
+//! @param lp_mode low power mode : WAIT_MODE or STOP_MODE.
+void ccm_enter_low_power(lp_modes_t lp_mode);
+
+//! @brief Mask/unmask an interrupt source that can wake up the processor when in a
+//! low power mode.
+//!
+//! @param   irq_id ID of the interrupt to mask/unmask.
+//! @param   doEnable Pass true to unmask the source ID.
+void ccm_set_lpm_wakeup_source(uint32_t irq_id, bool doEnable);
 
 #endif

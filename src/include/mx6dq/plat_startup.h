@@ -57,7 +57,7 @@ plugin:                .long 0x0
  * Note: The DDR settings provided below are specific to Freescale development boards and are the latest settings at the time of release.
  * However, it is recommended to contact your Freescale representative in case there are any improvements to these settings.
  */
-#if ((defined MX6DQ_ARD) || (defined MX6DQ_SMART_DEVICE) || (defined MX6DQ_SABRE_LITE) || (defined MX6DQ_EVB))
+#if ((defined MX6DQ_SABRE_AI) || (defined MX6DQ_SMART_DEVICE) || (defined MX6DQ_SABRE_LITE) || (defined MX6DQ_EVB))
 dcd_header:         .long 0x40C802D2 /* Tag=0xD2, Len=4 + 4 + 8*88, Ver=0x40 */
 dcd_write_data_cmd: .long 0x04C402CC /* Tag=0xCC, Len=4 + 8*88, Param=0x04 */
 

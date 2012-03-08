@@ -138,7 +138,7 @@ void ALL_test(void)
         snvs_rtc_test();
         snvs_srtc_test();
 #ifdef MX6DQ_EVB
-//         gpmi_test();
+        gpmi_test();
         spi_test();
         vpu_test();
 #endif /* MX6DQ_EVB */

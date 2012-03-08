@@ -44,8 +44,8 @@ void ccm_init(void)
      * => by default, ipg_podf divides by 2 => IPG_CLK@66MHz.
      */
     HW_CCM_CBCDR.U = BF_CCM_CBCDR_AHB_PODF(3)
-                        | BF_CCM_CBCDR_AXI_PODF(1)
-                        | BF_CCM_CBCDR_IPG_PODF(1);
+        | BF_CCM_CBCDR_AXI_PODF(1)
+        | BF_CCM_CBCDR_IPG_PODF(1);
 
     /*
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
@@ -67,31 +67,36 @@ uint32_t get_main_clock(main_clocks_t clock)
 {
     uint32_t ret_val = 0;
     uint32_t pre_periph_clk_sel = HW_CCM_CBCMR.B.PRE_PERIPH_CLK_SEL;
-    
+
     switch (clock) {
-        case CPU_CLK:
-            ret_val = PLL1_OUTPUT;
-            break;
-        case AXI_CLK:
-            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AXI_PODF + 1);
-            break;
-        case MMDC_CH0_AXI_CLK:
-            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH0_AXI_PODF + 1);
-            break;
-        case AHB_CLK:
-            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF + 1);
-            break;
-        case IPG_CLK:
-            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF + 1) / (HW_CCM_CBCDR.B.IPG_PODF + 1);
-            break;
-        case IPG_PER_CLK:
-            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF + 1) / (HW_CCM_CBCDR.B.IPG_PODF + 1) / (HW_CCM_CSCMR1.B.PERCLK_PODF + 1);
-            break;
-        case MMDC_CH1_AXI_CLK:
-            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH1_AXI_PODF + 1);
-            break;
-        default:
-            break;
+    case CPU_CLK:
+        ret_val = PLL1_OUTPUT;
+        break;
+    case AXI_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AXI_PODF + 1);
+        break;
+    case MMDC_CH0_AXI_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH0_AXI_PODF + 1);
+        break;
+    case AHB_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF + 1);
+        break;
+    case IPG_CLK:
+        ret_val =
+            PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF +
+                                               1) / (HW_CCM_CBCDR.B.IPG_PODF + 1);
+        break;
+    case IPG_PER_CLK:
+        ret_val =
+            PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF +
+                                               1) / (HW_CCM_CBCDR.B.IPG_PODF +
+                                                     1) / (HW_CCM_CSCMR1.B.PERCLK_PODF + 1);
+        break;
+    case MMDC_CH1_AXI_CLK:
+        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH1_AXI_PODF + 1);
+        break;
+    default:
+        break;
     }
 
     return ret_val;
@@ -102,15 +107,15 @@ uint32_t get_peri_clock(peri_clocks_t clock)
     uint32_t ret_val = 0;
 
     switch (clock) {
-        case UART1_BAUD:
-        case UART2_BAUD:
-        case UART3_BAUD:
-        case UART4_BAUD:
-            /* UART source clock is a fixed PLL3 / 6 */
-            ret_val = PLL3_OUTPUT[0] / 6 / (HW_CCM_CSCDR1.B.UART_CLK_PODF + 1);
-            break;
-        default:
-            break;
+    case UART1_BAUD:
+    case UART2_BAUD:
+    case UART3_BAUD:
+    case UART4_BAUD:
+        /* UART source clock is a fixed PLL3 / 6 */
+        ret_val = PLL3_OUTPUT[0] / 6 / (HW_CCM_CSCDR1.B.UART_CLK_PODF + 1);
+        break;
+    default:
+        break;
     }
 
     return ret_val;
@@ -299,7 +304,6 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
         writel(750000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
         writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
         writel(0x00012018, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
-
         while (!(readl(ANATOP_BASE_ADDR + 0xA0) & 0x80000000)) ;    //waiting for the pll lock
 
         writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
@@ -310,9 +314,15 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
         regval = readl(CCM_CSCDR2) & (~0x1FF);
         writel(regval | 0xB8, CCM_CSCDR2);
 #else
-        /*clk output from 540M PFD1 of PLL3 */
-        regval = reg32_read(CCM_CSCDR2) & (~0x1FF);
-        reg32_write(CCM_CSCDR2, regval | 0x168);
+        if (ipu_index == 1) {
+            /*clk output from 540M PFD1 of PLL3 */
+            regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
+            reg32_write(CCM_CHSCCDR, regval | 0x168);
+        } else {
+            /*clk output from 540M PFD1 of PLL3 */
+            regval = reg32_read(CCM_CSCDR2) & (~0x1FF);
+            reg32_write(CCM_CSCDR2, regval | 0x168);
+        }
 
         /*config PFD1 of PLL3 to be 445MHz */
         reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
@@ -320,7 +330,7 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
 #endif
     } else if (pclk == 148500000) {
 #if 0
-		writel(500000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
+        writel(500000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
         writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
         writel(0x00012031, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
 
@@ -337,10 +347,15 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
             writel(regval | 0xB8, CCM_CSCDR2);
         }
 #else
-        /*clk output from 540M PFD1 of PLL3 */
-        regval = reg32_read(CCM_CSCDR2) & (~0x1FF);
-        reg32_write(CCM_CSCDR2, regval | 0x168);
-
+        if (ipu_index == 1) {
+            /*clk output from 540M PFD1 of PLL3 */
+            regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
+            reg32_write(CCM_CHSCCDR, regval | 0x168);
+        } else {
+            /*clk output from 540M PFD1 of PLL3 */
+            regval = reg32_read(CCM_CSCDR2) & (~0x1FF);
+            reg32_write(CCM_CSCDR2, regval | 0x168);
+        }
         /*config PFD1 of PLL3 to be 445MHz */
         reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
         reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001300);
@@ -397,7 +412,7 @@ void sata_clock_enable(void)
     //enale SATA_CLK in the ENET_PLL register
     HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
     //config ENET PLL div_select for SATA - 100MHz
-    HW_CCM_ANALOG_PLL_ENET.B.DIV_SELECT = 0x2; // 0b10-100MHz
+    HW_CCM_ANALOG_PLL_ENET.B.DIV_SELECT = 0x2;  // 0b10-100MHz
 }
 
 /*!
@@ -463,15 +478,12 @@ void ccm_set_lpm_wakeup_source(uint32_t irq_id, bool doEnable)
     /* get the current value of the corresponding GPC_IMRx register */
     gpc_imr = readl(GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
 
-    if (doEnable)
-    {
+    if (doEnable) {
         /* clear the corresponding bit to unmask the interrupt source */
         gpc_imr &= ~(1 << bit_offset);
         /* write the new mask */
         writel(gpc_imr, GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
-    }
-    else
-    {
+    } else {
         /* set the corresponding bit to mask the interrupt source */
         gpc_imr |= (1 << bit_offset);
         /* write the new mask */

@@ -38,13 +38,13 @@
 #if defined(MX6DQ_EVB)
 #define FAT_DRIVER_BUFFER       (0x60000000)
 #define VPU_WORK_BUFFERS        (0x60100000)
-#define VIDEO_BUFFERS_START         (0x70000000)
-#define VIDEO_BUFFERS_END     (0x90000000)
-#elif defined(MX6DQ_SMART_DEVICE)
+#define VIDEO_BUFFERS_START     (0x70000000)
+#define VIDEO_BUFFERS_END       (0x90000000)
+#elif defined(MX6DQ_SMART_DEVICE) || defined(MX6DQ_SABRE_LITE)
 #define FAT_DRIVER_BUFFER       (0x30000000)
 #define VPU_WORK_BUFFERS        (0x30100000)
-#define VIDEO_BUFFERS_START         (0x20000000)
-#define VIDEO_BUFFERS_END     (0x30000000)
+#define VIDEO_BUFFERS_START     (0x20000000)
+#define VIDEO_BUFFERS_END       (0x30000000)
 #endif
 
 /*OCRAM partition table*/

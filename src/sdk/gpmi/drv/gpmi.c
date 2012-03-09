@@ -17,8 +17,8 @@
 #include "hardware.h"
 #include "nand_devices.h"
 #include "gpmi.h"
-#include "regsapbh.h"
-#include "regsgpmi.h"
+#include "registers/regsapbh.h"
+#include "registers/regsgpmi.h"
 
 DMA_BUFF gdma0, gdma1, gdma2, gdma3, gdma4, gdma5, gdma6, gdma7, gdma8, gdma9;
 DMA_BUFF dma_buff0, dma_buff1, dma_buff2, dma_buff3, dma_buff4, dma_buff5, dma_buff6, dma_buff7,

@@ -266,17 +266,17 @@
 #define    IMX_INT_USBOH3_UH2                   73
 #define    IMX_INT_USBOH3_UH3                   74
 #define    IMX_INT_USBOH3_UOTG                  75
-#define    IMX_INT_ANATOP_UTMI0                 76
-#define    IMX_INT_ANATOP_UTMI1                 77
+#define    IMX_INT_UTMI0                        76
+#define    IMX_INT_UTMI1                        77
 #define    IMX_INT_SSI1                         78
 #define    IMX_INT_SSI2                         79
 #define    IMX_INT_SSI3                         80
-#define    IMX_INT_ANATOP_TEMPSNSR              81
+#define    IMX_INT_TEMPERATURE                  81
 #define    IMX_INT_ASRC                         82
 #define    IMX_INT_ESAI1                        83
 #define    IMX_INT_SPDIF                        84
 #define    IMX_INT_MLB                          85
-#define    IMX_INT_ANATOP_ANA1                  86
+#define    IMX_INT_ANA1                         86
 #define    IMX_INT_GPT                          87
 #define    IMX_INT_EPIT1                        88
 #define    IMX_INT_EPIT2                        89
@@ -349,6 +349,6 @@
 #define    IMX_INT_DCIC1                        156
 #define    IMX_INT_DCIC2                        157
 #define    IMX_INT_MLB_AHB1                     158
-#define    IMX_INT_ANATOP_ANA2                  159
+#define    IMX_INT_PMU                          159
 
 #endif //_SOC_MEMORY_MAP_H

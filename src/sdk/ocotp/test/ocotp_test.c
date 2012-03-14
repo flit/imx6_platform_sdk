@@ -13,9 +13,7 @@
 
 #include <stdio.h>
 #include "hardware.h"
-
-extern int32_t sense_fuse(uint32_t bank, uint32_t row);
-extern void fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value);
+#include "../drv/ocotp.h"
 
 /*! 
  * OCOTP test.
@@ -67,7 +65,7 @@ int32_t ocotp_test(void)
 
         if (sel == '1') {
             printf("Value read in bank %d / row %d is:\n", bank, row);
-            printf("0x%08X\n", sense_fuse(bank, row));
+            printf("0x%08X\n", ocotp_sense_fuse(bank, row));
         }
         if (sel == '2') {
             value = get_input_hex();
@@ -79,7 +77,7 @@ int32_t ocotp_test(void)
                 sel = getchar();
             } while (sel == NONE_CHAR);
             if((sel == 'Y') || (sel == 'y'))
-                fuse_blow_row(bank, row, value);
+                ocotp_fuse_blow_row(bank, row, value);
         }
 
     } while(1);

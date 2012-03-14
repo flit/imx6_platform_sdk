@@ -43,7 +43,7 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup diag_mipi MIPI DSI/CSI
 
-@defgroup diag-ocotp OTP
+@defgroup diag_ocotp OTP
 
 @defgroup diag_i2c I2C
 

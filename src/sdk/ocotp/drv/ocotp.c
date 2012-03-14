@@ -8,88 +8,91 @@
 /*!
  * @file  ocotp.c
  * @brief OCOTP driver for e-fuse.
- * @ingroup diag-ocotp
+ * @ingroup diag_ocotp
  */
 
 #include <stdio.h>
 #include "hardware.h"
 #include "ocotp.h"
+#include "registers/regsocotp.h"
+
+////////////////////////////////////////////////////////////////////////////////
+// Prototypes
+////////////////////////////////////////////////////////////////////////////////
+
+static int Delay4Busy(void);
+static int ReadOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t u32Count);
+static int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t u32Count);
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
 
 /*!
- * Waits until OCOTP_CTRL BUSY bit is cleared.
+ * @brief Waits until OCOTP_CTRL BUSY bit is cleared.
  *
  * @return SUCCESS on success otherwise ERROR_BIT_SET
- *
+ * @todo also deal with timeout and test for BUSY still set
  */
-uint32_t Delay4Busy(void)
+int Delay4Busy(void)
 {
-    uint32_t u32Rtn = SUCCESS;
-    bool done = false;
-
-    while (!done) {
-        if ((HW_OCOTP_CTRL_RD() & BM_OCOTP_CTRL_BUSY) == 0) {
-            done = true;
-        }
-    }
+    // Wait until the busy flag clears.
+    while (HW_OCOTP_CTRL.B.BUSY);
 
     // process any errors
-    // @todo: also deal with timeout and test for BUSY still set
-    if (HW_OCOTP_CTRL_RD() & BM_OCOTP_CTRL_ERROR) {
+    if (HW_OCOTP_CTRL.B.ERROR) {
         // clear the error bit so more writes can be done
         HW_OCOTP_CTRL_CLR(BM_OCOTP_CTRL_ERROR);
-        u32Rtn |= ERROR_BIT_SET;
+        return ERROR_OTP_CTRL_ERROR;
     }
-    return (u32Rtn);
+    return SUCCESS;
 }
 
 /*!
- * Read OTP register values from device.
+ * @brief Read OTP register values from device.
  *
- * @param  pau32Registers - pointer to an array of register values
- * @param  u32RegIndex - register index
- * @param  u32Count - length of array in first parameter
+ * @param  pau32Registers Pointer to an array of register values
+ * @param  u32RegIndex Register index
+ * @param  u32Count Length of array in first parameter
  * @return SUCCESS or Error
  */
-static int ReadOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t u32Count)
+int ReadOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t u32Count)
 {
     uint32_t i;                      // index used in for loops
-    uint32_t u32Result = SUCCESS;
+    uint32_t u32Result;
 
     for (i = 0; i < u32Count; i++) {
-        if ((u32Result = Delay4Busy()) != SUCCESS) {
-            goto done;
+        u32Result = Delay4Busy();
+        if (u32Result != SUCCESS) {
+            return u32Result;
         }
         // Write the requested address into HW_OCOTP_CTRL register
-        HW_OCOTP_CTRL_WR((u32RegIndex + i) & BM_OCOTP_CTRL_ADDR);
+        HW_OCOTP_CTRL_WR(BF_OCOTP_CTRL_ADDR(u32RegIndex + i));
         // Initiate a read of 4bytes at an OTP address.
-        HW_OCOTP_READ_CTRL_WR(OCOTP_READ_CTRL_READ_FUSE);
+        HW_OCOTP_READ_CTRL_WR(BM_OCOTP_READ_CTRL_READ_FUSE);
         // Have to wait for busy bit to be cleared
         Delay4Busy();
         // Finally, read the data
         pau32Registers[i] = HW_OCOTP_READ_FUSE_DATA_RD();
     }
 
-  done:
-    if (u32Result == ERROR_BIT_SET)
-        return ERROR_OTP_CTRL_ERROR;
     return (SUCCESS);
 }
 
 /*!
  * Program OTP registers with values passed in register array parameter.
  *
- * @param  pau32Registers - pointer to array of register values
- * @param  u32RegIndex - register index
- * @param  u32Count - length of array in first parameter
- * @return ERROR_OTP_CTRL_BUSY, if busy
- *         ERROR_OTP_CTRL_ERROR, if error
- *         ERROR_OTP_RD_BANK_OPEN, if reading
- *         otherwise SUCCESS
+ * @param  pau32Registers Pointer to array of register values
+ * @param  u32RegIndex Register index
+ * @param  u32Count Length of array in first parameter
+ * @retval ERROR_OTP_CTRL_BUSY The OCOTP peripheral is already busy.
+ * @retval ERROR_OTP_CTRL_ERROR An error occured.
+ * @retval ERROR_OTP_RD_BANK_OPEN, if reading
+ * @retval SUCCESS
  */
 int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t u32Count)
 {
     uint32_t i;
-    int32_t i32RetValue = SUCCESS;
 
     /* In order to avoid erroneous code performing erroneous writes to OTP,
      * a special unlocking sequence is required for writes.
@@ -99,11 +102,11 @@ int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t
      * write must be completed before a write access can be requested.
      */
 
-    if (HW_OCOTP_CTRL_RD() & BM_OCOTP_CTRL_BUSY) {
+    if (HW_OCOTP_CTRL.B.BUSY) {
         return ERROR_OTP_CTRL_BUSY;
     }
 
-    if (HW_OCOTP_CTRL_RD() & BM_OCOTP_CTRL_ERROR) {
+    if (HW_OCOTP_CTRL.B.ERROR) {
         return ERROR_OTP_CTRL_ERROR;
     }
 
@@ -120,17 +123,16 @@ int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t
      * => STROBE_PROG = 299 => tPGM = 9930ns
      * => STROBE_READ = 6 => tRD = 45ns
      */
-    HW_OCOTP_TIMING_WR(0x01461299);
+    HW_OCOTP_TIMING_WR(
+        BF_OCOTP_TIMING_STROBE_PROG(0x299)
+        | BF_OCOTP_TIMING_RELAX(0x1)
+        | BF_OCOTP_TIMING_STROBE_READ(0x6)
+        | BF_OCOTP_TIMING_WAIT(0x5));
 
     for (i = 0; i < u32Count; i++) {
         uint32_t u32DelayResult = Delay4Busy();
         if (u32DelayResult != SUCCESS) {
-            if (u32DelayResult & ERROR_BIT_SET) {
-                i32RetValue = ERROR_OTP_CTRL_ERROR;
-                goto done;
-            }
-            i32RetValue = ERROR_OTP_CTRL_TIMEOUT;
-            goto done;
+            return u32DelayResult;
         }
         /* 3. Write the requested address to HW_OCOTP_CTRL_ADDR and program the
          * unlock code into HW_OCOTP_CTRL_WR_UNLOCK. This must be programmed
@@ -139,7 +141,9 @@ int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t
          * operation.
          */
 
-        HW_OCOTP_CTRL_WR(OCOTP_WR_UNLOCK_KEY_VALUE | ((u32RegIndex + i) & BM_OCOTP_CTRL_ADDR));
+        HW_OCOTP_CTRL_WR(
+            BF_OCOTP_CTRL_WR_UNLOCK(BV_OCOTP_CTRL_WR_UNLOCK__KEY)
+            | BF_OCOTP_CTRL_ADDR(u32RegIndex + i));
 
         /* 4. Write the data to HW_OCOTP_DATA. This will automatically set
          * HW_OCOTP_CTRL_BUSY and clear HW_OCOTP_CTRL_WR_UNLOCK. In
@@ -170,39 +174,23 @@ int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, uint32_t
         Delay4Busy();
     }
 
-  done:
-
-    return (i32RetValue);
+    return SUCCESS;
 }
 
-/*!
- * Read the value of fuses located at bank/row.
- *
- * @param  bank - bank of the fuse
- * @param  row - row of the fuse
- * @return fuse value
- */
-int32_t sense_fuse(uint32_t bank, uint32_t row)
+int32_t ocotp_sense_fuse(uint32_t bank, uint32_t row)
 {
     int32_t error;
     uint32_t calc_row, value=0;
 
     calc_row = bank * 8 + row;
     if ((error = ReadOTPValues(&value, calc_row, 1)) != SUCCESS) {
-        printf("Error: Error reading fuse 0x%x\n", error);
+//         printf("Error: Error reading fuse 0x%x\n", error);
         return 0;
     }
     return value;
 }
 
-/*!
- * Program fuses located at bank/row to value.
- *
- * @param  bank- bank of the fuses.
- * @param  row - row of the fuses.
- * @param  value - value to program in fuses.
- */
-void fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value)
+void ocotp_fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value)
 {
     int32_t error;
     uint32_t calc_row;
@@ -210,10 +198,12 @@ void fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value)
     calc_row = bank * 8 + row;
 
     if ((error = WriteOTPValues(&value, calc_row, 1)) != SUCCESS) {
-        printf("Error: Error programming fuse 0x%x\n", error);
+//         printf("Error: Error programming fuse 0x%x\n", error);
         return;
     }
-    printf("Fuse programmed successfully\n");
-
-    return;
+//     printf("Fuse programmed successfully\n");
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

@@ -60,13 +60,19 @@ void over_temp_callback(float theTemp)
     printf("\n* Temp alarm triggered! Temperature = %4.1f *\n", theTemp);
 }
 
+void print_current_temp(void)
+{
+    float temp = tempmon_get_temp();
+    printf("Current temperature = %d degrees C\n\n", (int)temp);
+}
+
 //! @brief Test the tempmon driver.
 //!
 void tempmon_test(void)
 {
     int status;
     
-    printf("\n--- tempmon test ---\n");
+    printf("\n--- tempmon test ---\n\n");
     
     // Init the driver.
     status = tempmon_init();
@@ -77,8 +83,7 @@ void tempmon_test(void)
     }
     
     // Read the current temperature
-    float temp = tempmon_get_temp();
-    printf("Current temperature = %4.1f degrees C\n\n", temp);
+    print_current_temp();
     
     do {
         // Print the prompt.
@@ -91,28 +96,39 @@ Choose an option:\n\
 \n\
 > ");
     
-        // Wait for the user to type a character.
+        // Wait for the user to type a valid character.
         char c;
-        while ((c = getchar()) == NONE_CHAR);
-
+        while (true)
+        {
+            c = getchar();
+            if (c == 'x' || c == 'p' || c == 'a' || c == 'd')
+            {
+                break;
+            }
+        }
+        
+        // Echo the typed char.
+        printf("%c\n\n", c);
+        
         switch (c)
         {
             case 'x':
-                printf("\nTest exit.\n");
+                printf("Test exited.\n");
                 return;
 
             case 'p':
                 // Read the current temperature
-                temp = tempmon_get_temp();
-                printf("Current temperature = %4.1f degrees C\n\n", temp);
+                print_current_temp();
                 break;
             
             case 'a':
             {
                 printf("Enter the measurement period in milliseconds: ");
+                fflush(stdout);
                 int period = read_int();
                 
                 printf("Enter alarm temperature in integer degrees C: ");
+                fflush(stdout);
                 int alarmTemp = read_int();
                 
                 // Set the alarm.

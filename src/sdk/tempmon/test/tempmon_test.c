@@ -123,12 +123,10 @@ Choose an option:\n\
             
             case 'a':
             {
-                printf("Enter the measurement period in milliseconds: ");
-                fflush(stdout);
+                printf("Enter the measurement period in milliseconds:\n");
                 int period = read_int();
                 
-                printf("Enter alarm temperature in integer degrees C: ");
-                fflush(stdout);
+                printf("Enter alarm temperature in integer degrees C:\n");
                 int alarmTemp = read_int();
                 
                 // Set the alarm.

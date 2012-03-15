@@ -58,13 +58,6 @@ typedef struct _tempmon_info {
 } tempmon_info_t;
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// Externs
-//////////////////////////////////////////////////////////////////////////////////////////
-
-// This extern for the ocotp driver need to go away when there is a public header!
-extern int32_t sense_fuse(uint32_t bank, uint32_t row);
-
-//////////////////////////////////////////////////////////////////////////////////////////
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -124,7 +117,7 @@ void tempmon_alarm_isr(void)
 int tempmon_init(void)
 {
     // Read the calibration point data from OTP.
-    uint32_t calibrationData = sense_fuse(kTempCalibrationOtpBank, kTempCalibrationOtpRow);
+    uint32_t calibrationData = HW_OCOTP_ANA1_RD();
     
     // If the OTP fields are blank, use a default set of calibration points.
     if (calibrationData == 0)

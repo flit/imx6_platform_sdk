@@ -16,6 +16,7 @@
 #define __HARDWARE_H__
 
 #include "soc_memory_map.h"
+#include "irq_numbers.h"
 #include "registers.h"
 #include "io.h"
 #include "system_util.h"

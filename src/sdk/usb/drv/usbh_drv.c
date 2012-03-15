@@ -10,6 +10,9 @@
  * @brief USB host driver.
  *
  */
+#include "usb.h"
+#include "usb_registers.h"
+#include "usb_defines.h"
 
 /*!
  * Initialize the USB for host operation. This initialization sets
@@ -18,10 +21,6 @@
  * Parameters:
  * @param port      USB module to initialize
  */
-
-#include "usb.h"
-#include "usb_registers.h"
-#include "usb_defines.h"
 
 int usbh_init(usb_module_t *port)
 {
@@ -97,8 +96,6 @@ int usbh_init(usb_module_t *port)
 	
 	return 0;
 }
-
-
 
 /*!
  * Initialize the periodic schedule. This function creates an empty
@@ -202,33 +199,10 @@ void usbh_bus_reset(struct usb_module *port)
 }
 
 /*!
- * Return the speed of the USB port.
- *
- * @param port  USB module to send reset
- */
-usbPortSpeed_t usbh_get_port_speed(usb_module_t *port)
-{
-
-	//! Determine the speed we are connected at.
-	//! This must be called after the bus reset
-	switch ((port->moduleBaseAddress->USB_PORTSC) & USB_PORTSC_PSPD(0x3))
-	{ case USB_PORTSC_PSPD_FULL:
-		return usbSpeedFull;
-		break;
-	case USB_PORTSC_PSPD_LOW:
-		return usbSpeedLow;
-		break;
-	case USB_PORTSC_PSPD_HIGH:
-		return usbSpeedHigh;
-		break;
-	default:
-		return usbSpeedUnknown;			// invalid port speed.
-		break;
-	}
-}
-
-/*!
- * Enable the asynchronous schedule
+ * Enable the asynchronous schedule\n
+ * This function enables the Asynchronous schedule.\n
+ * The application code must create descriptors and queue heads and\n
+ * set the Asynchronous list address before calling this function.
  */
 void usbh_enable_asynchronous_schedule(usb_module_t *port)
 {
@@ -413,10 +387,9 @@ usbhQueueHead_t * usbh_qh_init(uint32_t max_packet, uint32_t head, uint32_t eps,
 
 	queueHead->mallocPointer = memoryPointer;
 
-	//! - Set type and terminate bit
+	//! - Loop the queue head pointer back to itself and set type
 	queueHead->queueHeadLinkPointer = (((uint32_t) queueHead)
-								| USB_QH_LINK_PTR_TYP_QH
-								| USB_QH_LINK_PTR_T  );
+								| USB_QH_LINK_PTR_TYP_QH );
 								
 	//! - Set endpoint speed
 	switch (eps)

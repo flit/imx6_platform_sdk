@@ -17,6 +17,7 @@
  */
 
 #include "usb.h"
+#include <stdio.h>
 
 usbPortSpeed_t usb_get_port_speed(usb_module_t *port)
 {
@@ -63,5 +64,43 @@ uint32_t swap32(uint32_t data)
 	temp |= ((data & 0xff000000) >> 24);
 
     return(temp);
+}
+
+/*!
+ * This function displays a menu and waits for an input char to be received from the UART.\n
+ * If the character is a numeric value within the table range, the entry number is returned.
+ *
+ * @param   *menu_table   the table containing the menu items
+ * @return  menu_item     the table entry of the selected item
+ *
+ */
+int get_menu_item(char *menu_table[])
+{
+    uint8_t input;
+    int i, menu_item, num_items;
+
+    for (i = 0; *menu_table[i] != '\0'; i++) {
+        printf("%d. %s\n", i, menu_table[i]);
+    }
+    num_items = i;
+
+    menu_item = -1;
+    while (menu_item == -1) {
+        printf("Select > ");
+
+        do{
+        	input = getchar();
+        } while (input == NONE_CHAR) ;  // wait for a character
+
+        if ((input >= '0') && (input <= '9')) {
+            menu_item = input - '0';
+            if (menu_item < num_items) {
+                printf("%1d\n", menu_item);
+                return (menu_item);
+            } else
+                menu_item = -1;
+        }
+    }
+    return (menu_item);
 }
 

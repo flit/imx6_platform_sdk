@@ -49,7 +49,6 @@ usbdEndpointPair_t endpointList[8] __attribute__ ((aligned (4096))); // 4K align
 void usb0_device_mouse_test(usb_module_t *port) {
 	usbdEndpointDtd_t *usbDtd1, *usbDtd2, *usbDtd3, *usbDtd4;
 	usbdEndpointDtd_t *head; // Pointer to the head of the current dTD list
-	usbPortSpeed_t portSpeed;
 	uint32_t mouseData[8];
 	usbdEndpointPair_t *endpointListAddress =
 			(usbdEndpointPair_t *) &endpointList[0];
@@ -214,7 +213,7 @@ void usb0_device_mouse_test(usb_module_t *port) {
 	endpoint1Info.endpointNumber = 1;
 	endpoint1Info.endpointDirection = IN;
 	endpoint1Info.interruptOnSetup = FALSE;
-	endpoint1Info.maxPacketLength = portSpeed == usbSpeedFull ? 64 : 512;
+	endpoint1Info.maxPacketLength = usb_get_port_speed(port) == usbSpeedFull ? 64 : 512;
 	endpoint1Info.mult = 0;
 
 	//! - Initialize the queue head

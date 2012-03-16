@@ -12,8 +12,8 @@
  * This test code demonstrates the use of control and interrupt endpoints.
  * The mouse data (X/Y movement) is transferred in an interrupt transfer
  */
-#include "usb.h"
 #include "usb_registers.h"
+#include "usb.h"
 #include "usb_defines.h"
 #include "soc_memory_map.h"
 
@@ -361,8 +361,8 @@ void hid_device_enum(usb_module_t *port,
 						fullConfigBuffer, transferSize);
 			} else {
 				printf("Unsupported descriptor request received\n");
-				while (1)
-					;
+				// Stall the endpoint
+				port->moduleBaseAddress->USB_ENDPTCTRL[0] |= USB_ENDPTCTRL_TXS;
 			}
 			break;
 

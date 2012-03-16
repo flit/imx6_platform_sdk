@@ -25,7 +25,7 @@
 int get_menu_item(char *menu_table[]);
 
 
-void usb0_host_testmodes_test (usb_module_t	usbPort){
+void usb0_host_testmodes_test (usb_module_t	*usbPort){
 
 	usbRegisters_t	*UsbReg;
 
@@ -44,10 +44,10 @@ void usb0_host_testmodes_test (usb_module_t	usbPort){
 
     int test_mode;
 
-	UsbReg = usbPort.moduleBaseAddress;				// Pointer to the USB registers for this controller
+	UsbReg = usbPort->moduleBaseAddress;				// Pointer to the USB registers for this controller
 
 	//! Initialize the USB host controller.
-	usbh_init(&usbPort);
+	usbh_init(usbPort);
 
     while (1) {
         /* request test mode */

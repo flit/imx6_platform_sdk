@@ -5,22 +5,22 @@
  * Freescale Semiconductor, Inc.
 */
 
-#ifndef __WEIM_HDR__
-#define __WEIM_HDR__
+#ifndef __EIM_HDR__
+#define __EIM_HDR__
 
 #include "io.h"
-#include "../inc/weim_ifc.h"
+#include "../inc/eim_ifc.h"
 
-enum weim_reg_e {
-    WEIM_GCR1 = 0,
-    WEIM_GCR2 = 1,
-    WEIM_RCR1 = 2,
-    WEIM_RCR2 = 3,
-    WEIM_WCR1 = 4,
-    WEIM_WCR2 = 5,
-    WEIM_WCR = 6,
-    WEIM_WIAR = 7,
-    WEIM_NUM_REG = 8            //EAR is read only
+enum eim_reg_e {
+    EIM_GCR1 = 0,
+    EIM_GCR2 = 1,
+    EIM_RCR1 = 2,
+    EIM_RCR2 = 3,
+    EIM_WCR1 = 4,
+    EIM_WCR2 = 5,
+    EIM_WCR = 6,
+    EIM_WIAR = 7,
+    EIM_NUM_REG = 8            //EAR is read only
 };
 
 #define REG_CSCFG_MSK_CSEN ((uint32_t)0x00000001)
@@ -38,15 +38,15 @@ typedef struct {
     volatile uint32_t rcr2;
     volatile uint32_t wcr1;
     volatile uint32_t wcr2;
-} weim_cs_reg_t, *weim_cs_reg_p;
+} eim_cs_reg_t, *eim_cs_reg_p;
 
 typedef struct {
-    weim_cs_reg_t reg_cs[WEIM_NUM_CS];
+    eim_cs_reg_t reg_cs[EIM_NUM_CS];
 
     volatile uint32_t wcr;
     volatile uint32_t wiar;
     volatile uint32_t ear;
-} weim_reg_t, *weim_reg_p;
+} eim_reg_t, *eim_reg_p;
 
 typedef struct {
     uint8_t id;                 //parameter ID
@@ -54,6 +54,6 @@ typedef struct {
     uint8_t shift;              //bit shift in register
     uint8_t reg;                //which register
     uint32_t mask;              //CFG mask
-} weim_cfg_t;
+} eim_cfg_t;
 
 #endif

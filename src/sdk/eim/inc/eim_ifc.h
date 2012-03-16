@@ -5,24 +5,24 @@
  * Freescale Semiconductor, Inc.
 */
 
-#ifndef __WEIM_IFC__
-#define __WEIM_IFC__
+#ifndef __EIM_IFC__
+#define __EIM_IFC__
 
 #include "io.h"
 
 /* CS enumeration */
-enum weim_cs_e {
-    WEIM_CS0 = 0,
-    WEIM_CS1 = 1,
-    WEIM_CS2 = 2,
-    WEIM_CS3 = 3,
-    WEIM_CS4 = 4,
-    WEIM_CS5 = 5,
-    WEIM_NUM_CS = 6
+enum eim_cs_e {
+    EIM_CS0 = 0,
+    EIM_CS1 = 1,
+    EIM_CS2 = 2,
+    EIM_CS3 = 3,
+    EIM_CS4 = 4,
+    EIM_CS5 = 5,
+    EIM_NUM_CS = 6
 };
 
 /* CFG ID enumeration */
-enum weim_cfg_e {
+enum eim_cfg_e {
     GCR1_CSEN = 0,              //GCR1
     GCR1_SWR,
     GCR1_SDR,
@@ -88,7 +88,7 @@ enum weim_cfg_e {
 };
 
 /* Data port size */
-enum weim_dsz_e {
+enum eim_dsz_e {
     DSZ_16_LOW = 1,
     DSZ_16_HIGH = 2,
     DSZ_32 = 3,
@@ -99,26 +99,28 @@ enum weim_dsz_e {
 };
 
 /*!
- * Initialize WEIM controller. Only setupt the data port size and enable the chip select.
- * Param:
- *     uint32_t cs: chip select
- *     uint32_t dsz: data port size
- *     uint32_t mum: multiplexed mode
- *     uint32_t aus: address unshift
- * Return:
- *     TRUE on success, FALSE on fail
+ * @brief Initialize EIM controller.
+ *
+ * Only setup the data port size and enable the chip select.
+ * 
+ * @param cs chip select
+ * @param dsz data port size
+ * @param mum multiplexed mode
+ * @param aus address unshift
+ * 
+ * @return TRUE on success, FALSE on fail
  */
-extern uint32_t weim_init(uint32_t, uint32_t, uint32_t, uint32_t);
+extern uint32_t eim_init(uint32_t, uint32_t, uint32_t, uint32_t);
 
 /*!
- * Setup WEIM configuration, each field per call.
- * Param:
- *     uint32_t cs: chip select
- *     uint32_t cfg: CFG id
- *     uint32_t value: CFG value
- * Return:
- *     TRUE on success, FALSE on fail
+ * @brief Setup EIM configuration, each field per call.
+ *
+ * @param cs chip select
+ * @param cfg CFG id
+ * @param value CFG value
+ *
+ * @return TRUE on success, FALSE on fail
  */
-extern uint32_t weim_cfg_set(uint32_t, uint32_t, uint32_t);
+extern uint32_t eim_cfg_set(uint32_t, uint32_t, uint32_t);
 
 #endif

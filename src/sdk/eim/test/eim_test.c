@@ -8,52 +8,52 @@
 #include <stdio.h>
 #include "hardware.h"
 #include "cfi_flash.h"
-#include "../inc/weim_ifc.h"
+#include "../inc/eim_ifc.h"
 
-#define WEIM_BUFFER_SZ 0x1000
+#define EIM_BUFFER_SZ 0x1000
 extern flash_info_t flash_info[];
-static uint32_t weim_test_buffer[WEIM_BUFFER_SZ];
+static uint32_t eim_test_buffer[EIM_BUFFER_SZ];
 
-static void weim_hw_prepare(void)
+static void eim_hw_prepare(void)
 {
-    /* Init WEIM */
-    weim_init(WEIM_CS0, DSZ_16_HIGH, FALSE, FALSE);
+    /* Init EIM */
+    eim_init(EIM_CS0, DSZ_16_HIGH, FALSE, FALSE);
 #if 1
     /* Nor flash */
-    weim_cfg_set(WEIM_CS0, GCR1_CREP, TRUE);
+    eim_cfg_set(EIM_CS0, GCR1_CREP, TRUE);
 
     /* Address hold time */
-    weim_cfg_set(WEIM_CS0, GCR2_ADH, 1);
+    eim_cfg_set(EIM_CS0, GCR2_ADH, 1);
 
     /* Bypass grant(only for Muxed 16) */
-    weim_cfg_set(WEIM_CS0, GCR2_MUX16_BYP_GRANT, FALSE);
+    eim_cfg_set(EIM_CS0, GCR2_MUX16_BYP_GRANT, FALSE);
 
     /* ADV navigation */
-    weim_cfg_set(WEIM_CS0, RCR1_RADVN, 2);
+    eim_cfg_set(EIM_CS0, RCR1_RADVN, 2);
 
     /* OE assertion */
-    weim_cfg_set(WEIM_CS0, RCR1_OEA, 0);
+    eim_cfg_set(EIM_CS0, RCR1_OEA, 0);
 
     /* Read wait state control */
-    weim_cfg_set(WEIM_CS0, RCR1_RWSC, 28);
+    eim_cfg_set(EIM_CS0, RCR1_RWSC, 28);
 
     /* WE negation */
-    weim_cfg_set(WEIM_CS0, WCR1_WEN, 1);
+    eim_cfg_set(EIM_CS0, WCR1_WEN, 1);
 
     /* WE assertion */
-    weim_cfg_set(WEIM_CS0, WCR1_WEA, 1);
+    eim_cfg_set(EIM_CS0, WCR1_WEA, 1);
 
     /* BE negation */
-    weim_cfg_set(WEIM_CS0, WCR1_WBEN, 2);
+    eim_cfg_set(EIM_CS0, WCR1_WBEN, 2);
 
     /* BE assertion */
-    weim_cfg_set(WEIM_CS0, WCR1_WBEA, 1);
+    eim_cfg_set(EIM_CS0, WCR1_WBEA, 1);
 
     /* ADV Negation */
-    weim_cfg_set(WEIM_CS0, WCR1_WADVN, 1);
+    eim_cfg_set(EIM_CS0, WCR1_WADVN, 1);
 
     /* Write wait state control */
-    weim_cfg_set(WEIM_CS0, WCR1_WWSC, 8);
+    eim_cfg_set(EIM_CS0, WCR1_WWSC, 8);
 #else
     reg32_write(0x21B8090, 0x00000120);
     reg32_write(0x21B8000, 0x00620081);
@@ -64,19 +64,19 @@ static void weim_hw_prepare(void)
 #endif
 }
 
-static int weim_nor_test(void)
+static int eim_nor_test(void)
 {
     uint32_t idx, retv, size, start, end, *data;
     int32_t count, first[CFG_MAX_FLASH_BANKS], last[CFG_MAX_FLASH_BANKS];
     flash_info_t *info = flash_info;
 
     /* Prepare buffer */
-    for (idx = 0; idx < WEIM_BUFFER_SZ; idx++) {
-        weim_test_buffer[idx] = idx + 0x5A5A0000;
+    for (idx = 0; idx < EIM_BUFFER_SZ; idx++) {
+        eim_test_buffer[idx] = idx + 0x5A5A0000;
     }
 
     /* HW init */
-    weim_hw_prepare();
+    eim_hw_prepare();
 
     /* Reset flash to read mode */
     flash_reset(WEIM_CS_BASE_ADDR);
@@ -109,8 +109,8 @@ static int weim_nor_test(void)
                 } else {
                     /* Program data */
                     printf("\nFlash program...\n");
-                    retv = flash_write((uint8_t *) weim_test_buffer,
-                                       start, WEIM_BUFFER_SZ * sizeof(uint32_t));
+                    retv = flash_write((uint8_t *) eim_test_buffer,
+                                       start, EIM_BUFFER_SZ * sizeof(uint32_t));
                 }
             }
         }
@@ -124,9 +124,9 @@ static int weim_nor_test(void)
     /* Compare data */
     if (retv == OK) {
         printf("Data compare...\n");
-        for (idx = 0, data = (uint32_t *) start; idx < WEIM_BUFFER_SZ; idx++) {
-            if (weim_test_buffer[idx] != data[idx]) {
-                printf("[%d] Data mismatch: 0x%8x, 0x%8x\n", idx, weim_test_buffer[idx], data[idx]);
+        for (idx = 0, data = (uint32_t *) start; idx < EIM_BUFFER_SZ; idx++) {
+            if (eim_test_buffer[idx] != data[idx]) {
+                printf("[%d] Data mismatch: 0x%8x, 0x%8x\n", idx, eim_test_buffer[idx], data[idx]);
                 retv = ERR;
                 break;
             }
@@ -136,14 +136,14 @@ static int weim_nor_test(void)
     return retv;
 }
 
-int weim_test(void)
+int eim_test(void)
 {
     uint8_t sel, retv;
 
-    printf("WEIM test start: \n");
+    printf("EIM test start: \n");
 
     do {
-        printf("  s - to start WEIM NOR flash test.\n");
+        printf("  s - to start EIM NOR flash test.\n");
         printf("  x - to exit.\n");
 
         do {
@@ -156,7 +156,7 @@ int weim_test(void)
         }
 
         if (sel == 's') {
-            retv = weim_nor_test();
+            retv = eim_nor_test();
             if (retv == OK) {
                 printf("Test passed.\n");
             } else {

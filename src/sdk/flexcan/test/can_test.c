@@ -15,7 +15,7 @@ static struct hw_module can1_port = {
     "CAN1",          // int8_t* name; // name
     CAN1_BASE_ADDR,  // uint32_t base; // base_address
     30000000,        // uint32_t freq; // frequency CAN_CLK_ROOT aka can_PE_clock
-    IMX_INT_CAN1,    // uint32_t irq_id; // interrut source ID
+    IMX_INT_FLEXCAN1,    // uint32_t irq_id; // interrut source ID
     // void (*irq_subroutine)(void); // IRQ subroutine
     // void (*iomux_config) (void); // module iomux configuration fucntion
 };
@@ -24,7 +24,7 @@ static struct hw_module can2_port = {
     "CAN2",           // int8_t* name; // name
     CAN2_BASE_ADDR,   // uint32_t base; // base_address
     30000000,         // uint32_t freq; // frequency CAN_CLK_ROOT aka can_PE_clock
-    IMX_INT_CAN2,     // uint32_t irq_id; // interrut source ID
+    IMX_INT_FLEXCAN2,     // uint32_t irq_id; // interrut source ID
     &can2_rx_handler, // void (*irq_subroutine)(void); // IRQ subroutine
     // void (*iomux_config) (void); // module iomux configuration fucntion
 };

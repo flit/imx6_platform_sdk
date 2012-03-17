@@ -37,7 +37,7 @@ uint32_t frame_list[1024]  __attribute__ ((aligned (4096))); // 4K aligned frame
  * Clicking the right mouse button ends the test
  */
 
-void usb0_host_test (void)
+void usb0_host_test (usb_module_t *usbhModule)
 {
 	int                    i, temp, periodic_base;
 	usbPortSpeed_t         usb_port_speed;				// Speed of the interface
@@ -49,22 +49,12 @@ void usb0_host_test (void)
 	uint8_t                *report_descriptor;			// Pointer to the Report descriptor
 	usbRegisters_t         *UsbReg;
 	
-	usb_module_t *usbhModule;
-	usb_module_t usbOtgModule;							// Controller to use
-
 	usbhQueueHead_t	*usb_qh_ep0, *usb_qh_ep1;			// Pointers to Queue Heads for the endpoints
 	usbhTransferDescriptor_t *int_qtd;					// Pointer to the transfer descriptor
 	
 	uint8_t usbhMouseData[MAX_USB_BUFFER_SIZE];			// Buffer to receive the mouse data (from the interrupt endpoint)
 	uint32_t int_transfer_size, int_packet_size, bytes_received;
 	
-	//! Initialize the controller info structure.
-	usbOtgModule.moduleName = "OTG controller";
-	usbOtgModule.moduleBaseAddress = (usbRegisters_t *)USBOH3_USB_BASE_ADDR;
-	usbOtgModule.controllerID = OTG;
-	usbOtgModule.phyType = Utmi;
-
-	usbhModule = &usbOtgModule;
 	UsbReg = usbhModule->moduleBaseAddress;				// Pointer to the USB registers for this controller
 
 	//! Allocate memory for the descriptors.
@@ -86,11 +76,11 @@ void usb0_host_test (void)
  	usbh_bus_reset(usbhModule);
 
  	//! Get current operating speed.
-	usb_port_speed = usbh_get_port_speed(usbhModule);
+	usb_port_speed = usb_get_port_speed(usbhModule);
 
 	
-	/*
-	 * ! Create a QueueHead to use for EndPoint0. This single QH will be the
+	/*!
+	 * Create a QueueHead to use for EndPoint0. This single QH will be the\n
 	 * asynchronous schedule during enumeration. 
 	 */
     switch (usb_port_speed)
@@ -112,9 +102,9 @@ void usb0_host_test (void)
     }
 
     /*!
-     * Put this queue head on the Asynchronous Schedule.
-     * This is our first queue head on the AS so we point the controller to this QH
-     * Any further queue heads will be linked to this HQ
+     * Put this queue head on the Asynchronous Schedule.\n
+     * This is our first queue head on the AS so we point the controller to this QH\n
+     * Any further queue heads will be linked to this HQ.
      */
     UsbReg->USB_ASYNCLISTADDR = (uint32_t)usb_qh_ep0;
 
@@ -227,8 +217,8 @@ void usb0_host_test (void)
 	}		
 }
 
-/********************************************************************/
-/* This enumeration routine is specific for a HID class mouse device. The code
+/*
+ * This enumeration routine is specific for a HID class mouse device. The code
  * code be used as a starting for enumerating other devices. If drivers need
  * to be able to detect different types of devices (for example a keyboard or
  * a mouse could be attached), then some level of descriptor parsing would need
@@ -244,8 +234,8 @@ emuerateDevice(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, usbDeviceDescrip
 	usbh_bus_reset(port);
 	
 	/*!
-	 * Read the first 8 bytes of the device descriptor as we do not yet know the max payload size
-	 * Our new device has address 0
+	 * Read the first 8 bytes of the device descriptor as we do not yet know the max packet size\n
+	 * Our new device has address 0 at this time.
 	 */
 	usbh_get_dev_desc(port, usb_qh_ep0, device_descriptor);
 

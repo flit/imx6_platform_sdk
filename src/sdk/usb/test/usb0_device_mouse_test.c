@@ -12,13 +12,14 @@
  * This test code demonstrates the use of control and interrupt endpoints.
  * The mouse data (X/Y movement) is transferred in an interrupt transfer
  */
-#include "usb.h"
 #include "usb_registers.h"
+#include "usb.h"
 #include "usb_defines.h"
 #include "soc_memory_map.h"
 
 #include <math.h>
 #include <float.h>
+#include <stdio.h>
 
 // X, Y displacement info
 #define MAX_DISP	300
@@ -45,8 +46,7 @@ usbdEndpointPair_t endpointList[8] __attribute__ ((aligned (4096))); // 4K align
 /*!
  * Main program loop.
  */
-void usb0_device_mouse_test(void) {
-	usb_module_t portInfo, *port;
+void usb0_device_mouse_test(usb_module_t *port) {
 	usbdEndpointDtd_t *usbDtd1, *usbDtd2, *usbDtd3, *usbDtd4;
 	usbdEndpointDtd_t *head; // Pointer to the head of the current dTD list
 	uint32_t mouseData[8];
@@ -61,14 +61,6 @@ void usb0_device_mouse_test(void) {
 	usbHidDescriptor_t mouseHidDescriptor;
 
 	uint8_t* mouseReportDescriptor;
-
-	// select USB interface to use
-
-	port = &portInfo;
-	port->moduleName = "OTG controller";
-	port->moduleBaseAddress = (usbRegisters_t *) USBOH3_USB_BASE_ADDR;
-	port->controllerID = OTG;
-	port->phyType = Utmi;
 
 	mouseReportDescriptor = (uint8_t*) malloc(MAX_USB_DESC_SIZE); // This is a variable length descriptor
 
@@ -138,11 +130,14 @@ void usb0_device_mouse_test(void) {
 	memcpy(bufferPointer, &mouseConfigDescriptor,
 			mouseConfigDescriptor.bLength); // copy Configuration descriptor
 	bufferPointer += mouseConfigDescriptor.bLength;
+
 	memcpy(bufferPointer, &mouseInterfaceDescriptor,
 			mouseInterfaceDescriptor.bLength); // copy Interface descriptor
 	bufferPointer += mouseInterfaceDescriptor.bLength;
+
 	memcpy(bufferPointer, &mouseHidDescriptor, mouseHidDescriptor.bLength); // copy HID descriptor
 	bufferPointer += mouseHidDescriptor.bLength;
+
 	memcpy(bufferPointer, &mouseEndpointDescriptor,
 			mouseEndpointDescriptor.bLength); // copy Endpoint descriptor
 
@@ -218,8 +213,8 @@ void usb0_device_mouse_test(void) {
 	endpoint1Info.endpointNumber = 1;
 	endpoint1Info.endpointDirection = IN;
 	endpoint1Info.interruptOnSetup = FALSE;
-	endpoint1Info.maxPacketLength = (usb_get_port_speed(port) == usbSpeedFull ? 64 : 512);
-    endpoint1Info.mult = 0;
+	endpoint1Info.maxPacketLength = usb_get_port_speed(port) == usbSpeedFull ? 64 : 512;
+	endpoint1Info.mult = 0;
 
 	//! - Initialize the queue head
 	//  Invalidate Next_dtd pointer for now.
@@ -246,7 +241,7 @@ void usb0_device_mouse_test(void) {
 	usbDtd2->nextDtd = (uint32_t) usbDtd3;
 	usbDtd3->nextDtd = (uint32_t) usbDtd4;
 
-	head = usbDtd1;										// first transfer descriptor on the endpoint
+	head = usbDtd1; // first transfer descriptor on the endpoint
 
 	//! Send the data:
 	uint32_t i;
@@ -294,7 +289,7 @@ void usb0_device_mouse_test(void) {
 		usbDtdPointer = (usbdEndpointDtd_t *)usbDtdPointer->nextDtd;
 		fillBuffer(&mouseData[i++]);
 
-		usbd_add_dtd(port, endpointListAddress, &endpoint1Info, usbDtdTop);			// Add the dTD's to the endpoint
+		usbd_add_dtd(port, endpointListAddress, &endpoint1Info, usbDtdTop); // Add the dTD's to the endpoint
 
 		//! wait for previous dTDs to complete
 		while (!(port->moduleBaseAddress->USB_USBSTS & USB_USBSTS_UI));
@@ -366,8 +361,8 @@ void hid_device_enum(usb_module_t *port,
 						fullConfigBuffer, transferSize);
 			} else {
 				printf("Unsupported descriptor request received\n");
-				while (1)
-					;
+				// Stall the endpoint
+				port->moduleBaseAddress->USB_ENDPTCTRL[0] |= USB_ENDPTCTRL_TXS;
 			}
 			break;
 
@@ -460,7 +455,6 @@ void fillBuffer(uint32_t *buffer) {
 		angle_disp = PI / 180;
 		init = 0;
 	}
-
 
 	//! - Put the data in the transfer descriptor buffers
 	// Calculate pointer positions to make the cursor move in a circle

@@ -9,9 +9,13 @@
  * @file usbd_drv.c
  * @brief USB device driver functions
  *
- * These functions demonstrate how to program the USB controller and
- * are not intended for use in an actual application.\n
+ * These functions demonstrate how to program the USB controller and\n
+ * are not intended for use in an actual application.
  */
+#include "usb.h"
+#include "usb_registers.h"
+#include "usb_defines.h"
+#include "soc_memory_map.h"
 
 //! Function to initialize the USB controller for device operation.
 /*! This initialization performs basic configuration to prepare the device for connection to a host.
@@ -20,13 +24,14 @@
  * @param endpointList   pointer to list with endpoint queue heads
  */
 
-#include "usb.h"
-#include "usb_registers.h"
-#include "usb_defines.h"
-#include "soc_memory_map.h"
-
 uint32_t usbd_device_init(usb_module_t *port, usbdEndpointPair_t *endpointList)
 {
+	/*!
+	 * Disable vbus in case it is enabled.\n
+	 * Devices never drive Vbus.
+	 */
+	usbDisableVbus(port);
+
 	/*!
 	 *  First start clocks and PLL
 	 */
@@ -101,6 +106,7 @@ uint32_t usbd_device_init(usb_module_t *port, usbdEndpointPair_t *endpointList)
   	endpoint0In.endpointNumber = 0;
   	endpoint0In.endpointDirection = IN;
   	endpoint0In.maxPacketLength = 0x40;
+  	endpoint0In.mult = 0;
   	endpoint0In.interruptOnSetup = TRUE;
 
 	usbd_endpoint_qh_init(&endpointList[0], &endpoint0In, DTD_TERMINATE);	// No nextDtd at this time
@@ -109,7 +115,8 @@ uint32_t usbd_device_init(usb_module_t *port, usbdEndpointPair_t *endpointList)
   	endpoint0Out.endpointNumber = 0;
   	endpoint0Out.endpointDirection = OUT;
   	endpoint0Out.maxPacketLength = 0x40;
-  	endpoint0Out.interruptOnSetup = FALSE;
+   	endpoint0Out.mult = 0;
+ 	endpoint0Out.interruptOnSetup = FALSE;
 
 
 	usbd_endpoint_qh_init(&endpointList[0], &endpoint0Out, DTD_TERMINATE);	// No nextDtd at this time
@@ -157,7 +164,6 @@ usbPortSpeed_t usbd_bus_reset(usb_module_t *port)
   	return(usb_get_port_speed(port));
 }
 
-//! Function to
 /*!
  * USB device function to return the data from a setup packet.
  * NOTE: We assume only endpoint 0 is a control endpoint
@@ -175,9 +181,6 @@ void usbd_get_setup_packet(usb_module_t *port, usbdEndpointPair_t *endpointList,
     //! - Wait for setup packet to arrive
 	while(!(port->moduleBaseAddress->USB_ENDPTSETUPSTAT & (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1))));
 
-    //! - Clear setup identification
-    port->moduleBaseAddress->USB_ENDPTSETUPSTAT |= (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1));
-
     /*! copy setup data from queue head to buffer and check semaphore\n
      * SUTW will be cleared when a new setup packet arrives.\n
      * To avoid data corruption, we check the SUTW flag after the copy\n
@@ -188,8 +191,14 @@ void usbd_get_setup_packet(usb_module_t *port, usbdEndpointPair_t *endpointList,
     	memcpy(setupPacket, &enpointQueueHead->setupBuffer, sizeof(usbdSetupPacket_t));		//! - copy the setup data
     }  while ( !(port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_SUTW)));					//! - repeat if SUTW got cleared
 
+    //! - Clear setup identification
+    port->moduleBaseAddress->USB_ENDPTSETUPSTAT |= (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1));
+
     //! - Clear Setup tripwire bit
     port->moduleBaseAddress->USB_USBCMD &= (~USB_USBCMD_SUTW);
+
+    //! - Flush Endpoint 0 IN and OUT in case some a previous transaction was left pending
+    port->moduleBaseAddress->USB_ENDPTSTATUS &= (USB_ENDPTSTATUS_ERBR(0) | USB_ENDPTSTATUS_ETBR(0));
 
     //! - Wait for ENDPSETUPSTAT to clear.\n
     //! It must be clear before the status phase/data phase can be primed

@@ -2770,6 +2770,7 @@
 //######################################### 
 //# USB             
 //######################################### 
+#define USBOH3_USB_IPS_BASE_ADDR   (USBOH3_USB_BASE_ADDR)
 #define USB_OTG_BASE_ADDR          (USBOH3_USB_IPS_BASE_ADDR+0x000)
 #define USB_H1_BASE_ADDR           (USBOH3_USB_IPS_BASE_ADDR+0x200)
 #define USB_H2_BASE_ADDR           (USBOH3_USB_IPS_BASE_ADDR+0x400)

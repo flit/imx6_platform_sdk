@@ -11,10 +11,10 @@
  *
  * @ingroup diag_init
  */
-
+#include "buffers.h"
 #include "mmu.h"
 
-#define TTB_BASE_ADDR	0x00930000
+#define TTB_BASE_ADDR TLB_ENTRY_START
 
 /*!
  * system memory arrangement, including IRAM and DRAM

@@ -17,7 +17,6 @@
 #include "usb_defines.h"
 #include "usb_registers.h"
 
-/********************************************************************/
 enum usbController {
 	OTG = 0,
 	Host1,
@@ -39,6 +38,13 @@ typedef enum usbPortSpeed {
 	usbSpeedHigh
 } usbPortSpeed_t;
 
+typedef enum usbPeriodicListType {
+	listTypeIsochronous = 0,
+	listTypeQueueHead,
+	listTypeSplitTransaction,
+	listTypeFrameSpan
+} usbPeriodicListType_t;
+
 typedef struct usb_module
 {
 	int8_t              *moduleName;
@@ -46,13 +52,6 @@ typedef struct usb_module
 	enum usbController  controllerID;
 	enum usbPhyType     phyType;				              // UTMI, ULPI, Serial, HSIC
 } usb_module_t;
-
-typedef enum usbPeriodicListType {
-	listTypeIsochronous = 0,
-	listTypeQueueHead,
-	listTypeSplitTransaction,
-	listTypeFrameSpan
-} usbPeriodicListType_t;
 
 /*!
  *  usb host data structure definitions
@@ -86,7 +85,7 @@ typedef struct usbhTransferDescriptor {
 } usbhTransferDescriptor_t;
 
 /*!
- * Descriptor definitions
+ * Protocol descriptor definitions
  */
 
 typedef struct usbDeviceDescriptor {
@@ -233,38 +232,37 @@ typedef struct usbdEndpointInfo {
 
 
 
-/* function prototypes */
+//! Host driver function prototypes
 int usbh_init(usb_module_t *);
 void usbh_bus_reset(usb_module_t *);
 void get_setup_packet(usb_module_t *, uint32_t, uint32_t*, uint32_t*);
 void usbh_enable_asynchronous_schedule(usb_module_t *port);
 void usbh_disable_asynchronous_schedule(usb_module_t *port);
-usbPortSpeed_t usbh_get_port_speed(usb_module_t *);
 uint32_t usbh_periodic_schedule_init(usb_module_t *, uint32_t frame_list_size, uint32_t *frame_list);
 usbhTransferDescriptor_t * usbh_qtd_init(uint32_t, uint32_t, uint32_t, uint32_t*);
 usbhQueueHead_t * usbh_qh_init(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
 uint32_t swap32(uint32_t data);
 
-//! device driver prototypes
+//! device driver function prototypes
 uint32_t usbd_device_init(usb_module_t *port, usbdEndpointPair_t *endpointList);
 usbPortSpeed_t usbd_bus_reset(usb_module_t *port);
 void usbd_get_setup_packet(usb_module_t *port, usbdEndpointPair_t *endpointList, usbdSetupPacket_t *setupPacket);
 void usbd_device_send_control_packet(usb_module_t *port, usbdEndpointPair_t *endpointList, uint8_t* buffer, uint32_t size);
 void usbd_device_send_zero_len_packet(usb_module_t *port, usbdEndpointPair_t *endpointList, uint32_t endpoint);
 void usbd_endpoint_qh_init(usbdEndpointPair_t *endpointList, usbdEndpointInfo_t *usbdEndpoint, uint32_t nextDtd);
-usbdEndpointDtd_t *usbd_dtd_init(uint32_t transferSize, uint32_t interruptOnComplete, uint32_t multOverride, uint32_t *bufferPointer);
 void usbd_add_dtd(usb_module_t *port, usbdEndpointPair_t *endpointList, usbdEndpointInfo_t *usbdEndpoint, usbdEndpointDtd_t *new_dtd);
+usbdEndpointDtd_t *usbd_dtd_init(uint32_t transferSize, uint32_t interruptOnComplete, uint32_t multOverride, uint32_t *bufferPointer);
 usbdEndpointDtd_t *usbd_reclaim_dtd(usb_module_t *port, usbdEndpointPair_t *endpointList, usbdEndpointInfo_t *usbdEndpoint, usbdEndpointDtd_t *head);
 void fillBuffer(uint32_t *buffer);
-/*
- * usbcommon prototypes
- */
-usbPortSpeed_t usb_get_port_speed(usb_module_t *port);
 
+//! common prototypes
+
+usbPortSpeed_t usb_get_port_speed(usb_module_t *port);
 int usbEnableClocks(usb_module_t *port);
 int usbEnableTransceiver(usb_module_t *port);
 void usbEnableVbus(usb_module_t *port);
 void usbDisableVbus(usb_module_t *port);
+int get_menu_item(char *menu_table[]);
 
 #define DTD_TERMINATE 0xDEAD001
 #define QTD_TERMINATE 0xDEAD001
@@ -282,10 +280,6 @@ void usbDisableVbus(usb_module_t *port);
 #define MAX_QTD_TRANS_SIZE	0x5000
 #define MAX_DTD_TRANS_SIZE	0x5000
 #define MAX_QH_PACKET_SIZE	0x400
-
-#define USB_UTMI_PHY 1
-#define USB_ULPI_PHY 2
-#define USB_SERIAL_PHY 3
 
 #endif	/* _USB_H */
 

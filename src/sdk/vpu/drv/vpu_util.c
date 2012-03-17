@@ -724,8 +724,8 @@ RetCode SetHecMode(EncHandle handle, int mode)
 void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
 {
     iram_t iram;
-    iram.start = 0x00910000;
-    iram.end = 0x00930000;
+    iram.start = VPU_SEC_AXI_START;
+    iram.end = VPU_SEC_AXI_END;
     int size, dbk_size, bitram_size, ipacdc_size, ovl_size, btp_size;
     int mbNumX, mbNumY;
 
@@ -811,8 +811,8 @@ void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
 void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
 {
     iram_t iram;
-    iram.start = 0x00910000;
-    iram.end = 0x00930000;
+    iram.start = VPU_SEC_AXI_START;
+    iram.end = VPU_SEC_AXI_END;
     int size, dbk_size, bitram_size, ipacdc_size, mbNumX;
 
     if (!parm->width) {

@@ -10,6 +10,7 @@
 #include "registers/regsocotp.h"
 #include "registers/regspmu.h"
 #include "interrupt.h"
+#include "irq_numbers.h"
 #include "soc_memory_map.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +59,15 @@ typedef struct _tempmon_info {
 } tempmon_info_t;
 
 //////////////////////////////////////////////////////////////////////////////////////////
+// Prototypes
+//////////////////////////////////////////////////////////////////////////////////////////
+
+inline float compute_temp(float measuredCount);
+inline int compute_alarm(float alarmTemp);
+
+static void tempmon_alarm_isr(void);
+
+//////////////////////////////////////////////////////////////////////////////////////////
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,7 +81,7 @@ static tempmon_info_t s_tempmon;
 //! @brief Calculate the temperature from a measurement result.
 //! @param measuredCount The resulting count value of a temp sensor measurement cycle.
 //! @return The temperature in degrees C.
-/*inline*/ float compute_temp(float measuredCount)
+inline float compute_temp(float measuredCount)
 {
     float a = (s_tempmon.hotTemp - ROOM_TEMP);
     float b = (s_tempmon.roomCount - s_tempmon.hotCount);
@@ -86,7 +96,7 @@ static tempmon_info_t s_tempmon;
 //! @brief Calculate an alarm value given the alarm temperature.
 //! @param alarmTemp The desired alarm temperature in degrees C.
 //! @return Value to use for the alarm count value for @a alarmTemp.
-/*inline*/ int compute_alarm(float alarmTemp)
+inline int compute_alarm(float alarmTemp)
 {
     float a = (alarmTemp - s_tempmon.hotTemp);
     float b = (s_tempmon.hotTemp - ROOM_TEMP);
@@ -101,7 +111,7 @@ static tempmon_info_t s_tempmon;
 //! This interrupt handler gets the current die temperature and calls the alarm callback function
 //! that was previously installed with tempmon_set_alarm(). If for some reason there is no alarm
 //! callback set, this routine does nothing except clear the IRQ.
-void tempmon_alarm_isr(void)
+static void tempmon_alarm_isr(void)
 {
     if (s_tempmon.alarmCallback)
     {

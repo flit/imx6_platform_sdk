@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include "io.h"
-#include "../inc/audio.h"
+#include "audio/inc/audio.h"
 #include "wav_data.data"
 
 extern int32_t ssi_playback(audio_pcm_p);

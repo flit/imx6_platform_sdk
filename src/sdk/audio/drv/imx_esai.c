@@ -13,8 +13,8 @@
  */
 
 #include "hardware.h"
-#include "../inc/audio.h"
-#include "../inc/imx_esai.h"
+#include "audio/inc/audio.h"
+#include "audio/inc/imx_esai.h"
 
 #define ESAI_DEBUG	1
 #if ESAI_DEBUG

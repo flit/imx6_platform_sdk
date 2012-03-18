@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "imx_sata.h"
+#include "sata/imx_sata.h"
 
 extern sata_ahci_regs_t *imx_sata_host;
 extern sata_port_regs_t *imx_sata_port0;

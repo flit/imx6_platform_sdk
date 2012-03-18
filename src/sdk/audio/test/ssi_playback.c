@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include "io.h"
 #include "hardware.h"
-#include "../inc/audio.h"
-#include "../inc/imx-audmux.h"
+#include "audio/inc/audio.h"
+#include "audio/inc/imx-audmux.h"
 
 extern audio_card_t snd_card_ssi;
 

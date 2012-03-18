@@ -27,7 +27,7 @@
 #include "vpu_io.h"
 #include "vpu_debug.h"
 #include "vpu_gdi.h"
-#include "timer.h"
+#include "timer/timer.h"
 
 #define IMAGE_ENDIAN			0
 #define STREAM_ENDIAN			0

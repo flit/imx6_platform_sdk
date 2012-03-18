@@ -13,8 +13,8 @@
  */
 
 #include "hardware.h"
-#include "../inc/audio.h"
-#include "../inc/cs42888.h"
+#include "audio/inc/audio.h"
+#include "audio/inc/cs42888.h"
 
 extern int32_t esai_codec_power_on(void);
 

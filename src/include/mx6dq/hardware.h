@@ -23,25 +23,22 @@
 #include "iomux_config.h"
 #include "iomux_define.h"
 #include "iomux_register.h"
-#include "gpio.h"
+#include "gpio/gpio.h"
 #include "interrupt.h"
-#include "gic.h"
+#include "gic/gic.h"
 #include "ccm_pll.h"
-#include "imx_i2c.h"
-#include "imx_uart.h"
-#include "imx_spi.h"
-#include "imx_sata.h"
-#include "epit.h"
-#include "gpt.h"
-#include "timer.h"
-#include "rtc.h"
-#include "srtc.h"
-#include "snvs.h"
+#include "i2c/imx_i2c.h"
+#include "uart/imx_uart.h"
+#include "sata/imx_sata.h"
+#include "timer/timer.h"
+#include "rtc/rtc.h"
+#include "snvs/srtc.h"
+#include "snvs/snvs.h"
 #include "hdmi_regs.h"
 #include "buffers.h"
 #include "usb_regs.h"
-#include "usb.h"
-#include "keypad_port.h"
+#include "usb/usb.h"
+#include "keypad/keypad_port.h"
 #include "perfmon.h"
 
 // Android_Buttons test defines
@@ -264,9 +261,6 @@ extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
 extern void platform_init(void);
 extern int32_t board_id;
 extern int32_t board_rev;
-extern imx_spi_init_func_t spi_init_flash;
-extern imx_spi_xfer_func_t spi_xfer_flash;
-extern struct imx_spi_dev imx_spi_nor;
 extern int32_t ipu_display_panel[];
 extern uint32_t ddr_density, ddr_num_of_cs;
 extern void gpio_backlight_lvds_en(void);

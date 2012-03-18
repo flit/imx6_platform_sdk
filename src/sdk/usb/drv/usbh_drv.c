@@ -10,9 +10,7 @@
  * @brief USB host driver.
  *
  */
-#include "usb.h"
-#include "usb_registers.h"
-#include "usb_defines.h"
+#include "usb/usb.h"
 
 /*!
  * Initialize the USB for host operation. This initialization sets

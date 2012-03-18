@@ -9,11 +9,11 @@
 #include "io.h"
 #include "soc_memory_map.h"
 #include "hardware.h"
-#include "../inc/sdk_ldb_common.h"
-#include "../inc/sdk_ipu_common.h"
-#include "../inc/gpu_test_common.h"
-#include "../inc/sdk_gpu_utilities.h"
-#include "../inc/texture.h"
+#include "gpu/inc/sdk_ldb_common.h"
+#include "gpu/inc/sdk_ipu_common.h"
+#include "gpu/inc/gpu_test_common.h"
+#include "gpu/inc/sdk_gpu_utilities.h"
+#include "gpu/inc/texture.h"
 
 #define GPU_DEMO_WIDTH  	1024
 #define GPU_DEMO_HEIGHT 	768

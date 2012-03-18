@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "io.h"
 #include "hardware.h"
-#include "../inc/audio.h"
+#include "audio/inc/audio.h"
 
 extern audio_card_t snd_card_spdif;
 

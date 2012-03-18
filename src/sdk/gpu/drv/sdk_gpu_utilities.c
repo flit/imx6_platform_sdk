@@ -12,8 +12,8 @@
  * @ingroup diag_enet
  */
 
-#include "../inc/sdk_gpu_utilities.h"
-#include "../inc/gpu_test_common.h"
+#include "gpu/inc/sdk_gpu_utilities.h"
+#include "gpu/inc/gpu_test_common.h"
 
 //#define DOUBLE_BUFFER
 //#define USE_FAST_CLEAR 1

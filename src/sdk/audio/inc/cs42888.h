@@ -7,7 +7,7 @@
 #ifndef _CS42888_H_
 #define _CS42888_H_
 
-#include "../inc/audio.h"
+#include "audio/inc/audio.h"
 
 /////////////Registers////////////////////
 #define CS42888_REG_CHIP_ID_REV		0x01

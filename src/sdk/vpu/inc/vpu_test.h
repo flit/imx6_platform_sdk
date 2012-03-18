@@ -12,9 +12,9 @@
 #include "vpu_io.h"
 #include "fat_driver.h"
 #include "vpu_util.h"
-#include "../../ipu/inc/ipu_common.h"
-#include "../../usdhc/inc/usdhc_ifc.h"
-#include "../../vdoa/inc/vdoa.h"
+#include "ipu/inc/ipu_common.h"
+#include "usdhc/inc/usdhc_ifc.h"
+#include "vdoa/inc/vdoa.h"
 
 #define MAX_FIFO_SIZE 		32
 #define NUM_FRAME_BUFS	64

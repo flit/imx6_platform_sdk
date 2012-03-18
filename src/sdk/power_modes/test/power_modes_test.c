@@ -6,6 +6,7 @@
 */
 
 #include "hardware.h"
+#include "timer/epit.h"
 
 static void tick_timer_interrupt_routine(void);
 

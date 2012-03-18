@@ -13,6 +13,8 @@
  */
 
 #include "hardware.h"
+#include "timer/gpt.h"
+#include "timer/timer.h"
 
 /*!
  * Get rollover event flag and clear it if set.

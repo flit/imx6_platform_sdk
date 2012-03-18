@@ -14,7 +14,7 @@
 
 #include "hardware.h"
 #include "io.h"
-#include "enet.h"
+#include "enet/enet.h"
 
 static imx_enet_priv_t enet0;
 static unsigned char pkt_send[2048], pkt_recv[2048];

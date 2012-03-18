@@ -12,9 +12,7 @@
  * This test code demonstrates the use of control and interrupt endpoints.
  * The mouse data (X/Y movement) is transferred in an interrupt transfer
  */
-#include "usb_registers.h"
-#include "usb.h"
-#include "usb_defines.h"
+#include "usb/usb.h"
 #include "soc_memory_map.h"
 
 #include <math.h>

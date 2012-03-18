@@ -13,6 +13,8 @@
  */
 
 #include "hardware.h"
+#include "timer/epit.h"
+#include "timer/timer.h"
 
 /*!
  * Delay function used in the system.

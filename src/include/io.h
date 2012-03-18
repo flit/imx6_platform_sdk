@@ -143,14 +143,17 @@ typedef void (*funct_t) (void);
  */
 #define SET_FIELD(val, len, sh, nval)    ((val & ~(((1 << len) - 1) << sh)) | (nval << sh))
 
-struct hw_module {
+/*!
+ * @brief Details of a hardware peripheral instance.
+ */
+typedef struct hw_module {
     const char *name;       //!< name of the module
     uint32_t base;      //!< module base address
     uint32_t freq;      //!< input clock frequency
     uint32_t irq_id;    //!< ID of its interrupt
     void (*irq_subroutine)(void);   //!< module interrupt sub-routine address
     void (*iomux_config) (void);   //!< module I/O mux configuration function
-};
+} hw_module_t;
 
 #ifdef SDK_DEBUG
 #define printf1    printf

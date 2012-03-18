@@ -13,7 +13,7 @@
  */
 
 #include "hardware.h"
-#include "enet.h"
+#include "enet/enet.h"
 
 /*!
  *Global variable which defines the buffer descriptions for receiving frame

@@ -16,7 +16,7 @@
  * @return	usbPortSpeed	The operating speed full/high
  */
 
-#include "usb.h"
+#include "usb/usb.h"
 #include <stdio.h>
 
 usbPortSpeed_t usb_get_port_speed(usb_module_t *port)

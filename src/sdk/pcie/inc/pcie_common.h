@@ -9,8 +9,8 @@
 #define __PCIE_COMMON_H__
 
 #include "io.h"
-#include "../inc/pcie_regs.h"
-#include "../inc/pcie_phy_regs.h"
+#include "pcie/inc/pcie_regs.h"
+#include "pcie/inc/pcie_phy_regs.h"
 
 #define SZ_1K	0x400
 #define SZ_2K	0x800

@@ -7,7 +7,7 @@
 #include "spi_test.h"
 #include "hardware.h"
 #include "spi_nor_numonyx.h"
-#include "../inc/ecspi_ifc.h"
+#include "spi/inc/ecspi_ifc.h"
 
 static int numonyx_spi_nor_test(void);
 

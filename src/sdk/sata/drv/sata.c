@@ -4,7 +4,7 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
  */
-#include "imx_sata.h"
+#include "sata/imx_sata.h"
 #include "atapi.h"
 
 ///////////////////////////////////////////////////////////////////

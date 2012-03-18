@@ -14,9 +14,7 @@
  * Tests and Controller can be selected via a terminal connected to the serial port.
  */
 
-#include "usb.h"
-#include "usb_regs.h"
-#include "usb_registers.h"
+#include "usb/usb.h"
 #include "soc_memory_map.h"
 #include "registers.h"
 #include "hardware.h"

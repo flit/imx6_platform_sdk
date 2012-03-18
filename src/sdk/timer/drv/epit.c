@@ -13,12 +13,14 @@
  */
 
 #include "hardware.h"
+#include "timer/epit.h"
+#include "timer/timer.h"
 
 /*!
- * Reload the counter with a known value.
+ * @brief Reload the counter with a known value.
  *
- * @param port - pointer to the EPIT module structure.
- * @param load_val - value loaded into the timer counter.
+ * @param port Pointer to the EPIT module structure.
+ * @param load_val Value loaded into the timer counter.
  */
 void epit_reload_counter(struct hw_module *port, uint32_t load_val)
 {
@@ -29,12 +31,13 @@ void epit_reload_counter(struct hw_module *port, uint32_t load_val)
 }
 
 /*!
- * Get the output compare status flag and clear it if set.
+ * @brief Get the output compare status flag and clear it if set.
+ * 
  * This function can typically be used for polling method, but
  * is also used to clear the status compare flag in IRQ mode.
  *
- * @param   port - pointer to the EPIT module structure.
- * @return  the value of the compare event flag.
+ * @param   port Pointer to the EPIT module structure.
+ * @return  Value of the compare event flag.
  */
 uint32_t epit_get_compare_event(struct hw_module *port)
 {
@@ -52,9 +55,11 @@ uint32_t epit_get_compare_event(struct hw_module *port)
 }
 
 /*!
- * Disable the counter. It saves energy when not used.
+ * @brief Disable the counter.
  *
- * @param   port - pointer to the EPIT module structure.
+ * It saves energy when not used.
+ *
+ * @param   port Pointer to the EPIT module structure.
  */
 void epit_counter_disable(struct hw_module *port)
 {
@@ -78,12 +83,13 @@ void epit_counter_disable(struct hw_module *port)
 }
 
 /*!
- * Enable the EPIT module. Used typically when the epit_init is done, and
- * other interrupt related settings are ready.
+ * @brief Enable the EPIT module. 
  *
- * @param   port - pointer to the EPIT module structure.
- * @param   load_val - load value from where the counter starts.
- * @param   irq_mode - interrupt mode: IRQ_MODE or POLLING_MODE.
+ * Used typically when the epit_init is done, and other interrupt related settings are ready.
+ *
+ * @param   port Pointer to the EPIT module structure.
+ * @param   load_val Load value from where the counter starts.
+ * @param   irq_mode Interrupt mode: IRQ_MODE or POLLING_MODE.
  */
 void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq_mode)
 {
@@ -107,11 +113,13 @@ void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq
 }
 
 /*!
- * Setup EPIT interrupt. It enables or disables the related HW module
- * interrupt, and attached the related sub-routine into the vector table.
+ * @brief Setup EPIT interrupt.
  *
- * @param   port - pointer to the EPIT module structure.
- * @param   state - ENABLE or DISABLE the interrupt.
+ * It enables or disables the related HW module interrupt, and attached the related sub-routine
+ * into the vector table.
+ *
+ * @param   port Pointer to the EPIT module structure.
+ * @param   state ENABLE or DISABLE the interrupt.
  */
 void epit_setup_interrupt(struct hw_module *port, uint8_t state)
 {
@@ -127,15 +135,15 @@ void epit_setup_interrupt(struct hw_module *port, uint8_t state)
 }
 
 /*!
- * Initialize the EPIT timer.
+ * @brief Initialize the EPIT timer.
  *
- * @param   port - pointer to the EPIT module structure.
- * @param   clock_src - source clock of the counter: CLKSRC_OFF, CLKSRC_IPG_CLK,
+ * @param   port Pointer to the EPIT module structure.
+ * @param   clock_src Source clock of the counter: CLKSRC_OFF, CLKSRC_IPG_CLK,
  *                      CLKSRC_PER_CLK, CLKSRC_CKIL.
- * @param   prescaler - prescaler of source clock from 1 to 4096.
- * @param   reload_mode - counter reload mode: FREE_RUNNING or SET_AND_FORGET.
- * @param   load_val - load value from where the counter start.
- * @param   low_power_mode - low power during which the timer is enabled:
+ * @param   prescaler Prescaler of source clock from 1 to 4096.
+ * @param   reload_mode Counter reload mode: FREE_RUNNING or SET_AND_FORGET.
+ * @param   load_val Load value from where the counter start.
+ * @param   low_power_mode Low power during which the timer is enabled:
  *                           WAIT_MODE_EN and/or STOP_MODE_EN.
  */
 void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,

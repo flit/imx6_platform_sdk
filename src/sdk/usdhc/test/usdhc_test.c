@@ -10,7 +10,7 @@
 
 #include "hardware.h"
 #include "usdhc_test.h"
-#include "../inc/usdhc_ifc.h"
+#include "usdhc/inc/usdhc_ifc.h"
 
 static int usdhc_test_pio(void);
 static int usdhc_test_adma(void);

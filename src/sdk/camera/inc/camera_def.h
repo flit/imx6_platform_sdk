@@ -14,7 +14,7 @@
 #ifndef __CAMERA_DEF_H__
 #define __CAMERA_DEF_H__
 
-#include "imx_i2c.h"
+#include "i2c/imx_i2c.h"
 #include "hardware.h"
 
 #define ARRAY_SIZE(x)	(sizeof(x) / sizeof((x)[0]))

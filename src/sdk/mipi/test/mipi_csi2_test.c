@@ -14,7 +14,7 @@
 
 #include "mipi_common.h"
 #include "hardware.h"
-#include "../../ipu/inc/ipu_common.h"
+#include "ipu/inc/ipu_common.h"
 #include <stdio.h>
 
 extern void mipi_csi2_config(void);

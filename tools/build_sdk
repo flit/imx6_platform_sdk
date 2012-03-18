@@ -110,11 +110,12 @@ if [ "$build_flag" = y ]; then
     make TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev TEST=$test_name
     result=$?
     
+    build_name="${soc_name} ${board_name} rev_${board_rev} ${test_name}"
     echo
     if [ $result -eq 0 ]; then
-        echo "Build passed!"
+        echo "Build $build_name passed!"
     else
-        echo "Build failed with return code $result!"
+        echo "Build $build_name failed with return code $result!"
 		exit 1;
     fi
 else
@@ -248,6 +249,10 @@ if [ "$list_flag" = n ]; then
         board_name=${specified_builds[i+1]}
         board_rev=${specified_builds[i+2]}
         do_build
+        
+        # Add newline between builds
+        echo
+
 #        echo "Build ${soc_name}_${board_name}_rev_${board_rev} test=${test_name}"
     done
 fi

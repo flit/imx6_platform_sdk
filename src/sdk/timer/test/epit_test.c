@@ -13,6 +13,8 @@
  */
 
 #include <stdio.h>
+#include "timer/epit.h"
+#include "timer/timer.h"
 #include "epit_test.h"
 
 static volatile uint8_t g_wait_for_irq;

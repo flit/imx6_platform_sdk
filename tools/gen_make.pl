@@ -15,9 +15,11 @@ use File::Copy;
 my $make_template=<<EOF;
 include \$(PROJ_DIR)/make.def
 
-MODULE := \$(shell basename \$(shell pwd))
+MODULE_DIR := \$(dir \$(shell pwd))
+MODULE_REL_DIR := \$(subst \$(PROJ_DIR),.,\$(MODULE_DIR))
+MODULE := \$(notdir \$(shell pwd))
 MODULE_PREFIX := \$(subst /,_,\$(MODULE))
-MODULE_OUT := \$(PROJ_OUT)/obj/\$(MODULE)
+MODULE_OUT := \$(PROJ_OUT)/obj
 
 MODULE_C_FLAGS 	:=
 MODULE_C_INCLUDES :=
@@ -30,10 +32,12 @@ MODULE_A_DEFINES 	:=
 S_SRCS := \$(wildcard *.S)
 C_SRCS := \$(wildcard *.c)
 CPP_SRCS := \$(wildcard *.cpp)
-C_OBJS := \$(patsubst %c,%o,\$(C_SRCS))
-CPP_OBJS := \$(patsubst %cpp,%o,\$(CPP_SRCS))
-S_OBJS := \$(patsubst %S,%o,\$(S_SRCS))
+
+C_OBJS := \$(C_SRCS:.c=.o)
+CPP_OBJS := \$(CPP_SRCS:.cpp=.o)
+S_OBJS := \$(S_SRCS:.S=.o)
 A_OBJS :=
+
 MODULE_OBJS_NO_DIR := \$(A_OBJS) \$(C_OBJS) \$(CPP_OBJS) \$(S_OBJS)
 MODULE_OBJS := \$(addprefix \$(MODULE_OUT)/, \$(MODULE_OBJS_NO_DIR))
 
@@ -41,10 +45,15 @@ SUB_DIRS := -=SUB_DIRS=-
 
 .PHONY: dir \$(SUB_DIRS) all
 
-dir:\$(SUB_DIRS) all
+all::
+	\@echo "*" \$(shell pwd)	
 
+dir: \$(SUB_DIRS) all
+
+ifneq "\$(strip \$(SUB_DIRS))" ""
 \$(SUB_DIRS):
-	make -S -C \$@ dir
+	\@make -s -S -C \$@ dir #
+endif
 
 # include dependencies files, but only if there are .o files in this dir
 ifneq "\$(strip \$(MODULE_OBJS))" ""
@@ -66,9 +75,13 @@ my $full_board_name = "${board_name}_rev_${board_rev}";
 #Open the configuration input file
 my $in_file = "$sdk_conf_path/${imx_name}_${full_board_name}.conf";
 if (!(open (INP_FH, $in_file))) {
-    # Try if the configuration file is common for all boards for this target
-    $in_file = "$sdk_conf_path/$imx_name.conf";
-    open INP_FH, $in_file or exit 1;
+    # Try if the configuration file is common for all revs for this target and board
+    $in_file = "$sdk_conf_path/${imx_name}_${board_name}.conf";
+    if (!(open (INP_FH, $in_file))) {
+        # Try if the configuration file is common for all boards for this target
+        $in_file = "$sdk_conf_path/$imx_name.conf";
+        open INP_FH, $in_file or exit 1;
+    }
 }
 
 #Delete the Makefiles

@@ -10,9 +10,7 @@
  * @brief USB host driver.
  */
 
-#include "usb.h"
-#include "usb_regs.h"
-#include "usb_registers.h"
+#include "usb/usb.h"
 #include "soc_memory_map.h"
 
 int emuerateDevice (usb_module_t *, usbhQueueHead_t *, usbDeviceDescriptor_t *,uint8_t *,uint8_t *,uint8_t *,uint8_t *,uint8_t *);

@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 #include "hardware.h"
-#include "../drv/ocotp.h"
+#include "ocotp/ocotp.h"
 
 /*! 
  * OCOTP test.

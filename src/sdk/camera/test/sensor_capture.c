@@ -12,7 +12,7 @@
  */
 
 #include <stdio.h>
-#include "../../ipu/inc/ipu_common.h"
+#include "ipu/inc/ipu_common.h"
 #include "camera_def.h"
 
 extern void ipu_iomux_config(void);

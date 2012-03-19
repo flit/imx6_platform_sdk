@@ -7,7 +7,7 @@
 
 #include "io.h"
 #include "soc_memory_map.h"
-#include "../inc/pcie_common.h"
+#include "pcie/inc/pcie_common.h"
 
 #define PCIE_PHY_CR_ACK_POLLING_TIMES	0x100
 

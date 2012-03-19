@@ -6,8 +6,8 @@
 */
 
 #include "hardware.h"
-#include "../inc/pcie_common.h"
-#include "../inc/pcie_prot.h"
+#include "pcie/inc/pcie_common.h"
+#include "pcie/inc/pcie_prot.h"
 
 #define PCIE_VERIFY_PATTERN		0x5a
 

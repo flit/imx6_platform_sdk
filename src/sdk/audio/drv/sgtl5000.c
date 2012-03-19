@@ -13,8 +13,8 @@
  */
 
 #include "hardware.h"
-#include "../inc/audio.h"
-#include "../inc/sgtl5000.h"
+#include "audio/inc/audio.h"
+#include "audio/inc/sgtl5000.h"
 #include "sgtl5000_priv.h"
 
 extern void SGTL5000PowerUp_and_clockinit(void);

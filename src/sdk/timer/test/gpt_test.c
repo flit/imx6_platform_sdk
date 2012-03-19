@@ -13,6 +13,8 @@
  */
 
 #include <stdio.h>
+#include "timer/gpt.h"
+#include "timer/timer.h"
 #include "gpt_test.h"
 
 /*!

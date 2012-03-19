@@ -27,37 +27,41 @@ include make.def
 
 SUB_DIRS := src
 
-.PHONY: default clean bin
-default: build_dir $(SUB_DIRS) all bin
+.PHONY: default clean build_dir #bin
+default: build_dir $(SUB_DIRS) $(OUTPUT_ELF) $(OUTPUT_BIN) # all bin
 	@echo "**************************************************"
-	@echo "  Build has completed. ELF file available in:"
-	@echo "  =>" $(TARGET_BIN_DIR)
+	@echo "  Build has completed. ELF file available at:"
+	@echo "  =>" $(OUTPUT_ELF)
 
 build_dir:
-	mkdir -p $(PROJ_OUT_REL)
+	@mkdir -p $(PROJ_OUT_REL)
 ifneq "$(TARGET_LIB_DIR)" ""
-	mkdir -p $(TARGET_LIB_DIR)
+	@mkdir -p $(TARGET_LIB_DIR)
 endif
 ifneq "$(TARGET_BIN_DIR)" ""
-	mkdir -p $(TARGET_BIN_DIR)
+	@mkdir -p $(TARGET_BIN_DIR)
 endif
 
-$(SUB_DIRS):build_dir
-	make -S -C $@ dir
+$(SUB_DIRS): build_dir
+	@make -s -S -C $@ dir # --no-print-directory
+#	@make --debug=b -S -C $@ dir # --no-print-directory
 
-bin:$(SUB_DIRS)
-	$(CC) -o $(OUTPUT_ELF) $(INIT_FILE) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
-	arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
+$(OUTPUT_ELF): $(TARGET_LIB) $(INIT_FILE)
+	@echo Linking $(OUTPUT_ELF)
+	@$(CC) -o $(OUTPUT_ELF) $(INIT_FILE) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
+
+$(OUTPUT_BIN): $(OUTPUT_ELF)
+	@echo Generating $(OUTPUT_BIN)
+	@arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
+
+#bin: $(SUB_DIRS)
+#	@echo Linking $(OUTPUT_ELF)
+#	@$(CC) -o $(OUTPUT_ELF) $(INIT_FILE) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
+#	@echo Generating $(OUTPUT_BIN)
+#	@arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
 
 clean:
 	rm -rf $(PROJ_OUT_REL)
-
-test:
-	@echo aaa = $(aaa)
-	@echo bbb = $(bbb)
-	@echo PROJ_DIR = $(PROJ_DIR)
-	@echo PROJ_DIR1 = $(PROJ_DIR1)
-	@echo PROJ_DIR2 = $(PROJ_DIR2)
 
 include make.rules
 

@@ -12,9 +12,7 @@
  * These functions demonstrate how to program the USB controller and\n
  * are not intended for use in an actual application.
  */
-#include "usb.h"
-#include "usb_registers.h"
-#include "usb_defines.h"
+#include "usb/usb.h"
 #include "soc_memory_map.h"
 
 //! Function to initialize the USB controller for device operation.

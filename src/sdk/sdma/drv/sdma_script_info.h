@@ -13,7 +13,7 @@
 #ifndef SDMA_SCRIPT_INFO_H
 #define SDMA_SCRIPT_INFO_H
 
-#include "../inc/sdma.h"
+#include "sdma/inc/sdma.h"
 
 #define SDMA_SCRIPT_MAX_NUM	64
 

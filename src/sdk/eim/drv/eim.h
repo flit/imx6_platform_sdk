@@ -9,7 +9,7 @@
 #define __EIM_HDR__
 
 #include "io.h"
-#include "../inc/eim_ifc.h"
+#include "eim/inc/eim_ifc.h"
 
 enum eim_reg_e {
     EIM_GCR1 = 0,

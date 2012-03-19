@@ -14,7 +14,7 @@
 
 #include "hardware.h"
 //#include "functions.h"
-#include "../inc/audio.h"
+#include "audio/inc/audio.h"
 #include "imx_spdif.h"
 
 #define SPDIF_DEBUG 1

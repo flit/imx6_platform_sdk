@@ -15,7 +15,7 @@
 
 #include "io.h"
 #include "sdma_script_info.h"
-#include "../inc/sdma.h"
+#include "sdma/inc/sdma.h"
 
 /*--------------------------------- macros --------------------------------------*/
 

@@ -14,8 +14,8 @@
 
 #include <stdio.h>
 #include "hardware.h"
-#include "../inc/audio.h"
-#include "../inc/imx-ssi.h"
+#include "audio/inc/audio.h"
+#include "audio/inc/imx-ssi.h"
 
 #define SSI_DEBUG 0
 

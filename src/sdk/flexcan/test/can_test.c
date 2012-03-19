@@ -6,7 +6,7 @@
 */
 
 #include "hardware.h"
-#include "../drv/can.h"
+#include "flexcan/flexcan.h"
 
 void can2_rx_handler(void);
 

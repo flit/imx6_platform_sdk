@@ -13,7 +13,7 @@
  */
 
 #include "mipi_common.h"
-#include "../../ipu/inc/ipu_common.h"
+#include "ipu/inc/ipu_common.h"
 
 void dphy_write_control(unsigned long testcode, unsigned long testwrite)
 {

@@ -13,7 +13,7 @@
  */
 
 #include "hardware.h"
-#include "../drv/hdmi_tx.h"
+#include "hdmi/drv/hdmi_tx.h"
 
 extern int ips_hdmi_stream(void);
 extern int ips_hdmi_1080P60_stream(int ipu_index);

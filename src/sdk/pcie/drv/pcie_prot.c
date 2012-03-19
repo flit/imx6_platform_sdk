@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "../inc/pcie_common.h"
-#include "../inc/pcie_prot.h"
+#include "pcie/inc/pcie_common.h"
+#include "pcie/inc/pcie_prot.h"
 
 #define FIELD_OFFSET(type, fld)	((uint32_t)(&(((type*)0)->fld)))
 #define FIELD_ADDRESS(var, type, fld)	((uint32_t)(&var + FIELD_OFFSET))

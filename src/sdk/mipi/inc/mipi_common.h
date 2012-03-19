@@ -15,7 +15,7 @@
 #ifndef _MIPI_COMMON_H_
 #define _MIPI_COMMON_H_
 /* Standard testbench defines files */
-#include "imx_i2c.h"
+#include "i2c/imx_i2c.h"
 #include "hardware.h"
 #include <math.h>
 

@@ -12,7 +12,7 @@
 #include "hardware.h"
 #include "vpu_debug.h"
 #include "vpu_util.h"
-#include "../../usdhc/inc/usdhc_ifc.h"
+#include "usdhc/inc/usdhc_ifc.h"
 
 tFile files[10];
 

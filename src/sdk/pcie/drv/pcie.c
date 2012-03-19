@@ -8,7 +8,7 @@
 #include "io.h"
 #include "soc_memory_map.h"
 #include "iomux_register.h"
-#include "../inc/pcie_common.h"
+#include "pcie/inc/pcie_common.h"
 
 #define DEBUG_ENABLE	1
 

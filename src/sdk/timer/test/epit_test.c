@@ -76,8 +76,9 @@ void epit_delay_test(void)
 
 /* EPIT2 port is free for i.MX6DQ/SDL and i.MX53 SDK as EPIT1 is used
    for a global delay function */
-static struct hw_module g_tick_timer = {
+static hw_module_t g_tick_timer = {
     "EPIT2 for system tick",
+    2,
     EPIT2_BASE_ADDR,
     27000000,
     IMX_INT_EPIT2,

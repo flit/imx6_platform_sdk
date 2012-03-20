@@ -18,7 +18,7 @@
 #define GPU_DEMO_WIDTH  	1024
 #define GPU_DEMO_HEIGHT 	768
 
-extern struct hw_module g_debug_uart;
+extern hw_module_t g_debug_uart;
 extern uint8_t uart_getchar(struct hw_module *port);
 
 extern void lvds_power_on(void);

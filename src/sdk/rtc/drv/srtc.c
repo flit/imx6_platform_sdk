@@ -18,7 +18,7 @@
  * SRTC strucures used by the driver.
  */
 typedef struct snvs_srtc_module_ {
-    struct hw_module *port;
+    hw_module_t *port;
     funct_t onetime_timer_callback;
 } snvs_srtc_module_t;
 
@@ -27,8 +27,9 @@ typedef struct snvs_srtc_module_ {
 void snvs_srtc_setup_interrupt(struct hw_module *port, uint8_t state);
 void snvs_srtc_interrupt_handler(void);
 
-static struct hw_module port = {
+static hw_module_t port = {
         "SNVS SRTC Driver",                 /* Driver Name */
+        1,                                  /* Instance number */
         SNVS_BASE_ADDR,                     /* Block base address in memory map */
         0,                                  /* Frequency */
         IMX_INT_SNVS,                   /* Interrupt ID*/

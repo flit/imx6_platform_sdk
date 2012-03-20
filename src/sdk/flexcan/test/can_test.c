@@ -11,21 +11,23 @@
 void can2_rx_handler(void);
 
 /* CAN module data structures */
-static struct hw_module can1_port = {
-    "CAN1",          // int8_t* name; // name
-    CAN1_BASE_ADDR,  // uint32_t base; // base_address
-    30000000,        // uint32_t freq; // frequency CAN_CLK_ROOT aka can_PE_clock
-    IMX_INT_FLEXCAN1,    // uint32_t irq_id; // interrut source ID
+static hw_module_t can1_port = {
+    "CAN1",          // name
+    1,               // instance number
+    CAN1_BASE_ADDR,  // base_address
+    30000000,        // frequency CAN_CLK_ROOT aka can_PE_clock
+    IMX_INT_FLEXCAN1,    // interrut source ID
     // void (*irq_subroutine)(void); // IRQ subroutine
     // void (*iomux_config) (void); // module iomux configuration fucntion
 };
 
-static struct hw_module can2_port = {
-    "CAN2",           // int8_t* name; // name
-    CAN2_BASE_ADDR,   // uint32_t base; // base_address
-    30000000,         // uint32_t freq; // frequency CAN_CLK_ROOT aka can_PE_clock
-    IMX_INT_FLEXCAN2,     // uint32_t irq_id; // interrut source ID
-    &can2_rx_handler, // void (*irq_subroutine)(void); // IRQ subroutine
+static hw_module_t can2_port = {
+    "CAN2",           // name
+    2,                // instance number
+    CAN2_BASE_ADDR,   // base_address
+    30000000,         // frequency CAN_CLK_ROOT aka can_PE_clock
+    IMX_INT_FLEXCAN2,     // interrut source ID
+    &can2_rx_handler, // IRQ subroutine
     // void (*iomux_config) (void); // module iomux configuration fucntion
 };
 

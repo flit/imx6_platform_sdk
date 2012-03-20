@@ -341,7 +341,7 @@ enum can_bitrate {
 
 /* CAN structure with attributes */
 struct imx_flexcan {
-    struct hw_module *port;
+    hw_module_t *port;
     volatile struct mx_can_control *can_ctl;
     
     // attributes

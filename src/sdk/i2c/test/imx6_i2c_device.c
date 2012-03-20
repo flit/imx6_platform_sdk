@@ -15,8 +15,9 @@
 #include "hardware.h"
 
 // I2C3 is used to be a slave port
-struct hw_module imx6_i2c_slave_port = {
+hw_module_t imx6_i2c_slave_port = {
     "I2C3 is slave port",
+    3,
     I2C3_BASE_ADDR,
     66000000,
     IMX_INT_I2C3,

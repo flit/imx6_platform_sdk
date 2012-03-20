@@ -55,8 +55,9 @@ int32_t gpt_test(void)
 /*!
  * GPT strucure used by the driver.
  */
-static struct hw_module gpt_timer = {
+static hw_module_t gpt_timer = {
     "GPT unit tests",
+    1,
     GPT_BASE_ADDR,
     66000000,
     IMX_INT_GPT,

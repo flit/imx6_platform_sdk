@@ -21,13 +21,14 @@ void snvs_rtc_interrupt_handler(void);
  * RTC strucures used by the driver.
  */
 typedef struct snvs_rtc_module_ {
-    struct hw_module *port;
+    hw_module_t *port;
     funct_t onetime_timer_callback;
     funct_t periodic_timer_callback;
 } snvs_rtc_module_t;
 
-static struct hw_module port = {
+static hw_module_t port = {
         "SNVS RTC Driver",              /* Driver Name */
+        1,                              /* Instance number */
         SNVS_BASE_ADDR,                 /* Block base address in memory map */
         0,                              /* Frequency */
         IMX_INT_SNVS,                   /* Interrupt ID*/

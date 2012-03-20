@@ -254,8 +254,8 @@ void can_iomux_config(uint32_t module_base_add);
 #define MAX_GPIO_PORT   7
 const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
 
-struct hw_module g_debug_uart;
-struct hw_module g_system_timer;
+extern hw_module_t g_debug_uart;
+extern hw_module_t g_system_timer;
 
 extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
 extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);

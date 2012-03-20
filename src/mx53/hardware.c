@@ -24,15 +24,17 @@ extern sata_phy_ref_clk_t sata_phy_clk_sel;
 
 // ARM core.
 #define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
-struct hw_module arm_core = {
+hw_module_t arm_core = {
     "Cortex A9 core",
+    1,
     DUMMY_ARM_CORE_BASE_ADDR,
     800000000,
 };
 
 // UART1 is the serial debug/console port
-struct hw_module g_debug_uart = {
+hw_module_t g_debug_uart = {
     "UART1 for debug",
+    1,
     UART1_BASE_ADDR,
     27000000,
     IMX_INT_UART1,
@@ -40,20 +42,22 @@ struct hw_module g_debug_uart = {
 };
 
 /* EPIT1 used for system time functions */
-struct hw_module g_system_timer = {
+hw_module_t g_system_timer = {
     "EPIT1 used as system timer",
+    1,
     EPIT1_BASE_ADDR,
     27000000,
     IMX_INT_EPIT1,
     &default_interrupt_routine,
 };
 
-struct hw_module ddr = {
+hw_module_t ddr = {
     "DDR",
+    1,
     ESDCTL_REGISTERS_BASE_ADDR,
 };
 
-struct hw_module *mx53_module[] = {
+hw_module_t *mx53_module[] = {
     &arm_core,
     &ddr,
     &g_debug_uart,
@@ -112,7 +116,7 @@ uint32_t get_freq(uint32_t module_base)
  */
 void freq_populate(void)
 {
-    struct hw_module *tmp;
+    hw_module_t *tmp;
     int32_t i;
 
     for (i = 0; (tmp = mx53_module[i]) != NULL; i++) {
@@ -126,7 +130,7 @@ void freq_populate(void)
 void show_freq(void)
 {
     int32_t i;
-    struct hw_module *tmp;
+    hw_module_t *tmp;
     printf("========== clock frequencies(HZ)\n");
 
     for (i = 0; (tmp = mx53_module[i]) != NULL; i++) {

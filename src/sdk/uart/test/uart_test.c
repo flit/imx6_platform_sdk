@@ -15,8 +15,9 @@
 #include "uart_test.h"
 
 /* UART3 port is free for i.MX6DQ/SDL and i.MX53 platforms */
-static struct hw_module uart_port = {
+static hw_module_t uart_port = {
     "UART3 for test",
+    3,
     UART3_BASE_ADDR,
     27000000,
     IMX_INT_UART3,

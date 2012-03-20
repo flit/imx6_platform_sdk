@@ -636,8 +636,9 @@ void epit_isr(void)
     decoder_frame_display();
 }
 
-struct hw_module hw_epit2 = {
+hw_module_t hw_epit2 = {
     "EPIT for video control",
+    2,
     EPIT2_BASE_ADDR,
     32768,
     IMX_INT_EPIT2,

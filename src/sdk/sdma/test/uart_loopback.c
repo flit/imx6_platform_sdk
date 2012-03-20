@@ -64,23 +64,26 @@ static void ccm_clock_gates_on(void)
 
 #ifdef MX53
 // UART3 port
-static struct hw_module uart3_sdma_test = {
+static hw_module_t uart3_sdma_test = {
     "UART3 for SDMA test",
+    3,
     UART3_BASE_ADDR,
     UART_REF_FREQ,
 };
 #else
 // UART1 port
-static struct hw_module uart1_sdma_test = {
+static hw_module_t uart1_sdma_test = {
     "UART1 for SDMA test",
+    1,
     UART1_BASE_ADDR,
     UART_REF_FREQ,
 };
 #endif /* MX53 */
 
 // UART5 port
-static struct hw_module uart5_sdma_test = {
+static hw_module_t uart5_sdma_test = {
     "UART5 for SDMA test",
+    5,
     UART5_BASE_ADDR,
     UART_REF_FREQ,
 };

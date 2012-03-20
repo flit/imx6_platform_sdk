@@ -24,16 +24,18 @@ extern int32_t board_id;
 
 // ARM core.
 #define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
-struct hw_module arm_core = {
+hw_module_t arm_core = {
     "Cortex A9 core",
+    1,
     DUMMY_ARM_CORE_BASE_ADDR,
     792000000,
 };
 
 #if  defined(MX6DQ_SABRE_LITE)
 // UART2 is the serial debug/console port for sabre_lite board
-struct hw_module g_debug_uart = {
+hw_module_t g_debug_uart = {
     "UART2 for debug",
+    2,
     UART2_BASE_ADDR,
     80000000,
     IMX_INT_UART2,
@@ -41,8 +43,9 @@ struct hw_module g_debug_uart = {
 };
 #elif defined(MX6DQ_SMART_DEVICE)
 // UART1 is the serial debug/console port for smart_device board
-struct hw_module g_debug_uart = {
+hw_module_t g_debug_uart = {
     "UART1 for debug",
+    1,
     UART1_BASE_ADDR,
     80000000,
     IMX_INT_UART1,
@@ -50,8 +53,9 @@ struct hw_module g_debug_uart = {
 };
 #else
 // UART4 is the serial debug/console port for EVB and ARD
-struct hw_module g_debug_uart = {
+hw_module_t g_debug_uart = {
     "UART4 for debug",
+    4,
     UART4_BASE_ADDR,
     80000000,
     IMX_INT_UART4,
@@ -60,20 +64,22 @@ struct hw_module g_debug_uart = {
 #endif
 
 /* EPIT1 used for time functions */
-struct hw_module g_system_timer = {
+hw_module_t g_system_timer = {
     "EPIT1 for system timer",
+    1,
     EPIT1_BASE_ADDR,
     66000000,
     IMX_INT_EPIT1,
     &default_interrupt_routine,
 };
 
-struct hw_module ddr = {
+hw_module_t ddr = {
     "DDR memory",
+    1,
     MMDC_P0_BASE_ADDR,
 };
 
-struct hw_module *mx6dq_module[] = {
+hw_module_t *mx6dq_module[] = {
     &arm_core,
     &ddr,
     &g_debug_uart,
@@ -121,7 +127,7 @@ uint32_t get_freq(uint32_t module_base)
 void freq_populate(void)
 {
     int32_t i;
-    struct hw_module *tmp;
+    hw_module_t *tmp;
 
     /* Populate module frequency settings (important for UART driver) */
     for (i = 0; (tmp = mx6dq_module[i]) != NULL; i++) {
@@ -135,7 +141,7 @@ void freq_populate(void)
 void show_freq(void)
 {
     int32_t i;
-    struct hw_module *tmp;
+    hw_module_t *tmp;
     printf("======== Clock frequencies(HZ) =========\n");
 
     for (i = 0; (tmp = mx6dq_module[i]) != NULL; i++) {

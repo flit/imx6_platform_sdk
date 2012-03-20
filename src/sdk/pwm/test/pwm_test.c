@@ -15,8 +15,9 @@ static void pwm_isr(void);
 
 static uint32_t pwm_test_end;
 
-static struct hw_module pwm1 = {
+static hw_module_t pwm1 = {
     "PWM 1",                    /* name */
+    1,                          /* instance number */
     PWM1_BASE_ADDR,             /* register base */
     3,                          /* clock source CKIL */
     IMX_INT_PWM1,               /* IRQ ID */

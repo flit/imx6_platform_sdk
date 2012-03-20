@@ -161,8 +161,8 @@ void imx_fec_setup(void);
 void esai_iomux_config(void);
 void audmux_iomux_config(void);
 
-struct hw_module g_debug_uart;
-struct hw_module g_system_timer;
+extern hw_module_t g_debug_uart;
+extern hw_module_t g_system_timer;
 
 #define MAX_GPIO_PORT   7
 const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];

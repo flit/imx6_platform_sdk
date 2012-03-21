@@ -344,7 +344,6 @@ int I2CSegmentRead(unsigned int base, struct imx_i2c_request *rq, unsigned char 
 //-------------------------------------------------------------------
 byte I2CReadByte(byte SlaveAddr, byte RegAddr)
 {
-    int retVal = 0;
     struct imx_i2c_request rq;
     rq.dev_addr = SlaveAddr >> 1;
     rq.reg_addr = RegAddr;
@@ -352,7 +351,7 @@ byte I2CReadByte(byte SlaveAddr, byte RegAddr)
     rq.buffer_sz = 1;
     rq.buffer = &regVal;
 
-    retVal = I2CReadWrite(hdmi_i2c_base, &rq, 1);
+    I2CReadWrite(hdmi_i2c_base, &rq, 1);
 
     return regVal;
 }
@@ -375,14 +374,13 @@ void I2CWriteByte(byte SlaveAddr, byte RegAddr, byte Data)
 //------------------------------------------------------------------------------
 byte I2CReadBlock(byte SlaveAddr, byte RegAddr, byte NBytes, byte * Data)
 {
-    int retVal = 0;
     struct imx_i2c_request rq;
     rq.dev_addr = SlaveAddr >> 1;
     rq.reg_addr = RegAddr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = NBytes;
     rq.buffer = Data;
-    retVal = I2CReadWrite(hdmi_i2c_base, &rq, 1);
+    I2CReadWrite(hdmi_i2c_base, &rq, 1);
 
     return regVal;
 }

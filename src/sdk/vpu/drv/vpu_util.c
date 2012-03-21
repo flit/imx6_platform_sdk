@@ -583,13 +583,11 @@ void GetParaSet(EncHandle handle, int paraSetType, EncParamSet * para)
 void SetParaSet(DecHandle handle, int paraSetType, DecParamSet * para)
 {
     CodecInst *pCodecInst;
-    DecInfo *pDecInfo;
     int i;
     uint32_t *src;
     int byteSize;
 
     pCodecInst = handle;
-    pDecInfo = &pCodecInst->CodecInfo.decInfo;
 
     src = para->paraSet;
     byteSize = para->size / 4;

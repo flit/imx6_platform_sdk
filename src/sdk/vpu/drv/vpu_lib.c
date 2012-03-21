@@ -1166,12 +1166,11 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
 
     if (pEncInfo->encReportMBInfo.enable) {
         int size = 0;
-        uint32_t tempBuf[2], address = 0;
+        uint32_t tempBuf[2];
         uint8_t *dst_addr = NULL, *src_addr = NULL;
         uint32_t virt_addr = pEncInfo->picParaBaseMem.virt_uaddr;
 
         memcpy((char *)tempBuf, (void *)virt_addr, 8);
-        address = *tempBuf;
         val = *(tempBuf + 1);
         info->mbInfo.size = val & 0xFFFF;
         info->mbInfo.enable = (val >> 24) & 0xFF;
@@ -1186,12 +1185,11 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
 
     if (pEncInfo->encReportMVInfo.enable) {
         int size = 0;
-        uint32_t tempBuf[2], address = 0;
+        uint32_t tempBuf[2];
         uint8_t *dst_addr = NULL, *src_addr = NULL;
         uint32_t virt_addr = pEncInfo->picParaBaseMem.virt_uaddr;
 
         memcpy((char *)tempBuf, (void *)virt_addr + 8, 8);
-        address = *tempBuf;
         val = *(tempBuf + 1);
         info->mvInfo.size = val & 0xFFFF;
         info->mvInfo.enable = (val >> 24) & 0xFF;
@@ -1207,12 +1205,11 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
 
     if (pEncInfo->encReportSliceInfo.enable) {
         int size = 0;
-        uint32_t tempBuf[2], address = 0;
+        uint32_t tempBuf[2];
         uint8_t *dst_addr = NULL, *src_addr = NULL;
         uint32_t virt_addr = pEncInfo->picParaBaseMem.virt_uaddr;
 
         memcpy((char *)tempBuf, (void *)virt_addr + 16, 8);
-        address = *tempBuf;
         val = *(tempBuf + 1);
 
         info->sliceInfo.size = val & 0xFFFF;
@@ -1816,7 +1813,6 @@ RetCode VPU_DecClose(DecHandle handle)
 RetCode VPU_DecSetEscSeqInit(DecHandle handle, int escape)
 {
     CodecInst *pCodecInst;
-    DecInfo *pDecInfo;
     RetCode ret;
 
     ret = CheckDecInstanceValidity(handle);
@@ -1824,7 +1820,6 @@ RetCode VPU_DecSetEscSeqInit(DecHandle handle, int escape)
         return ret;
 
     pCodecInst = handle;
-    pDecInfo = &pCodecInst->CodecInfo.decInfo;
 
     if (escape == 0)
         pCodecInst->ctxRegs[CTX_BIT_STREAM_PARAM] &= ~0x01;
@@ -2466,9 +2461,6 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
     RetCode ret;
     uint32_t val = 0;
     uint32_t val2 = 0;
-    PhysicalAddress paraBuffer;
-
-    paraBuffer = bit_work_addr.phy_addr + CODE_BUF_SIZE + TEMP_BUF_SIZE + PARA_BUF2_SIZE;
 
     ret = CheckDecInstanceValidity(handle);
     if (ret != RETCODE_SUCCESS)

@@ -2438,12 +2438,14 @@ byte InitVideo(byte TclkSel)
 
     if (siHdmiTx.SyncMode == EMBEDDED_SYNC) {
         EMB_Status = SetEmbeddedSync();
+		printf("EMB status is %d\n", EMB_Status);
         EnableEmbeddedSync();
     }
 
     if (siHdmiTx.SyncMode == INTERNAL_DE) {
         ReadClearWriteTPI(TPI_SYNC_GEN_CTRL, MSBIT);    // set 0x60[7] = 0 for External Sync
-        DE_Status = SetDE();    // Call SetDE() with Video Mode as a parameter
+        DE_Status = SetDE();    // Call SetDE() with Video Mode as a para
+		printf("DE status is %d\n", DE_Status);
     }
 
     if (siHdmiTx.ColorSpace == HDMIRGB)

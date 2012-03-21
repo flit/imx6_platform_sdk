@@ -218,6 +218,7 @@ int hdmi_phy_i2c_write_verify(uint16_t data, uint8_t addr)
 }
 
 #define PHY_GEN2
+#define PHY_TNP
 /*!
  * HDMI phy configuration
  *
@@ -235,7 +236,6 @@ int hdmi_phy_i2c_write_verify(uint16_t data, uint8_t addr)
 int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
                        int audioOn, int cecOn, int hdcpOn)
 {
-    uint16_t clk = 0, rep = 0;
     // colour resolution 0 is 8 bit colour depth
     if (cRes == 0) {
         cRes = 8;
@@ -248,6 +248,8 @@ int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
         return FALSE;
     }
 
+#ifndef PHY_TNP
+    uint16_t clk = 0, rep = 0;
     switch (pClk) {
     case 2520:
         clk = 0x93C1;
@@ -281,7 +283,9 @@ int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
         printf("pixel clock not supported %d", pClk);
         return FALSE;
     }
-    writebf((cscOn == TRUE) ? 1 : 0, HDMI_MC_FLOWCTRL, 0, 1);
+#endif
+
+	writebf((cscOn == TRUE) ? 1 : 0, HDMI_MC_FLOWCTRL, 0, 1);
     // clock gate == 0 => turn on modules
     writebf(0, HDMI_MC_CLKDIS, 0, 1);
     writebf(0, HDMI_MC_CLKDIS, 1, 1);
@@ -618,6 +622,7 @@ int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
     hdmi_phy_test_data((unsigned char)(rep >> 8));
     hdmi_phy_test_data((unsigned char)(rep >> 0));
 #endif
+
     if (pClk == 14850 && cRes == 12) {
         printf("Applying Pre-Emphase");
         if (hdmi_phy_test_control(0x24) == FALSE) {

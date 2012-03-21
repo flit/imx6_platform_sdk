@@ -591,9 +591,7 @@ int fat_read_file(tVolume * V, tFile * F, char *buffer, uint32_t size, int mode)
 /* Doesn't wait for callback read function to return. Size must be a multiple of BPB_BytesPerSec (usualy 512 bytes) */
 int fat_read_file_fast(tVolume * V, tFile * F, char *buffer, uint32_t size)
 {
-    uint32_t left_bytes, read_size;
-
-    left_bytes = 0;
+    uint32_t read_size;
 
     if (size > (F->file_size - F->bytes_read))
         size =

@@ -96,28 +96,13 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
 int decoder_start(struct decode *dec)
 {
     DecHandle handle = dec->handle;
-    DecParam decparam = { 0 };
     int rot_en = dec->cmdl->rot_en, rot_stride, fwidth, fheight;
     int rot_angle = dec->cmdl->rot_angle;
-    int deblock_en = dec->cmdl->deblock_en;
     int dering_en = dec->cmdl->dering_en;
-    int rotid = 0, dblkid = 0, mirror;
+    int mirror;
     int tiled2LinearEnable = dec->tiled2LinearEnable;
     //DecOutputInfo outinfo = {0};
 
-    /* deblock_en is zero on mx37 and mx51 since it is cleared in decode_open() function. */
-    if (rot_en || dering_en || tiled2LinearEnable) {
-        rotid = dec->regfbcount;
-        if (deblock_en) {
-            dblkid = dec->regfbcount + dec->rot_buf_count;
-        }
-    } else if (deblock_en) {
-        dblkid = dec->regfbcount;
-    }
-    decparam.dispReorderBuf = 0;
-    decparam.skipframeMode = 0;
-    decparam.skipframeNum = 0;
-    decparam.iframeSearchEnable = 0;
     fwidth = ((dec->picwidth + 15) & ~15);
     fheight = ((dec->picheight + 15) & ~15);
 
@@ -142,9 +127,6 @@ int decoder_start(struct decode *dec)
             rot_stride = fwidth;
         VPU_DecGiveCommand(handle, SET_ROTATOR_STRIDE, &rot_stride);
     }
-
-    decparam.prescanEnable = dec->cmdl->prescan;
-    decparam.prescanMode = 0;
 
     dec->handle->initDone = 1;
 

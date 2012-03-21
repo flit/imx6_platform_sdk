@@ -76,7 +76,7 @@ int pcie_dump_cfg_header(uint32_t * header_base)
  */
 int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t * num)
 {
-    uint32_t index = 0, i, j, size, tmp_val;
+    uint32_t index = 0, i, j, tmp_val;
     pcie_cfg_hdr_type0_p tmp_hdr = (pcie_cfg_hdr_type0_p) header_base;
     uint32_t bar_off = FIELD_OFFSET(pcie_cfg_hdr_type0_t, bar0);
     uint32_t cmd_off = FIELD_OFFSET(pcie_cfg_hdr_type0_t, cmd);
@@ -85,7 +85,6 @@ int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t 
 
     if (tmp_hdr->hdr_type == 0x00) {
         for (i = 0; i < *num; i++, bar++) {
-            size = 0;
             *bar = 0xFFFFFFFF;
             tmp_val = *bar;
             if (0 != tmp_val) {

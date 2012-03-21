@@ -409,6 +409,9 @@ void host_clear_fifo(int base_address)
         }
     }
 
+    /* Remove compiler warning */
+    val = val * 2;
+
     /* Maybe not necessary */
     esdhc_base->interrupt_status = ESDHC_INTSTAT_BRR;
 }

@@ -95,6 +95,14 @@ int usbEnableTransceiver(usb_module_t *port)
     usbPhy->USBPHY_CTRL.SET = (3 << 14);
     usbPhy->USBPHY_CTRL.SET = (1 << 1);                   //! - Enable Host Disconnect
 
+    //! disable the charger detector. This must be off during normal operation
+    {
+    	// this register is not documented. Will be updated in the next release
+    	uint32_t *ChargerDetectControl;
+    	ChargerDetectControl = (uint32_t *)0x020c81b0;
+    	*ChargerDetectControl |= 1 << 20;				// disable detector
+    }
+
     //! Check if all power down bits are clear
     if(usbPhy->USBPHY_PWD.RW != 0 )
     	return -1;   // Phy still in power-down mode. Check if all clocks are running.

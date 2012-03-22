@@ -25,13 +25,15 @@
  * - HW_USB_ANALOG_USB2_CHRG_DETECT_STAT - USB Charger Detect Status Register
  * - HW_USB_ANALOG_USB2_LOOPBACK - USB Loopback Test Register
  * - HW_USB_ANALOG_USB2_MISC - USB Misc Register
+ * - HW_USB_ANALOG_DIGPROG - Chip Silicon Version
  *
- * hw_usb_analog_t - Struct containing all module registers.
+ * - hw_usb_analog_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_USB_ANALOG_BASE
+#define HW_USB_ANALOG_INSTANCE_COUNT (1) //!< Number of instances of the USB_ANALOG module.
 #define REGS_USB_ANALOG_BASE (0x020c8000) //!< Base address for USB_ANALOG.
 #endif
 //@}
@@ -2183,6 +2185,62 @@ typedef union _hw_usb_analog_usb2_misc
 #define BW_USB_ANALOG_USB2_MISC_EN_CLK_UTMI(v)   BF_CS1(USB_ANALOG_USB2_MISC, EN_CLK_UTMI, v)
 #endif
 
+#ifndef __LANGUAGE_ASM__
+/*!
+ * @brief HW_USB_ANALOG_DIGPROG - Chip Silicon Version (RO)
+ *
+ * Reset value: 0x00000000
+ *
+ * The DIGPROG register returns the digital program ID for the silicon.
+ */
+typedef union _hw_usb_analog_digprog
+{
+    reg32_t U;
+    struct _hw_usb_analog_digprog_bitfields
+    {
+        unsigned MINOR : 8; //!< [7:0] Fixed read-only value reflecting the MINOR field of the RTL version.
+        unsigned MAJOR : 16; //!< [23:8] Fixed read-only value reflecting the MAJOR field of the RTL version.
+        unsigned RESERVED0 : 8; //!< [31:24] Reserved.
+    } B;
+} hw_usb_analog_digprog_t;
+#endif
+
+/*
+ * constants & macros for entire USB_ANALOG_DIGPROG register
+ */
+#define HW_USB_ANALOG_DIGPROG_ADDR      (REGS_USB_ANALOG_BASE + 0x260)
+
+#ifndef __LANGUAGE_ASM__
+#define HW_USB_ANALOG_DIGPROG           (*(volatile hw_usb_analog_digprog_t *) HW_USB_ANALOG_DIGPROG_ADDR)
+#define HW_USB_ANALOG_DIGPROG_RD()      (HW_USB_ANALOG_DIGPROG.U)
+#endif
+
+/*
+ * constants & macros for individual USB_ANALOG_DIGPROG bitfields
+ */
+
+/* --- Register HW_USB_ANALOG_DIGPROG, field MINOR[7:0] (RO)
+ *
+ * Fixed read-only value reflecting the MINOR field of the RTL version.
+ */
+
+#define BP_USB_ANALOG_DIGPROG_MINOR      (0)      //!< Bit position for USB_ANALOG_DIGPROG_MINOR.
+#define BM_USB_ANALOG_DIGPROG_MINOR      (0x000000ff)  //!< Bit mask for USB_ANALOG_DIGPROG_MINOR.
+
+//! @brief Get value of USB_ANALOG_DIGPROG_MINOR from a register value.
+#define BG_USB_ANALOG_DIGPROG_MINOR(r)   (((r) & BM_USB_ANALOG_DIGPROG_MINOR) >> BP_USB_ANALOG_DIGPROG_MINOR)
+
+/* --- Register HW_USB_ANALOG_DIGPROG, field MAJOR[23:8] (RO)
+ *
+ * Fixed read-only value reflecting the MAJOR field of the RTL version.
+ */
+
+#define BP_USB_ANALOG_DIGPROG_MAJOR      (8)      //!< Bit position for USB_ANALOG_DIGPROG_MAJOR.
+#define BM_USB_ANALOG_DIGPROG_MAJOR      (0x00ffff00)  //!< Bit mask for USB_ANALOG_DIGPROG_MAJOR.
+
+//! @brief Get value of USB_ANALOG_DIGPROG_MAJOR from a register value.
+#define BG_USB_ANALOG_DIGPROG_MAJOR(r)   (((r) & BM_USB_ANALOG_DIGPROG_MAJOR) >> BP_USB_ANALOG_DIGPROG_MAJOR)
+
 
 /*!
  * @brief All USB_ANALOG module registers.
@@ -2232,6 +2290,7 @@ typedef struct _hw_usb_analog
     volatile reg32_t USB2_MISC_SET; //!< USB Misc Register Set
     volatile reg32_t USB2_MISC_CLR; //!< USB Misc Register Clear
     volatile reg32_t USB2_MISC_TOG; //!< USB Misc Register Toggle
+    volatile hw_usb_analog_digprog_t DIGPROG; //!< Chip Silicon Version
 } hw_usb_analog_t;
 #pragma pack()
 

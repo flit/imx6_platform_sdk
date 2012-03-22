@@ -22,6 +22,8 @@ extern int32_t board_id;
 #define ON 1
 #define OFF 0
 
+struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
+
 // ARM core.
 #define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
 hw_module_t arm_core = {
@@ -85,16 +87,6 @@ hw_module_t *mx6dq_module[] = {
     &g_debug_uart,
     &g_system_timer,
     NULL,
-};
-
-const uint32_t g_mx_gpio_port[MAX_GPIO_PORT] = {
-    GPIO1_BASE_ADDR,
-    GPIO2_BASE_ADDR,
-    GPIO3_BASE_ADDR,
-    GPIO4_BASE_ADDR,
-    GPIO5_BASE_ADDR,
-    GPIO6_BASE_ADDR,
-    GPIO7_BASE_ADDR
 };
 
 /*!

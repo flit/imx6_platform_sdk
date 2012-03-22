@@ -911,7 +911,7 @@ static sata_return_t sata_wait_command_done(u32 port_no)
     sata_return_t ret = SATA_FAIL;
     u32 stat = 0;
     u32 err = 0;
-    u32 port_stat = 0;
+//     u32 port_stat = 0;
     /* wait while device busy */
     i = MAX_TIMEOUT_COUNTER;
 
@@ -930,7 +930,7 @@ static sata_return_t sata_wait_command_done(u32 port_no)
         //PRINT(0,"+SATAINFO: Port.IS = 0x%08x\n",imx_sata_host->is);
         stat = imx_sata_port0->is;
         err = imx_sata_port0->serr;
-        port_stat = imx_sata_port0->ssts;
+//         port_stat = imx_sata_port0->ssts;
 
         if (stat & 0xff000000) {
             //PRINT(0,"+SATAERR: Port0.IS   : 0x%08x\n",stat);

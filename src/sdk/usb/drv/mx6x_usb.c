@@ -86,7 +86,7 @@ int usbEnableTransceiver(usb_module_t *port)
 		usbPhy = (usbPhy_t *)(IP2APB_USBPHY2_BASE_ADDR);     // Point register structure to USBPHY2
 		break;
 	default:
-		break;
+		return -1;
 	}
     //! NOTE !! CLKGATE must be cleared before clearing power down
     usbPhy->USBPHY_CTRL.CLEAR =   (USBPHY_CTRL_SFTRST);   //! - clear SFTRST

@@ -19,6 +19,8 @@ extern uint8_t da9053_i2c_reg(uint32_t reg, uint8_t val, uint32_t dir);
 extern int32_t board_id;
 extern sata_phy_ref_clk_t sata_phy_clk_sel;
 
+struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
+
 #define ON 1
 #define OFF 0
 
@@ -67,16 +69,6 @@ hw_module_t *mx53_module[] = {
 
 uint32_t ipu_hw_instance[4] = {
     0, 0, 0, 0
-};
-
-const uint32_t g_mx_gpio_port[MAX_GPIO_PORT] = {
-    GPIO1_BASE_ADDR,
-    GPIO2_BASE_ADDR,
-    GPIO3_BASE_ADDR,
-    GPIO4_BASE_ADDR,
-    GPIO5_BASE_ADDR,
-    GPIO6_BASE_ADDR,
-    GPIO7_BASE_ADDR
 };
 
 struct soc_sbmr {

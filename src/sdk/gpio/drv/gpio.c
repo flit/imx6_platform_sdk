@@ -8,19 +8,13 @@
 /*!
  * @file gpio.c
  * @brief Driver to control the GPIO module.
- *
+ * @ingroup diag_gpio
  */
 
 #include "hardware.h"
+#include "gpio/gpio.h"
+#include "registers/regsgpio.h"
 
-/*!
- * Sets the GPIO direction for the specified pin.
- *
- * @param	port: 	GPIO module instance, 0 to MAX_GPIO_PORT.
- * @param 	pin:	GPIO pin 0 to 31.
- * @param 	dir:	direction for the pin. in or out.
- * @return -1 means failed to set the pin
- */
 int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir)
 {
     uint32_t oldVal = 0, newVal = 0;
@@ -34,26 +28,22 @@ int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir)
         printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
         return -1;
     }
+    
+    // Convert port to base 1.
+    port += 1;
 
-    oldVal = readl(g_mx_gpio_port[port] + GPIO_GDIR_OFFSET);
+    oldVal = HW_GPIO_GDIR_RD(port);
 
     if (dir == GPIO_GDIR_INPUT)
         newVal = oldVal & (~(1 << pin));
     else
         newVal = oldVal | (1 << pin);
 
-    writel(newVal, g_mx_gpio_port[port] + GPIO_GDIR_OFFSET);
+    HW_GPIO_GDIR_WR(port, newVal);
+    
     return 0;
 }
 
-/*!
- *	Sets the GPIO attributte(high or low) for the specified pin.
- *
- *  @param  port: 	GPIO module instance, 0 to MAX_GPIO_PORT.
- *	@param  pin:	GPIO pin 0 to 31.
- *  @param  attr:	attributte for the pin. high/low
- *  @return  -1 means failed to set the pin
- */
 int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr)
 {
     int32_t dir;
@@ -68,32 +58,28 @@ int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr)
         printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
         return -1;
     }
+    
+    // Convert port to base 1.
+    port += 1;
 
-    dir = (readl(g_mx_gpio_port[port] + GPIO_GDIR_OFFSET) & (1 << pin)) >> pin;
+    dir = (HW_GPIO_GDIR_RD(port) >> pin) & 1;
 
     if (dir != 1) {
-        printf("GPIO%d_%d is not configured to be output!\n", port + 1, pin);
+        printf("GPIO%d_%d is not configured to be output!\n", port, pin);
         return -1;
     }
 
-    oldVal = readl(g_mx_gpio_port[port] + GPIO_DR_OFFSET);
+    oldVal = HW_GPIO_DR_RD(port);
 
     if (attr == 0)
         newVal = oldVal & (~(1 << pin));
     else if (attr == 1)
         newVal = oldVal | (1 << pin);
 
-    writel(newVal, g_mx_gpio_port[port] + GPIO_DR_OFFSET);
+    HW_GPIO_DR_WR(port, newVal);
     return 0;
 }
 
-/*!
- *	Gets the GPIO attributte(high or low) for the specified pin.
- *
- *  @param	port: 	GPIO module instance, 0 to MAX_GPIO_PORT.
- *	@param	pin:	GPIO pin 0 to 31.
- *  @return	-1 means failed to get the value
-*/
 int32_t gpio_read_data(int32_t port, int32_t pin)
 {
     int32_t dir;
@@ -107,13 +93,16 @@ int32_t gpio_read_data(int32_t port, int32_t pin)
         printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
         return -1;
     }
+    
+    // Convert port to base 1.
+    port += 1;
 
-    dir = (readl(g_mx_gpio_port[port] + GPIO_GDIR_OFFSET) & (1 << pin)) >> pin;
+    dir = (HW_GPIO_GDIR_RD(port) >> pin) & 1;
 
     if (dir != 0) {
-        printf("GPIO%d_%d is not configured to be input!\n", port + 1, pin);
+        printf("GPIO%d_%d is not configured to be input!\n", port, pin);
         return -1;
     }
 
-    return (readl(g_mx_gpio_port[port] + GPIO_DR_OFFSET) & (1 << pin)) >> pin;
+    return (HW_GPIO_PSR_RD(port) >> pin) & 1;
 }

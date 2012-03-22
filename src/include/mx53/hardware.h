@@ -76,8 +76,9 @@
 #define MAX7310_I2C_ID0     (0x30 >> 1)
 #define MAX7310_ID0_DEF_DIR      0x0    // init direction for the I/O
 #define MAX7310_ID0_DEF_VAL      0xC    // init value for the output
-/* create an array of I2C requests for all used expanders on the board */
-struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
+
+//! @brief Create an array of I2C requests for all used expanders on the board.
+extern struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define MMA8450_I2C_ID      0x1C
 #define MMA8451_I2C_ID      0x1C
@@ -165,7 +166,7 @@ extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
 
 #define MAX_GPIO_PORT   7
-const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
+// const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
 
 extern void platform_init(void);
 extern int32_t board_id;

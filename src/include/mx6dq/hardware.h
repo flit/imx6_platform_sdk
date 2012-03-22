@@ -154,7 +154,8 @@
 #define MAX7310_ID1_DEF_VAL      0x09   // init value for the output
 #endif
 
-struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
+//! @brief Create an array of I2C requests for all used expanders on the board.
+extern struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define MMA8450_I2C_ID      0x1C
 #define MMA8451_I2C_ID      0x1C
@@ -250,7 +251,7 @@ void ecspi_iomux_cfg(uint32_t);
 void can_iomux_config(uint32_t module_base_add);
 
 #define MAX_GPIO_PORT   7
-const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
+// extern const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
 
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
@@ -270,20 +271,25 @@ extern int32_t is_input_char(uint8_t);
 
 extern void camera_power_on(void);
 extern void csi_port0_iomux_config(void);
-/* Board ID */
+
+//! @name Board ID
+//@{
 #define BOARD_ID_DEFAULT                0x0
 #define BOARD_ID_MX6DQ_SABRE_AI         0x1
 #define BOARD_ID_MX6DQ_SMART_DEVICE     0x2
 #define BOARD_ID_MX6DQ_EVB              0x3
 #define BOARD_ID_MX6DQ_SABRE_LITE       0x4
+//@}
 
-/* Board version */
+//! @name Board version
+//@{
 #define BOARD_VERSION_DEFAULT	0x0
 #define BOARD_VERSION_1	0x1
 #define BOARD_VERSION_2	0x2
 #define BOARD_VERSION_3	0x1
 #define BOARD_VERSION_4	0x2
 #define BOARD_VERSION_5	0x1
+//@}
 
 #if defined(BOARD_VERSION2)
 #define BOARD_VERSION_ID        BOARD_VERSION_2

@@ -96,7 +96,7 @@ void usb0_host_test (usb_module_t *usbhModule)
 	 	    printf("Device connected at HIGH speed\n");
 	    	break;
 	    default :
-	    	break;
+	    	return;
     }
 
     /*!

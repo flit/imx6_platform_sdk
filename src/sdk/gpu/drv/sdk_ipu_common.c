@@ -75,7 +75,7 @@ void sdk_ipu_write_field(WORD IPU, WORD ID_addr, WORD ID_mask, WORD data)
 {
 
     WORD rdata;
-    WORD IPU_BASE_ADDRE;
+    WORD IPU_BASE_ADDRE=0;
 
     if (IPU == 1)
         IPU_BASE_ADDRE = IPU1_BASE_ADDR;
@@ -150,7 +150,7 @@ static void init_idmac_parameters()
 
 static void config_idmac_interleaved_channel()
 {
-    WORD IPU_BASE_ADDRE;
+    WORD IPU_BASE_ADDRE=0;
     int w0_d0 = 0, w0_d1 = 0, w0_d2 = 0, w0_d3 = 0, w0_d4 = 0, w1_d0 = 0, w1_d1 = 0, w1_d2 =
         0, w1_d3 = 0, w1_d4 = 0;
 

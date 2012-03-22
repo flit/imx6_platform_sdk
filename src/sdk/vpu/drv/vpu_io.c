@@ -49,7 +49,7 @@ int isVpuInitialized(void)
 }
 
 /* make consideration for both register and physical mem access */
-inline unsigned long *reg_map(unsigned long offset)
+static inline unsigned long *reg_map(unsigned long offset)
 {
     return (unsigned long *)(offset + (unsigned long)vpu_reg_base);
 }

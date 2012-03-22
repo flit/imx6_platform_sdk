@@ -129,7 +129,6 @@ int32_t imx6_slave_transmit(struct imx_i2c_request *rq)
 int32_t i2c_imx6_slave_test(void)
 {
     uint8_t sel, i;
-    int32_t ret = 0;
     uint8_t data_buffer[16];    
 
     printf("  Starting i.MX6DQ/SDL slave test...\n");
@@ -146,7 +145,7 @@ int32_t i2c_imx6_slave_test(void)
     /* initialize the buffer with known data */
     memset(imx6_i2c_req.buffer, 0, sizeof(imx6_i2c_req.buffer));
 
-    ret = i2c_init(imx6_i2c_req.ctl_addr, 170000);
+    i2c_init(imx6_i2c_req.ctl_addr, 170000);
 
 #if defined(MX6DQ_EVB) || defined(MX6SDL_EVB)
     /*Set iomux and daisy chain for eeprom test */

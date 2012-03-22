@@ -13,8 +13,6 @@
 
 #include "ipu_common.h"
 
-extern inline int need_csc(int i, int o);
-
 /*!
  * DC submodule configuration.
  * DC submodule is to control the data, and tranfer them to display.

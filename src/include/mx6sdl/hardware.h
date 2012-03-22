@@ -156,7 +156,8 @@
 #define MAX7310_ID1_DEF_VAL      0x09   // init value for the output
 #endif
 
-struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
+//! @brief Create an array of I2C requests for all used expanders on the board.
+extern struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 #define MMA8450_I2C_ID      0x1C
 #define MMA8451_I2C_ID      0x1C
@@ -252,7 +253,7 @@ void ecspi_iomux_cfg(uint32_t);
 void can_iomux_config(uint32_t module_base_add);
 
 #define MAX_GPIO_PORT   7
-const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
+// const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
 
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;

@@ -405,7 +405,7 @@ usbhQueueHead_t * usbh_qh_init(uint32_t max_packet, uint32_t head, uint32_t eps,
 	  		#ifdef DEBUG_PRINT
 	  			printf("ERR!! Invalid EPS\n");
 	  		#endif
-		    break;
+		    return NULL;
 	}
 	
 	//! Set endpoint characteristics

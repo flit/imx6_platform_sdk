@@ -227,7 +227,7 @@ static int flash_isequal(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
 static int flash_isset(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
 {
     cfiword_t cword;
-    int retval;
+    int retval = 0;
 
     flash_make_cmd(info, cmd, &cword);
     switch (info->portwidth) {

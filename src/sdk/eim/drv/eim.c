@@ -181,7 +181,7 @@ uint32_t eim_cfg_set(uint32_t cs, uint32_t cfg, uint32_t value)
         reg = &eim_reg_base->wiar;
         break;
     default:                   /* should never happen */
-        break;
+        return false;
     }
 
     /* Boolean CFG */

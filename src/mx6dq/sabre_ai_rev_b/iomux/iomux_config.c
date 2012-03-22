@@ -9,7 +9,7 @@
 
 #include <iomux_config.h>
 
-// Function to configure iomux for i.MX6DQ board ARD Rev. A.
+// Function to configure iomux for i.MX6DQ board ARD Rev. B.
 void iomux_config(void)
 {
     audmux_iomux_config();

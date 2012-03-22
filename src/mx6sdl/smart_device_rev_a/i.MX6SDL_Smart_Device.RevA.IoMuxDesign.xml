@@ -2109,13 +2109,13 @@
   <SignalDesign Name="SCL" NativeInstance="i2c1" Instance="i2c1" InstanceAlias="i2c1" IsChecked="true" IsExcluded="false">
     <AltMode Name="ALT4" BallNumber="N5" BallName="CSI0_DAT9" PowerGroup="NVCC_CSI" Instance="i2c1" Port="SCL" InputSelectRegister="IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT9" Value="20" />
-    <Register Name="IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT" Value="1" />
+    <Register Name="IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT9" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="SDA" NativeInstance="i2c1" Instance="i2c1" InstanceAlias="i2c1" IsChecked="true" IsExcluded="false">
     <AltMode Name="ALT4" BallNumber="N6" BallName="CSI0_DAT8" PowerGroup="NVCC_CSI" Instance="i2c1" Port="SDA" InputSelectRegister="IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT8" Value="20" />
-    <Register Name="IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT" Value="1" />
+    <Register Name="IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT8" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="SCL" NativeInstance="i2c2" Instance="i2c2" InstanceAlias="i2c2" IsChecked="true" IsExcluded="false">
@@ -2139,7 +2139,7 @@
   <SignalDesign Name="SDA" NativeInstance="i2c3" Instance="i2c3" InstanceAlias="i2c3" IsChecked="true" IsExcluded="false">
     <AltMode Name="ALT6" BallNumber="R2" BallName="GPIO_16" PowerGroup="NVCC_GPIO" Instance="i2c3" Port="SDA" InputSelectRegister="IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO_16" Value="22" />
-    <Register Name="IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT" Value="2" />
+    <Register Name="IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT" Value="1" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO_16" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="SCL" NativeInstance="i2c4" Instance="i2c4" InstanceAlias="i2c4" IsChecked="false" IsExcluded="false">

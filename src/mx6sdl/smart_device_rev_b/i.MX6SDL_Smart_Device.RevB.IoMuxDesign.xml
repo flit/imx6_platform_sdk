@@ -2125,13 +2125,13 @@ I2C3_SDA	      GPIO_16 (R2)		i2c3.SDA (ALT6)	GPIO6 (T3)		i2c3.SDA (ALT2) (InputS
   <SignalDesign Name="SCL" NativeInstance="i2c1" Instance="i2c1" InstanceAlias="i2c1" IsChecked="true" IsExcluded="false">
     <AltMode Name="ALT4" BallNumber="N5" BallName="CSI0_DAT9" PowerGroup="NVCC_CSI" Instance="i2c1" Port="SCL" InputSelectRegister="IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT9" Value="20" />
-    <Register Name="IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT" Value="1" />
+    <Register Name="IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT9" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="SDA" NativeInstance="i2c1" Instance="i2c1" InstanceAlias="i2c1" IsChecked="true" IsExcluded="false">
     <AltMode Name="ALT4" BallNumber="N6" BallName="CSI0_DAT8" PowerGroup="NVCC_CSI" Instance="i2c1" Port="SDA" InputSelectRegister="IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT" Comment="" IsLocked="false" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT8" Value="20" />
-    <Register Name="IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT" Value="1" />
+    <Register Name="IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT" Value="0" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT8" Value="110768" />
   </SignalDesign>
   <SignalDesign Name="SCL" NativeInstance="i2c2" Instance="i2c2" InstanceAlias="i2c2" IsChecked="true" IsExcluded="false">

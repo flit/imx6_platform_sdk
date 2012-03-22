@@ -112,7 +112,7 @@ void i2c3_iomux_config(void)
     //     ALT6 (6) - Select mux mode: ALT6 mux port: SDA of instance: i2c3.
     //                NOTE: - Config IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT for mode ALT6.
     //     ALT8 (8) - Select mux mode: ALT8 mux port: VCOM[1] of instance: epdc.
-    writel((SION_DISABLED & 0x1) << 4 | (ALT6 & 0xF), IOMUXC_SW_MUX_CTL_PAD_EIM_D18);
+    writel((SION_ENABLED & 0x1) << 4 | (ALT6 & 0xF), IOMUXC_SW_MUX_CTL_PAD_EIM_D18);
     // Pad EIM_D18 is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT(0x020E087C)

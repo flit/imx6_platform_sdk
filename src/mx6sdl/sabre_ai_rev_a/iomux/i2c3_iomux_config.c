@@ -123,7 +123,7 @@ void i2c3_iomux_config(void)
     //     SEL_EIM_D18_ALT6 (0) - Selecting Pad: EIM_D18 for Mode: ALT6.
     //     SEL_GPIO_16_ALT6 (1) - Selecting Pad: GPIO_16 for Mode: ALT6.
     //     SEL_GPIO_6_ALT2 (2) - Selecting Pad: GPIO_6 for Mode: ALT2.
-    writel((SEL_GPIO_6_ALT2 & 0x3), IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT);
+    writel((SEL_GPIO_16_ALT6 & 0x3), IOMUXC_I2C3_IPP_SDA_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_GPIO_16(0x020E05E4)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

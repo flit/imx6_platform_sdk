@@ -9,7 +9,7 @@
 
 #include <iomux_config.h>
 
-// Function to configure iomux for i.MX6SDL board Smart_Device Rev. B.
+// Function to configure iomux for i.MX6SDL board Smart_Device Rev. A.
 void iomux_config(void)
 {
     audmux_iomux_config();
@@ -28,9 +28,9 @@ void iomux_config(void)
     i2c2_iomux_config();
     i2c3_iomux_config();
     ipu1_iomux_config();
+    kpp_iomux_config();
     pwm1_iomux_config();
     uart1_iomux_config();
-    usboh3_iomux_config();
     usdhc2_iomux_config();
     usdhc3_iomux_config();
     usdhc4_iomux_config();
@@ -103,10 +103,6 @@ void hdmi_tx_iomux_config()
 };
 
 void i2c4_iomux_config()
-{
-};
-
-void kpp_iomux_config()
 {
 };
 
@@ -199,6 +195,10 @@ void uart4_iomux_config()
 };
 
 void uart5_iomux_config()
+{
+};
+
+void usboh3_iomux_config()
 {
 };
 

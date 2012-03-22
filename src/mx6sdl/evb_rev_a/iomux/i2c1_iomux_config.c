@@ -41,7 +41,7 @@ void i2c1_iomux_config(void)
     //               NOTE: Instance: i2c1,   In Pin: ipp_scl_in
     //     SEL_CSI0_DAT9_ALT4 (0) - Selecting Pad: CSI0_DAT9 for Mode: ALT4.
     //     SEL_EIM_D21_ALT6 (1) - Selecting Pad: EIM_D21 for Mode: ALT6.
-    writel((SEL_EIM_D21_ALT6 & 0x1), IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT);
+    writel((SEL_CSI0_DAT9_ALT4 & 0x1), IOMUXC_I2C1_IPP_SCL_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT9(0x020E039C)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -117,7 +117,7 @@ void i2c1_iomux_config(void)
     //               NOTE: Instance: i2c1,   In Pin: ipp_sda_in
     //     SEL_CSI0_DAT8_ALT4 (0) - Selecting Pad: CSI0_DAT8 for Mode: ALT4.
     //     SEL_EIM_D28_ALT1 (1) - Selecting Pad: EIM_D28 for Mode: ALT1.
-    writel((SEL_EIM_D28_ALT1 & 0x1), IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT);
+    writel((SEL_CSI0_DAT8_ALT4 & 0x1), IOMUXC_I2C1_IPP_SDA_IN_SELECT_INPUT);
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_CSI0_DAT8(0x020E0398)
     //   HYS (16) - Hysteresis Enable Field Reset: HYS_ENABLED

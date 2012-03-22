@@ -140,7 +140,7 @@ void gpio6_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0);
 
     // Config gpio6.GPIO[14] to pad NANDF_CS1(C16)
-    // DISP0_PWR_EN
+    // DISP_PWR_EN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_CS1(0x020E0278)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED
@@ -528,7 +528,7 @@ void gpio6_iomux_config(void)
            (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE);
 
     // Config gpio6.GPIO[9] to pad NANDF_WP_B(E15)
-    // DISP0_WR
+    // AUX_3V15_EN
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B(0x020E02A8)
     //   SION (4) - Software Input On Field Reset: SION_DISABLED

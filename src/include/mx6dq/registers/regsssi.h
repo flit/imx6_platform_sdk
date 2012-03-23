@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SSI_H
-#define _SSI_H
+#ifndef __HW_SSI_REGISTERS_H__
+#define __HW_SSI_REGISTERS_H__
 
 #include "regs.h"
 
@@ -35,12 +35,13 @@
  * - HW_SSI_SSI_SACCEN - SSI AC97 Channel Enable Register
  * - HW_SSI_SSI_SACCDIS - SSI AC97 Channel Disable Register
  *
- * hw_ssi_t - Struct containing all module registers.
+ * - hw_ssi_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SSI_BASE
+#define HW_SSI_INSTANCE_COUNT (3) //!< Number of instances of the SSI module.
 #define REGS_SSI1_BASE (0x02028000) //!< Base address for SSI instance number 1.
 #define REGS_SSI2_BASE (0x0202c000) //!< Base address for SSI instance number 2.
 #define REGS_SSI3_BASE (0x02030000) //!< Base address for SSI instance number 3.
@@ -3790,7 +3791,6 @@ typedef struct _hw_ssi
     volatile hw_ssi_ssi_saccdis_t SSI_SACCDIS; //!< SSI AC97 Channel Disable Register
 } hw_ssi_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SSI registers.
 //! @param x SSI instance number.
@@ -3798,5 +3798,7 @@ typedef struct _hw_ssi
 //!     use the '&' operator, like <code>&HW_SSI(0)</code>.
 #define HW_SSI(x)     (*(volatile hw_ssi_t *) REGS_SSI_BASE(x))
 
+#endif
 
-#endif // _SSI_H
+
+#endif // __HW_SSI_REGISTERS_H__

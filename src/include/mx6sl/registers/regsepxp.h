@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _PXP_H
-#define _PXP_H
+#ifndef __HW_PXP_REGISTERS_H__
+#define __HW_PXP_REGISTERS_H__
 
 #include "regs.h"
 
@@ -66,12 +66,13 @@
  * - HW_PXP_POWER - PXP Power Control Register.
  * - HW_PXP_NEXT - Next Frame Pointer
  *
- * hw_pxp_t - Struct containing all module registers.
+ * - hw_pxp_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_PXP_BASE
+#define HW_PXP_INSTANCE_COUNT (0) //!< Number of instances of the PXP module.
 #define REGS_PXP_BASE (0x00000000) //!< Base address for PXP.
 #endif
 //@}
@@ -6379,12 +6380,13 @@ typedef struct _hw_pxp
     volatile reg32_t NEXT_TOG; //!< Next Frame Pointer Toggle
 } hw_pxp_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all PXP registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_PXP(0)</code>.
 #define HW_PXP     (*(volatile hw_pxp_t *) REGS_PXP_BASE)
 
+#endif
 
-#endif // _PXP_H
+
+#endif // __HW_PXP_REGISTERS_H__

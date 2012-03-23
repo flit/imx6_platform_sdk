@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _CSI2IPU_H
-#define _CSI2IPU_H
+#ifndef __HW_CSI2IPU_REGISTERS_H__
+#define __HW_CSI2IPU_REGISTERS_H__
 
 #include "regs.h"
 
@@ -15,12 +15,13 @@
  *
  * - HW_CSI2IPU_SW_RST - CSI 2 IPU Gasket Software Reset
  *
- * hw_csi2ipu_t - Struct containing all module registers.
+ * - hw_csi2ipu_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_CSI2IPU_BASE
+#define HW_CSI2IPU_INSTANCE_COUNT (1) //!< Number of instances of the CSI2IPU module.
 #define REGS_CSI2IPU_BASE (0x021dc000) //!< Base address for CSI2IPU.
 #endif
 //@}
@@ -193,12 +194,13 @@ typedef struct _hw_csi2ipu
     volatile hw_csi2ipu_sw_rst_t SW_RST; //!< CSI 2 IPU Gasket Software Reset
 } hw_csi2ipu_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all CSI2IPU registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_CSI2IPU(0)</code>.
 #define HW_CSI2IPU     (*(volatile hw_csi2ipu_t *) REGS_CSI2IPU_BASE)
 
+#endif
 
-#endif // _CSI2IPU_H
+
+#endif // __HW_CSI2IPU_REGISTERS_H__

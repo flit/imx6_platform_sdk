@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _DVFSC_H
-#define _DVFSC_H
+#ifndef __HW_DVFSC_REGISTERS_H__
+#define __HW_DVFSC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -31,12 +31,13 @@
  * - HW_DVFSC_PT2 - DVFSC pattern 2 length
  * - HW_DVFSC_PT3 - DVFSC pattern 3 length
  *
- * hw_dvfsc_t - Struct containing all module registers.
+ * - hw_dvfsc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_DVFSC_BASE
+#define HW_DVFSC_INSTANCE_COUNT (1) //!< Number of instances of the DVFSC module.
 #define REGS_DVFSC_BASE (0x020dc000) //!< Base address for DVFSC.
 #endif
 //@}
@@ -2853,12 +2854,13 @@ typedef struct _hw_dvfsc
     volatile hw_dvfsc_pt3_t PT3; //!< DVFSC pattern 3 length
 } hw_dvfsc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all DVFSC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_DVFSC(0)</code>.
 #define HW_DVFSC     (*(volatile hw_dvfsc_t *) REGS_DVFSC_BASE)
 
+#endif
 
-#endif // _DVFSC_H
+
+#endif // __HW_DVFSC_REGISTERS_H__

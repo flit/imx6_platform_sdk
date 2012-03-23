@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _ESAI_H
-#define _ESAI_H
+#ifndef __HW_ESAI_REGISTERS_H__
+#define __HW_ESAI_REGISTERS_H__
 
 #include "regs.h"
 
@@ -45,12 +45,13 @@
  * - HW_ESAI_PRRC - Port C Direction Register
  * - HW_ESAI_PCRC - Port C Control Register
  *
- * hw_esai_t - Struct containing all module registers.
+ * - hw_esai_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_ESAI_BASE
+#define HW_ESAI_INSTANCE_COUNT (1) //!< Number of instances of the ESAI module.
 #define REGS_ESAI_BASE (0x02024000) //!< Base address for ESAI.
 #endif
 //@}
@@ -4940,12 +4941,13 @@ typedef struct _hw_esai
     volatile hw_esai_pcrc_t PCRC; //!< Port C Control Register
 } hw_esai_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all ESAI registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_ESAI(0)</code>.
 #define HW_ESAI     (*(volatile hw_esai_t *) REGS_ESAI_BASE)
 
+#endif
 
-#endif // _ESAI_H
+
+#endif // __HW_ESAI_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _UARTV2_H
-#define _UARTV2_H
+#ifndef __HW_UARTV2_REGISTERS_H__
+#define __HW_UARTV2_REGISTERS_H__
 
 #include "regs.h"
 
@@ -31,12 +31,13 @@
  * - HW_UARTV2_UTS - UART Test Register
  * - HW_UARTV2_UMCR - UART RS-485 Mode Control Register
  *
- * hw_uartv2_t - Struct containing all module registers.
+ * - hw_uartv2_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_UARTV2_BASE
+#define HW_UARTV2_INSTANCE_COUNT (5) //!< Number of instances of the UARTV2 module.
 #define REGS_UARTV21_BASE (0x02020000) //!< Base address for UARTV2 instance number 1.
 #define REGS_UARTV22_BASE (0x021e8000) //!< Base address for UARTV2 instance number 2.
 #define REGS_UARTV23_BASE (0x021ec000) //!< Base address for UARTV2 instance number 3.
@@ -4238,7 +4239,6 @@ typedef struct _hw_uartv2
     volatile hw_uartv2_umcr_t UMCR; //!< UART RS-485 Mode Control Register
 } hw_uartv2_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all UARTV2 registers.
 //! @param x UARTV2 instance number.
@@ -4246,5 +4246,7 @@ typedef struct _hw_uartv2
 //!     use the '&' operator, like <code>&HW_UARTV2(0)</code>.
 #define HW_UARTV2(x)     (*(volatile hw_uartv2_t *) REGS_UARTV2_BASE(x))
 
+#endif
 
-#endif // _UARTV2_H
+
+#endif // __HW_UARTV2_REGISTERS_H__

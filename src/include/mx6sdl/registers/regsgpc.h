@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _GPC_H
-#define _GPC_H
+#ifndef __HW_GPC_REGISTERS_H__
+#define __HW_GPC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -24,12 +24,13 @@
  * - HW_GPC_ISR3 - IRQ status resister 3
  * - HW_GPC_ISR4 - IRQ status resister 4
  *
- * hw_gpc_t - Struct containing all module registers.
+ * - hw_gpc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_GPC_BASE
+#define HW_GPC_INSTANCE_COUNT (1) //!< Number of instances of the GPC module.
 #define REGS_GPC_BASE (0x020dc000) //!< Base address for GPC.
 #endif
 //@}
@@ -682,12 +683,13 @@ typedef struct _hw_gpc
     volatile hw_gpc_isr4_t ISR4; //!< IRQ status resister 4
 } hw_gpc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all GPC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_GPC(0)</code>.
 #define HW_GPC     (*(volatile hw_gpc_t *) REGS_GPC_BASE)
 
+#endif
 
-#endif // _GPC_H
+
+#endif // __HW_GPC_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _USDHC_H
-#define _USDHC_H
+#ifndef __HW_USDHC_REGISTERS_H__
+#define __HW_USDHC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -44,12 +44,13 @@
  * - HW_USDHC_TUNING_CTRL - Tuning Control Register
  * - HW_USDHC_HOST_CTRL_VER - Host Controller Version
  *
- * hw_usdhc_t - Struct containing all module registers.
+ * - hw_usdhc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_USDHC_BASE
+#define HW_USDHC_INSTANCE_COUNT (4) //!< Number of instances of the USDHC module.
 #define REGS_USDHC1_BASE (0x02190000) //!< Base address for USDHC instance number 1.
 #define REGS_USDHC2_BASE (0x02194000) //!< Base address for USDHC instance number 2.
 #define REGS_USDHC3_BASE (0x02198000) //!< Base address for USDHC instance number 3.
@@ -8219,7 +8220,6 @@ typedef struct _hw_usdhc
     volatile hw_usdhc_host_ctrl_ver_t HOST_CTRL_VER; //!< Host Controller Version
 } hw_usdhc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all USDHC registers.
 //! @param x USDHC instance number.
@@ -8227,5 +8227,7 @@ typedef struct _hw_usdhc
 //!     use the '&' operator, like <code>&HW_USDHC(0)</code>.
 #define HW_USDHC(x)     (*(volatile hw_usdhc_t *) REGS_USDHC_BASE(x))
 
+#endif
 
-#endif // _USDHC_H
+
+#endif // __HW_USDHC_REGISTERS_H__

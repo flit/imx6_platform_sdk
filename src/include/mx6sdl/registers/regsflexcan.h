@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _FLEXCAN_H
-#define _FLEXCAN_H
+#ifndef __HW_FLEXCAN_REGISTERS_H__
+#define __HW_FLEXCAN_REGISTERS_H__
 
 #include "regs.h"
 
@@ -33,12 +33,13 @@
  * - HW_FLEXCAN_RXIMR0_RXIMR63 - Rx Individual Mask Registers
  * - HW_FLEXCAN_GFWR - Glitch Filter Width Registers
  *
- * hw_flexcan_t - Struct containing all module registers.
+ * - hw_flexcan_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_FLEXCAN_BASE
+#define HW_FLEXCAN_INSTANCE_COUNT (2) //!< Number of instances of the FLEXCAN module.
 #define REGS_FLEXCAN1_BASE (0x02090000) //!< Base address for FLEXCAN instance number 1.
 #define REGS_FLEXCAN2_BASE (0x02094000) //!< Base address for FLEXCAN instance number 2.
 
@@ -3372,7 +3373,6 @@ typedef struct _hw_flexcan
     volatile hw_flexcan_gfwr_t GFWR; //!< Glitch Filter Width Registers
 } hw_flexcan_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all FLEXCAN registers.
 //! @param x FLEXCAN instance number.
@@ -3380,5 +3380,7 @@ typedef struct _hw_flexcan
 //!     use the '&' operator, like <code>&HW_FLEXCAN(0)</code>.
 #define HW_FLEXCAN(x)     (*(volatile hw_flexcan_t *) REGS_FLEXCAN_BASE(x))
 
+#endif
 
-#endif // _FLEXCAN_H
+
+#endif // __HW_FLEXCAN_REGISTERS_H__

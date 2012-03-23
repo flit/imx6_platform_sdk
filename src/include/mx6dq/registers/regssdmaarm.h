@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SDMAARM_H
-#define _SDMAARM_H
+#ifndef __HW_SDMAARM_REGISTERS_H__
+#define __HW_SDMAARM_REGISTERS_H__
 
 #include "regs.h"
 
@@ -120,12 +120,13 @@
  * - HW_SDMAARM_SDMA_CHNENBL46 - Channel Enable RAM
  * - HW_SDMAARM_SDMA_CHNENBL47 - Channel Enable RAM
  *
- * hw_sdmaarm_t - Struct containing all module registers.
+ * - hw_sdmaarm_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SDMAARM_BASE
+#define HW_SDMAARM_INSTANCE_COUNT (1) //!< Number of instances of the SDMAARM module.
 #define REGS_SDMAARM_BASE (0x020ec000) //!< Base address for SDMAARM.
 #endif
 //@}
@@ -7701,12 +7702,13 @@ typedef struct _hw_sdmaarm
     volatile hw_sdmaarm_sdma_chnenbl47_t SDMA_CHNENBL47; //!< Channel Enable RAM
 } hw_sdmaarm_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SDMAARM registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SDMAARM(0)</code>.
 #define HW_SDMAARM     (*(volatile hw_sdmaarm_t *) REGS_SDMAARM_BASE)
 
+#endif
 
-#endif // _SDMAARM_H
+
+#endif // __HW_SDMAARM_REGISTERS_H__

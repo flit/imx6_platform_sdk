@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _XTALOSC24M_H
-#define _XTALOSC24M_H
+#ifndef __HW_XTALOSC24M_REGISTERS_H__
+#define __HW_XTALOSC24M_REGISTERS_H__
 
 #include "regs.h"
 
@@ -15,12 +15,13 @@
  *
  * - HW_XTALOSC24M_MISC0 - Miscellaneous Register 0
  *
- * hw_xtalosc24m_t - Struct containing all module registers.
+ * - hw_xtalosc24m_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_XTALOSC24M_BASE
+#define HW_XTALOSC24M_INSTANCE_COUNT (1) //!< Number of instances of the XTALOSC24M module.
 #define REGS_XTALOSC24M_BASE (0x020c8000) //!< Base address for XTALOSC24M.
 #endif
 //@}
@@ -51,7 +52,7 @@ typedef union _hw_xtalosc24m_misc0
         unsigned OSC_XTALOK_EN : 1; //!< [17] Enable bit
         unsigned WBCP_VPW_THRESH : 2; //!< [19:18] This signal alters the voltage that the pwell is charged pumped to. Not related to oscillator.
         unsigned RESERVED3 : 5; //!< [24:20] Reserved. These bits should always be set to zero.
-        unsigned CLKGATE_CTRL : 1; //!< [25] This bit allows disabling the clock gate (always un-gated) for teh xtal 24MHz clock that clocks the digital logic in the analog block. Do not change the field during a low power event. This is not a field that the user would normally need to modify
+        unsigned CLKGATE_CTRL : 1; //!< [25] This bit allows disabling the clock gate (always un-gated) for the xtal 24MHz clock that clocks the digital logic in the analog block. Do not change the field during a low power event. This is not a field that the user would normally need to modify
         unsigned CLKGATE_DELAY : 3; //!< [28:26] This field specifies the delay between powering up the XTAL 24MHz clock and release the clock to the digital logic inside the analog block. Do not change the field during a low power event. This is not a field that the user would normally need to modify
         unsigned RESERVED4 : 3; //!< [31:29] Reserved
     } B;
@@ -322,7 +323,7 @@ typedef union _hw_xtalosc24m_misc0
 
 /* --- Register HW_XTALOSC24M_MISC0, field CLKGATE_CTRL[25] (RW)
  *
- * This bit allows disabling the clock gate (always un-gated) for teh xtal 24MHz clock that clocks
+ * This bit allows disabling the clock gate (always un-gated) for the xtal 24MHz clock that clocks
  * the digital logic in the analog block. Do not change the field during a low power event. This is
  * not a field that the user would normally need to modify
  *
@@ -400,12 +401,13 @@ typedef struct _hw_xtalosc24m
     volatile hw_xtalosc24m_misc0_t MISC0; //!< Miscellaneous Register 0
 } hw_xtalosc24m_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all XTALOSC24M registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_XTALOSC24M(0)</code>.
 #define HW_XTALOSC24M     (*(volatile hw_xtalosc24m_t *) REGS_XTALOSC24M_BASE)
 
+#endif
 
-#endif // _XTALOSC24M_H
+
+#endif // __HW_XTALOSC24M_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _VPU_H
-#define _VPU_H
+#ifndef __HW_VPU_REGISTERS_H__
+#define __HW_VPU_REGISTERS_H__
 
 #include "regs.h"
 
@@ -21,12 +21,13 @@
  * - HW_VPU_BITCURPC - BIT Current PC
  * - HW_VPU_BITCODECBUSY - BIT CODEC Busy
  *
- * hw_vpu_t - Struct containing all module registers.
+ * - hw_vpu_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_VPU_BASE
+#define HW_VPU_INSTANCE_COUNT (1) //!< Number of instances of the VPU module.
 #define REGS_VPU_BASE (0x02040000) //!< Base address for VPU.
 #endif
 //@}
@@ -441,12 +442,13 @@ typedef struct _hw_vpu
     volatile hw_vpu_bitcodecbusy_t BITCODECBUSY; //!< BIT CODEC Busy
 } hw_vpu_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all VPU registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_VPU(0)</code>.
 #define HW_VPU     (*(volatile hw_vpu_t *) REGS_VPU_BASE)
 
+#endif
 
-#endif // _VPU_H
+
+#endif // __HW_VPU_REGISTERS_H__

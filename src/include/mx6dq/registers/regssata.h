@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SATA_H
-#define _SATA_H
+#ifndef __HW_SATA_REGISTERS_H__
+#define __HW_SATA_REGISTERS_H__
 
 #include "regs.h"
 
@@ -51,12 +51,13 @@
  * - HW_SATA_P0PHYCR - Port0 PHY Control Register
  * - HW_SATA_P0PHYSR - Port0 PHY Status Register
  *
- * hw_sata_t - Struct containing all module registers.
+ * - hw_sata_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SATA_BASE
+#define HW_SATA_INSTANCE_COUNT (1) //!< Number of instances of the SATA module.
 #define REGS_SATA_BASE (0x02200000) //!< Base address for SATA.
 #endif
 //@}
@@ -5267,12 +5268,13 @@ typedef struct _hw_sata
     volatile hw_sata_p0physr_t P0PHYSR; //!< Port0 PHY Status Register
 } hw_sata_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SATA registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SATA(0)</code>.
 #define HW_SATA     (*(volatile hw_sata_t *) REGS_SATA_BASE)
 
+#endif
 
-#endif // _SATA_H
+
+#endif // __HW_SATA_REGISTERS_H__

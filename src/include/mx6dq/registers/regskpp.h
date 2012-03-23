@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _KPP_H
-#define _KPP_H
+#ifndef __HW_KPP_REGISTERS_H__
+#define __HW_KPP_REGISTERS_H__
 
 #include "regs.h"
 
@@ -18,12 +18,13 @@
  * - HW_KPP_KDDR - Keypad Data Direction Register
  * - HW_KPP_KPDR - Keypad Data Register
  *
- * hw_kpp_t - Struct containing all module registers.
+ * - hw_kpp_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_KPP_BASE
+#define HW_KPP_INSTANCE_COUNT (1) //!< Number of instances of the KPP module.
 #define REGS_KPP_BASE (0x020b8000) //!< Base address for KPP.
 #endif
 //@}
@@ -585,12 +586,13 @@ typedef struct _hw_kpp
     volatile hw_kpp_kpdr_t KPDR; //!< Keypad Data Register
 } hw_kpp_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all KPP registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_KPP(0)</code>.
 #define HW_KPP     (*(volatile hw_kpp_t *) REGS_KPP_BASE)
 
+#endif
 
-#endif // _KPP_H
+
+#endif // __HW_KPP_REGISTERS_H__

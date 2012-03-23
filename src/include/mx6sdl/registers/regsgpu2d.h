@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _GPU2D_H
-#define _GPU2D_H
+#ifndef __HW_GPU2D_REGISTERS_H__
+#define __HW_GPU2D_REGISTERS_H__
 
 #include "regs.h"
 
@@ -50,12 +50,13 @@
  * - HW_GPU2D_MODULEPOWERMODULECONTROL - Power Level Register
  * - HW_GPU2D_MODULEPOWERMODULESTATUS - Power Status Register
  *
- * hw_gpu2d_t - Struct containing all module registers.
+ * - hw_gpu2d_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_GPU2D_BASE
+#define HW_GPU2D_INSTANCE_COUNT (1) //!< Number of instances of the GPU2D module.
 #define REGS_GPU2D_BASE (0x00134000) //!< Base address for GPU2D.
 #endif
 //@}
@@ -4334,12 +4335,13 @@ typedef struct _hw_gpu2d
     volatile hw_gpu2d_modulepowermodulestatus_t MODULEPOWERMODULESTATUS; //!< Power Status Register
 } hw_gpu2d_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all GPU2D registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_GPU2D(0)</code>.
 #define HW_GPU2D     (*(volatile hw_gpu2d_t *) REGS_GPU2D_BASE)
 
+#endif
 
-#endif // _GPU2D_H
+
+#endif // __HW_GPU2D_REGISTERS_H__

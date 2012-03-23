@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _I2C_H
-#define _I2C_H
+#ifndef __HW_I2C_REGISTERS_H__
+#define __HW_I2C_REGISTERS_H__
 
 #include "regs.h"
 
@@ -19,12 +19,13 @@
  * - HW_I2C_I2SR - I2C Status Register
  * - HW_I2C_I2DR - I2C Data I/O Register
  *
- * hw_i2c_t - Struct containing all module registers.
+ * - hw_i2c_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_I2C_BASE
+#define HW_I2C_INSTANCE_COUNT (4) //!< Number of instances of the I2C module.
 #define REGS_I2C1_BASE (0x021a0000) //!< Base address for I2C instance number 1.
 #define REGS_I2C2_BASE (0x021a4000) //!< Base address for I2C instance number 2.
 #define REGS_I2C3_BASE (0x021a8000) //!< Base address for I2C instance number 3.
@@ -695,7 +696,6 @@ typedef struct _hw_i2c
     volatile hw_i2c_i2dr_t I2DR; //!< I2C Data I/O Register
 } hw_i2c_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all I2C registers.
 //! @param x I2C instance number.
@@ -703,5 +703,7 @@ typedef struct _hw_i2c
 //!     use the '&' operator, like <code>&HW_I2C(0)</code>.
 #define HW_I2C(x)     (*(volatile hw_i2c_t *) REGS_I2C_BASE(x))
 
+#endif
 
-#endif // _I2C_H
+
+#endif // __HW_I2C_REGISTERS_H__

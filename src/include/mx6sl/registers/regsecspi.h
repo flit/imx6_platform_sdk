@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _ECSPI_H
-#define _ECSPI_H
+#ifndef __HW_ECSPI_REGISTERS_H__
+#define __HW_ECSPI_REGISTERS_H__
 
 #include "regs.h"
 
@@ -24,12 +24,13 @@
  * - HW_ECSPI_TESTREG - Test Control Register
  * - HW_ECSPI_MSGDATA - Message Data Register
  *
- * hw_ecspi_t - Struct containing all module registers.
+ * - hw_ecspi_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_ECSPI_BASE
+#define HW_ECSPI_INSTANCE_COUNT (4) //!< Number of instances of the ECSPI module.
 #define REGS_ECSPI1_BASE (0x02008000) //!< Base address for ECSPI instance number 1.
 #define REGS_ECSPI2_BASE (0x0200c000) //!< Base address for ECSPI instance number 2.
 #define REGS_ECSPI3_BASE (0x02010000) //!< Base address for ECSPI instance number 3.
@@ -1830,7 +1831,6 @@ typedef struct _hw_ecspi
     volatile hw_ecspi_msgdata_t MSGDATA; //!< Message Data Register
 } hw_ecspi_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all ECSPI registers.
 //! @param x ECSPI instance number.
@@ -1838,5 +1838,7 @@ typedef struct _hw_ecspi
 //!     use the '&' operator, like <code>&HW_ECSPI(0)</code>.
 #define HW_ECSPI(x)     (*(volatile hw_ecspi_t *) REGS_ECSPI_BASE(x))
 
+#endif
 
-#endif // _ECSPI_H
+
+#endif // __HW_ECSPI_REGISTERS_H__

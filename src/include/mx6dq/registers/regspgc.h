@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _PGC_H
-#define _PGC_H
+#ifndef __HW_PGC_REGISTERS_H__
+#define __HW_PGC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -18,12 +18,13 @@
  * - HW_PGC_PDNSCR - Pull Down Sequence Control Register
  * - HW_PGC_SR - Power Gating Controller Status Register
  *
- * hw_pgc_t - Struct containing all module registers.
+ * - hw_pgc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_PGC_BASE
+#define HW_PGC_INSTANCE_COUNT (1) //!< Number of instances of the PGC module.
 #define REGS_PGC_BASE (0x00000000) //!< Base address for PGC.
 #endif
 //@}
@@ -357,12 +358,13 @@ typedef struct _hw_pgc
     volatile hw_pgc_sr_t SR; //!< Power Gating Controller Status Register
 } hw_pgc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all PGC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_PGC(0)</code>.
 #define HW_PGC     (*(volatile hw_pgc_t *) REGS_PGC_BASE)
 
+#endif
 
-#endif // _PGC_H
+
+#endif // __HW_PGC_REGISTERS_H__

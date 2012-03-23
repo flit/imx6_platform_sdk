@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _USBNC_H
-#define _USBNC_H
+#ifndef __HW_USBNC_REGISTERS_H__
+#define __HW_USBNC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -22,12 +22,13 @@
  * - HW_USBNC_USB_OTG_PHY_CTRL_0 - OTG UTMI PHY Control 0 Register
  * - HW_USBNC_USB_UH1_PHY_CTRL_0 - Host1 UTMI PHY Control 0 Register
  *
- * hw_usbnc_t - Struct containing all module registers.
+ * - hw_usbnc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_USBNC_BASE
+#define HW_USBNC_INSTANCE_COUNT (1) //!< Number of instances of the USBNC module.
 #define REGS_USBNC_BASE (0x02184000) //!< Base address for USBNC.
 #endif
 //@}
@@ -1657,12 +1658,13 @@ typedef struct _hw_usbnc
     volatile hw_usbnc_usb_uh1_phy_ctrl_0_t USB_UH1_PHY_CTRL_0; //!< Host1 UTMI PHY Control 0 Register
 } hw_usbnc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all USBNC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_USBNC(0)</code>.
 #define HW_USBNC     (*(volatile hw_usbnc_t *) REGS_USBNC_BASE)
 
+#endif
 
-#endif // _USBNC_H
+
+#endif // __HW_USBNC_REGISTERS_H__

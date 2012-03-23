@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SATAPHY_CLOCK_H
-#define _SATAPHY_CLOCK_H
+#ifndef __HW_SATAPHY_CLOCK_REGISTERS_H__
+#define __HW_SATAPHY_CLOCK_REGISTERS_H__
 
 #include "regs.h"
 
@@ -41,12 +41,13 @@
  * - HW_SATAPHY_CLOCK_SEL_OVRD - Clock Select Override Register
  * - HW_SATAPHY_CLOCK_RESET - Reset Register
  *
- * hw_sataphy_clock_t - Struct containing all module registers.
+ * - hw_sataphy_clock_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SATAPHY_CLOCK_BASE
+#define HW_SATAPHY_CLOCK_INSTANCE_COUNT (0) //!< Number of instances of the SATAPHY_CLOCK module.
 #define REGS_SATAPHY_CLOCK_BASE (0x00000000) //!< Base address for SATAPHY_CLOCK.
 #endif
 //@}
@@ -3460,12 +3461,13 @@ typedef struct _hw_sataphy_clock
     volatile hw_sataphy_clock_reset_t RESET; //!< Reset Register
 } hw_sataphy_clock_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SATAPHY_CLOCK registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SATAPHY_CLOCK(0)</code>.
 #define HW_SATAPHY_CLOCK     (*(volatile hw_sataphy_clock_t *) REGS_SATAPHY_CLOCK_BASE)
 
+#endif
 
-#endif // _SATAPHY_CLOCK_H
+
+#endif // __HW_SATAPHY_CLOCK_REGISTERS_H__

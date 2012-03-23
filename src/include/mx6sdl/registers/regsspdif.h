@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SPDIF_H
-#define _SPDIF_H
+#ifndef __HW_SPDIF_REGISTERS_H__
+#define __HW_SPDIF_REGISTERS_H__
 
 #include "regs.h"
 
@@ -31,12 +31,13 @@
  * - HW_SPDIF_SRFM - FreqMeas Register
  * - HW_SPDIF_STC - SPDIFTxClk Register
  *
- * hw_spdif_t - Struct containing all module registers.
+ * - hw_spdif_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SPDIF_BASE
+#define HW_SPDIF_INSTANCE_COUNT (1) //!< Number of instances of the SPDIF module.
 #define REGS_SPDIF_BASE (0x02004000) //!< Base address for SPDIF.
 #endif
 //@}
@@ -2269,12 +2270,13 @@ typedef struct _hw_spdif
     volatile hw_spdif_stc_t STC; //!< SPDIFTxClk Register
 } hw_spdif_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SPDIF registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SPDIF(0)</code>.
 #define HW_SPDIF     (*(volatile hw_spdif_t *) REGS_SPDIF_BASE)
 
+#endif
 
-#endif // _SPDIF_H
+
+#endif // __HW_SPDIF_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _EIM_H
-#define _EIM_H
+#ifndef __HW_EIM_REGISTERS_H__
+#define __HW_EIM_REGISTERS_H__
 
 #include "regs.h"
 
@@ -41,12 +41,13 @@
  * - HW_EIM_WIAR - EIM IP Access Register
  * - HW_EIM_EAR - Error Address Register
  *
- * hw_eim_t - Struct containing all module registers.
+ * - hw_eim_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_EIM_BASE
+#define HW_EIM_INSTANCE_COUNT (1) //!< Number of instances of the EIM module.
 #define REGS_EIM_BASE (0x021b8000) //!< Base address for EIM.
 #endif
 //@}
@@ -8294,12 +8295,13 @@ typedef struct _hw_eim
     volatile hw_eim_ear_t EAR; //!< Error Address Register
 } hw_eim_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all EIM registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_EIM(0)</code>.
 #define HW_EIM     (*(volatile hw_eim_t *) REGS_EIM_BASE)
 
+#endif
 
-#endif // _EIM_H
+
+#endif // __HW_EIM_REGISTERS_H__

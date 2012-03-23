@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _HDMI_PHY_H
-#define _HDMI_PHY_H
+#ifndef __HW_HDMI_PHY_REGISTERS_H__
+#define __HW_HDMI_PHY_REGISTERS_H__
 
 #include "regs.h"
 
@@ -53,12 +53,13 @@
  * - HW_HDMI_PHY_SCOPECNTMSB01 - Scope Counter MSB Channel 0 and Channel 1
  * - HW_HDMI_PHY_SCOPECNTMSB2CK - Scope Counter MSB Channel 2 and Clock Channel
  *
- * hw_hdmi_phy_t - Struct containing all module registers.
+ * - hw_hdmi_phy_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_HDMI_PHY_BASE
+#define HW_HDMI_PHY_INSTANCE_COUNT (1) //!< Number of instances of the HDMI_PHY module.
 #define REGS_HDMI_PHY_BASE (0x00000000) //!< Base address for HDMI_PHY.
 #endif
 //@}
@@ -5537,12 +5538,13 @@ typedef struct _hw_hdmi_phy
     volatile hw_hdmi_phy_scopecntmsb2ck_t SCOPECNTMSB2CK; //!< Scope Counter MSB Channel 2 and Clock Channel
 } hw_hdmi_phy_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all HDMI_PHY registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_HDMI_PHY(0)</code>.
 #define HW_HDMI_PHY     (*(volatile hw_hdmi_phy_t *) REGS_HDMI_PHY_BASE)
 
+#endif
 
-#endif // _HDMI_PHY_H
+
+#endif // __HW_HDMI_PHY_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _CCM_ANALOG_H
-#define _CCM_ANALOG_H
+#ifndef __HW_CCM_ANALOG_REGISTERS_H__
+#define __HW_CCM_ANALOG_REGISTERS_H__
 
 #include "regs.h"
 
@@ -31,12 +31,13 @@
  * - HW_CCM_ANALOG_PFD_480 - 480MHz Clock Phase Fractional Divider Control Register
  * - HW_CCM_ANALOG_PFD_528 - 528MHz Clock Phase Fractional Divider Control Register
  *
- * hw_ccm_analog_t - Struct containing all module registers.
+ * - hw_ccm_analog_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_CCM_ANALOG_BASE
+#define HW_CCM_ANALOG_INSTANCE_COUNT (1) //!< Number of instances of the CCM_ANALOG module.
 #define REGS_CCM_ANALOG_BASE (0x020c8000) //!< Base address for CCM_ANALOG.
 #endif
 //@}
@@ -3680,12 +3681,13 @@ typedef struct _hw_ccm_analog
     volatile reg32_t PFD_528_TOG; //!< 528MHz Clock Phase Fractional Divider Control Register Toggle
 } hw_ccm_analog_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all CCM_ANALOG registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_CCM_ANALOG(0)</code>.
 #define HW_CCM_ANALOG     (*(volatile hw_ccm_analog_t *) REGS_CCM_ANALOG_BASE)
 
+#endif
 
-#endif // _CCM_ANALOG_H
+
+#endif // __HW_CCM_ANALOG_REGISTERS_H__

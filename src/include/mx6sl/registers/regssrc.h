@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SRC_H
-#define _SRC_H
+#ifndef __HW_SRC_REGISTERS_H__
+#define __HW_SRC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -30,12 +30,13 @@
  * - HW_SRC_GPR9 - SRC General Purpose Register 9
  * - HW_SRC_GPR10 - SRC General Purpose Register 10
  *
- * hw_src_t - Struct containing all module registers.
+ * - hw_src_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SRC_BASE
+#define HW_SRC_INSTANCE_COUNT (1) //!< Number of instances of the SRC module.
 #define REGS_SRC_BASE (0x020d8000) //!< Base address for SRC.
 #endif
 //@}
@@ -1957,12 +1958,13 @@ typedef struct _hw_src
     volatile hw_src_gpr10_t GPR10; //!< SRC General Purpose Register 10
 } hw_src_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SRC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SRC(0)</code>.
 #define HW_SRC     (*(volatile hw_src_t *) REGS_SRC_BASE)
 
+#endif
 
-#endif // _SRC_H
+
+#endif // __HW_SRC_REGISTERS_H__

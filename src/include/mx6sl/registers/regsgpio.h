@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _GPIO_H
-#define _GPIO_H
+#ifndef __HW_GPIO_REGISTERS_H__
+#define __HW_GPIO_REGISTERS_H__
 
 #include "regs.h"
 
@@ -22,12 +22,13 @@
  * - HW_GPIO_ISR - GPIO interrupt status register
  * - HW_GPIO_EDGE_SEL - GPIO edge select register
  *
- * hw_gpio_t - Struct containing all module registers.
+ * - hw_gpio_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_GPIO_BASE
+#define HW_GPIO_INSTANCE_COUNT (7) //!< Number of instances of the GPIO module.
 #define REGS_GPIO1_BASE (0x0209c000) //!< Base address for GPIO instance number 1.
 #define REGS_GPIO2_BASE (0x020a0000) //!< Base address for GPIO instance number 2.
 #define REGS_GPIO3_BASE (0x020a4000) //!< Base address for GPIO instance number 3.
@@ -1612,7 +1613,6 @@ typedef struct _hw_gpio
     volatile hw_gpio_edge_sel_t EDGE_SEL; //!< GPIO edge select register
 } hw_gpio_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all GPIO registers.
 //! @param x GPIO instance number.
@@ -1620,5 +1620,7 @@ typedef struct _hw_gpio
 //!     use the '&' operator, like <code>&HW_GPIO(0)</code>.
 #define HW_GPIO(x)     (*(volatile hw_gpio_t *) REGS_GPIO_BASE(x))
 
+#endif
 
-#endif // _GPIO_H
+
+#endif // __HW_GPIO_REGISTERS_H__

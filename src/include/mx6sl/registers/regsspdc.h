@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SPDC_H
-#define _SPDC_H
+#ifndef __HW_SPDC_REGISTERS_H__
+#define __HW_SPDC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -18,7 +18,7 @@
  * - HW_SPDC_EPD_UPDATE_W_H - Display Area Size
  * - HW_SPDC_EPD_LUT_PARA_UPDATE - LUT Parameter Update
  * - HW_SPDC_EPD_OPERATE - Display Normal Operation
- * - HW_SPDC_EPD_PANEL_INIT_SET - TCON Initial Setting
+ * - HW_SPDC_EPD_PANEL_INIT_SET - SPDC Initial Setting
  * - HW_SPDC_EPD_TEMPER_SETTING - Environment Temperature
  * - HW_SPDC_EPD_NEXT_BUF - Next Frame Memory Address
  * - HW_SPDC_EPD_CURRENT_BUF - Current Frame Memory Address
@@ -27,17 +27,18 @@
  * - HW_SPDC_EPD_LUT_BUFF - LUT Memory Address
  * - HW_SPDC_EPD_INT_EN - Interrupt Enable
  * - HW_SPDC_EPD_INT_ST_CLR - Interrupt Status & Clear
- * - HW_SPDC_EPD_STATUS - TCON Operation Status
+ * - HW_SPDC_EPD_STATUS - SPDC Operation Status
  * - HW_SPDC_EPD_PANEL_TYPE_VER - Panel Type Related Information
- * - HW_SPDC_EPD_TCON_VER - TCON IP Version
+ * - HW_SPDC_EPD_TCON_VER - SPDC IP Version
  * - HW_SPDC_EPD_SW_GATE_CLK - All Clock Gating Enable
  *
- * hw_spdc_t - Struct containing all module registers.
+ * - hw_spdc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SPDC_BASE
+#define HW_SPDC_INSTANCE_COUNT (1) //!< Number of instances of the SPDC module.
 #define REGS_SPDC_BASE (0x020e8000) //!< Base address for SPDC.
 #endif
 //@}
@@ -563,7 +564,7 @@ typedef union _hw_spdc_epd_operate
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SPDC_EPD_PANEL_INIT_SET - TCON Initial Setting (RW)
+ * @brief HW_SPDC_EPD_PANEL_INIT_SET - SPDC Initial Setting (RW)
  *
  * Reset value: 0x00002000
  *
@@ -604,7 +605,7 @@ typedef union _hw_spdc_epd_panel_init_set
     {
         unsigned YOE_POL : 1; //!< [0] Set the YOE signal's polarity of gate driver IC 0x0 LOW_ENABLE -Gate pulse outputs low enable. 0x1 HIGH_ENABLE -Gate pulse outputs high enable.
         unsigned DUAL_GATE : 1; //!< [1] Set to enable the panel type of dual gate driver 0x0 SINGLE_GATE -Single gate driver (support gate driver K7900). 0x1 DOUBLE_GATE -Double side gate driver (support gate driver MEXI2300)
-        unsigned RESOLUTION : 5; //!< [6:2] Set the panel resolution GRAY_MODE - Please reference the Table 1-3 RGBW_MODE -Please reference the Table 1-4
+        unsigned RESOLUTION : 5; //!< [6:2] Set the panel resolution GRAY_MODE - Please reference the Table 45-12 RGBW_MODE -Please reference the Table 45-13
         unsigned UD : 1; //!< [7] Select gate driver IC scanning direction up or down. 0x0 DOWN -Scan down; First line=Gm◊ Gm-1 ◊…◊ G2 ◊ Last line=G1. 0x1 UP -Scan up; First line=G1 ◊ G2 ◊ … ◊ Gm-1 ◊ Last line=Gm.
         unsigned RL : 1; //!< [8] Select source driver IC scanning direction right or left. 0x0 LEFT -Shift left; First data=Sn ◊ Sn-1 ◊ …◊ S2 ◊ Last data=S1. 0x1 RIGHT -Shift right: First data=S1◊ S2 ◊ …◊ Sn-1 ◊ Last data=Sn.
         unsigned DATA_FILTER_N : 1; //!< [9] Automatic filter input image pixel data base on the display mode 0x0 ENABLE_AUTO_DATA_FILTER -Filter input data 16-step gray to 4-step gray data for mode 2 and mode 3. Filter input data 16-step gray to 2-step gray for mode 4 and mode 5 0x1 DISABLE_AUTO_DATA_FILTER- It will not be automatic filter the input image data
@@ -687,8 +688,8 @@ typedef union _hw_spdc_epd_panel_init_set
 
 /* --- Register HW_SPDC_EPD_PANEL_INIT_SET, field RESOLUTION[6:2] (RW)
  *
- * Set the panel resolution GRAY_MODE - Please reference the Table 1-3 RGBW_MODE -Please reference
- * the Table 1-4
+ * Set the panel resolution GRAY_MODE - Please reference the Table 45-12 RGBW_MODE -Please reference
+ * the Table 45-13
  */
 
 #define BP_SPDC_EPD_PANEL_INIT_SET_RESOLUTION      (2)      //!< Bit position for SPDC_EPD_PANEL_INIT_SET_RESOLUTION.
@@ -879,7 +880,7 @@ typedef union _hw_spdc_epd_temper_setting
     reg32_t U;
     struct _hw_spdc_epd_temper_setting_bitfields
     {
-        unsigned TEMPERATURE : 9; //!< [8:0] Update TCON temperature information Temperature Information is used to indicate the temperature of operating environment. TCON IP will search the LUT for a suitable value according to the temperature information. The Table 1-5 is shown the temperature mapping table. (in two's complement format)
+        unsigned TEMPERATURE : 9; //!< [8:0] Update TCON temperature information Temperature Information is used to indicate the temperature of operating environment. TCON IP will search the LUT for a suitable value according to the temperature information. The Table 45-15 is shown the temperature mapping table. (in two's complement format)
         unsigned RESERVED0 : 23; //!< [31:9] Reserved
     } B;
 } hw_spdc_epd_temper_setting_t;
@@ -907,7 +908,7 @@ typedef union _hw_spdc_epd_temper_setting
  *
  * Update TCON temperature information Temperature Information is used to indicate the temperature
  * of operating environment. TCON IP will search the LUT for a suitable value according to the
- * temperature information. The Table 1-5 is shown the temperature mapping table. (in two's
+ * temperature information. The Table 45-15 is shown the temperature mapping table. (in two's
  * complement format)
  */
 
@@ -1518,7 +1519,7 @@ typedef union _hw_spdc_epd_int_st_clr
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SPDC_EPD_STATUS - TCON Operation Status (RO)
+ * @brief HW_SPDC_EPD_STATUS - SPDC Operation Status (RO)
  *
  * Reset value: 0x00000000
  *
@@ -1667,7 +1668,7 @@ typedef union _hw_spdc_epd_panel_type_ver
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SPDC_EPD_TCON_VER - TCON IP Version (RO)
+ * @brief HW_SPDC_EPD_TCON_VER - SPDC IP Version (RO)
  *
  * Reset value: 0x00000000
  *
@@ -1785,7 +1786,7 @@ typedef struct _hw_spdc
     volatile hw_spdc_epd_update_w_h_t EPD_UPDATE_W_H; //!< Display Area Size
     volatile hw_spdc_epd_lut_para_update_t EPD_LUT_PARA_UPDATE; //!< LUT Parameter Update
     volatile hw_spdc_epd_operate_t EPD_OPERATE; //!< Display Normal Operation
-    volatile hw_spdc_epd_panel_init_set_t EPD_PANEL_INIT_SET; //!< TCON Initial Setting
+    volatile hw_spdc_epd_panel_init_set_t EPD_PANEL_INIT_SET; //!< SPDC Initial Setting
     volatile hw_spdc_epd_temper_setting_t EPD_TEMPER_SETTING; //!< Environment Temperature
     volatile hw_spdc_epd_next_buf_t EPD_NEXT_BUF; //!< Next Frame Memory Address
     volatile hw_spdc_epd_current_buf_t EPD_CURRENT_BUF; //!< Current Frame Memory Address
@@ -1795,18 +1796,19 @@ typedef struct _hw_spdc
     volatile hw_spdc_epd_int_en_t EPD_INT_EN; //!< Interrupt Enable
     volatile hw_spdc_epd_int_st_clr_t EPD_INT_ST_CLR; //!< Interrupt Status & Clear
     reg32_t _reserved0;
-    volatile hw_spdc_epd_status_t EPD_STATUS; //!< TCON Operation Status
+    volatile hw_spdc_epd_status_t EPD_STATUS; //!< SPDC Operation Status
     volatile hw_spdc_epd_panel_type_ver_t EPD_PANEL_TYPE_VER; //!< Panel Type Related Information
-    volatile hw_spdc_epd_tcon_ver_t EPD_TCON_VER; //!< TCON IP Version
+    volatile hw_spdc_epd_tcon_ver_t EPD_TCON_VER; //!< SPDC IP Version
     volatile hw_spdc_epd_sw_gate_clk_t EPD_SW_GATE_CLK; //!< All Clock Gating Enable
 } hw_spdc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SPDC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SPDC(0)</code>.
 #define HW_SPDC     (*(volatile hw_spdc_t *) REGS_SPDC_BASE)
 
+#endif
 
-#endif // _SPDC_H
+
+#endif // __HW_SPDC_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _WDOG_H
-#define _WDOG_H
+#ifndef __HW_WDOG_REGISTERS_H__
+#define __HW_WDOG_REGISTERS_H__
 
 #include "regs.h"
 
@@ -19,12 +19,13 @@
  * - HW_WDOG_WICR - Watchdog Interrupt Control Register
  * - HW_WDOG_WMCR - Watchdog Miscellaneous Control Register
  *
- * hw_wdog_t - Struct containing all module registers.
+ * - hw_wdog_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_WDOG_BASE
+#define HW_WDOG_INSTANCE_COUNT (2) //!< Number of instances of the WDOG module.
 #define REGS_WDOG1_BASE (0x020bc000) //!< Base address for WDOG instance number 1.
 #define REGS_WDOG2_BASE (0x020c0000) //!< Base address for WDOG instance number 2.
 
@@ -720,7 +721,6 @@ typedef struct _hw_wdog
     volatile hw_wdog_wmcr_t WMCR; //!< Watchdog Miscellaneous Control Register
 } hw_wdog_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all WDOG registers.
 //! @param x WDOG instance number.
@@ -728,5 +728,7 @@ typedef struct _hw_wdog
 //!     use the '&' operator, like <code>&HW_WDOG(0)</code>.
 #define HW_WDOG(x)     (*(volatile hw_wdog_t *) REGS_WDOG_BASE(x))
 
+#endif
 
-#endif // _WDOG_H
+
+#endif // __HW_WDOG_REGISTERS_H__

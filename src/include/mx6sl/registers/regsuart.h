@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _UART_H
-#define _UART_H
+#ifndef __HW_UART_REGISTERS_H__
+#define __HW_UART_REGISTERS_H__
 
 #include "regs.h"
 
@@ -31,12 +31,13 @@
  * - HW_UART_UTS - UART Test Register
  * - HW_UART_UMCR - UART RS-485 Mode Control Register
  *
- * hw_uart_t - Struct containing all module registers.
+ * - hw_uart_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_UART_BASE
+#define HW_UART_INSTANCE_COUNT (5) //!< Number of instances of the UART module.
 #define REGS_UART1_BASE (0x02020000) //!< Base address for UART instance number 1.
 #define REGS_UART2_BASE (0x021e8000) //!< Base address for UART instance number 2.
 #define REGS_UART3_BASE (0x021ec000) //!< Base address for UART instance number 3.
@@ -4238,7 +4239,6 @@ typedef struct _hw_uart
     volatile hw_uart_umcr_t UMCR; //!< UART RS-485 Mode Control Register
 } hw_uart_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all UART registers.
 //! @param x UART instance number.
@@ -4246,5 +4246,7 @@ typedef struct _hw_uart
 //!     use the '&' operator, like <code>&HW_UART(0)</code>.
 #define HW_UART(x)     (*(volatile hw_uart_t *) REGS_UART_BASE(x))
 
+#endif
 
-#endif // _UART_H
+
+#endif // __HW_UART_REGISTERS_H__

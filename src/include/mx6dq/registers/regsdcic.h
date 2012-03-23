@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _DCIC_H
-#define _DCIC_H
+#ifndef __HW_DCIC_REGISTERS_H__
+#define __HW_DCIC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -21,12 +21,13 @@
  * - HW_DCIC_DCICRRS - DCIC ROI Reference Signature Register m
  * - HW_DCIC_DCICRCS - DCIC ROI Calculated Signature m
  *
- * hw_dcic_t - Struct containing all module registers.
+ * - hw_dcic_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_DCIC_BASE
+#define HW_DCIC_INSTANCE_COUNT (2) //!< Number of instances of the DCIC module.
 #define REGS_DCIC1_BASE (0x020e4000) //!< Base address for DCIC instance number 1.
 #define REGS_DCIC2_BASE (0x020e8000) //!< Base address for DCIC instance number 2.
 
@@ -853,7 +854,6 @@ typedef struct _hw_dcic
     volatile hw_dcic_dcicrcs_t DCICRCS; //!< DCIC ROI Calculated Signature m
 } hw_dcic_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all DCIC registers.
 //! @param x DCIC instance number.
@@ -861,5 +861,7 @@ typedef struct _hw_dcic
 //!     use the '&' operator, like <code>&HW_DCIC(0)</code>.
 #define HW_DCIC(x)     (*(volatile hw_dcic_t *) REGS_DCIC_BASE(x))
 
+#endif
 
-#endif // _DCIC_H
+
+#endif // __HW_DCIC_REGISTERS_H__

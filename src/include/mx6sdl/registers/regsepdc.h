@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _EPDC_H
-#define _EPDC_H
+#ifndef __HW_EPDC_REGISTERS_H__
+#define __HW_EPDC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -119,12 +119,13 @@
  * - HW_EPDC_HW_EPDC_PIGEON_16_1 - Panel Interface Signal Generator Register 16_1
  * - HW_EPDC_HW_EPDC_PIGEON_16_2 - Panel Interface Signal Generator Register 16_1
  *
- * hw_epdc_t - Struct containing all module registers.
+ * - hw_epdc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_EPDC_BASE
+#define HW_EPDC_INSTANCE_COUNT (1) //!< Number of instances of the EPDC module.
 #define REGS_EPDC_BASE (0x020f4000) //!< Base address for EPDC.
 #endif
 //@}
@@ -14456,12 +14457,13 @@ typedef struct _hw_epdc
     volatile hw_epdc_hw_epdc_pigeon_16_2_t HW_EPDC_PIGEON_16_2; //!< Panel Interface Signal Generator Register 16_1
 } hw_epdc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all EPDC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_EPDC(0)</code>.
 #define HW_EPDC     (*(volatile hw_epdc_t *) REGS_EPDC_BASE)
 
+#endif
 
-#endif // _EPDC_H
+
+#endif // __HW_EPDC_REGISTERS_H__

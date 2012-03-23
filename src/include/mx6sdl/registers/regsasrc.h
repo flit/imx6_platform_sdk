@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _ASRC_H
-#define _ASRC_H
+#ifndef __HW_ASRC_REGISTERS_H__
+#define __HW_ASRC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -52,12 +52,13 @@
  * - HW_ASRC_ASRMCR1B - ASRC Misc Control Register 1 for Pair X
  * - HW_ASRC_ASRMCR1C - ASRC Misc Control Register 1 for Pair X
  *
- * hw_asrc_t - Struct containing all module registers.
+ * - hw_asrc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_ASRC_BASE
+#define HW_ASRC_INSTANCE_COUNT (1) //!< Number of instances of the ASRC module.
 #define REGS_ASRC_BASE (0x02034000) //!< Base address for ASRC.
 #endif
 //@}
@@ -5897,12 +5898,13 @@ typedef struct _hw_asrc
     volatile hw_asrc_asrmcr1c_t ASRMCR1C; //!< ASRC Misc Control Register 1 for Pair X
 } hw_asrc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all ASRC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_ASRC(0)</code>.
 #define HW_ASRC     (*(volatile hw_asrc_t *) REGS_ASRC_BASE)
 
+#endif
 
-#endif // _ASRC_H
+
+#endif // __HW_ASRC_REGISTERS_H__

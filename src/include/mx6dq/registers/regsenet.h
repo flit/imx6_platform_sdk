@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _ENET_H
-#define _ENET_H
+#ifndef __HW_ENET_REGISTERS_H__
+#define __HW_ENET_REGISTERS_H__
 
 #include "regs.h"
 
@@ -53,12 +53,13 @@
  * - HW_ENET_ATINC - Time-Stamping Clock Period Register
  * - HW_ENET_ATSTMP - Timestamp of Last Transmitted Frame
  *
- * hw_enet_t - Struct containing all module registers.
+ * - hw_enet_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_ENET_BASE
+#define HW_ENET_INSTANCE_COUNT (1) //!< Number of instances of the ENET module.
 #define REGS_ENET_BASE (0x02188000) //!< Base address for ENET.
 #endif
 //@}
@@ -4812,12 +4813,13 @@ typedef struct _hw_enet
     volatile hw_enet_atstmp_t ATSTMP; //!< Timestamp of Last Transmitted Frame
 } hw_enet_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all ENET registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_ENET(0)</code>.
 #define HW_ENET     (*(volatile hw_enet_t *) REGS_ENET_BASE)
 
+#endif
 
-#endif // _ENET_H
+
+#endif // __HW_ENET_REGISTERS_H__

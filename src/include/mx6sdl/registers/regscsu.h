@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _CSU_H
-#define _CSU_H
+#ifndef __HW_CSU_REGISTERS_H__
+#define __HW_CSU_REGISTERS_H__
 
 #include "regs.h"
 
@@ -59,12 +59,13 @@
  * - HW_CSU_HPCONTROL0 - HPCONTROL0 register
  * - HW_CSU_HPCONTROL1 - HPCONTROL1 register
  *
- * hw_csu_t - Struct containing all module registers.
+ * - hw_csu_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_CSU_BASE
+#define HW_CSU_INSTANCE_COUNT (1) //!< Number of instances of the CSU module.
 #define REGS_CSU_BASE (0x021c0000) //!< Base address for CSU.
 #endif
 //@}
@@ -93,8 +94,8 @@
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -103,21 +104,22 @@
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl0
 {
@@ -712,8 +714,8 @@ typedef union _hw_csu_csl0
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -722,21 +724,22 @@ typedef union _hw_csu_csl0
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl1
 {
@@ -1331,8 +1334,8 @@ typedef union _hw_csu_csl1
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -1341,21 +1344,22 @@ typedef union _hw_csu_csl1
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl2
 {
@@ -1950,8 +1954,8 @@ typedef union _hw_csu_csl2
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -1960,21 +1964,22 @@ typedef union _hw_csu_csl2
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl3
 {
@@ -2569,8 +2574,8 @@ typedef union _hw_csu_csl3
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -2579,21 +2584,22 @@ typedef union _hw_csu_csl3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl4
 {
@@ -3188,8 +3194,8 @@ typedef union _hw_csu_csl4
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -3198,21 +3204,22 @@ typedef union _hw_csu_csl4
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl5
 {
@@ -3807,8 +3814,8 @@ typedef union _hw_csu_csl5
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -3817,21 +3824,22 @@ typedef union _hw_csu_csl5
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl6
 {
@@ -4426,8 +4434,8 @@ typedef union _hw_csu_csl6
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -4436,21 +4444,22 @@ typedef union _hw_csu_csl6
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl7
 {
@@ -5045,8 +5054,8 @@ typedef union _hw_csu_csl7
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -5055,21 +5064,22 @@ typedef union _hw_csu_csl7
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl8
 {
@@ -5664,8 +5674,8 @@ typedef union _hw_csu_csl8
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -5674,21 +5684,22 @@ typedef union _hw_csu_csl8
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl9
 {
@@ -6283,8 +6294,8 @@ typedef union _hw_csu_csl9
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -6293,21 +6304,22 @@ typedef union _hw_csu_csl9
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl10
 {
@@ -6902,8 +6914,8 @@ typedef union _hw_csu_csl10
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -6912,21 +6924,22 @@ typedef union _hw_csu_csl10
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl11
 {
@@ -7521,8 +7534,8 @@ typedef union _hw_csu_csl11
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -7531,21 +7544,22 @@ typedef union _hw_csu_csl11
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl12
 {
@@ -8140,8 +8154,8 @@ typedef union _hw_csu_csl12
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -8150,21 +8164,22 @@ typedef union _hw_csu_csl12
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl13
 {
@@ -8759,8 +8774,8 @@ typedef union _hw_csu_csl13
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -8769,21 +8784,22 @@ typedef union _hw_csu_csl13
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl14
 {
@@ -9378,8 +9394,8 @@ typedef union _hw_csu_csl14
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -9388,21 +9404,22 @@ typedef union _hw_csu_csl14
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl15
 {
@@ -9997,8 +10014,8 @@ typedef union _hw_csu_csl15
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -10007,21 +10024,22 @@ typedef union _hw_csu_csl15
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl16
 {
@@ -10616,8 +10634,8 @@ typedef union _hw_csu_csl16
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -10626,21 +10644,22 @@ typedef union _hw_csu_csl16
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl17
 {
@@ -11235,8 +11254,8 @@ typedef union _hw_csu_csl17
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -11245,21 +11264,22 @@ typedef union _hw_csu_csl17
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl18
 {
@@ -11854,8 +11874,8 @@ typedef union _hw_csu_csl18
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -11864,21 +11884,22 @@ typedef union _hw_csu_csl18
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl19
 {
@@ -12473,8 +12494,8 @@ typedef union _hw_csu_csl19
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -12483,21 +12504,22 @@ typedef union _hw_csu_csl19
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl20
 {
@@ -13092,8 +13114,8 @@ typedef union _hw_csu_csl20
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -13102,21 +13124,22 @@ typedef union _hw_csu_csl20
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl21
 {
@@ -13711,8 +13734,8 @@ typedef union _hw_csu_csl21
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -13721,21 +13744,22 @@ typedef union _hw_csu_csl21
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl22
 {
@@ -14330,8 +14354,8 @@ typedef union _hw_csu_csl22
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -14340,21 +14364,22 @@ typedef union _hw_csu_csl22
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl23
 {
@@ -14949,8 +14974,8 @@ typedef union _hw_csu_csl23
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -14959,21 +14984,22 @@ typedef union _hw_csu_csl23
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl24
 {
@@ -15568,8 +15594,8 @@ typedef union _hw_csu_csl24
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -15578,21 +15604,22 @@ typedef union _hw_csu_csl24
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl25
 {
@@ -16187,8 +16214,8 @@ typedef union _hw_csu_csl25
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -16197,21 +16224,22 @@ typedef union _hw_csu_csl25
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl26
 {
@@ -16806,8 +16834,8 @@ typedef union _hw_csu_csl26
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -16816,21 +16844,22 @@ typedef union _hw_csu_csl26
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl27
 {
@@ -17425,8 +17454,8 @@ typedef union _hw_csu_csl27
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -17435,21 +17464,22 @@ typedef union _hw_csu_csl27
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl28
 {
@@ -18044,8 +18074,8 @@ typedef union _hw_csu_csl28
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -18054,21 +18084,22 @@ typedef union _hw_csu_csl28
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl29
 {
@@ -18663,8 +18694,8 @@ typedef union _hw_csu_csl29
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -18673,21 +18704,22 @@ typedef union _hw_csu_csl29
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl30
 {
@@ -19282,8 +19314,8 @@ typedef union _hw_csu_csl30
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -19292,21 +19324,22 @@ typedef union _hw_csu_csl30
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl31
 {
@@ -19901,8 +19934,8 @@ typedef union _hw_csu_csl31
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -19911,21 +19944,22 @@ typedef union _hw_csu_csl31
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl32
 {
@@ -20520,8 +20554,8 @@ typedef union _hw_csu_csl32
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -20530,21 +20564,22 @@ typedef union _hw_csu_csl32
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl33
 {
@@ -21139,8 +21174,8 @@ typedef union _hw_csu_csl33
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -21149,21 +21184,22 @@ typedef union _hw_csu_csl33
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl34
 {
@@ -21758,8 +21794,8 @@ typedef union _hw_csu_csl34
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -21768,21 +21804,22 @@ typedef union _hw_csu_csl34
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl35
 {
@@ -22377,8 +22414,8 @@ typedef union _hw_csu_csl35
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -22387,21 +22424,22 @@ typedef union _hw_csu_csl35
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl36
 {
@@ -22996,8 +23034,8 @@ typedef union _hw_csu_csl36
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -23006,21 +23044,22 @@ typedef union _hw_csu_csl36
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl37
 {
@@ -23615,8 +23654,8 @@ typedef union _hw_csu_csl37
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -23625,21 +23664,22 @@ typedef union _hw_csu_csl37
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl38
 {
@@ -24234,8 +24274,8 @@ typedef union _hw_csu_csl38
  * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
  * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
  * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only  LCDIF for i.MX6SDL only  PXP for
- * i.MX6SDL only    CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
+ * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
+ * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
@@ -24244,21 +24284,22 @@ typedef union _hw_csu_csl38
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
  * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL    CSL20 [23:16]       UART1    CSL21 [7:0]       ESAI1
- * CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23 [7:0]
- * ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24 [23:16]
- * Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]       CAAM
- * CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]
- * SATA  Reserved for i.MX6SDL    CSL28 [23:16]       OPENVG  Reserved for i.MX6SDL    CSL29 [7:0]
- * ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30 [7:0]
- * IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL    CSL31 [7:0]       WEIM    CSL31
- * [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
- * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
- * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL only    CSL36 [7:0]
- * DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]
- * Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved
- * CSL39 [23:16]        Do not modify the following peripherals' CSL register bits while they are
- * being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
+ * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
+ * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
+ * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
+ * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
+ * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
+ * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
+ * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
+ * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
+ * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
+ * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
+ * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
+ * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
+ * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
+ * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
+ * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
+ * APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl39
 {
@@ -27811,12 +27852,13 @@ typedef struct _hw_csu
     volatile hw_csu_hpcontrol1_t HPCONTROL1; //!< HPCONTROL1 register
 } hw_csu_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all CSU registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_CSU(0)</code>.
 #define HW_CSU     (*(volatile hw_csu_t *) REGS_CSU_BASE)
 
+#endif
 
-#endif // _CSU_H
+
+#endif // __HW_CSU_REGISTERS_H__

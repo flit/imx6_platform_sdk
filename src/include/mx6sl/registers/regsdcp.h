@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _DCP_H
-#define _DCP_H
+#ifndef __HW_DCP_REGISTERS_H__
+#define __HW_DCP_REGISTERS_H__
 
 #include "regs.h"
 
@@ -49,12 +49,13 @@
  * - HW_DCP_PAGETABLE - DCP Page Table Register
  * - HW_DCP_VERSION - DCP Version Register
  *
- * hw_dcp_t - Struct containing all module registers.
+ * - hw_dcp_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_DCP_BASE
+#define HW_DCP_INSTANCE_COUNT (1) //!< Number of instances of the DCP module.
 #define REGS_DCP_BASE (0x020fc000) //!< Base address for DCP.
 #endif
 //@}
@@ -4054,12 +4055,13 @@ typedef struct _hw_dcp
     volatile hw_dcp_version_t VERSION; //!< DCP Version Register
 } hw_dcp_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all DCP registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_DCP(0)</code>.
 #define HW_DCP     (*(volatile hw_dcp_t *) REGS_DCP_BASE)
 
+#endif
 
-#endif // _DCP_H
+
+#endif // __HW_DCP_REGISTERS_H__

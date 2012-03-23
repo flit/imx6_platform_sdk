@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _EPIT_H
-#define _EPIT_H
+#ifndef __HW_EPIT_REGISTERS_H__
+#define __HW_EPIT_REGISTERS_H__
 
 #include "regs.h"
 
@@ -19,12 +19,13 @@
  * - HW_EPIT_EPITCMPR - Compare register
  * - HW_EPIT_EPITCNR - Counter register
  *
- * hw_epit_t - Struct containing all module registers.
+ * - hw_epit_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_EPIT_BASE
+#define HW_EPIT_INSTANCE_COUNT (2) //!< Number of instances of the EPIT module.
 #define REGS_EPIT1_BASE (0x020d0000) //!< Base address for EPIT instance number 1.
 #define REGS_EPIT2_BASE (0x020d4000) //!< Base address for EPIT instance number 2.
 
@@ -725,7 +726,6 @@ typedef struct _hw_epit
     volatile hw_epit_epitcnr_t EPITCNR; //!< Counter register
 } hw_epit_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all EPIT registers.
 //! @param x EPIT instance number.
@@ -733,5 +733,7 @@ typedef struct _hw_epit
 //!     use the '&' operator, like <code>&HW_EPIT(0)</code>.
 #define HW_EPIT(x)     (*(volatile hw_epit_t *) REGS_EPIT_BASE(x))
 
+#endif
 
-#endif // _EPIT_H
+
+#endif // __HW_EPIT_REGISTERS_H__

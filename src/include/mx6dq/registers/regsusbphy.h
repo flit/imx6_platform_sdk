@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _USB_PHY_H
-#define _USB_PHY_H
+#ifndef __HW_USB_PHY_REGISTERS_H__
+#define __HW_USB_PHY_REGISTERS_H__
 
 #include "regs.h"
 
@@ -23,12 +23,13 @@
  * - HW_USB_PHY_DEBUG1 - UTMI Debug Status Register 1
  * - HW_USB_PHY_VERSION - UTMI RTL Version
  *
- * hw_usb_phy_t - Struct containing all module registers.
+ * - hw_usb_phy_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_USB_PHY_BASE
+#define HW_USB_PHY_INSTANCE_COUNT (2) //!< Number of instances of the USB_PHY module.
 #define REGS_USB_PHY1_BASE (0x020c9000) //!< Base address for USB_PHY instance number 1.
 #define REGS_USB_PHY2_BASE (0x020ca000) //!< Base address for USB_PHY instance number 2.
 
@@ -1949,7 +1950,6 @@ typedef struct _hw_usb_phy
     volatile hw_usb_phy_version_t VERSION; //!< UTMI RTL Version
 } hw_usb_phy_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all USB_PHY registers.
 //! @param x USB_PHY instance number.
@@ -1957,5 +1957,7 @@ typedef struct _hw_usb_phy
 //!     use the '&' operator, like <code>&HW_USB_PHY(0)</code>.
 #define HW_USB_PHY(x)     (*(volatile hw_usb_phy_t *) REGS_USB_PHY_BASE(x))
 
+#endif
 
-#endif // _USB_PHY_H
+
+#endif // __HW_USB_PHY_REGISTERS_H__

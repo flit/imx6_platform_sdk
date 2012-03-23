@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SDMABP_H
-#define _SDMABP_H
+#ifndef __HW_SDMABP_REGISTERS_H__
+#define __HW_SDMABP_REGISTERS_H__
 
 #include "regs.h"
 
@@ -21,12 +21,13 @@
  * - HW_SDMABP_INTRMASK - Channel DSP Interrupt Mask
  * - HW_SDMABP_EVTERRDBG - DMA Request Error Register
  *
- * hw_sdmabp_t - Struct containing all module registers.
+ * - hw_sdmabp_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SDMABP_BASE
+#define HW_SDMABP_INSTANCE_COUNT (1) //!< Number of instances of the SDMABP module.
 #define REGS_SDMABP_BASE (0x020ec000) //!< Base address for SDMABP.
 #endif
 //@}
@@ -452,12 +453,13 @@ typedef struct _hw_sdmabp
     volatile hw_sdmabp_evterrdbg_t EVTERRDBG; //!< DMA Request Error Register
 } hw_sdmabp_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SDMABP registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SDMABP(0)</code>.
 #define HW_SDMABP     (*(volatile hw_sdmabp_t *) REGS_SDMABP_BASE)
 
+#endif
 
-#endif // _SDMABP_H
+
+#endif // __HW_SDMABP_REGISTERS_H__

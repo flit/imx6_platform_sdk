@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _PCIE_PHY_H
-#define _PCIE_PHY_H
+#ifndef __HW_PCIE_PHY_REGISTERS_H__
+#define __HW_PCIE_PHY_REGISTERS_H__
 
 #include "regs.h"
 
@@ -92,12 +92,13 @@
  * - HW_PCIE_PHY_TX_ALT_AND_LOOPBACK - 
  * - HW_PCIE_PHY_TX_TX_ATB_REG - 
  *
- * hw_pcie_phy_t - Struct containing all module registers.
+ * - hw_pcie_phy_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_PCIE_PHY_BASE
+#define HW_PCIE_PHY_INSTANCE_COUNT (1) //!< Number of instances of the PCIE_PHY module.
 #define REGS_PCIE_PHY_BASE (0x00000000) //!< Base address for PCIE_PHY.
 #endif
 //@}
@@ -11454,12 +11455,13 @@ typedef struct _hw_pcie_phy
     volatile hw_pcie_phy_tx_tx_atb_reg_t TX_TX_ATB_REG; //!< 
 } hw_pcie_phy_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all PCIE_PHY registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_PCIE_PHY(0)</code>.
 #define HW_PCIE_PHY     (*(volatile hw_pcie_phy_t *) REGS_PCIE_PHY_BASE)
 
+#endif
 
-#endif // _PCIE_PHY_H
+
+#endif // __HW_PCIE_PHY_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _VDOA_H
-#define _VDOA_H
+#ifndef __HW_VDOA_REGISTERS_H__
+#define __HW_VDOA_REGISTERS_H__
 
 #include "regs.h"
 
@@ -32,12 +32,13 @@
  * - HW_VDOA_VDOAVUBO - VDOA VPU U (Chroma) Buffer Offset Register
  * - HW_VDOA_VDOASR - VDOA Status Register
  *
- * hw_vdoa_t - Struct containing all module registers.
+ * - hw_vdoa_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_VDOA_BASE
+#define HW_VDOA_INSTANCE_COUNT (1) //!< Number of instances of the VDOA module.
 #define REGS_VDOA_BASE (0x021e4000) //!< Base address for VDOA.
 #endif
 //@}
@@ -1527,12 +1528,13 @@ typedef struct _hw_vdoa
     volatile hw_vdoa_vdoasr_t VDOASR; //!< VDOA Status Register
 } hw_vdoa_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all VDOA registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_VDOA(0)</code>.
 #define HW_VDOA     (*(volatile hw_vdoa_t *) REGS_VDOA_BASE)
 
+#endif
 
-#endif // _VDOA_H
+
+#endif // __HW_VDOA_REGISTERS_H__

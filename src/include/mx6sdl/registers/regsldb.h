@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _LDB_H
-#define _LDB_H
+#ifndef __HW_LDB_REGISTERS_H__
+#define __HW_LDB_REGISTERS_H__
 
 #include "regs.h"
 
@@ -15,12 +15,13 @@
  *
  * - HW_LDB_CTRL - LDB Control Register
  *
- * hw_ldb_t - Struct containing all module registers.
+ * - hw_ldb_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_LDB_BASE
+#define HW_LDB_INSTANCE_COUNT (1) //!< Number of instances of the LDB module.
 #define REGS_LDB_BASE (0x00000000) //!< Base address for LDB.
 #endif
 //@}
@@ -451,12 +452,13 @@ typedef struct _hw_ldb
     volatile hw_ldb_ctrl_t CTRL; //!< LDB Control Register
 } hw_ldb_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all LDB registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_LDB(0)</code>.
 #define HW_LDB     (*(volatile hw_ldb_t *) REGS_LDB_BASE)
 
+#endif
 
-#endif // _LDB_H
+
+#endif // __HW_LDB_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _MIPI_HSI_H
-#define _MIPI_HSI_H
+#ifndef __HW_MIPI_HSI_REGISTERS_H__
+#define __HW_MIPI_HSI_REGISTERS_H__
 
 #include "regs.h"
 
@@ -146,12 +146,13 @@
  * - HW_MIPI_HSI_AHB_MASTER_CONF - Ahb Master Config Register
  * - HW_MIPI_HSI_TX_BREAK_LEN - TX Break Length Register
  *
- * hw_mipi_hsi_t - Struct containing all module registers.
+ * - hw_mipi_hsi_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_MIPI_HSI_BASE
+#define HW_MIPI_HSI_INSTANCE_COUNT (1) //!< Number of instances of the MIPI_HSI module.
 #define REGS_MIPI_HSI_BASE (0x02208000) //!< Base address for MIPI_HSI.
 #endif
 //@}
@@ -24411,12 +24412,13 @@ typedef struct _hw_mipi_hsi
     volatile hw_mipi_hsi_tx_break_len_t TX_BREAK_LEN; //!< TX Break Length Register
 } hw_mipi_hsi_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all MIPI_HSI registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_MIPI_HSI(0)</code>.
 #define HW_MIPI_HSI     (*(volatile hw_mipi_hsi_t *) REGS_MIPI_HSI_BASE)
 
+#endif
 
-#endif // _MIPI_HSI_H
+
+#endif // __HW_MIPI_HSI_REGISTERS_H__

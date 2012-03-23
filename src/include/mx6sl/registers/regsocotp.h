@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _OCOTP_H
-#define _OCOTP_H
+#ifndef __HW_OCOTP_REGISTERS_H__
+#define __HW_OCOTP_REGISTERS_H__
 
 #include "regs.h"
 
@@ -89,12 +89,13 @@
  * - HW_OCOTP_GP_HI6 - Value of OTP Bank7 Word6 (HW Capabilities)
  * - HW_OCOTP_GP_HI7 - Value of OTP Bank7 Word7 (HW Capabilities)
  *
- * hw_ocotp_t - Struct containing all module registers.
+ * - hw_ocotp_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_OCOTP_BASE
+#define HW_OCOTP_INSTANCE_COUNT (1) //!< Number of instances of the OCOTP module.
 #define REGS_OCOTP_BASE (0x021bc000) //!< Base address for OCOTP.
 #endif
 //@}
@@ -5659,12 +5660,13 @@ typedef struct _hw_ocotp
     volatile hw_ocotp_gp_hi7_t GP_HI7; //!< Value of OTP Bank7 Word7 (HW Capabilities)
 } hw_ocotp_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all OCOTP registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_OCOTP(0)</code>.
 #define HW_OCOTP     (*(volatile hw_ocotp_t *) REGS_OCOTP_BASE)
 
+#endif
 
-#endif // _OCOTP_H
+
+#endif // __HW_OCOTP_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _MLB_H
-#define _MLB_H
+#ifndef __HW_MLB_REGISTERS_H__
+#define __HW_MLB_REGISTERS_H__
 
 #include "regs.h"
 
@@ -46,12 +46,13 @@
  * - HW_MLB_ACMR0 - AHB Channel Mask 0 Register
  * - HW_MLB_ACMR1 - AHB Channel Mask 1 Register
  *
- * hw_mlb_t - Struct containing all module registers.
+ * - hw_mlb_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_MLB_BASE
+#define HW_MLB_INSTANCE_COUNT (1) //!< Number of instances of the MLB module.
 #define REGS_MLB_BASE (0x0218c000) //!< Base address for MLB.
 #endif
 //@}
@@ -2949,12 +2950,13 @@ typedef struct _hw_mlb
     volatile hw_mlb_acmr1_t ACMR1; //!< AHB Channel Mask 1 Register
 } hw_mlb_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all MLB registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_MLB(0)</code>.
 #define HW_MLB     (*(volatile hw_mlb_t *) REGS_MLB_BASE)
 
+#endif
 
-#endif // _MLB_H
+
+#endif // __HW_MLB_REGISTERS_H__

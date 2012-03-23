@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SATAPHY_LANE0_H
-#define _SATAPHY_LANE0_H
+#ifndef __HW_SATAPHY_LANE0_REGISTERS_H__
+#define __HW_SATAPHY_LANE0_REGISTERS_H__
 
 #include "regs.h"
 
@@ -37,12 +37,13 @@
  * - HW_SATAPHY_LANE0_TX_ANA_ATBSEL2 - Transmit ATB 2 Control Register
  * - HW_SATAPHY_LANE0_TX_ANA_CONTROL - Transmit Analog Control Register
  *
- * hw_sataphy_lane0_t - Struct containing all module registers.
+ * - hw_sataphy_lane0_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SATAPHY_LANE0_BASE
+#define HW_SATAPHY_LANE0_INSTANCE_COUNT (0) //!< Number of instances of the SATAPHY_LANE0 module.
 #define REGS_SATAPHY_LANE0_BASE (0x00000000) //!< Base address for SATAPHY_LANE0.
 #endif
 //@}
@@ -4065,12 +4066,13 @@ typedef struct _hw_sataphy_lane0
     volatile hw_sataphy_lane0_tx_ana_control_t TX_ANA_CONTROL; //!< Transmit Analog Control Register
 } hw_sataphy_lane0_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SATAPHY_LANE0 registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SATAPHY_LANE0(0)</code>.
 #define HW_SATAPHY_LANE0     (*(volatile hw_sataphy_lane0_t *) REGS_SATAPHY_LANE0_BASE)
 
+#endif
 
-#endif // _SATAPHY_LANE0_H
+
+#endif // __HW_SATAPHY_LANE0_REGISTERS_H__

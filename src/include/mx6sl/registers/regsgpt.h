@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _GPT_H
-#define _GPT_H
+#ifndef __HW_GPT_REGISTERS_H__
+#define __HW_GPT_REGISTERS_H__
 
 #include "regs.h"
 
@@ -24,12 +24,13 @@
  * - HW_GPT_ICR2 - GPT Input Capture Register 2
  * - HW_GPT_CNT - GPT Counter Register
  *
- * hw_gpt_t - Struct containing all module registers.
+ * - hw_gpt_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_GPT_BASE
+#define HW_GPT_INSTANCE_COUNT (1) //!< Number of instances of the GPT module.
 #define REGS_GPT_BASE (0x02098000) //!< Base address for GPT.
 #endif
 //@}
@@ -1480,12 +1481,13 @@ typedef struct _hw_gpt
     volatile hw_gpt_cnt_t CNT; //!< GPT Counter Register
 } hw_gpt_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all GPT registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_GPT(0)</code>.
 #define HW_GPT     (*(volatile hw_gpt_t *) REGS_GPT_BASE)
 
+#endif
 
-#endif // _GPT_H
+
+#endif // __HW_GPT_REGISTERS_H__

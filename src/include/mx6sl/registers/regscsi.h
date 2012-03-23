@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _CSI_H
-#define _CSI_H
+#ifndef __HW_CSI_REGISTERS_H__
+#define __HW_CSI_REGISTERS_H__
 
 #include "regs.h"
 
@@ -27,12 +27,13 @@
  * - HW_CSI_CSIFBUF_PARA - CSI Frame Buffer Parameter Register
  * - HW_CSI_CSIIMAG_PARA - CSI Image Parameter Register
  *
- * hw_csi_t - Struct containing all module registers.
+ * - hw_csi_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_CSI_BASE
+#define HW_CSI_INSTANCE_COUNT (1) //!< Number of instances of the CSI module.
 #define REGS_CSI_BASE (0x020e4000) //!< Base address for CSI.
 #endif
 //@}
@@ -2832,12 +2833,13 @@ typedef struct _hw_csi
     volatile hw_csi_csiimag_para_t CSIIMAG_PARA; //!< CSI Image Parameter Register
 } hw_csi_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all CSI registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_CSI(0)</code>.
 #define HW_CSI     (*(volatile hw_csi_t *) REGS_CSI_BASE)
 
+#endif
 
-#endif // _CSI_H
+
+#endif // __HW_CSI_REGISTERS_H__

@@ -11,7 +11,7 @@
 #include "regs.h"
 
 /*
- * i.MX6DQ TEMPMON registers defined in this header file.
+ * i.MX6SDL TEMPMON registers defined in this header file.
  *
  * - HW_TEMPMON_TEMPSENSE0 - Tempsensor Control Register 0
  * - HW_TEMPMON_TEMPSENSE1 - Tempsensor Control Register 1

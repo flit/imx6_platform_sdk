@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _FEC_H
-#define _FEC_H
+#ifndef __HW_FEC_REGISTERS_H__
+#define __HW_FEC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -37,12 +37,13 @@
  * - HW_FEC_ETDSR - Transmit buffer descriptor ring start register
  * - HW_FEC_EMRBR - Maximum receive buffer size register
  *
- * hw_fec_t - Struct containing all module registers.
+ * - hw_fec_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_FEC_BASE
+#define HW_FEC_INSTANCE_COUNT (1) //!< Number of instances of the FEC module.
 #define REGS_FEC_BASE (0x02188000) //!< Base address for FEC.
 #endif
 //@}
@@ -937,12 +938,12 @@ typedef union _hw_fec_eimr
  * FEC_RDAR is a user-writeable command register which indicates that the receive descriptor ring
  * has been updated, and that empty receive buffers have been produced by the driver with the empty
  * bit set.  The FEC_RDAR[R_DES_ACTIVE] bit is set whenever the register is written, independent of
- * the data actually written by the user. When set, the FEC polls the receive descriptor ring and
- * processes receive frames (provided FEC_ECR[ETHER_EN] is also set to 1). After the FEC polls a
- * receive descriptor whose empty bit is not set, then the FEC clears the FEC_RDAR[R_DES_ACTIVE] bit
- * and ceases receive descriptor ring polling until the user sets the bit again, signifying that
- * additional descriptors have been placed into the receive descriptor ring.  The FEC_RDAR is
- * cleared at reset, and when FEC_ECR[ETHER_EN] is cleared.
+ * the data actually written by the user. When it is set, the FEC polls the receive descriptor ring
+ * and processes receive frames (provided FEC_ECR[ETHER_EN] is also set to 1). After the FEC finds a
+ * receive descriptor whose empty bit is not set, the FEC clears the FEC_RDAR[R_DES_ACTIVE] bit and
+ * ceases the polling in the receive descriptor ring polling until the user sets the bit again to
+ * sign the availability of additional descriptors in the receive descriptor ring.  The FEC_RDAR is
+ * cleared when FEC_ECR[ETHER_EN] is cleared or system is reset.
  */
 typedef union _hw_fec_rdar
 {
@@ -950,7 +951,7 @@ typedef union _hw_fec_rdar
     struct _hw_fec_rdar_bitfields
     {
         unsigned RESERVED0 : 24; //!< [23:0] Reserved, read as 0
-        unsigned R_DES_ACTIVE : 1; //!< [24] Set to one when this register is written, regardless of the value written. Cleared by the FEC device when the FEC polls a receive descriptor whose empty bit is not set. Also cleared when FEC_ECR[ETHER_EN] is cleared.
+        unsigned R_DES_ACTIVE : 1; //!< [24] Set to one when this register is written, regardless of the value written. Cleared by the FEC device when the FEC finds a receive descriptor whose empty bit is not set. Also cleared when FEC_ECR[ETHER_EN] is cleared.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved, read as 0
     } B;
 } hw_fec_rdar_t;
@@ -977,7 +978,7 @@ typedef union _hw_fec_rdar
 /* --- Register HW_FEC_RDAR, field R_DES_ACTIVE[24] (RW)
  *
  * Set to one when this register is written, regardless of the value written. Cleared by the FEC
- * device when the FEC polls a receive descriptor whose empty bit is not set. Also cleared when
+ * device when the FEC finds a receive descriptor whose empty bit is not set. Also cleared when
  * FEC_ECR[ETHER_EN] is cleared.
  */
 
@@ -1006,16 +1007,16 @@ typedef union _hw_fec_rdar
  *
  * Reset value: 0x00000000
  *
- * The FEC_TDAR is a command register, written to by the user, to indicate that the transmit
+ * The FEC_TDAR is a command register,which is written by the user, to indicate that the transmit
  * descriptor ring has been updated (transmit buffers have been produced by the driver with the
- * ready bit set in the buffer descriptor).  Whenever the register is written the
+ * ready bit set in the buffer descriptor).  Whenever the register is written, the
  * FEC_TDAR[X_DES_ACTIVE] bit is set to 1, independent of the data actually written by the user.
  * When set, the FEC polls the transmit descriptor ring and process transmit frames (provided
- * FEC_ECR[ETHER_EN] is also set to 1). After the FEC polls a transmit descriptor whose ready bit is
+ * FEC_ECR[ETHER_EN] is also set to 1). After the FEC finds a transmit descriptor whose ready bit is
  * not set, then the FEC clears the FEC_TDAR[X_DES_ACTIVE] bit and ceases transmit descriptor ring
- * polling until the user sets the bit again, signifying additional descriptors have been placed
- * into the transmit descriptor ring.  The FEC_TDAR is cleared at reset, when FEC_ECR[ETHER_EN] is
- * cleared, or when FEC_ECR[RESET] is set to 1.
+ * polling until the user sets the bit again, the transmit descriptor ring.  The FEC_TDAR is
+ * cleared, when FEC_ECR[ETHER_EN] is cleared, or when FEC_ECR[RESET] is set to 1 or system is
+ * reset.
  */
 typedef union _hw_fec_tdar
 {
@@ -1023,7 +1024,7 @@ typedef union _hw_fec_tdar
     struct _hw_fec_tdar_bitfields
     {
         unsigned RESERVED0 : 24; //!< [23:0] Reserved, read as 0
-        unsigned X_DES_ACTIVE : 1; //!< [24] Set to one when this register is written, regardless of the value written. Cleared by the FEC device when the FEC polls a transmit descriptor whose ready bit is not set. Also cleared when FEC_ECR[ETHER_EN] is cleared.
+        unsigned X_DES_ACTIVE : 1; //!< [24] Set to one when this register is written, regardless of the value written. Cleared by the FEC device when the FEC finds a transmit descriptor whose ready bit is not set. Also cleared when FEC_ECR[ETHER_EN] is cleared.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved, read as 0
     } B;
 } hw_fec_tdar_t;
@@ -1050,7 +1051,7 @@ typedef union _hw_fec_tdar
 /* --- Register HW_FEC_TDAR, field X_DES_ACTIVE[24] (RW)
  *
  * Set to one when this register is written, regardless of the value written. Cleared by the FEC
- * device when the FEC polls a transmit descriptor whose ready bit is not set. Also cleared when
+ * device when the FEC finds a transmit descriptor whose ready bit is not set. Also cleared when
  * FEC_ECR[ETHER_EN] is cleared.
  */
 
@@ -1079,16 +1080,16 @@ typedef union _hw_fec_tdar
  *
  * Reset value: 0xf0000000
  *
- * The ECR is used to enable/disable the FEC_ ECR is a read/write user register, though both fields
- * in this register can also be altered by hardware.  I have greyed the reserved bits. Please verify
- * -- CThron
+ * The ECR is used to enable/disable the FEC_ ECR which is a read/write user register, though both
+ * fields in this register can also be altered by hardware.  I have greyed the reserved bits. Please
+ * verify -- CThron
  */
 typedef union _hw_fec_ecr
 {
     reg32_t U;
     struct _hw_fec_ecr_bitfields
     {
-        unsigned RESET : 1; //!< [0] When this bit is set, the equivalent of a hardware reset is performed but it is local to the FEC_ ETHER_EN is cleared and all other FEC registers take their reset values. Also, any transmission/reception currently in progress is abruptly aborted. This bit is automatically cleared by hardware during the reset sequence. The reset sequence takes approximately 8 system clock cycles after RESET is written with a 1.
+        unsigned RESET : 1; //!< [0] When this bit is set, the equivalent of a hardware reset is performed but it is local to the FEC, ETHER_EN is cleared and all other FEC registers take their reset values. Also, any transmission/reception currently in progress is abruptly aborted. This bit is automatically cleared by hardware during the reset sequence. The reset sequence takes approximately 8 system clock cycles after RESET is written with a 1.
         unsigned ETHER_EN : 1; //!< [1] When this bit is set, the FEC is enabled, and reception and transmission are possible. When this bit is cleared, reception is immediately stopped and transmission is stopped after a bad CRC is appended to any currently transmitted frame. The buffer descriptor(s) for an aborted transmit frame are not updated after clearing this bit. When ETHER_EN is cleared, the DMA, buffer descriptor, and FIFO control logic are reset, including the buffer descriptor and FIFO pointers. The ETHER_EN bit is altered by hardware under the following conditions: FEC_ECR[RESET] is set by software, in which case ETHER_EN is cleared an error condition causes the FEC_EIR[EBERR] bit to set, in which case ETHER_EN is cleared
         unsigned RESERVED0 : 30; //!< [31:2] Reserved.
     } B;
@@ -1115,7 +1116,7 @@ typedef union _hw_fec_ecr
 
 /* --- Register HW_FEC_ECR, field RESET[0] (RW)
  *
- * When this bit is set, the equivalent of a hardware reset is performed but it is local to the FEC_
+ * When this bit is set, the equivalent of a hardware reset is performed but it is local to the FEC,
  * ETHER_EN is cleared and all other FEC registers take their reset values. Also, any
  * transmission/reception currently in progress is abruptly aborted. This bit is automatically
  * cleared by hardware during the reset sequence. The reset sequence takes approximately 8 system
@@ -1178,36 +1179,35 @@ typedef union _hw_fec_ecr
  *
  * Reset value: 0x00000000
  *
- * The FEC_MMFR is used to communicate with the attached MII compatible PHY device(s), providing
+ * The FEC_MMFR is used to communicate with the attached MII compatible PHY device(s) by providing
  * read/write access to their MII registers. Performing a write to FEC_MMFR causes a management
- * frame to be generated unless the MII-SPEED field of the FEC_MSCR has been set to 0, in which case
- * FEC_MSCR is set to a non-zero value and an MII frame is generated with the data previously
- * written to FEC_MMFR. This allows FEC_MMFR and FEC_MSCR to be programmed in either order if the
- * MII-SPEED field of FEC_MSCR is zero (for further details see ).  The FEC_MMFR does not reset to a
- * definite value. So how is the reset value determined? Is it unaffected by reset? Then ' n ' in
- * the Reset row should be changed to ' u '-- CThron  To perform a read or write operation on the
- * MII Management Interface, the FEC_MMFR must be written to by the user. To generate a valid read
- * or write management frame, the ST field must be written with a 01 pattern, and the TA field must
- * be written with a 10. If other patterns are written to these fields, a frame is generated but
- * does not comply with the IEEE 802.3 MII definition.  To generate an IEEE 802.3-compliant MII
- * management interface write frame (write to a PHY register), the user must write {01 01 PHYAD
- * REGAD 10 DATA} to the bit fields of the FEC_MMFR, as shown in . Writing this pattern causes the
- * control logic to shift out the data in the FEC_MMFR following a preamble generated by the control
- * state machine. During this time the contents of the FEC_MMFR is altered as the contents are
- * serially shifted and is unpredictable if read by the user. After the write management frame
- * operation has completed, the MII interrupt is generated. At this time the contents of the
- * FEC_MMFR matches the original value written.  To generate an MII management interface read frame
- * (read a PHY register) the user must write {01 10 PHYAD REGAD 10 XXXX} to the bit fields of the
- * FEC_MMFR shown in (the contents of the 4-bit DATA field are arbitrary). Writing this pattern
+ * frame to be generated unless the MII-SPEED field of the FEC_MSCR has been set to 0. MII frame is
+ * generated with the data previously written to FEC_MMFR. This allows FEC_MMFR and FEC_MSCR to be
+ * programmed in any order if the MII-SPEED field of FEC_MSCR is zero (for further details see ).
+ * The FEC_MMFR does not reset to a definite value. So how is the reset value determined? Is it
+ * unaffected by reset? Then ' n ' in the Reset row should be changed to ' u '-- CThron   To perform
+ * a read or write operation on the MII Management Interface, the FEC_MMFR must be written by the
+ * user. To generate a valid read or write management frame, the ST field must be written with a 01
+ * pattern, and the TA field must be written with a 10 pattern. If other patterns are written to
+ * these fields, a frame is generated but does not comply with the IEEE 802.3 MII definition.  To
+ * generate an IEEE 802.3-compliant MII management interface write frame (write to a PHY register),
+ * the user must write {01 01 PHYAD REGAD 10 DATA} to the bit fields of the FEC_MMFR, as shown in ,
  * causes the control logic to shift out the data in the FEC_MMFR following a preamble generated by
- * the control state machine. During this time the contents of the FEC_MMFR is altered as the
- * contents are serially shifted, and is unpredictable if read by the user. After the read
- * management frame operation has completed, the MII interrupt is generated. At this time the
- * contents of the FEC_MMFR matches the original value written except for the DATA field whose
- * contents have been replaced by the value read from the PHY register.  If the FEC_MMFR is written
- * to while frame generation is in progress, the frame contents is altered. Software uses the
- * MII_STATUS register and/or the MII interrupt to avoid writing to the FEC_MMFR while frame
- * generation is in progress.
+ * the control state machine. During this time, the contents of the FEC_MMFR is altering as the
+ * contents are serially shifted so the value is unpredictable if it is read by the user. After the
+ * write management frame operation has completed, the MII interrupt is generated. At this time, the
+ * contents of the FEC_MMFR matches to the original value written.  To generate an MII management
+ * interface read frame (read a PHY register) the user must write {01 10 PHYAD REGAD 10 XXXX} to the
+ * bit fields of the FEC_MMFR shown in (the contents of the 4-bit DATA field are arbitrary). This
+ * causes the control logic to shift out the data in the FEC_MMFR following a preamble generated by
+ * the control state machine. During this time, the contents of the FEC_MMFR is altering as the
+ * contents are serially shifted to the register value, it is unpredictable if it is read by the
+ * user. After the read management frame operation has completed, the MII interrupt is generated. At
+ * this time the contents of the FEC_MMFR matches to the original value written except for the DATA
+ * field whose contents have been replaced by the value read from the PHY register.  If the FEC_MMFR
+ * is written during the progress of frame greneration, the frame contents is altered. Thus software
+ * should use the MII_STATUS register and/or the MII interrupt to avoid writing to the FEC_MMFR
+ * while frame generation is in progress.
  */
 typedef union _hw_fec_mmfr
 {
@@ -1397,19 +1397,19 @@ typedef union _hw_fec_mmfr
  * The FEC_MSCR provides control of the frequency of the MII clock (FEC_MDC signal), and allows a
  * preamble drop on the MII management frame , and provides observability (intended for
  * manufacturing test) of an internal counter used in generating the FEC_MDC clock signal .  The
- * MII_SPEED field must be programmed with a value to provide an FEC_MDC frequency of less than or
- * equal to 2.5 MHz to be compliant with the IEEE 802.3 MII specification. The MII_SPEED must be set
- * to a non-zero value in order to generate a read or write management frame. After the management
- * frame is complete the FEC_MSCR can optionally be set to zero to turn off the FEC_MDC. The FEC_MDC
- * generated has a 50% duty cycle except when MII_SPEED is changed during operation (change takes
- * effect following either a rising or falling edge of FEC_MDC).  The FEC_MDC frequency depends on
- * both the system clock frequency and the MII_SPEED register. If the system clock is 25 MHz,
- * programming the MII_SPEED register to 0x0000_0005 results in an FEC_MDC frequency of 25 MHz *
- * 1/10 = 2.5 MHz. A table showing optimum values for MII_SPEED for different system clock
- * frequencies is provided below.   Programming Examples for FEC_MSCR         System Clock Frequency
- * MII_SPEED (field in reg)    FEC_MDC frequency        25 MHz    0x5    2.5 MHz      33 MHz    0x7
- * 2.36 MHz      40 MHz    0x8    2.5 MHz      50 MHz    0xA    2.5 MHz      66 MHz    0xD    2.54
- * MHz
+ * MII_SPEED field must be programmed with a value to generate an FEC_MDC frequency which is less
+ * than or equal to 2.5 MHz so that it is compliant with the IEEE 802.3 MII specification. The
+ * MII_SPEED must be set to a non-zero value in order to generate a read or write management frame.
+ * After the management frame is completed, the FEC_MSCR can optionally be set to zero in order to
+ * turn off the FEC_MDC. The FEC_MDC frequency has a 50% duty cycle except when MII_SPEED is changed
+ * during operation (change takes effect following either a rising or falling edge of FEC_MDC).  The
+ * FEC_MDC frequency depends on both the system clock frequency and the MII_SPEED register. If the
+ * system clock is 25 MHz, programming the MII_SPEED register to 0x0000_0005 results in an FEC_MDC
+ * frequency of 25 MHz * 1/10 = 2.5 MHz. A table showing optimum values for MII_SPEED at different
+ * system clock frequencies is provided below.   Programming Examples for FEC_MSCR         System
+ * Clock Frequency    MII_SPEED (field in reg)    FEC_MDC frequency        25 MHz    0x5    2.5 MHz
+ * 33 MHz    0x7    2.36 MHz      40 MHz    0x8    2.5 MHz      50 MHz    0xA    2.5 MHz      66 MHz
+ * 0xD    2.54 MHz
  */
 typedef union _hw_fec_mscr
 {
@@ -1501,13 +1501,13 @@ typedef union _hw_fec_mscr
  *
  * Reset value: 0xc0000000
  *
- * The MIB control register is a read/write register used to provide control of and to observe the
- * state of the Message Information Block (MIB). This register is accessed by user software if there
- * is a need to disable the MIB operation. For example, in order to clear all MIB counters in RAM
- * the user disables the MIB, then clears all the MIB RAM locations, then enables the MIB. The
- * MIB_DISABLE bit is reset to 1. See for the locations of the MIB counters.  [The figure showed
- * MIB_IDLE as read/write. I have changed to read-only, according to the field description table--
- * CT]
+ * The MIB control register is a read/write register which is used to provide control of and to
+ * observe the state of the Message Information Block (MIB). This register is accessed by user
+ * software if there is a need to disable the MIB operation. For example,the user wants to clear all
+ * MIB counters in RAM. the user disables the MIB, then clears all the MIB RAM locations, then
+ * enables the MIB. The reset value of MIB_DISABLE bit is 1. See for the locations of the MIB
+ * counters.  [The figure showed MIB_IDLE as read/write. I have changed to read-only, according to
+ * the field description table--CT]
  */
 typedef union _hw_fec_mibc
 {
@@ -1515,8 +1515,8 @@ typedef union _hw_fec_mibc
     struct _hw_fec_mibc_bitfields
     {
         unsigned RESERVED0 : 30; //!< [29:0] Reserved.
-        unsigned MB_IDLE : 1; //!< [30] A read-only status bit. If set the MIB block is not currently updating any MIB counters.
-        unsigned MIB_DISABLE : 1; //!< [31] A read/write control bit. If set, the MIB logic halts and not update any MIB counters.
+        unsigned MB_IDLE : 1; //!< [30] A read-only status bit. If set, the MIB block is not currently updating any MIB counters.
+        unsigned MIB_DISABLE : 1; //!< [31] A read/write control bit. If set, the MIB logic halts and does not update any MIB counters.
     } B;
 } hw_fec_mibc_t;
 #endif
@@ -1541,7 +1541,7 @@ typedef union _hw_fec_mibc
 
 /* --- Register HW_FEC_MIBC, field MB_IDLE[30] (RO)
  *
- * A read-only status bit. If set the MIB block is not currently updating any MIB counters.
+ * A read-only status bit. If set, the MIB block is not currently updating any MIB counters.
  */
 
 #define BP_FEC_MIBC_MB_IDLE      (30)      //!< Bit position for FEC_MIBC_MB_IDLE.
@@ -1552,7 +1552,7 @@ typedef union _hw_fec_mibc
 
 /* --- Register HW_FEC_MIBC, field MIB_DISABLE[31] (RW)
  *
- * A read/write control bit. If set, the MIB logic halts and not update any MIB counters.
+ * A read/write control bit. If set, the MIB logic halts and does not update any MIB counters.
  */
 
 #define BP_FEC_MIBC_MIB_DISABLE      (31)      //!< Bit position for FEC_MIBC_MIB_DISABLE.
@@ -1581,21 +1581,21 @@ typedef union _hw_fec_mibc
  * Reset value: 0x05ee0001
  *
  * The FEC_RCR is programmed by the user, and controls the operational mode of the receive block. It
- * can only be written to when FEC_ECR[ETHER_EN] = 0 (that is, during initialization).
+ * can only be written when FEC_ECR[ETHER_EN] = 0 (that is, during initialization).
  */
 typedef union _hw_fec_rcr
 {
     reg32_t U;
     struct _hw_fec_rcr_bitfields
     {
-        unsigned LOOP : 1; //!< [0] Internal loopback.When LOOP is set to 1, transmitted frames are looped back internal to the device and the transmit output signals are not asserted. The system clock is substituted for the FEC_TX_CLK when LOOP is set to 1. DRT must be set to zero when setting LOOP to 1.
+        unsigned LOOP : 1; //!< [0] Internal loopback.When LOOP is set to 1, transmitted frames are looped back internal to the device and the transmit output signals are not asserted. The system clock is substituted for the FEC_TX_CLK when LOOP is set to 1. DRT must be set to 0 when setting LOOP to 1.
         unsigned DRT : 1; //!< [1] Disable receive on transmit.
-        unsigned MII_MODE : 1; //!< [2] Media independent interface mode. Selects external interface mode. Setting this bit to one selects MII mode, setting this bit equal to zero selects 7-wire mode (used only for serial 10 Mbps). This bit controls the interface mode for both transmit and receive blocks.
+        unsigned MII_MODE : 1; //!< [2] Media independent interface mode. Setting this bit to 1 selects MII mode, setting this bit equal to 1 selects 7-wire mode (used only for serial 10 Mbps). This bit controls the external interface mode for both transmit and receive blocks.
         unsigned PROM : 1; //!< [3] Promiscuous mode. All frames are accepted regardless of address matching.
         unsigned BC_REJ : 1; //!< [4] Broadcast frame reject. When BC_REJ is set to 1, frames with DA (destination address) = 0xFF_FF_FF_FF_FF_FF are rejected unless the PROM bit is set to 1. If both BC_REJ and PROM are set to 1, then frames with broadcast DA is accepted and the M (MISS) bit is set in the receive buffer descriptor.
         unsigned FCE : 1; //!< [5] Flow control enable. When FCE is set to 1, the receiver detects pause frames. Upon pause frame detection, the transmitter stops transmitting data frames for a given duration.
         unsigned RESERVED0 : 10; //!< [15:6] Reserved, read as 0
-        unsigned MAX_FL : 11; //!< [26:16] Maximum frame length. Resets to decimal 1518. Length is measured starting at DA and includes the CRC at the end of the frame. Transmit frames longer than MAX_FL causes the BABT interrupt to occur. Receive Frames longer than MAX_FL causes the BABR interrupt to occur and sets the LG bit in the end of frame receive buffer descriptor. The recommended default value to be programmed by the user is 1518 or 1522 (if VLAN Tags are supported).
+        unsigned MAX_FL : 11; //!< [26:16] Maximum frame length. Resets to decimal 1518. Length is measured from DA and up to the CRC at the end of the frame. Transmit frames longer than MAX_FL causes the BABT interrupt to occur. Receive Frames longer than MAX_FL causes the BABR interrupt to occur and sets the LG bit in the last frame receive buffer descriptor. The recommended default value to be programmed by the user is 1518 or 1522 (if VLAN Tags are supported).
         unsigned RESERVED1 : 5; //!< [31:27] Reserved, read as 0
     } B;
 } hw_fec_rcr_t;
@@ -1623,7 +1623,7 @@ typedef union _hw_fec_rcr
  *
  * Internal loopback.When LOOP is set to 1, transmitted frames are looped back internal to the
  * device and the transmit output signals are not asserted. The system clock is substituted for the
- * FEC_TX_CLK when LOOP is set to 1. DRT must be set to zero when setting LOOP to 1.
+ * FEC_TX_CLK when LOOP is set to 1. DRT must be set to 0 when setting LOOP to 1.
  */
 
 #define BP_FEC_RCR_LOOP      (0)      //!< Bit position for FEC_RCR_LOOP.
@@ -1677,9 +1677,9 @@ typedef union _hw_fec_rcr
 
 /* --- Register HW_FEC_RCR, field MII_MODE[2] (RW)
  *
- * Media independent interface mode. Selects external interface mode. Setting this bit to one
- * selects MII mode, setting this bit equal to zero selects 7-wire mode (used only for serial 10
- * Mbps). This bit controls the interface mode for both transmit and receive blocks.
+ * Media independent interface mode. Setting this bit to 1 selects MII mode, setting this bit equal
+ * to 1 selects 7-wire mode (used only for serial 10 Mbps). This bit controls the external interface
+ * mode for both transmit and receive blocks.
  */
 
 #define BP_FEC_RCR_MII_MODE      (2)      //!< Bit position for FEC_RCR_MII_MODE.
@@ -1779,11 +1779,11 @@ typedef union _hw_fec_rcr
 
 /* --- Register HW_FEC_RCR, field MAX_FL[26:16] (RW)
  *
- * Maximum frame length. Resets to decimal 1518. Length is measured starting at DA and includes the
- * CRC at the end of the frame. Transmit frames longer than MAX_FL causes the BABT interrupt to
- * occur. Receive Frames longer than MAX_FL causes the BABR interrupt to occur and sets the LG bit
- * in the end of frame receive buffer descriptor. The recommended default value to be programmed by
- * the user is 1518 or 1522 (if VLAN Tags are supported).
+ * Maximum frame length. Resets to decimal 1518. Length is measured from DA and up to the CRC at the
+ * end of the frame. Transmit frames longer than MAX_FL causes the BABT interrupt to occur. Receive
+ * Frames longer than MAX_FL causes the BABR interrupt to occur and sets the LG bit in the last
+ * frame receive buffer descriptor. The recommended default value to be programmed by the user is
+ * 1518 or 1522 (if VLAN Tags are supported).
  */
 
 #define BP_FEC_RCR_MAX_FL      (16)      //!< Bit position for FEC_RCR_MAX_FL.
@@ -1811,16 +1811,16 @@ typedef union _hw_fec_rcr
  *
  * Reset value: 0x00000000
  *
- * This register is read/write, and is written by the user to configure the transmit block. Bits
- * [2:1] must only be modified when FEC_ECR[ETHER_EN] = 0 (that is, during initialization). This
- * register is cleared at system reset.
+ * This register is read/write register which is written by the user to configure the transmit
+ * block. Bits [2:1] must only be modified when FEC_ECR[ETHER_EN] = 0 (that is, during
+ * initialization). This register is cleared at system reset.
  */
 typedef union _hw_fec_tcr
 {
     reg32_t U;
     struct _hw_fec_tcr_bitfields
     {
-        unsigned GTS : 1; //!< [0] Graceful transmit stop. When GTS is set to 1, the FEC stops transmission after any frame that is currently being transmitted is complete and the GRA interrupt in the FEC_EIR register is asserted. If frame transmission is not currently underway, the GRA interrupt is asserted immediately. After transmission has completed, a "restart" can be accomplished by clearing the GTS bit. The next frame in the transmit FIFO is then transmitted. If an early collision occurs during transmission when GTS = 1, transmission stops after the collision. The frame is transmitted again after GTS is cleared. There can be old frames in the transmit FIFO that is transmitted when GTS is reasserted. To avoid this, clear FEC_ECR[ETHER_EN] following the GRA interrupt.
+        unsigned GTS : 1; //!< [0] Graceful transmit stop. When GTS is set to 1, the FEC stops transmission after any frame that is currently being transmitted is completed and the GRA interrupt in the FEC_EIR register is asserted. If frame transmission is not currently underway, the GRA interrupt is asserted immediately. After transmission has completed, a "restart" can be accomplished by clearing the GTS bit. The next frame in the transmit FIFO is then transmitted. If an early collision occurs during transmission when GTS = 1, transmission stops after the collision. The frame is transmitted again after GTS is cleared. There can be old frames in the transmit FIFO that is transmitted when GTS is reasserted. To avoid this, clear FEC_ECR[ETHER_EN] following the GRA interrupt.
         unsigned HBC : 1; //!< [1] Heartbeat control. When HBC is set to 1, the heartbeat check is performed after end of transmission and the HB bit in the status register is set if the collision input does not assert within the heartbeat window. This bit must only be modified when ETHER_EN is cleared.
         unsigned FDEN : 1; //!< [2] Full duplex enable. When FDEN is set to 1, frames are transmitted independent of carrier sense and collision inputs. This bit must only be modified when ETHER_EN is cleared.
         unsigned TFC_PAUSE : 1; //!< [3] Transmit frame control pause. When this bit is set to 1, a pause frame is transmitted according to the following steps: 1. FEC stops transmission of data frames after the current transmission is complete. 2. The GRA interrupt in the FEC_EIR register is asserted. 3. With transmission of data frames stopped, the FEC transmits a MAC control pause frame. 4. The FEC clears the TFC_PAUSE bit and resume transmitting data frames. The FEC can still transmit a MAC control pause frame when the transmitter is paused due to user assertion of GTS or reception of a pause frame.
@@ -1851,7 +1851,7 @@ typedef union _hw_fec_tcr
 /* --- Register HW_FEC_TCR, field GTS[0] (RW)
  *
  * Graceful transmit stop. When GTS is set to 1, the FEC stops transmission after any frame that is
- * currently being transmitted is complete and the GRA interrupt in the FEC_EIR register is
+ * currently being transmitted is completed and the GRA interrupt in the FEC_EIR register is
  * asserted. If frame transmission is not currently underway, the GRA interrupt is asserted
  * immediately. After transmission has completed, a "restart" can be accomplished by clearing the
  * GTS bit. The next frame in the transmit FIFO is then transmitted. If an early collision occurs
@@ -2004,11 +2004,11 @@ typedef union _hw_fec_tcr
  *
  * Reset value: 0x00000000
  *
- * The FEC_PALR is written by the user, and contains the lower 32 bits (bytes 0,1,2,3) of the 48-bit
- * address used in the address recognition process to check for possible match between the DA field
- * of receive frames and an individual DA. This register is also used for bytes 0 through 3 of the
- * 6-byte source address field when transmitting pause frames. This register is unaffected by reset
- * and must be initialized by the user.
+ * The FEC_PALR, which is written by the user, contains the lower 32 bits (bytes 0,1,2,3) of the
+ * 48-bit address used in the address recognition process to check for possible match between the DA
+ * field of receive frames and an individual DA. This register is also used for bytes 0 through 3 of
+ * the 6-byte source address field when transmitting pause frames. This register is unaffected by
+ * reset and must be initialized by the user.
  */
 typedef union _hw_fec_palr
 {
@@ -2069,12 +2069,12 @@ typedef union _hw_fec_palr
  *
  * Reset value: 0x00008808
  *
- * The FEC_PAUR is written by the user, and contains the upper 16 bits (bytes 4 and 5) of the 48-bit
- * address used in the address recognition process to check for possible match between the DA field
- * of receive frames and an individual DA. In addition, this register is used in bytes 4 and 5 of
- * the 6-byte source address field when transmitting pause frames. Bits 15:0 of FEC_PAUR contain a
- * constant type field (0x8808) used for transmission of pause frames. This register is unaffected
- * by reset, and bits 31:16 must be initialized by the user.
+ * The FEC_PAUR, which is written by the user, and contains the upper 16 bits (bytes 4 and 5) of the
+ * 48-bit address used in the address recognition process to check for possible match between the DA
+ * field of receive frames and an individual DA. In addition, this register is used in bytes 4 and 5
+ * of the 6-byte source address field when transmitting pause frames. Bits 15:0 of FEC_PAUR are a
+ * constant type field (0x8808) which is used for transmission of pause frames. This register is
+ * unaffected by reset, and bits 31:16 must be initialized by the user.
  */
 typedef union _hw_fec_paur
 {
@@ -2222,7 +2222,7 @@ typedef union _hw_fec_opdr
  *
  * Reset value: 0x00000000
  *
- * The FEC_IAUR is written by the user, and contains the upper 32 bits of the 64-bit individual
+ * The FEC_IAUR, which is written by the user, contains the upper 32 bits of the 64-bit individual
  * address hash table used in the address recognition process to check for possible match between
  * the DA field of receive frames and an individual DA. This register is unaffected by reset, and
  * must be initialized by the user.
@@ -2287,7 +2287,7 @@ typedef union _hw_fec_iaur
  *
  * Reset value: 0x00000000
  *
- * The FEC_IALR is written by the user, and contains the lower 32 bits of the 64-bit individual
+ * The FEC_IALR, which is written by the user, contains the lower 32 bits of the 64-bit individual
  * address hash table used in the address recognition process to check for possible match with the
  * DA field of receive frames with an individual DA. This register is unaffected by reset, and must
  * be initialized by the user.
@@ -2352,9 +2352,9 @@ typedef union _hw_fec_ialr
  *
  * Reset value: 0x00000000
  *
- * The FEC_GAUR is written by the user, and contains the upper 32 bits of the 64-bit hash table used
- * in the address recognition process for receive frames with a multicast address. This register
- * must be initialized by the user.
+ * The FEC_GAUR, which is written by the user, contains the upper 32 bits of the 64-bit hash table
+ * used in the address recognition process for receive frames with a multicast address. This
+ * register must be initialized by the user.
  */
 typedef union _hw_fec_gaur
 {
@@ -2416,9 +2416,9 @@ typedef union _hw_fec_gaur
  *
  * Reset value: 0x00000000
  *
- * The FEC_GALR is written by the user, and contains the lower 32 bits of the 64-bit hash table used
- * in the address recognition process for receive frames with a multicast address. This register
- * must be initialized by the user.
+ * The FEC_GALR, which is written by the user, contains the lower 32 bits of the 64-bit hash table
+ * used in the address recognition process for receive frames with a multicast address. This
+ * register must be initialized by the user.
  */
 typedef union _hw_fec_galr
 {
@@ -2482,7 +2482,7 @@ typedef union _hw_fec_galr
  *
  * The FEC_TFWR is programmed by the user to control the amount of data required in the transmit
  * FIFO before transmission of a frame can begin. This allows the user to minimize transmit latency
- * (FEC_TFWR[1:0] = 0 n ) or allow for larger bus access latency (FEC_TFWR[1:0] = 11) due to
+ * (FEC_TFWR[1:0] = 0x n ) or allow for larger bus access latency (FEC_TFWR[1:0] = 11) due to
  * contention for the system bus. Setting the watermark to a high value minimizes the risk of
  * transmit FIFO underrun due to contention for the system bus. In some use cases the byte counts
  * associated with the FEC_TFWR field need to be modified to match system requirements, such as the
@@ -2667,11 +2667,11 @@ typedef union _hw_fec_frsr
  *
  * Reset value: 0x00000000
  *
- * The register is written by the user, and provides a pointer to the start of the circular receive
- * buffer descriptor queue in external memory. This pointer must be 128-bit aligned (that is, evenly
- * divisible by 16).  Does the above paragraph mean that R_DES_START provides the pointer in units
- * of 32 bits? If so, this should be made clear -- CThron  This register is unaffected by reset and
- * must be initialized by the user prior to operation.
+ * The register, which is written by the user, provides a pointer to the start of the circular
+ * receive buffer descriptor queue in external memory. This pointer must be 128-bit aligned (that
+ * is, evenly divisible by 16).  Does the above paragraph mean that R_DES_START provides the pointer
+ * in units of 32 bits? If so, this should be made clear -- CThron  This register is unaffected by
+ * reset and must be initialized by the user prior to operation.
  */
 typedef union _hw_fec_erdsr
 {
@@ -2732,11 +2732,11 @@ typedef union _hw_fec_erdsr
  *
  * Reset value: 0x00000000
  *
- * The register is written by the user, and provides a pointer to the start of the circular transmit
- * buffer descriptor queue in external memory. This pointer must be 128-bit aligned (that is, evenly
- * divisible by 16).  Does the above paragraph mean that X_DES_START provides the pointer in units
- * of 32 bits? If so, this should be made clear -- CThron  This register is unaffected by reset and
- * must be initialized by the user prior to operation.
+ * The register, which is written by the user, provides a pointer to the start of the circular
+ * transmit buffer descriptor queue in external memory. This pointer must be 128-bit aligned (that
+ * is, evenly divisible by 16).  Does the above paragraph mean that X_DES_START provides the pointer
+ * in units of 32 bits? If so, this should be made clear -- CThron  This register is unaffected by
+ * reset and must be initialized by the user prior to operation.
  */
 typedef union _hw_fec_etdsr
 {
@@ -2798,13 +2798,13 @@ typedef union _hw_fec_etdsr
  * Reset value: 0x00000000
  *
  * The FEC_EMRBR is a user-programmable register which dictates the maximum size of all receive
- * buffers. Note that because receive frames is truncated at 2k-1(2047) bytes, bits 31-11 are not
- * used. The programmed value accounts for the fact that the receive CRC is always written into the
- * last receive buffer. To allow one maximum size frame per buffer, FEC_EMRBR must be set to
+ * buffers. Note that receive frames is truncated at 2k-1(2047) bytes, so bits 31-11 are not used.
+ * The programmed value accounts for the fact that the receive CRC is always written into the last
+ * receive buffer. To allow one maximum size frame per buffer, FEC_EMRBR must be set to
  * FEC_RCR[MAX_FL] or larger. The FEC_EMRBR must be evenly divisible by 16. To ensure this, bits 3-0
- * are forced low, and hence only bits 10-4 are actually used. To minimize bus utilization
- * (descriptor fetches) it is recommended that FEC_EMRBR be greater than or equal to 256 bytes.  The
- * FEC_EMRBR is unaffected by reset, and must be initialized by the user.
+ * are forced to low, and hence only bits 10-4 are actually used. To minimize bus utilization
+ * (descriptor fetches), it is recommended that FEC_EMRBR must be greater than or equal to 256
+ * bytes.  The FEC_EMRBR is unaffected by reset, and must be initialized by the user.
  */
 typedef union _hw_fec_emrbr
 {
@@ -2905,12 +2905,13 @@ typedef struct _hw_fec
     volatile hw_fec_emrbr_t EMRBR; //!< Maximum receive buffer size register
 } hw_fec_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all FEC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_FEC(0)</code>.
 #define HW_FEC     (*(volatile hw_fec_t *) REGS_FEC_BASE)
 
+#endif
 
-#endif // _FEC_H
+
+#endif // __HW_FEC_REGISTERS_H__

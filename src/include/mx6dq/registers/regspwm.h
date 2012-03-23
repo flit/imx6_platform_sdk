@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _PWM_H
-#define _PWM_H
+#ifndef __HW_PWM_REGISTERS_H__
+#define __HW_PWM_REGISTERS_H__
 
 #include "regs.h"
 
@@ -20,12 +20,13 @@
  * - HW_PWM_PWMPR - PWM Period Register
  * - HW_PWM_PWMCNR - PWM Counter Register
  *
- * hw_pwm_t - Struct containing all module registers.
+ * - hw_pwm_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_PWM_BASE
+#define HW_PWM_INSTANCE_COUNT (4) //!< Number of instances of the PWM module.
 #define REGS_PWM1_BASE (0x02080000) //!< Base address for PWM instance number 1.
 #define REGS_PWM2_BASE (0x02084000) //!< Base address for PWM instance number 2.
 #define REGS_PWM3_BASE (0x02088000) //!< Base address for PWM instance number 3.
@@ -1007,7 +1008,6 @@ typedef struct _hw_pwm
     volatile hw_pwm_pwmcnr_t PWMCNR; //!< PWM Counter Register
 } hw_pwm_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all PWM registers.
 //! @param x PWM instance number.
@@ -1015,5 +1015,7 @@ typedef struct _hw_pwm
 //!     use the '&' operator, like <code>&HW_PWM(0)</code>.
 #define HW_PWM(x)     (*(volatile hw_pwm_t *) REGS_PWM_BASE(x))
 
+#endif
 
-#endif // _PWM_H
+
+#endif // __HW_PWM_REGISTERS_H__

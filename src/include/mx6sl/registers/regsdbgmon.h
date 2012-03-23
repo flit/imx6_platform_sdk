@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _DBGMON_H
-#define _DBGMON_H
+#ifndef __HW_DBGMON_REGISTERS_H__
+#define __HW_DBGMON_REGISTERS_H__
 
 #include "regs.h"
 
@@ -24,12 +24,13 @@
  * - HW_DBGMON_HW_DBGMON_SNVS_INFO - HW_DBGMON_SNVS_INFO
  * - HW_DBGMON_HW_DBGMON_VERSION - HW_DBGMON_VERSION
  *
- * hw_dbgmon_t - Struct containing all module registers.
+ * - hw_dbgmon_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_DBGMON_BASE
+#define HW_DBGMON_INSTANCE_COUNT (1) //!< Number of instances of the DBGMON module.
 #define REGS_DBGMON_BASE (0x02090000) //!< Base address for DBGMON.
 #endif
 //@}
@@ -1493,12 +1494,13 @@ typedef struct _hw_dbgmon
     volatile hw_dbgmon_hw_dbgmon_version_t HW_DBGMON_VERSION; //!< HW_DBGMON_VERSION
 } hw_dbgmon_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all DBGMON registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_DBGMON(0)</code>.
 #define HW_DBGMON     (*(volatile hw_dbgmon_t *) REGS_DBGMON_BASE)
 
+#endif
 
-#endif // _DBGMON_H
+
+#endif // __HW_DBGMON_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _ELCDIF_H
-#define _ELCDIF_H
+#ifndef __HW_ELCDIF_REGISTERS_H__
+#define __HW_ELCDIF_REGISTERS_H__
 
 #include "regs.h"
 
@@ -47,12 +47,13 @@
  * - HW_ELCDIF_DEBUG2 - LCD Interface Debug2 Register
  * - HW_ELCDIF_THRES - eLCDIF Threshold Register
  *
- * hw_elcdif_t - Struct containing all module registers.
+ * - hw_elcdif_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_ELCDIF_BASE
+#define HW_ELCDIF_INSTANCE_COUNT (1) //!< Number of instances of the ELCDIF module.
 #define REGS_ELCDIF_BASE (0x020f8000) //!< Base address for ELCDIF.
 #endif
 //@}
@@ -5199,12 +5200,13 @@ typedef struct _hw_elcdif
     volatile hw_elcdif_thres_t THRES; //!< eLCDIF Threshold Register
 } hw_elcdif_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all ELCDIF registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_ELCDIF(0)</code>.
 #define HW_ELCDIF     (*(volatile hw_elcdif_t *) REGS_ELCDIF_BASE)
 
+#endif
 
-#endif // _ELCDIF_H
+
+#endif // __HW_ELCDIF_REGISTERS_H__

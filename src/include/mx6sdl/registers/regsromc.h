@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _ROMC_H
-#define _ROMC_H
+#ifndef __HW_ROMC_REGISTERS_H__
+#define __HW_ROMC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -42,12 +42,13 @@
  * - HW_ROMC_ROMPATCH15A - ROMC Address Registers
  * - HW_ROMC_ROMPATCHSR - ROMC Status Register
  *
- * hw_romc_t - Struct containing all module registers.
+ * - hw_romc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_ROMC_BASE
+#define HW_ROMC_INSTANCE_COUNT (1) //!< Number of instances of the ROMC module.
 #define REGS_ROMC_BASE (0x021ac000) //!< Base address for ROMC.
 #endif
 //@}
@@ -2586,12 +2587,13 @@ typedef struct _hw_romc
     volatile hw_romc_rompatchsr_t ROMPATCHSR; //!< ROMC Status Register
 } hw_romc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all ROMC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_ROMC(0)</code>.
 #define HW_ROMC     (*(volatile hw_romc_t *) REGS_ROMC_BASE)
 
+#endif
 
-#endif // _ROMC_H
+
+#endif // __HW_ROMC_REGISTERS_H__

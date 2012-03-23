@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _CCM_H
-#define _CCM_H
+#ifndef __HW_CCM_REGISTERS_H__
+#define __HW_CCM_REGISTERS_H__
 
 #include "regs.h"
 
@@ -47,12 +47,13 @@
  * - HW_CCM_CCGR7 - CCM Clock Gating Register 7
  * - HW_CCM_CMEOR - CCM Module Enable Overide Register
  *
- * hw_ccm_t - Struct containing all module registers.
+ * - hw_ccm_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_CCM_BASE
+#define HW_CCM_INSTANCE_COUNT (1) //!< Number of instances of the CCM module.
 #define REGS_CCM_BASE (0x020c4000) //!< Base address for CCM.
 #endif
 //@}
@@ -902,7 +903,7 @@ typedef union _hw_ccm_cacrr
 /*!
  * @brief HW_CCM_CBCDR - CCM Bus Clock Divider Register (RW)
  *
- * Reset value: 0x00018d00
+ * Reset value: 0x00018d40
  *
  * The figure below represents the CCM Bus Clock Divider Register (CBCDR). The CBCDR register
  * contains bits to control the clock generation sub module dividers. The table below provides its
@@ -1335,7 +1336,7 @@ typedef union _hw_ccm_cbcmr
         unsigned RESERVED0 : 1; //!< [0] Reserved
         unsigned GPU3D_AXI_CLK_SEL : 1; //!< [1] Selector for gpu3d_axi clock multiplexer
         unsigned RESERVED1 : 6; //!< [7:2] Reserved.
-        unsigned GPU2D_CORE_CLK_SEL : 2; //!< [9:8] Selector for gpu2d_core clock multiplexer
+        unsigned GPU2D_CORE_SEL : 2; //!< [9:8] Selector for gpu2d_core clock multiplexer
         unsigned RESERVED2 : 1; //!< [10] Reserved
         unsigned VDOAXI_CLK_SEL : 1; //!< [11] Selector for vdoaxi clock multiplexer
         unsigned PERIPH_CLK2_SEL : 2; //!< [13:12] Selector for peripheral clk2 clock multiplexer
@@ -1398,34 +1399,34 @@ typedef union _hw_ccm_cbcmr
 #endif
 
 
-/* --- Register HW_CCM_CBCMR, field GPU2D_CORE_CLK_SEL[9:8] (RW)
+/* --- Register HW_CCM_CBCMR, field GPU2D_CORE_SEL[9:8] (RW)
  *
  * Selector for gpu2d_core clock multiplexer
  *
  * Values:
  * 00 - derive clock from mmdc_ch0 clk
  * 01 - derive clock from pll3
- * 10 - derive clock from 594M PFD
+ * 10 - derive clock from 594M 528M PFD
  * 11 - derive clock from 720M PFD
  */
 
-#define BP_CCM_CBCMR_GPU2D_CORE_CLK_SEL      (8)      //!< Bit position for CCM_CBCMR_GPU2D_CORE_CLK_SEL.
-#define BM_CCM_CBCMR_GPU2D_CORE_CLK_SEL      (0x00000300)  //!< Bit mask for CCM_CBCMR_GPU2D_CORE_CLK_SEL.
+#define BP_CCM_CBCMR_GPU2D_CORE_SEL      (8)      //!< Bit position for CCM_CBCMR_GPU2D_CORE_SEL.
+#define BM_CCM_CBCMR_GPU2D_CORE_SEL      (0x00000300)  //!< Bit mask for CCM_CBCMR_GPU2D_CORE_SEL.
 
-//! @brief Get value of CCM_CBCMR_GPU2D_CORE_CLK_SEL from a register value.
-#define BG_CCM_CBCMR_GPU2D_CORE_CLK_SEL(r)   (((r) & BM_CCM_CBCMR_GPU2D_CORE_CLK_SEL) >> BP_CCM_CBCMR_GPU2D_CORE_CLK_SEL)
+//! @brief Get value of CCM_CBCMR_GPU2D_CORE_SEL from a register value.
+#define BG_CCM_CBCMR_GPU2D_CORE_SEL(r)   (((r) & BM_CCM_CBCMR_GPU2D_CORE_SEL) >> BP_CCM_CBCMR_GPU2D_CORE_SEL)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_CLK_SEL.
-#define BF_CCM_CBCMR_GPU2D_CORE_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU2D_CORE_CLK_SEL) & BM_CCM_CBCMR_GPU2D_CORE_CLK_SEL)
+//! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_SEL.
+#define BF_CCM_CBCMR_GPU2D_CORE_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU2D_CORE_SEL) & BM_CCM_CBCMR_GPU2D_CORE_SEL)
 #else
-//! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_CLK_SEL.
-#define BF_CCM_CBCMR_GPU2D_CORE_CLK_SEL(v)   (((v) << BP_CCM_CBCMR_GPU2D_CORE_CLK_SEL) & BM_CCM_CBCMR_GPU2D_CORE_CLK_SEL)
+//! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_SEL.
+#define BF_CCM_CBCMR_GPU2D_CORE_SEL(v)   (((v) << BP_CCM_CBCMR_GPU2D_CORE_SEL) & BM_CCM_CBCMR_GPU2D_CORE_SEL)
 #endif
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the GPU2D_CORE_CLK_SEL field to a new value.
-#define BW_CCM_CBCMR_GPU2D_CORE_CLK_SEL(v)   (HW_CCM_CBCMR_WR((HW_CCM_CBCMR_RD() & ~BM_CCM_CBCMR_GPU2D_CORE_CLK_SEL) | BF_CCM_CBCMR_GPU2D_CORE_CLK_SEL(v)))
+//! @brief Set the GPU2D_CORE_SEL field to a new value.
+#define BW_CCM_CBCMR_GPU2D_CORE_SEL(v)   (HW_CCM_CBCMR_WR((HW_CCM_CBCMR_RD() & ~BM_CCM_CBCMR_GPU2D_CORE_SEL) | BF_CCM_CBCMR_GPU2D_CORE_SEL(v)))
 #endif
 
 
@@ -1496,7 +1497,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from axi
  * 01 - derive clock from pll3
- * 10 - derive clock from 352M PFD
+ * 10 - 352M 307M PFD
  * 11 - derive clock from 396M PFD
  */
 
@@ -1525,9 +1526,9 @@ typedef union _hw_ccm_cbcmr
  * Selector for pre_periph clock multiplexer
  *
  * Values:
- * 00 - derive clock from PLL2 main 528MHz clock (default)
- * 01 - derive clock from 396MHz PLL2 PFD
- * 10 - derive clock from 352MHz PLL2 PFD
+ * 00 - derive clock from PLL2 main 528MHz clock
+ * 01 - derive clock from 396MHz PLL2 PFD (default)
+ * 10 - derive clock from 352M 307M PFD
  * 11 - derive clock from 198MHz clock (divided 396MHz PLL2 PFD)
  */
 
@@ -1587,7 +1588,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from PLL2 main 528MHz clock
  * 01 - derive clock from 396MHz PLL2 PFD (default)
- * 10 - derive clock from 352MHz PLL2 PFD
+ * 10 - derive clock from 352M 307M PFD
  * 11 - derive clock from 198MHz clock (divided 396MHz PLL2 PFD)
  */
 
@@ -1934,7 +1935,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M PFD
+ * 1 - derive clock from 352M 307M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC1_CLK_SEL      (16)      //!< Bit position for CCM_CSCMR1_USDHC1_CLK_SEL.
@@ -1963,7 +1964,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M PFD
+ * 1 - derive clock from 352M 307M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC2_CLK_SEL      (17)      //!< Bit position for CCM_CSCMR1_USDHC2_CLK_SEL.
@@ -1992,7 +1993,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M PFD
+ * 1 - derive clock from 352M 307M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC3_CLK_SEL      (18)      //!< Bit position for CCM_CSCMR1_USDHC3_CLK_SEL.
@@ -2021,7 +2022,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M PFD
+ * 1 - derive clock from 352M 307M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC4_CLK_SEL      (19)      //!< Bit position for CCM_CSCMR1_USDHC4_CLK_SEL.
@@ -2082,7 +2083,7 @@ typedef union _hw_ccm_cscmr1
  * 00 - derive clock from AXI clk root (default)
  * 01 - derive clock from PLL3
  * 10 - derive clock from 396M PFD
- * 11 - derive clock from 352M PDF
+ * 11 - derive clock from 352M 307M PFD
  */
 
 #define BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL      (29)      //!< Bit position for CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
@@ -2784,7 +2785,7 @@ typedef union _hw_ccm_cs2cdr
  *
  * Values:
  * 000 - pll5 clock
- * 001 - pll2 352M PDF (Default)
+ * 001 - pll2 352M 307M PDF (Default)
  * 010 - pll2 396M PFD
  * 011 - MMDC_ROOT clock
  * 100 - pll3 clock
@@ -2817,7 +2818,7 @@ typedef union _hw_ccm_cs2cdr
  *
  * Values:
  * 000 - pll5 clock
- * 001 - pll2 352M PDF (Default)
+ * 001 - pll2 352M 307M PDF (Default)
  * 010 - pll2 396M PFD
  * 011 - MMDC_ROOT clock
  * 100 - pll3 clock
@@ -3256,7 +3257,7 @@ typedef union _hw_ccm_chsccdr
  * 000 - derive clock from mmdc_ch0 clock
  * 001 - derive clock from pll3
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M PFD
+ * 011 - derive clock from 352M 307M PFD
  * 100 - derive clock from 396M PFD
  * 101 - derive clock from 540M PFD
  * 110-111 - Restricted
@@ -3359,7 +3360,7 @@ typedef union _hw_ccm_chsccdr
  * 000 - derive clock from mmdc_ch0 clock
  * 001 - derive clock from pll3
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M PFD
+ * 011 - derive clock from 352M 307M PFD
  * 100 - derive clock from 396M PFD
  * 101 - derive clock from 540M PFD
  * 110-111 - Restricted
@@ -3504,10 +3505,10 @@ typedef union _hw_ccm_cscdr2
  * Selector for lcdif_pix root clock pre-multiplexer
  *
  * Values:
- * 000 - derive clock from mmdc_ch0 clock
- * 001 - derive clock from pll3 (default)
+ * 000 - derive clock from mmdc_ch0 clock (default)
+ * 001 - derive clock from pll3
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M PFD
+ * 011 - derive clock from 352M 307M PFD
  * 100 - derive clock from 396M PFD
  * 101 - derive clock from 540M PFD
  * 110-111 - Restricted
@@ -3572,13 +3573,13 @@ typedef union _hw_ccm_cscdr2
  *
  * Values:
  * 000 - divide by 1
- * 001 - divide by 2
+ * 001 - divide by 2 (default)
  * 010 - divide by 3
  * 011 - divide by 4
  * 100 - divide by 5
  * 101 - divide by 6
  * 110 - divide by 7
- * 111 - divide by 8 (default)
+ * 111 - divide by 8
  */
 
 #define BP_CCM_CSCDR2_EPDC_PIX_PODF      (12)      //!< Bit position for CCM_CSCDR2_EPDC_PIX_PODF.
@@ -3609,9 +3610,9 @@ typedef union _hw_ccm_cscdr2
  * 000 - derive clock from mmdc_ch0 clock
  * 001 - derive clock from pll3
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M PFD
+ * 011 - derive clock from 352M 307M PFD
  * 100 - derive clock from 396M PFD
- * 101 - derive clock from 540M PFD
+ * 101 - derive clock from 540M PFD (default)
  * 110-111 - Restricted
  */
 
@@ -3699,7 +3700,7 @@ typedef union _hw_ccm_cscdr2
 /*!
  * @brief HW_CCM_CSCDR3 - CCM Serial Clock Divider Register 3 (RW)
  *
- * Reset value: 0x00010841
+ * Reset value: 0x00014841
  *
  * The figure below represents the CCM Serial Clock Divider Register 3(CSCDR3). The CSCDR3 register
  * contains bits to control the clock generation sub module dividers. The table below provides its
@@ -7413,9 +7414,9 @@ typedef union _hw_ccm_ccgr3
         unsigned CG0 : 2; //!< [1:0] ipu1_ipu clock (ipu1_ipu_clk_enable)
         unsigned CG1 : 2; //!< [3:2] ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable)
         unsigned CG2 : 2; //!< [5:4] ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable)
-        unsigned CG3 : 2; //!< [7:6] ipu2_ipu clock (ipu2_ipu_clk_enable)
-        unsigned CG4 : 2; //!< [9:8] ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable)
-        unsigned CG5 : 2; //!< [11:10] ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable)
+        unsigned CG3 : 2; //!< [7:6] ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable)
+        unsigned CG4 : 2; //!< [9:8] ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable) lcdif_pix clock (lcdif_pix_clk_enable)
+        unsigned CG5 : 2; //!< [11:10] ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable) epdc_pix clock (epdc_pix_clk_enable)
         unsigned CG6 : 2; //!< [13:12] ldb_di0 clock (ldb_di0_clk_enable)
         unsigned CG7 : 2; //!< [15:14] ldb_di1 clock (ldb_di1_clk_enable)
         unsigned CG8 : 2; //!< [17:16] mipi_core_cfg clock (mipi_core_cfg_clk_enable)
@@ -7522,7 +7523,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG3[7:6] (RW)
  *
- * ipu2_ipu clock (ipu2_ipu_clk_enable)
+ * ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG3      (6)      //!< Bit position for CCM_CCGR3_CG3.
@@ -7546,7 +7547,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG4[9:8] (RW)
  *
- * ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable)
+ * ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable) lcdif_pix clock (lcdif_pix_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG4      (8)      //!< Bit position for CCM_CCGR3_CG4.
@@ -7570,7 +7571,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG5[11:10] (RW)
  *
- * ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable)
+ * ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable) epdc_pix clock (epdc_pix_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG5      (10)      //!< Bit position for CCM_CCGR3_CG5.
@@ -9985,12 +9986,13 @@ typedef struct _hw_ccm
     volatile hw_ccm_cmeor_t CMEOR; //!< CCM Module Enable Overide Register
 } hw_ccm_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all CCM registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_CCM(0)</code>.
 #define HW_CCM     (*(volatile hw_ccm_t *) REGS_CCM_BASE)
 
+#endif
 
-#endif // _CCM_H
+
+#endif // __HW_CCM_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _MMDC_H
-#define _MMDC_H
+#ifndef __HW_MMDC_REGISTERS_H__
+#define __HW_MMDC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -93,12 +93,13 @@
  * - HW_MMDC_MPWRCADL - MMDC Write CA delay-line controller
  * - HW_MMDC_MPDCCR - MMDC Duty Cycle Control Register
  *
- * hw_mmdc_t - Struct containing all module registers.
+ * - hw_mmdc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_MMDC_BASE
+#define HW_MMDC_INSTANCE_COUNT (2) //!< Number of instances of the MMDC module.
 #define REGS_MMDC1_BASE (0x021b0000) //!< Base address for MMDC instance number 1.
 #define REGS_MMDC2_BASE (0x021b4000) //!< Base address for MMDC instance number 2.
 
@@ -13728,7 +13729,6 @@ typedef struct _hw_mmdc
     volatile hw_mmdc_mpdccr_t MPDCCR; //!< MMDC Duty Cycle Control Register
 } hw_mmdc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all MMDC registers.
 //! @param x MMDC instance number.
@@ -13736,5 +13736,7 @@ typedef struct _hw_mmdc
 //!     use the '&' operator, like <code>&HW_MMDC(0)</code>.
 #define HW_MMDC(x)     (*(volatile hw_mmdc_t *) REGS_MMDC_BASE(x))
 
+#endif
 
-#endif // _MMDC_H
+
+#endif // __HW_MMDC_REGISTERS_H__

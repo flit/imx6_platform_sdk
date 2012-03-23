@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _GPU3D_H
-#define _GPU3D_H
+#ifndef __HW_GPU3D_REGISTERS_H__
+#define __HW_GPU3D_REGISTERS_H__
 
 #include "regs.h"
 
@@ -46,12 +46,13 @@
  * - HW_GPU3D_GCT_CYCLES - gcTotalCycles
  * - HW_GPU3D_GCT_IDLE_CYCLES - gcTotalIdleCycles
  *
- * hw_gpu3d_t - Struct containing all module registers.
+ * - hw_gpu3d_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_GPU3D_BASE
+#define HW_GPU3D_INSTANCE_COUNT (1) //!< Number of instances of the GPU3D module.
 #define REGS_GPU3D_BASE (0x00130000) //!< Base address for GPU3D.
 #endif
 //@}
@@ -3533,12 +3534,13 @@ typedef struct _hw_gpu3d
     volatile hw_gpu3d_gct_idle_cycles_t GCT_IDLE_CYCLES; //!< gcTotalIdleCycles
 } hw_gpu3d_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all GPU3D registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_GPU3D(0)</code>.
 #define HW_GPU3D     (*(volatile hw_gpu3d_t *) REGS_GPU3D_BASE)
 
+#endif
 
-#endif // _GPU3D_H
+
+#endif // __HW_GPU3D_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SJC_H
-#define _SJC_H
+#ifndef __HW_SJC_REGISTERS_H__
+#define __HW_SJC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -25,12 +25,13 @@
  * - HW_SJC_GPUCR3 - General Purpose Unsecured Control Register n
  * - HW_SJC_GPSCR - General Purpose Secured Control Register
  *
- * hw_sjc_t - Struct containing all module registers.
+ * - hw_sjc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SJC_BASE
+#define HW_SJC_INSTANCE_COUNT (1) //!< Number of instances of the SJC module.
 #define REGS_SJC_BASE (0x00000000) //!< Base address for SJC.
 #endif
 //@}
@@ -959,12 +960,13 @@ typedef struct _hw_sjc
     volatile hw_sjc_gpscr_t GPSCR; //!< General Purpose Secured Control Register
 } hw_sjc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SJC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SJC(0)</code>.
 #define HW_SJC     (*(volatile hw_sjc_t *) REGS_SJC_BASE)
 
+#endif
 
-#endif // _SJC_H
+
+#endif // __HW_SJC_REGISTERS_H__

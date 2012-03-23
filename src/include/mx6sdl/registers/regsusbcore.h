@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _USBC_H
-#define _USBC_H
+#ifndef __HW_USBC_REGISTERS_H__
+#define __HW_USBC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -133,12 +133,13 @@
  * - HW_USBC_UH3_PORTSC1 - Port Status & Control
  * - HW_USBC_UH3_USBMODE - USB Device Mode
  *
- * hw_usbc_t - Struct containing all module registers.
+ * - hw_usbc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_USBC_BASE
+#define HW_USBC_INSTANCE_COUNT (1) //!< Number of instances of the USBC module.
 #define REGS_USBC_BASE (0x02184000) //!< Base address for USBC.
 #endif
 //@}
@@ -21580,12 +21581,13 @@ typedef struct _hw_usbc
     volatile hw_usbc_uh3_usbmode_t UH3_USBMODE; //!< USB Device Mode
 } hw_usbc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all USBC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_USBC(0)</code>.
 #define HW_USBC     (*(volatile hw_usbc_t *) REGS_USBC_BASE)
 
+#endif
 
-#endif // _USBC_H
+
+#endif // __HW_USBC_REGISTERS_H__

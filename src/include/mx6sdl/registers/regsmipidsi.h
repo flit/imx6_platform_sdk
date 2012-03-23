@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _MIPI_DSI_H
-#define _MIPI_DSI_H
+#ifndef __HW_MIPI_DSI_REGISTERS_H__
+#define __HW_MIPI_DSI_REGISTERS_H__
 
 #include "regs.h"
 
@@ -41,12 +41,13 @@
  * - HW_MIPI_DSI_PHY_TST_CTRL0 - D-PHY Test interface control 0
  * - HW_MIPI_DSI_PHY_TST_CTRL1 - D-PHY Test interface control 1
  *
- * hw_mipi_dsi_t - Struct containing all module registers.
+ * - hw_mipi_dsi_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_MIPI_DSI_BASE
+#define HW_MIPI_DSI_INSTANCE_COUNT (1) //!< Number of instances of the MIPI_DSI module.
 #define REGS_MIPI_DSI_BASE (0x020e0000) //!< Base address for MIPI_DSI.
 #endif
 //@}
@@ -5937,12 +5938,13 @@ typedef struct _hw_mipi_dsi
     volatile hw_mipi_dsi_phy_tst_ctrl1_t PHY_TST_CTRL1; //!< D-PHY Test interface control 1
 } hw_mipi_dsi_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all MIPI_DSI registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_MIPI_DSI(0)</code>.
 #define HW_MIPI_DSI     (*(volatile hw_mipi_dsi_t *) REGS_MIPI_DSI_BASE)
 
+#endif
 
-#endif // _MIPI_DSI_H
+
+#endif // __HW_MIPI_DSI_REGISTERS_H__

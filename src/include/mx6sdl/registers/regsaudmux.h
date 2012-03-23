@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _AUDMUX_H
-#define _AUDMUX_H
+#ifndef __HW_AUDMUX_REGISTERS_H__
+#define __HW_AUDMUX_REGISTERS_H__
 
 #include "regs.h"
 
@@ -28,12 +28,13 @@
  * - HW_AUDMUX_PTCR7 - Port Timing Control Register n
  * - HW_AUDMUX_PDCR7 - Port Data Control Register 7
  *
- * hw_audmux_t - Struct containing all module registers.
+ * - hw_audmux_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_AUDMUX_BASE
+#define HW_AUDMUX_INSTANCE_COUNT (1) //!< Number of instances of the AUDMUX module.
 #define REGS_AUDMUX_BASE (0x021d8000) //!< Base address for AUDMUX.
 #endif
 //@}
@@ -3541,12 +3542,13 @@ typedef struct _hw_audmux
     volatile hw_audmux_pdcr7_t PDCR7; //!< Port Data Control Register 7
 } hw_audmux_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all AUDMUX registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_AUDMUX(0)</code>.
 #define HW_AUDMUX     (*(volatile hw_audmux_t *) REGS_AUDMUX_BASE)
 
+#endif
 
-#endif // _AUDMUX_H
+
+#endif // __HW_AUDMUX_REGISTERS_H__

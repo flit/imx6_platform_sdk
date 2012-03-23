@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _SDMACORE_H
-#define _SDMACORE_H
+#ifndef __HW_SDMACORE_REGISTERS_H__
+#define __HW_SDMACORE_REGISTERS_H__
 
 #include "regs.h"
 
@@ -35,12 +35,13 @@
  * - HW_SDMACORE_SDMA_LOCK - Lock Status Register
  * - HW_SDMACORE_EVENTS2 - External DMA Requests Mirror #2
  *
- * hw_sdmacore_t - Struct containing all module registers.
+ * - hw_sdmacore_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_SDMACORE_BASE
+#define HW_SDMACORE_INSTANCE_COUNT (1) //!< Number of instances of the SDMACORE module.
 #define REGS_SDMACORE_BASE (0x020ec000) //!< Base address for SDMACORE.
 #endif
 //@}
@@ -1613,12 +1614,13 @@ typedef struct _hw_sdmacore
     volatile hw_sdmacore_events2_t EVENTS2; //!< External DMA Requests Mirror #2
 } hw_sdmacore_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all SDMACORE registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_SDMACORE(0)</code>.
 #define HW_SDMACORE     (*(volatile hw_sdmacore_t *) REGS_SDMACORE_BASE)
 
+#endif
 
-#endif // _SDMACORE_H
+
+#endif // __HW_SDMACORE_REGISTERS_H__

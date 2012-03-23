@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _QOSC_H
-#define _QOSC_H
+#ifndef __HW_QOSC_REGISTERS_H__
+#define __HW_QOSC_REGISTERS_H__
 
 #include "regs.h"
 
@@ -23,12 +23,13 @@
  * - HW_QOSC_ADV_BOOST_STATUS - Advanced QOS IRQ Status Register
  * - HW_QOSC_ADV_SW_BOOST - Advanced QOS SW Boost Register
  *
- * hw_qosc_t - Struct containing all module registers.
+ * - hw_qosc_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_QOSC_BASE
+#define HW_QOSC_INSTANCE_COUNT (1) //!< Number of instances of the QOSC module.
 #define REGS_QOSC_BASE (0x02094000) //!< Base address for QOSC.
 #endif
 //@}
@@ -2000,12 +2001,13 @@ typedef struct _hw_qosc
     volatile reg32_t ADV_SW_BOOST_TOG; //!< Advanced QOS SW Boost Register Toggle
 } hw_qosc_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all QOSC registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_QOSC(0)</code>.
 #define HW_QOSC     (*(volatile hw_qosc_t *) REGS_QOSC_BASE)
 
+#endif
 
-#endif // _QOSC_H
+
+#endif // __HW_QOSC_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _PCIE_H
-#define _PCIE_H
+#ifndef __HW_PCIE_REGISTERS_H__
+#define __HW_PCIE_REGISTERS_H__
 
 #include "regs.h"
 
@@ -62,12 +62,13 @@
  * - HW_PCIE_VCRCONR - VC Resource Control Register n
  * - HW_PCIE_VCRSR - VC Resource Status Register n
  *
- * hw_pcie_t - Struct containing all module registers.
+ * - hw_pcie_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_PCIE_BASE
+#define HW_PCIE_INSTANCE_COUNT (1) //!< Number of instances of the PCIE module.
 #define REGS_PCIE_BASE (0x01000000) //!< Base address for PCIE.
 #endif
 //@}
@@ -7969,12 +7970,13 @@ typedef struct _hw_pcie
     volatile hw_pcie_vcrsr_t VCRSR; //!< VC Resource Status Register n
 } hw_pcie_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all PCIE registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_PCIE(0)</code>.
 #define HW_PCIE     (*(volatile hw_pcie_t *) REGS_PCIE_BASE)
 
+#endif
 
-#endif // _PCIE_H
+
+#endif // __HW_PCIE_REGISTERS_H__

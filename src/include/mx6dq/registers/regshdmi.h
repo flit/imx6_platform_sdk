@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _HDMI_H
-#define _HDMI_H
+#ifndef __HW_HDMI_REGISTERS_H__
+#define __HW_HDMI_REGISTERS_H__
 
 #include "regs.h"
 
@@ -381,12 +381,13 @@
  * - HW_HDMI_I2CM_FS_SCL_LCNT_0_ADDR - I2CM_FS_SCL_LCNT_0_ADDR
  * - HW_HDMI_BASE_POINTER_ADDR - BASE_POINTER_ADDR
  *
- * hw_hdmi_t - Struct containing all module registers.
+ * - hw_hdmi_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_HDMI_BASE
+#define HW_HDMI_INSTANCE_COUNT (1) //!< Number of instances of the HDMI module.
 #define REGS_HDMI_BASE (0x00120000) //!< Base address for HDMI.
 #endif
 //@}
@@ -32019,12 +32020,13 @@ typedef struct _hw_hdmi
     volatile hw_hdmi_base_pointer_addr_t BASE_POINTER_ADDR; //!< BASE_POINTER_ADDR
 } hw_hdmi_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all HDMI registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_HDMI(0)</code>.
 #define HW_HDMI     (*(volatile hw_hdmi_t *) REGS_HDMI_BASE)
 
+#endif
 
-#endif // _HDMI_H
+
+#endif // __HW_HDMI_REGISTERS_H__

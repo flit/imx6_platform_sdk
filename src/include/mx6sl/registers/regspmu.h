@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _PMU_H
-#define _PMU_H
+#ifndef __HW_PMU_REGISTERS_H__
+#define __HW_PMU_REGISTERS_H__
 
 #include "regs.h"
 
@@ -21,12 +21,13 @@
  * - HW_PMU_REG_MISC1 - Miscellaneous Register 1
  * - HW_PMU_REG_MISC2 - Miscellaneous Register 2
  *
- * hw_pmu_t - Struct containing all module registers.
+ * - hw_pmu_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_PMU_BASE
+#define HW_PMU_INSTANCE_COUNT (1) //!< Number of instances of the PMU module.
 #define REGS_PMU_BASE (0x020c8000) //!< Base address for PMU.
 #endif
 //@}
@@ -2164,12 +2165,13 @@ typedef struct _hw_pmu
     volatile hw_pmu_reg_misc2_t REG_MISC2; //!< Miscellaneous Register 2
 } hw_pmu_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all PMU registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_PMU(0)</code>.
 #define HW_PMU     (*(volatile hw_pmu_t *) REGS_PMU_BASE)
 
+#endif
 
-#endif // _PMU_H
+
+#endif // __HW_PMU_REGISTERS_H__

@@ -5,8 +5,8 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef _RNGB_H
-#define _RNGB_H
+#ifndef __HW_RNGB_REGISTERS_H__
+#define __HW_RNGB_REGISTERS_H__
 
 #include "regs.h"
 
@@ -20,12 +20,13 @@
  * - HW_RNGB_ESR - RNGB Error Status Register
  * - HW_RNGB_OUT - RNGB Output FIFO
  *
- * hw_rngb_t - Struct containing all module registers.
+ * - hw_rngb_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
 #ifndef REGS_RNGB_BASE
+#define HW_RNGB_INSTANCE_COUNT (0) //!< Number of instances of the RNGB module.
 #define REGS_RNGB_BASE (0x00000000) //!< Base address for RNGB.
 #endif
 //@}
@@ -859,12 +860,13 @@ typedef struct _hw_rngb
     volatile hw_rngb_out_t OUT; //!< RNGB Output FIFO
 } hw_rngb_t;
 #pragma pack()
-#endif
 
 //! @brief Macro to access all RNGB registers.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
 //!     use the '&' operator, like <code>&HW_RNGB(0)</code>.
 #define HW_RNGB     (*(volatile hw_rngb_t *) REGS_RNGB_BASE)
 
+#endif
 
-#endif // _RNGB_H
+
+#endif // __HW_RNGB_REGISTERS_H__

@@ -105,19 +105,29 @@ C_DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 C_FLAGS_WARNINGS = -Wall -Werror -Wno-unused-function -fdiagnostics-show-option
 C_FLAGS_WARNINGS += -Wno-unused-but-set-variable -Wno-nonnull
 
-C_FLAGS = -mcpu=$(CPU) $(C_FLAGS_WARNINGS) -mapcs -g -Os -fno-exceptions 
+# Basic compiler flags. Enable debugging.
+C_FLAGS = $(C_FLAGS_WARNINGS) -g
 
-# Disable common section.
+# Disable placing globals into the common section.
 C_FLAGS += -fno-common
 
 # Set the C standard to C99 with GNU extensions.
-C_FLAGS += -std=gnu99
+# Use traditional GNU inline function semantics.
+C_FLAGS += -std=gnu99 -fgnu89-inline
 
-# Enable ARM/thumb interworking.
-C_FLAGS += -mthumb-interwork
+# Optimization flags.
+# No optimization, but turn on dead code elimination.
+C_FLAGS += -O0 -fdce
 
-# Turn on dead code elimination.
-C_FLAGS += -fdce
+# ARM flags.
+# Set the CPU, enable APCS, and enable ARM/thumb interworking.
+C_FLAGS += -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
+
+# Turn on NEON FPU.
+C_FLAGS += -mfpu=neon -mfloat-abi=softfp
+
+# C++ flags. Disable exceptions and RTTI.
+CPP_FLAGS = -fno-exceptions -fno-rtti
 
 C_INCLUDES = \
     -I$(PROJ_DIR)/src/include  \

@@ -110,6 +110,7 @@ extern void snvs_rtc_test(void);
 extern void snvs_srtc_test(void);
 extern void flexcan_test(void);
 extern int spi_test(void);
+extern void tempmon_test(void);
 extern int vpu_test(void);
 extern int gpmi_test(void);
 extern int mipi_test();
@@ -142,6 +143,7 @@ void ALL_test(void)
         spi_test();
         vpu_test();
 #endif /* MX6DQ_EVB */
+        tempmon_test();
         uart_test();
         usdhc_test();
 

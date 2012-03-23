@@ -138,7 +138,7 @@ C_INCLUDES = \
     -I../inc
 
 A_FLAGS 		=
-A_INCLUDES 	+= \
+A_INCLUDES += \
     -I$(PROJ_DIR) \
     -I$(PROJ_DIR)/include \
     -I$(PROJ_DIR)/src/include \

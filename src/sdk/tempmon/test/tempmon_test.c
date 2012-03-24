@@ -49,7 +49,7 @@ int read_int(void)
         }
 
         // Echo the char.
-        fputc(c, NULL);
+        fputc(c, stdout);
     }
 
     return result;

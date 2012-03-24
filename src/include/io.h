@@ -19,6 +19,7 @@
 #include <string.h>
 //#include <stdint.h>
 #include <stdbool.h>
+#include <stdarg.h>
 
 typedef unsigned long long uint64_t;
 typedef unsigned int uint32_t;
@@ -156,13 +157,19 @@ typedef struct hw_module {
     void (*iomux_config) (void);   //!< Module I/O mux configuration function.
 } hw_module_t;
 
-#ifdef SDK_DEBUG
-#define printf1    printf
-#else
-#define printf1(fmt,args...)
-#endif
 
-typedef int32_t (*sdk_test_t) (void);
+//! @brief Debug print utility.
+//!
+//! This print function will only output text when the @a DEBUG macro is defined.
+static inline void debug_printf(const char * format, ...)
+{
+#if defined(DEBUG)
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
+#endif
+}
 
 //! @name Test results
 //@{

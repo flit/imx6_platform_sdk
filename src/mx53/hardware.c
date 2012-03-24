@@ -180,7 +180,7 @@ void show_ddr_config(void)
         i++;
     }
 
-    printf1("num_rows= %d\n", num_rows);
+    debug_printf("num_rows= %d\n", num_rows);
     i = 1;
 
     while (i <= col) {
@@ -188,7 +188,7 @@ void show_ddr_config(void)
         i++;
     }
 
-    printf1("num_cols= %d\n", num_cols);
+    debug_printf("num_cols= %d\n", num_cols);
     density = num_rows * num_cols / megabyte;
     density = density * dsiz * num_banks / 8;
     printf("Density per chip select: %dMB \n", density);

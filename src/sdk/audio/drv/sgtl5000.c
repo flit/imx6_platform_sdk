@@ -142,7 +142,7 @@ static int32_t sgtl5000_dac_volume_up(audio_codec_p codec)
         volume -= 0x10;
 
     val = volume | (volume << 8);
-    printf1("0x%x\n", val);
+    debug_printf("0x%x\n", val);
 
     SGTL5000_REG_WRITE(codec, CHIP_ANA_HP_CTRL_REG, val);
 

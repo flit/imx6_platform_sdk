@@ -103,7 +103,7 @@ static int wait_op_done(uint32_t base, int is_tx)
 
     /* If timeout error occurred return error */
     if (i <= 0) {
-        printf1("I2C Error: timeout unexpected\n");
+        debug_printf("I2C Error: timeout unexpected\n");
         return -1;
     }
 
@@ -112,7 +112,7 @@ static int wait_op_done(uint32_t base, int is_tx)
 
     /* Check for arbitration lost */
     if (v & I2C_I2SR_IAL) {
-        printf1("Error %d: Arbitration lost\n", __LINE__);
+        debug_printf("Error %d: Arbitration lost\n", __LINE__);
         return ERR_ARB_LOST;
     }
 
@@ -120,7 +120,7 @@ static int wait_op_done(uint32_t base, int is_tx)
     if (is_tx) {
         if (v & I2C_I2SR_RXAK) {
             /* No ACK received, generate STOP by clearing MSTA bit */
-            printf1("Error %d: no ack received\n", __LINE__);
+            debug_printf("Error %d: no ack received\n", __LINE__);
             /* Generate a STOP signal */
             imx_send_stop(base);
             return ERR_NO_ACK;
@@ -143,7 +143,7 @@ static int wait_op_done(uint32_t base, int is_tx)
 static int tx_byte(uint8_t * data, uint32_t base)
 {
     int ret;
-    printf1("%s(data=0x%02x, base=0x%x)\n", __FUNCTION__, *data, base);
+    debug_printf("%s(data=0x%02x, base=0x%x)\n", __FUNCTION__, *data, base);
 
     /* clear both IAL and IIF bits */
     writew(0, base + I2C_I2SR);
@@ -190,7 +190,7 @@ static int rx_bytes(uint8_t * data, uint32_t base, int sz)
         }
         /* read the true data */
         data[i] = readw(base + I2C_I2DR);
-        printf1("OK 0x%02x\n", data[i]);
+        debug_printf("OK 0x%02x\n", data[i]);
     }
 
     return 0;
@@ -248,14 +248,14 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
 
     /* make sure bus is busy after the START signal */
     if (wait_till_busy(base) != 0) {
-        printf1("1\n");
+        debug_printf("1\n");
         return -1;
     }
     /* Step 2: send slave address + read/write at the LSB */
     data = (rq->dev_addr << 1) | I2C_WRITE;
 
     if ((ret = tx_byte(&data, base)) != 0) {
-        printf1("START TX ERR %d\n", ret);
+        debug_printf("START TX ERR %d\n", ret);
 
         if (ret == ERR_NO_ACK) {
             return ERR_NO_ACK_ON_START;
@@ -273,7 +273,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
 
     for (i = 0; i < rq->reg_addr_sz; i++, reg >>= 8) {
         data = reg & 0xFF;
-        printf1("sending I2C=0x%x device register: data=0x%x, byte %d\n", base, data, i);
+        debug_printf("sending I2C=0x%x device register: data=0x%x, byte %d\n", base, data, i);
 
         if (tx_byte(&data, base) != 0) {
             return -1;

@@ -175,9 +175,9 @@ int _write(int fd, char *buf, int nbytes)
 
     for (i = 0; i < nbytes; i++) {
         if (*(buf + i) == '\n') {
-            fputc('\r', NULL);
+            fputc('\r', stdout);
         }
-        fputc(*(buf + i), NULL);
+        fputc(*(buf + i), stdout);
     }
 
     return nbytes;
@@ -251,7 +251,7 @@ uint32_t get_input_hex(void)
 
     q = 0;
     do {
-        recvCh = fgetc(NULL);
+        recvCh = fgetc(stdin);
         if (recvCh != NONE_CHAR) {
             if (recvCh >= '0' && recvCh <= '9') {
                 tmp[q] = recvCh - '0';
@@ -270,8 +270,8 @@ uint32_t get_input_hex(void)
                     continue;
                 }
             }
-        fputc(recvCh, NULL);
-        q++;
+            fputc(recvCh, stdout);
+            q++;
         }
     } while (1);
 

@@ -40,6 +40,21 @@ getCPUnum:
 	BX	  lr
   .endfunc    @getCPUnum();
 
+  .global enable_neon_fpu
+  .func enable_neon_fpu
+enable_neon_fpu:
+	/* set NSACR, both Secure and Non-secure access are allowed to NEON */
+	MRC p15, 0, r0, c1, c1, 2
+	ORR r0, r0, #(0x3<<10) @ enable fpu/neon
+	MCR p15, 0, r0, c1, c1, 2
+	/* Set the CPACR for access to CP10 and CP11*/
+	LDR r0, =0xF00000
+	MCR p15, 0, r0, c1, c0, 2
+	/* Set the FPEXC EN bit to enable the FPU */
+	MOV r3, #0x40000000 
+	@VMSR FPEXC, r3
+	MCR p10, 7, r3, c8, c0, 0
+  .endfunc
 
   .global disable_strict_align_check
   .func disable_strict_align_check

@@ -21,6 +21,7 @@
 extern void SDK_TEST(void);
 extern void disable_strict_align_check(void);
 extern void system_memory_arrange(void);
+extern void enable_neon_fpu(void);
 
 /*!
  * main function that decides which tests to run and prompts the user before
@@ -29,6 +30,7 @@ extern void system_memory_arrange(void);
  */
 int main(void)
 {
+    enable_neon_fpu();
 #if defined(MX6DQ_EVB)||defined(MX6SDL_EVB)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_AI)||defined(MX6SDL_SABRE_AI)
     system_memory_arrange();
     disable_strict_align_check();

@@ -7,7 +7,7 @@
 #if !defined(__tempmon_h__)
 #define __tempmon_h__
 
-#include "io.h"
+#include "sdk.h"
 
 //! @addtogroup tempmon
 //! @{

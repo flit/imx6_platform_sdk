@@ -7,7 +7,7 @@
 #ifndef __ECSPI_IFC_HDR__
 #define __ECSPI_IFC_HDR__
 
-#include "io.h"
+#include "sdk.h"
 
 /* Enumeration define */
 typedef enum {

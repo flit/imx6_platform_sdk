@@ -12,7 +12,7 @@
  * @ingroup diag_audio
  */
 
-#include "io.h"
+#include "sdk.h"
 #include "audio.h"
 
 #define DEBUG_ENABLE	1

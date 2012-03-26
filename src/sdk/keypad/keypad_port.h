@@ -15,7 +15,7 @@
 #ifndef __KEYPAD_PORT_H__
 #define __KEYPAD_PORT_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* registers address */
 #define KPP_KPCR (KPP_BASE_ADDR + KPP_KPCR_OFFSET)

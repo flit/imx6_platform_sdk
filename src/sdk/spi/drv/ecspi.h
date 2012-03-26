@@ -7,7 +7,7 @@
 #ifndef __ECSPI_HDR__
 #define __ECSPI_HDR__
 
-#include "io.h"
+#include "sdk.h"
 
 #define SUCCESS 1
 #define FAIL 0

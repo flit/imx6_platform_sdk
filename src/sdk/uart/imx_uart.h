@@ -14,7 +14,7 @@
 #ifndef __IMX_UART_H__
 #define __IMX_UART_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* UART Registers Bit Fields */
 #define UART_UCR1_ADEN      (1 << 15)   // Auto dectect interrupt

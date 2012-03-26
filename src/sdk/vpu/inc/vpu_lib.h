@@ -20,7 +20,7 @@
 #ifndef __VPU__LIB__H
 #define __VPU__LIB__H
 
-#include "io.h"
+#include "sdk.h"
 
 typedef uint32_t PhysicalAddress;
 typedef uint32_t VirtualAddress;

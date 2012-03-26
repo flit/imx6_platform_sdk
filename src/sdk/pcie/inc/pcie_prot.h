@@ -8,7 +8,7 @@
 #ifndef __PCIE_PROT__
 #define __PCIE_PROT__
 
-#include "io.h"
+#include "sdk.h"
 
 typedef struct {
     uint16_t vendor_id;

@@ -16,8 +16,8 @@
 #include "hardware.h"
 #include "version.h"
 
-int board_id = 0;
-int board_rev = 0;
+int32_t board_id = 0;
+int32_t board_rev = 0;
 
 static char board_name[20];
 static char board_revision[20];

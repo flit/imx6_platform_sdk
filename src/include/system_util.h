@@ -14,7 +14,7 @@
 #ifndef _SYSTEM_UTIL_H_
 #define _SYSTEM_UTIL_H_
 
-#include "io.h"
+#include "sdk.h"
 
 void _sys_exit(int32_t return_code);
 

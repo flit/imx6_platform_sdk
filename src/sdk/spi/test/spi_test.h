@@ -7,7 +7,7 @@
 #ifndef __SPI_TEST_HDR__
 #define __SPI_TEST_HDR__
 
-#include "io.h"
+#include "sdk.h"
 
 #define TEST_BUF_SZ 128
 #define TEST_SRC_VAL  0x3569AC00

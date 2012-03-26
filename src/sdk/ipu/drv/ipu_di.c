@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "ipu_common.h"
-#include "io.h"
+#include "sdk.h"
 #include "hardware.h"
 
 /*!

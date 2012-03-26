@@ -8,7 +8,7 @@
 #ifndef __USDHC_TEST__
 #define __USDHC_TEST__
 
-#include "io.h"
+#include "sdk.h"
 
 #define MMC_TEST_BUF_SIZE 8000
 #define MMC_TEST_OFFSET   (1024 * 1024)

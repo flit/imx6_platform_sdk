@@ -15,7 +15,7 @@
 #ifndef __KEYPAD_TEST_H__
 #define __KEYPAD_TEST_H__
 
-#include "io.h"
+#include "sdk.h"
 
 #define NO_KEY "NOT VALID"
 

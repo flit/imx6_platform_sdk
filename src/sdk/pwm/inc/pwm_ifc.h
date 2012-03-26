@@ -8,7 +8,7 @@
 #ifndef __PWM_IFC__
 #define __PWM_IFC__
 
-#include "io.h"
+#include "sdk.h"
 
 #define PWMIR_MASK_FIE ((uint32_t)0x1)  /* FIFO empty */
 #define PWMIR_MASK_RIE ((uint32_t)0x2)  /* Rollover */

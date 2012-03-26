@@ -14,7 +14,7 @@
 #ifndef __EPIT_H__
 #define __EPIT_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* EPIT Registers Bit Fields */
     /* x = clock source */

@@ -14,7 +14,7 @@
 #ifndef __GPT_H__
 #define __GPT_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* GPT Registers Bit Fields */
 #define GPTCR_FO3           (0 << 31)   // GPT force output compare

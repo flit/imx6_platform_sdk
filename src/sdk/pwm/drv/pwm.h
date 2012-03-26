@@ -8,7 +8,7 @@
 #ifndef __PWM_HDR__
 #define __PWM_HDR__
 
-#include "io.h"
+#include "sdk.h"
 
 typedef struct {
     volatile uint32_t pwmcr;

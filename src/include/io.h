@@ -7,51 +7,18 @@
 
 /*!
  * @file io.h
- * @brief       Basic defines
+ * @brief Register access macros.
  *
  * @ingroup diag_init
  */
 #ifndef __IO_H__
 #define __IO_H__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-//#include <stdint.h>
-#include <stdbool.h>
-#include <stdarg.h>
+#include "sdk_types.h"
 
-typedef unsigned long long uint64_t;
-typedef unsigned int uint32_t;
-typedef unsigned short uint16_t;
-typedef unsigned char uint8_t;
-
-typedef long long int64_t;
-typedef int int32_t;
-typedef short int16_t;
-typedef char int8_t;
-
-//! @brief Defines a pointer to a function.
-typedef void (*funct_t) (void);
-
-#define TRUE        1
-#define FALSE       0
-
-#define ENABLE      (1)
-#define DISABLE     (0)
-
-#define NONE_CHAR   (0xFF)
-
-//! @name Min/max macros
-//@{
-#if !defined(MIN)
-    #define MIN(a, b)   ((a) < (b) ? (a) : (b))
-#endif
-
-#if !defined(MAX)
-    #define MAX(a, b)   ((a) > (b) ? (a) : (b))
-#endif
-//@}
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
 //! @name Register read functions
 //@{
@@ -144,45 +111,7 @@ typedef void (*funct_t) (void);
  */
 #define SET_FIELD(val, len, sh, nval)    ((val & ~(((1 << len) - 1) << sh)) | (nval << sh))
 
-/*!
- * @brief Details of a hardware peripheral instance.
- */
-typedef struct hw_module {
-    const char *name;       //!< Name of the module.
-    uint32_t instance;    //!< The number of this module instance. The first instance is number 1.
-    uint32_t base;      //!< Module base address.
-    uint32_t freq;      //!< Input clock frequency.
-    uint32_t irq_id;    //!< ID of its interrupt.
-    void (*irq_subroutine)(void);   //!< Module interrupt sub-routine address.
-    void (*iomux_config) (void);   //!< Module I/O mux configuration function.
-} hw_module_t;
-
-
-//! @brief Debug print utility.
-//!
-//! This print function will only output text when the @a DEBUG macro is defined.
-static inline void debug_printf(const char * format, ...)
-{
-#if defined(DEBUG)
-    va_list args;
-    va_start(args, format);
-    vprintf(format, args);
-    va_end(args);
-#endif
-}
-
-//! @name Test results
-//@{
-#define TEST_PASSED     (0)
-#define TEST_FAILED     (-1)
-#define TEST_BYPASSED   (2)
-#define TEST_NOTPRESENT (3)
-//@}
-
-//! @name Return codes
-//@{
-// #define SUCCESS (0)
-// #define ERROR (1)
-//@}
-
 #endif // __IO_H__
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

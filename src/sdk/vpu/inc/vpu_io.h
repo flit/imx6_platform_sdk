@@ -16,7 +16,7 @@
 #ifndef __VPU__IO__H
 #define __VPU__IO__H
 
-#include "io.h"
+#include "sdk.h"
 
 /*!
  * @brief  vpu memory description structure

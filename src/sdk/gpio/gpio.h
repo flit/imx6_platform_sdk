@@ -14,7 +14,7 @@
 #ifndef __GPIO_H__
 #define __GPIO_H__
 
-#include "io.h"
+#include "sdk.h"
 
 //! @addtogroup diag_gpio
 //! @{

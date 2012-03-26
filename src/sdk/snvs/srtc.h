@@ -15,7 +15,7 @@
 #ifndef __SRTC_H__
 #define __SRTC_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* SNVS driver API */
 void srtc_init(void);

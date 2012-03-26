@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "io.h"
+#include "sdk.h"
 #include "audio/inc/audio.h"
 #include "wav_data.data"
 

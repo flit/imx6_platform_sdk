@@ -12,7 +12,7 @@
  * @ingroup diag_init
  */
 
-#include "io.h"
+#include "sdk.h"
 #include "version.h"
 
 /*!

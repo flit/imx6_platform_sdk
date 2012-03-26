@@ -8,7 +8,7 @@
 #ifndef __PCIE_COMMON_H__
 #define __PCIE_COMMON_H__
 
-#include "io.h"
+#include "sdk.h"
 #include "pcie/inc/pcie_regs.h"
 #include "pcie/inc/pcie_phy_regs.h"
 

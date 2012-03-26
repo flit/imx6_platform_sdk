@@ -4,7 +4,7 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-#include "io.h"
+#include "sdk.h"
 /*!
  * @file usb_registers.h
  * @brief USB controller registers and bit definitions.

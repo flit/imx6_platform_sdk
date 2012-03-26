@@ -7,7 +7,7 @@
 #ifndef _IMX_SATA_H_
 #define _IMX_SATA_H_
 
-#include "io.h"
+#include "sdk.h"
 #include "hardware.h"
 
 typedef unsigned int u32;

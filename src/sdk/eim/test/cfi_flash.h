@@ -8,7 +8,7 @@
 #ifndef _FLASH_H_
 #define _FLASH_H_
 
-#include "io.h"
+#include "sdk.h"
 #include "flash_id.h"
 
 #define flash_print printf

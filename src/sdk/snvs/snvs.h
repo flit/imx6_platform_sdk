@@ -14,7 +14,7 @@
 #ifndef __SNVS_H__
 #define __SNVS_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* SNVS driver API */
 void snvs_init(struct hw_module *port);

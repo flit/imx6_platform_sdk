@@ -7,7 +7,7 @@
 #ifndef _IMX_SPI_NOR_NUMONYX_H_
 #define _IMX_SPI_NOR_NUMONYX_H_
 
-#include "io.h"
+#include "sdk.h"
 
 #define SUCCESS 0
 #define FAIL 1

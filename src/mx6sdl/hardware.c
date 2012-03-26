@@ -16,8 +16,6 @@
 #include "registers/regsccmanalog.h"
 #include "hardware.h"
 
-extern int32_t board_id;
-
 #define ON 1
 #define OFF 0
 

@@ -13,7 +13,7 @@
  */
 
 #include "hardware.h"
-#include "io.h"
+#include "sdk.h"
 #include "enet/enet.h"
 
 static imx_enet_priv_t enet0;

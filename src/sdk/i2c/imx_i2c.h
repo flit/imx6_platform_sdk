@@ -8,7 +8,7 @@
 #ifndef __IMX_I2C_H__
 #define __IMX_I2C_H__
 
-#include "io.h"
+#include "sdk.h"
 
 #define I2C_IADR                    0x0
 #define I2C_IFDR                    0x4

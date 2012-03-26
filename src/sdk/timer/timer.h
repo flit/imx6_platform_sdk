@@ -14,7 +14,7 @@
 #ifndef __TIME_H__
 #define __TIME_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* these defines are common to EPIT and GPT modules */
 #define WAIT_MODE_EN    1

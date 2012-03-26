@@ -15,10 +15,11 @@
 #ifndef __HARDWARE_H__
 #define __HARDWARE_H__
 
+#include "sdk_types.h"
 #include "soc_memory_map.h"
 #include "irq_numbers.h"
 #include "registers.h"
-#include "io.h"
+#include "sdk.h"
 #include "system_util.h"
 #include "iomux_config.h"
 #include "iomux_define.h"
@@ -155,7 +156,7 @@
 #endif
 
 //! @brief Create an array of I2C requests for all used expanders on the board.
-extern struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
+extern struct imx_i2c_request max7310_i2c_req_array[];
 
 #define MMA8450_I2C_ID      0x1C
 #define MMA8451_I2C_ID      0x1C

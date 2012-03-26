@@ -8,7 +8,7 @@
 #ifndef __GPU_TEST_COMMON_H__
 #define __GPU_TEST_COMMON_H__
 
-#include "io.h"
+#include "sdk.h"
 #include "hardware.h"
 #include "soc_memory_map.h"
 

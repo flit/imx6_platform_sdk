@@ -15,7 +15,7 @@
 #ifndef __HDMI_COMMON_H__
 #define __HDMI_COMMON_H__
 
-#include "io.h"
+#include "sdk.h"
 
 enum hdmi_datamap {
     RGB444_8B = 0x01,

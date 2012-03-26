@@ -15,10 +15,11 @@
 #ifndef __HARDWARE_H__
 #define __HARDWARE_H__
 
+#include "sdk_types.h"
 #include "soc_memory_map.h"
 #include "irq_numbers.h"
 #include "registers.h"
-#include "io.h"
+#include "sdk.h"
 #include "system_util.h"
 #include "iomux_config.h"
 #include "iomux_define.h"
@@ -30,8 +31,6 @@
 #include "i2c/imx_i2c.h"
 #include "uart/imx_uart.h"
 #include "sata/imx_sata.h"
-#include "timer/epit.h"
-#include "timer/gpt.h"
 #include "timer/timer.h"
 #include "rtc/rtc.h"
 #include "snvs/srtc.h"

@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "io.h"
+#include "sdk.h"
 #include "hardware.h"
 #include "audio/inc/audio.h"
 #include "audio/inc/imx-audmux.h"

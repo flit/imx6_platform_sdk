@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "io.h"
+#include "sdk.h"
 #include "soc_memory_map.h"
 #include "pcie/inc/pcie_common.h"
 

@@ -15,7 +15,7 @@
 #ifndef __RTC_H__
 #define __RTC_H__
 
-#include "io.h"
+#include "sdk.h"
 
 /* RTC driver API */
 void rtc_init(void);

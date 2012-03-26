@@ -8,7 +8,7 @@
 #ifndef __EIM_HDR__
 #define __EIM_HDR__
 
-#include "io.h"
+#include "sdk.h"
 #include "eim/inc/eim_ifc.h"
 
 enum eim_reg_e {

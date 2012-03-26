@@ -8,7 +8,7 @@
 #ifndef __EIM_IFC__
 #define __EIM_IFC__
 
-#include "io.h"
+#include "sdk.h"
 
 /* CS enumeration */
 enum eim_cs_e {

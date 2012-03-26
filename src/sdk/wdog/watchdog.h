@@ -7,7 +7,7 @@
 #ifndef __WATCHDOG__
 #define __WATCHDOG__
 
-#include "io.h"
+#include "sdk.h"
 
 typedef struct {
     volatile uint16_t wcr;      /* control */

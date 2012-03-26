@@ -13,7 +13,7 @@
 #ifndef SDMA_PRIV_H
 #define SDMA_PRIV_H
 
-#include "io.h"
+#include "sdk.h"
 #include "sdma_script_info.h"
 #include "sdma/inc/sdma.h"
 

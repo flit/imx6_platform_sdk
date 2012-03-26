@@ -15,7 +15,7 @@
 #ifndef _MMU_H_
 #define _MMU_H_
 
-#include "io.h"
+#include "sdk.h"
 
 #define ARM_FIRST_LEVEL_PAGE_TABLE_SIZE 0x4000
 

@@ -13,7 +13,7 @@
 #ifndef SDMA_H
 #define SDMA_H
 
-#include "io.h"
+#include "sdk.h"
 
 /*--------------------------------- macros --------------------------------------*/
 #define SDMA_ENV_BUF_SIZE		0x800

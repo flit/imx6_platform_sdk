@@ -25,9 +25,6 @@ static uint32_t g_port_base_addr;
 static uint8_t g_addr_cycle, g_data_cycle;
 static uint8_t g_read_access;
 
-/*!
- * I2C interrupt routine.
- */
 void i2c_interrupt_routine(void)
 {
     g_i2c_status_reg = readw(g_port_base_addr + I2C_I2SR);
@@ -37,14 +34,7 @@ void i2c_interrupt_routine(void)
     g_wait_for_irq = 0;
 }
 
-/*!
- * I2C handler for the slave mode. The function is based on the
- * flow chart for typical I2C polling routine described in the
- * I2C controller chapter of the reference manual.
- *
- * @param   rq - pointer to struct imx_i2c_request
- */
-void i2c_slave_handler(struct imx_i2c_request *rq)
+void i2c_slave_handler(imx_i2c_request_t *rq)
 {
     uint16_t i2cr, i2sr;
     uint8_t data, offset;
@@ -144,33 +134,7 @@ void i2c_slave_handler(struct imx_i2c_request *rq)
     }
 }
 
-/*!
- * The slave mode behaves like any device with g_addr_cycle of address + g_data_cycle of data.
- * Master read =
- * START - SLAVE_ID/W - ACK - MEM_ADDR - ACK - START - SLAVE_ID/R - ACK - DATAx - NACK - STOP
- * 
- * Example for a 16-bit address access:
- * 1st IRQ - receive the slave address and Write flag from master.
- * 2nd IRQ - receive the lower byte of the requested 16-bit address.
- * 3rd IRQ - receive the higher byte of the requested 16-bit address.
- * 4th IRQ - receive the slave address and Read flag from master.
- * 5th and next IRQ - transmit the data as long as NACK and STOP is not asserted.
- *
- * Master write =
- * START - SLAVE_ID/W - ACK - MEM_ADDR - ACK - DATAx - NACK - STOP
- *
- * 1st IRQ - receive the slave address and Write flag from master.
- * 2nd IRQ - receive the lower byte of the requested 16-bit address.
- * 3rd IRQ - receive the higher byte of the requested 16-bit address.
- * 4th and next IRQ - receive the data as long STOP is not asserted.
- */
-/*!
- * Handle the I2C transfers in slave mode.
- *
- * @param   port - pointer to the I2C module structure.
- * @param   rq - pointer to struct imx_i2c_request
- */
-void i2c_slave_xfer(struct hw_module *port, struct imx_i2c_request *rq)
+void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq)
 {
     uint32_t base = rq->ctl_addr;
 

@@ -165,9 +165,6 @@ void audmux_iomux_config(void);
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
 
-#define MAX_GPIO_PORT   7
-// const uint32_t g_mx_gpio_port[MAX_GPIO_PORT];
-
 extern void platform_init(void);
 extern int32_t board_id;
 extern int32_t board_rev;

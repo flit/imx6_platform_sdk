@@ -14,11 +14,51 @@
  */
 
 #include "hardware.h"
+#include "i2c/imx_i2c.h"
 
 /* Max number of operations to wait to receuve ack */
 #define WAIT_RXAK_LOOPS     1000000
 
+#define I2C_DEBUG
+
+#ifdef I2C_DEBUG
+#define I2CDBG(fmt,args...) debug_printf(fmt, ## args)
+#else
+#define I2CDBG(fmt,args...)
+#endif
+
 #define get_status(x) readw(x + I2C_I2SR)
+
+static const uint16_t i2c_freq_div[50][2] = {
+        { 22,   0x20 }, { 24,   0x21 }, { 26,   0x22 }, { 28,   0x23 },
+        { 30,   0x00 }, { 32,   0x24 }, { 36,   0x25 }, { 40,   0x26 },
+        { 42,   0x03 }, { 44,   0x27 }, { 48,   0x28 }, { 52,   0x05 },
+        { 56,   0x29 }, { 60,   0x06 }, { 64,   0x2A }, { 72,   0x2B },
+        { 80,   0x2C }, { 88,   0x09 }, { 96,   0x2D }, { 104,  0x0A },
+        { 112,  0x2E }, { 128,  0x2F }, { 144,  0x0C }, { 160,  0x30 },
+        { 192,  0x31 }, { 224,  0x32 }, { 240,  0x0F }, { 256,  0x33 },
+        { 288,  0x10 }, { 320,  0x34 }, { 384,  0x35 }, { 448,  0x36 },
+        { 480,  0x13 }, { 512,  0x37 }, { 576,  0x14 }, { 640,  0x38 },
+        { 768,  0x39 }, { 896,  0x3A }, { 960,  0x17 }, { 1024, 0x3B },
+        { 1152, 0x18 }, { 1280, 0x3C }, { 1536, 0x3D }, { 1792, 0x3E },
+        { 1920, 0x1B }, { 2048, 0x3F }, { 2304, 0x1C }, { 2560, 0x1D },
+        { 3072, 0x1E }, { 3840, 0x1F }
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// Prototypes
+////////////////////////////////////////////////////////////////////////////////
+
+static inline int is_bus_free(unsigned int base);
+static int wait_till_busy(uint32_t base);
+static inline void imx_send_stop(unsigned int base);
+static int wait_op_done(uint32_t base, int is_tx);
+static int tx_byte(uint8_t * data, uint32_t base);
+static int rx_bytes(uint8_t * data, uint32_t base, int sz);
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
 
 /*!
  * Loop status register for IBB to go 0
@@ -82,7 +122,8 @@ static inline void imx_send_stop(unsigned int base)
 }
 
 /*!
- * wait for operation done
+ * @brief Wait for operation done.
+ *
  * This function loops until we get an interrupt. On timeout it returns -1.
  * It reports arbitration lost if IAL bit of I2SR register is set
  * Clears the interrupt
@@ -196,28 +237,7 @@ static int rx_bytes(uint8_t * data, uint32_t base, int sz)
     return 0;
 }
 
-/*!
- * This is a rather simple function that can be used for most I2C devices.
- * Common steps for both READ and WRITE:
- *      step 1: issue start signal
- *      step 2: put I2C device addr on the bus (always 1 byte write. the dir always I2C_WRITE)
- *      step 3: offset of the I2C device write (offset within the device. can be 1-4 bytes)
- * For READ:
- *      step 4: do repeat-start
- *      step 5: send slave address again, but indicate a READ operation by setting LSB bit
- *      Step 6: change to receive mode
- *      Step 7: dummy read
- *      Step 8: reading
- * For WRITE:
- *      Step 4: do data write
- *      Step 5: generate STOP by clearing MSTA bit
- *
- * @param   rq        pointer to struct imx_i2c_request
- * @param   dir       I2C_READ/I2C_WRITE
- *
- * @return  0 on success; non-zero otherwise
- */
-int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
+int32_t i2c_xfer(imx_i2c_request_t *rq, int dir)
 {
     uint32_t reg, ret = 0;
     uint16_t i2cr;
@@ -338,14 +358,7 @@ int32_t i2c_xfer(struct imx_i2c_request *rq, int dir)
     return ret;
 }
 
-/*!
- * Setup I2C interrupt. It enables or disables the related HW module
- * interrupt, and attached the related sub-routine into the vector table.
- *
- * @param   port - pointer to the I2C module structure.
- * @param   state - enable/disable the interrupt
- */
-void i2c_setup_interrupt(struct hw_module *port, uint8_t state)
+void i2c_setup_interrupt(hw_module_t *port, uint8_t state)
 {
     if (state == ENABLE) {
         /* register the IRQ sub-routine */
@@ -366,15 +379,6 @@ void i2c_setup_interrupt(struct hw_module *port, uint8_t state)
     }
 }
 
-/*!
- * Initialize the I2C module -- mainly enable the I2C clock, module
- * itself and the I2C clock prescaler.
- *
- * @param   base        base address of I2C module (also assigned for I2Cx_CLK)
- * @param   baud        the desired data rate in bps
- *
- * @return  0 if successful; non-zero otherwise
- */
 int i2c_init(uint32_t base, uint32_t baud)
 {
     uint32_t src_clk, divider;
@@ -424,3 +428,7 @@ int i2c_init(uint32_t base, uint32_t baud)
 
     return 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

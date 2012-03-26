@@ -64,9 +64,16 @@ extern "C" {
 #endif
 
 /*!
+ * @brief Returns the number of available GPIO ports.
+ * @return An integer number of GPIO ports on this hardware. This value is one more than
+ *      the maximum that is accepted for the port number in the other GPIO driver APIs.
+ */
+int32_t gpio_get_port_count(void);
+
+/*!
  * @brief Sets the GPIO direction for the specified pin.
  *
- * @param	port GPIO module instance, 0 to MAX_GPIO_PORT.
+ * @param	port GPIO module instance, 0 to gpio_get_port_count().
  * @param 	pin	GPIO pin 0 to 31.
  * @param 	dir	direction for the pin. in or out.
  * @return -1 means failed to set the pin
@@ -76,7 +83,7 @@ int32_t gpio_dir_config(int32_t port, int32_t pin, int32_t dir);
 /*!
  *	@brief Sets the GPIO attributte(high or low) for the specified pin.
  *
- *  @param  port GPIO module instance, 0 to MAX_GPIO_PORT.
+ *  @param  port GPIO module instance, 0 to gpio_get_port_count().
  *	@param  pin	GPIO pin 0 to 31.
  *  @param  attr attributte for the pin. high/low
  *  @return  -1 means failed to set the pin
@@ -86,7 +93,7 @@ int32_t gpio_write_data(int32_t port, int32_t pin, uint32_t attr);
 /*!
  *	Gets the GPIO attributte(high or low) for the specified pin.
  *
- *  @param	port: 	GPIO module instance, 0 to MAX_GPIO_PORT.
+ *  @param	port: 	GPIO module instance, 0 to gpio_get_port_count().
  *	@param	pin:	GPIO pin 0 to 31.
  *  @return	-1 means failed to get the value
 */

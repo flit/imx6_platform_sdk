@@ -40,12 +40,19 @@
 //@{
 #ifndef REGS_FLEXCAN_BASE
 #define HW_FLEXCAN_INSTANCE_COUNT (2) //!< Number of instances of the FLEXCAN module.
+#define HW_FLEXCAN1 (1) //!< Instance number for FLEXCAN1.
+#define HW_FLEXCAN2 (2) //!< Instance number for FLEXCAN2.
+
 #define REGS_FLEXCAN1_BASE (0x02090000) //!< Base address for FLEXCAN instance number 1.
 #define REGS_FLEXCAN2_BASE (0x02094000) //!< Base address for FLEXCAN instance number 2.
 
 //! @brief Get the base address of FLEXCAN by instance number.
-//! @param x FLEXCAN instance number, from 0 through 2.
-#define REGS_FLEXCAN_BASE(x) ( x == 1 ? REGS_FLEXCAN1_BASE : x == 2 ? REGS_FLEXCAN2_BASE : 0xffff0000)
+//! @param x FLEXCAN instance number, from 1 through 2.
+#define REGS_FLEXCAN_BASE(x) ( (x) == HW_FLEXCAN1 ? REGS_FLEXCAN1_BASE : (x) == HW_FLEXCAN2 ? REGS_FLEXCAN2_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of FLEXCAN.
+#define REGS_FLEXCAN_INSTANCE(b) ( (b) == REGS_FLEXCAN1_BASE ? HW_FLEXCAN1 : (b) == REGS_FLEXCAN2_BASE ? HW_FLEXCAN2 : 0)
 #endif
 //@}
 

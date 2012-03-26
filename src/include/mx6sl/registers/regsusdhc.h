@@ -51,14 +51,23 @@
 //@{
 #ifndef REGS_USDHC_BASE
 #define HW_USDHC_INSTANCE_COUNT (4) //!< Number of instances of the USDHC module.
+#define HW_USDHC1 (1) //!< Instance number for USDHC1.
+#define HW_USDHC2 (2) //!< Instance number for USDHC2.
+#define HW_USDHC3 (3) //!< Instance number for USDHC3.
+#define HW_USDHC4 (4) //!< Instance number for USDHC4.
+
 #define REGS_USDHC1_BASE (0x02190000) //!< Base address for USDHC instance number 1.
 #define REGS_USDHC2_BASE (0x02194000) //!< Base address for USDHC instance number 2.
 #define REGS_USDHC3_BASE (0x02198000) //!< Base address for USDHC instance number 3.
 #define REGS_USDHC4_BASE (0x0219c000) //!< Base address for USDHC instance number 4.
 
 //! @brief Get the base address of USDHC by instance number.
-//! @param x USDHC instance number, from 0 through 4.
-#define REGS_USDHC_BASE(x) ( x == 1 ? REGS_USDHC1_BASE : x == 2 ? REGS_USDHC2_BASE : x == 3 ? REGS_USDHC3_BASE : x == 4 ? REGS_USDHC4_BASE : 0xffff0000)
+//! @param x USDHC instance number, from 1 through 4.
+#define REGS_USDHC_BASE(x) ( (x) == HW_USDHC1 ? REGS_USDHC1_BASE : (x) == HW_USDHC2 ? REGS_USDHC2_BASE : (x) == HW_USDHC3 ? REGS_USDHC3_BASE : (x) == HW_USDHC4 ? REGS_USDHC4_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of USDHC.
+#define REGS_USDHC_INSTANCE(b) ( (b) == REGS_USDHC1_BASE ? HW_USDHC1 : (b) == REGS_USDHC2_BASE ? HW_USDHC2 : (b) == REGS_USDHC3_BASE ? HW_USDHC3 : (b) == REGS_USDHC4_BASE ? HW_USDHC4 : 0)
 #endif
 //@}
 

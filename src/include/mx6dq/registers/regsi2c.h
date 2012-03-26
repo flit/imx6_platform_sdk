@@ -26,13 +26,21 @@
 //@{
 #ifndef REGS_I2C_BASE
 #define HW_I2C_INSTANCE_COUNT (3) //!< Number of instances of the I2C module.
+#define HW_I2C1 (1) //!< Instance number for I2C1.
+#define HW_I2C2 (2) //!< Instance number for I2C2.
+#define HW_I2C3 (3) //!< Instance number for I2C3.
+
 #define REGS_I2C1_BASE (0x021a0000) //!< Base address for I2C instance number 1.
 #define REGS_I2C2_BASE (0x021a4000) //!< Base address for I2C instance number 2.
 #define REGS_I2C3_BASE (0x021a8000) //!< Base address for I2C instance number 3.
 
 //! @brief Get the base address of I2C by instance number.
-//! @param x I2C instance number, from 0 through 3.
-#define REGS_I2C_BASE(x) ( x == 1 ? REGS_I2C1_BASE : x == 2 ? REGS_I2C2_BASE : x == 3 ? REGS_I2C3_BASE : 0xffff0000)
+//! @param x I2C instance number, from 1 through 3.
+#define REGS_I2C_BASE(x) ( (x) == HW_I2C1 ? REGS_I2C1_BASE : (x) == HW_I2C2 ? REGS_I2C2_BASE : (x) == HW_I2C3 ? REGS_I2C3_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of I2C.
+#define REGS_I2C_INSTANCE(b) ( (b) == REGS_I2C1_BASE ? HW_I2C1 : (b) == REGS_I2C2_BASE ? HW_I2C2 : (b) == REGS_I2C3_BASE ? HW_I2C3 : 0)
 #endif
 //@}
 

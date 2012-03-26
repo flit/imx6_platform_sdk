@@ -29,6 +29,14 @@
 //@{
 #ifndef REGS_GPIO_BASE
 #define HW_GPIO_INSTANCE_COUNT (7) //!< Number of instances of the GPIO module.
+#define HW_GPIO1 (1) //!< Instance number for GPIO1.
+#define HW_GPIO2 (2) //!< Instance number for GPIO2.
+#define HW_GPIO3 (3) //!< Instance number for GPIO3.
+#define HW_GPIO4 (4) //!< Instance number for GPIO4.
+#define HW_GPIO5 (5) //!< Instance number for GPIO5.
+#define HW_GPIO6 (6) //!< Instance number for GPIO6.
+#define HW_GPIO7 (7) //!< Instance number for GPIO7.
+
 #define REGS_GPIO1_BASE (0x0209c000) //!< Base address for GPIO instance number 1.
 #define REGS_GPIO2_BASE (0x020a0000) //!< Base address for GPIO instance number 2.
 #define REGS_GPIO3_BASE (0x020a4000) //!< Base address for GPIO instance number 3.
@@ -38,8 +46,12 @@
 #define REGS_GPIO7_BASE (0x020b4000) //!< Base address for GPIO instance number 7.
 
 //! @brief Get the base address of GPIO by instance number.
-//! @param x GPIO instance number, from 0 through 7.
-#define REGS_GPIO_BASE(x) ( x == 1 ? REGS_GPIO1_BASE : x == 2 ? REGS_GPIO2_BASE : x == 3 ? REGS_GPIO3_BASE : x == 4 ? REGS_GPIO4_BASE : x == 5 ? REGS_GPIO5_BASE : x == 6 ? REGS_GPIO6_BASE : x == 7 ? REGS_GPIO7_BASE : 0xffff0000)
+//! @param x GPIO instance number, from 1 through 7.
+#define REGS_GPIO_BASE(x) ( (x) == HW_GPIO1 ? REGS_GPIO1_BASE : (x) == HW_GPIO2 ? REGS_GPIO2_BASE : (x) == HW_GPIO3 ? REGS_GPIO3_BASE : (x) == HW_GPIO4 ? REGS_GPIO4_BASE : (x) == HW_GPIO5 ? REGS_GPIO5_BASE : (x) == HW_GPIO6 ? REGS_GPIO6_BASE : (x) == HW_GPIO7 ? REGS_GPIO7_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of GPIO.
+#define REGS_GPIO_INSTANCE(b) ( (b) == REGS_GPIO1_BASE ? HW_GPIO1 : (b) == REGS_GPIO2_BASE ? HW_GPIO2 : (b) == REGS_GPIO3_BASE ? HW_GPIO3 : (b) == REGS_GPIO4_BASE ? HW_GPIO4 : (b) == REGS_GPIO5_BASE ? HW_GPIO5 : (b) == REGS_GPIO6_BASE ? HW_GPIO6 : (b) == REGS_GPIO7_BASE ? HW_GPIO7 : 0)
 #endif
 //@}
 

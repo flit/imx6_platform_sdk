@@ -31,14 +31,23 @@
 //@{
 #ifndef REGS_ECSPI_BASE
 #define HW_ECSPI_INSTANCE_COUNT (4) //!< Number of instances of the ECSPI module.
+#define HW_ECSPI1 (1) //!< Instance number for ECSPI1.
+#define HW_ECSPI2 (2) //!< Instance number for ECSPI2.
+#define HW_ECSPI3 (3) //!< Instance number for ECSPI3.
+#define HW_ECSPI4 (4) //!< Instance number for ECSPI4.
+
 #define REGS_ECSPI1_BASE (0x02008000) //!< Base address for ECSPI instance number 1.
 #define REGS_ECSPI2_BASE (0x0200c000) //!< Base address for ECSPI instance number 2.
 #define REGS_ECSPI3_BASE (0x02010000) //!< Base address for ECSPI instance number 3.
 #define REGS_ECSPI4_BASE (0x02014000) //!< Base address for ECSPI instance number 4.
 
 //! @brief Get the base address of ECSPI by instance number.
-//! @param x ECSPI instance number, from 0 through 4.
-#define REGS_ECSPI_BASE(x) ( x == 1 ? REGS_ECSPI1_BASE : x == 2 ? REGS_ECSPI2_BASE : x == 3 ? REGS_ECSPI3_BASE : x == 4 ? REGS_ECSPI4_BASE : 0xffff0000)
+//! @param x ECSPI instance number, from 1 through 4.
+#define REGS_ECSPI_BASE(x) ( (x) == HW_ECSPI1 ? REGS_ECSPI1_BASE : (x) == HW_ECSPI2 ? REGS_ECSPI2_BASE : (x) == HW_ECSPI3 ? REGS_ECSPI3_BASE : (x) == HW_ECSPI4 ? REGS_ECSPI4_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of ECSPI.
+#define REGS_ECSPI_INSTANCE(b) ( (b) == REGS_ECSPI1_BASE ? HW_ECSPI1 : (b) == REGS_ECSPI2_BASE ? HW_ECSPI2 : (b) == REGS_ECSPI3_BASE ? HW_ECSPI3 : (b) == REGS_ECSPI4_BASE ? HW_ECSPI4 : 0)
 #endif
 //@}
 

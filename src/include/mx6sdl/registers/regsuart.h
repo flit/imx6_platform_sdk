@@ -38,6 +38,12 @@
 //@{
 #ifndef REGS_UARTV2_BASE
 #define HW_UARTV2_INSTANCE_COUNT (5) //!< Number of instances of the UARTV2 module.
+#define HW_UARTV21 (1) //!< Instance number for UARTV21.
+#define HW_UARTV22 (2) //!< Instance number for UARTV22.
+#define HW_UARTV23 (3) //!< Instance number for UARTV23.
+#define HW_UARTV24 (4) //!< Instance number for UARTV24.
+#define HW_UARTV25 (5) //!< Instance number for UARTV25.
+
 #define REGS_UARTV21_BASE (0x02020000) //!< Base address for UARTV2 instance number 1.
 #define REGS_UARTV22_BASE (0x021e8000) //!< Base address for UARTV2 instance number 2.
 #define REGS_UARTV23_BASE (0x021ec000) //!< Base address for UARTV2 instance number 3.
@@ -45,8 +51,12 @@
 #define REGS_UARTV25_BASE (0x021f4000) //!< Base address for UARTV2 instance number 5.
 
 //! @brief Get the base address of UARTV2 by instance number.
-//! @param x UARTV2 instance number, from 0 through 5.
-#define REGS_UARTV2_BASE(x) ( x == 1 ? REGS_UARTV21_BASE : x == 2 ? REGS_UARTV22_BASE : x == 3 ? REGS_UARTV23_BASE : x == 4 ? REGS_UARTV24_BASE : x == 5 ? REGS_UARTV25_BASE : 0xffff0000)
+//! @param x UARTV2 instance number, from 1 through 5.
+#define REGS_UARTV2_BASE(x) ( (x) == HW_UARTV21 ? REGS_UARTV21_BASE : (x) == HW_UARTV22 ? REGS_UARTV22_BASE : (x) == HW_UARTV23 ? REGS_UARTV23_BASE : (x) == HW_UARTV24 ? REGS_UARTV24_BASE : (x) == HW_UARTV25 ? REGS_UARTV25_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of UARTV2.
+#define REGS_UARTV2_INSTANCE(b) ( (b) == REGS_UARTV21_BASE ? HW_UARTV21 : (b) == REGS_UARTV22_BASE ? HW_UARTV22 : (b) == REGS_UARTV23_BASE ? HW_UARTV23 : (b) == REGS_UARTV24_BASE ? HW_UARTV24 : (b) == REGS_UARTV25_BASE ? HW_UARTV25 : 0)
 #endif
 //@}
 

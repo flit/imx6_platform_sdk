@@ -42,13 +42,21 @@
 //@{
 #ifndef REGS_SSI_BASE
 #define HW_SSI_INSTANCE_COUNT (3) //!< Number of instances of the SSI module.
+#define HW_SSI1 (1) //!< Instance number for SSI1.
+#define HW_SSI2 (2) //!< Instance number for SSI2.
+#define HW_SSI3 (3) //!< Instance number for SSI3.
+
 #define REGS_SSI1_BASE (0x02028000) //!< Base address for SSI instance number 1.
 #define REGS_SSI2_BASE (0x0202c000) //!< Base address for SSI instance number 2.
 #define REGS_SSI3_BASE (0x02030000) //!< Base address for SSI instance number 3.
 
 //! @brief Get the base address of SSI by instance number.
-//! @param x SSI instance number, from 0 through 3.
-#define REGS_SSI_BASE(x) ( x == 1 ? REGS_SSI1_BASE : x == 2 ? REGS_SSI2_BASE : x == 3 ? REGS_SSI3_BASE : 0xffff0000)
+//! @param x SSI instance number, from 1 through 3.
+#define REGS_SSI_BASE(x) ( (x) == HW_SSI1 ? REGS_SSI1_BASE : (x) == HW_SSI2 ? REGS_SSI2_BASE : (x) == HW_SSI3 ? REGS_SSI3_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of SSI.
+#define REGS_SSI_INSTANCE(b) ( (b) == REGS_SSI1_BASE ? HW_SSI1 : (b) == REGS_SSI2_BASE ? HW_SSI2 : (b) == REGS_SSI3_BASE ? HW_SSI3 : 0)
 #endif
 //@}
 

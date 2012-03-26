@@ -26,12 +26,19 @@
 //@{
 #ifndef REGS_WDOG_BASE
 #define HW_WDOG_INSTANCE_COUNT (2) //!< Number of instances of the WDOG module.
+#define HW_WDOG1 (1) //!< Instance number for WDOG1.
+#define HW_WDOG2 (2) //!< Instance number for WDOG2.
+
 #define REGS_WDOG1_BASE (0x020bc000) //!< Base address for WDOG instance number 1.
 #define REGS_WDOG2_BASE (0x020c0000) //!< Base address for WDOG instance number 2.
 
 //! @brief Get the base address of WDOG by instance number.
-//! @param x WDOG instance number, from 0 through 2.
-#define REGS_WDOG_BASE(x) ( x == 1 ? REGS_WDOG1_BASE : x == 2 ? REGS_WDOG2_BASE : 0xffff0000)
+//! @param x WDOG instance number, from 1 through 2.
+#define REGS_WDOG_BASE(x) ( (x) == HW_WDOG1 ? REGS_WDOG1_BASE : (x) == HW_WDOG2 ? REGS_WDOG2_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of WDOG.
+#define REGS_WDOG_INSTANCE(b) ( (b) == REGS_WDOG1_BASE ? HW_WDOG1 : (b) == REGS_WDOG2_BASE ? HW_WDOG2 : 0)
 #endif
 //@}
 

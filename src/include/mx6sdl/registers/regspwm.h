@@ -27,14 +27,23 @@
 //@{
 #ifndef REGS_PWM_BASE
 #define HW_PWM_INSTANCE_COUNT (4) //!< Number of instances of the PWM module.
+#define HW_PWM1 (1) //!< Instance number for PWM1.
+#define HW_PWM2 (2) //!< Instance number for PWM2.
+#define HW_PWM3 (3) //!< Instance number for PWM3.
+#define HW_PWM4 (4) //!< Instance number for PWM4.
+
 #define REGS_PWM1_BASE (0x02080000) //!< Base address for PWM instance number 1.
 #define REGS_PWM2_BASE (0x02084000) //!< Base address for PWM instance number 2.
 #define REGS_PWM3_BASE (0x02088000) //!< Base address for PWM instance number 3.
 #define REGS_PWM4_BASE (0x0208c000) //!< Base address for PWM instance number 4.
 
 //! @brief Get the base address of PWM by instance number.
-//! @param x PWM instance number, from 0 through 4.
-#define REGS_PWM_BASE(x) ( x == 1 ? REGS_PWM1_BASE : x == 2 ? REGS_PWM2_BASE : x == 3 ? REGS_PWM3_BASE : x == 4 ? REGS_PWM4_BASE : 0xffff0000)
+//! @param x PWM instance number, from 1 through 4.
+#define REGS_PWM_BASE(x) ( (x) == HW_PWM1 ? REGS_PWM1_BASE : (x) == HW_PWM2 ? REGS_PWM2_BASE : (x) == HW_PWM3 ? REGS_PWM3_BASE : (x) == HW_PWM4 ? REGS_PWM4_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of PWM.
+#define REGS_PWM_INSTANCE(b) ( (b) == REGS_PWM1_BASE ? HW_PWM1 : (b) == REGS_PWM2_BASE ? HW_PWM2 : (b) == REGS_PWM3_BASE ? HW_PWM3 : (b) == REGS_PWM4_BASE ? HW_PWM4 : 0)
 #endif
 //@}
 

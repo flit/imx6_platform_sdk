@@ -26,12 +26,19 @@
 //@{
 #ifndef REGS_EPIT_BASE
 #define HW_EPIT_INSTANCE_COUNT (2) //!< Number of instances of the EPIT module.
+#define HW_EPIT1 (1) //!< Instance number for EPIT1.
+#define HW_EPIT2 (2) //!< Instance number for EPIT2.
+
 #define REGS_EPIT1_BASE (0x020d0000) //!< Base address for EPIT instance number 1.
 #define REGS_EPIT2_BASE (0x020d4000) //!< Base address for EPIT instance number 2.
 
 //! @brief Get the base address of EPIT by instance number.
-//! @param x EPIT instance number, from 0 through 2.
-#define REGS_EPIT_BASE(x) ( x == 1 ? REGS_EPIT1_BASE : x == 2 ? REGS_EPIT2_BASE : 0xffff0000)
+//! @param x EPIT instance number, from 1 through 2.
+#define REGS_EPIT_BASE(x) ( (x) == HW_EPIT1 ? REGS_EPIT1_BASE : (x) == HW_EPIT2 ? REGS_EPIT2_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of EPIT.
+#define REGS_EPIT_INSTANCE(b) ( (b) == REGS_EPIT1_BASE ? HW_EPIT1 : (b) == REGS_EPIT2_BASE ? HW_EPIT2 : 0)
 #endif
 //@}
 

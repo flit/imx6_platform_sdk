@@ -100,12 +100,19 @@
 //@{
 #ifndef REGS_MMDC_BASE
 #define HW_MMDC_INSTANCE_COUNT (2) //!< Number of instances of the MMDC module.
+#define HW_MMDC1 (1) //!< Instance number for MMDC1.
+#define HW_MMDC2 (2) //!< Instance number for MMDC2.
+
 #define REGS_MMDC1_BASE (0x021b0000) //!< Base address for MMDC instance number 1.
 #define REGS_MMDC2_BASE (0x021b4000) //!< Base address for MMDC instance number 2.
 
 //! @brief Get the base address of MMDC by instance number.
-//! @param x MMDC instance number, from 0 through 2.
-#define REGS_MMDC_BASE(x) ( x == 1 ? REGS_MMDC1_BASE : x == 2 ? REGS_MMDC2_BASE : 0xffff0000)
+//! @param x MMDC instance number, from 1 through 2.
+#define REGS_MMDC_BASE(x) ( (x) == HW_MMDC1 ? REGS_MMDC1_BASE : (x) == HW_MMDC2 ? REGS_MMDC2_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of MMDC.
+#define REGS_MMDC_INSTANCE(b) ( (b) == REGS_MMDC1_BASE ? HW_MMDC1 : (b) == REGS_MMDC2_BASE ? HW_MMDC2 : 0)
 #endif
 //@}
 

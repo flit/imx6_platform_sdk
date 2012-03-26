@@ -28,12 +28,19 @@
 //@{
 #ifndef REGS_DCIC_BASE
 #define HW_DCIC_INSTANCE_COUNT (2) //!< Number of instances of the DCIC module.
+#define HW_DCIC1 (1) //!< Instance number for DCIC1.
+#define HW_DCIC2 (2) //!< Instance number for DCIC2.
+
 #define REGS_DCIC1_BASE (0x020e4000) //!< Base address for DCIC instance number 1.
 #define REGS_DCIC2_BASE (0x020e8000) //!< Base address for DCIC instance number 2.
 
 //! @brief Get the base address of DCIC by instance number.
-//! @param x DCIC instance number, from 0 through 2.
-#define REGS_DCIC_BASE(x) ( x == 1 ? REGS_DCIC1_BASE : x == 2 ? REGS_DCIC2_BASE : 0xffff0000)
+//! @param x DCIC instance number, from 1 through 2.
+#define REGS_DCIC_BASE(x) ( (x) == HW_DCIC1 ? REGS_DCIC1_BASE : (x) == HW_DCIC2 ? REGS_DCIC2_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of DCIC.
+#define REGS_DCIC_INSTANCE(b) ( (b) == REGS_DCIC1_BASE ? HW_DCIC1 : (b) == REGS_DCIC2_BASE ? HW_DCIC2 : 0)
 #endif
 //@}
 

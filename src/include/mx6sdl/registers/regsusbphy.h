@@ -30,12 +30,19 @@
 //@{
 #ifndef REGS_USB_PHY_BASE
 #define HW_USB_PHY_INSTANCE_COUNT (2) //!< Number of instances of the USB_PHY module.
+#define HW_USB_PHY1 (1) //!< Instance number for USB_PHY1.
+#define HW_USB_PHY2 (2) //!< Instance number for USB_PHY2.
+
 #define REGS_USB_PHY1_BASE (0x020c9000) //!< Base address for USB_PHY instance number 1.
 #define REGS_USB_PHY2_BASE (0x020ca000) //!< Base address for USB_PHY instance number 2.
 
 //! @brief Get the base address of USB_PHY by instance number.
-//! @param x USB_PHY instance number, from 0 through 2.
-#define REGS_USB_PHY_BASE(x) ( x == 1 ? REGS_USB_PHY1_BASE : x == 2 ? REGS_USB_PHY2_BASE : 0xffff0000)
+//! @param x USB_PHY instance number, from 1 through 2.
+#define REGS_USB_PHY_BASE(x) ( (x) == HW_USB_PHY1 ? REGS_USB_PHY1_BASE : (x) == HW_USB_PHY2 ? REGS_USB_PHY2_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of USB_PHY.
+#define REGS_USB_PHY_INSTANCE(b) ( (b) == REGS_USB_PHY1_BASE ? HW_USB_PHY1 : (b) == REGS_USB_PHY2_BASE ? HW_USB_PHY2 : 0)
 #endif
 //@}
 

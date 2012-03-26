@@ -38,6 +38,12 @@
 //@{
 #ifndef REGS_UART_BASE
 #define HW_UART_INSTANCE_COUNT (5) //!< Number of instances of the UART module.
+#define HW_UART1 (1) //!< Instance number for UART1.
+#define HW_UART2 (2) //!< Instance number for UART2.
+#define HW_UART3 (3) //!< Instance number for UART3.
+#define HW_UART4 (4) //!< Instance number for UART4.
+#define HW_UART5 (5) //!< Instance number for UART5.
+
 #define REGS_UART1_BASE (0x02020000) //!< Base address for UART instance number 1.
 #define REGS_UART2_BASE (0x021e8000) //!< Base address for UART instance number 2.
 #define REGS_UART3_BASE (0x021ec000) //!< Base address for UART instance number 3.
@@ -45,8 +51,12 @@
 #define REGS_UART5_BASE (0x021f4000) //!< Base address for UART instance number 5.
 
 //! @brief Get the base address of UART by instance number.
-//! @param x UART instance number, from 0 through 5.
-#define REGS_UART_BASE(x) ( x == 1 ? REGS_UART1_BASE : x == 2 ? REGS_UART2_BASE : x == 3 ? REGS_UART3_BASE : x == 4 ? REGS_UART4_BASE : x == 5 ? REGS_UART5_BASE : 0xffff0000)
+//! @param x UART instance number, from 1 through 5.
+#define REGS_UART_BASE(x) ( (x) == HW_UART1 ? REGS_UART1_BASE : (x) == HW_UART2 ? REGS_UART2_BASE : (x) == HW_UART3 ? REGS_UART3_BASE : (x) == HW_UART4 ? REGS_UART4_BASE : (x) == HW_UART5 ? REGS_UART5_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of UART.
+#define REGS_UART_INSTANCE(b) ( (b) == REGS_UART1_BASE ? HW_UART1 : (b) == REGS_UART2_BASE ? HW_UART2 : (b) == REGS_UART3_BASE ? HW_UART3 : (b) == REGS_UART4_BASE ? HW_UART4 : (b) == REGS_UART5_BASE ? HW_UART5 : 0)
 #endif
 //@}
 

@@ -30,7 +30,7 @@ int32_t mipi_csi2_test(void)
     ipu_sw_reset(ipu_index, 1000);
 
     panel = search_panel("HannStar XGA LVDS");
-    panel->panel_init(NULL);
+    panel->panel_init(&ipu_index);
 
     mipi_csi2_config();
 

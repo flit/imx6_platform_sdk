@@ -10,45 +10,38 @@
 
 #include "sdk.h"
 
+//! @addtogroup diag_i2c
+
+//! @{
+
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-#define I2C_IADR                    0x0
-#define I2C_IFDR                    0x4
-#define I2C_I2CR                    0x8
-#define I2C_I2SR                    0xC
-#define I2C_I2DR                    0x10
+//! @brief Read/write address bits
+//!
+//! Bit 0 of the i2c device address cycle to indicate r/w. 0 is for write, 1 is for read.
+enum _i2c_rq {
+    I2C_WRITE = 0,
+    I2C_READ = 1
+};
 
-#define I2C_I2CR_IEN                (1 << 7)
-#define I2C_I2CR_IIEN               (1 << 6)
-#define I2C_I2CR_MSTA               (1 << 5)
-#define I2C_I2CR_MTX                (1 << 4)
-#define I2C_I2CR_TXAK               (1 << 3)
-#define I2C_I2CR_RSTA               (1 << 2)
+//! @brief I2C Error Codes
+enum _i2c_err {
+    ERR_TX = -1,
+    ERR_RX = -2,
+    ERR_ARB_LOST = -3,
+    ERR_NO_ACK = -4,
+    ERR_XFER = -5,
+    ERR_RX_ACK = -6,
+    ERR_NO_ACK_ON_START = -7,
+    ERR_INVALID_REQUEST = -8
+};
 
-#define I2C_I2SR_ICF                (1 << 7)
-#define I2C_I2SR_IAAS               (1 << 6)
-#define I2C_I2SR_IBB                (1 << 5)
-#define I2C_I2SR_IAL                (1 << 4)
-#define I2C_I2SR_SRW                (1 << 2)
-#define I2C_I2SR_IIF                (1 << 1)
-#define I2C_I2SR_RXAK               (1 << 0)
-
-// bit 0 of the i2c device address cycle to indicate r/w (0 is for write, 1 for read)
-#define I2C_WRITE   0
-#define I2C_READ    1
-
-//Error Codes
-#define ERR_TX                      -1
-#define ERR_RX                      -2
-#define ERR_ARB_LOST                -3
-#define ERR_NO_ACK                  -4
-#define ERR_XFER                    -5
-#define ERR_RX_ACK                  -6
-#define ERR_NO_ACK_ON_START         -7
-
-#define IMX6_SLAVE_ID              0x60
+//! Default slave address used for the MX6.
+enum _i2c_slave_id {
+    IMX6_DEFAULT_SLAVE_ID = 0x60
+};
 
 /*!
  * @brief An I2C transfer descriptor.
@@ -63,8 +56,8 @@ typedef struct imx_i2c_request {
     uint32_t reg_addr_sz;       //!< Number of bytes for the address of I2C device register.
     uint8_t *buffer;            //!< Buffer to hold the data.
     uint32_t buffer_sz;         //!< The number of bytes for read/write.
-    int32_t (*slave_receive) (struct imx_i2c_request *rq);  //!< Function for slave to receive data from master.
-    int32_t (*slave_transmit) (struct imx_i2c_request *rq); //!< Function for slave to transmit data to master.
+    int32_t (*slave_receive) (const struct imx_i2c_request *rq);  //!< Function for slave to receive data from master.
+    int32_t (*slave_transmit) (const struct imx_i2c_request *rq); //!< Function for slave to transmit data to master.
 } imx_i2c_request_t;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -107,37 +100,21 @@ int i2c_init(uint32_t base, uint32_t baud);
  *
  * @return  0 on success; non-zero otherwise
  */
-int i2c_xfer(imx_i2c_request_t *rq, int dir);
+int i2c_xfer(const imx_i2c_request_t *rq, int dir);
 
 /*!
  * @brief Perform I2C read transfer.
  *
- * @param   rq        Pointer to #imx_i2c_request_t.
+ * @param rq Pointer to #imx_i2c_request_t.
  */
-static inline int i2c_read(imx_i2c_request_t *rq) { return i2c_xfer(rq, I2C_READ); }
+int i2c_read(const imx_i2c_request_t *rq);
 
 /*!
  * @brief Perform I2C write transfer.
  *
- * @param   rq        Pointer to #imx_i2c_request_t.
+ * @param rq Pointer to #imx_i2c_request_t.
  */
-static inline int i2c_write(imx_i2c_request_t *rq) { return i2c_xfer(rq, I2C_WRITE); }
-
-/*!
- * @brief Setup I2C interrupt.
- *
- * It enables or disables the related HW module interrupt, and attached the related
- * sub-routine into the vector table.
- *
- * @param   port Pointer to the I2C module structure.
- * @param   state Enable/disable the interrupt.
- */
-void i2c_setup_interrupt(hw_module_t *port, uint8_t state);
-
-/*!
- * @brief I2C interrupt routine.
- */
-void i2c_interrupt_routine(void);
+int i2c_write(const imx_i2c_request_t *rq);
 
 /*!
  * @brief I2C handler for the slave mode.
@@ -147,7 +124,7 @@ void i2c_interrupt_routine(void);
  *
  * @param   rq Pointer to #imx_i2c_request_t.
  */
-void i2c_slave_handler(imx_i2c_request_t *rq);
+void i2c_slave_handler(const imx_i2c_request_t *rq);
 
 /*!
  * @brief Handle the I2C transfers in slave mode.
@@ -179,6 +156,8 @@ void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq);
 #if defined(__cplusplus)
 }
 #endif
+
+//! @}
 
 #endif /* __IMX_I2C_H__ */
 ////////////////////////////////////////////////////////////////////////////////

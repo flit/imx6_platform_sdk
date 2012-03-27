@@ -24,10 +24,10 @@ hw_module_t imx6_i2c_slave_port = {
     &default_interrupt_routine,
 };
 
-static struct imx_i2c_request imx6_i2c_req;
+static imx_i2c_request_t imx6_i2c_req;
 
 static uint8_t test_buffer[] = {'F', 'R', 'E', 'E', 'S', 'C', 'A', 'L', 'E', 'I', '2', 'C', 'T', 'E', 'S', 'T', '!', '!'};
-static uint8_t access_direction;
+static bool s_masterDidWrite;
 
 /*!
  * Function that handles the received data when the i.MX is
@@ -36,16 +36,16 @@ static uint8_t access_direction;
  * If the requested address size is 4 bytes, then it writes to the
  * memory location of the i.MX.
  *
- * @param   rq - pointer to struct imx_i2c_request
+ * @param   rq Pointer to struct imx_i2c_request
  */
-int32_t imx6_slave_receive(struct imx_i2c_request *rq)
+int32_t imx6_slave_receive(const imx_i2c_request_t *rq)
 {
     int32_t ret = 0;
     uint32_t data_address;
     uint32_t r_data = 0;
     uint8_t addr_sz = rq->reg_addr_sz;
 
-    access_direction = I2C_WRITE;
+    s_masterDidWrite = true;
 
     /* 
      * Nothing to do for address size of 1 or 2 bytes, the received
@@ -77,16 +77,16 @@ int32_t imx6_slave_receive(struct imx_i2c_request *rq)
  * If the requested address size is 4 bytes, then it can provides the
  * content of an i.MX memory mapped address.
  *
- * @param   rq - pointer to struct imx_i2c_request
+ * @param   rq Pointer to struct imx_i2c_request
  */
-int32_t imx6_slave_transmit(struct imx_i2c_request *rq)
+int32_t imx6_slave_transmit(const imx_i2c_request_t *rq)
 {
     int32_t ret = 0;
     uint32_t data_address;
     uint32_t w_data;
     uint8_t addr_sz = rq->reg_addr_sz;
 
-    access_direction = I2C_READ;
+    s_masterDidWrite = false;
 
     switch(addr_sz) {
         case 1:
@@ -135,7 +135,7 @@ int32_t i2c_imx6_slave_test(void)
 
     // Initialize the request
     imx6_i2c_req.ctl_addr = imx6_i2c_slave_port.base;   /* the I2C controller base address */
-    imx6_i2c_req.dev_addr = IMX6_SLAVE_ID;  /* the I2C DEVICE address - keep default */
+    imx6_i2c_req.dev_addr = IMX6_DEFAULT_SLAVE_ID;  /* the I2C DEVICE address - keep default */
     imx6_i2c_req.reg_addr = 0;          /* not used in slave mode */
     imx6_i2c_req.reg_addr_sz = 1;       /* used to set the address size of this slave */
     imx6_i2c_req.buffer = data_buffer;  /* buffer used by the driver during read/write accesses */
@@ -173,7 +173,7 @@ int32_t i2c_imx6_slave_test(void)
 
             i2c_slave_xfer(&imx6_i2c_slave_port, &imx6_i2c_req);
 
-            if(access_direction == I2C_READ)
+            if (!s_masterDidWrite)
             {
                 printf("Master did a read access at address 0x");
                 for(i=0;i<imx6_i2c_req.reg_addr_sz;i++)

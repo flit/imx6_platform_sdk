@@ -13,6 +13,27 @@
 // Local macros to simplify bit operations
 //------------------------------------------------------------------------------
 
+#define I2C_IADR                    0x0
+#define I2C_IFDR                    0x4
+#define I2C_I2CR                    0x8
+#define I2C_I2SR                    0xC
+#define I2C_I2DR                    0x10
+
+#define I2C_I2CR_IEN                (1 << 7)
+#define I2C_I2CR_IIEN               (1 << 6)
+#define I2C_I2CR_MSTA               (1 << 5)
+#define I2C_I2CR_MTX                (1 << 4)
+#define I2C_I2CR_TXAK               (1 << 3)
+#define I2C_I2CR_RSTA               (1 << 2)
+
+#define I2C_I2SR_ICF                (1 << 7)
+#define I2C_I2SR_IAAS               (1 << 6)
+#define I2C_I2SR_IBB                (1 << 5)
+#define I2C_I2SR_IAL                (1 << 4)
+#define I2C_I2SR_SRW                (1 << 2)
+#define I2C_I2SR_IIF                (1 << 1)
+#define I2C_I2SR_RXAK               (1 << 0)
+
 #define LAST_BYTE      1
 #define NOT_LAST_BYTE  0
 

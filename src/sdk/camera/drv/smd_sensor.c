@@ -161,7 +161,7 @@ t_camera_profile *search_sensor(void)
             if (setting->delay_ms != 0)
                 hal_delay_us(setting->delay_ms * 1000);
             if (read_value != setting->value) {
-                printf("read_value %08x.Setting value %08x\n", read_value, setting->value);
+                //printf("read_value %08x.Setting value %08x\n", read_value, setting->value);
                 error = 1;
                 break;
             }

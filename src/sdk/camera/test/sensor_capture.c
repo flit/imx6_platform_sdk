@@ -40,6 +40,8 @@ int32_t sensor_capture(void)
 
     /*step 3: setup sensor */
     sensor = search_sensor();
+    if (sensor == NULL)
+        return FALSE;
     sensor_config(sensor);
 
     /*step 4: enable ipu display channel */

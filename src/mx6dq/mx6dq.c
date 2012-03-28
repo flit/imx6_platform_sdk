@@ -114,6 +114,8 @@ extern void tempmon_test(void);
 extern int vpu_test(void);
 extern int gpmi_test(void);
 extern int mipi_test();
+extern int gpu_test(void);
+extern int pcie_test(void);
 
 void ALL_test(void)
 {
@@ -121,12 +123,18 @@ void ALL_test(void)
 
     while (1) {
         printf("Starting the tests suite...\n");
+#if defined(MX6DQ_EVB)
         audio_test();
+#endif
+
 #ifdef MX6DQ_SABRE_AI
         flexcan_test();
 #endif /* MX6DQ_SABRE_AI */
         epit_test();
 
+#if defined(MX6DQ_EVB)
+        gpu_test();
+#endif
         gpt_test();
         hdmi_test();
         i2c_test();
@@ -134,6 +142,9 @@ void ALL_test(void)
 #if defined(MX6DQ_EVB) || defined(MX6DQ_SABRE_AI)
         mipi_test();
 #endif /* MX6DQ_EVB || MX6DQ_SABRE_AI */
+#if defined(MX6DQ_EVB)
+        pcie_test();
+#endif
         sata_test();
         sdma_test();
         snvs_rtc_test();

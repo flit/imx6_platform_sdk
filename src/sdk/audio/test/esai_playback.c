@@ -34,7 +34,7 @@ int32_t esai_playback(audio_pcm_p pcm_file)
 
     printf("Please ensure:\n");
     printf
-        (" 1. i.MX6DQ_SABRE_AI board and the Automotive Card are both mounted to the ARMADILLO 2 board.\n");
+        (" 1. i.MX6DQ_EVB board and the Automotive Card are both mounted to the ARMADILLO 2 board.\n");
     printf
         (" 2. The converting cable's two plugs were plugged into the Automotive Card's AOUT1 and AOUT2 sockets.\n");
     printf(" 3. The headphone is plugged into the converting cable's socket.\n");

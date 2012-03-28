@@ -63,7 +63,7 @@ int32_t ips_hdmi_stream(void)
     uint8_t revchar;
 
     /*enable panel */
-    panel = search_panel("HDMI 720P 60Hz");
+    panel = search_panel("HDMI 1080P 60Hz");
     panel->panel_init(&ipu_index);
 
     printf("\n-- Single Image Display -- \n");

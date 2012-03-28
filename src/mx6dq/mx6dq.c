@@ -114,6 +114,8 @@ extern void tempmon_test(void);
 extern int vpu_test(void);
 extern int gpmi_test(void);
 extern int mipi_test();
+extern int pwm_test();
+extern int eim_test();
 extern int gpu_test(void);
 extern int pcie_test(void);
 
@@ -129,6 +131,7 @@ void ALL_test(void)
 
 #ifdef MX6DQ_SABRE_AI
         flexcan_test();
+        eim_test();
 #endif /* MX6DQ_SABRE_AI */
         epit_test();
 
@@ -145,6 +148,7 @@ void ALL_test(void)
 #if defined(MX6DQ_EVB)
         pcie_test();
 #endif
+        pwm_test();
         sata_test();
         sdma_test();
         snvs_rtc_test();

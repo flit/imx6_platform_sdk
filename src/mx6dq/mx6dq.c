@@ -118,6 +118,8 @@ extern int pwm_test();
 extern int eim_test();
 extern int gpu_test(void);
 extern int pcie_test(void);
+extern int camera_test(void);
+extern int wdog_test(void);
 
 void ALL_test(void)
 {
@@ -146,14 +148,15 @@ void ALL_test(void)
 #endif /* MX6DQ_EVB || MX6DQ_SABRE_AI */
 #if defined(MX6DQ_EVB)
         pcie_test();
+        sata_test();
+        wdog_test();
 #endif
         pwm_test();
-        sata_test();
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();
 #if defined(MX6DQ_EVB) || defined(MX6DQ_SMART_DEVICE)
-        vpu_test();
+//        vpu_test();
 #endif
 #ifdef MX6DQ_EVB
         gpmi_test();
@@ -172,6 +175,11 @@ void ALL_test(void)
     /* need to be here */
         flexcan_test();
 #endif /* MX6DQ_SABRE_AI */
+
+#if defined(MX6DQ_SMART_DEVICE)
+        camera_test();
+#endif
+
         printf("\n...end of the tests suite.\n");
     }
 }

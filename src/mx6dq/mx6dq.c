@@ -149,10 +149,10 @@ void ALL_test(void)
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();
+        vpu_test();
 #ifdef MX6DQ_EVB
         gpmi_test();
         spi_test();
-        vpu_test();
 #endif /* MX6DQ_EVB */
         tempmon_test();
         uart_test();

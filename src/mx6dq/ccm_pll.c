@@ -51,7 +51,7 @@ void ccm_init(void)
      * UART clock tree: PLL3 (480MHz) div-by-6: 80MHz
      * 80MHz uart_clk_podf (div-by-1) = 80MHz (UART module clock input)
      */
-    writel(readl(CCM_CSCDR1) & 0x0000003F, CCM_CSCDR1);
+//    writel(readl(CCM_CSCDR1) & 0x0000003F, CCM_CSCDR1);
 //     HW_CCM_CSCDR1.U = 
 
     /* Mask all interrupt sources that could wake up the processor when in

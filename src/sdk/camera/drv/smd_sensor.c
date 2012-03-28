@@ -13,10 +13,10 @@
 
 #include "camera_def.h"
 
-#if defined MX6DQ_SMART_DEVICE && defined (BOARD_VERSION_2)
-uint32_t i2c_base = I2C2_BASE_ADDR;
+#if defined (MX6DQ_SMART_DEVICE) && defined (BOARD_VERSION2)
+#define i2c_base I2C2_BASE_ADDR
 #else
-uint32_t i2c_base = I2C1_BASE_ADDR;
+#define i2c_base I2C1_BASE_ADDR
 #endif
 
 static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,

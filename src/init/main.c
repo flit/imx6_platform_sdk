@@ -31,7 +31,8 @@ extern void enable_neon_fpu(void);
 int main(void)
 {
     enable_neon_fpu();
-#if defined(MX6DQ_EVB)||defined(MX6SDL_EVB)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_AI)||defined(MX6SDL_SABRE_AI)
+
+#if defined(MX6DQ_EVB)||defined(MX6SDL_EVB)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)
     system_memory_arrange();
     disable_strict_align_check();
 #endif

@@ -130,7 +130,6 @@ void ALL_test(void)
 #endif
 
 #ifdef MX6DQ_SABRE_AI
-        flexcan_test();
         eim_test();
 #endif /* MX6DQ_SABRE_AI */
         epit_test();
@@ -153,7 +152,9 @@ void ALL_test(void)
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();
+#if defined(MX6DQ_EVB) || defined(MX6DQ_SMART_DEVICE)
         vpu_test();
+#endif
 #ifdef MX6DQ_EVB
         gpmi_test();
         spi_test();
@@ -167,6 +168,10 @@ void ALL_test(void)
             gic_test_done = 0xFF;
             gic_test();
         }
+#ifdef MX6DQ_SABRE_AI
+    /* need to be here */
+        flexcan_test();
+#endif /* MX6DQ_SABRE_AI */
         printf("\n...end of the tests suite.\n");
     }
 }

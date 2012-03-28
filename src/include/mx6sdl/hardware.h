@@ -40,7 +40,6 @@
 #include "usb_regs.h"
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
-#include "perfmon.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR

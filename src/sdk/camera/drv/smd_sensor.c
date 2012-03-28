@@ -13,6 +13,12 @@
 
 #include "camera_def.h"
 
+#if defined MX6DQ_SMART_DEVICE && defined (BOARD_VERSION_2)
+uint32_t i2c_base = I2C2_BASE_ADDR;
+#else
+uint32_t i2c_base = I2C1_BASE_ADDR;
+#endif
+
 static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
                                 uint16_t is_16bits);
 static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
@@ -146,7 +152,7 @@ t_camera_profile *search_sensor(void)
 #endif
         sensor_reset();
         sensor_clock_setting();
-        sensor_i2c_init(I2C1_BASE_ADDR, 170000);
+        sensor_i2c_init(i2c_base, 170000);
 
         for (j = 0; j < sensor_on->sensor_detection_size; ++j) {
             t_reg_param *setting = &sensor_on->sensor_detection[j];
@@ -155,6 +161,7 @@ t_camera_profile *search_sensor(void)
             if (setting->delay_ms != 0)
                 hal_delay_us(setting->delay_ms * 1000);
             if (read_value != setting->value) {
+                printf("read_value %08x.Setting value %08x\n", read_value, setting->value);
                 error = 1;
                 break;
             }
@@ -183,7 +190,7 @@ int32_t sensor_init(t_camera_profile * sensor)
     int32_t i;
     uint16_t read_value;
 
-    sensor_i2c_init(I2C1_BASE_ADDR, 170000);
+    sensor_i2c_init(i2c_base, 170000);
     t_camera_mode *preview_mode = &sensor->modes[sensor->mode_id];
 
     for (i = 0; i < preview_mode->size; ++i) {
@@ -216,7 +223,7 @@ int32_t sensor_af_trigger(t_camera_profile * sensor)
     int32_t ret = 0, i;
     t_reg_param *setting;
 
-    sensor_i2c_init(I2C1_BASE_ADDR, 170000);
+    sensor_i2c_init(i2c_base, 170000);
 
     for (i = 0; i < sensor->af_trigger_size; ++i) {
         setting = &sensor->af_trigger[i];
@@ -236,7 +243,7 @@ int32_t sensor_autofocus_init(t_camera_profile * sensor)
     if (sensor->auto_focus_enable) {
         printf("Download auto-focus firmware......\n");
 
-        sensor_i2c_init(I2C1_BASE_ADDR, 170000);
+        sensor_i2c_init(i2c_base, 170000);
 
         for (i = 0; i < sensor->af_firmware_size; ++i) {
             t_reg_param *setting = &sensor->af_firmware[i];
@@ -277,7 +284,7 @@ int32_t sensor_i2c_init(uint32_t base, uint32_t baud)
 
     ret = i2c_init(base, baud);
     if (ret != 0) {
-        printf("I2C1 initialization failed!\n");
+        printf("I2C initialization failed!\n");
         return ret;
     }
     hal_delay_us(i2c_delay);
@@ -292,7 +299,7 @@ static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t *
     struct imx_i2c_request rq;
 
     reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
-    rq.ctl_addr = I2C1_BASE_ADDR;
+    rq.ctl_addr = i2c_base;
     rq.dev_addr = dev_addr >> 1;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 2;
@@ -321,7 +328,7 @@ static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * 
     struct imx_i2c_request rq;
 
     reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
-    rq.ctl_addr = I2C1_BASE_ADDR;
+    rq.ctl_addr = i2c_base;
     rq.dev_addr = dev_addr >> 1;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 2;

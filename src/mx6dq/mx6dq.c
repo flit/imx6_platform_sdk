@@ -151,7 +151,9 @@ void ALL_test(void)
         sata_test();
         wdog_test();
 #endif
+#ifndef MX6DQ_SABRE_LITE
         pwm_test();
+#endif
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();

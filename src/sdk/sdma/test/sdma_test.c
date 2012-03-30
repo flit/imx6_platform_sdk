@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
@@ -17,7 +17,9 @@ static sdma_test_t sdma_tests[] = {
 #ifdef MX53
     {"UART3 loopback  - shared memory", uart_shp_test},
 #else
+#if !defined(MX6DQ_SMART_DEVICE) && !defined(MX6SDL_SMART_DEVICE)   //Since SD board uses UART1 as debug uart.
     {"UART1 loopback  - shared memory", uart_shp_test},
+#endif
 #endif
     {"UART5 loopback  - perihperal", uart_app_test},
     {"UART5 loopback with interrupt supported", uart_app_interrupt_test},

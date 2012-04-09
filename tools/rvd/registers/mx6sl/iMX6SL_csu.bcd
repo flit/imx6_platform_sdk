@@ -1,0 +1,18 @@
+[BOARD=iMX6SL_CSU] 
+description="Freescale iMX6SL development kit"
+Advanced_Information.Cortex-A9={\
+  Memory_block.default={}\
+  :Memory_block.M_CSU={\
+    start=0x1021bffff:length=-0xffffffff:description="CSU"\
+  }:\
+  Map_Rule.default={}:Register_enum.default={}:Register.default={\
+    bit_fields.default={}\
+  }:Concat_Register.default={}:Peripherals.default={\
+    Register.default={\
+      bit_fields.default={}\
+    }\
+  }:Peripherals.CSU={\
+    base=Absolute:description=""\
+  }:Register_window.CSU={\
+      }:ARM_config={}\
+}

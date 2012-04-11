@@ -9,6 +9,7 @@
 #define	__PERFMON_IMX_H__
 
 #include "soc_memory_map.h"
+#include "irq_numbers.h"
 
 /* Number of performance monitors used in the i.MX6 */
 #define PERFMON_INST 3

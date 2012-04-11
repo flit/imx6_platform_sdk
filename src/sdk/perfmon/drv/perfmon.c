@@ -6,6 +6,7 @@
 */
 
 #include "hardware.h"
+#include "perfmon/perfmon.h"
 
 static perfmon_res_p last_stats[PERFMON_INST];
 

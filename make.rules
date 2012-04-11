@@ -34,7 +34,7 @@ $(MODULE_OUT)/%.o: %.c
 # for each header file so that a rebuild will be forced if the file goes missing, but
 # no error will occur.
 	@echo Compiling $(addprefix $(MODULE_REL_DIR)$(MODULE)/,$<)
-	@$(CC) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -MD -MF $(MODULE_OUT)/$*.d -MP -o $@ -c $<
+	@$(CC) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -MMD -MF $(MODULE_OUT)/$*.d -MP -o $@ -c $<
 
 $(MODULE_OUT)/%.o: %.S
 	@echo Assembling $(addprefix $(MODULE_REL_DIR)$(MODULE)/,$<)

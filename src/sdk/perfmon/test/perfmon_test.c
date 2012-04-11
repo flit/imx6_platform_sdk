@@ -4,8 +4,9 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-#include <stdio.h>
-#include "hardware.h"
+
+#include "sdk.h"
+#include "perfmon/perfmon.h"
 
 #define PERFMON_TEST_BUF_SIZE   4096
 #define LOW_OFFSET_TRAP_TEST   PERFMON_TEST_BUF_SIZE / 2
@@ -60,24 +61,7 @@ void monitor_memory_write(uint8_t test_mode)
 {
     perfmon_res_t res, res_end;
     uint32_t i, *perfmon_test_buffer;
-#ifdef bla
-//    .macro disable_L1_cache
-    __asm(
-        "mrc p15, 0, r0, c1, c0, 0;"
-        "bic r0, r0, #(0x1<<12);"
-        "bic r0, r0, #(0x1<<11);"
-        "bic r0, r0, #(0x1<<2);"
-        "bic r0, r0, #(0x1<<0);"
-        "mcr p15, 0, r0, c1, c0, 0;"
-        );
 
-//    .macro disable_L2_cache
-    __asm(
-        "ldr     r1, =0x00A02100;"
-        "mov     r0,#0;"
-        "str     r0,[r1];"
-        );
-#endif
     perfmon_test_buffer = malloc(PERFMON_TEST_BUF_SIZE*sizeof(uint32_t));
 
     /* initialize the performance monitor 3 to observe cores transfers */

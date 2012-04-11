@@ -133,7 +133,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - src/include/mx53/
 
 # Exclude perfmon
-- perfmon.h
+- perfmon_imx.h
 - **/perfmon/
 
 # Exclude some stuff in tools

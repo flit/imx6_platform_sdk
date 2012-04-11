@@ -95,8 +95,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # Exclude the extraction directory.
 - ${ReleaseDirName}/
 
-# Exclude the doxygen output directory.
-#- doc/html/
+- doc/html/
 
 # excludes based on file extension
 - *.o
@@ -118,6 +117,18 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - *.$$$
 - .DS_Store
 - *.pyc
+# (MS Visual-C intermediate files)
+- *.obj
+- *.dbo
+- *.idb
+- *.pdb
+- *.pch
+- *.ilk
+- *.res
+- *.sbr
+- *.ncb
+- *.suo
+- *.ccscc
 - *.orig
 - *.tmp
 - ._*
@@ -131,11 +142,19 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # exclude generated makefiles
 - makefile
 
+# Root dir files
+# + /Doxyfile
+# + /README*
+# + /configs/
+# + /doc/
+# + /make*
+# #+ /src/
+# + /tools/
+
 # Exclude mx53 stuff
 - configs/mx53*
 - src/mx53/
 - src/include/mx53/
-- src/common/hdmi_transmitter/sii902x/
 
 # Exclude perfmon
 - perfmon.h

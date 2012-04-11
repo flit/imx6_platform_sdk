@@ -95,7 +95,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # Exclude the extraction directory.
 - ${ReleaseDirName}/
 
-- doc/html/
+#- doc/html/
 
 # excludes based on file extension
 - *.o
@@ -117,21 +117,6 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - *.$$$
 - .DS_Store
 - *.pyc
-# (MS Visual-C intermediate files)
-- *.obj
-- *.dbo
-- *.idb
-- *.pdb
-- *.pch
-- *.ilk
-- *.res
-- *.sbr
-- *.ncb
-- *.suo
-- *.ccscc
-- *.orig
-- *.tmp
-- ._*
 
 - .git
 - .gitignore
@@ -141,15 +126,6 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 
 # exclude generated makefiles
 - makefile
-
-# Root dir files
-# + /Doxyfile
-# + /README*
-# + /configs/
-# + /doc/
-# + /make*
-# #+ /src/
-# + /tools/
 
 # Exclude mx53 stuff
 - configs/mx53*

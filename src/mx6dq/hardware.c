@@ -709,9 +709,6 @@ void pcie_card_pwr_setup(uint32_t enable)
     }
 }
 
-#define ANATOP_LVDS_CLK1_SRC_PCIE       0xA
-#define ANATOP_LVDS_CLK1_SRC_SATA       0xB
-
 void enable_extrn_100mhz_clk(uint32_t enable)
 {
     if (enable) {
@@ -719,9 +716,9 @@ void enable_extrn_100mhz_clk(uint32_t enable)
         HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
 
         // Select SATA clock source and switch to output buffer.
-        HW_PMU_REG_MISC1_CLR(BM_PMU_REG_MISC1_LVDSCLK1_IBEN);
-        HW_PMU_REG_MISC1.B.LVDS1_CLK_SEL = ANATOP_LVDS_CLK1_SRC_SATA;
-        HW_PMU_REG_MISC1_SET(BM_PMU_REG_MISC1_LVDSCLK1_OBEN);
+        HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
+        HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__SATA_REF;
+        HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
     }
 }
 
@@ -732,9 +729,9 @@ void enable_extrn_125mhz_clk(uint32_t enable)
         HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
 
         // Select PCIe clock source and switch to output buffer.
-        HW_PMU_REG_MISC1_CLR(BM_PMU_REG_MISC1_LVDSCLK1_IBEN);
-        HW_PMU_REG_MISC1.B.LVDS1_CLK_SEL = ANATOP_LVDS_CLK1_SRC_PCIE;
-        HW_PMU_REG_MISC1_SET(BM_PMU_REG_MISC1_LVDSCLK1_OBEN);
+        HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
+        HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__PCIE_REF;
+        HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
     }
 }
 

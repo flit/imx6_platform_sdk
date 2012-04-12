@@ -121,7 +121,7 @@ static void tempmon_alarm_isr(void)
     }
     
     // Clear the alarm IRQ by writing a 1.
-    BF_SET(PMU_REG_MISC1, IRQ_TEMPSENSE);
+    BF_SET(PMU_MISC1, IRQ_TEMPSENSE);
 }
 
 int tempmon_init(void)
@@ -206,7 +206,7 @@ void tempmon_set_alarm(uint32_t period, float alarmTemp, tempmon_alarm_callback_
     BF_WR(TEMPMON_TEMPSENSE0, ALARM_VALUE, alarmValue);
     
     // Clear the alarm IRQ by writing a 1.
-    BF_SET(PMU_REG_MISC1, IRQ_TEMPSENSE);
+    BF_SET(PMU_MISC1, IRQ_TEMPSENSE);
     
     // Enable the alarm interrupt.
     register_interrupt_routine(IMX_INT_TEMPERATURE, tempmon_alarm_isr);

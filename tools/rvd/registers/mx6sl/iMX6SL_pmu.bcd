@@ -54,8 +54,8 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_PMU_REG_3P0_BO_OFFSET={\
         gui_name="BO_OFFSET":position=4:size=3:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_3P0_REG_3P0_VBUS_SEL={\
-        gui_name="REG_3P0_VBUS_SEL":position=7:size=1:read_only=false\
+        bit_fields.B_PMU_REG_3P0_VBUS_SEL={\
+        gui_name="VBUS_SEL":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_PMU_REG_3P0_OUTPUT_TRG={\
         gui_name="OUTPUT_TRG":position=8:size=5:read_only=false\
@@ -117,9 +117,6 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_PMU_REG_CORE_REG2_ADJ={\
         gui_name="REG2_ADJ":position=23:size=4:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_CORE_RAMP_RATE={\
-        gui_name="RAMP_RATE":position=27:size=2:read_only=false\
-      }:\
         bit_fields.B_PMU_REG_CORE_FET_ODRIVE={\
         gui_name="FET_ODRIVE":position=29:size=1:read_only=false\
       }\
@@ -159,82 +156,73 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_PMU_MISC0_CLKGATE_DELAY={\
         gui_name="CLKGATE_DELAY":position=26:size=3:read_only=false\
       }\
-    }:Register.G_PMU_REG_MISC1={\
-      gui_name="REG_MISC1":start=0x020c8160:length=4:\
+    }:Register.G_PMU_MISC1={\
+      gui_name="MISC1":start=0x020c8160:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_PMU_REG_MISC1_LVDS1_CLK_SEL={\
+        bit_fields.B_PMU_MISC1_LVDS1_CLK_SEL={\
         gui_name="LVDS1_CLK_SEL":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC1_LVDS2_CLK_SEL={\
-        gui_name="LVDS2_CLK_SEL":position=5:size=5:read_only=false\
-      }:\
-        bit_fields.B_PMU_REG_MISC1_LVDSCLK1_OBEN={\
+        bit_fields.B_PMU_MISC1_LVDSCLK1_OBEN={\
         gui_name="LVDSCLK1_OBEN":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC1_LVDSCLK2_OBEN={\
-        gui_name="LVDSCLK2_OBEN":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_PMU_REG_MISC1_LVDSCLK1_IBEN={\
+        bit_fields.B_PMU_MISC1_LVDSCLK1_IBEN={\
         gui_name="LVDSCLK1_IBEN":position=12:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC1_LVDSCLK2_IBEN={\
-        gui_name="LVDSCLK2_IBEN":position=13:size=1:read_only=false\
-      }:\
-        bit_fields.B_PMU_REG_MISC1_IRQ_TEMPSENSE={\
+        bit_fields.B_PMU_MISC1_IRQ_TEMPSENSE={\
         gui_name="IRQ_TEMPSENSE":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC1_IRQ_ANA_BO={\
+        bit_fields.B_PMU_MISC1_IRQ_ANA_BO={\
         gui_name="IRQ_ANA_BO":position=30:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC1_IRQ_DIG_BO={\
+        bit_fields.B_PMU_MISC1_IRQ_DIG_BO={\
         gui_name="IRQ_DIG_BO":position=31:size=1:read_only=false\
       }\
-    }:Register.G_PMU_REG_MISC2={\
-      gui_name="REG_MISC2":start=0x020c8170:length=4:\
+    }:Register.G_PMU_MISC2={\
+      gui_name="MISC2":start=0x020c8170:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_PMU_REG_MISC2_REG0_BO_OFFSET={\
+        bit_fields.B_PMU_MISC2_REG0_BO_OFFSET={\
         gui_name="REG0_BO_OFFSET":position=0:size=3:read_only=true\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG0_BO_STATUS={\
+        bit_fields.B_PMU_MISC2_REG0_BO_STATUS={\
         gui_name="REG0_BO_STATUS":position=3:size=1:read_only=true\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG0_ENABLE_BO={\
+        bit_fields.B_PMU_MISC2_REG0_ENABLE_BO={\
         gui_name="REG0_ENABLE_BO":position=5:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC2_CONTROL0={\
+        bit_fields.B_PMU_MISC2_CONTROL0={\
         gui_name="CONTROL0":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG1_BO_OFFSET={\
+        bit_fields.B_PMU_MISC2_REG1_BO_OFFSET={\
         gui_name="REG1_BO_OFFSET":position=8:size=3:read_only=true\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG1_BO_STATUS={\
+        bit_fields.B_PMU_MISC2_REG1_BO_STATUS={\
         gui_name="REG1_BO_STATUS":position=11:size=1:read_only=true\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG1_ENABLE_BO={\
+        bit_fields.B_PMU_MISC2_REG1_ENABLE_BO={\
         gui_name="REG1_ENABLE_BO":position=13:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG2_BO_OFFSET={\
+        bit_fields.B_PMU_MISC2_REG2_BO_OFFSET={\
         gui_name="REG2_BO_OFFSET":position=16:size=3:read_only=true\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG2_BO_STATUS={\
+        bit_fields.B_PMU_MISC2_REG2_BO_STATUS={\
         gui_name="REG2_BO_STATUS":position=19:size=1:read_only=true\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG2_ENABLE_BO={\
+        bit_fields.B_PMU_MISC2_REG2_ENABLE_BO={\
         gui_name="REG2_ENABLE_BO":position=21:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG2_OK={\
+        bit_fields.B_PMU_MISC2_REG2_OK={\
         gui_name="REG2_OK":position=22:size=1:read_only=true\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG0_STEP_TIME={\
+        bit_fields.B_PMU_MISC2_REG0_STEP_TIME={\
         gui_name="REG0_STEP_TIME":position=24:size=2:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG1_STEP_TIME={\
+        bit_fields.B_PMU_MISC2_REG1_STEP_TIME={\
         gui_name="REG1_STEP_TIME":position=26:size=2:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC2_REG2_STEP_TIME={\
+        bit_fields.B_PMU_MISC2_REG2_STEP_TIME={\
         gui_name="REG2_STEP_TIME":position=28:size=2:read_only=false\
       }:\
-        bit_fields.B_PMU_REG_MISC2_CONTROL3={\
+        bit_fields.B_PMU_MISC2_CONTROL3={\
         gui_name="CONTROL3":position=30:size=2:read_only=false\
       }\
     }\
@@ -256,7 +244,7 @@ Advanced_Information.Cortex-A9={\
     line="B_PMU_REG_3P0_ENABLE_BO":\
     line="B_PMU_REG_3P0_ENABLE_ILIMIT":\
     line="B_PMU_REG_3P0_BO_OFFSET":\
-    line="B_PMU_REG_3P0_REG_3P0_VBUS_SEL":\
+    line="B_PMU_REG_3P0_VBUS_SEL":\
     line="B_PMU_REG_3P0_OUTPUT_TRG":\
     line="B_PMU_REG_3P0_BO_VDD3P0":\
     line="B_PMU_REG_3P0_OK_VDD3P0":\
@@ -281,7 +269,6 @@ Advanced_Information.Cortex-A9={\
     line="B_PMU_REG_CORE_REG1_ADJ":\
     line="B_PMU_REG_CORE_REG2_TRIG":\
     line="B_PMU_REG_CORE_REG2_ADJ":\
-    line="B_PMU_REG_CORE_RAMP_RATE":\
     line="B_PMU_REG_CORE_FET_ODRIVE":\
     line="$$":\
     line="$+":\
@@ -299,34 +286,31 @@ Advanced_Information.Cortex-A9={\
     line="B_PMU_MISC0_CLKGATE_DELAY":\
     line="$$":\
     line="$+":\
-    line="=G_PMU_REG_MISC1":\
-    line="B_PMU_REG_MISC1_LVDS1_CLK_SEL":\
-    line="B_PMU_REG_MISC1_LVDS2_CLK_SEL":\
-    line="B_PMU_REG_MISC1_LVDSCLK1_OBEN":\
-    line="B_PMU_REG_MISC1_LVDSCLK2_OBEN":\
-    line="B_PMU_REG_MISC1_LVDSCLK1_IBEN":\
-    line="B_PMU_REG_MISC1_LVDSCLK2_IBEN":\
-    line="B_PMU_REG_MISC1_IRQ_TEMPSENSE":\
-    line="B_PMU_REG_MISC1_IRQ_ANA_BO":\
-    line="B_PMU_REG_MISC1_IRQ_DIG_BO":\
+    line="=G_PMU_MISC1":\
+    line="B_PMU_MISC1_LVDS1_CLK_SEL":\
+    line="B_PMU_MISC1_LVDSCLK1_OBEN":\
+    line="B_PMU_MISC1_LVDSCLK1_IBEN":\
+    line="B_PMU_MISC1_IRQ_TEMPSENSE":\
+    line="B_PMU_MISC1_IRQ_ANA_BO":\
+    line="B_PMU_MISC1_IRQ_DIG_BO":\
     line="$$":\
     line="$+":\
-    line="=G_PMU_REG_MISC2":\
-    line="B_PMU_REG_MISC2_REG0_BO_OFFSET":\
-    line="B_PMU_REG_MISC2_REG0_BO_STATUS":\
-    line="B_PMU_REG_MISC2_REG0_ENABLE_BO":\
-    line="B_PMU_REG_MISC2_CONTROL0":\
-    line="B_PMU_REG_MISC2_REG1_BO_OFFSET":\
-    line="B_PMU_REG_MISC2_REG1_BO_STATUS":\
-    line="B_PMU_REG_MISC2_REG1_ENABLE_BO":\
-    line="B_PMU_REG_MISC2_REG2_BO_OFFSET":\
-    line="B_PMU_REG_MISC2_REG2_BO_STATUS":\
-    line="B_PMU_REG_MISC2_REG2_ENABLE_BO":\
-    line="B_PMU_REG_MISC2_REG2_OK":\
-    line="B_PMU_REG_MISC2_REG0_STEP_TIME":\
-    line="B_PMU_REG_MISC2_REG1_STEP_TIME":\
-    line="B_PMU_REG_MISC2_REG2_STEP_TIME":\
-    line="B_PMU_REG_MISC2_CONTROL3":\
+    line="=G_PMU_MISC2":\
+    line="B_PMU_MISC2_REG0_BO_OFFSET":\
+    line="B_PMU_MISC2_REG0_BO_STATUS":\
+    line="B_PMU_MISC2_REG0_ENABLE_BO":\
+    line="B_PMU_MISC2_CONTROL0":\
+    line="B_PMU_MISC2_REG1_BO_OFFSET":\
+    line="B_PMU_MISC2_REG1_BO_STATUS":\
+    line="B_PMU_MISC2_REG1_ENABLE_BO":\
+    line="B_PMU_MISC2_REG2_BO_OFFSET":\
+    line="B_PMU_MISC2_REG2_BO_STATUS":\
+    line="B_PMU_MISC2_REG2_ENABLE_BO":\
+    line="B_PMU_MISC2_REG2_OK":\
+    line="B_PMU_MISC2_REG0_STEP_TIME":\
+    line="B_PMU_MISC2_REG1_STEP_TIME":\
+    line="B_PMU_MISC2_REG2_STEP_TIME":\
+    line="B_PMU_MISC2_CONTROL3":\
     line="$$":\
   }:ARM_config={}\
 }

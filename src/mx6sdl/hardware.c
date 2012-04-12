@@ -713,44 +713,29 @@ void pcie_card_pwr_setup(uint32_t enable)
     }
 }
 
-#define ANATOP_PLL_ENABLE_MASK          0x00002000
-#define ANATOP_PLL_BYPASS_MASK          0x00010000
-#define ANATOP_PLL_LOCK                 0x80000000
-#define ANATOP_PLL_PWDN_MASK            0x00001000
-#define ANATOP_PLL_HOLD_RING_OFF_MASK   0x00000800
-#define ANATOP_PCIE_CLK_ENABLE_MASK     0x00080000
-#define ANATOP_SATA_CLK_ENABLE_MASK     0x00100000
-#define ANATOP_BYPASS_SRC_LVDS1         0x00004000
-
-#define ENET_PLL_REG ((volatile uint32_t *)(ANATOP_BASE_ADDR + (0xE << 4)))
-#define ANA_MISC1_REG ((volatile uint32_t *)(ANATOP_BASE_ADDR + (0x16 << 4)))
-#define ANATOP_LVDS_CLK1_SRC_PCIE       0xA
-#define ANATOP_LVDS_CLK1_SRC_SATA       0xB
-#define ANATOP_LVDS_CLK1_OBEN_MASK       0x400
-#define ANATOP_LVDS_CLK1_IBEN_MASK       0x1000
-
 void enable_extrn_100mhz_clk(uint32_t enable)
 {
     if (enable) {
-        /* Disable SATS clock gating used has external reference */
-//         *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
+        // Disable SATA clock gating used as external reference
         HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
 
-        *ANA_MISC1_REG &= ~ANATOP_LVDS_CLK1_IBEN_MASK;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_SRC_SATA;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_OBEN_MASK;
+        // Select SATA clock source and switch to output buffer.
+        HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
+        HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__SATA_REF;
+        HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
     }
 }
 
 void enable_extrn_125mhz_clk(uint32_t enable)
 {
     if (enable) {
-        /* Disable SATS clock gating used has external reference */
-        *ENET_PLL_REG |= ANATOP_SATA_CLK_ENABLE_MASK;
+        // Disable SATA clock gating used as external reference
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
 
-        *ANA_MISC1_REG &= ~ANATOP_LVDS_CLK1_IBEN_MASK;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_SRC_PCIE;
-        *ANA_MISC1_REG |= ANATOP_LVDS_CLK1_OBEN_MASK;
+        // Select PCIe clock source and switch to output buffer.
+        HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
+        HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__PCIE_REF;
+        HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
     }
 }
 

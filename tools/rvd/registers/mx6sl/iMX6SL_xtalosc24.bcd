@@ -3,7 +3,7 @@ description="Freescale iMX6SL development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
   :Memory_block.M_XTALOSC24M={\
-    start=0x020c8270:length=0x00000004:description="XTALOSC24M"\
+    start=0x020c8150:length=0x00000004:description="XTALOSC24M"\
   }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
@@ -13,7 +13,7 @@ Advanced_Information.Cortex-A9={\
     }\
   }:Peripherals.XTALOSC24M={\
     base=Absolute:description="":Register.G_XTALOSC24M_MISC0={\
-      gui_name="MISC0":start=0x020c8270:length=4:\
+      gui_name="MISC0":start=0x020c8150:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_XTALOSC24M_MISC0_REFTOP_PWD={\
         gui_name="REFTOP_PWD":position=0:size=1:read_only=false\

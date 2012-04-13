@@ -86,7 +86,7 @@ set_interrupt_as_nonsecure:
   MOV     r3, r3, LSL r1          @ Shift it left to position of ID
 
   ADD     r2, r2, #0x1080         @ Add the base offset of the Enable Set registers to the offset for the ID
-  LDR     r1, [r2]                @ Read the IDs Security Register (ICDISR)
+  LDR     r1, [r0, r2]            @ Read the IDs Security Register (ICDISR)
   ORR     r1, r1, r3              @ Set ID bit position
   STR     r1, [r0, r2]            @ Write the IDs Security Register (ICDISR)
   
@@ -95,7 +95,7 @@ set_interrupt_as_nonsecure:
 
 @ ------------------------------------------------------------
 
-  .global  set_interrupt_as_nonsecure
+  .global  set_interrupt_as_secure
   @ void set_interrupt_as_secure(unsigned int ID);
   @ sets the interrupt source number ID as a secure interrupt
   .func set_interrupt_as_secure

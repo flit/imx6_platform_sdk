@@ -6,9 +6,9 @@
  */
 #include <stdio.h>
 #include "hardware.h"
-#include "watchdog.h"
+#include "wdog/watchdog.h"
 #include "sdk.h"
-#include "soc_memory_map.h"
+
 /************************************************** Static Function ***********************************************/
 static void watchdog_reset(void)
 {

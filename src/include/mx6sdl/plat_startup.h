@@ -17,14 +17,17 @@
 
 #include "soc_memory_map.h"
 
-#define LE_TO_BE(x) (((x << 24) & 0xFF000000) | \
-                    ((x << 8) & 0xFF0000) |     \
-                    ((x >> 8) & 0xFF00) |       \
-                    ((x >> 24) & 0xFF))
+#define LE_TO_BE_16(x) ((((x) << 8) & 0xFF00) | \
+                       (((x) >> 8) & 0xFF))
+
+#define LE_TO_BE_32(x) ((((x) << 24) & 0xFF000000) | \
+                    (((x) << 8) & 0xFF0000) |     \
+                    (((x) >> 8) & 0xFF00) |       \
+                    (((x) >> 24) & 0xFF))
 
 #define DCD_DATA(addr, data)        \
-            .long LE_TO_BE(addr);   \
-            .long LE_TO_BE(data)    \
+            .long LE_TO_BE_32(addr);   \
+            .long LE_TO_BE_32(data)    \
 
 #define L2CC_REG1_CTRL			0x00A02100
 #define L2CC_INV_REG			0x00A0277C
@@ -54,13 +57,26 @@ plugin:                .long 0x0
 
     .org IVT_OFFSET + 0x30
 /*
- * Note: The DDR settings provided below are specific to Freescale development boards and are the latest settings at the time of release.
- * However, it is recommended to contact your Freescale representative in case there are any improvements to these settings.
+ * List of DCD elements is automatically calculated based on dcd_data_end and
+ * dcd_data_start addresses.
+ * If the list contains for instance 90 elements, the length Len must equal
+ * the value provided in the comments below.
  */
-#if ((defined MX6SDL_SABRE_AI) || (defined MX6SDL_SMART_DEVICE) || (defined MX6SDL_SABRE_LITE) || (defined MX6SDL_EVB))
-dcd_header:         .long 0x40D802D2 /* Tag=0xD2, Len=4 + 4 + 8*90, Ver=0x40 */
-dcd_write_data_cmd: .long 0x04D402CC /* Tag=0xCC, Len=4 + 8*90, Param=0x04 */
+dcd_header:         .byte 0xD2      /* Tag=0xD2 */
+                    .short LE_TO_BE_16(dcd_data_end - dcd_data_start + 8)   /* Len=4 + 4 + 8*90 */
+                    .byte 0x40      /* Ver=0x40 */
 
+dcd_write_data_cmd: .byte 0xCC      /* Tag=0xCC */
+                    .short LE_TO_BE_16(dcd_data_end - dcd_data_start + 4)   /* Len=4 + 8*90 */
+                    .byte 0x04      /* Param=0x04 */
+
+/*
+ * Note: The DDR settings provided below are specific to Freescale development boards and
+ * are the latest settings at the time of release.
+ */
+
+dcd_data_start:
+#if ((defined MX6SDL_SABRE_AI) || (defined MX6SDL_SMART_DEVICE) || (defined MX6SDL_SABRE_LITE) || (defined MX6SDL_EVB))
     /*Use default DDR frequency: 528MHz*/
     DCD_DATA(0x020e05a8, 0x00000030)
     DCD_DATA(0x020e05b0, 0x00000030)
@@ -154,6 +170,8 @@ dcd_write_data_cmd: .long 0x04D402CC /* Tag=0xCC, Len=4 + 8*90, Param=0x04 */
     DCD_DATA(0x021b001c, 0x00000000)
 
 #endif
+dcd_data_end:
+
 .endm   //plat_dcd_startup
 
 // #define PLATFORM_ASM_STARTUP           platform_asm_startup

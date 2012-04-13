@@ -23,8 +23,9 @@
 *.elf
 *.bin
 *.gz
+._*
+.DS_Store
 output
-doc
 
 #
 # Top-level generic files

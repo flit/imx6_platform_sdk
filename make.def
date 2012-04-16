@@ -7,6 +7,7 @@
 
 # The following are defines for the GCC tool chain
 CC = arm-none-eabi-gcc
+CPP = arm-none-eabi-g++
 AS = arm-none-eabi-as
 AR = arm-none-eabi-ar
 LN = arm-none-eabi-ld
@@ -19,6 +20,7 @@ OUTPUT_ELF = $(PROJ_OUT)/bin/$(IMAGENAME).elf
 MAP_FILE = $(PROJ_OUT)/bin/$(IMAGENAME).map
 INIT_FILE = $(PROJ_DIR)/src/init/main.c $(PROJ_DIR)/src/init/vectors.S
 INIT_FILE += $(PROJ_DIR)/src/init/system_util.c $(PROJ_DIR)/src/init/version.c
+LD_FILE = $(PROJ_DIR)/src/$(TARGET)/$(TARGET).ld
 
 CP = cp
 RM = rm -rf
@@ -96,17 +98,18 @@ C_DEFINES +=-DALL_TEST_ENABLE
 endif
 
 LD_FLAGS := $(DEBUG_FLAGS) $(THUMB_FLAGS) -nostartfiles
-LD_FLAGS += -lm -Wl,-Map,$(MAP_FILE)
-LD_FLAGS += -T $(PROJ_DIR)/src/$(TARGET)/$(TARGET).ld
+LD_FLAGS += -lm -lstdc++ -lc -lgcc
+LD_FLAGS += -Wl,-Map,$(MAP_FILE)
+LD_FLAGS += -T $(LD_FILE)
 
 C_DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 
 # enables all warnings and treat them as errors except those preceded with -Wno-
 C_FLAGS_WARNINGS = -Wall -Werror -Wno-unused-function -fdiagnostics-show-option
-C_FLAGS_WARNINGS += -Wno-unused-but-set-variable
+C_FLAGS_WARNINGS += -Wno-unused-but-set-variable -Wno-format
 
 # Basic compiler flags. Enable debugging.
-C_FLAGS = $(C_FLAGS_WARNINGS) -g
+C_FLAGS = $(C_FLAGS_WARNINGS) -g  -fno-exceptions
 
 # Disable placing globals into the common section.
 C_FLAGS += -fno-common
@@ -127,7 +130,9 @@ C_FLAGS += -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
 C_FLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # C++ flags. Disable exceptions and RTTI.
-CPP_FLAGS = -fno-exceptions -fno-rtti
+CPP_FLAGS = $(C_FLAGS_WARNINGS) -g -fno-common -fno-exceptions -fno-rtti -O0 -fdce
+CPP_FLAGS += -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
+CPP_FLAGS += -mfpu=neon -mfloat-abi=softfp
 
 C_INCLUDES = \
     -I$(PROJ_DIR)/src/include  \

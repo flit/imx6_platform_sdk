@@ -16,10 +16,18 @@
 
 #include "sdk.h"
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 void _sys_exit(int32_t return_code);
 
 int32_t is_input_char(uint8_t c);
 uint32_t get_input_hex(void);
+int read_int(void);
 
+#if defined(__cplusplus)
+}
+#endif
 
 #endif //_SYSTEM_UTIL_H_

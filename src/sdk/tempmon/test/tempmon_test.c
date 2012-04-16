@@ -6,54 +6,12 @@
  */
 
 #include "tempmon/tempmon.h"
+#include "system_util.h"
 #include <stdlib.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Code
 //////////////////////////////////////////////////////////////////////////////////////////
-
-int read_int(void)
-{
-    int result = 0;
-    bool isDone = false;
-    
-    while (!isDone)
-    {
-        char c = fgetc(NULL);
-        switch (c)
-        {
-            case NONE_CHAR:
-            default:
-                continue;
-            
-            case '0':
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-                // Update our int value.
-                result = (result * 10) + (c - '0');
-                break;
-                
-            case '\n':
-            case '\r':
-                // Exit the scan loop.
-                c = '\n';
-                isDone = true;
-                break;
-        }
-
-        // Echo the char.
-        fputc(c, stdout);
-    }
-
-    return result;
-}
 
 void over_temp_callback(float theTemp)
 {

@@ -14,6 +14,7 @@
 
 #include <math.h>
 #include "registers/regsccmanalog.h"
+#include "registers/regspmu.h"
 #include "hardware.h"
 
 #define ON 1

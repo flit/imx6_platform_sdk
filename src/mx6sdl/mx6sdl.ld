@@ -25,19 +25,31 @@ SECTIONS
         __vectors_end = .;
     }>DDR
 
-    . = ALIGN (4);
+    . = ALIGN (32);
     .text : 
     {
          *(.text)
     }
 
-    . = ALIGN (4);
+    . = ALIGN (32);
     .data :
     {
         *(.data)
     }
 
-    . = ALIGN (4);
+    . = ALIGN (32);
+    .rodata :
+    {
+        *(.rodata)
+    }
+
+    /* This section and the symbols are related to C++ exceptions, and seems to be required even
+       though exceptions are disabled with -fno-exceptions. */
+    __exidx_start = .;
+    .ARM.exidx : { *(.ARM.exidx* .gnu.linkonce.armexidx.*) }
+    __exidx_end = .;
+
+    . = ALIGN (32);
     _end_image_add = .;
     _image_size = _end_image_add - _start_image_add;
 

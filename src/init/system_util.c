@@ -13,6 +13,8 @@
  */
 
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <stdio.h>
 #include "hardware.h"
 
@@ -278,5 +280,64 @@ uint32_t get_input_hex(void)
     return (uint32_t) tmp[0] * 0x10000000 + tmp[1] * 0x1000000 + tmp[2] * 0x100000
                       + tmp[3] * 0x10000 + tmp[4] * 0x1000 + tmp[5] * 0x100
                       + tmp[6] * 0x10 + tmp[7];
+}
+
+int read_int(void)
+{
+    int result = 0;
+    bool isDone = false;
+    
+    while (!isDone)
+    {
+        char c = fgetc(NULL);
+        switch (c)
+        {
+            case NONE_CHAR:
+            default:
+                continue;
+            
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                // Update our int value.
+                result = (result * 10) + (c - '0');
+                break;
+                
+            case '\n':
+            case '\r':
+                // Exit the scan loop.
+                c = '\n';
+                isDone = true;
+                break;
+        }
+
+        // Echo the char.
+        fputc(c, stdout);
+    }
+
+    return result;
+}
+
+void _exit(int status)
+{
+    _sys_exit(status);
+    while (1) ;
+}
+
+void _kill()
+{
+    _exit(1);
+}
+
+pid_t _getpid()
+{
+    return 1;
 }
 

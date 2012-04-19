@@ -105,7 +105,7 @@ LD_FLAGS += -T $(LD_FILE)
 C_DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 
 # enables all warnings and treat them as errors except those preceded with -Wno-
-C_FLAGS_WARNINGS = -Wall -Werror -Wno-unused-function -Wno-unused-but-set-variable -fdiagnostics-show-option
+C_FLAGS_WARNINGS = -Wall -Werror -Wno-unused-function -fdiagnostics-show-option
 C_FLAGS_WARNINGS += -Wno-unused-but-set-variable -Wno-format
 
 # Basic compiler flags. Enable debugging.
